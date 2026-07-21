@@ -7,13 +7,21 @@ Two Claude Code skills, ready to install:
 
 ## Install (one line)
 
-Paste this into Claude Code (or any terminal):
+**Easiest — any OS:** paste this into Claude Code itself (its shell is bash on every platform, including Windows via Git Bash):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/itamarmeirovichai-source/claude-skills/main/install.sh | bash
 ```
 
-This copies both skills into `~/.claude/skills/`. If you already have a skill with the same name, it's backed up first (`<name>.bak.*`), never silently overwritten.
+**Windows PowerShell** (if you prefer a regular terminal instead of Claude Code):
+
+```powershell
+irm https://raw.githubusercontent.com/itamarmeirovichai-source/claude-skills/main/install.ps1 | iex
+```
+
+**macOS / Linux terminal:** same `curl` line as above.
+
+Both installers copy the skills into `~/.claude/skills/`. If you already have a skill with the same name, it's backed up first (`<name>.bak.*`), never silently overwritten.
 
 Then open a **new** Claude Code session and type `/minds` or `/skill-prompt-architect`.
 
