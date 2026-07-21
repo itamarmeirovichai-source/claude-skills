@@ -1,0 +1,72 @@
+{
+  "case_id": "example-case",
+  "should_trigger": true,
+  "expected_output": "What a correct answer should produce.",
+  "baseline_without_skill": "What an unaided strong Claude run is expected to miss.",
+  "dimensions": [
+    {
+      "name": "trigger_correctness",
+      "weight": 20,
+      "description": "Correct trigger/non-trigger behavior for the case."
+    },
+    {
+      "name": "artifact_quality",
+      "weight": 20,
+      "description": "Completeness and usefulness of the produced artifact."
+    },
+    {
+      "name": "domain_specificity",
+      "weight": 15,
+      "description": "Uses concrete domain constraints instead of generic advice."
+    },
+    {
+      "name": "validation_quality",
+      "weight": 15,
+      "description": "Includes realistic checks, evals, or deterministic validation."
+    },
+    {
+      "name": "safety_boundary",
+      "weight": 10,
+      "description": "Handles unsafe, private, or tool-sensitive behavior correctly."
+    },
+    {
+      "name": "delivery_completeness",
+      "weight": 10,
+      "description": "Gives install, packaging, or handoff details when relevant."
+    },
+    {
+      "name": "concision_cost",
+      "weight": 10,
+      "description": "Avoids unnecessary ceremony, verbosity, or context cost."
+    }
+  ],
+  "baseline": {
+    "critical_failure": false,
+    "scores": {
+      "trigger_correctness": null,
+      "artifact_quality": null,
+      "domain_specificity": null,
+      "validation_quality": null,
+      "safety_boundary": null,
+      "delivery_completeness": null,
+      "concision_cost": null
+    },
+    "notes": ""
+  },
+  "with_skill": {
+    "critical_failure": false,
+    "scores": {
+      "trigger_correctness": null,
+      "artifact_quality": null,
+      "domain_specificity": null,
+      "validation_quality": null,
+      "safety_boundary": null,
+      "delivery_completeness": null,
+      "concision_cost": null
+    },
+    "notes": ""
+  },
+  "blockers": [],
+  "winner": null,
+  "review_notes": ""
+}

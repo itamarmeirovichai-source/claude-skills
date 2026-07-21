@@ -1,0 +1,52 @@
+{
+  "skill_name": "example-skill-name",
+  "quality_gate": {
+    "minimum_readiness_score": 85,
+    "minimum_with_skill_benchmark_score": 85,
+    "minimum_benchmark_delta": 10,
+    "target_score_for_generated_skills": 100,
+    "verified_100_requires": [
+      "captured baseline outputs",
+      "captured with-skill outputs",
+      "completed scorecards",
+      "all with-skill case scores equal 100",
+      "no critical failures",
+      "no unresolved blockers"
+    ],
+    "required_sections": [
+      "Skill Brief",
+      "Decision",
+      "Research Synthesis",
+      "Skill Contract",
+      "Package Plan",
+      "Build Prompt Or Files",
+      "Validation",
+      "Delivery"
+    ],
+    "baseline_comparison": "Compare captured outputs with and without the skill for specificity, correctness, safety, validation quality, delivery completeness, and context cost."
+  },
+  "evals": [
+    {
+      "id": "should-trigger-example",
+      "prompt": "Turn this rough workflow into a reusable skill package.",
+      "expected_output": "A skill contract, package plan, files or build prompt, validation plan, and readiness score.",
+      "baseline_without_skill": "Likely produces generic advice or a prompt without package validation, trigger boundaries, or evals.",
+      "should_trigger": true,
+      "assertions": [
+        "Uses the skill output contract",
+        "Defines trigger and non-trigger contexts",
+        "Includes validation and evals"
+      ]
+    },
+    {
+      "id": "should-not-trigger-example",
+      "prompt": "Write a friendly follow-up email.",
+      "expected_output": "The skill should not trigger because this is ordinary writing, not skill design.",
+      "baseline_without_skill": "Likely writes the email directly, which is correct.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not force a skill-design workflow"
+      ]
+    }
+  ]
+}
