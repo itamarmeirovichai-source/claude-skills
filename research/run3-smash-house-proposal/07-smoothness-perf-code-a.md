@@ -75,12 +75,18 @@ gsap.ticker.add((time) => lenis.raf(time * 1000))
 gsap.ticker.lagSmoothing(0)
 ScrollTrigger.config({ ignoreMobileResize: true })
 
+// GSAP's utils do NOT include a throttle/debounce — this is the one we use everywhere.
+export function debounce(fn, wait = 200) {
+  let t = 0
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait) }
+}
+
 export { gsap, ScrollTrigger, SplitText, Flip }
 ```
 
 ## 17.1 — The hero (`src/sections/hero.js`)
 ```js
-import { gsap, ScrollTrigger, SplitText, lenis, reduced, isMobile } from '../lib/scroll.js'
+import { gsap, ScrollTrigger, SplitText, reduced } from '../lib/scroll.js'
 
 export function initHero(root) {
   const headline = root.querySelector('[data-hero-headline]')
@@ -128,6 +134,8 @@ export function initHero(root) {
   }
 
   // Order hand-off: navigate FIRST, animate second. Never the other way round.
+  // orderBtn must be an <a href="https://order.toasttab.com/online/smashhouseboca"> —
+  // a real link, so it still works with JS disabled and shows a real target on hover.
   orderBtn.addEventListener('click', (e) => {
     e.preventDefault()
     window.dataLayer?.push({ event: 'order_click', location: 'boca_raton' })
@@ -168,7 +176,7 @@ export function initHero(root) {
 Reads the asset contract exactly. Canvas playback, progressive loading, `createImageBitmap` ahead of the playhead, DPR-aware cover fit, resize handling, per-device frame sets, and DOM overlays on the same progress value.
 
 ```js
-import { gsap, ScrollTrigger, Flip, reduced, isMobile, dprCap } from '../lib/scroll.js'
+import { gsap, ScrollTrigger, Flip, debounce, reduced, isMobile, dprCap } from '../lib/scroll.js'
 
 const CONTRACT = {
   desktop: { total: 248, dir: '/frames/desktop', w: 1920, h: 1080,
@@ -380,7 +388,7 @@ export async function initSequence(root) {
     },
   })
 
-  window.addEventListener('resize', gsap.utils.throttle(resize, 200), { passive: true })
+  window.addEventListener('resize', debounce(resize, 200), { passive: true })
   resize()
 
   await store.fetchOne(0)
