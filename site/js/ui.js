@@ -18,6 +18,24 @@
   var TAGCLASS = { beef:'beef', plant:'plant', kids:'kids', chicken:'', side:'' };
   var TAGLABEL = { beef:'Beef', plant:'Plant-based cheese', kids:'Kids', chicken:'Chicken', side:'Side' };
 
+  /* ---------- the client's own logo, loaded by the visitor's browser ---------- */
+  SH.onBoot(function () {
+    document.querySelectorAll('[data-brand-logo]').forEach(function (img) {
+      img.addEventListener('load', function () {
+        var host = img.closest('.brand') || img.closest('.griddle');
+        if (host) host.classList.add('has-logo');
+      });
+      img.addEventListener('error', function () { img.remove(); });
+      img.src = img.getAttribute('data-brand-logo');
+    });
+    var kong = document.querySelector('[data-kong-arm]');
+    if (kong) {
+      kong.addEventListener('load', function () { kong.dataset.ready = '1'; });
+      kong.addEventListener('error', function () { kong.remove(); });
+      kong.src = kong.getAttribute('data-kong-arm');
+    }
+  });
+
   /* ---------- preloader ---------- */
   SH.onBoot(function () {
     var pre = document.getElementById('preloader');

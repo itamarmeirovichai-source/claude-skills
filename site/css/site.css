@@ -65,6 +65,18 @@ a{color:inherit}
   transition:transform .35s var(--ease);
 }
 .site-header.hidden{transform:translateY(-105%)}
+/* the real logo loads from their CDN in the visitor's browser; if it is unavailable
+   the typographic lockup stays. Neither state ever shows a broken image. */
+.brand-logo,.foot-logo{display:none;width:auto}
+.brand-logo{height:clamp(30px,3.4vw,42px)}
+.foot-logo{height:clamp(56px,9vw,110px);margin:0 0 24px}
+.brand.has-logo .brand-mark{display:none}
+.brand.has-logo .brand-logo{display:block}
+.griddle.has-logo [data-foot-brand]{display:none}
+.griddle.has-logo .foot-logo{display:block}
+.kong-arm{position:absolute;z-index:4;display:none;pointer-events:none;
+  width:min(46vw,560px);height:auto;transform-origin:100% 50%;
+  filter:drop-shadow(-18px 22px 30px rgba(0,0,0,.6))}
 .brand{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:.06em;
   text-decoration:none;line-height:1;display:flex;gap:.3em;margin-inline-end:auto}
 .brand-smash{color:var(--smash-red)}

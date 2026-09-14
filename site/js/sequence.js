@@ -249,6 +249,7 @@
     var reveal = section.querySelector('[data-reveal]');
     var bar = section.querySelector('[data-seq-bar]');
     var disc = document.querySelector('[data-match]');
+    var kong = section.querySelector('[data-kong-arm]');
     var orderBtn = document.querySelector('.btn-order');
 
     var gl = canvas.getContext('webgl', { antialias: true, alpha: false, powerPreference: 'high-performance' })
@@ -499,6 +500,21 @@
         el.style.transform = 'translate(' + (pr[0] * 100) + 'vw,' + (pr[1] * 100) + 'vh)'
           + (side < 0 ? ' translateX(-100%) scaleX(-1)' : '');
         el.style.textAlign = side < 0 ? 'right' : 'left';
+      }
+
+      /* beat 2: Kong's hand comes in from the right and takes one */
+      if (kong && kong.dataset.ready === '1') {
+        var kb = inv(p, BEATS.bullet[0], BEATS.bullet[1]);
+        var grab = clamp((kb - 0.25) / 0.6, 0, 1);
+        var show = kb > 0.2 && kb < 0.98;
+        kong.style.display = show ? 'block' : 'none';
+        if (show) {
+          var ease = SH.easeOut3(grab);
+          kong.style.right = (-30 + ease * 26) + 'vw';
+          kong.style.top = (34 - ease * 6) + 'vh';
+          kong.style.transform = 'rotate(' + (-16 + ease * 12) + 'deg) scale(' + (0.92 + ease * 0.12) + ')';
+          kong.style.opacity = String(clamp((kb - 0.2) / 0.12, 0, 1) * (1 - clamp((kb - 0.86) / 0.12, 0, 1)));
+        }
       }
 
       flash.style.opacity = String(shake * 0.16);

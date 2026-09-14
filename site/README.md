@@ -9,7 +9,8 @@ break because a CDN changed.
 |---|---|
 | `smash-house-boca-raton.html` | **The whole site in one file.** Open it in a browser. |
 | `index.html` + `css/` + `js/` | The same site as editable source |
-| `build.cjs` | Inlines the source into the single file |
+| `build.cjs` | Inlines the source into the single file and into `dist/index.html` |
+| `dist/` | What Cloudflare Pages serves: `index.html`, `_headers` (noindex), `robots.txt` |
 | `shot.cjs`, `qa.cjs`, `mobile.cjs` | The screenshot harnesses used to check the work |
 
 ## What's in it
@@ -28,9 +29,13 @@ break because a CDN changed.
   marks from the pointer; a custom cursor; `prefers-reduced-motion` throughout.
 
 ## Honest limits
-- **No real brand assets.** Their logo, Kong and food photography are on a CDN this
-  environment cannot reach, so the site is built on typography and the brand palette.
-  Drop the real assets in and it gets substantially better.
+- **Their logo and the Kong arm load from their own CDN in the visitor's browser.** This
+  container cannot reach `cdn.smashhouseburgers.com`, so they were wired to the real URLs
+  with a graceful fallback rather than fetched: if the image loads it replaces the
+  typographic lockup and Kong's hand enters during bullet time; if it does not, the
+  wordmark stays and nothing breaks. Verified in both states.
+- **Food photography is still missing** for the same reason. Drop real photos into the
+  menu tickets and the site gets substantially better.
 - **The burger is procedural WebGL, not the Blender render.** The asset contract and the
   Blender scene for the photoreal frame sequence are in `research/run4-blender-handoff/`.
   This is the real-time fallback the spec calls for — correct and smooth, not photoreal.
@@ -40,6 +45,25 @@ break because a CDN changed.
 ## QA hook
 Add `#qa` to the URL and `window.__setP(0.83)` drives the sequence straight to any beat,
 bypassing scroll and damping. That is how every beat in this build was inspected.
+
+## Deploying to Cloudflare Pages
+This container's network policy blocks `api.cloudflare.com`, so the deploy runs on GitHub
+Actions instead, where there is full internet. `.github/workflows/deploy-proposal-site.yml`
+bundles `site/` and pushes `site/dist` to Cloudflare Pages on every push.
+
+It needs two repository secrets, which only you can create
+(**Settings -> Secrets and variables -> Actions -> New repository secret**):
+
+| Secret | Where to get it |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard -> My Profile -> API Tokens -> Create Token -> **Cloudflare Pages: Edit** |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard -> Workers & Pages -> the Account ID in the right sidebar |
+
+Add them, then run the workflow (Actions tab -> Deploy proposal site -> Run workflow).
+The URL comes back as `https://smash-house-proposal.pages.dev`.
+
+Manual alternative, no secrets, about a minute: Cloudflare dashboard -> Workers & Pages ->
+Create -> Pages -> Upload assets, and drag in `site/dist/`.
 
 ## Not published
 This page carries a real restaurant's name, address, phone and live ordering links. It is
