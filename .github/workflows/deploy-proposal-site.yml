@@ -43,8 +43,21 @@ jobs:
           grep -q 'noindex' dist/index.html
           echo "bundle ok: $(wc -c < dist/index.html) bytes"
 
-      - uses: cloudflare/wrangler-action@v3
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy site/dist --project-name=smash-house-proposal --branch=main
+
+      - name: Report the live URL
+        run: |
+          URL="${{ steps.deploy.outputs.deployment-url }}"
+          echo "deployment-url: $URL"
+          {
+            echo "## Proposal site is live"
+            echo ""
+            echo "- Deployment: $URL"
+            echo "- Production: https://smash-house-proposal.pages.dev"
+          } >> "$GITHUB_STEP_SUMMARY"
