@@ -321,6 +321,13 @@ address a{color:var(--yellow);text-decoration-thickness:1px;text-underline-offse
 .seq-split-top::after{bottom:0}
 .seq-split-bottom::before{top:0}
 
+/* WCAG 2.2 AA target size: every link and button gets at least a 24px tap area.
+   Inline links grow with padding rather than font size, so nothing reflows. */
+.brand{padding-block:6px}
+.foot-links a{display:inline-block;padding-block:6px}
+address a{display:inline-block;padding-block:4px}
+.seq-copy a,.note a,.lede a{display:inline-block;padding-block:3px}
+
 </style>
 </head>
 <body>
