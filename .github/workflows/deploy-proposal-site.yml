@@ -43,6 +43,16 @@ jobs:
           grep -q 'noindex' dist/index.html
           echo "bundle ok: $(wc -c < dist/index.html) bytes"
 
+      # `pages deploy` does not create the project, it only fails with 8000007.
+      # Creating it is idempotent enough: a second run just reports it exists.
+      - name: Ensure the Pages project exists
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create smash-house-proposal --production-branch=main
+
       - name: Deploy to Cloudflare Pages
         id: deploy
         uses: cloudflare/wrangler-action@v3
