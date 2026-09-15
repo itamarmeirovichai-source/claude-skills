@@ -5,6 +5,8 @@ name: Render the burger frames
 # rather than waiting on one machine. Frames are committed, so the site deploy
 # stays a plain static publish.
 
+# The API cannot dispatch this workflow from the build environment (the token
+# gets 403 on /dispatches), so touching .github/render.trigger starts a render.
 on:
   workflow_dispatch:
     inputs:
@@ -13,7 +15,13 @@ on:
         default: "64"
       quality:
         description: WebP quality
-        default: "72"
+        default: "74"
+  push:
+    paths: ['.github/render.trigger']
+
+env:
+  SAMPLES: ${{ inputs.samples || '64' }}
+  QUALITY: ${{ inputs.quality || '74' }}
 
 permissions:
   contents: write
@@ -49,8 +57,8 @@ jobs:
             --variant ${{ matrix.variant }} \
             --start ${{ matrix.start }} \
             --count ${{ matrix.count }} \
-            --samples ${{ inputs.samples }} \
-            --quality ${{ inputs.quality }} \
+            --samples "$SAMPLES" \
+            --quality "$QUALITY" \
             --out "$GITHUB_WORKSPACE/frames_out" \
             --labels "$GITHUB_WORKSPACE/frames_out/labels.${{ matrix.variant }}.${{ matrix.start }}.json" \
             ${{ matrix.poster == 'yes' && '--poster "$GITHUB_WORKSPACE/frames_out/poster.webp"' || '' }}
