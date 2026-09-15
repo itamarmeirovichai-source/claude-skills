@@ -41,7 +41,12 @@ jobs:
           test -s dist/index.html
           grep -q 'data-seq-canvas' dist/index.html
           grep -q 'noindex' dist/index.html
-          echo "bundle ok: $(wc -c < dist/index.html) bytes"
+          # the burger is the site: refuse to publish a scroll with no frames in it
+          test -f dist/frames/poster.webp
+          test -s dist/frames/labels.desktop.json
+          test "$(ls dist/frames/desktop | wc -l)" -ge 100
+          test "$(ls dist/frames/mobile  | wc -l)" -ge 50
+          echo "bundle ok: $(wc -c < dist/index.html) bytes, $(du -sh dist/frames | cut -f1) of frames"
 
       # `pages deploy` does not create the project, it only fails with 8000007.
       # Creating it is idempotent enough: a second run just reports it exists.

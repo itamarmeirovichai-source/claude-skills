@@ -142,7 +142,13 @@ a{color:inherit}
 .seq{position:relative;height:620vh}
 @media (max-width:800px){.seq{height:420vh}}
 .seq-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--near-black)}
-.seq-stage>canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.seq-stage>canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;
+  will-change:transform}
+/* If the frame sequence cannot load, the stage still has to show the burger:
+   the poster is the same render, one still, sitting behind the canvas. */
+.seq-stage::after{content:"";position:absolute;inset:0;z-index:0;opacity:0;
+  background:url(frames/poster.webp) center/contain no-repeat;transition:opacity .4s}
+[data-noframes] .seq-stage::after{opacity:1}
 .seq-labels{position:absolute;inset:0;pointer-events:none;z-index:3}
 .seq-labels span{
   position:absolute;top:0;left:0;white-space:nowrap;opacity:0;

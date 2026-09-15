@@ -1,0 +1,11 @@
+
+# Look-development and probe renders: hundreds of megabytes of intermediate
+# frames that only mattered while the burger was being built.
+research/run4-blender-handoff/out/look/
+research/run4-blender-handoff/out/probe*/
+research/run4-blender-handoff/out/seq/
+site/frames/desktop/
+site/frames/mobile/
+site/frames/poster.webp
+site/dist/frames/
+__pycache__/
