@@ -128,7 +128,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A site/frames
+          git add -A -f site/frames
           git diff --cached --quiet && echo "no change" && exit 0
           git commit -m "Render the photoreal burger sequence"
           git push origin HEAD:${{ github.ref_name }}
