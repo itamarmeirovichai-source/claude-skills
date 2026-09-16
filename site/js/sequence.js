@@ -185,7 +185,15 @@
         if (!a) { el.style.opacity = '0'; continue; }
         var px = (fit.x + a[0] * fit.w) / dpr;
         var py = (fit.y + a[1] * fit.h) / dpr;
-        var side = px > canvas.clientWidth * 0.5 ? 1 : -1;
+        var cw = canvas.clientWidth;
+        /* Flip the label to the other side when it would run off the edge,
+           measured against its own width. Choosing the side by which half of
+           the stage the anchor sits in put every mobile label off the right
+           of a 390px screen, with the text cut in half. */
+        var w = el.offsetWidth || 150;
+        var side = (px + w + 12 > cw) ? -1 : 1;
+        if (side < 0 && px - w < 12) side = 1;       /* no room either way */
+        px = Math.max(12, Math.min(px, cw - 12));
         var appear = clamp((e - i * 0.055) / 0.22, 0, 1);
         el.style.opacity = String(appear * fade * (a[2] ? 1 : 0.25));
         el.style.transform = 'translate(' + px + 'px,' + py + 'px)'
