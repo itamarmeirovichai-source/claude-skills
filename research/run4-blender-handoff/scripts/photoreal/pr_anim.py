@@ -70,7 +70,7 @@ def pose(p):
     # explode: layers fan apart, then close again during the turn — the stack
     # has to be whole again before the smash lands on it
     spread = ease_out(t_expl, 2.2) * (1.0 - ease_in_out(t_turn))
-    gap = 0.046 * spread
+    gap = 0.040 * spread
 
     # smash: the stack squashes and springs back a little
     hit = ease_in_out(t_smash)
@@ -89,7 +89,7 @@ def pose(p):
     # camera — so the halves go the whole ninety degrees, and the burger turns
     # with them so the camera does not have to orbit ninety degrees in one beat.
     open_amt = ease_out(t_cut, 2.4)
-    part = 0.052 * open_amt + 0.040 * ease_in_out(t_slice)
+    part = 0.042 * open_amt + 0.022 * ease_in_out(t_slice)
     book = math.radians(90.0) * open_amt
     # The turn that brings both cut faces round to the lens. The sign is set by
     # which side of the plane each half keeps: bisect's "inner" is -X, so the
@@ -104,8 +104,8 @@ def pose(p):
     KEYS = [
         (0.00, 0.62, 0.046, 26.0, -40.0, 80.0),
         (0.11, 0.54, 0.044, 18.0, -22.0, 85.0),
-        (0.21, 0.50, 0.044, 12.0,  26.0, 90.0),
-        (0.31, 0.46, 0.046,  6.0,  40.0, 82.0),
+        (0.21, 0.54, 0.044, 12.0,  26.0, 90.0),
+        (0.31, 0.52, 0.046,  6.0,  40.0, 82.0),
         (0.42, 0.66, 0.043,  9.0,  24.0, 50.0),
         (0.50, 0.78, 0.043, 11.0,  12.0, 44.0),
         (0.59, 0.58, 0.044,  7.0,  -6.0, 68.0),
@@ -136,7 +136,7 @@ def pose(p):
         cam[2] += 1.6 * math.sin(t_smash * 61.0) * k
 
     # what the camera has to fit, in metres from the aim point
-    fan_half = 4.0 * gap + 0.060
+    fan_half = 4.0 * gap + 0.055
     wide_half = 0.064 + d_part_half(part)
 
     return dict(

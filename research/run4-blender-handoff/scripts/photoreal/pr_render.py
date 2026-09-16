@@ -25,7 +25,9 @@ ANCHOR_R = 0.050
 
 
 def aim_camera(cam, pose, dist_k=1.0):
-    target = Vector((0.0, 0.0, pose["cam_target_z"]))
+    # follow the drop rather than framing for it: aiming at a fixed height
+    # while the burger is 85 mm above it put the first frames half off the top
+    target = Vector((0.0, 0.0, pose["cam_target_z"] + pose["rise"] * 0.88))
     e = math.radians(pose["cam_elev"])
     a = math.radians(pose["cam_azim"])
     cam.data.lens = pose["cam_focal"]
@@ -33,8 +35,8 @@ def aim_camera(cam, pose, dist_k=1.0):
     # Never let the subject leave the frame. The hand-set distance is a floor;
     # the real one is whatever it takes to fit the fan and the parted halves,
     # solved against this camera's actual field of view.
-    need_v = pose["fan_half"] * 1.30 / math.tan(cam.data.angle_y * 0.5)
-    need_h = pose["wide_half"] * 1.30 / math.tan(cam.data.angle_x * 0.5)
+    need_v = pose["fan_half"] * 1.10 / math.tan(cam.data.angle_y * 0.5)
+    need_h = pose["wide_half"] * 1.10 / math.tan(cam.data.angle_x * 0.5)
     d = max(d, need_v, need_h)
     pos = target + Vector((math.sin(a) * math.cos(e),
                            -math.cos(a) * math.cos(e),
