@@ -134,6 +134,11 @@ operational load and on staying unremarkable to the firm.
   win multiple at 0.35 moves the eight-year figures by under 2%.
 - Three trades per day. Two would cut everything by a third.
 - Any ceiling on how fast a dead account can be replaced. See the caveat above.
+- Integer contract counts. P&L is priced at the target risk percentage, while
+  commissions and slippage are charged at the nearest whole contract count. This
+  matches sizing to each trade's own stop width, which is what a real sizer does;
+  it would overstate a bot that always traded a fixed contract count on a fixed
+  stop by roughly 15%.
 - No rules changes at the firm over eight years. There was one in March 2026.
 - Quarter-point slippage on stopped exits. News days are far worse.
 - And above all: it assumes the expectancy is known. It is not.

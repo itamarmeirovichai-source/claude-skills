@@ -28,6 +28,8 @@ Size from trade geometry — stop distance times point value times contracts. **
 
 Cut the size the same day the account converts. This is the rule that is easiest to forget and most expensive to forget.
 
+The percentage is the target; the contract count is an integer. On an 8.5-point stop one MES is $42.50, so the reachable steps are $42.50, $85, $127.50 — there is no exactly-4% position on a 50K. Pick the nearest count **for that trade's stop width**: a tighter stop takes more contracts. Averaged over many trades the realised risk converges on the target, which is what the model assumes; on any single trade it ranges roughly 3.4% to 5.1%.
+
 Micro contracts are a precondition, not a preference. A full ES contract on an 8.5-point stop risks $425 — 17% of a 50K drawdown in one trade. Six in a row and the account is gone, and six in a row happens about monthly at a 45% win rate.
 
 ## Payouts
