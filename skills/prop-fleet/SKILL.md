@@ -179,6 +179,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 
 
 - `scripts/doctor.py` — one command for the whole state: environment, whether the conversion bug is still in the execution layer, record integrity, the stage the gate permits, whether the price data for the drift diagnostic is present, and what is waiting on other people. Reads only. Takes an optional home directory.
+- `scripts/test_doctor.py` — 22 tests on the bug detection, which is the highest-stakes logic here: a false alarm is annoying, a missed detection ships a broken bot that looks fixed.
 - `scripts/integrity.py` — validators for the trade write path. No dependencies.
 - `scripts/test_integrity.py` — 20 tests, each a real corrupted row. `python3 -m pytest`.
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.

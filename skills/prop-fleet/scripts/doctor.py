@@ -71,6 +71,10 @@ def _proxy_verdict(src: str):
     # הדגמה מכוונת של הבאג אינה הבאג. proxy_fix.py מחשב אותו תחת שם
     # כזה כדי להראות את ההפרש, וסימון שלו כתקלה הוא אזעקת שווא.
     DEMO = ("buggy", "demo", "old", "before", "wrong")
+    # הבאג הוא יחס המרה שהמכנה שלו הוא מחיר המכשיר הנסחר. חלוקה של entry
+    # במשהו אחר (כמות, מספר חוזים) היא חשבון לגיטימי ולא התבנית הזאת.
+    PRICEY = ("etf_price", "price", "market_price", "current_price",
+              "last_price", "etf", "proxy_price", "spot")
 
     buggy = fixed = False
     for node in ast.walk(tree):
@@ -79,7 +83,8 @@ def _proxy_verdict(src: str):
                 and isinstance(node.value.op, ast.Div) \
                 and isinstance(node.value.left, ast.Name) \
                 and isinstance(node.value.right, ast.Name) \
-                and node.value.left.id == "entry":
+                and node.value.left.id == "entry" \
+                and node.value.right.id.lower() in PRICEY:
             names = [t.id.lower() for t in node.targets if isinstance(t, ast.Name)]
             if not any(n.startswith(DEMO) for n in names):
                 buggy = True
