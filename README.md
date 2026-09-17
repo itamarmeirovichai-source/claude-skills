@@ -1,9 +1,10 @@
-# Claude Code Skills — minds + skill-prompt-architect
+# Claude Code Skills
 
-Two Claude Code skills, ready to install:
+Three Claude Code skills, ready to install:
 
 - **`/minds`** — all the model-minds in one: decisive (Fable), engineering (Sol), synthesis (Gemini), plus a debate mode and a 4-mind forge. Applies the right mind(s) to any question, decision, code task, or project.
 - **`/skill-prompt-architect`** — turns vague or messy ideas into complete Claude Agent Skills or build prompts. Designs, validates, packages, and tunes skills end to end.
+- **`/live-results`** — reports numbers from something still running (forward test, A/B test, campaign) in one screenful, and closes on the base rate that says whether the number means anything yet.
 
 ## Install (one line)
 
@@ -23,7 +24,7 @@ irm https://raw.githubusercontent.com/itamarmeirovichai-source/claude-skills/mai
 
 Both installers copy the skills into `~/.claude/skills/`. If you already have a skill with the same name, it's backed up first (`<name>.bak.*`), never silently overwritten.
 
-Then open a **new** Claude Code session and type `/minds` or `/skill-prompt-architect`.
+Then open a **new** Claude Code session and type `/minds`, `/skill-prompt-architect` or `/live-results`.
 
 ## Manual install
 

@@ -1,9 +1,9 @@
-# Installs the "minds" and "skill-prompt-architect" Claude Code skills (Windows).
+# Installs the "minds", "skill-prompt-architect" and "live-results" Claude Code skills (Windows).
 # Usage: irm https://raw.githubusercontent.com/itamarmeirovichai-source/claude-skills/main/install.ps1 | iex
 $ErrorActionPreference = "Stop"
 
 $repo = "itamarmeirovichai-source/claude-skills"
-$skills = @("minds", "skill-prompt-architect")
+$skills = @("minds", "skill-prompt-architect", "live-results")
 $dest = Join-Path $env:USERPROFILE ".claude/skills"
 
 $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("claude-skills-" + [System.Guid]::NewGuid().ToString())
@@ -32,4 +32,4 @@ finally {
 }
 
 Write-Host ""
-Write-Host "Done! Open a NEW Claude Code session and type /minds or /skill-prompt-architect"
+Write-Host "Done! Open a NEW Claude Code session and type /minds, /skill-prompt-architect or /live-results"
