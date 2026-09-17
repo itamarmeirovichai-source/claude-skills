@@ -167,8 +167,19 @@ def h4_constant_factor(d: pd.DataFrame) -> None:
 
 FROZEN, CACHE, WRONG_BAR, COMPUTED = "frozen", "cache", "wrong_bar", "computed"
 
-# שגיאת התאמה מתחת לזה = המחיר באמת התקיים בשוק באיזשהו רגע
+# שגיאת התאמה מתחת לזה = המחיר התקיים בשוק באיזשהו רגע.
+#
+# אזהרה: עם סדרת נרות צפופה המבחן הזה חלש. 4,680 נרות על טווח של 75
+# דולר נותנים מרחק ממוצע של כ-0.002% בין נרות סמוכים, אז כמעט כל מחיר
+# בטווח ימצא התאמה "מושלמת" במקרה. שגיאה נמוכה כאן שוללת "מחושב"
+# בביטחון נמוך בלבד. המבחן החזק הוא lag_scan.py, שמשווה מול היסט זמן
+# אמיתי במקום לחפש חופשי.
 REAL_PRICE_TOL = 0.10
+
+# פיזור הפיגור מתחת לזה, כחלק מהחציון, נחשב קבוע. 0.5 היה צר מדי:
+# על נתונים אמיתיים פיגור נעול על 15 יום נתן פיזור של 0.503 ונפל לתשובה
+# הכללית בשוליים של 0.4%.
+CACHE_SPREAD_MAX = 0.65
 
 
 def classify(match_err_pct, span_days, corr, med_lag, lag_iqr):
@@ -182,7 +193,7 @@ def classify(match_err_pct, span_days, corr, med_lag, lag_iqr):
         return COMPUTED
     if span_days < 10 and corr > 0.7:
         return FROZEN
-    if med_lag > 0.5 and lag_iqr < 0.5 * med_lag:
+    if med_lag > 0.5 and lag_iqr < CACHE_SPREAD_MAX * med_lag:
         return CACHE
     return WRONG_BAR
 
@@ -196,7 +207,9 @@ def explain(cause, med_lag, anchor_median):
                 "     ה-TTL לא פוקע, או שהרענון נכשל בשקט ונשאר הערך הישן."]
     if cause == WRONG_BAR:
         return ["\n  -> המחירים אמיתיים אבל מזמן אחר, בלי תבנית ברורה.",
-                "     באג בבחירת הנר או בחותמת הזמן."]
+                "     באג בבחירת הנר או בחותמת הזמן.",
+                "     הרץ את lag_scan.py לפני שמקבלים את זה — המבחן כאן",
+                "     חלש כשסדרת הנרות צפופה."]
     return ["\n  -> המחירים האלה לא הופיעו בשוק באף רגע. לא מחיר ישן —",
             "     משהו מחשב אותם. לבדוק את השערות 3 ו-4."]
 

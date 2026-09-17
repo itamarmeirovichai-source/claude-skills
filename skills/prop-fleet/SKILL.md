@@ -175,6 +175,14 @@ the *spread* of the gap rather than its correlation with time: a cache returns
 the same staleness every time, while a frozen anchor falls further behind.
 Getting that backwards makes the tool give a vaguer answer than it has.
 
+The nearest-moment search has a real limit worth knowing: with a dense bar series
+the average gap between adjacent bars can be a thousandth of a percent, so almost
+any price in range finds a near-perfect match by chance. A low match error there
+rules out "computed" only weakly. `scripts/lag_scan.py` settles it properly by
+comparing each record against the price at an actual time offset and finding
+which offset minimises the error — a sharp minimum is the lag, a flat curve means
+the price was never read from history at all.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with
@@ -200,6 +208,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/claims.py` — recomputes every arithmetic claim in the write-up from scratch. Run it after editing any number; it caught a real error where two figures were quoted from different configurations.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
+- `scripts/lag_scan.py` — how far behind the market a recorded price sits, by comparing against a real time offset instead of searching freely. This is the decisive test; run it before accepting any drift verdict.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
