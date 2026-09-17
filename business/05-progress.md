@@ -14,7 +14,7 @@
 | **Videos produced** | **0** |
 | **Orders taken** | **0** |
 | **Claims validated by purchase** | **0** |
-| Documents | 46 + 2 runnable tools |
+| Documents | 47 + 2 runnable tools |
 
 ## What was completed
 
@@ -35,7 +35,7 @@ or financial assets.** Nothing was modified; all new work is under `business/`.
    category's standard sales claim.
 
 ### System design
-46 documents covering every section of the brief, plus:
+47 documents covering every section of the brief, plus:
 - [`tools/financial_model.py`](tools/financial_model.py) — runs, sensitivity and compound-case
   analysis verified
 - [`tools/accuracy_checklist.py`](tools/accuracy_checklist.py) — runs, 6 self-tests passing
