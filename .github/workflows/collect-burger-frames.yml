@@ -1,0 +1,99 @@
+name: Collect rendered frames
+
+# The render shards upload their frames as artifacts and a collect job commits
+# them. When that commit is a no-op — the first run hit a .gitignore rule that
+# silently swallowed site/frames — the frames are still sitting in the
+# artifacts. This re-runs only the collecting, so a mistake in the last ten
+# lines does not cost another half hour of rendering.
+#
+# Put the run id in .github/collect.trigger and push it.
+
+on:
+  push:
+    paths: ['.github/collect.trigger']
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Read the run id to collect from
+        id: src
+        run: |
+          RUN_ID=$(grep -oE '[0-9]{6,}' .github/collect.trigger | head -1)
+          test -n "$RUN_ID" || { echo "no run id in .github/collect.trigger"; exit 1; }
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "collecting from run $RUN_ID"
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: frames-*
+          merge-multiple: true
+          path: frames_out
+          run-id: ${{ steps.src.outputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge the label shards into one track per variant
+        run: |
+          python3 - <<'PY'
+          import json, glob, os
+          for variant in ("desktop", "mobile"):
+              merged, meta = {}, None
+              for f in sorted(glob.glob("frames_out/labels.%s.*.json" % variant)):
+                  d = json.load(open(f))
+                  meta = meta or d
+                  merged.update(d["anchors"])
+              if not merged:
+                  continue
+              out = {"variant": variant, "frames": meta["frames"],
+                     "res": meta["res"], "anchors": dict(sorted(merged.items()))}
+              os.makedirs("site/frames", exist_ok=True)
+              json.dump(out, open("site/frames/labels.%s.json" % variant, "w"), indent=1)
+              print(variant, len(merged), "anchors")
+          PY
+
+      - name: Stage the frames
+        run: |
+          rm -rf site/frames/desktop site/frames/mobile
+          mkdir -p site/frames
+          for v in desktop mobile; do
+            if [ -d "frames_out/$v" ]; then cp -r "frames_out/$v" "site/frames/$v"; fi
+          done
+          [ -f frames_out/poster.webp ] && cp frames_out/poster.webp site/frames/poster.webp
+          echo "desktop: $(ls site/frames/desktop | wc -l) frames"
+          echo "mobile:  $(ls site/frames/mobile  | wc -l) frames"
+          du -sh site/frames
+
+      - name: Fail if a frame is missing
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          bad = []
+          for v, n in (("desktop", 108), ("mobile", 54)):
+              for i in range(1, n + 1):
+                  p = "site/frames/%s/smash_%04d.webp" % (v, i)
+                  if not os.path.exists(p) or os.path.getsize(p) < 2000:
+                      bad.append(p)
+          if not os.path.exists("site/frames/poster.webp"):
+              bad.append("site/frames/poster.webp")
+          if bad:
+              print("missing or truncated:", bad[:10], "...", len(bad), "total")
+              sys.exit(1)
+          print("all frames present")
+          PY
+
+      - name: Commit the frames
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -f site/frames
+          git diff --cached --quiet && echo "nothing to commit — is site/frames ignored?" && exit 1
+          git commit -m "Add the rendered burger frame sequence"
+          git push origin HEAD:${{ github.ref_name }}
