@@ -1,10 +1,10 @@
 #!/bin/bash
-# Installs the "minds" and "skill-prompt-architect" Claude Code skills.
+# Installs the "minds", "skill-prompt-architect" and "live-results" Claude Code skills.
 # Usage: curl -fsSL https://raw.githubusercontent.com/itamarmeirovichai-source/claude-skills/main/install.sh | bash
 set -euo pipefail
 
 REPO="itamarmeirovichai-source/claude-skills"
-SKILLS=(minds skill-prompt-architect)
+SKILLS=(minds skill-prompt-architect live-results)
 DEST="$HOME/.claude/skills"
 
 TMP=$(mktemp -d)
@@ -24,4 +24,4 @@ for s in "${SKILLS[@]}"; do
 done
 
 echo ""
-echo "Done! Open a NEW Claude Code session and type /minds or /skill-prompt-architect"
+echo "Done! Open a NEW Claude Code session and type /minds, /skill-prompt-architect or /live-results"

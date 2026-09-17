@@ -1,0 +1,201 @@
+{
+  "skill_name": "live-results",
+  "quality_gate": {
+    "minimum_readiness_score": 85,
+    "required_behaviors": [
+      "Headline carries two units",
+      "States whether the number moved since last check",
+      "Gives latest / best / worst anchors",
+      "Names missing periods with cause and landing time",
+      "Closes on a derived base rate, or says plainly that none exists",
+      "Omits an action item when the sample supports no decision"
+    ],
+    "baseline_comparison": "Every eval must include baseline_without_skill.",
+    "minimum_should_not_trigger_evals": 8
+  },
+  "evals": [
+    {
+      "id": "forward-ledger-drawdown",
+      "prompt": "What's the forward test at right now?",
+      "expected_output": "Headline percent plus the money figure on the stated account size, whether it changed, yesterday/best/worst, the uncounted day with its cause and time, and a frequency showing the drawdown is still noise.",
+      "should_trigger": true,
+      "assertions": [
+        "Percent and currency both appear in the headline",
+        "Number of periods counted is stated, not implied",
+        "Latest, best and worst periods are given as signed figures",
+        "Pending period names its cause and the time it lands",
+        "Final line is a base rate expressed as a frequency",
+        "No next step is proposed when the sample cannot support one",
+        "No bold, emoji bullets, or closing offer to help"
+      ],
+      "baseline_without_skill": "Without the skill, Claude reports the percent alone, calls the drawdown 'within normal range' without a frequency, replaces the daily figures with adjectives, and closes with 'let me know if you want me to dig deeper'."
+    },
+    {
+      "id": "forward-ledger-good-week",
+      "prompt": "We're up 6.4% after three weeks - how are we doing?",
+      "expected_output": "Same format applied to a win: money figure, anchors, and a base rate showing the gain is also still noise.",
+      "should_trigger": true,
+      "assertions": [
+        "Applies the base rate to the positive result, not only to losses",
+        "States explicitly that the result does not yet show the strategy working",
+        "Names the point at which the number would start to mean something",
+        "No celebratory framing or exclamation"
+      ],
+      "baseline_without_skill": "Without the skill, Claude congratulates the user and treats three weeks of gains as evidence the strategy works."
+    },
+    {
+      "id": "ab-test-midway",
+      "prompt": "Variant B is ahead on signups nine days in. Where do we stand?",
+      "expected_output": "Absolute counts alongside the lift, the daily range of the lift, and the sample size at which the test separates.",
+      "should_trigger": true,
+      "assertions": [
+        "Reports raw counts per arm, not only the percentage lift",
+        "Gives the range of daily lift rather than a single figure",
+        "States the sample size or date at which the result separates from noise",
+        "Does not declare a winner"
+      ],
+      "baseline_without_skill": "Without the skill, Claude reports the lift percentage, calls B the leader, and suggests shipping it or 'monitoring closely'."
+    },
+    {
+      "id": "campaign-no-base-rate",
+      "prompt": "First week of the new ad campaign is done. How did it go?",
+      "expected_output": "Spend, leads, cost per lead against target, best and worst day, the pending day, and an explicit statement that no comparison distribution exists yet.",
+      "should_trigger": true,
+      "assertions": [
+        "Says plainly that there is no prior distribution to compare against",
+        "Does not invent a frequency or significance claim",
+        "Substitutes a sensitivity figure (how much one day moves the average)",
+        "Gives a volume or date at which to ask again"
+      ],
+      "baseline_without_skill": "Without the skill, Claude either calls the first week 'promising' or manufactures a statistical-sounding claim with no data behind it."
+    },
+    {
+      "id": "unchanged-since-last-check",
+      "prompt": "Any movement on the ledger since yesterday?",
+      "expected_output": "A short update that leads with 'unchanged' and repeats the standing figure and pending period.",
+      "should_trigger": true,
+      "assertions": [
+        "States up front that nothing moved",
+        "Still gives the standing figure so the number is self-contained",
+        "Does not pad the update to seem substantial"
+      ],
+      "baseline_without_skill": "Without the skill, Claude re-reports the same figure as if it were new, or gives a long recap that hides the fact nothing changed."
+    },
+    {
+      "id": "partial-period-count",
+      "prompt": "Give me the month-to-date number.",
+      "expected_output": "The figure with the count of periods actually included and which ones are missing.",
+      "should_trigger": true,
+      "assertions": [
+        "Denominator appears in the headline",
+        "Missing periods are named rather than silently excluded",
+        "Partial total is never presented as a complete month"
+      ],
+      "baseline_without_skill": "Without the skill, Claude reports the running total as a month-to-date figure without disclosing which days are missing."
+    },
+    {
+      "id": "conclusive-sample",
+      "prompt": "Four hundred trades in, the strategy is down 18%. What's the read?",
+      "expected_output": "A conclusion, because the sample now supports one - not another noise disclaimer.",
+      "should_trigger": true,
+      "assertions": [
+        "States that the sample is now large enough to conclude from",
+        "Gives the conclusion rather than deferring to more data",
+        "Does not reuse the 'still noise' framing on a conclusive sample"
+      ],
+      "baseline_without_skill": "Without the skill, Claude hedges the same way it would at day 14, or over-corrects into alarm."
+    },
+    {
+      "id": "decision-requested",
+      "prompt": "Should I cut the strategy or let it run another month?",
+      "expected_output": "A decision with the numbers used as the argument.",
+      "should_trigger": true,
+      "assertions": [
+        "Commits to one option",
+        "Uses the base rate to support the decision rather than to avoid making one",
+        "Does not deliver a status update in place of an answer"
+      ],
+      "baseline_without_skill": "Without the skill, Claude lists considerations on both sides without picking."
+    },
+    {
+      "id": "not-backtest-results",
+      "prompt": "Summarize how the strategy performed across the 2015-2024 backtest.",
+      "expected_output": "An analysis of a completed dataset. The skill should not trigger: nothing is still accumulating.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not frame settled historical results as too small a sample"
+      ],
+      "baseline_without_skill": "Claude should analyze the backtest directly; applying live-run noise framing to ten years of data would be a false positive."
+    },
+    {
+      "id": "not-ci-status",
+      "prompt": "Is the deploy green yet?",
+      "expected_output": "Build status: what passed, what broke, what happens next. The skill should not trigger.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not attach a base rate to a pass/fail check"
+      ],
+      "baseline_without_skill": "Claude should check and report the build; a statistical framing here would be nonsense."
+    },
+    {
+      "id": "not-strategy-design",
+      "prompt": "Help me design the entry rules for a mean-reversion strategy.",
+      "expected_output": "Design work on the rules themselves. The skill should not trigger.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not turn a design request into a status update"
+      ],
+      "baseline_without_skill": "Claude should work on the entry logic directly."
+    },
+    {
+      "id": "not-code-debug",
+      "prompt": "The ledger script is throwing a KeyError on the Asia price fetch. Fix it.",
+      "expected_output": "A diagnosis and a fix. The skill should not trigger even though it touches the same system.",
+      "should_trigger": false,
+      "assertions": [
+        "Treats this as a coding task, not a reporting task"
+      ],
+      "baseline_without_skill": "Claude should read the traceback and fix the bug."
+    },
+    {
+      "id": "not-finance-explainer",
+      "prompt": "What does maximum drawdown actually measure?",
+      "expected_output": "A definition. The skill should not trigger: there are no live numbers to report.",
+      "should_trigger": false,
+      "assertions": [
+        "Answers the concept question without pulling in the user's own figures"
+      ],
+      "baseline_without_skill": "Claude should explain the metric plainly."
+    },
+    {
+      "id": "not-generic-status-writing",
+      "prompt": "Write a weekly update to the team about what engineering shipped.",
+      "expected_output": "A narrative update. The skill should not trigger: no accumulating metric, no base rate to give.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not impose the six-move numeric format on a prose update"
+      ],
+      "baseline_without_skill": "Claude should write the update from what shipped."
+    },
+    {
+      "id": "not-forecast",
+      "prompt": "Project what the account will be worth in twelve months at this rate.",
+      "expected_output": "A projection with its assumptions. The skill should not trigger: it reports what happened, not what might.",
+      "should_trigger": false,
+      "assertions": [
+        "Does not answer a forward-looking question with a current-standing report"
+      ],
+      "baseline_without_skill": "Claude should build the projection and state what it assumes."
+    },
+    {
+      "id": "not-spreadsheet-task",
+      "prompt": "Build me a spreadsheet that tracks daily P&L from this CSV.",
+      "expected_output": "A spreadsheet file. The skill should not trigger: the deliverable is a tool, not an update.",
+      "should_trigger": false,
+      "assertions": [
+        "Produces the file rather than a written status report"
+      ],
+      "baseline_without_skill": "Claude should build the spreadsheet from the CSV."
+    }
+  ]
+}
