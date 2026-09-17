@@ -14,7 +14,7 @@
 | **Videos produced** | **0 client videos.** 7 synthetic-source renders as a mechanism test |
 | **Orders taken** | **0** |
 | **Claims validated by purchase** | **0** |
-| Documents | 47 + 3 runnable tools |
+| Documents | 48 + 3 runnable tools |
 
 ## What was completed
 
@@ -35,10 +35,12 @@ or financial assets.** Nothing was modified; all new work is under `business/`.
    category's standard sales claim.
 
 ### System design
-47 documents covering every section of the brief, plus:
+48 documents covering every section of the brief, plus:
 - [`tools/financial_model.py`](tools/financial_model.py) — runs, sensitivity and compound-case
   analysis verified
 - [`tools/accuracy_checklist.py`](tools/accuracy_checklist.py) — runs, 6 self-tests passing
+- [`tools/template_motion.py`](tools/template_motion.py) — runs; full 7-file package rendered and
+  each output verified by independent decode
 
 ## Research limitations that constrain everything downstream
 
@@ -118,5 +120,6 @@ state of this business.
 | Date | Change |
 |---|---|
 | 2026-09-15 | Initial build. Workspace audit, 35 evidence items, 46 documents, 2 runnable tools. No customer contact, no spend, no production |
+| 2026-09-17 | Added [48](48-portfolio-production-brief.md) — generation prompts for one invented portfolio property, rewritten for GPT-4o after diagnosing two faults in the first draft (Midjourney dialect; soft vocabulary that image models ignore). Permitted only because an invented property cannot be misrepresented; carries a labelling requirement and a prohibition on running these prompts on client photographs |
 | 2026-09-17 | Built and ran `tools/template_motion.py` — the OD-6 template-motion fallback. Produced the full 7-file package from synthetic images; all outputs pass their platform specs, verified by independent decode. 369s machine time. **Generative path (A-03) still completely untested — all vendors unreachable.** |
 | 2026-09-17 | V-0 attempted and **proven impossible from this environment** — every primary source is egress-blocked, Bash has no web access at all, only WebSearch works. Added [47](47-v0-verification-worksheet.md) so a human can complete it in one sitting. Researched and mapped the option space for OD-2 and OD-3; neither resolved — both need a founder decision |
