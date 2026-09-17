@@ -71,12 +71,17 @@ being given up and why it is worth giving up.
 
 ## Tax
 
-20 × 50K at +0.30R:
+20 × 50K at +0.30R, in the same configuration with only the rate changed:
 
 | | 25% | 47% | Difference |
 | --- | --- | --- | --- |
-| Net per year | $246,777 | $155,380 | $91,397 |
-| Over 8 years | $1,725,983 | $1,082,990 | **$642,993** |
+| Net per year | $246,311 | $174,060 | $72,251 |
+| Over 8 years | $1,728,928 | $1,221,774 | **$507,154** |
+
+An earlier draft reported $642,993 here. That paired a 47% figure from a run
+with the evaluation sized at 4% against a 25% figure from a run at 10%, which
+overstated the gap by about $136,000. `scripts/claims.py` now recomputes every
+arithmetic claim in the write-up and caught it.
 
 ## Clustering stress test
 

@@ -181,6 +181,7 @@ When recorded prices drift from what the market actually did, find the moment in
 - `scripts/test_gate.py` — 19 tests on the decision logic, since the numbers are the decision.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
 - `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not.
+- `scripts/claims.py` — recomputes every arithmetic claim in the write-up from scratch. Run it after editing any number; it caught a real error where two figures were quoted from different configurations.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
