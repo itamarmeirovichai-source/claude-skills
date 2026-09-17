@@ -70,6 +70,10 @@ Skipping stages upward is allowed when the evidence justifies it. A genuine +0.5
 
 The point of the gate is the asymmetry of being wrong. Discovering there is no edge costs about **$170** with the ladder. Discovering it by running twenty accounts for eight years costs about **$114,000**.
 
+Run `scripts/gate.py` against the trade record weekly rather than deciding by hand. A losing run makes you want to shrink and a winning run makes you want to grow, and neither feeling is evidence; the same formula every week is not moved by either. It reads the record, computes the expectancy and a bootstrap interval, and names the stage — and it refuses to answer at all on a sample too small to carry one, rather than returning a number that looks authoritative. It warns first if the record contains rows that cannot be true, because an expectancy computed over corrupted rows is worse than no number.
+
+**The lower bound of the interval decides, never the mean.** A mean of +0.40R over 20 trades is noise; +0.25R over 400 is a business.
+
 ## Losing runs, and why they don't change the size
 
 Losses in a regime-dependent methodology arrive in runs, and a run is worse
@@ -144,6 +148,8 @@ When recorded prices drift from what the market actually did, find the moment in
 - `scripts/integrity.py` — validators for the trade write path. No dependencies.
 - `scripts/test_integrity.py` — 20 tests, each a real corrupted row. `python3 -m pytest`.
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.
+- `scripts/gate.py` — reads the trade record and names the stage the evidence permits, including downward. Takes a `trades.db`, a CSV of `pnl_r`, and `--stage N` to compare against where you are now.
+- `scripts/test_gate.py` — 19 tests on the decision logic, since the numbers are the decision.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
