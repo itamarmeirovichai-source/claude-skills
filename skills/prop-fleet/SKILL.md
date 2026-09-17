@@ -179,6 +179,7 @@ When recorded prices drift from what the market actually did, find the moment in
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.
 - `scripts/gate.py` — reads the trade record and names the stage the evidence permits, including downward. Takes a `trades.db`, a CSV of `pnl_r`, and `--stage N` to compare against where you are now.
 - `scripts/test_gate.py` — 19 tests on the decision logic, since the numbers are the decision.
+- `scripts/test_apex_model.py` — 21 tests on the model's mechanics: loss bounded by fees, withdrawals arriving only in whole ladders, the evaluation clock expiring an unreachable target, tax never touching a loss, and the withdrawal split. Deterministic, by driving the model to always-win and always-lose.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
 - `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not.
 - `scripts/claims.py` — recomputes every arithmetic claim in the write-up from scratch. Run it after editing any number; it caught a real error where two figures were quoted from different configurations.

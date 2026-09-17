@@ -41,7 +41,10 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
     # clustered run and an i.i.d. run carry the same edge and differ only in
     # the SHAPE of the sequence. persistence=0.5, spread=0 is i.i.d.
     p_good, p_bad = p + spread, p - spread
-    if not (0.0 < p_bad and p_good < 1.0):
+    # Strict bounds would reject p=0 and p=1, which are legitimate: avg_R=-1
+    # is always-lose and avg_R=rr is always-win. Only reject a spread that
+    # actually pushes a probability outside [0, 1].
+    if not (0.0 <= p_bad and p_good <= 1.0):
         raise ValueError(f"spread {spread} impossible at avg_R {avg_R}")
     rng = np.random.default_rng(seed)
     shape = (n, slots)
