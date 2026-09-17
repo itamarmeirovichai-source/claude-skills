@@ -201,6 +201,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
+- `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
 
 `references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date.

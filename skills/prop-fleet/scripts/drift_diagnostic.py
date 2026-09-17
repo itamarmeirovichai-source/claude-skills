@@ -163,6 +163,44 @@ def h4_constant_factor(d: pd.DataFrame) -> None:
         print("  -> לא פקטור קבוע. היחס נודד.")
 
 
+# ── הכרעה ────────────────────────────────────────────────────────
+
+FROZEN, CACHE, WRONG_BAR, COMPUTED = "frozen", "cache", "wrong_bar", "computed"
+
+# שגיאת התאמה מתחת לזה = המחיר באמת התקיים בשוק באיזשהו רגע
+REAL_PRICE_TOL = 0.10
+
+
+def classify(match_err_pct, span_days, corr, med_lag, lag_iqr):
+    """איזו תקלה מסבירה את הסטייה.
+
+    פיגור קבוע = מטמון עם TTL. פיגור שגדל והרגעים המתאימים מתכנסים
+    לתאריך אחד = עוגן קפוא. ההבחנה היא בפיזור הפיגור, לא במתאם שלו:
+    מטמון מחזיר בדיוק אותה יישנות כל פעם, והעוגן הוא זה שנופל מאחור.
+    """
+    if match_err_pct >= REAL_PRICE_TOL:
+        return COMPUTED
+    if span_days < 10 and corr > 0.7:
+        return FROZEN
+    if med_lag > 0.5 and lag_iqr < 0.5 * med_lag:
+        return CACHE
+    return WRONG_BAR
+
+
+def explain(cause, med_lag, anchor_median):
+    if cause == FROZEN:
+        return ["\n  -> עוגן קפוא. מחיר ייחוס נקבע פעם אחת ולא עודכן.",
+                f"     לחפש בקוד ערך שנקבע סביב {anchor_median:%Y-%m-%d}."]
+    if cause == CACHE:
+        return [f"\n  -> מטמון עם TTL. המחיר מפגר בקביעות ב-{med_lag:.1f} ימים.",
+                "     ה-TTL לא פוקע, או שהרענון נכשל בשקט ונשאר הערך הישן."]
+    if cause == WRONG_BAR:
+        return ["\n  -> המחירים אמיתיים אבל מזמן אחר, בלי תבנית ברורה.",
+                "     באג בבחירת הנר או בחותמת הזמן."]
+    return ["\n  -> המחירים האלה לא הופיעו בשוק באף רגע. לא מחיר ישן —",
+            "     משהו מחשב אותם. לבדוק את השערות 3 ו-4."]
+
+
 def main() -> None:
     D = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else Path.home() / "Desktop"
     sp = D / "setups.csv"
@@ -204,33 +242,21 @@ def main() -> None:
     if len(drifting) >= 10:
         anchor = drifting.match_ts
         span_days = (anchor.max() - anchor.min()).total_seconds() / 86400
+        corr = float(np.corrcoef(drifting.ts.astype("int64"),
+                                 drifting.lag_days)[0, 1])
+        q1, q3 = drifting.lag_days.quantile(.25), drifting.lag_days.quantile(.75)
+        med_lag = float(drifting.lag_days.median())
+
         print(f"\n  מבין {len(drifting)} הסטאפים הסוטים (מעל 1%):")
         print(f"    הרגע המתאים נע בין {anchor.min():%Y-%m-%d} ל-{anchor.max():%Y-%m-%d} "
               f"({span_days:.0f} ימים)")
-        corr = np.corrcoef(
-            drifting.ts.astype("int64"), drifting.lag_days)[0, 1]
         print(f"    מתאם בין זמן הסטאפ לפיגור: {corr:+.3f}")
+        print(f"    פיזור הפיגור: {q1:.2f} עד {q3:.2f} ימים (חציון {med_lag:.2f})")
 
-        # פיגור קבוע = מטמון עם TTL. פיגור שגדל = עוגן קפוא. ההבחנה היא
-        # בפיזור הפיגור, לא במתאם: מטמון נותן אותו פיגור כל פעם.
-        q1, q3 = drifting.lag_days.quantile(.25), drifting.lag_days.quantile(.75)
-        med_lag = drifting.lag_days.median()
-        tight = (q3 - q1) < 0.5 * max(med_lag, 1e-9)
-        print(f"    פיזור הפיגור: {q1:.2f} עד {q3:.2f} ימים "
-              f"(חציון {med_lag:.2f})")
-
-        if err.median() < 0.10 and span_days < 10 and corr > 0.7:
-            print("\n  -> עוגן קפוא. מחיר ייחוס נקבע פעם אחת ולא עודכן.")
-            print(f"     לחפש בקוד ערך שנקבע סביב {anchor.median():%Y-%m-%d}.")
-        elif err.median() < 0.10 and tight and med_lag > 0.5:
-            print(f"\n  -> מטמון עם TTL. המחיר מפגר בקביעות ב-{med_lag:.1f} ימים.")
-            print("     ה-TTL לא פוקע, או שהרענון נכשל בשקט ונשאר הערך הישן.")
-        elif err.median() < 0.10:
-            print("\n  -> המחירים אמיתיים אבל מזמן אחר, בלי תבנית ברורה.")
-            print("     באג בבחירת הנר או בחותמת הזמן.")
-        else:
-            print("\n  -> המחירים האלה לא הופיעו בשוק באף רגע. לא מחיר ישן —")
-            print("     משהו מחשב אותם. לבדוק את השערות 3 ו-4.")
+        cause = classify(float(err.median()), span_days, corr, med_lag,
+                         float(q3 - q1))
+        for line in explain(cause, med_lag, anchor.median()):
+            print(line)
 
     h3_swapped_symbol(s, B)
     h4_constant_factor(d)
