@@ -78,10 +78,62 @@ being given up and why it is worth giving up.
 | Net per year | $246,777 | $155,380 | $91,397 |
 | Over 8 years | $1,725,983 | $1,082,990 | **$642,993** |
 
+## Clustering stress test
+
+The model draws trades independently through time. A real methodology is regime
+dependent — it works in trending conditions and bleeds in chop — so losses arrive
+in runs, and a run is far worse against a *trailing* floor than the same losses
+scattered, because the floor has already ratcheted up behind the peak. This was
+worth testing before trusting the sizing.
+
+`scripts/streak_check.py` first confirms the regime chain produces real
+clustering. The mean losing run barely moves; the tail is what changes:
+
+| Regime | Mean run | p99.9 | Longest | Runs ≥ 12 |
+| --- | --- | --- | --- | --- |
+| i.i.d. | 2.31 | 13 | 24 | 0.19% |
+| strong | 2.44 | 16 | 32 | 0.63% |
+| severe | 2.54 | 19 | 36 | 1.08% |
+| regime-flip | 3.36 | 36 | 73 | **6.05%** |
+
+Then the fleet is run on a **fixed 8-year horizon** — not a per-slot rate, which
+would flatter a fast death — with expectancy held at +0.30R, so only the shape of
+the sequence differs:
+
+| Scenario | 8y net, 4% | p10, 4% | Accounts burned |
+| --- | --- | --- | --- |
+| i.i.d. | $1,733,772 | $1,583,957 | 52 |
+| mild | $1,736,149 | $1,571,388 | 66 |
+| strong | $1,729,301 | $1,455,874 | 186 |
+| severe | $1,878,442 | $1,416,611 | 692 |
+| extreme | $2,278,883 | $1,534,552 | 1,589 |
+| regime-flip | $3,026,960 | $1,648,280 | 2,886 |
+
+**The 4% recommendation survives.** The mean is flat through strong clustering,
+and the real cost shows up at the tenth percentile: $1.58M down to $1.46M, about
+8%. That is the honest price of clustering and it is modest.
+
+Read the bottom rows carefully and do **not** conclude that clustering is good.
+The mean rises there because the payoff is asymmetric — loss capped at the fee,
+gain capped at the ladder — so dispersion is worth something, and the model will
+replace a dead account instantly and for free. Reality will not. At regime-flip,
+2,886 accounts over eight years is roughly one death per day across twenty slots:
+operationally absurd, and an invitation for the firm to look closely at the
+account. The model has no ceiling on how fast evaluations can be bought and
+re-qualified, so those rows are an artifact of that missing constraint, not a
+finding.
+
+The usable conclusion is the burn column. At 6% of drawdown the burn count is
+roughly double at every clustering level for about 30% more money. Clustering
+therefore strengthens the case for the **smaller** size — not on dollars, on
+operational load and on staying unremarkable to the firm.
+
 ## What the model does not contain
 
-- A fixed 1:2 reward-to-risk on every trade, with no dispersion.
+- A fixed 1:2 reward-to-risk on every trade. Tested: lognormal dispersion of the
+  win multiple at 0.35 moves the eight-year figures by under 2%.
 - Three trades per day. Two would cut everything by a third.
+- Any ceiling on how fast a dead account can be replaced. See the caveat above.
 - No rules changes at the firm over eight years. There was one in March 2026.
 - Quarter-point slippage on stopped exits. News days are far worse.
 - And above all: it assumes the expectancy is known. It is not.

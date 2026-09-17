@@ -68,6 +68,24 @@ Skipping stages upward is allowed when the evidence justifies it. A genuine +0.5
 
 The point of the gate is the asymmetry of being wrong. Discovering there is no edge costs about **$170** with the ladder. Discovering it by running twenty accounts for eight years costs about **$114,000**.
 
+## Losing runs, and why they don't change the size
+
+Losses in a regime-dependent methodology arrive in runs, and a run is worse
+against a trailing floor than the same losses scattered. Tested at constant
+expectancy on a fixed horizon, clustering leaves the mean result flat through
+realistic levels and costs about 8% at the tenth percentile. The recommended size
+holds.
+
+What clustering does change is the number of accounts destroyed — 52 to 186 over
+eight years going from independent trades to strongly clustered ones, and roughly
+double that again at 6% of drawdown instead of 4%. Sizing down is bought with
+operational calm, not with expected dollars.
+
+Be careful reading a model that says heavy clustering *increases* the mean. That
+is the asymmetric payoff — loss capped at the fee, gain capped at the ladder —
+combined with a simulation that replaces a dead account instantly and for free.
+A firm watching an account die every day will not behave like the simulation.
+
 ## Copy trading is not diversification
 
 Twenty accounts on the same orders is one bet twenty times over, not twenty bets. One bad sequence takes the whole fleet in a week, and then every slot is paying for a new evaluation at once with no income while they all re-qualify.
@@ -128,6 +146,7 @@ When recorded prices drift from what the market actually did, find the moment in
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
+- `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
 
 `references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date.
 

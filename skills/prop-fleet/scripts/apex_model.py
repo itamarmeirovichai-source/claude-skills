@@ -24,7 +24,8 @@ EVAL_TRADING_DAYS = 21          # 30 calendar days, hard expiry, no extension
 
 def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
              n=1500, rr=2.0, seed=11, onboard_per_month=1, tax=0.25,
-             correlated=True, risk_pct_eval=None):
+             correlated=True, risk_pct_eval=None,
+             persistence=0.5, spread=0.0):
     P = PLANS[plan]
     START, DD = P["start"], P["dd"]
     SAFETY, LOCK = START + DD + 100., START + 100.
@@ -36,8 +37,15 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
     comm, slip = k * COMM_RT, k * SLIP_PTS * MES_PT
     comm_e, slip_e = ke * COMM_RT, ke * SLIP_PTS * MES_PT
     p = (avg_R + 1.0) / (rr + 1.0)
+    # Two market regimes whose stationary mixture gives exactly avg_R, so a
+    # clustered run and an i.i.d. run carry the same edge and differ only in
+    # the SHAPE of the sequence. persistence=0.5, spread=0 is i.i.d.
+    p_good, p_bad = p + spread, p - spread
+    if not (0.0 < p_bad and p_good < 1.0):
+        raise ValueError(f"spread {spread} impossible at avg_R {avg_R}")
     rng = np.random.default_rng(seed)
     shape = (n, slots)
+    good = rng.random(n) < 0.5          # the regime is the market's, shared
 
     bal   = np.full(shape, START); peak = np.full(shape, START)
     floor = np.full(shape, START - DD)
@@ -81,10 +89,12 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
                 spend += fee; yearly_fees[:, yr] += fee
 
         for _ in range(TRADES_DAY):
+            good = np.where(rng.random(n) > persistence, ~good, good)
+            pr = np.where(good, p_good, p_bad)
             if correlated:
-                r = np.where(rng.random(n) < p, rr, -1.0)[:, None]
+                r = np.where(rng.random(n) < pr, rr, -1.0)[:, None]
             else:
-                r = np.where(rng.random(shape) < p, rr, -1.0)
+                r = np.where(rng.random(shape) < pr[:, None], rr, -1.0)
             sz  = np.where(ispa, risk, risk_e)
             cm  = np.where(ispa, comm, comm_e)
             sl  = np.where(ispa, slip, slip_e)
