@@ -121,6 +121,7 @@ assumption in here is labelled and testable.
 | 43 | [Launch Plan](43-launch-plan.md) | 30-day plan, 90-day conditional, go/no-go gates |
 | 44 | [Independent Review](44-independent-review.md) | Six adversarial reviews |
 | 45 | [Founder Report](45-founder-report.md) | The short version |
+| 48 | [Illustrative Portfolio Production Brief](48-portfolio-production-brief.md) | **Prompts for the generated portfolio property — permitted only because it is not real** |
 | 47 | [V-0 Verification Worksheet](47-v0-verification-worksheet.md) | **The blocking human task — primary sources a browser must read** |
 
 ### Tools
