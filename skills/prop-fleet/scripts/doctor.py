@@ -219,7 +219,7 @@ def check_bars():
         say(WARN, f"חסרים נרות: {', '.join(missing)} — הרץ קודם את ibbars.py")
         return
     say(OK, "נרות SPY ו-QQQ קיימים")
-    nexts.append(f"python3 {HERE/'drift_diagnostic.py'}   ← סוגר את השאלה הפתוחה האחרונה")
+    nexts.append(f"python3 {HERE/'lag_refine.py'}   ← מכריע אם המחיר מפגר בזמן או באינדקס")
 
 
 # ── 6. מה שדורש בני אדם ─────────────────────────────────────────

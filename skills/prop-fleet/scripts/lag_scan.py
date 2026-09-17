@@ -33,8 +33,13 @@ import numpy as np
 import pandas as pd
 
 from drift_diagnostic import load_bars, load_setups
+from lag_refine import FLANK_DAYS, PAD_DAYS, lock_cohort, summarize
 
-MAX_LAG_DAYS = 45
+MAX_LAG_DAYS = 30
+# שוקת נחשבת אמיתית אם השגיאה גדלה פי כך משני צידי המינימום. סף מוחלט
+# על השגיאה עצמה היה טעות: ה-entry הוא רמת FVG מחושבת, לא ציטוט, אז
+# גם בהתאמה נכונה נשארת שארית, וקפיצות של יום שלם מוסיפות עליה.
+SHARP_RATIO = 2.0
 
 
 def price_at(bars: pd.DataFrame, when) -> float:
@@ -69,7 +74,7 @@ def main() -> None:
     sp = D / "setups.csv"
     if not sp.exists():
         sys.exit(f"לא נמצא {sp}")
-    s = load_setups(sp)
+    s_all = load_setups(sp)
 
     B = {}
     for sym in ("SPY", "QQQ"):
@@ -79,13 +84,19 @@ def main() -> None:
     if not B:
         sys.exit("אין נרות.")
 
-    print(f"\nסטאפים: {len(s):,}   נרות: "
+    # קבוצה נעולה: חציון על אוכלוסייה מתכווצת מודד מי נשר, לא מה התאים.
+    s, hi_days, _ = lock_cohort(s_all, B, float(MAX_LAG_DAYS),
+                                int(MAX_LAG_DAYS * 78 * 5 / 7))
+    print(f"\nסטאפים: {len(s_all):,} -> קבוצה קבועה {len(s):,}   נרות: "
           f"{', '.join(f'{k} {len(v):,}' for k, v in B.items())}")
 
-    d = scan(s, B)
+    d = scan(s, B, int(hi_days))
     if d.empty:
         sys.exit("אין מספיק חפיפה בין הסטאפים לנרות.")
 
+    # per_day=1: ברשת של יום, ארבעה ימים הם ארבע נקודות.
+    got = summarize(d.rename(columns={"lag_days": "offset"}),
+                    limit=hi_days - PAD_DAYS, per_day=1.0)
     best = d.loc[d.median_err_pct.idxmin()]
     at0 = d[d.lag_days == 0].median_err_pct.iloc[0]
 
@@ -104,23 +115,21 @@ def main() -> None:
     print(f"  הפיגור הטוב ביותר: {int(best.lag_days)} ימים  ->  "
           f"{best.median_err_pct:.3f}%")
     print(f"  שיפור:             פי {at0 / best.median_err_pct:.1f}")
+    print(f"  שוקת:              ירידה פי {got['two_sided']:.2f} משני הצדדים")
     print("=" * 58)
 
     if best.lag_days == 0:
         print("\n  -> המחיר לא ישן. הסטייה מגיעה ממקור אחר.")
-    elif best.median_err_pct < 0.5 and at0 / best.median_err_pct > 3:
-        print(f"\n  -> המחיר מפגר ב-{int(best.lag_days)} ימים, חד-משמעית.")
+    elif got["two_sided"] >= SHARP_RATIO:
+        print(f"\n  -> המחיר מפגר בכ-{int(best.lag_days)} ימים.")
         print(f"     בפיגור הזה {best.within_0_5pct:.0f}% מהסטאפים נופלים")
         print("     בתוך חצי אחוז מהמחיר האמיתי.")
-        print("     לחפש בקוד מטמון, קובץ נתונים שלא מתרענן, או")
-        print("     קריאה שמחזירה את הנר האחרון של חלון ישן.")
-    elif at0 / best.median_err_pct > 1.5:
-        print(f"\n  -> יש רמז לפיגור של {int(best.lag_days)} ימים, אבל חלש.")
-        print(f"     השגיאה עדיין {best.median_err_pct:.2f}% — גדולה מדי")
-        print("     מכדי שזה יהיה מחיר ישן ותו לא.")
+        print("     זו סריקה גסה, בקפיצות של יום. עכשיו:")
+        print("     python3 lag_refine.py  — מחדד לשעה ומכריע אם הפיגור")
+        print("     נעול על משך זמן (מטמון) או על מספר נרות (אינדקס).")
     else:
-        print("\n  -> העקומה שטוחה. הפיגור לא מסביר את הסטייה.")
-        print("     המחירים לא נקראו מסדרה היסטורית — הם חושבו.")
+        print("\n  -> אין שוקת. הפיגור לא מסביר את הסטייה, והמחירים")
+        print("     כנראה לא נקראו מסדרה היסטורית אלא חושבו.")
 
     out = D / "lag_scan.csv"
     d.to_csv(out, index=False)

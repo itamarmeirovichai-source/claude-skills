@@ -183,6 +183,33 @@ comparing each record against the price at an actual time offset and finding
 which offset minimises the error — a sharp minimum is the lag, a flat curve means
 the price was never read from history at all.
 
+Two things about that scan are easy to get wrong, and both were got wrong first.
+
+A median taken over a shrinking population measures who dropped out, not what
+matched. Setups near the start of the bar series cannot be evaluated at large
+offsets, so they fall away as the scan deepens — and if those are the noisy ones,
+the curve falls for reasons that have nothing to do with the price. Every scan
+here locks its cohort up front: only setups measurable at every offset in the
+range are counted, and the reported `n` is constant across the whole curve.
+
+A minimum is not a finding unless the error rises again on the far side of it. A
+curve that only climbs has a lowest point too, sitting uselessly on the window
+edge. The verdict keys on the rise on *both* sides of the minimum, measured at a
+fixed physical distance rather than a fixed number of grid points — on a
+one-day grid the adjacent point is still inside the trough, which is how a real
+15-day lag came back as "a weak hint". The absolute threshold that produced that
+reading is gone: an entry is a computed FVG level, not a quote, so a residual of
+a few tenths of a percent is what a correct match looks like.
+
+`scripts/lag_refine.py` then asks the question that decides which bug to hunt:
+is the lag a fixed duration or a fixed number of bars? The two are different
+faults with different fixes, and they separate on weekends — a bar offset skips
+the gap, a duration falls into it. Scanning both units over the same physical
+span and comparing is the whole test; a duration wins for a cache or a file that
+stopped refreshing, a bar count wins for an index returning `bar[-N]`. Checking
+one unit alone is not enough: on a planted bar offset the time scan still
+reports a plausible ~15-day lag, and only the comparison exposes it.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with
@@ -208,7 +235,9 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/claims.py` — recomputes every arithmetic claim in the write-up from scratch. Run it after editing any number; it caught a real error where two figures were quoted from different configurations.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
-- `scripts/lag_scan.py` — how far behind the market a recorded price sits, by comparing against a real time offset instead of searching freely. This is the decisive test; run it before accepting any drift verdict.
+- `scripts/lag_scan.py` — the coarse pass: how far behind the market a recorded price sits, in whole days, against a real time offset instead of a free search. Locks its cohort and judges by the rise on both sides of the minimum. Hands off to `lag_refine.py`.
+- `scripts/lag_refine.py` — the decisive one: refines the lag to the hour and rules on whether it is locked to a duration (a cache) or to a bar count (an index bug), by scanning both units over the same span.
+- `scripts/test_lag_refine.py` — 15 tests. Both directions on planted data, a replica of the real 60-session/304-setup situation in each direction, proof that a shrinking cohort really can manufacture a minimum and that locking it removes one, and proof that a time-only reading would have misread a planted bar offset.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
