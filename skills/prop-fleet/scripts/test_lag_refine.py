@@ -287,3 +287,106 @@ def test_the_time_scan_alone_would_have_misled_on_a_bar_offset():
     assert 10 < st["at"] < 20, "סריקת הזמן אכן מצביעה על פיגור שאינו קיים"
     assert st["err"] > summarize(scan_bars(c, B, 0, hi_b),
                                  per_day=PER_DAY_BARS)["err"]
+
+
+# ── הרעש הוא שקובע אם אפשר להפריד בין היחידות ────────────────────
+#
+# הכלי הכריז "נעול על נרות" ביחס 1.04 על הנתונים האמיתיים. זו הייתה
+# טעות: הקוד בחר מנצח לפי < בלי מרווח. הבדיקות כאן נועלות גם את
+# המרווח וגם את הסיבה שהוא תלוי-רעש.
+
+from lag_refine import (RESOLVABLE_RESIDUAL, SHARP_RATIO, TROUGH_BLIND_RESIDUAL,
+                        UNIT_MARGIN, divergence_table)
+
+
+def _planted(kind, seed, noise, n=300):
+    rng = np.random.default_rng(seed)
+    def ser():
+        ss = pd.bdate_range("2026-02-20", periods=60, tz=ET)
+        ts = [d + pd.Timedelta(minutes=570 + 5 * i) for d in ss for i in range(PER_DAY)]
+        return pd.DataFrame({"ts": pd.DatetimeIndex(ts),
+                             "mid": 600 * np.exp(np.cumsum(rng.normal(0, 0.0011, len(ts))))})
+    B = {"SPY": ser()}
+    b = B["SPY"]
+    idx = np.sort(rng.choice(np.arange(1300, len(b)), n, replace=False))
+    s = pd.DataFrame({"ts": b.ts.values[idx], "symbol": "SPY"})
+    s["ts"] = pd.to_datetime(s.ts, utc=True).dt.tz_convert(ET)
+    if kind == "bars":
+        s["entry"] = b.mid.values[idx - 906] * (1 + rng.normal(0, noise, n))
+    elif kind == "time":
+        j = np.searchsorted(b.ts.values,
+                            (s.ts - pd.Timedelta(days=15.04)).values, side="right") - 1
+        s["entry"] = b.mid.values[j] * (1 + rng.normal(0, noise, n))
+    else:
+        s["entry"] = b.mid.values[idx] * (1 + rng.normal(0, noise, n))
+    c, hd, hb = lock_cohort(s, B, 25.0, 1350)
+    st = summarize(scan_time(c, B, 0.0, hd, 1.0), limit=20.0, per_day=PER_DAY_TIME)
+    sb = summarize(scan_bars(c, B, 0, hb), limit=1114, per_day=PER_DAY_BARS)
+    return {
+        "ratio": max(st["err"], sb["err"]) / min(st["err"], sb["err"]),
+        "residual": min(st["err"], sb["err"]),
+        "trough": max(st["two_sided"], sb["two_sided"]),
+        "winner": "time" if st["err"] < sb["err"] else "bars",
+        "c": c, "B": B, "st": st, "sb": sb,
+    }
+
+
+def test_at_low_noise_the_unit_is_decidable():
+    got = _planted("bars", 7, 0.003)
+    assert got["winner"] == "bars"
+    assert got["ratio"] >= UNIT_MARGIN, "ברעש נמוך ההכרעה חייבת לעבור את הסף"
+
+
+def test_at_the_real_noise_level_the_unit_is_not_decidable():
+    """הליבה של התיקון.
+
+    פיגור אמיתי הנעול על נרות, ברעש שמייצר את השארית שנמדדה בפועל,
+    נותן יחס מתחת לסף. כלומר יחס נמוך על הנתונים האמיתיים אינו ראיה
+    נגד היסט נרות — הוא רק אומר שאין הפרדה.
+    """
+    got = _planted("bars", 7, 0.006)
+    assert got["residual"] > RESOLVABLE_RESIDUAL
+    assert got["ratio"] < UNIT_MARGIN, (
+        f"יחס {got['ratio']:.2f} — אם זה עובר את הסף, הסף מרשה "
+        "להכריע במקום שבו הכיול אומר שאי אפשר")
+
+
+def test_the_trough_still_finds_the_lag_at_that_noise():
+    """מה שכן נשאר תקף: עצם קיום הפיגור."""
+    got = _planted("bars", 7, 0.006)
+    assert got["trough"] >= SHARP_RATIO
+
+
+def test_no_lag_is_separated_by_the_trough_not_by_the_ratio():
+    """בלי פיגור, היחס גם הוא ~1.0 — רק השוקת מבדילה."""
+    got = _planted("none", 7, 0.006)
+    assert got["ratio"] < UNIT_MARGIN, "היחס לא מבדיל כאן"
+    assert got["trough"] < SHARP_RATIO, "השוקת כן"
+
+
+def test_very_high_noise_hides_even_the_lag():
+    """הגבול של הכלי, מתועד ולא מוסתר."""
+    got = _planted("bars", 7, 0.009)
+    assert got["residual"] > TROUGH_BLIND_RESIDUAL
+    assert got["trough"] < SHARP_RATIO, (
+        "ברעש כזה פיגור אמיתי נעלם — ולכן שלילה שם חייבת להיאמר כחלשה")
+
+
+def test_the_divergence_set_is_too_small_when_time_is_the_truth():
+    """למה מבחן ההפרדה לא תמיד עוזר.
+
+    פיגור של 15 ימי לוח מתורגם כמעט תמיד לאותם 11 ימי מסחר, אז
+    הסטאפים שבהם שתי ההשערות נחלקות הם מיעוט קטן. זו תכונה של
+    הנתונים, לא תקלה — וצריך לומר אותה במקום להכריע בלעדיה.
+    """
+    got = _planted("time", 7, 0.003)
+    d = divergence_table(got["c"], got["B"], got["st"]["at"], int(got["sb"]["at"]))
+    assert len(d[d.gap_bars >= SESSION_BARS]) < 20
+
+
+def test_the_divergence_set_is_usable_when_bars_is_the_truth():
+    got = _planted("bars", 7, 0.003)
+    d = divergence_table(got["c"], got["B"], got["st"]["at"], int(got["sb"]["at"]))
+    hi = d[d.gap_bars >= SESSION_BARS]
+    assert len(hi) >= 20
+    assert hi.err_bars.median() < hi.err_time.median()

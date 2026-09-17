@@ -210,6 +210,27 @@ stopped refreshing, a bar count wins for an index returning `bar[-N]`. Checking
 one unit alone is not enough: on a planted bar offset the time scan still
 reports a plausible ~15-day lag, and only the comparison exposes it.
 
+Whether that comparison can answer at all depends on the residual, and the
+tool says so rather than guessing. Because an entry is a computed level and
+not a quote, a residual survives even at the correct offset, and it is what
+decides the question. On planted data the margin between the two units is
+1.71 at 0.3% residual, 1.24 at 0.6%, and 1.13 at 0.9% — it collapses toward
+1.0 *even when a bar offset is genuinely the truth*. So a narrow margin is
+never evidence against either unit; it means the data cannot separate them,
+and declaring a winner there invents an answer. The existence of the lag is
+a separate and far more robust question: the two-sided trough is 2.5–2.7
+whenever a lag is planted and exactly 1.00 when none is, at every noise
+level tested. Existence keys on the trough, unit keys on the margin, and
+above a 0.55% residual even the trough goes blind (a real lag scored 1.99
+there), so a negative verdict at that level is reported as weak.
+
+There is also a structural limit worth knowing: a 15-calendar-day lag maps
+to the same 11 trading days almost every time, so the weekend-crossing
+setups that would separate a duration from a bar count are a small minority.
+`decide_by_divergence` isolates exactly those setups and says how many
+there are; when too few exist it reports the unit as undecided rather than
+ruling on setups that carry no information.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with

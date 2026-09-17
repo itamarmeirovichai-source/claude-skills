@@ -52,6 +52,33 @@ TIME_LO_DAYS, TIME_HI_DAYS, TIME_STEP_HOURS = 0.0, 20.0, 1.0
 BAR_LO, BAR_HI = 0, 1114
 # שוקת נחשבת אמיתית אם השגיאה גדלה פי כך משני צידי המינימום.
 SHARP_RATIO = 2.0
+# כמה יחידה אחת צריכה לנצח את השנייה כדי שההכרעה תהיה אמיתית.
+#
+# הכיול הזה תלוי ברעש, וזו הנקודה. ה-entry הוא רמת FVG מחושבת, אז גם
+# בהיסט הנכון נשארת שארית, והשארית הזאת היא שקובעת אם בכלל אפשר
+# להפריד בין היחידות. סריקה על נתונים מושתלים, חמישה זרעים לכל תא:
+#
+#   אמת    רעש    יחס    שארית    שוקת
+#   נרות   0.3%   1.71   0.201%   5.17
+#   נרות   0.6%   1.24   0.400%   2.71
+#   נרות   0.9%   1.13   0.592%   1.99
+#   זמן    0.3%   1.26   0.206%   4.79
+#   זמן    0.6%   1.10   0.411%   2.55
+#   זמן    0.9%   1.05   0.613%   1.90
+#   אין    0.6%   1.02   0.405%   1.00
+#
+# שתי מסקנות. ראשית, ברעש של 0.6% ומעלה היחס קורס לכיוון 1.0 גם כשיש
+# פיגור אמיתי, אז יחס נמוך אינו ראיה נגד אף השערה — הוא רק אומר שאין
+# הפרדה. שנית, השוקת היא שמפרידה בין "יש פיגור" ל"אין": היא 2.5–2.7
+# כשיש פיגור ו-1.00 כשאין, בכל רמות הרעש. לכן פסק הדין על קיום הפיגור
+# נשען על השוקת, ופסק הדין על היחידה נשען על היחס — ורק אם יש מספיק
+# אות כדי שהיחס יהיה בעל משמעות.
+UNIT_MARGIN = 1.25
+# מעל שארית כזאת (באחוזים) היחידה אינה ניתנת להפרדה בנתונים האלה.
+RESOLVABLE_RESIDUAL = 0.30
+# מעל השארית הזאת גם עצם קיום הפיגור מתחיל להיעלם: בכיול, פיגור אמיתי
+# ברעש 0.9% נתן שוקת 1.99 — מתחת לסף. שלילה שם אינה ראיה להיעדר פיגור.
+TROUGH_BLIND_RESIDUAL = 0.55
 # באיזה מרחק בודקים את צידי השוקת. מרחק פיזי אחיד לכל הסריקות.
 FLANK_DAYS = 4.0
 # מרווח מעבר לטווח המועמדים, כדי שלמינימום יהיו שני צדדים להשוות אליהם.
@@ -198,6 +225,67 @@ def _table(d: pd.DataFrame, unit: str, every: int, best_at: float) -> None:
               f"{r.within_0_5pct:>9.1f}%{mark}")
 
 
+def divergence_table(s: pd.DataFrame, B: dict, days: float, bars_off: int) -> pd.DataFrame:
+    """לכל סטאפ: כמה רחוק זו מזו שתי ההשערות, ומה השגיאה של כל אחת.
+
+    שתי ההשערות מצביעות על אותו נר כמעט תמיד. ההבדל מופיע רק כשסוף
+    שבוע או חג נופל בתוך חלון ההיסט: היסט נרות מדלג עליו, משך זמן נופל
+    לתוכו. הסטאפים האלה הם היחידים שנושאים מידע על היחידה.
+    """
+    rows = []
+    for _, g, b, idx in _by_symbol(s, B):
+        j_t = _index_at(b, (g.ts - pd.Timedelta(days=days)).values)
+        j_b = idx - bars_off
+        ok = (j_t >= 0) & (j_b >= 0)
+        if not ok.any():
+            continue
+        e = g.entry.values[ok]
+        pt = b.mid.values[j_t[ok]]
+        pb = b.mid.values[j_b[ok]]
+        rows.append(pd.DataFrame({
+            "gap_bars": np.abs(j_t - j_b)[ok],
+            "err_time": np.abs(e - pt) / pt * 100,
+            "err_bars": np.abs(e - pb) / pb * 100,
+        }))
+    return pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
+
+
+def decide_by_divergence(s: pd.DataFrame, B: dict, days: float, bars_off: int,
+                         min_gap: int = SESSION_BARS) -> str:
+    """מכריע את היחידה על הסטאפים שבהם שתי ההשערות באמת נחלקות."""
+    d = divergence_table(s, B, days, bars_off)
+    if d.empty:
+        print("\n     אין נתונים למבחן ההפרדה.")
+        return "no_data"
+
+    lo = d[d.gap_bars < min_gap]
+    hi = d[d.gap_bars >= min_gap]
+    print(f"\n     מתוך {len(d)} סטאפים, ב-{len(hi)} שתי ההשערות מצביעות")
+    print(f"     על נרות שרחוקים לפחות יום מסחר זה מזה.")
+    if not lo.empty:
+        print(f"     ביקורת — היכן שהן מסכימות ({len(lo)}): "
+              f"זמן {lo.err_time.median():.3f}%  נרות {lo.err_bars.median():.3f}%")
+    if len(hi) < 20:
+        print("     מעט מדי כדי להכריע. הפיגור ודאי, היחידה לא.")
+        return "undecided"
+
+    et, eb = float(hi.err_time.median()), float(hi.err_bars.median())
+    print(f"     היכן שהן נחלקות: זמן {et:.3f}%  נרות {eb:.3f}%")
+    if min(et, eb) <= 0:
+        return "undecided"
+    ratio = max(et, eb) / min(et, eb)
+    print(f"     יחס: {ratio:.2f}")
+    if ratio < UNIT_MARGIN:
+        print("\n     -> גם כאן תיקו. הנתונים לא מפרידים בין השערות.")
+        print("        הפיגור אמיתי — לחפש בקוד גם מטמון וגם אינדקס.")
+        return "undecided"
+    if et < eb:
+        print("\n     -> משך זמן. מטמון או קובץ שנשמר ולא רוענן.")
+        return "time"
+    print("\n     -> מספר נרות. אינדקס שמחזיר נר ישן מתוך החלון.")
+    return "bars"
+
+
 def main() -> None:
     D = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else Path.home() / "Desktop"
     sp = D / "setups.csv"
@@ -256,29 +344,48 @@ def main() -> None:
     time_wins = st["err"] < sb["err"]
     win, lose = (st, sb) if time_wins else (sb, st)
     unit = "ימים" if time_wins else "נרות"
+    margin = lose["err"] / win["err"]
     print(f"  זמן : {st['err']:.3f}% ב-{st['at']:.2f} ימים")
     print(f"  נרות: {sb['err']:.3f}% ב-{int(sb['at'])} נרות")
-    print(f"  יחס : {lose['err'] / win['err']:.2f} לטובת {unit}")
+    print(f"  יחס : {margin:.2f} לטובת {unit}")
     print(f"  שוקת: ירידה פי {win['two_sided']:.2f} משני צידי המינימום")
 
     if st["at"] < 0.5 and sb["at"] < SESSION_BARS / 2:
         print("\n  -> המחיר עדכני. אין פיגור בכלל, והסטייה מגיעה ממקור")
         print("     אחר לגמרי — לא מנתוני השוק. לבדוק את השערות 3 ו-4.")
-    elif win["two_sided"] < SHARP_RATIO:
+        return
+    if win["two_sided"] < SHARP_RATIO:
         print("\n  -> אין שוקת באף יחידה. המינימום יושב על שפת החלון או")
         print("     שהעקומה רק עולה — זה לא פיגור. המחיר לא נקרא מסדרה")
         print("     היסטורית, הוא חושב. לחזור להשערות 3 ו-4.")
+        if win["err"] > TROUGH_BLIND_RESIDUAL:
+            print(f"\n     זהירות: השארית {win['err']:.3f}% גבוהה. בכיול,")
+            print("     פיגור אמיתי ברעש כזה נתן שוקת 1.99 — מתחת לסף.")
+            print("     השלילה הזאת חלשה.")
+        return
+
+    print(f"\n  -> יש פיגור, והוא ודאי: כ-{st['at']:.1f} ימים, כ-{int(sb['at'])} נרות.")
+    print(f"     בהיסט הזה {win['within']:.0f}% מהסטאפים בתוך חצי אחוז.")
+
+    if margin < UNIT_MARGIN:
+        print(f"\n  אבל היחידה לא הוכרעה. {margin:.2f} הוא תיקו.")
+        if win["err"] > RESOLVABLE_RESIDUAL:
+            print(f"     והשארית {win['err']:.3f}% מסבירה למה: מעל "
+                  f"{RESOLVABLE_RESIDUAL:.2f}%")
+            print("     היחס קורס לכיוון 1.0 גם כשהפיגור באמת נעול על יחידה")
+            print("     אחת. ראה טבלת הכיול ליד UNIT_MARGIN. יחס נמוך כאן")
+            print("     אינו ראיה נגד אף השערה — רק שאין הפרדה.")
+        print("     מריץ בכל זאת את מבחן ההפרדה הממוקד:")
+        outcome = decide_by_divergence(s, B, st["at"], int(sb["at"]))
+        if outcome == "undecided":
+            print("\n     -> לחפש בקוד את שניהם: קריאה שמחזירה נר מלפני")
+            print(f"        כ-{st['at']:.0f} ימי לוח / כ-{int(sb['at'])} נרות.")
     elif time_wins:
-        print(f"\n  -> המחיר נעול על משך זמן: {st['at']:.2f} ימים.")
-        print(f"     בהיסט הזה {st['within']:.0f}% מהסטאפים בתוך חצי אחוז.")
-        print("     זה מטמון או קובץ שנשמר ולא רוענן. לחפש TTL, קובץ")
-        print("     נתונים שנכתב פעם אחת, או רענון שנכשל בשקט.")
+        print("\n     והוא נעול על משך זמן: מטמון או קובץ שנשמר ולא רוענן.")
+        print("     לחפש TTL, נתונים שנכתבו פעם אחת, או רענון שנכשל בשקט.")
     else:
-        sess = sb["at"] / 78
-        print(f"\n  -> המחיר נעול על מספר נרות: {int(sb['at'])}, כלומר")
-        print(f"     כ-{sess:.1f} ימי מסחר של נרות חמש דקות.")
-        print(f"     בהיסט הזה {sb['within']:.0f}% מהסטאפים בתוך חצי אחוז.")
-        print("     זה אינדקס: קריאה שמחזירה נר ישן מתוך החלון, לא האחרון.")
+        print(f"\n     והוא נעול על מספר נרות ({sb['at'] / SESSION_BARS:.1f} ימי מסחר):")
+        print("     אינדקס. קריאה שמחזירה נר ישן מתוך החלון, לא האחרון.")
 
     out = D / "lag_refine.csv"
     pd.concat([t.assign(unit="days"), bmap.assign(unit="bars")]).to_csv(out, index=False)
