@@ -152,6 +152,8 @@ When recorded prices drift from what the market actually did, find the moment in
 
 `references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date.
 
+`references/verification-letters.md` is that list already written as two letters to send — one to the firm, one to an accountant. Both questions are answered by other people rather than by analysis, and left as headings they stay open for months. The firm's letter leads with automated order routing because it is the one risk in the plan not bounded by fees: if the order path is not permitted, accounts close and earned payouts can be voided. The accountant's letter carries the facts that decide whether this is business income or a capital gain, which over eight years is worth more than most of the trading decisions.
+
 ## Voice
 
 Numbers with their sign and their unit. The uncomfortable number in the same register as the good one. When a quantity is unknown, say unknown — not "probably fine," not a fabricated estimate. State plainly which conclusions are solid, which are order-of-magnitude, and which are still open.
