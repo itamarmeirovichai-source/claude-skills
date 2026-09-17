@@ -170,7 +170,16 @@ When recorded prices drift from what the market actually did, find the moment in
 | grows with time, matching moments converge on one date | a frozen anchor — a reference value set once and never updated |
 | noisy, no structure | not a stale price; the numbers are being computed, not read |
 
-`scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped symbol, constant factor). It is verified against synthetic data with a planted frozen anchor — it names the planted date — and against clean data, where it stays silent.
+A constant gap and a growing gap are different faults, and the difference is in
+the *spread* of the gap rather than its correlation with time: a cache returns
+the same staleness every time, while a frozen anchor falls further behind.
+Getting that backwards makes the tool give a vaguer answer than it has.
+
+`scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
+symbol, constant factor). It is verified against synthetic data for each verdict
+it can return: a planted frozen anchor (it names the planted date), a cache with
+a planted five-day TTL (it names the five days), prices that never occurred in
+the market, and clean data, where it draws no conclusion.
 
 ## Scripts
 

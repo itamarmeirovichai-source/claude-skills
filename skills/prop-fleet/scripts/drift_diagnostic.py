@@ -211,13 +211,23 @@ def main() -> None:
             drifting.ts.astype("int64"), drifting.lag_days)[0, 1]
         print(f"    מתאם בין זמן הסטאפ לפיגור: {corr:+.3f}")
 
-        if err.median() < 0.10 and span_days < 10:
+        # פיגור קבוע = מטמון עם TTL. פיגור שגדל = עוגן קפוא. ההבחנה היא
+        # בפיזור הפיגור, לא במתאם: מטמון נותן אותו פיגור כל פעם.
+        q1, q3 = drifting.lag_days.quantile(.25), drifting.lag_days.quantile(.75)
+        med_lag = drifting.lag_days.median()
+        tight = (q3 - q1) < 0.5 * max(med_lag, 1e-9)
+        print(f"    פיזור הפיגור: {q1:.2f} עד {q3:.2f} ימים "
+              f"(חציון {med_lag:.2f})")
+
+        if err.median() < 0.10 and span_days < 10 and corr > 0.7:
             print("\n  -> עוגן קפוא. מחיר ייחוס נקבע פעם אחת ולא עודכן.")
             print(f"     לחפש בקוד ערך שנקבע סביב {anchor.median():%Y-%m-%d}.")
-        elif err.median() < 0.10 and corr > 0.7:
-            print("\n  -> מטמון שמתיישן. ה-TTL לא פוקע או שהרענון נכשל בשקט.")
+        elif err.median() < 0.10 and tight and med_lag > 0.5:
+            print(f"\n  -> מטמון עם TTL. המחיר מפגר בקביעות ב-{med_lag:.1f} ימים.")
+            print("     ה-TTL לא פוקע, או שהרענון נכשל בשקט ונשאר הערך הישן.")
         elif err.median() < 0.10:
-            print("\n  -> המחירים אמיתיים אבל מזמן אחר. באג בבחירת הנר/חותמת הזמן.")
+            print("\n  -> המחירים אמיתיים אבל מזמן אחר, בלי תבנית ברורה.")
+            print("     באג בבחירת הנר או בחותמת הזמן.")
         else:
             print("\n  -> המחירים האלה לא הופיעו בשוק באף רגע. לא מחיר ישן —")
             print("     משהו מחשב אותם. לבדוק את השערות 3 ו-4.")
