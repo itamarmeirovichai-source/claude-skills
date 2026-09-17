@@ -102,6 +102,35 @@ Three things reduce this, and only these three:
 - **Different phases, different sizes.** An account below the safety net and an account above it are not the same risk.
 - **A global circuit breaker.** After N consecutive losses, every account stops until the next session. With no diversification, the breaker *is* the risk control.
 
+## Operating cadence
+
+Twenty accounts are unmanageable as twenty decisions. They are manageable as one
+decision repeated, on a fixed rhythm.
+
+**Every trading day.** Check that every account took the same trades — they copy
+the same orders, so any divergence is an execution fault, not luck: an order that
+never arrived or filled somewhere else. Check the execution gap column. Confirm
+no account is below its safety net while being traded at funded size.
+
+**Every week.** Run the gate against the trade record and act on what it says,
+including downward. Note which accounts are within one cap of a payout and which
+are in the dangerous stretch below the safety net. Check the consistency figure
+on any account approaching a withdrawal.
+
+**Every month.** Open the next account, if the gate permits it — one, never
+several. Reconcile payouts received against payouts requested. Set aside tax on
+everything received. Re-read the firm's rules page for changes.
+
+**Every quarter.** Re-run the fleet model with the actual expectancy rather than
+the assumed one, and with any rule values that have changed. Compare the accounts
+burned against what the model expected; a burn rate well above it means the size
+is wrong or the strategy has drifted, and the first is far more likely.
+
+**Never do on a schedule:** change position size after a losing run, add an
+account because the last one paid out, or adjust the strategy because a quarter
+disappointed. Those are the three decisions that feel most justified in the
+moment and are worth the most money to skip.
+
 ## Record integrity
 
 A fleet is only as good as the record that measures it, and a broken record is worse than none because it reads as evidence.
@@ -151,6 +180,7 @@ When recorded prices drift from what the market actually did, find the moment in
 - `scripts/gate.py` — reads the trade record and names the stage the evidence permits, including downward. Takes a `trades.db`, a CSV of `pnl_r`, and `--stage N` to compare against where you are now.
 - `scripts/test_gate.py` — 19 tests on the decision logic, since the numbers are the decision.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
+- `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.

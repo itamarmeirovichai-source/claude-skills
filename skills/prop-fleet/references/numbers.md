@@ -128,6 +128,44 @@ roughly double at every clustering level for about 30% more money. Clustering
 therefore strengthens the case for the **smaller** size — not on dollars, on
 operational load and on staying unremarkable to the firm.
 
+## Compounding barely matters inside eight years
+
+The year-8 wealth figure rests on two assumed rates — 7% on a private portfolio,
+12% on business and real estate. Worth knowing how much it actually depends on
+them:
+
+| Returns | Wealth at year 8 |
+| --- | --- |
+| zero | $1,728,928 |
+| 5% / 8% | $1,779,346 |
+| 7% / 12% | $1,804,247 |
+| 9% / 15% | $1,825,703 |
+
+**Every return assumption together is worth $75,319 of $1.8M — 4.2%.** The figure
+is almost entirely the cash the accounts produce, not what happens to it
+afterwards. That is reassuring: the forecast does not rest on a guess about
+property markets. The reason is simply that extraction starts in year 5, so the
+money has three or four years to work, which is nothing.
+
+Over a longer horizon it inverts completely, assuming the fleet keeps producing:
+
+| Year | Wealth | Cash contributed | From returns |
+| --- | --- | --- | --- |
+| 8 | $1,807,300 | $1,732,078 | **4.2%** |
+| 10 | $2,427,278 | $2,225,632 | 8.3% |
+| 15 | $4,350,270 | $3,459,517 | 20.5% |
+| 20 | $7,077,350 | $4,693,402 | 33.7% |
+| 25 | $11,144,394 | $5,927,287 | **46.8%** |
+
+The practical consequence for the next eight years: effort spent chasing two more
+points of portfolio return is worth tens of thousands, while five more accounts
+or a fifth of an R of expectancy are worth hundreds of thousands. Optimise the
+fleet's output, not the yield on money that has already left it.
+
+The long rows assume an edge surviving a quarter of a century, which nothing in
+markets does, and a firm still operating. Treat them as showing when compounding
+starts to matter, not as a forecast. `scripts/horizon.py` runs it.
+
 ## What the model does not contain
 
 - A fixed 1:2 reward-to-risk on every trade. Tested: lognormal dispersion of the
