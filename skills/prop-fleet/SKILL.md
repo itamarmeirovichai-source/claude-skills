@@ -240,6 +240,34 @@ five; the fifth misses, which is the test's honest error rate and is
 documented rather than hidden. A planted duration leaves too few divergent
 setups to run at all.
 
+All of that covers one era. The bot ran on SPY and QQQ until 15 May and on
+futures scale from 18 May, and the diagnosis rests entirely on the first
+period, because that is the only one with independent bars to compare
+against. The 131 setups after the switch had never been checked, and they
+are the ones that decide whether any usable evidence exists at all — a
+question worth more than refining the first era further.
+
+`scripts/futures_era_check.py` answers it with hourly bars. IBKR refuses
+historical continuous futures, but the feed's own config allows two years of
+hourly data, which reaches back past May. An hour is coarse against
+five-minute setups and adds roughly a tenth of a percent, which is nothing
+against a four-percent signal and a fifteen-day lag.
+
+The catch is that those bars come from the same provider whose live path was
+suspect, so a clean result could just be a shifted series compared against
+itself. The script therefore runs the ETF era first as a control: if hourly
+yfinance reproduces the trough that IBKR bars produced, the source is a valid
+witness and the futures test means something; if it does not, the script says
+the test is void rather than reporting a result. The verdict is asymmetric on
+purpose. "Lagged" keys on the trough alone, because the trough is what stays
+stable across noise and volatility, while the error at zero offset measures
+how far the market happened to move over the lag window — the same fault
+reads 4.5% in a volatile stretch and 1.5% in a quiet one. An earlier version
+demanded both and threw away a genuine lag in one seed of five. "Clean"
+demands both a flat curve and a small error at zero, since proving a recorded
+price was the prevailing price takes more than failing to find a lag.
+Everything else is left explicitly undecided.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with
@@ -268,6 +296,8 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/lag_scan.py` — the coarse pass: how far behind the market a recorded price sits, in whole days, against a real time offset instead of a free search. Locks its cohort and judges by the rise on both sides of the minimum. Hands off to `lag_refine.py`.
 - `scripts/lag_refine.py` — the decisive one: refines the lag to the hour and rules on whether it is locked to a duration (a cache) or to a bar count (an index bug), by scanning both units over the same span.
 - `scripts/test_lag_refine.py` — 15 tests. Both directions on planted data, a replica of the real 60-session/304-setup situation in each direction, proof that a shrinking cohort really can manufacture a minimum and that locking it removes one, and proof that a time-only reading would have misread a planted bar offset.
+- `scripts/futures_era_check.py` — whether the lag survived into the futures era, using hourly bars from the feed itself, with the ETF era re-run first as a control on whether that source can serve as a witness at all.
+- `scripts/test_futures_era_check.py` — 24 tests: planted lag found and clean data left clean across five seeds each, the call holding across four volatility regimes, the cohort lock, and the case that broke the first classifier, where a real lag in a quiet market shows only a modest error at zero offset.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.

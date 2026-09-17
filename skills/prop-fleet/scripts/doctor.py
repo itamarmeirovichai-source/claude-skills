@@ -219,7 +219,12 @@ def check_bars():
         say(WARN, f"חסרים נרות: {', '.join(missing)} — הרץ קודם את ibbars.py")
         return
     say(OK, "נרות SPY ו-QQQ קיימים")
-    nexts.append(f"python3 {HERE/'lag_refine.py'}   ← מכריע אם המחיר מפגר בזמן או באינדקס")
+    say(INFO, "עידן ה-ETF (27/02–15/05) אובחן: פיגור של כ-15 ימי לוח, שוקת 2.69")
+    if (DESK / "futures_era_ETF.csv").exists():
+        say(OK, "עידן החוזים נבדק — ראה futures_era_*.csv")
+    else:
+        say(WARN, "עידן החוזים (18/05 ואילך, 131 סטאפים) עדיין לא נבדק")
+        nexts.append(f"python3 {HERE/'futures_era_check.py'}   ← קובע מאיזה תאריך הנתונים תקפים")
 
 
 # ── 6. מה שדורש בני אדם ─────────────────────────────────────────
