@@ -19,6 +19,7 @@ assumption in here is labelled and testable.
 | About to produce a video | [24 — Production Workflow](24-production-workflow.md), [26 — Property Accuracy Rules](26-property-accuracy-rules.md), [27 — Quality Rubric](27-quality-rubric.md) |
 | About to spend money on ads | [30 — Advertising Packages](30-advertising-packages.md), [31 — Experiment Design](31-experiment-design.md), [15 — Financial Model](15-financial-model.md) |
 | Picking up this project cold | [05 — Progress](05-progress.md), then [03 — Assumptions Register](03-assumptions-register.md) |
+| **Ready to actually start** | **[47 — V-0 Verification Worksheet](47-v0-verification-worksheet.md)** — 30–40 minutes in a browser, and it unblocks everything else |
 
 ---
 
@@ -120,6 +121,7 @@ assumption in here is labelled and testable.
 | 43 | [Launch Plan](43-launch-plan.md) | 30-day plan, 90-day conditional, go/no-go gates |
 | 44 | [Independent Review](44-independent-review.md) | Six adversarial reviews |
 | 45 | [Founder Report](45-founder-report.md) | The short version |
+| 47 | [V-0 Verification Worksheet](47-v0-verification-worksheet.md) | **The blocking human task — primary sources a browser must read** |
 
 ### Tools
 - [`tools/financial_model.py`](tools/financial_model.py) — runnable unit-economics and

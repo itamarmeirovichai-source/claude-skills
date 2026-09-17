@@ -13,6 +13,43 @@ with no deadline becomes a permanent assumption.**
 | **OD-4** | Which entity, and what is the sales tax / VAT position on digital services, including cross-border? | Accountant | Professional advice. Jurisdiction-dependent | Day 5 |
 | **OD-5** | Is the liability cap in the customer agreement enforceable as drafted? | Lawyer | Professional advice | Day 5 |
 
+### Research done on OD-2 and OD-3 (2026-09-17)
+
+Neither is resolved — both need a decision from the founder — but the option space is now mapped.
+
+**OD-3 — portfolio imagery.** Two workable routes:
+
+| Route | Cost | Rights position | Catch |
+|---|---|---|---|
+| **Free stock (Pexels / Unsplash)** | $0 | Both licences permit commercial use **and modification/adaptation**, which covers derivative video | ⚠️ **The licences explicitly do not clear identifiable people, private property, trademarks, logos, or some buildings** — and interiors are exactly where property releases bite. The platform pushes that responsibility onto the user |
+| **Photograph a property with written owner permission** | A favour or a small fee | Cleanest — you hold everything, and the permission can be written to cover derivative video | Needs a property and an afternoon |
+| Paid stock with an extended/property-released licence | $$ | Strongest | Costs money at the point we have least |
+
+**Recommendation:** route 2 for the hero examples (you control the rights completely, and it
+doubles as the first real production run for V-1), with free stock only for generic B-roll where
+no property is identifiable. **Do not build the public portfolio on free stock interiors without
+reading each image's release position** — we would be making exactly the rights mistake we warn
+customers about in [38](38-rights-and-security.md).
+Sources: [Pexels licence](https://www.pexels.com/license/), [Pexels commercial-use FAQ](https://help.pexels.com/hc/en-us/articles/360042295214-Can-I-use-the-photos-and-videos-for-a-commercial-project), [free-stock licensing analysis](https://www.licenseorg.com/blog/free-stock-photos-licensing-traps).
+
+**OD-2 — funding legal review.** The middle path exists and is defensible:
+
+| Option | Cost | Risk |
+|---|---|---|
+| Full custom agreement drafted by a lawyer | $$$ | Lowest, and not fundable at pre-revenue |
+| **Reputable template + a paid lawyer review of the two clauses that matter** (liability cap, IP/rights assignment) | $ | **Recommended.** Targets spend at the clauses that actually bite |
+| Template alone, unreviewed | $0 | Accepted only if written down as an accepted risk, with a date to revisit |
+
+Standard practice supports our draft: capping aggregate liability at fees paid under the
+agreement is the conventional small-business position, which is what
+[38](38-rights-and-security.md) already specifies. A contract does not need a lawyer to be
+valid — but this one carries an IP assignment to the customer and a rights warranty from them,
+which is exactly where a cheap review earns its money.
+Sources: [service agreement guide](https://beancount.io/blog/2026/04/25/service-agreement-template-complete-guide-small-business), [freelance agreement protections](https://selenethelawyer.com/blog/freelance-service-agreement-template).
+
+**Neither of these is a decision I can make for you.** OD-2 is a spending choice and OD-3 depends
+on whether you have a property to photograph.
+
 ## Blocking — must be resolved before scaling
 
 | # | Decision | Owner | Decision rule | Deadline |

@@ -55,9 +55,10 @@ or financial assets.** Nothing was modified; all new work is under `business/`.
 **Do not write more strategy. The strategy is done and further desk research has diminishing
 returns.** The blocking work is verification and measurement:
 
-1. **V-0** — read the nine blocked primary sources ([42](42-validation-plan.md)). ~4 hours, $0.
-   **If E-01 is contradicted, stop and re-run [12](12-positioning.md) and
-   [08](08-segment-selection-matrix.md).**
+1. **V-0** — **use [47](47-v0-verification-worksheet.md).** This cannot be done by an agent:
+   every primary source is egress-blocked here and Bash has no web access. A human with a
+   browser, 30–40 minutes. **If E-01 is contradicted, stop and re-run
+   [12](12-positioning.md) and [08](08-segment-selection-matrix.md).**
 2. **Resolve OD-2** — legal/accounting funding, which the current plan does not cover
    ([46](46-open-decisions.md)).
 3. **Resolve OD-3** — where the illustrative portfolio's imagery comes from.
@@ -117,3 +118,4 @@ state of this business.
 | Date | Change |
 |---|---|
 | 2026-09-15 | Initial build. Workspace audit, 35 evidence items, 46 documents, 2 runnable tools. No customer contact, no spend, no production |
+| 2026-09-17 | V-0 attempted and **proven impossible from this environment** — every primary source is egress-blocked, Bash has no web access at all, only WebSearch works. Added [47](47-v0-verification-worksheet.md) so a human can complete it in one sitting. Researched and mapped the option space for OD-2 and OD-3; neither resolved — both need a founder decision |

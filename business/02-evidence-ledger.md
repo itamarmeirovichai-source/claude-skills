@@ -16,12 +16,23 @@ it is not a fact — it is an assumption ([03](03-assumptions-register.md)) or a
 
 ## Research limitations — read before using this ledger
 
-1. **The egress proxy blocked the three most important primary sources.**
-   `www.airbnb.com`, `help.vrbo.com`, and `tryreelestate.com` returned `EGRESS_BLOCKED`. The
-   Airbnb Content Policy, Airbnb Trademark Guidelines, and the Vrbo Video Guidelines could
-   therefore only be read through secondary reporting and search-engine summaries. **Every
-   platform-rule item below is graded B and carries a mandatory verification task**
-   (see [42](42-validation-plan.md), task V-0).
+1. **No primary source on the open web is reachable from this environment.** This was tested
+   exhaustively on 2026-09-17, and the result is stronger than first recorded:
+
+   | Route | Result |
+   |---|---|
+   | `WebFetch` → airbnb.com, help.vrbo.com, tryreelestate.com | `EGRESS_BLOCKED` |
+   | `WebFetch` → airbnb.co.uk (any regional Airbnb domain) | `EGRESS_BLOCKED` |
+   | `WebFetch` → stripe.com, support.google.com, facebook.com, epidemicsound.com | `EGRESS_BLOCKED` |
+   | `WebFetch` → web.archive.org | Blocked |
+   | `curl` via Bash → **any** host, including `example.com` | `403 CONNECT tunnel failed` |
+
+   Bash has no web egress at all; the proxy reports `selective: false`, so this is a blanket
+   block rather than a domain allowlist. **Only `WebSearch` works, and it returns summaries
+   rather than source text.** Consequently every platform-rule and vendor-terms item below is
+   graded **B at best**, and all nine carry a mandatory human verification task.
+   **A future session should not retry these routes** — the block is at the proxy, not the tool.
+   The worksheet for a human to complete is [47](47-v0-verification-worksheet.md).
 2. **Web search results are US-scoped**, consistent with the English-speaking initial market,
    but this biases platform and legal findings toward US rules.
 3. **No competitor's private pricing, close rate, or volume is known.** Nothing in this ledger
