@@ -36,6 +36,7 @@ lag_scan סרק בקפיצות של יום שלם ומצא מינימום ב-15 
     python3 lag_refine.py /נתיב/אחר
 """
 
+import math
 import sys
 from pathlib import Path
 
@@ -74,6 +75,10 @@ SHARP_RATIO = 2.0
 # נשען על השוקת, ופסק הדין על היחידה נשען על היחס — ורק אם יש מספיק
 # אות כדי שהיחס יהיה בעל משמעות.
 UNIT_MARGIN = 1.25
+# מבחן הסימנים על הקבוצה המפרידה: מתחת ל-p הזה ההטיה אמיתית.
+# בכיול, אמת של היסט נרות ברעש 0.6% נתנה p<=0.002 בארבעה מתוך חמישה
+# זרעים — כלומר המבחן מפספס בערך פעם מתוך חמש, וזה מתועד ולא מוסתר.
+SIGN_P = 0.01
 # מעל שארית כזאת (באחוזים) היחידה אינה ניתנת להפרדה בנתונים האלה.
 RESOLVABLE_RESIDUAL = 0.30
 # מעל השארית הזאת גם עצם קיום הפיגור מתחיל להיעלם: בכיול, פיגור אמיתי
@@ -250,6 +255,22 @@ def divergence_table(s: pd.DataFrame, B: dict, days: float, bars_off: int) -> pd
     return pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
 
 
+def sign_test(diff: np.ndarray):
+    """כמה סביר לקבל הטיה כזאת במטבע הוגן. מדויק, בלי scipy.
+
+    על הקבוצה המפרידה יש עשרות דגימות בלבד, שם חציון רועש. המבחן
+    המזווג משתמש בכך שכל סטאפ נמדד פעמיים — פעם תחת כל השערה — ולכן
+    מוציא יותר אות מאותם נתונים.
+    """
+    d = diff[diff != 0]
+    n = len(d)
+    if n == 0:
+        return 1.0, 0, 0
+    k = int((d < 0).sum())
+    m = min(k, n - k)
+    return min(1.0, sum(math.comb(n, i) for i in range(m + 1)) / 2 ** (n - 1)), k, n
+
+
 def decide_by_divergence(s: pd.DataFrame, B: dict, days: float, bars_off: int,
                          min_gap: int = SESSION_BARS) -> str:
     """מכריע את היחידה על הסטאפים שבהם שתי ההשערות באמת נחלקות."""
@@ -271,18 +292,19 @@ def decide_by_divergence(s: pd.DataFrame, B: dict, days: float, bars_off: int,
 
     et, eb = float(hi.err_time.median()), float(hi.err_bars.median())
     print(f"     היכן שהן נחלקות: זמן {et:.3f}%  נרות {eb:.3f}%")
-    if min(et, eb) <= 0:
-        return "undecided"
-    ratio = max(et, eb) / min(et, eb)
-    print(f"     יחס: {ratio:.2f}")
-    if ratio < UNIT_MARGIN:
-        print("\n     -> גם כאן תיקו. הנתונים לא מפרידים בין השערות.")
+
+    # חציון על עשרות דגימות רועש. המבחן המזווג הוא שמכריע.
+    pval, k, n = sign_test((hi.err_time - hi.err_bars).values)
+    print(f"     מבחן סימנים מזווג: הזמן טוב יותר ב-{k} מתוך {n}, p={pval:.4f}")
+
+    if pval >= SIGN_P:
+        print("\n     -> ההטיה לא מובהקת. הנתונים לא מפרידים בין השערות.")
         print("        הפיגור אמיתי — לחפש בקוד גם מטמון וגם אינדקס.")
         return "undecided"
-    if et < eb:
-        print("\n     -> משך זמן. מטמון או קובץ שנשמר ולא רוענן.")
+    if k * 2 > n:
+        print("\n     -> משך זמן, מובהק. מטמון או קובץ שנשמר ולא רוענן.")
         return "time"
-    print("\n     -> מספר נרות. אינדקס שמחזיר נר ישן מתוך החלון.")
+    print("\n     -> מספר נרות, מובהק. אינדקס שמחזיר נר ישן מתוך החלון.")
     return "bars"
 
 

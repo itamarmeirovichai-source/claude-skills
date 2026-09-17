@@ -390,3 +390,59 @@ def test_the_divergence_set_is_usable_when_bars_is_the_truth():
     hi = d[d.gap_bars >= SESSION_BARS]
     assert len(hi) >= 20
     assert hi.err_bars.median() < hi.err_time.median()
+
+
+# ── המבחן המזווג על הקבוצה המפרידה ───────────────────────────────
+#
+# חציון על עשרות דגימות רועש. המבחן המזווג מוציא יותר אות מאותם
+# נתונים, כי כל סטאפ נמדד פעמיים — פעם תחת כל השערה.
+
+from lag_refine import SIGN_P, sign_test
+
+
+def test_a_clear_bias_is_significant():
+    p, k, n = sign_test(np.array([-1.0] * 9 + [1.0] * 40))
+    assert (k, n) == (9, 49)
+    assert p < SIGN_P
+
+
+def test_an_even_split_is_never_significant():
+    p, k, n = sign_test(np.array([-1.0] * 20 + [1.0] * 20))
+    assert p == pytest.approx(1.0)
+
+
+def test_a_weak_lean_is_not_significant():
+    """המספרים שהנתונים האמיתיים נראים כמוהם: נטייה קלה על 47 דגימות.
+
+    בלי המבחן הזה, חציון של 1.16 מתפתה להיקרא כתשובה. הוא לא.
+    """
+    p, k, n = sign_test(np.array([-1.0] * 27 + [1.0] * 20))
+    assert (k, n) == (27, 47)
+    assert p > 0.3, "27 מול 20 הוא רעש, לא ממצא"
+
+
+def test_ties_are_dropped_not_counted():
+    p_with, k_with, n_with = sign_test(np.array([-1.0] * 9 + [1.0] * 40 + [0.0] * 30))
+    p_without, k_without, n_without = sign_test(np.array([-1.0] * 9 + [1.0] * 40))
+    assert (k_with, n_with) == (k_without, n_without)
+    assert p_with == pytest.approx(p_without)
+
+
+def test_an_empty_set_decides_nothing():
+    assert sign_test(np.array([]))[0] == 1.0
+
+
+def test_the_test_is_symmetric():
+    a = sign_test(np.array([-1.0] * 9 + [1.0] * 40))[0]
+    b = sign_test(np.array([1.0] * 9 + [-1.0] * 40))[0]
+    assert a == pytest.approx(b), "אותה הטיה בכיוון ההפוך, אותה הסתברות"
+
+
+def test_the_paired_test_catches_a_planted_bar_offset():
+    """הכיול שמצדיק את הסף: אמת של נרות, ברעש האמיתי."""
+    got = _planted("bars", 11, 0.006)
+    d = divergence_table(got["c"], got["B"], got["st"]["at"], int(got["sb"]["at"]))
+    hi = d[d.gap_bars >= SESSION_BARS]
+    assert len(hi) >= 15
+    p, k, n = sign_test((hi.err_time - hi.err_bars).values)
+    assert p < SIGN_P and k * 2 < n, "הנרות חייבים לנצח, ובמובהק"

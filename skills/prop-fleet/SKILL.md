@@ -231,6 +231,15 @@ setups that would separate a duration from a bar count are a small minority.
 there are; when too few exist it reports the unit as undecided rather than
 ruling on setups that carry no information.
 
+That subset is tens of setups, not hundreds, where a median is noisy — so
+the ruling is an exact paired sign test rather than a comparison of
+medians. Each setup is measured twice, once under each hypothesis, and the
+pairing is what extracts the signal. Calibrated at the real noise level, a
+planted bar offset comes back significant (p ≤ 0.002) in four seeds out of
+five; the fifth misses, which is the test's honest error rate and is
+documented rather than hidden. A planted duration leaves too few divergent
+setups to run at all.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with
