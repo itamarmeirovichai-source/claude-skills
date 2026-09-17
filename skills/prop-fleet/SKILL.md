@@ -94,12 +94,40 @@ What it catches:
 
 Alongside it, log the execution gap on every trade: the price the strategy asked for against the price actually filled. An execution-layer bug that silently replaces the strategy's entry with the market price is invisible in P&L and obvious in that one column on day one.
 
+## Level conversion
+
+Where a strategy computes levels on one instrument and orders are placed on another — a futures contract analysed, an ETF traded — the conversion has one invariant:
+
+```
+proxy_level / proxy_market_price  ==  level / source_market_price
+```
+
+Every level keeps its position relative to its own market price. The ratio must come from a **live reference pair**, the two instruments' current quotes. Deriving it from the entry price instead collapses the arithmetic — `entry / (entry / etf_price)` is `etf_price` — so every order goes out at market and all the waiting the strategy does is thrown away in the execution layer. The distances still look right, because stop and target convert correctly, which is why this survives review.
+
+`scripts/proxy_fix.py` implements the conversion with the invariant asserted on every call rather than only in tests. A sanity range on the output price cannot catch this: the collapsed value is a real market price and passes any range check.
+
+## Diagnosing a price that doesn't match the market
+
+When recorded prices drift from what the market actually did, find the moment in real bar data when the price was closest to the recorded one, and compare it to when the record was written. The gap separates the causes:
+
+| Gap | Cause |
+| --- | --- |
+| ~0 | no drift |
+| constant | a cache whose TTL never expires or whose refresh fails silently |
+| grows with time, matching moments converge on one date | a frozen anchor — a reference value set once and never updated |
+| noisy, no structure | not a stale price; the numbers are being computed, not read |
+
+`scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped symbol, constant factor). It is verified against synthetic data with a planted frozen anchor — it names the planted date — and against clean data, where it stays silent.
+
 ## Scripts
 
 - `scripts/integrity.py` — validators for the trade write path. No dependencies.
 - `scripts/test_integrity.py` — 20 tests, each a real corrupted row. `python3 -m pytest`.
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
+- `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
+- `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
+- `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 
 `references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date.
 
