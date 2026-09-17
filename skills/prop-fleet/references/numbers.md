@@ -6,6 +6,15 @@ points of slippage on stopped exits, evaluation sized at 10% of drawdown, funded
 account at 4%, one new account opened per month, 25% tax, and full copy-trading
 correlation (every account takes the same trades).
 
+Every figure below is a Monte Carlo mean. Re-running reproduces them to within
+about 1%; rows near zero expectancy have much larger relative noise because the
+absolute number is small (the 0.00R row moves by a few hundred dollars, which is
+10% of itself). Read them to two significant figures, not to the dollar. The
+model was extended after these tables were produced — adding the regime option
+changed which random numbers each draw consumes — and the tables were re-checked
+against the current code: 0.3% to 0.8% apart, which is the noise, not a change in
+behaviour.
+
 ## Net after tax, steady state (years 5–8)
 
 | Expectancy | 10 × 50K | 20 × 50K | 10 × 150K | 20 × 150K |
