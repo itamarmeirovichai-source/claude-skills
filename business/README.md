@@ -127,6 +127,7 @@ assumption in here is labelled and testable.
 - [`tools/financial_model.py`](tools/financial_model.py) — runnable unit-economics and
   sensitivity model. `python3 business/tools/financial_model.py`
 - [`tools/accuracy_checklist.py`](tools/accuracy_checklist.py) — runnable pre-delivery gate.
+- [`tools/template_motion.py`](tools/template_motion.py) — the OD-6 template-motion fallback, built and verified. Renders the full 7-file package from real photographs with **no generative model in the pipeline**, and checks every output against its platform spec. `python3 business/tools/template_motion.py --demo`
 
 ---
 

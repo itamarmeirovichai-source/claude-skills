@@ -75,10 +75,17 @@ Estimated time per Standard order [ESTIMATE] A-10:
 | Edit, captions, sound | 30 |
 | **Accuracy review** ([26](26-property-accuracy-rules.md)) | 12 |
 | **Quality review** ([27](27-quality-rubric.md)) | 8 |
-| Exports (7 formats) | 10 |
+| Exports (7 formats) † | 10 |
 | Delivery message and guide | 8 |
 | Revision handling (weighted: 35% × 25 min, A-11) | 9 |
 | **Total** | **152 min ≈ 2.5h** |
+
+**† [MEASURED 2026-09-17]** — a full 7-file render takes **~6 minutes of machine time,
+unattended** (`tools/template_motion.py`, 369s on this hardware, synthetic source images). That
+is not founder time: the step is close to fully automatable, and founder attention is closer to
+**1 minute** — start the job, come back. Revise this line down once the pipeline is wired up.
+**Time is the dominant cost variable, so converting founder minutes into machine minutes is worth
+more than any saving on generation cost.** The other steps in this table remain estimates.
 
 | | Value |
 |---|---|

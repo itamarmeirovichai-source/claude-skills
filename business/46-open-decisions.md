@@ -61,6 +61,46 @@ on whether you have a property to photograph.
 | **OD-10** | Does template reuse actually reduce per-unit time on a portfolio job? | Founder | PS-6 ([19](19-property-manager-sales.md)). **No volume discount quoted until measured** | First PM pilot |
 | **OD-11** | Is the 12-minute Gate 1 budget sufficient? ([44](44-independent-review.md), production lead) | Founder | Measure actual Gate 1 time over 10 orders. If the median is under 8 minutes, the gate is not being done properly and the budget or the checklist must change | Day 30 |
 
+### OD-6 — first real measurement (2026-09-17)
+
+**Partially answered, and the answer is encouraging for the fallback.**
+`tools/template_motion.py` was built and run end to end. It produced the complete 7-file Standard
+package and every output passed its platform spec, verified independently by decoding each file:
+
+| File | Destination | Result |
+|---|---|---|
+| 01 / 02 reels | Instagram / TikTok | 1080×1920, 20.0s |
+| 03 feed | Instagram / Facebook | 1080×1080, 24.0s |
+| 04 web hero | Booking site | 1920×1080, 24.0s |
+| 05 silent loop | Site header | 1920×1080, 10.0s, first frame == last (HR-9) |
+| **06 Vrbo cut** | Vrbo | 1920×1080, **50.0s, music-free, overlay-free** (E-03–E-06) |
+| **07 GBP cut** | Google Business Profile | **28.0s, 0.67 MB** (E-08 caps: 30s / 75MB) |
+
+**7 files, 3.7 MB, 369 seconds of wall clock.** All h264 / yuv420p / 24fps with faststart.
+
+**What this changes:** the render is ~6 minutes of *machine* time, unattended — not founder
+time. [15](15-financial-model.md) §3 budgets 10 minutes of founder time for exports; on this
+evidence that step is close to fully automatable, and founder attention drops to starting the
+job and coming back. **Time is the dominant cost variable, so any step that converts founder
+minutes into machine minutes matters more than any saving on generation cost.**
+
+**The accuracy argument is now demonstrated rather than asserted.** There is no generative model
+in this pipeline, so the Gate 1 prohibitions hold by construction: an affine crop of a real
+photograph cannot warp a straight line, invent a room, or extend a view.
+
+**What this does NOT establish — and the gap is the important half:**
+- It ran on **synthetic images**, not real property photographs. It tests the *mechanism*, not
+  whether the output looks good enough to sell.
+- No music, no real captions, no accuracy review, no shot-selection judgment — the human steps
+  are untouched and unchanged.
+- It says nothing about the **generative** path (A-03), which remains completely untested because
+  Kling, Runway, Veo and Sora are all unreachable from this environment.
+- Render time is hardware-dependent.
+
+**OD-6 therefore stays open.** What is now known: template motion is buildable, fast enough, and
+spec-compliant. What is not: whether it is *good enough* on real photographs to charge $279 for.
+That is still V-1.
+
 ## Strategic — resolved by evidence over time
 
 | # | Decision | Owner | Decision rule | Deadline |

@@ -11,10 +11,10 @@
 | **Phase** | Desk research and system design — **complete** |
 | **Customer contact** | **None.** Zero people contacted |
 | **Money spent** | **$0** |
-| **Videos produced** | **0** |
+| **Videos produced** | **0 client videos.** 7 synthetic-source renders as a mechanism test |
 | **Orders taken** | **0** |
 | **Claims validated by purchase** | **0** |
-| Documents | 47 + 2 runnable tools |
+| Documents | 47 + 3 runnable tools |
 
 ## What was completed
 
@@ -118,4 +118,5 @@ state of this business.
 | Date | Change |
 |---|---|
 | 2026-09-15 | Initial build. Workspace audit, 35 evidence items, 46 documents, 2 runnable tools. No customer contact, no spend, no production |
+| 2026-09-17 | Built and ran `tools/template_motion.py` — the OD-6 template-motion fallback. Produced the full 7-file package from synthetic images; all outputs pass their platform specs, verified by independent decode. 369s machine time. **Generative path (A-03) still completely untested — all vendors unreachable.** |
 | 2026-09-17 | V-0 attempted and **proven impossible from this environment** — every primary source is egress-blocked, Bash has no web access at all, only WebSearch works. Added [47](47-v0-verification-worksheet.md) so a human can complete it in one sitting. Researched and mapped the option space for OD-2 and OD-3; neither resolved — both need a founder decision |
