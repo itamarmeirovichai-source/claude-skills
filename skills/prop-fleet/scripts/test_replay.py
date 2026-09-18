@@ -7,6 +7,8 @@
 מספיקה כדי להפוך תוחלת שלילית לחיובית.
 """
 
+from datetime import time as dtime
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -407,18 +409,107 @@ def test_shifting_every_setup_later_breaks_its_link_to_the_bars():
     assert ff.net_R.sum() < 0.6 * rf.net_R.sum(), (ff.net_R.sum(), rf.net_R.sum())
 
 
-def test_the_clustered_interval_is_wider_when_a_day_moves_together():
-    """יום שכל עסקאותיו זזות יחד הוא תצפית אחת, לא ארבע."""
-    day = np.repeat(np.arange(25), 4)
-    together = np.repeat(np.random.default_rng(3).normal(0, 1, 25), 4)
-    apart = np.random.default_rng(3).normal(0, 1, 100)
-    _, lo_t, hi_t, _ = clustered_interval(together, day)
-    _, lo_a, hi_a, _ = clustered_interval(apart, day)
-    assert (hi_t - lo_t) > (hi_a - lo_a)
-
-
 def test_the_clustered_interval_counts_days_not_trades():
     r = np.array([0.5] * 12)
     day = np.repeat(np.arange(3), 4)
     _, _, _, k = clustered_interval(r, day)
     assert k == 3
+
+
+# ---------- חלון המסחר ----------
+
+def session_setups(times, day="2026-06-01"):
+    rows = []
+    for hh, mm in times:
+        rows.append({
+            "ts": pd.Timestamp(f"{day} {hh:02d}:{mm:02d}", tz=ET),
+            "symbol": "ES", "market": "ES", "direction": "long",
+            "entry": 99.5, "stop_loss": 98.5, "take_profit": 101.5,
+        })
+    return pd.DataFrame(rows)
+
+
+def all_day_bars(day="2026-06-01"):
+    t0 = pd.Timestamp(f"{day} 00:00", tz=ET)
+    n = 288
+    rows = [(100.0, 100.2, 99.0, 100.0)] * n
+    df = pd.DataFrame(rows, columns=["open", "high", "low", "close"])
+    df["ts"] = [t0 + pd.Timedelta(minutes=5 * i) for i in range(n)]
+    df["session"] = df.ts.dt.date
+    return {"ES": df}
+
+
+def test_a_setup_outside_the_session_is_not_a_trade():
+    """20:00 הוא מסחר ערב. הבוט לא שולח שם, והריפליי לא ימציא מילוי."""
+    res = replay(session_setups([(20, 0)]), all_day_bars(),
+                 "stop_loss", "take_profit")
+    assert list(res.status) == ["outside_session"]
+
+
+def test_a_setup_inside_the_session_still_trades():
+    res = replay(session_setups([(10, 0)]), all_day_bars(),
+                 "stop_loss", "take_profit")
+    assert res.status.iloc[0] == "filled"
+
+
+def test_the_flat_time_is_the_boundary_not_midnight():
+    """15:58 היא השעה שבה eod_force_close רץ אצלו בפועל."""
+    late = replay(session_setups([(15, 55)]), all_day_bars(),
+                  "stop_loss", "take_profit")
+    past = replay(session_setups([(16, 0)]), all_day_bars(),
+                  "stop_loss", "take_profit")
+    assert late.status.iloc[0] == "filled"
+    assert past.status.iloc[0] == "outside_session"
+
+
+def test_a_position_cannot_be_held_into_the_evening():
+    """סגירת סוף יום היא בסגירה, לא בנר האחרון של היממה."""
+    res = replay(session_setups([(15, 0)]), all_day_bars(),
+                 "stop_loss", "take_profit")
+    r = res.iloc[0]
+    assert r.status == "filled"
+    assert r.exit_ts.time() < dtime(15, 58), r.exit_ts
+
+
+# ---------- רווח הסמך המקובץ ----------
+
+def test_the_interval_contains_its_own_estimate():
+    """הבאג שנמצא בהרצה האמיתית: +0.172R עם רווח [-0.061, +0.830].
+
+    זה קורה כשהרוחב נלקח סביב ממוצע הימים והנקודה היא ממוצע
+    העסקאות. לימים עם מספר עסקאות שונה השניים לא שווים.
+    """
+    r = np.concatenate([np.full(20, -0.5), np.full(2, 3.0)])
+    day = np.concatenate([np.zeros(20), np.ones(2)])
+    m, lo, hi = clustered_interval(r, day)[:3]
+    assert lo <= m <= hi, (m, lo, hi)
+    assert m == pytest.approx(r.mean())
+
+
+def test_one_trade_per_day_reduces_to_the_ordinary_interval():
+    r = np.random.default_rng(11).normal(0.2, 1.0, 40)
+    day = np.arange(40)
+    _, clo, chi, _ = clustered_interval(r, day)
+    _, ilo, ihi = interval(r)
+    assert clo == pytest.approx(ilo, abs=1e-9)
+    assert chi == pytest.approx(ihi, abs=1e-9)
+
+
+def test_trades_moving_together_widen_the_interval():
+    day = np.repeat(np.arange(25), 4)
+    rng = np.random.default_rng(3)
+    together = np.repeat(rng.normal(0, 1, 25), 4)
+    apart = rng.normal(0, 1, 100)
+    _, lo_t, hi_t, _ = clustered_interval(together, day)
+    _, lo_a, hi_a, _ = clustered_interval(apart, day)
+    assert (hi_t - lo_t) > (hi_a - lo_a)
+
+
+def test_the_reported_timestamps_keep_their_timezone():
+    """חותמת שאיבדה אזור זמן נכתבת ל-CSV כ-UTC בלי סימון, ונקראת
+    כאילו היא מקומית. ארבע שעות הפרש, בשקט."""
+    b = bars([(100, 100.2, 99.0, 100), (100, 103.0, 100, 102.5)])
+    r = walk(b, "long", 99.5, 98.5, 101.5, T0)
+    assert r["fill_ts"].tz is not None, r["fill_ts"]
+    assert r["exit_ts"].tz is not None, r["exit_ts"]
+    assert r["fill_ts"].hour == 9 and r["fill_ts"].minute == 30

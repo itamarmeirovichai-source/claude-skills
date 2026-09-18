@@ -60,6 +60,7 @@ kill zones ולא משנה סף. הוא לוקח את הסטאפים כפי שה
 """
 
 import sys
+from datetime import time as dtime
 from pathlib import Path
 
 import numpy as np
@@ -76,6 +77,14 @@ CLEAN_END = pd.Timestamp("2026-07-14", tz=ET)
 POINT_VALUE = {"ES": 5.0, "NQ": 2.0}
 COMM_RT = 1.30          # דולר, הלוך-חזור, לחוזה
 SLIP_PTS = 0.25         # נקודה, הלוך-חזור
+
+# חלון המסחר. הבוט שולח פקודות בשעות המסחר הרגילות, ו-eod_force_close
+# רץ אצלו ב-15:58. בלי החלון הזה הריפליי משאיר לימיט פתוח עד 23:55,
+# ממלא אותו במסחר הערב שבו הסטאפ כבר חסר משמעות, וסוגר בסוף היום
+# הקלנדרי במקום בסגירה. שתי הטעויות נוטות לכיוון אחד: יותר מילויים
+# ויציאה במחיר שאיש לא היה מקבל.
+SESSION_OPEN = dtime(9, 30)
+SESSION_FLAT = dtime(15, 58)
 
 # סטופ קטן מזה הוא כנראה שגיאת רישום ולא רמה אמיתית.
 MIN_RISK_PTS = 0.5
@@ -144,7 +153,10 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
     h = fut.high.values
     lo = fut.low.values
     c = fut.close.values
-    ts = fut.ts.values
+    # לא .values. על סדרה מודעת לאזור זמן זה ממיר ל-UTC ומפיל את
+    # הסימון, והחותמות היו נכתבות ל-CSV כאילו הן מקומיות. אותה
+    # מלכודת שהפילה קודם את בניית הסטאפים, הפעם בצד הפלט.
+    ts = fut.ts.reset_index(drop=True)
 
     fill_i, fill_px = -1, np.nan
     for i in range(len(fut)):
@@ -213,7 +225,7 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
         "fill_px": fill_px, "exit_px": exit_px, "raw_R": move / risk,
         "mfe_R": mfe, "mae_R": mae, "ambiguous": ambiguous,
         "gapped": bool(gapped),
-        "fill_ts": pd.Timestamp(ts[fill_i]), "exit_ts": pd.Timestamp(ts[exit_i]),
+        "fill_ts": ts.iloc[fill_i], "exit_ts": ts.iloc[exit_i],
         "bars_held": exit_i - fill_i + 1,
     }
 
@@ -235,25 +247,35 @@ def interval(x: np.ndarray) -> tuple:
 
 
 def clustered_interval(r: np.ndarray, day) -> tuple:
-    """רווח סמך שמקבץ לפי יום מסחר.
+    """רווח סמך שמקבץ לפי יום מסחר, סביב ממוצע העסקאות.
 
     ארבע עסקאות באותו יום על אותו מכשיר אינן ארבע תצפיות. הן חופפות
     בזמן ורוכבות על אותה תנועה, ולכן רווח סמך שמניח n עצמאיים יוצא
-    צר מדי — אותה משפחת טעות כמו חציון על אוכלוסייה מתכווצת. כאן
-    ממוצעים קודם בתוך היום, ואז הרווח נלקח על פני הימים. אם אין
-    מתאם בתוך היום, זה חוזר לאותו מספר בערך; אם יש, זה נפתח, וזה
-    המספר שקובע.
+    צר מדי — אותה משפחת טעות כמו חציון על אוכלוסייה מתכווצת.
+
+    הגרסה הראשונה כאן מיצעה קודם בתוך היום ולקחה את הרווח סביב ממוצע
+    הימים, אבל הדפיסה את ממוצע העסקאות כנקודת האומדן. כשלימים יש
+    מספר עסקאות שונה השניים אינם שווים, ואז יצא רווח סמך שלא מכיל
+    את האומדן שלו עצמו במרכזו: +0.172R עם רווח [-0.061, +0.830].
+    זה לא חוסר דיוק אלא חוסר עקביות — שני גדלים שונים באותה שורה.
+
+    כאן במקום זה נעשה חישוב שגיאה עמיד-לאשכולות סביב ממוצע העסקאות
+    עצמו: סוכמים את השאריות בתוך כל יום, ומרובעי הסכומים האלה בונים
+    את השונות. כשבכל יום יש עסקה אחת זה מצטמצם בדיוק ל-sd/sqrt(n)
+    הרגיל, וככל שהעסקאות בתוך יום נעות יחד הרווח נפתח.
     """
-    df = pd.DataFrame({"r": r, "d": pd.Series(day).values})
-    per = df.groupby("d").r.mean().values
-    k = len(per)
-    if k < 2:
-        return float(np.mean(r)), float("nan"), float("nan"), k
+    d = pd.Series(day).values
+    df = pd.DataFrame({"r": np.asarray(r, dtype=float), "d": d})
+    n = len(df)
+    g = df.groupby("d").r
+    k = g.ngroups
+    if n < 2 or k < 2:
+        return float(df.r.mean()) if n else float("nan"), float("nan"), float("nan"), k
     m = float(df.r.mean())
-    sd = float(per.std(ddof=1))
-    half = 1.96 * sd / np.sqrt(k)
-    # הממוצע נשאר ממוצע העסקאות; רק הרוחב מגיע מהימים.
-    return m, float(np.mean(per)) - half, float(np.mean(per)) + half, k
+    sums = g.apply(lambda x: float((x - m).sum())).values
+    var = (k / (k - 1.0)) * float(np.sum(sums ** 2)) / (n ** 2)
+    half = 1.96 * np.sqrt(var)
+    return m, m - half, m + half, k
 
 
 def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
@@ -265,7 +287,15 @@ def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
         b = bars.get(r.symbol)
         if b is None or b.empty:
             continue
-        day = b[b.session == r.ts.date()]
+        t = r.ts.time()
+        if not (SESSION_OPEN <= t < SESSION_FLAT):
+            rows.append({"status": "outside_session", "ts": r.ts,
+                         "symbol": r.symbol, "direction": r.direction,
+                         "entry": float(r.entry)})
+            continue
+        day = b[(b.session == r.ts.date())
+                & (b.ts.dt.time >= SESSION_OPEN)
+                & (b.ts.dt.time < SESSION_FLAT)]
         if day.empty:
             continue
         stop = getattr(r, stop_col, None)
@@ -296,9 +326,13 @@ def describe(res: pd.DataFrame, label: str) -> dict | None:
     f = res[res.status == "filled"]
     n_all = len(res)
     print(f"\n{'=' * 58}\n  {label}\n{'=' * 58}")
-    print(f"  סטאפים: {n_all}   התמלאו: {len(f)} "
-          f"({0 if not n_all else len(f) / n_all * 100:.0f}%)   "
-          f"לא התמלאו: {int((res.status == 'no_fill').sum())}")
+    out_s = int((res.status == "outside_session").sum())
+    inside = n_all - out_s
+    print(f"  סטאפים: {n_all}   מחוץ לשעות המסחר: {out_s}   "
+          f"בתוכן: {inside}")
+    print(f"  התמלאו: {len(f)} "
+          f"({0 if not inside else len(f) / inside * 100:.0f}% מאלה שבתוך "
+          f"החלון)   לא התמלאו: {int((res.status == 'no_fill').sum())}")
     if len(f) < MIN_TRADES:
         print(f"  פחות מ-{MIN_TRADES} מילויים — אין מה לחשב.")
         return None
