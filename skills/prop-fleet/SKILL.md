@@ -287,6 +287,14 @@ rather than the distance from the actual fill, so a favourable fill shows up
 as return instead of vanishing into a smaller denominator. A setup whose
 level is never touched is counted as no fill, not as a zero.
 
+The replay only trades the session. The bot sends orders in regular hours
+and its own `eod_force_close` runs at 15:58, so a replay that leaves a limit
+resting until the last five-minute bar of the calendar day fills it in the
+evening session, where the setup means nothing, and then exits at a price
+nobody would have got. Both errors lean the same way. Setups timestamped
+outside the window are reported as untradeable rather than silently dropped,
+so the count stays visible.
+
 Three things it reports rather than hides. A bar containing both levels is
 unresolvable at five-minute resolution, so the run is repeated with the
 opposite convention and both answers are printed; if they disagree in sign,
@@ -319,6 +327,21 @@ continuous path and takes the level from the open. With both removed the
 engine returns −0.02R to −0.09R across seeds, which is correct: slightly
 below zero, because the end-of-day close truncates positions that had not
 yet reached either level.
+
+The first run against real bars caught three more, none of which the
+synthetic calibration could have found. The clustered confidence interval
+averaged within each day and took its width around the mean of the daily
+means while printing the mean of the trades as the point estimate; with
+uneven trades per day those are different quantities, and the run printed
++0.172R with an interval of [−0.061, +0.830] — an estimate sitting outside
+the middle of its own interval. It is now a cluster-robust standard error
+around the trade mean, which reduces exactly to sd/√n when each day holds one
+trade. Sessions were calendar days, so limits rested into the evening and
+unresolved positions closed at 23:55 rather than at the flatten time. And
+`.values` on a timezone-aware series converts to UTC and drops the marker, so
+the fill and exit times were written to the results file as bare UTC and
+would read as local — four hours, silently; the same trap had already been
+fixed on the input side, and a test now asserts it on the output too.
 
 That calibration also caught a real look-ahead in the engine. On the bar
 where the entry fills mid-bar, the bar's high may have been made before the
@@ -362,7 +385,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
 - `scripts/test_futures_bars.py` — 11 tests on the roll selection and the frame conversion, because a guessed roll date slips a silent price jump into the middle of the window where nothing would reveal it.
 - `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
-- `scripts/test_replay.py` — 45 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
+- `scripts/test_replay.py` — 57 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
