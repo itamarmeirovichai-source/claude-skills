@@ -353,10 +353,25 @@ to fall out of the stitch entirely and silently. The roll is monotone, so the
 previous day's choice is the right answer for them, and the count of days
 filled that way is printed.
 
-It also explains the gap scratches. With NQ's May bars sitting 279 points
-above the recorded levels, every short in that stretch had its stop breached
-before it could fill — those thirteen were an artifact of the wrong contract,
-not setups that were stale when written.
+The correction worked and is measured: ES went from 60 points to 0.50, NQ
+from 279 to 2.50, and the gap against the series the bot saw fell from 0.030%
+to 0.003%. What is left — 0.38 points on ES, 3.12 on NQ, about a tenth of an
+R — is the difference between two contracts' intraday paths, which no level
+adjustment can remove. That is the floor on how much the corrected month can
+be trusted, and it is reported rather than assumed away. Since the results
+file carries no mark saying whether a correction was applied, the check states
+the magnitude and its consequence without claiming its cause.
+
+It does not explain the gap scratches. The prediction was explicit — with the
+contract fixed they should largely disappear — and it failed: thirteen of
+seventy-three became fourteen of a hundred and eleven. Whatever they are, they
+are not an artifact of the wrong contract. They are setups whose stop was
+already breached at the moment they were recorded, which is what the first
+reading said before the contract finding displaced it.
+
+The replay is also split by month, because May is the corrected month and June
+and July arrived as they were. If the conclusion flips between them, the
+correction is carrying the result rather than the strategy.
 
 What the measured expectancy is worth in money goes through
 `scripts/apex_model.py` rather than through multiplication. Expectancy times

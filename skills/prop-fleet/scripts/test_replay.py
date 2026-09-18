@@ -531,7 +531,7 @@ def test_a_carry_offset_is_reported_in_R_not_only_in_percent(capsys):
     report_drift(d, res)
     out = capsys.readouterr().out
     assert "0.26" in out, out
-    assert "לא רעש" in out, out
+    assert "רצפת" in out, out
 
 
 def test_a_negligible_offset_is_not_dressed_up_as_a_problem(capsys):
@@ -551,3 +551,18 @@ def test_the_months_are_not_averaged_into_one_number():
 def test_an_empty_drift_table_prints_nothing(capsys):
     report_drift(pd.DataFrame(), pd.DataFrame({"status": [], "risk_pts": []}))
     assert capsys.readouterr().out == ""
+
+
+def test_a_corrected_residual_is_not_called_invalid(capsys):
+    """0.11R אחרי תיקון אינו אותו דבר כמו 13.87R לפניו."""
+    d, res = drift_rows({"2026-05": 2.5}, symbol="NQ", risk=23.5)
+    report_drift(d, res)
+    out = capsys.readouterr().out
+    assert "לא תקף" not in out
+    assert "רצפת" in out
+
+
+def test_an_uncorrected_shift_is_still_called_invalid(capsys):
+    d, res = drift_rows({"2026-05": 279.0}, symbol="NQ", risk=20.1)
+    report_drift(d, res)
+    assert "לא תקף" in capsys.readouterr().out
