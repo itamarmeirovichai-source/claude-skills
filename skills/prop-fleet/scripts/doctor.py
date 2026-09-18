@@ -220,11 +220,24 @@ def check_bars():
         return
     say(OK, "נרות SPY ו-QQQ קיימים")
     say(INFO, "עידן ה-ETF (27/02–15/05) אובחן: פיגור של כ-15 ימי לוח, שוקת 2.69")
-    if (DESK / "futures_era_ETF.csv").exists():
-        say(OK, "עידן החוזים נבדק — ראה futures_era_*.csv")
-    else:
+    if not (DESK / "futures_era_ETF.csv").exists():
         say(WARN, "עידן החוזים (18/05 ואילך, 131 סטאפים) עדיין לא נבדק")
         nexts.append(f"python3 {HERE/'futures_era_check.py'}   ← קובע מאיזה תאריך הנתונים תקפים")
+        return
+    say(OK, "עידן החוזים נבדק — 131 סטאפים תקפים מ-18/05")
+
+    # הנתיב מהסטאפים התקפים לתשובה: נרות חמש דקות, ואז ריפליי.
+    clean = [DESK / f"{s}_5min_clean.csv" for s in ("ES", "NQ")]
+    if not any(c.exists() for c in clean):
+        say(WARN, "אין נרות חמש דקות לחלון הנקי — בלעדיהם אין בקטסט")
+        nexts.append(f"python3 {HERE/'futures_bars.py'}   ← דורש IB Gateway על 4002")
+        return
+    say(OK, f"נרות חמש דקות: {', '.join(c.name for c in clean if c.exists())}")
+    if (DESK / "replay_results.csv").exists():
+        say(OK, "הריפליי רץ — ראה replay_results.csv")
+    else:
+        say(WARN, "הסטאפים התקפים עדיין לא שוחזרו")
+        nexts.append(f"python3 {HERE/'replay.py'}   ← התוחלת האמיתית, 131 סטאפים במקום 7 עסקאות")
 
 
 # ── 6. מה שדורש בני אדם ─────────────────────────────────────────

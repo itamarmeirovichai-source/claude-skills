@@ -268,6 +268,67 @@ demands both a flat curve and a small error at zero, since proving a recorded
 price was the prevailing price takes more than failing to find a lag.
 Everything else is left explicitly undecided.
 
+## Replaying the valid setups
+
+Knowing which setups are trustworthy is not the answer, only the
+precondition. Seven closed trades average −0.384R with an interval of
+[−1.455, +0.687], which is consistent with an excellent strategy and with a
+ruinous one at the same time. Closing that interval to half an R takes 22
+trades and calling a +0.3R edge significant takes 117, so at the observed
+rate the record alone decides nothing for five to ten months.
+
+The 131 clean setups are the wider evidence, and `scripts/replay.py` turns
+them into outcomes against real five-minute bars. Every execution rule in it
+is a place where a backtest can quietly pay itself: the entry is a resting
+limit that fills at the level, the stop is a market order that eats a gap
+open rather than the stop price, a bar holding both the stop and the target
+is counted as the stop, and risk is the planned distance from level to stop
+rather than the distance from the actual fill, so a favourable fill shows up
+as return instead of vanishing into a smaller denominator. A setup whose
+level is never touched is counted as no fill, not as a zero.
+
+Three things it reports rather than hides. A bar containing both levels is
+unresolvable at five-minute resolution, so the run is repeated with the
+opposite convention and both answers are printed; if they disagree in sign,
+the backtest has not decided and says so. A gap that clears both the level
+and the stop at once enters and exits at nearly the same price, which is a
+real outcome but also the quiet way a backtest deletes a loss, so those are
+counted and the result is re-shown with each one charged a full −1R. And the
+confidence interval is clustered by trading day, because four trades riding
+the same afternoon are not four observations; the narrower interval that
+assumes independence is printed beside it, labelled as too narrow.
+
+What the measured expectancy is worth in money goes through
+`scripts/apex_model.py` rather than through multiplication. Expectancy times
+trades per day times 250 times the risk fraction produces figures like 900% a
+year, and they are fiction: the account is destroyed long before, the payout
+ladder is capped, and the trailing floor cuts in. The model already contains
+all three, so the measured `avg_R` is fed into it as an input.
+
+The engine is calibrated the way the lag scan was, against data whose answer
+is known in advance. A driftless random walk with a 2R target and a 1R stop
+must return zero, and a planted drift must come back as a long edge and a
+short loss on the same series. Building that calibration surfaced two traps
+in the synthetic data rather than in the engine, and both inflated the
+result: bars whose highs and lows are noise pasted onto the extremes let
+every wick fill recover to the close for free, worth 0.26R of imaginary
+edge, and a setup stamped at a bar's open while its level was derived from
+that bar's close lets the level see five minutes into the future. The
+generator now builds each five-minute bar from five one-minute steps of a
+continuous path and takes the level from the open. With both removed the
+engine returns −0.02R to −0.09R across seeds, which is correct: slightly
+below zero, because the end-of-day close truncates positions that had not
+yet reached either level.
+
+That calibration also caught a real look-ahead in the engine. On the bar
+where the entry fills mid-bar, the bar's high may have been made before the
+fill, so crediting a target hit there is crediting a peak the position was
+never in. It now counts only when the bar's close is itself beyond the
+target, which proves the level was reached afterwards. At a 1R target, where
+the target sits close enough that many hits fall inside the fill bar, that
+one rule moved the reported expectancy by 0.1R — against a decision
+threshold of about 0.3R.
+
 `scripts/drift_diagnostic.py` runs this plus two cheap alternatives (swapped
 symbol, constant factor). It is verified against synthetic data for each verdict
 it can return: a planted frozen anchor (it names the planted date), a cache with
@@ -298,6 +359,10 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_lag_refine.py` — 15 tests. Both directions on planted data, a replica of the real 60-session/304-setup situation in each direction, proof that a shrinking cohort really can manufacture a minimum and that locking it removes one, and proof that a time-only reading would have misread a planted bar offset.
 - `scripts/futures_era_check.py` — whether the lag survived into the futures era, using hourly bars from the feed itself, with the ETF era re-run first as a control on whether that source can serve as a witness at all.
 - `scripts/test_futures_era_check.py` — 24 tests: planted lag found and clean data left clean across five seeds each, the call holding across four volatility regimes, the cohort lock, and the case that broke the first classifier, where a real lag in a quiet market shows only a modest error at zero offset.
+- `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
+- `scripts/test_futures_bars.py` — 11 tests on the roll selection and the frame conversion, because a guessed roll date slips a silent price jump into the middle of the window where nothing would reveal it.
+- `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
+- `scripts/test_replay.py` — 45 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
