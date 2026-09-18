@@ -140,8 +140,9 @@ def test_no_bars_gives_an_empty_frame_with_the_right_columns():
 # חוזים שונים, וההפרש ביניהם הוא ה-carry — 60 נקודות ב-ES ו-279
 # ב-NQ, שהם 3R ו-14R מול סטופ טיפוסי.
 
-from futures_bars import (choose_by_error, daily_error, hourly_close,
-                          stitch)
+from futures_bars import (apply_offset, choose_by_error, daily_error,
+                          daily_offset, fill_choice, hourly_close,
+                          lagged_offset, stitch)
 
 MONTHS_ORDER = ("202606", "202609")
 
@@ -248,3 +249,103 @@ def test_the_carry_gap_shows_up_as_the_daily_error():
 def test_hourly_close_survives_a_five_minute_series():
     h = hourly_close(two_contracts()["202606"])
     assert len(h) > 0 and h.index.tz is not None
+
+
+# ---------- ימים בלי סדרת ייחוס ----------
+
+def test_a_day_without_a_reference_inherits_the_previous_choice():
+    """חג או יום שחסר ב-yfinance נופל מטבלת השגיאות. בלי השלמה הוא
+    נופל גם מהסדרה, בשקט, ואף שורה לא אומרת שהוא נעלם."""
+    chosen = {date(2026, 5, 18): "202606", date(2026, 5, 20): "202609"}
+    days = [date(2026, 5, d) for d in (18, 19, 20, 21)]
+    out = fill_choice(chosen, days)
+    assert out[date(2026, 5, 19)] == "202606"
+    assert out[date(2026, 5, 21)] == "202609"
+
+
+def test_a_gap_before_the_first_choice_takes_the_first():
+    chosen = {date(2026, 5, 20): "202606"}
+    days = [date(2026, 5, d) for d in (18, 19, 20)]
+    out = fill_choice(chosen, days)
+    assert out[date(2026, 5, 18)] == "202606"
+
+
+def test_no_choice_at_all_fills_nothing():
+    assert fill_choice({}, [date(2026, 5, 18)]) == {}
+
+
+# ---------- תיקון ה-carry ----------
+
+def ref_and_series(gap=60.0, days=3):
+    """סדרה שנשלפה, וסדרת ייחוס שנמוכה ממנה ב-gap נקודות."""
+    t0 = pd.Timestamp("2026-05-18 09:30", tz=ET)
+    ts, px = [], []
+    for d in range(days):
+        for i in range(12):
+            ts.append(t0 + pd.Timedelta(days=d, minutes=5 * i))
+            px.append(7500.0 + d * 3 + i * 0.25)
+    df = pd.DataFrame({"ts": ts, "open": px, "high": [p + 1 for p in px],
+                       "low": [p - 1 for p in px], "close": px,
+                       "volume": 100.0})
+    ref = hourly_close(df) - gap
+    return df, ref
+
+
+def test_the_carry_gap_is_measured_per_day():
+    df, ref = ref_and_series(gap=279.0)
+    off = daily_offset(df, ref)
+    assert len(off) == 3
+    assert off.offset.median() == pytest.approx(279.0)
+
+
+def test_subtracting_the_offset_brings_the_series_onto_the_reference():
+    df, ref = ref_and_series(gap=60.0)
+    adj = apply_offset(df, lagged_offset(daily_offset(df, ref)))
+    left = daily_offset(adj, ref)
+    assert left.offset.abs().max() < 1e-6
+
+
+def test_the_offset_used_is_yesterdays_not_todays():
+    """היסט של היום עצמו נגזר מסגירות שטרם קרו ברגע המילוי."""
+    off = pd.DataFrame({"offset": [60.0, 61.0, 62.0]},
+                       index=[date(2026, 5, d) for d in (18, 19, 20)])
+    lag = lagged_offset(off)
+    assert lag[date(2026, 5, 19)] == 60.0
+    assert lag[date(2026, 5, 20)] == 61.0
+
+
+def test_the_first_day_has_no_yesterday_and_uses_its_own():
+    off = pd.DataFrame({"offset": [60.0, 61.0]},
+                       index=[date(2026, 5, 18), date(2026, 5, 19)])
+    assert lagged_offset(off)[date(2026, 5, 18)] == 60.0
+
+
+def test_a_matching_contract_is_left_untouched():
+    """יוני ויולי כבר תואמים. התיקון חייב להיות אפס שם."""
+    df, ref = ref_and_series(gap=0.0)
+    adj = apply_offset(df, lagged_offset(daily_offset(df, ref)))
+    assert (adj.close - df.close).abs().max() < 1e-9
+
+
+def test_a_day_with_no_measured_offset_is_not_shifted():
+    df, _ = ref_and_series()
+    only = {date(2026, 5, 18): 60.0}
+    adj = apply_offset(df, only)
+    later = adj[adj.ts.dt.date == date(2026, 5, 19)]
+    orig = df[df.ts.dt.date == date(2026, 5, 19)]
+    assert (later.close.values - orig.close.values).max() == pytest.approx(0.0)
+
+
+def test_every_price_column_moves_together():
+    """להזיז סגירה בלי להזיז גבוה ונמוך הופך כל נר לשקר."""
+    df, ref = ref_and_series(gap=60.0)
+    adj = apply_offset(df, {d: 60.0 for d in df.ts.dt.date.unique()})
+    for c in ("open", "high", "low", "close"):
+        assert (df[c] - adj[c]).abs().min() == pytest.approx(60.0)
+    assert (adj.high >= adj.low).all()
+
+
+def test_an_empty_offset_table_is_a_no_op():
+    df, _ = ref_and_series()
+    assert apply_offset(df, {}).equals(df)
+    assert daily_offset(pd.DataFrame(), None).empty

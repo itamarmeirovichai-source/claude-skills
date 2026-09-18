@@ -333,6 +333,26 @@ back; a choice that flip-flops has matched noise rather than a roll, and the
 script says so and falls back to volume instead of stitching something it
 cannot justify.
 
+`includeExpired` turned out to be necessary but not sufficient: IBKR resolves
+the June contract with it and then answers `HMDS query returned no data`. The
+contract the levels were computed from is simply not retrievable. So the gap
+is corrected rather than fetched. The bot's own hourly series *is* the June
+contract for those days, so the difference is measured per day and subtracted,
+leaving September's intraday path on June's scale. The offset applied is the
+previous day's, never the current one, since today's would be read off closes
+that had not happened at the moment of the fill; carry moves slowly enough
+that yesterday's is a good estimate and carries no look-ahead at all. Days
+that already match get an offset of zero, so June and July are untouched.
+What the two contracts do not share is their intraday path, and that residual
+is measured rather than assumed: the script reports what is left after the
+correction, and a level adjustment leaves a tenth of a point where the
+contracts differ by two thousandths of a percent.
+
+Days with no reference series at all — a holiday, or a gap in the feed — used
+to fall out of the stitch entirely and silently. The roll is monotone, so the
+previous day's choice is the right answer for them, and the count of days
+filled that way is printed.
+
 It also explains the gap scratches. With NQ's May bars sitting 279 points
 above the recorded levels, every short in that stretch had its stop breached
 before it could fill — those thirteen were an artifact of the wrong contract,
@@ -415,7 +435,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/futures_era_check.py` — whether the lag survived into the futures era, using hourly bars from the feed itself, with the ETF era re-run first as a control on whether that source can serve as a witness at all.
 - `scripts/test_futures_era_check.py` — 24 tests: planted lag found and clean data left clean across five seeds each, the call holding across four volatility regimes, the cohort lock, and the case that broke the first classifier, where a real lag in a quiet market shows only a modest error at zero offset.
 - `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
-- `scripts/test_futures_bars.py` — 22 tests on the roll selection, the reference matching and the frame conversion, because a wrong roll slips a silent price jump into the middle of the window where nothing would reveal it. The one clean switch, the flip-flop, the backwards roll and the carry gap each have their own case.
+- `scripts/test_futures_bars.py` — 33 tests on the roll selection, the reference matching and the frame conversion, because a wrong roll slips a silent price jump into the middle of the window where nothing would reveal it. The one clean switch, the flip-flop, the backwards roll and the carry gap each have their own case.
 - `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
 - `scripts/test_replay.py` — 61 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.

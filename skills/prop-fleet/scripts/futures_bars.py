@@ -170,6 +170,24 @@ def choose_by_error(err: pd.DataFrame, order) -> tuple:
     return chosen, switches, warn
 
 
+def fill_choice(chosen: dict, all_days) -> dict:
+    """משלים ימים שלא הייתה להם סדרת ייחוס, בגרירה קדימה.
+
+    יום חג או יום שבו yfinance חסר נופל מטבלת השגיאות, ובלי זה הוא
+    נופל גם מהסדרה — שקט, בלי ששום שורה תגיד שהוא נעלם. הגלגול
+    מונוטוני, ולכן הבחירה של היום הקודם היא התשובה הנכונה עבורו.
+    """
+    if not chosen:
+        return {}
+    out, last = {}, None
+    first = chosen[min(chosen)]
+    for d in sorted(all_days):
+        if d in chosen:
+            last = chosen[d]
+        out[d] = last if last is not None else first
+    return out
+
+
 def stitch(frames: dict, chosen: dict) -> pd.DataFrame:
     """מרכיב סדרה אחת לפי הבחירה היומית."""
     parts = []
@@ -182,6 +200,58 @@ def stitch(frames: dict, chosen: dict) -> pd.DataFrame:
         return pd.DataFrame()
     return (pd.concat(parts).sort_values("ts")
             .drop_duplicates("ts").reset_index(drop=True))
+
+
+def daily_offset(df5: pd.DataFrame, ref) -> pd.DataFrame:
+    """היסט יומי בנקודות בין הסדרה שנשלפה לסדרה שהבוט ניתח.
+
+    למה בכלל. IBKR מזהה את חוזה יוני עם includeExpired אבל אין לו
+    עליו נתונים היסטוריים — "HMDS query returned no data". אז החוזה
+    שממנו חושבו הרמות במאי פשוט לא ניתן לשליפה, ומה שיש הוא ספטמבר,
+    שגבוה ממנו ב-60 נקודות ב-ES וב-279 ב-NQ.
+
+    ההפרש הזה הוא carry, והוא נמדד: הסדרה השעתית של הבוט למאי היא
+    חוזה יוני. מחסרים אותו, ומקבלים סדרה בקנה מידה של יוני עם המסלול
+    התוך-יומי של ספטמבר. שני החוזים זזים כמעט זהה, וכמה בדיוק —
+    זה מה שהשארית אחרי ההתאמה מודדת.
+    """
+    h = hourly_close(df5)
+    if h.empty or ref is None:
+        return pd.DataFrame()
+    j = pd.DataFrame({"mine": h}).join(pd.DataFrame({"ref": ref}),
+                                       how="inner").dropna()
+    if j.empty:
+        return pd.DataFrame()
+    d = j.mine - j.ref
+    g = d.groupby(d.index.date)
+    return pd.DataFrame({"offset": g.median(), "spread": g.std(), "n": g.size()})
+
+
+def lagged_offset(off: pd.DataFrame) -> dict:
+    """ההיסט של יום המסחר הקודם, לשימוש היום.
+
+    להשתמש בהיסט של היום עצמו זה להסתכל על סגירות שעדיין לא קרו
+    ברגע המילוי. ה-carry הוא פונקציה של הזמן לפקיעה ושל הריבית, והוא
+    זז לאט — אתמול הוא אומדן טוב להיום, ובלי שום הצצה קדימה.
+    """
+    if off.empty:
+        return {}
+    days = list(off.index)
+    out = {days[0]: float(off.offset.iloc[0])}
+    for prev, d in zip(days, days[1:]):
+        out[d] = float(off.offset.loc[prev])
+    return out
+
+
+def apply_offset(df5: pd.DataFrame, per_day: dict) -> pd.DataFrame:
+    """מחסר את ההיסט מכל נר. יום בלי היסט נשאר כמו שהוא."""
+    if df5.empty or not per_day:
+        return df5
+    out = df5.copy()
+    shift = out.ts.dt.date.map(per_day).astype(float).fillna(0.0)
+    for c in ("open", "high", "low", "close"):
+        out[c] = out[c] - shift
+    return out
 
 
 def to_frame(bars) -> pd.DataFrame:
@@ -301,7 +371,13 @@ def main() -> None:
             if warn:
                 print(f"    התאמה מול הייחוס נכשלה: {warn} — נופל למחזור")
             else:
-                df, how = stitch(frames, chosen), "התאמה לייחוס"
+                days = sorted({d for f in frames.values() if f is not None
+                               and not f.empty for d in f.ts.dt.date.unique()})
+                filled = fill_choice(chosen, days)
+                gaps = len(filled) - len(chosen)
+                if gaps:
+                    print(f"    {gaps} ימים בלי סדרת ייחוס — נגררו מהיום הקודם")
+                df, how = stitch(frames, filled), "התאמה לייחוס"
         if how == "מחזור":
             df, rolls = pick_front(frames)
         if df.empty:
@@ -313,6 +389,25 @@ def main() -> None:
         print(f"    הרכבה לפי {how}")
         for d, a, b in rolls:
             print(f"    גלגול {d}: {a} -> {b}")
+
+        # תיקון קנה המידה. אם החוזה שממנו חושבו הרמות אינו זמין,
+        # ההפרש נמדד מול הסדרה שהבוט ניתח ומוסר. יום שכבר תואם
+        # מקבל היסט אפס, כלומר זה לא נוגע ביוני וביולי.
+        if ref is not None:
+            off = daily_offset(df, ref)
+            if not off.empty:
+                big = off[off.offset.abs() > 1.0]
+                if not big.empty:
+                    print(f"    תיקון carry על {len(big)} ימים: "
+                          f"חציון {big.offset.median():+.2f} נקודות, "
+                          f"פיזור תוך-יומי {big.spread.median():.2f}")
+                    df = apply_offset(df, lagged_offset(off))
+                    after = daily_offset(df, ref)
+                    if not after.empty:
+                        left = after.loc[big.index.intersection(after.index)]
+                        if not left.empty:
+                            print(f"    שארית אחרי התיקון: "
+                                  f"{left.offset.abs().median():.2f} נקודות")
 
         drift = validate(df, sym)
         mark = "" if not np.isfinite(drift) else (
