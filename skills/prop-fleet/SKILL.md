@@ -306,7 +306,7 @@ confidence interval is clustered by trading day, because four trades riding
 the same afternoon are not four observations; the narrower interval that
 assumes independence is printed beside it, labelled as too narrow.
 
-One check has to survive the fetch itself. IBKR no longer holds the June
+One check has to survive the fetch itself, and the first run failed it. IBKR no longer holds the June
 2026 contract — it expired and was removed — so the whole window comes back
 from September, while until the mid-June roll the bot was analysing June. The
 two are not one price: carry separates them by a few points. A few points
@@ -317,6 +317,26 @@ series the bot saw is reported per month rather than as one median over the
 window, because a single median dilutes the pre-roll period with the
 post-roll one, where both sources are the same contract and agree exactly —
 and it is restated in R, since that is the unit the decision is made in.
+
+The first real run came back at 60 points on ES and 279 on NQ for the second
+half of May, against a typical stop of 20 — 3R and 14R of systematic shift in
+one direction, with June and July at zero. That is the carry spread between
+the June and September contracts, and it ruled out 82 of the 131 setups by
+itself. Two things follow. IBKR does still serve an expired contract, but
+only when the request says so, so the contract now carries `includeExpired`.
+And the front month is picked by matching the bot's own series day by day
+rather than by volume: volume answers which contract was genuinely in front,
+while the question here is which contract the recorded levels were computed
+from, and those differ whenever the feed rolls on its own schedule. The roll
+is one event, so the choice must switch once, from near to far, and never
+back; a choice that flip-flops has matched noise rather than a roll, and the
+script says so and falls back to volume instead of stitching something it
+cannot justify.
+
+It also explains the gap scratches. With NQ's May bars sitting 279 points
+above the recorded levels, every short in that stretch had its stop breached
+before it could fill — those thirteen were an artifact of the wrong contract,
+not setups that were stale when written.
 
 What the measured expectancy is worth in money goes through
 `scripts/apex_model.py` rather than through multiplication. Expectancy times
@@ -395,7 +415,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/futures_era_check.py` — whether the lag survived into the futures era, using hourly bars from the feed itself, with the ETF era re-run first as a control on whether that source can serve as a witness at all.
 - `scripts/test_futures_era_check.py` — 24 tests: planted lag found and clean data left clean across five seeds each, the call holding across four volatility regimes, the cohort lock, and the case that broke the first classifier, where a real lag in a quiet market shows only a modest error at zero offset.
 - `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
-- `scripts/test_futures_bars.py` — 11 tests on the roll selection and the frame conversion, because a guessed roll date slips a silent price jump into the middle of the window where nothing would reveal it.
+- `scripts/test_futures_bars.py` — 22 tests on the roll selection, the reference matching and the frame conversion, because a wrong roll slips a silent price jump into the middle of the window where nothing would reveal it. The one clean switch, the flip-flop, the backwards roll and the carry gap each have their own case.
 - `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
 - `scripts/test_replay.py` — 61 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.

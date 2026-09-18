@@ -263,7 +263,9 @@ def contract_drift(bars: dict, bot: Path) -> pd.DataFrame:
         if j.empty:
             continue
         j["signed"] = j.close - j.ref
-        for month, g in j.groupby(j.index.to_period("M")):
+        # to_period מפיל אזור זמן ומרעיש אזהרה. חודש כמחרוזת נאמן
+        # לאותו דבר בלי לגעת באינדקס.
+        for month, g in j.groupby(j.index.strftime("%Y-%m")):
             rows.append({
                 "symbol": sym, "month": str(month), "n": len(g),
                 "drift_pct": float((100 * g.signed.abs() / g.ref).median()),

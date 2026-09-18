@@ -10,6 +10,7 @@
 from datetime import date
 from zoneinfo import ZoneInfo
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -130,3 +131,120 @@ def test_no_bars_gives_an_empty_frame_with_the_right_columns():
     df = to_frame([])
     assert df.empty
     assert list(df.columns) == ["ts", "open", "high", "low", "close", "volume"]
+
+
+# ---------- בחירת החוזה מול הסדרה שהבוט ניתח ----------
+#
+# הבחירה לפי מחזור עונה על "מי החוזה הקדמי". השאלה כאן אחרת: מאיזה
+# חוזה חושבו הרמות שנרשמו. כשהפיד מגלגל בתאריך אחר מהבורסה אלה שני
+# חוזים שונים, וההפרש ביניהם הוא ה-carry — 60 נקודות ב-ES ו-279
+# ב-NQ, שהם 3R ו-14R מול סטופ טיפוסי.
+
+from futures_bars import (choose_by_error, daily_error, hourly_close,
+                          stitch)
+
+MONTHS_ORDER = ("202606", "202609")
+
+
+def make_err(days, near, far):
+    return pd.DataFrame({"202606": near, "202609": far},
+                        index=[date(2026, 5, d) for d in days])
+
+
+def test_the_near_contract_wins_before_the_roll():
+    err = make_err([18, 19, 20], [0.1, 0.1, 0.1], [279.0, 279.0, 279.0])
+    chosen, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert set(chosen.values()) == {"202606"}
+    assert switches == [] and warn == ""
+
+
+def test_one_clean_switch_is_accepted_and_reported():
+    err = make_err([18, 19, 20, 21],
+                   [0.1, 0.1, 300.0, 300.0],
+                   [279.0, 279.0, 0.1, 0.1])
+    chosen, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert warn == ""
+    assert len(switches) == 1
+    assert switches[0][0] == date(2026, 5, 20)
+    assert switches[0][1] == "202606" and switches[0][2] == "202609"
+
+
+def test_a_choice_that_flip_flops_is_refused():
+    """אם הבחירה מקפצת, ההתאמה לא זיהתה גלגול אלא רעש."""
+    err = make_err([18, 19, 20, 21],
+                   [0.1, 300.0, 0.1, 300.0],
+                   [300.0, 0.1, 300.0, 0.1])
+    _, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert len(switches) == 3
+    assert "מקפצת" in warn
+
+
+def test_a_backwards_roll_is_refused():
+    err = make_err([18, 19], [300.0, 0.1], [0.1, 300.0])
+    _, _, warn = choose_by_error(err, MONTHS_ORDER)
+    assert "הפוך" in warn
+
+
+def test_an_empty_table_refuses_rather_than_guessing():
+    chosen, switches, warn = choose_by_error(pd.DataFrame(), MONTHS_ORDER)
+    assert chosen == {} and switches == [] and warn
+
+
+def test_a_day_with_only_one_contract_still_chooses():
+    err = pd.DataFrame({"202606": [np.nan, 0.1], "202609": [5.0, 9.0]},
+                       index=[date(2026, 5, 18), date(2026, 5, 19)])
+    chosen, _, warn = choose_by_error(err, MONTHS_ORDER)
+    assert chosen[date(2026, 5, 18)] == "202609"
+    assert chosen[date(2026, 5, 19)] == "202606"
+
+
+# ---------- התפירה ----------
+
+def two_contracts():
+    t0 = pd.Timestamp("2026-05-18 09:30", tz=ET)
+    ts = [t0 + pd.Timedelta(days=d, minutes=5 * i)
+          for d in range(3) for i in range(6)]
+    near = pd.DataFrame({"ts": ts, "open": 7500.0, "high": 7501.0,
+                         "low": 7499.0, "close": 7500.0, "volume": 100.0})
+    far = near.copy()
+    for c in ("open", "high", "low", "close"):
+        far[c] = far[c] + 60.0
+    return {"202606": near, "202609": far}
+
+
+def test_the_stitch_takes_each_day_from_the_contract_chosen_for_it():
+    f = two_contracts()
+    chosen = {date(2026, 5, 18): "202606", date(2026, 5, 19): "202606",
+              date(2026, 5, 20): "202609"}
+    out = stitch(f, chosen)
+    by_day = out.groupby(out.ts.dt.date).close.first()
+    assert by_day[date(2026, 5, 18)] == 7500.0
+    assert by_day[date(2026, 5, 20)] == 7560.0
+
+
+def test_the_stitch_keeps_its_timezone_and_stays_sorted():
+    f = two_contracts()
+    chosen = {d: "202606" for d in
+              (date(2026, 5, 18), date(2026, 5, 19), date(2026, 5, 20))}
+    out = stitch(f, chosen)
+    assert out.ts.dt.tz is not None
+    assert out.ts.is_monotonic_increasing
+
+
+def test_an_unknown_contract_in_the_choice_is_skipped_not_fatal():
+    assert stitch(two_contracts(), {date(2026, 5, 18): "202612"}).empty
+
+
+# ---------- השגיאה היומית ----------
+
+def test_the_carry_gap_shows_up_as_the_daily_error():
+    f = two_contracts()
+    ref = hourly_close(f["202606"])
+    err = daily_error(f, ref)
+    assert err["202606"].max() < 1e-9
+    assert err["202609"].min() == pytest.approx(60.0)
+
+
+def test_hourly_close_survives_a_five_minute_series():
+    h = hourly_close(two_contracts()["202606"])
+    assert len(h) > 0 and h.index.tz is not None

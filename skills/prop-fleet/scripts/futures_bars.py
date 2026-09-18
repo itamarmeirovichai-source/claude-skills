@@ -106,6 +106,84 @@ def pick_front(frames: dict) -> tuple:
     return out, rolls
 
 
+def hourly_close(df5: pd.DataFrame) -> pd.Series:
+    """נרות חמש דקות לסגירות שעתיות, להשוואה מול הפיד של הבוט."""
+    if df5 is None or df5.empty:
+        return pd.Series(dtype=float)
+    return df5.set_index("ts").resample("1h").close.last().dropna()
+
+
+def load_reference(symbol: str):
+    """הסדרה שהבוט עצמו ניתח. זו נקודת האמת כאן.
+
+    לא "החוזה הקדמי האמיתי" — הרמות בסטאפים חושבו מהסדרה הזאת, ולכן
+    היא זו שצריך לשחזר. אם yfinance גלגל מוקדם או מאוחר, זה מה שהבוט
+    ראה, וזה מה שהריפליי חייב לראות.
+    """
+    sys.path.insert(0, str(BOT))
+    try:
+        from data.feed import MarketDataFeed
+    except Exception as e:
+        print(f"    אין סדרת ייחוס — data.feed לא נטען: {str(e)[:50]}")
+        return None
+    ref = MarketDataFeed().get_ohlcv(symbol, "1h")
+    if ref is None or ref.empty:
+        return None
+    return ref["Close"]
+
+
+def daily_error(frames: dict, ref) -> pd.DataFrame:
+    """שגיאה חציונית יומית של כל חוזה מול סדרת הייחוס."""
+    cols = {}
+    for month, df in frames.items():
+        h = hourly_close(df)
+        if h.empty:
+            continue
+        j = pd.DataFrame({"mine": h}).join(pd.DataFrame({"ref": ref}), how="inner").dropna()
+        if j.empty:
+            continue
+        err = (j.mine - j.ref).abs()
+        cols[month] = err.groupby(err.index.date).median()
+    return pd.DataFrame(cols).dropna(how="all")
+
+
+def choose_by_error(err: pd.DataFrame, order) -> tuple:
+    """לכל יום, החוזה שהכי מתאים לייחוס. מחזיר בחירה, מעברים ואזהרה.
+
+    הגלגול הוא אירוע חד־פעמי: פעם אחת עוברים מהחוזה הקרוב לרחוק ולא
+    חוזרים. אם הבחירה מקפצת הלוך ושוב, ההתאמה לא זיהתה שום דבר
+    אמיתי והיא לא ראויה לאמון — זה נאמר במפורש במקום להשתיק.
+    """
+    if err.empty:
+        return {}, [], "אין חפיפה מול סדרת הייחוס"
+    rank = {m: i for i, m in enumerate(order)}
+    chosen = {d: min(row.dropna().index, key=lambda m: row[m])
+              for d, row in err.iterrows() if row.notna().any()}
+    days = sorted(chosen)
+    switches = [(d, chosen[a], chosen[d])
+                for a, d in zip(days, days[1:]) if chosen[d] != chosen[a]]
+    warn = ""
+    if len(switches) > 1:
+        warn = f"{len(switches)} מעברים — הבחירה מקפצת, לא לסמוך עליה"
+    elif switches and rank.get(switches[0][2], 0) < rank.get(switches[0][1], 0):
+        warn = "המעבר הוא מהחוזה הרחוק לקרוב — הפוך מגלגול"
+    return chosen, switches, warn
+
+
+def stitch(frames: dict, chosen: dict) -> pd.DataFrame:
+    """מרכיב סדרה אחת לפי הבחירה היומית."""
+    parts = []
+    for d, month in chosen.items():
+        df = frames.get(month)
+        if df is None or df.empty:
+            continue
+        parts.append(df[df.ts.dt.date == d])
+    if not parts:
+        return pd.DataFrame()
+    return (pd.concat(parts).sort_values("ts")
+            .drop_duplicates("ts").reset_index(drop=True))
+
+
 def to_frame(bars) -> pd.DataFrame:
     """נרות של IBKR לטבלה, עם אזור זמן שנשמר."""
     if not bars:
@@ -181,6 +259,11 @@ def main() -> None:
         except ImportError:
             sys.exit("צריך ib_async או ib_insync בסביבה של הבוט")
 
+    # ברירת המחדל היא לשלוף מחדש. הקובץ שנוצר לפני התיקון נראה תקין
+    # לגמרי ואין בו שום סימן לכך שמאי הגיע מהחוזה הלא נכון; דילוג
+    # שקט עליו היה משאיר את השגיאה בדיוק במקום.
+    keep = "--keep" in sys.argv
+
     ib = IB()
     try:
         ib.connect("127.0.0.1", PORT, clientId=CLIENT_ID, timeout=20)
@@ -190,12 +273,15 @@ def main() -> None:
 
     for sym in SYMBOLS:
         out = D / f"{sym}_5min_clean.csv"
-        if out.exists():
+        if out.exists() and keep:
             print(f"{sym}: קיים כבר — מדלג")
             continue
         frames = {}
         for month in MONTHS:
-            c = Future(sym, month, "CME")
+            # חוזה יוני 2026 כבר פג. בלי הדגל הזה IBKR מחזיר
+            # "No security definition" והכל נשלף מספטמבר — וזה בדיוק
+            # מה שהזיז את מאי ב-60 נקודות ב-ES וב-279 ב-NQ.
+            c = Future(sym, month, "CME", includeExpired=True)
             try:
                 ib.qualifyContracts(c)
             except Exception as e:
@@ -204,13 +290,27 @@ def main() -> None:
             print(f"  {sym} {month}:")
             frames[month] = to_frame(pull(ib, c, START, END))
 
-        df, rolls = pick_front(frames)
+        # הבחירה נעשית מול הסדרה שהבוט ניתח, לא לפי מחזור. המחזור
+        # אומר מי החוזה הקדמי האמיתי; אנחנו צריכים את החוזה שממנו
+        # חושבו הרמות, ואלה שני דברים שונים כשהפיד מגלגל בתאריך אחר.
+        ref = load_reference(sym)
+        rolls, how = [], "מחזור"
+        if ref is not None:
+            err = daily_error(frames, ref)
+            chosen, rolls, warn = choose_by_error(err, MONTHS)
+            if warn:
+                print(f"    התאמה מול הייחוס נכשלה: {warn} — נופל למחזור")
+            else:
+                df, how = stitch(frames, chosen), "התאמה לייחוס"
+        if how == "מחזור":
+            df, rolls = pick_front(frames)
         if df.empty:
             print(f"{sym}: אין נתונים\n")
             continue
         lo = pd.Timestamp(START, tz=ET)
         hi = pd.Timestamp(END, tz=ET)
         df = df[(df.ts >= lo) & (df.ts < hi)].reset_index(drop=True)
+        print(f"    הרכבה לפי {how}")
         for d, a, b in rolls:
             print(f"    גלגול {d}: {a} -> {b}")
 
