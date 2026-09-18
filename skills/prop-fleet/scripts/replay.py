@@ -70,6 +70,8 @@ D = Path.home() / "Desktop"
 ET = "America/New_York"
 
 # החלון הנקי, כפי ש-futures_era_check.py קבע אותו.
+BOT_DEFAULT = D / "meirox-ai" / "MeiroX-AI - בוט מסחר"
+
 CLEAN_START = pd.Timestamp("2026-05-18", tz=ET)
 CLEAN_END = pd.Timestamp("2026-07-14", tz=ET)
 
@@ -230,6 +232,71 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
     }
 
 
+def contract_drift(bars: dict, bot: Path) -> pd.DataFrame:
+    """פער חודשי בין הנרות שנשלפו לבין הסדרה שהבוט ראה.
+
+    למה זה חשוב דווקא כאן. IBKR לא החזיר את חוזה יוני 2026 — הוא כבר
+    פג ונמחק — ולכן כל החלון נשלף מחוזה ספטמבר. אבל עד הגלגול באמצע
+    יוני, הבוט ניתח את חוזה יוני. שני החוזים אינם מחיר אחד: מפריד
+    ביניהם ה-carry, כמה נקודות ב-ES.
+
+    כמה נקודות נשמע כלום עד שמחלקים בסטופ. שתי נקודות מול סטופ של 8.5
+    הן רבע R של הזזה שיטתית בכיוון אחד, והתוחלת שנמדדת כאן היא בסדר
+    גודל של 0.2R. לכן הפער נמדד לפי חודש ולא כחציון אחד על כל החלון:
+    חציון כולל מדלל את התקופה שלפני הגלגול בתקופה שאחריה, שבה שני
+    המקורות מדברים על אותו חוזה בדיוק ונותנים אפס.
+    """
+    sys.path.insert(0, str(bot))
+    try:
+        from data.feed import MarketDataFeed
+    except Exception as e:
+        print(f"  אין בקרת חוזה — data.feed לא נטען: {str(e)[:50]}")
+        return pd.DataFrame()
+    feed = MarketDataFeed()
+    rows = []
+    for sym, b in bars.items():
+        ref = feed.get_ohlcv(sym, "1h")
+        if ref is None or ref.empty:
+            continue
+        mine = b.set_index("ts").resample("1h").agg({"close": "last"}).dropna()
+        j = mine.join(pd.DataFrame({"ref": ref["Close"]}), how="inner").dropna()
+        if j.empty:
+            continue
+        j["signed"] = j.close - j.ref
+        for month, g in j.groupby(j.index.to_period("M")):
+            rows.append({
+                "symbol": sym, "month": str(month), "n": len(g),
+                "drift_pct": float((100 * g.signed.abs() / g.ref).median()),
+                "signed_pts": float(g.signed.median()),
+            })
+    return pd.DataFrame(rows)
+
+
+def report_drift(d: pd.DataFrame, res: pd.DataFrame) -> None:
+    """מדפיס את הפער ומתרגם אותו ליחידות R, שזו היחידה שמחליטה."""
+    if d.empty:
+        return
+    risk = res[res.status == "filled"].risk_pts
+    typical = float(risk.median()) if len(risk) else float("nan")
+    print(f"\n{'=' * 58}\n  בקרת חוזה — מול הסדרה שהבוט ניתח\n{'=' * 58}")
+    print(f"{'סימבול':>8} {'חודש':>9} {'n':>6} {'פער':>9} {'נקודות':>9} {'ב-R':>8}")
+    worst = 0.0
+    for r in d.itertuples():
+        in_r = abs(r.signed_pts) / typical if typical == typical and typical else float("nan")
+        worst = max(worst, 0.0 if in_r != in_r else in_r)
+        print(f"{r.symbol:>8} {r.month:>9} {r.n:>6} {r.drift_pct:>8.3f}% "
+              f"{r.signed_pts:>+9.2f} {in_r:>8.2f}")
+    print(f"\n  סטופ טיפוסי: {typical:.2f} נקודות.")
+    if worst >= 0.10:
+        print(f"  ההזזה השיטתית הגרועה ביותר היא {worst:.2f}R, והיא בכיוון")
+        print("  אחד לכל אורך החודש. זה לא רעש — זה מזיז כל רמה באותו")
+        print("  כיוון, ותוחלת בסדר גודל של 0.2R לא שורדת דבר כזה בלי")
+        print("  שיובא בחשבון. לפני שסומכים על המספר, צריך את נרות")
+        print("  החוזה שהבוט באמת ניתח באותו חודש.")
+    else:
+        print(f"  ההזזה הגרועה ביותר {worst:.2f}R — קטנה מספיק כדי להתעלם.")
+
+
 def cost_R(symbol: str, risk_pts: float) -> float:
     """עלות עסקה ביחידות R. הכמות מצטמצמת — שתיהן לחוזה."""
     pt = POINT_VALUE.get(symbol, 5.0)
@@ -373,6 +440,7 @@ def describe(res: pd.DataFrame, label: str) -> dict | None:
 
 
 def main() -> None:
+    bot = Path(sys.argv[1]) if len(sys.argv) > 1 else BOT_DEFAULT
     setups_path = D / "setups.csv"
     if not setups_path.exists():
         sys.exit(f"חסר {setups_path}")
@@ -443,6 +511,8 @@ def main() -> None:
         print("  זה נבחר בדיעבד מתוך חמש אפשרויות על אותם נתונים, ולכן")
         print("  הוא מוטה כלפי מעלה. הוא מראה מה האסטרטגיה תומכת בו,")
         print("  לא מה היא תיתן קדימה.")
+
+    report_drift(contract_drift(bars, bot), base)
 
     out = D / "replay_results.csv"
     base.to_csv(out, index=False)

@@ -306,6 +306,18 @@ confidence interval is clustered by trading day, because four trades riding
 the same afternoon are not four observations; the narrower interval that
 assumes independence is printed beside it, labelled as too narrow.
 
+One check has to survive the fetch itself. IBKR no longer holds the June
+2026 contract — it expired and was removed — so the whole window comes back
+from September, while until the mid-June roll the bot was analysing June. The
+two are not one price: carry separates them by a few points. A few points
+sounds like nothing until it is divided by the stop. Two points against a
+stop of 8.5 is a quarter of an R of systematic shift in one direction, and
+the expectancy being measured is itself around 0.2R. So the gap against the
+series the bot saw is reported per month rather than as one median over the
+window, because a single median dilutes the pre-roll period with the
+post-roll one, where both sources are the same contract and agree exactly —
+and it is restated in R, since that is the unit the decision is made in.
+
 What the measured expectancy is worth in money goes through
 `scripts/apex_model.py` rather than through multiplication. Expectancy times
 trades per day times 250 times the risk fraction produces figures like 900% a
@@ -385,7 +397,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
 - `scripts/test_futures_bars.py` — 11 tests on the roll selection and the frame conversion, because a guessed roll date slips a silent price jump into the middle of the window where nothing would reveal it.
 - `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
-- `scripts/test_replay.py` — 57 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
+- `scripts/test_replay.py` — 61 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.

@@ -14,7 +14,7 @@ import pandas as pd
 import pytest
 
 from replay import (MIN_RISK_PTS, clustered_interval, cost_R, interval,
-                    load_clean_setups, pick_column, replay, walk)
+                    load_clean_setups, pick_column, replay, report_drift, walk)
 
 ET = "America/New_York"
 
@@ -513,3 +513,41 @@ def test_the_reported_timestamps_keep_their_timezone():
     assert r["fill_ts"].tz is not None, r["fill_ts"]
     assert r["exit_ts"].tz is not None, r["exit_ts"]
     assert r["fill_ts"].hour == 9 and r["fill_ts"].minute == 30
+
+
+# ---------- בקרת החוזה ----------
+
+def drift_rows(pts_by_month, symbol="ES", n=100, risk=8.5):
+    return (pd.DataFrame([
+        {"symbol": symbol, "month": m, "n": n,
+         "drift_pct": abs(p) / 7500 * 100, "signed_pts": p}
+        for m, p in pts_by_month.items()]),
+        pd.DataFrame({"status": ["filled"] * 3, "risk_pts": [risk] * 3}))
+
+
+def test_a_carry_offset_is_reported_in_R_not_only_in_percent(capsys):
+    """שתי נקודות נשמעות כלום. מול סטופ 8.5 הן רבע R."""
+    d, res = drift_rows({"2026-05": 2.2, "2026-06": 0.05})
+    report_drift(d, res)
+    out = capsys.readouterr().out
+    assert "0.26" in out, out
+    assert "לא רעש" in out, out
+
+
+def test_a_negligible_offset_is_not_dressed_up_as_a_problem(capsys):
+    d, res = drift_rows({"2026-05": 0.2, "2026-06": 0.05})
+    report_drift(d, res)
+    out = capsys.readouterr().out
+    assert "קטנה מספיק" in out, out
+
+
+def test_the_months_are_not_averaged_into_one_number():
+    """חציון כולל מדלל את התקופה שלפני הגלגול בזו שאחריה."""
+    d, _ = drift_rows({"2026-05": 2.2, "2026-06": 0.0, "2026-07": 0.0})
+    assert len(d) == 3
+    assert d.signed_pts.max() == pytest.approx(2.2)
+
+
+def test_an_empty_drift_table_prints_nothing(capsys):
+    report_drift(pd.DataFrame(), pd.DataFrame({"status": [], "risk_pts": []}))
+    assert capsys.readouterr().out == ""
