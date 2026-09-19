@@ -453,12 +453,22 @@ def test_a_setup_inside_the_session_still_trades():
 
 
 def test_the_flat_time_is_the_boundary_not_midnight():
-    """15:58 היא השעה שבה eod_force_close רץ אצלו בפועל."""
+    """הגבול הוא ההשטחה ב-15:58, לא חצות.
+
+    הבדיקה הזאת קודם טענה שסטאפ ב-15:55 מתמלא, וזו הייתה הטעות
+    עצמה. נר מתויג בתחילתו, ולכן הנר היחיד שיכול למלא סטאפ כזה
+    הוא זה שמתחיל ב-15:55 ונסגר ב-16:00 — שתי דקות אחרי שהבוט
+    כבר שטוח. מילוי כזה הוא פוזיציה שלא הייתה קיימת, והסגירה
+    שלו היא מחיר שהחשבון לא יכול היה לקבל.
+    """
     late = replay(session_setups([(15, 55)]), all_day_bars(),
                   "stop_loss", "take_profit")
     past = replay(session_setups([(16, 0)]), all_day_bars(),
                   "stop_loss", "take_profit")
-    assert late.status.iloc[0] == "filled"
+    ok = replay(session_setups([(15, 50)]), all_day_bars(),
+                "stop_loss", "take_profit")
+    assert ok.status.iloc[0] == "filled", "הנר האחרון שנסגר לפני ההשטחה"
+    assert late.status.iloc[0] == "outside_session"
     assert past.status.iloc[0] == "outside_session"
 
 
@@ -469,6 +479,21 @@ def test_a_position_cannot_be_held_into_the_evening():
     r = res.iloc[0]
     assert r.status == "filled"
     assert r.exit_ts.time() < dtime(15, 58), r.exit_ts
+
+
+def test_end_of_day_exit_is_observable_before_the_flatten():
+    """מחיר היציאה נצפה עד 15:55, לא בסגירת 16:00.
+
+    ברזולוציה של חמש דקות אין מחיר של 15:58. הדבר האחרון שנצפה
+    בוודאות לפני ההשטחה הוא סגירת הנר של 15:50, כלומר המחיר
+    ב-15:55. כל מה שאחריו הוא זכייה או חיסכון בשתי דקות שהחשבון
+    האמיתי לא היה בהן.
+    """
+    res = replay(session_setups([(14, 0)]), all_day_bars(),
+                 "stop_loss", "take_profit")
+    r = res.iloc[0]
+    if r.reason == "eod":
+        assert r.exit_ts.time() <= dtime(15, 50), r.exit_ts
 
 
 # ---------- רווח הסמך המקובץ ----------
@@ -566,3 +591,174 @@ def test_an_uncorrected_shift_is_still_called_invalid(capsys):
     d, res = drift_rows({"2026-05": 279.0}, symbol="NQ", risk=20.1)
     report_drift(d, res)
     assert "לא תקף" in capsys.readouterr().out
+
+
+# ---------- גרירת הסטופ ----------
+#
+# הבוט מזיז את הסטופ לנקודת האיזון כשהרווח מגיע לטריגר. הוא עושה
+# את זה מתוך סריקה כל 300 שניות, על המחיר האחרון החי באותו רגע.
+# כל בדיקה כאן היא מקום שבו ריפליי היה יכול לגרור בחינם ולהחזיר
+# תוחלת שהחשבון לא יראה.
+
+def test_trailing_does_not_fire_on_a_touch_between_scans():
+    """הטעות המרכזית. הנר נגע ב-1R וחזר; הבוט לא ראה את הנגיעה.
+
+    כניסה 100, סטופ 99, כלומר 1R = 101. הנר השני מגיע ל-101.5
+    בתוך החלון אבל נסגר ב-100.2. סריקה שמסתכלת על המחיר האחרון
+    רואה 100.2 — מתחת לטריגר — ולא גוררת. אחר כך המחיר יורד
+    לסטופ המקורי, וזה הפסד מלא. ריפליי שבודק את ה-high היה גורר
+    כאן והופך את ההפסד לאפס, בחינם.
+    """
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.5, 99.95, 100.2),
+              (100.2, 100.3, 98.5, 98.6)])
+    r = walk(b, "long", 100.0, 99.0, None, T0, trail_trigger=1.0, trail_to=0.0)
+    assert r["status"] == "filled"
+    assert r["trailed"] is False, "נגיעה בין סריקות אינה אירוע"
+    assert r["reason"] == "stop"
+    assert r["raw_R"] == pytest.approx(-1.0)
+
+
+def test_trailing_fires_when_the_scan_price_itself_reaches_the_trigger():
+    """אותו מבנה, אבל הפעם הנר נסגר מעל הטריגר. הבוט כן רואה."""
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.5, 99.95, 101.2),
+              (101.2, 101.3, 98.5, 98.6)])
+    r = walk(b, "long", 100.0, 99.0, None, T0, trail_trigger=1.0, trail_to=0.0)
+    assert r["trailed"] is True
+    assert r["reason"] == "trail"
+    assert r["final_stop"] == pytest.approx(100.0)
+    assert r["raw_R"] == pytest.approx(0.0), "נעצר בנקודת האיזון"
+
+
+def test_a_trailed_stop_cannot_close_the_bar_that_created_it():
+    """ההחלטה נופלת בסגירה, ולכן היא שייכת לנר הבא.
+
+    בלי זה אותו נר גם מרים את הסטופ וגם נעצר בו לפי השפל שלו —
+    שפל שקרה, אולי, לפני שהמחיר הגיע לטריגר בכלל.
+    """
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.4, 99.5, 101.2),
+              (101.2, 101.4, 101.0, 101.3)])
+    r = walk(b, "long", 100.0, 99.0, None, T0, trail_trigger=1.0, trail_to=0.0)
+    assert r["trailed"] is True
+    assert r["reason"] == "eod", "השפל של נר הגרירה לא סוגר את הפוזיציה"
+
+
+def test_trailing_never_moves_the_stop_backwards():
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.4, 99.9, 101.2),
+              (101.2, 101.4, 100.5, 100.6),
+              (100.6, 100.8, 100.4, 100.5)])
+    r = walk(b, "long", 100.0, 99.0, None, T0, trail_trigger=0.5, trail_to=0.0)
+    assert r["final_stop"] == pytest.approx(100.0), "לא חוזר אחורה"
+
+
+def test_trailing_is_off_by_default():
+    """ברירת המחדל היא המדידה בלי גרירה, כדי שאפשר יהיה להשוות."""
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.5, 99.95, 101.2),
+              (101.2, 101.3, 98.5, 98.6)])
+    r = walk(b, "long", 100.0, 99.0, None, T0)
+    assert r["trailed"] is False
+    assert r["raw_R"] == pytest.approx(-1.0)
+
+
+def test_trailing_works_the_same_way_short():
+    """אותה בדיקה הפוכה. סימן שנשמט בצד אחד הוא באג שקט."""
+    touch = bars([(100, 100.1, 99.9, 100.0),
+                  (100.0, 100.05, 98.5, 99.8),
+                  (99.8, 101.5, 99.7, 101.4)])
+    r = walk(touch, "short", 100.0, 101.0, None, T0,
+             trail_trigger=1.0, trail_to=0.0)
+    assert r["trailed"] is False
+    assert r["raw_R"] == pytest.approx(-1.0)
+
+    seen = bars([(100, 100.1, 99.9, 100.0),
+                 (100.0, 100.05, 98.5, 98.8),
+                 (98.8, 101.5, 98.7, 101.4)])
+    r2 = walk(seen, "short", 100.0, 101.0, None, T0,
+              trail_trigger=1.0, trail_to=0.0)
+    assert r2["trailed"] is True
+    assert r2["raw_R"] == pytest.approx(0.0)
+
+
+def test_R_denominator_stays_the_planned_risk_after_trailing():
+    """אחרי גרירה לנקודת האיזון המרחק לסטופ הוא אפס.
+
+    אם המכנה היה הסטופ הפעיל, R היה חלוקה באפס — וזה בדיוק
+    ה-zero_risk שהבוט נופל עליו. המכנה חייב להישאר הסיכון
+    המתוכנן, שהוא גם מה שהחשבון באמת סיכן.
+    """
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 102.2, 99.9, 102.1),
+              (102.1, 102.2, 98.0, 98.1)])
+    r = walk(b, "long", 100.0, 98.0, None, T0, trail_trigger=1.0, trail_to=0.0)
+    assert r["risk_pts"] == pytest.approx(2.0)
+    assert r["final_stop"] == pytest.approx(100.0)
+    assert r["raw_R"] == pytest.approx(0.0)
+
+
+def test_trailing_can_only_reduce_a_loss_never_create_one():
+    """גרירה לנקודת האיזון לא יכולה להפוך רווח להפסד גדול יותר.
+
+    זו בדיקת שפיות על הכיוון: על אותם נרות, התוצאה עם גרירה
+    חייבת להיות גדולה או שווה לתוצאה בלעדיה כשהיציאה היא סטופ.
+    """
+    b = bars([(100, 100.1, 99.9, 100.0),
+              (100.0, 101.4, 99.9, 101.2),
+              (101.2, 101.3, 98.5, 98.6)])
+    plain = walk(b, "long", 100.0, 99.0, None, T0)
+    trailed = walk(b, "long", 100.0, 99.0, None, T0,
+                   trail_trigger=1.0, trail_to=0.0)
+    assert trailed["raw_R"] >= plain["raw_R"]
+
+
+@pytest.mark.parametrize("seed", [99, 7, 1234, 41])
+def test_trailing_on_a_random_walk_still_yields_nothing(seed):
+    """הכיול: הגרירה לא הוסיפה תוחלת יש מאין.
+
+    הזזת סטופ היא זמן עצירה, ועצירה של הילוך מקרי חסר סחיפה לא
+    יכולה לייצר תוחלת חיובית — לא משנה כמה חכם כלל העצירה. אם
+    הגרירה מחזירה כאן רווח, נשבר משהו בסיסי במנוע.
+
+    ומה שהיא לא מוכיחה, כי נבדק: היא לא תופסת גרירה לפי השיא של
+    הנר במקום לפי הסגירה. הרצתי את הווריאנט הזה והבדיקה הזאת
+    עברה בכל ארבעת הזרעים. זה הגיוני בדיעבד — גם גרירה שנשענת על
+    השיא היא עדיין כלל עצירה שפועל על נרות עתידיים, ולכן המרטינגל
+    נשמר והתוחלת נשארת אפס. היא פשוט מתארת בוט אחר, כזה שרואה את
+    מה שהבוט האמיתי לא רואה, וזה לא נראה בדולרים.
+
+    מה שכן תופס את זה הוא
+    test_trailing_does_not_fire_on_a_touch_between_scans, ישירות.
+    בדיקת כיול על הילוך מקרי היא כלי חזק מאוד לדליפות שמייצרות
+    כסף, וכלי עיוור לדליפות שרק מחליפות מכשיר אחד באחר.
+    """
+    s, b = synthetic(seed)
+    t = replay(s, b, "stop_loss", "take_profit",
+               trail_trigger=1.0, trail_to=0.0)
+    f = t[t.status == "filled"]
+    assert len(f) >= 200, len(f)
+    assert f.trailed.sum() > 0, "בלי אף גרירה הבדיקה לא בודקת כלום"
+    m, lo, hi = interval(f.raw_R.values)
+    assert m <= 0.12, (seed, m, lo, hi, int(f.trailed.sum()))
+    assert lo <= 0.0 <= hi or hi < 0, (seed, m, lo, hi)
+
+
+def test_trailing_changes_the_shape_of_the_outcomes():
+    """בקרה חיובית לגרירה עצמה.
+
+    תוחלת שלא זזה היא גם מה שהיינו רואים אילו הגרירה לא הייתה
+    מחוברת בכלל. הראיה שהיא כן פועלת היא שההפסדים המלאים מתחלפים
+    ביציאות סביב האפס — אותה תוחלת, פיזור אחר.
+    """
+    s, b = synthetic(99)
+    plain = replay(s, b, "stop_loss", "take_profit")
+    trail = replay(s, b, "stop_loss", "take_profit",
+                   trail_trigger=1.0, trail_to=0.0)
+    pf = plain[plain.status == "filled"]
+    tf = trail[trail.status == "filled"]
+    full_loss = lambda f: (f.raw_R < -0.95).mean()
+    assert full_loss(tf) < full_loss(pf), "הגרירה אמורה לחתוך הפסדים מלאים"
+    assert (tf.reason == "tp").mean() < (pf.reason == "tp").mean(), \
+        "והיא אמורה לקטוע גם חלק מהזוכות בדרך ליעד"

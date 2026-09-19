@@ -87,6 +87,27 @@ SLIP_PTS = 0.25         # נקודה, הלוך-חזור
 # ויציאה במחיר שאיש לא היה מקבל.
 SESSION_OPEN = dtime(9, 30)
 SESSION_FLAT = dtime(15, 58)
+BAR_MINUTES = 5
+
+# ורק שהחלון עצמו היה שגוי. נר מתויג בתחילתו, ולכן `ts < 15:58`
+# מכניס את הנר של 15:55 — שנסגר ב-16:00. משם נבעו שתי טעויות
+# שוב באותו כיוון:
+#
+#   היציאה בסוף היום נלקחה מהסגירה של אותו נר, כלומר ממחיר של
+#   16:00. הבוט כבר שטוח ב-15:58. אלה שתי דקות מסחר שהריפליי
+#   זוכה או נחסך בהן במחיר שהחשבון האמיתי לא יכול היה לקבל.
+#
+#   וגרוע מזה, לימיט יכול היה להתמלא בתוך אותו נר, כלומר להיכנס
+#   לפוזיציה אחרי שהבוט כבר סגר הכול. פוזיציה שלא הייתה קיימת.
+#
+# ברזולוציה של חמש דקות אי אפשר לראות את המחיר ב-15:58. הנר האחרון
+# שנסגר לפני ההשטחה הוא זה שמתחיל ב-15:50 ונסגר ב-15:55, והמחיר
+# ההוא הוא הדבר האחרון שנצפה בוודאות לפני שהבוט יוצא. זה מקצר כל
+# פוזיציה בחמש דקות ומוחק מילויים מאוחרים — כלומר זה מוריד עסקאות
+# ולא מוסיף. זה הכיוון הנכון לטעות בו.
+_flat_min = SESSION_FLAT.hour * 60 + SESSION_FLAT.minute
+_last_start = (_flat_min - BAR_MINUTES) // BAR_MINUTES * BAR_MINUTES
+LAST_BAR_START = dtime(_last_start // 60, _last_start % 60)
 
 # סטופ קטן מזה הוא כנראה שגיאת רישום ולא רמה אמיתית.
 MIN_RISK_PTS = 0.5
@@ -94,6 +115,14 @@ MIN_RISK_PTS = 0.5
 MIN_TRADES = 10
 # רשת ה-RR לבדיקת רגישות ליעד.
 RR_GRID = (1.0, 1.5, 2.0, 2.5, 3.0)
+
+# גרירת הסטופ. שני המספרים האלה הם פרמטרים של הבוט ולא של הריפליי,
+# והם לא אומתו מול broker/ibkr.py. כל מה שמודפס בסעיף הגרירה תלוי
+# בהם: טריגר שגוי מזיז את כל התוצאה. לכן הם מוצהרים כאן בשמם, נבדקים
+# ברשת רגישות, ולא מוזרמים לחישוב הדולרים.
+TRAIL_TRIGGER_R = 1.0       # ברווח כזה הסטופ זז
+TRAIL_TO_R = 0.0            # לאן הוא זז. 0.0 = נקודת האיזון
+TRAIL_GRID = (0.5, 0.75, 1.0, 1.5, 2.0)
 
 STOP_NAMES = ("stop_loss", "stop", "sl", "stoploss", "stop_price")
 TP_NAMES = ("take_profit", "tp", "target", "tp1", "take_profit_1", "tp_price")
@@ -140,7 +169,8 @@ def load_clean_setups(path: Path) -> pd.DataFrame:
 
 
 def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
-         tp: float | None, t0: pd.Timestamp, pessimistic: bool = True) -> dict:
+         tp: float | None, t0: pd.Timestamp, pessimistic: bool = True,
+         trail_trigger: float | None = None, trail_to: float = 0.0) -> dict:
     """מה קרה לסטאפ אחד. bars הם כל נרות המושב, t0 רגע היצירה.
 
     נר מתויג בתחילתו, ולכן נר שזמנו לפני t0 מכסה גם רגעים שקדמו
@@ -175,6 +205,11 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
     risk = abs(entry - stop)
     ambiguous = False
     exit_px, exit_i, reason = float(c[-1]), len(fut) - 1, "eod"
+    # הסטופ הפעיל. הוא זז רק בגרירה, והמכנה של R נשאר תמיד הסיכון
+    # המתוכנן המקורי — אחרת ברגע שהסטופ מגיע לנקודת האיזון המכנה
+    # מתאפס ו-R מפסיק להיות מוגדר. זה בדיוק ה-zero_risk שהבוט עצמו
+    # נתקל בו אחרי גרירה, והסיבה שבפועל הוא גורר פעם אחת ולא יותר.
+    cur_stop, trailed = stop, False
 
     # פער שעבר גם את הרמה וגם את הסטופ באותו רגע. הלימיט והסטופ שניהם
     # חיים, ולכן בפועל נכנסים ויוצאים כמעט באותו מחיר — כמעט אפס. זה
@@ -184,7 +219,7 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
     gapped = (o[fill_i] <= stop) if long else (o[fill_i] >= stop)
 
     for i in range(fill_i, len(fut)):
-        hit_stop = lo[i] <= stop if long else h[i] >= stop
+        hit_stop = lo[i] <= cur_stop if long else h[i] >= cur_stop
         hit_tp = False
         if tp is not None:
             hit_tp = h[i] >= tp if long else lo[i] <= tp
@@ -204,14 +239,43 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
         if hit_stop:
             # סטופ הוא פקודת שוק ברגע ההפעלה. פער פתיחה מעבר לרמה
             # מבוצע בפתיחה, גרוע יותר.
-            exit_px = min(o[i], stop) if long else max(o[i], stop)
+            exit_px = min(o[i], cur_stop) if long else max(o[i], cur_stop)
             exit_i = i
-            reason = "gap_scratch" if (gapped and i == fill_i) else "stop"
+            if gapped and i == fill_i:
+                reason = "gap_scratch"
+            else:
+                reason = "trail" if trailed else "stop"
             break
         if hit_tp:
             exit_px = max(o[i], tp) if long else min(o[i], tp)
             exit_i, reason = i, "tp"
             break
+
+        # נקודת דגימה, בסגירת הנר.
+        #
+        # זה הפרט שמחליט אם המספר הזה אומר משהו. הבוט לא רואה את
+        # הנר. הוא מתעורר כל 300 שניות, קורא את המחיר האחרון החי,
+        # ומחשב ממנו pnl_r. תנועה שנגעה בטריגר בין סריקה לסריקה
+        # וחזרה — לא קיימת מבחינתו, והגרירה לא נורתה. ריפליי שבודק
+        # את ה-high של החלון היה גורר בכל אחת מהתנועות האלה, מעביר
+        # הפסדים לנקודת איזון בחינם, ומחזיר תוחלת שהחשבון האמיתי
+        # לעולם לא יראה. זו אותה משפחה של טעות כמו ה-look-ahead בנר
+        # המילוי, רק שכאן היא נכנסת דרך הצד שאמור להגן.
+        #
+        # נר של חמש דקות הוא בדיוק מרווח הסריקה, וסגירתו היא המחיר
+        # באותו רגע. רשת הסריקה של הבוט לא בהכרח מיושרת לגבולות
+        # הנרות ויכולה ליפול גם באמצעם, כלומר ייתכנו עוד הזדמנויות
+        # גרירה שלא נספרות כאן. ההטיה היא לכיוון הזהיר.
+        if trail_trigger is not None:
+            px = c[i]
+            r_now = (px - entry) / risk if long else (entry - px) / risk
+            if r_now >= trail_trigger:
+                nxt = (entry + trail_to * risk if long
+                       else entry - trail_to * risk)
+                if (nxt > cur_stop) if long else (nxt < cur_stop):
+                    # נכנס לתוקף מהנר הבא. ההחלטה נופלת בסגירה, ולכן
+                    # היא לא יכולה לסגור את הנר שיצר אותה.
+                    cur_stop, trailed = nxt, True
 
     move = (exit_px - fill_px) if long else (fill_px - exit_px)
     seg = slice(fill_i, exit_i + 1)
@@ -226,7 +290,8 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
         "status": "filled", "reason": reason, "risk_pts": risk,
         "fill_px": fill_px, "exit_px": exit_px, "raw_R": move / risk,
         "mfe_R": mfe, "mae_R": mae, "ambiguous": ambiguous,
-        "gapped": bool(gapped),
+        "gapped": bool(gapped), "trailed": bool(trailed),
+        "final_stop": float(cur_stop),
         "fill_ts": ts.iloc[fill_i], "exit_ts": ts.iloc[exit_i],
         "bars_held": exit_i - fill_i + 1,
     }
@@ -354,7 +419,8 @@ def clustered_interval(r: np.ndarray, day) -> tuple:
 
 def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
            tp_col: str | None, tp_rr: float | None = None,
-           pessimistic: bool = True) -> pd.DataFrame:
+           pessimistic: bool = True, trail_trigger: float | None = None,
+           trail_to: float = 0.0) -> pd.DataFrame:
     """מריץ את כל הסטאפים. tp_rr גובר על עמודת היעד, לסריקת רשת."""
     rows = []
     for r in setups.itertuples():
@@ -362,14 +428,16 @@ def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
         if b is None or b.empty:
             continue
         t = r.ts.time()
-        if not (SESSION_OPEN <= t < SESSION_FLAT):
+        # סטאפ שנוצר אחרי תחילת הנר האחרון אין לו בכלל נר עתידי
+        # בתוך החלון. הוא נספר כמחוץ למושב במקום להיעלם בשקט.
+        if not (SESSION_OPEN <= t <= LAST_BAR_START):
             rows.append({"status": "outside_session", "ts": r.ts,
                          "symbol": r.symbol, "direction": r.direction,
                          "entry": float(r.entry)})
             continue
         day = b[(b.session == r.ts.date())
                 & (b.ts.dt.time >= SESSION_OPEN)
-                & (b.ts.dt.time < SESSION_FLAT)]
+                & (b.ts.dt.time <= LAST_BAR_START)]
         if day.empty:
             continue
         stop = getattr(r, stop_col, None)
@@ -387,7 +455,8 @@ def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
         else:
             tp = None
         out = walk(day, r.direction, float(r.entry), float(stop), tp,
-                   r.ts, pessimistic=pessimistic)
+                   r.ts, pessimistic=pessimistic,
+                   trail_trigger=trail_trigger, trail_to=trail_to)
         out.update(ts=r.ts, symbol=r.symbol, direction=r.direction,
                    entry=float(r.entry), stop=float(stop), tp=tp)
         if out["status"] == "filled":
@@ -504,6 +573,8 @@ def main() -> None:
         else:
             print("  אותו סימן בשתי ההכרעות. הדו-משמעיות לא משנה את המסקנה.")
 
+    trail_summary(s, bars, stop_col, tp_col, summary)
+
     print(f"\n{'=' * 58}\n  רשת יעדים — איזה RR האסטרטגיה בכלל תומכת בו"
           f"\n{'=' * 58}")
     print(f"{'RR':>6} {'n':>5} {'תוחלת':>9} {'גבול תחתון':>12} "
@@ -536,6 +607,63 @@ def main() -> None:
 
     if summary:
         project(summary, base)
+
+
+def trail_summary(s: pd.DataFrame, bars: dict, stop_col: str,
+                  tp_col: str | None, base_summary: dict | None) -> None:
+    """מה הגרירה עושה למספר — ובאיזה תנאי מותר להאמין לזה.
+
+    החשבון הממומן רץ עם גרירה חיה. כלומר המדידה בלי גרירה כבר לא
+    מתארת אותו, ולהמשיך לצטט אותה זה לדווח על מכשיר אחר. מצד שני
+    הטריגר והיעד הם פרמטרים של הבוט שלא אומתו כאן, ומספר שנשען על
+    קבוע לא מאומת לא נכנס לחישוב הדולרים. לכן שניהם מודפסים זה לצד
+    זה, ורק זה בלי הגרירה ממשיך הלאה.
+    """
+    print(f"\n{'=' * 58}\n  גרירת הסטופ — מה שהחשבון הממומן באמת מריץ"
+          f"\n{'=' * 58}")
+    print(f"  טריגר {TRAIL_TRIGGER_R:.2f}R, הסטופ זז ל-{TRAIL_TO_R:+.2f}R.")
+    print("  שני הקבועים האלה לא אומתו מול broker/ibkr.py. הסעיף הזה")
+    print("  תקף רק אם הם נכונים, ולכן הוא לא נכנס לחישוב הדולרים.")
+    print("  הדגימה היא בסגירת נר של חמש דקות — בדיוק מרווח הסריקה של")
+    print("  הבוט. נגיעה בטריגר בתוך החלון שלא שרדה עד הסגירה איננה")
+    print("  אירוע, כי הבוט קורא מחיר אחד ברגע אחד ולא את השיא.")
+
+    t = replay(s, bars, stop_col, tp_col,
+               trail_trigger=TRAIL_TRIGGER_R, trail_to=TRAIL_TO_R)
+    tf = t[t.status == "filled"]
+    if len(tf) < MIN_TRADES:
+        print(f"\n  {len(tf)} עסקאות בלבד. מעט מדי מכדי לומר משהו.")
+        return
+    m, lo_, hi_, k = clustered_interval(tf.net_R.values, tf.ts.dt.date)
+    fired = int(tf.trailed.sum())
+    print(f"\n  {fired} מתוך {len(tf)} פוזיציות גררו "
+          f"({fired / len(tf) * 100:.0f}%).")
+    print(f"  תוחלת עם גרירה: {m:+.3f}R  [{lo_:+.3f}, {hi_:+.3f}] "
+          f"על {k} ימים.")
+    if base_summary:
+        d = m - base_summary["mean"]
+        print(f"  בלי גרירה: {base_summary['mean']:+.3f}R "
+              f"[{base_summary['lo']:+.3f}, {base_summary['hi']:+.3f}].")
+        print(f"  ההפרש: {d:+.3f}R. זה מה שהמעבר לחשבון הממומן עשה")
+        print("  למספר, וזו הסיבה שהמדידה הישנה כבר לא מתארת אותו.")
+        if (lo_ > 0) != (base_summary["lo"] > 0):
+            print("  שימו לב: הגרירה מזיזה את הגבול התחתון מעבר לאפס.")
+            print("  כלומר ההחלטה כמה חשבונות מותר תלויה בקבוע שלא אומת.")
+            print("  לאמת אותו מול broker/ibkr.py לפני כל החלטת חשיפה.")
+
+    print(f"\n  רגישות לטריגר — אם הקבוע אינו {TRAIL_TRIGGER_R:.2f}:")
+    print(f"{'טריגר':>8} {'גררו':>7} {'תוחלת':>9} {'גבול תחתון':>12}")
+    for trig in TRAIL_GRID:
+        g = replay(s, bars, stop_col, tp_col,
+                   trail_trigger=trig, trail_to=TRAIL_TO_R)
+        gf = g[g.status == "filled"]
+        if len(gf) < MIN_TRADES:
+            continue
+        gm, glo, _, _ = clustered_interval(gf.net_R.values, gf.ts.dt.date)
+        print(f"{trig:>8.2f} {int(gf.trailed.sum()):>7} "
+              f"{gm:>+8.3f}R {glo:>+11.3f}R")
+    print("\n  אם השורות האלה חולקות על הסימן זו מזו, הקבוע אינו פרט")
+    print("  טכני אלא ההחלטה עצמה, ואין להחליט על חשיפה לפני שהוא ידוע.")
 
 
 def project(summary: dict, base: pd.DataFrame) -> None:
