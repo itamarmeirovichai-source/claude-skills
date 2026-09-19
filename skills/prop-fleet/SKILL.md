@@ -295,6 +295,39 @@ nobody would have got. Both errors lean the same way. Setups timestamped
 outside the window are reported as untradeable rather than silently dropped,
 so the count stays visible.
 
+The window's far edge is finer than it looks. Bars are stamped at their
+start, so a cutoff of 15:58 still admits the 15:55 bar — which closes at
+16:00, two minutes after the bot is already flat. That bar was paying the
+replay twice: the end-of-day exit was taken at a price the account could
+not have received, and a limit could fill inside it, opening a position
+that never existed. Five-minute bars have no 15:58 price to offer, so the
+last usable bar is the one starting 15:50 and closing 15:55 — the last
+price observed before the flatten. It shortens every position and deletes
+late fills, which is the direction to be wrong in.
+
+Trailing is where a replay can be most generous to itself. The funded
+account runs with the stop trailing, so a number measured without it
+describes a different instrument. What decides whether the number with it
+means anything is that the bot wakes every 300 seconds and reads one live
+price — it never sees the bar. A move that touches the trigger between two
+scans and retraces did not happen as far as it is concerned, and a replay
+that checks the bar's high would trail on every one of those, converting
+full losses into free breakevens. So trailing is evaluated at bar closes,
+which are exactly the scan interval, and the R denominator stays the
+planned risk — once the stop sits at the entry the live distance is zero,
+which is the same `zero_risk` the bot itself hits, and the reason it
+trails once rather than repeatedly.
+
+The trigger and the destination are the bot's parameters, not the
+replay's, and they are not verified here. They are declared as named
+constants, run through a sensitivity grid, and kept out of the dollar
+model: the headline and the projection still come from the run without
+trailing, with the difference printed beside it. A constant that has not
+been read out of `broker/ibkr.py` does not get to decide how many accounts
+are opened, and if the grid disagrees about the sign of the lower bound,
+that constant *is* the decision and nothing should be sized before it is
+known.
+
 Three things it reports rather than hides. A bar containing both levels is
 unresolvable at five-minute resolution, so the run is repeated with the
 opposite convention and both answers are printed; if they disagree in sign,
@@ -437,7 +470,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_integrity.py` — 20 tests, each a real corrupted row. `python3 -m pytest`.
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.
 - `scripts/gate.py` — reads the trade record and names the stage the evidence permits, including downward. Takes a `trades.db`, a CSV of `pnl_r`, and `--stage N` to compare against where you are now.
-- `scripts/test_gate.py` — 19 tests on the decision logic, since the numbers are the decision.
+- `scripts/test_gate.py` — 25 tests on the decision logic, since the numbers are the decision. Six of them run real SQL against a real table, because the integrity check that catches a trade closed at its own entry price had been naming a column that does not exist: SQLite raised, the handler returned None, and `if n:` read that exactly like a clean result. A check that cannot run has to look different from a check that passed.
 - `scripts/test_apex_model.py` — 21 tests on the model's mechanics: loss bounded by fees, withdrawals arriving only in whole ladders, the evaluation clock expiring an unreachable target, tax never touching a loss, and the withdrawal split. Deterministic, by driving the model to always-win and always-lose.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
 - `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not.
@@ -451,8 +484,8 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_futures_era_check.py` — 24 tests: planted lag found and clean data left clean across five seeds each, the call holding across four volatility regimes, the cohort lock, and the case that broke the first classifier, where a real lag in a quiet market shows only a modest error at zero offset.
 - `scripts/futures_bars.py` — five-minute ES/NQ bars for the clean window from IBKR via dated contracts, since `ContFuture` refuses an end date. The roll is read from daily volume rather than guessed, and the stitched series is checked against the one the bot itself saw.
 - `scripts/test_futures_bars.py` — 33 tests on the roll selection, the reference matching and the frame conversion, because a wrong roll slips a silent price jump into the middle of the window where nothing would reveal it. The one clean switch, the flip-flop, the backwards roll and the carry gap each have their own case.
-- `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
-- `scripts/test_replay.py` — 61 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
+- `scripts/replay.py` — the backtest: the clean setups executed against real bars with limit entries, gap-aware stops, end-of-day flat at the last price observable before the bot flattens, stop trailing sampled at the bot's 300-second scan rather than at the bar's extreme, costs in R, a target grid, and the measured expectancy fed into the fleet model instead of multiplied out.
+- `scripts/test_replay.py` — 72 tests. Each execution rule against a bar built to break it, and the calibration: four seeds of a driftless random walk that must not yield an edge, the target-hit rate against its geometric odds, a planted drift recovered as a long edge and a short loss, and setups shifted half an hour to prove the result is tied to their timestamps.
 - `scripts/drift_diagnostic.py` — locates the cause of recorded prices that don't match the market. Takes an optional directory argument.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
