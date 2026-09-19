@@ -147,33 +147,94 @@ def check_db():
         nexts.append("אחרי שהבוט ירוץ, תריץ את doctor שוב.")
         return None
     con = sqlite3.connect(str(DB))
-    def q(sql, d=0):
+    broken = []
+    def q(sql, label=None):
+        """המספר, או None אם השאילתה עצמה נפלה.
+
+        קודם זה החזיר 0 על שגיאת SQL, וזה הפך כל בדיקה שבורה
+        לבדיקה עוברת. בדיוק זה קרה כאן: הבדיקה חיפשה עמודה בשם
+        entry בטבלה שבה העמודה נקראת entry_price, נפלה בשקט,
+        החזירה 0, והדוח הכריז שהרשומות תקינות. בדיקה שלא רצה
+        חייבת להיראות אחרת מבדיקה שעברה.
+        """
         try:
             return con.execute(sql).fetchone()[0]
-        except sqlite3.Error:
-            return d
-    total = q("SELECT COUNT(*) FROM trades")
-    closed = q("SELECT COUNT(*) FROM trades WHERE status='closed'")
-    openn = q("SELECT COUNT(*) FROM trades WHERE status='open'")
+        except sqlite3.Error as e:
+            if label:
+                broken.append(f"{label}: {str(e)[:60]}")
+            return None
+    total = q("SELECT COUNT(*) FROM trades", "ספירה") or 0
+    closed = q("SELECT COUNT(*) FROM trades WHERE status='closed'", "סגורות") or 0
+    openn = q("SELECT COUNT(*) FROM trades WHERE status='open'", "פתוחות") or 0
+    # סטטוס שנכתב כשהסגירה לא אומתה: הפוזיציה כבר לא קיימת, אבל מחיר
+    # היציאה האמיתי לא ידוע. זו לא חשיפה חיה, וזו גם לא ראיה. היא
+    # נספרת בנפרד כי היא לא 'closed' ולא 'open', ובלי השורה הזאת היא
+    # פשוט נעלמת מהדוח.
+    unver = q("SELECT COUNT(*) FROM trades WHERE status='unverified'",
+              "לא מאומתות") or 0
     say(INFO, f"{total:,} עסקאות, {closed:,} סגורות, {openn:,} פתוחות")
+    if unver:
+        say(WARN, f"{unver:,} לא מאומתות — לא נכנסות לסטטיסטיקה ולא חשיפה חיה")
+
+    # מחיר הכניסה בקנה המידה שבו נמדד מחיר היציאה. exec_entry הוא
+    # מחיר הביצוע; entry_price הוא הרמה מהאסטרטגיה. ברשומות ישנות
+    # exec_entry ריק, ושם entry_price הוא הדבר היחיד שיש. להשוות
+    # entry_price ל-exit_price כששניהם בקני מידה שונים זה להשוות
+    # מחיר חוזה למחיר ETF ולקבל תשובה חסרת משמעות.
+    try:
+        cols = {r[1] for r in con.execute("PRAGMA table_info(trades)")}
+    except sqlite3.Error:
+        cols = set()
+    if "exec_entry" in cols:
+        EXEC_ENTRY = "COALESCE(exec_entry, entry_price)"
+    else:
+        # העמודה טרם נוספה. אפשר עדיין להשוות, אבל רק בקנה מידה של
+        # האסטרטגיה, ובמצב מניות זה משווה מחיר ETF לרמת חוזה. זה
+        # נאמר בקול במקום להיחשב לבדיקה שעברה.
+        EXEC_ENTRY = "entry_price"
+        say(WARN, "אין exec_entry — בדיקת כניסה=יציאה חלשה יותר, "
+                  "והיא לא תופסת ערבוב קני מידה")
 
     bad = 0
-    for label, sql in (
-        ("pnl_r ריק", "SELECT COUNT(*) FROM trades WHERE status='closed' AND pnl_r IS NULL"),
+    checks = (
+        ("pnl_r ריק",
+         "SELECT COUNT(*) FROM trades WHERE status='closed' AND pnl_r IS NULL"),
         ("0.0R עם רווח שאינו אפס",
-         "SELECT COUNT(*) FROM trades WHERE status='closed' AND pnl_r=0 AND pnl IS NOT NULL AND pnl<>0"),
-        ("|pnl_r| מעל 10", "SELECT COUNT(*) FROM trades WHERE status='closed' AND ABS(pnl_r)>10"),
-        ("כניסה=יציאה", "SELECT COUNT(*) FROM trades WHERE status='closed' AND entry=exit_price"),
-        ("בלי analysis_id", "SELECT COUNT(*) FROM trades WHERE analysis_id IS NULL OR analysis_id=0"),
-    ):
-        n = q(sql)
+         "SELECT COUNT(*) FROM trades WHERE status='closed' AND pnl_r=0 "
+         "AND pnl IS NOT NULL AND pnl<>0"),
+        ("|pnl_r| מעל 10",
+         "SELECT COUNT(*) FROM trades WHERE status='closed' AND ABS(pnl_r)>10"),
+        # סתירה: אותו מחיר בשני הקצוות, ובכל זאת נרשם רווח או הפסד.
+        ("כניסה=יציאה עם רווח שאינו אפס",
+         f"SELECT COUNT(*) FROM trades WHERE status='closed' "
+         f"AND {EXEC_ENTRY}=exit_price AND pnl IS NOT NULL AND pnl<>0"),
+        # לא סתירה אלא טביעת אצבע: סגירה שנכתבה כ'איפוס' — יציאה
+        # שהועתקה מהכניסה ורווח אפס — כלומר מחיר היציאה לא נמדד.
+        ("כניסה=יציאה עם אפס — סגירה לא מאומתת שנרשמה כסגורה",
+         f"SELECT COUNT(*) FROM trades WHERE status='closed' "
+         f"AND {EXEC_ENTRY}=exit_price AND (pnl IS NULL OR pnl=0)"),
+        *((("מסומנות ככשל שלמות",
+            "SELECT COUNT(*) FROM trades WHERE exit_reason LIKE 'integrity_%'"),)
+          if "exit_reason" in cols else ()),
+        ("בלי analysis_id",
+         "SELECT COUNT(*) FROM trades WHERE analysis_id IS NULL OR analysis_id=0"),
+    )
+    for label, sql in checks:
+        n = q(sql, label)
         if n:
             say(BAD, f"{label}: {n}")
             bad += n
     con.close()
+
+    # בדיקה שנפלה היא לא בדיקה שעברה. כל עוד היא לא רצה, אי אפשר
+    # לטעון שהרשומות נקיות — וזה בדיוק מה שהדוח הזה טען קודם.
+    if broken:
+        for b in broken:
+            say(BAD, f"הבדיקה עצמה נפלה — {b}")
+        issues.append("בדיקת שלמות לא רצה בכלל. לתקן אותה לפני שסומכים על הדוח.")
     if bad:
         issues.append("לתקן את הרשומות הפגומות לפני שסומכים על מספר כלשהו")
-    elif closed:
+    elif closed and not broken:
         say(OK, "כל הרשומות הסגורות עוברות את בדיקות השלמות")
     return closed
 

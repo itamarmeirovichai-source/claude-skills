@@ -73,11 +73,27 @@ def integrity_warnings(path: Path) -> list:
         return []
     con = sqlite3.connect(str(path))
     out = []
-    def q(sql):
+    def q(sql, label):
+        """המספר, או סימון רועש אם השאילתה עצמה נפלה.
+
+        קודם שגיאת SQL החזירה None, ו-None נבלע ב-`if n`. כלומר
+        בדיקה שבורה נראתה בדיוק כמו בדיקה שעברה — וזה מה שקרה
+        לבדיקת כניסה=יציאה, שחיפשה עמודה בשם entry בטבלה שבה
+        העמודה נקראת entry_price. כאן זה קובע כמה חשבונות מותר
+        להריץ, ולכן בדיקה שלא רצה חייבת להישמע.
+        """
         try:
             return con.execute(sql).fetchone()[0]
-        except sqlite3.Error:
+        except sqlite3.Error as e:
+            out.append(f"הבדיקה '{label}' לא רצה בכלל: {str(e)[:60]}")
             return None
+    try:
+        cols = {r[1] for r in con.execute("PRAGMA table_info(trades)")}
+    except sqlite3.Error:
+        cols = set()
+    # מחיר הכניסה בקנה המידה שבו נמדד מחיר היציאה.
+    exec_entry = ("COALESCE(exec_entry, entry_price)"
+                  if "exec_entry" in cols else "entry_price")
     checks = [
         ("עסקאות סגורות עם pnl_r ריק",
          "SELECT COUNT(*) FROM trades WHERE status='closed' AND pnl_r IS NULL"),
@@ -86,13 +102,21 @@ def integrity_warnings(path: Path) -> list:
          "AND pnl IS NOT NULL AND pnl<>0"),
         ("|pnl_r| מעל 10",
          "SELECT COUNT(*) FROM trades WHERE status='closed' AND ABS(pnl_r)>10"),
-        ("כניסה ויציאה זהות",
-         "SELECT COUNT(*) FROM trades WHERE status='closed' AND entry=exit_price"),
+        ("כניסה ויציאה זהות עם רווח שאינו אפס",
+         f"SELECT COUNT(*) FROM trades WHERE status='closed' "
+         f"AND {exec_entry}=exit_price AND pnl IS NOT NULL AND pnl<>0"),
+        ("כניסה ויציאה זהות עם אפס — סגירה שלא נמדדה",
+         f"SELECT COUNT(*) FROM trades WHERE status='closed' "
+         f"AND {exec_entry}=exit_price AND (pnl IS NULL OR pnl=0)"),
         ("ללא analysis_id",
          "SELECT COUNT(*) FROM trades WHERE analysis_id IS NULL OR analysis_id=0"),
     ]
+    if "exit_reason" in cols:
+        checks.append(
+            ("מסומנות ככשל שלמות",
+             "SELECT COUNT(*) FROM trades WHERE exit_reason LIKE 'integrity_%'"))
     for label, sql in checks:
-        n = q(sql)
+        n = q(sql, label)
         if n:
             out.append(f"{label}: {n}")
     con.close()

@@ -117,3 +117,107 @@ def test_no_edge_never_opens_the_first_gate():
 ])
 def test_longest_losing_run(r, want):
     assert longest_losing_run(np.array(r, dtype=float)) == want
+
+
+# ── בדיקות השלמות מול בסיס נתונים אמיתי ──────────────────────────
+#
+# הבדיקות האלה נכתבו אחרי שהתברר שבדיקת "כניסה ויציאה זהות" מעולם
+# לא רצה. היא חיפשה עמודה בשם entry בטבלה שבה העמודה נקראת
+# entry_price, נפלה על sqlite3.OperationalError, והחריג נבלע והוחזר
+# None — ש-`if n` מתייחס אליו בדיוק כמו ל-0. כלומר הבדיקה תמיד
+# "עברה". בדיקה שלא רצה חייבת להיראות אחרת מבדיקה שעברה, ולכן כל
+# בדיקה כאן מריצה SQL אמיתי מול טבלה אמיתית ולא מול מוק.
+
+import sqlite3
+
+from gate import integrity_warnings
+
+SCHEMA = """
+CREATE TABLE trades (
+    id INTEGER PRIMARY KEY,
+    analysis_id INTEGER,
+    status TEXT,
+    direction TEXT,
+    entry_price REAL,
+    exit_price REAL,
+    exec_entry REAL,
+    pnl REAL,
+    pnl_r REAL,
+    exit_reason TEXT
+)
+"""
+
+CLEAN = dict(analysis_id=1, status="closed", direction="long",
+             entry_price=5000.0, exit_price=5010.0, exec_entry=5000.0,
+             pnl=50.0, pnl_r=1.0, exit_reason="tp1")
+
+
+def _db(tmp_path, rows, schema=SCHEMA):
+    p = tmp_path / "t.db"
+    con = sqlite3.connect(str(p))
+    con.execute(schema)
+    for r in rows:
+        keys = ",".join(r)
+        marks = ",".join("?" * len(r))
+        con.execute(f"INSERT INTO trades ({keys}) VALUES ({marks})",
+                    tuple(r.values()))
+    con.commit()
+    con.close()
+    return p
+
+
+def test_clean_record_raises_nothing(tmp_path):
+    assert integrity_warnings(_db(tmp_path, [CLEAN])) == []
+
+
+def test_entry_equals_exit_with_profit_is_caught(tmp_path):
+    """הבדיקה שמעולם לא רצה. רווח של 50 דולר בין מחיר לעצמו."""
+    bad = {**CLEAN, "exit_price": 5000.0, "exec_entry": 5000.0, "pnl": 50.0}
+    w = integrity_warnings(_db(tmp_path, [bad]))
+    assert any("זהות" in x and "אינו אפס" in x for x in w), w
+
+
+def test_entry_equals_exit_with_zero_is_caught_separately(tmp_path):
+    """סגירה שהועתקה מהכניסה עם רווח אפס — יציאה שלא נמדדה."""
+    bad = {**CLEAN, "exit_price": 5000.0, "exec_entry": 5000.0,
+           "pnl": 0.0, "pnl_r": 0.0}
+    w = integrity_warnings(_db(tmp_path, [bad]))
+    assert any("לא נמדדה" in x for x in w), w
+    assert not any("אינו אפס" in x for x in w), "זו לא סתירה, זו אי-מדידה"
+
+
+def test_comparison_uses_execution_scale_not_signal_scale(tmp_path):
+    """שורה במצב מניות: הרמה בקנה מידה של חוזה, הביצוע ב-ETF.
+
+    entry_price=5000 (רמת ES) מול exit_price=500 (מחיר ETF) אינם
+    שווים ולכן לא יסומנו, אבל exec_entry — מחיר הביצוע בפועל —
+    שווה בדיוק ל-exit_price. רק השוואה בקנה המידה הנכון תופסת את
+    זה. להשוות entry_price ל-exit_price כאן זו השוואה חסרת פשר.
+    """
+    bad = {**CLEAN, "entry_price": 5000.0, "exec_entry": 500.0,
+           "exit_price": 500.0, "pnl": 20.0}
+    w = integrity_warnings(_db(tmp_path, [bad]))
+    assert any("זהות" in x for x in w), w
+
+
+def test_missing_exec_entry_falls_back_without_crashing(tmp_path):
+    """בסיס נתונים שקדם למיגרציה. הבדיקה עדיין רצה, חלשה יותר."""
+    schema = SCHEMA.replace("    exec_entry REAL,\n", "")
+    bad = {k: v for k, v in CLEAN.items() if k != "exec_entry"}
+    bad.update(exit_price=5000.0, pnl=50.0)
+    w = integrity_warnings(_db(tmp_path, [bad], schema=schema))
+    assert any("זהות" in x for x in w), w
+    assert not any("לא רצה" in x for x in w), w
+
+
+def test_a_broken_check_is_reported_not_swallowed(tmp_path):
+    """הרגרסיה עצמה: שאילתה שנופלת חייבת להישמע.
+
+    טבלה בלי עמודת pnl מפילה כמה מהבדיקות. קודם הן היו מוחזרות
+    כ-None ונבלעות, והפונקציה הייתה מחזירה רשימה ריקה — כלומר
+    'הכול תקין' על בסיס נתונים שאי אפשר היה לבדוק בכלל.
+    """
+    schema = SCHEMA.replace("    pnl REAL,\n", "")
+    rows = [{k: v for k, v in CLEAN.items() if k != "pnl"}]
+    w = integrity_warnings(_db(tmp_path, rows, schema=schema))
+    assert any("לא רצה" in x for x in w), w
