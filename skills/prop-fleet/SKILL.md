@@ -74,6 +74,53 @@ Run `scripts/gate.py` against the trade record weekly rather than deciding by ha
 
 **The lower bound of the interval decides, never the mean.** A mean of +0.40R over 20 trades is noise; +0.25R over 400 is a business.
 
+## Twenty 50K accounts or ten 150K accounts
+
+Twenty 50K, but not for the reason that presents itself first — and the
+reasoning matters more than the answer, because the answer has a condition
+attached.
+
+The 50K payout ladder pays $13,000 against $2,500 of drawdown; the 150K pays
+$18,000 against $5,000. That is 5.20 versus 3.60 per dollar you are allowed
+to lose, a 44% advantage to the small account, and it holds without assuming
+anything about expectancy. It is tempting to stop there. It is also wrong to
+stop there: the large ladder is bigger in absolute terms, and once there is a
+real edge the absolute size is what compounds. The ratio and the total point
+in opposite directions.
+
+Holding the account count equal separates the plan from the quantity, and it
+reverses the verdict. At ten accounts each, the 150K wins above roughly
++0.10R and the margin grows with expectancy; the 50K wins at zero and below.
+The crossover sits between +0.08R and +0.10R. So what actually decided the
+original comparison was twenty against ten, not 50K against 150K.
+
+What survives is a conditional answer, which is the more useful one:
+
+- **With no edge, or a negative one, the small account is better and clearly
+  so.** At equal sizing and equal count, an expectancy of exactly zero costs
+  $25,942 on the 50K against $99,315 on the 150K. That is not a return; it is
+  the price of finding out you were wrong, and the small account charges a
+  quarter of it.
+- **With an edge established above about +0.10R, the large account is better
+  per slot.**
+
+The crossover sits inside the range the gate exists to resolve, so this is
+not a separate decision — it is the same measurement. Today, with a negative
+lower bound, the direction is the small account: cheaper to be wrong in, and
+it is also the one that buys twenty slots instead of ten. If the expectancy
+is ever measured above +0.10R with confidence, the question reopens.
+
+One detail decides more than it looks like it should. Risk is a percentage of
+drawdown and contracts are indivisible. At 4%, the 50K wants $100 against
+$42.50 per contract — 2.35, rounding to 2, so it risks 15% *less* than
+written. The 150K wants $200, gets 4.71, and rounds to 5 — 6% *more*. The
+rounding alone pushes the two plans in opposite directions, and it is not a
+rounding error in the reporting: it is the risk actually taken.
+
+`scripts/plan_choice.py` reproduces all of this, and `scripts/test_plan_choice.py`
+keeps the conclusion conditional — one test fails if anyone flattens it back
+into "the small account always wins".
+
 ## Losing runs, and why they don't change the size
 
 Losses in a regime-dependent methodology arrive in runs, and a run is worse
@@ -470,6 +517,8 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_integrity.py` — 20 tests, each a real corrupted row. `python3 -m pytest`.
 - `scripts/apex_model.py` — the fleet simulation: trailing floor with lock, evaluation clock, qualifying days, consistency rule, payout ladder, account closure, fees, commissions, slippage, correlated copy trading, staggered onboarding, tax, and the post-year-N withdrawal split. `simulate()` then `report()`.
 - `scripts/gate.py` — reads the trade record and names the stage the evidence permits, including downward. Takes a `trades.db`, a CSV of `pnl_r`, and `--stage N` to compare against where you are now.
+- `scripts/plan_choice.py` — twenty 50K accounts against ten 150K, decomposed into the ladder-per-drawdown ratio, the contract-rounding asymmetry, and an equal-count control that reverses the headline. Answers conditionally, because the crossover sits inside the range the gate is still resolving.
+- `scripts/test_plan_choice.py` — 9 tests, one of which exists solely to fail if the conditional answer is ever flattened into an unconditional one.
 - `scripts/test_gate.py` — 25 tests on the decision logic, since the numbers are the decision. Six of them run real SQL against a real table, because the integrity check that catches a trade closed at its own entry price had been naming a column that does not exist: SQLite raised, the handler returned None, and `if n:` read that exactly like a clean result. A check that cannot run has to look different from a check that passed.
 - `scripts/test_apex_model.py` — 21 tests on the model's mechanics: loss bounded by fees, withdrawals arriving only in whole ladders, the evaluation clock expiring an unreachable target, tax never touching a loss, and the withdrawal split. Deterministic, by driving the model to always-win and always-lose.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
