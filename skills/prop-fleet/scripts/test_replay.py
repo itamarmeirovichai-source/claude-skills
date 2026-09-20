@@ -745,6 +745,41 @@ def test_trailing_on_a_random_walk_still_yields_nothing(seed):
     assert lo <= 0.0 <= hi or hi < 0, (seed, m, lo, hi)
 
 
+def test_the_dollar_line_sizes_the_evaluation_separately():
+    """הבאג שהפך תוחלת חיובית למינוס בשורה שהוא באמת קורא.
+
+    project() הריץ את המודל בלי risk_pct_eval, כלומר הערכות ב-4%
+    כמו החשבון הממומן. היעד של ההערכה הופך אז ל-35.3R מתוך 63
+    עסקאות — בלתי אפשרי — והמודל שורף דמי הערכה לנצח בלי לעבור
+    אף פעם. על +0.101R שנמדד בפועל זה היה ההפרש בין 7,372$- לבין
+    200,677$+, ואת השורה הזאת קוראים כדי להחליט.
+
+    זו הפעם השלישית שאותו פרמטר נשמט בשלושה מקומות שונים, ולכן
+    יש עליו בדיקה בכל אחד מהם.
+    """
+    seen = {}
+
+    def spy(**kw):
+        seen.update(kw)
+        n = kw.get("n", 10)
+        return {"net_year": np.zeros((n, 8))}
+
+    import replay as rp
+    real = rp.simulate if hasattr(rp, "simulate") else None
+    import apex_model
+    orig = apex_model.simulate
+    apex_model.simulate = spy
+    try:
+        rp.project({"n": 111, "days": 28, "mean": 0.101, "lo": -0.184},
+                   pd.DataFrame())
+    finally:
+        apex_model.simulate = orig
+        if real is not None:
+            rp.simulate = real
+    assert seen.get("risk_pct_eval") == 0.10, seen
+    assert seen.get("risk_pct") == 0.04, seen
+
+
 def test_trailing_changes_the_shape_of_the_outcomes():
     """בקרה חיובית לגרירה עצמה.
 

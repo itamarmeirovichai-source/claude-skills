@@ -252,3 +252,65 @@ def test_strategy_is_never_touched(tmp_path, monkeypatch):
     monkeypatch.setattr(pipeline, "blocking", [])
     pipeline.step_proxy(bot, apply=True)
     assert graded.read_text() == "THRESHOLD = 7\n"
+
+
+# ---------- הדוח על עצמו ----------
+#
+# שלושת אלה נכתבו אחרי הרצה אמיתית אצלו. כולם הופיעו בפלט, אף אחד
+# לא הפיל שום דבר, וכל אחד מהם הפך את הדוח לשקרי בדרך אחרת.
+
+
+def test_the_doctor_gets_the_bot_path_not_a_doubled_one(tmp_path,
+                                                        monkeypatch):
+    """נתיב הבוט אינו תיקיית הבית, ובלבול ביניהם מכפיל אותו.
+
+    בהרצה האמיתית sys.argv עוד החזיק את נתיב הבוט משלב הריפליי,
+    doctor קרא משם תיקיית בית, וה-BOT שלו יצא
+    <bot>/Desktop/meirox-ai/<bot>. אז הוא דיווח 'proxy.py לא נמצא'
+    ו-'integrity.py לא מותקן' על קבצים ששני השלבים שלפניו בדיוק
+    אישרו שהם במקום. דיווח 'חסר' על קובץ קיים גרוע מקריסה, כי הוא
+    נקרא כממצא.
+    """
+    import doctor
+    bot = tmp_path / "meirox" / "bot dir"
+    (bot / "broker").mkdir(parents=True)
+    (bot / "broker" / "proxy.py").write_text("x = 1\n", encoding="utf-8")
+    monkeypatch.setattr(sys, "argv", ["pipeline.py", str(bot)])
+    doctor.configure(bot=bot)
+    assert doctor.BOT == bot
+    assert doctor.PROXY == bot / "broker" / "proxy.py"
+    assert doctor.PROXY.exists()
+    assert "Desktop" not in str(doctor.PROXY.relative_to(tmp_path))
+
+
+def test_the_summary_cannot_say_clear_while_the_doctor_says_blocked(
+        tmp_path, monkeypatch, capsys):
+    """הפלט האמיתי הדפיס חוסם ואז 'אין חוסם' שתי שורות אחריו.
+
+    שתי הרשימות היו נפרדות והסיכום קרא רק את שלו. סתירה גלויה בין
+    שתי שורות באותו דוח שוחקת את האמון בכל מה שמעליהן.
+    """
+    import doctor
+    bot = tmp_path / "bot"
+    bot.mkdir()
+    monkeypatch.setattr(pipeline, "blocking", [])
+    monkeypatch.setattr(doctor, "issues", ["משהו חסר"])
+    monkeypatch.setattr(doctor, "main", lambda: 1)
+    monkeypatch.setattr(doctor, "configure", lambda **kw: None)
+    pipeline.step_verdict(bot)
+    assert "משהו חסר" in pipeline.blocking
+
+
+def test_a_doctor_that_crashes_is_a_blocker_not_a_pass(tmp_path, monkeypatch):
+    """אבחון שלא רץ אינו אבחון שעבר."""
+    import doctor
+    bot = tmp_path / "bot"
+    bot.mkdir()
+    monkeypatch.setattr(pipeline, "blocking", [])
+    monkeypatch.setattr(doctor, "configure", lambda **kw: None)
+
+    def boom():
+        raise RuntimeError("nope")
+    monkeypatch.setattr(doctor, "main", boom)
+    pipeline.step_verdict(bot)
+    assert any("לא רץ" in b for b in pipeline.blocking), pipeline.blocking

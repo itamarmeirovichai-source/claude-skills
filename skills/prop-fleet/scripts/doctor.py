@@ -17,12 +17,29 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-HOME = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else Path.home()
-DESK = HOME / "Desktop"
-BOT = DESK / "meirox-ai" / "MeiroX-AI - בוט מסחר"
-DB = BOT / "logs" / "trades.db"
-PROXY = BOT / "broker" / "proxy.py"
-INTEGRITY = BOT / "bot" / "integrity.py"
+HOME = DESK = BOT = DB = PROXY = INTEGRITY = None
+
+
+def configure(home=None, bot=None) -> None:
+    """קובע את הנתיבים. ‏`home` היא תיקיית הבית, ‏`bot` היא תיקיית הבוט.
+
+    שני הפרמטרים קיימים כי הם שני דברים שונים, וערבוב ביניהם הוא
+    בדיוק מה שקרה: מתקשר העביר לכאן את תיקיית הבוט כאילו היא הבית,
+    הנתיב הוכפל לתוך עצמו, וכל בדיקה כאן דיווחה 'לא נמצא' על קבצים
+    שהיו קיימים. דיווח 'חסר' על משהו שקיים גרוע מדיווח שגיאה, כי
+    הוא נראה כמו ממצא.
+    """
+    global HOME, DESK, BOT, DB, PROXY, INTEGRITY
+    HOME = Path(home).expanduser() if home else Path.home()
+    DESK = HOME / "Desktop"
+    BOT = (Path(bot).expanduser() if bot
+           else DESK / "meirox-ai" / "MeiroX-AI - בוט מסחר")
+    DB = BOT / "logs" / "trades.db"
+    PROXY = BOT / "broker" / "proxy.py"
+    INTEGRITY = BOT / "bot" / "integrity.py"
+
+
+configure(sys.argv[1] if len(sys.argv) > 1 else None)
 
 OK, WARN, BAD, INFO = "  ✓", "  !", "  ✗", "  ·"
 issues, nexts = [], []
@@ -311,6 +328,11 @@ def check_external():
 
 
 def main():
+    # נתיבים עלולים להיות מוגדרים מ-sys.argv של מתקשר אחר. מי
+    # שקרא ל-configure() במפורש כבר קבע אותם, ומי שלא — נקרא כאן
+    # מחדש מהארגומנטים של ההרצה הזאת.
+    if BOT is None:
+        configure(sys.argv[1] if len(sys.argv) > 1 else None)
     print("\n" + "=" * 62)
     print("  prop-fleet — בדיקת מצב")
     print("=" * 62)

@@ -288,16 +288,33 @@ def step_measure(bot: Path) -> bool:
 
 
 def step_verdict(bot: Path) -> None:
+    """מריץ את האבחון ומושך את הממצאים שלו לסיכום.
+
+    שני דברים השתבשו כאן קודם ושניהם הופיעו בפלט אמיתי.
+
+    ראשית, שלב המדידה משאיר את נתיב הבוט ב-sys.argv, ו-doctor קורא
+    משם את תיקיית ה**בית**. הנתיב הוכפל לתוך עצמו, וכל בדיקה שם
+    דיווחה 'לא נמצא' על קבצים שהיו קיימים — כולל proxy.py ו-
+    integrity.py ששני השלבים הקודמים בדיוק אישרו שהם במקום.
+
+    ושנית, החוסמים של doctor נשמרים ברשימה שלו, והסיכום כאן קרא רק
+    את שלי. אז הפלט הדפיס חוסם ומיד אחריו 'אין חוסם'. סתירה גלויה
+    בין שתי שורות באותו דוח שוחקת את האמון בכל השאר.
+    """
     banner("שלב 5 — מה מותר עכשיו")
     sys.path.insert(0, str(HERE))
     import doctor
-    doctor.HOME = bot
+    doctor.configure(bot=bot)
     try:
         doctor.main()
     except SystemExit:
         pass
     except Exception as e:
         say(WARN, f"doctor לא רץ: {type(e).__name__}: {str(e)[:80]}")
+        blocking.append(f"האבחון לא רץ ({type(e).__name__}) — מצבו לא ידוע")
+        return
+    for i in getattr(doctor, "issues", []):
+        blocking.append(i)
 
 
 def main() -> None:

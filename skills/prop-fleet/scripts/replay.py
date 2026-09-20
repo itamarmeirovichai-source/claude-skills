@@ -689,8 +689,14 @@ def project(summary: dict, base: pd.DataFrame) -> None:
                       ("גבול תחתון", summary["lo"])):
         if not np.isfinite(val):
             continue
+        # risk_pct_eval הוא לא פרט. בלעדיו ההערכה נמדדת ב-4% כמו
+        # החשבון הממומן, בניגוד לכלל הדו-מהירותי של המיומנות, והיעד
+        # של ההערכה הופך ל-35.3R מתוך 63 עסקאות — כלומר בלתי אפשרי.
+        # המודל אז שורף דמי הערכה לנצח ולא עובר אף פעם, והשורה הזאת
+        # מדפיסה מינוס על תוחלת חיובית. על +0.101R זה היה ההפרש בין
+        # 7,372$- ל-200,677$+.
         r = simulate(plan="50K", slots=10, avg_R=float(val), risk_pct=0.04,
-                     n=800, seed=11)
+                     risk_pct_eval=0.10, n=800, seed=11)
         tot = r["net_year"].sum(axis=1)
         print(f"  {name:<12}{val:>+8.3f}{np.median(tot):>15,.0f}$"
               f"{np.percentile(tot, 10):>13,.0f}$")
