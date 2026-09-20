@@ -181,6 +181,17 @@ def main() -> None:
     se = se_of(df.net_R.values, df.day.tolist())
     banner("הבסיס")
     print(f"  {len(df)} עסקאות, {df.day.nunique()} ימי מסחר")
+    # אילו עמודות רשות הגיעו מהסטאפים. בלי השורה הזאת "אין grade"
+    # נראה כמו תקלה בבודק במקום כמו נתון שלא יוצא, וההשערה הראשונה
+    # בתור נשארת חסומה בלי שאיש יֵדע למה.
+    opt = {"grade": "דירוג הסטאפ", "day_efficiency": "מגמה מול דשדוש",
+           "day_atr_pct": "תנודתיות יומית", "setup_type": "סוג הסטאפ"}
+    have = [n for c, n in opt.items() if c in df.columns]
+    miss = [n for c, n in opt.items() if c not in df.columns]
+    if have:
+        print(f"  עמודות רשות שהגיעו: {', '.join(have)}")
+    if miss:
+        print(f"  חסרות: {', '.join(miss)} — הבודקים שלהן לא ירוצו")
     print(f"  תוחלת {df.net_R.mean():+.3f}R, שגיאת תקן מקובצת {se:.3f}R")
     print(f"\n  רף הרעש: שיפור קטן מ-{se:.3f}R אינו ממצא.")
     by_reason(df)
