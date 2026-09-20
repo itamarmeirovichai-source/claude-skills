@@ -297,6 +297,31 @@ def t_multiplicity(df):
                       f"הקצה כולו: {df.net_R.mean():+.3f}R."}
 
 
+def t_trend_chop(df):
+    """ימי מגמה מול ימי דשדוש. הפריור הגבוה ביותר במרשם."""
+    if "day_efficiency" not in df:
+        return {"effect": None, "n": 0,
+                "detail": "אין day_efficiency — להריץ שוב את הריפליי "
+                          "מהגרסה שמייצאת אותו"}
+    med = df.day_efficiency.median()
+    return _split(df, df.day_efficiency >= med)
+
+
+def t_atr_bucket(df):
+    if "day_atr_pct" not in df:
+        return {"effect": None, "n": 0, "detail": "אין day_atr_pct"}
+    return _split(df, df.day_atr_pct >= df.day_atr_pct.median())
+
+
+def t_top_grade(df):
+    if "grade" not in df:
+        return {"effect": None, "n": 0,
+                "detail": "אין grade — להריץ שוב את הריפליי מהגרסה "
+                          "שמייצאת אותו"}
+    top = sorted(df.grade.dropna().unique())[-1]
+    return _keep(df, df.grade != top)
+
+
 def t_unfilled(df):
     return {"effect": None, "n": 0,
             "detail": "דורש את השורות שלא התמלאו — הן מסוננות מהקובץ"}
@@ -328,6 +353,8 @@ TESTS = {
     "by_month": t_month, "drop_best_day": t_drop_best_day,
     "drop_best_symbol": t_drop_best_symbol, "serial_corr": t_serial,
     "tail_risk": t_tail, "multiplicity": t_multiplicity,
+    "trend_vs_chop": t_trend_chop, "by_atr_bucket": t_atr_bucket,
+    "top_grade_only": t_top_grade,
     "unfilled_info": t_unfilled,
 }
 

@@ -417,6 +417,30 @@ def clustered_interval(r: np.ndarray, day) -> tuple:
     return m, m - half, m + half, k
 
 
+def regime_of(day: pd.DataFrame) -> dict:
+    """מאפייני המושב שבו העסקה קרתה. משטר, לא תוצאה.
+
+    שניהם מחושבים על כל נרות המושב — כולל אלה שאחרי העסקה. זו לא
+    דליפה מהעתיד לצורך החלטה, כי אף אחד לא מציע לסחור לפי זה בזמן
+    אמת; זו תווית משטר למחקר בדיעבד. מי שירצה להפוך את זה לכלל
+    חייב לחשב אותו מנתוני בוקר בלבד, ואז זו השערה אחרת.
+
+    יחס היעילות: כמה מהתנועה הגולמית הפכה לתנועה נטו. קרוב ל-1
+    זו מגמה נקייה, קרוב ל-0 זה דשדוש. זה מדד סטנדרטי ולא פרמטר
+    שכוונן על הנתונים האלה.
+    """
+    c = day.close.values
+    if len(c) < 5:
+        return {}
+    steps = np.abs(np.diff(c)).sum()
+    net = abs(c[-1] - c[0])
+    rng = float((day.high - day.low).mean())
+    return {"day_atr_pts": round(rng, 3),
+            "day_atr_pct": round(100 * rng / float(np.mean(c)), 4),
+            "day_efficiency": round(float(net / steps) if steps else 0.0, 4),
+            "day_range_pts": round(float(day.high.max() - day.low.min()), 3)}
+
+
 def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
            tp_col: str | None, tp_rr: float | None = None,
            pessimistic: bool = True, trail_trigger: float | None = None,
@@ -459,6 +483,19 @@ def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
                    trail_trigger=trail_trigger, trail_to=trail_to)
         out.update(ts=r.ts, symbol=r.symbol, direction=r.direction,
                    entry=float(r.entry), stop=float(stop), tp=tp)
+        # עמודות מהסטאפ שנוסעות הלאה לקובץ התוצאות.
+        #
+        # בלי זה אי אפשר לבדוק אם הדירוג בכלל מנבא תוצאה — וזו
+        # ההשערה הראשונה בתור לפי ערך מידע. נתון שלא נאסף במהלך
+        # ההרצה לא ניתן לשחזור אחריה, ולכן זה חייב להיות כאן לפני
+        # שהמדידה מתחילה ולא אחריה.
+        for col in ("grade", "analysis_id", "session", "setup_type"):
+            v = getattr(r, col, None)
+            if v is not None:
+                out[col] = v
+        # מדדי משטר יומיים, מאותם נרות שכבר נטענו. שניהם מחושבים
+        # מהמושב כולו ולא מהעתיד של העסקה עצמה.
+        out.update(regime_of(day))
         if out["status"] == "filled":
             out["net_R"] = out["raw_R"] - cost_R(r.symbol, out["risk_pts"])
         rows.append(out)

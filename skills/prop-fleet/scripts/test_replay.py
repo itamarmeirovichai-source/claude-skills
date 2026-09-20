@@ -797,3 +797,37 @@ def test_trailing_changes_the_shape_of_the_outcomes():
     assert full_loss(tf) < full_loss(pf), "הגרירה אמורה לחתוך הפסדים מלאים"
     assert (tf.reason == "tp").mean() < (pf.reason == "tp").mean(), \
         "והיא אמורה לקטוע גם חלק מהזוכות בדרך ליעד"
+
+
+def test_regime_measures_separate_a_trend_from_a_chop():
+    """יחס היעילות חייב להפריד מגמה מדשדוש, אחרת הוא לא מודד כלום.
+
+    D04 הוא הפריור הגבוה ביותר במרשם ההשערות, והוא תלוי לגמרי
+    במדד הזה. מדד שלא מפריד בין שני המקרים הקיצוניים לא יפריד
+    גם בין המקרים האמיתיים.
+    """
+    n = 60
+    up = np.arange(n, dtype=float) * 2.0 + 5000.0
+    chop = 5000.0 + np.tile([0.0, 3.0], n // 2)
+    for arr, name in ((up, "מגמה"), (chop, "דשדוש")):
+        pass
+    trend = replay_mod_regime(up)
+    flat = replay_mod_regime(chop)
+    assert trend["day_efficiency"] > 0.9, trend
+    assert flat["day_efficiency"] < 0.1, flat
+
+
+def replay_mod_regime(closes):
+    from replay import regime_of
+    df = pd.DataFrame({"close": closes,
+                       "high": closes + 1.0, "low": closes - 1.0})
+    return regime_of(df)
+
+
+def test_regime_is_empty_on_a_session_too_short_to_measure():
+    assert replay_mod_regime(np.array([1.0, 2.0])) == {}
+
+
+def test_a_flat_session_does_not_divide_by_zero():
+    out = replay_mod_regime(np.full(30, 5000.0))
+    assert out["day_efficiency"] == 0.0
