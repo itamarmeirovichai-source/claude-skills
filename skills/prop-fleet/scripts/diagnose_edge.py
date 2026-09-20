@@ -100,7 +100,12 @@ def by_reason(df: pd.DataFrame) -> None:
 
 def drop_bucket(df: pd.DataFrame, mask, label: str) -> None:
     """מה קורה אם קבוצה שלמה לא נלקחת. לא נטענת כ-1R-, פשוט לא נלקחת."""
-    kept = df[~mask]
+    if isinstance(mask, pd.Series) and not mask.index.equals(df.index):
+        # מסכה שנבנתה על מסגרת ממוינת. יישור מפורש, כי pandas עושה
+        # אותו בשקט ומדפיס אזהרה — ותיקון שקט מחזיר תשובה על
+        # השורות הלא נכונות.
+        mask = mask.reindex(df.index)
+    kept = df[~mask.astype(bool)]
     if len(kept) < 10 or mask.sum() == 0:
         return
     base, new = df.net_R.mean(), kept.net_R.mean()

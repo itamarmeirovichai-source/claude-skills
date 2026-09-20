@@ -191,3 +191,41 @@ def test_every_hypothesis_appears_on_the_page():
     page = D.render(res, se, bonf, active, df)
     for h in HY.REGISTER:
         assert f'data-id="{h.id}"' in page, h.id
+
+
+def test_a_mask_built_on_a_sorted_frame_selects_the_same_rows():
+    """המסכה של תקרת העסקאות ליום נבנית על מסגרת ממוינת.
+
+    התוויות זהות, הסדר לא. pandas מיישר בשקט ומדפיס אזהרה, ובדיוק
+    שם נולדת תשובה על השורות הלא נכונות. הבדיקה מוודאת שהיישור
+    המפורש בוחר את אותן שורות כמו בחירה ידנית, ושלא נזרקת אזהרה.
+    """
+    import warnings
+    # מערבבים, כי בנתונים הסינתטיים השורות כבר ממוינות לפי זמן
+    # והמיון לא מזיז כלום — כלומר הבדיקה לא הייתה בודקת דבר.
+    # בקובץ האמיתי הסדר נקבע לפי הסטאפים ולא לפי זמן המילוי.
+    df = noise_frame().sample(frac=1.0, random_state=5)
+    order = df.sort_values("fill_ts").groupby("day").cumcount()
+    assert not order.index.equals(df.index), "בלי זה הבדיקה לא בודקת כלום"
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        out = D._keep(df, order >= 3)
+    manual = df.loc[order.reindex(df.index) < 3]
+    assert out["effect"] == pytest.approx(
+        manual.net_R.mean() - df.net_R.mean())
+
+
+def test_a_mask_covering_different_rows_is_refused():
+    """יישור שקט על תוויות אחרות הוא תשובה על מדגם אחר."""
+    df = noise_frame()
+    bad = (df.net_R > 0).iloc[:-5]
+    with pytest.raises(ValueError):
+        D._align(df, bad)
+
+
+def test_no_warning_escapes_a_full_run():
+    import warnings
+    df = noise_frame()
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        D.run_all(df)

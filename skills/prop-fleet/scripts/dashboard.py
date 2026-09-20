@@ -82,7 +82,25 @@ def clustered_se(x: np.ndarray, day) -> float:
 # effect=None אומר "לא ניתן לבדיקה מהנתונים האלה", וזו תשובה
 # לגיטימית שלא נספרת כעבר.
 
+def _align(df, mask):
+    """מיישר מסכה לאינדקס של המסגרת, או נופל ברעש.
+
+    מסכה שנבנתה על מסגרת ממוינת מחזיקה את אותן תוויות בסדר אחר.
+    pandas מיישר אותה בשקט ומדפיס אזהרה, וזה בדיוק הסוג של תיקון
+    שקט שמחזיר תשובה על השורות הלא נכונות. כאן היישור מפורש,
+    וחוסר התאמה אמיתי בתוויות עוצר במקום להיבלע.
+    """
+    import pandas as _pd
+    if isinstance(mask, _pd.Series):
+        if not mask.index.equals(df.index):
+            if set(mask.index) != set(df.index):
+                raise ValueError("המסכה לא מכסה את אותן שורות")
+            mask = mask.reindex(df.index)
+    return mask.astype(bool)
+
+
 def _split(df, mask, label=""):
+    mask = _align(df, mask)
     a, b = df[mask], df[~mask]
     if len(a) < 5 or len(b) < 5:
         return {"effect": None, "n": int(mask.sum()),
@@ -94,6 +112,7 @@ def _split(df, mask, label=""):
 
 def _keep(df, mask, label=""):
     """מה קורה לתוחלת הכוללת אם קבוצה לא נלקחת."""
+    mask = _align(df, mask)
     kept = df[~mask]
     if len(kept) < 10 or mask.sum() == 0:
         return {"effect": None, "n": int(mask.sum()),
