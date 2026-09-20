@@ -199,3 +199,36 @@ def test_returns_compound_on_what_was_extracted():
     grown = allocate(ny, port_r=0.10, biz_r=0.10)[-1]
     assert grown[1][0] > flat[1][0] and grown[2][0] > flat[2][0]
     assert grown[0][0] == pytest.approx(flat[0][0]), "הרזרבה לא אמורה לצמוח"
+
+
+def test_post_lock_risk_is_a_separate_dial():
+    """אחרי נעילת הרצפה זה הימור אחר, ולכן הוא צריך גודל משלו."""
+    from apex_model import simulate
+    a = simulate(plan="50K", slots=5, avg_R=0.25, risk_pct=0.04,
+                 risk_pct_locked=0.08, risk_pct_eval=0.10, n=200, seed=3)
+    b = simulate(plan="50K", slots=5, avg_R=0.25, risk_pct=0.04,
+                 risk_pct_eval=0.10, n=200, seed=3)
+    assert a["risk_l"] > b["risk_l"]
+    assert a["kl"] > b["kl"]
+    assert a["net_year"].sum() != b["net_year"].sum()
+
+
+def test_omitting_the_post_lock_dial_leaves_behaviour_unchanged():
+    """ברירת המחדל חייבת להיות זהה לגרסה שלפני התוספת."""
+    from apex_model import simulate
+    a = simulate(plan="50K", slots=5, avg_R=0.2, risk_pct=0.04,
+                 risk_pct_eval=0.10, n=200, seed=3)
+    b = simulate(plan="50K", slots=5, avg_R=0.2, risk_pct=0.04,
+                 risk_pct_locked=0.04, risk_pct_eval=0.10, n=200, seed=3)
+    assert a["net_year"].sum() == b["net_year"].sum()
+
+
+def test_sizing_up_after_the_lock_costs_accounts():
+    """אין ארוחות חינם: הרווח הגדול יותר בא עם קצב מוות גבוה יותר."""
+    import numpy as np
+    from apex_model import simulate
+    lo = simulate(plan="50K", slots=8, avg_R=0.25, risk_pct=0.04,
+                  risk_pct_locked=0.04, risk_pct_eval=0.10, n=300, seed=3)
+    hi = simulate(plan="50K", slots=8, avg_R=0.25, risk_pct=0.04,
+                  risk_pct_locked=0.08, risk_pct_eval=0.10, n=300, seed=3)
+    assert np.median(hi["burned"]) > np.median(lo["burned"])

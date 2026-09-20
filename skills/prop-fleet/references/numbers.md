@@ -102,6 +102,43 @@ which triples the rate at which accounts are destroyed, still demands
 business income. And the goal is nevertheless still live, because +0.250R
 sits inside the measured interval. It is unproven, not refuted.
 
+## Risk before and after the floor locks
+
+The trailing floor follows the peak down until the peak reaches the safety
+net, after which it pins at start + $100 permanently. So only the first
+$2,600 is genuinely dangerous, and an account before that point and one
+after it are not the same bet. The model takes `risk_pct_locked` for the
+second state.
+
+20 × 50K, evaluations at 10%, net per year in steady state:
+
+| Before lock | After lock | At +0.101R | At +0.250R | Accounts burned at +0.250R |
+| --- | --- | --- | --- | --- |
+| 2% | 4% | 4.3% | 17.0% | 57 |
+| 4% | 4% | **5.9%** | 20.0% | 72 |
+| 4% | 6% | 5.8% | 24.1% | 118 |
+| 4% | 8% | 6.3% | **27.0%** | 168 |
+
+Two things follow, and the first corrects an intuition that sounds right.
+
+**Cutting risk before the lock does not help.** It reads as prudent — the
+dangerous zone deserves caution — but 2% before the lock returns 4.3% a
+year against 5.9% at a flat 4%, at both expectancies tested. Undersizing
+through the dangerous stretch means taking longer to clear it, and the
+floor is trailing the whole time. The way past a trailing floor is
+through it.
+
+**Raising risk after the lock is worth a great deal, but only if the edge
+is real.** At +0.250R it takes 20.0% to 27.0%, seven percentage points for
+one parameter. At the measured +0.101R the same change is worth 0.4 points
+and nearly doubles accounts destroyed, from 305 to 564.
+
+So this is not a change whose value is independent of the expectancy, and
+it does not belong on a list of things safe to adopt before the
+measurement exists. It belongs on the list of things to adopt the moment
+the lower bound clears, and it is worth having measured in advance so that
+the decision is ready rather than deliberated.
+
 ## How long until the lower bound decides
 
 The half-width of the clustered interval was 0.285R over 28 day-clusters,

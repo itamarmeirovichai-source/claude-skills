@@ -24,7 +24,7 @@ EVAL_TRADING_DAYS = 21          # 30 calendar days, hard expiry, no extension
 
 def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
              n=1500, rr=2.0, seed=11, onboard_per_month=1, tax=0.25,
-             correlated=True, risk_pct_eval=None,
+             correlated=True, risk_pct_eval=None, risk_pct_locked=None,
              persistence=0.5, spread=0.0):
     P = PLANS[plan]
     START, DD = P["start"], P["dd"]
@@ -32,10 +32,17 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
     LAD = np.array(P["ladder"]); NP_ = len(LAD)
     risk = risk_pct * DD
     risk_e = (risk_pct_eval or risk_pct) * DD
+    # סיכון אחרי נעילת הרצפה. לפני הנעילה כל הפסד גורר את הרצפה
+    # איתו, ואחריה היא מקובעת ב-START+100 לנצח — כלומר רק
+    # 2,600 הדולרים הראשונים מסוכנים באמת. שני המצבים האלה אינם
+    # אותו הימור, ולסכן בהם אותו דבר זה לוותר על הבדל חוזי ודאי.
+    risk_l = (risk_pct_locked or risk_pct) * DD
     k = max(1, round(risk / (STOP_PTS * MES_PT)))
     ke = max(1, round(risk_e / (STOP_PTS * MES_PT)))
+    kl = max(1, round(risk_l / (STOP_PTS * MES_PT)))
     comm, slip = k * COMM_RT, k * SLIP_PTS * MES_PT
     comm_e, slip_e = ke * COMM_RT, ke * SLIP_PTS * MES_PT
+    comm_l, slip_l = kl * COMM_RT, kl * SLIP_PTS * MES_PT
     p = (avg_R + 1.0) / (rr + 1.0)
     # Two market regimes whose stationary mixture gives exactly avg_R, so a
     # clustered run and an i.i.d. run carry the same edge and differ only in
@@ -98,9 +105,14 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
                 r = np.where(rng.random(n) < pr, rr, -1.0)[:, None]
             else:
                 r = np.where(rng.random(shape) < pr[:, None], rr, -1.0)
-            sz  = np.where(ispa, risk, risk_e)
-            cm  = np.where(ispa, comm, comm_e)
-            sl  = np.where(ispa, slip, slip_e)
+            # שלושה מצבים, לא שניים: הערכה, ממומן לפני נעילה,
+            # וממומן אחרי נעילה.
+            fund = np.where(lock, risk_l, risk)
+            fcm = np.where(lock, comm_l, comm)
+            fsl = np.where(lock, slip_l, slip)
+            sz  = np.where(ispa, fund, risk_e)
+            cm  = np.where(ispa, fcm, comm_e)
+            sl  = np.where(ispa, fsl, slip_e)
             net = r * sz - cm - np.where(r < 0, sl, 0.0)
             bal = np.where(active, bal + net, bal)
             dpnl = np.where(active, dpnl + net, dpnl)
@@ -160,7 +172,8 @@ def simulate(plan="50K", slots=20, avg_R=0.30, risk_pct=0.04, years=8,
     net_year = (yearly_gross - yearly_fees)
     net_year = np.where(net_year > 0, net_year * (1 - tax), net_year)
     return dict(plan=plan, slots=slots, avg_R=avg_R, risk_pct=risk_pct,
-                risk=risk, k=k, risk_e=risk_e, ke=ke, net_year=net_year,
+                risk=risk, k=k, risk_e=risk_e, ke=ke,
+                risk_l=risk_l, kl=kl, net_year=net_year,
                 gross=yearly_gross, fees=yearly_fees,
                 burned=burned, attempts=attempts.sum(axis=1))
 
