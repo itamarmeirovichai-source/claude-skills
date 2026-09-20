@@ -139,6 +139,40 @@ measurement exists. It belongs on the list of things to adopt the moment
 the lower bound clears, and it is worth having measured in advance so that
 the decision is ready rather than deliberated.
 
+## The classification decides the target, not just the take-home
+
+The model's tax parameter had only ever been run at 25% and 47%. If the
+income is business income, National Insurance and health levy sit on top
+of the marginal rate, and that was never modelled at all. Solved for the
+expectancy that returns 20% a year, 20 × 50K at 4% of drawdown:
+
+| Effective rate | What it is | Expectancy required |
+| --- | --- | --- |
+| 25% | capital gain | +0.249R |
+| 47% | business income, top marginal | +0.339R |
+| 53% | business income plus National Insurance* | +0.379R |
+| 60% | adverse case* | +0.441R |
+
+\* The National Insurance rates and their ceiling are not verified here.
+That is a question for an accountant, and it is question 2 in the letter.
+
+Measured: **+0.101R**. So the classification does not merely change the
+take-home — it moves the target between +0.249R and +0.441R, a range wider
+than the entire measured edge. Every fact in the letter argues for the
+business-income side: nothing is owned, nothing is sold, the account is
+simulated, the payment is contractual consideration for a result, and the
+activity is daily and automated.
+
+One item the plan had never priced at all: **VAT**. Business income from a
+US company is export of services to a foreign resident, which can qualify
+for zero-rated VAT under section 30(a)(5) subject to conditions. Getting
+that wrong is 18% of gross receipts, which is larger than any trading
+decision in this document.
+
+Until an accountant answers in writing, reserve at the higher rate from
+every payout on the day it arrives. Over-reserving is an inconvenience;
+under-reserving for two years while the plan compounds is not.
+
 ## How long until the lower bound decides
 
 The half-width of the clustered interval was 0.285R over 28 day-clusters,
