@@ -87,6 +87,13 @@ being given up and why it is worth giving up.
 | Net per year | $246,311 | $174,060 | $72,251 |
 | Over 8 years | $1,728,928 | $1,221,774 | **$507,154** |
 
+Which way this is likely to fall matters more than the spread. Nothing is owned,
+nothing is sold, the account is simulated, and the payment is contractual
+consideration for a result produced by a program trading daily — every one of
+those facts argues against capital-gains treatment. So 25% is the optimistic
+branch of this table, not the neutral one, and the headline 24.6% a year is
+really 17.4% until an accountant says otherwise in writing.
+
 An earlier draft reported $642,993 here. That paired a 47% figure from a run
 with the evaluation sized at 4% against a 25% figure from a run at 10%, which
 overstated the gap by about $136,000. `scripts/claims.py` now recomputes every

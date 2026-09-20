@@ -64,9 +64,20 @@ the model, because the payout ladder is the single biggest input to it.
 
 **Why it matters.** The difference between the two plausible classifications is
 larger than most of the trading decisions in the plan. Modelled over eight years
-at the same performance, it is roughly $643,000. It is worth an hour of a
-professional's time before the first account is bought, not after the first
-payout arrives.
+at the same performance, it is **$507,154** — 24.6% a year against 17.4%, or 7.2
+percentage points of return for one hour of a professional's time. It is worth
+that hour before the first account is bought, not after the first payout arrives.
+
+(An earlier draft of this file said $643,000. That paired a 47% figure from one
+model configuration against a 25% figure from another and overstated the gap by
+about $136,000. `scripts/claims.py` recomputes it.)
+
+**And read the facts below before assuming the good number.** Every one of them
+argues *against* the 25% treatment: nothing is owned, nothing is sold, the
+account is simulated, the payment is contractual consideration for a result, and
+the activity is daily and automated. The model's 25% base case is therefore the
+optimistic branch, not the neutral one. Until an accountant says otherwise in
+writing, plan on 17.4% and treat 24.6% as the upside.
 
 Bring these facts, and ask these questions.
 
