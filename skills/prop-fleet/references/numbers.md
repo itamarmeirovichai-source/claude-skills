@@ -78,6 +78,49 @@ and at 12% of drawdown between 37% and 62% of accounts die without a single
 payout. The 4% figure is the recommendation; these columns exist to show what is
 being given up and why it is worth giving up.
 
+## What the goal costs, in R
+
+The brief asks for more than 20% a year. That is not a vague aspiration once
+it is priced: it is a single measurable threshold on expectancy, and every
+other decision follows from whether the strategy clears it.
+
+Net after tax in steady state, 20 × 50K, as a percentage of nominal account
+capital — solved for the expectancy that returns exactly 20%:
+
+| Risk, as % of drawdown | At 25% tax | At 47% tax |
+| --- | --- | --- |
+| 4% (the recommendation) | **+0.250R** | +0.340R |
+| 6% | +0.207R | +0.270R |
+| 8% | +0.182R | +0.234R |
+
+Measured on the 131 clean setups against real bars: **+0.101R**, with a
+day-clustered interval of [−0.184R, +0.385R].
+
+Two things follow. No sizing dial closes that gap — even 8% of drawdown,
+which triples the rate at which accounts are destroyed, still demands
++0.182R against +0.101R measured, and +0.234R if the income is classified as
+business income. And the goal is nevertheless still live, because +0.250R
+sits inside the measured interval. It is unproven, not refuted.
+
+## How long until the lower bound decides
+
+The half-width of the clustered interval was 0.285R over 28 day-clusters,
+and it narrows as the square root of the cluster count. At the observed 2.71
+trades per trading day:
+
+| If the true expectancy is | Trading days to a positive lower bound | Months |
+| --- | --- | --- |
+| +0.101R | 223 | 10.6 |
+| +0.200R | 57 | 2.7 |
+| +0.250R | 36 | 1.7 |
+| +0.300R | 25 | 1.2 |
+| +0.500R | 9 | 0.4 |
+
+This is the reason the evaluation is worth buying before the question is
+settled rather than after. If the strategy really does clear the threshold
+the goal requires, live trading proves it in about six weeks — and if it
+does not, the same six weeks cost $165 to find out.
+
 ## Tax
 
 20 × 50K at +0.30R, in the same configuration with only the rate changed:

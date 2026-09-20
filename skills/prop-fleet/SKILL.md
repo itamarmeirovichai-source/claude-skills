@@ -76,6 +76,8 @@ Run `scripts/gate.py` against the trade record weekly rather than deciding by ha
 
 **The lower bound of the interval decides, never the mean.** A mean of +0.40R over 20 trades is noise; +0.25R over 400 is a business.
 
+Price the goal before arguing about it. A 20%-a-year target is a threshold on expectancy: **+0.250R** at 4% of drawdown and a 25% tax rate, +0.340R if the income is classified as business income, and +0.182R even at 8% of drawdown — which triples the rate at which accounts are destroyed. No sizing dial closes a gap of that size, and adding accounts changes the dollars without changing the percentage at all. Either the strategy clears the threshold or the target is wrong; those are the only two options, and which one holds is measurable rather than arguable.
+
 ## Twenty 50K accounts or ten 150K accounts
 
 Twenty 50K, but not for the reason that presents itself first — and the
