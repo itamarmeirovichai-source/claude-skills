@@ -118,3 +118,68 @@ def test_a_short_is_judged_by_the_same_rule():
                                exec_entry=505.0, exec_stop_loss=501.0,
                                exec_take_profit=498.0))
     assert bad is False
+
+
+# ---------- סימן הרווח ----------
+#
+# הבדיקות האלה נכתבו אחרי שהבודק הזה סימן שלוש עסקאות אמיתיות
+# כסותרות, והסתירה הייתה שלי: הוא נפל חזרה ל-entry_price כשחסר
+# exec_entry, וזה רמת חוזה מול מחיר ETF. אותו ערבוב קני מידה שהוא
+# נבנה כדי לתפוס, בתוכו.
+
+from paper_check import sign_verdict
+
+
+def test_a_consistent_close_passes():
+    ok, _ = sign_verdict(row(exec_entry=500.0, exit_price=502.0, pnl=20.0))
+    assert ok is True
+
+
+def test_a_real_contradiction_is_caught():
+    ok, why = sign_verdict(row(exec_entry=500.0, exit_price=495.0, pnl=20.0))
+    assert ok is False
+    assert "pnl" in why
+
+
+def test_a_missing_exec_entry_on_a_stock_trade_is_unchecked_not_bad():
+    """הרגרסיה עצמה. לונג רווחי במצב מניות.
+
+    entry_price=5000 היא רמת חוזה, exit_price=505 הוא מחיר ETF.
+    החיסור תמיד שלילי וענק, אז כל לונג רווחי נראה כסתירה. שלוש
+    עסקאות אמיתיות סומנו ככה. הן לא פגומות — פשוט אי אפשר לבדוק
+    אותן בלי exec_entry.
+    """
+    ok, why = sign_verdict(row(exec_entry=None, entry_price=5000.0,
+                               exit_price=505.0, pnl=20.0))
+    assert ok is None, why
+    assert "קנה מידה" in why
+
+
+def test_the_same_row_with_a_losing_long_was_also_never_checkable():
+    """הכיוון השני של אותו באג: הוא היה 'עובר' בלי שנבדק כלום."""
+    ok, _ = sign_verdict(row(exec_entry=None, entry_price=5000.0,
+                             exit_price=495.0, pnl=-20.0))
+    assert ok is None
+
+
+def test_futures_mode_without_exec_entry_is_still_checkable():
+    """כששני המחירים באותו קנה מידה, אין מה למנוע."""
+    ok, _ = sign_verdict(row(exec_entry=None, entry_price=5000.0,
+                             exit_price=5020.0, pnl=20.0))
+    assert ok is True
+    bad, _ = sign_verdict(row(exec_entry=None, entry_price=5000.0,
+                              exit_price=4980.0, pnl=20.0))
+    assert bad is False
+
+
+def test_zero_pnl_has_no_defined_sign():
+    ok, why = sign_verdict(row(exec_entry=500.0, exit_price=500.0, pnl=0.0))
+    assert ok is None
+    assert "אפס" in why
+
+
+def test_exec_entry_is_preferred_over_the_signal_level():
+    """כששניהם קיימים, רק זה שבקנה המידה של היציאה קובע."""
+    ok, _ = sign_verdict(row(exec_entry=500.0, entry_price=5000.0,
+                             exit_price=502.0, pnl=20.0))
+    assert ok is True

@@ -55,6 +55,10 @@ OK, BAD, WARN, INFO = "  ✓", "  ✗", "  !", "  ·"
 REL_TOL = 1e-4
 # מתחת לזה אין מה לומר על הצנרת.
 MIN_TRADES = 5
+# שני מחירים שהיחס ביניהם מחוץ לתחום הזה אינם באותו קנה מידה.
+# עסקה בודדת לא מזיזה מחיר פי שניים; מה שכן נותן פי עשרה הוא
+# רמת חוזה מול מחיר ETF.
+SAME_SCALE = (0.5, 2.0)
 
 
 def say(mark, text):
@@ -92,6 +96,48 @@ def verdict_for(row) -> tuple:
         detail = ", ".join(f"{k}={v:.5f}" for k, v in r.items())
         return False, f"המנות נחלקות: {detail}"
     return True, f"יחס אחיד {lo:.5f}"
+
+
+def sign_verdict(row) -> tuple:
+    """האם הרווח מסכים עם הכיוון והמחירים. None כשאי אפשר לבדוק.
+
+    הנקודה כאן היא באיזה מחיר כניסה משתמשים, והיא הפילה אותי פעם
+    אחת. ‏exit_price נרשם בקנה מידה של **ביצוע**. ‏exec_entry הוא
+    באותו קנה מידה, ולכן הוא היחיד שמותר להשוות אליו. ‏entry_price
+    הוא הרמה מהאסטרטגיה, ובמצב מניות היא רמת חוזה — כלומר 5000 מול
+    505, והחיסור בין השניים תמיד שלילי ותמיד ענק.
+
+    הגרסה הראשונה נפלה חזרה ל-entry_price כשחסר exec_entry, וסימנה
+    בדיוק כל לונג רווחי וכל שורט מפסיד כ"סתירה". זו לא הייתה תקלה
+    ברשומה — זה היה ערבוב קני מידה בתוך הבודק עצמו, בדיוק הסוג
+    שהבודק הזה נבנה כדי לתפוס.
+
+    לכן: exec_entry קודם; ובלעדיו נבדק היחס בין שני המחירים, ואם
+    הוא מחוץ לתחום סביר — לא בודקים, ואומרים למה.
+    """
+    exit_px = row["exit_price"]
+    pnl = row["pnl"]
+    if exit_px is None or pnl is None:
+        return None, "חסר מחיר יציאה או רווח"
+    entry = row["exec_entry"]
+    src = "exec_entry"
+    if entry is None:
+        entry = row["entry_price"]
+        src = "entry_price"
+    if entry in (None, 0):
+        return None, "אין מחיר כניסה"
+    ratio = float(exit_px) / float(entry)
+    if src == "entry_price" and not (SAME_SCALE[0] <= ratio <= SAME_SCALE[1]):
+        return None, (f"exec_entry ריק ו-entry_price בקנה מידה אחר "
+                      f"(יציאה/כניסה = {ratio:.4f}) — אי אפשר להשוות")
+    if float(pnl) == 0:
+        return None, "רווח אפס — הסימן לא מוגדר"
+    move = float(exit_px) - float(entry)
+    want = move if (row["direction"] or "").lower() == "long" else -move
+    if (want > 0) != (float(pnl) > 0):
+        return False, (f"{row['direction']} מ-{float(entry):.2f} "
+                       f"ל-{float(exit_px):.2f} אבל pnl={float(pnl):+.2f}")
+    return True, "עקבי"
 
 
 def main() -> None:
@@ -151,21 +197,26 @@ def main() -> None:
     # ── סימן הרווח מול הכיוון ─────────────────────────────────────
     closed = [r for r in rows if r["status"] == "closed"
               and r["pnl"] is not None and r["exit_price"] is not None]
-    sign_bad = []
+    sign_bad, sign_skip = [], []
     for r in closed:
-        entry = r["exec_entry"] if r["exec_entry"] is not None else r["entry_price"]
-        if entry is None:
-            continue
-        move = float(r["exit_price"]) - float(entry)
-        want = move if (r["direction"] or "").lower() == "long" else -move
-        if float(r["pnl"]) != 0 and (want > 0) != (float(r["pnl"]) > 0):
-            sign_bad.append(r)
+        ok, why = sign_verdict(r)
+        if ok is False:
+            sign_bad.append((r, why))
+        elif ok is None:
+            sign_skip.append((r, why))
     if closed:
+        good_n = len(closed) - len(sign_bad) - len(sign_skip)
         if sign_bad:
             say(BAD, f"{len(sign_bad)} מתוך {len(closed)} סגורות: הרווח סותר "
                      "את הכיוון והמחירים")
-        else:
-            say(OK, f"{len(closed)} סגורות, הרווח עקבי עם הכיוון והמחירים")
+            for r, why in sign_bad[:5]:
+                say(BAD, f"  id={r['id']} {r['market']} {r['direction']}: {why}")
+        if sign_skip:
+            say(WARN, f"{len(sign_skip)} מתוך {len(closed)} לא ניתנות לבדיקת "
+                      "סימן — לא נספרות כעבר")
+            say(INFO, f"  {sign_skip[0][1]}")
+        if good_n:
+            say(OK, f"{good_n} סגורות, הרווח עקבי עם הכיוון והמחירים")
 
     # ── קישור לסטאפ ───────────────────────────────────────────────
     orphan = [r for r in rows
