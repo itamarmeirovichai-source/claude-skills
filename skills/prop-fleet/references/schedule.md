@@ -20,10 +20,18 @@ and it is nearly done:
 
 | Blocking before a single dollar is spent | State |
 | --- | --- |
-| `broker/proxy.py` — the ratio-cancellation bug | **still live in his repo** |
-| `bot/integrity.py` — installed on the write path | **not installed** |
-| The replay run against real bars | waiting on IB Gateway on port 4002 |
-| The trailing constants read out of `broker/ibkr.py` | unread |
+| `broker/proxy.py` — the ratio-cancellation bug | **fixed**; `doctor.py` reports the conversion clean |
+| `bot/integrity.py` — installed on the write path | **installed and wired**, marking not blocking |
+| The replay run against real bars | **run**: +0.101R, clustered CI [−0.197, +0.398] on 28 days |
+| The trailing constants read out of `broker/ibkr.py` | **read**: 1.0R → breakeven, 1.5R → +0.5R (lines 1608/1611/1616) |
+| `exec_entry` written on a real fill | **the one that is left** — no live fill has passed through the fixed path yet |
+
+The first four are closed. The fifth is what the paper run exists to
+answer, and it is the whole of the Oct 3 condition: **at least five
+comparable trades with `exec_entry` populated and zero integrity flags**,
+as `paper_check.py` counts them. Below that the account is bought to find
+out whether the recording works, which is a question the paper run answers
+for nothing.
 
 None of these needs a funded account to fix. All of them have to be true
 before one is bought, because an account bought on top of a live
@@ -40,24 +48,84 @@ The monthly instruction buys accounts on a calendar. The gate buys them on
 evidence. The gap between those two is not a matter of temperament — it is
 arithmetic, and it comes out like this.
 
-The clean window produced 131 setups over 41 trading days: **3.2 setups a
-day**. Not every setup fills; the replay reports the rate. At a 50–70%
-fill rate that is 1.6 to 2.2 trades a day, which puts each stage here:
+The clean window produced 131 setups over 28 trading days: **4.7 setups a
+day**. The replay filled 111 of them, an 85% rate — but the replay fills a
+limit the moment price touches it, with no queue, so live will be lower.
+Call it 2.5 to 4.0 trades a day, and each stage lands here, counting from
+5 October:
 
 | Stage | Accounts | Trades needed | Earliest | Latest |
 | --- | --- | --- | --- | --- |
 | 1 | 1 | — | 3 Oct 2026 | 3 Oct 2026 |
-| 2 | 3 | 100 | 21 Nov 2026 | 19 Dec 2026 |
-| 3 | 10 | 250 | 27 Feb 2027 | 5 May 2027 |
-| 4 | 20 | 900 | 25 Apr 2028 | 12 Dec 2028 |
+| 2 | 3 | 100 | 9 Nov 2026 | 30 Nov 2026 |
+| 3 | 10 | 250 | 30 Dec 2026 | 22 Feb 2027 |
+| 4 | 20 | 900 | 16 Aug 2027 | 21 Feb 2028 |
 
-So twenty accounts is **19 to 27 months** of trading away, not twenty
-months of buying. Ten accounts is five to seven months away, not ten.
+Those dates are sooner than the previous version of this table, because
+the setup rate was measured rather than assumed. **That is not good news
+and it is not progress.** The trade count is a necessary condition, not
+the gate: each stage also requires a positive lower bound, and the next
+section shows that at the edge size actually measured, no trade count in
+this table produces one.
 
 And every one of those dates assumes the edge is real *and* survives each
 gate on the way. The dates are not a forecast. They are the fastest the
 evidence could possibly arrive if everything goes right, which is the
 least likely of the available outcomes.
+
+## How long until any of it can be decided
+
+A number in this plan was wrong and it was wrong in the direction that
+flatters it. It had been said that **+0.250R becomes provable in 39
+trading days**. The correct figure, computed rather than recalled, is
+**77** — and it is now in `scripts/detect.py` with tests, so it cannot
+drift again.
+
+The mechanism is that the standard error is clustered by trading day,
+because trades opened the same day share a regime and are not independent.
+It shrinks with the square root of the number of *days*, not of trades. A
+busy day is not an extra day.
+
+| True edge | Days until the lower bound clears zero | Months |
+| --- | --- | --- |
+| +0.101R (what was measured) | 452 | 21.5 |
+| +0.150R | 205 | 9.8 |
+| +0.200R | 118 | 5.6 |
+| **+0.250R (the 20%/yr target)** | **77** | **3.7** |
+| +0.300R | 54 | 2.6 |
+| +0.400R | 32 | 1.5 |
+
+Those are median cases: they assume the observed mean lands exactly on the
+true edge, which is a coin flip. To be reasonably sure rather than
+half-sure, roughly double them.
+
+Two things follow, and neither depends on which row you prefer.
+
+**An edge the size of the one measured is not decidable on any horizon
+that matters.** If +0.101R is the truth, the answer arrives in about two
+years of trading — by which point the question has answered itself in
+other ways.
+
+**So the wait is not for "how big is the edge". It is for "is it big
+enough".** An edge that has not shown itself in roughly four months is
+already too small to justify the fleet, whatever it eventually turns out
+to be. That asymmetry is the only reason the waiting is bounded.
+
+## The measured edge is one month, not a run rate
+
+The +0.101R is not a small edge repeating across the sample. Broken up:
+
+| Month | Trades | Mean | Contribution |
+| --- | --- | --- | --- |
+| 2026-05 | 44 | +0.049R | +2.2R (19%) |
+| **2026-06** | **42** | **+0.243R** | **+10.2R (91%)** |
+| 2026-07 | 25 | −0.046R | −1.2R (−10%) |
+
+Drop June and +0.101R becomes **+0.015R** on 69 trades. July is negative.
+One good month out of three is not a track record; it is a sample of one,
+and a sample of one neither establishes an edge nor rules it out.
+`diagnose_edge.py` now prints this split on every run so it cannot be
+read past again.
 
 ## What the disagreement is actually about
 
@@ -88,12 +156,19 @@ separation survives any reasonable count.
 
 ## What the schedule is, then
 
-1. **Now → 3 Oct 2026.** Fix `proxy.py`, install `integrity.py`, read the
-   trailing constants, run the replay on real bars. Send the two letters
-   in `verification-letters.md` — the Apex one covers the only unbounded
-   risk in the whole plan, and it has to be answered before money moves,
-   not after.
-2. **3 Oct 2026.** One 50K evaluation. $125. Not two.
+1. **Now → 3 Oct 2026.** The code work is done: `proxy.py` fixed,
+   `integrity.py` wired, trailing constants read, replay run. What remains
+   is the paper run, which is already scheduled and unattended — the bot
+   fires at 9:20 each trading day, IBC brings the Gateway back after its
+   nightly restart, and the daily report lands at 16:05. Send the two
+   letters in `verification-letters.md` — the Apex one covers the only
+   unbounded risk in the whole plan, and it has to be answered before money
+   moves, not after.
+2. **3 Oct 2026, conditional.** One 50K evaluation, $125, not two — and
+   only if `paper_check.py` shows at least five comparable trades with
+   `exec_entry` populated and zero integrity flags. If it does not, the
+   purchase waits; the condition is about whether the record can be
+   trusted, and it is not negotiable by a date.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow.
