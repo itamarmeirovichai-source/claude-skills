@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from replay import (MIN_RISK_PTS, clustered_interval, cost_R, interval,
+from replay import (MIN_RISK_PTS, _tcrit, clustered_interval, cost_R, interval,
                     load_clean_setups, pick_column, replay, report_drift, walk)
 
 ET = "America/New_York"
@@ -831,3 +831,19 @@ def test_regime_is_empty_on_a_session_too_short_to_measure():
 def test_a_flat_session_does_not_divide_by_zero():
     out = replay_mod_regime(np.full(30, 5000.0))
     assert out["day_efficiency"] == 0.0
+
+
+def test_few_clusters_use_t_not_the_normal_quantile():
+    """עם 28 ימים, 1.96 מכסה 93-94% ולא 95%.
+
+    מעט אשכולות, והשונות עצמה נאמדת מהם. נמדד בסימולציה: הקוונטיל
+    הנורמלי מחזיר כיסוי 93.0%, ו-t עם k-1 דרגות חופש מחזיר אותו
+    ל-95%. ההפרש כאן הוא 4.7% ברוחב — הוא לא הופך החלטה, אבל
+    רווח סמך שמסומן 95% ומכסה 93% הוא פשוט מסומן לא נכון.
+    """
+    assert _tcrit(27) == pytest.approx(2.052, abs=1e-3)
+    assert _tcrit(1) > 12          # מדגם זעיר — רחב מאוד, כמו שצריך
+    assert _tcrit(500) == pytest.approx(1.96, abs=1e-3)
+    # מונוטוני יורד: יותר דרגות חופש, רווח צר יותר
+    vals = [_tcrit(d) for d in (5, 10, 27, 60, 120, 500)]
+    assert all(a > b for a, b in zip(vals, vals[1:])), vals

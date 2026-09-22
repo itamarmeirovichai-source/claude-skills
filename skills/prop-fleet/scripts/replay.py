@@ -375,13 +375,33 @@ def cost_R(symbol: str, risk_pts: float) -> float:
     return (SLIP_PTS + COMM_RT / pt) / risk_pts
 
 
+def _tcrit(df: int) -> float:
+    """קוונטיל 97.5% של t עם df דרגות חופש, בלי תלות ב-scipy."""
+    if df >= 200:
+        return 1.96
+    # טבלה לערכים הקטנים, אינטרפולציה הרמונית מעליהם
+    tab = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447,
+           7: 2.365, 8: 2.306, 9: 2.262, 10: 2.228, 12: 2.179, 15: 2.131,
+           20: 2.086, 24: 2.064, 27: 2.052, 30: 2.042, 40: 2.021,
+           60: 2.000, 120: 1.980, 200: 1.972}
+    if df in tab:
+        return tab[df]
+    if df < 1:
+        return float("nan")
+    ks = sorted(tab)
+    lo = max(k for k in ks if k < df)
+    hi = min(k for k in ks if k > df)
+    w = (1.0 / df - 1.0 / lo) / (1.0 / hi - 1.0 / lo)
+    return tab[lo] + w * (tab[hi] - tab[lo])
+
+
 def interval(x: np.ndarray) -> tuple:
     """ממוצע ורווח סמך 95%. אותה אריתמטיקה כמו ב-gate.py."""
     n = len(x)
     if n < 2:
         return float(x.mean()) if n else float("nan"), float("nan"), float("nan")
     m, sd = float(x.mean()), float(x.std(ddof=1))
-    half = 1.96 * sd / np.sqrt(n)
+    half = _tcrit(n - 1) * sd / np.sqrt(n)
     return m, m - half, m + half
 
 
@@ -413,7 +433,10 @@ def clustered_interval(r: np.ndarray, day) -> tuple:
     m = float(df.r.mean())
     sums = g.apply(lambda x: float((x - m).sum())).values
     var = (k / (k - 1.0)) * float(np.sum(sums ** 2)) / (n ** 2)
-    half = 1.96 * np.sqrt(var)
+    # עם 28 ימים בלבד, קוונטיל נורמלי (1.96) מכסה 93-94% במקום 95%:
+    # מעט אשכולות, והשונות עצמה נאמדת מהם. t עם k-1 דרגות חופש הוא
+    # התיקון הסטנדרטי, ונמדד כאן כמחזיר את הכיסוי ל-95%.
+    half = _tcrit(k - 1) * np.sqrt(var)
     return m, m - half, m + half, k
 
 
