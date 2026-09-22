@@ -175,22 +175,30 @@ under-reserving for two years while the plan compounds is not.
 
 ## How long until the lower bound decides
 
-The half-width of the clustered interval was 0.285R over 28 day-clusters,
-and it narrows as the square root of the cluster count. At the observed 2.71
-trades per trading day:
+The latest run prints +0.101R with a clustered interval of [−0.197, +0.398]
+over 28 day-clusters — a half-width of 0.2975R, which at t(27) is a standard
+error of **0.1450R**. It narrows as the square root of the cluster count.
 
-| If the true expectancy is | Trading days to a positive lower bound | Months |
+| If the true expectancy is | Days with a trade, to a positive lower bound | Calendar months |
 | --- | --- | --- |
-| +0.101R | 223 | 10.6 |
-| +0.200R | 57 | 2.7 |
-| +0.250R | 36 | 1.7 |
-| +0.300R | 25 | 1.2 |
-| +0.500R | 9 | 0.4 |
+| +0.101R | 222 | 15.5 |
+| +0.200R | 59 | 4.1 |
+| +0.250R | 39 | 2.7 |
+| +0.300R | 28 | 2.0 |
+| +0.500R | 12 | 0.8 |
+
+Both columns changed from the previous version of this table and neither
+conclusion did. The middle column now uses t(k−1) rather than 1.96, which
+lengthens it slightly at small cluster counts. The months column now divides
+by days-with-a-trade rather than by 21: the window produced 111 fills over 41
+elapsed trading days — 2.71 a day — but they landed on only 28 of those days,
+so a calendar month supplies about 14 clusters, not 21. Dividing by 21 made
+every horizon look a third shorter than it is.
 
 This is the reason the evaluation is worth buying before the question is
-settled rather than after. If the strategy really does clear the threshold
-the goal requires, live trading proves it in about six weeks — and if it
-does not, the same six weeks cost $165 to find out.
+settled rather than after. If the strategy really does clear the threshold the
+goal requires, live trading proves it in under three months — and if it does
+not, the same three months cost $165 to find out.
 
 ## Tax
 

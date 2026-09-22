@@ -56,6 +56,28 @@ At 1:2 reward-to-risk, the trades needed before a 95% interval around an observe
 | +0.15R | 364 | 121 |
 | +0.10R | 803 | 268 |
 
+**That table assumes trades are independent, and it is the wrong unit besides.**
+It is the arithmetic of σ≈1.45R per trade at three trades a day, and it
+reproduces to the row. Two things are wrong with using it to decide when to wait.
+
+The independence assumption turns out to cost little here. The cluster-robust
+standard error measured on the replay is 0.145R against 0.138R assuming 111
+independent trades — **5% wider, a variance inflation of 1.11**. Trades opened
+the same afternoon do share a regime, but empirically in this data they barely
+do. Say that plainly rather than gesturing at clustering as though it were large.
+
+The unit is the real problem. The right-hand column counts elapsed trading days
+and assumes every one of them carries three trades; the clean window produced
+trades on only 28 of its 41 trading days. Counting what the error actually
+shrinks in — days with a trade in them — and converting at the ~14 such days a
+calendar month supplies, the honest horizons are **227 days-with-a-trade at
++0.10R (15.8 months), 103 at +0.15R (7.2), 59 at +0.20R (4.1), 39 at +0.25R
+(2.7), 28 at +0.30R (2.0) and 12 at +0.50R (0.8).** `scripts/detect.py` computes
+both directions and holds them under test; use it rather than the table above
+when the answer decides money. The trade counts in the stage ladder below are
+floors — necessary to reach a stage, never sufficient, since the clustered lower
+bound is what `gate.py` actually rules on.
+
 | Stage | Accounts | Until | Gate to the next stage |
 | --- | --- | --- | --- |
 | 0 | 0 | — | Execution verified clean on a simulated run |
@@ -66,7 +88,7 @@ At 1:2 reward-to-risk, the trades needed before a 95% interval around an observe
 
 The ladder runs **both ways**. If the lower bound falls back under a gate, exposure comes down. Do not argue with it, and do not re-tune the strategy to make it pass — that is fitting to noise, and it is the single most expensive mistake available here.
 
-Skipping stages upward is allowed when the evidence justifies it. A genuine +0.50R is established in 35 trades; there is no reason to sit at one account for six weeks.
+Skipping stages upward is allowed when the evidence justifies it. A genuine +0.50R clears the lower bound in about 12 days with a trade in them — under a month of calendar trading — so there is no reason to sit at one account waiting out a schedule.
 
 The point of the gate is the asymmetry of being wrong. Discovering there is no edge costs **$165** with the ladder — a $40 evaluation, $85 on activation, and one $40 re-buy if the account is destroyed during the 100 trades. Discovering it by running twenty accounts for eight years costs **$48,564** at an expectancy of exactly zero and **$114,725** at −0.10R, which is inside the current interval. Both figures come out of `apex_model.py` at the correct two-speed sizing; the ratio between them is checked in `claims.py`.
 
@@ -538,7 +560,9 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_gate.py` — 25 tests on the decision logic, since the numbers are the decision. Six of them run real SQL against a real table, because the integrity check that catches a trade closed at its own entry price had been naming a column that does not exist: SQLite raised, the handler returned None, and `if n:` read that exactly like a clean result. A check that cannot run has to look different from a check that passed.
 - `scripts/test_apex_model.py` — 21 tests on the model's mechanics: loss bounded by fees, withdrawals arriving only in whole ladders, the evaluation clock expiring an unreachable target, tax never touching a loss, and the withdrawal split. Deterministic, by driving the model to always-win and always-lose.
 - `scripts/ladder.py` — trades needed per effect size, and the cost of each rung if the edge turns out not to exist.
-- `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not.
+- `scripts/horizon.py` — when compounding on extracted profit starts to matter, which inside eight years it does not. Not to be confused with `detect.py`: this one is about money already earned, that one about whether the edge exists.
+- `scripts/detect.py` — how long before the question can be answered at all, in both directions: days until a given edge clears zero, and the smallest edge a given wait can resolve. Clustered by trading day, because a busy day is not an extra day, with a t-quantile rather than 1.96 since the cluster count is small. Two conclusions come out of it and neither is comfortable. An edge the size of the one measured (+0.101R) needs about 222 days with a trade in them — some 15 months of calendar trading, and that is the median case — to separate from zero, so if that is the truth this plan never gets its answer. And therefore the wait is not for *how big* the edge is but for *whether it is big enough* — an edge that has not shown itself in roughly three months of trading is already too small to justify the fleet, whatever it later turns out to be. That asymmetry is the only thing that bounds the waiting.
+- `scripts/test_detect.py` — 10 tests, and they exist because this number drifted twice in opposite directions. It was first given as "39 days, about 1.8 months" — the count right, the conversion wrong — then "corrected" to 77 on a standard error recalled as 0.207R when the printed interval implies 0.145R, which doubled every row. The settled answer is the original 39, at 2.7 months rather than 1.8. So the tests pin three separate things: that the anchor reproduces the interval `replay.py` actually printed, which is the check that was missing and would have caught both drifts; that the anchor is 39; and that months come from days-with-a-trade rather than from 21. The rest hold that the error shrinks with the root of *days* and not of trades, that bigger edges resolve sooner, that the conservative case is never faster, and that the two directions round-trip.
 - `scripts/claims.py` — recomputes every arithmetic claim in the write-up from scratch. Run it after editing any number; it caught a real error where two figures were quoted from different configurations.
 - `scripts/proxy_fix.py` — correct futures-to-ETF level conversion with the invariant asserted on every call. Run it directly for a numeric before/after.
 - `scripts/test_proxy_fix.py` — 21 tests; the first reproduces the collapse bug and proves the invariant catches it.
@@ -555,7 +579,7 @@ the one blocking thing, so the other scripts do not have to be remembered.
 - `scripts/test_drift_diagnostic.py` — 18 tests on which fault the gap implies, using the figures actually measured on planted data, so the thresholds can be tuned without silently breaking the distinction.
 - `scripts/streak_check.py` — losing-run tail under each clustering setting, to confirm a stress test is actually stressing something.
 
-`references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date.
+`references/apex-rules.md` holds the rule values the model is built on, and the list of what to confirm with the firm directly before paying for anything. Rules change; the file names its date. It also carries the gap nothing else in this skill crosses: the bot trades through IBKR, an Apex account is provisioned on Rithmic or Tradovate, and **no order path between them exists.** Closing it means either a second order path or a bridge mirroring fills, and either way a translation from ETF scale to MES — the same conversion that produced the collapse bug, run unwatched across twenty accounts. It does not block one evaluation, where the exposure is $125 and the purchase is itself the cheapest way to learn what the firm's platform accepts. It blocks the third account. And it bounds what the paper run proves: the edge is measured in R against ES bars and carries across platforms unchanged, but `exec_entry`, fill quality and the conversion are being verified on an order path the funded accounts will never use.
 
 `references/verification-letters.md` is that list already written as two letters to send — one to the firm, one to an accountant. Both questions are answered by other people rather than by analysis, and left as headings they stay open for months. The firm's letter leads with automated order routing because it is the one risk in the plan not bounded by fees: if the order path is not permitted, accounts close and earned payouts can be voided. The accountant's letter carries the facts that decide whether this is business income or a capital gain, which over eight years is worth more than most of the trading decisions.
 

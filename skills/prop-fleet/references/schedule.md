@@ -9,7 +9,7 @@ nobody has written down which one gives way. This file does that, with dates.
 The first is compatible with the gate. The second is not, and not by a
 small margin.
 
-All dates below are measured from **19 September 2026**.
+All dates below are measured from **22 September 2026**.
 
 ## Why the first one works
 
@@ -48,25 +48,35 @@ The monthly instruction buys accounts on a calendar. The gate buys them on
 evidence. The gap between those two is not a matter of temperament — it is
 arithmetic, and it comes out like this.
 
-The clean window produced 131 setups over 28 trading days: **4.7 setups a
-day**. The replay filled 111 of them, an 85% rate — but the replay fills a
-limit the moment price touches it, with no queue, so live will be lower.
-Call it 2.5 to 4.0 trades a day, and each stage lands here, counting from
-5 October:
+The clean window opens 18 May 2026 and spans **41 elapsed trading days**,
+which produced 131 setups: **3.2 setups a day**. (41 is the measured span;
+it implies an end around mid-July, consistent with July contributing 25 of
+the 111 filled trades. The span is the number that matters here, not the
+closing date.) The replay filled 111,
+an 85% rate, but it fills a limit the moment price touches it, with no queue,
+so live will be lower. At 50% to 70% that is **1.6 to 2.2 trades a day**, and
+each stage lands here, counting from 5 October:
 
 | Stage | Accounts | Trades needed | Earliest | Latest |
 | --- | --- | --- | --- | --- |
 | 1 | 1 | — | 3 Oct 2026 | 3 Oct 2026 |
-| 2 | 3 | 100 | 9 Nov 2026 | 30 Nov 2026 |
-| 3 | 10 | 250 | 30 Dec 2026 | 22 Feb 2027 |
-| 4 | 20 | 900 | 16 Aug 2027 | 21 Feb 2028 |
+| 2 | 3 | 100 | 8 Dec 2026 | 5 Jan 2027 |
+| 3 | 10 | 250 | 17 Mar 2027 | 20 May 2027 |
+| 4 | 20 | 900 | 11 May 2028 | Jan 2029 |
 
-Those dates are sooner than the previous version of this table, because
-the setup rate was measured rather than assumed. **That is not good news
-and it is not progress.** The trade count is a necessary condition, not
-the gate: each stage also requires a positive lower bound, and the next
-section shows that at the edge size actually measured, no trade count in
-this table produces one.
+**Two day-counts live in this analysis and they are not interchangeable.**
+The replay reports 28, and that is the number of days on which a filled trade
+occurred — the cluster count that widens the confidence interval. The window
+spans 41, and that is elapsed trading days. Rates for a *schedule* take the
+elapsed count, because a day with no setup still costs a day; rates for an
+*interval* take the cluster count, because a day with no trade carries no
+information. An earlier version of this table divided 131 setups by the 28,
+got 4.7 a day, and pulled stage 4 forward by nine months. `claims.py` is what
+caught it, which is the entire reason that file exists.
+
+The trade count is a necessary condition and not the gate. Each stage also
+requires a positive lower bound, and the next section shows that at the edge
+size actually measured, no trade count in this table produces one.
 
 And every one of those dates assumes the edge is real *and* survives each
 gate on the way. The dates are not a forecast. They are the fastest the
@@ -75,25 +85,43 @@ least likely of the available outcomes.
 
 ## How long until any of it can be decided
 
-A number in this plan was wrong and it was wrong in the direction that
-flatters it. It had been said that **+0.250R becomes provable in 39
-trading days**. The correct figure, computed rather than recalled, is
-**77** — and it is now in `scripts/detect.py` with tests, so it cannot
-drift again.
+This number drifted twice, in opposite directions, and it is worth saying
+exactly how because the second drift was the attempt to fix the first.
 
-The mechanism is that the standard error is clustered by trading day,
-because trades opened the same day share a regime and are not independent.
-It shrinks with the square root of the number of *days*, not of trades. A
-busy day is not an extra day.
+It was first said that **+0.250R becomes provable in 39 trading days, about
+1.8 months**. The count was right; the conversion was not. Then it was
+"corrected" to **77 days**, on a standard error written down from memory as
+0.207R. The interval the replay actually printed — +0.101R, [−0.197, +0.398]
+over 28 day-clusters — implies 0.145R, and 0.207 would have produced
+[−0.324, +0.526], an interval no run ever showed. That single wrong scalar
+doubled every row.
 
-| True edge | Days until the lower bound clears zero | Months |
+The settled figure is **39 days with a trade in them, which is 2.7 calendar
+months.** `scripts/detect.py` now derives the standard error from the printed
+interval rather than storing it, and a test asserts that the anchor reproduces
+that interval — the check that was missing the first time.
+
+The mechanism is that the standard error is clustered by trading day, because
+trades opened the same day share a regime. It shrinks with the square root of
+the number of *days*, not of trades: a busy day is not an extra day. Worth
+noting how small that correction actually is here — 0.145R against 0.138R for
+111 independent trades, 5% wider. The clustering is real and it is not what
+makes the wait long. The unit is.
+
+| True edge | Days with a trade, until the lower bound clears zero | Calendar months |
 | --- | --- | --- |
-| +0.101R (what was measured) | 452 | 21.5 |
-| +0.150R | 205 | 9.8 |
-| +0.200R | 118 | 5.6 |
-| **+0.250R (the 20%/yr target)** | **77** | **3.7** |
-| +0.300R | 54 | 2.6 |
-| +0.400R | 32 | 1.5 |
+| +0.101R (what was measured) | 222 | 15.5 |
+| +0.150R | 103 | 7.2 |
+| +0.200R | 59 | 4.1 |
+| **+0.250R (the 20%/yr target)** | **39** | **2.7** |
+| +0.300R | 28 | 2.0 |
+| +0.400R | 17 | 1.2 |
+
+The middle column counts *days on which a trade closed*, because that is what
+the standard error shrinks in. Turning it into calendar time goes through the
+same ratio as the schedule table above: 28 such days per 41 elapsed trading
+days, so a month supplies about 14, not 21. Dividing by 21 instead — which both
+earlier versions of this table did — shortens every row by a third.
 
 Those are median cases: they assume the observed mean lands exactly on the
 true edge, which is a coin flip. To be reasonably sure rather than
@@ -102,14 +130,15 @@ half-sure, roughly double them.
 Two things follow, and neither depends on which row you prefer.
 
 **An edge the size of the one measured is not decidable on any horizon
-that matters.** If +0.101R is the truth, the answer arrives in about two
-years of trading — by which point the question has answered itself in
-other ways.
+that matters.** If +0.101R is the truth, the answer arrives after about
+15 months of calendar trading — and that is the median case, so call it
+two to three years to be reasonably sure. By then the question has
+answered itself in other ways.
 
 **So the wait is not for "how big is the edge". It is for "is it big
-enough".** An edge that has not shown itself in roughly four months is
-already too small to justify the fleet, whatever it eventually turns out
-to be. That asymmetry is the only reason the waiting is bounded.
+enough".** An edge that has not shown itself in roughly three months of
+trading is already too small to justify the fleet, whatever it eventually
+turns out to be. That asymmetry is the only reason the waiting is bounded.
 
 ## The measured edge is one month, not a run rate
 
