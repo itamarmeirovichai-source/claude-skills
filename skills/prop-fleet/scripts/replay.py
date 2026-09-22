@@ -116,12 +116,18 @@ MIN_TRADES = 10
 # רשת ה-RR לבדיקת רגישות ליעד.
 RR_GRID = (1.0, 1.5, 2.0, 2.5, 3.0)
 
-# גרירת הסטופ. שני המספרים האלה הם פרמטרים של הבוט ולא של הריפליי,
-# והם לא אומתו מול broker/ibkr.py. כל מה שמודפס בסעיף הגרירה תלוי
-# בהם: טריגר שגוי מזיז את כל התוצאה. לכן הם מוצהרים כאן בשמם, נבדקים
-# ברשת רגישות, ולא מוזרמים לחישוב הדולרים.
-TRAIL_TRIGGER_R = 1.0       # ברווח כזה הסטופ זז
-TRAIL_TO_R = 0.0            # לאן הוא זז. 0.0 = נקודת האיזון
+# גרירת הסטופ. זה סולם ולא מדרגה אחת, וכך הוא כתוב בבוט:
+#   ibkr.py:1608   pnl_r < 1.0  -> לא נוגעים
+#   ibkr.py:1616   1.0 <= pnl_r < 1.5 -> הסטופ לנקודת האיזון
+#   ibkr.py:1611   pnl_r >= 1.5 -> הסטופ ל-entry + 0.5R
+# המדרגה השנייה חסרה כאן קודם, והיא לא פרט: היא הופכת עסקה שהגיעה
+# ל-1.5R וחזרה משריטה באפס לרווח של חצי סיכון. 27% מהמילויים מגיעים
+# ל-1.5R, ולכן השמטתה הטתה את המספר כלפי מטה.
+# הסולם נקרא מהקוד ולא מהזיכרון, ועדיין נבדק ברשת רגישות — טריגר
+# שגוי מזיז את כל התוצאה.
+TRAIL_LADDER = ((1.0, 0.0), (1.5, 0.5))   # (טריגר R, לאן הסטופ זז ב-R)
+TRAIL_TRIGGER_R = TRAIL_LADDER[0][0]
+TRAIL_TO_R = TRAIL_LADDER[0][1]
 TRAIL_GRID = (0.5, 0.75, 1.0, 1.5, 2.0)
 
 STOP_NAMES = ("stop_loss", "stop", "sl", "stoploss", "stop_price")
@@ -170,13 +176,19 @@ def load_clean_setups(path: Path) -> pd.DataFrame:
 
 def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
          tp: float | None, t0: pd.Timestamp, pessimistic: bool = True,
-         trail_trigger: float | None = None, trail_to: float = 0.0) -> dict:
+         trail_trigger: float | None = None, trail_to: float = 0.0,
+         trail_ladder: tuple[tuple[float, float], ...] | None = None) -> dict:
     """מה קרה לסטאפ אחד. bars הם כל נרות המושב, t0 רגע היצירה.
 
     נר מתויג בתחילתו, ולכן נר שזמנו לפני t0 מכסה גם רגעים שקדמו
     לסטאפ. הוא נזרק. רק נר שמתחיל ב-t0 או אחריו הוא עתיד מלא.
     """
     long = direction == "long"
+    # מדרגה בודדת היא סולם באורך אחת. רשת הרגישות עדיין קוראת בצורה
+    # הישנה, ואין סיבה שיהיו שני מסלולי חישוב לאותו דבר.
+    ladder = trail_ladder
+    if ladder is None and trail_trigger is not None:
+        ladder = ((trail_trigger, trail_to),)
     fut = bars[bars.ts >= t0]
     if fut.empty:
         return {"status": "no_bars"}
@@ -266,12 +278,16 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
         # באותו רגע. רשת הסריקה של הבוט לא בהכרח מיושרת לגבולות
         # הנרות ויכולה ליפול גם באמצעם, כלומר ייתכנו עוד הזדמנויות
         # גרירה שלא נספרות כאן. ההטיה היא לכיוון הזהיר.
-        if trail_trigger is not None:
+        if ladder:
             px = c[i]
             r_now = (px - entry) / risk if long else (entry - px) / risk
-            if r_now >= trail_trigger:
-                nxt = (entry + trail_to * risk if long
-                       else entry - trail_to * risk)
+            # מבין המדרגות שנפתחו נבחרת ההדוקה ביותר, בדיוק כמו
+            # ה-elif בבוט: ב-1.5R ומעלה נעילת חצי, ומתחת לזה נקודת
+            # איזון. max ולא "האחרונה", כדי שסולם לא ממוין יישאר נכון.
+            opened = [to_r for trig, to_r in ladder if r_now >= trig]
+            if opened:
+                nxt = (entry + max(opened) * risk if long
+                       else entry - max(opened) * risk)
                 if (nxt > cur_stop) if long else (nxt < cur_stop):
                     # נכנס לתוקף מהנר הבא. ההחלטה נופלת בסגירה, ולכן
                     # היא לא יכולה לסגור את הנר שיצר אותה.
@@ -292,6 +308,10 @@ def walk(bars: pd.DataFrame, direction: str, entry: float, stop: float,
         "mfe_R": mfe, "mae_R": mae, "ambiguous": ambiguous,
         "gapped": bool(gapped), "trailed": bool(trailed),
         "final_stop": float(cur_stop),
+        # לאן הסטופ הגיע בסוף, ב-R. 0.0 = נקודת איזון, +0.5 = נעילת
+        # חצי. בלי זה אי אפשר להפריד את שתי המדרגות בקובץ התוצאות.
+        "trail_stop_R": float(((cur_stop - entry) if long
+                               else (entry - cur_stop)) / risk),
         "fill_ts": ts.iloc[fill_i], "exit_ts": ts.iloc[exit_i],
         "bars_held": exit_i - fill_i + 1,
     }
@@ -467,7 +487,9 @@ def regime_of(day: pd.DataFrame) -> dict:
 def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
            tp_col: str | None, tp_rr: float | None = None,
            pessimistic: bool = True, trail_trigger: float | None = None,
-           trail_to: float = 0.0) -> pd.DataFrame:
+           trail_to: float = 0.0,
+           trail_ladder: tuple[tuple[float, float], ...] | None = None
+           ) -> pd.DataFrame:
     """מריץ את כל הסטאפים. tp_rr גובר על עמודת היעד, לסריקת רשת."""
     rows = []
     for r in setups.itertuples():
@@ -503,7 +525,8 @@ def replay(setups: pd.DataFrame, bars: dict, stop_col: str,
             tp = None
         out = walk(day, r.direction, float(r.entry), float(stop), tp,
                    r.ts, pessimistic=pessimistic,
-                   trail_trigger=trail_trigger, trail_to=trail_to)
+                   trail_trigger=trail_trigger, trail_to=trail_to,
+                   trail_ladder=trail_ladder)
         out.update(ts=r.ts, symbol=r.symbol, direction=r.direction,
                    entry=float(r.entry), stop=float(stop), tp=tp)
         # עמודות מהסטאפ שנוסעות הלאה לקובץ התוצאות.
@@ -681,15 +704,17 @@ def trail_summary(s: pd.DataFrame, bars: dict, stop_col: str,
     """
     print(f"\n{'=' * 58}\n  גרירת הסטופ — מה שהחשבון הממומן באמת מריץ"
           f"\n{'=' * 58}")
-    print(f"  טריגר {TRAIL_TRIGGER_R:.2f}R, הסטופ זז ל-{TRAIL_TO_R:+.2f}R.")
-    print("  שני הקבועים האלה לא אומתו מול broker/ibkr.py. הסעיף הזה")
-    print("  תקף רק אם הם נכונים, ולכן הוא לא נכנס לחישוב הדולרים.")
+    rungs = "  ".join(f"{trig:.2f}R -> {to_r:+.2f}R"
+                      for trig, to_r in TRAIL_LADDER)
+    print(f"  הסולם: {rungs}")
+    print("  נקרא מ-broker/ibkr.py:1608,1611,1616 ולא מהזיכרון. המדרגה")
+    print("  השנייה חסרה כאן בהרצות קודמות, ולכן כל מספר-גרירה שקדם")
+    print("  לשורה הזאת היה נמוך מדי.")
     print("  הדגימה היא בסגירת נר של חמש דקות — בדיוק מרווח הסריקה של")
     print("  הבוט. נגיעה בטריגר בתוך החלון שלא שרדה עד הסגירה איננה")
     print("  אירוע, כי הבוט קורא מחיר אחד ברגע אחד ולא את השיא.")
 
-    t = replay(s, bars, stop_col, tp_col,
-               trail_trigger=TRAIL_TRIGGER_R, trail_to=TRAIL_TO_R)
+    t = replay(s, bars, stop_col, tp_col, trail_ladder=TRAIL_LADDER)
     tf = t[t.status == "filled"]
     if len(tf) < MIN_TRADES:
         print(f"\n  {len(tf)} עסקאות בלבד. מעט מדי מכדי לומר משהו.")
@@ -698,6 +723,12 @@ def trail_summary(s: pd.DataFrame, bars: dict, stop_col: str,
     fired = int(tf.trailed.sum())
     print(f"\n  {fired} מתוך {len(tf)} פוזיציות גררו "
           f"({fired / len(tf) * 100:.0f}%).")
+    if "trail_stop_R" in tf.columns:
+        # הפרדה בין שתי המדרגות. אם כמעט אף אחת לא הגיעה לנעילת החצי,
+        # המדרגה השנייה היא תיאוריה ולא משהו שמזיז את המספר.
+        locked = int((tf.trailed & (tf.trail_stop_R > 0.01)).sum())
+        print(f"  מתוכן {fired - locked} נעצרו בנקודת האיזון ו-{locked} "
+              f"הגיעו לנעילת החצי.")
     print(f"  תוחלת עם גרירה: {m:+.3f}R  [{lo_:+.3f}, {hi_:+.3f}] "
           f"על {k} ימים.")
     if base_summary:
@@ -714,8 +745,11 @@ def trail_summary(s: pd.DataFrame, bars: dict, stop_col: str,
     print(f"\n  רגישות לטריגר — אם הקבוע אינו {TRAIL_TRIGGER_R:.2f}:")
     print(f"{'טריגר':>8} {'גררו':>7} {'תוחלת':>9} {'גבול תחתון':>12}")
     for trig in TRAIL_GRID:
+        # מזיזים את המדרגה הראשונה בלבד; השנייה נשארת כפי שהיא בקוד.
+        # max בתוך walk בוחר תמיד את הסטופ ההדוק ביותר, ולכן הסולם
+        # נשאר נכון גם כשהטריגר שנסרק עובר את 1.5.
         g = replay(s, bars, stop_col, tp_col,
-                   trail_trigger=trig, trail_to=TRAIL_TO_R)
+                   trail_ladder=((trig, 0.0),) + TRAIL_LADDER[1:])
         gf = g[g.status == "filled"]
         if len(gf) < MIN_TRADES:
             continue
