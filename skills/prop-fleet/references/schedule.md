@@ -127,6 +127,33 @@ and a sample of one neither establishes an edge nor rules it out.
 `diagnose_edge.py` now prints this split on every run so it cannot be
 read past again.
 
+## The gap that stage 2 runs into
+
+Stage 1 can be bought on the evidence above. Stage 2 cannot, and not because of
+the statistics.
+
+The bot places orders at IBKR. An Apex account is provisioned on the firm's own
+platform — Rithmic or Tradovate — and **no order path from one to the other
+exists today.** Building it means either a second order path in the bot or a
+bridge that mirrors IBKR fills into the Apex accounts, and whichever it is also
+has to translate instrument and size, because the master is on ETF scale and the
+funded account trades MES or ES. That translation is the same one that produced
+the proxy bug, where the ratio collapsed and every order went out at market.
+
+This does not block buying one evaluation: the exposure there is $125, and an
+evaluation is the cheapest way to discover what the firm's platform actually
+accepts. It blocks the third account, which is the point where one unverified
+conversion becomes three and then twenty.
+
+It also bounds what the paper run proves. The edge measurement is in R against
+ES bars, so it carries across platforms unchanged. Execution does not —
+`exec_entry`, fill quality and the conversion itself are being verified on an
+order path the funded accounts will never use. The Oct 3 condition is about
+whether the record can be trusted; it was never a claim about the bridge.
+
+Full statement in `apex-rules.md`, and the question to the firm is item 2 of the
+first letter in `verification-letters.md`.
+
 ## What the disagreement is actually about
 
 It is not about speed. Both plans reach twenty accounts inside the eight
@@ -171,7 +198,11 @@ separation survives any reasonable count.
    trusted, and it is not negotiable by a date.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
-   not by the date, and not by the feeling that the pace is too slow.
+   not by the date, and not by the feeling that the pace is too slow. Stage 2
+   has a second condition that is not statistical: an order path to the firm's
+   platform that has been built and watched place real orders correctly. See
+   the section above; it is engineering, it has not started, and the time to
+   start it is while the measurement is accumulating.
 4. **Run `gate.py` weekly.** It moves exposure down as readily as up, and
    the downward direction is the one that will be argued with.
 

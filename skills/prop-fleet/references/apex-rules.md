@@ -69,6 +69,44 @@ Apex is the only firm on which a 10–20 account copy-traded plan runs at all. T
 is a concentration risk with no hedge: a rules change at one firm moves the whole
 plan.
 
+## The platform gap — nothing in this plan crosses it yet
+
+The bot trades through **IBKR**. Apex accounts are not IBKR accounts: they are
+provisioned on the firm's own platforms — Rithmic and Tradovate — and an order
+placed at IBKR does not reach one by any path that exists today. This is not a
+detail of configuration. It is a missing component, and it sits between the
+paper run and every funded account the plan contemplates.
+
+Two things have to be true for an order to arrive, and neither has been built or
+confirmed:
+
+1. **A route.** Either the bot gains a second order path speaking Rithmic or
+   Tradovate, or a bridge watches the IBKR master and mirrors each fill into the
+   Apex accounts. These are different pieces of software with different failure
+   modes, and the firm may permit one and not the other — which is what item 1
+   of the letter in `verification-letters.md` exists to settle.
+2. **A translation, not a copy.** The master account is on ETF scale while the
+   Apex account trades MES or ES directly, so the bridge converts level, stop,
+   target and size across instruments. That is the same conversion that produced
+   defect 1 — the ratio that collapsed to the ETF price and sent every order out
+   at market. A bridge doing it again, unwatched, across twenty accounts, is the
+   single most expensive shape this failure can take.
+
+**What the paper run does and does not establish.** It establishes the edge, in
+R, on ES bars — that measurement is scale-free and carries across platforms
+unchanged. It does **not** establish execution. `exec_entry`, fill quality,
+slippage against the level, and the conversion itself are all being verified on
+an order path the funded accounts will never use. So the Oct 3 condition is
+about whether the *record* can be trusted, and it stays necessary; it was never
+sufficient, and it does not cover the bridge.
+
+**Where this lands in the ladder.** Stage 1 is one evaluation at $125 and the
+exposure is deliberately a rounding error, so the gap does not block buying one
+— an evaluation is also the cheapest way to find out what the firm's platform
+actually accepts. It blocks stage 2. Copying to three accounts through an
+unverified translation layer is the point at which one conversion bug becomes
+three, and then twenty.
+
 ## Confirm before paying
 
 1. The exact payout ladder for the plan and size you are buying, EOD and Intraday
@@ -80,3 +118,7 @@ plan.
    accounts close and payouts are voided — the only risk in the plan that is not
    bounded by fees.
 5. What happens after the sixth payout: closure, or re-qualification.
+6. **Which platform the account is provisioned on** — Rithmic, Tradovate, or
+   another — and whether the bot may connect to it directly or must go through a
+   copy-trading tool the firm names. See "The platform gap" above: no order path
+   from the current setup to an Apex account exists yet.

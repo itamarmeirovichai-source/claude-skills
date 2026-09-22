@@ -29,34 +29,44 @@ email, and do not rely on a forum post or a support chat that disappears.
 >    each trade. Is this permitted? If so, which routing methods or third-party
 >    platforms are approved, and are there any that are explicitly prohibited?
 >
-> 2. **Copying across my own accounts.** If I hold multiple accounts under my own
+> 2. **Platform and connection.** On which platform is a funded account
+>    provisioned — Rithmic, Tradovate, or another — and may a program connect to
+>    it directly through that platform's API? My signals are currently generated
+>    against a different broker, so I need to know what the order actually
+>    arrives through before I build it.
+>
+> 3. **Copying across my own accounts.** If I hold multiple accounts under my own
 >    name, may the same orders be placed across all of them simultaneously, and
 >    up to how many accounts? Please confirm whether any approved copy-trading
 >    tool is required, or whether direct API submission to each account is
 >    acceptable.
 >
-> 3. **Payout ladder.** Please confirm the exact per-payout caps for the plan
+> 4. **Payout ladder.** Please confirm the exact per-payout caps for the plan
 >    sizes I am considering, stated separately for the EOD and Intraday variants:
 >    the six caps in order, and the lifetime total for one account.
 >
-> 4. **Drawdown figures.** Please confirm the trailing drawdown amount and the
+> 5. **Drawdown figures.** Please confirm the trailing drawdown amount and the
 >    safety-net threshold for each of those sizes, and the balance at which the
 >    trailing floor locks.
 >
-> 5. **Consistency rule.** Please confirm the current percentage, and whether it
+> 6. **Consistency rule.** Please confirm the current percentage, and whether it
 >    is evaluated against profit at the time of the payout request or over the
 >    account's life.
 >
-> 6. **After the final payout.** When an account reaches its last permitted
+> 7. **After the final payout.** When an account reaches its last permitted
 >    payout, is the account closed, or can it be re-qualified?
 >
-> Thank you — a written confirmation of these six points is all I need.
+> Thank you — a written confirmation of these seven points is all I need.
 
 **What to do with the answer.** Item 1 is a stop/go. If automated routing is not
 permitted, or is permitted only through a tool the bot cannot use, the plan needs
-rebuilding before anything is purchased, not after. Items 3–5 replace the values
-in `apex-rules.md` that public sources disagree on — update that file and re-run
-the model, because the payout ladder is the single biggest input to it.
+rebuilding before anything is purchased, not after. Item 2 is the one that sizes
+the remaining engineering: the bot speaks to IBKR, an Apex account does not, and
+nothing currently carries an order across that gap — see "The platform gap" in
+`apex-rules.md`. The answer decides whether that is a second order path or a
+bridge, and the two are different pieces of software. Items 4–6 replace the
+values in `apex-rules.md` that public sources disagree on — update that file and
+re-run the model, because the payout ladder is the single biggest input to it.
 
 ---
 
