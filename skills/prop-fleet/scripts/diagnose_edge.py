@@ -171,6 +171,41 @@ def holding(df: pd.DataFrame) -> None:
                   f"תוחלת {late.net_R.mean():+.3f}R")
 
 
+def concentration(df: pd.DataFrame) -> None:
+    """כמה מהתוחלת תלויה בפרק זמן בודד.
+
+    תוחלת חיובית יכולה להיות שני דברים שונים לגמרי: יתרון קטן
+    שחוזר על עצמו, או חודש אחד טוב ושניים שטוחים. שניהם מדפיסים
+    את אותו ממוצע, ורק הראשון מצדיק חשבון. ההפרדה היא להשמיט
+    תקופה אחת ולראות מה נשאר — לא בחירה מתוך מרחב אפשרויות אלא
+    אותה תוצאה בדיוק, מפורקת.
+
+    זה לא מבחן מובהקות. חודש שמחזיק את כל התוצאה הוא מדגם של
+    אחד, ואין דרך להכריז ממנו על יתרון ולא לשלול אותו.
+    """
+    banner("כמה מזה תלוי בתקופה אחת")
+    tot = float(df.net_R.sum())
+    ts = pd.to_datetime(df.ts) if "ts" in df.columns else None
+    for unit, key in (("חודש", ts.dt.to_period("M").astype(str) if ts is not None else None),
+                      ("יום", df.day)):
+        if key is None:
+            continue
+        g = df.groupby(key).net_R.agg(["size", "sum", "mean"])
+        if len(g) < 2:
+            continue
+        worst = g["sum"].idxmax()          # התקופה שתורמת הכי הרבה
+        rest = df[key != worst]
+        share = 100 * g.loc[worst, "sum"] / tot if tot else float("nan")
+        print(f"\n  לפי {unit}: {len(g)} תקופות, סך הכל {tot:+.1f}R")
+        print(f"  ה{unit} התורם ביותר ({worst}): {g.loc[worst, 'sum']:+.1f}R "
+              f"= {share:.0f}% מהסך")
+        print(f"  בלעדיו: {len(rest)} עסקאות, תוחלת "
+              f"{rest.net_R.mean():+.3f}R (במקום {df.net_R.mean():+.3f}R)")
+        if share >= 70:
+            print(f"  מעל 70% מתוך תקופה אחת. זה לא יתרון שחוזר על")
+            print(f"  עצמו — זו תקופה אחת, ומדגם של אחת לא מכריע דבר.")
+
+
 def main() -> None:
     path = Path(sys.argv[1]) if len(sys.argv) > 1 else CSV_DEFAULT
     if not path.exists():
@@ -195,6 +230,7 @@ def main() -> None:
     print(f"  תוחלת {df.net_R.mean():+.3f}R, שגיאת תקן מקובצת {se:.3f}R")
     print(f"\n  רף הרעש: שיפור קטן מ-{se:.3f}R אינו ממצא.")
     by_reason(df)
+    concentration(df)
     target_reach(df)
     holding(df)
     candidates(df)
