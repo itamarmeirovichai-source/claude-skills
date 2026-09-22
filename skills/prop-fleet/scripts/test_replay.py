@@ -847,3 +847,45 @@ def test_few_clusters_use_t_not_the_normal_quantile():
     # מונוטוני יורד: יותר דרגות חופש, רווח צר יותר
     vals = [_tcrit(d) for d in (5, 10, 27, 60, 120, 500)]
     assert all(a > b for a, b in zip(vals, vals[1:])), vals
+
+
+def _ladder_for(trig):
+    """הסולם שסריקת הרגישות בונה לטריגר נתון — מוזז כיחידה אחת."""
+    from replay import TRAIL_LADDER
+    gap = TRAIL_LADDER[1][0] - TRAIL_LADDER[0][0]
+    return ((trig, TRAIL_LADDER[0][1]), (trig + gap, TRAIL_LADDER[1][1]))
+
+
+def test_the_sensitivity_grid_reproduces_the_shipped_ladder_at_its_own_trigger():
+    """בטריגר של הבוט הסריקה חייבת להחזיר בדיוק את הסולם שבקוד.
+
+    בלי העוגן הזה אפשר להזיז את הסולם בסריקה ולא לשים לב שהשורה
+    שמסומנת כ"מה שהבוט מריץ" מתארת משהו אחר.
+    """
+    from replay import TRAIL_LADDER
+    assert _ladder_for(TRAIL_LADDER[0][0]) == TRAIL_LADDER
+
+
+@pytest.mark.parametrize("trig", [0.5, 0.75, 1.0, 1.5, 2.0])
+def test_every_grid_row_is_a_different_policy(trig):
+    """שתי שורות בטבלת רגישות חייבות לתאר שני תרחישים שונים.
+
+    הגרסה הקודמת החזיקה את המדרגה השנייה קבועה על 1.5R, ואז כל
+    טריגר מעל 1.5 נבלע בה: 1.50 ו-2.00 הדפיסו מספרים זהים בדיוק.
+    טבלה שמדפיסה את אותו תרחיש פעמיים תחת שתי כותרות קוראת כמו
+    סריקת רגישות ואיננה כזאת, וזו הדרך השקטה שבה קבוע לא-מאומת
+    נראה כאילו נבדק.
+    """
+    others = {_ladder_for(t) for t in (0.5, 0.75, 1.0, 1.5, 2.0) if t != trig}
+    assert _ladder_for(trig) not in others
+
+
+def test_the_second_rung_is_what_the_broker_code_says():
+    """הסולם נקרא מ-broker/ibkr.py ולא מהזיכרון: 1.0R לאיזון, 1.5R לנעילת חצי.
+
+    המדרגה השנייה נשמטה פעם אחת, ואז כל עסקה שהגיעה ל-1.5R וחזרה
+    נספרה שריטה באפס במקום חצי סיכון. ההטיה הייתה כלפי מטה, אבל
+    הכיוון אינו הנקודה — הנקודה היא שהמודל תיאר מכשיר אחר.
+    """
+    from replay import TRAIL_LADDER
+    assert TRAIL_LADDER == ((1.0, 0.0), (1.5, 0.5))
