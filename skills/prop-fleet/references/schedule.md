@@ -179,6 +179,48 @@ and a sample of one neither establishes an edge nor rules it out.
 `diagnose_edge.py` now prints this split on every run so it cannot be
 read past again.
 
+## The blocker that was invisible until the bot ran
+
+The paper run produced zero trades on its first full session, and the reason
+is one config line rather than anything about the strategy.
+
+`config.yaml` carries `account_size: 220`, described as mirroring the real
+IBKR account. The bot derives its risk budget from it, which comes out at
+**one dollar per trade**. Against an ES stop of 23.5 points at a multiplier of
+50, and against an ETF proxy at any sane stop distance, that rounds to zero
+size. So every signal that survives every filter dies in the last division.
+
+Tuesday 22 September, the full funnel from the log: 77 scans, 33 analyses per
+instrument, grades reaching **A+ and A** with sweep, BOS and entry all
+confirmed, 24 signals passing the AI gate as tradeable — and then **14 blocked
+with "Position size too small for $1 risk"**, and zero approved. The strategy
+found setups. The account size deleted them.
+
+It also explains the record going quiet after 13 July with nothing apparently
+broken: the bot never stopped working, it just stopped being able to open
+anything.
+
+**What this means for the gate.** The paper run cannot produce a single
+comparable trade — cannot populate `exec_entry`, cannot verify the conversion,
+cannot count toward the five the Oct 3 purchase is conditional on — until the
+sizing reflects the account actually being traded. The condition is unchanged;
+it is simply unreachable in the present configuration.
+
+**The arithmetic, for whoever decides.** $220 gives $1 of risk, so it scales
+linearly: about $22,000 produces ~$100 per trade, which is 4% of a 50K
+account's drawdown and therefore the exact regime this whole plan is built on;
+about $55,000 produces ~$250, the evaluation's 10%. The paper account holds
+$30,319, which covers either.
+
+Two things have to be said alongside it. This is a position-sizing parameter,
+and those do not get changed on anybody's initiative but the owner's. And at
+$220 the strategy cannot run at all on any measurement — that was always true
+and merely invisible, so if the real IBKR account is ever armed, this value
+has to go back.
+
+The edge measurement is in R and is scale-free, so none of this biases the
+number. It only decides whether a trade exists to measure.
+
 ## The gap that stage 2 runs into
 
 Stage 1 can be bought on the evidence above. Stage 2 cannot, and not because of
