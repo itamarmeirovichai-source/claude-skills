@@ -185,10 +185,12 @@ The paper run produced zero trades on its first full session, and the reason
 is one config line rather than anything about the strategy.
 
 `config.yaml` carries `account_size: 220`, described as mirroring the real
-IBKR account. The bot derives its risk budget from it, which comes out at
-**one dollar per trade**. Against an ES stop of 23.5 points at a multiplier of
-50, and against an ETF proxy at any sane stop distance, that rounds to zero
-size. So every signal that survives every filter dies in the last division.
+IBKR account. `risk_manager.py` derives the budget as
+`account_size × max_risk_per_trade_pct / 100`, which at 1.0% is **$2.20 per
+trade** — and $1.10 on a Grade B, which the code caps at half size. Against an
+ES stop of 23.5 points at a multiplier of 50, and against an ETF proxy at any
+sane stop distance, that rounds to zero. Every signal that survives every
+filter dies in the last division.
 
 Tuesday 22 September, the full funnel from the log: 77 scans, 33 analyses per
 instrument, grades reaching **A+ and A** with sweep, BOS and entry all
@@ -206,11 +208,29 @@ cannot count toward the five the Oct 3 purchase is conditional on — until the
 sizing reflects the account actually being traded. The condition is unchanged;
 it is simply unreachable in the present configuration.
 
-**The arithmetic, for whoever decides.** $220 gives $1 of risk, so it scales
-linearly: about $22,000 produces ~$100 per trade, which is 4% of a 50K
-account's drawdown and therefore the exact regime this whole plan is built on;
-about $55,000 produces ~$250, the evaluation's 10%. The paper account holds
-$30,319, which covers either.
+**The arithmetic, for whoever decides.** At 1.0% per trade the mapping is
+direct: `account_size` of **10,000 gives $100**, which is 4% of a 50K account's
+$2,500 drawdown and therefore the exact regime this plan is built on; 25,000
+gives $250, the evaluation's 10%. (An earlier version of this note said 22,000,
+inferred from the log's rounded "$1" rather than from the formula. The code is
+`account_size × pct / 100`, and reading it beats inferring from a printout.)
+
+**The number feeds four things, not one**, which is why it is not a one-line
+change to make casually. `config_validator.py` says so outright — "the
+denominator for BOTH position sizing AND the daily-loss". At 10,000: risk per
+trade $2.20 → $100, daily loss limit $2.20 → $100, the 8% strategy-drawdown
+kill switch $17.60 → $800, and the equity cap on share count ~3 → ~158. All
+four land in sensible places — $800 is 32% of an Apex 50K drawdown, so the kill
+switch still fires well before the account dies — and the validator's sane
+range is 50 to 100,000, so 10,000 sits inside it.
+
+**A separate constraint the same file revealed.** `max_daily_trades: 1`, set
+for T+1 settlement in cash stock mode. The replay measured about four trades a
+day; the paper run is capped at one. Five comparable trades is therefore five
+trading days, which still clears the Oct 3 condition — but the 100 trades that
+gate stage 2 would be 100 trading days on this path, not the 45 to 63 in the
+table above. The cap is specific to IBKR stock mode; Apex futures have no T+1,
+so it does not move the funded-account schedule.
 
 Two things have to be said alongside it. This is a position-sizing parameter,
 and those do not get changed on anybody's initiative but the owner's. And at
