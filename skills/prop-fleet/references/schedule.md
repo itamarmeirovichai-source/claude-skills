@@ -256,6 +256,13 @@ status 0 looks exactly like a healthy idle job, and nothing anywhere prints an
 error, so the check that means anything is a PID plus a log timestamp from
 after the restart — never the absence of a complaint.
 
+The plist says why: `RunAtLoad` is false and `StartCalendarInterval` holds
+five weekday entries at 9:20. So the dash was not a fault — it was a job
+waiting for its calendar, and left alone it would have started itself before
+the open. What `kickstart -k` bought was not the start; it was seeing the
+risk manager load the rebased state and say nothing, hours before the session,
+rather than finding out at 9:25 whether the two-step reset had taken.
+
 **A separate constraint the same file revealed.** `max_daily_trades: 1`, set
 for T+1 settlement in cash stock mode. The replay measured about four trades a
 day; the paper run is capped at one. Five comparable trades is therefore **at
