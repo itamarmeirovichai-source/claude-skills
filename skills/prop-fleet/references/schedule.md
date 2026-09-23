@@ -90,16 +90,39 @@ exactly how because the second drift was the attempt to fix the first.
 
 It was first said that **+0.250R becomes provable in 39 trading days, about
 1.8 months**. The count was right; the conversion was not. Then it was
-"corrected" to **77 days**, on a standard error written down from memory as
-0.207R. The interval the replay actually printed — +0.101R, [−0.197, +0.398]
-over 28 day-clusters — implies 0.145R, and 0.207 would have produced
-[−0.324, +0.526], an interval no run ever showed. That single wrong scalar
-doubled every row.
+"corrected" to **77 days**, on a standard error of 0.207R — and the reason
+that happened is worth more than the number.
 
-The settled figure is **39 days with a trade in them, which is 2.7 calendar
-months.** `scripts/detect.py` now derives the standard error from the printed
-interval rather than storing it, and a test asserts that the anchor reproduces
-that interval — the check that was missing the first time.
+**0.207R is not a misremembering. It is what two of these scripts print.**
+`diagnose_edge.py` and `dashboard.py` compute the clustered error as the
+spread of day means over the root of their count; `replay.py` computes a
+cluster-robust error around the trade mean. On the same 111 trades the first
+pair returns 0.207R and the second 0.145R — a disagreement of 1.43×, sitting
+in plain sight in the output of a single pipeline run. The horizon was
+anchored on the wrong one of the two, and every row doubled.
+
+Which one is right was settled by simulation rather than by argument. Against
+a known true standard error, on 111 trades over 28 unequal days with a real
+day-level effect, the cluster-robust estimator comes back at 0.99× the truth
+and the day-mean estimator at 1.07×. The quantity every downstream number
+uses is the mean *per trade*, and the robust error is the one that belongs to
+it; the day-mean version is the error of a different estimator, equal-weighting
+a one-trade day against an eight-trade day.
+
+So the settled figure is **39 days with a trade in them, which is 2.7 calendar
+months.** `scripts/detect.py` derives the error from the interval `replay.py`
+prints rather than storing a scalar, and a test asserts the anchor reproduces
+that interval.
+
+Two cautions, both real. The simulation reproduces a 1.08–1.13× gap between
+the estimators; his data shows 1.43×, which size inequality alone does not
+explain — a few thin days with extreme means are moving the day-mean figure,
+and that is worth looking at directly. And a cluster-robust error on only 28
+clusters is known to run narrow, which is why the t(k−1) quantile is used
+rather than 1.96. **39 days is the honest estimate, not a floor to plan
+against.** Until `diagnose_edge.py` and `dashboard.py` are reconciled with
+`replay.py`, treat the horizon as 39 days with a wide margin rather than a
+settled constant.
 
 The mechanism is that the standard error is clustered by trading day, because
 trades opened the same day share a regime. It shrinks with the square root of
