@@ -244,12 +244,25 @@ the code does when there is no state file at all. Back the file up first; the
 prior P&L lives in `trades.db` and is not lost, and this file's old scale means
 nothing once the base moves.
 
+**And a third step, which is not about sizing at all: the job has to be
+started, not merely loaded.** Stopping the bot with `launchctl bootout` leaves
+the label *disabled*, so the `bootstrap` that puts it back fails with
+`Bootstrap failed: 5: Input/output error` until `launchctl enable
+gui/$UID/com.meiroxai.bot` is run first. And once `bootstrap` succeeds, the job
+is loaded but **not running**: `launchctl list` prints a dash where the PID
+goes, with exit status 0, and the log's last line is still the one the previous
+instance wrote. `bootstrap` registers; `kickstart -k` starts. A dash next to
+status 0 looks exactly like a healthy idle job, and nothing anywhere prints an
+error, so the check that means anything is a PID plus a log timestamp from
+after the restart — never the absence of a complaint.
+
 **A separate constraint the same file revealed.** `max_daily_trades: 1`, set
 for T+1 settlement in cash stock mode. The replay measured about four trades a
-day; the paper run is capped at one. Five comparable trades is therefore five
-trading days, which still clears the Oct 3 condition — but the 100 trades that
-gate stage 2 would be 100 trading days on this path, not the 45 to 63 in the
-table above. The cap is specific to IBKR stock mode; Apex futures have no T+1,
+day; the paper run is capped at one. Five comparable trades is therefore **at
+least** five trading days — and on the clean window's own fill rate, 28 of 41
+elapsed days, about 7.3 (the Oct 3 item above works it through). The 100 trades
+that gate stage 2 would be roughly 146 trading days on this path, not 100 and
+not the 45 to 63 in the table above. The cap is specific to IBKR stock mode; Apex futures have no T+1,
 so it does not move the funded-account schedule.
 
 Two things have to be said alongside it. This is a position-sizing parameter,
@@ -330,6 +343,19 @@ separation survives any reasonable count.
    `exec_entry` populated and zero integrity flags. If it does not, the
    purchase waits; the condition is about whether the record can be
    trusted, and it is not negotiable by a date.
+
+   **Five fills is not five trading days.** `max_daily_trades: 1` caps the
+   record at one trade a day, and in the clean window only 28 of the 41
+   elapsed trading days produced a fill at all — 68%. Five fills therefore
+   takes about **7.3 trading days**, not five. Counting from 23 Sep, the
+   fifth trading day is 29 Sep and the eighth is 2 Oct; at 68% a day, five
+   days clear the bar 15% of the time and eight days 77%. And 77% is the
+   optimistic end, because the replay took every setup while the live bot
+   also has to survive an AI veto that returned NO_TRADE on nineteen of a
+   single Tuesday's scans. So the honest reading is that 3 Oct is around a
+   three-in-four date, not a certainty, and it was never the thing being
+   decided: the condition is a count of trustworthy records, and it does
+   not become satisfied because a date arrived.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow. Stage 2
