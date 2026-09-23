@@ -237,3 +237,34 @@ Mount Lai מתחיל ב-28$ עם מותג מבוסס. אסור להתחרות כ
 | 5 | מתח בלסת | 7 | Talking Head |
 
 **מודעה 3 היא ההימור הראשי.** הוכחה ויזואלית בשתי שניות, בלי מילה, וחסינה ל-Restyling.
+
+---
+
+# ספקים — שני מסלולים
+
+## עכשיו: AliExpress (בלי MOQ)
+
+```
+https://www.aliexpress.com/w/wholesale-gua-sha-stainless-steel.html
+https://www.aliexpress.com/w/wholesale-gua-sha-set.html
+https://www.aliexpress.com/w/wholesale-gua-sha-roller.html
+```
+
+סינון: Choice (קשיח) → 4.5+ כוכבים → מיין לפי Orders → סט 3 פריטים → ותק מעל שנתיים.
+
+**השאלה המסננת: "What steel grade — 304 or 316? Solid or plated?"**
+תשובה מתחמקת, "high quality steel" בלי מספר, או "plated" — פוסל. ציפוי מתקלף ומחליד, וכל המוצר בנוי על עמידות.
+
+## אחר כך: יצרנים ל-Private Label
+
+רלוונטי מ-10-50K$/חודש, לא לפני. MOQ טיפוסי **500 יח'** (~4,000$), דגימה 3-5 ימים, ייצור 15-20 יום.
+
+| יצרן | הערה |
+|---|---|
+| Poleview Group | 304 stainless, OEM, מצהיר על ללא MOQ מינימלי |
+| Jin Sheu (js-pins) | 304, ליטוש גבוה, חריטת לוגו בלייזר |
+| Wholesale Gua Sha Tools | 304 ו-316L, MOQ נמוך, אריזה פרטית |
+| SukeAuto | מגוון חומרים, מיתוג פרטי |
+| Perfect Stone Beauty | מצהיר על MOQ נמוך |
+
+**סף המעבר:** מוצר רווחי שני חודשים רצוף (מתוך 4.7 בשלב 4).
