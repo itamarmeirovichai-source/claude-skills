@@ -224,6 +224,26 @@ four land in sensible places — $800 is 32% of an Apex 50K drawdown, so the kil
 switch still fires well before the account dies — and the validator's sane
 range is 50 to 100,000, so 10,000 sits inside it.
 
+**Changing it is two steps, not one, and the second one is not optional.**
+`risk_manager.py` persists the sizing base to `logs/risk_state.json` as
+`configured_cap`, alongside a running `strategy_equity` and `peak_strategy_equity`
+in the same units. On load it compares the stored cap against the configured one,
+and **a mismatch alone latches the kill switch** — line 489, inside the
+comparison, before any trade and regardless of P&L. The message says "manual
+drawdown reset required" and means it.
+
+Observed here: the file held `configured_cap: 220`, `strategy_equity: 277.10`,
+`peak: 277.10`. Left alone against a new base of 10,000, the bot would have
+started, read it, latched, and refused every signal for the session — the same
+outward symptom as the old $2.20 budget, from a third unrelated cause. (Even
+without line 489 it would have died on the first loss: a $100 loss against a
+$277 peak is a 36% drawdown against an 8% limit.)
+
+The reset rebases all three to the new base and clears the latch, which is what
+the code does when there is no state file at all. Back the file up first; the
+prior P&L lives in `trades.db` and is not lost, and this file's old scale means
+nothing once the base moves.
+
 **A separate constraint the same file revealed.** `max_daily_trades: 1`, set
 for T+1 settlement in cash stock mode. The replay measured about four trades a
 day; the paper run is capped at one. Five comparable trades is therefore five
