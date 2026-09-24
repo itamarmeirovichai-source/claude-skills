@@ -1,0 +1,536 @@
+<title>Still Cold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Figtree:wght@300;400;500;600;700&display=swap">
+
+<style>
+/* ══════════════════════════════════════════════════
+   COLOUR SYSTEM — colour-blocked sections.
+   Plum, coral, sage, butter, cream. Each section owns
+   a ground, so the page reads as designed, not empty.
+   ══════════════════════════════════════════════════ */
+:root{
+  --plum:#2E1630;
+  --plum-2:#432246;
+  --coral:#FF6B4A;
+  --coral-2:#FF9478;
+  --butter:#FFD166;
+  --sage:#7FA88B;
+  --sage-2:#A8C4B0;
+  --cream:#FFF6EC;
+  --cream-2:#FCE9D8;
+  --ink:#241127;
+  --ink-2:#6B4F6E;
+  --white:#FFFDFB;
+  --gut:22px; --maxw:1260px;
+  --e:cubic-bezier(.16,.84,.24,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);
+  font-family:Figtree,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16.5px;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.f{font-family:Fraunces,Georgia,serif;font-weight:600;
+  letter-spacing:-.022em;text-wrap:balance;margin:0}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+.narrow{max-width:800px}
+.tnum{font-variant-numeric:tabular-nums}
+::selection{background:var(--coral);color:var(--white)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+
+.pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:7px 14px;border-radius:99px}
+.pill.c{background:var(--coral);color:var(--white)}
+.pill.b{background:var(--butter);color:var(--ink)}
+.pill.s{background:var(--sage);color:var(--white)}
+.pill.o{background:transparent;border:1.5px solid currentColor}
+
+/* reveal */
+.rv{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translate3d(0,24px,0);
+  transition:opacity .8s var(--e),transform .8s var(--e)}
+.js .rv.in{opacity:1;transform:none}
+.js [data-stg]>*{opacity:0;transform:translate3d(0,22px,0);
+  transition:opacity .75s var(--e),transform .75s var(--e)}
+.js [data-stg].in>*{opacity:1;transform:none}
+.js [data-stg].in>*:nth-child(2){transition-delay:.09s}
+.js [data-stg].in>*:nth-child(3){transition-delay:.18s}
+.js [data-stg].in>*:nth-child(4){transition-delay:.27s}
+.js [data-stg].in>*:nth-child(5){transition-delay:.36s}
+.js [data-stg].in>*:nth-child(6){transition-delay:.45s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv,.js [data-stg]>*{opacity:1!important;transform:none!important;transition:none!important}
+  *{animation:none!important}
+}
+
+/* ════════ NAV ════════ */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:var(--plum);color:var(--cream)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:Fraunces,serif;font-size:23px;font-weight:700;letter-spacing:-.02em}
+.brand em{font-style:italic;color:var(--butter)}
+.nav-r{display:flex;align-items:center;gap:20px;font-size:13.5px;font-weight:500}
+.nav-r .d{display:none;color:var(--coral-2)}
+@media(min-width:760px){.nav-r .d{display:inline}}
+
+/* ════════ HERO — coral ════════ */
+.hero{background:var(--coral);color:var(--white);position:relative;overflow:hidden;
+  padding-block:clamp(48px,8vw,86px)}
+.blob{position:absolute;border-radius:50%;pointer-events:none;opacity:.5}
+.b1{width:60vw;height:60vw;max-width:620px;max-height:620px;background:var(--coral-2);
+  right:-16vw;top:-22vw;animation:f1 19s ease-in-out infinite alternate}
+.b2{width:44vw;height:44vw;max-width:420px;max-height:420px;background:var(--butter);
+  left:-14vw;bottom:-20vw;opacity:.38;animation:f2 23s ease-in-out infinite alternate}
+@keyframes f1{to{transform:translate3d(-7vw,5vw,0) scale(1.16)}}
+@keyframes f2{to{transform:translate3d(6vw,-4vw,0) scale(1.2)}}
+.hero .wrap{position:relative;z-index:1}
+.hero-g{display:grid;gap:34px;align-items:center}
+@media(min-width:980px){.hero-g{grid-template-columns:1.06fr .94fr;gap:56px}}
+h1{font-size:clamp(42px,8.6vw,88px);line-height:.96;margin:20px 0 22px;max-width:13ch}
+h1 em{font-style:italic;color:var(--butter)}
+.lede{font-size:clamp(17px,2.1vw,20.5px);max-width:44ch;margin:0 0 28px;
+  font-weight:400;opacity:.95}
+.trust{display:flex;flex-wrap:wrap;gap:9px}
+
+/* product card floating on the coral */
+.card{background:var(--cream);border-radius:26px;padding:16px;
+  box-shadow:0 30px 60px -22px rgba(46,22,48,.5)}
+.stage{position:relative;aspect-ratio:1;border-radius:16px;overflow:hidden;
+  background:radial-gradient(120% 100% at 30% 16%,var(--white),var(--cream-2))}
+.shot{position:absolute;inset:0;display:grid;place-items:center;padding:13%;
+  opacity:0;transform:scale(.95);transition:opacity .5s var(--e),transform .5s var(--e)}
+.shot.on{opacity:1;transform:none}
+.shot svg{width:100%;height:100%;filter:drop-shadow(0 16px 20px rgba(46,22,48,.24))}
+.sheen{position:absolute;inset:-40%;pointer-events:none;mix-blend-mode:overlay;
+  background:linear-gradient(104deg,transparent 42%,rgba(255,255,255,.75) 50%,transparent 58%);
+  transform:translate3d(-130%,0,0);animation:sweep 6.5s var(--e) infinite}
+@keyframes sweep{0%,64%{transform:translate3d(-130%,0,0)}100%{transform:translate3d(130%,0,0)}}
+.thumbs{display:flex;gap:8px;margin-top:12px}
+.thumb{flex:1;aspect-ratio:1;border-radius:12px;border:2px solid transparent;cursor:pointer;
+  background:var(--cream-2);padding:15%;transition:border-color .25s,transform .25s var(--e)}
+.thumb:hover{transform:translateY(-3px)}
+.thumb[aria-selected="true"]{border-color:var(--coral)}
+.thumb svg{width:100%;height:100%}
+
+/* ════════ TICKER — butter ════════ */
+.tick{background:var(--butter);color:var(--ink);overflow:hidden;padding-block:14px;
+  border-block:3px solid var(--plum)}
+.tick-t{display:flex;gap:44px;width:max-content;animation:roll 38s linear infinite;
+  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+@keyframes roll{to{transform:translate3d(-50%,0,0)}}
+.tick:hover .tick-t{animation-play-state:paused}
+
+/* ════════ BUY — cream ════════ */
+.buy{padding-block:clamp(52px,7vw,84px)}
+.buy-g{display:grid;gap:40px}
+@media(min-width:900px){.buy-g{grid-template-columns:1fr 1fr;gap:64px;align-items:start}}
+h2{font-size:clamp(30px,5.4vw,54px);line-height:1.04;max-width:16ch}
+h2 em{font-style:italic;color:var(--coral)}
+.price-row{display:flex;align-items:baseline;gap:13px;margin:22px 0 20px}
+.price{font-family:Fraunces,serif;font-size:46px;font-weight:700;letter-spacing:-.03em}
+.was{color:var(--ink-2);text-decoration:line-through;font-size:18px}
+.spec{display:grid;gap:11px;margin-bottom:28px}
+.spec li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;list-style:none}
+.spec svg{flex:none;margin-top:3px;color:var(--sage)}
+.spec b{font-weight:600}
+.tiers{display:grid;gap:9px;margin-bottom:22px}
+.tier{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;cursor:pointer;
+  border:2px solid var(--cream-2);border-radius:16px;padding:16px 18px;background:var(--white);
+  position:relative;transition:border-color .25s,transform .2s var(--e)}
+.tier:hover{transform:translateY(-2px)}
+.tier[aria-checked="true"]{border-color:var(--coral);background:#FFF1EB}
+.t-n{font-weight:600;font-size:15.5px}
+.t-s{font-size:13px;color:var(--ink-2);display:block;margin-top:1px}
+.t-p{text-align:right;font-weight:700;font-size:16px}
+.t-e{display:block;font-size:12px;color:var(--ink-2);font-weight:400;margin-top:1px}
+.flag{position:absolute;top:-11px;left:16px;background:var(--plum);color:var(--butter);
+  font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:3px 10px;border-radius:99px}
+.atc{width:100%;border:0;border-radius:99px;background:var(--plum);color:var(--cream);
+  font-family:inherit;font-size:16.5px;font-weight:700;padding:20px;cursor:pointer;
+  transition:transform .14s var(--e),background .25s}
+.atc:hover{background:var(--coral);color:var(--white)}
+.atc:active{transform:scale(.985)}
+.eta{text-align:center;font-size:13.5px;color:var(--ink-2);margin-top:13px}
+
+/* ════════ STEEL vs STONE — plum ════════ */
+.dark{background:var(--plum);color:var(--cream)}
+.dark h2 em{color:var(--butter)}
+section{padding-block:clamp(66px,10vw,116px)}
+.body-l{font-size:17px;max-width:54ch;margin:24px 0 0;opacity:.88}
+.vs{display:grid;gap:18px;margin-top:46px}
+@media(min-width:840px){.vs{grid-template-columns:1fr 1fr}}
+.cell{border-radius:22px;padding:clamp(26px,3.4vw,38px)}
+.cell.win{background:var(--sage);color:var(--white)}
+.cell.lose{background:var(--plum-2);color:var(--cream)}
+.cell h3{font-size:25px;margin:16px 0 20px}
+.attr{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
+  padding-block:11px;border-top:1px solid rgba(255,255,255,.22);font-size:15px}
+.attr:first-of-type{border-top:0}
+.attr svg{flex:none;margin-top:4px}
+.meter{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22)}
+.meter-l{display:flex;justify-content:space-between;font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px;opacity:.85}
+.track{height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.fill{height:100%;border-radius:99px;transform-origin:left;transform:scaleX(0);
+  transition:transform 1.5s var(--e) .2s}
+.in .fill{transform:scaleX(var(--v))}
+.fill.a{background:var(--butter)}
+.fill.b{background:var(--coral-2)}
+
+/* ════════ STATS — sage ════════ */
+.stats{background:var(--sage);color:var(--white);display:grid;gap:0;
+  border-block:3px solid var(--plum)}
+@media(min-width:700px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{padding:40px 24px;text-align:center;border-bottom:1px solid rgba(255,255,255,.26)}
+@media(min-width:700px){.stat{border-bottom:0;border-right:1px solid rgba(255,255,255,.26)}
+  .stat:last-child{border-right:0}}
+.stat b{font-family:Fraunces,serif;font-size:clamp(46px,7vw,70px);font-weight:700;
+  display:block;line-height:1;letter-spacing:-.035em;margin-bottom:9px}
+.stat span{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+
+/* ════════ DROP — butter ════════ */
+.warm{background:var(--butter);color:var(--ink)}
+.drop{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.drop{grid-template-columns:.85fr 1.15fr;gap:64px}}
+.drop-stage{aspect-ratio:1;border-radius:26px;position:relative;overflow:hidden;
+  background:var(--cream);display:grid;place-items:center;
+  box-shadow:0 24px 44px -20px rgba(46,22,48,.35)}
+.floor{position:absolute;left:14%;right:14%;bottom:26%;height:3px;border-radius:99px;
+  background:var(--cream-2)}
+.faller{width:36%;animation:fall 3.4s cubic-bezier(.6,0,.82,.16) infinite;
+  filter:drop-shadow(0 16px 18px rgba(46,22,48,.3))}
+@keyframes fall{
+  0%,9%{transform:translateY(-130%) rotate(-14deg)}
+  35%{transform:translateY(0) rotate(5deg)}
+  41%{transform:translateY(-20%) rotate(-4deg)}
+  48%{transform:translateY(0) rotate(2deg)}
+  53%{transform:translateY(-6%) rotate(-1deg)}
+  58%,100%{transform:translateY(0) rotate(0)}
+}
+.ring{position:absolute;bottom:26%;width:28%;aspect-ratio:3/1;border:3px solid var(--coral);
+  border-radius:50%;opacity:0;animation:ping 3.4s linear infinite}
+@keyframes ping{0%,34%{transform:scale(.3);opacity:0}37%{transform:scale(.5);opacity:.8}
+  62%,100%{transform:scale(2);opacity:0}}
+.pull{font-family:Fraunces,serif;font-size:clamp(36px,6.4vw,74px);font-weight:700;
+  line-height:1;letter-spacing:-.03em;margin:0 0 22px}
+.pull em{font-style:italic;color:var(--coral)}
+
+/* ════════ ROUTINE — cream ════════ */
+.steps{display:grid;gap:14px;margin-top:46px}
+@media(min-width:820px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--white);border-radius:22px;padding:28px 24px 32px;
+  transition:transform .3s var(--e),box-shadow .3s}
+.step:hover{transform:translateY(-6px);box-shadow:0 20px 36px -18px rgba(46,22,48,.3)}
+.step .n{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  font-family:Fraunces,serif;font-weight:700;font-size:17px;margin-bottom:18px}
+.step:nth-child(1) .n{background:var(--coral);color:var(--white)}
+.step:nth-child(2) .n{background:var(--butter);color:var(--ink)}
+.step:nth-child(3) .n{background:var(--sage);color:var(--white)}
+.step:nth-child(4) .n{background:var(--plum);color:var(--butter)}
+.step b{display:block;font-family:Fraunces,serif;font-size:22px;font-weight:600;margin-bottom:7px}
+.step span{color:var(--ink-2);font-size:14.5px}
+
+/* ════════ HONEST — sage ════════ */
+.honest{background:var(--sage-2)}
+.honest p{font-family:Fraunces,serif;font-size:clamp(27px,4.6vw,46px);font-weight:600;
+  line-height:1.14;letter-spacing:-.024em;margin:0 0 22px;max-width:20ch}
+.honest small{font-size:16.5px;line-height:1.66;display:block;max-width:56ch;color:var(--ink)}
+
+/* ════════ REVIEWS — cream ════════ */
+.revs{display:grid;gap:16px;margin-top:44px}
+@media(min-width:840px){.revs{grid-template-columns:repeat(3,1fr)}}
+.rev{border-radius:22px;padding:30px 26px;transition:transform .3s var(--e)}
+.rev:hover{transform:translateY(-5px)}
+.rev:nth-child(1){background:var(--cream-2)}
+.rev:nth-child(2){background:var(--sage-2)}
+.rev:nth-child(3){background:#FFE7DE}
+.stars{color:var(--coral);font-size:15px;letter-spacing:.1em;margin-bottom:13px}
+.rev p{font-family:Fraunces,serif;font-size:19px;font-weight:600;line-height:1.36;margin:0 0 18px}
+.who{font-size:12.5px;font-weight:600;color:var(--ink-2)}
+
+/* ════════ FAQ ════════ */
+details{border-bottom:2px solid var(--cream-2)}
+summary{cursor:pointer;padding:22px 42px 22px 0;font-size:18px;font-weight:600;
+  position:relative;list-style:none;font-family:Fraunces,serif;transition:color .25s}
+summary:hover{color:var(--coral)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:10px;top:50%;width:14px;height:2.5px;
+  border-radius:9px;background:var(--coral)}
+summary::before{content:"";position:absolute;right:15.75px;top:50%;width:2.5px;height:14px;
+  border-radius:9px;background:var(--coral);transform:translateY(-50%);
+  transition:transform .32s var(--e),opacity .32s}
+details[open] summary::before{transform:translateY(-50%) rotate(90deg);opacity:0}
+details p{margin:0 0 24px;color:var(--ink-2);font-size:16px;max-width:62ch}
+
+footer{background:var(--plum);color:var(--cream);padding-block:54px 46px;font-size:14.5px}
+.fg{display:grid;gap:32px}
+@media(min-width:760px){.fg{grid-template-columns:1.7fr 1fr 1fr}}
+footer b{color:var(--butter);display:block;margin-bottom:13px;font-size:12px;
+  font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+footer li{opacity:.86;transition:opacity .2s,color .2s;cursor:pointer}
+footer li:hover{opacity:1;color:var(--coral-2)}
+
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;gap:13px;align-items:center;
+  background:var(--white);border-top:3px solid var(--plum);padding:11px var(--gut);
+  padding-bottom:calc(11px + env(safe-area-inset-bottom,0px));
+  transform:translate3d(0,106%,0);transition:transform .4s var(--e)}
+.bar.up{transform:none}
+@media(min-width:900px){.bar{display:none}}
+.bar .p{font-weight:700;font-size:17px;white-space:nowrap}
+.bar .atc{width:auto;flex:1;padding:15px;font-size:15.5px}
+.pad{height:80px}
+@media(min-width:900px){.pad{display:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="mx" x1="0" y1="0" x2=".8" y2="1">
+    <stop offset="0" stop-color="#5C6B72"/><stop offset=".2" stop-color="#B9C6CC"/>
+    <stop offset=".35" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#9FAFB6"/>
+    <stop offset=".68" stop-color="#5C6B72"/><stop offset=".84" stop-color="#C9D5DA"/>
+    <stop offset="1" stop-color="#6E7D84"/>
+  </linearGradient>
+  <linearGradient id="mxv" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#5C6B72"/><stop offset=".18" stop-color="#FFFFFF"/>
+    <stop offset=".45" stop-color="#A5B4BA"/><stop offset=".72" stop-color="#5C6B72"/>
+    <stop offset="1" stop-color="#8E9DA4"/>
+  </linearGradient>
+</defs></svg>
+
+<nav class="nav"><div class="wrap nav-in">
+  <div class="brand">Still <em>Cold</em></div>
+  <div class="nav-r"><span class="d">Free shipping ✦ 30-day replacement</span><span>Cart (0)</span></div>
+</div></nav>
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap hero-g">
+    <div class="rv" data-stg>
+      <span class="pill b">Solid 304 stainless</span>
+      <h1>Stone breaks. Stone <em>absorbs.</em> Steel does neither.</h1>
+      <p class="lede">A three-piece facial massage set made from the material the job actually calls for — non-porous, unbreakable, and still cold when you finish.</p>
+      <div class="trust">
+        <span class="pill o">✦ Free shipping</span>
+        <span class="pill o">✦ 30-day replacement</span>
+        <span class="pill o">✦ 6–12 day delivery</span>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="card">
+        <div class="stage">
+          <div class="shot on" data-s="0"><svg viewBox="0 0 400 400" aria-label="The three-piece set">
+            <path d="M84 78c56-28 134-20 174 16 27 25 22 60-13 77-46 22-118 20-158-11-28-22-27-66-3-82z" fill="url(#mx)"/>
+            <path d="M99 93c47-20 112-15 145 15" fill="none" stroke="#fff" stroke-width="3" opacity=".7" stroke-linecap="round"/>
+            <rect x="188" y="206" width="21" height="106" rx="10.5" fill="url(#mxv)"/>
+            <ellipse cx="198" cy="200" rx="59" ry="26" fill="url(#mx)"/>
+            <ellipse cx="198" cy="193" rx="46" ry="17" fill="none" stroke="#fff" stroke-width="2.4" opacity=".65"/>
+            <ellipse cx="198" cy="318" rx="35" ry="16" fill="url(#mx)"/>
+            <circle cx="88" cy="292" r="27" fill="url(#mx)"/>
+            <circle cx="88" cy="285" r="15" fill="none" stroke="#fff" stroke-width="2.4" opacity=".65"/>
+            <circle cx="308" cy="306" r="22" fill="url(#mx)"/>
+            <circle cx="308" cy="300" r="12" fill="none" stroke="#fff" stroke-width="2.2" opacity=".65"/>
+          </svg></div>
+          <div class="shot" data-s="1"><svg viewBox="0 0 400 400" aria-label="Contour tool">
+            <path d="M52 120c80-48 198-36 264 27 40 38 30 93-25 118-72 32-179 27-234-25-38-35-38-99-5-120z" fill="url(#mx)"/>
+            <path d="M75 139c69-34 168-27 217 27" fill="none" stroke="#fff" stroke-width="6" opacity=".68" stroke-linecap="round"/>
+          </svg></div>
+          <div class="shot" data-s="2"><svg viewBox="0 0 400 400" aria-label="Dual roller">
+            <rect x="182" y="118" width="32" height="172" rx="16" fill="url(#mxv)"/>
+            <ellipse cx="198" cy="106" rx="82" ry="36" fill="url(#mx)"/>
+            <ellipse cx="198" cy="96" rx="65" ry="26" fill="none" stroke="#fff" stroke-width="3.5" opacity=".65"/>
+            <ellipse cx="198" cy="302" rx="51" ry="24" fill="url(#mx)"/>
+            <ellipse cx="198" cy="294" rx="39" ry="16" fill="none" stroke="#fff" stroke-width="2.6" opacity=".65"/>
+          </svg></div>
+          <div class="shot" data-s="3"><svg viewBox="0 0 400 400" aria-label="Vacuum cups">
+            <circle cx="140" cy="160" r="70" fill="url(#mx)"/>
+            <circle cx="140" cy="145" r="43" fill="none" stroke="#fff" stroke-width="5" opacity=".65"/>
+            <circle cx="264" cy="268" r="54" fill="url(#mx)"/>
+            <circle cx="264" cy="256" r="33" fill="none" stroke="#fff" stroke-width="4" opacity=".65"/>
+          </svg></div>
+          <div class="sheen"></div>
+        </div>
+        <div class="thumbs" role="tablist" aria-label="Views">
+          <div class="thumb" role="tab" aria-selected="true" tabindex="0" data-g="0"><svg viewBox="0 0 100 100"><ellipse cx="50" cy="32" rx="32" ry="17" fill="url(#mx)"/><rect x="45" y="47" width="10" height="31" rx="5" fill="url(#mxv)"/><circle cx="23" cy="73" r="11" fill="url(#mx)"/></svg></div>
+          <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="1"><svg viewBox="0 0 100 100"><path d="M13 43c24-18 60-13 77 9 11 13 4 28-15 34-24 9-56 6-67-9-9-12-6-29 5-34z" fill="url(#mx)"/></svg></div>
+          <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="2"><svg viewBox="0 0 100 100"><rect x="44" y="23" width="12" height="54" rx="6" fill="url(#mxv)"/><ellipse cx="50" cy="21" rx="28" ry="12" fill="url(#mx)"/><ellipse cx="50" cy="79" rx="18" ry="8" fill="url(#mx)"/></svg></div>
+          <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="3"><svg viewBox="0 0 100 100"><circle cx="35" cy="37" r="22" fill="url(#mx)"/><circle cx="66" cy="68" r="17" fill="url(#mx)"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="tick"><div class="tick-t">
+  <span>Non-porous ✦</span><span>Sealed bearing ✦</span><span>Still cold after 20 minutes ✦</span>
+  <span>Won't snap ✦</span><span>Free shipping ✦</span><span>30-day replacement ✦</span>
+  <span>Non-porous ✦</span><span>Sealed bearing ✦</span><span>Still cold after 20 minutes ✦</span>
+  <span>Won't snap ✦</span><span>Free shipping ✦</span><span>30-day replacement ✦</span>
+</div></div>
+
+<div class="buy"><div class="wrap buy-g">
+  <div class="rv">
+    <span class="pill c">The Steel Set</span>
+    <h2 style="margin-top:16px">Three pieces. <em>One material.</em></h2>
+    <p style="color:var(--ink-2);margin:14px 0 0;max-width:38ch">Contour tool, dual roller, two vacuum cups — everything the routine needs, nothing it doesn't.</p>
+    <div class="price-row"><span class="price tnum">$42</span><span class="was tnum">$73</span><span class="pill s">Save 42%</span></div>
+    <ul class="spec">
+      <li><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4 8.3l2.7 2.7L12 5.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Solid 304 stainless</b> — not plated, not coated, not resin</span></li>
+      <li><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4 8.3l2.7 2.7L12 5.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Holds cold <b>20+ minutes</b> straight from the fridge</span></li>
+      <li><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4 8.3l2.7 2.7L12 5.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Free shipping</b> in the price — nothing added at checkout</span></li>
+      <li><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4 8.3l2.7 2.7L12 5.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>30 days.</b> If it breaks we replace it — no return needed</span></li>
+    </ul>
+  </div>
+
+  <div class="rv" data-stg>
+    <div class="tiers" role="radiogroup" aria-label="Quantity">
+      <div class="tier" role="radio" aria-checked="false" tabindex="0" data-p="42">
+        <span><span class="t-n">One set</span><span class="t-s">For you</span></span>
+        <span class="t-p tnum">$42.00<span class="t-e">$42.00 each</span></span></div>
+      <div class="tier" role="radio" aria-checked="true" tabindex="0" data-p="71.4">
+        <span class="flag">Most chosen</span>
+        <span><span class="t-n">Two sets · save 15%</span><span class="t-s">One to keep, one to give</span></span>
+        <span class="t-p tnum">$71.40<span class="t-e">$35.70 each</span></span></div>
+      <div class="tier" role="radio" aria-checked="false" tabindex="0" data-p="94.5">
+        <span><span class="t-n">Three sets · save 25%</span><span class="t-s">Best value per set</span></span>
+        <span class="t-p tnum">$94.50<span class="t-e">$31.50 each</span></span></div>
+    </div>
+    <button class="atc" id="atc">Add to cart — <span class="tnum" id="ap">$71.40</span></button>
+    <p class="eta">Ships free ✦ Arrives <b id="eta">Oct 1 – Oct 7</b></p>
+  </div>
+</div></div>
+
+<section class="dark"><div class="wrap">
+  <span class="pill b rv">The material</span>
+  <h2 class="rv" style="margin-top:18px">Every complaint about these tools is a <em>complaint about stone.</em></h2>
+  <p class="body-l rv">It snaps when you press. It's porous, so months of serum and skin oil go in and stay there. It warms to skin temperature in about five minutes — roughly when you've finished one side of your face. None of that is a defect. It's just what stone is.</p>
+  <div class="vs">
+    <div class="cell win rv">
+      <span class="pill o">This set</span><h3>Solid 304 stainless</h3>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.3l3.2 3.2L13 4.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bends long before it breaks — and won't do either in normal use</span></div>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.3l3.2 3.2L13 4.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Non-porous — nothing soaks in, so rinsing actually cleans it</span></div>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.3l3.2 3.2L13 4.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sealed bearing — silent from the first use to the thousandth</span></div>
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">20+ min</span></div><div class="track"><div class="fill a" style="--v:1"></div></div></div>
+    </div>
+    <div class="cell lose rv">
+      <span class="pill o">The $15 set</span><h3>Jade or rose quartz</h3>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Snaps under pressure — the single most repeated review complaint</span></div>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Porous — absorbs oil and residue, and keeps it</span></div>
+      <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Open bearing — squeaks, frequently from day one</span></div>
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">~5 min</span></div><div class="track"><div class="fill b" style="--v:.25"></div></div></div>
+    </div>
+  </div>
+</div></section>
+
+<div class="stats" data-stg>
+  <div class="stat"><b class="tnum" data-to="20" data-suf="+">0</b><span>Minutes still cold</span></div>
+  <div class="stat"><b class="tnum" data-to="100" data-suf="">0</b><span>Drops onto tile</span></div>
+  <div class="stat"><b class="tnum" data-to="0" data-suf="">0</b><span>That broke</span></div>
+</div>
+
+<section class="warm"><div class="wrap drop">
+  <div class="drop-stage rv">
+    <div class="floor"></div><div class="ring"></div>
+    <svg class="faller" viewBox="0 0 200 130" aria-label="The tool dropped on tile, intact">
+      <path d="M18 44c42-26 104-19 140 17 21 21 15 48-15 61-40 17-96 13-123-15-21-19-21-53-2-63z" fill="url(#mx)"/>
+      <path d="M34 56c36-19 88-15 114 15" fill="none" stroke="#fff" stroke-width="3.5" opacity=".7" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="rv" data-stg>
+    <span class="pill c">The drop test</span>
+    <p class="pull" style="margin-top:18px">Try that <em>with jade.</em></p>
+    <p style="font-size:17px;max-width:46ch;margin:0">We dropped it on tile from waist height before we were willing to sell it, and then we did it another ninety-nine times. If yours breaks inside thirty days, message us and a replacement goes out the same day — you don't need to return the broken one, because there won't be one.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="pill s rv">The routine</span>
+  <h2 class="rv" style="margin-top:18px">Four moves. <em>Three minutes.</em></h2>
+  <p class="body-l rv" style="color:var(--ink-2)">Outward and up, never down. Light pressure, unhurried, tool straight from the fridge.</p>
+  <div class="steps" data-stg>
+    <div class="step"><span class="n">1</span><b>Jaw</b><span>Start at the chin, draw out along the jaw to the ear. Eight passes each side.</span></div>
+    <div class="step"><span class="n">2</span><b>Cheek</b><span>From the corner of the mouth, over the cheekbone, out to the ear. Eight passes.</span></div>
+    <div class="step"><span class="n">3</span><b>Eye</b><span>Under the eye, moving outward. Very light — the skin here is thin. Five passes.</span></div>
+    <div class="step"><span class="n">4</span><b>Neck</b><span>Finish downward along the side of the neck. Eight passes. That's all of it.</span></div>
+  </div>
+</div></section>
+
+<section class="honest"><div class="wrap narrow rv" data-stg>
+  <span class="pill c">Straight talk</span>
+  <p style="margin-top:20px">Nobody tells you this, so we will: the results are temporary.</p>
+  <small>You de-puff in the morning, it holds through the day, and tomorrow you wake up puffy again. That is how facial massage works, and anyone promising permanent change is selling you something else. Three minutes for a face that looks awake today — that's the entire offer, and we think it's worth it.</small>
+</div></section>
+
+<section><div class="wrap">
+  <span class="pill c rv">Owners</span>
+  <h2 class="rv" style="margin-top:18px">What people <em>actually</em> say.</h2>
+  <div class="revs" data-stg>
+    <div class="rev"><div class="stars">★★★★★</div><p>“My third gua sha broke last year. I've dropped this one twice on tile and it doesn't have a mark on it.”</p><div class="who">Dana R. — Verified buyer</div></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>“I didn't believe the cold part mattered until I used it. My old jade one is warm by the time I reach my jaw.”</p><div class="who">Priya M. — Verified buyer</div></div>
+    <div class="rev"><div class="stars">★★★★☆</div><p>“Does exactly what it says. Puffiness is genuinely down in the morning. I'd like a nicer case for the price.”</p><div class="who">Alexis T. — Verified buyer</div></div>
+  </div>
+  <p style="margin-top:20px;font-size:13px;color:var(--ink-2)">Placeholder copy — replace with real reviews before launch. Minimum fifteen, with photographs.</p>
+</div></section>
+
+<section style="background:var(--cream-2)"><div class="wrap narrow">
+  <span class="pill b rv">Questions</span>
+  <h2 class="rv" style="margin:18px 0 38px">Answered <em>straight.</em></h2>
+  <details class="rv"><summary>Will it break?</summary><p>Cheap sets snap because stone is brittle and thin through the middle. This is solid steel. If it does break inside thirty days we replace it, and you keep the old one.</p></details>
+  <details class="rv"><summary>I've never done this. Will I do it wrong?</summary><p>You can't really. The worst case is that nothing happens. The four moves are above — chin to ear, cheekbone to ear, under the eye, then down the neck. Outward and up, always.</p></details>
+  <details class="rv"><summary>Are the results permanent?</summary><p>No, and we won't pretend otherwise. You de-puff in the morning and it holds through the day. Most people do it daily for exactly that reason.</p></details>
+  <details class="rv"><summary>Does the roller squeak?</summary><p>No. Squeaking comes from an open bearing, which is what cheap rollers use. Ours is sealed.</p></details>
+  <details class="rv"><summary>Can I use it with my serum?</summary><p>Yes, and it's the better way. Apply first, then work it in with the flat edge — the product goes into your skin instead of onto your fingers.</p></details>
+  <details class="rv"><summary>Why $42 when Amazon sells sets for $15?</summary><p>Because the $15 sets are the ones people buy three times. This is three pieces in solid steel with a replacement guarantee. Bought separately, comparable pieces run past $70.</p></details>
+  <details class="rv"><summary>When does it arrive?</summary><p>Six to twelve days. You get tracking the day it ships and a note from us halfway through, so you're never left wondering.</p></details>
+</div></section>
+
+<footer><div class="wrap fg">
+  <div><div class="brand" style="margin-bottom:14px">Still <em>Cold</em></div>
+    <p style="margin:0;max-width:32ch;opacity:.82">Three minutes, every morning. We make one thing, and we make it out of steel.</p></div>
+  <div><b>Help</b><ul><li>Shipping</li><li>Returns &amp; guarantee</li><li>Track your order</li><li>Contact</li></ul></div>
+  <div><b>Legal</b><ul><li>Terms of service</li><li>Privacy policy</li><li>Refund policy</li><li>Accessibility</li></ul></div>
+</div></footer>
+
+<div class="pad"></div>
+<div class="bar" id="bar"><span class="p tnum" id="bp">$71.40</span><button class="atc">Add to cart</button></div>
+
+<script>
+document.documentElement.classList.add('js');
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+  {rootMargin:'0px 0px -6% 0px',threshold:.1});
+document.querySelectorAll('.rv,[data-stg]').forEach(function(el){io.observe(el);});
+
+var shots=document.querySelectorAll('.shot'),th=document.querySelectorAll('.thumb');
+function go(i){shots.forEach(function(s,n){s.classList.toggle('on',n===i);});
+  th.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false');});}
+th.forEach(function(t){t.addEventListener('click',function(){go(+t.dataset.g);});
+  t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go(+t.dataset.g);}});});
+
+var ti=document.querySelectorAll('.tier'),ap=document.getElementById('ap'),bp=document.getElementById('bp');
+function pick(t){ti.forEach(function(x){x.setAttribute('aria-checked',x===t?'true':'false');});
+  var p='$'+Number(t.dataset.p).toFixed(2);ap.textContent=p;bp.textContent=p;}
+ti.forEach(function(t){t.addEventListener('click',function(){pick(t);});
+  t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(t);}});});
+
+(function(){var f=function(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});},
+  a=new Date(),b=new Date();a.setDate(a.getDate()+6);b.setDate(b.getDate()+12);
+  document.getElementById('eta').textContent=f(a)+' – '+f(b);})();
+
+new IntersectionObserver(function(es){
+  document.getElementById('bar').classList.toggle('up',!es[0].isIntersecting);
+},{threshold:0}).observe(document.getElementById('atc'));
+
+if(!RM){var sio=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;sio.unobserve(e.target);
+  var el=e.target,to=+el.dataset.to,suf=el.dataset.suf||'',t0=null,D=1500;
+  if(to===0){el.textContent='0'+suf;return;}
+  requestAnimationFrame(function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/D,1);
+    el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step);});
+});},{threshold:.6});
+document.querySelectorAll('.stat b').forEach(function(b){sio.observe(b);});}
+</script>
