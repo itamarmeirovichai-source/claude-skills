@@ -450,6 +450,27 @@ separation survives any reasonable count.
    share `broker_order_id = 98`. IBKR restarts its order ids after a
    gateway restart, so that column is not unique, and anything that looks a
    trade up by it can find the wrong row. Filed, not fixed.
+
+   **24 Sep — and the fix had a second half nobody had noticed.** Trade 58
+   keeps `analysis_id = 0` for ever; nothing can make that row clean, and
+   it must not be deleted or edited. But `paper_check.py` counted every row
+   in the table, so one permanently-flagged row pinned its verdict at "not
+   clean" for all time. Five flawless trades would still have printed *do
+   not buy an account*. That failure does not look like a broken script —
+   it looks like another day that did not produce enough evidence, which is
+   exactly how a gate freezes without anyone noticing. Verified by running
+   the pre-fix script against a database holding one orphan and five
+   perfect fills: "not clean".
+
+   The verdict is now cut at `FIX_LANDED = 2026-09-24`, the first session
+   that ran the reordered code. Rows before it are counted and reported
+   separately — id and reason printed — never dropped in silence, and
+   `--since` overrides the date. Anything after it is judged exactly as
+   strictly as before: a new orphan, or a split conversion ratio, still
+   blocks, and both cases are tested. A related lie was removed in the same
+   pass: with zero rows in range the script used to print "every trade is
+   linked to its setup", an empty truth that reads like a check that
+   passed.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow. Stage 2

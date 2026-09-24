@@ -38,6 +38,9 @@ paper_check.py — האם נתיב הביצוע נקי, לפי הרשומות ש
     python3 paper_check.py
     python3 paper_check.py '/נתיב/לבוט'
     python3 paper_check.py '/נתיב/לבוט' --since 2026-09-21
+
+הפסק דין נחתך כברירת מחדל על עסקאות מ-24/09/2026 ואילך — המושב
+הראשון שרץ אחרי תיקון סדר הרישום. ראה FIX_LANDED.
 """
 
 import sqlite3
@@ -59,6 +62,20 @@ MIN_TRADES = 5
 # עסקה בודדת לא מזיזה מחיר פי שניים; מה שכן נותן פי עשרה הוא
 # רמת חוזה מול מחיר ETF.
 SAME_SCALE = (0.5, 2.0)
+# ── עידן הרישום ───────────────────────────────────────────────────
+# בערב 23/09/2026 הותקן התיקון שמזיז את רישום הניתוח אל לפני שליחת
+# הפקודה. עד אליו analysis_id נכתב תמיד 0, כי שורת הניתוח נולדה
+# אחרי שורת העסקה: עסקה 58 ב-09:30:50.037783, והניתוח שלה, 3819,
+# ב-09:30:50.563466 — חצי שנייה מאוחר יותר.
+#
+# שורה כזאת לא יכולה להפוך לנקייה. כל עוד היא נספרת בפסק הדין,
+# "לא נקי" נעול לנצח, והשער לא ייפתח גם אחרי חמש עסקאות מושלמות.
+# זה לא היה נראה ככישלון — זה היה נראה כמו עוד יום שלא הספיק.
+#
+# ולכן הפסק דין נחתך על מה שנכתב מהמושב הראשון שרץ עם התיקון,
+# 24/09/2026. מה שלפניו לא נמחק ולא מתוקן: הוא נספר ומדווח בנפרד,
+# כדי שהחיתוך יהיה גלוי. --since דורס את התאריך הזה.
+FIX_LANDED = "2026-09-24"
 
 
 def say(mark, text):
@@ -156,6 +173,14 @@ def sign_verdict(row) -> tuple:
     return True, "עקבי"
 
 
+def split_eras(all_rows, cutoff) -> tuple:
+    """(לפני החיתוך, מהחיתוך והלאה). ההשוואה לקסיקוגרפית על ISO,
+    וזה נכון כאן כי כל החותמות נושאות את אותו היסט (-04:00)."""
+    before = [r for r in all_rows if (r["timestamp"] or "") < cutoff]
+    after = [r for r in all_rows if (r["timestamp"] or "") >= cutoff]
+    return before, after
+
+
 def main() -> None:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     since = None
@@ -184,24 +209,26 @@ def main() -> None:
         sys.exit(f"חסרות עמודות: {', '.join(sorted(missing))}. "
                  "להריץ קודם את המיגרציה של exec_*.")
 
-    sql = "SELECT * FROM trades"
-    params = ()
-    if since:
-        sql += " WHERE timestamp >= ?"
-        params = (since,)
-    sql += " ORDER BY id"
-    rows = list(con.execute(sql, params))
+    cutoff = since or FIX_LANDED
+    all_rows = list(con.execute("SELECT * FROM trades ORDER BY id"))
     con.close()
 
-    if not rows:
-        sys.exit("אין עסקאות בטווח שנבחר.")
+    before, rows = split_eras(all_rows, cutoff)
 
     good, bad, unknown = [], [], []
     for row in rows:
         ok, why = verdict_for(row)
         (good if ok else unknown if ok is None else bad).append((row, why))
 
-    say(INFO, f"{len(rows)} עסקאות נבדקו" + (f" מאז {since}" if since else ""))
+    if before:
+        stale = [r for r in before if not r["analysis_id"]]
+        say(INFO, f"{len(before)} עסקאות מלפני {cutoff} — מחוץ לפסק הדין")
+        if stale:
+            ids = ", ".join(str(r["id"]) for r in stale[:5])
+            say(INFO, f"  מתוכן {len(stale)} בלי analysis_id (id={ids}) — "
+                      "הבאג של סדר הרישום.")
+            say(INFO, "  נשארות ברשומה. לא נמחקו ולא תוקנו.")
+    say(INFO, f"{len(rows)} עסקאות נבדקו מאז {cutoff}")
     say(OK if good else INFO, f"{len(good)} עם יחס המרה אחיד")
     if unknown:
         say(WARN, f"{len(unknown)} לא ניתנות להשוואה — לא נספרות כעבר")
@@ -239,8 +266,10 @@ def main() -> None:
               if not r["analysis_id"] or r["analysis_id"] == 0]
     if orphan:
         say(BAD, f"{len(orphan)} בלי analysis_id — אי אפשר לקשר לסטאפ")
-    else:
+    elif rows:
         say(OK, "כל העסקאות מקושרות לסטאפ שיצר אותן")
+    # אפס שורות בטווח: אין מה לאשר. "כולן מקושרות" על קבוצה ריקה
+    # הוא אמת ריקה, והוא נקרא כמו בדיקה שעברה.
 
     # ── הפסק דין ──────────────────────────────────────────────────
     banner("מה זה מכריע")

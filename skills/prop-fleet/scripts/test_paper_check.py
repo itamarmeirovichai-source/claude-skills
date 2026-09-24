@@ -10,7 +10,8 @@ import sqlite3
 
 import pytest
 
-from paper_check import REL_TOL, ratios, verdict_for
+from paper_check import (FIX_LANDED, REL_TOL, ratios, split_eras,
+                         verdict_for)
 
 SCHEMA = """
 CREATE TABLE trades (
@@ -238,3 +239,126 @@ def test_a_real_fill_with_split_ratios_still_fails():
         entry_price=100.0, stop_loss=101.0, take_profit_1=98.0,
         exec_entry=100.0, exec_stop_loss=1.01, exec_take_profit=0.98))
     assert ok is False, why
+
+
+# ── עידן הרישום ───────────────────────────────────────────────────
+# הבדיקות האלה קיימות בגלל תקלה שכמעט עברה בשקט: עסקה 58 נכתבה עם
+# analysis_id=0 בגלל באג סדר הרישום, ולא יכולה להפוך לנקייה. כל עוד
+# היא נספרה, פסק הדין היה "לא נקי" לנצח — גם אחרי חמש עסקאות
+# מושלמות. זה לא היה נראה ככישלון של הסקריפט אלא כמו עוד יום שלא
+# הספיק, ולכן זה בדיוק הסוג שצריך בדיקה.
+
+def _db(tmp_path, *trades):
+    """מסד אמיתי בתיקיית בוט אמיתית, כדי ש-main() ירוץ עליו כמו בייצור."""
+    logs = tmp_path / "logs"
+    logs.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(str(logs / "trades.db"))
+    con.execute(SCHEMA)
+    for tr in trades:
+        base = dict(id=None, analysis_id=7, timestamp="2026-09-25", market="ES",
+                    direction="long", status="closed",
+                    entry_price=100.0, stop_loss=101.0, take_profit_1=98.0,
+                    exec_entry=1.0, exec_stop_loss=1.01, exec_take_profit=0.98,
+                    exit_price=0.98, pnl=-2.0, pnl_r=-1.0)
+        base.update(tr)
+        keys = ",".join(base)
+        con.execute(f"INSERT INTO trades ({keys}) "
+                    f"VALUES ({','.join('?' * len(base))})",
+                    tuple(base.values()))
+    con.commit()
+    con.close()
+    return tmp_path
+
+
+def _run(bot, *extra):
+    import subprocess
+    import sys as _sys
+    from pathlib import Path as _P
+    return subprocess.run(
+        [_sys.executable, str(_P(__file__).parent / "paper_check.py"),
+         str(bot), *extra],
+        capture_output=True, text=True)
+
+
+def test_the_cutoff_is_the_first_session_that_ran_the_fix():
+    assert FIX_LANDED == "2026-09-24"
+
+
+def test_split_is_lexicographic_on_the_iso_stamp():
+    rows = [row(id=1, timestamp="2026-09-23T09:30:50.037783-04:00"),
+            row(id=2, timestamp="2026-09-24T09:30:50.000000-04:00")]
+    before, after = split_eras(rows, "2026-09-24")
+    assert [r["id"] for r in before] == [1]
+    assert [r["id"] for r in after] == [2]
+
+
+def test_a_row_with_no_timestamp_lands_before_the_cutoff():
+    """חותמת ריקה היא לא ראיה. היא לא אמורה להיספר כעדות חדשה."""
+    before, after = split_eras([row(id=1, timestamp=None)], "2026-09-24")
+    assert len(before) == 1 and not after
+
+
+def test_the_old_orphan_no_longer_locks_the_verdict(tmp_path):
+    """התקלה עצמה: עסקה 58 מ-23/09 עם analysis_id=0, וחמש עסקאות
+    נקיות אחריה. לפני התיקון פסק הדין היה 'לא נקי' בגלל 58 בלבד."""
+    bot = _db(tmp_path,
+              dict(analysis_id=0, timestamp="2026-09-23T09:30:50-04:00",
+                   status="cancelled", exec_entry=None, pnl=0.0),
+              *[dict(analysis_id=3820 + i,
+                     timestamp=f"2026-09-2{5 + i}T09:31:00-04:00")
+                for i in range(5)])
+    out = _run(bot).stdout
+    assert "נתיב הביצוע נקי" in out, out
+    # והשורה הישנה מדווחת, לא נעלמת.
+    assert "1 עסקאות מלפני 2026-09-24" in out, out
+    assert "בלי analysis_id" in out, out
+
+
+def test_a_new_orphan_still_blocks(tmp_path):
+    """החיתוך לא מכסה על כשל חדש: אותה תקלה אחרי התאריך עדיין חוסמת."""
+    bot = _db(tmp_path,
+              *[dict(analysis_id=3820 + i,
+                     timestamp=f"2026-09-2{5 + i}T09:31:00-04:00")
+                for i in range(5)],
+              dict(analysis_id=0, timestamp="2026-10-01T09:31:00-04:00"))
+    out = _run(bot).stdout
+    assert "נתיב הביצוע לא נקי" in out, out
+
+
+def test_a_split_ratio_after_the_cutoff_still_blocks(tmp_path):
+    """וגם באג ההמרה עצמו — החיתוך הוא על תאריך, לא על סוג הכשל."""
+    bot = _db(tmp_path,
+              *[dict(analysis_id=3820 + i,
+                     timestamp=f"2026-09-2{5 + i}T09:31:00-04:00")
+                for i in range(5)],
+              dict(analysis_id=3830, timestamp="2026-10-01T09:31:00-04:00",
+                   exec_entry=100.0))
+    out = _run(bot).stdout
+    assert "המנות נחלקות" in out or "נתיב הביצוע לא נקי" in out, out
+
+
+def test_no_trades_since_the_cutoff_says_unknown_not_clean(tmp_path):
+    """המצב ב-24/09 בבוקר: רק ההיסטוריה קיימת. זה לא 'נקי' ולא
+    קריסה — זה 'לא ידוע', וזה חייב להיאמר."""
+    bot = _db(tmp_path,
+              dict(analysis_id=0, timestamp="2026-09-23T09:30:50-04:00"))
+    res = _run(bot)
+    assert res.returncode == 0, res.stderr
+    assert "לא ניתן לאמת" in res.stdout, res.stdout
+
+
+def test_since_overrides_the_default_cutoff(tmp_path):
+    bot = _db(tmp_path,
+              dict(id=58, analysis_id=0,
+                   timestamp="2026-09-23T09:30:50-04:00"))
+    out = _run(bot, "--since", "2026-09-01").stdout
+    assert "1 עסקאות נבדקו מאז 2026-09-01" in out, out
+
+
+def test_an_empty_range_does_not_claim_the_links_are_good(tmp_path):
+    """אמת ריקה נקראת כמו בדיקה שעברה. על אפס שורות לא מאשרים כלום."""
+    bot = _db(tmp_path,
+              dict(analysis_id=0, timestamp="2026-09-23T09:30:50-04:00"))
+    out = _run(bot).stdout
+    assert "כל העסקאות מקושרות" not in out, out
+    assert "לא ניתן לאמת" in out, out
