@@ -385,6 +385,30 @@ separation survives any reasonable count.
    difference between a fill and six hours of nothing. One unfilled order
    is not evidence of a lower rate — but it is the first observation, and
    it went the unhelpful way.
+
+   **Three defects the day surfaced, all of them caught, none of them
+   fixed by a date.** First, `paper_check.py` counted that cancelled row
+   as one of the five comparable trades: `exec_stop_loss` and
+   `exec_take_profit` are both written at placement by one conversion, so
+   their ratio agrees by construction — 7e-6 against a 1e-4 tolerance —
+   and the entry ratio, the only one that can detect the original
+   conversion bug, was absent. The check now requires `exec_entry`, which
+   the bot writes only on a real fill. Second, the row came back
+   `analysis_id = 0`, the default in `trade_journal.py`, where the
+   twenty rows before it carry real ids; without it nothing ties an
+   execution to the setup that produced it, and the integrity validator's
+   very first check is exactly that, so the row carries
+   `integrity_flag = integrity_open_fail`. One defect, caught twice —
+   once writing, once reading back. Third, `strategy_equity` moved +$59
+   on a day whose only trade recorded `pnl = 0.0`, because
+   `update_broker_equity` computes it as
+   `account_size + (broker_NLV - broker_baseline_equity)` and the
+   baseline was left at 30,262.32 when the other three fields were
+   rebased. The kill switch was therefore tracking a 30K paper account's
+   total drift against an 8% band on 10,000: a 2.8% move unrelated to the
+   strategy would have latched it. Setting the baseline to `null` makes
+   the code re-baseline itself on the next tick, which is what it does
+   when there is no state at all.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow. Stage 2
