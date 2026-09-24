@@ -409,6 +409,43 @@ separation survives any reasonable count.
    strategy would have latched it. Setting the baseline to `null` makes
    the code re-baseline itself on the next tick, which is what it does
    when there is no state at all.
+
+   **24 Sep — the root cause, and it moves the date.** `analysis_id = 0`
+   was not a one-off on row 58; it is what every future trade would carry.
+   `bot/engine.py` submits the order at line 1288 (`_execute_signal`, which
+   writes the trades row) and only then, at line 1373, writes the analyses
+   row — and discards the id `log_analysis` returns. The database shows the
+   ordering directly: trade 58 at `09:30:50.037783`, its analyses row 3819
+   at `09:30:50.563466`, half a second later. At INSERT time the analysis
+   row does not exist yet, so `analysis_id` is 0, so
+   `integrity.validate_trade_record` rejects it (its first check is
+   `analysis_id is None or int(analysis_id) <= 0`) and the row is marked
+   `integrity_open_fail`. `paper_check.py` then fails the whole run on any
+   flagged row. **The five-trade gate could never have opened.** Rows 54–57
+   carry real ids (3727, 3746, 3747, 3773) from before 13 Jul, so something
+   changed that afternoon; without git — the Xcode licence blocks the Apple
+   shim and there is no Homebrew git — that is unprovable and stays a
+   hypothesis. `scripts/fix_analysis_id.py` moves the analysis write above
+   the order, puts the returned id on the signal (a new `analysis_id` field
+   on `TradeSignal`, which `_record_journal_entry` already reads by
+   `getattr`) and threads it into both `register` calls. Two payload keys,
+   `bracket_parent_id` and `bracket_status`, leave the analyses row because
+   the bracket does not exist yet; `trades.broker_order_id` holds the same
+   parent_id, so the link survives from the other side. The script refuses
+   to run if any anchor has moved, or if `claude_result`, `pipe_result` or
+   `result` turn out to be assigned after the move point — silently killing
+   the analyses table would be worse than the bug. `test_fix_analysis_id.py`
+   proves the behaviour rather than the text: a stub engine reproduces
+   `register(analysis_id=0)` then `log_analysis → 3819` before the patch,
+   and `log_analysis → 3819` then `register(analysis_id=3819)` after it,
+   and the real validator is run against both values. The counter toward
+   five stands still until this lands, which puts the earliest honest
+   evaluation purchase at **8–9 October**, not 3 October and not 6 October.
+
+   One more thing the row surfaced and nobody asked for: trades 57 and 58
+   share `broker_order_id = 98`. IBKR restarts its order ids after a
+   gateway restart, so that column is not unique, and anything that looks a
+   trade up by it can find the wrong row. Filed, not fixed.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow. Stage 2
