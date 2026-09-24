@@ -439,8 +439,12 @@ separation survives any reasonable count.
    `register(analysis_id=0)` then `log_analysis → 3819` before the patch,
    and `log_analysis → 3819` then `register(analysis_id=3819)` after it,
    and the real validator is run against both values. The counter toward
-   five stands still until this lands, which puts the earliest honest
-   evaluation purchase at **8–9 October**, not 3 October and not 6 October.
+   five stood still until this landed. It landed the evening of 23 Sep,
+   before the Thursday session, so the counter starts Thursday 24 Sep and
+   8.6 trading days puts the earliest honest evaluation purchase at
+   **5–6 October** — not 3 October. The 8–9 October figure quoted while
+   the patch was being written assumed it would not land until the
+   following Monday; it landed four days earlier than that.
 
    One more thing the row surfaced and nobody asked for: trades 57 and 58
    share `broker_order_id = 98`. IBKR restarts its order ids after a
