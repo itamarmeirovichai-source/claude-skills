@@ -183,3 +183,58 @@ def test_exec_entry_is_preferred_over_the_signal_level():
     ok, _ = sign_verdict(row(exec_entry=500.0, entry_price=5000.0,
                              exit_price=502.0, pnl=20.0))
     assert ok is True
+
+
+def _row(**kw):
+    """שורה מינימלית בסגנון sqlite3.Row, עם ברירות מחדל ריקות."""
+    base = {"entry_price": None, "stop_loss": None, "take_profit_1": None,
+            "exec_entry": None, "exec_stop_loss": None, "exec_take_profit": None,
+            "id": 1, "market": "ES", "direction": "short",
+            "status": "closed", "pnl": None, "exit_price": None}
+    base.update(kw)
+    return base
+
+
+def test_cancelled_order_is_not_comparable():
+    """23/09/2026: פקודה שישבה 6.5 שעות ובוטלה בלי מילוי.
+
+    ‏exec_entry ריק, אבל הסטופ והיעד מלאים ומסכימים עד 7e-6 — כי שניהם
+    נכתבו באותה שליחה. לפני התיקון השורה הזאת נספרה כעבר.
+    """
+    ok, why = verdict_for(_row(
+        entry_price=7824.88, stop_loss=7832.5, take_profit_1=7811.8016,
+        exec_entry=None, exec_stop_loss=91.07, exec_take_profit=90.83,
+        status="cancelled"))
+    assert ok is None, f"שורה שלא התמלאה נספרה כ-{ok}: {why}"
+    assert "exec_entry" in why
+
+
+def test_the_stop_target_pair_alone_cannot_see_the_bug():
+    """הזוג סטופ-יעד אחיד גם כשההמרה שגויה לגמרי.
+
+    כאן היחס הוא 0.5 בשתי הרמות — פי שניים מהאמת — והפיזור ביניהן אפס.
+    אילו שתי רמות הספיקו, זה היה עובר.
+    """
+    r = ratios(_row(stop_loss=100.0, take_profit_1=200.0,
+                       exec_stop_loss=50.0, exec_take_profit=100.0))
+    assert set(r) == {"סטופ", "יעד"}
+    assert max(r.values()) - min(r.values()) == 0.0
+    ok, _ = verdict_for(_row(stop_loss=100.0, take_profit_1=200.0,
+                                exec_stop_loss=50.0, exec_take_profit=100.0))
+    assert ok is None
+
+
+def test_a_real_fill_still_passes():
+    """מילוי אמיתי עם שלוש רמות תואמות עובר כרגיל."""
+    ok, why = verdict_for(_row(
+        entry_price=100.0, stop_loss=101.0, take_profit_1=98.0,
+        exec_entry=1.0, exec_stop_loss=1.01, exec_take_profit=0.98))
+    assert ok is True, why
+
+
+def test_a_real_fill_with_split_ratios_still_fails():
+    """הבאג המקורי: הכניסה נחלקת מהשניים האחרים."""
+    ok, why = verdict_for(_row(
+        entry_price=100.0, stop_loss=101.0, take_profit_1=98.0,
+        exec_entry=100.0, exec_stop_loss=1.01, exec_take_profit=0.98))
+    assert ok is False, why

@@ -363,6 +363,28 @@ separation survives any reasonable count.
    three-in-four date, not a certainty, and it was never the thing being
    decided: the condition is a count of trustworthy records, and it does
    not become satisfied because a date arrived.
+
+   **Day one, 23 Sep, moved the counter by nothing, and showed why.** The
+   bot approved its first signal since 13 July — ES short, grade B, half
+   size — and placed a real bracket at the broker: SELL 107 SPYM limit
+   90.98, with the stop and target alongside. The limit sat for six and a
+   half hours and was cancelled at 15:56 with **zero executions**. The
+   record is honest about it: `exec_entry` NULL, `pnl` 0.0, status
+   cancelled. Nothing is broken; the price simply never came back.
+
+   Two things follow. First, `max_daily_trades: 1` counts orders
+   **placed**, not filled — from 09:36 the log reads "Daily trade cap hit
+   — 1/1 placed today" for the rest of the session. An order that never
+   fills still costs the whole day. So five fills needs
+   `5 / (0.683 × fill_rate)` trading days: 8.6 at the replay's 85% fill
+   rate, 12.2 at 60%. Counting from 24 Sep, the 8.6th trading day is
+   about **6 October** — past the 3 Oct date, before any other delay.
+   Second, the replay's 85% is a fill on a *touch of the signal price in
+   the futures bar*. The live bot converts that level to a proxy and
+   places a limit there; a few cents of conversion error is the
+   difference between a fill and six hours of nothing. One unfilled order
+   is not evidence of a lower rate — but it is the first observation, and
+   it went the unhelpful way.
 3. **Then nothing on the calendar.** The next purchase is triggered by
    `gate.py` returning stage 2, and by nothing else — not by a good month,
    not by the date, and not by the feeling that the pace is too slow. Stage 2
