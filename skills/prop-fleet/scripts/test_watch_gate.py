@@ -179,6 +179,60 @@ def test_the_log_scan_counts_only_todays_lines(tmp_path):
                  "cap": True, "alive": True}
 
 
+# ── מתג ההרג ──────────────────────────────────────────────────────
+# מתג נעול עוצר את המסחר לגמרי ודורש איפוס ידני. בדוח בלעדיו הוא
+# נראה כמו יום בלי סטאפים — אותה חתימה בדיוק כמו שני הבאגים שכבר
+# עלו לנו שבוע.
+
+def test_a_latched_kill_switch_is_reported_before_the_counter():
+    r = build_report([], NO_DEC, 1.0, "x",
+                     risk={"drawdown_latched": True,
+                           "drawdown_reason": "דרודאון 8.2% מעל הסף",
+                           "broker_baseline_equity": 30000.0})
+    assert "מתג ההרג נעול" in r
+    assert "דורש איפוס ידני" in r
+    assert r.index("מתג ההרג נעול") < r.index("מונה הראיות")
+
+
+def test_an_uninitialised_baseline_is_flagged_but_not_an_error():
+    r = build_report([], NO_DEC, 1.0, "x",
+                     risk={"drawdown_latched": False,
+                           "broker_baseline_equity": None})
+    assert "בסיס ההון עוד לא אותחל" in r
+    assert "✗" not in r.split("מונה הראיות")[0].split("\n", 2)[-1]
+
+
+def test_a_healthy_switch_says_so_with_the_drawdown():
+    r = build_report([], NO_DEC, 1.0, "x",
+                     risk={"drawdown_latched": False,
+                           "broker_baseline_equity": 30321.32,
+                           "drawdown_pct": 2.5})
+    assert "מתג ההרג פתוח (דרודאון 2.5%)" in r
+
+
+def test_no_risk_state_adds_no_line_at_all():
+    """קובץ חסר הוא לא ממצא. אסור להמציא עליו טענה."""
+    r = build_report([], NO_DEC, 1.0, "x", risk=None)
+    assert "מתג ההרג" not in r
+
+
+def test_the_state_file_is_read_from_disk(tmp_path):
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / "risk_state.json").write_text(
+        '{"accounts": {"paper:DUQ054547": {"drawdown_latched": false,'
+        ' "broker_baseline_equity": 30321.32, "drawdown_pct": 0.0}}}',
+        encoding="utf-8")
+    from watch_gate import read_risk_state
+    a = read_risk_state(tmp_path)
+    assert a["broker_baseline_equity"] == 30321.32
+
+
+def test_a_missing_state_file_reads_as_none(tmp_path):
+    from watch_gate import read_risk_state
+    assert read_risk_state(tmp_path) is None
+
+
 if __name__ == "__main__":
     import shutil
     import tempfile

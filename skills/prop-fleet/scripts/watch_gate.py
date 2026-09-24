@@ -78,7 +78,25 @@ def todays_decisions(log: Path, day: str) -> dict:
     return out
 
 
-def build_report(rows, decisions, log_age_h, now_str, cutoff=FIX_LANDED) -> str:
+def read_risk_state(bot) -> dict | None:
+    """מצב מתג ההרג. None כשאין קובץ או שאי אפשר לקרוא אותו."""
+    try:
+        s = json.loads((Path(bot) / "logs" / "risk_state.json")
+                       .read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    accounts = s.get("accounts") or {}
+    if not accounts:
+        return None
+    # חשבון אחד בפועל. אם יהיו כמה, הנעול הוא זה שחשוב.
+    for a in accounts.values():
+        if a.get("drawdown_latched"):
+            return a
+    return next(iter(accounts.values()))
+
+
+def build_report(rows, decisions, log_age_h, now_str, cutoff=FIX_LANDED,
+                 risk=None) -> str:
     """הדוח עצמו. פונקציה טהורה — מקבלת נתונים, מחזירה טקסט."""
     before, after = split_eras(rows, cutoff)
     good, bad, unknown = [], [], []
@@ -103,7 +121,21 @@ def build_report(rows, decisions, log_age_h, now_str, cutoff=FIX_LANDED) -> str:
     else:
         L.append(f"✓ הבוט חי (לוג בן {log_age_h:.1f} שעות)")
 
-    # 2. מה הוא עשה היום.
+    # 2. מתג ההרג. זה חייב לבוא לפני המונה, כי מתג נעול הוא הסיבה
+    #    לאפס עסקאות — והוא נראה בדיוק כמו יום שקט.
+    if risk is not None:
+        if risk.get("drawdown_latched"):
+            reason = str(risk.get("drawdown_reason") or "")[:80]
+            L.append(f"✗ מתג ההרג נעול — הבוט לא ייקח עסקאות. {reason}")
+            L.append("  דורש איפוס ידני. המונה לא יזוז עד אז.")
+        elif risk.get("broker_baseline_equity") is None:
+            L.append("! בסיס ההון עוד לא אותחל — update_broker_equity")
+            L.append("  לא נקרא מאז העלייה. נורמלי לפני המושב, לא אחריו.")
+        else:
+            dd = float(risk.get("drawdown_pct") or 0.0)
+            L.append(f"✓ מתג ההרג פתוח (דרודאון {dd:.1f}%)")
+
+    # 3. מה הוא עשה היום.
     d = decisions
     if not d["alive"]:
         L.append("· היום עוד לא נרשמה פעילות בלוג")
@@ -115,7 +147,7 @@ def build_report(rows, decisions, log_age_h, now_str, cutoff=FIX_LANDED) -> str:
             line += " (תקרה יומית נוצלה)"
         L.append(line)
 
-    # 3. המונה — הדבר היחיד שמזיז את התאריך.
+    # 4. המונה — הדבר היחיד שמזיז את התאריך.
     L.append("")
     L.append(f"מונה הראיות: {len(good)}/{MIN_TRADES} עסקאות בנות-השוואה")
     if after:
@@ -126,7 +158,7 @@ def build_report(rows, decisions, log_age_h, now_str, cutoff=FIX_LANDED) -> str:
     if before:
         L.append(f"  ({len(before)} מלפני כן — מחוץ לפסק הדין, לא נמחקו)")
 
-    # 4. כשלים. אלה עוצרים הכול.
+    # 5. כשלים. אלה עוצרים הכול.
     L.append("")
     if bad:
         L.append(f"✗ {len(bad)} עם יחס המרה שנחלק — חתימת באג ההמרה")
@@ -209,6 +241,7 @@ def main() -> int:
         todays_decisions(log, now.strftime("%Y-%m-%d")),
         age_h,
         now.strftime("%d/%m %H:%M"),
+        risk=read_risk_state(bot),
     )
 
     out.write_text(report + "\n", encoding="utf-8")
