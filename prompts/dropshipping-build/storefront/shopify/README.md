@@ -5,7 +5,8 @@
 ## איך מעלים — 6 דקות
 
 1. פתח חשבון ב-shopify.com (יש תקופת ניסיון, ואחריה מבצע של 1$ לחודש)
-2. `cd shopify && zip -r still-cold-theme.zip .`
+2. בנה את הקובץ: `cd shopify && zip -r still-cold-theme.zip . -x '*.zip'`
+   (ה-zip לא נשמר בגיט — הוא נבנה מהמקור, כדי שלא יתיישן)
 3. בחנות: **Online Store → Themes → Add theme → Upload zip file**
 4. בחר את הקובץ → **Publish**
 5. **Products → Add product** — שם, מחיר 42, ותמונות
