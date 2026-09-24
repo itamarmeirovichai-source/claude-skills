@@ -1,0 +1,14 @@
+<nav class="nav"><div class="wrap nav-in">
+  <a class="brand" href="{{ routes.root_url }}">{{ section.settings.brand_a }} <em>{{ section.settings.brand_b }}</em></a>
+  <div class="nav-r">
+    <span class="d">{{ section.settings.promo }}</span>
+    <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+  </div>
+</div></nav>
+{% schema %}
+{"name":"Header","settings":[
+ {"type":"text","id":"brand_a","label":"Brand word 1","default":"Still"},
+ {"type":"text","id":"brand_b","label":"Brand word 2 (accent)","default":"Cold"},
+ {"type":"text","id":"promo","label":"Promo bar","default":"Free shipping ✦ 30-day replacement"}
+]}
+{% endschema %}

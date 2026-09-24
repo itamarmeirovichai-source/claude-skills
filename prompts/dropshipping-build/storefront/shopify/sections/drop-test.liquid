@@ -1,0 +1,26 @@
+<section class="warm"><div class="wrap drop">
+  <div class="drop-stage rv">
+    <div class="floor"></div><div class="ring"></div>
+    {%- if section.settings.image -%}
+      <img class="faller" src="{{ section.settings.image | image_url: width: 600 }}" alt="" loading="lazy">
+    {%- else -%}
+      <svg class="faller" viewBox="0 0 200 130" aria-label="The tool dropped on tile, intact">
+        <path d="M18 44c42-26 104-19 140 17 21 21 15 48-15 61-40 17-96 13-123-15-21-19-21-53-2-63z" fill="url(#mx)"/>
+        <path d="M34 56c36-19 88-15 114 15" fill="none" stroke="#fff" stroke-width="3.5" opacity=".7" stroke-linecap="round"/>
+      </svg>
+    {%- endif -%}
+  </div>
+  <div class="rv" data-stg>
+    <span class="pill c">{{ section.settings.pill }}</span>
+    <p class="pull" style="margin-top:18px">{{ section.settings.headline }}</p>
+    <p style="font-size:17px;max-width:46ch;margin:0">{{ section.settings.body }}</p>
+  </div>
+</div></section>
+{% schema %}
+{"name":"Drop test","settings":[
+ {"type":"image_picker","id":"image","label":"Product cut-out (optional)"},
+ {"type":"text","id":"pill","label":"Pill","default":"The drop test"},
+ {"type":"text","id":"headline","label":"Headline","default":"Try that with jade."},
+ {"type":"textarea","id":"body","label":"Body","default":"We dropped it on tile from waist height before we were willing to sell it, and then we did it another ninety-nine times."}],
+ "presets":[{"name":"Drop test"}]}
+{% endschema %}

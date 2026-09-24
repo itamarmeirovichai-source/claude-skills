@@ -1,0 +1,18 @@
+<div class="stats" data-stg>
+  {% for block in section.blocks %}
+    <div class="stat">
+      <b class="tnum" data-to="{{ block.settings.value }}" data-suf="{{ block.settings.suffix }}">0</b>
+      <span>{{ block.settings.label }}</span>
+    </div>
+  {% endfor %}
+</div>
+{% schema %}
+{"name":"Stats","blocks":[{"type":"stat","name":"Stat","settings":[
+ {"type":"number","id":"value","label":"Number","default":20},
+ {"type":"text","id":"suffix","label":"Suffix","default":"+"},
+ {"type":"text","id":"label","label":"Label","default":"Minutes still cold"}]}],
+ "presets":[{"name":"Stats","blocks":[
+ {"type":"stat","settings":{"value":20,"suffix":"+","label":"Minutes still cold"}},
+ {"type":"stat","settings":{"value":100,"suffix":"","label":"Drops onto tile"}},
+ {"type":"stat","settings":{"value":0,"suffix":"","label":"That broke"}}]}]}
+{% endschema %}
