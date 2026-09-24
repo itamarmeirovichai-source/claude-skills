@@ -1,618 +1,485 @@
 <title>Still Cold</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
 
 <style>
-/* ============================================================
-   TOKENS — cold palette. The product's mechanism is cold steel,
-   so the neutral is biased blue-grey, not the warm cream default.
-   ============================================================ */
+/* ===========================================================
+   COLD ROOM — dark luxury restraint.
+   Near-black with a cold cast; warm-white type against it.
+   One accent (ice) spent in three places total, Aesop-style.
+   =========================================================== */
 :root{
-  --ground:#F2F5F6;
-  --surface:#FFFFFF;
-  --surface-2:#E7ECEE;
-  --ink:#12171A;
-  --ink-2:#47555C;
-  --ink-3:#7C8B93;
-  --line:#D5DDE0;
-  --steel-1:#AEB9BF;
-  --steel-2:#7E8C94;
-  --steel-3:#5A676E;
-  --cold:#2F6F80;
-  --cold-soft:#DCEAEE;
-  --skin:#C79C84;
-  --good:#3B7A5A;
-  --shadow:0 1px 2px rgba(18,23,26,.04),0 8px 24px -12px rgba(18,23,26,.14);
-  --r:14px;
-  --maxw:1180px;
-  --gut:20px;
+  --bg:#0A0D0F;
+  --bg-2:#111619;
+  --bg-3:#171E22;
+  --ink:#F2EFEA;
+  --ink-2:#A9B2B6;
+  --ink-3:#6E7A80;
+  --line:#242D32;
+  --line-2:#333E45;
+  --ice:#9FC4D0;
+  --ice-dim:#4C6E79;
+  --steel-hi:#EAF1F4;
+  --steel-mid:#98A6AD;
+  --steel-lo:#39444A;
+  --gut:22px;
+  --maxw:1240px;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#0E1316;
-    --surface:#151C20;
-    --surface-2:#1D262B;
-    --ink:#EDF2F4;
-    --ink-2:#A6B4BB;
-    --ink-3:#77878F;
-    --line:#2A363C;
-    --steel-1:#8E9BA2;
-    --steel-2:#6C7A82;
-    --steel-3:#4C585F;
-    --cold:#6FB3C4;
-    --cold-soft:#17323A;
-    --skin:#B08B74;
-    --good:#6FC79B;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+:root[data-theme="light"]{
+  --bg:#F3F1ED;--bg-2:#FFFFFF;--bg-3:#E9E6E0;
+  --ink:#12171A;--ink-2:#4B565B;--ink-3:#7E8A90;
+  --line:#DCD8D1;--line-2:#C7C2BA;
+  --ice:#2E6675;--ice-dim:#9FC4D0;
+  --steel-hi:#FFFFFF;--steel-mid:#98A6AD;--steel-lo:#5D686E;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#F3F1ED;--bg-2:#FFFFFF;--bg-3:#E9E6E0;
+    --ink:#12171A;--ink-2:#4B565B;--ink-3:#7E8A90;
+    --line:#DCD8D1;--line-2:#C7C2BA;
+    --ice:#2E6675;--ice-dim:#9FC4D0;
+    --steel-hi:#FFFFFF;--steel-mid:#98A6AD;--steel-lo:#5D686E;
   }
-}
-:root[data-theme="dark"]{
-  --ground:#0E1316;--surface:#151C20;--surface-2:#1D262B;
-  --ink:#EDF2F4;--ink-2:#A6B4BB;--ink-3:#77878F;--line:#2A363C;
-  --steel-1:#8E9BA2;--steel-2:#6C7A82;--steel-3:#4C585F;
-  --cold:#6FB3C4;--cold-soft:#17323A;--skin:#B08B74;--good:#6FC79B;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
 }
 
 *{box-sizing:border-box}
 body{
-  background:var(--ground);
-  color:var(--ink);
-  font-family:"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  background:var(--bg);color:var(--ink);
+  font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:300;font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-h1,h2,h3,.serif{font-family:"Fraunces","Iowan Old Style",Georgia,serif;font-weight:400;text-wrap:balance;letter-spacing:-.01em}
+.s{font-family:"Instrument Serif",Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.005em}
+h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;text-wrap:balance;margin:0}
 img{display:block;max-width:100%}
-a{color:inherit}
 .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+.narrow{max-width:760px}
 .tnum{font-variant-numeric:tabular-nums}
+.lab{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
 
-/* ---------- motion: compositor-only, and safe without JS ---------- */
 .rv{opacity:1;transform:none}
-.js .rv{opacity:0;transform:translate3d(0,14px,0);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.js .rv{opacity:0;transform:translate3d(0,18px,0);transition:opacity .85s cubic-bezier(.16,.8,.24,1),transform .85s cubic-bezier(.16,.8,.24,1)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .js .rv{opacity:1!important;transform:none!important;transition:none!important}
-  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  *{animation:none!important;transition-duration:.01ms!important}
 }
 
 /* ============================ NAV ============================ */
-.nav{
-  position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
-  background:color-mix(in srgb,var(--ground) 86%,transparent);
-  backdrop-filter:saturate(1.4) blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:58px}
-.brand{font-family:"Fraunces",serif;font-size:19px;letter-spacing:.01em}
-.brand b{font-weight:600}
-.nav-r{display:flex;align-items:center;gap:18px;font-size:13.5px;color:var(--ink-2)}
-.nav-r .ship{display:none}
-@media(min-width:720px){.nav-r .ship{display:block}}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.3) blur(16px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:"Instrument Serif",serif;font-size:21px;letter-spacing:.005em}
+.brand i{font-style:italic;color:var(--ice)}
+.nav-r{display:flex;align-items:center;gap:22px;font-size:13px;color:var(--ink-2)}
+.nav-r span:first-child{display:none}
+@media(min-width:760px){.nav-r span:first-child{display:inline}}
 
-/* ============================ HERO ============================ */
-.hero{padding-block:34px 10px}
-.hero-grid{display:grid;gap:26px}
-@media(min-width:960px){
-  .hero-grid{grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
-  .hero{padding-block:52px 20px}
-}
-.eyebrow{
-  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--cold);font-weight:700;margin:0 0 14px
-}
-h1{font-size:clamp(38px,8.2vw,66px);line-height:.98;margin:0 0 18px;font-weight:300}
-h1 em{font-style:normal;font-weight:600}
-.lede{font-size:clamp(16.5px,2.1vw,19px);color:var(--ink-2);margin:0 0 26px;max-width:46ch}
+/* ======================= HERO — text-forward ======================= */
+.hero{padding-block:clamp(56px,11vw,124px) clamp(34px,5vw,58px);border-bottom:1px solid var(--line)}
+.hero .lab{margin-bottom:26px;display:block}
+h1{font-size:clamp(44px,9.4vw,104px);line-height:.94;letter-spacing:-.022em;margin-bottom:28px;max-width:15ch}
+h1 i{font-style:italic;color:var(--ice)}
+.lede{font-size:clamp(17px,2.2vw,21px);color:var(--ink-2);max-width:52ch;line-height:1.55;margin:0}
 
-/* ---------- gallery ---------- */
-.gal{position:relative}
-.stage{
-  position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;
-  background:linear-gradient(168deg,var(--surface) 0%,var(--surface-2) 100%);
-  border:1px solid var(--line);box-shadow:var(--shadow)
-}
-.shot{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;display:grid;place-items:center;padding:8%}
+/* ======================= PRODUCT ======================= */
+.pdp{padding-block:clamp(40px,6vw,76px)}
+.pdp-grid{display:grid;gap:36px}
+@media(min-width:980px){.pdp-grid{grid-template-columns:1.12fr .88fr;gap:72px;align-items:start}}
+
+/* --- image stage: deep panel, light pool, grain --- */
+.stage{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;
+  background:radial-gradient(112% 88% at 28% 14%,#22292E 0%,#12171A 44%,#080B0C 100%);
+  border:1px solid var(--line)}
+:root[data-theme="light"] .stage,
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stage{
+  background:radial-gradient(112% 88% at 28% 14%,#FFFFFF 0%,#EDEAE4 46%,#DCD8D1 100%)}}
+.grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none}
+.shot{position:absolute;inset:0;opacity:0;transition:opacity .6s cubic-bezier(.4,0,.2,1);
+  display:grid;place-items:center;padding:13%}
 .shot.on{opacity:1}
-.shot svg{width:100%;height:100%;overflow:visible}
-.thumbs{display:flex;gap:9px;margin-top:11px}
-.thumb{
-  flex:1;aspect-ratio:1;border-radius:9px;border:1px solid var(--line);
-  background:linear-gradient(168deg,var(--surface),var(--surface-2));
-  cursor:pointer;padding:12%;transition:border-color .2s,transform .2s;
-}
-.thumb:hover{transform:translateY(-2px)}
-.thumb[aria-selected="true"]{border-color:var(--cold);box-shadow:0 0 0 1px var(--cold)}
+.shot svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 26px 34px rgba(0,0,0,.62))}
+.thumbs{display:flex;gap:7px;margin-top:9px}
+.thumb{flex:1;aspect-ratio:1;border:1px solid var(--line);border-radius:2px;cursor:pointer;
+  background:radial-gradient(100% 90% at 30% 15%,#20272B,#0B0F11);padding:16%;
+  transition:border-color .25s}
+:root[data-theme="light"] .thumb{background:radial-gradient(100% 90% at 30% 15%,#FFF,#E4E0D9)}
+.thumb[aria-selected="true"]{border-color:var(--ice-dim)}
 .thumb svg{width:100%;height:100%}
 
-/* ---------- price block ---------- */
-.buy{margin-top:4px}
-.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
-.price{font-family:"Fraunces",serif;font-size:37px;font-weight:600;letter-spacing:-.02em}
-.was{color:var(--ink-3);text-decoration:line-through;font-size:18px}
-.save{
-  font-size:12px;font-weight:700;color:var(--good);
-  border:1px solid color-mix(in srgb,var(--good) 40%,transparent);
-  padding:3px 8px;border-radius:99px
-}
-.assure{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
-.assure li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2)}
-.assure svg{flex:none;margin-top:3px;color:var(--good)}
+/* --- buy column --- */
+.name{font-size:clamp(27px,3.4vw,36px);line-height:1.08;margin-bottom:12px}
+.sub{color:var(--ink-2);font-size:15.5px;margin:0 0 30px;max-width:40ch}
+.price-row{display:flex;align-items:baseline;gap:13px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.price{font-family:"Instrument Serif",serif;font-size:40px;letter-spacing:-.02em}
+.was{color:var(--ink-3);text-decoration:line-through;font-size:17px}
 
-/* ---------- quantity breaks ---------- */
-.tiers{display:grid;gap:9px;margin-bottom:20px}
-.tier{
-  display:grid;grid-template-columns:22px 1fr auto;gap:13px;align-items:center;
-  border:1px solid var(--line);border-radius:12px;padding:13px 15px;
-  background:var(--surface);cursor:pointer;position:relative;
-  transition:border-color .18s,box-shadow .18s,transform .18s
-}
-.tier:hover{transform:translateY(-1px)}
-.tier[aria-checked="true"]{border-color:var(--cold);box-shadow:0 0 0 1px var(--cold)}
-.dot{width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line);position:relative;transition:border-color .18s}
-.tier[aria-checked="true"] .dot{border-color:var(--cold)}
-.dot::after{
-  content:"";position:absolute;inset:4px;border-radius:50%;background:var(--cold);
-  transform:scale(0);transition:transform .2s cubic-bezier(.3,1.4,.5,1)
-}
-.tier[aria-checked="true"] .dot::after{transform:scale(1)}
-.t-name{font-weight:500;font-size:15px}
-.t-sub{font-size:12.5px;color:var(--ink-3)}
-.t-price{text-align:right;font-weight:600}
-.t-each{font-size:12px;color:var(--ink-3);font-weight:400}
-.flag{
-  position:absolute;top:-9px;right:13px;background:var(--cold);color:#fff;
-  font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
-  padding:2.5px 8px;border-radius:99px
-}
+.spec{margin:22px 0 28px;display:grid;gap:0}
+.spec div{display:grid;grid-template-columns:104px 1fr;gap:16px;padding-block:11px;
+  border-bottom:1px solid var(--line);font-size:14.5px}
+.spec dt{color:var(--ink-3);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding-top:3px}
+.spec dd{margin:0;color:var(--ink-2)}
+.spec dd b{color:var(--ink);font-weight:400}
 
-/* ---------- button ---------- */
-.atc{
-  width:100%;border:0;border-radius:12px;background:var(--ink);color:var(--ground);
-  font-family:inherit;font-size:16px;font-weight:600;padding:17px;cursor:pointer;
-  transition:transform .12s ease,filter .2s;letter-spacing:.01em
-}
-.atc:hover{filter:brightness(1.18)}
-.atc:active{transform:scale(.985)}
-.atc:focus-visible{outline:2px solid var(--cold);outline-offset:3px}
-.eta{text-align:center;font-size:13px;color:var(--ink-3);margin-top:11px}
-.eta b{color:var(--ink-2);font-weight:500}
+.tiers{display:grid;gap:7px;margin-bottom:22px}
+.tier{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;cursor:pointer;
+  border:1px solid var(--line);border-radius:3px;padding:15px 17px;background:transparent;
+  position:relative;transition:border-color .25s,background .25s}
+.tier:hover{border-color:var(--line-2)}
+.tier[aria-checked="true"]{border-color:var(--ice-dim);background:color-mix(in srgb,var(--ice) 5%,transparent)}
+.t-n{font-size:15px}
+.t-s{font-size:12.5px;color:var(--ink-3);display:block;margin-top:2px}
+.t-p{text-align:right;font-size:15px}
+.t-e{display:block;font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.flag{position:absolute;top:-8px;left:16px;background:var(--bg);color:var(--ice);
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:0 7px}
 
-/* ============================ SECTIONS ============================ */
-section{padding-block:clamp(56px,9vw,104px)}
-.sec-head{max-width:34ch;margin-bottom:34px}
-h2{font-size:clamp(27px,4.4vw,42px);line-height:1.08;margin:0 0 13px;font-weight:300}
-h2 em{font-style:normal;font-weight:600}
-.sec-head p{color:var(--ink-2);margin:0;font-size:16.5px}
+.atc{width:100%;border:0;border-radius:3px;background:var(--ink);color:var(--bg);
+  font-family:inherit;font-size:14px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  padding:19px;cursor:pointer;transition:opacity .2s,transform .12s}
+.atc:hover{opacity:.87}
+.atc:active{transform:scale(.99)}
+.atc:focus-visible{outline:1px solid var(--ice);outline-offset:3px}
+.eta{text-align:center;font-size:12.5px;color:var(--ink-3);margin-top:14px;letter-spacing:.02em}
 
-/* ---------- the steel argument ---------- */
-.steel{background:var(--surface);border-block:1px solid var(--line)}
-.vs{display:grid;gap:14px}
-@media(min-width:800px){.vs{grid-template-columns:1fr 1fr;gap:20px}}
-.card{
-  border:1px solid var(--line);border-radius:var(--r);padding:24px;
-  background:var(--ground);position:relative;overflow:hidden
-}
-.card.win{border-color:color-mix(in srgb,var(--cold) 45%,var(--line))}
-.card h3{font-size:19px;margin:0 0 4px;font-weight:600}
-.card .mat{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:0 0 18px;font-weight:700}
-.card.win .mat{color:var(--cold)}
-.attr{display:grid;grid-template-columns:auto 1fr;gap:9px 11px;align-items:start;font-size:14.5px;padding-block:9px;border-top:1px solid var(--line)}
-.attr:first-of-type{border-top:0}
-.attr b{font-weight:500}
-.attr span{color:var(--ink-2)}
-.ic{flex:none;margin-top:2px}
+/* ======================= EDITORIAL BLOCKS ======================= */
+section{padding-block:clamp(76px,12vw,150px)}
+.rule{border-top:1px solid var(--line)}
+.kicker{display:block;margin-bottom:24px}
+h2{font-size:clamp(30px,5.6vw,58px);line-height:1.02;letter-spacing:-.02em;max-width:17ch}
+h2 i{font-style:italic;color:var(--ice)}
+.body-l{font-size:17px;color:var(--ink-2);max-width:56ch;margin:26px 0 0;line-height:1.66}
+
+/* --- the material argument, bento --- */
+.bento{display:grid;gap:1px;margin-top:52px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:860px){.bento{grid-template-columns:1fr 1fr}}
+.cell{background:var(--bg);padding:clamp(26px,3.6vw,42px)}
+.cell .lab{display:block;margin-bottom:20px}
+.cell.win .lab{color:var(--ice)}
+.cell h3{font-size:24px;margin-bottom:22px}
+.attr{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
+  padding-block:12px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
+.attr:first-of-type{border-top:0;padding-top:0}
+.attr svg{flex:none;margin-top:5px}
+.yes{color:var(--ice)}
 .no{color:var(--ink-3)}
-.yes{color:var(--good)}
-
-/* cold-retention meter — CSS only, transform-based */
-.meter{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-.meter-l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-3);margin-bottom:7px}
-.track{height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden}
-.fill{height:100%;border-radius:99px;transform-origin:left center;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.meter{margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.meter-l{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.track{height:2px;background:var(--line-2)}
+.fill{height:100%;transform-origin:left;transform:scaleX(0);
+  transition:transform 1.5s cubic-bezier(.16,.8,.24,1) .15s}
 .in .fill{transform:scaleX(var(--v))}
-.fill.cold{background:linear-gradient(90deg,var(--cold),color-mix(in srgb,var(--cold) 55%,var(--steel-1)))}
-.fill.warm{background:linear-gradient(90deg,var(--steel-2),var(--skin))}
+.fill.a{background:var(--ice)}
+.fill.b{background:var(--ink-3)}
 
-/* ---------- drop test ---------- */
-.drop{display:grid;gap:26px;align-items:center}
-@media(min-width:840px){.drop{grid-template-columns:.9fr 1.1fr;gap:48px}}
-.drop-stage{
-  aspect-ratio:1;border-radius:var(--r);border:1px solid var(--line);
-  background:linear-gradient(168deg,var(--surface),var(--surface-2));
-  display:grid;place-items:center;position:relative;overflow:hidden
-}
-.floor{position:absolute;left:0;right:0;bottom:22%;height:1px;background:var(--line)}
-.faller{width:38%;animation:fall 2.6s cubic-bezier(.5,0,.75,0) infinite}
+/* --- drop --- */
+.drop{display:grid;gap:44px;align-items:center}
+@media(min-width:900px){.drop{grid-template-columns:.85fr 1.15fr;gap:80px}}
+.drop-stage{aspect-ratio:1;border:1px solid var(--line);position:relative;overflow:hidden;
+  background:radial-gradient(110% 86% at 30% 12%,#20272C,#0A0E10);display:grid;place-items:center}
+:root[data-theme="light"] .drop-stage{background:radial-gradient(110% 86% at 30% 12%,#FFF,#E2DED7)}
+.floor{position:absolute;left:12%;right:12%;bottom:26%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
+.faller{width:34%;animation:fall 3.4s cubic-bezier(.55,0,.8,.2) infinite;
+  filter:drop-shadow(0 18px 22px rgba(0,0,0,.6))}
 @keyframes fall{
-  0%,8%{transform:translateY(-118%) rotate(-11deg)}
-  33%{transform:translateY(0) rotate(3deg)}
-  38%{transform:translateY(-16%) rotate(-2deg)}
-  44%{transform:translateY(0) rotate(1deg)}
-  47%{transform:translateY(-5%) rotate(0deg)}
-  52%,100%{transform:translateY(0) rotate(0deg)}
+  0%,10%{transform:translateY(-128%) rotate(-13deg)}
+  36%{transform:translateY(0) rotate(4deg)}
+  42%{transform:translateY(-19%) rotate(-3deg)}
+  49%{transform:translateY(0) rotate(2deg)}
+  53%{transform:translateY(-6%) rotate(-1deg)}
+  58%,100%{transform:translateY(0) rotate(0)}
 }
-@media (prefers-reduced-motion:reduce){.faller{animation:none}}
-.drop q{font-family:"Fraunces",serif;font-size:clamp(25px,4vw,38px);line-height:1.12;display:block;margin-bottom:16px;font-weight:300}
-.drop q::before,.drop q::after{content:""}
+.pull{font-family:"Instrument Serif",serif;font-size:clamp(34px,5.6vw,62px);line-height:1.04;
+  letter-spacing:-.022em;margin:0 0 24px}
+.pull i{font-style:italic;color:var(--ice)}
 
-/* ---------- routine ---------- */
-.steps{display:grid;gap:12px;counter-reset:s}
-@media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
-.step{
-  border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--surface);
-  counter-increment:s;transition:transform .2s,border-color .2s
-}
-.step:hover{transform:translateY(-3px);border-color:var(--steel-1)}
-.step::before{
-  content:counter(s);font-family:"Fraunces",serif;font-size:31px;font-weight:300;
-  color:var(--cold);display:block;line-height:1;margin-bottom:11px
-}
-.step b{display:block;font-weight:500;margin-bottom:5px;font-size:15px}
+/* --- routine --- */
+.steps{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line);margin-top:52px}
+@media(min-width:800px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--bg);padding:30px 26px 34px;transition:background .3s}
+.step:hover{background:var(--bg-2)}
+.step .n{font-family:"Instrument Serif",serif;font-size:15px;color:var(--ice);display:block;margin-bottom:22px}
+.step b{display:block;font-family:"Instrument Serif",serif;font-size:21px;font-weight:400;margin-bottom:9px}
 .step span{color:var(--ink-2);font-size:14px}
 
-/* ---------- reviews ---------- */
-.revs{display:grid;gap:13px}
-@media(min-width:760px){.revs{grid-template-columns:repeat(3,1fr)}}
-.rev{border:1px solid var(--line);border-radius:var(--r);padding:21px;background:var(--surface)}
-.stars{color:var(--cold);font-size:13px;letter-spacing:.14em;margin-bottom:11px}
-.rev p{margin:0 0 14px;font-size:15px}
-.who{font-size:13px;color:var(--ink-3)}
-.who b{color:var(--ink-2);font-weight:500}
+/* --- honesty --- */
+.honest{background:var(--bg-2);border-block:1px solid var(--line)}
+.honest .wrap{max-width:720px}
+.honest p{font-family:"Instrument Serif",serif;font-size:clamp(26px,4.4vw,44px);
+  line-height:1.16;letter-spacing:-.018em;margin:0 0 26px}
+.honest small{color:var(--ink-2);font-size:16px;line-height:1.66;display:block;max-width:56ch}
 
-/* ---------- honesty ---------- */
-.honest{background:var(--cold-soft);border-block:1px solid var(--line)}
-.honest .wrap{max-width:660px;text-align:center}
-.honest p{font-family:"Fraunces",serif;font-size:clamp(20px,3vw,29px);line-height:1.35;font-weight:300;margin:0 0 14px}
-.honest small{color:var(--ink-2);font-size:15px;font-family:"Schibsted Grotesk",sans-serif}
+/* --- reviews --- */
+.revs{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+@media(min-width:820px){.revs{grid-template-columns:repeat(3,1fr)}}
+.rev{background:var(--bg);padding:32px 28px}
+.rev p{font-family:"Instrument Serif",serif;font-size:19px;line-height:1.42;margin:0 0 22px}
+.who{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 
-/* ---------- faq ---------- */
-.faq{max-width:780px}
+/* --- faq --- */
 details{border-bottom:1px solid var(--line)}
-summary{
-  cursor:pointer;padding:19px 34px 19px 0;font-weight:500;font-size:16px;
-  position:relative;list-style:none
-}
+summary{cursor:pointer;padding:24px 40px 24px 0;font-size:17px;position:relative;list-style:none;
+  font-family:"Instrument Serif",serif;transition:color .2s}
+summary:hover{color:var(--ice)}
 summary::-webkit-details-marker{display:none}
-summary::after{
-  content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;
-  border-right:1.5px solid var(--ink-3);border-bottom:1.5px solid var(--ink-3);
-  transform:translateY(-70%) rotate(45deg);transition:transform .25s
-}
-details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
-details p{margin:0 0 20px;color:var(--ink-2);font-size:15.5px;max-width:62ch}
+summary::after{content:"";position:absolute;right:8px;top:50%;width:11px;height:1px;
+  background:var(--ink-3);transition:transform .3s}
+summary::before{content:"";position:absolute;right:13px;top:50%;width:1px;height:11px;
+  background:var(--ink-3);transform:translateY(-50%);transition:transform .3s,opacity .3s}
+details[open] summary::before{transform:translateY(-50%) rotate(90deg);opacity:0}
+details p{margin:0 0 26px;color:var(--ink-2);font-size:15.5px;max-width:62ch}
 
-/* ---------- footer ---------- */
-footer{background:var(--surface);border-top:1px solid var(--line);padding-block:44px 40px;font-size:14px;color:var(--ink-2)}
-.fgrid{display:grid;gap:26px}
-@media(min-width:700px){.fgrid{grid-template-columns:1.4fr 1fr 1fr}}
-footer b{color:var(--ink);font-weight:500;display:block;margin-bottom:9px}
-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+footer{border-top:1px solid var(--line);padding-block:56px 48px;font-size:13.5px;color:var(--ink-2)}
+.fg{display:grid;gap:34px}
+@media(min-width:760px){.fg{grid-template-columns:1.6fr 1fr 1fr}}
+footer b{color:var(--ink);font-weight:400;display:block;margin-bottom:12px;
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
 
-/* ---------- sticky mobile bar ---------- */
-.bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:70;
-  background:color-mix(in srgb,var(--ground) 92%,transparent);
-  backdrop-filter:blur(14px);border-top:1px solid var(--line);
-  padding:11px var(--gut);padding-bottom:calc(11px + env(safe-area-inset-bottom,0px));
-  display:flex;gap:13px;align-items:center;
-  transform:translateY(102%);transition:transform .3s cubic-bezier(.2,.7,.2,1)
-}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;gap:14px;align-items:center;
+  background:color-mix(in srgb,var(--bg) 93%,transparent);backdrop-filter:blur(18px);
+  border-top:1px solid var(--line);padding:12px var(--gut);
+  padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  transform:translateY(104%);transition:transform .38s cubic-bezier(.16,.8,.24,1)}
 .bar.up{transform:none}
-@media(min-width:960px){.bar{display:none}}
-.bar .p{font-weight:600;white-space:nowrap}
-.bar .atc{padding:13px 20px;font-size:15px;width:auto;flex:1}
-.pad{height:78px}
-@media(min-width:960px){.pad{display:none}}
+@media(min-width:980px){.bar{display:none}}
+.bar .atc{width:auto;flex:1;padding:15px}
+.pad{height:80px}
+@media(min-width:980px){.pad{display:none}}
 </style>
 
-<nav class="nav">
-  <div class="wrap nav-in">
-    <div class="brand">Still <b>Cold</b></div>
-    <div class="nav-r">
-      <span class="ship">Free shipping · 30-day guarantee</span>
-      <span>Cart (0)</span>
-    </div>
-  </div>
-</nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/>
+      <feColorMatrix type="saturate" values="0"/></filter>
+    <linearGradient id="mx" x1="0" y1="0" x2=".85" y2="1">
+      <stop offset="0" stop-color="var(--steel-lo)"/>
+      <stop offset=".22" stop-color="var(--steel-mid)"/>
+      <stop offset=".38" stop-color="var(--steel-hi)"/>
+      <stop offset=".52" stop-color="var(--steel-mid)"/>
+      <stop offset=".72" stop-color="var(--steel-lo)"/>
+      <stop offset=".88" stop-color="var(--steel-mid)"/>
+      <stop offset="1" stop-color="var(--steel-lo)"/>
+    </linearGradient>
+    <linearGradient id="mxv" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="var(--steel-lo)"/>
+      <stop offset=".2" stop-color="var(--steel-hi)"/>
+      <stop offset=".46" stop-color="var(--steel-mid)"/>
+      <stop offset=".78" stop-color="var(--steel-lo)"/>
+      <stop offset="1" stop-color="var(--steel-mid)"/>
+    </linearGradient>
+  </defs>
+</svg>
 
-<header class="hero">
-  <div class="wrap hero-grid">
+<nav class="nav"><div class="wrap nav-in">
+  <div class="brand">Still <i>Cold</i></div>
+  <div class="nav-r"><span>Free shipping · 30-day replacement</span><span>Cart (0)</span></div>
+</div></nav>
 
-    <div class="gal">
-      <div class="stage">
-        <!-- 1 — the set -->
-        <div class="shot on" data-shot="0">
-          <svg viewBox="0 0 400 480" aria-label="The three-piece set">
-            <defs>
-              <linearGradient id="st" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="var(--steel-1)"/>
-                <stop offset=".42" stop-color="#F0F4F5"/>
-                <stop offset=".58" stop-color="var(--steel-2)"/>
-                <stop offset="1" stop-color="var(--steel-3)"/>
-              </linearGradient>
-              <linearGradient id="st2" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="var(--steel-3)"/>
-                <stop offset=".35" stop-color="#EAEFF1"/>
-                <stop offset=".7" stop-color="var(--steel-2)"/>
-                <stop offset="1" stop-color="var(--steel-3)"/>
-              </linearGradient>
-            </defs>
-            <!-- contour tool -->
-            <path d="M92 96c56-26 128-20 168 16 26 24 22 58-10 74-44 22-112 20-152-10-28-21-28-63-6-80z"
-                  fill="url(#st)" stroke="var(--steel-3)" stroke-width="1.5"/>
-            <path d="M104 108c48-20 110-15 144 14" fill="none" stroke="#fff" stroke-width="2.5" opacity=".5"/>
-            <!-- roller -->
-            <rect x="188" y="236" width="26" height="128" rx="13" fill="url(#st2)"/>
-            <ellipse cx="201" cy="228" rx="62" ry="27" fill="url(#st)" stroke="var(--steel-3)" stroke-width="1.5"/>
-            <ellipse cx="201" cy="222" rx="50" ry="20" fill="none" stroke="#fff" stroke-width="2" opacity=".45"/>
-            <ellipse cx="201" cy="372" rx="38" ry="18" fill="url(#st)" stroke="var(--steel-3)" stroke-width="1.5"/>
-            <!-- cups -->
-            <circle cx="88" cy="340" r="30" fill="url(#st)" stroke="var(--steel-3)" stroke-width="1.5"/>
-            <circle cx="88" cy="334" r="19" fill="none" stroke="#fff" stroke-width="2" opacity=".45"/>
-            <circle cx="316" cy="356" r="24" fill="url(#st)" stroke="var(--steel-3)" stroke-width="1.5"/>
-            <circle cx="316" cy="351" r="15" fill="none" stroke="#fff" stroke-width="2" opacity=".45"/>
-          </svg>
-        </div>
-        <!-- 2 — contour tool -->
-        <div class="shot" data-shot="1">
-          <svg viewBox="0 0 400 480" aria-label="Contour tool">
-            <path d="M60 150c78-46 196-36 262 26 40 38 30 92-24 116-72 32-178 26-232-24-38-35-38-98-6-118z"
-                  fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-            <path d="M82 168c68-34 166-26 216 26" fill="none" stroke="#fff" stroke-width="4" opacity=".5"/>
-            <path d="M96 268c62 36 158 36 214-4" fill="none" stroke="var(--steel-3)" stroke-width="1.5" opacity=".5"/>
-          </svg>
-        </div>
-        <!-- 3 — roller -->
-        <div class="shot" data-shot="2">
-          <svg viewBox="0 0 400 480" aria-label="Dual roller">
-            <rect x="182" y="150" width="34" height="200" rx="17" fill="url(#st2)"/>
-            <ellipse cx="199" cy="136" rx="86" ry="38" fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-            <ellipse cx="199" cy="126" rx="70" ry="28" fill="none" stroke="#fff" stroke-width="3" opacity=".45"/>
-            <ellipse cx="199" cy="362" rx="54" ry="26" fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-            <ellipse cx="199" cy="355" rx="42" ry="18" fill="none" stroke="#fff" stroke-width="2.5" opacity=".45"/>
-          </svg>
-        </div>
-        <!-- 4 — cups -->
-        <div class="shot" data-shot="3">
-          <svg viewBox="0 0 400 480" aria-label="Vacuum cups">
-            <circle cx="140" cy="200" r="72" fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-            <circle cx="140" cy="186" r="46" fill="none" stroke="#fff" stroke-width="4" opacity=".45"/>
-            <circle cx="268" cy="316" r="56" fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-            <circle cx="268" cy="305" r="35" fill="none" stroke="#fff" stroke-width="3" opacity=".45"/>
-          </svg>
-        </div>
+<header class="hero"><div class="wrap">
+  <span class="lab rv">Solid 304 stainless · Three pieces</span>
+  <h1 class="rv">Stone breaks. Stone <i>absorbs.</i> Steel does neither.</h1>
+  <p class="lede rv">A facial massage set made from the material the job actually calls for — non-porous, unbreakable, and still cold when you finish.</p>
+</div></header>
+
+<div class="pdp"><div class="wrap pdp-grid">
+
+  <div class="rv">
+    <div class="stage">
+      <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+
+      <div class="shot on" data-s="0">
+        <svg viewBox="0 0 420 500" aria-label="The three-piece set">
+          <path d="M96 104c62-30 146-22 190 18 30 27 24 66-14 84-50 24-128 22-172-12-31-24-30-72-4-90z" fill="url(#mx)"/>
+          <path d="M112 120c52-22 122-16 158 16" fill="none" stroke="var(--steel-hi)" stroke-width="2.5" opacity=".55" stroke-linecap="round"/>
+          <rect x="196" y="252" width="22" height="124" rx="11" fill="url(#mxv)"/>
+          <ellipse cx="207" cy="246" rx="64" ry="28" fill="url(#mx)"/>
+          <ellipse cx="207" cy="239" rx="50" ry="19" fill="none" stroke="var(--steel-hi)" stroke-width="1.8" opacity=".5"/>
+          <ellipse cx="207" cy="384" rx="38" ry="18" fill="url(#mx)"/>
+          <circle cx="96" cy="352" r="29" fill="url(#mx)"/>
+          <circle cx="96" cy="345" r="17" fill="none" stroke="var(--steel-hi)" stroke-width="1.8" opacity=".5"/>
+          <circle cx="322" cy="368" r="24" fill="url(#mx)"/>
+          <circle cx="322" cy="362" r="14" fill="none" stroke="var(--steel-hi)" stroke-width="1.6" opacity=".5"/>
+        </svg>
       </div>
-
-      <div class="thumbs" role="tablist" aria-label="Product views">
-        <div class="thumb" role="tab" aria-selected="true" tabindex="0" data-go="0">
-          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="34" rx="34" ry="19" fill="var(--steel-1)"/><rect x="45" y="50" width="10" height="34" rx="5" fill="var(--steel-2)"/><circle cx="24" cy="76" r="12" fill="var(--steel-2)"/></svg>
-        </div>
-        <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-go="1">
-          <svg viewBox="0 0 100 100"><path d="M16 42c22-16 56-12 72 8 10 12 4 26-14 32-22 8-52 6-62-8-8-11-6-27 4-32z" fill="var(--steel-2)"/></svg>
-        </div>
-        <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-go="2">
-          <svg viewBox="0 0 100 100"><rect x="44" y="26" width="12" height="52" rx="6" fill="var(--steel-2)"/><ellipse cx="50" cy="24" rx="28" ry="12" fill="var(--steel-1)"/><ellipse cx="50" cy="80" rx="18" ry="8" fill="var(--steel-1)"/></svg>
-        </div>
-        <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-go="3">
-          <svg viewBox="0 0 100 100"><circle cx="36" cy="40" r="22" fill="var(--steel-1)"/><circle cx="66" cy="68" r="17" fill="var(--steel-2)"/></svg>
-        </div>
+      <div class="shot" data-s="1">
+        <svg viewBox="0 0 420 500" aria-label="Contour tool">
+          <path d="M62 160c84-50 208-38 278 28 42 40 32 98-26 124-76 34-188 28-246-26-40-37-40-104-6-126z" fill="url(#mx)"/>
+          <path d="M86 180c72-36 176-28 228 28" fill="none" stroke="var(--steel-hi)" stroke-width="5" opacity=".5" stroke-linecap="round"/>
+          <path d="M100 288c66 38 168 38 228-4" fill="none" stroke="var(--steel-lo)" stroke-width="1.5" opacity=".7"/>
+        </svg>
+      </div>
+      <div class="shot" data-s="2">
+        <svg viewBox="0 0 420 500" aria-label="Dual roller">
+          <rect x="190" y="156" width="34" height="208" rx="17" fill="url(#mxv)"/>
+          <ellipse cx="207" cy="142" rx="88" ry="39" fill="url(#mx)"/>
+          <ellipse cx="207" cy="131" rx="70" ry="28" fill="none" stroke="var(--steel-hi)" stroke-width="3" opacity=".5"/>
+          <ellipse cx="207" cy="376" rx="55" ry="26" fill="url(#mx)"/>
+          <ellipse cx="207" cy="368" rx="42" ry="18" fill="none" stroke="var(--steel-hi)" stroke-width="2.2" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="shot" data-s="3">
+        <svg viewBox="0 0 420 500" aria-label="Vacuum cups">
+          <circle cx="146" cy="208" r="74" fill="url(#mx)"/>
+          <circle cx="146" cy="192" r="46" fill="none" stroke="var(--steel-hi)" stroke-width="4" opacity=".5"/>
+          <circle cx="276" cy="330" r="57" fill="url(#mx)"/>
+          <circle cx="276" cy="317" r="35" fill="none" stroke="var(--steel-hi)" stroke-width="3" opacity=".5"/>
+        </svg>
       </div>
     </div>
 
-    <div class="buy">
-      <p class="eyebrow">Three-piece steel set</p>
-      <h1>De-puff your face in <em>three minutes</em>.</h1>
-      <p class="lede">The facial massage set that doesn't snap, doesn't soak up your serum, and is still cold when you finish.</p>
-
-      <div class="price-row">
-        <span class="price tnum">$42</span>
-        <span class="was tnum">$73</span>
-        <span class="save">Save 42%</span>
-      </div>
-
-      <ul class="assure">
-        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Free shipping</b> — already in the price. Nothing gets added at checkout.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>30 days</b> — if it breaks, we replace it. No return needed.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Solid 304 steel</b> — not plated, not resin, not coated.</span></li>
-      </ul>
-
-      <div class="tiers" role="radiogroup" aria-label="Quantity">
-        <div class="tier" role="radio" aria-checked="false" tabindex="0" data-q="1" data-p="42">
-          <span class="dot"></span>
-          <span><span class="t-name">One set</span><br><span class="t-sub">For you</span></span>
-          <span class="t-price tnum">$42<br><span class="t-each">$42.00 each</span></span>
-        </div>
-        <div class="tier" role="radio" aria-checked="true" tabindex="0" data-q="2" data-p="71.4">
-          <span class="flag">Most popular</span>
-          <span class="dot"></span>
-          <span><span class="t-name">Two sets — save 15%</span><br><span class="t-sub">One to keep, one to give</span></span>
-          <span class="t-price tnum">$71.40<br><span class="t-each">$35.70 each</span></span>
-        </div>
-        <div class="tier" role="radio" aria-checked="false" tabindex="0" data-q="3" data-p="94.5">
-          <span class="dot"></span>
-          <span><span class="t-name">Three sets — save 25%</span><br><span class="t-sub">Best value per set</span></span>
-          <span class="t-price tnum">$94.50<br><span class="t-each">$31.50 each</span></span>
-        </div>
-      </div>
-
-      <button class="atc" id="atc">Add to cart — <span class="tnum" id="atcP">$71.40</span></button>
-      <p class="eta">Ships free · Arrives <b id="eta">Oct 1 – Oct 7</b></p>
+    <div class="thumbs" role="tablist" aria-label="Views">
+      <div class="thumb" role="tab" aria-selected="true" tabindex="0" data-g="0"><svg viewBox="0 0 100 100"><ellipse cx="50" cy="32" rx="33" ry="18" fill="url(#mx)"/><rect x="45" y="48" width="10" height="32" rx="5" fill="url(#mxv)"/><circle cx="23" cy="74" r="11" fill="url(#mx)"/></svg></div>
+      <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="1"><svg viewBox="0 0 100 100"><path d="M14 44c24-18 60-13 77 9 11 13 4 28-15 34-24 9-56 6-67-9-9-12-6-29 5-34z" fill="url(#mx)"/></svg></div>
+      <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="2"><svg viewBox="0 0 100 100"><rect x="44" y="24" width="12" height="54" rx="6" fill="url(#mxv)"/><ellipse cx="50" cy="22" rx="29" ry="12" fill="url(#mx)"/><ellipse cx="50" cy="80" rx="18" ry="8" fill="url(#mx)"/></svg></div>
+      <div class="thumb" role="tab" aria-selected="false" tabindex="0" data-g="3"><svg viewBox="0 0 100 100"><circle cx="35" cy="38" r="23" fill="url(#mx)"/><circle cx="67" cy="69" r="17" fill="url(#mx)"/></svg></div>
     </div>
-
   </div>
-</header>
 
-<!-- ===================== STEEL VS STONE ===================== -->
-<section class="steel">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <h2>Stone is <em>porous</em>. Steel isn't.</h2>
-      <p>The most common complaint about facial tools is that they snap. The second is what they absorb. Both are material problems, not manufacturing ones.</p>
-    </div>
+  <div class="rv">
+    <h2 class="name">The Steel Set</h2>
+    <p class="sub">Contour tool, dual roller, two vacuum cups. One material, three shapes.</p>
 
-    <div class="vs">
-      <div class="card win rv">
-        <p class="mat">This set</p>
-        <h3>Solid 304 stainless</h3>
-        <div class="attr"><svg class="ic yes" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Won't snap</b></div>
-        <div class="attr"><svg class="ic yes" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Non-porous — nothing soaks in, rinses actually clean</span></div>
-        <div class="attr"><svg class="ic yes" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sealed bearing — no squeak</span></div>
-        <div class="meter rv">
-          <div class="meter-l"><span>Still cold after</span><span class="tnum">20+ min</span></div>
-          <div class="track"><div class="fill cold" style="--v:1"></div></div>
-        </div>
+    <div class="price-row"><span class="price tnum">$42</span><span class="was tnum">$73</span></div>
+
+    <dl class="spec">
+      <div><dt>Material</dt><dd><b>Solid 304 stainless</b> — not plated, not coated</dd></div>
+      <div><dt>Cold</dt><dd>Holds temperature <b>20+ minutes</b> from the fridge</dd></div>
+      <div><dt>Shipping</dt><dd><b>Free.</b> Already in the price — nothing added at checkout</dd></div>
+      <div><dt>Guarantee</dt><dd><b>30 days.</b> If it breaks we replace it, no return needed</dd></div>
+    </dl>
+
+    <div class="tiers" role="radiogroup" aria-label="Quantity">
+      <div class="tier" role="radio" aria-checked="false" tabindex="0" data-p="42">
+        <span><span class="t-n">One set</span><span class="t-s">For you</span></span>
+        <span class="t-p tnum">$42.00<span class="t-e">$42.00 each</span></span>
       </div>
-
-      <div class="card rv">
-        <p class="mat">The $15 set</p>
-        <h3>Jade or rose quartz</h3>
-        <div class="attr"><svg class="ic no" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Snaps under pressure — the #1 review complaint</span></div>
-        <div class="attr"><svg class="ic no" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Porous — absorbs oil and residue over months</span></div>
-        <div class="attr"><svg class="ic no" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Open bearing — squeaks, often from day one</span></div>
-        <div class="meter rv">
-          <div class="meter-l"><span>Still cold after</span><span class="tnum">~5 min</span></div>
-          <div class="track"><div class="fill warm" style="--v:.25"></div></div>
-        </div>
+      <div class="tier" role="radio" aria-checked="true" tabindex="0" data-p="71.4">
+        <span class="flag">Most chosen</span>
+        <span><span class="t-n">Two sets</span><span class="t-s">Save 15% — one to keep, one to give</span></span>
+        <span class="t-p tnum">$71.40<span class="t-e">$35.70 each</span></span>
+      </div>
+      <div class="tier" role="radio" aria-checked="false" tabindex="0" data-p="94.5">
+        <span><span class="t-n">Three sets</span><span class="t-s">Save 25%</span></span>
+        <span class="t-p tnum">$94.50<span class="t-e">$31.50 each</span></span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===================== DROP TEST ===================== -->
-<section>
-  <div class="wrap drop">
-    <div class="drop-stage rv">
-      <div class="floor"></div>
-      <svg class="faller" viewBox="0 0 200 130" aria-label="Steel tool dropping and landing intact">
-        <path d="M18 42c40-24 100-18 134 16 20 20 14 46-14 58-38 16-92 12-118-14-20-18-20-50-2-60z"
-              fill="url(#st)" stroke="var(--steel-3)" stroke-width="2"/>
-        <path d="M32 52c34-18 84-14 110 14" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>
-      </svg>
-    </div>
-    <div class="rv">
-      <q>Try that with jade.</q>
-      <p style="color:var(--ink-2);max-width:44ch;margin:0">We dropped it on tile from waist height before we'd sell it. Then we did it ninety-nine more times. If yours breaks inside thirty days, message us and a new one goes out — you don't need to send anything back.</p>
-    </div>
+    <button class="atc" id="atc">Add to cart — <span class="tnum" id="ap">$71.40</span></button>
+    <p class="eta">Arrives <span id="eta">Oct 1 – Oct 7</span></p>
   </div>
-</section>
 
-<!-- ===================== ROUTINE ===================== -->
-<section class="steel">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <h2>The whole routine is <em>four moves</em>.</h2>
-      <p>Outward and up, never down. Light pressure, slow. Cold tool straight from the fridge.</p>
+</div></div>
+
+<section class="rule"><div class="wrap">
+  <span class="lab kicker rv">The material</span>
+  <h2 class="rv">Every complaint about these tools is a <i>complaint about stone.</i></h2>
+  <p class="body-l rv">It snaps when you press. It's porous, so months of serum and skin oil go into it and stay there. It warms to skin temperature in about five minutes, which is roughly when you've finished one side of your face. None of that is a manufacturing defect. It's just what stone is.</p>
+
+  <div class="bento">
+    <div class="cell win rv">
+      <span class="lab">This set</span>
+      <h3>Solid 304 stainless</h3>
+      <div class="attr"><svg class="yes" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7.4l3 3L12 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bends long before it breaks — and won't do either in normal use</span></div>
+      <div class="attr"><svg class="yes" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7.4l3 3L12 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Non-porous — nothing soaks in, so rinsing it actually cleans it</span></div>
+      <div class="attr"><svg class="yes" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7.4l3 3L12 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sealed bearing — silent from the first use to the thousandth</span></div>
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">20+ min</span></div><div class="track"><div class="fill a" style="--v:1"></div></div></div>
     </div>
-    <div class="steps">
-      <div class="step rv"><b>Jaw</b><span>Chin, out along the jaw to the ear. Eight times each side.</span></div>
-      <div class="step rv"><b>Cheek</b><span>Corner of the mouth, over the cheekbone, out to the ear. Eight times.</span></div>
-      <div class="step rv"><b>Eye</b><span>Under the eye, outward. Very light — this skin is thin. Five times.</span></div>
-      <div class="step rv"><b>Neck</b><span>Finish downward along the neck. Eight times. Done.</span></div>
+    <div class="cell rv">
+      <span class="lab">The $15 set</span>
+      <h3>Jade or rose quartz</h3>
+      <div class="attr"><svg class="no" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Snaps under pressure — the single most repeated review complaint</span></div>
+      <div class="attr"><svg class="no" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Porous — absorbs oil and residue, and keeps it</span></div>
+      <div class="attr"><svg class="no" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Open bearing — squeaks, frequently from day one</span></div>
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">~5 min</span></div><div class="track"><div class="fill b" style="--v:.25"></div></div></div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- ===================== HONESTY ===================== -->
-<section class="honest">
-  <div class="wrap rv">
-    <p>Nobody tells you this, so we will: the results are temporary.</p>
-    <small>You de-puff in the morning, it lasts through the day, and tomorrow you wake up puffy again. That's how facial massage works, and anyone promising permanent change is selling you something. Three minutes for a face that looks awake today — that's the whole offer.</small>
+<section class="rule"><div class="wrap drop">
+  <div class="drop-stage rv">
+    <div class="floor"></div>
+    <svg class="faller" viewBox="0 0 200 130" aria-label="The tool dropped on tile, intact">
+      <path d="M18 44c42-26 104-19 140 17 21 21 15 48-15 61-40 17-96 13-123-15-21-19-21-53-2-63z" fill="url(#mx)"/>
+      <path d="M34 56c36-19 88-15 114 15" fill="none" stroke="var(--steel-hi)" stroke-width="3" opacity=".5" stroke-linecap="round"/>
+    </svg>
   </div>
-</section>
+  <div class="rv">
+    <p class="pull">Try that <i>with jade.</i></p>
+    <p class="body-l" style="margin-top:0">We dropped it on tile from waist height before we were willing to sell it, and then we did it another ninety-nine times. If yours breaks inside thirty days, send us a message and a replacement goes out the same day. You don't need to return the broken one — there won't be one.</p>
+  </div>
+</div></section>
 
-<!-- ===================== REVIEWS ===================== -->
-<section>
-  <div class="wrap">
-    <div class="sec-head rv"><h2>What people <em>actually</em> say.</h2></div>
-    <div class="revs">
-      <div class="rev rv"><div class="stars">★★★★★</div><p>My third gua sha broke last year. This one I've dropped twice on a tile floor and it doesn't have a mark on it.</p><div class="who"><b>Dana R.</b> · Verified buyer</div></div>
-      <div class="rev rv"><div class="stars">★★★★★</div><p>I didn't believe the cold thing mattered until I used it. My old jade one is warm by the time I get to my jaw.</p><div class="who"><b>Priya M.</b> · Verified buyer</div></div>
-      <div class="rev rv"><div class="stars">★★★★☆</div><p>Does what it says. Puffiness is genuinely down in the morning. Wish the case were a bit nicer for the price.</p><div class="who"><b>Alexis T.</b> · Verified buyer</div></div>
-    </div>
-    <p style="margin-top:18px;font-size:13px;color:var(--ink-3)">Placeholder reviews — replace with real ones before launch. Minimum 15 with photos.</p>
+<section class="rule"><div class="wrap">
+  <span class="lab kicker rv">The routine</span>
+  <h2 class="rv">Four moves. <i>Three minutes.</i></h2>
+  <p class="body-l rv">Outward and up, never down. Light pressure, unhurried, tool straight from the fridge.</p>
+  <div class="steps">
+    <div class="step rv"><span class="n">01</span><b>Jaw</b><span>Start at the chin, draw out along the jaw to the ear. Eight passes each side.</span></div>
+    <div class="step rv"><span class="n">02</span><b>Cheek</b><span>From the corner of the mouth, over the cheekbone, out to the ear. Eight passes.</span></div>
+    <div class="step rv"><span class="n">03</span><b>Eye</b><span>Under the eye, moving outward. Very light — the skin here is thin. Five passes.</span></div>
+    <div class="step rv"><span class="n">04</span><b>Neck</b><span>Finish downward along the side of the neck. Eight passes. That's all of it.</span></div>
   </div>
-</section>
+</div></section>
 
-<!-- ===================== FAQ ===================== -->
-<section class="steel">
-  <div class="wrap faq">
-    <div class="sec-head rv"><h2>Questions, answered <em>straight</em>.</h2></div>
-    <details class="rv"><summary>Will it break?</summary><p>Cheap sets snap because stone is brittle and thin through the middle. This is solid 304 stainless — it bends before it breaks, and it won't do either in normal use. If it breaks inside thirty days, we replace it and you keep the old one.</p></details>
-    <details class="rv"><summary>I've never done this. Will I do it wrong?</summary><p>You can't really. Worst case, nothing happens. The four moves are above — chin to ear, cheekbone to ear, under the eye, then down the neck. Outward and up, always.</p></details>
-    <details class="rv"><summary>Are the results permanent?</summary><p>No, and we won't pretend otherwise. You de-puff in the morning and it lasts through the day. Most people do it daily for exactly that reason.</p></details>
-    <details class="rv"><summary>Does the roller squeak?</summary><p>No. Squeaking is an open-bearing problem on cheap rollers. Ours is sealed.</p></details>
-    <details class="rv"><summary>Can I use it with my serum?</summary><p>Yes, and it's the better way. Apply first, then work it in with the flat edge. The product goes into your skin instead of onto your fingers.</p></details>
-    <details class="rv"><summary>Why $42 when Amazon sells sets for $15?</summary><p>Because the $15 sets are the ones people buy three times. This is three pieces, solid steel, with a replacement guarantee. Bought separately, comparable pieces run past $70.</p></details>
-    <details class="rv"><summary>When does it arrive?</summary><p>Six to twelve days. You get a tracking number the day it ships, and a note from us halfway through so you're not wondering.</p></details>
-    <details class="rv"><summary>Can I return it?</summary><p>Thirty days. If it broke, you don't need to send it back — just tell us.</p></details>
-  </div>
-</section>
+<section class="honest"><div class="wrap rv">
+  <p>Nobody tells you this, so we will: the results are temporary.</p>
+  <small>You de-puff in the morning, it holds through the day, and tomorrow you wake up puffy again. That is how facial massage works, and anyone promising you permanent change is selling you something else. Three minutes for a face that looks awake today — that's the entire offer, and we think it's worth it.</small>
+</div></section>
 
-<footer>
-  <div class="wrap fgrid">
-    <div>
-      <div class="brand" style="margin-bottom:9px">Still <b>Cold</b></div>
-      <p style="margin:0;max-width:34ch">Three minutes, every morning. We make one thing and we make it out of steel.</p>
-    </div>
-    <div><b>Help</b><ul><li>Shipping</li><li>Returns &amp; guarantee</li><li>Track your order</li><li>Contact</li></ul></div>
-    <div><b>Legal</b><ul><li>Terms of service</li><li>Privacy policy</li><li>Refund policy</li><li>Accessibility</li></ul></div>
+<section class="rule"><div class="wrap">
+  <span class="lab kicker rv">Owners</span>
+  <h2 class="rv">What people <i>actually</i> say.</h2>
+  <div class="revs">
+    <div class="rev rv"><p>“My third gua sha broke last year. I've dropped this one twice on a tile floor and it doesn't have a mark on it.”</p><div class="who">Dana R. — Verified</div></div>
+    <div class="rev rv"><p>“I didn't believe the cold part mattered until I used it. My old jade one is warm by the time I reach my jaw.”</p><div class="who">Priya M. — Verified</div></div>
+    <div class="rev rv"><p>“Does exactly what it says. Puffiness is genuinely down in the morning. I'd like a nicer case for the price.”</p><div class="who">Alexis T. — Verified</div></div>
   </div>
-</footer>
+  <p style="margin-top:20px;font-size:12px;color:var(--ink-3)">Placeholder copy — replace with real reviews before launch. Minimum fifteen, with photographs.</p>
+</div></section>
+
+<section class="rule"><div class="wrap narrow">
+  <span class="lab kicker rv">Questions</span>
+  <h2 class="rv" style="margin-bottom:44px">Answered <i>straight.</i></h2>
+  <details class="rv"><summary>Will it break?</summary><p>Cheap sets snap because stone is brittle and thin through the middle. This is solid steel. If it does break inside thirty days we replace it, and you keep the old one.</p></details>
+  <details class="rv"><summary>I've never done this. Will I do it wrong?</summary><p>You can't really. The worst case is that nothing happens. The four moves are above — chin to ear, cheekbone to ear, under the eye, then down the neck. Outward and up, always.</p></details>
+  <details class="rv"><summary>Are the results permanent?</summary><p>No, and we won't pretend otherwise. You de-puff in the morning and it holds through the day. Most people do it daily for exactly that reason.</p></details>
+  <details class="rv"><summary>Does the roller squeak?</summary><p>No. Squeaking comes from an open bearing, which is what cheap rollers use. Ours is sealed.</p></details>
+  <details class="rv"><summary>Can I use it with my serum?</summary><p>Yes, and it's the better way. Apply first, then work it in with the flat edge — the product goes into your skin instead of onto your fingers.</p></details>
+  <details class="rv"><summary>Why $42 when Amazon sells sets for $15?</summary><p>Because the $15 sets are the ones people buy three times. This is three pieces in solid steel with a replacement guarantee. Bought separately, comparable pieces run past $70.</p></details>
+  <details class="rv"><summary>When does it arrive?</summary><p>Six to twelve days. You get tracking the day it ships and a note from us halfway through, so you're never left wondering.</p></details>
+</div></section>
+
+<footer><div class="wrap fg">
+  <div>
+    <div class="brand" style="margin-bottom:14px">Still <i>Cold</i></div>
+    <p style="margin:0;max-width:32ch;color:var(--ink-3)">Three minutes, every morning. We make one thing, and we make it out of steel.</p>
+  </div>
+  <div><b>Help</b><ul><li>Shipping</li><li>Returns &amp; guarantee</li><li>Track your order</li><li>Contact</li></ul></div>
+  <div><b>Legal</b><ul><li>Terms of service</li><li>Privacy policy</li><li>Refund policy</li><li>Accessibility</li></ul></div>
+</div></footer>
 
 <div class="pad"></div>
-
-<div class="bar" id="bar">
-  <span class="p tnum" id="barP">$71.40</span>
-  <button class="atc">Add to cart</button>
-</div>
+<div class="bar" id="bar"><span class="tnum" id="bp">$71.40</span><button class="atc">Add to cart</button></div>
 
 <script>
 document.documentElement.classList.add('js');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px',threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
 
-/* reveal on scroll — IntersectionObserver, never a scroll handler */
-var io = new IntersectionObserver(function(es){
-  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, {rootMargin:'0px 0px -8% 0px', threshold:.12});
-document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+var shots=document.querySelectorAll('.shot'),th=document.querySelectorAll('.thumb');
+function go(i){shots.forEach(function(s,n){s.classList.toggle('on',n===i);});th.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false');});}
+th.forEach(function(t){t.addEventListener('click',function(){go(+t.dataset.g);});t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go(+t.dataset.g);}});});
 
-/* gallery */
-var shots = document.querySelectorAll('.shot'), thumbs = document.querySelectorAll('.thumb');
-function go(i){
-  shots.forEach(function(s,n){ s.classList.toggle('on', n===i); });
-  thumbs.forEach(function(t,n){ t.setAttribute('aria-selected', n===i ? 'true':'false'); });
-}
-thumbs.forEach(function(t){
-  t.addEventListener('click', function(){ go(+t.dataset.go); });
-  t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(+t.dataset.go); } });
-});
+var ti=document.querySelectorAll('.tier'),ap=document.getElementById('ap'),bp=document.getElementById('bp');
+function pick(t){ti.forEach(function(x){x.setAttribute('aria-checked',x===t?'true':'false');});var p='$'+Number(t.dataset.p).toFixed(2);ap.textContent=p;bp.textContent=p;}
+ti.forEach(function(t){t.addEventListener('click',function(){pick(t);});t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(t);}});});
 
-/* quantity tiers */
-var tiers = document.querySelectorAll('.tier'), atcP = document.getElementById('atcP'), barP = document.getElementById('barP');
-function pick(t){
-  tiers.forEach(function(x){ x.setAttribute('aria-checked', x===t ? 'true':'false'); });
-  var p = '$' + Number(t.dataset.p).toFixed(2);
-  atcP.textContent = p; barP.textContent = p;
-}
-tiers.forEach(function(t){
-  t.addEventListener('click', function(){ pick(t); });
-  t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(t); } });
-});
+(function(){var f=function(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});},a=new Date(),b=new Date();a.setDate(a.getDate()+6);b.setDate(b.getDate()+12);document.getElementById('eta').textContent=f(a)+' – '+f(b);})();
 
-/* delivery estimate — 6 to 12 days out */
-(function(){
-  var f = function(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); };
-  var a = new Date(), b = new Date();
-  a.setDate(a.getDate()+6); b.setDate(b.getDate()+12);
-  document.getElementById('eta').textContent = f(a) + ' – ' + f(b);
-})();
-
-/* sticky bar — observer on the desktop button, not a scroll listener */
-var bar = document.getElementById('bar');
-new IntersectionObserver(function(es){
-  bar.classList.toggle('up', !es[0].isIntersecting);
-},{threshold:0}).observe(document.getElementById('atc'));
+new IntersectionObserver(function(es){document.getElementById('bar').classList.toggle('up',!es[0].isIntersecting);},{threshold:0}).observe(document.getElementById('atc'));
 </script>
