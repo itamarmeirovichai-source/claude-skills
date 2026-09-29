@@ -194,6 +194,49 @@ def test_the_floor_locks_after_the_safety_net():
     assert r["blowup_rate"] < 1.0
 
 
+# ── נתוני החוזים ──────────────────────────────────────────────────────
+# הניקוי הוא החלטות, ולכן כל אחת מהן נבדקת: מה שהוסר הוסר, מה שאופס
+# אופס, ומה שנשמר — האירועים האמיתיים — לא נגעו בו.
+
+def _have_data():
+    from trend_backtest import DATA_DIR
+    return (DATA_DIR / "futures.csv").exists()
+
+
+def test_futures_loader_applies_exactly_the_documented_cleaning():
+    if not _have_data():
+        return
+    from trend_backtest import load_futures
+    px, labels = load_futures()
+    assert "VF" not in px.columns
+    assert px.shape[1] == 54
+    r = px.pct_change()
+    # האירוע המזויף אופס
+    assert abs(r.loc["1999-01-04", "EO"]) < 1e-9
+    # האירועים האמיתיים נשארו
+    assert r.loc["1991-01-17", "CL"] < -0.30
+    assert r.loc["1994-06-27", "KC"] > 0.25
+    assert r.loc["2003-02-24", "NG"] > 0.35
+    assert px.index[0].year == 1984 and px.index[-1].year == 2016
+    assert all(t in labels for t in px.columns)
+
+
+def test_futures_price_index_reproduces_the_returns():
+    """cumprod ואז pct_change חייב להחזיר את התשואות המקוריות."""
+    if not _have_data():
+        return
+    from trend_backtest import DATA_DIR, load_futures
+    px, _ = load_futures()
+    raw = pd.read_csv(DATA_DIR / "futures.csv", encoding="utf-8-sig")
+    raw["Date"] = pd.to_datetime(raw["Date"], format="%m/%d/%y")
+    raw = raw.set_index("Date").sort_index()
+    raw.columns = [c.strip() for c in raw.columns]
+    got = px["TY"].pct_change().loc["2005-01-03":"2005-12-30"]
+    want = raw["TY"].loc["2005-01-03":"2005-12-30"]
+    both = pd.concat([got, want], axis=1).dropna()
+    assert np.allclose(both.iloc[:, 0], both.iloc[:, 1], atol=1e-12)
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

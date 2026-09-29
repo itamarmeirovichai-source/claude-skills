@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""trend_backtest.py — מומנטום סדרתי על סל קרנות סל, לפי מוסקוביץ-אווי-פדרסן.
+"""trend_backtest.py — מומנטום סדרתי, לפי מוסקוביץ-אווי-פדרסן.
 
 למה זה קיים
 -----------
 האסטרטגיה שבבוט נבחנה שלוש פעמים ולא הראתה קצה. זה בקטסט של משהו אחר:
 קצה שהוא פרמיית סיכון מתועדת (Moskowitz, Ooi & Pedersen 2012, JFE) ולא
 דפוס בגרף. מה שנמדד כאן הוא **גבול תחתון**, לא תוחלת. אם הגבול התחתון
-של השארפ חיובי על עשרים שנה, יש לראשונה משהו שאפשר לבנות עליו.
+של השארפ חיובי על שלושים שנה, יש לראשונה משהו שאפשר לבנות עליו.
 
 מה זה, בדיוק
 ------------
@@ -15,28 +15,26 @@
 - גודל: הפוך לתנודתיות הממומשת (60 יום), כך שכל נכס תורם סיכון שווה.
 - איזון: חודשי, על סגירת יום המסחר האחרון, מוחזק חודש שלם.
 - תיק: ממוצע שווה של הפוזיציות המנורמלות על פני הנכסים הזמינים.
-- עלות: 10 נקודות בסיס על כל יחידת מחזור — שמרני לקרנות סל.
+- עלות: 10 נקודות בסיס על כל יחידת מחזור.
 
 הפרמטרים נקבעו **מראש מהמאמר** ולא מהנתונים. רגישות מוצגת בנפרד
 ומסומנת ככזו. זה ההבדל בין בקטסט לחיפוש.
 
-למה קרנות סל ולא חוזים
-----------------------
-חוזים רציפים מ-Yahoo לא מתואמים לאחור: בכל גלגול יש פער מחיר שנראה
-כמו תשואה. על סדרות תשואה זה כמה תשואות מזויפות בשנה. קרנות סל הן מה
-שאפשר לקנות, עלות הגלגול כבר בתוכן, ואין פערים. המספר ייצא נמוך
-מהאקדמי — וזה המספר הכן.
+שני יקומים
+----------
+--futures (ברירת המחדל כשהקובץ קיים): 54 חוזים עתידיים, 1984–2016, תשואות
+יומיות עודפות, מריפו שחזור של המאמר. זה היקום של המאמר עצמו.
+ראה data/README.md על המקור, מה נבדק, ומה חסר (2017 ואילך).
+
+--etf: קרנות סל מ-Yahoo, כשהרשת מאפשרת. מה שאפשר לקנות בפועל; עלות
+הגלגול בתוכן; המספר נמוך מהאקדמי. חוזים רציפים מ-Yahoo לא בשימוש
+בשום מצב — הם לא מתואמים לאחור וכל גלגול מדפיס תשואה מזויפת.
 
 מה זה לא מודד
 -------------
 לא איך זה מתנהג בתוך דרודאון נגרר של חברת פרופ. זו שאלה נפרדת, והיא
-בסוף הקובץ: prop_survival מריץ את סדרת התשואות דרך חשבון 50K עם
-2,500$ דרודאון נגרר ומודד כמה מהנתיבים שורדים.
-
-שימוש
------
-    python3 trend_backtest.py            # מושך (עם מטמון), מריץ, מדפיס
-    python3 trend_backtest.py --offline  # רק מהמטמון
+בסוף: prop_survival מריץ את סדרת התשואות דרך חשבון 50K עם 2,500$
+דרודאון נגרר ומודד כמה מהנתיבים שורדים.
 """
 from __future__ import annotations
 
@@ -55,45 +53,68 @@ TARGET_VOL = 0.10        # יעד תנודתיות שנתית לכל נכס
 COST_BPS = 10.0          # לכל יחידת מחזור
 TDAYS = 252
 
-# סל מפוזר עם היסטוריה ארוכה. התאריך בסוגריים הוא תחילת הסדרה.
-UNIVERSE = {
-    "SPY": "מניות ארה\"ב גדולות (1993)",
-    "QQQ": "נאסד\"ק 100 (1999)",
-    "IWM": "מניות ארה\"ב קטנות (2000)",
-    "EFA": "מפותחות מחוץ לארה\"ב (2001)",
-    "EEM": "מתפתחות (2003)",
-    "TLT": "אג\"ח ממשלת ארה\"ב 20+ (2002)",
-    "IEF": "אג\"ח ממשלת ארה\"ב 7–10 (2002)",
-    "LQD": "אג\"ח קונצרני דירוג השקעה (2002)",
-    "HYG": "אג\"ח זבל (2007)",
-    "GLD": "זהב (2004)",
-    "SLV": "כסף (2006)",
-    "DBC": "סל סחורות (2006)",
-    "USO": "נפט (2006)",
-    "UUP": "דולר מול סל (2007)",
-    "FXE": "אירו (2005)",
-    "VNQ": "נדל\"ן מניב ארה\"ב (2004)",
-}
-
+HERE = Path(__file__).resolve().parent
+DATA_DIR = HERE.parent / "data"
 SCRATCH = Path(os.environ.get(
     "PF_SCRATCH",
     "/tmp/claude-0/-home-user-claude-skills/"
     "83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad"))
 CACHE = SCRATCH / "data"
 
+# ── יקום קרנות הסל ────────────────────────────────────────────────────
+UNIVERSE = {
+    "SPY": "מניות ארה\"ב גדולות (1993)", "QQQ": "נאסד\"ק 100 (1999)",
+    "IWM": "מניות ארה\"ב קטנות (2000)", "EFA": "מפותחות מחוץ לארה\"ב (2001)",
+    "EEM": "מתפתחות (2003)", "TLT": "אג\"ח ממשלת ארה\"ב 20+ (2002)",
+    "IEF": "אג\"ח ממשלת ארה\"ב 7–10 (2002)", "LQD": "אג\"ח קונצרני (2002)",
+    "HYG": "אג\"ח זבל (2007)", "GLD": "זהב (2004)", "SLV": "כסף (2006)",
+    "DBC": "סל סחורות (2006)", "USO": "נפט (2006)", "UUP": "דולר (2007)",
+    "FXE": "אירו (2005)", "VNQ": "נדל\"ן מניב (2004)",
+}
+ETF_PERIODS = (("2007", "2009"), ("2010", "2019"), ("2020", "2026"))
 
-# ── נתונים ────────────────────────────────────────────────────────────
+# ── יקום החוזים — ניקוי מתועד ─────────────────────────────────────────
+# כל שורה כאן היא החלטה שנבדקה, לא ברירת מחדל.
+FUTURES_DROP = ("VF",)                      # אין מטא-דאטה — לא ידוע מה זה
+FUTURES_ZERO = (("EO", "1999-01-04"),)      # AEX הומר לאירו — ‎-52.6% הוא
+                                            # פרט טכני, לא תשואה
+FUTURES_REAL_EXTREMES = {                   # נבדקו, נשארים כמות שהם
+    "1991-01-17": "תחילת מלחמת המפרץ — CL/CO/HO/QS ‎-29% עד ‎-33%",
+    "1994-06-27": "קרה בברזיל — קפה ‎+27%",
+    "2003-02-24": "זינוק גז טבעי ‎+38%",
+}
+FUTURES_PERIODS = (("1984", "1999"), ("2000", "2009"), ("2010", "2016"))
+
+
+def load_futures(data_dir: Path = DATA_DIR) -> tuple:
+    """(מחירים סינתטיים מהתשואות, תוויות). ראה data/README.md."""
+    f = pd.read_csv(data_dir / "futures.csv", encoding="utf-8-sig")
+    f["Date"] = pd.to_datetime(f["Date"], format="%m/%d/%y")
+    f = f.set_index("Date").sort_index()
+    f.columns = [c.strip() for c in f.columns]
+    f = f.drop(columns=[c for c in FUTURES_DROP if c in f.columns])
+    for sym, day in FUTURES_ZERO:
+        f.loc[pd.Timestamp(day), sym] = 0.0
+    meta = pd.read_csv(data_dir / "futures_list.csv")
+    meta["Asset"] = meta["Asset"].str.strip()
+    labels = {r.Asset: f"{r.FUTURES} — {r.ASSET_CLASS}"
+              for r in meta.itertuples()}
+    # אינדקס מחיר מהתשואות: cumprod מהיום התקף הראשון של כל מכשיר.
+    # ffill על חורים פנימיים (חגים שונים בבורסות שונות) — יום בלי מסחר
+    # הוא תשואה אפס, לא תשואה חסרה.
+    px = pd.DataFrame({c: (1.0 + f[c].dropna()).cumprod() for c in f})
+    return px.sort_index().ffill(), labels
+
+
 def load_prices(tickers=None, offline=False) -> pd.DataFrame:
-    """מחירי סגירה מתואמים, יומיים. מטמון ב-CSV; yfinance רק כשחסר."""
+    """קרנות סל, מטמון CSV, yfinance רק כשחסר וכשהרשת מאפשרת."""
     tickers = list(tickers or UNIVERSE)
     CACHE.mkdir(parents=True, exist_ok=True)
-    frames = {}
-    missing = []
+    frames, missing = {}, []
     for t in tickers:
         f = CACHE / f"{t}.csv"
         if f.exists():
-            s = pd.read_csv(f, index_col=0, parse_dates=True).iloc[:, 0]
-            frames[t] = s
+            frames[t] = pd.read_csv(f, index_col=0, parse_dates=True).iloc[:, 0]
         else:
             missing.append(t)
     if missing and not offline:
@@ -112,7 +133,7 @@ def load_prices(tickers=None, offline=False) -> pd.DataFrame:
             s.to_csv(CACHE / f"{t}.csv")
             frames[t] = s
     if not frames:
-        raise SystemExit("אין נתונים. להריץ בלי --offline, או לבדוק רשת.")
+        raise SystemExit("אין נתוני קרנות סל. הרשת חסומה? להריץ עם --futures.")
     px = pd.DataFrame(frames).sort_index()
     px.index = pd.to_datetime(px.index)
     if getattr(px.index, "tz", None) is not None:
@@ -170,7 +191,6 @@ def stats(daily: pd.Series) -> dict:
     ann_vol = d.std() * np.sqrt(TDAYS)
     cum = (1 + d).cumprod()
     dd = cum / cum.cummax() - 1
-    # משך הדרודאון הארוך ביותר, בימי מסחר
     under = (dd < 0).astype(int)
     runs = under.groupby((under != under.shift()).cumsum()).cumsum()
     yrs = d.groupby(d.index.year).apply(lambda s: (1 + s).prod() - 1)
@@ -180,7 +200,7 @@ def stats(daily: pd.Series) -> dict:
         sharpe=ann_ret / ann_vol if ann_vol > 0 else np.nan,
         max_dd=dd.min(), longest_dd_days=int(runs.max()),
         calmar=ann_ret / abs(dd.min()) if dd.min() < 0 else np.nan,
-        worst_year=yrs.min(), best_year=yrs.max(),
+        worst_year=yrs.min(), best_year=yrs.max(), years_by=yrs,
         pct_pos_months=(monthly > 0).mean(), n_months=len(monthly),
         monthly=monthly, cum=cum, dd=dd,
     )
@@ -200,8 +220,7 @@ def stationary_bootstrap_sharpe(monthly: pd.Series, n=5000,
         k = 0
         while k < T:
             start = rng.integers(0, T)
-            L = rng.geometric(p)
-            L = min(L, T - k)
+            L = min(rng.geometric(p), T - k)
             idx[k:k + L] = (start + np.arange(L)) % T
             k += L
         s = x[idx]
@@ -218,7 +237,7 @@ def prop_survival(daily: pd.Series, notional: float, start=50_000.0,
 
     הרצפה עוקבת אחרי השיא עד שהשיא מגיע ל-start+dd+100, ואז ננעלת
     ב-start+100 לתמיד (כללי Apex, כמו ב-apex_model). המדד: כמה נתיבים
-    עוברים את יעד ההערכה לפני שנוגעים ברצפה, וכמה שורדים שנה שלמה.
+    עוברים את יעד ההערכה לפני שנוגעים ברצפה, וכמה נשרפים.
     """
     x = daily.dropna().values
     T = len(x)
@@ -235,17 +254,15 @@ def prop_survival(daily: pd.Series, notional: float, start=50_000.0,
             L = min(rng.geometric(p), horizon_days - k)
             idx[k:k + L] = (s0 + np.arange(L)) % T
             k += L
-        pnl = notional * x[idx]
-        eq = start + np.cumsum(pnl)
+        eq = start + np.cumsum(notional * x[idx])
         peak = np.maximum.accumulate(np.concatenate([[start], eq]))[1:]
         floor = np.where(peak >= start + dd + 100.0, start + 100.0, peak - dd)
-        hit_floor = np.argmax(eq <= floor) if (eq <= floor).any() else -1
-        hit_target = np.argmax(eq >= start + target) \
-            if (eq >= start + target).any() else -1
-        if hit_target >= 0 and (hit_floor < 0 or hit_target < hit_floor):
+        hf = np.argmax(eq <= floor) if (eq <= floor).any() else -1
+        ht = np.argmax(eq >= start + target) if (eq >= start + target).any() else -1
+        if ht >= 0 and (hf < 0 or ht < hf):
             passed[i] = True
-            days_to_pass[i] = hit_target + 1
-        if hit_floor >= 0 and not passed[i]:
+            days_to_pass[i] = ht + 1
+        elif hf >= 0:
             blown[i] = True
     return dict(pass_rate=passed.mean(), blowup_rate=blown.mean(),
                 neither=1 - passed.mean() - blown.mean(),
@@ -258,15 +275,17 @@ def _pct(x):
     return f"{x * 100:+.1f}%"
 
 
-def report(px: pd.DataFrame) -> dict:
+def report(px: pd.DataFrame, labels=None, periods=ETF_PERIODS,
+           ref=("SPY", "IEF"), title="קרנות סל") -> dict:
+    labels = labels or UNIVERSE
     print("=" * 66)
-    print("  מומנטום סדרתי על קרנות סל — מוסקוביץ-אווי-פדרסן")
+    print(f"  מומנטום סדרתי על {title} — מוסקוביץ-אווי-פדרסן")
     print("=" * 66)
     print(f"  נכסים: {px.shape[1]}   "
           f"{px.index[0].date()} עד {px.index[-1].date()}")
     for t in px:
         s = px[t].dropna()
-        print(f"    {t:<5} {UNIVERSE.get(t, ''):<38} מ-{s.index[0].date()}")
+        print(f"    {t:<5} {labels.get(t, ''):<44} מ-{s.index[0].date()}")
 
     out = {}
     for label, lo in (("לונג/שורט, כמו במאמר", False), ("לונג בלבד", True)):
@@ -292,32 +311,44 @@ def report(px: pd.DataFrame) -> dict:
               f"חודשים חיוביים: {st['pct_pos_months'] * 100:.0f}%")
         print(f"  מחזור שנתי  : {pf['turnover'].mean() * TDAYS:.1f}x   "
               f"עלות שנתית: {(pf['gross'] - pf['net']).mean() * TDAYS * 100:.2f}%")
-
-        # תת-תקופות: לפני/אחרי 2009 (קריסת המומנטום), והעשור האחרון
         print("  לפי תקופה:")
         d = pf["net"]
-        for a, b in (("2007", "2009"), ("2010", "2019"), ("2020", "2026")):
+        for a, b in periods:
             seg = d.loc[a:b]
             if len(seg) > TDAYS:
                 s2 = stats(seg)
                 print(f"    {a}–{b}: {_pct(s2['ann_ret']):>7}  "
                       f"שארפ {s2['sharpe']:.2f}  דרודאון {_pct(s2['max_dd'])}")
+        if not lo:
+            yb = st["years_by"]
+            neg = yb[yb < 0]
+            print(f"  שנים שליליות: {len(neg)} מתוך {len(yb)}  "
+                  + ", ".join(f"{y}:{v * 100:+.0f}%" for y, v in neg.items()))
 
-    # ייחוס: 60/40 קנה-והחזק על אותה תקופה
-    if {"SPY", "IEF"} <= set(px.columns):
-        r = px[["SPY", "IEF"]].pct_change().dropna()
-        bh = (0.6 * r["SPY"] + 0.4 * r["IEF"]).loc[out["לונג בלבד"]["pf"]["net"].index[0]:]
+    # ייחוס
+    ls_net = out["לונג/שורט, כמו במאמר"]["pf"]["net"]
+    if ref[1] and {ref[0], ref[1]} <= set(px.columns):
+        r = px[[ref[0], ref[1]]].pct_change().dropna()
+        bh = (0.6 * r[ref[0]] + 0.4 * r[ref[1]]).loc[ls_net.index[0]:]
+        name = f"60/40 {ref[0]}/{ref[1]} קנה-והחזק"
+    elif ref[0] in px.columns:
+        bh = px[ref[0]].pct_change().loc[ls_net.index[0]:].dropna()
+        name = f"{ref[0]} לונג בלבד, קנה-והחזק"
+    else:
+        bh = None
+    if bh is not None:
         s3 = stats(bh)
-        print(f"\n{'─' * 66}\n  ייחוס: 60/40 קנה-והחזק, אותה תקופה\n{'─' * 66}")
+        print(f"\n{'─' * 66}\n  ייחוס: {name}, אותה תקופה\n{'─' * 66}")
         print(f"  תשואה שנתית : {_pct(s3['ann_ret'])}   שארפ {s3['sharpe']:.2f}   "
               f"דרודאון {_pct(s3['max_dd'])}")
+        j = pd.concat([ls_net, bh], axis=1).dropna()
+        print(f"  קורלציה של מומנטום לונג/שורט אליו: {j.corr().iloc[0, 1]:+.2f}")
 
-    # רגישות לחלון האות — מסומנת ככזו
+    # רגישות — מסומנת
     print(f"\n{'─' * 66}\n  רגישות לחלון האות (לונג/שורט) — לא לבחור מכאן\n{'─' * 66}")
     print(f"  {'חלון':>8}{'תשואה':>10}{'שארפ':>8}{'דרודאון':>10}")
     for lb in (63, 126, 189, 252, 378):
-        pf2 = portfolio(px, tsmom_positions(px, lookback=lb))
-        s4 = stats(pf2["net"])
+        s4 = stats(portfolio(px, tsmom_positions(px, lookback=lb))["net"])
         mark = "  ← המאמר" if lb == LOOKBACK_DAYS else ""
         print(f"  {lb // 21:>6}m {_pct(s4['ann_ret']):>9} {s4['sharpe']:>7.2f} "
               f"{_pct(s4['max_dd']):>9}{mark}")
@@ -325,13 +356,12 @@ def report(px: pd.DataFrame) -> dict:
     # התאמה למבנה הפרופ
     print(f"\n{'─' * 66}\n  בתוך חשבון 50K עם 2,500$ דרודאון נגרר\n{'─' * 66}")
     print("  הנומינל נבחר כך שתנודתיות ה-P&L היומית תהיה שבר מהדרודאון.")
-    d = out["לונג/שורט, כמו במאמר"]["pf"]["net"]
-    dvol = d.std()
+    dvol = ls_net.std()
     print(f"  {'נומינל':>10}{'$vol/יום':>10}{'עוברים':>9}{'נשרפים':>9}"
           f"{'לא זה ולא זה':>14}{'ימים ליעד':>11}")
-    for frac in (0.02, 0.04, 0.06, 0.08):
+    for frac in (0.02, 0.04, 0.06, 0.08, 0.12):
         notional = frac * 2500.0 / dvol
-        r = prop_survival(d, notional)
+        r = prop_survival(ls_net, notional)
         print(f"  {notional:>10,.0f}{frac * 2500:>10,.0f}"
               f"{r['pass_rate'] * 100:>8.0f}%{r['blowup_rate'] * 100:>8.0f}%"
               f"{r['neither'] * 100:>13.0f}%{r['median_days_to_pass']:>11.0f}")
@@ -341,9 +371,20 @@ def report(px: pd.DataFrame) -> dict:
 
 
 def main() -> int:
-    offline = "--offline" in sys.argv
-    px = load_prices(offline=offline)
-    report(px)
+    args = set(sys.argv[1:])
+    use_etf = "--etf" in args
+    if not use_etf and (DATA_DIR / "futures.csv").exists():
+        px, labels = load_futures()
+        print("  נתונים: 54 חוזים עתידיים, 1984–2016. ראה data/README.md.")
+        print("  ניקוי: VF הוסר (אין מטא); EO ב-1999-01-04 אופס (מעבר לאירו).")
+        for day, why in FUTURES_REAL_EXTREMES.items():
+            print(f"  נשמר כמות שהוא: {day} — {why}")
+        print()
+        report(px, labels=labels, periods=FUTURES_PERIODS,
+               ref=("ES", None), title="חוזים עתידיים")
+    else:
+        px = load_prices(offline="--offline" in args)
+        report(px)
     return 0
 
 
