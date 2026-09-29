@@ -15,33 +15,70 @@ export function unlockAudio(): void {
   }
 }
 
-function tone(freq: number, start: number, dur: number) {
-  if (!audioCtx) return;
+/** True when sound can play right now. iOS suspends audio in the background and after interruptions. */
+export function audioReady(): boolean {
+  return !!audioCtx && audioCtx.state === 'running';
+}
+
+function tone(freq: number, start: number, dur: number): OscillatorNode | null {
+  if (!audioCtx) return null;
+  const t0 = audioCtx.currentTime + start;
   const o = audioCtx.createOscillator();
   const g = audioCtx.createGain();
   o.type = 'sine';
   o.frequency.value = freq;
-  g.gain.setValueAtTime(0.0001, audioCtx.currentTime + start);
-  g.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + start + 0.02);
-  g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + start + dur);
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.exponentialRampToValueAtTime(0.3, t0 + 0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
   o.connect(g).connect(audioCtx.destination);
-  o.start(audioCtx.currentTime + start);
-  o.stop(audioCtx.currentTime + start + dur + 0.05);
+  o.start(t0);
+  o.stop(t0 + dur + 0.05);
+  return o;
+}
+
+function tones(sound: 'off' | 'beep' | 'chime', delaySec: number): OscillatorNode[] {
+  const out: Array<OscillatorNode | null> = [];
+  if (sound === 'beep') {
+    out.push(tone(880, delaySec, 0.15), tone(880, delaySec + 0.25, 0.15), tone(1175, delaySec + 0.5, 0.3));
+  } else if (sound === 'chime') {
+    out.push(tone(660, delaySec, 0.25), tone(990, delaySec + 0.18, 0.35), tone(1320, delaySec + 0.4, 0.45));
+  }
+  return out.filter((o): o is OscillatorNode => o !== null);
 }
 
 export function cue(sound: 'off' | 'beep' | 'chime', vibrate: boolean): void {
   try {
-    if (sound === 'beep') {
-      tone(880, 0, 0.15);
-      tone(880, 0.25, 0.15);
-    } else if (sound === 'chime') {
-      tone(660, 0, 0.25);
-      tone(990, 0.18, 0.35);
-    }
+    unlockAudio();
+    tones(sound, 0);
   } catch {
     /* no audio */
   }
   if (vibrate) haptic([120, 60, 120]);
+}
+
+/**
+ * Schedule the rest end sound on the audio clock, so it plays on time even when timers are slowed
+ * while the screen stays on. Call it from a tap (Complete set, Rest, +15) so iOS allows audio.
+ * Returns a cancel function. Returns null when sound is off or audio is not available.
+ */
+export function scheduleCue(sound: 'off' | 'beep' | 'chime', delayMs: number): (() => void) | null {
+  if (sound === 'off' || delayMs <= 0) return null;
+  try {
+    unlockAudio();
+    if (!audioCtx) return null;
+    const nodes = tones(sound, delayMs / 1000);
+    return () => {
+      for (const n of nodes) {
+        try {
+          n.stop();
+        } catch {
+          /* already stopped */
+        }
+      }
+    };
+  } catch {
+    return null;
+  }
 }
 
 export function haptic(pattern: number | number[] = 12): void {

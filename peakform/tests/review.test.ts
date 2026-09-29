@@ -59,8 +59,9 @@ describe('weekly review', () => {
     }
     expect(r.priorities.length).toBeGreaterThan(0);
     expect(r.priorities.length).toBeLessThanOrEqual(3);
-    expect(r.current.plannedSessions).toBe(13);
-    expect(r.current.ropePlanned).toBe(5);
+    // Six main sessions, six morning sessions (Sunday to Friday), and two swims.
+    expect(r.current.plannedSessions).toBe(14);
+    expect(r.current.ropePlanned).toBe(6);
     expect(r.current.swimPlanned).toBe(2);
     expect(r.comparison.find((c) => c.label === 'Scale body fat')!.note).toMatch(/Trend only/);
   });

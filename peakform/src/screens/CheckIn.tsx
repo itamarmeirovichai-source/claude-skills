@@ -36,8 +36,8 @@ export function CheckInScreen() {
   const [flags, setFlags] = useState<RedFlag[]>([]);
   const [saved, setSaved] = useState(false);
 
-  const bedT = bed ?? lastSleep?.bedtime ?? '22:30';
-  const wakeT = wake ?? lastSleep?.wakeTime ?? '07:00';
+  const bedT = bed ?? lastSleep?.bedtime ?? '21:15';
+  const wakeT = wake ?? lastSleep?.wakeTime ?? '05:10';
   const dur = sleepMinutes(bedT, wakeT);
   const needWaist = waistThisWeek === 0;
   const anyPain4 = Object.values(pain).some((v) => v >= 4);

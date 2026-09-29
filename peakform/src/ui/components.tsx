@@ -116,13 +116,39 @@ export function Toggle({ checked, onChange, label, sub, testId }: { checked: boo
   );
 }
 
+const fmt = (v: number | null) => (v === null ? '' : String(v));
+
 export function Stepper({ label, value, onChange, step = 1, min = 0, max = 9999, decimals = 0, prev, unit, testId, base, placeholder }: { label: string; value: number | null; onChange: (v: number | null) => void; step?: number; min?: number; max?: number; decimals?: number; prev?: string; unit?: string; testId?: string; base?: number | null; placeholder?: string }) {
   const id = useId();
-  const [text, setText] = useState(value === null ? '' : String(value));
+  const [text, setText] = useState(fmt(value));
+  const focused = useRef(false);
+  // The last value this field reported, so a re-render caused by our own typing never rewrites the text.
+  const sent = useRef<number | null | undefined>(undefined);
   useEffect(() => {
-    setText(value === null ? '' : String(value));
+    if (focused.current && value === sent.current) return;
+    setText(fmt(value));
   }, [value]);
-  const clamp = (n: number) => Math.min(max, Math.max(min, Math.round(n * 10 ** decimals) / 10 ** decimals));
+  const round = (n: number) => Math.round(n * 10 ** decimals) / 10 ** decimals;
+  const clamp = (n: number) => Math.min(max, Math.max(min, round(n)));
+  // Typing is never clamped: "7" on the way to "78.5" must stay "7". Out of range text is shown with a hint
+  // and only reported once it is a valid number.
+  const parse = (t: string): number | null | 'partial' | 'range' => {
+    if (t === '') return null;
+    if (!(decimals > 0 ? /^\d*\.?\d*$/ : /^\d*$/).test(t) || t === '.') return 'partial';
+    const n = Number(t);
+    if (Number.isNaN(n)) return 'partial';
+    if (n < min || n > max) return 'range';
+    return round(n);
+  };
+  const state = parse(text);
+  const invalid = state === 'partial' || state === 'range';
+  const hintId = `${id}-hint`;
+  const step1 = (dir: 1 | -1) => {
+    const next = clamp(value === null && base != null ? base : (value ?? 0) + dir * step);
+    sent.current = next;
+    setText(fmt(next));
+    onChange(next);
+  };
   return (
     <div>
       <label className="stepper-label" htmlFor={id}>
@@ -133,29 +159,46 @@ export function Stepper({ label, value, onChange, step = 1, min = 0, max = 9999,
         {prev && <span className="prev">Last {prev}</span>}
       </label>
       <div className="stepper">
-        <button type="button" aria-label={`Decrease ${label}`} onClick={() => onChange(clamp(value === null && base != null ? base : (value ?? 0) - step))}>
+        <button type="button" aria-label={`Decrease ${label}`} onClick={() => step1(-1)}>
           −
         </button>
         <input
           id={id}
           data-testid={testId}
           inputMode={decimals > 0 ? 'decimal' : 'numeric'}
-          pattern={decimals > 0 ? '[0-9]*[.,]?[0-9]*' : '[0-9]*'}
           value={text}
+          aria-invalid={invalid || undefined}
+          aria-describedby={invalid ? hintId : undefined}
           onChange={(e) => {
-            const t = e.target.value.replace(',', '.');
+            const t = e.target.value.replace(',', '.').replace(/\s/g, '');
             setText(t);
-            if (t === '') onChange(null);
-            else if (!Number.isNaN(Number(t))) onChange(clamp(Number(t)));
+            const p = parse(t);
+            if (p === null || typeof p === 'number') {
+              sent.current = p;
+              onChange(p);
+            }
           }}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            focused.current = true;
+            e.target.select();
+          }}
+          onBlur={() => {
+            focused.current = false;
+            // Leaving the field shows what is actually stored, so the screen and the saved value always agree.
+            setText(fmt(value));
+          }}
           placeholder={placeholder}
           autoComplete="off"
         />
-        <button type="button" aria-label={`Increase ${label}`} onClick={() => onChange(clamp(value === null && base != null ? base : (value ?? 0) + step))}>
+        <button type="button" aria-label={`Increase ${label}`} onClick={() => step1(1)}>
           +
         </button>
       </div>
+      {invalid && (
+        <p className="stepper-hint" id={hintId} role="status">
+          {state === 'range' ? `Use a number from ${min} to ${max}${unit ? ` ${unit}` : ''}.` : 'Numbers only.'}
+        </p>
+      )}
     </div>
   );
 }

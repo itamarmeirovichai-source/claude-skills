@@ -137,7 +137,7 @@ export function generateDemo(planDays: PlanDay[], end: DateKey, weeks: number, l
           planId: 'baseline-v1',
           planVersion: 1,
           session: sessionKey,
-          title: sessionKey === 'main' ? day.title : sessionKey === 'morning' ? 'Morning rope' : 'Swim',
+          title: sessionKey === 'main' ? day.title : sessionKey === 'morning' ? 'Morning volleyball and rope' : 'Swim',
           status: 'done',
           startedAt: t0,
           finishedAt: t0 + 60 * 60 * 1000,

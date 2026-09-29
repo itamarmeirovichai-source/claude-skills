@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:06:54.795Z",
+  "generated": "2026-09-29T23:11:53.130Z",
   "counts": {
-    "exercises": 46,
+    "exercises": 51,
     "muscles": 31,
-    "planItems": 59,
+    "planItems": 75,
     "mealTemplates": 15,
     "recipes": 10,
     "foods": 45,
@@ -1514,6 +1514,148 @@
           "status": "metadata-match"
         }
       ]
+    },
+    {
+      "id": "shadow-pass-footwork",
+      "name": "Shadow Passing Footwork",
+      "kind": "skill",
+      "primary": [
+        "quads",
+        "glute_med"
+      ],
+      "secondary": [
+        "adductors",
+        "glute_max",
+        "gastrocnemius",
+        "obliques_core"
+      ],
+      "pattern": "change_of_direction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Ready position holds",
+        "Partner pointing drill",
+        "Volleyball Approach Footwork"
+      ],
+      "media": []
+    },
+    {
+      "id": "block-footwork",
+      "name": "Blocking Footwork, No Jump",
+      "kind": "skill",
+      "primary": [
+        "glute_med",
+        "adductors"
+      ],
+      "secondary": [
+        "quads",
+        "gastrocnemius",
+        "soleus",
+        "delt_anterior",
+        "obliques_core"
+      ],
+      "pattern": "change_of_direction",
+      "laterality": "alternating",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Slide steps only",
+        "Doorway net",
+        "Lateral Block Jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-y-raise",
+      "name": "Bent Over Dumbbell Y Raise",
+      "kind": "strength",
+      "primary": [
+        "traps_lower",
+        "delt_posterior"
+      ],
+      "secondary": [
+        "traps_middle",
+        "rhomboids",
+        "rotator_cuff",
+        "erectors"
+      ],
+      "pattern": "shoulder_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 2,
+        "diagram": null
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Chest supported Y raise on a bench or bed edge",
+        "Band Y raise",
+        "Face Pull"
+      ],
+      "media": []
+    },
+    {
+      "id": "side-lying-external-rotation",
+      "name": "Side Lying Dumbbell External Rotation",
+      "kind": "strength",
+      "primary": [
+        "rotator_cuff"
+      ],
+      "secondary": [
+        "delt_posterior"
+      ],
+      "pattern": "shoulder_external_rotation",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 2,
+        "diagram": null
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "No weight external rotation",
+        "Cable External Rotation"
+      ],
+      "media": []
+    },
+    {
+      "id": "dead-bug",
+      "name": "Dead Bug",
+      "kind": "bodyweight",
+      "primary": [
+        "rectus_abdominis",
+        "obliques_core"
+      ],
+      "secondary": [
+        "hip_flexors"
+      ],
+      "pattern": "anti_extension",
+      "laterality": "alternating",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 2,
+        "diagram": null
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Dead bug, legs only",
+        "Pallof Press"
+      ],
+      "media": []
     }
   ],
   "plan": [
@@ -1522,6 +1664,82 @@
       "title": "Upper A and Swim",
       "rest": false,
       "items": [
+        {
+          "id": "sun-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 6,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "sun-am-1-shadow-pass-footwork",
+          "session": "morning",
+          "exercise": "Shadow Passing Footwork",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 8
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
+            "Eight directions per set, exact rather than fast."
+          ]
+        },
+        {
+          "id": "sun-am-2-dead-bug",
+          "session": "morning",
+          "exercise": "Dead Bug",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 8
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-am-3-tibialis-raise",
+          "session": "morning",
+          "exercise": "Tibialis Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
         {
           "id": "sun-1-barbell-bench-press",
           "session": "main",
@@ -1747,6 +1965,63 @@
           ]
         },
         {
+          "id": "mon-am-1-block-footwork",
+          "session": "morning",
+          "exercise": "Blocking Footwork, No Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 6
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Six moves per set. No jump, or only a tiny soft hop at the stop."
+          ]
+        },
+        {
+          "id": "mon-am-2-dumbbell-y-raise",
+          "session": "morning",
+          "exercise": "Bent Over Dumbbell Y Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 60,
+          "rir": 3,
+          "tempo": "3011",
+          "rpe": null,
+          "notes": [
+            "Light dumbbells, usually 1 to 3 kg."
+          ]
+        },
+        {
+          "id": "mon-am-3-side-lying-external-rotation",
+          "session": "morning",
+          "exercise": "Side Lying Dumbbell External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": "3011",
+          "rpe": null,
+          "notes": [
+            "Light dumbbell, usually 1 to 2 kg."
+          ]
+        },
+        {
           "id": "mon-1-dynamic-volleyball-warm-up",
           "session": "main",
           "exercise": "Dynamic Volleyball Warm Up",
@@ -1948,6 +2223,43 @@
           ]
         },
         {
+          "id": "tue-am-1-shadow-pass-footwork",
+          "session": "morning",
+          "exercise": "Shadow Passing Footwork",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 8
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
+            "Eight directions per set, exact rather than fast."
+          ]
+        },
+        {
+          "id": "tue-am-2-dead-bug",
+          "session": "morning",
+          "exercise": "Dead Bug",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 8
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
           "id": "tue-1-dynamic-volleyball-warm-up",
           "session": "main",
           "exercise": "Dynamic Volleyball Warm Up",
@@ -2116,6 +2428,63 @@
             "1 minute easy work and 30 seconds rest.",
             "No double unders.",
             "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "wed-am-1-block-footwork",
+          "session": "morning",
+          "exercise": "Blocking Footwork, No Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 6
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Six moves per set. No jump, or only a tiny soft hop at the stop."
+          ]
+        },
+        {
+          "id": "wed-am-2-dumbbell-y-raise",
+          "session": "morning",
+          "exercise": "Bent Over Dumbbell Y Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 60,
+          "rir": 3,
+          "tempo": "3011",
+          "rpe": null,
+          "notes": [
+            "Light dumbbells, usually 1 to 3 kg."
+          ]
+        },
+        {
+          "id": "wed-am-3-side-lying-external-rotation",
+          "session": "morning",
+          "exercise": "Side Lying Dumbbell External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": "3011",
+          "rpe": null,
+          "notes": [
+            "Light dumbbell, usually 1 to 2 kg."
           ]
         },
         {
@@ -2297,6 +2666,43 @@
             "No double unders.",
             "Stop when speed, jump height, landing control, or technique declines."
           ]
+        },
+        {
+          "id": "thu-am-1-shadow-pass-footwork",
+          "session": "morning",
+          "exercise": "Shadow Passing Footwork",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 8
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
+            "Eight directions per set, exact rather than fast."
+          ]
+        },
+        {
+          "id": "thu-am-2-dead-bug",
+          "session": "morning",
+          "exercise": "Dead Bug",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 8
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
         },
         {
           "id": "thu-1-incline-barbell-bench-press",
@@ -2497,6 +2903,43 @@
             "No double unders.",
             "Stop when speed, jump height, landing control, or technique declines."
           ]
+        },
+        {
+          "id": "fri-am-1-shadow-pass-footwork",
+          "session": "morning",
+          "exercise": "Shadow Passing Footwork",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 8
+          },
+          "per": null,
+          "restSec": 45,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
+            "Eight directions per set, exact rather than fast."
+          ]
+        },
+        {
+          "id": "fri-am-2-dead-bug",
+          "session": "morning",
+          "exercise": "Dead Bug",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 8
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
         },
         {
           "id": "fri-1-dynamic-volleyball-warm-up",
@@ -2761,12 +3204,13 @@
         "key": "upper_back",
         "label": "Upper back",
         "present": true,
-        "directSets": 31,
-        "indirectSets": 24.5,
+        "directSets": 39,
+        "indirectSets": 30.5,
         "exposures": 18,
         "exercises": [
           "Seated Cable Row",
           "Cable External Rotation",
+          "Bent Over Dumbbell Y Raise",
           "Dynamic Volleyball Warm Up",
           "Face Pull",
           "Wide Grip Lat Pulldown",
@@ -2776,7 +3220,8 @@
           "Easy Moderate Pool Round Trip",
           "Medicine Ball Spike Throw",
           "Volleyball Spike",
-          "Block to Spike Transition"
+          "Block to Spike Transition",
+          "Side Lying Dumbbell External Rotation"
         ]
       },
       {
@@ -2785,9 +3230,11 @@
         "present": true,
         "directSets": 6,
         "indirectSets": 5,
-        "exposures": 38,
+        "exposures": 48,
         "exercises": [
           "Easy Jump Rope",
+          "Shadow Passing Footwork",
+          "Blocking Footwork, No Jump",
           "Dynamic Volleyball Warm Up",
           "Volleyball Approach Jump",
           "Countermovement Jump",
@@ -2839,7 +3286,7 @@
         "muscle": "delt_anterior",
         "direct": 3,
         "indirect": 3.5,
-        "exposures": 5
+        "exposures": 7
       },
       {
         "muscle": "delt_lateral",
@@ -2849,8 +3296,8 @@
       },
       {
         "muscle": "delt_posterior",
-        "direct": 4,
-        "indirect": 5,
+        "direct": 8,
+        "indirect": 7,
         "exposures": 3
       },
       {
@@ -2897,20 +3344,20 @@
       },
       {
         "muscle": "rectus_abdominis",
-        "direct": 2,
+        "direct": 10,
         "indirect": 1,
         "exposures": 2
       },
       {
         "muscle": "obliques_core",
-        "direct": 4,
+        "direct": 12,
         "indirect": 5,
-        "exposures": 22
+        "exposures": 29
       },
       {
         "muscle": "hip_flexors",
         "direct": 2,
-        "indirect": 0,
+        "indirect": 4,
         "exposures": 6
       },
       {
@@ -2922,19 +3369,19 @@
       {
         "muscle": "traps_middle",
         "direct": 8,
-        "indirect": 4.5,
+        "indirect": 6.5,
         "exposures": 3
       },
       {
         "muscle": "traps_lower",
-        "direct": 0,
+        "direct": 4,
         "indirect": 7,
         "exposures": 0
       },
       {
         "muscle": "rhomboids",
         "direct": 6,
-        "indirect": 3.5,
+        "indirect": 5.5,
         "exposures": 3
       },
       {
@@ -2951,39 +3398,39 @@
       },
       {
         "muscle": "rotator_cuff",
-        "direct": 6,
-        "indirect": 3,
+        "direct": 10,
+        "indirect": 5,
         "exposures": 10
       },
       {
         "muscle": "erectors",
         "direct": 0,
-        "indirect": 4.5,
+        "indirect": 6.5,
         "exposures": 0
       },
       {
         "muscle": "glute_max",
         "direct": 11,
         "indirect": 1.5,
-        "exposures": 22
+        "exposures": 27
       },
       {
         "muscle": "glute_med",
         "direct": 2,
         "indirect": 2,
-        "exposures": 7
+        "exposures": 13
       },
       {
         "muscle": "adductors",
         "direct": 2,
         "indirect": 7,
-        "exposures": 6
+        "exposures": 12
       },
       {
         "muscle": "quads",
         "direct": 10,
         "indirect": 0,
-        "exposures": 22
+        "exposures": 29
       },
       {
         "muscle": "hamstrings",
@@ -2995,19 +3442,19 @@
         "muscle": "gastrocnemius",
         "direct": 3,
         "indirect": 2.5,
-        "exposures": 20
+        "exposures": 27
       },
       {
         "muscle": "soleus",
         "direct": 3,
         "indirect": 2.5,
-        "exposures": 18
+        "exposures": 21
       },
       {
         "muscle": "tibialis_anterior",
-        "direct": 2,
+        "direct": 4,
         "indirect": 0,
-        "exposures": 5
+        "exposures": 6
       }
     ],
     "shoulderNotes": [

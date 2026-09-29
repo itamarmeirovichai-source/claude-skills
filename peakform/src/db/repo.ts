@@ -306,6 +306,7 @@ export const KV = {
   unlockedAt: 'unlockedAt',
   targets: 'nutritionTargets',
   supplementReview: 'supplementReview',
+  planUpdates: 'planUpdates',
 } as const;
 
 /** Editable daily nutrition targets. Falls back to the seeded baseline. */

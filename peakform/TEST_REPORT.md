@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-09-29. Build 1.0.2.
+Date: 2026-09-29. Build 1.1.0.
 
 ## Summary
 
@@ -8,8 +8,8 @@ Date: 2026-09-29. Build 1.0.2.
 | --- | --- |
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 93 of 93 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 68 of 68 pass: 24 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
+| Unit and integration tests (Vitest) | 98 of 98 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
+| End to end tests (Playwright) | 72 of 72 pass: 28 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
 | Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
@@ -53,7 +53,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 6. Last performance appears beside the inputs.
 7. A unilateral exercise logs left and right separately.
 8. Editing the plan creates version 2 while the finished session keeps its original prescription.
-9. All 46 exercises show instructions, a two view muscle diagram, and an offline visual.
+9. All 51 exercises show instructions, a two view muscle diagram, and an offline visual.
 10. Videos load only after a tap, with no external requests before that.
 11. A default meal logs in one tap.
 12. A restaurant estimate is stored as a low confidence range.
@@ -69,6 +69,10 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 22. The app opens offline after the first load, every main screen renders, video shows "Needs internet", and no third party requests are made.
 23. Delete all data asks twice and returns to first run.
 24. App lock engages after five idle minutes, rejects a wrong PIN, opens with the right one, and is back on after a reload.
+25. Number fields accept typing one key at a time, including decimals and a comma, show a hint out of range, and never save a clamped value.
+26. A food that is not in the list is logged with your own totals as an honest range.
+27. Completing a set queues the rest end sound on the audio clock for the prescribed rest.
+28. An installed plan from before the morning sessions gets them with one tap, as version 2, with the main sessions unchanged.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
 
@@ -110,6 +114,6 @@ Defects found and fixed during review:
 
 ## Content checks
 
-- `scripts/validate-exercises.ts`: all 46 exercises have complete fields, known muscle IDs, valid substitutions, visuals, and copy free of em dashes, isolation claims, failure prescriptions, and hype words.
+- `scripts/validate-exercises.ts`: all 51 exercises have complete fields, known muscle IDs, valid substitutions, visuals, and copy free of em dashes, isolation claims, failure prescriptions, and hype words.
 - `docs/content-audit.json`: the plan matches the brief item by item. Default meals land within about 100 kcal of each training day target. Focus checks confirm upper back, calves, and forearms.
 - Known plan inconsistency, reported and not hidden: with standard food values the default meals supply about 200 to 215 g protein and 60 to 70 g fat, against targets of about 150 to 155 g protein and 88 to 92 g fat. This is listed for review with a parent and a pediatric sports dietitian.

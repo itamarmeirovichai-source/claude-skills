@@ -10,7 +10,7 @@ import { WEEKDAY_SHORT, WEEKDAY_NAMES, addDays, formatDateKey } from '../domain/
 import { CITIES, fridayFor, sabbathWindow } from '../domain/sabbath';
 import { prepareCalendar, recordCalendarExport } from '../services/exporter';
 import { reminderHash } from '../domain/ics';
-import { shareOrDownload } from '../lib/device';
+import { cue, shareOrDownload } from '../lib/device';
 import { NUTRITION_FLOORS, type NutritionTarget } from '../content/meals';
 import { MUSCLES } from '../content/muscles';
 import { exercise } from '../content/library';
@@ -36,8 +36,8 @@ export function ScheduleScreen() {
       <Section title="Session times">
         <div className="group">
           <div className="item">
-            <span className="item-main">Morning rope</span>
-            <input className="input input-time" type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning rope time" />
+            <span className="item-main">Morning volleyball and rope</span>
+            <input className="input input-time" type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning session time" />
           </div>
           {[0, 1, 2, 3, 4, 5].map((d) => (
             <div className="item" key={d}>
@@ -261,8 +261,19 @@ export function SettingsScreen() {
               <Seg label="Sound" value={s.restSound} onChange={(v) => upd((x) => ({ ...x, restSound: v }))} options={[{ value: 'off', label: 'Off' }, { value: 'beep', label: 'Beep' }, { value: 'chime', label: 'Chime' }]} />
             </div>
           </div>
+          <div className="item">
+            <span className="item-main">
+              <span className="item-title" style={{ display: 'block' }}>Test the sound</span>
+              <span className="item-sub" style={{ display: 'block' }}>Plays the rest end sound now</span>
+            </span>
+            <button type="button" className="btn btn-sm btn-outline" onClick={() => cue(s.restSound === 'off' ? 'beep' : s.restSound, false)} data-testid="test-sound">
+              Play
+            </button>
+          </div>
         </div>
-        <p className="small muted" style={{ marginTop: 6 }}>Sounds play only while PeakForm is open. The timer stays correct after the screen locks and shows how long ago rest ended.</p>
+        <p className="small muted" style={{ marginTop: 6 }}>
+          The sound plays when rest ends while PeakForm is open, so keep the screen on during workouts. On iPhone, silent mode mutes it: flip the switch on the side, or use headphones. The timer stays correct after the screen locks and shows how long ago rest ended.
+        </p>
       </Section>
       <Section title="Equipment steps">
         <div className="panel grid-2">
@@ -359,19 +370,24 @@ export function TargetsScreen() {
           </Section>
         );
       })}
+      {t && (
+        <div className="save-bar" role="region" aria-label="Unsaved changes">
+          <span className="small">Unsaved changes</span>
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-testid="targets-save"
+            onClick={async () => {
+              await saveTargets(cur);
+              setT(null);
+              toast('Targets saved');
+            }}
+          >
+            Save targets
+          </button>
+        </div>
+      )}
       <div style={{ marginTop: 16 }} className="stack">
-        <button
-          type="button"
-          className="btn btn-primary btn-block"
-          disabled={!t}
-          onClick={async () => {
-            await saveTargets(cur);
-            setT(null);
-            toast('Targets saved');
-          }}
-        >
-          Save targets
-        </button>
         <button
           type="button"
           className="btn btn-ghost btn-block"

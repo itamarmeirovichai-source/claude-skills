@@ -136,6 +136,25 @@ export function itemFromGrams(f: Food, grams: number, method: 'weighed' | 'label
   };
 }
 
+/**
+ * A food typed in with its own totals, for anything that is not in the list. Numbers read from a
+ * label or menu get a narrow range; a guess gets a wide one, so the day total stays honest.
+ */
+export function itemFromTotals(name: string, totals: { kcal: number; protein: number; carbs: number; fat: number }, source: 'label' | 'guess'): FoodLogItem {
+  const spread = source === 'label' ? 0.05 : 0.3;
+  const scaled = (f: number): Nutrients => ({ kcal: r2(totals.kcal * f), protein: r2(totals.protein * f), carbs: r2(totals.carbs * f), fat: r2(totals.fat * f), fibre: 0, calcium: 0 });
+  const method: EstimateMethod = source === 'label' ? 'label' : 'hand';
+  return {
+    foodId: null,
+    name: name.trim().slice(0, 120) || 'My food',
+    estimate: { method, portion: null, count: null, gramsMid: 0, gramsLow: 0, gramsHigh: 0, confidence: source === 'label' ? 'high' : 'low' },
+    mid: scaled(1),
+    low: scaled(1 - spread),
+    high: scaled(1 + spread),
+    substitutedFrom: null,
+  };
+}
+
 /** Build a food log item from a visual portion and a count, such as 2 palms. */
 export function itemFromPortion(f: Food, portion: PortionKey, count: number, substitutedFrom: string | null = null): FoodLogItem {
   const def = PORTIONS.find((p) => p.key === portion);

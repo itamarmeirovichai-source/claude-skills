@@ -249,7 +249,7 @@ export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: 
 
   // ---- Keep doing ----
   if (cur.ropePlanned > 0 && cur.ropeDone >= cur.ropePlanned) {
-    keepDoing.push({ id: 'rope', text: `You completed all ${cur.ropePlanned} morning rope sessions.`, evidence: [`${cur.ropeDone} of ${cur.ropePlanned} logged.`], confidence: 'high', weight: 10 });
+    keepDoing.push({ id: 'rope', text: `You completed all ${cur.ropePlanned} morning sessions.`, evidence: [`${cur.ropeDone} of ${cur.ropePlanned} logged.`], confidence: 'high', weight: 10 });
   }
   if (cur.calfPlanned > 0 && cur.calfSessions >= cur.calfPlanned) {
     keepDoing.push({ id: 'calves', text: 'You completed both calf sessions.', evidence: [`Calf raises logged in ${cur.calfSessions} of ${cur.calfPlanned} planned sessions.`], confidence: 'high', weight: 8 });
@@ -352,7 +352,7 @@ export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: 
   const comparison = [
     cmp('Sessions', `${prev.completedSessions} of ${prev.plannedSessions}`, `${cur.completedSessions} of ${cur.plannedSessions}`),
     cmp('Work sets', `${prev.completedWorkSets} of ${prev.plannedWorkSets}`, `${cur.completedWorkSets} of ${cur.plannedWorkSets}`),
-    cmp('Morning rope', `${prev.ropeDone} of ${prev.ropePlanned}`, `${cur.ropeDone} of ${cur.ropePlanned}`),
+    cmp('Morning sessions', `${prev.ropeDone} of ${prev.ropePlanned}`, `${cur.ropeDone} of ${cur.ropePlanned}`),
     cmp('Swims', `${prev.swimDone} of ${prev.swimPlanned}`, `${cur.swimDone} of ${cur.swimPlanned}`),
     cmp('Volleyball and jump exercises', String(prev.volleyballExposures), String(cur.volleyballExposures)),
     cmp('Days with food logged', String(prev.foodDays), String(cur.foodDays)),

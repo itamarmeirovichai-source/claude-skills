@@ -86,7 +86,27 @@ function swim(day: PlanDay['key']): PlanItem {
   };
 }
 
+const r = (min: number, max: number): SetTarget => ({ type: 'reps', min, max });
+
 type ItemInput = Omit<PlanItem, 'id' | 'session' | 'notes'> & { notes?: string[]; session?: SessionKey };
+
+const AM_NOTE = 'Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.';
+
+/** Morning volleyball work added after the baseline: footwork without a ball, shoulder care, and trunk control. */
+function morning(day: PlanDay['key'], list: ItemInput[]): PlanItem[] {
+  return list.map((it, i) => ({
+    ...it,
+    id: `${day}-am-${i + 1}-${it.exerciseId}`,
+    session: 'morning',
+    notes: it.notes ?? [],
+  }));
+}
+
+const PASS = (sets = 3): ItemInput => ({ exerciseId: 'shadow-pass-footwork', sets, target: r(8, 8), restSec: 45, notes: [AM_NOTE, 'Eight directions per set, exact rather than fast.'] });
+const BLOCK = (sets = 3): ItemInput => ({ exerciseId: 'block-footwork', sets, target: r(6, 6), restSec: 45, notes: ['Six moves per set. No jump, or only a tiny soft hop at the stop.'] });
+const YRAISE: ItemInput = { exerciseId: 'dumbbell-y-raise', sets: 2, target: r(12, 15), restSec: 60, rir: 3, tempo: '3011', notes: ['Light dumbbells, usually 1 to 3 kg.'] };
+const EXTROT: ItemInput = { exerciseId: 'side-lying-external-rotation', sets: 2, target: r(12, 15), restSec: 45, rir: 3, tempo: '3011', per: 'side', notes: ['Light dumbbell, usually 1 to 2 kg.'] };
+const DEADBUG: ItemInput = { exerciseId: 'dead-bug', sets: 2, target: r(6, 8), restSec: 45, rir: 3, per: 'side' };
 
 function items(day: PlanDay['key'], list: ItemInput[]): PlanItem[] {
   return list.map((it, i) => ({
@@ -97,7 +117,6 @@ function items(day: PlanDay['key'], list: ItemInput[]): PlanItem[] {
   }));
 }
 
-const r = (min: number, max: number): SetTarget => ({ type: 'reps', min, max });
 
 export const BASELINE_PLAN: WorkoutPlan = {
   id: 'baseline',
@@ -105,6 +124,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
   name: 'PeakForm baseline week',
   createdAt: '2026-09-29T00:00:00.000Z',
   globalRules: [
+    'Morning volleyball sessions at 05:30 stay easy: footwork without a ball, light shoulder care, and trunk control. Hard jumps and heavy work stay in the main session.',
     'Warm up sets do not count as working sets.',
     'Use controlled technique on every rep.',
     'Learn unfamiliar barbell and jump movements with a qualified coach.',
@@ -124,6 +144,8 @@ export const BASELINE_PLAN: WorkoutPlan = {
       short: 'Upper A',
       isRest: false,
       items: [
+        rope('sun', 6),
+        ...morning('sun', [PASS(), DEADBUG, { exerciseId: 'tibialis-raise', sets: 2, target: r(15, 20), restSec: 45, rir: 2 }]),
         ...items('sun', [
           { exerciseId: 'barbell-bench-press', sets: 3, target: r(8, 12), restSec: 150, rir: 2, notes: ['Medium grip.'] },
           { exerciseId: 'flat-cable-fly', sets: 2, target: r(12, 15), restSec: 90, rir: 2 },
@@ -146,6 +168,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
       isRest: false,
       items: [
         rope('mon', 9),
+        ...morning('mon', [BLOCK(), YRAISE, EXTROT]),
         ...items('mon', [
           { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30 },
           { exerciseId: 'volleyball-approach-jump', sets: 3, target: r(2, 2), restSec: 180, notes: [QUALITY_FIRST] },
@@ -167,6 +190,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
       isRest: false,
       items: [
         rope('tue', 9),
+        ...morning('tue', [PASS(), DEADBUG]),
         ...items('tue', [
           { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30 },
           {
@@ -192,6 +216,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
       isRest: false,
       items: [
         rope('wed', 9),
+        ...morning('wed', [BLOCK(), YRAISE, EXTROT]),
         ...items('wed', [
           { exerciseId: 'hack-squat', sets: 3, target: r(8, 12), restSec: 180, rir: 2, tempo: '3110' },
           { exerciseId: 'barbell-hip-thrust', sets: 3, target: r(8, 12), restSec: 150, rir: 2, tempo: '2111' },
@@ -212,6 +237,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
       isRest: false,
       items: [
         rope('thu', 15),
+        ...morning('thu', [PASS(), DEADBUG]),
         ...items('thu', [
           { exerciseId: 'incline-barbell-bench-press', sets: 3, target: r(8, 12), restSec: 150, rir: 2, notes: ['Medium grip.'] },
           { exerciseId: 'machine-bench-press', sets: 2, target: r(8, 12), restSec: 150, rir: 2 },
@@ -233,6 +259,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
       isRest: false,
       items: [
         rope('fri', 6),
+        ...morning('fri', [PASS(2), DEADBUG]),
         ...items('fri', [
           { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 10 }, restSec: 30 },
           { exerciseId: 'volleyball-approach-footwork', sets: 3, target: r(4, 4), restSec: 90, notes: ['Stop when coordination or speed declines.'] },
@@ -266,7 +293,7 @@ export const BASELINE_PLAN: WorkoutPlan = {
 };
 
 export const SESSION_LABELS: Record<SessionKey, string> = {
-  morning: 'Morning rope',
+  morning: 'Morning volleyball and rope',
   main: 'Main session',
   swim: 'Swim',
 };
