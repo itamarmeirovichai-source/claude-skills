@@ -304,6 +304,8 @@ test.describe('data safety', () => {
     await onboard(page);
     await go(page, '/eat');
     await page.getByTestId('water-250').click();
+    // The tap saves asynchronously. Wait until the total shows it, as a person would, so the reload cannot cut the write short.
+    await expect(page.getByTestId('eat')).toContainText('Water 250 ml');
     await page.reload();
     await expect(page.getByTestId('eat')).toContainText('Water 250 ml');
   });
