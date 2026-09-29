@@ -61,3 +61,14 @@ TU/STT 0.87, GC/GOLDPM 0.88 in the GLD era (LBMA-fix vs COMEX-settle timing).
 The source's DATA_LICENSE.md says the code is MIT but the published series may
 embed third-party data with their own terms; this copy is here for research
 reproducibility, not redistribution.
+
+## spx_open_close.csv
+
+S&P 500 price index (^GSPC) daily open and close, 1990-01-02 to 2026-09-25, taken
+from the `Open`/`Close` columns of the same `mwilczynska/financial_datasets` USLCAP
+file. **Index opens before 2010 are not real opens**: the share of days on which the
+open equals the previous close is 77% in the 1990s and 64% in the 2000s, then 6% in
+the 2010s and 0.1% in the 2020s. `stack_backtest.py` therefore starts the overnight
+test on 2010-01-01 (`ON_START`), and `test_stack_backtest.py` locks both facts.
+Even after 2010 the index open is a composite of first prints and can lag ES at
+09:30; the close-to-open return here is a proxy for an ES position, not its fill.

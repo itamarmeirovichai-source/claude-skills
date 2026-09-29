@@ -504,3 +504,16 @@ protocols: real edge 2020–2024, Sharpe ≈ 0 since 2025 on SPY and ES alike,
 and the replicator's own first recommendation is "no Apex phase for now".
 Full audit in `second-opinion-audit.md`. Nothing bought, nothing changed in
 the bot; the paper run continues; letter 1 to Apex is now the gate.
+
+## 29 Sep — the stack
+
+Built what `what-the-giants-do.md` proposed: more uncorrelated components.
+None of the ones buildable from public data survived — cross-sectional
+momentum is 0.54 correlated with trend, the 5-year value proxy is negative
+(the paper's own value measures need data we do not have), and the overnight
+drift is 0.65 net of ES costs but 0.56 correlated with 60/40. Stacks stay at
+Sharpe ~1. Also corrected: the first stack in the giants document used
+full-sample vol scaling; with past-only scaling its drawdown is −24%/−44%, not
+−17%/−32%. The synthetic evaluation table is the most useful output: a 21-day
+Apex evaluation passes Sharpe 1 at 22% and Sharpe 5 at 62%, so the structure is
+built for high-Sharpe intraday edges only. Full result in `stack.md`.
