@@ -102,7 +102,7 @@ export function scheduleNotes(settings: AppSettings, day: PlanDay, date: DateKey
   for (const s of ['morning', 'main', 'swim'] as SessionKey[]) {
     if (!has(s)) continue;
     const t = sessionTime(settings, day.weekday, s);
-    if (isSabbathTime(date, t, settings.sabbath)) notes.push(`${s === 'main' ? 'The main session' : s === 'swim' ? 'The swim' : 'Morning rope'} at ${t} falls inside your Sabbath window. Move it earlier in More, Schedule.`);
+    if (isSabbathTime(date, t, settings.sabbath)) notes.push(`${s === 'main' ? 'The main session' : s === 'swim' ? 'The swim' : 'The morning session'} at ${t} falls inside your Sabbath window. Move it earlier in More, Schedule.`);
   }
   return notes;
 }

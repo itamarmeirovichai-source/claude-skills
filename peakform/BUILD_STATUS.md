@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-09-29. Version 1.0.2.
+Last updated: 2026-09-29. Version 1.1.0.
 
 ## State
 
@@ -22,10 +22,10 @@ Complete and tested. Publishing is private: after the pull request is merged, th
 
 ## Completed
 
-- Content: 46 exercises with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded exactly. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines and the access gate with unit tests (93 tests).
+- Content: 51 exercises, including five no ball morning volleyball drills, with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded exactly. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
+- Engines, the access gate, and plan updates with unit tests (98 tests).
 - All screens, onboarding, and app lock.
-- End to end tests (68), layout and accessibility checks at 375, 390, 393, and 430 px.
+- End to end tests (72), layout and accessibility checks at 375, 390, 393, and 430 px.
 - Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
 - Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
 - Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.

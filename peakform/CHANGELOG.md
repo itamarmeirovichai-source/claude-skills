@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0, 2026-09-29
+
+- Morning volleyball at 05:30, Sunday to Friday, at home with no ball: easy rope as the warm up, then passing or blocking footwork, light dumbbell shoulder care (Y raise, side lying external rotation), and trunk control (dead bug). Saturday stays a full rest day.
+- Five new exercises with instructions, muscles, safety, substitutions, and original illustrations.
+- Installed apps get a one tap "Add to my plan" card that adds the morning sessions as a new plan version and moves the default check in to 05:15 and wind down to 20:45, so eight hours of sleep still fit. History is kept, and times you changed are left alone.
+- Number fields accept free typing: no jumping to the minimum while typing, and decimals work.
+- Foods that are not in the list can be logged with your own totals.
+- The rest end sound is queued when rest starts, so it plays on time with the screen on. Settings has a sound test.
+
 ## 1.0.2, 2026-09-29
 
 Private publishing.

@@ -25,7 +25,7 @@ export function buildTimeline(date: DateKey, settings: AppSettings, day: PlanDay
   const out: TimelineEntry[] = [];
   const quiet = (t: string) => isSabbathTime(date, t, settings.sabbath);
   const checkinReminder = settings.reminders.find((r) => r.id === 'checkin');
-  const ct = checkinReminder?.time ?? '07:00';
+  const ct = checkinReminder?.time ?? '05:15';
   out.push({ id: 'checkin', time: ct, kind: 'checkin', label: 'Morning check in', detail: 'Weight, sleep, and how you feel', done: checkins.some((c) => c.date === date), to: '/checkin', quiet: quiet(ct) });
 
   if (day && !day.isRest) {
@@ -35,7 +35,7 @@ export function buildTimeline(date: DateKey, settings: AppSettings, day: PlanDay
       const t = sessionTime(settings, wd, s);
       const done = sessions.some((x) => x.session === s && x.status === 'done' && x.planWeekday === wd);
       const title = s === 'main' ? day.title : SESSION_LABELS[s];
-      const detail = s === 'morning' ? `${items[0]!.target.type === 'duration' ? items[0]!.target.totalMin : ''} minutes easy rope` : s === 'swim' ? '2 sets of 10 round trips' : `${items.length} exercises`;
+      const detail = s === 'morning' ? morningDetail(items) : s === 'swim' ? '2 sets of 10 round trips' : `${items.length} exercises`;
       out.push({ id: `session-${s}`, time: t, kind: 'session', label: title, detail, done, to: `/train/day/${wd}?date=${date}`, session: s, quiet: quiet(t) });
     }
   }
@@ -47,7 +47,7 @@ export function buildTimeline(date: DateKey, settings: AppSettings, day: PlanDay
     out.push({ id: `meal-${tpl.id}`, time: t, kind: 'meal', label: SLOT_LABELS[tpl.slot], detail: tpl.name, done, to: `/eat/log/${tpl.slot}?date=${date}`, template: tpl, quiet: quiet(t) });
   }
   const wind = settings.reminders.find((r) => r.id === 'winddown');
-  if (wind) out.push({ id: 'sleep', time: wind.time, kind: 'sleep', label: 'Wind down', detail: 'Screens away, lights low, aim for sleep near 22:30', done: false, to: '/today', quiet: quiet(wind.time) });
+  if (wind) out.push({ id: 'sleep', time: wind.time, kind: 'sleep', label: 'Wind down', detail: `Screens away, lights low, aim for sleep near ${bedtimeFor(settings.sessionTimes.morning)}`, done: false, to: '/today', quiet: quiet(wind.time) });
   return out.sort((a, b) => minutesOf(a.time) - minutesOf(b.time));
 }
 
@@ -57,4 +57,18 @@ export function nextEntry(entries: TimelineEntry[], nowMinutes: number): Timelin
   const due = open.filter((e) => minutesOf(e.time) <= nowMinutes + 30);
   if (due.length) return due[due.length - 1]!;
   return open[0] ?? null;
+}
+
+function morningDetail(items: PlanDay['items']): string {
+  const rope = items.find((i) => i.target.type === 'duration');
+  const mins = rope && rope.target.type === 'duration' ? `${rope.target.totalMin} minutes easy rope` : '';
+  const others = items.length - (rope ? 1 : 0);
+  if (!others) return mins;
+  return `${mins}${mins ? ', then ' : ''}${others} volleyball and shoulder drills`;
+}
+
+/** About eight and a quarter hours before the morning session, so the teen sleep target of 8 to 10 hours still fits. */
+export function bedtimeFor(morning: string): string {
+  const m = (minutesOf(morning) - 8 * 60 - 15 + 24 * 60) % (24 * 60);
+  return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 }

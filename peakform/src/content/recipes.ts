@@ -41,7 +41,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'yogurt-oat-breakfast',
     name: 'Yogurt, oat, banana, and berry breakfast',
-    summary: 'The default breakfast after morning rope. Takes two minutes to assemble.',
+    summary: 'The default breakfast after the morning session. Takes two minutes to assemble.',
     servings: 1,
     ingredients: [
       { foodId: 'yogurt-hp', name: 'High protein yogurt or skyr, 0 to 3% fat', grams: 300, state: 'as sold' },

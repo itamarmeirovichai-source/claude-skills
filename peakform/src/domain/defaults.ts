@@ -9,14 +9,15 @@ const ALL: number[] = [0, 1, 2, 3, 4, 5, 6];
 const SCHOOL_DAYS: number[] = [0, 1, 2, 3, 4, 5];
 
 export const DEFAULT_REMINDERS: Reminder[] = [
-  { id: 'checkin', label: 'Morning check in', time: '07:00', weekdays: ALL, enabled: true, kind: 'checkin' },
+  { id: 'checkin', label: 'Morning check in', time: '05:15', weekdays: ALL, enabled: true, kind: 'checkin' },
+  { id: 'morning', label: 'Morning volleyball and rope', time: '05:25', weekdays: SCHOOL_DAYS, enabled: true, kind: 'training' },
   { id: 'breakfast', label: 'Breakfast', time: '07:10', weekdays: SCHOOL_DAYS, enabled: true, kind: 'meal' },
   { id: 'lunch', label: 'School lunch', time: '12:00', weekdays: SCHOOL_DAYS, enabled: true, kind: 'meal' },
   { id: 'preworkout', label: 'Pre workout meal', time: '15:20', weekdays: SCHOOL_DAYS, enabled: true, kind: 'meal' },
   { id: 'training', label: 'Get ready for training', time: '16:15', weekdays: SCHOOL_DAYS, enabled: true, kind: 'training' },
   { id: 'dinner', label: 'Dinner after training', time: '18:45', weekdays: SCHOOL_DAYS, enabled: true, kind: 'meal' },
   { id: 'milk', label: 'Evening milk', time: '20:30', weekdays: SCHOOL_DAYS, enabled: true, kind: 'meal' },
-  { id: 'winddown', label: 'Wind down for sleep', time: '21:45', weekdays: ALL, enabled: true, kind: 'sleep' },
+  { id: 'winddown', label: 'Wind down for sleep', time: '20:45', weekdays: ALL, enabled: true, kind: 'sleep' },
   { id: 'review', label: 'Weekly review', time: '20:30', weekdays: [0], enabled: true, kind: 'review' },
 ];
 
@@ -36,7 +37,7 @@ export function defaultSettings(now: number): AppSettings {
     keepScreenOn: true,
     poolLengthM: null,
     sessionTimes: {
-      morning: '07:00',
+      morning: '05:30',
       main: { '0': '16:30', '1': '16:30', '2': '16:30', '3': '16:30', '4': '16:30', '5': '13:00' },
       swim: { '0': '20:00', '5': '16:30' },
     },

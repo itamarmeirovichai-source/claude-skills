@@ -56,7 +56,7 @@ export const BREAKFAST: MealTemplate = {
     { foodId: 'berries-frozen', grams: 100, optional: true, defaultOn: true },
     { foodId: 'protein-powder', grams: 15, optional: true, defaultOn: false, note: 'Only if food protein is short that day.' },
   ],
-  notes: ['After the morning rope.', 'A full protein scoop is not needed.'],
+  notes: ['After the morning session.', 'A full protein scoop is not needed.'],
 };
 
 export const SCHOOL_LUNCH: MealTemplate = {

@@ -16,6 +16,7 @@ import { exerciseName } from '../content/library';
 import { dayTotals } from '../domain/nutrition';
 import { formatClock, remainingMs } from '../domain/timer';
 import { summarizeSets } from '../ui/format';
+import { PlanUpdateCard } from './PlanUpdate';
 
 export function TodayScreen() {
   const settings = useSettings();
@@ -93,6 +94,8 @@ export function TodayScreen() {
           {ready.label}
         </span>
       </header>
+
+      <PlanUpdateCard />
 
       {!settings.guardianReviewAck && (
         <div style={{ marginBottom: 12 }}>

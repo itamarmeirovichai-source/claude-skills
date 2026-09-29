@@ -36,8 +36,8 @@ export function ScheduleScreen() {
       <Section title="Session times">
         <div className="group">
           <div className="item">
-            <span className="item-main">Morning rope</span>
-            <input className="input input-time" type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning rope time" />
+            <span className="item-main">Morning volleyball and rope</span>
+            <input className="input input-time" type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning session time" />
           </div>
           {[0, 1, 2, 3, 4, 5].map((d) => (
             <div className="item" key={d}>
