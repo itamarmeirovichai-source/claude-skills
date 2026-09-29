@@ -540,3 +540,13 @@ built for high-Sharpe intraday edges only. Full result in `stack.md`.
   No bounce. One firm, not a mass mailing. Question 9 now also asks about US
   estate-tax exposure of US-domiciled ETFs versus UCITS. The 3 Oct check-in
   covers both replies. Still not done, by rule: moving or investing money.
+
+## 29 Sep — TJR's model, tested
+
+Itamar asked to learn TJR's bootcamp and backtest it. YouTube is blocked here,
+so the rules came from written summaries and indicator descriptions. Written
+down before running, tested on 8 years of S&P minute data: 860 trades, gross
++0.007R, win rate 32% against 33.3% for random entry at 2R, net −0.20R after a
+0.21R average cost on 3.2-point stops. All seven variants lose. Fourth test to
+reach the same answer and the first independent of the bot's code.
+`tjr.md`.
