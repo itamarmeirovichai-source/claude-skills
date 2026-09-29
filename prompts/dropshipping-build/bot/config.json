@@ -1,0 +1,36 @@
+{
+  "_comment": "Mirrors sheets/unit-economics.csv. Update product_cost the moment a real supplier quote lands.",
+
+  "currency": "USD",
+
+  "cost_per_sku": {
+    "GUASHA-SET-3PC": 8.50,
+    "GUASHA-BOARD": 3.20,
+    "GUASHA-ROLLER": 3.60,
+    "GUASHA-CUPS": 1.70
+  },
+  "default_unit_cost": 8.50,
+
+  "packaging_per_order": 0.60,
+  "packaging_per_unit": 0.40,
+
+  "supplier_shipping_per_order": 4.50,
+  "supplier_shipping_per_extra_unit": 1.80,
+
+  "payment_fee_pct": 2.9,
+  "payment_fee_fixed": 0.30,
+
+  "refund_rate_pct": 3.0,
+  "support_cost_per_order": 0.40,
+  "app_cost_per_order": 0.70,
+
+  "thresholds": {
+    "warn_cm_pct": 45.0,
+    "warn_break_even_roas": 2.00,
+    "stop_contribution": 0.00
+  },
+
+  "notify_webhook_url": null,
+  "log_path": "margin-log.csv",
+  "notifications_path": "notifications.jsonl"
+}
