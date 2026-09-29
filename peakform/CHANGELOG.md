@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.2, 2026-09-29
+
+Private publishing.
+
+- PeakForm is no longer published to a public GitHub Pages address. It is published on the user's own Cloudflare Pages project behind a password gate, so nobody else can open or install it.
+- The gate signs in on the same site, so it works inside the iPhone Home Screen app, and it fails closed when no password is configured.
+- The manifest is requested with the session cookie, so Add to Home Screen picks up the app name and icon behind the gate.
+- The install QR code is now generated for the private address into the gitignored `private/` folder.
+
 ## 1.0.1, 2026-09-29
 
 Design review fixes.

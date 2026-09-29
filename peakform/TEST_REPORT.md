@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-09-29. Build 1.0.1.
+Date: 2026-09-29. Build 1.0.2.
 
 ## Summary
 
@@ -8,9 +8,10 @@ Date: 2026-09-29. Build 1.0.1.
 | --- | --- |
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 86 of 86 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
+| Unit and integration tests (Vitest) | 93 of 93 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
 | End to end tests (Playwright) | 68 of 68 pass: 24 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
+| Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
 | Lighthouse, simulated mobile | Performance 94, Accessibility 100, Best Practices 96, SEO 66 |
 | Offline launch after first load | Pass |
@@ -40,6 +41,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 - **Four exposure review:** due every fourth exposure; progress, hold, reduce, coach review for pain, and coach review for stable jump quality without height gains.
 - **Coverage:** transparent direct and indirect weights, activity exposure, upper back, calves, and forearms present, shoulder overlap notes.
 - **Fixtures:** example plain and encrypted backups validate, the recommendation example applies cleanly, and no fixture contains the real profile.
+- **Private access gate:** fails closed with no password or a short one; every path, including the service worker and manifest, returns the password page with a 401 and no-store; wrong passwords and forged cookies are rejected; the right password sets an HttpOnly, Secure cookie that holds a keyed hash, not the password; changing the password signs everyone out.
 
 ## End to end flows (e2e/app.spec.ts)
 

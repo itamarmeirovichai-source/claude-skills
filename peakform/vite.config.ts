@@ -51,6 +51,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'prompt',
       injectRegister: null,
+      // The private deployment needs its session cookie on the manifest request too.
+      useCredentials: true,
       includeAssets: ['icons/*.png', 'icons/*.svg', 'favicon.svg'],
       manifest: {
         id: './',

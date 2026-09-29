@@ -684,7 +684,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'GitHub Pages is available for public repositories on GitHub Free, and for private repositories only on paid plans (Pro, Team, Enterprise). Sites on github.io are served over HTTPS automatically.',
     productDecision:
-      'PeakForm is published on GitHub Pages from this public repository. No personal data is ever committed, because all user data lives on the device.',
+      'Not used for PeakForm. A GitHub Pages site on the free plan can be opened by anyone with the address, and the user wants nobody else to be able to open or install the app.',
     uncertainty: 'Snippet level; plan terms change.',
     access: 'search-snippet',
   },
@@ -699,7 +699,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'Published sites may be no larger than 1 GB, have a soft bandwidth limit of 100 GB per month, and a soft limit of 10 builds per hour that does not apply when publishing with a custom GitHub Actions workflow.',
     productDecision:
-      'PeakForm uses a tiny fraction of these limits.',
+      'Not relevant now that PeakForm is published on Cloudflare Pages.',
     uncertainty: 'Snippet level.',
     access: 'search-snippet',
   },
@@ -714,9 +714,52 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'The free plan allows 500 builds per month and 20,000 files per site, with a 25 MiB limit per file, and snippets describe bandwidth as unlimited. A January 2026 changelog raised the file limit for paid plans only.',
     productDecision:
-      'A good alternative host. Not used because no Cloudflare account is connected in the build environment.',
+      'PeakForm is published on a Cloudflare Pages project owned by the user and built from this repository. It uses a tiny fraction of these limits.',
     uncertainty:
       'Private repository support and the note that Cloudflare now steers new projects toward Workers static assets are from prior knowledge, not confirmed here. Unlimited bandwidth came from third party snippets.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'cloudflare-pages-middleware',
+    title: 'Middleware',
+    publisher: 'Cloudflare Pages Docs',
+    url: 'https://developers.cloudflare.com/pages/functions/middleware/',
+    published: 'Continuously updated',
+    reviewedOn: '2026-09-29',
+    topic: 'hosting',
+    conclusion:
+      'A functions/_middleware file that exports onRequest runs before every request to the project, including static files. The functions folder sits at the project root or the configured root directory, not in the build output.',
+    productDecision:
+      'functions/_middleware.ts runs the password gate in front of every file, so no part of the app is served without the password.',
+    uncertainty: 'Snippet level; the page itself was blocked. The behaviour was checked locally with Wrangler 4.143 in the Cloudflare runtime.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'cloudflare-secrets',
+    title: 'Secrets',
+    publisher: 'Cloudflare Workers Docs',
+    url: 'https://developers.cloudflare.com/workers/configuration/secrets/',
+    published: 'Continuously updated',
+    reviewedOn: '2026-09-29',
+    topic: 'hosting',
+    conclusion:
+      "A Pages project's Settings, Variables and Secrets, Add, with Encrypt selected, stores a value that cannot be viewed again and is available to Functions on context.env. It has to be set before the deployment that uses it.",
+    productDecision:
+      'The site password is the encrypted PEAKFORM_PASSWORD variable, never in the repository. Without it, the gate serves nothing.',
+    uncertainty: 'Snippet level; dashboard labels change over time.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'cloudflare-build-image',
+    title: 'Build image',
+    publisher: 'Cloudflare Pages Docs',
+    url: 'https://developers.cloudflare.com/pages/configuration/build-image/',
+    published: 'Continuously updated',
+    reviewedOn: '2026-09-29',
+    topic: 'hosting',
+    conclusion: 'The Node.js version for a build can be set with a NODE_VERSION environment variable or a .node-version or .nvmrc file in the project.',
+    productDecision: 'peakform/.node-version pins Node 22, which Vite 8 needs.',
+    uncertainty: 'Snippet level.',
     access: 'search-snippet',
   },
   {

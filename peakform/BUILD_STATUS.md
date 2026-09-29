@@ -1,10 +1,10 @@
 # PeakForm build status
 
-Last updated: 2026-09-29. Version 1.0.1.
+Last updated: 2026-09-29. Version 1.0.2.
 
 ## State
 
-Complete and tested. Deployment happens automatically when the pull request is merged into `main`. The deploy workflow publishes to <https://itamarmeirovichai-source.github.io/claude-skills/peakform/>.
+Complete and tested. Publishing is private: after the pull request is merged, the user connects a free Cloudflare Pages project to the repository and sets a password (INSTALL_ON_IPHONE.md, Part 1). Nothing is published to a public address.
 
 ## Decisions
 
@@ -12,7 +12,7 @@ Complete and tested. Deployment happens automatically when the pull request is m
 - **Location:** built in `peakform/` inside the existing `claude-skills` repository, so the unrelated skills files are untouched.
 - **Routing:** hash routes so any static host and the offline service worker work without rewrites. `base: './'` so the same build runs at any path.
 - **Privacy:** the source and the deployed site are generic. The personal profile is entered on the device or imported from a private setup file generated into `private/`, which is gitignored. A release gate rejects builds containing personal markers or trackers.
-- **Hosting:** GitHub Pages, into a `peakform/` folder on the existing `gh-pages` branch. A separate project already lives at the root of that site and is left untouched. Cloudflare Pages would be a good alternative, but no Cloudflare account is connected.
+- **Hosting:** a Cloudflare Pages project owned by the user, behind a same origin password gate (`functions/_middleware.ts`, `edge/gate.ts`). The user asked that nobody else be able to open or install the app. GitHub Pages was dropped because it cannot restrict access on the free plan. Cloudflare Access was considered, but its sign in redirects to another domain, which can loop inside an iPhone Home Screen app, so the gate signs in on the same origin instead.
 - **Reminders:** in app timeline plus an Apple Calendar ICS export with alarms and Sabbath exclusions. No Web Push, because it needs a push server. Nothing claims to alert while the app is closed.
 - **Coach access:** a two tap Share Coach Report (Markdown plus JSON). Nothing is sent automatically. Recommendation files can be imported with a visible diff and safety blocks.
 - **Nutrition ranges:** item ranges come from the portion method and food variability. Day totals combine item errors as independent (root of summed squares) instead of stacking worst cases.
@@ -23,11 +23,12 @@ Complete and tested. Deployment happens automatically when the pull request is m
 ## Completed
 
 - Content: 46 exercises with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded exactly. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines with unit tests (86 tests).
+- Engines and the access gate with unit tests (93 tests).
 - All screens, onboarding, and app lock.
 - End to end tests (68), layout and accessibility checks at 375, 390, 393, and 430 px.
 - Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
-- Documentation, content audit, synthetic fixtures, QR code, screenshots, CI and deploy workflows.
+- Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
+- Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.
 
 ## Known limits
 
@@ -39,6 +40,7 @@ Complete and tested. Deployment happens automatically when the pull request is m
 
 ## Next steps
 
-1. Merge the pull request. The deploy workflow publishes the app.
-2. On the iPhone, follow INSTALL_ON_IPHONE.md.
-3. Optional: after a few weeks of real use, review the macro targets with a pediatric sports dietitian and adjust them in More, Nutrition targets.
+1. Merge the pull request. This publishes nothing by itself.
+2. Create the Cloudflare Pages project and set the password (INSTALL_ON_IPHONE.md, Part 1).
+3. On the iPhone, follow INSTALL_ON_IPHONE.md, Part 2.
+4. Optional: after a few weeks of real use, review the macro targets with a pediatric sports dietitian and adjust them in More, Nutrition targets.

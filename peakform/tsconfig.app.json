@@ -20,5 +20,5 @@
     "noEmit": true,
     "types": ["vite/client", "vite-plugin-pwa/client"]
   },
-  "include": ["src", "tests"]
+  "include": ["src", "tests", "edge", "functions"]
 }

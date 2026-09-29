@@ -4,9 +4,20 @@
 
 All personal data, including the profile, measurements, workouts, meals, photos, notes, and reviews, is stored in IndexedDB in the browser on the phone. The deployed website is a set of static files that contains no personal data and never receives any. The release gate (`scripts/check-dist.mjs`) fails the build if personal markers or known trackers appear in the output.
 
+## Who can open the app
+
+PeakForm is deployed to a Cloudflare Pages project that you own, behind a password gate (`functions/_middleware.ts` and `edge/gate.ts`). Every request, including the app files, the service worker, and the manifest, gets only a password page until the right password is entered. The password is stored as an encrypted Cloudflare environment variable, never in the repository or the app.
+
+- A correct password sets a signed, HttpOnly, Secure session cookie on that device for up to a year. The cookie holds a keyed hash, not the password.
+- Changing the password in Cloudflare signs out every device.
+- Without a password of at least 12 characters configured, the site serves nothing at all.
+- A wrong password waits a second before answering, to slow down guessing. Use a long password that you do not use anywhere else.
+- The source code is in a public GitHub repository, but it contains no personal data, and a copy built by someone else has none of your data either.
+- The gate protects the address. Your data is protected separately, because it never leaves the phone.
+
 ## What never happens
 
-- No account, sign in, or cloud sync.
+- No account or cloud sync. The only sign in is the site password that stops others from opening your copy.
 - No analytics, telemetry, advertising, or third party error reporting.
 - No automatic sharing. No assistant can read the phone's data.
 - No secrets or API keys in the client.
@@ -16,7 +27,7 @@ All personal data, including the profile, measurements, workouts, meals, photos,
 
 | Action | Sent where | What is sent |
 | --- | --- | --- |
-| Opening or updating the app | The static host | Requests for the app files only |
+| Opening or updating the app | Your Cloudflare Pages site | The site password once per device, then the session cookie with requests for the app files |
 | Tapping Play on a video | youtube-nocookie.com | The video request. YouTube may set cookies once playing. |
 | Tapping Look up for a barcode | world.openfoodfacts.org | Only the barcode number |
 | Opening an external link | That site | Whatever that site normally receives |

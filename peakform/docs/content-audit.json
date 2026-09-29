@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T11:59:38.786Z",
+  "generated": "2026-09-29T20:06:54.795Z",
   "counts": {
     "exercises": 46,
     "muscles": 31,
@@ -7,7 +7,7 @@
     "mealTemplates": 15,
     "recipes": 10,
     "foods": 45,
-    "sources": 50,
+    "sources": 53,
     "media": 35
   },
   "exercises": [
@@ -4472,6 +4472,27 @@
       "id": "cloudflare-pages-limits",
       "title": "Cloudflare Pages limits",
       "url": "https://developers.cloudflare.com/pages/platform/limits/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-pages-middleware",
+      "title": "Middleware",
+      "url": "https://developers.cloudflare.com/pages/functions/middleware/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-secrets",
+      "title": "Secrets",
+      "url": "https://developers.cloudflare.com/workers/configuration/secrets/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-build-image",
+      "title": "Build image",
+      "url": "https://developers.cloudflare.com/pages/configuration/build-image/",
       "access": "search-snippet",
       "topic": "hosting"
     },

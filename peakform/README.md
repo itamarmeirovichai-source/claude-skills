@@ -7,7 +7,7 @@ A private, offline training, food, and recovery app for one athlete, delivered a
 - **Offline.** Every core screen works without a connection after the first load.
 - **Careful.** Double progression that you confirm, reps in reserve instead of failure, a 2,000 kcal floor, and safety flags that pause progression.
 
-Install address, once the pull request is merged: <https://itamarmeirovichai-source.github.io/claude-skills/peakform/>
+The app is published privately: a Cloudflare Pages project owned by the user, behind a password gate. See [INSTALL_ON_IPHONE.md](INSTALL_ON_IPHONE.md) for the one time setup.
 
 ## Documents
 
@@ -47,7 +47,7 @@ Useful scripts:
 - `npx tsx scripts/figure-sheet.ts <dir> src/content/exercises/lower.ts` renders exercise keyframes for review.
 - `npx tsx scripts/shots.ts <dir> 390 light` captures screenshots from a running preview server.
 - `npx tsx scripts/sweep.ts <dir> <375|390|393|430> <light|dark> <demo|empty|long|large|offline>` walks every major screen and state and tiles the screenshots into contact sheets for design review.
-- `npx tsx scripts/make-qr.ts <url>` writes the install QR code to `docs/`.
+- `npx tsx scripts/make-qr.ts <url>` writes an install QR code for your private address to `private/`, which is gitignored.
 
 ## Architecture
 
@@ -60,6 +60,10 @@ Useful scripts:
 
 ## Deployment
 
-`.github/workflows/peakform-pages.yml` builds, tests, checks the output for personal data and trackers, and publishes into the `peakform/` folder of the existing `gh-pages` branch. Other files on that branch are left untouched.
+PeakForm is not published on GitHub Pages, because anyone with a GitHub Pages address could open it. Instead, Cloudflare Pages builds `peakform/` from `main` (build command `npm run build`, output `dist`, root directory `peakform`, Node version from `.node-version`) and serves it behind `functions/_middleware.ts`, a password gate implemented in `edge/gate.ts`. The password lives only in the encrypted `PEAKFORM_PASSWORD` variable in Cloudflare. Without it, the site serves nothing. Setup steps are in [INSTALL_ON_IPHONE.md](INSTALL_ON_IPHONE.md).
 
-To roll back, revert the latest "Publish PeakForm" commit on `gh-pages`, or run the workflow manually from an earlier commit. Installed apps pick up the rollback the next time they open online, after tapping Update.
+To try the gate locally, put `PEAKFORM_PASSWORD=<at least 12 characters>` in a gitignored `.dev.vars` file, run `npm run build`, then `npx wrangler pages dev dist`.
+
+To roll back, open the project in Cloudflare, choose an earlier deployment, and select **Rollback**. Installed apps pick up the rollback the next time they open online, after tapping Update.
+
+`.github/workflows/peakform-ci.yml` runs typecheck, lint, unit tests, the build with its release gate, and the browser tests on every pull request that touches `peakform/`.

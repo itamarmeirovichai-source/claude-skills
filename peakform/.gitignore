@@ -7,3 +7,5 @@ private/
 *.local
 .DS_Store
 coverage
+.dev.vars
+.wrangler
