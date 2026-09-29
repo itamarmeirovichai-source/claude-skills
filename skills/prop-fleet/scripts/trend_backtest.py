@@ -26,9 +26,18 @@
 יומיות עודפות, מריפו שחזור של המאמר. זה היקום של המאמר עצמו.
 ראה data/README.md על המקור, מה נבדק, ומה חסר (2017 ואילך).
 
---etf: קרנות סל מ-Yahoo, כשהרשת מאפשרת. מה שאפשר לקנות בפועל; עלות
-הגלגול בתוכן; המספר נמוך מהאקדמי. חוזים רציפים מ-Yahoo לא בשימוש
-בשום מצב — הם לא מתואמים לאחור וכל גלגול מדפיס תשואה מזויפת.
+--etf: תשעה נכסים סחירים — S&P 500, מניות עולם, שלושה אג"ח ארה"ב, שני
+אג"ח עולם, זהב, סחורות — במחירים הכוללים של הקרנות עצמן (SPY, VT, SHY,
+IEF, TLT, BND/BWX, GLD, DBC), 1991–2026, מ-data/asset_classes.csv. רק
+הקטעים ה"נצפים" (קרן או מדד אמיתיים) נכנסים; ההיסטוריה המדוגמת של
+המאגר (1970–1991) מסומנת ב-asset_classes_observed.csv ומושמטת.
+--etf-all מכניס גם אותה, כבדיקה בלבד. --excess מחשב את האות על
+התשואה העודפת מעל אג"ח 1–3 שנים (ההגדרה של המאמר) במקום על התשואה
+הכוללת; שני המספרים מדווחים, והאמת ביניהם. זה מה שאפשר לקנות מחר בחשבון
+IBKR רגיל, ולכן זו המדידה שקובעת; היא כוללת גם 2017–2026, שחסרות
+ביקום החוזים. --yahoo: המסלול הישן, קרנות סל מ-Yahoo, כשהרשת מאפשרת.
+חוזים רציפים מ-Yahoo לא בשימוש בשום מצב — הם לא מתואמים לאחור וכל
+גלגול מדפיס תשואה מזויפת.
 
 מה זה לא מודד
 -------------
@@ -73,6 +82,21 @@ UNIVERSE = {
 }
 ETF_PERIODS = (("2007", "2009"), ("2010", "2019"), ("2020", "2026"))
 
+# ── יקום הנכסים הסחירים — ראה data/README.md ─────────────────────────
+ASSET_CLASSES = {
+    "USLCAP": "S&P 500 — SPY", "GLSTOCK": "מניות עולם — VT",
+    "STT": "אג\"ח ארה\"ב 1–3 — SHY", "ITT": "אג\"ח ארה\"ב 7–10 — IEF",
+    "LTT": "אג\"ח ארה\"ב 20+ — TLT", "GLBOND": "אג\"ח עולם — BND/BWX",
+    "GLSTBOND": "אג\"ח עולם קצר — SHY/ISHG/BWZ",
+    "GOLDPM": "זהב — GLD", "CMDTY": "סחורות — DBC",
+}
+ASSET_PERIODS = (("1991", "1999"), ("2000", "2009"),
+                 ("2010", "2019"), ("2020", "2026"))
+# היום הראשון שבו יש *תיק* נצפה: S&P, שלושה אג"ח ארה"ב ומניות עולם —
+# חמישה נכסים. לפניו רק ה-S&P (מ-1970) וה-TLT (מ-1986) נצפים, ומומנטום
+# על נכס אחד או שניים הוא ניסוי אחר, לא זה.
+ASSET_START = "1991-10-29"
+
 # ── יקום החוזים — ניקוי מתועד ─────────────────────────────────────────
 # כל שורה כאן היא החלטה שנבדקה, לא ברירת מחדל.
 FUTURES_DROP = ("VF",)                      # אין מטא-דאטה — לא ידוע מה זה
@@ -104,6 +128,31 @@ def load_futures(data_dir: Path = DATA_DIR) -> tuple:
     # הוא תשואה אפס, לא תשואה חסרה.
     px = pd.DataFrame({c: (1.0 + f[c].dropna()).cumprod() for c in f})
     return px.sort_index().ffill(), labels
+
+
+def load_asset_classes(data_dir: Path = DATA_DIR,
+                       observed_only: bool = True, start=None) -> tuple:
+    """(מחירים כוללים, תוויות). ראה data/README.md.
+
+    observed_only: רק ימים שהדגל שלהם 'observed' — קרן או מדד אמיתיים.
+    ההיסטוריה המדוגמת נעשית NaN ולכן הנכס פשוט "נכנס" ביום הראשון
+    שיש לו מחיר אמיתי, כמו חוזה שמתחיל להיסחר. הלוח הוא של NYSE
+    (הימים שיש בהם S&P); ימי לונדון בלבד נופלים, והמחיר של יום כזה
+    מתקפל לתשואה של יום NYSE הבא — ברמות, לא בתשואות, אז שום דבר
+    לא הולך לאיבוד.
+    """
+    px = pd.read_csv(data_dir / "asset_classes.csv",
+                     index_col="Date", parse_dates=True).sort_index()
+    obs = pd.read_csv(data_dir / "asset_classes_observed.csv",
+                      index_col="Date", parse_dates=True).sort_index()
+    obs = obs.reindex(px.index).fillna(0).astype(bool)
+    if observed_only:
+        px = px.where(obs)
+        start = start or ASSET_START
+    if start:
+        px = px.loc[start:]
+    cal = px.index[px["USLCAP"].notna()]
+    return px.ffill().reindex(cal), dict(ASSET_CLASSES)
 
 
 def load_prices(tickers=None, offline=False) -> pd.DataFrame:
@@ -144,13 +193,23 @@ def load_prices(tickers=None, offline=False) -> pd.DataFrame:
 # ── האסטרטגיה ─────────────────────────────────────────────────────────
 def tsmom_positions(px: pd.DataFrame,
                     lookback=LOOKBACK_DAYS, vol_window=VOL_WINDOW,
-                    target_vol=TARGET_VOL, long_only=False) -> pd.DataFrame:
+                    target_vol=TARGET_VOL, long_only=False,
+                    cash: str | None = None) -> pd.DataFrame:
     """פוזיציה לכל נכס לכל יום, ביחידות של הון.
 
     האות נקרא בסגירת יום המסחר האחרון בחודש ומוחזק לאורך החודש הבא.
     אין הצצה קדימה: הפוזיציה ביום t נגזרת ממידע עד סגירת t-1 בלבד,
     והבדיקה test_no_lookahead אוכפת את זה.
+
+    cash: שם עמודה שמשמשת כמזומן. כשניתן, האות והנרמול מחושבים על
+    התשואה *העודפת* מעליו — ההגדרה של המאמר (חוזים הם תשואה עודפת
+    מלידה; קרנות סל לא). המזומן עצמו יוצא מהיקום. בלי cash, האות הוא
+    על התשואה הכוללת — מה שרוב המשקיעים הפרטיים עושים, ומה שמטה אג"ח
+    ללונג כשהריבית גבוהה.
     """
+    if cash is not None:
+        px = px.div(px[cash], axis=0)
+        px[cash] = np.nan
     rets = px.pct_change()
     lb = px / px.shift(lookback) - 1.0
     vol = rets.rolling(vol_window).std() * np.sqrt(TDAYS)
@@ -172,10 +231,16 @@ def tsmom_positions(px: pd.DataFrame,
 
 
 def portfolio(px: pd.DataFrame, pos: pd.DataFrame,
-              cost_bps=COST_BPS) -> dict:
+              cost_bps=COST_BPS, max_gross=None) -> dict:
+    """max_gross: תקרה לחשיפה הכוללת (סכום |משקלים|). 1.0 = בלי מינוף —
+    בחודש שבו הנרמול מבקש יותר מ-100%, כל המשקלים מוקטנים יחד."""
     rets = px.pct_change()
     n_avail = pos.notna().sum(axis=1).replace(0, np.nan)
     w = pos.div(n_avail, axis=0).fillna(0.0)
+    if max_gross is not None:
+        g = w.abs().sum(axis=1)
+        w = w.mul(np.minimum(1.0, max_gross / g.replace(0, np.nan))
+                  .fillna(1.0), axis=0)
     gross = (w * rets.fillna(0.0)).sum(axis=1)
     turnover = w.diff().abs().sum(axis=1).fillna(0.0)
     net = gross - turnover * cost_bps / 1e4
@@ -276,21 +341,30 @@ def _pct(x):
 
 
 def report(px: pd.DataFrame, labels=None, periods=ETF_PERIODS,
-           ref=("SPY", "IEF"), title="קרנות סל") -> dict:
+           ref=("SPY", "IEF"), title="קרנות סל", no_leverage=False,
+           cash: str | None = None) -> dict:
     labels = labels or UNIVERSE
     print("=" * 66)
     print(f"  מומנטום סדרתי על {title} — מוסקוביץ-אווי-פדרסן")
     print("=" * 66)
     print(f"  נכסים: {px.shape[1]}   "
           f"{px.index[0].date()} עד {px.index[-1].date()}")
+    if cash:
+        print(f"  האות: תשואה עודפת מעל {cash} (ההגדרה של המאמר). "
+              f"{cash} עצמו לא בתיק.")
+    else:
+        print("  האות: תשואה כוללת (בלי ניכוי מזומן).")
     for t in px:
         s = px[t].dropna()
         print(f"    {t:<5} {labels.get(t, ''):<44} מ-{s.index[0].date()}")
 
     out = {}
-    for label, lo in (("לונג/שורט, כמו במאמר", False), ("לונג בלבד", True)):
-        pos = tsmom_positions(px, long_only=lo)
-        pf = portfolio(px, pos)
+    variants = [("לונג/שורט, כמו במאמר", False, None), ("לונג בלבד", True, None)]
+    if no_leverage:
+        variants.append(("לונג בלבד, חשיפה ≤ 100% — בלי מינוף", True, 1.0))
+    for label, lo, cap in variants:
+        pos = tsmom_positions(px, long_only=lo, cash=cash)
+        pf = portfolio(px, pos, max_gross=cap)
         st = stats(pf["net"])
         boot = stationary_bootstrap_sharpe(st["monthly"])
         lo5, lo25, hi95 = np.percentile(boot, [5, 25, 95])
@@ -300,6 +374,13 @@ def report(px: pd.DataFrame, labels=None, periods=ETF_PERIODS,
         print(f"  תשואה שנתית : {_pct(st['ann_ret'])}   "
               f"תנודתיות: {st['ann_vol'] * 100:.1f}%")
         print(f"  שארפ        : {st['sharpe']:.2f}")
+        g = pf["weights"].abs().sum(axis=1)
+        print(f"  חשיפה כוללת : ממוצע {g.mean() * 100:.0f}%   "
+              f"מרבי {g.max() * 100:.0f}%")
+        if st["ann_vol"] > 0:
+            k = 0.10 / st["ann_vol"]
+            print(f"  ב-10% תנודתיות: {_pct(st['ann_ret'] * k)}   "
+                  f"(פי {k:.1f} מהחשיפה שלמעלה, דרודאון {_pct(st['max_dd'] * k)})")
         print(f"  bootstrap   : אחוזון 5 = {lo5:.2f}   "
               f"אחוזון 25 = {lo25:.2f}   אחוזון 95 = {hi95:.2f}")
         print(f"  P(שארפ ≤ 0) : {(boot <= 0).mean() * 100:.1f}%")
@@ -348,7 +429,8 @@ def report(px: pd.DataFrame, labels=None, periods=ETF_PERIODS,
     print(f"\n{'─' * 66}\n  רגישות לחלון האות (לונג/שורט) — לא לבחור מכאן\n{'─' * 66}")
     print(f"  {'חלון':>8}{'תשואה':>10}{'שארפ':>8}{'דרודאון':>10}")
     for lb in (63, 126, 189, 252, 378):
-        s4 = stats(portfolio(px, tsmom_positions(px, lookback=lb))["net"])
+        s4 = stats(portfolio(px, tsmom_positions(px, lookback=lb,
+                                                 cash=cash))["net"])
         mark = "  ← המאמר" if lb == LOOKBACK_DAYS else ""
         print(f"  {lb // 21:>6}m {_pct(s4['ann_ret']):>9} {s4['sharpe']:>7.2f} "
               f"{_pct(s4['max_dd']):>9}{mark}")
@@ -372,8 +454,20 @@ def report(px: pd.DataFrame, labels=None, periods=ETF_PERIODS,
 
 def main() -> int:
     args = set(sys.argv[1:])
-    use_etf = "--etf" in args
-    if not use_etf and (DATA_DIR / "futures.csv").exists():
+    use_etf = bool(args & {"--etf", "--etf-all", "--yahoo"})
+    if args & {"--etf", "--etf-all"}:
+        observed_only = "--etf-all" not in args
+        px, labels = load_asset_classes(observed_only=observed_only)
+        print("  נתונים: תשעה נכסים סחירים במחירי הקרנות, ראה data/README.md.")
+        print("  " + (f"רק קטעים נצפים — קרן או מדד אמיתיים — ומ-{ASSET_START}, "
+                      "היום הראשון עם תיק של חמישה. המודל של 1970–1991 הושמט."
+                      if observed_only else
+                      "כולל ההיסטוריה המדוגמת 1970–1991 — בדיקה, לא ראיה."))
+        print()
+        report(px, labels=labels, periods=ASSET_PERIODS,
+               ref=("USLCAP", "ITT"), title="נכסים סחירים", no_leverage=True,
+               cash="STT" if "--excess" in args else None)
+    elif not use_etf and (DATA_DIR / "futures.csv").exists():
         px, labels = load_futures()
         print("  נתונים: 54 חוזים עתידיים, 1984–2016. ראה data/README.md.")
         print("  ניקוי: VF הוסר (אין מטא); EO ב-1999-01-04 אופס (מעבר לאירו).")

@@ -237,6 +237,98 @@ def test_futures_price_index_reproduces_the_returns():
     assert np.allclose(both.iloc[:, 0], both.iloc[:, 1], atol=1e-12)
 
 
+# ── אות על תשואה עודפת ────────────────────────────────────────────────
+
+def test_flat_cash_makes_the_excess_signal_equal_the_plain_one():
+    """כשהמזומן לא זז, תשואה עודפת = תשואה כוללת, והפוזיציות זהות.
+    המזומן עצמו יוצא מהתיק."""
+    px = _frame(A=_px(seed=13), B=_px(seed=14, drift=-0.0004))
+    px["CASH"] = 100.0
+    plain = tsmom_positions(px.drop(columns="CASH"))
+    ex = tsmom_positions(px, cash="CASH")
+    assert ex["CASH"].isna().all()
+    pd.testing.assert_frame_equal(plain, ex.drop(columns="CASH"))
+
+
+def test_rising_cash_can_flip_a_slow_climber_to_short():
+    """נכס שעולה 3% בשנה כשהמזומן נותן 8%: לפי תשואה כוללת — לונג;
+    לפי תשואה עודפת — שורט."""
+    n = 1000
+    idx = pd.bdate_range("2010-01-01", periods=n)
+    slow = pd.Series(100.0 * (1.03 ** (np.arange(n) / 252)), index=idx)
+    cash = pd.Series(100.0 * (1.08 ** (np.arange(n) / 252)), index=idx)
+    # רעש קטן כדי שהנרמול לא יתפוצץ על תנודתיות אפס — קטן מספיק
+    # (0.5% בשנה) כדי שלא יהפוך את סימן התשואה השנתית
+    rng = np.random.default_rng(0)
+    slow = slow * (1 + rng.normal(0, 0.0003, n)).cumprod()
+    px = _frame(A=slow, CASH=cash)
+    total = tsmom_positions(px.drop(columns="CASH"))["A"].dropna().iloc[-50:]
+    excess = tsmom_positions(px, cash="CASH")["A"].dropna().iloc[-50:]
+    assert (total > 0).all()
+    assert (excess < 0).all()
+
+
+# ── תקרת חשיפה ────────────────────────────────────────────────────────
+
+def test_max_gross_caps_exposure_every_day():
+    px = _frame(A=_px(seed=9, vol=0.002), B=_px(seed=10, vol=0.002),
+                C=_px(seed=11, vol=0.002))              # תנודתיות נמוכה → נרמול מבקש מינוף
+    pos = tsmom_positions(px)
+    free = portfolio(px, pos)["weights"].abs().sum(axis=1)
+    assert free.max() > 1.0, free.max()               # בלי תקרה יש מינוף
+    capped = portfolio(px, pos, max_gross=1.0)["weights"].abs().sum(axis=1)
+    assert (capped <= 1.0 + 1e-9).all(), capped.max()
+
+
+def test_max_gross_leaves_low_exposure_days_alone():
+    px = _frame(A=_px(seed=12, vol=0.03))               # תנודתיות גבוהה → חשיפה קטנה
+    pos = tsmom_positions(px)
+    free = portfolio(px, pos)["weights"]
+    capped = portfolio(px, pos, max_gross=1.0)["weights"]
+    assert free.abs().sum(axis=1).max() < 1.0
+    pd.testing.assert_frame_equal(free, capped)
+
+
+# ── נתוני הנכסים הסחירים ──────────────────────────────────────────────
+
+def _have_assets():
+    from trend_backtest import DATA_DIR
+    return (DATA_DIR / "asset_classes.csv").exists()
+
+
+def test_asset_loader_masks_the_modelled_history():
+    """GLD נולד ב-18/11/2004. לפניו הסדרה היא מודל, ובמצב observed_only
+    היא חייבת להיות NaN. עם observed_only=False היא קיימת."""
+    if not _have_assets():
+        return
+    from trend_backtest import load_asset_classes
+    px, labels = load_asset_classes()
+    assert px.shape[1] == 9 and set(px.columns) == set(labels)
+    assert px["GOLDPM"].loc[:"2004-11-17"].isna().all()
+    assert px["GOLDPM"].loc["2004-11-18":].notna().all()
+    assert px["CMDTY"].loc[:"2006-02-06"].isna().all()
+    assert px["USLCAP"].notna().all()                   # לוח NYSE
+    # מתחיל ביום הראשון עם תיק נצפה של חמישה, לא ב-S&P לבדו מ-1970
+    assert str(px.index[0].date()) == "1991-10-29"
+    assert px.iloc[0].notna().sum() == 5
+    full, _ = load_asset_classes(observed_only=False)
+    assert full["GOLDPM"].loc["1980-01-02":"1980-12-31"].notna().all()
+    assert full.index[0].year == 1970
+    assert full.index.is_unique and px.index.is_unique
+
+
+def test_asset_annual_returns_match_the_known_years():
+    if not _have_assets():
+        return
+    from trend_backtest import load_asset_classes
+    px, _ = load_asset_classes()
+    yr = px.resample("YE").last().pct_change()
+    assert abs(yr.loc["2008-12-31", "USLCAP"] - (-0.37)) < 0.01
+    assert abs(yr.loc["2022-12-31", "LTT"] - (-0.31)) < 0.01
+    assert abs(yr.loc["2013-12-31", "GOLDPM"] - (-0.28)) < 0.01
+    assert abs(yr.loc["2008-12-31", "CMDTY"] - (-0.32)) < 0.01
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):
