@@ -93,7 +93,7 @@ export interface ShoulderDay {
 }
 
 const OVERHEAD_IDS = new Set(['volleyball-spike', 'medicine-ball-spike-throw', 'block-to-spike-transition']);
-const PRESS_IDS = new Set(['barbell-bench-press', 'incline-barbell-bench-press', 'machine-bench-press', 'flat-cable-fly']);
+const PRESS_IDS = new Set(['barbell-bench-press', 'incline-barbell-bench-press', 'incline-dumbbell-press', 'machine-bench-press', 'flat-cable-fly']);
 const CARE_IDS = new Set(['cable-external-rotation', 'face-pull', 'reverse-machine-fly']);
 
 export function shoulderCategory(exerciseId: string, kind: ActivityKind, muscles: MuscleId[], overlap: FatigueArea[]): ShoulderCategory | null {

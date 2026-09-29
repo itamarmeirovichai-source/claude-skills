@@ -62,7 +62,7 @@ Takes under a minute: morning weight, optional scale body fat, waist once a week
 - **Body weight** shows single mornings as dots and a seven day average line. The line needs at least four morning weights in a week.
 - **Waist**, **Scale body fat** (weekly trend only), **Sleep**, and **How you feel** show trends.
 - **Nutrition check** runs only on fourteen days of useful data. It never goes below 2,000 calories, never uses body fat, and always needs your confirmation.
-- **Muscle coverage** shows direct and indirect sets per muscle, confirms upper back, calves, and forearms, and lists shoulder load across pressing, spiking, swimming, and shoulder care.
+- **Muscle coverage** shows direct and indirect sets per muscle, confirms upper back, calves, and forearms, and lists shoulder load across pressing, volleyball, swimming, and shoulder care.
 - **Exercise progress** lists each exercise's sessions and best clean set.
 
 ## Weekly review

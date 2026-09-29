@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { MONDAY, SATURDAY_MORNING, atTime, exerciseChip, go, logStrengthSet, onboard, startSession } from './helpers';
+import { OLD_VOLLEYBALL_DAYS } from '../tests/fixtures/volleyballDays';
 
 test.describe('first run and install', () => {
   test('first run setup lands on Today with the profile saved locally', async ({ page }) => {
@@ -107,6 +108,62 @@ test.describe('training', () => {
     await expect(page.getByTestId('train-day')).toContainText('Barbell Squat');
     await go(page, '/more/plan');
     await expect(page.getByText('Version 2').first()).toBeVisible();
+  });
+
+  test('an installed plan with the old volleyball days gets the new Tuesday and Friday gym sessions', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    // Put the old Tuesday and Friday volleyball sessions back, as on a phone installed before 1.2.0.
+    await page.evaluate(async (oldDays) => {
+      const db: IDBDatabase = await new Promise((res, rej) => {
+        const o = indexedDB.open('peakform');
+        o.onsuccess = () => res(o.result);
+        o.onerror = () => rej(o.error);
+      });
+      const tx = db.transaction(['plans'], 'readwrite');
+      const plans = tx.objectStore('plans');
+      const all: Array<{ days: Array<{ weekday: number; title: string; short: string; items: Array<{ session: string }> }> }> = await new Promise((res) => {
+        const r = plans.getAll();
+        r.onsuccess = () => res(r.result);
+      });
+      for (const p of all) {
+        for (const old of oldDays) {
+          const d = p.days.find((x) => x.weekday === old.weekday)!;
+          d.title = old.title;
+          d.short = old.short;
+          d.items = [...d.items.filter((i) => i.session === 'morning'), ...old.main, ...d.items.filter((i) => i.session === 'swim')];
+        }
+        plans.put(p);
+      }
+      await new Promise((res) => (tx.oncomplete = res));
+    }, OLD_VOLLEYBALL_DAYS);
+    await page.reload();
+    await expect(page.getByTestId('plan-update')).toContainText('Tuesday and Friday are gym days');
+    await expect(page.getByTestId('plan-update-gym')).toContainText('Upper C');
+    await expect(page.getByTestId('plan-update')).not.toContainText('home sessions a week');
+    await page.getByTestId('plan-update-apply').click();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await go(page, '/train/day/2?date=2026-09-29');
+    const day = page.getByTestId('train-day');
+    await expect(day).toContainText('Upper C Hypertrophy');
+    await expect(day).toContainText('Incline Dumbbell Press');
+    await expect(day).toContainText('Shadow Passing Footwork');
+    await expect(day).not.toContainText('Volleyball Spike');
+    await go(page, '/train/day/5?date=2026-10-02');
+    await expect(day).toContainText('Lower C Hypertrophy and Swim');
+    await expect(day).toContainText('Leg Press');
+    await expect(day).toContainText('45 Degree Back Extension');
+    await expect(day).toContainText('Swim');
+    await go(page, '/more/plan');
+    await expect(page.getByText('Version 2').first()).toBeVisible();
+  });
+
+  test('About checks for a new version on request', async ({ page }) => {
+    await onboard(page);
+    await page.evaluate(async () => navigator.serviceWorker.ready);
+    await go(page, '/more/about');
+    await page.getByTestId('update-check').click();
+    await expect(page.getByTestId('update-status')).toHaveText('You have the latest version.');
   });
 
   test('one set of nine reps never raises the load', async ({ page }) => {
@@ -219,8 +276,8 @@ test.describe('training', () => {
     await go(page, '/library');
     await expect(page.getByTestId('library').locator('a.item').first()).toBeVisible();
     const links = await page.locator('[data-testid="library"] a.item').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).hash));
-    expect(links.length).toBe(51);
-    for (const h of links.slice(0, 51)) {
+    expect(links.length).toBe(57);
+    for (const h of links) {
       await go(page, h.replace('#', ''));
       const d = page.getByTestId('exercise-detail');
       await expect(d).toBeVisible();

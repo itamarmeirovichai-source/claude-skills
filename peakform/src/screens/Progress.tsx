@@ -232,7 +232,7 @@ export function CoverageScreen() {
       </Section>
 
       <Section title="Shoulder load">
-        <Note tone="warn" title="Pressing, spiking, swimming, and shoulder care share one joint">
+        <Note tone="warn" title="Pressing, volleyball, swimming, and shoulder care share one joint">
           <ul className="bullets small" style={{ marginTop: 4 }}>
             {overlap.notes.map((n) => (
               <li key={n}>{n}</li>

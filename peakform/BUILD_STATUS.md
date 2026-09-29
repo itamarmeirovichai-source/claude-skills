@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-09-29. Version 1.1.0.
+Last updated: 2026-09-29. Version 1.2.0.
 
 ## State
 
@@ -22,10 +22,10 @@ Complete and tested. Publishing is private: after the pull request is merged, th
 
 ## Completed
 
-- Content: 51 exercises, including five no ball morning volleyball drills, with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded exactly. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines, the access gate, and plan updates with unit tests (98 tests).
+- Content: 57 exercises, including five no ball morning volleyball drills and six gym exercises added for the Tuesday and Friday gym days, with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded as prescribed, with Tuesday and Friday changed from volleyball to gym days at the user's request in 1.2.0. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
+- Engines, the access gate, and plan updates with unit tests (103 tests).
 - All screens, onboarding, and app lock.
-- End to end tests (72), layout and accessibility checks at 375, 390, 393, and 430 px.
+- End to end tests (74), layout and accessibility checks at 375, 390, 393, and 430 px.
 - Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
 - Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
 - Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.

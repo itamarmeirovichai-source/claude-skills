@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-09-29. Build 1.1.0.
+Date: 2026-09-29. Build 1.2.0.
 
 ## Summary
 
@@ -8,8 +8,8 @@ Date: 2026-09-29. Build 1.1.0.
 | --- | --- |
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 98 of 98 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 72 of 72 pass: 28 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
+| Unit and integration tests (Vitest) | 103 of 103 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
+| End to end tests (Playwright) | 74 of 74 pass: 30 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
 | Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
@@ -40,6 +40,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 - **Weekly review:** four sections with evidence and confidence; too few morning weights; pain of 4 pauses progression and leads priorities; ready to progress with reasons; backup recency; coach report in Markdown and JSON without notes by default.
 - **Four exposure review:** due every fourth exposure; progress, hold, reduce, coach review for pain, and coach review for stable jump quality without height gains.
 - **Coverage:** transparent direct and indirect weights, activity exposure, upper back, calves, and forearms present, shoulder overlap notes.
+- **Plan updates:** morning sessions are added to old installs without touching other items; Tuesday and Friday are gym sessions with two or three reps in reserve and new item IDs; every major muscle gets enough direct weekly sets and none gets more than 20; only the old volleyball drills are replaced, and days the user made into rest days are left alone; food target labels change only when they still have the default names.
 - **Fixtures:** example plain and encrypted backups validate, the recommendation example applies cleanly, and no fixture contains the real profile.
 - **Private access gate:** fails closed with no password or a short one; every path, including the service worker and manifest, returns the password page with a 401 and no-store; wrong passwords and forged cookies are rejected; the right password sets an HttpOnly, Secure cookie that holds a keyed hash, not the password; changing the password signs everyone out.
 
@@ -53,7 +54,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 6. Last performance appears beside the inputs.
 7. A unilateral exercise logs left and right separately.
 8. Editing the plan creates version 2 while the finished session keeps its original prescription.
-9. All 51 exercises show instructions, a two view muscle diagram, and an offline visual.
+9. All 57 exercises show instructions, a two view muscle diagram, and an offline visual.
 10. Videos load only after a tap, with no external requests before that.
 11. A default meal logs in one tap.
 12. A restaurant estimate is stored as a low confidence range.
@@ -73,6 +74,8 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 26. A food that is not in the list is logged with your own totals as an honest range.
 27. Completing a set queues the rest end sound on the audio clock for the prescribed rest.
 28. An installed plan from before the morning sessions gets them with one tap, as version 2, with the main sessions unchanged.
+29. An installed plan with the old Tuesday and Friday volleyball days gets the new Upper C and Lower C gym sessions with one tap, keeping the morning work and the Friday swim.
+30. More, About checks for a new version on request.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
 
@@ -114,6 +117,6 @@ Defects found and fixed during review:
 
 ## Content checks
 
-- `scripts/validate-exercises.ts`: all 51 exercises have complete fields, known muscle IDs, valid substitutions, visuals, and copy free of em dashes, isolation claims, failure prescriptions, and hype words.
-- `docs/content-audit.json`: the plan matches the brief item by item. Default meals land within about 100 kcal of each training day target. Focus checks confirm upper back, calves, and forearms.
+- `scripts/validate-exercises.ts`: all 57 exercises have complete fields, known muscle IDs, valid substitutions, visuals, and copy free of em dashes, isolation claims, failure prescriptions, and hype words.
+- `docs/content-audit.json`: the plan matches the brief item by item, except Tuesday and Friday, which the user asked to turn from volleyball days into gym days in 1.2.0. Default meals land within about 100 kcal of each training day target. Focus checks confirm upper back, calves, and forearms.
 - Known plan inconsistency, reported and not hidden: with standard food values the default meals supply about 200 to 215 g protein and 60 to 70 g fat, against targets of about 150 to 155 g protein and 88 to 92 g fat. This is listed for review with a parent and a pediatric sports dietitian.

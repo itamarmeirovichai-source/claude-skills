@@ -174,6 +174,74 @@ export function SafetyScreen() {
   );
 }
 
+type CheckState = 'idle' | 'checking' | 'latest' | 'ready' | 'offline' | 'failed' | 'unavailable';
+
+const CHECK_TEXT: Record<CheckState, string> = {
+  idle: 'PeakForm also checks by itself each time it opens or comes back to the screen.',
+  checking: 'Checking…',
+  latest: 'You have the latest version.',
+  ready: 'A new version is ready.',
+  offline: 'You are offline. Connect to the internet and try again.',
+  failed: 'Could not reach the PeakForm site. If it asks for the password again, sign in, then try again.',
+  unavailable: 'Updates are not available in this browser view.',
+};
+
+async function installed(sw: ServiceWorker | null): Promise<void> {
+  if (!sw) return;
+  await new Promise<void>((done) => {
+    const settle = () => {
+      if (sw.state !== 'installing') done();
+    };
+    sw.addEventListener('statechange', settle);
+    settle();
+  });
+}
+
+/** Asks the site for a new version right now, and applies it when one is waiting. */
+function UpdateCheck() {
+  const [state, setState] = useState<CheckState>('idle');
+  const check = async () => {
+    if (!('serviceWorker' in navigator)) return setState('unavailable');
+    if (!navigator.onLine) return setState('offline');
+    setState('checking');
+    const r = await navigator.serviceWorker.getRegistration();
+    if (!r) return setState('unavailable');
+    try {
+      await r.update();
+    } catch {
+      return setState('failed');
+    }
+    await installed(r.installing);
+    setState(r.waiting ? 'ready' : 'latest');
+  };
+  const apply = async () => {
+    const r = await navigator.serviceWorker.getRegistration();
+    if (!r?.waiting) return setState('latest');
+    navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload(), { once: true });
+    r.waiting.postMessage({ type: 'SKIP_WAITING' });
+  };
+  return (
+    <Section title="Updates">
+      <div className="panel stack">
+        <p className="small" role="status" data-testid="update-status">
+          {CHECK_TEXT[state]}
+        </p>
+        <div className="row wrap">
+          {state === 'ready' ? (
+            <button type="button" className="btn btn-primary" onClick={() => void apply()} data-testid="update-apply">
+              Update now
+            </button>
+          ) : (
+            <button type="button" className="btn" disabled={state === 'checking'} onClick={() => void check()} data-testid="update-check">
+              Check for updates
+            </button>
+          )}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 export function AboutScreen() {
   const s = useSettings();
   const [qr, setQr] = useState('');
@@ -190,6 +258,7 @@ export function AboutScreen() {
         <Item title="Built" end={typeof __BUILD_DATE__ === 'string' ? __BUILD_DATE__ : 'dev'} />
         <Item title="Installed from Home Screen" end={isStandalone() ? 'Yes' : 'No'} />
       </div>
+      <UpdateCheck />
       <Section title="Install address">
         <div className="panel stack">
           <input className="input" value={s.deploymentUrl} placeholder={url} onChange={(e) => void updateSettings({ deploymentUrl: e.target.value.trim() })} aria-label="Install address" />

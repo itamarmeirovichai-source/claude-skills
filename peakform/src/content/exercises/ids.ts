@@ -56,5 +56,14 @@ export const ATHLETIC_IDS = [
 
 export const MORNING_IDS = ['shadow-pass-footwork', 'block-footwork', 'dumbbell-y-raise', 'side-lying-external-rotation', 'dead-bug'] as const;
 
-export const LIBRARY_IDS = [...LOWER_IDS, ...UPPER_IDS, ...ATHLETIC_IDS, ...MORNING_IDS] as const;
+export const GYM_IDS = [
+  'incline-dumbbell-press',
+  'chest-supported-dumbbell-row',
+  'incline-dumbbell-curl',
+  'leg-press',
+  'back-extension',
+  'cable-hip-adduction',
+] as const;
+
+export const LIBRARY_IDS = [...LOWER_IDS, ...UPPER_IDS, ...ATHLETIC_IDS, ...MORNING_IDS, ...GYM_IDS] as const;
 export type LibraryExerciseId = (typeof LIBRARY_IDS)[number];
