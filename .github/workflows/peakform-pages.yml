@@ -1,0 +1,57 @@
+name: Deploy PeakForm
+
+# Publishes the PeakForm build into the peakform/ folder of the existing gh-pages branch.
+# Everything else on gh-pages is left exactly as it is. The deployed files contain no
+# personal data: profiles and logs only ever live on the user's phone.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'peakform/**'
+      - '.github/workflows/peakform-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: peakform-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: peakform/package-lock.json
+      - name: Install, test, and build
+        working-directory: peakform
+        run: |
+          npm ci
+          npm run typecheck
+          npm test
+          npm run build
+          node scripts/check-dist.mjs dist
+      - name: Publish to gh-pages/peakform
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          git fetch origin gh-pages
+          git worktree add ../site origin/gh-pages
+          cd ../site
+          git checkout -B gh-pages origin/gh-pages
+          rm -rf peakform
+          mkdir -p peakform
+          cp -R "$GITHUB_WORKSPACE/peakform/dist/." peakform/
+          git add -A peakform
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Publish PeakForm from ${SHA}"
+          git push origin gh-pages

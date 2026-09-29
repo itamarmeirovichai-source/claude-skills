@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "heightCm": null,
+  "birthYear": null,
+  "startWeightKg": null,
+  "startBodyFatPct": null,
+  "goals": ["Example goal, written in your own words."],
+  "medicalNotes": "",
+  "allergies": "",
+  "planStartDate": null,
+  "eventDate": null,
+  "eventLabel": "",
+  "sabbath": true
+}
