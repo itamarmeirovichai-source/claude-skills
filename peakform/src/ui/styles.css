@@ -23,6 +23,9 @@
   --focus: #1f6fd1;
   --shadow: 0 1px 2px rgba(20, 24, 28, 0.06), 0 2px 8px rgba(20, 24, 28, 0.04);
   --float-bg: #1b1f23;
+  --sheet-bg: #f4f3ef;
+  --sheet-edge: transparent;
+  --backdrop: rgba(10, 12, 14, 0.42);
   --float-ink: #f4f3ef;
 
   --fig-body: #2b3440;
@@ -88,6 +91,9 @@
     --focus: #7db5ff;
     --shadow: none;
     --float-bg: #2b3238;
+    --sheet-bg: #13171a;
+    --sheet-edge: #2c3339;
+    --backdrop: rgba(0, 0, 0, 0.62);
     --float-ink: #eceff1;
     --fig-body: #dfe5ea;
     --fig-far: #6c7781;
@@ -130,6 +136,9 @@
   --focus: #7db5ff;
   --shadow: none;
   --float-bg: #2b3238;
+  --sheet-bg: #13171a;
+  --sheet-edge: #2c3339;
+  --backdrop: rgba(0, 0, 0, 0.62);
   --float-ink: #eceff1;
   --fig-body: #dfe5ea;
   --fig-far: #6c7781;
@@ -156,6 +165,8 @@
 }
 
 html {
+  /* On iPhone this follows the Dynamic Type text size setting. Other browsers ignore it. */
+  font: -apple-system-body;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   background: var(--bg);
@@ -549,6 +560,10 @@ textarea.input {
   min-height: 84px;
   resize: vertical;
 }
+.input-time {
+  width: 8.75rem;
+  flex: none;
+}
 .input:focus {
   outline: 2px solid var(--focus);
   outline-offset: 0;
@@ -594,6 +609,11 @@ textarea.input {
   font-variant-numeric: tabular-nums;
   min-height: 50px;
   padding: 0 2px;
+}
+.stepper input::placeholder {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-3);
 }
 .stepper input:focus {
   outline: none;
@@ -890,7 +910,7 @@ textarea.input {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(10, 12, 14, 0.42);
+  background: var(--backdrop);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -901,7 +921,8 @@ textarea.input {
   max-height: calc(100dvh - var(--safe-top) - 24px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--bg);
+  background: var(--sheet-bg);
+  border-top: 1px solid var(--sheet-edge);
   border-radius: var(--r-lg) var(--r-lg) 0 0;
   padding: var(--s3) calc(var(--s4) + var(--safe-right)) calc(var(--s6) + var(--safe-bottom)) calc(var(--s4) + var(--safe-left));
   animation: sheet-in 0.2s ease-out;
@@ -934,8 +955,11 @@ textarea.input {
 .toast {
   position: fixed;
   z-index: 60;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Centred without left: 50%, which would cap the width at half the screen. */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: max-content;
   top: calc(var(--safe-top) + 64px);
   display: flex;
   align-items: center;
@@ -1271,16 +1295,17 @@ details.disclosure > summary::-webkit-details-marker {
 }
 details.disclosure > summary::after {
   content: '';
+  flex: none;
   width: 8px;
   height: 8px;
   border-right: 2px solid var(--text-3);
   border-bottom: 2px solid var(--text-3);
-  transform: rotate(45deg);
-  margin-right: 6px;
+  transform: translateY(-2px) rotate(45deg);
+  margin: 0 6px 0 12px;
   transition: transform 0.15s;
 }
 details.disclosure[open] > summary::after {
-  transform: rotate(-135deg);
+  transform: translateY(2px) rotate(-135deg);
 }
 
 .video-gate {
@@ -1424,4 +1449,39 @@ details.disclosure[open] > summary::after {
   margin: 0;
   flex: 0 0 auto;
   accent-color: var(--accent);
+}
+
+.quick-btn {
+  flex-direction: column;
+  gap: 2px;
+  min-height: 72px;
+  padding: 8px 6px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.file-pick {
+  position: relative;
+  align-self: flex-start;
+}
+.file-pick:focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+pre.code {
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.action-row > .btn {
+  flex: 1 1 auto;
+  white-space: nowrap;
 }

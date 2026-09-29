@@ -90,10 +90,10 @@ export function OnboardingScreen() {
               <input className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={60} data-testid="onboard-name" />
             </label>
             <div className="grid-2">
-              <Stepper label="Height" unit="cm" value={height} onChange={setHeight} max={250} placeholder="Optional" base={170} />
-              <Stepper label="Birth year" value={birthYear} onChange={setBirthYear} min={1990} max={2025} placeholder="Optional" base={2012} />
+              <Stepper label="Height" unit="cm" value={height} onChange={setHeight} max={250} base={170} />
+              <Stepper label="Birth year" value={birthYear} onChange={setBirthYear} min={1990} max={2025} base={2012} />
             </div>
-            <p className="small muted">Stored only on this phone. Weight is logged in the morning check in.</p>
+            <p className="small muted">Height and birth year are optional and stored only on this phone. Weight is logged in the morning check in.</p>
           </div>
           <div className="grid-2">
             <button type="button" className="btn btn-outline" onClick={() => setStep(0)}>

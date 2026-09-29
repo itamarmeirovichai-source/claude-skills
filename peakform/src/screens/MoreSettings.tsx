@@ -37,18 +37,18 @@ export function ScheduleScreen() {
         <div className="group">
           <div className="item">
             <span className="item-main">Morning rope</span>
-            <input className="input" style={{ width: 120 }} type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning rope time" />
+            <input className="input input-time" type="time" value={s.sessionTimes.morning} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, morning: e.target.value } }))} aria-label="Morning rope time" />
           </div>
           {[0, 1, 2, 3, 4, 5].map((d) => (
             <div className="item" key={d}>
               <span className="item-main">{WEEKDAY_NAMES[d]} main session</span>
-              <input className="input" style={{ width: 120 }} type="time" value={s.sessionTimes.main[String(d)] ?? '16:30'} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, main: { ...x.sessionTimes.main, [String(d)]: e.target.value } } }))} aria-label={`${WEEKDAY_NAMES[d]} main session time`} />
+              <input className="input input-time" type="time" value={s.sessionTimes.main[String(d)] ?? '16:30'} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, main: { ...x.sessionTimes.main, [String(d)]: e.target.value } } }))} aria-label={`${WEEKDAY_NAMES[d]} main session time`} />
             </div>
           ))}
           {[0, 5].map((d) => (
             <div className="item" key={`swim-${d}`}>
               <span className="item-main">{WEEKDAY_NAMES[d]} swim</span>
-              <input className="input" style={{ width: 120 }} type="time" value={s.sessionTimes.swim[String(d)] ?? '19:30'} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, swim: { ...x.sessionTimes.swim, [String(d)]: e.target.value } } }))} aria-label={`${WEEKDAY_NAMES[d]} swim time`} />
+              <input className="input input-time" type="time" value={s.sessionTimes.swim[String(d)] ?? '19:30'} onChange={(e) => upd((x) => ({ ...x, sessionTimes: { ...x.sessionTimes, swim: { ...x.sessionTimes.swim, [String(d)]: e.target.value } } }))} aria-label={`${WEEKDAY_NAMES[d]} swim time`} />
             </div>
           ))}
         </div>
@@ -61,7 +61,7 @@ export function ScheduleScreen() {
               <span className="item-main" style={{ minWidth: 140 }}>
                 <span className="item-title" style={{ display: 'block' }}>{r.label}</span>
               </span>
-              <input className="input" style={{ width: 112 }} type="time" value={r.time} onChange={(e) => setReminder(r.id, { time: e.target.value })} aria-label={`${r.label} time`} data-testid={`reminder-time-${r.id}`} />
+              <input className="input input-time" type="time" value={r.time} onChange={(e) => setReminder(r.id, { time: e.target.value })} aria-label={`${r.label} time`} data-testid={`reminder-time-${r.id}`} />
               <span className="toggle">
                 <input type="checkbox" role="switch" checked={r.enabled} onChange={(e) => setReminder(r.id, { enabled: e.target.checked })} aria-label={`${r.label} on`} />
               </span>
@@ -344,7 +344,7 @@ export function TargetsScreen() {
   return (
     <div data-testid="targets">
       <PageHead title="Nutrition targets" backTo="/more" />
-      <Note>These are starting points for a fourteen day observation. Review calorie targets with a parent, and ideally a pediatrician or pediatric sports dietitian. PeakForm never saves a day below {NUTRITION_FLOORS.kcal} calories or {NUTRITION_FLOORS.carbs} g carbohydrate.</Note>
+      <Note>These are starting points for a fourteen day observation. Review calorie targets with a parent, and ideally a pediatrician or pediatric sports dietitian. PeakForm never saves a day below {NUTRITION_FLOORS.kcal.toLocaleString('en-US')} calories or {NUTRITION_FLOORS.carbs} g carbohydrate.</Note>
       {[0, 1, 2, 3, 4, 5, 6].map((wd) => {
         const i = cur.findIndex((x) => x.weekday === wd);
         const x = cur[i]!;
@@ -405,12 +405,12 @@ export function SupplementsScreen() {
         const needsReview = sup.kind === 'creatine' && !sup.reviewedWithGuardian;
         return (
           <Section key={sup.id} title={sup.name}>
+            {sup.kind === 'creatine' && (
+              <div className="group" style={{ marginBottom: 8 }}>
+                <Toggle checked={sup.reviewedWithGuardian} onChange={(v) => setSup(sup.id, { reviewedWithGuardian: v })} label="A parent and a clinician have reviewed creatine for me" sub="Asked once because you are under 18" testId="creatine-review" />
+              </div>
+            )}
             <div className="panel stack">
-              {sup.kind === 'creatine' && (
-                <div className="group">
-                  <Toggle checked={sup.reviewedWithGuardian} onChange={(v) => setSup(sup.id, { reviewedWithGuardian: v })} label="A parent and a clinician have reviewed creatine for me" sub="Asked once because you are under 18" testId="creatine-review" />
-                </div>
-              )}
               <label className="field">
                 <span className="label">Product</span>
                 <input className="input" value={sup.product} maxLength={120} onChange={(e) => setSup(sup.id, { product: e.target.value })} placeholder="Brand and product name" />

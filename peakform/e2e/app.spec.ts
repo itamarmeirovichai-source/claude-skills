@@ -371,6 +371,29 @@ test.describe('delete all', () => {
   });
 });
 
+test.describe('app lock', () => {
+  test('the app locks after inactivity and opens again with the PIN', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await go(page, '/more/lock');
+    await page.getByTestId('pin-new').fill('2468');
+    await page.getByRole('button', { name: 'Turn on app lock' }).click();
+    await expect(page.getByRole('button', { name: 'Turn off app lock' })).toBeVisible();
+    // Six idle minutes against the default five minute lock.
+    await page.clock.fastForward(6 * 60_000);
+    await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+    await expect(page.getByTestId('lock-screen')).toBeVisible();
+    await expect(page.getByText('Turn off app lock')).toHaveCount(0);
+    for (const d of '1357') await page.getByTestId(`key-${d}`).click();
+    await expect(page.getByTestId('lock-screen')).toBeVisible();
+    await page.getByRole('button', { name: 'Clear' }).click();
+    for (const d of '2468') await page.getByTestId(`key-${d}`).click();
+    await expect(page.getByTestId('lock-screen')).toBeHidden();
+    await page.reload();
+    await expect(page.getByTestId('lock-screen')).toBeVisible();
+  });
+});
+
 test.describe('layout @layout', () => {
   for (const route of ['/today', '/train', '/eat', '/progress', '/review', '/more', '/checkin', '/coverage', '/exercise/volleyball-spike', '/eat/log/other?mode=restaurant']) {
     test(`no horizontal overflow and large tap targets on ${route}`, async ({ page }) => {

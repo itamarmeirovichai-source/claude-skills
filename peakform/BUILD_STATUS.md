@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-09-29. Version 1.0.0.
+Last updated: 2026-09-29. Version 1.0.1.
 
 ## State
 
@@ -25,7 +25,8 @@ Complete and tested. Deployment happens automatically when the pull request is m
 - Content: 46 exercises with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded exactly. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
 - Engines with unit tests (86 tests).
 - All screens, onboarding, and app lock.
-- End to end tests (67), layout and accessibility checks at 375, 390, 393, and 430 px.
+- End to end tests (68), layout and accessibility checks at 375, 390, 393, and 430 px.
+- Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
 - Documentation, content audit, synthetic fixtures, QR code, screenshots, CI and deploy workflows.
 
 ## Known limits

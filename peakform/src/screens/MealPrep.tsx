@@ -137,7 +137,7 @@ export function RecipeScreen({ id }: { id: string }) {
   const soup = r.id === 'lentil-soup';
   return (
     <div data-testid="recipe">
-      <PageHead title={r.name} eyebrow={r.suitableFor.join(', ')} backTo="/recipes" />
+      <PageHead title={r.name} eyebrow={suitability(r.suitableFor)} backTo="/recipes" />
       <p className="muted">{r.summary}</p>
       {!r.guideOnly && (
         <Section title="Servings">
@@ -219,4 +219,9 @@ export function RecipeScreen({ id }: { id: string }) {
       )}
     </div>
   );
+}
+
+function suitability(xs: string[]): string {
+  const t = xs.join(', ');
+  return t.charAt(0).toUpperCase() + t.slice(1);
 }

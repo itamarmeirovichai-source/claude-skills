@@ -209,7 +209,7 @@ export function weekMetrics(data: ReviewData, weekStart: DateKey): WeekMetrics {
   };
 }
 
-const f1 = (n: number | null, unit = '') => (n === null ? 'no data' : `${n.toFixed(1)}${unit}`);
+const f1 = (n: number | null, unit = '') => (n === null ? 'No data' : `${n.toFixed(1)}${unit}`);
 
 export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: number): WeeklyReview {
   const cur = weekMetrics(data, weekStart);
@@ -301,7 +301,7 @@ export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: 
   if (cur.morningWeights < 4) {
     improve.push({
       id: 'weights-few',
-      text: `Only ${cur.morningWeights} morning weight${cur.morningWeights === 1 ? ' was' : 's were'} logged, so the trend is too uncertain for a nutrition change.`,
+      text: `${cur.morningWeights === 0 ? 'No morning weights were' : `Only ${cur.morningWeights} morning weight${cur.morningWeights === 1 ? ' was' : 's were'}`} logged, so the trend is too uncertain for a nutrition change.`,
       evidence: ['A weekly trend needs at least four morning weights taken after the toilet and before food or drink.'],
       confidence: 'high',
       weight: 30,
@@ -323,14 +323,14 @@ export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: 
     const missed = cur.plannedSessions - cur.completedSessions;
     improve.push({
       id: 'sessions-missed',
-      text: `${missed} planned session${missed === 1 ? ' was' : 's were'} not logged. If the week got busy, a missed session can move to another day without doubling up.`,
+      text: `${missed === 1 ? 'One planned session was' : `${missed} planned sessions were`} not logged. If the week got busy, a missed session can move to another day without doubling up.`,
       evidence: [`${cur.completedSessions} of ${cur.plannedSessions} sessions logged.`],
       confidence: 'high',
       weight: 16,
     });
   }
   if (cur.foodDays < 5) {
-    improve.push({ id: 'food-log', text: `Food was logged on ${cur.foodDays} days. The one tap default meals make logging quicker.`, evidence: ['The fourteen day nutrition check needs at least ten logged days.'], confidence: 'high', weight: 20 });
+    improve.push({ id: 'food-log', text: `${cur.foodDays === 0 ? 'No food was logged this week' : `Food was logged on ${cur.foodDays} day${cur.foodDays === 1 ? '' : 's'}`}. The one tap default meals make logging quicker.`, evidence: ['The fourteen day nutrition check needs at least ten logged days.'], confidence: 'high', weight: 20 });
   } else if (cur.calorieDays < Math.ceil(cur.foodDays / 2)) {
     improve.push({ id: 'kcal-range', text: `Calories were inside the daily range on ${cur.calorieDays} of ${cur.foodDays} logged days.`, evidence: ['The range is the daily target plus or minus about 100 calories.', 'Estimated meals carry wide ranges, so this is approximate.'], confidence: 'low', weight: 9 });
   }
@@ -362,9 +362,9 @@ export function generateWeeklyReview(data: ReviewData, weekStart: DateKey, now: 
     cmp('Water entries', String(prev.waterEntries), String(cur.waterEntries)),
     cmp('Average sleep', f1(prev.sleepAvgH, ' h'), f1(cur.sleepAvgH, ' h')),
     cmp('Morning weights', String(prev.morningWeights), String(cur.morningWeights), 'Four or more needed'),
-    cmp('Seven day weight average', prev.weightReliable ? f1(prev.weightAvg, ' kg') : 'too few', cur.weightReliable ? f1(cur.weightAvg, ' kg') : 'too few'),
+    cmp('Seven day weight average', prev.weightReliable ? f1(prev.weightAvg, ' kg') : 'Too few', cur.weightReliable ? f1(cur.weightAvg, ' kg') : 'Too few'),
     cmp('Waist', f1(prev.waistLast, ' cm'), f1(cur.waistLast, ' cm')),
-    cmp('Scale body fat', prev.bodyFatAvg === null ? 'too few' : f1(prev.bodyFatAvg, '%'), cur.bodyFatAvg === null ? 'too few' : f1(cur.bodyFatAvg, '%'), 'Trend only, low confidence'),
+    cmp('Scale body fat', prev.bodyFatAvg === null ? 'Too few' : f1(prev.bodyFatAvg, '%'), cur.bodyFatAvg === null ? 'Too few' : f1(cur.bodyFatAvg, '%'), 'Trend only, low confidence'),
     cmp('Energy', f1(prev.energy), f1(cur.energy), 'Out of 5'),
     cmp('Mood', f1(prev.mood), f1(cur.mood), 'Out of 5'),
     cmp('Soreness', f1(prev.soreness), f1(cur.soreness), 'Out of 3'),

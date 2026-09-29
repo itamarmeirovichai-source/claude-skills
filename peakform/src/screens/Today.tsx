@@ -65,9 +65,12 @@ export function TodayScreen() {
   const inSabbath = isSabbathAt(Date.now(), today, settings.sabbath);
   const totals = dayTotals(data.food);
   const target = targets.find((t) => t.weekday === wd)!;
-  const reviewDue = (wd === 0 && nowMin >= minutesOf('20:00')) || (wd === 1 && !data.reviews);
+  // On Monday the review covers last week, which only counts if the plan had started by then.
+  const reviewDue = (wd === 0 && nowMin >= minutesOf('20:00')) || (wd === 1 && !data.reviews && (!settings.planStartDate || settings.planStartDate < today));
   const yesterdayDay = plan.days.find((d) => d.weekday === weekdayOf(addDays(today, -1)));
-  const missedYesterday = yesterdayDay && !yesterdayDay.isRest && yesterdayDay.items.some((i) => i.session === 'main') && !data.yesterdaySessions.some((s) => s.session === 'main' && s.status === 'done') && !data.sessions.some((s) => s.planWeekday === yesterdayDay.weekday);
+  // Only when the plan was already running yesterday. A new install has nothing to catch up on.
+  const planRanYesterday = !settings.planStartDate || settings.planStartDate <= addDays(today, -1);
+  const missedYesterday = planRanYesterday && yesterdayDay && !yesterdayDay.isRest && yesterdayDay.items.some((i) => i.session === 'main') && !data.yesterdaySessions.some((s) => s.session === 'main' && s.status === 'done') && !data.sessions.some((s) => s.planWeekday === yesterdayDay.weekday);
   const todayMainDone = data.sessions.some((s) => s.session === 'main' && s.status === 'done');
   const backupDays = data.lastBackupAt ? Math.floor((Date.now() - data.lastBackupAt) / 86400000) : null;
   const checkinsThisWeek = data.allCheckins.length;
@@ -172,17 +175,17 @@ export function TodayScreen() {
 
       {/* 3. One tap logging */}
       <div className="grid-3" style={{ marginTop: 12 }}>
-        <button type="button" className="btn btn-outline" style={{ flexDirection: 'column', height: 72, gap: 2 }} onClick={() => navigate('/train/start')} data-testid="quick-workout">
+        <button type="button" className="btn btn-outline quick-btn" onClick={() => navigate('/train/start')} data-testid="quick-workout">
           <IconTrain />
           <span className="small">Start workout</span>
         </button>
-        <button type="button" className="btn btn-outline" style={{ flexDirection: 'column', height: 72, gap: 2 }} onClick={() => navigate('/eat/log/other?mode=quick')} data-testid="quick-food">
+        <button type="button" className="btn btn-outline quick-btn" onClick={() => navigate('/eat/log/other?mode=quick')} data-testid="quick-food">
           <IconEat />
-          <span className="small">Quick food</span>
+          <span className="small">Log food</span>
         </button>
-        <button type="button" className="btn btn-outline" style={{ flexDirection: 'column', height: 72, gap: 2 }} onClick={() => setWeightOpen(true)} data-testid="quick-weight">
+        <button type="button" className="btn btn-outline quick-btn" onClick={() => setWeightOpen(true)} data-testid="quick-weight">
           <IconScale />
-          <span className="small">Quick weight</span>
+          <span className="small">Log weight</span>
         </button>
       </div>
 

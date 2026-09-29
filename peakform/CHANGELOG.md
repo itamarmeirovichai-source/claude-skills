@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.1, 2026-09-29
+
+Design review fixes.
+
+- New installs no longer report a missed session or a review for the week before the plan started. Demo data sets the plan start to the start of the demo.
+- Toasts size to their text, clear when a sheet opens, and no longer repeat what the workout summary shows.
+- Round chart axis values, readable disclosure chevrons, wider time fields, button style file pickers, and a raised sheet surface in dark mode.
+- Workout actions wrap at larger text sizes. Rest shows "30 s" instead of "0.5 min". First time hints match the exercise type.
+- Clearer empty states and copy across Progress, the weekly review, and exercise details.
+- An end to end test for the app lock, and `scripts/sweep.ts` for design review.
+
 ## 1.0.0, 2026-09-29
 
 First release.

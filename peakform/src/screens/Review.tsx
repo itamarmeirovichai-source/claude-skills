@@ -48,7 +48,13 @@ function Items({ items, empty, tone }: { items: ReviewItem[]; empty: string; ton
 export function ReviewScreen({ weekStart }: { weekStart: string | null }) {
   const today = useToday();
   const settings = useSettings();
-  const [week, setWeek] = useState(weekStart ?? defaultWeek(today));
+  // Reviews start with the week the plan started. Earlier weeks have nothing to review.
+  const firstWeek = settings.planStartDate ? reviewWeekStart(settings.planStartDate) : null;
+  const [week, setWeek] = useState(() => {
+    const w = weekStart ?? defaultWeek(today);
+    return firstWeek && w < firstWeek ? firstWeek : w;
+  });
+  const beforeStart = firstWeek !== null && week < firstWeek;
   const [review, setReview] = useState<WeeklyReview | null>(null);
   const stored = useLiveQuery(() => db.weeklyReviews.where('weekStart').equals(week).first(), [week]);
   useEffect(() => {
@@ -67,7 +73,7 @@ export function ReviewScreen({ weekStart }: { weekStart: string | null }) {
         backTo="/progress"
         end={
           <div className="row">
-            <button type="button" className="btn btn-sm btn-outline" onClick={() => setWeek(addDays(week, -7))} aria-label="Previous week">
+            <button type="button" className="btn btn-sm btn-outline" onClick={() => setWeek(addDays(week, -7))} disabled={firstWeek !== null && addDays(week, -7) < firstWeek} aria-label="Previous week">
               ‹
             </button>
             <button type="button" className="btn btn-sm btn-outline" onClick={() => setWeek(addDays(week, 7))} disabled={addDays(week, 7) > today} aria-label="Next week">
@@ -76,7 +82,9 @@ export function ReviewScreen({ weekStart }: { weekStart: string | null }) {
           </div>
         }
       />
-      {!review ? (
+      {beforeStart ? (
+        <Note>This week is before your plan started on {formatDateKey(settings.planStartDate!)}, so there is nothing to review.</Note>
+      ) : !review ? (
         <p className="muted">Reviewing the week…</p>
       ) : (
         <>

@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-09-29. Build 1.0.0.
+Date: 2026-09-29. Build 1.0.1.
 
 ## Summary
 
@@ -9,7 +9,7 @@ Date: 2026-09-29. Build 1.0.0.
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
 | Unit and integration tests (Vitest) | 86 of 86 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 67 of 67 pass: 23 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
+| End to end tests (Playwright) | 68 of 68 pass: 24 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
 | Lighthouse, simulated mobile | Performance 94, Accessibility 100, Best Practices 96, SEO 66 |
@@ -66,12 +66,25 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 21. Sabbath Mode quiets Saturday, and the ICS calendar has alarms and Sabbath exclusions.
 22. The app opens offline after the first load, every main screen renders, video shows "Needs internet", and no third party requests are made.
 23. Delete all data asks twice and returns to first run.
+24. App lock engages after five idle minutes, rejects a wrong PIN, opens with the right one, and is back on after a reload.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
 
 ## Manual visual review
 
-Screenshots were reviewed at 375 and 390 px in light and dark mode, with demo data, with no data, and offline. Defects found and fixed during review:
+`scripts/sweep.ts` drives the built app through 53 to 64 screens and states per run (onboarding, Today, the whole workout flow including rest, pain stop, unilateral sets, substitution and finish, exercise detail, library, Eat, Estimate by Eye, restaurant estimates, Sabbath plate, meal preparation, recipes, Progress, coverage, history, weekly review, check in, every More page, offline, and the lock screen). Runs reviewed:
+
+| Width | Theme | State |
+| --- | --- | --- |
+| 375 | light | demo data |
+| 430 | dark | demo data |
+| 375 | light | no data |
+| 393 | light | no data |
+| 390 | light | long content (long app name, long custom exercise, long notes) |
+| 375 | light | text at 125 percent |
+| 390 | dark | offline |
+
+Defects found and fixed during review:
 
 - Complete set fell below the fold. The workout now uses a focus mode with a pinned action dock.
 - The rest bar label overlapped its buttons. Labels now truncate and the time itself toggles pause.
@@ -82,6 +95,16 @@ Screenshots were reviewed at 375 and 390 px in light and dark mode, with demo da
 - Faint text contrast was just under 4.5:1 and some checkboxes were under 24 px. Fixed.
 - The readiness tag was green before any check in, the scale icon read as a question mark, and chart labels touched the first data point. Fixed.
 - The light rest timer and toast were glaring in dark mode. They now use dedicated dark tokens.
+- A new install on a Monday said yesterday's session was missed and offered a weekly review of the week before the plan started. Both now wait until the plan has actually run.
+- Toasts were capped at half the screen width, so short messages wrapped, and they stayed on top of sheets opened right after. They now size to their text and clear when a sheet opens. The redundant toast after saving a workout is gone, and the summary opens at the top.
+- Chart axes showed values like 77.9 and 79.2. They now use round steps such as 78, 78.5, 79.
+- Disclosure chevrons were squeezed into a tick shape next to long titles. Fixed.
+- Time fields cut off "AM" and "PM", onboarding placeholders were truncated, and "Rest 2.5 min" overflowed at larger text sizes. Fixed.
+- Native file pickers looked out of place. They are now normal buttons.
+- Sheets blended into the dimmed page in dark mode. They now use a raised surface with an edge.
+- Copy fixes: "Rest 0.5 min" now reads "Rest 30 s", lowercase "none" and "no data" placeholders, "Only 0 morning weights", a sentence starting with a digit, and first time hints that said "pick a load" on warm ups and jumps.
+- The creatine review toggle was a card inside a card. It is now its own group.
+- Custom exercises no longer show a caption for an illustration they do not have.
 
 ## Content checks
 

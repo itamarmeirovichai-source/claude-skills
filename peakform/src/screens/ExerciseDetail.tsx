@@ -5,7 +5,7 @@ import { currentTarget, lastExposure } from '../db/repo';
 import { allExercises, exercise } from '../content/library';
 import { mediaFor } from '../content/mediaFor';
 import { MUSCLE_GROUP_LABELS, MUSCLE_BY_ID } from '../content/muscles';
-import type { MediaReference } from '../content/types';
+import type { FatigueArea, MediaReference } from '../content/types';
 import { Item, Note, PageHead, Section, useOnline } from '../ui/components';
 import { Link, useRoute } from '../ui/router';
 import { IconPlay } from '../ui/icons';
@@ -15,6 +15,22 @@ import { usePlan } from '../ui/hooks';
 import { restText, targetText } from './Train';
 import { uid } from '../lib/id';
 import { summarizeSets } from '../ui/format';
+
+const FATIGUE_LABEL: Record<FatigueArea, string> = {
+  shoulder: 'shoulder',
+  elbow: 'elbow',
+  wrist_grip: 'wrist and grip',
+  low_back: 'low back',
+  knee: 'knee',
+  hip: 'hip',
+  hamstring: 'hamstring',
+  achilles_calf: 'Achilles and calf',
+  shin: 'shin',
+  neck: 'neck',
+  systemic: 'whole body',
+};
+
+const sentence = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 const KIND_LABEL: Record<string, string> = {
   strength: 'Strength',
@@ -57,8 +73,14 @@ export function ExerciseScreen({ id }: { id: string }) {
       )}
 
       <Section title="How it looks">
-        <Keyframes visual={ex.visual} name={ex.name} />
-        <p className="small faint" style={{ marginTop: 6 }}>Original PeakForm illustration. It shows positions, not exact joint angles for your body.</p>
+        {(ex.visual.poses?.length ?? 0) > 0 || ex.visual.diagram ? (
+          <>
+            <Keyframes visual={ex.visual} name={ex.name} />
+            <p className="small faint" style={{ marginTop: 6 }}>Original PeakForm illustration. It shows positions, not exact joint angles for your body.</p>
+          </>
+        ) : (
+          <p className="small muted">You added this exercise, so it has no illustration. The muscle map below shows what it trains.</p>
+        )}
       </Section>
 
       <Section title="Last time and next target">
@@ -154,10 +176,10 @@ export function ExerciseScreen({ id }: { id: string }) {
 
       <Section title="Movement details">
         <div className="group">
-          <Item title="Pattern" end={ex.movementPattern.replace(/_/g, ' ')} />
+          <Item title="Pattern" end={sentence(ex.movementPattern.replace(/_/g, ' '))} />
           <Item title="Joints" end={ex.joints.join(', ')} />
           <Item title="Sides" end={ex.laterality === 'unilateral' ? 'One side at a time, log both' : ex.laterality === 'alternating' ? 'Alternating' : 'Both together'} />
-          <Item title="Also tires" end={ex.fatigueOverlap.length ? ex.fatigueOverlap.map((f) => f.replace('_', ' ')).join(', ') : 'Nothing notable'} />
+          <Item title="Also tires" end={ex.fatigueOverlap.length ? sentence(ex.fatigueOverlap.map((f) => FATIGUE_LABEL[f]).join(', ')) : 'Nothing notable'} />
         </div>
       </Section>
 

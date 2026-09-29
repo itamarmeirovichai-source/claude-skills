@@ -137,7 +137,7 @@ export function FoodLogScreen({ slot, date, mode }: { slot: string; date: string
               </div>
               <div className="small muted">kcal, {lowestConfidence === 'low' ? 'estimated by eye, low confidence' : lowestConfidence === 'medium' ? 'household measures, medium confidence' : 'weighed or label, high confidence'}</div>
             </div>
-            <div style={{ textAlign: 'right' }} className="small">
+            <div style={{ textAlign: 'right', whiteSpace: 'nowrap', flex: 'none' }} className="small">
               <div>Protein {formatRange(t.low.protein, t.high.protein, ' g')}</div>
               <div>Carbs {formatRange(t.low.carbs, t.high.carbs, ' g')}</div>
               <div>Fat {formatRange(t.low.fat, t.high.fat, ' g')}</div>

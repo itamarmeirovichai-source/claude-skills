@@ -8,6 +8,12 @@ export interface Pt {
   y: number;
 }
 
+function niceStep(raw: number): number {
+  const mag = 10 ** Math.floor(Math.log10(raw));
+  const n = raw / mag;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * mag;
+}
+
 export function LineChart({ points, line, unit, label, band, height = 150, decimals = 1 }: { points: Pt[]; line?: Pt[]; unit: string; label: string; band?: [number, number]; height?: number; decimals?: number }) {
   const all = [...points, ...(line ?? [])];
   if (all.length === 0) return <p className="small muted">Nothing logged yet.</p>;
@@ -30,11 +36,14 @@ export function LineChart({ points, line, unit, label, band, height = 150, decim
   const padY = (ymax - ymin) * 0.12;
   ymin -= padY;
   ymax += padY;
+  // Round axis labels, for example 78, 78.5, 79 rather than 77.9, 78.6, 79.2.
+  const step = niceStep((ymax - ymin) / 3);
+  const ticks: number[] = [];
+  for (let t = Math.ceil(ymin / step) * step; t <= ymax + 1e-9; t += step) ticks.push(Number(t.toFixed(6)));
   const inner = 8;
   const sx = (d: DateKey) => padL + inner + (diffDays(d, x0) / span) * (W - padL - padR - inner * 2);
   const sy = (v: number) => padT + (1 - (v - ymin) / (ymax - ymin)) * (H - padT - padB);
   const path = (ps: Pt[]) => ps.map((p, i) => `${i ? 'L' : 'M'}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(' ');
-  const ticks = [ymin + padY, (ymin + ymax) / 2, ymax - padY];
   const lastLine = line && line.length ? line[line.length - 1] : undefined;
   const firstLine = line && line.length ? line[0] : undefined;
   const summary = lastLine && firstLine ? `${label}: ${firstLine.y.toFixed(decimals)} ${unit} on ${formatDateKey(firstLine.x)} to ${lastLine.y.toFixed(decimals)} ${unit} on ${formatDateKey(lastLine.x)}.` : `${label}: ${points.length} values.`;
@@ -46,7 +55,7 @@ export function LineChart({ points, line, unit, label, band, height = 150, decim
           <g key={t}>
             <line className="grid" x1={padL} x2={W - padR} y1={sy(t)} y2={sy(t)} />
             <text x={padL - 4} y={sy(t) + 4} textAnchor="end">
-              {t.toFixed(decimals === 0 ? 0 : 1)}
+              {step >= 1 ? t.toFixed(0) : t.toFixed(1)}
             </text>
           </g>
         ))}

@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
 import { KV, deleteAllData, ensureInitialized, getTargets, kvGet, removeDemoData, restoreSnapshot, saveTargets, savePlanVersion, updateSettings, readAllTables, writeAllTables } from '../db/repo';
 import { useSettings } from '../ui/state';
-import { Item, Note, PageHead, Section, Seg, useToast } from '../ui/components';
+import { FilePick, Item, Note, PageHead, Section, Seg, useToast } from '../ui/components';
 import { ExportAction } from '../ui/ExportAction';
 import { applyImport, prepareBackup, prepareCsv, prepareImport } from '../services/exporter';
 import type { ConflictChoice, ImportPreview } from '../domain/backup';
@@ -197,7 +197,9 @@ export async function loadDemo(today: string, markOnboarded = true): Promise<voi
   const merged = { ...cur };
   for (const [k, v] of Object.entries(demo)) merged[k as keyof typeof merged] = [...(cur[k as keyof typeof cur] ?? []), ...(v as Array<Record<string, unknown>>)];
   await writeAllTables(merged, 'replace');
-  await updateSettings(markOnboarded ? { demoData: true, onboarded: true } : { demoData: true });
+  // The demo covers the last two weeks, so the plan counts as started when the demo does.
+  const start = addDays(today, -14);
+  await updateSettings((s) => ({ ...s, demoData: true, onboarded: markOnboarded ? true : s.onboarded, planStartDate: !s.planStartDate || s.planStartDate > start ? start : s.planStartDate }));
 }
 
 function ImportSection() {
@@ -235,14 +237,12 @@ function ImportSection() {
     <Section title="Import">
       <div className="panel stack" data-testid="import">
         <p className="small muted">Restore a PeakForm backup or a private setup file. You will see exactly what is inside before anything changes, and a safety copy is made first.</p>
-        <input
-          ref={fileRef}
-          type="file"
+        <FilePick
+          label="Choose a file"
+          inputRef={fileRef}
           accept="application/json,.json"
-          data-testid="import-file"
-          onChange={async (e) => {
-            const f = e.target.files?.[0];
-            if (!f) return;
+          testId="import-file"
+          onFile={async (f) => {
             if (f.size > 50 * 1024 * 1024) return setError('That file is too large to be a PeakForm backup.');
             const t = await f.text();
             setText(t);
@@ -358,16 +358,9 @@ export function RecommendationScreen() {
       <p className="small muted">
         A recommendation is a small JSON file, for example from a coach or an assistant you shared your report with. PeakForm checks it, shows every change, and applies nothing until you confirm. Changes below the safety floors are blocked.
       </p>
-      <input
-        type="file"
-        accept="application/json,.json"
-        style={{ marginTop: 12 }}
-        data-testid="rec-file"
-        onChange={async (e) => {
-          const f = e.target.files?.[0];
-          if (f) setCheck(checkRecommendation(await f.text()));
-        }}
-      />
+      <div style={{ marginTop: 12 }}>
+        <FilePick label="Choose a recommendation file" accept="application/json,.json" testId="rec-file" onFile={async (f) => setCheck(checkRecommendation(await f.text()))} />
+      </div>
       {check && !check.ok && (
         <Note tone="danger" title="This file cannot be used">
           <ul className="bullets small">
@@ -445,7 +438,7 @@ export function RecommendationScreen() {
         </Section>
       )}
       <Section title="File format">
-        <pre className="panel small" style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }}>{`{
+        <pre className="panel small code">{`{
   "format": "peakform-recommendation",
   "version": 1,
   "source": "Coach",

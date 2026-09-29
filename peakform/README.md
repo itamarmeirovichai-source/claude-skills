@@ -46,6 +46,7 @@ Useful scripts:
 - `npx tsx scripts/make-fixtures.ts` rebuilds the synthetic example backups in `fixtures/`.
 - `npx tsx scripts/figure-sheet.ts <dir> src/content/exercises/lower.ts` renders exercise keyframes for review.
 - `npx tsx scripts/shots.ts <dir> 390 light` captures screenshots from a running preview server.
+- `npx tsx scripts/sweep.ts <dir> <375|390|393|430> <light|dark> <demo|empty|long|large|offline>` walks every major screen and state and tiles the screenshots into contact sheets for design review.
 - `npx tsx scripts/make-qr.ts <url>` writes the install QR code to `docs/`.
 
 ## Architecture

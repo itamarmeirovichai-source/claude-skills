@@ -85,7 +85,7 @@ export function ProgressScreen() {
       <Section title="Body weight">
         <div className="metric-row">
           <Metric label="7 day average" value={thisWeek.reliable ? `${thisWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={`${thisWeek.count} morning weights`} testId="weight-avg" />
-          <Metric label="Week before" value={lastWeek.reliable ? `${lastWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={thisWeek.reliable && lastWeek.reliable ? `${((thisWeek.avg ?? 0) - (lastWeek.avg ?? 0)).toFixed(2)} kg change` : 'Needs 4 a week'} />
+          <Metric label="Week before" value={lastWeek.reliable ? `${lastWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={thisWeek.reliable && lastWeek.reliable ? weekChange((thisWeek.avg ?? 0) - (lastWeek.avg ?? 0)) : 'Needs 4 a week'} />
         </div>
         <div className="panel" style={{ marginTop: 8 }}>
           <LineChart points={weights.filter((p) => p.date >= from).map((p) => ({ x: p.date, y: p.kg }))} line={avg} unit="kg" label="Seven day average weight" />
@@ -139,9 +139,9 @@ export function ProgressScreen() {
 
       <Section title="How you feel">
         <div className="metric-row">
-          <Metric label="Energy" value={fmt1(w('energy', addDays(today, -6), today))} sub={`last week ${fmt1(w('energy', addDays(today, -13), addDays(today, -7)))}`} />
-          <Metric label="Mood" value={fmt1(w('mood', addDays(today, -6), today))} sub={`last week ${fmt1(w('mood', addDays(today, -13), addDays(today, -7)))}`} />
-          <Metric label="Concentration" value={fmt1(w('concentration', addDays(today, -6), today))} sub={`last week ${fmt1(w('concentration', addDays(today, -13), addDays(today, -7)))}`} />
+          <Metric label="Energy" value={fmt1(w('energy', addDays(today, -6), today))} sub={priorWeekText(w('energy', addDays(today, -13), addDays(today, -7)))} />
+          <Metric label="Mood" value={fmt1(w('mood', addDays(today, -6), today))} sub={priorWeekText(w('mood', addDays(today, -13), addDays(today, -7)))} />
+          <Metric label="Concentration" value={fmt1(w('concentration', addDays(today, -6), today))} sub={priorWeekText(w('concentration', addDays(today, -13), addDays(today, -7)))} />
         </div>
         <p className="small faint" style={{ marginTop: 4 }}>Averages out of 5 from morning check ins.</p>
       </Section>
@@ -149,7 +149,7 @@ export function ProgressScreen() {
       <Section title="Training">
         <div className="metric-row">
           <Metric label="Sessions, 14 days" value={String(data.sessions.filter((s) => s.status === 'done').length)} />
-          <Metric label="Jump and skill quality" value={avgQuality === null ? 'none' : `${avgQuality.toFixed(1)} / 5`} />
+          <Metric label="Jump and skill quality" value={avgQuality === null ? 'None yet' : `${avgQuality.toFixed(1)} / 5`} />
           <Metric label="Swims, 14 days" value={`${swims.length} of 4`} />
         </div>
         <div className="group" style={{ marginTop: 8 }}>
@@ -170,7 +170,11 @@ export function ProgressScreen() {
 }
 
 function fmt1(n: number | null) {
-  return n === null ? 'none' : n.toFixed(1);
+  return n === null ? 'None yet' : n.toFixed(1);
+}
+
+function priorWeekText(n: number | null) {
+  return n === null ? 'Nothing last week' : `last week ${n.toFixed(1)}`;
 }
 
 function wellbeing(checkins: Array<{ date: string; energy: number | null; mood: number | null; concentration: number | null }>, sleep: Array<{ date: string; durationMin: number }>, start: string, end: string) {
@@ -328,7 +332,7 @@ function ExerciseHistory({ id }: { id: string }) {
       <PageHead title={exerciseName(id)} eyebrow="History" backTo="/progress" />
       <div className="metric-row">
         <Metric label="Sessions" value={String(hist.length)} />
-        <Metric label="Best clean set" value={pr ? `${pr.weightKg} kg × ${pr.reps}` : 'none'} sub={item?.rir !== undefined ? `good form, ${item.rir}+ RIR, no pain` : 'good form, no pain'} />
+        <Metric label="Best clean set" value={pr ? `${pr.weightKg} kg × ${pr.reps}` : 'None yet'} sub={item?.rir !== undefined ? `good form, ${item.rir}+ RIR, no pain` : 'good form, no pain'} />
       </div>
       {vol.length > 1 && (
         <Section title="Work done per session">
@@ -352,4 +356,10 @@ function ExerciseHistory({ id }: { id: string }) {
       <p className="small faint" style={{ marginTop: 12 }}>Personal bests only count sets with good form, the prescribed reps in reserve, and no pain.</p>
     </div>
   );
+}
+
+function weekChange(d: number): string {
+  const r = Math.round(d * 10) / 10;
+  if (r === 0) return 'About the same this week';
+  return `${Math.abs(r).toFixed(1)} kg ${r > 0 ? 'higher' : 'lower'} this week`;
 }

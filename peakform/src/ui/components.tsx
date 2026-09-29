@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useId, useRef, useState, type ReactNode, type RefObject } from 'react';
 import { IconBack, IconChevron, IconClose } from './icons';
 import { back, Link } from './router';
 
@@ -170,6 +170,8 @@ export function Sheet({ open, onClose, title, children, testId }: { open: boolea
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKey);
+    // A toast from the previous step would sit on top of the sheet header.
+    window.dispatchEvent(new Event('pf-sheet-open'));
     document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', onKey);
@@ -194,6 +196,26 @@ export function Sheet({ open, onClose, title, children, testId }: { open: boolea
   );
 }
 
+/** A file chooser styled as a normal button. The native control is visually hidden but stays focusable. */
+export function FilePick({ label, accept, onFile, testId, inputRef }: { label: string; accept: string; onFile: (f: File) => void; testId?: string; inputRef?: RefObject<HTMLInputElement | null> }) {
+  return (
+    <label className="btn btn-outline file-pick">
+      <input
+        ref={inputRef}
+        className="sr-only"
+        type="file"
+        accept={accept}
+        data-testid={testId}
+        onChange={(e) => {
+          const f = e.target.files?.[0];
+          if (f) onFile(f);
+        }}
+      />
+      {label}
+    </label>
+  );
+}
+
 // ---------- Toasts with undo ----------
 
 interface ToastState {
@@ -209,7 +231,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const clear = () => setT(null);
     window.addEventListener('hashchange', clear);
-    return () => window.removeEventListener('hashchange', clear);
+    window.addEventListener('pf-sheet-open', clear);
+    return () => {
+      window.removeEventListener('hashchange', clear);
+      window.removeEventListener('pf-sheet-open', clear);
+    };
   }, []);
   const show = useCallback((text: string, action?: ToastState['action']) => {
     if (timer.current) window.clearTimeout(timer.current);

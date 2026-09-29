@@ -240,7 +240,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
               Last time{last ? `, ${last.session.date}` : ''}
             </span>
             <span className="item-title num" style={{ display: 'block' }}>
-              {last ? summarizeSets(last.sets) : 'First time. Pick a load you can control with the prescribed reps in reserve.'}
+              {last ? summarizeSets(last.sets) : firstTimeText(ex?.kind)}
             </span>
           </span>
         </div>
@@ -385,7 +385,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
               <div>
                 <div className="stepper-label">
                   <span>Reps in reserve</span>
-                  <span className="prev">Target {item.rir ?? 'none'}</span>
+                  <span className="prev">{item.rir !== undefined ? `Target ${item.rir}` : ''}</span>
                 </div>
                 <Seg label="Reps in reserve" value={draft.rir} onChange={(v) => set({ rir: v })} options={[0, 1, 2, 3, 4, 5].map((r) => ({ value: r, label: String(r), tone: item.rir !== undefined && r < item.rir ? ('warn' as const) : undefined }))} />
                 {draft.rir !== null && item.rir !== undefined && draft.rir < item.rir && <p className="hint">Below the target. Next set, stop a rep or two earlier.</p>}
@@ -443,7 +443,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
             )}
           </div>
           <div className="stack" style={{ marginTop: 14 }}>
-            <div className="grid-3">
+            <div className="action-row">
               <button type="button" className="btn btn-outline btn-sm" onClick={copyLast} disabled={!work.length}>
                 Copy last
               </button>
@@ -451,7 +451,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
                 Skip set
               </button>
               <button type="button" className="btn btn-outline btn-sm" onClick={() => timer.start(ex.name, item.restSec, ex.id)} data-testid="start-rest">
-                Rest {Math.round(item.restSec / 60) >= 1 ? `${Math.round((item.restSec / 60) * 10) / 10} min` : `${item.restSec} s`}
+                Rest {item.restSec >= 60 ? `${Math.round((item.restSec / 60) * 10) / 10} min` : `${item.restSec} s`}
               </button>
             </div>
           </div>
@@ -609,4 +609,11 @@ function SubstituteSheet({ open, onClose, es }: { open: boolean; onClose: () => 
       </div>
     </Sheet>
   );
+}
+
+function firstTimeText(kind: string | undefined): string {
+  if (kind === 'strength') return 'First time. Pick a load you can control with the prescribed reps in reserve.';
+  if (kind === 'bodyweight' || kind === 'hold') return 'First time. Use a version you can do with good form and reps in reserve.';
+  if (kind === 'jump' || kind === 'sprint' || kind === 'throw' || kind === 'skill') return 'First time. Keep every rep fast and controlled, and stop when quality drops.';
+  return 'First time. Follow the prescription at an easy, steady effort.';
 }

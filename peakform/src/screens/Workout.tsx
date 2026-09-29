@@ -4,7 +4,7 @@ import { db } from '../db/db';
 import { decideSuggestion, updateSession } from '../db/repo';
 import type { ExerciseSession, SetLog, WorkoutSession } from '../db/records';
 import { exercise, exerciseName } from '../content/library';
-import { PageHead, Note, Section, Seg, Sheet, Stepper, useToast } from '../ui/components';
+import { PageHead, Note, Section, Seg, Sheet, Stepper } from '../ui/components';
 import { navigate, Link } from '../ui/router';
 import { useTimer, useSettings } from '../ui/state';
 import { SetLogger } from './SetLogger';
@@ -111,7 +111,6 @@ function FinishSheet({ open, onClose, session, allDone }: { open: boolean; onClo
   const [soreness, setSoreness] = useState<number | null>(1);
   const [note, setNote] = useState('');
   const [busy, setBusy] = useState(false);
-  const toast = useToast();
   const timer = useTimer();
   return (
     <Sheet open={open} onClose={onClose} title="Finish workout" testId="finish-sheet">
@@ -142,9 +141,10 @@ function FinishSheet({ open, onClose, session, allDone }: { open: boolean; onClo
           onClick={async () => {
             setBusy(true);
             timer.stop();
-            const r = await finishSession(session, { sessionRpe: rpe, recovery: { energy, soreness }, note });
-            toast(r.suggestions ? 'Workout saved. Next targets are ready to review.' : 'Workout saved');
+            // The summary that replaces the workout is the confirmation, so no toast here.
+            await finishSession(session, { sessionRpe: rpe, recovery: { energy, soreness }, note });
             onClose();
+            window.scrollTo(0, 0);
           }}
         >
           Save workout
@@ -193,12 +193,12 @@ function WorkoutSummary({ session, exs, sets }: { session: WorkoutSession; exs: 
           </div>
           <div className="metric">
             <div className="m-label">Effort</div>
-            <div className="m-value">{session.sessionRpe ?? 'none'}</div>
+            <div className="m-value">{session.sessionRpe ?? 'Not given'}</div>
             <div className="m-sub">RPE out of 10</div>
           </div>
           <div className="metric">
             <div className="m-label">Duration</div>
-            <div className="m-value">{session.finishedAt ? elapsed(session.finishedAt - session.startedAt) : 'none'}</div>
+            <div className="m-value">{session.finishedAt ? elapsed(session.finishedAt - session.startedAt) : 'Not recorded'}</div>
           </div>
         </div>
       )}
