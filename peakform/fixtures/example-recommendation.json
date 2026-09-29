@@ -1,0 +1,20 @@
+{
+  "format": "peakform-recommendation",
+  "version": 1,
+  "source": "Example coach",
+  "createdAt": "2026-10-04",
+  "changes": [
+    {
+      "type": "plan-item",
+      "planItemId": "thu-6-lateral-raise",
+      "sets": 3,
+      "reason": "Side delts are recovering well. Add one set for four weeks."
+    },
+    {
+      "type": "nutrition-target",
+      "weekday": 6,
+      "kcal": 2300,
+      "reason": "Rest day hunger was high. Small increase within the plan."
+    }
+  ]
+}

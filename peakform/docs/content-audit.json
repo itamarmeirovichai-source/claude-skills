@@ -1,0 +1,4559 @@
+{
+  "generated": "2026-09-29T20:06:54.795Z",
+  "counts": {
+    "exercises": 46,
+    "muscles": 31,
+    "planItems": 59,
+    "mealTemplates": 15,
+    "recipes": 10,
+    "foods": 45,
+    "sources": 53,
+    "media": 35
+  },
+  "exercises": [
+    {
+      "id": "barbell-squat",
+      "name": "Barbell Squat",
+      "kind": "strength",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "erectors",
+        "hamstrings",
+        "obliques_core"
+      ],
+      "pattern": "squat",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Goblet squat",
+        "Hack Squat",
+        "Leg press",
+        "Bulgarian Split Squat"
+      ],
+      "media": [
+        {
+          "channel": "Squat University",
+          "url": "https://www.youtube.com/watch?v=SbgHegC6lEs",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "romanian-deadlift",
+      "name": "Romanian Deadlift",
+      "kind": "strength",
+      "primary": [
+        "hamstrings",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "erectors",
+        "obliques_core",
+        "forearm_flexors"
+      ],
+      "pattern": "hinge",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Dumbbell Romanian deadlift",
+        "Cable pull through",
+        "Seated Leg Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "bulgarian-split-squat",
+      "name": "Bulgarian Split Squat",
+      "kind": "strength",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "glute_med",
+        "adductors",
+        "hamstrings",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core"
+      ],
+      "pattern": "lunge",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Split squat with the back foot on the floor",
+        "Goblet reverse lunge",
+        "Hack Squat"
+      ],
+      "media": [
+        {
+          "channel": "Squat University",
+          "url": "https://www.youtube.com/watch?v=-4LVK1crLSw",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "standing-calf-raise",
+      "name": "Standing Calf Raise",
+      "kind": "strength",
+      "primary": [
+        "gastrocnemius"
+      ],
+      "secondary": [
+        "soleus"
+      ],
+      "pattern": "plantar_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Bodyweight calf raise on a step",
+        "Smith machine calf raise",
+        "Seated Calf Raise"
+      ],
+      "media": [
+        {
+          "channel": "Children's Hospital Colorado",
+          "url": "https://www.youtube.com/watch?v=k8ipHzKeAkQ",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "tibialis-raise",
+      "name": "Tibialis Raise",
+      "kind": "bodyweight",
+      "primary": [
+        "tibialis_anterior"
+      ],
+      "secondary": [],
+      "pattern": "dorsiflexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated toe raise",
+        "Resistance band toe raise",
+        "Tib bar raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "hack-squat",
+      "name": "Hack Squat",
+      "kind": "strength",
+      "primary": [
+        "quads"
+      ],
+      "secondary": [
+        "glute_max",
+        "adductors"
+      ],
+      "pattern": "squat",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Leg press",
+        "Goblet squat",
+        "Barbell Squat"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=rYgNArpwE7E",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "barbell-hip-thrust",
+      "name": "Barbell Hip Thrust",
+      "kind": "strength",
+      "primary": [
+        "glute_max"
+      ],
+      "secondary": [
+        "hamstrings",
+        "adductors"
+      ],
+      "pattern": "hip_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Glute bridge",
+        "Dumbbell hip thrust",
+        "Romanian Deadlift"
+      ],
+      "media": [
+        {
+          "channel": "Bret Contreras Glute Guy",
+          "url": "https://www.youtube.com/watch?v=hCm-70-9_XE",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "seated-leg-curl",
+      "name": "Seated Leg Curl",
+      "kind": "strength",
+      "primary": [
+        "hamstrings"
+      ],
+      "secondary": [],
+      "pattern": "knee_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Lying band leg curl",
+        "Lying leg curl",
+        "Stability ball hamstring curl"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=Orxowest56U",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "leg-extension",
+      "name": "Leg Extension",
+      "kind": "strength",
+      "primary": [
+        "quads"
+      ],
+      "secondary": [],
+      "pattern": "knee_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated band knee extension",
+        "Heels elevated goblet squat",
+        "Hack Squat"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=m0FOpMEgero",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "cable-hip-abduction",
+      "name": "Cable Hip Abduction",
+      "kind": "strength",
+      "primary": [
+        "glute_med"
+      ],
+      "secondary": [],
+      "pattern": "hip_abduction",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Side lying hip abduction",
+        "Seated hip abduction machine",
+        "Banded lateral walk"
+      ],
+      "media": []
+    },
+    {
+      "id": "seated-calf-raise",
+      "name": "Seated Calf Raise",
+      "kind": "strength",
+      "primary": [
+        "soleus"
+      ],
+      "secondary": [
+        "gastrocnemius"
+      ],
+      "pattern": "plantar_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Bent knee calf raise on a step",
+        "Seated dumbbell calf raise",
+        "Standing Calf Raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "nordic-hamstring-curl",
+      "name": "Nordic Hamstring Curl",
+      "kind": "bodyweight",
+      "primary": [
+        "hamstrings"
+      ],
+      "secondary": [],
+      "pattern": "knee_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band assisted Nordic hamstring curl",
+        "Seated Leg Curl",
+        "Hand assisted Nordic hamstring curl"
+      ],
+      "media": [
+        {
+          "channel": "E3 Rehab",
+          "url": "https://www.youtube.com/watch?v=_e9vFU9-tkc",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "barbell-bench-press",
+      "name": "Barbell Bench Press",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "triceps",
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Dumbbell bench press",
+        "Push up"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=hSHZvAp1VvA",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "incline-barbell-bench-press",
+      "name": "Incline Barbell Bench Press",
+      "kind": "strength",
+      "primary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "secondary": [
+        "triceps",
+        "pec_sternal"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Incline machine press",
+        "Incline dumbbell press",
+        "Barbell Bench Press"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=wqByyWZjHgY",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "machine-bench-press",
+      "name": "Machine Bench Press",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "triceps",
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Incline push up",
+        "Dumbbell bench press",
+        "Barbell Bench Press"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=NwzUje3z0qY",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "flat-cable-fly",
+      "name": "Flat Cable Fly",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "pattern": "shoulder_horizontal_adduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Pec deck machine fly",
+        "Dumbbell fly on a flat bench",
+        "Machine Bench Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "wide-grip-lat-pulldown",
+      "name": "Wide Grip Lat Pulldown",
+      "kind": "strength",
+      "primary": [
+        "lats"
+      ],
+      "secondary": [
+        "teres_major",
+        "biceps",
+        "brachialis",
+        "traps_lower",
+        "traps_middle",
+        "rhomboids"
+      ],
+      "pattern": "vertical_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Close neutral grip lat pulldown",
+        "Assisted pull up",
+        "One Arm Lat Pulldown"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=YCKPD4BSD2E",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "one-arm-lat-pulldown",
+      "name": "One Arm Lat Pulldown",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "teres_major"
+      ],
+      "secondary": [
+        "biceps",
+        "brachialis",
+        "traps_lower",
+        "forearm_flexors"
+      ],
+      "pattern": "vertical_pull",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Wide Grip Lat Pulldown",
+        "One arm dumbbell row",
+        "Half kneeling one arm cable pulldown"
+      ],
+      "media": [
+        {
+          "channel": "Mountain Dog Diet (John Meadows)",
+          "url": "https://www.youtube.com/watch?v=r68DrqhNSis",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "leverage-high-row",
+      "name": "Leverage High Row",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "traps_middle",
+        "rhomboids"
+      ],
+      "secondary": [
+        "delt_posterior",
+        "teres_major",
+        "traps_lower",
+        "biceps",
+        "brachialis",
+        "brachioradialis"
+      ],
+      "pattern": "high_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Resistance band high row",
+        "Kneeling high cable row",
+        "Seated Cable Row"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=gg5hwJuv6KI",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "seated-cable-row",
+      "name": "Seated Cable Row",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "traps_middle",
+        "rhomboids"
+      ],
+      "secondary": [
+        "delt_posterior",
+        "teres_major",
+        "biceps",
+        "brachialis",
+        "brachioradialis",
+        "forearm_flexors",
+        "erectors"
+      ],
+      "pattern": "horizontal_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Chest supported machine row",
+        "One arm dumbbell row",
+        "Leverage High Row"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=UCXxvVItLoM",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "reverse-machine-fly",
+      "name": "Reverse Machine Fly",
+      "kind": "strength",
+      "primary": [
+        "delt_posterior"
+      ],
+      "secondary": [
+        "traps_middle",
+        "rhomboids",
+        "rotator_cuff"
+      ],
+      "pattern": "shoulder_horizontal_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band pull apart",
+        "Face Pull",
+        "Chest supported dumbbell reverse fly"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=5YK4bgzXDp0",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "face-pull",
+      "name": "Face Pull",
+      "kind": "strength",
+      "primary": [
+        "delt_posterior",
+        "rotator_cuff",
+        "traps_middle"
+      ],
+      "secondary": [
+        "traps_lower",
+        "rhomboids"
+      ],
+      "pattern": "shoulder_horizontal_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band face pull",
+        "Reverse Machine Fly",
+        "Cable External Rotation"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=-MODnZdnmAQ",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "lateral-raise",
+      "name": "Lateral Raise",
+      "kind": "strength",
+      "primary": [
+        "delt_lateral"
+      ],
+      "secondary": [
+        "rotator_cuff",
+        "traps_upper"
+      ],
+      "pattern": "shoulder_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated lateral raise",
+        "Single Arm Cable Lateral Raise",
+        "Machine lateral raise"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=OuG1smZTsQQ",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "single-arm-cable-lateral-raise",
+      "name": "Single Arm Cable Lateral Raise",
+      "kind": "strength",
+      "primary": [
+        "delt_lateral"
+      ],
+      "secondary": [
+        "rotator_cuff",
+        "traps_upper"
+      ],
+      "pattern": "shoulder_abduction",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Lateral Raise",
+        "Band lateral raise",
+        "Leaning one arm dumbbell lateral raise"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=lq7eLC30b9w",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "cable-external-rotation",
+      "name": "Cable External Rotation",
+      "kind": "strength",
+      "primary": [
+        "rotator_cuff"
+      ],
+      "secondary": [
+        "delt_posterior",
+        "traps_middle",
+        "traps_lower"
+      ],
+      "pattern": "shoulder_external_rotation",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band external rotation",
+        "Side lying dumbbell external rotation",
+        "Face Pull"
+      ],
+      "media": [
+        {
+          "channel": "E3 Rehab",
+          "url": "https://www.youtube.com/watch?v=X-JP6sJTZAI",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "hammer-curl",
+      "name": "Hammer Curl",
+      "kind": "strength",
+      "primary": [
+        "brachialis",
+        "brachioradialis"
+      ],
+      "secondary": [
+        "biceps"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated hammer curl",
+        "Cable rope hammer curl",
+        "Machine Preacher Curl"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=XOEL4MgekYE",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "machine-preacher-curl",
+      "name": "Machine Preacher Curl",
+      "kind": "strength",
+      "primary": [
+        "biceps",
+        "brachialis"
+      ],
+      "secondary": [
+        "brachioradialis"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Standing cable curl",
+        "Dumbbell preacher curl",
+        "Hammer Curl"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=Ja6ZlIDONac",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "triceps-pushdown",
+      "name": "Triceps Pushdown",
+      "kind": "strength",
+      "primary": [
+        "triceps"
+      ],
+      "secondary": [],
+      "pattern": "elbow_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band triceps pushdown",
+        "Dumbbell kickback",
+        "Rope Overhead Triceps Extension"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=6Fzep104f0s",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "rope-overhead-triceps-extension",
+      "name": "Rope Overhead Triceps Extension",
+      "kind": "strength",
+      "primary": [
+        "triceps"
+      ],
+      "secondary": [],
+      "pattern": "elbow_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Triceps Pushdown",
+        "Seated overhead dumbbell triceps extension",
+        "Band overhead triceps extension"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=kqidUIf1eJE",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "palm-down-wrist-curl",
+      "name": "Seated Palm Down Barbell Wrist Curl",
+      "kind": "strength",
+      "primary": [
+        "forearm_extensors"
+      ],
+      "secondary": [
+        "forearm_flexors"
+      ],
+      "pattern": "wrist_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Dumbbell palm down wrist curl",
+        "Band wrist extension",
+        "Wrist roller"
+      ],
+      "media": []
+    },
+    {
+      "id": "palm-up-wrist-curl",
+      "name": "Seated Palm Up Barbell Wrist Curl",
+      "kind": "strength",
+      "primary": [
+        "forearm_flexors"
+      ],
+      "secondary": [],
+      "pattern": "wrist_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Dumbbell palm up wrist curl",
+        "Cable wrist curl",
+        "Farmer carry"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=2wPpcJBe03o",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "easy-jump-rope",
+      "name": "Easy Jump Rope",
+      "kind": "conditioning",
+      "primary": [
+        "gastrocnemius",
+        "soleus"
+      ],
+      "secondary": [
+        "tibialis_anterior",
+        "quads",
+        "glute_max",
+        "obliques_core"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Marching or easy jogging on the spot",
+        "Rope free skipping",
+        "Easy cycling"
+      ],
+      "media": []
+    },
+    {
+      "id": "dynamic-volleyball-warm-up",
+      "name": "Dynamic Volleyball Warm Up",
+      "kind": "warmup",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "hamstrings",
+        "glute_med",
+        "adductors",
+        "hip_flexors",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core",
+        "delt_posterior",
+        "traps_middle",
+        "rhomboids",
+        "rotator_cuff",
+        "serratus_anterior"
+      ],
+      "pattern": "general_preparation",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Short 5 minute warm up",
+        "Warm up without a band",
+        "Easy Jump Rope"
+      ],
+      "media": [
+        {
+          "channel": "USA Volleyball",
+          "url": "https://www.youtube.com/watch?v=OQyGncNgNIk",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "volleyball-approach-jump",
+      "name": "Volleyball Approach Jump",
+      "kind": "jump",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "gastrocnemius",
+        "soleus",
+        "hamstrings",
+        "obliques_core"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Countermovement Jump",
+        "Open floor approach jump",
+        "Volleyball Approach Footwork"
+      ],
+      "media": []
+    },
+    {
+      "id": "countermovement-jump",
+      "name": "Countermovement Jump",
+      "kind": "jump",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "gastrocnemius",
+        "soleus",
+        "hamstrings",
+        "obliques_core"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Snap down and stick",
+        "Countermovement jump on flat grass",
+        "Volleyball Approach Jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "volleyball-approach-footwork",
+      "name": "Volleyball Approach Footwork",
+      "kind": "skill",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "gastrocnemius",
+        "soleus",
+        "hamstrings"
+      ],
+      "pattern": "locomotion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Two step approach",
+        "Approach footwork on any open floor",
+        "Volleyball Approach Jump"
+      ],
+      "media": [
+        {
+          "channel": "The Art of Coaching Volleyball",
+          "url": "https://www.youtube.com/watch?v=BXBTBBngrwA",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "shuffle-to-sprint",
+      "name": "Shuffle to Sprint",
+      "kind": "sprint",
+      "primary": [
+        "glute_max",
+        "glute_med",
+        "quads"
+      ],
+      "secondary": [
+        "adductors",
+        "hamstrings",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core"
+      ],
+      "pattern": "change_of_direction",
+      "laterality": "alternating",
+      "logSides": true,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "lane"
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Shuffle to jog",
+        "Shuffle to sprint on grass or a track",
+        "Ten Metre Sprint"
+      ],
+      "media": []
+    },
+    {
+      "id": "medicine-ball-spike-throw",
+      "name": "Medicine Ball Spike Throw",
+      "kind": "throw",
+      "primary": [
+        "lats",
+        "rectus_abdominis",
+        "obliques_core"
+      ],
+      "secondary": [
+        "pec_sternal",
+        "triceps",
+        "teres_major",
+        "rotator_cuff",
+        "serratus_anterior"
+      ],
+      "pattern": "throw",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Tall kneeling medicine ball throw",
+        "Volleyball slam into the floor",
+        "Medicine ball wall throw"
+      ],
+      "media": []
+    },
+    {
+      "id": "volleyball-spike",
+      "name": "Volleyball Spike",
+      "kind": "skill",
+      "primary": [
+        "lats",
+        "pec_sternal",
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "serratus_anterior",
+        "triceps",
+        "rotator_cuff",
+        "delt_anterior",
+        "obliques_core",
+        "gastrocnemius",
+        "hamstrings"
+      ],
+      "pattern": "overhead_strike",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Standing wall spike",
+        "Medicine Ball Spike Throw",
+        "Volleyball Approach Jump"
+      ],
+      "media": [
+        {
+          "channel": "Olympics",
+          "url": "https://www.youtube.com/watch?v=jx7z8bkIj4Y",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "lateral-block-jump",
+      "name": "Lateral Block Jump",
+      "kind": "jump",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "glute_med",
+        "adductors",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core"
+      ],
+      "pattern": "jump",
+      "laterality": "alternating",
+      "logSides": true,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Countermovement Jump",
+        "Lateral block jump along a line",
+        "Side step and stick"
+      ],
+      "media": []
+    },
+    {
+      "id": "block-to-spike-transition",
+      "name": "Block to Spike Transition",
+      "kind": "skill",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "hamstrings",
+        "glute_med",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core",
+        "lats",
+        "pec_sternal",
+        "delt_anterior",
+        "rotator_cuff",
+        "serratus_anterior"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "court"
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Walk through transition",
+        "Volleyball Approach Footwork",
+        "Lateral Block Jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "ten-metre-sprint",
+      "name": "Ten Metre Sprint",
+      "kind": "sprint",
+      "primary": [
+        "glute_max",
+        "quads",
+        "hamstrings"
+      ],
+      "secondary": [
+        "gastrocnemius",
+        "soleus",
+        "hip_flexors",
+        "obliques_core"
+      ],
+      "pattern": "sprint",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Build up run",
+        "Ten metre sprint on grass",
+        "Shuffle to Sprint"
+      ],
+      "media": []
+    },
+    {
+      "id": "easy-pool-round-trip",
+      "name": "Easy Moderate Pool Round Trip",
+      "kind": "swim",
+      "primary": [
+        "lats",
+        "pec_sternal",
+        "delt_anterior"
+      ],
+      "secondary": [
+        "delt_lateral",
+        "rotator_cuff",
+        "triceps",
+        "obliques_core",
+        "hip_flexors",
+        "glute_max",
+        "quads"
+      ],
+      "pattern": "swim",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "pool"
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Pool walking or easy kicking with a board",
+        "Easy cycling or a brisk walk",
+        "Easy Jump Rope"
+      ],
+      "media": []
+    },
+    {
+      "id": "pallof-press",
+      "name": "Pallof Press",
+      "kind": "strength",
+      "primary": [
+        "obliques_core"
+      ],
+      "secondary": [
+        "rectus_abdominis"
+      ],
+      "pattern": "anti_rotation",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Pallof hold at the chest",
+        "Band Pallof press",
+        "Side plank"
+      ],
+      "media": [
+        {
+          "channel": "Hinge Health",
+          "url": "https://www.youtube.com/watch?v=n8ZZG9gElhs",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "copenhagen-plank",
+      "name": "Copenhagen Plank",
+      "kind": "hold",
+      "primary": [
+        "adductors",
+        "obliques_core"
+      ],
+      "secondary": [
+        "glute_med"
+      ],
+      "pattern": "hip_adduction",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Short lever Copenhagen plank",
+        "Partner assisted Copenhagen plank",
+        "Adductor ball squeeze"
+      ],
+      "media": [
+        {
+          "channel": "E3 Rehab",
+          "url": "https://www.youtube.com/watch?v=YRRnnZsRs9U",
+          "status": "metadata-match"
+        }
+      ]
+    },
+    {
+      "id": "hanging-leg-raise",
+      "name": "Hanging Leg Raise",
+      "kind": "bodyweight",
+      "primary": [
+        "rectus_abdominis",
+        "hip_flexors"
+      ],
+      "secondary": [
+        "obliques_core",
+        "forearm_flexors"
+      ],
+      "pattern": "trunk_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Hanging knee raise",
+        "Reverse crunch",
+        "Captain's chair knee raise"
+      ],
+      "media": [
+        {
+          "channel": "Renaissance Periodization",
+          "url": "https://www.youtube.com/watch?v=7FwGZ8qY5OU",
+          "status": "metadata-match"
+        }
+      ]
+    }
+  ],
+  "plan": [
+    {
+      "weekday": 0,
+      "title": "Upper A and Swim",
+      "rest": false,
+      "items": [
+        {
+          "id": "sun-1-barbell-bench-press",
+          "session": "main",
+          "exercise": "Barbell Bench Press",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Medium grip."
+          ]
+        },
+        {
+          "id": "sun-2-flat-cable-fly",
+          "session": "main",
+          "exercise": "Flat Cable Fly",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-3-seated-cable-row",
+          "session": "main",
+          "exercise": "Seated Cable Row",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-4-one-arm-lat-pulldown",
+          "session": "main",
+          "exercise": "One Arm Lat Pulldown",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 120,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-5-single-arm-cable-lateral-raise",
+          "session": "main",
+          "exercise": "Single Arm Cable Lateral Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-6-machine-preacher-curl",
+          "session": "main",
+          "exercise": "Machine Preacher Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-7-palm-up-wrist-curl",
+          "session": "main",
+          "exercise": "Seated Palm Up Barbell Wrist Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-8-rope-overhead-triceps-extension",
+          "session": "main",
+          "exercise": "Rope Overhead Triceps Extension",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-9-cable-external-rotation",
+          "session": "main",
+          "exercise": "Cable External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-swim",
+          "session": "swim",
+          "exercise": "Easy Moderate Pool Round Trip",
+          "sets": 2,
+          "target": {
+            "type": "roundTrips",
+            "count": 10
+          },
+          "per": null,
+          "restSec": 300,
+          "rir": null,
+          "tempo": null,
+          "rpe": [
+            4,
+            5
+          ],
+          "notes": [
+            "Twenty round trips in total, with a five minute break after the first ten.",
+            "Easy to moderate effort, RPE 4 to 5.",
+            "Separate swimming from the main workout by at least three hours when possible.",
+            "Distance depends on pool length. Set it in the log."
+          ]
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2452,
+        "protein": 199,
+        "carbs": 266,
+        "fat": 69
+      },
+      "target": {
+        "kcal": 2450,
+        "band": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "carbs": 260,
+        "fat": 88
+      }
+    },
+    {
+      "weekday": 1,
+      "title": "Lower A Strength and Jump",
+      "rest": false,
+      "items": [
+        {
+          "id": "mon-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 9,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "mon-1-dynamic-volleyball-warm-up",
+          "session": "main",
+          "exercise": "Dynamic Volleyball Warm Up",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 8
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-2-volleyball-approach-jump",
+          "session": "main",
+          "exercise": "Volleyball Approach Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 2,
+            "max": 2
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "mon-3-countermovement-jump",
+          "session": "main",
+          "exercise": "Countermovement Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 2,
+            "max": 2
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "mon-4-barbell-squat",
+          "session": "main",
+          "exercise": "Barbell Squat",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 6,
+            "max": 10
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": 3,
+          "tempo": "3110",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-5-romanian-deadlift",
+          "session": "main",
+          "exercise": "Romanian Deadlift",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": 3,
+          "tempo": "3110",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-6-bulgarian-split-squat",
+          "session": "main",
+          "exercise": "Bulgarian Split Squat",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": "side",
+          "restSec": 150,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-7-standing-calf-raise",
+          "session": "main",
+          "exercise": "Standing Calf Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-8-tibialis-raise",
+          "session": "main",
+          "exercise": "Tibialis Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-9-pallof-press",
+          "session": "main",
+          "exercise": "Pallof Press",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2442,
+        "protein": 208,
+        "carbs": 266,
+        "fat": 65
+      },
+      "target": {
+        "kcal": 2450,
+        "band": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "carbs": 260,
+        "fat": 88
+      }
+    },
+    {
+      "weekday": 2,
+      "title": "Volleyball Technique and Shoulder Care",
+      "rest": false,
+      "items": [
+        {
+          "id": "tue-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 9,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "tue-1-dynamic-volleyball-warm-up",
+          "session": "main",
+          "exercise": "Dynamic Volleyball Warm Up",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 8
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-2-volleyball-approach-footwork",
+          "session": "main",
+          "exercise": "Volleyball Approach Footwork",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 4,
+            "max": 4
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Stop when coordination or speed declines."
+          ]
+        },
+        {
+          "id": "tue-3-shuffle-to-sprint",
+          "session": "main",
+          "exercise": "Shuffle to Sprint",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 1,
+            "max": 1
+          },
+          "per": "direction",
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "tue-4-medicine-ball-spike-throw",
+          "session": "main",
+          "exercise": "Medicine Ball Spike Throw",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 5
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "tue-5-volleyball-spike",
+          "session": "main",
+          "exercise": "Volleyball Spike",
+          "sets": 4,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 5
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "tue-6-cable-external-rotation",
+          "session": "main",
+          "exercise": "Cable External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-7-face-pull",
+          "session": "main",
+          "exercise": "Face Pull",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2449,
+        "protein": 211,
+        "carbs": 277,
+        "fat": 59
+      },
+      "target": {
+        "kcal": 2350,
+        "band": [
+          2250,
+          2450
+        ],
+        "protein": 150,
+        "carbs": 230,
+        "fat": 92
+      }
+    },
+    {
+      "weekday": 3,
+      "title": "Lower B Hypertrophy",
+      "rest": false,
+      "items": [
+        {
+          "id": "wed-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 9,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "wed-1-hack-squat",
+          "session": "main",
+          "exercise": "Hack Squat",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": 2,
+          "tempo": "3110",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-2-barbell-hip-thrust",
+          "session": "main",
+          "exercise": "Barbell Hip Thrust",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-3-seated-leg-curl",
+          "session": "main",
+          "exercise": "Seated Leg Curl",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-4-leg-extension",
+          "session": "main",
+          "exercise": "Leg Extension",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-5-cable-hip-abduction",
+          "session": "main",
+          "exercise": "Cable Hip Abduction",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-6-seated-calf-raise",
+          "session": "main",
+          "exercise": "Seated Calf Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-7-copenhagen-plank",
+          "session": "main",
+          "exercise": "Copenhagen Plank",
+          "sets": 2,
+          "target": {
+            "type": "hold",
+            "seconds": 20
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-8-hanging-leg-raise",
+          "session": "main",
+          "exercise": "Hanging Leg Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2452,
+        "protein": 199,
+        "carbs": 266,
+        "fat": 69
+      },
+      "target": {
+        "kcal": 2450,
+        "band": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "carbs": 260,
+        "fat": 88
+      }
+    },
+    {
+      "weekday": 4,
+      "title": "Upper B Hypertrophy",
+      "rest": false,
+      "items": [
+        {
+          "id": "thu-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 15,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "thu-1-incline-barbell-bench-press",
+          "session": "main",
+          "exercise": "Incline Barbell Bench Press",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Medium grip."
+          ]
+        },
+        {
+          "id": "thu-2-machine-bench-press",
+          "session": "main",
+          "exercise": "Machine Bench Press",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-3-wide-grip-lat-pulldown",
+          "session": "main",
+          "exercise": "Wide Grip Lat Pulldown",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-4-leverage-high-row",
+          "session": "main",
+          "exercise": "Leverage High Row",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-5-reverse-machine-fly",
+          "session": "main",
+          "exercise": "Reverse Machine Fly",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-6-lateral-raise",
+          "session": "main",
+          "exercise": "Lateral Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-7-hammer-curl",
+          "session": "main",
+          "exercise": "Hammer Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-8-palm-down-wrist-curl",
+          "session": "main",
+          "exercise": "Seated Palm Down Barbell Wrist Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-9-triceps-pushdown",
+          "session": "main",
+          "exercise": "Triceps Pushdown",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2403,
+        "protein": 207,
+        "carbs": 257,
+        "fat": 64
+      },
+      "target": {
+        "kcal": 2350,
+        "band": [
+          2250,
+          2450
+        ],
+        "protein": 150,
+        "carbs": 230,
+        "fat": 92
+      }
+    },
+    {
+      "weekday": 5,
+      "title": "Volleyball Speed, Spike, and Swim",
+      "rest": false,
+      "items": [
+        {
+          "id": "fri-rope",
+          "session": "morning",
+          "exercise": "Easy Jump Rope",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 6,
+            "workSec": 60,
+            "restSec": 30
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "1 minute easy work and 30 seconds rest.",
+            "No double unders.",
+            "Stop when speed, jump height, landing control, or technique declines."
+          ]
+        },
+        {
+          "id": "fri-1-dynamic-volleyball-warm-up",
+          "session": "main",
+          "exercise": "Dynamic Volleyball Warm Up",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 10
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-2-volleyball-approach-footwork",
+          "session": "main",
+          "exercise": "Volleyball Approach Footwork",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 4,
+            "max": 4
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Stop when coordination or speed declines."
+          ]
+        },
+        {
+          "id": "fri-3-volleyball-approach-jump",
+          "session": "main",
+          "exercise": "Volleyball Approach Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 2,
+            "max": 2
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-4-lateral-block-jump",
+          "session": "main",
+          "exercise": "Lateral Block Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 2,
+            "max": 2
+          },
+          "per": "direction",
+          "restSec": 150,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-5-block-to-spike-transition",
+          "session": "main",
+          "exercise": "Block to Spike Transition",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 2,
+            "max": 2
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-6-ten-metre-sprint",
+          "session": "main",
+          "exercise": "Ten Metre Sprint",
+          "sets": 4,
+          "target": {
+            "type": "reps",
+            "min": 1,
+            "max": 1
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-7-shuffle-to-sprint",
+          "session": "main",
+          "exercise": "Shuffle to Sprint",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 1,
+            "max": 1
+          },
+          "per": "direction",
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-8-medicine-ball-spike-throw",
+          "session": "main",
+          "exercise": "Medicine Ball Spike Throw",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 5
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-9-volleyball-spike",
+          "session": "main",
+          "exercise": "Volleyball Spike",
+          "sets": 4,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 5
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+          ]
+        },
+        {
+          "id": "fri-10-nordic-hamstring-curl",
+          "session": "main",
+          "exercise": "Nordic Hamstring Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 4,
+            "max": 6
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Difficulty never increases automatically."
+          ]
+        },
+        {
+          "id": "fri-swim",
+          "session": "swim",
+          "exercise": "Easy Moderate Pool Round Trip",
+          "sets": 2,
+          "target": {
+            "type": "roundTrips",
+            "count": 10
+          },
+          "per": null,
+          "restSec": 300,
+          "rir": null,
+          "tempo": null,
+          "rpe": [
+            4,
+            5
+          ],
+          "notes": [
+            "Twenty round trips in total, with a five minute break after the first ten.",
+            "Easy to moderate effort, RPE 4 to 5.",
+            "Separate swimming from the main workout by at least three hours when possible.",
+            "Distance depends on pool length. Set it in the log."
+          ]
+        }
+      ],
+      "defaultMealsTotal": {
+        "kcal": 2587,
+        "protein": 217,
+        "carbs": 300,
+        "fat": 61
+      },
+      "target": {
+        "kcal": 2550,
+        "band": [
+          2450,
+          2650
+        ],
+        "protein": 155,
+        "carbs": 285,
+        "fat": 88
+      }
+    },
+    {
+      "weekday": 6,
+      "title": "Full Rest",
+      "rest": true,
+      "items": [],
+      "defaultMealsTotal": {
+        "kcal": 0,
+        "protein": 0,
+        "carbs": 0,
+        "fat": 0
+      },
+      "target": {
+        "kcal": 2250,
+        "band": [
+          2150,
+          2350
+        ],
+        "protein": 150,
+        "carbs": 190,
+        "fat": 93
+      }
+    }
+  ],
+  "coverage": {
+    "weights": {
+      "primarySet": 1,
+      "secondarySet": 0.5,
+      "activity": "exposure only"
+    },
+    "focus": [
+      {
+        "key": "upper_back",
+        "label": "Upper back",
+        "present": true,
+        "directSets": 31,
+        "indirectSets": 24.5,
+        "exposures": 18,
+        "exercises": [
+          "Seated Cable Row",
+          "Cable External Rotation",
+          "Dynamic Volleyball Warm Up",
+          "Face Pull",
+          "Wide Grip Lat Pulldown",
+          "Leverage High Row",
+          "Reverse Machine Fly",
+          "One Arm Lat Pulldown",
+          "Easy Moderate Pool Round Trip",
+          "Medicine Ball Spike Throw",
+          "Volleyball Spike",
+          "Block to Spike Transition"
+        ]
+      },
+      {
+        "key": "calves",
+        "label": "Calves",
+        "present": true,
+        "directSets": 6,
+        "indirectSets": 5,
+        "exposures": 38,
+        "exercises": [
+          "Easy Jump Rope",
+          "Dynamic Volleyball Warm Up",
+          "Volleyball Approach Jump",
+          "Countermovement Jump",
+          "Bulgarian Split Squat",
+          "Standing Calf Raise",
+          "Volleyball Approach Footwork",
+          "Shuffle to Sprint",
+          "Volleyball Spike",
+          "Seated Calf Raise",
+          "Lateral Block Jump",
+          "Block to Spike Transition",
+          "Ten Metre Sprint"
+        ]
+      },
+      {
+        "key": "forearms",
+        "label": "Forearms",
+        "present": true,
+        "directSets": 6,
+        "indirectSets": 10,
+        "exposures": 0,
+        "exercises": [
+          "Seated Cable Row",
+          "One Arm Lat Pulldown",
+          "Seated Palm Up Barbell Wrist Curl",
+          "Romanian Deadlift",
+          "Hanging Leg Raise",
+          "Seated Palm Down Barbell Wrist Curl",
+          "Machine Preacher Curl",
+          "Leverage High Row",
+          "Hammer Curl"
+        ]
+      }
+    ],
+    "perMuscle": [
+      {
+        "muscle": "pec_clavicular",
+        "direct": 3,
+        "indirect": 3.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "pec_sternal",
+        "direct": 7,
+        "indirect": 1.5,
+        "exposures": 7
+      },
+      {
+        "muscle": "delt_anterior",
+        "direct": 3,
+        "indirect": 3.5,
+        "exposures": 5
+      },
+      {
+        "muscle": "delt_lateral",
+        "direct": 4,
+        "indirect": 0,
+        "exposures": 2
+      },
+      {
+        "muscle": "delt_posterior",
+        "direct": 4,
+        "indirect": 5,
+        "exposures": 3
+      },
+      {
+        "muscle": "serratus_anterior",
+        "direct": 0,
+        "indirect": 0,
+        "exposures": 8
+      },
+      {
+        "muscle": "biceps",
+        "direct": 2,
+        "indirect": 6.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "brachialis",
+        "direct": 4,
+        "indirect": 5.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "brachioradialis",
+        "direct": 2,
+        "indirect": 4,
+        "exposures": 0
+      },
+      {
+        "muscle": "triceps",
+        "direct": 4,
+        "indirect": 4,
+        "exposures": 6
+      },
+      {
+        "muscle": "forearm_flexors",
+        "direct": 2,
+        "indirect": 6,
+        "exposures": 0
+      },
+      {
+        "muscle": "forearm_extensors",
+        "direct": 2,
+        "indirect": 0,
+        "exposures": 0
+      },
+      {
+        "muscle": "rectus_abdominis",
+        "direct": 2,
+        "indirect": 1,
+        "exposures": 2
+      },
+      {
+        "muscle": "obliques_core",
+        "direct": 4,
+        "indirect": 5,
+        "exposures": 22
+      },
+      {
+        "muscle": "hip_flexors",
+        "direct": 2,
+        "indirect": 0,
+        "exposures": 6
+      },
+      {
+        "muscle": "traps_upper",
+        "direct": 0,
+        "indirect": 2,
+        "exposures": 0
+      },
+      {
+        "muscle": "traps_middle",
+        "direct": 8,
+        "indirect": 4.5,
+        "exposures": 3
+      },
+      {
+        "muscle": "traps_lower",
+        "direct": 0,
+        "indirect": 7,
+        "exposures": 0
+      },
+      {
+        "muscle": "rhomboids",
+        "direct": 6,
+        "indirect": 3.5,
+        "exposures": 3
+      },
+      {
+        "muscle": "lats",
+        "direct": 11,
+        "indirect": 0,
+        "exposures": 7
+      },
+      {
+        "muscle": "teres_major",
+        "direct": 2,
+        "indirect": 4.5,
+        "exposures": 2
+      },
+      {
+        "muscle": "rotator_cuff",
+        "direct": 6,
+        "indirect": 3,
+        "exposures": 10
+      },
+      {
+        "muscle": "erectors",
+        "direct": 0,
+        "indirect": 4.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "glute_max",
+        "direct": 11,
+        "indirect": 1.5,
+        "exposures": 22
+      },
+      {
+        "muscle": "glute_med",
+        "direct": 2,
+        "indirect": 2,
+        "exposures": 7
+      },
+      {
+        "muscle": "adductors",
+        "direct": 2,
+        "indirect": 7,
+        "exposures": 6
+      },
+      {
+        "muscle": "quads",
+        "direct": 10,
+        "indirect": 0,
+        "exposures": 22
+      },
+      {
+        "muscle": "hamstrings",
+        "direct": 8,
+        "indirect": 4,
+        "exposures": 14
+      },
+      {
+        "muscle": "gastrocnemius",
+        "direct": 3,
+        "indirect": 2.5,
+        "exposures": 20
+      },
+      {
+        "muscle": "soleus",
+        "direct": 3,
+        "indirect": 2.5,
+        "exposures": 18
+      },
+      {
+        "muscle": "tibialis_anterior",
+        "direct": 2,
+        "indirect": 0,
+        "exposures": 5
+      }
+    ],
+    "shoulderNotes": [
+      "Sunday has pressing and swimming. Keep the swim easy and separate it by at least three hours.",
+      "Friday has spiking and swimming. Watch for shoulder fatigue and keep the swim easy.",
+      "Pressing on Thursday is followed by spiking on Friday. Stop spikes early if the shoulder feels tired."
+    ]
+  },
+  "nutrition": {
+    "floors": {
+      "kcal": 2000,
+      "carbs": 130
+    },
+    "targets": [
+      {
+        "weekday": 0,
+        "label": "Upper A and swim",
+        "kcal": 2450,
+        "kcalBand": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 260,
+        "fat": 88
+      },
+      {
+        "weekday": 1,
+        "label": "Lower A and jump",
+        "kcal": 2450,
+        "kcalBand": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 260,
+        "fat": 88
+      },
+      {
+        "weekday": 2,
+        "label": "Volleyball and shoulder care",
+        "kcal": 2350,
+        "kcalBand": [
+          2250,
+          2450
+        ],
+        "protein": 150,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 230,
+        "fat": 92
+      },
+      {
+        "weekday": 3,
+        "label": "Lower B",
+        "kcal": 2450,
+        "kcalBand": [
+          2350,
+          2550
+        ],
+        "protein": 155,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 260,
+        "fat": 88
+      },
+      {
+        "weekday": 4,
+        "label": "Upper B",
+        "kcal": 2350,
+        "kcalBand": [
+          2250,
+          2450
+        ],
+        "protein": 150,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 230,
+        "fat": 92
+      },
+      {
+        "weekday": 5,
+        "label": "Speed, spike, and swim",
+        "kcal": 2550,
+        "kcalBand": [
+          2450,
+          2650
+        ],
+        "protein": 155,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 285,
+        "fat": 88
+      },
+      {
+        "weekday": 6,
+        "label": "Rest",
+        "kcal": 2250,
+        "kcalBand": [
+          2150,
+          2350
+        ],
+        "protein": 150,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 190,
+        "fat": 93
+      }
+    ],
+    "sabbathPlate": [
+      {
+        "label": "Protein",
+        "detail": "About two palm sized portions of meat, chicken, fish, or eggs.",
+        "foodId": "chicken-breast",
+        "grams": [
+          150,
+          200,
+          260
+        ]
+      },
+      {
+        "label": "Rice or potatoes",
+        "detail": "One normal serving, about the size of your fist.",
+        "foodId": "rice-cooked",
+        "grams": [
+          110,
+          150,
+          200
+        ]
+      },
+      {
+        "label": "Salad or vegetables",
+        "detail": "A generous serving. Half the plate is a good guide.",
+        "foodId": "salad",
+        "grams": [
+          150,
+          250,
+          350
+        ]
+      },
+      {
+        "label": "Challah",
+        "detail": "One or two slices.",
+        "foodId": "challah",
+        "grams": [
+          40,
+          60,
+          80
+        ]
+      }
+    ]
+  },
+  "meals": [
+    {
+      "id": "breakfast",
+      "slot": "breakfast",
+      "time": "07:10",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "items": [
+        {
+          "foodId": "yogurt-hp",
+          "grams": 300
+        },
+        {
+          "foodId": "banana",
+          "grams": 118
+        },
+        {
+          "foodId": "oats",
+          "grams": 60
+        },
+        {
+          "foodId": "berries-frozen",
+          "grams": 100,
+          "optional": true,
+          "defaultOn": true
+        },
+        {
+          "foodId": "protein-powder",
+          "grams": 15,
+          "optional": true,
+          "defaultOn": false,
+          "note": "Only if food protein is short that day."
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "school-lunch",
+      "slot": "lunch",
+      "time": "12:00",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "items": [
+        {
+          "foodId": "egg",
+          "grams": 100,
+          "note": "2 whole eggs"
+        },
+        {
+          "foodId": "egg-white",
+          "grams": 66,
+          "note": "2 egg whites"
+        },
+        {
+          "foodId": "tofu",
+          "grams": 135,
+          "note": "120 to 150 g"
+        },
+        {
+          "foodId": "salad",
+          "grams": 300,
+          "note": "Large salad"
+        },
+        {
+          "foodId": "olives",
+          "grams": 30,
+          "note": "Small measured serving, about 7 olives"
+        }
+      ],
+      "estimatedAtSchool": true
+    },
+    {
+      "id": "preworkout-0",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        0
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 250,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "preworkout-1",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        1
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 250,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "preworkout-2",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        2
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 220,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "preworkout-3",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        3
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 250,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "preworkout-4",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        4
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 220,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "preworkout-5",
+      "slot": "preworkout",
+      "time": "15:20",
+      "weekdays": [
+        5
+      ],
+      "items": [
+        {
+          "foodId": "rice-cooked",
+          "grams": 300,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "note": "Cooked weight"
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-0",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        0
+      ],
+      "items": [
+        {
+          "foodId": "salmon",
+          "grams": 180,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 150,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-1",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        1
+      ],
+      "items": [
+        {
+          "foodId": "beef-lean",
+          "grams": 180,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 150,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-2",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        2
+      ],
+      "items": [
+        {
+          "foodId": "white-fish",
+          "grams": 220,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 10
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-3",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        3
+      ],
+      "items": [
+        {
+          "foodId": "salmon",
+          "grams": 180,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 150,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-4",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        4
+      ],
+      "items": [
+        {
+          "foodId": "beef-lean",
+          "grams": 180,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 150,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-5",
+      "slot": "dinner",
+      "time": "18:45",
+      "weekdays": [
+        5
+      ],
+      "items": [
+        {
+          "foodId": "turkey-breast",
+          "grams": 180,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 10
+        }
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "evening-milk",
+      "slot": "evening",
+      "time": "20:30",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "items": [
+        {
+          "foodId": "milk",
+          "grams": 300,
+          "note": "300 ml"
+        }
+      ],
+      "estimatedAtSchool": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "yogurt-oat-breakfast",
+      "name": "Yogurt, oat, banana, and berry breakfast",
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "yogurt-hp",
+          "name": "High protein yogurt or skyr, 0 to 3% fat",
+          "grams": 300,
+          "state": "as sold"
+        },
+        {
+          "foodId": "oats",
+          "name": "Rolled oats",
+          "grams": 60,
+          "state": "dry"
+        },
+        {
+          "foodId": "banana",
+          "name": "Banana, sliced",
+          "grams": 118,
+          "amount": "1 medium"
+        },
+        {
+          "foodId": "berries-frozen",
+          "name": "Frozen berries (optional)",
+          "grams": 100
+        }
+      ],
+      "suitableFor": [
+        "any day"
+      ]
+    },
+    {
+      "id": "chicken-rice-boxes",
+      "name": "Chicken and rice pre workout boxes",
+      "servings": 6,
+      "ingredients": [
+        {
+          "foodId": "chicken-breast",
+          "name": "Chicken breast, raw weight about 1 kg",
+          "grams": 720,
+          "state": "cooked",
+          "amount": "About 1 kg raw, which cooks down to about 720 g"
+        },
+        {
+          "foodId": "rice-cooked",
+          "name": "White rice, cooked",
+          "grams": 1490,
+          "state": "cooked",
+          "amount": "About 500 g dry rice"
+        },
+        {
+          "name": "Salt, pepper, paprika, garlic powder",
+          "amount": "To taste"
+        }
+      ],
+      "suitableFor": [
+        "before training"
+      ]
+    },
+    {
+      "id": "sheet-pan-salmon",
+      "name": "Sheet pan salmon, potato, and vegetables",
+      "servings": 2,
+      "ingredients": [
+        {
+          "foodId": "salmon",
+          "name": "Salmon fillet, about 450 g raw for two cooked portions of 180 g",
+          "grams": 360,
+          "state": "cooked"
+        },
+        {
+          "foodId": "potato",
+          "name": "Potatoes, cubed",
+          "grams": 300,
+          "state": "cooked"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "name": "Cooked lentils",
+          "grams": 200,
+          "state": "cooked"
+        },
+        {
+          "foodId": "veg-mixed",
+          "name": "Vegetables: broccoli, zucchini, peppers, carrots",
+          "grams": 600
+        },
+        {
+          "name": "Lemon, garlic, salt, pepper, dill or paprika",
+          "amount": "To taste"
+        }
+      ],
+      "suitableFor": [
+        "after training"
+      ]
+    },
+    {
+      "id": "beef-bowl",
+      "name": "Lean beef, potato, lentil, and vegetable bowl",
+      "servings": 2,
+      "ingredients": [
+        {
+          "foodId": "beef-lean",
+          "name": "Lean beef, about 500 g raw for two cooked portions of 180 g",
+          "grams": 360,
+          "state": "cooked"
+        },
+        {
+          "foodId": "potato",
+          "name": "Potatoes",
+          "grams": 300,
+          "state": "cooked"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "name": "Cooked lentils",
+          "grams": 200,
+          "state": "cooked"
+        },
+        {
+          "foodId": "veg-mixed",
+          "name": "Mixed vegetables",
+          "grams": 600
+        },
+        {
+          "name": "Onion, garlic, cumin, paprika, salt",
+          "amount": "To taste"
+        }
+      ],
+      "suitableFor": [
+        "after training"
+      ]
+    },
+    {
+      "id": "white-fish-plate",
+      "name": "White fish, potato, lentil, and vegetable plate",
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "white-fish",
+          "name": "White fish, about 270 g raw",
+          "grams": 220,
+          "state": "cooked"
+        },
+        {
+          "foodId": "potato",
+          "name": "Potatoes",
+          "grams": 250,
+          "state": "cooked"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "name": "Cooked lentils",
+          "grams": 100,
+          "state": "cooked"
+        },
+        {
+          "foodId": "veg-mixed",
+          "name": "Vegetables",
+          "grams": 300
+        },
+        {
+          "foodId": "olive-oil",
+          "name": "Olive oil",
+          "grams": 10
+        },
+        {
+          "name": "Lemon, parsley, salt, pepper",
+          "amount": "To taste"
+        }
+      ],
+      "suitableFor": [
+        "after training"
+      ]
+    },
+    {
+      "id": "turkey-plate",
+      "name": "Turkey, potato, lentil, and vegetable plate",
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "turkey-breast",
+          "name": "Turkey breast, about 250 g raw",
+          "grams": 180,
+          "state": "cooked"
+        },
+        {
+          "foodId": "potato",
+          "name": "Potatoes",
+          "grams": 250,
+          "state": "cooked"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "name": "Cooked lentils",
+          "grams": 100,
+          "state": "cooked"
+        },
+        {
+          "foodId": "veg-mixed",
+          "name": "Vegetables",
+          "grams": 300
+        },
+        {
+          "foodId": "olive-oil",
+          "name": "Olive oil",
+          "grams": 10
+        }
+      ],
+      "suitableFor": [
+        "after training"
+      ]
+    },
+    {
+      "id": "lentil-soup",
+      "name": "Lentil soup",
+      "servings": 6,
+      "ingredients": [
+        {
+          "name": "Dry lentils",
+          "grams": 250,
+          "state": "dry"
+        },
+        {
+          "name": "Onion",
+          "amount": "1",
+          "grams": 150
+        },
+        {
+          "name": "Carrots",
+          "amount": "2 to 3",
+          "grams": 200
+        },
+        {
+          "name": "Celery",
+          "amount": "2 sticks",
+          "grams": 100
+        },
+        {
+          "name": "Tomatoes",
+          "amount": "3 to 4",
+          "grams": 300
+        },
+        {
+          "name": "Water",
+          "amount": "About 2 litres"
+        },
+        {
+          "name": "Olive oil",
+          "amount": "No more than 10 g for the whole pot",
+          "grams": 10
+        },
+        {
+          "name": "Cumin, turmeric, garlic, iodised salt, pepper",
+          "amount": "To taste"
+        }
+      ],
+      "suitableFor": [
+        "after training",
+        "rest day"
+      ]
+    },
+    {
+      "id": "school-plate",
+      "name": "Tofu, egg, and salad school plate",
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "egg",
+          "name": "Whole eggs",
+          "grams": 100,
+          "amount": "2"
+        },
+        {
+          "foodId": "egg-white",
+          "name": "Egg whites",
+          "grams": 66,
+          "amount": "2"
+        },
+        {
+          "foodId": "tofu",
+          "name": "Tofu",
+          "grams": 135,
+          "amount": "120 to 150 g, about the size of your palm"
+        },
+        {
+          "foodId": "salad",
+          "name": "Large salad: cucumber, tomato, cherry tomato, onion, peppers",
+          "grams": 300
+        },
+        {
+          "foodId": "olives",
+          "name": "Olives, small serving",
+          "grams": 30,
+          "amount": "About 7"
+        }
+      ],
+      "suitableFor": [
+        "any day"
+      ]
+    },
+    {
+      "id": "sabbath-plate",
+      "name": "Sabbath plate guide",
+      "servings": 1,
+      "ingredients": [
+        {
+          "name": "Protein: about two palm sized portions of meat, chicken, fish, or eggs"
+        },
+        {
+          "name": "Rice or potatoes: one normal serving"
+        },
+        {
+          "name": "Salad or vegetables: a generous serving"
+        },
+        {
+          "name": "Challah: one or two slices"
+        },
+        {
+          "name": "One planned sweet portion right after one meal"
+        },
+        {
+          "name": "Water or a zero calorie drink"
+        }
+      ],
+      "suitableFor": [
+        "rest day"
+      ]
+    },
+    {
+      "id": "restaurant-guide",
+      "name": "Restaurant portion estimate guide",
+      "servings": 1,
+      "ingredients": [
+        {
+          "name": "Protein portion: count palms"
+        },
+        {
+          "name": "Rice, pasta, potato, or bread: count fists or pick small, medium, or large"
+        },
+        {
+          "name": "Vegetables: count fists"
+        },
+        {
+          "name": "Sauces and oil: count thumbs, or add a hidden oil allowance"
+        }
+      ],
+      "suitableFor": [
+        "any day"
+      ]
+    }
+  ],
+  "mealPrep": {
+    "shopping": [
+      {
+        "id": "yogurt",
+        "name": "Yogurt or skyr, about 2 to 3% fat",
+        "qty": 1800,
+        "unit": "g",
+        "section": "Dairy"
+      },
+      {
+        "id": "milk",
+        "name": "Milk",
+        "qty": 1800,
+        "unit": "ml",
+        "section": "Dairy"
+      },
+      {
+        "id": "oats",
+        "name": "Oats",
+        "qty": 360,
+        "unit": "g",
+        "section": "Grains"
+      },
+      {
+        "id": "rice",
+        "name": "Dry rice",
+        "qty": 500,
+        "unit": "g",
+        "section": "Grains"
+      },
+      {
+        "id": "lentils",
+        "name": "Dry lentils",
+        "qty": 250,
+        "unit": "g",
+        "section": "Grains"
+      },
+      {
+        "id": "bananas",
+        "name": "Bananas",
+        "qty": 6,
+        "unit": "pcs",
+        "section": "Produce"
+      },
+      {
+        "id": "berries",
+        "name": "Frozen berries",
+        "qty": 600,
+        "unit": "g",
+        "section": "Produce"
+      },
+      {
+        "id": "potatoes",
+        "name": "Potatoes",
+        "qty": 1300,
+        "unit": "g",
+        "section": "Produce"
+      },
+      {
+        "id": "vegetables",
+        "name": "Mixed vegetables, at least",
+        "qty": 2000,
+        "unit": "g",
+        "section": "Produce"
+      },
+      {
+        "id": "chicken",
+        "name": "Raw chicken for pre workout boxes",
+        "qty": 1000,
+        "unit": "g",
+        "section": "Meat and fish"
+      },
+      {
+        "id": "salmon",
+        "name": "Raw salmon",
+        "qty": 450,
+        "unit": "g",
+        "section": "Meat and fish"
+      },
+      {
+        "id": "beef",
+        "name": "Raw lean beef",
+        "qty": 500,
+        "unit": "g",
+        "section": "Meat and fish"
+      },
+      {
+        "id": "white-fish",
+        "name": "Raw white fish",
+        "qty": 270,
+        "unit": "g",
+        "section": "Meat and fish"
+      },
+      {
+        "id": "turkey",
+        "name": "Raw turkey",
+        "qty": 250,
+        "unit": "g",
+        "section": "Meat and fish"
+      },
+      {
+        "id": "olive-oil",
+        "name": "Olive oil",
+        "qty": 0,
+        "unit": "",
+        "section": "Pantry",
+        "fixed": true
+      },
+      {
+        "id": "salt",
+        "name": "Iodised salt",
+        "qty": 0,
+        "unit": "",
+        "section": "Pantry",
+        "fixed": true
+      },
+      {
+        "id": "spices",
+        "name": "Spices",
+        "qty": 0,
+        "unit": "",
+        "section": "Pantry",
+        "fixed": true
+      },
+      {
+        "id": "eggs",
+        "name": "Eggs, only if the cafeteria does not provide them",
+        "qty": 24,
+        "unit": "pcs",
+        "section": "Cafeteria backup"
+      },
+      {
+        "id": "tofu",
+        "name": "Tofu, only if the cafeteria does not provide it",
+        "qty": 900,
+        "unit": "g",
+        "section": "Cafeteria backup"
+      }
+    ],
+    "steps": [
+      {
+        "id": "rice",
+        "title": "Cook the rice",
+        "detail": "Cook 500 g dry rice. Portion cooked rice: Sunday 250 g, Monday 250 g, Tuesday 220 g, Wednesday 250 g, Thursday 220 g, Friday 300 g."
+      },
+      {
+        "id": "chicken",
+        "title": "Cook the chicken",
+        "detail": "Cook the chicken until the thickest part reaches 74°C. Portion 120 g cooked into six containers."
+      },
+      {
+        "id": "dinners",
+        "title": "Prepare the six dinners",
+        "detail": "Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with potato, 100 g cooked lentils, and 300 g vegetables."
+      },
+      {
+        "id": "breakfast",
+        "title": "Prepare breakfast parts",
+        "detail": "Portion 60 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready."
+      },
+      {
+        "id": "lunch",
+        "title": "Plan school lunch",
+        "detail": "Lunch comes from the cafeteria. Nothing needs refrigeration from home. Buy eggs and tofu only if the cafeteria does not have them."
+      },
+      {
+        "id": "label",
+        "title": "Label every container",
+        "detail": "Write the day and the meal on each container."
+      },
+      {
+        "id": "fridge",
+        "title": "Refrigerate Sunday to Wednesday",
+        "detail": "Keep Sunday, Monday, Tuesday, and Wednesday meals in the fridge."
+      },
+      {
+        "id": "freeze",
+        "title": "Freeze Thursday and Friday",
+        "detail": "Freeze Thursday and Friday meals as soon as they have cooled."
+      },
+      {
+        "id": "thaw",
+        "title": "Thaw the night before",
+        "detail": "Move a frozen meal to the fridge the night before you need it."
+      },
+      {
+        "id": "two-hours",
+        "title": "Two hour rule",
+        "detail": "Refrigerate or freeze cooked food within two hours."
+      },
+      {
+        "id": "fridge-temp",
+        "title": "Fridge temperature",
+        "detail": "Keep the fridge at or below 4°C."
+      },
+      {
+        "id": "leftovers",
+        "title": "Leftover limit",
+        "detail": "Use refrigerated leftovers within three to four days."
+      },
+      {
+        "id": "reheat",
+        "title": "Reheat properly",
+        "detail": "Reheat leftovers to 74°C."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "aap-resistance-training-2020",
+      "title": "Resistance Training for Children and Adolescents (clinical report)",
+      "url": "https://publications.aap.org/pediatrics/article/145/6/e20201011/76942/Resistance-Training-for-Children-and-Adolescents",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "youth-hypertrophy-meta-2026",
+      "title": "Effects of Resistance Training on Muscle Hypertrophy in Children and Adolescents: A Systematic Review and Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42752819/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "volleyball-plyometric-meta-2021",
+      "title": "Effects of Plyometric Jump Training on Physical Fitness in Amateur and Professional Volleyball: A Meta-Analysis",
+      "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2021.636140/full",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "nordic-van-der-horst-2015",
+      "title": "The Preventive Effect of the Nordic Hamstring Exercise on Hamstring Injuries in Amateur Soccer Players: A Randomized Controlled Trial",
+      "url": "https://journals.sagepub.com/doi/abs/10.1177/0363546515574057",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "nordic-van-dyk-2019",
+      "title": "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes",
+      "url": "https://www.researchgate.net/publication/331367089_Including_the_Nordic_hamstring_exercise_in_injury_prevention_programmes_halves_the_rate_of_hamstring_injuries_A_systematic_review_and_meta-analysis_of_8459_athletes",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "nordic-reappraisal-2021",
+      "title": "Why methods matter in a meta-analysis: a reappraisal showed inconclusive injury preventive effect of Nordic hamstring exercise",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0895435621002870",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "refalo-2023-proximity-to-failure",
+      "title": "Influence of Resistance Training Proximity-to-Failure on Skeletal Muscle Hypertrophy: A Systematic Review with Meta-analysis",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9935748/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "grgic-2022-failure",
+      "title": "Effects of resistance training performed to repetition failure or non-failure on muscular strength and hypertrophy: A systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33497853/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "plotkin-2022-rep-progression",
+      "title": "Progressive overload without progressing load? The effects of load or repetition progression on muscular adaptations",
+      "url": "https://peerj.com/articles/14142/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "double-progression-convention",
+      "title": "Double progression (coaching convention, glossary definition)",
+      "url": "https://alphaprogression.com/en/glossary/double-progression",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "aap-healthy-weight-control-2017",
+      "title": "Promotion of Healthy Weight-Control Practices in Young Athletes (clinical report)",
+      "url": "https://publications.aap.org/pediatrics/article/140/3/e20171871/38384/Promotion-of-Healthy-Weight-Control-Practices-in",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "healthychildren-safe-weight-loss",
+      "title": "Safe Weight Loss and Weight Gain for Young Athletes",
+      "url": "https://www.healthychildren.org/English/healthy-living/sports/Pages/Safe-Weight-Loss-and-Weight-Gain-for-Young-Athletes.aspx",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "aap-nutrition-supplement-use",
+      "title": "Nutrition and Supplement Use (Care of the Young Athlete patient education)",
+      "url": "https://publications.aap.org/patiented/article-pdf/720898/peo_document566_en.pdf",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "ioc-reds-2023",
+      "title": "2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs)",
+      "url": "https://bjsm.bmj.com/content/57/17/1073.long",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "nasem-carbohydrate-dri",
+      "title": "Dietary Reference Intakes for Water, Potassium, Sodium, Chloride, and Sulfate, chapter 25 (National Academies reader page)",
+      "url": "https://www.nationalacademies.org/read/10925/chapter/25",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "hall-2015-fat-vs-carb-restriction",
+      "title": "Calorie for Calorie, Dietary Fat Restriction Results in More Body Fat Loss than Carbohydrate Restriction in People with Obesity",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4603544/",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "adolescent-protein-review-2025",
+      "title": "Optimizing Performance Nutrition for Adolescent Athletes: A Review of Dietary Needs, Risks, and Practical Strategies",
+      "url": "https://www.mdpi.com/2072-6643/17/17/2792",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "ods-calcium-consumer",
+      "title": "Calcium: Fact Sheet for Consumers",
+      "url": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "ods-omega3-consumer",
+      "title": "Omega-3 Fatty Acids: Fact Sheet for Consumers",
+      "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-Consumer/",
+      "access": "search-snippet",
+      "topic": "supplements"
+    },
+    {
+      "id": "smart-scales-accuracy-2021",
+      "title": "Accuracy of Smart Scales on Weight and Body Composition: Observational Study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8122302/",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "aasm-teen-sleep-advisory",
+      "title": "Health Advisory: Teen Sleep Duration",
+      "url": "https://aasm.org/wp-content/uploads/2017/10/teen-sleep-duration-health-advisory.pdf",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "sleep-injury-adolescents-2019",
+      "title": "Chronic Lack of Sleep is Associated With Increased Sports Injury in Adolescents: A Systematic Review and Meta-analysis",
+      "url": "https://journals.sagepub.com/doi/10.1177/2325967119S00132",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "sleep-extension-athletes-review",
+      "title": "Sleep extension in athletes: what we know so far - A systematic review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33352457/",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "issn-creatine-2017",
+      "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28615996/",
+      "access": "search-snippet",
+      "topic": "supplements"
+    },
+    {
+      "id": "metzger-2023-creatine-pediatric",
+      "title": "Creatine supplementation in the pediatric and adolescent athlete: A literature review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37008451/",
+      "access": "search-snippet",
+      "topic": "supplements"
+    },
+    {
+      "id": "fsis-leftovers",
+      "title": "Leftovers and Food Safety",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety",
+      "access": "search-snippet",
+      "topic": "food-safety"
+    },
+    {
+      "id": "foodsafety-gov-min-temps",
+      "title": "Safe Minimum Internal Temperatures",
+      "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures",
+      "access": "search-snippet",
+      "topic": "food-safety"
+    },
+    {
+      "id": "webkit-web-push-ios-16-4",
+      "title": "Web Push for Web Apps on iOS and iPadOS",
+      "url": "https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "apple-web-push-docs",
+      "title": "Sending web push notifications in web apps and browsers",
+      "url": "https://developer.apple.com/documentation/usernotifications/sending-web-push-notifications-in-web-apps-and-browsers",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "webkit-safari-18-4",
+      "title": "WebKit Features in Safari 18.4",
+      "url": "https://webkit.org/blog/16574/webkit-features-in-safari-18-4/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "caniuse-wake-lock",
+      "title": "Screen Wake Lock API support table",
+      "url": "https://caniuse.com/wake-lock",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "vibration-api-ios",
+      "title": "Navigator API: vibrate support table",
+      "url": "https://caniuse.com/mdn-api_navigator_vibrate",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "webkit-safari-18-switch-haptics",
+      "title": "WebKit Features in Safari 18.0",
+      "url": "https://webkit.org/blog/15865/webkit-features-in-safari-18-0/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "webkit-storage-policy-2023",
+      "title": "Updates to Storage Policy",
+      "url": "https://webkit.org/blog/14403/updates-to-storage-policy/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "webkit-itp-7-day-cap-2020",
+      "title": "Full Third-Party Cookie Blocking and More",
+      "url": "https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-storage-persist",
+      "title": "StorageManager: persist() method",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-navigator-share",
+      "title": "Navigator: share() method",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-share-data-between-apps",
+      "title": "Share data between apps",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Share_data_between_apps",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-pwa-reference",
+      "title": "Progressive Web Apps reference",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Reference",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-making-pwas-installable",
+      "title": "Making PWAs installable",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "mdn-barcode-detection",
+      "title": "Barcode Detection API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Barcode_Detection_API",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "apple-eu-home-screen-reversal-2024",
+      "title": "Apple reverses decision about blocking web apps on iPhones in the EU",
+      "url": "https://techcrunch.com/2024/03/01/apple-reverses-decision-about-blocking-web-apps-on-iphones-in-the-eu/",
+      "access": "search-snippet",
+      "topic": "platform"
+    },
+    {
+      "id": "github-pages-what-is",
+      "title": "What is GitHub Pages?",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "github-pages-limits",
+      "title": "GitHub Pages limits",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-pages-limits",
+      "title": "Cloudflare Pages limits",
+      "url": "https://developers.cloudflare.com/pages/platform/limits/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-pages-middleware",
+      "title": "Middleware",
+      "url": "https://developers.cloudflare.com/pages/functions/middleware/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-secrets",
+      "title": "Secrets",
+      "url": "https://developers.cloudflare.com/workers/configuration/secrets/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "cloudflare-build-image",
+      "title": "Build image",
+      "url": "https://developers.cloudflare.com/pages/configuration/build-image/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "netlify-credit-plans",
+      "title": "How credits work (credit-based pricing plans)",
+      "url": "https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/how-credits-work/",
+      "access": "search-snippet",
+      "topic": "hosting"
+    },
+    {
+      "id": "youtube-player-parameters",
+      "title": "YouTube Embedded Players and Player Parameters",
+      "url": "https://developers.google.com/youtube/player_parameters",
+      "access": "search-snippet",
+      "topic": "media"
+    },
+    {
+      "id": "youtube-privacy-enhanced-mode",
+      "title": "Embed videos and playlists (privacy-enhanced mode)",
+      "url": "https://support.google.com/youtube/answer/171780",
+      "access": "search-snippet",
+      "topic": "media"
+    },
+    {
+      "id": "open-food-facts-api",
+      "title": "Introduction to Open Food Facts API documentation",
+      "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+      "access": "search-snippet",
+      "topic": "media"
+    },
+    {
+      "id": "open-food-facts-license",
+      "title": "Terms of use, contribution and re-use",
+      "url": "https://world.openfoodfacts.org/terms-of-use",
+      "access": "search-snippet",
+      "topic": "media"
+    }
+  ],
+  "claimReviews": [
+    {
+      "id": "claim-tiktok-zsbhyxd9r",
+      "url": "https://vt.tiktok.com/ZSbhYxd9R/",
+      "platform": "tiktok",
+      "accessible": false,
+      "claimed": "Not visible: the video could not be opened from the build environment.",
+      "evidence": "WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. To evaluate it, someone needs the creator name, caption and the specific claim (for example which muscles a program misses, or which exercise is said to be best), then compare it with the exercise library muscle map and with studies such as those in SOURCES.",
+      "verdict": "Not reviewed. No change to PeakForm. If the user shares the caption or a short summary, the claim can be checked. Separately, the current library already includes upper back (face pull, reverse machine fly, high row, seated cable row), calves (standing and seated calf raise, tibialis raise) and forearms (palm up and palm down wrist curls, hammer curl).",
+      "changesApp": false,
+      "reviewedOn": "2026-09-29"
+    },
+    {
+      "id": "claim-tiktok-zsbh2l6fg",
+      "url": "https://vt.tiktok.com/ZSbh2L6Fg/",
+      "platform": "tiktok",
+      "accessible": false,
+      "claimed": "Not visible: the video could not be opened from the build environment.",
+      "evidence": "WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. Needed: the creator, the caption, the exact claim, and any study or guideline it cites, checked against peer reviewed evidence and pediatric guidance.",
+      "verdict": "Not reviewed. No change to PeakForm. The user can describe the claim or paste the caption for a follow up review.",
+      "changesApp": false,
+      "reviewedOn": "2026-09-29"
+    }
+  ]
+}
