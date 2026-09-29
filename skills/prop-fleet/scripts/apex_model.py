@@ -9,9 +9,16 @@ COMM_RT, SLIP_PTS, MES_PT, STOP_PTS = 1.30, 0.25, 5.0, 8.5
 MIN_PAYOUT, QUAL_DAYS, CONSIST = 500.0, 5, 0.50
 
 PLANS = {
+    # $2,500 is the LEGACY drawdown (plans bought before 1 Mar 2026). Kept
+    # so the documented numbers stay reproducible; new purchases are 50K-2026.
     "50K": dict(start=50_000., dd=2_500., target=3_000., qmin=200.,
                 ladder=[1500., 1500., 2000., 2500., 2500., 3000.],
                 evalfee=40., activation=85.),
+    # Post-March-2026 50K: $2,000 trailing drawdown (see references/apex-rules.md,
+    # correction of 29 Sep 2026). Same ladder and target.
+    "50K-2026": dict(start=50_000., dd=2_000., target=3_000., qmin=200.,
+                     ladder=[1500., 1500., 2000., 2500., 2500., 3000.],
+                     evalfee=40., activation=85.),
     # 150K ladder is the conservative reading of conflicting public sources
     "150K": dict(start=150_000., dd=5_000., target=9_000., qmin=350.,
                  ladder=[2500., 2500., 3000., 3000., 3500., 3500.],

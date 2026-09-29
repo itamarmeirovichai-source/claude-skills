@@ -10,8 +10,8 @@ there when the firm changes them.
 
 | Rule | Value | Confidence |
 | --- | --- | --- |
-| Trailing drawdown | $2,500 | corroborated |
-| Safety net | $52,600 (`start + dd + 100`) | corroborated |
+| Trailing drawdown | **$2,000** on accounts bought on or after 1 Mar 2026; $2,500 was the *legacy* value ⚠ | corrected 29 Sep 2026 — see note below |
+| Safety net | $52,100 (`start + dd + 100`) on the new plan; $52,600 legacy | derived |
 | Floor locks at | $50,100 (`start + 100`), permanently | corroborated |
 | Evaluation profit target | $3,000 (6% of balance) | corroborated |
 | Evaluation time limit | 30 calendar days, expires 6:00 PM ET day 30, no extension | corroborated |
@@ -24,6 +24,38 @@ there when the firm changes them.
 | Payouts before closure | 6, then the account closes | corroborated |
 | Profit split | 100% on accounts opened on or after 1 Mar 2026 | corroborated |
 | Contract limit | 10 (half until the safety net) | corroborated |
+
+**Correction, 29 Sep 2026.** A second-opinion review pointed out that the
+$2,500 drawdown belongs to the legacy product line that the March 2026 EOD and
+Intraday plans replaced; third-party guides (tradetanto, traderssecondbrain,
+pickmytrade) agree the new 50K drawdown is **$2,000** (Intraday threshold
+stops trailing at $53,000 on Rithmic/WealthCharts and trails indefinitely on
+Tradovate). The firm's own pages are blocked from this environment, so this is
+corroborated, not verified. `scripts/apex_model.py` gained a `50K-2026` plan
+with `dd=2_000`; at the same expectancy it cuts the eight-year net by
+**22% at +0.25R and 39% at +0.10R** (10 slots, n=600). Every 50K figure in the
+other references was computed at $2,500 and is optimistic by that much.
+
+## Automation — the rule that decides whether the bot can be used at all
+
+Third-party summaries of the User Agreement's *Manual Order Submission
+Requirement* (CrossTrade, QuantVPS, PickMyTrade, Damn Prop Firms, Sep 2026)
+agree on this split:
+
+| Account | Automated order submission by a bot |
+| --- | --- |
+| Evaluation | permitted (actively monitored automation) |
+| Performance / funded | **prohibited** — "any form of AI, autobots, algorithms, fully automated systems, HFT" |
+| Copying across own accounts | permitted when each order is placed **manually** in one account and up to 20 PAs mirror it exactly |
+| Hedging opposite directions across accounts | prohibited |
+
+If this holds, the plan as written — a bot trading ten funded accounts
+unattended — is contractually barred regardless of edge. The lawful shape is
+**bot as signal, human as executor, copier as multiplier**: the program alerts,
+Itamar places the order in one account, the copier mirrors it. That is
+compatible with one to four trades a day inside kill zones and incompatible with
+anything unattended. Letter 1 in `verification-letters.md` asks exactly this and
+remains unsent; the answer in writing is the gate, not a forum post.
 
 50K **Intraday** ladder differs: 1500 / 2000 / 2500 / 2500 / 3000 / 3000 = $14,500.
 Intraday trails from the intraday high rather than the close, which is worse for a

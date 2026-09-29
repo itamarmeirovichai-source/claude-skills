@@ -491,3 +491,16 @@ week, not a run of winners, and not the fact that the calendar said a
 month had passed.
 
 Today the lower bound is negative. The schedule above is what that permits.
+
+## 29 Sep — the second opinion, and the experiment that was already run
+
+Itamar ran the audit prompt in another model. Two corrections stuck: the 50K
+drawdown is $2,000 on post-March-2026 plans (the model ran on the legacy
+$2,500; net falls 22–39%), and an automated bot is prohibited on funded
+accounts (permitted on evaluations; manual placement mirrored to own accounts
+is the lawful shape). The "next experiment" both reviews proposed — replicate
+Beat the Market on ES — turned out to exist already, on IB data, with frozen
+protocols: real edge 2020–2024, Sharpe ≈ 0 since 2025 on SPY and ES alike,
+and the replicator's own first recommendation is "no Apex phase for now".
+Full audit in `second-opinion-audit.md`. Nothing bought, nothing changed in
+the bot; the paper run continues; letter 1 to Apex is now the gate.
