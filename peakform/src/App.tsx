@@ -202,8 +202,9 @@ function Routes() {
 
 export function App() {
   useEffect(() => {
+    // iOS can suspend audio at any time, so every tap gets a chance to wake it again.
     const unlock = () => unlockAudio();
-    window.addEventListener('pointerdown', unlock, { once: true });
+    window.addEventListener('pointerdown', unlock);
     if (!window.location.hash) navigate('/today', { replace: true });
     return () => window.removeEventListener('pointerdown', unlock);
   }, []);

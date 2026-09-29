@@ -84,7 +84,7 @@ export function ProgressScreen() {
 
       <Section title="Body weight">
         <div className="metric-row">
-          <Metric label="7 day average" value={thisWeek.reliable ? `${thisWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={`${thisWeek.count} morning weights`} testId="weight-avg" />
+          <Metric label="7 day average" value={thisWeek.reliable ? `${thisWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={`${thisWeek.count} morning weight${thisWeek.count === 1 ? '' : 's'}`} testId="weight-avg" />
           <Metric label="Week before" value={lastWeek.reliable ? `${lastWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={thisWeek.reliable && lastWeek.reliable ? weekChange((thisWeek.avg ?? 0) - (lastWeek.avg ?? 0)) : 'Needs 4 a week'} />
         </div>
         <div className="panel" style={{ marginTop: 8 }}>

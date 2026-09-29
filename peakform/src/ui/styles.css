@@ -610,6 +610,14 @@ textarea.input {
   min-height: 50px;
   padding: 0 2px;
 }
+.stepper:has(input[aria-invalid='true']) {
+  border-color: var(--danger);
+}
+.stepper-hint {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--danger);
+}
 .stepper input::placeholder {
   font-size: 1rem;
   font-weight: 500;
@@ -1484,4 +1492,21 @@ pre.code {
 .action-row > .btn {
   flex: 1 1 auto;
   white-space: nowrap;
+}
+
+/* Keeps a pending save in reach on long settings pages. */
+.save-bar {
+  position: sticky;
+  bottom: calc(var(--nav-h) + var(--timer-h) + var(--safe-bottom) + 8px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-top: var(--s4);
+  padding: 8px 8px 8px 16px;
+  border-radius: var(--r-md);
+  background: var(--float-bg);
+  color: var(--float-ink);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }

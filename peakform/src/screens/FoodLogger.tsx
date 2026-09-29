@@ -3,7 +3,7 @@ import { db } from '../db/db';
 import { FOODS, FOOD_BY_ID, type Food } from '../content/foods';
 import { ALL_TEMPLATES, HIDDEN_OIL_RANGE, SLOT_LABELS, templatesForDay } from '../content/meals';
 import type { FoodLog, FoodLogItem } from '../db/records';
-import { CONFIDENCE_LABELS, PORTIONS, formatRange, hiddenOilItem, itemFromGrams, itemFromPortion, sumItems, type PortionKey } from '../domain/portions';
+import { CONFIDENCE_LABELS, PORTIONS, formatRange, hiddenOilItem, itemFromGrams, itemFromPortion, itemFromTotals, sumItems, type PortionKey } from '../domain/portions';
 import { templateItems } from '../domain/nutrition';
 import { weekdayOf } from '../domain/dates';
 import { PageHead, Note, Section, Seg, Sheet, Stepper, Toggle, useOnline, useToast } from '../ui/components';
@@ -94,7 +94,7 @@ export function FoodLogScreen({ slot, date, mode }: { slot: string; date: string
                   </span>
                   <span className="item-sub" style={{ display: 'block' }}>
                     {it.estimate.portion ? `${it.estimate.count} × ${PORTIONS.find((p) => p.key === it.estimate.portion)?.label.toLowerCase()}, ` : ''}
-                    {formatRange(it.estimate.gramsLow, it.estimate.gramsHigh, ' g')}, {formatRange(it.low.kcal, it.high.kcal, ' kcal')}
+                    {it.foodId === null && it.estimate.gramsMid === 0 ? 'Your own numbers' : formatRange(it.estimate.gramsLow, it.estimate.gramsHigh, ' g')}, {formatRange(it.low.kcal, it.high.kcal, ' kcal')}
                   </span>
                   <span className="item-sub faint" style={{ display: 'block' }}>
                     {CONFIDENCE_LABELS[it.estimate.confidence]}
@@ -220,13 +220,20 @@ function FoodPicker({ open, onClose, onAdd, restaurant, editing }: { open: boole
   const [grams, setGrams] = useState<number | null>(editing?.estimate.gramsMid ?? 100);
   const [portion, setPortion] = useState<PortionKey>(restaurant ? 'restaurant-medium' : 'palm');
   const [count, setCount] = useState<number | null>(editing?.estimate.count ?? 1);
+  const [own, setOwn] = useState(false);
   const list = useMemo(() => FOODS.filter((f) => !q || f.name.toLowerCase().includes(q.toLowerCase())).slice(0, 40), [q]);
   const preview = food ? (how === 'eye' ? itemFromPortion(food, portion, count ?? 1) : itemFromGrams(food, grams ?? 0, 'weighed')) : null;
   return (
-    <Sheet open={open} onClose={onClose} title={food ? food.name : editing ? 'Swap food' : 'Add food'} testId="food-picker">
-      {!food ? (
+    <Sheet open={open} onClose={onClose} title={own ? 'Your own food' : food ? food.name : editing ? 'Swap food' : 'Add food'} testId="food-picker">
+      {own ? (
+        <OwnFood name={q} onBack={() => setOwn(false)} onAdd={onAdd} />
+      ) : !food ? (
         <div className="stack">
           <input className="input" type="search" placeholder="Search foods" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search foods" autoFocus />
+          {q && list.length === 0 && <p className="small muted">No match for “{q}” in the food list.</p>}
+          <button type="button" className={`btn ${q && list.length === 0 ? 'btn-primary' : 'btn-outline'}`} onClick={() => setOwn(true)} data-testid="own-food">
+            Not in the list? Enter your own numbers
+          </button>
           <div className="group" style={{ maxHeight: '50dvh', overflowY: 'auto' }}>
             {list.map((f) => (
               <button type="button" className="item" key={f.id} onClick={() => setFood(f)}>
@@ -296,6 +303,54 @@ function FoodPicker({ open, onClose, onAdd, restaurant, editing }: { open: boole
         </div>
       )}
     </Sheet>
+  );
+}
+
+/** Free entry: any food with the totals you know or guess. */
+function OwnFood({ name: name0, onBack, onAdd }: { name: string; onBack: () => void; onAdd: (it: FoodLogItem) => void }) {
+  const [name, setName] = useState(name0);
+  const [source, setSource] = useState<'label' | 'guess'>('guess');
+  const [kcal, setKcal] = useState<number | null>(null);
+  const [protein, setProtein] = useState<number | null>(null);
+  const [carbs, setCarbs] = useState<number | null>(null);
+  const [fat, setFat] = useState<number | null>(null);
+  const item = kcal !== null ? itemFromTotals(name, { kcal, protein: protein ?? 0, carbs: carbs ?? 0, fat: fat ?? 0 }, source) : null;
+  return (
+    <div className="stack" data-testid="own-food-form">
+      <label className="field">
+        <span className="label">Food</span>
+        <input className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={120} placeholder="For example, two slices of pizza" data-testid="own-food-name" />
+      </label>
+      <Seg
+        label="Where the numbers come from"
+        value={source}
+        onChange={setSource}
+        options={[
+          { value: 'guess', label: 'My best guess' },
+          { value: 'label', label: 'Label or menu' },
+        ]}
+      />
+      <p className="small muted">Totals for what you ate, not per 100 g. Only calories are needed.</p>
+      <div className="grid-2">
+        <Stepper label="Calories" unit="kcal" value={kcal} onChange={setKcal} step={10} max={4000} testId="own-food-kcal" />
+        <Stepper label="Protein" unit="g" value={protein} onChange={setProtein} step={1} decimals={1} max={400} testId="own-food-protein" />
+        <Stepper label="Carbs" unit="g" value={carbs} onChange={setCarbs} step={1} decimals={1} max={600} />
+        <Stepper label="Fat" unit="g" value={fat} onChange={setFat} step={1} decimals={1} max={300} />
+      </div>
+      {item && (
+        <div className="note">
+          <strong>{formatRange(item.low.kcal, item.high.kcal, ' kcal')}</strong> {CONFIDENCE_LABELS[item.estimate.confidence]}.
+        </div>
+      )}
+      <div className="grid-2">
+        <button type="button" className="btn btn-outline" onClick={onBack}>
+          Back
+        </button>
+        <button type="button" className="btn btn-primary" disabled={!item || !name.trim()} onClick={() => item && onAdd(item)} data-testid="own-food-add">
+          Add
+        </button>
+      </div>
+    </div>
   );
 }
 

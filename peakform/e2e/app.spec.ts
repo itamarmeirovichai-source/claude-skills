@@ -96,6 +96,37 @@ test.describe('training', () => {
     await expect(page.getByTestId('restbar')).toContainText('Rest finished');
   });
 
+  test('the rest end sound is queued on the audio clock when a set is completed', async ({ page }) => {
+    // Record what the app asks the audio system to play, instead of listening for real sound.
+    await page.addInitScript(() => {
+      const w = window as unknown as { __tones: number[]; AudioContext: typeof AudioContext };
+      w.__tones = [];
+      const Real = w.AudioContext;
+      w.AudioContext = class extends Real {
+        createOscillator() {
+          const o = super.createOscillator();
+          const start = o.start.bind(o);
+          o.start = (when?: number) => {
+            w.__tones.push((when ?? 0) - this.currentTime);
+            start(when);
+          };
+          return o;
+        }
+      } as typeof AudioContext;
+    });
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await startSession(page);
+    await exerciseChip(page, 3);
+    await logStrengthSet(page, 50, 8);
+    await expect(page.getByTestId('restbar')).toBeVisible();
+    const tones = await page.evaluate(() => (window as unknown as { __tones: number[] }).__tones);
+    // Squat rest is three minutes, so the first tone is queued about 180 seconds ahead.
+    expect(tones.length).toBeGreaterThanOrEqual(3);
+    expect(tones[0]).toBeGreaterThan(170);
+    expect(tones[0]).toBeLessThan(181);
+  });
+
   test('last performance appears beside the inputs', async ({ page }) => {
     await atTime(page, MONDAY);
     await onboard(page, { demo: true });
@@ -199,6 +230,26 @@ test.describe('food', () => {
     await expect(page.getByTestId('kcal-range')).toHaveText(/\d+ to \d+/);
   });
 
+  test('a food that is not in the list can be logged with your own numbers', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await go(page, '/eat/log/other');
+    await page.getByTestId('add-food').click();
+    await page.getByPlaceholder('Search foods').fill('kubbeh soup');
+    await expect(page.getByText('No match for “kubbeh soup”')).toBeVisible();
+    await page.getByTestId('own-food').click();
+    await expect(page.getByTestId('own-food-name')).toHaveValue('kubbeh soup');
+    await page.getByTestId('own-food-name').fill('Kubbeh soup with semolina dumplings');
+    await page.getByTestId('own-food-kcal').pressSequentially('640');
+    await page.getByTestId('own-food-protein').pressSequentially('26.5');
+    await page.getByTestId('own-food-add').click();
+    await expect(page.getByText('Kubbeh soup with semolina dumplings')).toBeVisible();
+    await expect(page.getByText('Your own numbers')).toBeVisible();
+    await page.getByTestId('save-food').click();
+    // A guess is stored as an honest range around the number typed in.
+    await expect(page.getByTestId('kcal-range')).toHaveText(/^4[45]\d to 8[23]\d$/);
+  });
+
   test('Saturday meals log discreetly with the plate guide', async ({ page }) => {
     await atTime(page, new Date('2026-10-04T08:00:00+03:00'));
     await onboard(page);
@@ -218,7 +269,46 @@ test.describe('body and review', () => {
     await page.getByTestId('weight-input').fill('79.4');
     await page.getByTestId('weight-save').click();
     await go(page, '/progress');
-    await expect(page.getByTestId('weight-avg')).toContainText('1 morning weights');
+    await expect(page.getByTestId('weight-avg')).toContainText('1 morning weight');
+  });
+
+  test('number fields accept free typing, one key at a time', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    // Morning weight: "7" on the way to 78.5 must not jump to the minimum, and the decimal point must stay.
+    await page.getByTestId('quick-weight').click();
+    const weight = page.getByTestId('weight-input');
+    await weight.click();
+    await weight.pressSequentially('7');
+    await expect(weight).toHaveValue('7');
+    await expect(page.getByText('Use a number from 20 to 300 kg.')).toBeVisible();
+    await weight.pressSequentially('8,5');
+    await expect(weight).toHaveValue('78.5');
+    await expect(page.getByText('Use a number from 20 to 300 kg.')).toHaveCount(0);
+    await page.getByTestId('weight-save').click();
+    await go(page, '/progress');
+    await expect(page.getByTestId('weight-avg')).toContainText('1 morning weight');
+
+    // A calorie target typed digit by digit, starting below the 2,000 floor.
+    await go(page, '/more/targets');
+    const kcal = page.getByLabel('Calories', { exact: true }).first();
+    await kcal.click();
+    await kcal.press('ControlOrMeta+a');
+    await kcal.pressSequentially('2375');
+    await expect(kcal).toHaveValue('2375');
+    await page.getByTestId('targets-save').click();
+    await expect(page.getByTestId('targets-save')).toHaveCount(0);
+    await page.reload();
+    await expect(page.getByLabel('Calories', { exact: true }).first()).toHaveValue('2375');
+
+    // Leaving an out of range number shows the stored value again, so the screen never disagrees with the data.
+    const kcal2 = page.getByLabel('Calories', { exact: true }).first();
+    await kcal2.click();
+    await kcal2.press('ControlOrMeta+a');
+    await kcal2.pressSequentially('900');
+    await expect(page.getByText('Use a number from 2000 to 4000.')).toBeVisible();
+    await kcal2.blur();
+    await expect(kcal2).toHaveValue('2375');
   });
 
   test('a check in with pain of 4 raises a safety message', async ({ page }) => {
