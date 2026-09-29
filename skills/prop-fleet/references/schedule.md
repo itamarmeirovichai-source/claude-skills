@@ -533,3 +533,10 @@ built for high-Sharpe intraday edges only. Full result in `stack.md`.
 - A self check-in is scheduled for 3 Oct to look for Apex's reply and fold it
   into apex-rules.md and the model.
 - Not done, by rule: moving or investing money, and buying an evaluation.
+- Update, same day: Itamar said to do it all. The accountant letter went to
+  Amnon Ben Shushan & Co. (office@bshcpa.co.il, Tel Aviv; Israeli and
+  international tax; they publish a guide on prop-firm taxation) — chosen
+  because it is the one firm found whose published work covers exactly this.
+  No bounce. One firm, not a mass mailing. Question 9 now also asks about US
+  estate-tax exposure of US-domiciled ETFs versus UCITS. The 3 Oct check-in
+  covers both replies. Still not done, by rule: moving or investing money.
