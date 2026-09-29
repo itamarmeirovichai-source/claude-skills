@@ -517,3 +517,19 @@ full-sample vol scaling; with past-only scaling its drawdown is −24%/−44%, n
 −17%/−32%. The synthetic evaluation table is the most useful output: a 21-day
 Apex evaluation passes Sharpe 1 at 22% and Sharpe 5 at 62%, so the structure is
 built for high-Sharpe intraday edges only. Full result in `stack.md`.
+
+## 29 Sep — the letters, done instead of described
+
+- Apex: the original rule-confirmation letter had already been sent on 20 Sep
+  to support@apextraderfunding.com (delivered, no bounce) and had no reply after
+  nine days. A follow-up went into the same thread on 29 Sep, narrowed to the
+  six questions that decide the plan: automation on evaluation vs PA, a
+  signal-only program with manual entry and a copier, any written exception,
+  the $2,000 drawdown, the $1,000 daily loss limit, the payout ladder.
+- Accountant: no accountant appears anywhere in Itamar's mail, so nothing could
+  be sent. A Hebrew draft is in his Gmail drafts ("שאלות מס לפני תחילת
+  פעילות"), covering both the prop payouts and the private portfolio (קופת
+  גמל להשקעה, foreign-account reporting, מס יסף). It needs only an address.
+- A self check-in is scheduled for 3 Oct to look for Apex's reply and fold it
+  into apex-rules.md and the model.
+- Not done, by rule: moving or investing money, and buying an evaluation.
