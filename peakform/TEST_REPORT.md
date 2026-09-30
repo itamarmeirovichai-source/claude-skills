@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-09-29. Build 1.2.0.
+Date: 2026-09-30. Build 1.2.1.
 
 ## Summary
 
@@ -9,7 +9,7 @@ Date: 2026-09-29. Build 1.2.0.
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
 | Unit and integration tests (Vitest) | 103 of 103 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 74 of 74 pass: 30 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
+| End to end tests (Playwright) | 75 of 75 pass: 31 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
 | Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
@@ -76,6 +76,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 28. An installed plan from before the morning sessions gets them with one tap, as version 2, with the main sessions unchanged.
 29. An installed plan with the old Tuesday and Friday volleyball days gets the new Upper C and Lower C gym sessions with one tap, keeping the morning work and the Friday swim.
 30. More, About checks for a new version on request.
+31. A gym day update put off with Not now on Today can still be added from Train.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
 

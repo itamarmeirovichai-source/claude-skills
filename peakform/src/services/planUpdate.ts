@@ -132,10 +132,17 @@ export interface PendingUpdates {
   gymDays: number[];
 }
 
-/** What the plan update card should offer, or null when nothing is waiting. */
-export async function pendingUpdates(active: PlanRecord): Promise<PendingUpdates | null> {
-  const morning = (await updateState(MORNING_UPDATE_ID)) ? 0 : missingMorningItems(active).size;
-  const gymDays = (await updateState(GYM_DAYS_UPDATE_ID)) ? [] : gymDaysPending(active);
+/**
+ * What the plan update card should offer, or null when nothing is waiting. With includeDismissed,
+ * an update the user put off with "Not now" is offered again, as long as the plan still lacks it.
+ */
+export async function pendingUpdates(active: PlanRecord, opts: { includeDismissed?: boolean } = {}): Promise<PendingUpdates | null> {
+  const skip = async (id: UpdateId) => {
+    const st = await updateState(id);
+    return st === 'applied' || (st === 'dismissed' && !opts.includeDismissed);
+  };
+  const morning = (await skip(MORNING_UPDATE_ID)) ? 0 : missingMorningItems(active).size;
+  const gymDays = (await skip(GYM_DAYS_UPDATE_ID)) ? [] : gymDaysPending(active);
   return morning || gymDays.length ? { morning, gymDays } : null;
 }
 

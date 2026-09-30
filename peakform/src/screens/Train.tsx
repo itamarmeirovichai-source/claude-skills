@@ -4,6 +4,7 @@ import { db } from '../db/db';
 import { activePlan, activeSession, startSession } from '../db/repo';
 import { useSettings } from '../ui/state';
 import { usePlan, useToday } from '../ui/hooks';
+import { PlanUpdateCard } from './PlanUpdate';
 import { Item, Note, PageHead, Section } from '../ui/components';
 import { Link, navigate } from '../ui/router';
 import { addDays, formatDateKey, weekdayOf, WEEKDAY_NAMES } from '../domain/dates';
@@ -61,6 +62,7 @@ export function TrainScreen() {
   return (
     <div data-testid="train">
       <PageHead title="Train" eyebrow={plan.name} end={<Link to="/coverage" className="btn btn-sm btn-outline">Coverage</Link>} />
+      <PlanUpdateCard canDismiss={false} />
       <Section title="This week">
         <div className="group">
           {order.map((wd, i) => {
@@ -120,6 +122,7 @@ export function TrainDayScreen({ weekday, date }: { weekday: number; date: strin
   return (
     <div data-testid="train-day">
       <PageHead title={day.title} eyebrow={`${WEEKDAY_NAMES[weekday]}${d !== today ? `, ${formatDateKey(d)}` : ''}`} backTo="/train" />
+      <PlanUpdateCard canDismiss={false} />
       {isMoved && (
         <Note tone="accent" title="Moved session">
           You are doing {WEEKDAY_NAMES[weekday]}'s plan on {formatDateKey(d)}. It replaces that day's session rather than adding to it.

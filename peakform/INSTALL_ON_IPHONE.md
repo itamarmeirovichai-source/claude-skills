@@ -42,5 +42,5 @@ Creating the Cloudflare account, connecting GitHub, and choosing the password ne
 - The first open needs internet and the password. After that, PeakForm opens and works offline without asking again.
 - The password sign in lasts up to a year on each device. Changing the password in Cloudflare signs every device out.
 - When a new version is ready, a small **Update** bar appears at the top. Tap it. PeakForm checks when it opens and whenever it comes back to the screen. If the bar does not show, open **More, About** and tap **Check for updates**, or close PeakForm fully (swipe it away in the app switcher) and open it again. New versions build automatically when `main` changes.
-- When a version changes the training plan, Today shows a card. Tap **Add to my plan** to get the change. Your history is kept.
+- When a version changes the training plan, Today and Train show a card. Tap **Add to my plan** to get the change. Your history is kept.
 - To stop the site completely, delete the Pages project in Cloudflare. The app already on the phone keeps working offline, but it can no longer update.

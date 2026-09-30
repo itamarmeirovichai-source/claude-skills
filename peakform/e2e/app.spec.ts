@@ -1,8 +1,35 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { MONDAY, SATURDAY_MORNING, atTime, exerciseChip, go, logStrengthSet, onboard, startSession } from './helpers';
 import { OLD_VOLLEYBALL_DAYS } from '../tests/fixtures/volleyballDays';
+
+async function restoreVolleyballDays(page: Page) {
+  // Put the old Tuesday and Friday volleyball sessions back, as on a phone installed before 1.2.0.
+  await page.evaluate(async (oldDays) => {
+    const db: IDBDatabase = await new Promise((res, rej) => {
+      const o = indexedDB.open('peakform');
+      o.onsuccess = () => res(o.result);
+      o.onerror = () => rej(o.error);
+    });
+    const tx = db.transaction(['plans'], 'readwrite');
+    const plans = tx.objectStore('plans');
+    const all: Array<{ days: Array<{ weekday: number; title: string; short: string; items: Array<{ session: string }> }> }> = await new Promise((res) => {
+      const r = plans.getAll();
+      r.onsuccess = () => res(r.result);
+    });
+    for (const p of all) {
+      for (const old of oldDays) {
+        const d = p.days.find((x) => x.weekday === old.weekday)!;
+        d.title = old.title;
+        d.short = old.short;
+        d.items = [...d.items.filter((i) => i.session === 'morning'), ...old.main, ...d.items.filter((i) => i.session === 'swim')];
+      }
+      plans.put(p);
+    }
+    await new Promise((res) => (tx.oncomplete = res));
+  }, OLD_VOLLEYBALL_DAYS);
+}
 
 test.describe('first run and install', () => {
   test('first run setup lands on Today with the profile saved locally', async ({ page }) => {
@@ -113,30 +140,7 @@ test.describe('training', () => {
   test('an installed plan with the old volleyball days gets the new Tuesday and Friday gym sessions', async ({ page }) => {
     await atTime(page, MONDAY);
     await onboard(page);
-    // Put the old Tuesday and Friday volleyball sessions back, as on a phone installed before 1.2.0.
-    await page.evaluate(async (oldDays) => {
-      const db: IDBDatabase = await new Promise((res, rej) => {
-        const o = indexedDB.open('peakform');
-        o.onsuccess = () => res(o.result);
-        o.onerror = () => rej(o.error);
-      });
-      const tx = db.transaction(['plans'], 'readwrite');
-      const plans = tx.objectStore('plans');
-      const all: Array<{ days: Array<{ weekday: number; title: string; short: string; items: Array<{ session: string }> }> }> = await new Promise((res) => {
-        const r = plans.getAll();
-        r.onsuccess = () => res(r.result);
-      });
-      for (const p of all) {
-        for (const old of oldDays) {
-          const d = p.days.find((x) => x.weekday === old.weekday)!;
-          d.title = old.title;
-          d.short = old.short;
-          d.items = [...d.items.filter((i) => i.session === 'morning'), ...old.main, ...d.items.filter((i) => i.session === 'swim')];
-        }
-        plans.put(p);
-      }
-      await new Promise((res) => (tx.oncomplete = res));
-    }, OLD_VOLLEYBALL_DAYS);
+    await restoreVolleyballDays(page);
     await page.reload();
     await expect(page.getByTestId('plan-update')).toContainText('Tuesday and Friday are gym days');
     await expect(page.getByTestId('plan-update-gym')).toContainText('Upper C');
@@ -156,6 +160,25 @@ test.describe('training', () => {
     await expect(day).toContainText('Swim');
     await go(page, '/more/plan');
     await expect(page.getByText('Version 2').first()).toBeVisible();
+  });
+
+  test('a gym day update put off with Not now can still be added from Train', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await restoreVolleyballDays(page);
+    await page.reload();
+    await page.getByTestId('plan-update').getByRole('button', { name: 'Not now' }).click();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await go(page, '/train/day/2?date=2026-09-29');
+    await expect(page.getByTestId('train-day')).toContainText('Volleyball Technique and Shoulder Care');
+    await expect(page.getByTestId('plan-update')).toContainText('Tuesday and Friday are gym days');
+    await expect(page.getByTestId('plan-update').getByRole('button', { name: 'Not now' })).toHaveCount(0);
+    await page.getByTestId('plan-update-apply').click();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await expect(page.getByTestId('train-day')).toContainText('Upper C Hypertrophy');
+    await expect(page.getByTestId('train-day')).toContainText('Incline Dumbbell Press');
+    await go(page, '/train');
+    await expect(page.getByTestId('train-day-5')).toContainText('Lower C Hypertrophy and Swim');
   });
 
   test('About checks for a new version on request', async ({ page }) => {
