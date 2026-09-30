@@ -66,8 +66,8 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3); // Hack Squat
-    await expect(page.getByTestId('exercise-name')).toHaveText('Hack Squat');
+    await exerciseChip(page, 3); // Leg Press
+    await expect(page.getByTestId('exercise-name')).toHaveText('Leg Press');
     await expect(page.getByTestId('prescription')).toContainText('3 × 8 to 12');
     // A new exercise stays two reps short while it is learned, then the last set goes to failure.
     await expect(page.getByTestId('prescription')).toContainText('2 RIR while learning');
@@ -84,12 +84,12 @@ test.describe('training', () => {
     await page.getByTestId('confirm-finish').click();
     await expect(page.getByTestId('workout-summary')).toBeVisible();
     const sug = page.getByTestId('suggestions');
-    await expect(sug).toContainText('Hack Squat');
+    await expect(sug).toContainText('Leg Press');
     await expect(sug).toContainText('Try 52.5 kg');
     await expect(sug).toContainText('smallest practical increase');
     await expect(page.getByTestId('plan-vs-actual')).toContainText('50×12');
     await sug.getByTestId('accept-suggestion').first().click();
-    await go(page, '/exercise/hack-squat');
+    await go(page, '/exercise/leg-press');
     await expect(page.getByTestId('detail-last')).toContainText('50 kg × 12, 12, 12');
     await expect(page.getByTestId('detail-target')).toContainText('Try 52.5 kg');
     await expect(page.getByTestId('detail-target')).toContainText('Confirmed');
@@ -127,15 +127,13 @@ test.describe('training', () => {
       await new Promise((res) => (tx.oncomplete = res));
     });
     await page.reload();
-    await expect(page.getByTestId('plan-update')).toContainText('choose your exercises');
+    await expect(page.getByTestId('plan-update')).toContainText('Your exercise choices are ready');
     await page.getByTestId('plan-update-apply').click();
-    await page.getByTestId('program-review').click();
-    await page.getByTestId('program-save').click();
-    await expect(page.getByTestId('train')).toBeVisible();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
     await go(page, '/train/day/1?date=2026-09-28');
     await expect(page.getByTestId('train-day')).toContainText('Morning volleyball and rope, 05:30');
     await expect(page.getByTestId('train-day')).toContainText('Blocking Footwork, No Jump');
-    await expect(page.getByTestId('train-day')).toContainText('Hack Squat');
+    await expect(page.getByTestId('train-day')).toContainText('Leg Press');
     await go(page, '/more/plan');
     await expect(page.getByText('Version 2').first()).toBeVisible();
     await go(page, '/today');
@@ -147,7 +145,9 @@ test.describe('training', () => {
     await onboard(page);
     await restoreVolleyballDays(page);
     await page.reload();
-    await page.getByTestId('plan-update-apply').click();
+    await page.getByTestId('plan-update-review').click();
+    await expect(page.getByTestId('program-summary')).toBeVisible();
+    await go(page, '/program');
     await expect(page.getByTestId('program')).toContainText('How your program works');
     await page.getByTestId('program-start').click();
     await expect(page.getByTestId('slot-shoulder-care')).toBeVisible();
@@ -195,7 +195,7 @@ test.describe('training', () => {
     await page.getByTestId('plan-update').getByRole('button', { name: 'Not now' }).click();
     await expect(page.getByTestId('plan-update')).toHaveCount(0);
     await go(page, '/train');
-    await expect(page.getByTestId('plan-update')).toContainText('choose your exercises');
+    await expect(page.getByTestId('plan-update')).toContainText('Your exercise choices are ready');
     await expect(page.getByTestId('plan-update').getByRole('button', { name: 'Not now' })).toHaveCount(0);
     await page.getByTestId('train-program').click();
     await expect(page.getByTestId('program')).toBeVisible();
@@ -303,7 +303,7 @@ test.describe('training', () => {
     await page.getByTestId('confirm-finish').click();
     const url = page.url();
     await go(page, '/more/plan');
-    await page.getByRole('button', { name: /Hack Squat/ }).first().click();
+    await page.getByRole('button', { name: /Leg Press/ }).first().click();
     await page.getByRole('button', { name: 'Increase Sets' }).click();
     await page.getByRole('button', { name: 'Done with this exercise' }).click();
     await page.getByTestId('save-plan').click();

@@ -312,25 +312,25 @@ export const CLAIM_REVIEWS: ClaimReview[] = [
     url: 'https://vt.tiktok.com/ZSbhYxd9R/',
     platform: 'tiktok',
     accessible: false,
-    claimed: 'Not visible: the video could not be opened from the build environment.',
+    claimed: 'As the user described it, since the video could not be opened: train each muscle head with its own exercise, do three sets to failure, and pick exercises that stretch the muscle.',
     evidence:
-      'WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. To evaluate it, someone needs the creator name, caption and the specific claim (for example which muscles a program misses, or which exercise is said to be best), then compare it with the exercise library muscle map and with studies such as those in SOURCES.',
+      'The link was still blocked, so the video itself was not seen. The description was compared with studies in SOURCES: growth rises a little as sets get closer to failure (Robinson 2024), but failure and one or two reps in reserve gave the same growth (Refalo 2024). Training at long muscle lengths helped in trials of the seated leg curl, overhead triceps work, and calf raises (Maeo 2021 and 2023, Kassiano 2023). About 9 to 18 weekly sets per muscle is supported (Pelland 2025). These are adult studies.',
     verdict:
-      'Not reviewed. No change to PeakForm. If the user shares the caption or a short summary, the claim can be checked. Separately, the current library already includes upper back (face pull, reverse machine fly, high row, seated cable row), calves (standing and seated calf raise, tibialis raise) and forearms (palm up and palm down wrist curls, hammer curl).',
-    changesApp: false,
-    reviewedOn: '2026-09-29',
+      'Mostly supported, with one change. PeakForm 2.0 uses one exercise per muscle head, three work sets, and stretch focused exercises. Failure is used on machine and cable work, where a failed rep is safe when training alone, and dumbbell presses, lunges, and hinges stop one rep short, which grew muscle just as well.',
+    changesApp: true,
+    reviewedOn: '2026-09-30',
   },
   {
     id: 'claim-tiktok-zsbh2l6fg',
     url: 'https://vt.tiktok.com/ZSbh2L6Fg/',
     platform: 'tiktok',
     accessible: false,
-    claimed: 'Not visible: the video could not be opened from the build environment.',
+    claimed: 'As the user described it, together with the first video: one exercise for each muscle head, three sets to failure, and exercises with a stretch.',
     evidence:
-      'WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. Needed: the creator, the caption, the exact claim, and any study or guideline it cites, checked against peer reviewed evidence and pediatric guidance.',
+      'The link was still blocked and the video was not seen. The claim was reviewed as one claim with the first video, against the same sources.',
     verdict:
-      'Not reviewed. No change to PeakForm. The user can describe the claim or paste the caption for a follow up review.',
-    changesApp: false,
-    reviewedOn: '2026-09-29',
+      'Reviewed with the first video. The same changes in PeakForm 2.0 apply.',
+    changesApp: true,
+    reviewedOn: '2026-09-30',
   },
 ];

@@ -146,8 +146,9 @@ export interface PendingUpdates {
  * an offer the user put off with "Not now" is shown again.
  */
 export async function pendingUpdates(opts: { includeDismissed?: boolean } = {}): Promise<PendingUpdates | null> {
-  if (await savedPicks()) return null;
-  const st = await updateState(PROGRAM_UPDATE_ID);
+  // Both reads start together so a live query sees both. A read after an await is not always tracked.
+  const [picks, st] = await Promise.all([savedPicks(), updateState(PROGRAM_UPDATE_ID)]);
+  if (picks) return null;
   if (st === 'applied' || (st === 'dismissed' && !opts.includeDismissed)) return null;
   return { program: true };
 }

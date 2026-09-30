@@ -9,7 +9,7 @@ import type { PlanDay, PlanItem, SetTarget, Weekday } from './plan';
 // free weights grow muscle similarly: Haugen 2023; Schwanbeck 2020). The weekly template decides
 // where each slot goes, how many sets, and the rest. The exercise's failure policy decides how
 // close to failure it goes. Only machines, cables, the Smith machine, and dumbbells are offered,
-// because he trains alone.
+// because the athlete trains alone.
 
 export type SlotId =
   | 'shoulder-care'
@@ -382,7 +382,7 @@ export const PROGRAM_DAYS: ProgramDay[] = [
     key: 'sun',
     title: 'Upper A and Swim',
     short: 'Upper A',
-    main: [s('shoulder-care'), s('chest-upper'), s('lats'), s('chest-fly'), s('row'), s('side-delt'), s('biceps-long'), s('triceps-long'), s('forearm-flexors')],
+    main: [s('shoulder-care'), s('chest-upper'), s('lats'), s('row'), s('chest-fly'), s('side-delt'), s('biceps-long'), s('triceps-long'), s('forearm-flexors')],
   },
   {
     weekday: 1,
@@ -448,10 +448,55 @@ export function slotExposures(slot: SlotId): number {
   return PROGRAM_DAYS.reduce((n, d) => n + d.main.filter((e) => 'slot' in e && e.slot === slot).length, 0);
 }
 
-/** Default picks: the first option, and the second option for the second weekly exposure. */
-export function defaultPicks(): ProgramPicks {
+/** The first option, and the second option for the second weekly exposure. */
+export function firstOptionPicks(): ProgramPicks {
   const out: ProgramPicks = {};
   for (const slot of PROGRAM_SLOTS) out[slot.id] = slot.options.length > 1 && slotExposures(slot.id) > 1 ? [slot.options[0]!, slot.options[1]!] : [slot.options[0]!];
+  return out;
+}
+
+/**
+ * The athlete's answers to the exercise questionnaire, 30 September 2026. A second exercise is
+ * used for the second time that muscle is trained in the week.
+ */
+export const CHOSEN_PICKS: ProgramPicks = {
+  'shoulder-care': ['cable-external-rotation'],
+  'chest-upper': ['incline-machine-press'],
+  'chest-press': ['machine-bench-press'],
+  'chest-fly': ['pec-deck-fly'],
+  'lats': ['wide-grip-lat-pulldown', 'one-arm-lat-pulldown'],
+  'lats-stretch': ['straight-arm-cable-pulldown'],
+  'row': ['chest-supported-dumbbell-row', 'seated-cable-row'],
+  'side-delt': ['single-arm-cable-lateral-raise', 'machine-lateral-raise'],
+  'rear-delt': ['reverse-machine-fly', 'face-pull'],
+  'biceps-long': ['incline-dumbbell-curl'],
+  'biceps-short': ['machine-preacher-curl'],
+  'brachialis': ['rope-hammer-curl'],
+  'triceps-long': ['dumbbell-overhead-triceps-extension', 'rope-overhead-triceps-extension'],
+  'triceps-short': ['triceps-pushdown'],
+  'traps': ['dumbbell-shrug'],
+  'forearm-flexors': ['palm-up-wrist-curl'],
+  'forearm-extensors': ['palm-down-wrist-curl'],
+  'quads': ['leg-press'],
+  'rectus-femoris': ['leg-extension'],
+  'hamstring-curl': ['seated-leg-curl'],
+  'hinge': ['dumbbell-romanian-deadlift'],
+  'glutes': ['bulgarian-split-squat'],
+  'glute-med': ['hip-abduction-machine'],
+  'adductors': ['copenhagen-plank'],
+  'calves': ['leg-press-calf-raise'],
+  'abs': ['cable-crunch'],
+  'obliques': ['cable-woodchop'],
+};
+
+/** The starting choices: the questionnaire answers, and the first option for any slot left empty. */
+export function defaultPicks(): ProgramPicks {
+  const base = firstOptionPicks();
+  const out: ProgramPicks = {};
+  for (const slot of PROGRAM_SLOTS) {
+    const mine = (CHOSEN_PICKS[slot.id] ?? []).filter((id) => slot.options.includes(id)).slice(0, 2);
+    out[slot.id] = mine.length ? mine : base[slot.id]!;
+  }
   return out;
 }
 

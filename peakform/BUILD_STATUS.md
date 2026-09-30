@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-09-30. Version 1.2.1.
+Last updated: 2026-09-30. Version 2.0.0.
 
 ## State
 
@@ -18,14 +18,16 @@ Complete and tested. Publishing is private: after the pull request is merged, th
 - **Nutrition ranges:** item ranges come from the portion method and food variability. Day totals combine item errors as independent (root of summed squares) instead of stacking worst cases.
 - **Week boundaries:** review weeks run Monday to Sunday so the Sunday evening review includes Sunday's session.
 - **Workout focus mode:** during an active workout the tab bar is replaced by a pinned Complete set dock. The rest timer bar stays visible across the app.
+- **Program (2.0.0):** the main sessions are built from slots, one per muscle head, each with two to four exercises that build it about equally. The athlete chose the exercises in a questionnaire before the release, and those answers are the starting choices; the same questionnaire is in the app to change them. No free barbell, because the athlete trains alone.
+- **Effort (2.0.0):** each exercise has a failure policy. Small machine and cable exercises go to technical failure on every set, machine and Smith compounds on the last set, and dumbbell compounds, lunges, and hinges stop one rep short. A new exercise stays two reps short for two sessions. Sets to failure progress from the first set.
 - **Bundle:** less frequent screens load on demand. The service worker precaches every chunk, so everything still opens offline.
 
 ## Completed
 
-- Content: 57 exercises, including five no ball morning volleyball drills and six gym exercises added for the Tuesday and Friday gym days, with instructions, muscles, safety, substitutions, and original keyframes or drill diagrams. The plan is seeded as prescribed, with Tuesday and Friday changed from volleyball to gym days at the user's request in 1.2.0. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines, the access gate, and plan updates with unit tests (103 tests).
+- Content: 91 exercises, including five no ball morning volleyball drills and the 34 machine, cable, Smith, and dumbbell alternatives added for the questionnaire in 2.0.0, with instructions, muscles, safety, substitutions, effort rules, and original keyframes or drill diagrams. Since 2.0.0 the main sessions come from the athlete's own exercise choices, at the user's request. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
+- Engines, the access gate, the program builder, and plan updates with unit tests (116 tests).
 - All screens, onboarding, and app lock.
-- End to end tests (75), layout and accessibility checks at 375, 390, 393, and 430 px.
+- End to end tests (79), layout and accessibility checks at 375, 390, 393, and 430 px.
 - Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
 - Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
 - Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.

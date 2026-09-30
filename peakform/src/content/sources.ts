@@ -480,7 +480,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'Varying exercises gave the same muscle and strength gains as a fixed plan and raised motivation.',
     productDecision:
-      'The athlete picks his favourite exercise for each muscle head, with an optional second choice for variety, and can change picks later.',
+      'The athlete picks a favourite exercise for each muscle head, with an optional second choice for variety, and can change picks later.',
     uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
     access: 'search-snippet',
   },

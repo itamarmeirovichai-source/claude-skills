@@ -11,7 +11,7 @@ import { Item, Note, PageHead, Section, useToast } from '../ui/components';
 import { Link, navigate } from '../ui/router';
 
 // The exercise questionnaire. One step per muscle head. Every option in a step trains that head
-// about equally, so the choice is about what he enjoys and what his gym has.
+// about equally, so the choice is about what the athlete enjoys and what the gym has.
 
 const EFFORT_LABEL: Record<FailurePolicy, string> = {
   all: 'Every set to failure',
@@ -141,7 +141,7 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
             </ul>
           </Note>
           <p className="small muted">
-            {total} short questions. Your history is kept, and you can change your choices here at any time. The plan is saved as a new version.
+            {total} short questions, with the answers from your questionnaire already filled in. Your history is kept, and you can change your choices here at any time. The plan is saved as a new version.
           </p>
           <div className="row wrap">
             <button type="button" className="btn btn-primary" onClick={() => go(0)} data-testid="program-start">

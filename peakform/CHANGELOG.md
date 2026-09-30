@@ -5,11 +5,13 @@
 A new program built from the athlete's own exercise choices.
 
 - One exercise for each muscle head, three work sets, and a slow stretch at the long muscle length, across six gym days that alternate upper and lower body. Every muscle gets about 9 to 18 direct sets a week, and none more than 20.
-- **Choose your exercises**: a questionnaire in the app, one step per muscle head, with 2 to 4 exercises that build that head about equally, each with a picture and instructions. Muscles trained twice a week can take a second choice for variety. Saving builds the plan as a new version and keeps history. Installed apps get a card on Today and Train.
+- **Choose your exercises**: a questionnaire in the app, one step per muscle head, with 2 to 4 exercises that build that head about equally, each with a picture and instructions. Muscles trained twice a week can take a second choice for variety. Saving builds the plan as a new version and keeps history.
+- The athlete's own answers, given in a questionnaire before this release, are the starting choices. Installed apps get a card on Today and Train that adds them with one tap, or shows the week first.
 - Only machines, cables, the Smith machine with safety stops, and dumbbells, because the athlete trains alone. No free barbell in any choice.
 - Effort by exercise: small machine and cable exercises go to technical failure on every set, machine and Smith compounds on the last set, and dumbbell presses, lunges, and hinges stop one rep short. Failure means the last rep with clean form. A new exercise stays two reps short for its first two sessions.
 - Progression for sets to failure is judged on the first set, because later sets lose reps.
 - 34 new exercises with instructions, muscles, safety, substitutions, and original illustrations. Every loaded exercise now states how close to failure it may go.
+- "Not now" on the Today card now hides it straight away.
 - Research changes: leg extensions lean back to stretch the rectus femoris, calf raises pause two seconds in the stretch and use a straight knee, the long head of the triceps is trained overhead twice a week, shoulder care starts every upper day, and the upper chest, side delts, rear delts, adductors, and side of the hip have their own slots. 24 new sources.
 
 ## 1.2.1, 2026-09-30
