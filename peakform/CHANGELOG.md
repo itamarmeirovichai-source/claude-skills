@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1, 2026-09-30
+
+- The plan update card also shows on Train and on each day in Train, until the change is added. There it has no "Not now", so an update put off on Today can still be added.
+- If adding a plan update fails, the card says so and the button works again.
+
 ## 1.2.0, 2026-09-29
 
 - Tuesday and Friday are regular muscle building gym days, because volleyball now happens every morning. Tuesday is Upper C: incline dumbbell press, chest supported dumbbell row, cable fly, lateral raise, face pull, incline dumbbell curl, and overhead triceps extension. Friday is Lower C before the swim: leg press, 45 degree back extension, Nordic curl, seated leg curl, cable hip adduction and abduction, and standing calf raise. Every set keeps two or three reps in reserve.

@@ -4,11 +4,14 @@ import { activePlan } from '../db/repo';
 import { Note, useToast } from '../ui/components';
 import { applyPlanUpdates, dismissPlanUpdates, pendingUpdates } from '../services/planUpdate';
 
-/** Offers plan changes that shipped after install. Shown until added or dismissed. */
-export function PlanUpdateCard() {
+/**
+ * Offers plan changes that shipped after install. On Today it can be put off with "Not now".
+ * On Train it stays until the change is added, so a dismissed update can still be found.
+ */
+export function PlanUpdateCard({ canDismiss = true }: { canDismiss?: boolean }) {
   const toast = useToast();
   const [busy, setBusy] = useState(false);
-  const offer = useLiveQuery(async () => pendingUpdates(await activePlan()), []);
+  const offer = useLiveQuery(async () => pendingUpdates(await activePlan(), { includeDismissed: !canDismiss }), [canDismiss]);
   if (!offer) return null;
   const both = offer.morning > 0 && offer.gymDays.length > 0;
   const title = both ? 'New: morning volleyball and two new gym days' : offer.morning ? 'New: morning volleyball at 05:30' : 'New: Tuesday and Friday are gym days';
@@ -36,15 +39,22 @@ export function PlanUpdateCard() {
             data-testid="plan-update-apply"
             onClick={async () => {
               setBusy(true);
-              await applyPlanUpdates(await activePlan(), offer);
-              toast('Your plan is up to date');
+              try {
+                await applyPlanUpdates(await activePlan(), offer);
+                toast('Your plan is up to date');
+              } catch {
+                setBusy(false);
+                toast('Could not update the plan. Try again.');
+              }
             }}
           >
             Add to my plan
           </button>
-          <button type="button" className="btn btn-sm btn-ghost" disabled={busy} onClick={() => void dismissPlanUpdates(offer)}>
-            Not now
-          </button>
+          {canDismiss && (
+            <button type="button" className="btn btn-sm btn-ghost" disabled={busy} onClick={() => void dismissPlanUpdates(offer)}>
+              Not now
+            </button>
+          )}
         </div>
       </Note>
     </div>
