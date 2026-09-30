@@ -1175,7 +1175,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
     aliases: ['Dumbbell trap shrug'],
     kind: 'strength',
     purpose:
-      'Builds the upper traps, the muscles that run from the neck to the tops of the shoulders and lift the shoulder blades. They also help turn the shoulder blades upward when you reach overhead to hit and block.',
+      'Builds the upper traps, the muscles that run from the neck to the tops of the shoulders and lift the shoulder blades. They also help turn the shoulder blades upward when you reach overhead to hit and block. Dumbbells at your sides let the shoulders lift straight up and drop into a full stretch at the bottom.',
     equipment: ['A pair of dumbbells'],
     setup: [
       'Stand tall with your feet hip width apart and a dumbbell in each hand.',
@@ -1199,7 +1199,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
       secondary: ['forearm_flexors', 'traps_middle'],
     },
     emphasisNote:
-      'Lifting straight up biases the upper traps. The middle traps help hold the shoulder blades steady, and the forearms work hard to hold the dumbbells. Letting the weight draw the shoulders all the way down trains the upper traps through their full length. Rolling the shoulders adds nothing and strains the joint.',
+      'Lifting straight up biases the upper traps. The middle traps help hold the shoulder blades steady, and the forearms work hard to hold the dumbbells. Letting the weight draw the shoulders all the way down trains the upper traps through their full length. Rolling the shoulders adds no useful work, so keep the path straight up and down.',
     movementPattern: 'shoulder_elevation',
     joints: ['Shoulder blade'],
     laterality: 'bilateral',
