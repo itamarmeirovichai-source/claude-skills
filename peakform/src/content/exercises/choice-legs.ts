@@ -56,7 +56,7 @@ const LEG_PRESS_PROPS: PoseProp[] = [
 ];
 
 /** Kneeling facing a high pulley, hips a little back of the knees. */
-const KNEEL: Base = { hip: [70, 126], legNear: [5, -92, -90], legFar: [3, -92, -90] } as Base;
+const KNEEL = { hip: [70, 126], legNear: [5, -92, -90], legFar: [3, -92, -90] } satisfies Partial<Base>;
 const CRUNCH_PROPS: PoseProp[] = [{ type: 'line', x1: 176, y1: 4, x2: 176, y2: 172 }];
 
 /** Front view: standing side on to a high pulley, feet wider than the shoulders. */

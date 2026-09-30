@@ -23,17 +23,17 @@ const ASSIST_FRAME: PoseProp[] = [
   { type: 'line', x1: 172, y1: 14, x2: 172, y2: 172 },
   { type: 'line', x1: 112, y1: 24, x2: 172, y2: 24 },
 ];
-const ASSIST_HANG: Base = { trunk: 180, head: 180, hip: [104.7, 125.5], legNear: [35, -90, -80] };
+const ASSIST_HANG: Base = { trunk: 180, head: 180, hip: [104.7, 125.5], legNear: [42, -90, -80] };
 const ASSIST_HANG_PROPS: PoseProp[] = [
   ...ASSIST_FRAME,
-  { type: 'line', x1: 130, y1: 167, x2: 170, y2: 146 },
-  { type: 'pad', x: 84, y: 165, w: 50, h: 5 },
+  { type: 'line', x1: 132, y1: 164, x2: 168, y2: 138 },
+  { type: 'pad', x: 88, y: 161.7, w: 48, h: 5 },
 ];
-const ASSIST_TOP: Base = { trunk: 186, head: 180, hip: [100, 77], legNear: [35, -90, -80] };
+const ASSIST_TOP: Base = { trunk: 186, head: 180, hip: [100, 77], legNear: [42, -90, -80] };
 const ASSIST_TOP_PROPS: PoseProp[] = [
   ...ASSIST_FRAME,
-  { type: 'line', x1: 126, y1: 119, x2: 170, y2: 146 },
-  { type: 'pad', x: 80, y: 116.5, w: 50, h: 5 },
+  { type: 'line', x1: 128, y1: 115.5, x2: 168, y2: 138 },
+  { type: 'pad', x: 84, y: 113.2, w: 48, h: 5 },
 ];
 
 /** Standing with a slight hip hinge, facing a high pulley. */
@@ -497,7 +497,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Stretch',
           caption: 'Lower the dumbbell in an arc behind the head, only as far as the shoulders are comfortable.',
           ...LYING,
-          armNear: [-102, -114],
+          armNear: [-115, -125],
           props: [FLAT_BENCH, { type: 'dumbbell', at: 'hands' }, { type: 'arrow', from: [70, 50], to: [36, 82] }],
         },
         {
@@ -643,7 +643,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
       secondary: ['traps_middle', 'rhomboids', 'rotator_cuff'],
     },
     emphasisNote:
-      'Arms at shoulder height with the shoulder blades fairly still bias the rear shoulders. The crossed start lengthens the rear shoulders more than most machines do, and the cables keep them working at that long length. Squeezing the shoulder blades together at the end adds middle trap and rhomboid work, and the rotator cuff keeps the shoulder centred.',
+      'Arms at shoulder height with the shoulder blades fairly still bias the rear shoulders. The crossed start lets the arms travel past the middle of your body, which lengthens the rear shoulders more than a start with the hands apart, and the cables keep them working at that long length. Squeezing the shoulder blades together at the end adds middle trap and rhomboid work, and the rotator cuff keeps the shoulder centred.',
     movementPattern: 'shoulder_horizontal_abduction',
     joints: ['Shoulder', 'Shoulder blade'],
     laterality: 'bilateral',
@@ -695,10 +695,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           armFar: [-50, 85],
           props: [
             ...CROSSOVER,
-            { type: 'cable', from: 'nearHand', to: [14, 38] },
-            { type: 'cable', from: 'farHand', to: [186, 38] },
-            { type: 'handle', at: 'nearHand' },
-            { type: 'handle', at: 'farHand' },
+            { type: 'cable', from: 'nearHand', to: [14, 34] },
+            { type: 'cable', from: 'farHand', to: [186, 34] },
           ],
         },
         {
@@ -709,10 +707,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           armFar: [-86, -90],
           props: [
             ...CROSSOVER,
-            { type: 'cable', from: 'nearHand', to: [14, 38] },
-            { type: 'cable', from: 'farHand', to: [186, 38] },
-            { type: 'handle', at: 'nearHand' },
-            { type: 'handle', at: 'farHand' },
+            { type: 'cable', from: 'nearHand', to: [14, 34] },
+            { type: 'cable', from: 'farHand', to: [186, 34] },
             { type: 'arrow', from: [124, 66], to: [158, 66] },
             { type: 'arrow', from: [75, 66], to: [41, 66] },
           ],
@@ -725,10 +721,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           armFar: [-50, 85],
           props: [
             ...CROSSOVER,
-            { type: 'cable', from: 'nearHand', to: [14, 38] },
-            { type: 'cable', from: 'farHand', to: [186, 38] },
-            { type: 'handle', at: 'nearHand' },
-            { type: 'handle', at: 'farHand' },
+            { type: 'cable', from: 'nearHand', to: [14, 34] },
+            { type: 'cable', from: 'farHand', to: [186, 34] },
             { type: 'arrow', from: [158, 84], to: [124, 84] },
             { type: 'arrow', from: [41, 84], to: [75, 84] },
           ],
@@ -819,7 +813,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Face away from a low pulley in a split stance, the working arm straight and pulled behind the body.',
           ...BAYES,
-          armNear: [-28, -28],
+          armNear: [-30, -30],
           armFar: [12, 30],
           props: [LOW_PULLEY_BEHIND, { type: 'cable', from: 'nearHand', to: [24, 162] }, { type: 'handle', at: 'nearHand' }],
         },
@@ -827,7 +821,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Top',
           caption: 'Curl forward and up until the forearm is close to vertical. The elbow stays behind the body.',
           ...BAYES,
-          armNear: [-22, 145],
+          armNear: [-30, 140],
           armFar: [12, 30],
           props: [
             LOW_PULLEY_BEHIND,
@@ -840,7 +834,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Lower slowly back to a straight elbow with the arm behind the body.',
           ...BAYES,
-          armNear: [-28, -28],
+          armNear: [-30, -30],
           armFar: [12, 30],
           props: [
             LOW_PULLEY_BEHIND,
@@ -860,7 +854,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
     aliases: ['One arm preacher curl', 'Dumbbell preacher curl'],
     kind: 'strength',
     purpose:
-      'Trains the biceps and brachialis one arm at a time with the upper arm resting on a pad, so the body cannot swing. The preacher position makes the curl hardest near the bottom, where the arm is almost straight and these muscles are long.',
+      'Trains the biceps and brachialis one arm at a time with the upper arm resting on a pad, so the body cannot swing. The preacher position makes the curl hardest in the lower half of the rep, where the arm is closer to straight and these muscles are long.',
     equipment: ['One dumbbell', 'Preacher bench, or an incline bench with a tall back pad'],
     setup: [
       'Set the preacher seat so your armpit fits snugly over the top edge of the pad. With an incline bench, stand behind it and rest your arm over the top of the back pad.',
@@ -885,7 +879,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
       secondary: ['brachioradialis'],
     },
     emphasisNote:
-      'With the upper arm resting in front of your body, the curl is hardest near the bottom, where the biceps and brachialis are long. The preacher position tends to bias the short head of the biceps and the brachialis, and the long head still works in every rep. One arm at a time lets each side move through its own full range.',
+      'With the upper arm resting in front of your body, the curl is hardest in the lower half of the rep, where the biceps and brachialis are long. The preacher position tends to bias the short head of the biceps and the brachialis, and the long head still works in every rep. One arm at a time lets each side move through its own full range.',
     movementPattern: 'elbow_flexion',
     joints: ['Elbow'],
     laterality: 'unilateral',
@@ -1033,14 +1027,14 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Stand tall facing a low pulley, rope in front of the thighs, palms facing each other.',
           ...STAND,
-          armNear: [6, 10],
+          armNear: [14, 18],
           props: [LOW_PULLEY_FRONT, { type: 'cable', from: 'hands', to: [178, 162] }, { type: 'handle', at: 'hands' }],
         },
         {
           label: 'Top',
           caption: 'Curl up with the palms still facing each other until the forearms are close to vertical.',
           ...STAND,
-          armNear: [10, 160],
+          armNear: [16, 155],
           props: [
             LOW_PULLEY_FRONT,
             { type: 'cable', from: 'hands', to: [178, 162] },
@@ -1052,7 +1046,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Lower slowly until the arms are fully straight again.',
           ...STAND,
-          armNear: [6, 10],
+          armNear: [14, 18],
           props: [
             LOW_PULLEY_FRONT,
             { type: 'cable', from: 'hands', to: [178, 162] },
@@ -1143,14 +1137,14 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Stand tall facing a low pulley, bar in front of the thighs, palms facing down.',
           ...STAND,
-          armNear: [6, 10],
+          armNear: [14, 18],
           props: [LOW_PULLEY_FRONT, { type: 'cable', from: 'hands', to: [178, 162] }, { type: 'handle', at: 'hands' }],
         },
         {
           label: 'Top',
           caption: 'Curl up with the palms down and the wrists straight until the forearms are close to vertical.',
           ...STAND,
-          armNear: [10, 160],
+          armNear: [16, 155],
           props: [
             LOW_PULLEY_FRONT,
             { type: 'cable', from: 'hands', to: [178, 162] },
@@ -1162,7 +1156,7 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Lower slowly until the arms are fully straight again.',
           ...STAND,
-          armNear: [6, 10],
+          armNear: [14, 18],
           props: [
             LOW_PULLEY_FRONT,
             { type: 'cable', from: 'hands', to: [178, 162] },
@@ -1254,8 +1248,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Front view. Stand tall, dumbbells at the sides, shoulders drawn down by the weight.',
           ...FRONT,
-          armNear: [18, 8],
-          armFar: [-18, -8],
+          armNear: [24, 12],
+          armFar: [-24, -12],
           props: [
             { type: 'dumbbell', at: 'nearHand' },
             { type: 'dumbbell', at: 'farHand' },
@@ -1265,8 +1259,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Top',
           caption: 'Front view. Lift the shoulders straight up toward the ears, arms straight, and hold one second.',
           ...FRONT,
-          armNear: [18, 8],
-          armFar: [-18, -8],
+          armNear: [24, 12],
+          armFar: [-24, -12],
           props: [
             { type: 'dumbbell', at: 'nearHand' },
             { type: 'dumbbell', at: 'farHand' },
@@ -1278,8 +1272,8 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Front view. Lower slowly into a full stretch. No rolling the shoulders.',
           ...FRONT,
-          armNear: [18, 8],
-          armFar: [-18, -8],
+          armNear: [24, 12],
+          armFar: [-24, -12],
           props: [
             { type: 'dumbbell', at: 'nearHand' },
             { type: 'dumbbell', at: 'farHand' },
@@ -1365,10 +1359,10 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Stand tall with the Smith bar hanging in front of the thighs and the arms straight.',
           ...STAND,
-          armNear: [4, 4],
+          armNear: [8, 8],
           props: [
-            { type: 'line', x1: 99, y1: 10, x2: 99, y2: 172 },
-            { type: 'line', x1: 91, y1: 116, x2: 107, y2: 116 },
+            { type: 'line', x1: 103, y1: 8, x2: 103, y2: 172 },
+            { type: 'line', x1: 96, y1: 120, x2: 118, y2: 120 },
             { type: 'barbell', at: 'hands' },
           ],
         },
@@ -1376,10 +1370,10 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Top',
           caption: 'Lift the shoulders straight up toward the ears and hold one second. The arms stay straight.',
           ...STAND,
-          armNear: [4, 4],
+          armNear: [8, 8],
           props: [
-            { type: 'line', x1: 99, y1: 10, x2: 99, y2: 172 },
-            { type: 'line', x1: 91, y1: 116, x2: 107, y2: 116 },
+            { type: 'line', x1: 103, y1: 8, x2: 103, y2: 172 },
+            { type: 'line', x1: 96, y1: 120, x2: 118, y2: 120 },
             { type: 'barbell', at: 'hands' },
             { type: 'arrow', from: [128, 60], to: [128, 36] },
           ],
@@ -1388,10 +1382,10 @@ export const PULL_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Lower slowly into a full stretch. No rolling the shoulders.',
           ...STAND,
-          armNear: [4, 4],
+          armNear: [8, 8],
           props: [
-            { type: 'line', x1: 99, y1: 10, x2: 99, y2: 172 },
-            { type: 'line', x1: 91, y1: 116, x2: 107, y2: 116 },
+            { type: 'line', x1: 103, y1: 8, x2: 103, y2: 172 },
+            { type: 'line', x1: 96, y1: 120, x2: 118, y2: 120 },
             { type: 'barbell', at: 'hands' },
             { type: 'arrow', from: [128, 36], to: [128, 60] },
           ],

@@ -38,16 +38,28 @@ const SMITH_FLAT_PROPS: PoseProp[] = [
 
 /** Front view, seated: the figure faces you, near side on the right of the picture, knees apart. */
 const FRONT_SEATED: Base = { trunk: 180, hip: [100, 100], legNear: [40, 0, 90], legFar: [-40, 0, -90] };
-const FRONT_SEAT_PROPS: PoseProp[] = [
-  { type: 'box', x: 86, y: 44, w: 28, h: 56 },
+/** Seat and post seen from the front. */
+const FRONT_SEAT: PoseProp[] = [
   { type: 'box', x: 76, y: 100, w: 48, h: 8 },
   { type: 'line', x1: 100, y1: 108, x2: 100, y2: 172 },
 ];
+/** Seat with a back pad that shows on both sides of the trunk. */
+const FRONT_SEAT_PROPS: PoseProp[] = [{ type: 'box', x: 86, y: 44, w: 28, h: 56 }, ...FRONT_SEAT];
 const PEC_DECK_PROPS: PoseProp[] = [
   { type: 'line', x1: 22, y1: 14, x2: 22, y2: 172 },
   { type: 'line', x1: 178, y1: 14, x2: 178, y2: 172 },
   { type: 'line', x1: 22, y1: 14, x2: 178, y2: 14 },
   ...FRONT_SEAT_PROPS,
+];
+
+/** Lateral raise machine pads on the outside of the upper arms, just above the elbows. */
+const LATERAL_PADS_DOWN: PoseProp[] = [
+  { type: 'pad', x: 113.4, y: 62.1, w: 5, h: 13 },
+  { type: 'pad', x: 81.6, y: 62.1, w: 5, h: 13 },
+];
+const LATERAL_PADS_UP: PoseProp[] = [
+  { type: 'pad', x: 116.9, y: 44.6, w: 13, h: 5 },
+  { type: 'pad', x: 70.1, y: 44.6, w: 13, h: 5 },
 ];
 
 /** Front view, standing between two cable towers, pulleys a little above shoulder height. */
@@ -58,7 +70,7 @@ const CROSSOVER_POSTS: PoseProp[] = [
 ];
 
 /** Upright bench with a back pad that ends below the shoulders, so the dumbbell has room behind the head. */
-const UPRIGHT: Base = { trunk: 180, head: 172, hip: [80, 132], legNear: [90, 0] };
+const UPRIGHT: Base = { trunk: 180, head: 162, hip: [80, 132], legNear: [90, 0] };
 const UPRIGHT_PROPS: PoseProp[] = [
   { type: 'bench', x: 56, y: 140, w: 46 },
   { type: 'bench', x: 67.5, y: 136, w: 46, h: 8, angle: -90 },
@@ -79,7 +91,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
     aliases: ['Incline chest press machine', 'Plate loaded incline press'],
     kind: 'strength',
     purpose:
-      'Builds the upper chest and the front of the shoulders on a guided path. You can press hard into a deep stretch with no spotter, and studies that compared machines with free weights found similar muscle growth (Haugen 2023).',
+      'Builds the upper chest and the front of the shoulders on a guided path. You can press hard into a deep stretch with no spotter and no weight to balance, which suits training alone.',
     equipment: ['Incline chest press machine, with a weight stack or plate loaded'],
     setup: [
       'Set the seat so the handles start level with your upper chest, just below the collarbones.',
@@ -154,7 +166,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Sit back against the reclined pad with the handles level with the upper chest.',
           ...INCLINE_MACHINE,
-          armNear: [14, 162],
+          armNear: [-10, 145],
           props: [...INCLINE_MACHINE_PROPS, { type: 'handle', at: 'hands' }],
         },
         {
@@ -162,14 +174,14 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           caption: 'Press up and slightly in to nearly straight arms, back still on the pad.',
           ...INCLINE_MACHINE,
           armNear: [150, 150],
-          props: [...INCLINE_MACHINE_PROPS, { type: 'handle', at: 'hands' }, { type: 'arrow', from: [96, 92], to: [108, 52] }],
+          props: [...INCLINE_MACHINE_PROPS, { type: 'handle', at: 'hands' }, { type: 'arrow', from: [98, 94], to: [114, 46] }],
         },
         {
           label: 'Finish',
           caption: 'Let the handles come back slowly into a deep stretch at the upper chest.',
           ...INCLINE_MACHINE,
-          armNear: [14, 162],
-          props: [...INCLINE_MACHINE_PROPS, { type: 'handle', at: 'hands' }, { type: 'arrow', from: [108, 52], to: [96, 92] }],
+          armNear: [-10, 145],
+          props: [...INCLINE_MACHINE_PROPS, { type: 'handle', at: 'hands' }, { type: 'arrow', from: [114, 46], to: [98, 94] }],
         },
       ],
     },
@@ -353,7 +365,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Lie on the bench with the feet flat and the dumbbells straight over the chest.',
           ...LYING,
-          armNear: [176, 180],
+          armNear: [170, 172],
           props: [FLAT_BENCH, { type: 'dumbbell', at: 'hands' }],
         },
         {
@@ -367,7 +379,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           label: 'Finish',
           caption: 'Press back up and slightly in until the dumbbells are over the chest.',
           ...LYING,
-          armNear: [176, 180],
+          armNear: [170, 172],
           props: [FLAT_BENCH, { type: 'dumbbell', at: 'hands' }, { type: 'arrow', from: [128, 94], to: [128, 62] }],
         },
       ],
@@ -505,7 +517,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
       secondary: ['pec_clavicular', 'delt_anterior'],
     },
     emphasisNote:
-      'With the handles at mid chest height, the fly biases the middle and lower chest, with help from the upper chest and front shoulders. A fly loads the chest hardest in the stretch, with the arms wide, and training at long muscle lengths like this is linked to good growth. No part of the chest switches off.',
+      'With the handles at mid chest height, the fly biases the middle and lower chest, with help from the upper chest and front shoulders. The wide open position works the chest at a long muscle length, and training at long lengths like this is linked to good growth. No part of the chest switches off.',
     movementPattern: 'shoulder_horizontal_adduction',
     joints: ['Shoulder', 'Shoulder blade'],
     laterality: 'bilateral',
@@ -552,29 +564,15 @@ export const PUSH_CHOICES: ExerciseContent[] = [
       poses: [
         {
           label: 'Start',
-          caption: 'Front view. Sit tall against the pad, hands on the handles together in front of the mid chest.',
-          ...FRONT_SEATED,
-          armNear: [70, -72],
-          armFar: [-70, 72],
-          props: [...PEC_DECK_PROPS, { type: 'handle', at: 'nearHand' }, { type: 'handle', at: 'farHand' }],
-        },
-        {
-          label: 'Stretch',
-          caption: 'Front view. Open the arms wide at chest height, elbows softly bent, shoulders kept back.',
+          caption: 'Front view. Sit tall against the pad, arms open wide on the handles at mid chest height.',
           ...FRONT_SEATED,
           armNear: [80, 92],
           armFar: [-80, -92],
-          props: [
-            ...PEC_DECK_PROPS,
-            { type: 'handle', at: 'nearHand' },
-            { type: 'handle', at: 'farHand' },
-            { type: 'arrow', from: [128, 84], to: [156, 84] },
-            { type: 'arrow', from: [72, 84], to: [44, 84] },
-          ],
+          props: [...PEC_DECK_PROPS, { type: 'handle', at: 'nearHand' }, { type: 'handle', at: 'farHand' }],
         },
         {
-          label: 'Finish',
-          caption: 'Front view. Squeeze the handles back together in front of the chest.',
+          label: 'In',
+          caption: 'Front view. Keep the elbow bend and squeeze the handles together in front of the chest.',
           ...FRONT_SEATED,
           armNear: [70, -72],
           armFar: [-70, 72],
@@ -584,6 +582,20 @@ export const PUSH_CHOICES: ExerciseContent[] = [
             { type: 'handle', at: 'farHand' },
             { type: 'arrow', from: [156, 92], to: [128, 92] },
             { type: 'arrow', from: [44, 92], to: [72, 92] },
+          ],
+        },
+        {
+          label: 'Finish',
+          caption: 'Front view. Open the arms slowly into a deep chest stretch, shoulders kept back.',
+          ...FRONT_SEATED,
+          armNear: [80, 92],
+          armFar: [-80, -92],
+          props: [
+            ...PEC_DECK_PROPS,
+            { type: 'handle', at: 'nearHand' },
+            { type: 'handle', at: 'farHand' },
+            { type: 'arrow', from: [128, 84], to: [156, 84] },
+            { type: 'arrow', from: [72, 84], to: [44, 84] },
           ],
         },
       ],
@@ -601,7 +613,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
     equipment: ['Cable crossover station with two adjustable pulleys', 'Two D handles'],
     setup: [
       'Set both pulleys at shoulder height or a little higher and attach a D handle to each.',
-      'Take a handle in each hand and step forward between the towers, so the cables pull your arms slightly back.',
+      'Take a handle in each hand, step forward between the towers until the cables have tension, and bring your hands together in front of your lower chest.',
       'Stand in a staggered stance, one foot a step ahead, with a slight forward lean from the hips.',
       'Soften your elbows and pull your shoulder blades back and down.',
     ],
@@ -723,7 +735,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
     aliases: ['Seated lateral raise machine', 'Lateral raise machine'],
     kind: 'strength',
     purpose:
-      'Builds the side of the shoulder on a guided path. The pads push on your upper arms, so a tired grip never ends the set early, and most machines keep tension on low in the lift, where dumbbells feel light.',
+      'Builds the side of the shoulder on a guided path. The pads push on your upper arms, so a tired grip never ends the set early, and many machines keep tension on low in the lift, where dumbbells feel light.',
     equipment: ['Seated lateral raise machine'],
     setup: [
       'Set the seat so your shoulders line up with the machine pivots, often marked with a dot.',
@@ -784,13 +796,9 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Front view. Sit tall with the arms at your sides and the pads on the outside of the upper arms.',
           ...FRONT_SEATED,
-          armNear: [16, 8],
-          armFar: [-16, -8],
-          props: [
-            ...FRONT_SEAT_PROPS,
-            { type: 'bench', x: 110.5, y: 59.4, w: 14, h: 6, angle: 74 },
-            { type: 'bench', x: 89.5, y: 59.4, w: 14, h: 6, angle: 106 },
-          ],
+          armNear: [26, 14],
+          armFar: [-26, -14],
+          props: [...FRONT_SEAT, ...LATERAL_PADS_DOWN],
         },
         {
           label: 'Top',
@@ -798,25 +806,15 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           ...FRONT_SEATED,
           armNear: [86, 92],
           armFar: [-86, -92],
-          props: [
-            ...FRONT_SEAT_PROPS,
-            { type: 'bench', x: 112.5, y: 43.3, w: 14, h: 6, angle: 4 },
-            { type: 'bench', x: 87.5, y: 43.3, w: 14, h: 6, angle: 176 },
-            { type: 'arrow', from: [172, 96], to: [172, 62] },
-          ],
+          props: [...FRONT_SEAT, ...LATERAL_PADS_UP, { type: 'arrow', from: [172, 96], to: [172, 62] }],
         },
         {
           label: 'Finish',
           caption: 'Front view. Lower slowly back to your sides without letting the weight rest.',
           ...FRONT_SEATED,
-          armNear: [16, 8],
-          armFar: [-16, -8],
-          props: [
-            ...FRONT_SEAT_PROPS,
-            { type: 'bench', x: 110.5, y: 59.4, w: 14, h: 6, angle: 74 },
-            { type: 'bench', x: 89.5, y: 59.4, w: 14, h: 6, angle: 106 },
-            { type: 'arrow', from: [172, 62], to: [172, 96] },
-          ],
+          armNear: [26, 14],
+          armFar: [-26, -14],
+          props: [...FRONT_SEAT, ...LATERAL_PADS_DOWN, { type: 'arrow', from: [172, 62], to: [172, 96] }],
         },
       ],
     },
@@ -829,7 +827,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
     aliases: ['Seated overhead dumbbell extension', 'Seated two hand dumbbell extension'],
     kind: 'strength',
     purpose:
-      'Builds the triceps with the arms overhead, which lengthens the long head of the triceps. In one 12 week study (Maeo 2023), overhead extensions gave about 1.4 times more triceps growth than pushdowns, so this is a strong choice for arm size.',
+      'Builds the triceps with the arms overhead, which lengthens the long head of the triceps. Sitting against a pad keeps your trunk still so the triceps do the work, and one dumbbell is all you need.',
     equipment: ['One dumbbell', 'Adjustable bench set upright'],
     setup: [
       'Set an adjustable bench fully upright. Sit so the pad supports your lower and middle back and there is room for the dumbbell behind your head.',
@@ -853,7 +851,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
       secondary: [],
     },
     emphasisNote:
-      'The long head of the triceps crosses the shoulder joint, so raising the arms overhead lengthens it and gives it a bigger share of the work, especially in the stretch. In Maeo 2023, training in this overhead position gave about 1.4 times more triceps growth than pushdowns. The lateral and medial heads still straighten the elbow in every rep.',
+      'The long head of the triceps crosses the shoulder joint, so raising the arms overhead lengthens it and gives it a bigger share of the work, especially in the stretch. In one 12 week study (Maeo 2023), training in this overhead position gave about 1.4 times more triceps growth than pushdowns. The lateral and medial heads still straighten the elbow in every rep.',
     movementPattern: 'elbow_extension',
     joints: ['Elbow', 'Shoulder'],
     laterality: 'bilateral',
@@ -903,21 +901,21 @@ export const PUSH_CHOICES: ExerciseContent[] = [
           label: 'Start',
           caption: 'Sit against the upright pad and hold one dumbbell straight overhead with both hands.',
           ...UPRIGHT,
-          armNear: [178, 178],
+          armNear: [182, 182],
           props: [...UPRIGHT_PROPS, { type: 'dumbbell', at: 'hands' }],
         },
         {
           label: 'Stretch',
           caption: 'Elbows point up as you lower the dumbbell behind the head into a deep stretch.',
           ...UPRIGHT,
-          armNear: [175, -40],
+          armNear: [185, -45],
           props: [...UPRIGHT_PROPS, { type: 'dumbbell', at: 'hands' }, { type: 'arrow', from: [112, 34], to: [112, 66] }],
         },
         {
           label: 'Finish',
           caption: 'Straighten the elbows to raise the dumbbell back overhead. Upper arms stay still.',
           ...UPRIGHT,
-          armNear: [178, 178],
+          armNear: [182, 182],
           props: [...UPRIGHT_PROPS, { type: 'dumbbell', at: 'hands' }, { type: 'arrow', from: [112, 66], to: [112, 34] }],
         },
       ],
@@ -931,7 +929,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
     aliases: ['One arm overhead cable extension', 'Single arm overhead cable extension'],
     kind: 'strength',
     purpose:
-      'Builds the triceps with the arm overhead, which lengthens the long head. The cable keeps tension on deep in the stretch, and one arm at a time lets each side move through its own full range. Overhead extensions gave about 1.4 times more triceps growth than pushdowns in one 12 week study (Maeo 2023).',
+      'Builds the triceps with the arm overhead, which lengthens the long head. The cable keeps tension on deep in the stretch, and one arm at a time lets each side move through its own full range.',
     equipment: ['Cable pulley', 'Single D handle'],
     setup: [
       'Set the pulley low or at about chest height and attach a single handle.',
@@ -957,7 +955,7 @@ export const PUSH_CHOICES: ExerciseContent[] = [
       secondary: [],
     },
     emphasisNote:
-      'The long head of the triceps crosses the shoulder joint, so an arm beside your ear lengthens it and gives it a larger share of the work, especially in the stretch. In Maeo 2023, training in this overhead position gave about 1.4 times more triceps growth than pushdowns. The lateral and medial heads still straighten the elbow in every rep.',
+      'The long head of the triceps crosses the shoulder joint, so an arm beside your ear lengthens it and gives it a larger share of the work, especially in the stretch. In one 12 week study (Maeo 2023), training in this overhead position gave about 1.4 times more triceps growth than pushdowns. The lateral and medial heads still straighten the elbow in every rep.',
     movementPattern: 'elbow_extension',
     joints: ['Elbow', 'Shoulder'],
     laterality: 'unilateral',
