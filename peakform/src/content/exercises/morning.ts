@@ -223,7 +223,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
     goodFormFeels:
       'A warm, working feeling low between the shoulder blades and at the back of the shoulders, with the neck relaxed.',
     stopRules: [
-      'Stop the set when you cannot keep the shoulders down or the trunk still, or you reach the prescribed reps in reserve. Sets are not to failure.',
+      'Stop the set when you cannot keep the shoulders down or the trunk still, or you reach the prescribed reps in reserve. This exercise is never taken to failure.',
       'Stop for pain of 4 out of 10 or more, pinching at the front of the shoulder, or pain that changes your form, and tell a parent, coach, or clinician.',
     ],
     safetyNotes: [
@@ -248,6 +248,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -319,7 +320,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
     ],
     goodFormFeels: 'A focused, warm feeling at the back of the shoulder, with the elbow still and the neck relaxed.',
     stopRules: [
-      'Stop the set when the elbow starts to lift or the body rolls, or you reach the prescribed reps in reserve. Sets are not to failure.',
+      'Stop the set when the elbow starts to lift or the body rolls, or you reach the prescribed reps in reserve. This exercise is never taken to failure.',
       'Stop for pain of 4 out of 10 or more, clicking with pain, or pain that changes your form, and tell a parent, coach, or clinician.',
     ],
     safetyNotes: ['Light is right. A full water bottle is often enough at the start.'],
@@ -334,6 +335,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
       reason: 'The standing cable version, for the gym.',
     },
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -406,7 +408,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
     ],
     goodFormFeels: 'A steady, working trunk, lower back quietly on the floor, and slow controlled limbs.',
     stopRules: [
-      'Stop the set when the lower back lifts or the movement speeds up, or you reach the prescribed reps in reserve. Sets are not to failure.',
+      'Stop the set when the lower back lifts or the movement speeds up, or you reach the prescribed reps in reserve. This exercise is never taken to failure.',
       'Stop for pain of 4 out of 10 or more, or back pain that changes your form, and tell a parent, coach, or clinician.',
     ],
     safetyNotes: ['Keep it slow. More reps with a lifting back teach the wrong habit.'],
@@ -421,6 +423,7 @@ export const MORNING_EXERCISES: ExerciseContent[] = [
       reason: 'Another trunk control drill, with a cable or band in the gym.',
     },
     loadIncrement: 'none',
+    failure: 'never',
     visual: {
       poses: [
         {

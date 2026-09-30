@@ -5,6 +5,7 @@ import { activePlan, activeSession, startSession } from '../db/repo';
 import { useSettings } from '../ui/state';
 import { usePlan, useToday } from '../ui/hooks';
 import { PlanUpdateCard } from './PlanUpdate';
+import { effortText } from '../ui/format';
 import { Item, Note, PageHead, Section } from '../ui/components';
 import { Link, navigate } from '../ui/router';
 import { addDays, formatDateKey, weekdayOf, WEEKDAY_NAMES } from '../domain/dates';
@@ -100,6 +101,7 @@ export function TrainScreen() {
         <div className="group">
           <Item title="Exercise library" sub="Instructions, muscles, visuals, and videos" to="/library" />
           <Item title="Muscle coverage this week" sub="Direct and indirect sets, shoulder load" to="/coverage" />
+          <Item title="Choose your exercises" sub="Pick your favourite exercise for each muscle. Saved as a new plan version." to="/program" testId="train-program" />
           <Item title="Edit the plan" sub="Changes create a new version. History keeps the original." to="/more/plan" />
         </div>
       </Section>
@@ -159,7 +161,7 @@ export function TrainDayScreen({ weekday, date }: { weekday: number; date: strin
                         key={it.id}
                         to={`/exercise/${it.exerciseId}?item=${it.id}`}
                         title={`${i + 1}. ${ex?.name ?? it.exerciseId}`}
-                        sub={[targetText(it), restText(it.restSec), it.rir !== undefined ? `${it.rir} RIR` : '', it.tempo ? `tempo ${it.tempo.split('').join(' ')}` : '', it.rpe ? `RPE ${it.rpe[0]} to ${it.rpe[1]}` : ''].filter(Boolean).join(' · ')}
+                        sub={[targetText(it), restText(it.restSec), effortText(it), it.tempo ? `tempo ${it.tempo.split('').join(' ')}` : '', it.rpe ? `RPE ${it.rpe[0]} to ${it.rpe[1]}` : ''].filter(Boolean).join(' · ')}
                       />
                     );
                   })}

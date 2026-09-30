@@ -43,3 +43,21 @@ export function summarizeSets(sets: SetLog[]): string {
   }
   return group(work);
 }
+
+/** How hard a plan item goes: "to failure", "1 RIR, last set to failure", or "2 RIR". */
+export function effortText(item: { rir?: number; lastSetRir?: number }): string {
+  if (item.rir === undefined) return '';
+  if (item.rir === 0) return 'to failure';
+  if (item.lastSetRir === 0) return `${item.rir} RIR, last set to failure`;
+  return `${item.rir} RIR`;
+}
+
+/** The reps in reserve target for one set of a plan item. */
+export function setRirTarget(item: { rir?: number; lastSetRir?: number; sets: number }, setIndex: number): number | undefined {
+  if (item.lastSetRir !== undefined && setIndex === item.sets - 1) return item.lastSetRir;
+  return item.rir;
+}
+
+/** A new exercise stays two reps short for its first two sessions while the technique is learned. */
+export const LEARNING_SESSIONS = 2;
+export const LEARNING_RIR = 2;

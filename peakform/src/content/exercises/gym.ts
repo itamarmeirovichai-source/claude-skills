@@ -1,3 +1,4 @@
+import { EFFORT_RULE } from './effort';
 import type { ExerciseContent, Pose, PoseProp } from '../types';
 
 // Gym exercises added when Tuesday and Friday became regular muscle building days.
@@ -6,8 +7,6 @@ import type { ExerciseContent, Pose, PoseProp } from '../types';
 // the biceps at long muscle length, quads without a bar on the spine, the lower back and
 // glutes through hip extension, and the inner thigh.
 
-const RIR_RULE = 'Stop when you reach the prescribed reps in reserve. Sets are not to failure.';
-const RIR_RULE_SIDE = 'End the set on each leg when you reach the prescribed reps in reserve. Sets are not to failure.';
 const PAIN_RULE =
   'Pain of 4 out of 10 or higher, or pain that worsens or changes your technique, pauses this exercise. Report it to a parent, coach, or clinician.';
 
@@ -106,7 +105,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
     ],
     goodFormFeels:
       'A clear stretch across the upper chest at the bottom, a smooth press up, and shoulders that feel steady and never pinched.',
-    stopRules: ['Stop the set when a dumbbell wobbles, slows sharply, or your technique changes.', RIR_RULE, PAIN_RULE],
+    stopRules: ['Stop the set when a dumbbell wobbles, slows sharply, or your technique changes.', EFFORT_RULE.never, PAIN_RULE],
     safetyNotes: [
       'Get in and out of position with the knees helping, as in the setup. Never drop heavy dumbbells to the sides from straight arms.',
       'Your shoulders also work in volleyball and swimming. Keep the incline low and stop the set at any pinch in the front of the shoulder.',
@@ -129,6 +128,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -200,7 +200,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
     ],
     goodFormFeels:
       'The chest stays glued to the pad, the upper back does the pulling, and you feel the squeeze between the shoulder blades at the top.',
-    stopRules: ['Stop the set when the chest starts to lift off the pad or the reps get jerky.', RIR_RULE, PAIN_RULE],
+    stopRules: ['Stop the set when the chest starts to lift off the pad or the reps get jerky.', EFFORT_RULE.last, PAIN_RULE],
     safetyNotes: [
       'Put the dumbbells down on the floor before you get off the bench.',
       'If the edge of the pad presses uncomfortably, move a little higher or lower on it.',
@@ -223,6 +223,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -294,7 +295,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
     goodFormFeels: 'A gentle stretch at the bottom, the work right in the front of the upper arm, and elbows that stay put.',
     stopRules: [
       'Stop the set when the elbows start to swing forward or the lowering speeds up.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
       'A sharp pull in the front of the shoulder means the bench is too low. Raise it before the next set.',
     ],
@@ -320,6 +321,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -391,7 +393,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       'Pushing with the hands on the knees.',
     ],
     goodFormFeels: 'Hips and back stay heavy in the seat, the push comes through the whole foot, and the thighs and glutes feel the work.',
-    stopRules: ['Stop the set when the knees start to cave, the depth shrinks, or the hips lift.', RIR_RULE, PAIN_RULE],
+    stopRules: ['Stop the set when the knees start to cave, the depth shrinks, or the hips lift.', EFFORT_RULE.last, PAIN_RULE],
     safetyNotes: [
       'Use the safety stops or locks every time, and set them before loading the machine heavily.',
       'Never lock the knees straight under load.',
@@ -415,6 +417,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -503,7 +506,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
     goodFormFeels: 'The glutes and the back of the thighs do the lifting, the back stays straight, and the top is a calm straight line.',
     stopRules: [
       'Stop the set when the lower back starts to round or the reps get jerky.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
       'Lower back pain that stays after the set means stop for today and tell a parent, coach, or clinician.',
     ],
@@ -529,6 +532,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -601,7 +605,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       'Standing so far away that the leg is pulled too wide at the start.',
     ],
     goodFormFeels: 'A steady upright body, a smooth pull, and the work right in the inner thigh.',
-    stopRules: ['Stop the set when the trunk starts to lean or the leg swings.', RIR_RULE_SIDE, PAIN_RULE],
+    stopRules: ['Stop the set when the trunk starts to lean or the leg swings.', EFFORT_RULE.all, PAIN_RULE],
     safetyNotes: [
       'Start light. The inner thigh muscles are small compared with the thighs, and groin pain is a reason to stop.',
       'Hold the machine the whole time for balance.',
@@ -624,6 +628,7 @@ export const GYM_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {

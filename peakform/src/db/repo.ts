@@ -200,6 +200,14 @@ export async function lastExposure(exerciseId: string, beforeSessionId?: string)
   return { session: latest, sets: (bySession.get(latest.id) ?? []).sort((a, b) => a.setIndex - b.setIndex || (a.side ?? '').localeCompare(b.side ?? '')) };
 }
 
+/** Finished sessions with work sets of this exercise, not counting the current session. */
+export async function priorExposureCount(exerciseId: string, excludeSessionId: string): Promise<number> {
+  const sets = await db.setLogs.where('exerciseId').equals(exerciseId).toArray();
+  const ids = [...new Set(sets.filter((s) => !s.warmup && s.sessionId !== excludeSessionId).map((s) => s.sessionId))];
+  const sessions = await db.sessions.bulkGet(ids);
+  return sessions.filter((x) => x?.status === 'done').length;
+}
+
 export async function exposuresFor(exerciseId: string): Promise<Array<{ session: WorkoutSession; sets: SetLog[] }>> {
   const sets = await db.setLogs.where('exerciseId').equals(exerciseId).toArray();
   const bySession = new Map<string, SetLog[]>();
@@ -307,6 +315,8 @@ export const KV = {
   targets: 'nutritionTargets',
   supplementReview: 'supplementReview',
   planUpdates: 'planUpdates',
+  programPicks: 'programPicks',
+  programDraft: 'programDraft',
 } as const;
 
 /** Editable daily nutrition targets. Falls back to the seeded baseline. */

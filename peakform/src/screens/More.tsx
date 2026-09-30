@@ -16,6 +16,7 @@ export function MoreScreen() {
           <Item title="Schedule and reminders" sub="Session times and reminder times" to="/more/schedule" testId="more-schedule" />
           <Item title="Calendar export" sub="Reminders with alarms for Apple Calendar" to="/more/calendar" testId="more-calendar" />
           <Item title="Sabbath Mode" sub={s.sabbath.enabled ? `On, Friday ${s.sabbath.mode === 'manual' ? s.sabbath.fridayStart : 'from sunset'} to Saturday night` : 'Off'} to="/more/sabbath" testId="more-sabbath" />
+          <Item title="Choose your exercises" sub="Your favourite exercise for each muscle head" to="/program" testId="more-program" />
           <Item title="Edit the training plan" sub="Saved as a new version. History keeps the original." to="/more/plan" />
           <Item title="Nutrition targets" sub="Daily ranges, never below the safety floors" to="/more/targets" />
         </div>

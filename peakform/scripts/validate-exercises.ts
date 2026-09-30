@@ -17,7 +17,6 @@ const idSet = new Set<string>(LIBRARY_IDS);
 const banned: Array<[RegExp, string]> = [
   [/—/, 'em dash'],
   [/–/, 'en dash'],
-  [/to failure|until failure|go to failure/i, 'failure prescription (only allowed as "not to failure")'],
   [/isolat/i, 'isolation claim'],
   [/!/, 'exclamation mark'],
   [/\bcrush|\bbeast|\bshred|\bnext level|game.?changer|unleash|supercharge/i, 'hype phrase'],
@@ -47,8 +46,15 @@ for (const ex of all) {
   const text = JSON.stringify(ex);
   for (const [re, label] of banned) {
     const m = text.match(re);
-    if (m && !(label.startsWith('failure') && /not to failure|never to failure|not taken to failure|short of failure|before failure|not train to failure|avoid failure/i.test(text))) problems.push(`${where}: ${label}: "${m[0]}"`);
+    if (m) problems.push(`${where}: ${label}: "${m[0]}"`);
   }
+  // Effort: loaded and body weight work must say how close to failure it may go. Failure is only
+  // ever described as the last rep with clean form, and never for exercises marked 'never'.
+  if (['strength', 'bodyweight', 'hold'].includes(ex.kind) && !ex.failure) problems.push(`${where}: missing failure policy`);
+  const failureTalk = /\b(to|until|go to) failure\b/i.test(text.replace(/never taken to failure|short of failure|never to failure/gi, ''));
+  if (failureTalk && (ex.failure === undefined || ex.failure === 'never')) problems.push(`${where}: describes failure but its policy is ${ex.failure ?? 'unset'}`);
+  if (failureTalk && !/clean form/i.test(text)) problems.push(`${where}: failure must be defined as the last rep with clean form`);
+  if (/until failure|grind it out|forced reps/i.test(text)) problems.push(`${where}: unsafe failure wording`);
 }
 const ids = all.map((e) => e.id);
 const dup = ids.filter((id, i) => ids.indexOf(id) !== i);

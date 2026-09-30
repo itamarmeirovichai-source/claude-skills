@@ -66,35 +66,36 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3); // Barbell Squat
-    await expect(page.getByTestId('exercise-name')).toHaveText('Barbell Squat');
-    await expect(page.getByTestId('prescription')).toContainText('3 × 6 to 10');
-    await expect(page.getByTestId('prescription')).toContainText('3 RIR');
-    await expect(page.getByTestId('prescription')).toContainText('tempo 3 1 1 0');
-    await logStrengthSet(page, 50, 10);
+    await exerciseChip(page, 3); // Hack Squat
+    await expect(page.getByTestId('exercise-name')).toHaveText('Hack Squat');
+    await expect(page.getByTestId('prescription')).toContainText('3 × 8 to 12');
+    // A new exercise stays two reps short while it is learned, then the last set goes to failure.
+    await expect(page.getByTestId('prescription')).toContainText('2 RIR while learning');
+    await expect(page.getByTestId('learning-note')).toContainText('1 RIR, last set to failure');
+    await logStrengthSet(page, 50, 12);
     // The rest timer starts from the prescribed 180 seconds.
     await expect(page.getByTestId('restbar')).toBeVisible();
     await expect(page.getByTestId('rest-remaining')).toHaveText(/^(3:00|2:5\d)$/);
-    await logStrengthSet(page, null, 10);
-    await logStrengthSet(page, null, 10);
+    await logStrengthSet(page, null, 12);
+    await logStrengthSet(page, null, 12);
     await expect(page.getByTestId('logged-sets')).toContainText('Set 3');
     await expect(page.getByTestId('exercise-done')).toBeVisible();
     await page.getByTestId('finish-workout').click();
     await page.getByTestId('confirm-finish').click();
     await expect(page.getByTestId('workout-summary')).toBeVisible();
     const sug = page.getByTestId('suggestions');
-    await expect(sug).toContainText('Barbell Squat');
+    await expect(sug).toContainText('Hack Squat');
     await expect(sug).toContainText('Try 52.5 kg');
     await expect(sug).toContainText('smallest practical increase');
-    await expect(page.getByTestId('plan-vs-actual')).toContainText('50×10');
+    await expect(page.getByTestId('plan-vs-actual')).toContainText('50×12');
     await sug.getByTestId('accept-suggestion').first().click();
-    await go(page, '/exercise/barbell-squat');
-    await expect(page.getByTestId('detail-last')).toContainText('50 kg × 10, 10, 10');
+    await go(page, '/exercise/hack-squat');
+    await expect(page.getByTestId('detail-last')).toContainText('50 kg × 12, 12, 12');
     await expect(page.getByTestId('detail-target')).toContainText('Try 52.5 kg');
     await expect(page.getByTestId('detail-target')).toContainText('Confirmed');
   });
 
-  test('an installed plan from before the morning sessions gets them with one tap', async ({ page }) => {
+  test('an installed plan from before the morning sessions gets them with the program', async ({ page }) => {
     await atTime(page, MONDAY);
     await onboard(page);
     // Turn the stored plan and times back into what an earlier install had.
@@ -126,59 +127,78 @@ test.describe('training', () => {
       await new Promise((res) => (tx.oncomplete = res));
     });
     await page.reload();
-    await expect(page.getByTestId('plan-update')).toContainText('6 home sessions a week');
+    await expect(page.getByTestId('plan-update')).toContainText('choose your exercises');
     await page.getByTestId('plan-update-apply').click();
-    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await page.getByTestId('program-review').click();
+    await page.getByTestId('program-save').click();
+    await expect(page.getByTestId('train')).toBeVisible();
     await go(page, '/train/day/1?date=2026-09-28');
     await expect(page.getByTestId('train-day')).toContainText('Morning volleyball and rope, 05:30');
     await expect(page.getByTestId('train-day')).toContainText('Blocking Footwork, No Jump');
-    await expect(page.getByTestId('train-day')).toContainText('Barbell Squat');
+    await expect(page.getByTestId('train-day')).toContainText('Hack Squat');
     await go(page, '/more/plan');
     await expect(page.getByText('Version 2').first()).toBeVisible();
-  });
-
-  test('an installed plan with the old volleyball days gets the new Tuesday and Friday gym sessions', async ({ page }) => {
-    await atTime(page, MONDAY);
-    await onboard(page);
-    await restoreVolleyballDays(page);
-    await page.reload();
-    await expect(page.getByTestId('plan-update')).toContainText('Tuesday and Friday are gym days');
-    await expect(page.getByTestId('plan-update-gym')).toContainText('Upper C');
-    await expect(page.getByTestId('plan-update')).not.toContainText('home sessions a week');
-    await page.getByTestId('plan-update-apply').click();
+    await go(page, '/today');
     await expect(page.getByTestId('plan-update')).toHaveCount(0);
-    await go(page, '/train/day/2?date=2026-09-29');
-    const day = page.getByTestId('train-day');
-    await expect(day).toContainText('Upper C Hypertrophy');
-    await expect(day).toContainText('Incline Dumbbell Press');
-    await expect(day).toContainText('Shadow Passing Footwork');
-    await expect(day).not.toContainText('Volleyball Spike');
-    await go(page, '/train/day/5?date=2026-10-02');
-    await expect(day).toContainText('Lower C Hypertrophy and Swim');
-    await expect(day).toContainText('Leg Press');
-    await expect(day).toContainText('45 Degree Back Extension');
-    await expect(day).toContainText('Swim');
-    await go(page, '/more/plan');
-    await expect(page.getByText('Version 2').first()).toBeVisible();
   });
 
-  test('a gym day update put off with Not now can still be added from Train', async ({ page }) => {
+  test('the questionnaire builds the program from the chosen exercises', async ({ page }) => {
     await atTime(page, MONDAY);
     await onboard(page);
     await restoreVolleyballDays(page);
     await page.reload();
+    await page.getByTestId('plan-update-apply').click();
+    await expect(page.getByTestId('program')).toContainText('How your program works');
+    await page.getByTestId('program-start').click();
+    await expect(page.getByTestId('slot-shoulder-care')).toBeVisible();
+    await page.getByTestId('program-next').click();
+    // Upper chest is trained twice: choose the machine first and the Smith press second.
+    const slot = page.getByTestId('slot-chest-upper');
+    await expect(slot).toContainText('Upper chest');
+    await slot.getByTestId('choice-incline-dumbbell-press').click();
+    await slot.getByTestId('choice-incline-smith-press').click();
+    await expect(slot.getByTestId('choice-incline-machine-press')).toContainText('1st');
+    await expect(slot.getByTestId('choice-incline-smith-press')).toContainText('2nd');
+    // Choices survive a look at the exercise and a reload.
+    await slot.getByRole('link', { name: 'How to do it' }).nth(2).click();
+    await expect(page.getByTestId('exercise-detail')).toContainText('Incline Smith Machine Press');
+    await page.goBack();
+    await page.reload();
+    await expect(page.getByTestId('slot-chest-upper').getByTestId('choice-incline-smith-press')).toContainText('2nd');
+    await page.getByTestId('program-next').click();
+    await expect(page.getByTestId('slot-chest-press')).toBeVisible();
+    await go(page, `/program?step=99`);
+    await expect(page.getByTestId('program-summary')).toContainText('Incline Machine Chest Press');
+    await page.getByTestId('program-save').click();
+    await expect(page.getByTestId('train')).toBeVisible();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await go(page, '/train/day/0?date=2026-10-04');
+    const day = page.getByTestId('train-day');
+    await expect(day).toContainText('Incline Machine Chest Press');
+    await go(page, '/train/day/4?date=2026-10-01');
+    await expect(day).toContainText('Upper C');
+    await expect(day).toContainText('Incline Smith Machine Press');
+    await go(page, '/train/day/2?date=2026-09-29');
+    await expect(day).toContainText('Upper B');
+    await expect(day).not.toContainText('Volleyball Spike');
+    await expect(day).toContainText('Shadow Passing Footwork');
+    await go(page, '/train/day/5?date=2026-10-02');
+    await expect(day).toContainText('Lower C and Swim');
+    await expect(day).toContainText('to failure');
+    await go(page, '/more/plan');
+    await expect(page.getByText('Version 2').first()).toBeVisible();
+  });
+
+  test('the program offer put off with Not now can still be found on Train', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
     await page.getByTestId('plan-update').getByRole('button', { name: 'Not now' }).click();
     await expect(page.getByTestId('plan-update')).toHaveCount(0);
-    await go(page, '/train/day/2?date=2026-09-29');
-    await expect(page.getByTestId('train-day')).toContainText('Volleyball Technique and Shoulder Care');
-    await expect(page.getByTestId('plan-update')).toContainText('Tuesday and Friday are gym days');
-    await expect(page.getByTestId('plan-update').getByRole('button', { name: 'Not now' })).toHaveCount(0);
-    await page.getByTestId('plan-update-apply').click();
-    await expect(page.getByTestId('plan-update')).toHaveCount(0);
-    await expect(page.getByTestId('train-day')).toContainText('Upper C Hypertrophy');
-    await expect(page.getByTestId('train-day')).toContainText('Incline Dumbbell Press');
     await go(page, '/train');
-    await expect(page.getByTestId('train-day-5')).toContainText('Lower C Hypertrophy and Swim');
+    await expect(page.getByTestId('plan-update')).toContainText('choose your exercises');
+    await expect(page.getByTestId('plan-update').getByRole('button', { name: 'Not now' })).toHaveCount(0);
+    await page.getByTestId('train-program').click();
+    await expect(page.getByTestId('program')).toBeVisible();
   });
 
   test('About checks for a new version on request', async ({ page }) => {
@@ -244,7 +264,7 @@ test.describe('training', () => {
     await logStrengthSet(page, 50, 8);
     await expect(page.getByTestId('restbar')).toBeVisible();
     const tones = await page.evaluate(() => (window as unknown as { __tones: number[] }).__tones);
-    // Squat rest is three minutes, so the first tone is queued about 180 seconds ahead.
+    // Hack squat rest is three minutes, so the first tone is queued about 180 seconds ahead.
     expect(tones.length).toBeGreaterThanOrEqual(3);
     expect(tones[0]).toBeGreaterThan(170);
     expect(tones[0]).toBeLessThan(181);
@@ -265,9 +285,9 @@ test.describe('training', () => {
     await startSession(page);
     await exerciseChip(page, 5);
     await expect(page.getByTestId('exercise-name')).toHaveText('Bulgarian Split Squat');
-    await expect(page.getByTestId('current-set')).toContainText('Set 1 of 2, Left');
+    await expect(page.getByTestId('current-set')).toContainText('Set 1 of 3, Left');
     await logStrengthSet(page, 14, 10);
-    await expect(page.getByTestId('current-set')).toContainText('Set 1 of 2, Right');
+    await expect(page.getByTestId('current-set')).toContainText('Set 1 of 3, Right');
     await logStrengthSet(page, null, 10);
     await expect(page.getByTestId('logged-sets')).toContainText('Set 1 Left');
     await expect(page.getByTestId('logged-sets')).toContainText('Set 1 Right');
@@ -283,15 +303,15 @@ test.describe('training', () => {
     await page.getByTestId('confirm-finish').click();
     const url = page.url();
     await go(page, '/more/plan');
-    await page.getByRole('button', { name: /Barbell Squat/ }).first().click();
+    await page.getByRole('button', { name: /Hack Squat/ }).first().click();
     await page.getByRole('button', { name: 'Increase Sets' }).click();
     await page.getByRole('button', { name: 'Done with this exercise' }).click();
     await page.getByTestId('save-plan').click();
     await expect(page.getByTestId('plan-editor')).toContainText('Version 2');
     await page.goto(url);
-    await expect(page.getByTestId('plan-vs-actual')).toContainText('3 × 6 to 10');
+    await expect(page.getByTestId('plan-vs-actual')).toContainText('3 × 8 to 12');
     await go(page, '/train/day/1?date=2026-09-28');
-    await expect(page.getByTestId('train-day')).toContainText('4 × 6 to 10');
+    await expect(page.getByTestId('train-day')).toContainText('4 × 8 to 12');
   });
 
   test('every exercise shows instructions, a muscle diagram, and a visual offline', async ({ page }) => {
@@ -299,7 +319,7 @@ test.describe('training', () => {
     await go(page, '/library');
     await expect(page.getByTestId('library').locator('a.item').first()).toBeVisible();
     const links = await page.locator('[data-testid="library"] a.item').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).hash));
-    expect(links.length).toBe(57);
+    expect(links.length).toBe(91);
     for (const h of links) {
       await go(page, h.replace('#', ''));
       const d = page.getByTestId('exercise-detail');
@@ -610,7 +630,7 @@ test.describe('app lock', () => {
 });
 
 test.describe('layout @layout', () => {
-  for (const route of ['/today', '/train', '/eat', '/progress', '/review', '/more', '/checkin', '/coverage', '/exercise/volleyball-spike', '/eat/log/other?mode=restaurant']) {
+  for (const route of ['/today', '/train', '/eat', '/progress', '/review', '/more', '/checkin', '/coverage', '/exercise/volleyball-spike', '/eat/log/other?mode=restaurant', '/program?step=1']) {
     test(`no horizontal overflow and large tap targets on ${route}`, async ({ page }) => {
       await atTime(page, MONDAY);
       await onboard(page, { demo: true });
@@ -636,7 +656,7 @@ test.describe('layout @layout', () => {
   test('accessibility scan of main screens', async ({ page }) => {
     await atTime(page, MONDAY);
     await onboard(page, { demo: true });
-    for (const route of ['/today', '/train', '/eat', '/progress', '/more', '/exercise/barbell-squat']) {
+    for (const route of ['/today', '/train', '/eat', '/progress', '/more', '/exercise/barbell-squat', '/program?step=1']) {
       await go(page, route);
       await page.waitForTimeout(400);
       const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();

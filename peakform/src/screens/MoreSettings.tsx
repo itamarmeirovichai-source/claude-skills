@@ -530,6 +530,7 @@ export function PlanEditorScreen() {
   if (!plan) return null;
   const cur = draft ?? plan;
   const item = cur.days.flatMap((d) => d.items).find((i) => i.id === itemId);
+  const minRir = item && exercise(item.exerciseId)?.failure === 'all' ? 0 : 1;
   const editItem = (patch: Partial<typeof item>) =>
     setDraft({ ...cur, days: cur.days.map((d) => ({ ...d, items: d.items.map((i) => (i.id === itemId ? ({ ...i, ...patch } as typeof i) : i)) })) });
   return (
@@ -549,9 +550,17 @@ export function PlanEditorScreen() {
                   <Stepper label="Reps to" value={item.target.max} onChange={(v) => v && editItem({ target: { type: 'reps', min: Math.min(v, (item.target as { min: number }).min), max: v } })} min={1} max={50} />
                 </>
               )}
-              {item.rir !== undefined && <Stepper label="Reps in reserve" value={item.rir} onChange={(v) => editItem({ rir: Math.max(1, v ?? 2) })} min={1} max={5} />}
+              {item.rir !== undefined && (
+                <Stepper label="Reps in reserve" value={item.rir} onChange={(v) => editItem({ rir: Math.max(minRir, v ?? 2) })} min={minRir} max={5} />
+              )}
             </div>
-            <p className="small muted">Reps in reserve cannot go below 1. Routine sets are never taken to failure.</p>
+            <p className="small muted">
+              {minRir === 0
+                ? 'This exercise may go to failure: 0 means the last rep you can finish with clean form.'
+                : exercise(item.exerciseId)?.failure === 'last'
+                  ? 'The first sets stop at least one rep short. The last set goes to failure only as set by the program.'
+                  : 'This exercise always stops at least one rep short, because a failed rep is hard to escape safely alone.'}
+            </p>
             <button type="button" className="btn btn-outline" onClick={() => setItemId(null)}>
               Done with this exercise
             </button>

@@ -1,16 +1,31 @@
-import { BASELINE_PLAN, type PlanItem } from '../content/plan';
+import { BASELINE_PLAN, GLOBAL_RULES, planDaysFor, type PlanItem } from '../content/plan';
 import { BASELINE_TARGETS, type NutritionTarget } from '../content/meals';
+import { EXERCISE_BY_ID } from '../content/library';
+import { normalizePicks, type ProgramPicks } from '../content/program';
 import type { AppSettings, PlanRecord, Reminder } from '../db/records';
-import { KV, getTargets, kvGet, kvSet, saveTargets, savePlanVersion, updateSettings } from '../db/repo';
+import { KV, getTargets, kvDelete, kvGet, kvSet, saveTargets, savePlanVersion, updateSettings } from '../db/repo';
 
-// Plan additions that ship after someone has already installed PeakForm. Their plan lives on the
-// phone, so an update is offered once, applied as a new plan version, and never touches history.
+// Plan changes that ship after someone has already installed PeakForm. Their plan lives on the
+// phone, so a change is offered, applied as a new plan version, and never touches history.
 
 export const MORNING_UPDATE_ID = 'morning-volleyball-v1';
-export const GYM_DAYS_UPDATE_ID = 'gym-days-v1';
+/** The head by head program with the exercise questionnaire (2.0.0). Replaces the 1.2 gym day update. */
+export const PROGRAM_UPDATE_ID = 'program-v2';
 
-type UpdateId = typeof MORNING_UPDATE_ID | typeof GYM_DAYS_UPDATE_ID;
+type UpdateId = typeof MORNING_UPDATE_ID | typeof PROGRAM_UPDATE_ID;
 type UpdateState = Record<string, 'applied' | 'dismissed'>;
+
+export async function updateState(id: UpdateId): Promise<'applied' | 'dismissed' | null> {
+  const st = (await kvGet<UpdateState>(KV.planUpdates)) ?? {};
+  return st[id] ?? null;
+}
+
+async function mark(ids: UpdateId[], value: 'applied' | 'dismissed') {
+  const st = (await kvGet<UpdateState>(KV.planUpdates)) ?? {};
+  await kvSet(KV.planUpdates, { ...st, ...Object.fromEntries(ids.map((id) => [id, value])) });
+}
+
+// ---------- Morning sessions (1.1.0) ----------
 
 /** Morning items in the current baseline that the active plan does not have yet, by weekday. */
 export function missingMorningItems(active: PlanRecord): Map<number, PlanItem[]> {
@@ -23,16 +38,6 @@ export function missingMorningItems(active: PlanRecord): Map<number, PlanItem[]>
     if (add.length) out.set(day.weekday, add);
   }
   return out;
-}
-
-export async function updateState(id: UpdateId): Promise<'applied' | 'dismissed' | null> {
-  const st = (await kvGet<UpdateState>(KV.planUpdates)) ?? {};
-  return st[id] ?? null;
-}
-
-async function mark(ids: UpdateId[], value: 'applied' | 'dismissed') {
-  const st = (await kvGet<UpdateState>(KV.planUpdates)) ?? {};
-  await kvSet(KV.planUpdates, { ...st, ...Object.fromEntries(ids.map((id) => [id, value])) });
 }
 
 export function withMorningItems(active: PlanRecord): PlanRecord {
@@ -71,104 +76,82 @@ export function withMorningTimes(s: AppSettings): AppSettings {
   return next;
 }
 
-// ---------- Tuesday and Friday become gym days (1.2.0) ----------
+// ---------- The chosen program (2.0.0) ----------
 
-/** Main session item IDs of the old Tuesday and Friday volleyball days. Only these are replaced. */
-export const OLD_VOLLEYBALL_MAIN_IDS: Record<number, string[]> = {
-  2: ['tue-1-dynamic-volleyball-warm-up', 'tue-2-volleyball-approach-footwork', 'tue-3-shuffle-to-sprint', 'tue-4-medicine-ball-spike-throw', 'tue-5-volleyball-spike', 'tue-6-cable-external-rotation', 'tue-7-face-pull'],
-  5: [
-    'fri-1-dynamic-volleyball-warm-up',
-    'fri-2-volleyball-approach-footwork',
-    'fri-3-volleyball-approach-jump',
-    'fri-4-lateral-block-jump',
-    'fri-5-block-to-spike-transition',
-    'fri-6-ten-metre-sprint',
-    'fri-7-shuffle-to-sprint',
-    'fri-8-medicine-ball-spike-throw',
-    'fri-9-volleyball-spike',
-    'fri-10-nordic-hamstring-curl',
-  ],
-};
-const OLD_TARGET_LABELS: Record<number, string> = { 2: 'Volleyball and shoulder care', 5: 'Speed, spike, and swim' };
-const GYM_DAYS = [2, 5];
+export async function savedPicks(): Promise<ProgramPicks | null> {
+  return (await kvGet<ProgramPicks>(KV.programPicks)) ?? null;
+}
 
-/** Weekdays whose main session still lacks the new gym work. Days made into rest days are left alone. */
-export function gymDaysPending(active: PlanRecord): number[] {
-  return GYM_DAYS.filter((weekday) => {
-    const mine = active.days.find((d) => d.weekday === weekday);
-    if (!mine || mine.isRest) return false;
-    const have = new Set(mine.items.map((i) => i.id));
-    return BASELINE_PLAN.days.find((d) => d.weekday === weekday)!.items.some((i) => i.session === 'main' && !have.has(i.id));
+/** Choices being made in the questionnaire, kept while the user looks at an exercise and comes back. */
+export async function draftPicks(): Promise<ProgramPicks> {
+  return (await kvGet<ProgramPicks>(KV.programDraft)) ?? (await savedPicks()) ?? {};
+}
+
+export function saveDraftPicks(picks: ProgramPicks): Promise<void> {
+  return kvSet(KV.programDraft, picks);
+}
+
+/**
+ * The plan with its main sessions rebuilt from the choices. Morning sessions, swims, and
+ * exercises the user created stay. The morning sessions are added only if they are missing and the
+ * user never turned that update down.
+ */
+export function withProgram(active: PlanRecord, picks: ProgramPicks, addMorning: boolean): PlanRecord {
+  const base = addMorning ? withMorningItems(active) : structuredClone(active);
+  const built = planDaysFor(picks);
+  base.days = built.map((day) => {
+    const mine = base.days.find((d) => d.weekday === day.weekday);
+    if (!mine || day.isRest) return mine ?? day;
+    const morning = mine.items.filter((i) => i.session === 'morning');
+    const swim = mine.items.filter((i) => i.session === 'swim');
+    const own = mine.items.filter((i) => i.session === 'main' && !EXERCISE_BY_ID[i.exerciseId]);
+    const main = day.items.filter((i) => i.session === 'main');
+    return { ...mine, title: day.title, short: day.short, isRest: false, items: [...morning, ...main, ...own, ...(swim.length ? swim : day.items.filter((i) => i.session === 'swim'))] };
   });
+  const morningRule = GLOBAL_RULES[0]!;
+  base.globalRules = base.globalRules.includes(morningRule) || addMorning ? [...GLOBAL_RULES] : GLOBAL_RULES.slice(1);
+  return base;
 }
 
-/** Swaps the old volleyball main sessions for the new gym sessions. Morning work, the swim, and items the user added stay. */
-export function withGymDays(active: PlanRecord): PlanRecord {
-  const pending = new Set(gymDaysPending(active));
-  const next = structuredClone(active);
-  for (const day of next.days) {
-    if (!pending.has(day.weekday)) continue;
-    const base = BASELINE_PLAN.days.find((d) => d.weekday === day.weekday)!;
-    const old = new Set(OLD_VOLLEYBALL_MAIN_IDS[day.weekday] ?? []);
-    const have = new Set(day.items.map((i) => i.id));
-    const kept = day.items.filter((i) => i.session === 'main' && !old.has(i.id));
-    const add = base.items.filter((i) => i.session === 'main' && !have.has(i.id));
-    day.items = [...day.items.filter((i) => i.session === 'morning'), ...add, ...kept, ...day.items.filter((i) => i.session === 'swim')];
-    day.title = base.title;
-    day.short = base.short;
-  }
-  return next;
+/** Food target names that were defaults in earlier versions, renamed to match the new days. */
+const OLD_TARGET_LABELS: Record<number, string[]> = { 2: ['Volleyball and shoulder care', 'Upper C'], 4: ['Upper B'], 5: ['Speed, spike, and swim'] };
+
+export function withProgramTargetLabels(targets: NutritionTarget[]): NutritionTarget[] {
+  return targets.map((t) => ((OLD_TARGET_LABELS[t.weekday] ?? []).includes(t.label) ? { ...t, label: BASELINE_TARGETS.find((b) => b.weekday === t.weekday)!.label } : t));
 }
 
-/** Renames the Tuesday and Friday food targets when they still carry the old default labels. Numbers stay. */
-export function withGymDayTargets(targets: NutritionTarget[]): NutritionTarget[] {
-  return targets.map((t) => (OLD_TARGET_LABELS[t.weekday] === t.label ? { ...t, label: BASELINE_TARGETS.find((b) => b.weekday === t.weekday)!.label } : t));
+/** Saves the choices and the rebuilt plan as a new version. */
+export async function applyProgram(active: PlanRecord, picks: ProgramPicks): Promise<PlanRecord> {
+  const clean = normalizePicks(picks);
+  const morningAnswer = await updateState(MORNING_UPDATE_ID);
+  const addMorning = morningAnswer !== 'dismissed' && missingMorningItems(active).size > 0;
+  const rec = await savePlanVersion(withProgram(active, clean, addMorning), 'Main sessions built from your exercise choices.');
+  if (addMorning) await updateSettings((s) => withMorningTimes(s));
+  await saveTargets(withProgramTargetLabels(await getTargets()));
+  await kvSet(KV.programPicks, clean);
+  await kvDelete(KV.programDraft);
+  await mark(addMorning ? [PROGRAM_UPDATE_ID, MORNING_UPDATE_ID] : [PROGRAM_UPDATE_ID], 'applied');
+  return rec;
 }
 
-// ---------- Offering and applying ----------
+// ---------- Offering ----------
 
 export interface PendingUpdates {
-  morning: number;
-  gymDays: number[];
+  /** The questionnaire has not been done yet. */
+  program: boolean;
 }
 
 /**
  * What the plan update card should offer, or null when nothing is waiting. With includeDismissed,
- * an update the user put off with "Not now" is offered again, as long as the plan still lacks it.
+ * an offer the user put off with "Not now" is shown again.
  */
-export async function pendingUpdates(active: PlanRecord, opts: { includeDismissed?: boolean } = {}): Promise<PendingUpdates | null> {
-  const skip = async (id: UpdateId) => {
-    const st = await updateState(id);
-    return st === 'applied' || (st === 'dismissed' && !opts.includeDismissed);
-  };
-  const morning = (await skip(MORNING_UPDATE_ID)) ? 0 : missingMorningItems(active).size;
-  const gymDays = (await skip(GYM_DAYS_UPDATE_ID)) ? [] : gymDaysPending(active);
-  return morning || gymDays.length ? { morning, gymDays } : null;
+export async function pendingUpdates(opts: { includeDismissed?: boolean } = {}): Promise<PendingUpdates | null> {
+  if (await savedPicks()) return null;
+  const st = await updateState(PROGRAM_UPDATE_ID);
+  if (st === 'applied' || (st === 'dismissed' && !opts.includeDismissed)) return null;
+  return { program: true };
 }
 
-function offeredIds(p: PendingUpdates): UpdateId[] {
-  return [...(p.morning ? [MORNING_UPDATE_ID] : []), ...(p.gymDays.length ? [GYM_DAYS_UPDATE_ID] : [])] as UpdateId[];
-}
-
-/** Applies every offered update as one new plan version. History is never changed. */
-export async function applyPlanUpdates(active: PlanRecord, p: PendingUpdates): Promise<PlanRecord> {
-  let plan = active;
-  const notes: string[] = [];
-  if (p.morning) {
-    plan = withMorningItems(plan);
-    notes.push('Added the 05:30 morning volleyball sessions, Sunday to Friday.');
-  }
-  if (p.gymDays.length) {
-    plan = withGymDays(plan);
-    notes.push('Tuesday and Friday are now gym days: Upper C and Lower C.');
-  }
-  const rec = await savePlanVersion(plan, notes.join(' '));
-  if (p.morning) await updateSettings((s) => withMorningTimes(s));
-  if (p.gymDays.length) await saveTargets(withGymDayTargets(await getTargets()));
-  await mark(offeredIds(p), 'applied');
-  return rec;
-}
-
-export function dismissPlanUpdates(p: PendingUpdates): Promise<void> {
-  return mark(offeredIds(p), 'dismissed');
+export function dismissPlanUpdates(): Promise<void> {
+  return mark([PROGRAM_UPDATE_ID], 'dismissed');
 }

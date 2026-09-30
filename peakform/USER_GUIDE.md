@@ -16,7 +16,10 @@ The timeline shows every planned item. During the Sabbath window, items fade and
 ## Train
 
 - **This week** lists the seven days, starting with today. Saturday is full rest.
-- Open a day to see each exercise with sets, reps, rest, reps in reserve (RIR), tempo, and a front and back muscle diagram.
+- The week alternates upper and lower body over six gym days. Each main session has one exercise for each muscle head, three work sets each, with a slow stretch at the bottom of every rep.
+- **Choose your exercises** (in Train and More) is a short questionnaire. For each muscle head you pick from exercises that build it about equally, with a picture and **How to do it** for each. Muscles trained twice a week can take a second choice, so the two days differ. Only machines, cables, the Smith machine, and dumbbells are offered. Saving builds your plan as a new version; history is kept, and you can change your choices at any time.
+- Open a day to see each exercise with sets, reps, rest, effort, and a front and back muscle diagram.
+- Effort says how close to failure a set goes. **To failure** means the last rep you can finish with clean form, never a cheated or grinding rep. Small machine and cable exercises go to failure on every set, big machine exercises on the last set, and dumbbell presses, lunges, and hinges stop one rep short. A new exercise stays two reps short for its first two sessions while you learn it.
 - **Start** opens the guided workout. You can also start from Today.
 
 ### During a workout
@@ -37,6 +40,7 @@ After a session, PeakForm suggests a next target for each exercise and explains 
 
 - Reps go up first, one rep on the lowest set, inside the prescribed range.
 - Load goes up only when every work set reaches the top of the range, with the prescribed RIR, good form, and no pain. The increase is the smallest step your equipment allows.
+- When sets go to failure, reps naturally drop from set to set, so the first set decides: one more rep on the first set, and more load once the first set reaches the top of the range.
 - One good set never raises the load.
 - Jumps, sprints, Nordic curls, and swims never progress automatically.
 - Every fourth session of an exercise, a short four session review appears.

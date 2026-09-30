@@ -153,3 +153,41 @@ describe('activities that never auto progress', () => {
     expect(s.reason).toMatch(/coach/);
   });
 });
+
+describe('sets taken to failure', () => {
+  const fly: Prescription = { kind: 'strength', sets: 3, repMin: 10, repMax: 15, rir: 0, perSide: false, loadIncrement: 'upper', equipment: 'cable' };
+  const press: Prescription = { kind: 'strength', sets: 3, repMin: 8, repMax: 12, rir: 1, lastSetRir: 0, perSide: false, loadIncrement: 'upper', equipment: 'machine' };
+  const perSet = (reps: number[], rirs: number[], w = 20): WorkSet[] => reps.map((r, i) => ({ setIndex: i, side: null, weightKg: w, reps: r, rir: rirs[i]!, form: 'good', pain: 'none' }));
+
+  it('adds load once the first set reaches the top, even though later sets lose reps', () => {
+    const s = suggestNext(fly, perSet([15, 12, 10], [0, 0, 0]));
+    expect(s.kind).toBe('add_load');
+    expect(s.targets.every((t) => (t.weightKg ?? 0) > 20)).toBe(true);
+    expect(s.targets.map((t) => t.reps)).toEqual([10, 10, 10]);
+  });
+
+  it('asks for one more rep on the first set otherwise', () => {
+    const s = suggestNext(fly, perSet([13, 11, 9], [0, 0, 0]));
+    expect(s.kind).toBe('add_reps');
+    expect(s.targets.map((t) => t.reps)).toEqual([14, 11, 9]);
+    expect(s.targets.every((t) => t.weightKg === 20)).toBe(true);
+    expect(s.reason).toMatch(/first set/);
+  });
+
+  it('holds when the first set is below the range, and never treats failure on a failure set as too hard', () => {
+    expect(suggestNext(fly, perSet([9, 8, 7], [0, 0, 0])).kind).toBe('hold');
+    const s = suggestNext(press, perSet([12, 11, 9], [1, 1, 0], 60));
+    expect(s.kind).toBe('add_load');
+  });
+
+  it('still holds when a set meant to stop one rep short went to failure', () => {
+    const s = suggestNext(press, perSet([12, 10, 9], [0, 1, 0], 60));
+    expect(['hold', 'reduce']).toContain(s.kind);
+    expect(s.reason).toMatch(/below the prescribed 1/);
+  });
+
+  it('keeps pain and form rules on failure sets', () => {
+    expect(suggestNext(fly, perSet([15, 12, 10], [0, 0, 0]).map((x, i) => (i === 1 ? { ...x, pain: 'mild' as const } : x))).kind).toBe('pain_hold');
+    expect(suggestNext(fly, perSet([15, 12, 10], [0, 0, 0]).map((x, i) => (i === 2 ? { ...x, form: 'acceptable' as const } : x))).kind).toBe('hold');
+  });
+});
