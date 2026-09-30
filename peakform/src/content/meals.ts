@@ -159,10 +159,10 @@ const band = (k: number): [number, number] => [k - 100, k + 100];
 export const BASELINE_TARGETS: NutritionTarget[] = [
   { weekday: 0, label: 'Upper A and swim', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
   { weekday: 1, label: 'Lower A and jump', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
-  { weekday: 2, label: 'Volleyball and shoulder care', kcal: 2350, kcalBand: band(2350), protein: 150, proteinRange: [150, 175], carbs: 230, fat: 92 },
+  { weekday: 2, label: 'Upper C', kcal: 2350, kcalBand: band(2350), protein: 150, proteinRange: [150, 175], carbs: 230, fat: 92 },
   { weekday: 3, label: 'Lower B', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
   { weekday: 4, label: 'Upper B', kcal: 2350, kcalBand: band(2350), protein: 150, proteinRange: [150, 175], carbs: 230, fat: 92 },
-  { weekday: 5, label: 'Speed, spike, and swim', kcal: 2550, kcalBand: band(2550), protein: 155, proteinRange: [150, 175], carbs: 285, fat: 88 },
+  { weekday: 5, label: 'Lower C and swim', kcal: 2550, kcalBand: band(2550), protein: 155, proteinRange: [150, 175], carbs: 285, fat: 88 },
   { weekday: 6, label: 'Rest', kcal: 2250, kcalBand: [2150, 2350], protein: 150, proteinRange: [150, 175], carbs: 190, fat: 93 },
 ];
 

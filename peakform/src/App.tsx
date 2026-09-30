@@ -109,7 +109,19 @@ function Banners() {
   const {
     needRefresh: [needRefresh],
     updateServiceWorker,
-  } = useRegisterSW({ immediate: true });
+  } = useRegisterSW({
+    immediate: true,
+    // A Home Screen app is often resumed instead of reopened, and then nothing checks for a new
+    // version. Check again whenever PeakForm comes back to the screen, and once an hour.
+    onRegisteredSW(_url, r) {
+      if (!r) return;
+      const check = () => {
+        if (document.visibilityState === 'visible' && navigator.onLine) r.update().catch(() => undefined);
+      };
+      document.addEventListener('visibilitychange', check);
+      window.setInterval(check, 60 * 60 * 1000);
+    },
+  });
   return (
     <>
       {!online && (

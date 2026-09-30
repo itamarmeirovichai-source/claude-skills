@@ -1,0 +1,250 @@
+import type { PlanItem } from '../../src/content/plan';
+
+// The Tuesday and Friday main sessions exactly as they shipped before version 1.2.0, when both
+// were volleyball days. Tests use them to rebuild what an installed phone still has.
+export const OLD_VOLLEYBALL_DAYS: Array<{
+  weekday: number;
+  title: string;
+  short: string;
+  main: PlanItem[];
+}> = [
+  {
+    weekday: 2,
+    title: 'Volleyball Technique and Shoulder Care',
+    short: 'Volleyball',
+    main: [
+      {
+        exerciseId: 'dynamic-volleyball-warm-up',
+        sets: 1,
+        target: {
+          type: 'duration',
+          totalMin: 8,
+        },
+        restSec: 30,
+        id: 'tue-1-dynamic-volleyball-warm-up',
+        session: 'main',
+        notes: [],
+      },
+      {
+        exerciseId: 'volleyball-approach-footwork',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 4,
+          max: 4,
+        },
+        restSec: 90,
+        notes: ['Stop when coordination or speed declines.'],
+        id: 'tue-2-volleyball-approach-footwork',
+        session: 'main',
+      },
+      {
+        exerciseId: 'shuffle-to-sprint',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 1,
+          max: 1,
+        },
+        restSec: 120,
+        per: 'direction',
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'tue-3-shuffle-to-sprint',
+        session: 'main',
+      },
+      {
+        exerciseId: 'medicine-ball-spike-throw',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 3,
+          max: 5,
+        },
+        restSec: 120,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'tue-4-medicine-ball-spike-throw',
+        session: 'main',
+      },
+      {
+        exerciseId: 'volleyball-spike',
+        sets: 4,
+        target: {
+          type: 'reps',
+          min: 3,
+          max: 5,
+        },
+        restSec: 120,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'tue-5-volleyball-spike',
+        session: 'main',
+      },
+      {
+        exerciseId: 'cable-external-rotation',
+        sets: 2,
+        target: {
+          type: 'reps',
+          min: 15,
+          max: 20,
+        },
+        restSec: 75,
+        rir: 3,
+        id: 'tue-6-cable-external-rotation',
+        session: 'main',
+        notes: [],
+      },
+      {
+        exerciseId: 'face-pull',
+        sets: 2,
+        target: {
+          type: 'reps',
+          min: 12,
+          max: 20,
+        },
+        restSec: 75,
+        rir: 3,
+        id: 'tue-7-face-pull',
+        session: 'main',
+        notes: [],
+      },
+    ],
+  },
+  {
+    weekday: 5,
+    title: 'Volleyball Speed, Spike, and Swim',
+    short: 'Speed and spike',
+    main: [
+      {
+        exerciseId: 'dynamic-volleyball-warm-up',
+        sets: 1,
+        target: {
+          type: 'duration',
+          totalMin: 10,
+        },
+        restSec: 30,
+        id: 'fri-1-dynamic-volleyball-warm-up',
+        session: 'main',
+        notes: [],
+      },
+      {
+        exerciseId: 'volleyball-approach-footwork',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 4,
+          max: 4,
+        },
+        restSec: 90,
+        notes: ['Stop when coordination or speed declines.'],
+        id: 'fri-2-volleyball-approach-footwork',
+        session: 'main',
+      },
+      {
+        exerciseId: 'volleyball-approach-jump',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 2,
+          max: 2,
+        },
+        restSec: 180,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-3-volleyball-approach-jump',
+        session: 'main',
+      },
+      {
+        exerciseId: 'lateral-block-jump',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 2,
+          max: 2,
+        },
+        restSec: 150,
+        per: 'direction',
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-4-lateral-block-jump',
+        session: 'main',
+      },
+      {
+        exerciseId: 'block-to-spike-transition',
+        sets: 2,
+        target: {
+          type: 'reps',
+          min: 2,
+          max: 2,
+        },
+        restSec: 150,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-5-block-to-spike-transition',
+        session: 'main',
+      },
+      {
+        exerciseId: 'ten-metre-sprint',
+        sets: 4,
+        target: {
+          type: 'reps',
+          min: 1,
+          max: 1,
+        },
+        restSec: 120,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-6-ten-metre-sprint',
+        session: 'main',
+      },
+      {
+        exerciseId: 'shuffle-to-sprint',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 1,
+          max: 1,
+        },
+        restSec: 120,
+        per: 'direction',
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-7-shuffle-to-sprint',
+        session: 'main',
+      },
+      {
+        exerciseId: 'medicine-ball-spike-throw',
+        sets: 3,
+        target: {
+          type: 'reps',
+          min: 3,
+          max: 5,
+        },
+        restSec: 120,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-8-medicine-ball-spike-throw',
+        session: 'main',
+      },
+      {
+        exerciseId: 'volleyball-spike',
+        sets: 4,
+        target: {
+          type: 'reps',
+          min: 3,
+          max: 5,
+        },
+        restSec: 120,
+        notes: ['Quality first. Stop the set when height, speed, landing control, or coordination drops.'],
+        id: 'fri-9-volleyball-spike',
+        session: 'main',
+      },
+      {
+        exerciseId: 'nordic-hamstring-curl',
+        sets: 2,
+        target: {
+          type: 'reps',
+          min: 4,
+          max: 6,
+        },
+        restSec: 180,
+        rir: 3,
+        notes: ['Difficulty never increases automatically.'],
+        id: 'fri-10-nordic-hamstring-curl',
+        session: 'main',
+      },
+    ],
+  },
+];

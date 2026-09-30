@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:11:53.130Z",
+  "generated": "2026-09-29T23:55:44.218Z",
   "counts": {
-    "exercises": 51,
+    "exercises": 57,
     "muscles": 31,
-    "planItems": 75,
+    "planItems": 72,
     "mealTemplates": 15,
     "recipes": 10,
     "foods": 45,
@@ -1656,6 +1656,178 @@
         "Pallof Press"
       ],
       "media": []
+    },
+    {
+      "id": "incline-dumbbell-press",
+      "name": "Incline Dumbbell Press",
+      "kind": "strength",
+      "primary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "secondary": [
+        "triceps",
+        "pec_sternal"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Incline Barbell Bench Press",
+        "Incline machine press"
+      ],
+      "media": []
+    },
+    {
+      "id": "chest-supported-dumbbell-row",
+      "name": "Chest Supported Dumbbell Row",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "traps_middle",
+        "rhomboids"
+      ],
+      "secondary": [
+        "delt_posterior",
+        "teres_major",
+        "traps_lower",
+        "biceps",
+        "brachialis",
+        "brachioradialis"
+      ],
+      "pattern": "horizontal_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated Cable Row",
+        "Leverage High Row",
+        "Chest supported T bar row"
+      ],
+      "media": []
+    },
+    {
+      "id": "incline-dumbbell-curl",
+      "name": "Incline Dumbbell Curl",
+      "kind": "strength",
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "brachialis",
+        "brachioradialis",
+        "forearm_flexors"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Machine Preacher Curl",
+        "Cable curl facing away from the pulley",
+        "Hammer Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "leg-press",
+      "name": "Leg Press",
+      "kind": "strength",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "hamstrings"
+      ],
+      "pattern": "squat",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Goblet squat",
+        "Hack Squat",
+        "Bulgarian Split Squat"
+      ],
+      "media": []
+    },
+    {
+      "id": "back-extension",
+      "name": "45 Degree Back Extension",
+      "kind": "strength",
+      "primary": [
+        "glute_max",
+        "hamstrings",
+        "erectors"
+      ],
+      "secondary": [
+        "adductors"
+      ],
+      "pattern": "hinge",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Glute bridge on the floor",
+        "Cable pull through",
+        "Barbell Hip Thrust"
+      ],
+      "media": []
+    },
+    {
+      "id": "cable-hip-adduction",
+      "name": "Cable Hip Adduction",
+      "kind": "strength",
+      "primary": [
+        "adductors"
+      ],
+      "secondary": [
+        "hip_flexors",
+        "obliques_core"
+      ],
+      "pattern": "hip_adduction",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Side lying adductor lift",
+        "Seated adductor machine",
+        "Copenhagen Plank"
+      ],
+      "media": []
     }
   ],
   "plan": [
@@ -2197,7 +2369,7 @@
     },
     {
       "weekday": 2,
-      "title": "Volleyball Technique and Shoulder Care",
+      "title": "Upper C Hypertrophy",
       "rest": false,
       "items": [
         {
@@ -2260,116 +2432,75 @@
           "notes": []
         },
         {
-          "id": "tue-1-dynamic-volleyball-warm-up",
+          "id": "tue-1-incline-dumbbell-press",
           "session": "main",
-          "exercise": "Dynamic Volleyball Warm Up",
-          "sets": 1,
+          "exercise": "Incline Dumbbell Press",
+          "sets": 3,
           "target": {
-            "type": "duration",
-            "totalMin": 8
+            "type": "reps",
+            "min": 8,
+            "max": 12
           },
           "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": "3110",
           "rpe": null,
           "notes": []
         },
         {
-          "id": "tue-2-volleyball-approach-footwork",
+          "id": "tue-2-chest-supported-dumbbell-row",
           "session": "main",
-          "exercise": "Volleyball Approach Footwork",
+          "exercise": "Chest Supported Dumbbell Row",
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 4,
-            "max": 4
+            "min": 10,
+            "max": 12
           },
           "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": "2011",
           "rpe": null,
-          "notes": [
-            "Stop when coordination or speed declines."
-          ]
+          "notes": []
         },
         {
-          "id": "tue-3-shuffle-to-sprint",
+          "id": "tue-3-flat-cable-fly",
           "session": "main",
-          "exercise": "Shuffle to Sprint",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 1,
-            "max": 1
-          },
-          "per": "direction",
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "tue-4-medicine-ball-spike-throw",
-          "session": "main",
-          "exercise": "Medicine Ball Spike Throw",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 5
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "tue-5-volleyball-spike",
-          "session": "main",
-          "exercise": "Volleyball Spike",
-          "sets": 4,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 5
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "tue-6-cable-external-rotation",
-          "session": "main",
-          "exercise": "Cable External Rotation",
+          "exercise": "Flat Cable Fly",
           "sets": 2,
           "target": {
             "type": "reps",
-            "min": 15,
-            "max": 20
+            "min": 12,
+            "max": 15
           },
           "per": null,
-          "restSec": 75,
-          "rir": 3,
+          "restSec": 90,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "tue-7-face-pull",
+          "id": "tue-4-lateral-raise",
+          "session": "main",
+          "exercise": "Lateral Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-5-face-pull",
           "session": "main",
           "exercise": "Face Pull",
           "sets": 2,
@@ -2381,6 +2512,40 @@
           "per": null,
           "restSec": 75,
           "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-6-incline-dumbbell-curl",
+          "session": "main",
+          "exercise": "Incline Dumbbell Curl",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": "3011",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-7-rope-overhead-triceps-extension",
+          "session": "main",
+          "exercise": "Rope Overhead Triceps Extension",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -2879,7 +3044,7 @@
     },
     {
       "weekday": 5,
-      "title": "Volleyball Speed, Spike, and Swim",
+      "title": "Lower C Hypertrophy and Swim",
       "rest": false,
       "items": [
         {
@@ -2942,175 +3107,41 @@
           "notes": []
         },
         {
-          "id": "fri-1-dynamic-volleyball-warm-up",
+          "id": "fri-1-leg-press",
           "session": "main",
-          "exercise": "Dynamic Volleyball Warm Up",
-          "sets": 1,
+          "exercise": "Leg Press",
+          "sets": 3,
           "target": {
-            "type": "duration",
-            "totalMin": 10
+            "type": "reps",
+            "min": 10,
+            "max": 15
           },
           "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
+          "restSec": 180,
+          "rir": 2,
+          "tempo": "3110",
           "rpe": null,
           "notes": []
         },
         {
-          "id": "fri-2-volleyball-approach-footwork",
+          "id": "fri-2-back-extension",
           "session": "main",
-          "exercise": "Volleyball Approach Footwork",
+          "exercise": "45 Degree Back Extension",
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 4,
-            "max": 4
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Stop when coordination or speed declines."
-          ]
-        },
-        {
-          "id": "fri-3-volleyball-approach-jump",
-          "session": "main",
-          "exercise": "Volleyball Approach Jump",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 2,
-            "max": 2
-          },
-          "per": null,
-          "restSec": 180,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-4-lateral-block-jump",
-          "session": "main",
-          "exercise": "Lateral Block Jump",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 2,
-            "max": 2
-          },
-          "per": "direction",
-          "restSec": 150,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-5-block-to-spike-transition",
-          "session": "main",
-          "exercise": "Block to Spike Transition",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 2,
-            "max": 2
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-6-ten-metre-sprint",
-          "session": "main",
-          "exercise": "Ten Metre Sprint",
-          "sets": 4,
-          "target": {
-            "type": "reps",
-            "min": 1,
-            "max": 1
+            "min": 10,
+            "max": 15
           },
           "per": null,
           "restSec": 120,
-          "rir": null,
-          "tempo": null,
+          "rir": 3,
+          "tempo": "2011",
           "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
+          "notes": []
         },
         {
-          "id": "fri-7-shuffle-to-sprint",
-          "session": "main",
-          "exercise": "Shuffle to Sprint",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 1,
-            "max": 1
-          },
-          "per": "direction",
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-8-medicine-ball-spike-throw",
-          "session": "main",
-          "exercise": "Medicine Ball Spike Throw",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 5
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-9-volleyball-spike",
-          "session": "main",
-          "exercise": "Volleyball Spike",
-          "sets": 4,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 5
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
-          ]
-        },
-        {
-          "id": "fri-10-nordic-hamstring-curl",
+          "id": "fri-3-nordic-hamstring-curl",
           "session": "main",
           "exercise": "Nordic Hamstring Curl",
           "sets": 2,
@@ -3127,6 +3158,74 @@
           "notes": [
             "Difficulty never increases automatically."
           ]
+        },
+        {
+          "id": "fri-4-seated-leg-curl",
+          "session": "main",
+          "exercise": "Seated Leg Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-5-cable-hip-adduction",
+          "session": "main",
+          "exercise": "Cable Hip Adduction",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-6-cable-hip-abduction",
+          "session": "main",
+          "exercise": "Cable Hip Abduction",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-7-standing-calf-raise",
+          "session": "main",
+          "exercise": "Standing Calf Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 120,
+          "rir": 2,
+          "tempo": "2111",
+          "rpe": null,
+          "notes": []
         },
         {
           "id": "fri-swim",
@@ -3204,23 +3303,21 @@
         "key": "upper_back",
         "label": "Upper back",
         "present": true,
-        "directSets": 39,
-        "indirectSets": 30.5,
-        "exposures": 18,
+        "directSets": 48,
+        "indirectSets": 32,
+        "exposures": 5,
         "exercises": [
           "Seated Cable Row",
           "Cable External Rotation",
           "Bent Over Dumbbell Y Raise",
           "Dynamic Volleyball Warm Up",
+          "Chest Supported Dumbbell Row",
           "Face Pull",
           "Wide Grip Lat Pulldown",
           "Leverage High Row",
           "Reverse Machine Fly",
           "One Arm Lat Pulldown",
           "Easy Moderate Pool Round Trip",
-          "Medicine Ball Spike Throw",
-          "Volleyball Spike",
-          "Block to Spike Transition",
           "Side Lying Dumbbell External Rotation"
         ]
       },
@@ -3228,9 +3325,9 @@
         "key": "calves",
         "label": "Calves",
         "present": true,
-        "directSets": 6,
-        "indirectSets": 5,
-        "exposures": 48,
+        "directSets": 9,
+        "indirectSets": 6.5,
+        "exposures": 26,
         "exercises": [
           "Easy Jump Rope",
           "Shadow Passing Footwork",
@@ -3240,13 +3337,7 @@
           "Countermovement Jump",
           "Bulgarian Split Squat",
           "Standing Calf Raise",
-          "Volleyball Approach Footwork",
-          "Shuffle to Sprint",
-          "Volleyball Spike",
-          "Seated Calf Raise",
-          "Lateral Block Jump",
-          "Block to Spike Transition",
-          "Ten Metre Sprint"
+          "Seated Calf Raise"
         ]
       },
       {
@@ -3254,16 +3345,18 @@
         "label": "Forearms",
         "present": true,
         "directSets": 6,
-        "indirectSets": 10,
+        "indirectSets": 14.5,
         "exposures": 0,
         "exercises": [
           "Seated Cable Row",
           "One Arm Lat Pulldown",
           "Seated Palm Up Barbell Wrist Curl",
           "Romanian Deadlift",
+          "Incline Dumbbell Curl",
           "Hanging Leg Raise",
           "Seated Palm Down Barbell Wrist Curl",
           "Machine Preacher Curl",
+          "Chest Supported Dumbbell Row",
           "Leverage High Row",
           "Hammer Curl"
         ]
@@ -3272,68 +3365,68 @@
     "perMuscle": [
       {
         "muscle": "pec_clavicular",
-        "direct": 3,
-        "indirect": 3.5,
+        "direct": 6,
+        "indirect": 4.5,
         "exposures": 0
       },
       {
         "muscle": "pec_sternal",
-        "direct": 7,
-        "indirect": 1.5,
-        "exposures": 7
+        "direct": 9,
+        "indirect": 3,
+        "exposures": 2
       },
       {
         "muscle": "delt_anterior",
-        "direct": 3,
-        "indirect": 3.5,
-        "exposures": 7
+        "direct": 6,
+        "indirect": 4.5,
+        "exposures": 4
       },
       {
         "muscle": "delt_lateral",
-        "direct": 4,
+        "direct": 7,
         "indirect": 0,
         "exposures": 2
       },
       {
         "muscle": "delt_posterior",
         "direct": 8,
-        "indirect": 7,
-        "exposures": 3
+        "indirect": 7.5,
+        "exposures": 1
       },
       {
         "muscle": "serratus_anterior",
         "direct": 0,
         "indirect": 0,
-        "exposures": 8
+        "exposures": 1
       },
       {
         "muscle": "biceps",
-        "direct": 2,
-        "indirect": 6.5,
+        "direct": 5,
+        "indirect": 8,
         "exposures": 0
       },
       {
         "muscle": "brachialis",
         "direct": 4,
-        "indirect": 5.5,
+        "indirect": 8.5,
         "exposures": 0
       },
       {
         "muscle": "brachioradialis",
         "direct": 2,
-        "indirect": 4,
+        "indirect": 7,
         "exposures": 0
       },
       {
         "muscle": "triceps",
-        "direct": 4,
-        "indirect": 4,
-        "exposures": 6
+        "direct": 7,
+        "indirect": 5.5,
+        "exposures": 2
       },
       {
         "muscle": "forearm_flexors",
         "direct": 2,
-        "indirect": 6,
+        "indirect": 7.5,
         "exposures": 0
       },
       {
@@ -3346,109 +3439,109 @@
         "muscle": "rectus_abdominis",
         "direct": 10,
         "indirect": 1,
-        "exposures": 2
+        "exposures": 0
       },
       {
         "muscle": "obliques_core",
         "direct": 12,
-        "indirect": 5,
-        "exposures": 29
+        "indirect": 6,
+        "exposures": 17
       },
       {
         "muscle": "hip_flexors",
         "direct": 2,
-        "indirect": 4,
-        "exposures": 6
+        "indirect": 5,
+        "exposures": 3
       },
       {
         "muscle": "traps_upper",
         "direct": 0,
-        "indirect": 2,
+        "indirect": 3.5,
         "exposures": 0
       },
       {
         "muscle": "traps_middle",
+        "direct": 11,
+        "indirect": 5.5,
+        "exposures": 1
+      },
+      {
+        "muscle": "traps_lower",
+        "direct": 4,
+        "indirect": 7.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "rhomboids",
+        "direct": 9,
+        "indirect": 5.5,
+        "exposures": 1
+      },
+      {
+        "muscle": "lats",
+        "direct": 14,
+        "indirect": 0,
+        "exposures": 2
+      },
+      {
+        "muscle": "teres_major",
+        "direct": 2,
+        "indirect": 6,
+        "exposures": 0
+      },
+      {
+        "muscle": "rotator_cuff",
         "direct": 8,
         "indirect": 6.5,
         "exposures": 3
       },
       {
-        "muscle": "traps_lower",
-        "direct": 4,
-        "indirect": 7,
-        "exposures": 0
-      },
-      {
-        "muscle": "rhomboids",
-        "direct": 6,
-        "indirect": 5.5,
-        "exposures": 3
-      },
-      {
-        "muscle": "lats",
-        "direct": 11,
-        "indirect": 0,
-        "exposures": 7
-      },
-      {
-        "muscle": "teres_major",
-        "direct": 2,
-        "indirect": 4.5,
-        "exposures": 2
-      },
-      {
-        "muscle": "rotator_cuff",
-        "direct": 10,
-        "indirect": 5,
-        "exposures": 10
-      },
-      {
         "muscle": "erectors",
-        "direct": 0,
+        "direct": 3,
         "indirect": 6.5,
         "exposures": 0
       },
       {
         "muscle": "glute_max",
-        "direct": 11,
+        "direct": 17,
         "indirect": 1.5,
-        "exposures": 27
+        "exposures": 15
       },
       {
         "muscle": "glute_med",
-        "direct": 2,
+        "direct": 4,
         "indirect": 2,
-        "exposures": 13
+        "exposures": 7
       },
       {
         "muscle": "adductors",
-        "direct": 2,
-        "indirect": 7,
-        "exposures": 12
+        "direct": 4,
+        "indirect": 10,
+        "exposures": 7
       },
       {
         "muscle": "quads",
-        "direct": 10,
+        "direct": 13,
         "indirect": 0,
-        "exposures": 29
+        "exposures": 17
       },
       {
         "muscle": "hamstrings",
-        "direct": 8,
-        "indirect": 4,
-        "exposures": 14
+        "direct": 13,
+        "indirect": 5.5,
+        "exposures": 3
       },
       {
         "muscle": "gastrocnemius",
-        "direct": 3,
+        "direct": 6,
         "indirect": 2.5,
-        "exposures": 27
+        "exposures": 15
       },
       {
         "muscle": "soleus",
         "direct": 3,
-        "indirect": 2.5,
-        "exposures": 21
+        "indirect": 4,
+        "exposures": 11
       },
       {
         "muscle": "tibialis_anterior",
@@ -3458,9 +3551,7 @@
       }
     ],
     "shoulderNotes": [
-      "Sunday has pressing and swimming. Keep the swim easy and separate it by at least three hours.",
-      "Friday has spiking and swimming. Watch for shoulder fatigue and keep the swim easy.",
-      "Pressing on Thursday is followed by spiking on Friday. Stop spikes early if the shoulder feels tired."
+      "Sunday has pressing and swimming. Keep the swim easy and separate it by at least three hours."
     ]
   },
   "nutrition": {
@@ -3503,7 +3594,7 @@
       },
       {
         "weekday": 2,
-        "label": "Volleyball and shoulder care",
+        "label": "Upper C",
         "kcal": 2350,
         "kcalBand": [
           2250,
@@ -3551,7 +3642,7 @@
       },
       {
         "weekday": 5,
-        "label": "Speed, spike, and swim",
+        "label": "Lower C and swim",
         "kcal": 2550,
         "kcalBand": [
           2450,

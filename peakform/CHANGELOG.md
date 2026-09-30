@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0, 2026-09-29
+
+- Tuesday and Friday are regular muscle building gym days, because volleyball now happens every morning. Tuesday is Upper C: incline dumbbell press, chest supported dumbbell row, cable fly, lateral raise, face pull, incline dumbbell curl, and overhead triceps extension. Friday is Lower C before the swim: leg press, 45 degree back extension, Nordic curl, seated leg curl, cable hip adduction and abduction, and standing calf raise. Every set keeps two or three reps in reserve.
+- The new days fill the gaps the other four gym days left. Weekly direct sets now reach about 15 for the chest, 14 for the lats, 7 for the side and 8 for the rear shoulders, 7 for the triceps, 9 for the biceps and brachialis, 13 each for the quads and hamstrings, and 6 for the calves, with no muscle above 20.
+- Six new exercises with instructions, muscles, safety, substitutions, and original illustrations: Incline Dumbbell Press, Chest Supported Dumbbell Row, Incline Dumbbell Curl, Leg Press, 45 Degree Back Extension, and Cable Hip Adduction.
+- Installed apps get the new days from the same "Add to my plan" card, as a new plan version. Only the old volleyball drills on those two days are replaced. Morning work, the swim, anything you added, and your history stay. The Tuesday and Friday food targets keep their numbers and get the new names.
+- PeakForm now checks for a new version each time it comes back to the screen, not only when it is opened from scratch. More, About has a Check for updates button that can also apply a waiting update.
+
 ## 1.1.0, 2026-09-29
 
 - Morning volleyball at 05:30, Sunday to Friday, at home with no ball: easy rope as the warm up, then passing or blocking footwork, light dumbbell shoulder care (Y raise, side lying external rotation), and trunk control (dead bug). Saturday stays a full rest day.

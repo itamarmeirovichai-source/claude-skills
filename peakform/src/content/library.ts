@@ -2,13 +2,14 @@ import { ATHLETIC_EXERCISES } from './exercises/athletic';
 import { LOWER_EXERCISES } from './exercises/lower';
 import { UPPER_EXERCISES } from './exercises/upper';
 import { MORNING_EXERCISES } from './exercises/morning';
+import { GYM_EXERCISES } from './exercises/gym';
 import type { ExerciseContent } from './types';
 import type { CustomExercise } from '../db/records';
 import type { EquipmentType, Prescription } from '../domain/progression';
 import type { PlanItem } from './plan';
 import type { MuscleId } from './muscles';
 
-export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES];
+export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES, ...GYM_EXERCISES];
 export const EXERCISE_BY_ID: Record<string, ExerciseContent> = Object.fromEntries(LIBRARY.map((e) => [e.id, e]));
 
 let customs: Record<string, ExerciseContent> = {};
