@@ -3,7 +3,7 @@ import type { ExerciseContent, Pose, PoseProp } from '../types';
 
 // Leg and core alternatives for the exercise questionnaire. Order matches LEGS_CHOICE_IDS in ids.ts.
 // Machines, cables, the Smith machine, and dumbbells only, so hard sets are safe without a spotter.
-// He is a jumping athlete, so the knees and lower back get extra care: deep squats with a pause
+// The athlete jumps a lot, so the knees and lower back get extra care: deep squats with a pause
 // instead of a bounce, a flat back in every hinge, and ribs down at the top of the hip thrust.
 // Poses are side views unless the caption says front view.
 
@@ -42,17 +42,60 @@ const SEATED_FRONT = { trunk: 180, hip: [100, 80] } satisfies Partial<Base>;
 const SEATED_FRONT_PROPS: PoseProp[] = [
   { type: 'box', x: 84, y: 30, w: 32, h: 52 },
   { type: 'line', x1: 100, y1: 90, x2: 100, y2: 172 },
-  { type: 'line', x1: 84, y1: 171, x2: 116, y2: 171 },
-  { type: 'pad', x: 76, y: 83, w: 48, h: 8 },
+  { type: 'line', x1: 82, y1: 171, x2: 118, y2: 171 },
+  { type: 'pad', x: 74, y: 82, w: 52, h: 9 },
+];
+/** Knee pads on levers that end in foot rests. Knees close together, pads on the outside. */
+const ABDUCT_CLOSED: PoseProp[] = [
+  { type: 'pad', x: 113.3, y: 112.4, w: 6, h: 18 },
+  { type: 'line', x1: 116.3, y1: 130.4, x2: 116.3, y2: 165.4 },
+  { type: 'pad', x: 102.8, y: 164.9, w: 19, h: 4 },
+  { type: 'pad', x: 80.7, y: 112.4, w: 6, h: 18 },
+  { type: 'line', x1: 83.7, y1: 130.4, x2: 83.7, y2: 165.4 },
+  { type: 'pad', x: 78.2, y: 164.9, w: 19, h: 4 },
+];
+/** Knees wide, pads on the outside. */
+const ABDUCT_OPEN: PoseProp[] = [
+  { type: 'pad', x: 128.3, y: 106.6, w: 6, h: 18 },
+  { type: 'line', x1: 131.3, y1: 124.6, x2: 131.3, y2: 159.6 },
+  { type: 'pad', x: 117.8, y: 159.1, w: 19, h: 4 },
+  { type: 'pad', x: 65.7, y: 106.6, w: 6, h: 18 },
+  { type: 'line', x1: 68.7, y1: 124.6, x2: 68.7, y2: 159.6 },
+  { type: 'pad', x: 63.2, y: 159.1, w: 19, h: 4 },
+];
+/** Knees wide, pads on the inside. */
+const ADDUCT_OPEN: PoseProp[] = [
+  { type: 'pad', x: 110.3, y: 106.6, w: 6, h: 18 },
+  { type: 'line', x1: 113.3, y1: 124.6, x2: 113.3, y2: 159.6 },
+  { type: 'pad', x: 111.8, y: 159.1, w: 25, h: 4 },
+  { type: 'pad', x: 83.7, y: 106.6, w: 6, h: 18 },
+  { type: 'line', x1: 86.7, y1: 124.6, x2: 86.7, y2: 159.6 },
+  { type: 'pad', x: 63.2, y: 159.1, w: 25, h: 4 },
+];
+/** Knees almost together, pads on the inside touching. */
+const ADDUCT_CLOSED: PoseProp[] = [
+  { type: 'pad', x: 99.7, y: 111.8, w: 5, h: 18 },
+  { type: 'line', x1: 102.2, y1: 129.8, x2: 102.2, y2: 164.8 },
+  { type: 'pad', x: 100.7, y: 164.3, w: 24, h: 4 },
+  { type: 'pad', x: 95.3, y: 111.8, w: 5, h: 18 },
+  { type: 'line', x1: 97.8, y1: 129.8, x2: 97.8, y2: 164.8 },
+  { type: 'pad', x: 75.3, y: 164.3, w: 24, h: 4 },
 ];
 
-/** Reclined in a 45 degree leg press, legs almost straight, hands on the side handles. */
+/** Reclined in a 45 degree leg press, legs almost straight, hands on the side handles. The sled rides a rail under the legs. */
 const LEG_PRESS = { trunk: 230, head: 215, hip: [72, 128] } satisfies Partial<Base>;
 const LEG_PRESS_PROPS: PoseProp[] = [
   { type: 'bench', x: 65.6, y: 131.7, w: 58, h: 8, angle: -140 },
   { type: 'bench', x: 56, y: 138, w: 30 },
-  { type: 'line', x1: 96, y1: 150, x2: 176, y2: 70 },
-  { type: 'line', x1: 176, y1: 70, x2: 176, y2: 172 },
+  { type: 'line', x1: 96, y1: 130, x2: 176, y2: 50 },
+  { type: 'line', x1: 176, y1: 50, x2: 176, y2: 172 },
+];
+
+/** Standing on one foot on a low step, far hand on a rail, far knee bent behind. */
+const CALF_STEP = { trunk: 168, head: 152, armNear: [-3, -3], armFar: [58, 88], legFar: [10, -70, 10] } satisfies Partial<Pose>;
+const CALF_STEP_PROPS: PoseProp[] = [
+  { type: 'line', x1: 158, y1: 30, x2: 158, y2: 172 },
+  { type: 'box', x: 104, y: 164, w: 44, h: 8 },
 ];
 
 /** Kneeling facing a high pulley, hips a little back of the knees. */
@@ -491,7 +534,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
   {
     id: 'smith-hip-thrust',
     name: 'Smith Machine Hip Thrust',
-    aliases: ['Smith hip thrust', 'Machine hip thrust'],
+    aliases: ['Smith hip thrust'],
     kind: 'strength',
     purpose:
       'Builds the glutes hard at full hip extension, the position you drive through when you jump and sprint. The Smith machine guides the bar and its safety stops catch it, so you can train it alone. A hip thrust machine works the same way.',
@@ -520,7 +563,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
       secondary: ['hamstrings', 'adductors'],
     },
     emphasisNote:
-      'The glutes are under the most tension near the top, where the hips are straight, so the pause there counts. Finishing with the chin tucked and the ribs down keeps the work in the glutes and the spine neutral. That matters for you, because repeated arching of the lower back is a known strain for young athletes who jump a lot. Feet a little further out bring in more hamstring, and feet closer in bring in more quad.',
+      'The glutes are under the most tension near the top, where the hips are straight, so the pause there counts. Finishing with the chin tucked and the ribs down keeps the work in the glutes and the spine neutral. That matters for you, because repeated arching is a known risk for the lower back of young athletes who jump a lot. Feet a little further out bring in more hamstring, and feet closer in bring in more quad.',
     movementPattern: 'hip_extension',
     joints: ['Hip'],
     laterality: 'bilateral',
@@ -541,7 +584,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
       PAIN_RULE,
     ],
     safetyNotes: [
-      'Set the safety stops before you load the bar, so the bar can never come down onto your hips.',
+      'Set the safety stops before you load the bar, so the bar can never come down onto your hips. If a rep stalls, lower the bar onto them and slide out.',
       'Use a thick bar pad so the bar does not press into your hip bones.',
       'If your gym has a hip thrust machine, it works the same way and is quicker to set up.',
     ],
@@ -681,8 +724,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-10, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 113.3, y: 112.4, w: 6, h: 18 },
-            { type: 'pad', x: 80.7, y: 112.4, w: 6, h: 18 },
+            ...ABDUCT_CLOSED,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
           ],
@@ -697,8 +739,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-32, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 128.3, y: 106.6, w: 6, h: 18 },
-            { type: 'pad', x: 65.7, y: 106.6, w: 6, h: 18 },
+            ...ABDUCT_OPEN,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
             { type: 'arrow', from: [140, 150], to: [168, 150] },
@@ -715,8 +756,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-10, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 113.3, y: 112.4, w: 6, h: 18 },
-            { type: 'pad', x: 80.7, y: 112.4, w: 6, h: 18 },
+            ...ABDUCT_CLOSED,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
             { type: 'arrow', from: [168, 150], to: [140, 150] },
@@ -814,8 +854,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-32, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 110.3, y: 106.6, w: 6, h: 18 },
-            { type: 'pad', x: 83.7, y: 106.6, w: 6, h: 18 },
+            ...ADDUCT_OPEN,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
           ],
@@ -830,8 +869,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-14, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 99.2, y: 112, w: 5, h: 18 },
-            { type: 'pad', x: 95.3, y: 112, w: 5, h: 18 },
+            ...ADDUCT_CLOSED,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
             { type: 'arrow', from: [168, 150], to: [140, 150] },
@@ -848,8 +886,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legFar: [-32, 0, -90],
           props: [
             ...SEATED_FRONT_PROPS,
-            { type: 'pad', x: 110.3, y: 106.6, w: 6, h: 18 },
-            { type: 'pad', x: 83.7, y: 106.6, w: 6, h: 18 },
+            ...ADDUCT_OPEN,
             { type: 'handle', at: 'nearHand' },
             { type: 'handle', at: 'farHand' },
             { type: 'arrow', from: [140, 150], to: [168, 150] },
@@ -873,10 +910,10 @@ export const LEGS_CHOICES: ExerciseContent[] = [
       'Sit in the leg press with your lower back and hips pressed into the seat.',
       'Place the balls of your feet on the bottom edge of the platform, about hip width apart, with your heels hanging off.',
       'Press the platform up until your knees are straight but not locked.',
-      'Leave the safety locks on, so the platform is caught if a foot slips.',
+      'Leave the safety locks engaged for the whole set.',
     ],
     steps: [
-      'Let your heels drop slowly toward you until you feel a deep stretch in your calves.',
+      'Let the platform come toward you slowly, heels dropping past the edge, until you feel a deep stretch in your calves.',
       'Pause for two seconds in the stretch without bouncing.',
       'Push the platform away through the balls of your feet, mostly the big toe side, as far as you can.',
       'Hold the top briefly, then lower slowly back into the stretch.',
@@ -943,17 +980,23 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           ...LEG_PRESS,
           armNear: [12, 62],
           legNear: [136, 133, 225],
-          props: [...LEG_PRESS_PROPS, { type: 'bench', x: 101.8, y: 29.7, w: 38, h: 6, angle: 45 }, { type: 'handle', at: 'hands' }],
+          props: [
+            ...LEG_PRESS_PROPS,
+            { type: 'line', x1: 123.7, y1: 47.5, x2: 151.1, y2: 74.9 },
+            { type: 'bench', x: 101, y: 26.5, w: 46, h: 8, angle: 45 },
+            { type: 'handle', at: 'hands' },
+          ],
         },
         {
           label: 'Stretch',
-          caption: 'Let the heels drop toward you into a deep calf stretch and pause for two seconds.',
+          caption: 'Let the platform come toward you until the calves are deeply stretched. Pause for two seconds.',
           ...LEG_PRESS,
           armNear: [12, 62],
           legNear: [136, 133, 252],
           props: [
             ...LEG_PRESS_PROPS,
-            { type: 'bench', x: 99.6, y: 33.3, w: 38, h: 6, angle: 45 },
+            { type: 'line', x1: 121.6, y1: 51.1, x2: 148.2, y2: 77.8 },
+            { type: 'bench', x: 98.9, y: 30.1, w: 46, h: 8, angle: 45 },
             { type: 'handle', at: 'hands' },
             { type: 'arrow', from: [160, 26], to: [146, 40] },
           ],
@@ -966,7 +1009,8 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           legNear: [136, 133, 197],
           props: [
             ...LEG_PRESS_PROPS,
-            { type: 'bench', x: 105.5, y: 27.5, w: 38, h: 6, angle: 45 },
+            { type: 'line', x1: 127.4, y1: 45.3, x2: 154.1, y2: 71.9 },
+            { type: 'bench', x: 104.8, y: 24.3, w: 46, h: 8, angle: 45 },
             { type: 'handle', at: 'hands' },
             { type: 'arrow', from: [150, 36], to: [164, 22] },
           ],
@@ -1055,32 +1099,22 @@ export const LEGS_CHOICES: ExerciseContent[] = [
         {
           label: 'Start',
           caption: 'Ball of one foot on the step edge, dumbbell in the same side hand, other hand on the rail.',
-          trunk: 172,
-          head: 160,
-          hip: [96.9, 80.6],
-          armNear: [-3, -3],
-          armFar: [60, 90],
+          ...CALF_STEP,
+          hip: [96.9, 78.6],
           legNear: [3, -3, 90],
-          legFar: [8, -60, 20],
           props: [
-            { type: 'line', x1: 155, y1: 30, x2: 155, y2: 172 },
-            { type: 'box', x: 104, y: 166, w: 44, h: 6 },
+            ...CALF_STEP_PROPS,
             { type: 'dumbbell', at: 'nearHand' },
           ],
         },
         {
           label: 'Stretch',
           caption: 'Lower the heel below the step into a deep calf stretch and pause for two seconds. Knee stays straight.',
-          trunk: 172,
-          head: 160,
-          hip: [98.1, 85.3],
-          armNear: [-3, -3],
-          armFar: [60, 90],
+          ...CALF_STEP,
+          hip: [98.1, 83.3],
           legNear: [3, -3, 118],
-          legFar: [8, -60, 20],
           props: [
-            { type: 'line', x1: 155, y1: 30, x2: 155, y2: 172 },
-            { type: 'box', x: 104, y: 166, w: 44, h: 6 },
+            ...CALF_STEP_PROPS,
             { type: 'dumbbell', at: 'nearHand' },
             { type: 'arrow', from: [180, 110], to: [180, 130] },
           ],
@@ -1088,16 +1122,11 @@ export const LEGS_CHOICES: ExerciseContent[] = [
         {
           label: 'Finish',
           caption: 'Push through the ball of the foot and rise as high as you can.',
-          trunk: 172,
-          head: 160,
-          hip: [97.9, 76.2],
-          armNear: [-3, -3],
-          armFar: [60, 90],
+          ...CALF_STEP,
+          hip: [97.9, 74.2],
           legNear: [3, -3, 64],
-          legFar: [8, -60, 20],
           props: [
-            { type: 'line', x1: 155, y1: 30, x2: 155, y2: 172 },
-            { type: 'box', x: 104, y: 166, w: 44, h: 6 },
+            ...CALF_STEP_PROPS,
             { type: 'dumbbell', at: 'nearHand' },
             { type: 'arrow', from: [180, 130], to: [180, 110] },
           ],
@@ -1195,9 +1224,9 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           label: 'Curl',
           caption: 'Curl your ribs down toward your hips. The hips stay still while the spine rounds.',
           ...KNEEL,
-          trunk: 115,
-          head: 55,
-          armNear: [40, 180],
+          trunk: 120,
+          head: 45,
+          armNear: [15.7, 173.2],
           props: [
             ...CRUNCH_PROPS,
             { type: 'cable', from: 'hands', to: [170, 8] },
@@ -1230,7 +1259,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
     aliases: ['Kneeling ab wheel rollout', 'Ab roller'],
     kind: 'bodyweight',
     purpose:
-      'Trains the abs to stop your lower back from arching while your body lengthens. That stiffness through the trunk helps you pass force from the legs to the arm when you spike and block, and it loads the abs while they are long.',
+      'Trains the abs to stop your lower back from arching while your body lengthens. That control helps you keep the trunk stiff when you spike, block, and land, and it loads the abs while they are long.',
     equipment: ['Ab wheel', 'A mat for the knees'],
     setup: [
       'Kneel on a mat with the ab wheel on the floor in front of your knees.',
@@ -1242,7 +1271,6 @@ export const LEGS_CHOICES: ExerciseContent[] = [
       'Stop as soon as you feel your lower back start to sag or arch, or just before.',
       'Hold for a moment with your abs tight and your back flat.',
       'Pull the wheel back toward your knees with your abs, without piking the hips up first.',
-      'Start with short rolls, and add a little distance only when every rep stays flat.',
     ],
     breathing: 'Breathe in before you roll out. Hold the brace on the way out, and breathe out as you pull back.',
     tempo:
@@ -1254,7 +1282,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
       secondary: ['lats', 'hip_flexors'],
     },
     emphasisNote:
-      'The abs and obliques work hard to stop your lower back from arching as the wheel rolls away, and the lats help control the arms. The further you roll, the longer the lever and the harder it gets. Keeping the spine neutral is the whole point: repeated arching of the lower back is a known strain for young athletes who jump a lot.',
+      'The abs and obliques work hard to stop your lower back from arching as the wheel rolls away, and the lats help control the arms. The further you roll, the longer the lever and the harder it gets. Keeping the spine neutral is the whole point, because repeated arching is a known risk for the lower back of young athletes who jump a lot.',
     movementPattern: 'anti_extension',
     joints: ['Spine', 'Shoulder', 'Hip'],
     laterality: 'bilateral',
@@ -1316,7 +1344,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           hip: [88.1, 149.3],
           armNear: [56.8, 56.8],
           legNear: [-65, -120, -150],
-          props: [{ type: 'barbell', at: 'hands' }, { type: 'arrow', from: [120, 100], to: [160, 100] }],
+          props: [{ type: 'barbell', at: 'hands' }, { type: 'arrow', from: [120, 62], to: [160, 62] }],
         },
         {
           label: 'Finish',
@@ -1325,7 +1353,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
           hip: [42.7, 125.6],
           armNear: [0, 0],
           legNear: [10, -120, -150],
-          props: [{ type: 'barbell', at: 'hands' }, { type: 'arrow', from: [140, 100], to: [100, 100] }],
+          props: [{ type: 'barbell', at: 'hands' }, { type: 'arrow', from: [140, 62], to: [100, 62] }],
         },
       ],
     },
@@ -1348,7 +1376,7 @@ export const LEGS_CHOICES: ExerciseContent[] = [
     ],
     steps: [
       'Pull the handle down and across your body toward the outside of your far hip, arms straight.',
-      'Turn your chest and hips together, and let your back foot pivot on the ball of the foot.',
+      'Turn your chest and hips together, and let the foot nearest the machine pivot on its ball.',
       'Stop when the handle is outside your far hip and your chest faces that way.',
       'Let the handle travel back up the same path slowly, turning back toward the pulley.',
       'Finish all reps on one side, then turn around and match them on the other.',
