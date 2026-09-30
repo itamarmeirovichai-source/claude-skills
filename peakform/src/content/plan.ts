@@ -1,4 +1,5 @@
 import type { LibraryExerciseId } from './exercises/ids';
+import { PROGRAM_DAYS, buildMainItems, defaultPicks, normalizePicks, type ProgramPicks } from './program';
 
 // The baseline weekly plan. Seeded exactly as prescribed.
 // Plan data is separate from logged data. Editing a plan creates a new plan version;
@@ -22,8 +23,10 @@ export interface PlanItem {
   target: SetTarget;
   /** Rest between sets in seconds. */
   restSec: number;
-  /** Prescribed reps in reserve, when relevant. */
+  /** Prescribed reps in reserve, when relevant. 0 means to technical failure. */
   rir?: number;
+  /** Reps in reserve for the last set only, when it differs from the others. */
+  lastSetRir?: number;
   /** Target RPE range for aerobic work. */
   rpe?: [number, number];
   /** Tempo as four digits: lowering, pause, lifting, pause. */
@@ -53,7 +56,6 @@ export interface WorkoutPlan {
 }
 
 const ROPE_NOTE_QUALITY = 'Stop when speed, jump height, landing control, or technique declines.';
-const QUALITY_FIRST = 'Quality first. Stop the set when height, speed, landing control, or coordination drops.';
 const SWIM_SPACING = 'Separate swimming from the main workout by at least three hours when possible.';
 
 function rope(day: PlanDay['key'], totalMin: number, extra: string[] = []): PlanItem {
@@ -108,179 +110,67 @@ const YRAISE: ItemInput = { exerciseId: 'dumbbell-y-raise', sets: 2, target: r(1
 const EXTROT: ItemInput = { exerciseId: 'side-lying-external-rotation', sets: 2, target: r(12, 15), restSec: 45, rir: 3, tempo: '3011', per: 'side', notes: ['Light dumbbell, usually 1 to 2 kg.'] };
 const DEADBUG: ItemInput = { exerciseId: 'dead-bug', sets: 2, target: r(6, 8), restSec: 45, rir: 3, per: 'side' };
 
-function items(day: PlanDay['key'], list: ItemInput[]): PlanItem[] {
-  return list.map((it, i) => ({
-    ...it,
-    id: `${day}-${i + 1}-${it.exerciseId}`,
-    session: it.session ?? 'main',
-    notes: it.notes ?? [],
-  }));
-}
+/** Morning home sessions at 05:30: rope first as the warm up, then footwork, shoulder care, and trunk work. */
+const MORNING: Record<Exclude<PlanDay['key'], 'sat'>, PlanItem[]> = {
+  sun: [rope('sun', 6), ...morning('sun', [PASS(), DEADBUG, { exerciseId: 'tibialis-raise', sets: 2, target: r(15, 20), restSec: 45, rir: 2 }])],
+  mon: [rope('mon', 9), ...morning('mon', [BLOCK(), YRAISE, EXTROT])],
+  tue: [rope('tue', 9), ...morning('tue', [PASS(), DEADBUG])],
+  wed: [rope('wed', 9), ...morning('wed', [BLOCK(), YRAISE, EXTROT])],
+  thu: [rope('thu', 15), ...morning('thu', [PASS(), DEADBUG])],
+  fri: [rope('fri', 6), ...morning('fri', [PASS(2), DEADBUG])],
+};
 
+export const GLOBAL_RULES = [
+  'Morning volleyball sessions at 05:30 stay easy: footwork without a ball, light shoulder care, and trunk control. Hard jumps and heavy work stay in the main session.',
+  'One exercise for each muscle head, three work sets, with a slow, controlled stretch at the long muscle length.',
+  'Warm up sets do not count as working sets. Do one or two lighter sets before the first exercise for a muscle.',
+  'Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep.',
+  'Machines, cables, and the Smith machine with safety stops go to failure as prescribed. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.',
+  'For a new exercise, stop two reps short for the first two sessions while you learn it.',
+  'Rest two to three minutes on the big exercises and about ninety seconds on the small ones.',
+  'Do not test a one repetition maximum.',
+  'No leg sets to failure in the 48 hours before a volleyball match.',
+  'Stop explosive work as soon as quality drops.',
+  'Separate swimming and the main workout by at least three hours when possible.',
+  'Do not add extra high intensity intervals.',
+  'Take a reduced week when performance, sleep, pain, or motivation show accumulated fatigue.',
+];
+
+/** Builds the week from program choices. Morning sessions and swims are fixed. */
+export function planDaysFor(picks: ProgramPicks | undefined): PlanDay[] {
+  const chosen = normalizePicks(picks);
+  const days: PlanDay[] = PROGRAM_DAYS.map((d) => ({
+    weekday: d.weekday,
+    key: d.key,
+    title: d.title,
+    short: d.short,
+    isRest: false,
+    items: [...MORNING[d.key as Exclude<PlanDay['key'], 'sat'>], ...buildMainItems(d, chosen), ...(d.key === 'sun' || d.key === 'fri' ? [swim(d.key)] : [])],
+  }));
+  days.push({
+    weekday: 6,
+    key: 'sat',
+    title: 'Full Rest',
+    short: 'Rest',
+    isRest: true,
+    items: [],
+    restNotes: [
+      'No formal training.',
+      'Comfortable walking is fine if you feel like it.',
+      'Sabbath Mode keeps the app quiet.',
+      'No make up workout and no food rules to compensate.',
+    ],
+  });
+  return days;
+}
 
 export const BASELINE_PLAN: WorkoutPlan = {
   id: 'baseline',
   version: 1,
   name: 'PeakForm baseline week',
   createdAt: '2026-09-29T00:00:00.000Z',
-  globalRules: [
-    'Morning volleyball sessions at 05:30 stay easy: footwork without a ball, light shoulder care, and trunk control. Hard jumps and heavy work stay in the main session.',
-    'Warm up sets do not count as working sets.',
-    'Use controlled technique on every rep.',
-    'Learn unfamiliar barbell and jump movements with a qualified coach.',
-    'Do not test a one repetition maximum.',
-    'Do not take routine sets to failure.',
-    'Keep two to three repetitions in reserve as prescribed.',
-    'Stop explosive work as soon as quality drops.',
-    'Separate swimming and the main workout by at least three hours when possible.',
-    'Do not add extra high intensity intervals.',
-    'Take a reduced week when performance, sleep, pain, or motivation show accumulated fatigue.',
-  ],
-  days: [
-    {
-      weekday: 0,
-      key: 'sun',
-      title: 'Upper A and Swim',
-      short: 'Upper A',
-      isRest: false,
-      items: [
-        rope('sun', 6),
-        ...morning('sun', [PASS(), DEADBUG, { exerciseId: 'tibialis-raise', sets: 2, target: r(15, 20), restSec: 45, rir: 2 }]),
-        ...items('sun', [
-          { exerciseId: 'barbell-bench-press', sets: 3, target: r(8, 12), restSec: 150, rir: 2, notes: ['Medium grip.'] },
-          { exerciseId: 'flat-cable-fly', sets: 2, target: r(12, 15), restSec: 90, rir: 2 },
-          { exerciseId: 'seated-cable-row', sets: 3, target: r(8, 12), restSec: 150, rir: 2 },
-          { exerciseId: 'one-arm-lat-pulldown', sets: 2, target: r(10, 15), restSec: 120, rir: 2, per: 'side' },
-          { exerciseId: 'single-arm-cable-lateral-raise', sets: 2, target: r(12, 20), restSec: 90, rir: 2, per: 'side' },
-          { exerciseId: 'machine-preacher-curl', sets: 2, target: r(10, 15), restSec: 90, rir: 2 },
-          { exerciseId: 'palm-up-wrist-curl', sets: 2, target: r(12, 20), restSec: 90, rir: 2 },
-          { exerciseId: 'rope-overhead-triceps-extension', sets: 2, target: r(10, 15), restSec: 90, rir: 2 },
-          { exerciseId: 'cable-external-rotation', sets: 2, target: r(15, 20), restSec: 75, rir: 3 },
-        ]),
-        swim('sun'),
-      ],
-    },
-    {
-      weekday: 1,
-      key: 'mon',
-      title: 'Lower A Strength and Jump',
-      short: 'Lower A',
-      isRest: false,
-      items: [
-        rope('mon', 9),
-        ...morning('mon', [BLOCK(), YRAISE, EXTROT]),
-        ...items('mon', [
-          { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30 },
-          { exerciseId: 'volleyball-approach-jump', sets: 3, target: r(2, 2), restSec: 180, notes: [QUALITY_FIRST] },
-          { exerciseId: 'countermovement-jump', sets: 3, target: r(2, 2), restSec: 150, notes: [QUALITY_FIRST] },
-          { exerciseId: 'barbell-squat', sets: 3, target: r(6, 10), restSec: 180, rir: 3, tempo: '3110' },
-          { exerciseId: 'romanian-deadlift', sets: 3, target: r(8, 12), restSec: 180, rir: 3, tempo: '3110' },
-          { exerciseId: 'bulgarian-split-squat', sets: 2, target: r(8, 12), restSec: 150, rir: 3, per: 'side' },
-          { exerciseId: 'standing-calf-raise', sets: 3, target: r(10, 15), restSec: 120, rir: 2, tempo: '2111' },
-          { exerciseId: 'tibialis-raise', sets: 2, target: r(15, 20), restSec: 75, rir: 3 },
-          { exerciseId: 'pallof-press', sets: 2, target: r(10, 15), restSec: 75, rir: 3, per: 'side' },
-        ]),
-      ],
-    },
-    {
-      weekday: 2,
-      key: 'tue',
-      title: 'Upper C Hypertrophy',
-      short: 'Upper C',
-      isRest: false,
-      items: [
-        rope('tue', 9),
-        ...morning('tue', [PASS(), DEADBUG]),
-        ...items('tue', [
-          { exerciseId: 'incline-dumbbell-press', sets: 3, target: r(8, 12), restSec: 150, rir: 2, tempo: '3110' },
-          { exerciseId: 'chest-supported-dumbbell-row', sets: 3, target: r(10, 12), restSec: 150, rir: 2, tempo: '2011' },
-          { exerciseId: 'flat-cable-fly', sets: 2, target: r(12, 15), restSec: 90, rir: 2 },
-          { exerciseId: 'lateral-raise', sets: 3, target: r(12, 20), restSec: 90, rir: 2 },
-          { exerciseId: 'face-pull', sets: 2, target: r(12, 20), restSec: 75, rir: 3 },
-          { exerciseId: 'incline-dumbbell-curl', sets: 3, target: r(10, 15), restSec: 90, rir: 2, tempo: '3011' },
-          { exerciseId: 'rope-overhead-triceps-extension', sets: 3, target: r(10, 15), restSec: 90, rir: 2 },
-        ]),
-      ],
-    },
-    {
-      weekday: 3,
-      key: 'wed',
-      title: 'Lower B Hypertrophy',
-      short: 'Lower B',
-      isRest: false,
-      items: [
-        rope('wed', 9),
-        ...morning('wed', [BLOCK(), YRAISE, EXTROT]),
-        ...items('wed', [
-          { exerciseId: 'hack-squat', sets: 3, target: r(8, 12), restSec: 180, rir: 2, tempo: '3110' },
-          { exerciseId: 'barbell-hip-thrust', sets: 3, target: r(8, 12), restSec: 150, rir: 2, tempo: '2111' },
-          { exerciseId: 'seated-leg-curl', sets: 3, target: r(10, 15), restSec: 120, rir: 2, tempo: '2111' },
-          { exerciseId: 'leg-extension', sets: 2, target: r(12, 15), restSec: 90, rir: 2, tempo: '2111' },
-          { exerciseId: 'cable-hip-abduction', sets: 2, target: r(12, 20), restSec: 90, rir: 2, per: 'side' },
-          { exerciseId: 'seated-calf-raise', sets: 3, target: r(12, 20), restSec: 120, rir: 2, tempo: '2111' },
-          { exerciseId: 'copenhagen-plank', sets: 2, target: { type: 'hold', seconds: 20 }, restSec: 75, per: 'side' },
-          { exerciseId: 'hanging-leg-raise', sets: 2, target: r(8, 15), restSec: 75, rir: 3 },
-        ]),
-      ],
-    },
-    {
-      weekday: 4,
-      key: 'thu',
-      title: 'Upper B Hypertrophy',
-      short: 'Upper B',
-      isRest: false,
-      items: [
-        rope('thu', 15),
-        ...morning('thu', [PASS(), DEADBUG]),
-        ...items('thu', [
-          { exerciseId: 'incline-barbell-bench-press', sets: 3, target: r(8, 12), restSec: 150, rir: 2, notes: ['Medium grip.'] },
-          { exerciseId: 'machine-bench-press', sets: 2, target: r(8, 12), restSec: 150, rir: 2 },
-          { exerciseId: 'wide-grip-lat-pulldown', sets: 3, target: r(8, 12), restSec: 150, rir: 2 },
-          { exerciseId: 'leverage-high-row', sets: 3, target: r(10, 15), restSec: 150, rir: 2 },
-          { exerciseId: 'reverse-machine-fly', sets: 2, target: r(12, 20), restSec: 90, rir: 2 },
-          { exerciseId: 'lateral-raise', sets: 2, target: r(12, 20), restSec: 90, rir: 2 },
-          { exerciseId: 'hammer-curl', sets: 2, target: r(10, 15), restSec: 90, rir: 2 },
-          { exerciseId: 'palm-down-wrist-curl', sets: 2, target: r(12, 20), restSec: 90, rir: 2 },
-          { exerciseId: 'triceps-pushdown', sets: 2, target: r(10, 15), restSec: 90, rir: 2 },
-        ]),
-      ],
-    },
-    {
-      weekday: 5,
-      key: 'fri',
-      title: 'Lower C Hypertrophy and Swim',
-      short: 'Lower C',
-      isRest: false,
-      items: [
-        rope('fri', 6),
-        ...morning('fri', [PASS(2), DEADBUG]),
-        ...items('fri', [
-          { exerciseId: 'leg-press', sets: 3, target: r(10, 15), restSec: 180, rir: 2, tempo: '3110' },
-          { exerciseId: 'back-extension', sets: 3, target: r(10, 15), restSec: 120, rir: 3, tempo: '2011' },
-          { exerciseId: 'nordic-hamstring-curl', sets: 2, target: r(4, 6), restSec: 180, rir: 3, notes: ['Difficulty never increases automatically.'] },
-          { exerciseId: 'seated-leg-curl', sets: 2, target: r(10, 15), restSec: 120, rir: 2, tempo: '2111' },
-          { exerciseId: 'cable-hip-adduction', sets: 2, target: r(12, 15), restSec: 75, rir: 2, per: 'side' },
-          { exerciseId: 'cable-hip-abduction', sets: 2, target: r(12, 20), restSec: 75, rir: 2, per: 'side' },
-          { exerciseId: 'standing-calf-raise', sets: 3, target: r(10, 15), restSec: 120, rir: 2, tempo: '2111' },
-        ]),
-        swim('fri'),
-      ],
-    },
-    {
-      weekday: 6,
-      key: 'sat',
-      title: 'Full Rest',
-      short: 'Rest',
-      isRest: true,
-      items: [],
-      restNotes: [
-        'No formal training.',
-        'Comfortable walking is fine if you feel like it.',
-        'Sabbath Mode keeps the app quiet.',
-        'No make up workout and no food rules to compensate.',
-      ],
-    },
-  ],
+  globalRules: GLOBAL_RULES,
+  days: planDaysFor(defaultPicks()),
 };
 
 export const SESSION_LABELS: Record<SessionKey, string> = {

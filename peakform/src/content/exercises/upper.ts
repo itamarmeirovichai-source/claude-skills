@@ -1,10 +1,10 @@
+import { EFFORT_RULE } from './effort';
 import type { ExerciseContent, Pose, PoseProp } from '../types';
 
 // Upper body strength library. Order matches UPPER_IDS in ids.ts.
 // Poses are side views unless the caption says front view. Frontal plane
 // movements (lateral raises, external rotation) read far better from the front.
 
-const RIR_RULE = 'Stop when you reach the prescribed reps in reserve. Sets are not taken to failure.';
 const PAIN_RULE =
   'Pain of 4 out of 10 or higher, or pain that worsens or changes your technique, pauses this exercise. Report it to a parent, coach, or clinician.';
 
@@ -140,7 +140,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Your upper back feels pinned to the bench, the bar moves in a smooth slight arc, and the effort sits across the chest and the back of the arms rather than in the front of the shoulder joint.',
     stopRules: [
       'Stop the set when the bar slows sharply, drifts off its path, or your technique changes.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -162,6 +162,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: 'Push up', reason: 'No equipment needed. Put your hands on a bench to make it easier.' },
     ],
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -235,7 +236,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Your upper back stays tight on the pad, the bar travels in a short straight line, and you feel the work in the upper chest and the front of the shoulders without any pinching.',
     stopRules: [
       'Stop the set when the bar slows sharply, drifts off its path, or your technique changes.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -261,6 +262,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -334,7 +336,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Your back stays on the pad, the press feels smooth, and the work sits in the chest and the back of the arms.',
     stopRules: [
       'Stop the set when the press slows sharply, your back leaves the pad, or your technique changes.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -359,6 +361,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -432,7 +435,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A long stretch across the chest at the bottom, a firm squeeze in the middle of the chest at the top, and elbows that keep the same bend.',
     stopRules: [
       'Stop the set when the elbows start bending and straightening, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -457,6 +460,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -550,7 +554,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Your elbows drive down to your sides, you feel the pull along the sides of your back under the armpits, and your chest stays tall.',
     stopRules: [
       'Stop the set when you start leaning back or swinging, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -575,6 +579,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -658,7 +663,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A long stretch along the side of your back at the top, then a strong squeeze under the armpit as the elbow reaches your ribs.',
     stopRules: [
       'Stop the set when your trunk starts twisting, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -683,6 +688,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -768,7 +774,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'The shoulder blades slide down and together, the effort sits across the middle back and under the armpits, and your trunk stays still.',
     stopRules: [
       'Stop the set when you start leaning back or shrugging, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -793,6 +799,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -865,7 +872,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Your trunk stays quiet, the shoulder blades glide back and forward, and the squeeze sits between the shoulder blades and along the sides of your back.',
     stopRules: [
       'Stop the set when your trunk starts rocking or your lower back rounds, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -889,6 +896,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -973,7 +981,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A steady burn at the back of the shoulders, your chest stays on the pad, and your arms move like wide wings.',
     stopRules: [
       'Stop the set when the elbows bend more or the shoulders shrug, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -998,6 +1006,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1070,7 +1079,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'The backs of the shoulders and the area between the shoulder blades work hard, the finish looks like a double biceps pose, and your neck stays relaxed.',
     stopRules: [
       'Stop the set when the elbows drop or you lean back, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1095,6 +1104,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1181,7 +1191,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A growing burn on the sides of the shoulders, a relaxed neck, and a smooth path with no swing.',
     stopRules: [
       'Stop the set when you start swinging or shrugging, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1202,6 +1212,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: 'Machine lateral raise', reason: 'A guided path, if your gym has one.' },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1286,7 +1297,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
     goodFormFeels: 'Steady tension on the side of the shoulder the whole way, an upright trunk, and a relaxed neck.',
     stopRules: [
       'Stop the set when you lean away or shrug, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1311,6 +1322,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1402,7 +1414,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A mild, deep effort at the back of the shoulder, the towel stays in place, and the movement is smooth in both directions.',
     stopRules: [
       'Stop the set when the elbow leaves the towel or the trunk turns, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1427,6 +1439,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -1516,7 +1529,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'Work along the top of the forearm and the outside of the upper arm, with elbows that stay by your sides.',
     stopRules: [
       'Stop the set when you start swinging or the elbows drift forward, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1540,6 +1553,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1611,7 +1625,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A strong squeeze in the front of the upper arm, upper arms quiet on the pad, and a smooth, slow lowering.',
     stopRules: [
       'Stop the set when the elbows lift off the pad or the range shrinks, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1635,6 +1649,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1707,7 +1722,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'The work stays in the backs of the upper arms, the elbows feel pinned to your sides, and the wrists stay straight.',
     stopRules: [
       'Stop the set when the elbows start moving or you lean over the attachment, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1731,6 +1746,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1811,7 +1827,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A strong stretch along the back of the upper arm at the bottom, then a firm squeeze at straight arms, with your ribs down and trunk steady.',
     stopRules: [
       'Stop the set when the elbows flare or your lower back arches, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1835,6 +1851,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1879,12 +1896,12 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
   // ---------- Forearms ----------
   {
     id: 'palm-down-wrist-curl',
-    name: 'Seated Palm Down Barbell Wrist Curl',
+    name: 'Seated Palm Down Wrist Curl',
     aliases: ['Reverse wrist curl', 'Barbell wrist extension'],
     kind: 'strength',
     purpose:
       'Strengthens the muscles on the back of the forearm that lift the back of the hand. It balances grip work and helps the wrists and elbows handle passing, setting, and hitting.',
-    equipment: ['Light barbell or EZ bar', 'Flat bench'],
+    equipment: ['Two light dumbbells, or a light EZ bar', 'Flat bench'],
     setup: [
       'Sit on the end of a bench with your feet flat and your knees bent to about 90 degrees.',
       'Hold a light bar with palms facing down and hands about shoulder width apart.',
@@ -1922,7 +1939,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       'A burn on the top of the forearm near the elbow, forearms still on the thighs, and a smooth hinge at the wrist.',
     stopRules: [
       'Stop the set when the forearms lift off the thighs or the range shrinks, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -1943,6 +1960,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: 'Wrist roller', reason: 'Rolling a light weight up with palms down trains the same muscles.' },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1971,12 +1989,12 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
   },
   {
     id: 'palm-up-wrist-curl',
-    name: 'Seated Palm Up Barbell Wrist Curl',
+    name: 'Seated Palm Up Wrist Curl',
     aliases: ['Barbell wrist curl', 'Wrist flexion curl'],
     kind: 'strength',
     purpose:
       'Strengthens the forearm flexors that curl the wrist and close the hand. They support grip, setting, and the wrist snap at the end of a spike.',
-    equipment: ['Light barbell or EZ bar', 'Flat bench'],
+    equipment: ['Two light dumbbells, or a light EZ bar', 'Flat bench'],
     setup: [
       'Sit on the end of a bench with your feet flat and your knees bent to about 90 degrees.',
       'Hold a light bar with palms facing up and hands about shoulder width apart.',
@@ -2013,7 +2031,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
     goodFormFeels: 'A burn on the inner forearm, steady forearms, and smooth movement at the wrist.',
     stopRules: [
       'Stop the set when the forearms lift off the thighs or the range shrinks, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -2034,6 +2052,7 @@ export const UPPER_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: 'Farmer carry', reason: 'Walking while holding dumbbells trains grip strength in a more whole body way.' },
     ],
     loadIncrement: 'upper',
+    failure: 'all',
     visual: {
       poses: [
         {

@@ -150,12 +150,14 @@ export function SafetyScreen() {
         </Section>
         <Section title="Training">
           <ul className="bullets">
-            <li>Keep two to three reps in reserve as prescribed. Routine sets are not taken to failure.</li>
+            <li>Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep, and stop at once for pain.</li>
+            <li>Only machines, cables, and the Smith machine with safety stops go to failure. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.</li>
+            <li>A new exercise stays two reps short for its first two sessions while you learn it.</li>
+            <li>No leg sets to failure in the 48 hours before a volleyball match.</li>
             <li>Warm up sets never count as work sets.</li>
-            <li>Stop a set when technique changes, pain appears, or you reach the prescribed reps in reserve.</li>
             <li>Stop jumps and sprints as soon as height, speed, landing, or coordination drops.</li>
-            <li>Load goes up only when every work set reaches the top of its range with good form. Jump, sprint, Nordic curl, and swim volume never increase automatically.</li>
-            <li>No one repetition maximum tests. Learn barbell and jump technique with a qualified coach.</li>
+            <li>Load goes up only with good form on every work set: when sets go to failure, once the first set reaches the top of its range. Jump, sprint, Nordic curl, and swim volume never increase automatically.</li>
+            <li>No one repetition maximum tests. Ask a gym instructor to check your technique on anything new.</li>
           </ul>
         </Section>
         <Section title="Food">

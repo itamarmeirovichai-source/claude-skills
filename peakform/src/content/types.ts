@@ -32,6 +32,8 @@ export type MovementPattern =
   | 'shoulder_horizontal_abduction'
   | 'shoulder_horizontal_adduction'
   | 'shoulder_external_rotation'
+  | 'shoulder_extension'
+  | 'shoulder_elevation'
   | 'elbow_flexion'
   | 'elbow_extension'
   | 'wrist_flexion'
@@ -40,6 +42,7 @@ export type MovementPattern =
   | 'anti_extension'
   | 'trunk_flexion'
   | 'lateral_core'
+  | 'trunk_rotation'
   | 'jump'
   | 'sprint'
   | 'change_of_direction'
@@ -63,6 +66,15 @@ export type FatigueArea =
   | 'systemic';
 
 export type LoadIncrementClass = 'upper' | 'lower' | 'none';
+
+/**
+ * How close to failure the plan may take an exercise.
+ *   'all'    every set may end at technical failure (machines, cables, safe isolation work)
+ *   'last'   the first sets stop one rep short, only the last set goes to failure (machine and Smith compounds)
+ *   'never'  always stop short, because a failed rep is hard to escape safely alone
+ * Technical failure means the last rep that can be finished with clean form.
+ */
+export type FailurePolicy = 'all' | 'last' | 'never';
 
 // ---------- Original keyframe illustrations ----------
 
@@ -165,6 +177,8 @@ export interface ExerciseContent {
   equipmentSubstitution: Substitution;
   otherSubstitutions?: Substitution[];
   loadIncrement: LoadIncrementClass;
+  /** How close to failure the plan may take this exercise. Required for loaded and body weight work. */
+  failure?: FailurePolicy;
   visual: ExerciseVisual;
 }
 

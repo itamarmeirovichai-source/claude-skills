@@ -1,3 +1,4 @@
+import { EFFORT_RULE } from './effort';
 import type { ExerciseContent } from '../types';
 
 // Lower body library entries. Order matches LOWER_IDS in ids.ts.
@@ -7,8 +8,6 @@ import type { ExerciseContent } from '../types';
 const painRule = (extra?: string) =>
   `Pain of 4 out of 10 or higher, or pain that worsens or changes your technique, pauses this exercise.${extra ? ` ${extra}` : ''} Report it to a parent, coach, or clinician.`;
 const PAIN_RULE = painRule();
-const RIR_RULE = 'End the set when you reach the prescribed reps in reserve. Sets are not to failure.';
-const RIR_RULE_SIDE = 'End the set on each leg when you reach the prescribed reps in reserve. Sets are not to failure.';
 
 export const LOWER_EXERCISES: ExerciseContent[] = [
   // ---------------------------------------------------------------- Barbell Squat
@@ -62,7 +61,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'Pressure spread over the whole foot, a tight trunk, and effort shared by the front of the thighs and the glutes. The bar feels settled on your back and moves in a straight line over the middle of your foot.',
     stopRules: [
       'End the set when bar speed slows sharply or your technique changes, such as heels lifting, knees caving, or your back rounding.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -89,6 +88,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -177,7 +177,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A strong, even stretch in the back of both thighs, your weight balanced over the middle of the foot, and a flat, braced back. Standing up feels like your hips pull you upright.',
     stopRules: [
       'End the set when your back starts to round, the bar drifts away from your legs, or your technique changes in any other way.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       'Stop if your grip gives out before your hips and hamstrings do. Use a lighter weight next set rather than pushing through.',
       painRule('A sharp pull in the back of the thigh counts.'),
     ],
@@ -204,6 +204,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -291,7 +292,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'Most of the effort in your front thigh and glute, a light stretch at the front of your back hip, and a steady trunk. The back leg only helps with balance.',
     stopRules: [
       'End the set when your balance, knee position, or depth changes, or your front heel starts to lift.',
-      RIR_RULE_SIDE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -316,6 +317,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -380,14 +382,14 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
     ],
     steps: [
       'Lower your heels slowly until you feel a strong stretch in your calves.',
-      'Pause in the stretch without bouncing.',
+      'Pause for two full seconds in the stretch without bouncing. Training this stretched part grew the calves most in a study.',
       'Push through the balls of your feet, mostly the big toe side, to rise as high as you can.',
       'Hold the top for a moment with your ankles steady, not rolling outward.',
       'Lower slowly and repeat, keeping your knees straight the whole time.',
     ],
     breathing: 'Breathe steadily. Breathe out as you rise and in as you lower. Do not hold your breath.',
     tempo:
-      '2 1 1 1 means two seconds to lower the heels, a one second pause in the stretch, one second to rise, and a one second hold at the top.',
+      '2 2 1 1 means two seconds to lower the heels, a two second pause in the stretch, one second to rise, and a one second hold at the top.',
     rangeOfMotion:
       'Use the full range, from a deep stretch with your heels below the block to as high on your toes as you can go. The stretched part of the range matters most, so do not cut it short.',
     muscles: {
@@ -411,7 +413,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A deep stretch in your calves at the bottom and a strong squeeze at the top, with the pressure through the balls of your feet.',
     stopRules: [
       'End the set when your range gets shorter, you start to bounce, or your knees bend to help.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       'Pain of 4 out of 10 or higher in the Achilles tendon, heel, or calf, or pain that worsens or changes your technique, pauses this exercise. Report it to a parent, coach, or clinician.',
     ],
     safetyNotes: [
@@ -436,6 +438,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -534,7 +537,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A strong burn along the front of your shins by the end of the set, with your heels planted and the rest of your body still.',
     stopRules: [
       'End the set when your range shrinks, your toes start to slap down, or your knees bend to help.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -558,6 +561,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'none',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -650,7 +654,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A deep bend in the knees, pressure through the whole foot, and strong effort in the front of the thighs. Your back feels supported and still.',
     stopRules: [
       'End the set when your hips lift off the pad, your heels rise, your knees cave, or your depth gets shallower.',
-      RIR_RULE,
+      EFFORT_RULE.last,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -675,6 +679,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'last',
     visual: {
       poses: [
         {
@@ -780,7 +785,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A strong squeeze in your glutes at the top, pressure through your heels, and ribs staying down. The bench works as a pivot under your shoulder blades.',
     stopRules: [
       'End the set when you can no longer reach full hip extension with a pause, or your lower back starts to arch to finish the rep.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       PAIN_RULE,
     ],
     safetyNotes: [
@@ -806,6 +811,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -901,7 +907,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A strong squeeze in the back of your thighs at the end of each curl and a controlled stretch as your knees straighten. Your hips and thighs stay still.',
     stopRules: [
       'End the set when you can no longer curl through the full range or your hips start to lift.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       'Stop the set if a hamstring cramps. Rest and stretch gently before you try again.',
       PAIN_RULE,
     ],
@@ -926,6 +932,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -989,13 +996,13 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
     aliases: ['Machine leg extension', 'Knee extension'],
     kind: 'strength',
     purpose:
-      'Strengthens the quads through the full knee straightening range, including the rectus femoris, which squats train less. Strong quads help you absorb landings.',
+      'Trains the quads through the full knee straightening range, above all the rectus femoris, the quad head that also crosses the hip. Squats and leg presses barely grow that head, but leg extensions do. Strong quads help you absorb landings.',
     equipment: ['Leg extension machine'],
     setup: [
       'Adjust the back pad so the machine pivot lines up with the side of your knee.',
       'Set the shin pad on the front of your lower legs, just above the ankles.',
-      'Sit all the way back with your thighs flat on the seat.',
-      'Hold the handles by your hips to keep yourself from sliding.',
+      'Recline the back pad as far as it goes, or lean back against it, so your hips are more open. This stretches the rectus femoris, and leaning back grew it more in a study.',
+      'Sit all the way back with your thighs flat on the seat, and hold the handles by your hips to keep yourself from sliding.',
     ],
     steps: [
       'Start with your knees bent at about a right angle.',
@@ -1030,7 +1037,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A strong squeeze in the front of your thighs at the top, smooth movement at the knee, and no sharp pressure around the kneecap.',
     stopRules: [
       'End the set when you can no longer reach almost straight knees with a pause, or you start to swing.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       painRule('Pain just below the kneecap counts.'),
     ],
     safetyNotes: [
@@ -1054,6 +1061,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1156,7 +1164,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A burning effort high on the side of your working hip, just below the top of the pelvis, while your trunk stays still. Your standing hip also works to keep you level.',
     stopRules: [
       'End the set when your trunk starts to lean, your toes turn out, or the range gets shorter.',
-      RIR_RULE_SIDE,
+      EFFORT_RULE.all,
       PAIN_RULE,
     ],
     safetyNotes: ['Hold the machine for balance and check that the cuff is fastened securely before each set.'],
@@ -1178,6 +1186,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1275,7 +1284,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A deep stretch low in your calves at the bottom and a strong squeeze at the top, with the pressure through the balls of your feet.',
     stopRules: [
       'End the set when your range gets shorter or you start to bounce.',
-      RIR_RULE,
+      EFFORT_RULE.all,
       'Pain of 4 out of 10 or higher in the Achilles tendon, heel, or calf, or pain that worsens or changes your technique, pauses this exercise. Report it to a parent, coach, or clinician.',
     ],
     safetyNotes: [
@@ -1300,6 +1309,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'lower',
+    failure: 'all',
     visual: {
       poses: [
         {
@@ -1405,7 +1415,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       'A steady, strong effort along the back of both thighs as you lean, with your body in one straight line from knees to head.',
     stopRules: [
       'End the set when you can no longer lower slowly with straight hips, or your lowering speed changes sharply.',
-      RIR_RULE,
+      EFFORT_RULE.never,
       painRule('A sharp pull or cramp in the back of the thigh counts.'),
     ],
     safetyNotes: [
@@ -1431,6 +1441,7 @@ export const LOWER_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'none',
+    failure: 'never',
     visual: {
       poses: [
         {

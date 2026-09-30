@@ -14,7 +14,7 @@ import { Keyframes } from '../svg/Figures';
 import { usePlan } from '../ui/hooks';
 import { restText, targetText } from './Train';
 import { uid } from '../lib/id';
-import { summarizeSets } from '../ui/format';
+import { effortText, summarizeSets } from '../ui/format';
 
 const FATIGUE_LABEL: Record<FatigueArea, string> = {
   shoulder: 'shoulder',
@@ -66,7 +66,7 @@ export function ExerciseScreen({ id }: { id: string }) {
           <span>
             <b>{targetText(item)}</b>
           </span>
-          {item.rir !== undefined && <span>{item.rir} RIR</span>}
+          {item.rir !== undefined && <span>{effortText(item)}</span>}
           {item.tempo && <span>tempo {item.tempo.split('').join(' ')}</span>}
           <span>{restText(item.restSec)}</span>
         </div>

@@ -26,13 +26,14 @@ const ExerciseHistoryScreen = lazy(() => import('./screens/Progress').then((m) =
 const ReviewScreen = lazy(() => import('./screens/Review').then((m) => ({ default: m.ReviewScreen })));
 const MoreScreen = lazy(() => import('./screens/More').then((m) => ({ default: m.MoreScreen })));
 const MoreSubScreen = lazy(() => import('./screens/More').then((m) => ({ default: m.MoreSubScreen })));
+const ProgramScreen = lazy(() => import('./screens/Program').then((m) => ({ default: m.ProgramScreen })));
 import { LockGate } from './screens/Lock';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { unlockAudio } from './lib/device';
 
 const TABS = [
   { to: '/today', label: 'Today', Icon: IconToday, match: ['today', 'checkin'] },
-  { to: '/train', label: 'Train', Icon: IconTrain, match: ['train', 'workout', 'exercise', 'library'] },
+  { to: '/train', label: 'Train', Icon: IconTrain, match: ['train', 'workout', 'exercise', 'library', 'program'] },
   { to: '/eat', label: 'Eat', Icon: IconEat, match: ['eat', 'recipes', 'recipe', 'prep'] },
   { to: '/progress', label: 'Progress', Icon: IconProgress, match: ['progress', 'review', 'coverage', 'history'] },
   { to: '/more', label: 'More', Icon: IconMore, match: ['more'] },
@@ -168,6 +169,9 @@ function Routes() {
       break;
     case 'library':
       screen = <LibraryScreen />;
+      break;
+    case 'program':
+      screen = <ProgramScreen step={query.get('step')} />;
       break;
     case 'eat':
       if (b === 'log') screen = <FoodLogScreen slot={c ?? 'other'} date={query.get('date')} mode={query.get('mode')} />;

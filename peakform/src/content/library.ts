@@ -3,13 +3,16 @@ import { LOWER_EXERCISES } from './exercises/lower';
 import { UPPER_EXERCISES } from './exercises/upper';
 import { MORNING_EXERCISES } from './exercises/morning';
 import { GYM_EXERCISES } from './exercises/gym';
+import { PUSH_CHOICES } from './exercises/choice-push';
+import { PULL_CHOICES } from './exercises/choice-pull';
+import { LEGS_CHOICES } from './exercises/choice-legs';
 import type { ExerciseContent } from './types';
 import type { CustomExercise } from '../db/records';
 import type { EquipmentType, Prescription } from '../domain/progression';
 import type { PlanItem } from './plan';
 import type { MuscleId } from './muscles';
 
-export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES, ...GYM_EXERCISES];
+export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES, ...GYM_EXERCISES, ...PUSH_CHOICES, ...PULL_CHOICES, ...LEGS_CHOICES];
 export const EXERCISE_BY_ID: Record<string, ExerciseContent> = Object.fromEntries(LIBRARY.map((e) => [e.id, e]));
 
 let customs: Record<string, ExerciseContent> = {};
@@ -65,7 +68,7 @@ export function allExercises(): ExerciseContent[] {
 export function equipmentType(ex: ExerciseContent): EquipmentType {
   if (ex.kind !== 'strength') return 'bodyweight';
   const eq = ex.equipment.join(' ').toLowerCase();
-  if (/barbell|ez bar/.test(eq)) return 'barbell';
+  if (/barbell|ez bar|smith/.test(eq)) return 'barbell';
   if (/dumbbell/.test(eq)) return 'dumbbell';
   if (/cable|pulley/.test(eq)) return 'cable';
   if (/machine|leverage|stack|sled|hack/.test(eq)) return 'machine';
@@ -80,6 +83,7 @@ export function prescriptionFor(item: PlanItem, ex: ExerciseContent): Prescripti
     repMin: t.type === 'reps' ? t.min : 0,
     repMax: t.type === 'reps' ? t.max : 0,
     rir: item.rir ?? null,
+    lastSetRir: item.lastSetRir ?? null,
     perSide: ex.logSides || item.per === 'side',
     loadIncrement: ex.loadIncrement,
     equipment: equipmentType(ex),

@@ -33,6 +33,8 @@ export interface Prescription {
   repMax: number;
   /** Prescribed reps in reserve. */
   rir: number | null;
+  /** Reps in reserve for the last set, when it differs (0 means the last set goes to failure). */
+  lastSetRir?: number | null;
   perSide: boolean;
   loadIncrement: LoadIncrementClass;
   equipment: EquipmentType;
@@ -223,6 +225,11 @@ export function suggestNext(p: Prescription, sets: WorkSet[], inc: EquipmentIncr
   }
 
   const rirTarget = p.rir ?? 0;
+  const lastRir = p.lastSetRir ?? null;
+  const targetFor = (s: WorkSet) => (lastRir !== null && s.setIndex === p.sets - 1 ? lastRir : rirTarget);
+  // Sets taken to failure lose reps from set to set, so progress is judged on the first set.
+  const failureMode = rirTarget === 0 || lastRir === 0;
+  const firstSets = groups.map((g) => ({ side: g.side, set: g.sets[0]! }));
   const workingLoad = (g: WorkSet[]): number | null => {
     const loads = g.map((s) => s.weightKg).filter((w): w is number => w !== null);
     return loads.length ? Math.min(...loads) : null;
@@ -252,7 +259,7 @@ export function suggestNext(p: Prescription, sets: WorkSet[], inc: EquipmentIncr
   }
 
   const poorForm = sets.filter((s) => s.form === 'poor');
-  const rirMissed = sets.filter((s) => s.rir !== null && s.rir < rirTarget);
+  const rirMissed = sets.filter((s) => s.rir !== null && s.rir < targetFor(s));
   const loadedExercise = p.equipment !== 'bodyweight';
 
   if (poorForm.length > 0 || rirMissed.length > 0) {
@@ -287,6 +294,8 @@ export function suggestNext(p: Prescription, sets: WorkSet[], inc: EquipmentIncr
       workingLoad,
     );
   }
+
+  if (failureMode) return failureProgress(p, groups, firstSets, workingLoad, loadedExercise, inc);
 
   const below = sets.filter((s) => (s.reps ?? 0) < p.repMin);
   if (below.length > 0) {
@@ -355,6 +364,69 @@ export function suggestNext(p: Prescription, sets: WorkSet[], inc: EquipmentIncr
     kind: 'add_reps',
     title: 'Add one rep at the same load',
     reason: `All work sets were within ${p.repMin} to ${p.repMax} reps at the prescribed effort with good form and no pain. ${notes.join('. ')}.${partialSides ? ' One side reached the top, but both sides must qualify before the load goes up.' : ''} The load increases only when every work set reaches ${p.repMax} reps.`,
+    targets,
+    requiresConfirmation: true,
+  };
+}
+
+/**
+ * Progression for sets taken to failure. Later sets naturally lose reps, so the first set of each
+ * side decides: below the range holds, the top of the range adds load, anything else asks for one
+ * more rep on the first set. Every other set simply goes to failure again.
+ */
+function failureProgress(
+  p: Prescription,
+  groups: ReturnType<typeof groupBySide>,
+  firstSets: Array<{ side: 'left' | 'right' | null; set: WorkSet }>,
+  workingLoad: (g: WorkSet[]) => number | null,
+  loadedExercise: boolean,
+  inc: EquipmentIncrements,
+): Suggestion {
+  const firstBelow = firstSets.filter((f) => (f.set.reps ?? 0) < p.repMin);
+  if (firstBelow.length > 0) {
+    return {
+      kind: 'hold',
+      title: 'Reach the bottom of the range first',
+      reason: `The first set reached ${firstBelow.map((f) => `${sideLabel(f.side)}${f.set.reps ?? 0}`).join(', ')} reps, below ${p.repMin}. Keep the load and aim for at least ${p.repMin} reps on the first set.`,
+      targets: groups.flatMap((g) => g.sets.map((s, i) => ({ setIndex: s.setIndex, side: g.side, reps: i === 0 ? p.repMin : s.reps, weightKg: workingLoad(g.sets), seconds: null }))),
+      requiresConfirmation: true,
+    };
+  }
+  const allTop = firstSets.every((f) => (f.set.reps ?? 0) >= p.repMax);
+  if (allTop && loadedExercise) {
+    const targets = groups.flatMap((g) => {
+      const w = workingLoad(g.sets);
+      return g.sets.map((s) => ({ setIndex: s.setIndex, side: g.side, reps: p.repMin, weightKg: w === null ? null : nextLoad(w, p.loadIncrement, p.equipment, inc), seconds: null }));
+    });
+    const from = workingLoad(groups[0]!.sets);
+    const to = targets[0]?.weightKg;
+    return {
+      kind: 'add_load',
+      title: `Try ${to} kg`,
+      reason: `The first set${p.perSide ? ' on both sides' : ''} reached ${p.repMax} reps with good form and no pain. The smallest practical increase from ${from} kg is ${to} kg. Start again near ${p.repMin} reps and keep taking the sets to clean failure as prescribed.`,
+      targets,
+      requiresConfirmation: true,
+    };
+  }
+  if (allTop) {
+    return hold(
+      'Top of the range reached',
+      `The first set reached ${p.repMax} reps with good form. Stay here. A harder variation or added load is a decision for you and your coach.`,
+      groups,
+      () => null,
+    );
+  }
+  const notes: string[] = [];
+  const targets: Target[] = [];
+  for (const g of groups) {
+    const w = workingLoad(g.sets);
+    g.sets.forEach((s, i) => targets.push({ setIndex: s.setIndex, side: g.side, reps: i === 0 ? Math.min(p.repMax, (s.reps ?? 0) + 1) : s.reps, weightKg: w, seconds: null }));
+    notes.push(`${sideLabel(g.side)}first set ${g.sets[0]!.reps ?? 0} becomes ${Math.min(p.repMax, (g.sets[0]!.reps ?? 0) + 1)}`);
+  }
+  return {
+    kind: 'add_reps',
+    title: 'One more rep on the first set',
+    reason: `Sets to failure lose reps from set to set, so progress is judged on the first set. ${notes.join('. ')}. The load goes up when the first set reaches ${p.repMax} reps.`,
     targets,
     requiresConfirmation: true,
   };

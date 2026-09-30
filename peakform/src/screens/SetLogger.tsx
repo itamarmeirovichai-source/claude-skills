@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
-import { currentTarget, decideSuggestion, deleteSet, lastExposure, logSet, restoreSet, updateExerciseSession } from '../db/repo';
+import { currentTarget, decideSuggestion, deleteSet, lastExposure, logSet, priorExposureCount, restoreSet, updateExerciseSession } from '../db/repo';
 import type { ExerciseSession, SetLog, WorkoutSession } from '../db/records';
 import { exercise, sideLabel, sidesFor, equipmentType, allExercises } from '../content/library';
 import type { PlanItem } from '../content/plan';
@@ -11,7 +11,7 @@ import { Link } from '../ui/router';
 import { IconTimer, IconUndo } from '../ui/icons';
 import { restText, targetText } from './Train';
 import { haptic } from '../lib/device';
-import { summarizeSets } from '../ui/format';
+import { LEARNING_RIR, LEARNING_SESSIONS, effortText, setRirTarget, summarizeSets } from '../ui/format';
 import { incrementFor } from '../domain/progression';
 
 type Side = 'left' | 'right' | null;
@@ -67,6 +67,13 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const sets = useLiveQuery(() => db.setLogs.where('exerciseSessionId').equals(es.id).toArray(), [es.id]) ?? [];
   const last = useLiveQuery(() => lastExposure(es.exerciseId, session.id), [es.exerciseId, session.id]);
   const target = useLiveQuery(() => currentTarget(item.id, es.exerciseId), [item.id, es.exerciseId]);
+  const exposures = useLiveQuery(() => priorExposureCount(es.exerciseId, session.id), [es.exerciseId, session.id]);
+  // While an exercise is new, sets stop two reps short so the technique is learned first.
+  const learning = exposures !== undefined && exposures < LEARNING_SESSIONS && (item.rir ?? 99) < LEARNING_RIR && ex?.kind !== 'hold';
+  const rirFor = (setIndex: number): number | undefined => {
+    const t = setRirTarget(item, setIndex);
+    return t === undefined ? undefined : learning ? Math.max(t, LEARNING_RIR) : t;
+  };
 
   const work = sets.filter((s) => !s.warmup).sort((a, b) => a.completedAt - b.completedAt);
   const warm = sets.filter((s) => s.warmup);
@@ -82,6 +89,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const [skipped, setSkipped] = useState<string[]>([]);
   const nextSlot = slots.find((s) => !doneKeys.has(`${s.setIndex}:${s.side}`) && !skippedKey(`${s.setIndex}:${s.side}`));
 
+  const slotRir = rirFor(nextSlot?.setIndex ?? 0);
   const prevFor = (setIndex: number, side: Side) => last?.sets.find((s) => s.setIndex === setIndex && s.side === side) ?? last?.sets.find((s) => s.side === side) ?? last?.sets[0];
   const targetFor = (setIndex: number, side: Side) => (target?.targets ?? []).find((t) => t.setIndex === setIndex && t.side === side);
 
@@ -93,7 +101,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
     return {
       weightKg: tg?.weightKg ?? lastLogged?.weightKg ?? p?.weightKg ?? null,
       reps: tg?.reps ?? (t.type === 'reps' ? (QUALITY.includes(kind) ? t.max : (p?.reps ?? lastLogged?.reps ?? t.min)) : null),
-      rir: item.rir ?? null,
+      rir: (slot ? rirFor(slot.setIndex) : item.rir) ?? null,
       seconds: t.type === 'hold' ? t.seconds : t.type === 'duration' ? t.totalMin * 60 : null,
       form: 'good',
       pain: 'none',
@@ -222,7 +230,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
           </span>
           {item.rir !== undefined && (
             <span>
-              <b>{item.rir} RIR</b>
+              <b>{learning ? `${LEARNING_RIR} RIR while learning` : effortText(item)}</b>
             </span>
           )}
           {item.tempo && <span>tempo {item.tempo.split('').join(' ')}</span>}
@@ -230,6 +238,11 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
           <span>{restText(item.restSec)}</span>
         </div>
         {item.notes.length > 0 && <p className="small muted" style={{ marginTop: 4 }}>{item.notes.join(' ')}</p>}
+        {learning && (
+          <p className="small muted" style={{ marginTop: 4 }} data-testid="learning-note">
+            New exercise: for your first {LEARNING_SESSIONS} sessions, stop {LEARNING_RIR} reps short of failure while you learn the movement. After that, {effortText(item)}.
+          </p>
+        )}
       </div>
 
       {/* Last performance and next target, always visible above the inputs */}
@@ -385,10 +398,10 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
               <div>
                 <div className="stepper-label">
                   <span>Reps in reserve</span>
-                  <span className="prev">{item.rir !== undefined ? `Target ${item.rir}` : ''}</span>
+                  <span className="prev">{slotRir === undefined ? '' : slotRir === 0 ? 'Target: failure' : `Target ${slotRir}`}</span>
                 </div>
-                <Seg label="Reps in reserve" value={draft.rir} onChange={(v) => set({ rir: v })} options={[0, 1, 2, 3, 4, 5].map((r) => ({ value: r, label: String(r), tone: item.rir !== undefined && r < item.rir ? ('warn' as const) : undefined }))} />
-                {draft.rir !== null && item.rir !== undefined && draft.rir < item.rir && <p className="hint">Below the target. Next set, stop a rep or two earlier.</p>}
+                <Seg label="Reps in reserve" value={draft.rir} onChange={(v) => set({ rir: v })} options={[0, 1, 2, 3, 4, 5].map((r) => ({ value: r, label: String(r), tone: slotRir !== undefined && r < slotRir ? ('warn' as const) : undefined }))} />
+                {draft.rir !== null && slotRir !== undefined && draft.rir < slotRir && <p className="hint">Below the target. Next set, stop a rep or two earlier.</p>}
               </div>
             )}
             {kind !== 'swim' && kind !== 'warmup' && (
@@ -460,7 +473,9 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
               ? 'Stop the set as soon as height, speed, landing, or coordination drops.'
               : kind === 'swim'
                 ? 'Easy to moderate, RPE 4 to 5. Stop for chest pain, dizziness, or unusual breathlessness.'
-                : `Stop when technique changes, pain appears, or you reach ${item.rir ?? 2} reps in reserve.`}
+                : slotRir === 0
+                  ? 'Go to failure: the last rep you can finish with clean form. No cheating or bouncing. Stop at once for pain.'
+                  : `Stop when technique changes, pain appears, or you reach ${slotRir ?? 2} reps in reserve.`}
           </p>
         </div>
       ) : (

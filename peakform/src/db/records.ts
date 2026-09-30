@@ -123,6 +123,7 @@ export const PlanItemSchema = z.object({
   target: SetTargetSchema,
   restSec: z.number().int().min(0).max(1800),
   rir: z.number().min(0).max(6).optional(),
+  lastSetRir: z.number().min(0).max(6).optional(),
   rpe: z.tuple([z.number(), z.number()]).optional(),
   tempo: z.string().max(8).optional(),
   per: z.enum(['side', 'direction']).optional(),

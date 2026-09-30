@@ -1,13 +1,13 @@
 {
-  "generated": "2026-09-29T23:55:44.218Z",
+  "generated": "2026-09-30T21:21:14.146Z",
   "counts": {
-    "exercises": 57,
+    "exercises": 91,
     "muscles": 31,
-    "planItems": 72,
+    "planItems": 74,
     "mealTemplates": 15,
     "recipes": 10,
     "foods": 45,
-    "sources": 53,
+    "sources": 76,
     "media": 35
   },
   "exercises": [
@@ -956,7 +956,7 @@
     },
     {
       "id": "palm-down-wrist-curl",
-      "name": "Seated Palm Down Barbell Wrist Curl",
+      "name": "Seated Palm Down Wrist Curl",
       "kind": "strength",
       "primary": [
         "forearm_extensors"
@@ -982,7 +982,7 @@
     },
     {
       "id": "palm-up-wrist-curl",
-      "name": "Seated Palm Up Barbell Wrist Curl",
+      "name": "Seated Palm Up Wrist Curl",
       "kind": "strength",
       "primary": [
         "forearm_flexors"
@@ -1828,6 +1828,946 @@
         "Copenhagen Plank"
       ],
       "media": []
+    },
+    {
+      "id": "incline-machine-press",
+      "name": "Incline Machine Chest Press",
+      "kind": "strength",
+      "primary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "secondary": [
+        "triceps",
+        "pec_sternal"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Incline Smith Machine Press",
+        "Incline Dumbbell Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "incline-smith-press",
+      "name": "Incline Smith Machine Press",
+      "kind": "strength",
+      "primary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "secondary": [
+        "triceps",
+        "pec_sternal"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Incline Machine Chest Press",
+        "Incline Dumbbell Press",
+        "Smith Machine Bench Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-bench-press",
+      "name": "Dumbbell Bench Press",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "triceps",
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Smith Machine Bench Press",
+        "Incline Dumbbell Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "smith-bench-press",
+      "name": "Smith Machine Bench Press",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "triceps",
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "pattern": "horizontal_push",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Dumbbell Bench Press",
+        "Incline Smith Machine Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "pec-deck-fly",
+      "name": "Pec Deck Fly",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "pattern": "shoulder_horizontal_adduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Bench Press",
+        "Standing Cable Crossover",
+        "Flat Cable Fly"
+      ],
+      "media": []
+    },
+    {
+      "id": "standing-cable-crossover",
+      "name": "Standing Cable Crossover",
+      "kind": "strength",
+      "primary": [
+        "pec_sternal"
+      ],
+      "secondary": [
+        "pec_clavicular",
+        "delt_anterior"
+      ],
+      "pattern": "shoulder_horizontal_adduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Flat Cable Fly",
+        "Pec Deck Fly",
+        "Dumbbell Bench Press"
+      ],
+      "media": []
+    },
+    {
+      "id": "machine-lateral-raise",
+      "name": "Machine Lateral Raise",
+      "kind": "strength",
+      "primary": [
+        "delt_lateral"
+      ],
+      "secondary": [
+        "traps_upper",
+        "rotator_cuff"
+      ],
+      "pattern": "shoulder_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Lateral Raise",
+        "Single Arm Cable Lateral Raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-overhead-triceps-extension",
+      "name": "Seated Dumbbell Overhead Triceps Extension",
+      "kind": "strength",
+      "primary": [
+        "triceps"
+      ],
+      "secondary": [],
+      "pattern": "elbow_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Triceps Pushdown",
+        "Rope Overhead Triceps Extension",
+        "Single Arm Cable Overhead Triceps Extension"
+      ],
+      "media": []
+    },
+    {
+      "id": "single-arm-cable-overhead-extension",
+      "name": "Single Arm Cable Overhead Triceps Extension",
+      "kind": "strength",
+      "primary": [
+        "triceps"
+      ],
+      "secondary": [],
+      "pattern": "elbow_extension",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Single Arm Cable Pushdown",
+        "Seated Dumbbell Overhead Triceps Extension",
+        "Rope Overhead Triceps Extension"
+      ],
+      "media": []
+    },
+    {
+      "id": "single-arm-cable-pushdown",
+      "name": "Single Arm Cable Pushdown",
+      "kind": "strength",
+      "primary": [
+        "triceps"
+      ],
+      "secondary": [],
+      "pattern": "elbow_extension",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Triceps Pushdown",
+        "Seated Dumbbell Overhead Triceps Extension",
+        "Single Arm Cable Overhead Triceps Extension"
+      ],
+      "media": []
+    },
+    {
+      "id": "neutral-grip-pulldown",
+      "name": "Neutral Grip Lat Pulldown",
+      "kind": "strength",
+      "primary": [
+        "lats"
+      ],
+      "secondary": [
+        "teres_major",
+        "biceps",
+        "brachialis",
+        "brachioradialis",
+        "traps_lower",
+        "rhomboids"
+      ],
+      "pattern": "vertical_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Leverage High Row",
+        "Assisted Pull Up",
+        "Wide Grip Lat Pulldown",
+        "One Arm Lat Pulldown"
+      ],
+      "media": []
+    },
+    {
+      "id": "assisted-pull-up",
+      "name": "Assisted Pull Up",
+      "kind": "bodyweight",
+      "primary": [
+        "lats",
+        "teres_major"
+      ],
+      "secondary": [
+        "biceps",
+        "brachialis",
+        "traps_lower",
+        "rhomboids",
+        "forearm_flexors"
+      ],
+      "pattern": "vertical_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Neutral Grip Lat Pulldown",
+        "Wide Grip Lat Pulldown",
+        "Slow lowering pull up"
+      ],
+      "media": []
+    },
+    {
+      "id": "straight-arm-cable-pulldown",
+      "name": "Straight Arm Cable Pulldown",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "teres_major"
+      ],
+      "secondary": [
+        "triceps",
+        "traps_lower",
+        "obliques_core"
+      ],
+      "pattern": "shoulder_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Band straight arm pulldown",
+        "Dumbbell Pullover",
+        "Neutral Grip Lat Pulldown"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-pullover",
+      "name": "Dumbbell Pullover",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "pec_sternal"
+      ],
+      "secondary": [
+        "teres_major",
+        "triceps",
+        "serratus_anterior"
+      ],
+      "pattern": "shoulder_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Straight Arm Cable Pulldown",
+        "Machine pullover",
+        "Neutral Grip Lat Pulldown"
+      ],
+      "media": []
+    },
+    {
+      "id": "chest-supported-machine-row",
+      "name": "Chest Supported Machine Row",
+      "kind": "strength",
+      "primary": [
+        "lats",
+        "traps_middle",
+        "rhomboids"
+      ],
+      "secondary": [
+        "delt_posterior",
+        "teres_major",
+        "traps_lower",
+        "biceps",
+        "brachialis",
+        "brachioradialis"
+      ],
+      "pattern": "horizontal_pull",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated Cable Row",
+        "Chest Supported Dumbbell Row",
+        "Leverage High Row"
+      ],
+      "media": []
+    },
+    {
+      "id": "cable-reverse-fly",
+      "name": "Cable Reverse Fly",
+      "kind": "strength",
+      "primary": [
+        "delt_posterior"
+      ],
+      "secondary": [
+        "traps_middle",
+        "rhomboids",
+        "rotator_cuff"
+      ],
+      "pattern": "shoulder_horizontal_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Reverse Machine Fly",
+        "Face Pull",
+        "Chest supported dumbbell reverse fly"
+      ],
+      "media": []
+    },
+    {
+      "id": "bayesian-cable-curl",
+      "name": "Bayesian Cable Curl",
+      "kind": "strength",
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "brachialis",
+        "brachioradialis"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Machine Preacher Curl",
+        "Incline Dumbbell Curl",
+        "Single Arm Dumbbell Preacher Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-preacher-curl",
+      "name": "Single Arm Dumbbell Preacher Curl",
+      "kind": "strength",
+      "primary": [
+        "biceps",
+        "brachialis"
+      ],
+      "secondary": [
+        "brachioradialis"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Machine Preacher Curl",
+        "Bayesian Cable Curl",
+        "Hammer Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "rope-hammer-curl",
+      "name": "Cable Rope Hammer Curl",
+      "kind": "strength",
+      "primary": [
+        "brachialis",
+        "brachioradialis"
+      ],
+      "secondary": [
+        "biceps"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated dumbbell hammer curl",
+        "Hammer Curl",
+        "Cable Reverse Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "cable-reverse-curl",
+      "name": "Cable Reverse Curl",
+      "kind": "strength",
+      "primary": [
+        "brachioradialis",
+        "brachialis"
+      ],
+      "secondary": [
+        "forearm_extensors",
+        "biceps"
+      ],
+      "pattern": "elbow_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Cable Rope Hammer Curl",
+        "Dumbbell reverse curl",
+        "Hammer Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-shrug",
+      "name": "Dumbbell Shrug",
+      "kind": "strength",
+      "primary": [
+        "traps_upper"
+      ],
+      "secondary": [
+        "forearm_flexors",
+        "traps_middle"
+      ],
+      "pattern": "shoulder_elevation",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Seated dumbbell shrug",
+        "Smith Machine Shrug",
+        "Cable shrug"
+      ],
+      "media": []
+    },
+    {
+      "id": "smith-shrug",
+      "name": "Smith Machine Shrug",
+      "kind": "strength",
+      "primary": [
+        "traps_upper"
+      ],
+      "secondary": [
+        "forearm_flexors",
+        "traps_middle"
+      ],
+      "pattern": "shoulder_elevation",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Dumbbell Shrug",
+        "Cable shrug"
+      ],
+      "media": []
+    },
+    {
+      "id": "smith-squat",
+      "name": "Smith Machine Squat",
+      "kind": "strength",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "hamstrings",
+        "erectors",
+        "obliques_core"
+      ],
+      "pattern": "squat",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Leg Press",
+        "Hack Squat",
+        "Bulgarian Split Squat"
+      ],
+      "media": []
+    },
+    {
+      "id": "dumbbell-romanian-deadlift",
+      "name": "Dumbbell Romanian Deadlift",
+      "kind": "strength",
+      "primary": [
+        "hamstrings",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "erectors",
+        "forearm_flexors",
+        "obliques_core"
+      ],
+      "pattern": "hinge",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "45 Degree Back Extension",
+        "Smith Machine Romanian Deadlift",
+        "Seated Leg Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "smith-romanian-deadlift",
+      "name": "Smith Machine Romanian Deadlift",
+      "kind": "strength",
+      "primary": [
+        "hamstrings",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "erectors",
+        "forearm_flexors",
+        "obliques_core"
+      ],
+      "pattern": "hinge",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "45 Degree Back Extension",
+        "Dumbbell Romanian Deadlift",
+        "Seated Leg Curl"
+      ],
+      "media": []
+    },
+    {
+      "id": "walking-lunge",
+      "name": "Dumbbell Walking Lunge",
+      "kind": "strength",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "adductors",
+        "glute_med",
+        "hamstrings",
+        "gastrocnemius",
+        "soleus",
+        "obliques_core"
+      ],
+      "pattern": "lunge",
+      "laterality": "alternating",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Dumbbell reverse lunge",
+        "Bulgarian Split Squat",
+        "Smith Machine Squat"
+      ],
+      "media": []
+    },
+    {
+      "id": "smith-hip-thrust",
+      "name": "Smith Machine Hip Thrust",
+      "kind": "strength",
+      "primary": [
+        "glute_max"
+      ],
+      "secondary": [
+        "hamstrings",
+        "adductors"
+      ],
+      "pattern": "hip_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Glute bridge",
+        "Hip thrust machine",
+        "Dumbbell hip thrust",
+        "45 Degree Back Extension"
+      ],
+      "media": []
+    },
+    {
+      "id": "hip-abduction-machine",
+      "name": "Seated Hip Abduction Machine",
+      "kind": "strength",
+      "primary": [
+        "glute_med"
+      ],
+      "secondary": [
+        "glute_max"
+      ],
+      "pattern": "hip_abduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Side lying hip abduction",
+        "Cable Hip Abduction",
+        "Banded lateral walk"
+      ],
+      "media": []
+    },
+    {
+      "id": "adductor-machine",
+      "name": "Seated Hip Adduction Machine",
+      "kind": "strength",
+      "primary": [
+        "adductors"
+      ],
+      "secondary": [],
+      "pattern": "hip_adduction",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Adductor ball squeeze",
+        "Cable Hip Adduction",
+        "Copenhagen Plank"
+      ],
+      "media": []
+    },
+    {
+      "id": "leg-press-calf-raise",
+      "name": "Leg Press Calf Raise",
+      "kind": "strength",
+      "primary": [
+        "gastrocnemius"
+      ],
+      "secondary": [
+        "soleus"
+      ],
+      "pattern": "plantar_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Calf raise on a step",
+        "Standing Calf Raise",
+        "Single Leg Dumbbell Calf Raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "single-leg-calf-raise",
+      "name": "Single Leg Dumbbell Calf Raise",
+      "kind": "strength",
+      "primary": [
+        "gastrocnemius"
+      ],
+      "secondary": [
+        "soleus"
+      ],
+      "pattern": "plantar_flexion",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "lower",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Two leg calf raise on a step",
+        "Leg Press Calf Raise",
+        "Seated Calf Raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "cable-crunch",
+      "name": "Kneeling Cable Crunch",
+      "kind": "strength",
+      "primary": [
+        "rectus_abdominis"
+      ],
+      "secondary": [
+        "obliques_core"
+      ],
+      "pattern": "trunk_flexion",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Crunch on the floor",
+        "Hanging Leg Raise",
+        "Machine crunch"
+      ],
+      "media": []
+    },
+    {
+      "id": "ab-wheel-rollout",
+      "name": "Ab Wheel Rollout",
+      "kind": "bodyweight",
+      "primary": [
+        "rectus_abdominis",
+        "obliques_core"
+      ],
+      "secondary": [
+        "lats",
+        "hip_flexors"
+      ],
+      "pattern": "anti_extension",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Dead Bug",
+        "Stability ball rollout",
+        "Kneeling Cable Crunch"
+      ],
+      "media": []
+    },
+    {
+      "id": "cable-woodchop",
+      "name": "Cable Woodchop",
+      "kind": "strength",
+      "primary": [
+        "obliques_core"
+      ],
+      "secondary": [
+        "rectus_abdominis"
+      ],
+      "pattern": "trunk_rotation",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "upper",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Pallof Press",
+        "Dumbbell woodchop",
+        "Low to high cable woodchop"
+      ],
+      "media": []
     }
   ],
   "plan": [
@@ -1913,145 +2853,7 @@
           "notes": []
         },
         {
-          "id": "sun-1-barbell-bench-press",
-          "session": "main",
-          "exercise": "Barbell Bench Press",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Medium grip."
-          ]
-        },
-        {
-          "id": "sun-2-flat-cable-fly",
-          "session": "main",
-          "exercise": "Flat Cable Fly",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-3-seated-cable-row",
-          "session": "main",
-          "exercise": "Seated Cable Row",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-4-one-arm-lat-pulldown",
-          "session": "main",
-          "exercise": "One Arm Lat Pulldown",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": "side",
-          "restSec": 120,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-5-single-arm-cable-lateral-raise",
-          "session": "main",
-          "exercise": "Single Arm Cable Lateral Raise",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-6-machine-preacher-curl",
-          "session": "main",
-          "exercise": "Machine Preacher Curl",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-7-palm-up-wrist-curl",
-          "session": "main",
-          "exercise": "Seated Palm Up Barbell Wrist Curl",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-8-rope-overhead-triceps-extension",
-          "session": "main",
-          "exercise": "Rope Overhead Triceps Extension",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-9-cable-external-rotation",
+          "id": "sun-1-cable-external-rotation",
           "session": "main",
           "exercise": "Cable External Rotation",
           "sets": 2,
@@ -2060,9 +2862,145 @@
             "min": 15,
             "max": 20
           },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-2-incline-machine-press",
+          "session": "main",
+          "exercise": "Incline Machine Chest Press",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-3-wide-grip-lat-pulldown",
+          "session": "main",
+          "exercise": "Wide Grip Lat Pulldown",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-4-chest-supported-dumbbell-row",
+          "session": "main",
+          "exercise": "Chest Supported Dumbbell Row",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-5-pec-deck-fly",
+          "session": "main",
+          "exercise": "Pec Deck Fly",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-6-single-arm-cable-lateral-raise",
+          "session": "main",
+          "exercise": "Single Arm Cable Lateral Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-7-incline-dumbbell-curl",
+          "session": "main",
+          "exercise": "Incline Dumbbell Curl",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-8-dumbbell-overhead-triceps-extension",
+          "session": "main",
+          "exercise": "Seated Dumbbell Overhead Triceps Extension",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-9-palm-up-wrist-curl",
+          "session": "main",
+          "exercise": "Seated Palm Up Wrist Curl",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
           "per": null,
           "restSec": 75,
-          "rir": 3,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -2111,7 +3049,7 @@
     },
     {
       "weekday": 1,
-      "title": "Lower A Strength and Jump",
+      "title": "Lower A and Jumps",
       "rest": false,
       "items": [
         {
@@ -2248,26 +3186,9 @@
           ]
         },
         {
-          "id": "mon-4-barbell-squat",
+          "id": "mon-4-leg-press",
           "session": "main",
-          "exercise": "Barbell Squat",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 10
-          },
-          "per": null,
-          "restSec": 180,
-          "rir": 3,
-          "tempo": "3110",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "mon-5-romanian-deadlift",
-          "session": "main",
-          "exercise": "Romanian Deadlift",
+          "exercise": "Leg Press",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2276,8 +3197,25 @@
           },
           "per": null,
           "restSec": 180,
-          "rir": 3,
-          "tempo": "3110",
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-5-dumbbell-romanian-deadlift",
+          "session": "main",
+          "exercise": "Dumbbell Romanian Deadlift",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 1,
+          "tempo": null,
           "rpe": null,
           "notes": []
         },
@@ -2285,7 +3223,7 @@
           "id": "mon-6-bulgarian-split-squat",
           "session": "main",
           "exercise": "Bulgarian Split Squat",
-          "sets": 2,
+          "sets": 3,
           "target": {
             "type": "reps",
             "min": 8,
@@ -2293,15 +3231,31 @@
           },
           "per": "side",
           "restSec": 150,
-          "rir": 3,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "mon-7-standing-calf-raise",
+          "id": "mon-7-copenhagen-plank",
           "session": "main",
-          "exercise": "Standing Calf Raise",
+          "exercise": "Copenhagen Plank",
+          "sets": 3,
+          "target": {
+            "type": "hold",
+            "seconds": 25
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-8-leg-press-calf-raise",
+          "session": "main",
+          "exercise": "Leg Press Calf Raise",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2309,42 +3263,25 @@
             "max": 15
           },
           "per": null,
-          "restSec": 120,
-          "rir": 2,
-          "tempo": "2111",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "mon-8-tibialis-raise",
-          "session": "main",
-          "exercise": "Tibialis Raise",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 15,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 3,
+          "restSec": 90,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "mon-9-pallof-press",
+          "id": "mon-9-cable-crunch",
           "session": "main",
-          "exercise": "Pallof Press",
-          "sets": 2,
+          "exercise": "Kneeling Cable Crunch",
+          "sets": 3,
           "target": {
             "type": "reps",
             "min": 10,
             "max": 15
           },
-          "per": "side",
+          "per": null,
           "restSec": 75,
-          "rir": 3,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -2369,7 +3306,7 @@
     },
     {
       "weekday": 2,
-      "title": "Upper C Hypertrophy",
+      "title": "Upper B",
       "rest": false,
       "items": [
         {
@@ -2432,9 +3369,26 @@
           "notes": []
         },
         {
-          "id": "tue-1-incline-dumbbell-press",
+          "id": "tue-1-cable-external-rotation",
           "session": "main",
-          "exercise": "Incline Dumbbell Press",
+          "exercise": "Cable External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-2-machine-bench-press",
+          "session": "main",
+          "exercise": "Machine Bench Press",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2443,83 +3397,32 @@
           },
           "per": null,
           "restSec": 150,
-          "rir": 2,
-          "tempo": "3110",
+          "rir": 1,
+          "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "tue-2-chest-supported-dumbbell-row",
+          "id": "tue-3-seated-cable-row",
           "session": "main",
-          "exercise": "Chest Supported Dumbbell Row",
+          "exercise": "Seated Cable Row",
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 10,
+            "min": 8,
             "max": 12
           },
           "per": null,
           "restSec": 150,
-          "rir": 2,
-          "tempo": "2011",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-3-flat-cable-fly",
-          "session": "main",
-          "exercise": "Flat Cable Fly",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "tue-4-lateral-raise",
+          "id": "tue-4-straight-arm-cable-pulldown",
           "session": "main",
-          "exercise": "Lateral Raise",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-5-face-pull",
-          "session": "main",
-          "exercise": "Face Pull",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-6-incline-dumbbell-curl",
-          "session": "main",
-          "exercise": "Incline Dumbbell Curl",
+          "exercise": "Straight Arm Cable Pulldown",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2528,15 +3431,49 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 2,
-          "tempo": "3011",
+          "rir": 0,
+          "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "tue-7-rope-overhead-triceps-extension",
+          "id": "tue-5-machine-lateral-raise",
           "session": "main",
-          "exercise": "Rope Overhead Triceps Extension",
+          "exercise": "Machine Lateral Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-6-reverse-machine-fly",
+          "session": "main",
+          "exercise": "Reverse Machine Fly",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-7-machine-preacher-curl",
+          "session": "main",
+          "exercise": "Machine Preacher Curl",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2545,7 +3482,41 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 2,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-8-triceps-pushdown",
+          "session": "main",
+          "exercise": "Triceps Pushdown",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "tue-9-dumbbell-shrug",
+          "session": "main",
+          "exercise": "Dumbbell Shrug",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -2570,7 +3541,7 @@
     },
     {
       "weekday": 3,
-      "title": "Lower B Hypertrophy",
+      "title": "Lower B",
       "rest": false,
       "items": [
         {
@@ -2653,41 +3624,24 @@
           ]
         },
         {
-          "id": "wed-1-hack-squat",
+          "id": "wed-1-bulgarian-split-squat",
           "session": "main",
-          "exercise": "Hack Squat",
+          "exercise": "Bulgarian Split Squat",
           "sets": 3,
           "target": {
             "type": "reps",
             "min": 8,
             "max": 12
           },
-          "per": null,
-          "restSec": 180,
-          "rir": 2,
-          "tempo": "3110",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-2-barbell-hip-thrust",
-          "session": "main",
-          "exercise": "Barbell Hip Thrust",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
+          "per": "side",
           "restSec": 150,
-          "rir": 2,
-          "tempo": "2111",
+          "rir": 1,
+          "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "wed-3-seated-leg-curl",
+          "id": "wed-2-seated-leg-curl",
           "session": "main",
           "exercise": "Seated Leg Curl",
           "sets": 3,
@@ -2697,50 +3651,33 @@
             "max": 15
           },
           "per": null,
-          "restSec": 120,
-          "rir": 2,
-          "tempo": "2111",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-4-leg-extension",
-          "session": "main",
-          "exercise": "Leg Extension",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": null,
           "restSec": 90,
-          "rir": 2,
-          "tempo": "2111",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-5-cable-hip-abduction",
-          "session": "main",
-          "exercise": "Cable Hip Abduction",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 90,
-          "rir": 2,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "wed-6-seated-calf-raise",
+          "id": "wed-3-leg-extension",
           "session": "main",
-          "exercise": "Seated Calf Raise",
+          "exercise": "Leg Extension",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-4-hip-abduction-machine",
+          "session": "main",
+          "exercise": "Seated Hip Abduction Machine",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2748,41 +3685,59 @@
             "max": 20
           },
           "per": null,
-          "restSec": 120,
-          "rir": 2,
-          "tempo": "2111",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-7-copenhagen-plank",
-          "session": "main",
-          "exercise": "Copenhagen Plank",
-          "sets": 2,
-          "target": {
-            "type": "hold",
-            "seconds": 20
-          },
-          "per": "side",
           "restSec": 75,
-          "rir": null,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "wed-8-hanging-leg-raise",
+          "id": "wed-5-leg-press-calf-raise",
           "session": "main",
-          "exercise": "Hanging Leg Raise",
-          "sets": 2,
+          "exercise": "Leg Press Calf Raise",
+          "sets": 3,
           "target": {
             "type": "reps",
-            "min": 8,
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-6-cable-crunch",
+          "session": "main",
+          "exercise": "Kneeling Cable Crunch",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
             "max": 15
           },
           "per": null,
           "restSec": 75,
-          "rir": 3,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-7-cable-woodchop",
+          "session": "main",
+          "exercise": "Cable Woodchop",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": "side",
+          "restSec": 60,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -2807,7 +3762,7 @@
     },
     {
       "weekday": 4,
-      "title": "Upper B Hypertrophy",
+      "title": "Upper C",
       "rest": false,
       "items": [
         {
@@ -2870,9 +3825,26 @@
           "notes": []
         },
         {
-          "id": "thu-1-incline-barbell-bench-press",
+          "id": "thu-1-cable-external-rotation",
           "session": "main",
-          "exercise": "Incline Barbell Bench Press",
+          "exercise": "Cable External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-2-incline-machine-press",
+          "session": "main",
+          "exercise": "Incline Machine Chest Press",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2881,51 +3853,66 @@
           },
           "per": null,
           "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Medium grip."
-          ]
-        },
-        {
-          "id": "thu-2-machine-bench-press",
-          "session": "main",
-          "exercise": "Machine Bench Press",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 2,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "thu-3-wide-grip-lat-pulldown",
+          "id": "thu-3-one-arm-lat-pulldown",
           "session": "main",
-          "exercise": "Wide Grip Lat Pulldown",
+          "exercise": "One Arm Lat Pulldown",
           "sets": 3,
           "target": {
             "type": "reps",
             "min": 8,
             "max": 12
           },
-          "per": null,
+          "per": "side",
           "restSec": 150,
-          "rir": 2,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "thu-4-leverage-high-row",
+          "id": "thu-4-single-arm-cable-lateral-raise",
           "session": "main",
-          "exercise": "Leverage High Row",
+          "exercise": "Single Arm Cable Lateral Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-5-face-pull",
+          "session": "main",
+          "exercise": "Face Pull",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-6-incline-dumbbell-curl",
+          "session": "main",
+          "exercise": "Incline Dumbbell Curl",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -2933,51 +3920,17 @@
             "max": 15
           },
           "per": null,
-          "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-5-reverse-machine-fly",
-          "session": "main",
-          "exercise": "Reverse Machine Fly",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
           "restSec": 90,
-          "rir": 2,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "thu-6-lateral-raise",
+          "id": "thu-7-rope-overhead-triceps-extension",
           "session": "main",
-          "exercise": "Lateral Raise",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-7-hammer-curl",
-          "session": "main",
-          "exercise": "Hammer Curl",
-          "sets": 2,
+          "exercise": "Rope Overhead Triceps Extension",
+          "sets": 3,
           "target": {
             "type": "reps",
             "min": 10,
@@ -2985,33 +3938,16 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 2,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "thu-8-palm-down-wrist-curl",
+          "id": "thu-8-rope-hammer-curl",
           "session": "main",
-          "exercise": "Seated Palm Down Barbell Wrist Curl",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-9-triceps-pushdown",
-          "session": "main",
-          "exercise": "Triceps Pushdown",
-          "sets": 2,
+          "exercise": "Cable Rope Hammer Curl",
+          "sets": 3,
           "target": {
             "type": "reps",
             "min": 10,
@@ -3019,7 +3955,24 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 2,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-9-palm-down-wrist-curl",
+          "session": "main",
+          "exercise": "Seated Palm Down Wrist Curl",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 0,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3044,7 +3997,7 @@
     },
     {
       "weekday": 5,
-      "title": "Lower C Hypertrophy and Swim",
+      "title": "Lower C and Swim",
       "rest": false,
       "items": [
         {
@@ -3107,41 +4060,7 @@
           "notes": []
         },
         {
-          "id": "fri-1-leg-press",
-          "session": "main",
-          "exercise": "Leg Press",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 180,
-          "rir": 2,
-          "tempo": "3110",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-2-back-extension",
-          "session": "main",
-          "exercise": "45 Degree Back Extension",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": 3,
-          "tempo": "2011",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-3-nordic-hamstring-curl",
+          "id": "fri-1-nordic-hamstring-curl",
           "session": "main",
           "exercise": "Nordic Hamstring Curl",
           "sets": 2,
@@ -3156,64 +4075,47 @@
           "tempo": null,
           "rpe": null,
           "notes": [
-            "Difficulty never increases automatically."
+            "First, while the hamstrings are fresh. Difficulty never increases automatically."
           ]
+        },
+        {
+          "id": "fri-2-leg-press",
+          "session": "main",
+          "exercise": "Leg Press",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 180,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-3-dumbbell-romanian-deadlift",
+          "session": "main",
+          "exercise": "Dumbbell Romanian Deadlift",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 1,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
         },
         {
           "id": "fri-4-seated-leg-curl",
           "session": "main",
           "exercise": "Seated Leg Curl",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 120,
-          "rir": 2,
-          "tempo": "2111",
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-5-cable-hip-adduction",
-          "session": "main",
-          "exercise": "Cable Hip Adduction",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": "side",
-          "restSec": 75,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-6-cable-hip-abduction",
-          "session": "main",
-          "exercise": "Cable Hip Abduction",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 75,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-7-standing-calf-raise",
-          "session": "main",
-          "exercise": "Standing Calf Raise",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -3221,9 +4123,76 @@
             "max": 15
           },
           "per": null,
-          "restSec": 120,
-          "rir": 2,
-          "tempo": "2111",
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-5-leg-extension",
+          "session": "main",
+          "exercise": "Leg Extension",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-6-hip-abduction-machine",
+          "session": "main",
+          "exercise": "Seated Hip Abduction Machine",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 0,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-7-copenhagen-plank",
+          "session": "main",
+          "exercise": "Copenhagen Plank",
+          "sets": 3,
+          "target": {
+            "type": "hold",
+            "seconds": 25
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-8-leg-press-calf-raise",
+          "session": "main",
+          "exercise": "Leg Press Calf Raise",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 0,
+          "tempo": null,
           "rpe": null,
           "notes": []
         },
@@ -3303,19 +4272,20 @@
         "key": "upper_back",
         "label": "Upper back",
         "present": true,
-        "directSets": 48,
-        "indirectSets": 32,
+        "directSets": 50,
+        "indirectSets": 39,
         "exposures": 5,
         "exercises": [
-          "Seated Cable Row",
           "Cable External Rotation",
+          "Wide Grip Lat Pulldown",
+          "Chest Supported Dumbbell Row",
           "Bent Over Dumbbell Y Raise",
           "Dynamic Volleyball Warm Up",
-          "Chest Supported Dumbbell Row",
-          "Face Pull",
-          "Wide Grip Lat Pulldown",
-          "Leverage High Row",
+          "Seated Cable Row",
           "Reverse Machine Fly",
+          "Dumbbell Shrug",
+          "Face Pull",
+          "Straight Arm Cable Pulldown",
           "One Arm Lat Pulldown",
           "Easy Moderate Pool Round Trip",
           "Side Lying Dumbbell External Rotation"
@@ -3326,7 +4296,7 @@
         "label": "Calves",
         "present": true,
         "directSets": 9,
-        "indirectSets": 6.5,
+        "indirectSets": 10.5,
         "exposures": 26,
         "exercises": [
           "Easy Jump Rope",
@@ -3336,29 +4306,27 @@
           "Volleyball Approach Jump",
           "Countermovement Jump",
           "Bulgarian Split Squat",
-          "Standing Calf Raise",
-          "Seated Calf Raise"
+          "Leg Press Calf Raise"
         ]
       },
       {
         "key": "forearms",
         "label": "Forearms",
         "present": true,
-        "directSets": 6,
-        "indirectSets": 14.5,
+        "directSets": 9,
+        "indirectSets": 19.5,
         "exposures": 0,
         "exercises": [
-          "Seated Cable Row",
-          "One Arm Lat Pulldown",
-          "Seated Palm Up Barbell Wrist Curl",
-          "Romanian Deadlift",
           "Incline Dumbbell Curl",
-          "Hanging Leg Raise",
-          "Seated Palm Down Barbell Wrist Curl",
-          "Machine Preacher Curl",
+          "Seated Palm Up Wrist Curl",
+          "Dumbbell Romanian Deadlift",
+          "Seated Cable Row",
+          "Dumbbell Shrug",
+          "One Arm Lat Pulldown",
+          "Seated Palm Down Wrist Curl",
           "Chest Supported Dumbbell Row",
-          "Leverage High Row",
-          "Hammer Curl"
+          "Machine Preacher Curl",
+          "Cable Rope Hammer Curl"
         ]
       }
     ],
@@ -3366,31 +4334,31 @@
       {
         "muscle": "pec_clavicular",
         "direct": 6,
-        "indirect": 4.5,
+        "indirect": 3,
         "exposures": 0
       },
       {
         "muscle": "pec_sternal",
-        "direct": 9,
+        "direct": 6,
         "indirect": 3,
         "exposures": 2
       },
       {
         "muscle": "delt_anterior",
         "direct": 6,
-        "indirect": 4.5,
+        "indirect": 3,
         "exposures": 4
       },
       {
         "muscle": "delt_lateral",
-        "direct": 7,
+        "direct": 9,
         "indirect": 0,
         "exposures": 2
       },
       {
         "muscle": "delt_posterior",
-        "direct": 8,
-        "indirect": 7.5,
+        "direct": 10,
+        "indirect": 8,
         "exposures": 1
       },
       {
@@ -3401,158 +4369,156 @@
       },
       {
         "muscle": "biceps",
-        "direct": 5,
-        "indirect": 8,
-        "exposures": 0
-      },
-      {
-        "muscle": "brachialis",
-        "direct": 4,
-        "indirect": 8.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "brachioradialis",
-        "direct": 2,
-        "indirect": 7,
-        "exposures": 0
-      },
-      {
-        "muscle": "triceps",
-        "direct": 7,
-        "indirect": 5.5,
-        "exposures": 2
-      },
-      {
-        "muscle": "forearm_flexors",
-        "direct": 2,
+        "direct": 9,
         "indirect": 7.5,
         "exposures": 0
       },
       {
+        "muscle": "brachialis",
+        "direct": 6,
+        "indirect": 9,
+        "exposures": 0
+      },
+      {
+        "muscle": "brachioradialis",
+        "direct": 3,
+        "indirect": 7.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "triceps",
+        "direct": 9,
+        "indirect": 6,
+        "exposures": 2
+      },
+      {
+        "muscle": "forearm_flexors",
+        "direct": 3,
+        "indirect": 12,
+        "exposures": 0
+      },
+      {
         "muscle": "forearm_extensors",
-        "direct": 2,
+        "direct": 3,
         "indirect": 0,
         "exposures": 0
       },
       {
         "muscle": "rectus_abdominis",
-        "direct": 10,
-        "indirect": 1,
+        "direct": 14,
+        "indirect": 1.5,
         "exposures": 0
       },
       {
         "muscle": "obliques_core",
-        "direct": 12,
-        "indirect": 6,
+        "direct": 17,
+        "indirect": 10.5,
         "exposures": 17
       },
       {
         "muscle": "hip_flexors",
-        "direct": 2,
-        "indirect": 5,
+        "direct": 0,
+        "indirect": 4,
         "exposures": 3
       },
       {
         "muscle": "traps_upper",
-        "direct": 0,
-        "indirect": 3.5,
+        "direct": 3,
+        "indirect": 4.5,
         "exposures": 0
       },
       {
         "muscle": "traps_middle",
-        "direct": 11,
-        "indirect": 5.5,
+        "direct": 9,
+        "indirect": 9.5,
         "exposures": 1
       },
       {
         "muscle": "traps_lower",
         "direct": 4,
-        "indirect": 7.5,
+        "indirect": 10.5,
         "exposures": 0
       },
       {
         "muscle": "rhomboids",
-        "direct": 9,
-        "indirect": 5.5,
+        "direct": 6,
+        "indirect": 6.5,
         "exposures": 1
       },
       {
         "muscle": "lats",
-        "direct": 14,
+        "direct": 15,
         "indirect": 0,
         "exposures": 2
       },
       {
         "muscle": "teres_major",
-        "direct": 2,
-        "indirect": 6,
+        "direct": 6,
+        "indirect": 4.5,
         "exposures": 0
       },
       {
         "muscle": "rotator_cuff",
-        "direct": 8,
-        "indirect": 6.5,
+        "direct": 13,
+        "indirect": 8,
         "exposures": 3
       },
       {
         "muscle": "erectors",
-        "direct": 3,
+        "direct": 0,
         "indirect": 6.5,
         "exposures": 0
       },
       {
         "muscle": "glute_max",
-        "direct": 17,
-        "indirect": 1.5,
+        "direct": 18,
+        "indirect": 3,
         "exposures": 15
       },
       {
         "muscle": "glute_med",
-        "direct": 4,
-        "indirect": 2,
+        "direct": 6,
+        "indirect": 6,
         "exposures": 7
       },
       {
         "muscle": "adductors",
-        "direct": 4,
-        "indirect": 10,
+        "direct": 6,
+        "indirect": 9,
         "exposures": 7
       },
       {
         "muscle": "quads",
-        "direct": 13,
+        "direct": 18,
         "indirect": 0,
         "exposures": 17
       },
       {
         "muscle": "hamstrings",
-        "direct": 13,
-        "indirect": 5.5,
+        "direct": 14,
+        "indirect": 6,
         "exposures": 3
       },
       {
         "muscle": "gastrocnemius",
-        "direct": 6,
-        "indirect": 2.5,
+        "direct": 9,
+        "indirect": 3,
         "exposures": 15
       },
       {
         "muscle": "soleus",
-        "direct": 3,
-        "indirect": 4,
+        "direct": 0,
+        "indirect": 7.5,
         "exposures": 11
       },
       {
         "muscle": "tibialis_anterior",
-        "direct": 4,
+        "direct": 2,
         "indirect": 0,
         "exposures": 6
       }
     ],
-    "shoulderNotes": [
-      "Sunday has pressing and swimming. Keep the swim easy and separate it by at least three hours."
-    ]
+    "shoulderNotes": []
   },
   "nutrition": {
     "floors": {
@@ -3594,7 +4560,7 @@
       },
       {
         "weekday": 2,
-        "label": "Upper C",
+        "label": "Upper B",
         "kcal": 2350,
         "kcalBand": [
           2250,
@@ -3626,7 +4592,7 @@
       },
       {
         "weekday": 4,
-        "label": "Upper B",
+        "label": "Upper C",
         "kcal": 2350,
         "kcalBand": [
           2250,
@@ -4755,6 +5721,167 @@
       "topic": "youth-training"
     },
     {
+      "id": "robinson-2024-proximity-dose-response",
+      "title": "Exploring the Dose-Response Relationship Between Estimated Resistance Training Proximity to Failure, Strength Gain, and Muscle Hypertrophy: A Series of Meta-Regressions",
+      "url": "https://doi.org/10.1007/s40279-024-02069-2",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "refalo-2024-failure-vs-rir",
+      "title": "Similar muscle hypertrophy following eight weeks of resistance training to momentary muscular failure or with repetitions-in-reserve in resistance-trained individuals",
+      "url": "https://doi.org/10.1080/02640414.2024.2321021",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "hermann-2025-single-set-failure",
+      "title": "Without Fail: Muscular Adaptations in Single-Set Resistance Training Performed to Failure or with Repetitions-in-Reserve",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40249908/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "halperin-2022-rir-accuracy",
+      "title": "Accuracy in Predicting Repetitions to Task Failure in Resistance Exercise: A Scoping Review and Exploratory Meta-analysis",
+      "url": "https://doi.org/10.1007/s40279-021-01559-x",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "pelland-2025-volume-frequency",
+      "title": "The Resistance Training Dose Response: Meta-Regressions Exploring the Effects of Weekly Volume and Frequency on Muscle Hypertrophy and Strength Gains",
+      "url": "https://doi.org/10.1007/s40279-025-02344-w",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "nunes-2021-exercise-order",
+      "title": "What influence does resistance exercise order have on muscular strength gains and muscle hypertrophy? A systematic review and meta-analysis",
+      "url": "https://doi.org/10.1080/17461391.2020.1733672",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "singer-2024-rest-intervals",
+      "title": "Give it a rest: a systematic review with Bayesian meta-analysis on the effect of inter-set rest interval duration on muscle hypertrophy",
+      "url": "https://doi.org/10.3389/fspor.2024.1429789",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "haugen-2023-free-weights-machines",
+      "title": "Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance: a systematic review and meta-analysis",
+      "url": "https://doi.org/10.1186/s13102-023-00713-4",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kerr-2010-weight-training-injuries",
+      "title": "Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007",
+      "url": "https://doi.org/10.1177/0363546509351560",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "chaves-2020-incline-press",
+      "title": "Effects of Horizontal and Incline Bench Press on Neuromuscular Adaptations in Untrained Young Men",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32922646/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "larsen-2025-lateral-raise",
+      "title": "Dumbbell versus cable lateral raises for lateral deltoid hypertrophy: an experimental study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40692697/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "maeo-2021-seated-leg-curl",
+      "title": "Greater Hamstrings Muscle Hypertrophy but Similar Damage Protection after Training at Long versus Short Muscle Lengths",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33009197/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "maeo-2023-overhead-triceps",
+      "title": "Triceps brachii hypertrophy is substantially greater after elbow extension training performed in the overhead versus neutral arm position",
+      "url": "https://doi.org/10.1080/17461391.2022.2100279",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kassiano-2025-incline-preacher",
+      "title": "Distinct muscle growth and strength adaptations after preacher and incline biceps curls",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39809454/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kubo-2019-squat-depth",
+      "title": "Effects of squat training with different depths on lower limb muscle volumes",
+      "url": "https://doi.org/10.1007/s00421-019-04181-y",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "plotkin-2023-hip-thrust-squat",
+      "title": "Hip thrust and back squat training elicit similar gluteus muscle hypertrophy and transfer similarly to the deadlift",
+      "url": "https://doi.org/10.3389/fphys.2023.1279170",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kassiano-2023-calf-long-length",
+      "title": "Greater Gastrocnemius Muscle Hypertrophy After Partial Range of Motion Training Performed at Long Muscle Lengths",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37015016/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kinoshita-2023-standing-seated-calf",
+      "title": "Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training",
+      "url": "https://doi.org/10.3389/fphys.2023.1272106",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "larsen-2024-leg-extension-hip-angle",
+      "title": "The effects of hip flexion angle on quadriceps femoris muscle hypertrophy in the leg extension exercise",
+      "url": "https://pure.solent.ac.uk/en/publications/the-effects-of-hip-flexion-angle-on-quadriceps-femoris-muscle-hyp/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "kinoshita-2026-knee-extension-leg-press",
+      "title": "Hypertrophic Effects of Single- versus Multi-Joint Exercise: A Direct Comparison between Knee Extension and Leg Press",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41630124/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "haroy-2019-adductor-programme",
+      "title": "The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29891614/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "andersson-2017-shoulder-warmup",
+      "title": "Preventing overuse shoulder injuries among throwing athletes: a cluster-randomised controlled trial in 660 elite handball players",
+      "url": "https://ostrc.no/en/projects/preventing-overuse-shoulder-injuries-among-throwing-athletes-a-cluster-randomised-controlled-trial-in-660-elite-handball-players/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "baz-valle-2019-variation",
+      "title": "The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men",
+      "url": "https://doi.org/10.1371/journal.pone.0226989",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
       "id": "plotkin-2022-rep-progression",
       "title": "Progressive overload without progressing load? The effects of load or repetition progression on muscular adaptations",
       "url": "https://peerj.com/articles/14142/",
@@ -5076,22 +6203,22 @@
       "url": "https://vt.tiktok.com/ZSbhYxd9R/",
       "platform": "tiktok",
       "accessible": false,
-      "claimed": "Not visible: the video could not be opened from the build environment.",
-      "evidence": "WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. To evaluate it, someone needs the creator name, caption and the specific claim (for example which muscles a program misses, or which exercise is said to be best), then compare it with the exercise library muscle map and with studies such as those in SOURCES.",
-      "verdict": "Not reviewed. No change to PeakForm. If the user shares the caption or a short summary, the claim can be checked. Separately, the current library already includes upper back (face pull, reverse machine fly, high row, seated cable row), calves (standing and seated calf raise, tibialis raise) and forearms (palm up and palm down wrist curls, hammer curl).",
-      "changesApp": false,
-      "reviewedOn": "2026-09-29"
+      "claimed": "As the user described it, since the video could not be opened: train each muscle head with its own exercise, do three sets to failure, and pick exercises that stretch the muscle.",
+      "evidence": "The link was still blocked, so the video itself was not seen. The description was compared with studies in SOURCES: growth rises a little as sets get closer to failure (Robinson 2024), but failure and one or two reps in reserve gave the same growth (Refalo 2024). Training at long muscle lengths helped in trials of the seated leg curl, overhead triceps work, and calf raises (Maeo 2021 and 2023, Kassiano 2023). About 9 to 18 weekly sets per muscle is supported (Pelland 2025). These are adult studies.",
+      "verdict": "Mostly supported, with one change. PeakForm 2.0 uses one exercise per muscle head, three work sets, and stretch focused exercises. Failure is used on machine and cable work, where a failed rep is safe when training alone, and dumbbell presses, lunges, and hinges stop one rep short, which grew muscle just as well.",
+      "changesApp": true,
+      "reviewedOn": "2026-09-30"
     },
     {
       "id": "claim-tiktok-zsbh2l6fg",
       "url": "https://vt.tiktok.com/ZSbh2L6Fg/",
       "platform": "tiktok",
       "accessible": false,
-      "claimed": "Not visible: the video could not be opened from the build environment.",
-      "evidence": "WebFetch on the short link was blocked by the egress proxy, and web searches for the short code and full link returned no page about this video. Needed: the creator, the caption, the exact claim, and any study or guideline it cites, checked against peer reviewed evidence and pediatric guidance.",
-      "verdict": "Not reviewed. No change to PeakForm. The user can describe the claim or paste the caption for a follow up review.",
-      "changesApp": false,
-      "reviewedOn": "2026-09-29"
+      "claimed": "As the user described it, together with the first video: one exercise for each muscle head, three sets to failure, and exercises with a stretch.",
+      "evidence": "The link was still blocked and the video was not seen. The claim was reviewed as one claim with the first video, against the same sources.",
+      "verdict": "Reviewed with the first video. The same changes in PeakForm 2.0 apply.",
+      "changesApp": true,
+      "reviewedOn": "2026-09-30"
     }
   ]
 }

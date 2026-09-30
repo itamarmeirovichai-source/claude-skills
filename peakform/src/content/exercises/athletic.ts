@@ -1308,6 +1308,7 @@ export const ATHLETIC_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: 'Side plank', reason: 'Trains the side of the trunk with no equipment.' },
     ],
     loadIncrement: 'none',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -1428,6 +1429,7 @@ export const ATHLETIC_EXERCISES: ExerciseContent[] = [
       },
     ],
     loadIncrement: 'none',
+    failure: 'never',
     visual: {
       poses: [
         {
@@ -1537,6 +1539,7 @@ export const ATHLETIC_EXERCISES: ExerciseContent[] = [
       { exerciseId: null, name: "Captain's chair knee raise", reason: 'Forearm pads take grip out of the exercise.' },
     ],
     loadIncrement: 'none',
+    failure: 'all',
     visual: {
       poses: [
         {

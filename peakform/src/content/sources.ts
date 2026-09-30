@@ -119,7 +119,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'Training to set failure showed only a trivial hypertrophy advantage over stopping short of failure (effect size about 0.19, confidence interval touching zero), so failure is not required for muscle growth.',
     productDecision:
-      'PeakForm prescribes sets by reps in reserve (2 to 3 in the seeded plan), never prescribes routine failure, and blocks plan edits or imported recommendations below 1 RIR.',
+      'Since 2.0.0, at the athlete\'s request, small machine and cable exercises go to technical failure and machine compounds take only the last set to failure. Dumbbell presses, lunges, and hinges stop one rep short, and imported recommendations still cannot go below 1 RIR.',
     uncertainty:
       'Participants were adults. RIR estimates are known to be imprecise, especially in novices, which is why the app also logs form and pain.',
     access: 'search-snippet',
@@ -135,8 +135,353 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'Across 15 studies in young adults, training to failure did not produce significantly more strength or hypertrophy than non-failure training, and non-failure training favoured strength when volume was not equated.',
     productDecision:
-      'Reinforces ending sets with reps in reserve. Progression holds or reduces load when logged RIR falls below the prescription.',
+      'Failure is used only where it is safe alone and cheap in fatigue: the extra growth is small. Progression holds or reduces load when logged RIR falls below the prescription.',
     uncertainty: 'Adult participants only. Full text was not opened.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'robinson-2024-proximity-dose-response',
+    title: 'Exploring the Dose-Response Relationship Between Estimated Resistance Training Proximity to Failure, Strength Gain, and Muscle Hypertrophy: A Series of Meta-Regressions',
+    publisher: 'Sports Medicine 54:2209-2231 (Robinson and colleagues)',
+    url: 'https://doi.org/10.1007/s40279-024-02069-2',
+    published: '2024',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Muscle growth rose modestly as sets ended closer to failure, while strength barely depended on it.',
+    productDecision:
+      'Sets now end close to failure: small machine and cable exercises at technical failure, machine compounds one rep short with the last set to failure.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text. Proximity was estimated, not measured.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'refalo-2024-failure-vs-rir',
+    title: 'Similar muscle hypertrophy following eight weeks of resistance training to momentary muscular failure or with repetitions-in-reserve in resistance-trained individuals',
+    publisher: 'Journal of Sports Sciences (Refalo and colleagues)',
+    url: 'https://doi.org/10.1080/02640414.2024.2321021',
+    published: '2024',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Training to momentary failure and stopping one to two reps short produced the same quadriceps growth, about 7 percent in both.',
+    productDecision:
+      'Heavier dumbbell work and hinges stop one rep short with no loss of growth. Failure is kept for exercises where it is safe and cheap in fatigue.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'hermann-2025-single-set-failure',
+    title: 'Without Fail: Muscular Adaptations in Single-Set Resistance Training Performed to Failure or with Repetitions-in-Reserve',
+    publisher: 'Medicine and Science in Sports and Exercise 57(9):2021-2031 (Hermann and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40249908/',
+    published: '2025',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'With a single set per exercise, going to failure modestly beat stopping two reps short on some growth measures.',
+    productDecision:
+      'Supports taking the last set to failure on safe exercises.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text. Low volume design, so the effect may be smaller with three sets.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'halperin-2022-rir-accuracy',
+    title: 'Accuracy in Predicting Repetitions to Task Failure in Resistance Exercise: A Scoping Review and Exploratory Meta-analysis',
+    publisher: 'Sports Medicine (Halperin and colleagues)',
+    url: 'https://doi.org/10.1007/s40279-021-01559-x',
+    published: '2022',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'People tend to underestimate how many reps they have left by about one rep, most of all at high rep counts.',
+    productDecision:
+      'Occasional sets to technical failure on safe exercises help calibrate reps in reserve. New exercises stay two reps short for two sessions.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'pelland-2025-volume-frequency',
+    title: 'The Resistance Training Dose Response: Meta-Regressions Exploring the Effects of Weekly Volume and Frequency on Muscle Hypertrophy and Strength Gains',
+    publisher: 'Sports Medicine (Pelland and colleagues)',
+    url: 'https://doi.org/10.1007/s40279-025-02344-w',
+    published: '2025',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Growth rose with weekly sets with diminishing returns, and frequency added little once weekly volume was equal.',
+    productDecision:
+      'About 9 to 15 direct sets per muscle a week, with no muscle above 20. Six days keeps each session within 75 to 90 minutes.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'nunes-2021-exercise-order',
+    title: 'What influence does resistance exercise order have on muscular strength gains and muscle hypertrophy? A systematic review and meta-analysis',
+    publisher: 'European Journal of Sport Science 21:149-157 (Nunes and colleagues)',
+    url: 'https://doi.org/10.1080/17461391.2020.1733672',
+    published: '2021',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Hypertrophy was similar whether multi joint or single joint exercises came first.',
+    productDecision:
+      'Big and demanding exercises come first in each session, for technique and safety, not because order changes growth.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'singer-2024-rest-intervals',
+    title: 'Give it a rest: a systematic review with Bayesian meta-analysis on the effect of inter-set rest interval duration on muscle hypertrophy',
+    publisher: 'Frontiers in Sports and Active Living (Singer and colleagues)',
+    url: 'https://doi.org/10.3389/fspor.2024.1429789',
+    published: '2024',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Resting longer than about 60 seconds gave a small growth benefit, with no clear further benefit past about 90 seconds.',
+    productDecision:
+      'Rest is 150 to 180 seconds on big exercises and 75 to 90 seconds on small ones.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text. Few studies.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'haugen-2023-free-weights-machines',
+    title: 'Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance: a systematic review and meta-analysis',
+    publisher: 'BMC Sports Science, Medicine and Rehabilitation (Haugen and colleagues)',
+    url: 'https://doi.org/10.1186/s13102-023-00713-4',
+    published: '2023',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Free weights and machines produced similar muscle growth.',
+    productDecision:
+      'The program uses machines, cables, the Smith machine, and dumbbells only, because the athlete trains alone, with no expected loss of growth.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kerr-2010-weight-training-injuries',
+    title: 'Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007',
+    publisher: 'American Journal of Sports Medicine 38(4):765-771 (Kerr and colleagues)',
+    url: 'https://doi.org/10.1177/0363546509351560',
+    published: '2010',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Most weight training injuries seen in emergency departments involved free weights, and many came from dropped weights.',
+    productDecision:
+      'No free barbell when training alone. Smith and plate loaded machines always use their safety stops.',
+    uncertainty: 'Emergency department data, not a trial. The percentages came from a summary.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'chaves-2020-incline-press',
+    title: 'Effects of Horizontal and Incline Bench Press on Neuromuscular Adaptations in Untrained Young Men',
+    publisher: 'International Journal of Exercise Science 13(6):859-872 (Chaves and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/32922646/',
+    published: '2020',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'The incline press grew the upper chest more than the flat press.',
+    productDecision:
+      'The upper chest has its own slot with three incline presses at 30 to 45 degrees.',
+    uncertainty: 'Untrained young men, a small study.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'larsen-2025-lateral-raise',
+    title: 'Dumbbell versus cable lateral raises for lateral deltoid hypertrophy: an experimental study',
+    publisher: 'Frontiers in Physiology (Larsen and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40692697/',
+    published: '2025',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Cable and dumbbell lateral raises grew the side of the shoulder about equally.',
+    productDecision:
+      'Cable, dumbbell, and machine lateral raises are offered as equal choices.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'maeo-2021-seated-leg-curl',
+    title: 'Greater Hamstrings Muscle Hypertrophy but Similar Damage Protection after Training at Long versus Short Muscle Lengths',
+    publisher: 'Medicine and Science in Sports and Exercise 53(4):825-837 (Maeo and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33009197/',
+    published: '2021',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Seated leg curls grew the hamstrings more than lying leg curls, about 14 against 9 percent.',
+    productDecision:
+      'The knee bend slot uses the seated leg curl only.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'maeo-2023-overhead-triceps',
+    title: 'Triceps brachii hypertrophy is substantially greater after elbow extension training performed in the overhead versus neutral arm position',
+    publisher: 'European Journal of Sport Science (Maeo and colleagues)',
+    url: 'https://doi.org/10.1080/17461391.2022.2100279',
+    published: '2023',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Overhead extensions grew the triceps about 1.4 times more than pushdowns.',
+    productDecision:
+      'The long head of the triceps has its own slot, trained twice a week with overhead options.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kassiano-2025-incline-preacher',
+    title: 'Distinct muscle growth and strength adaptations after preacher and incline biceps curls',
+    publisher: 'International Journal of Sports Medicine 46(5):334-343 (Kassiano and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/39809454/',
+    published: '2025',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Incline curls, with the arm behind the body, grew the upper biceps more than preacher curls, while preacher curls favoured other regions.',
+    productDecision:
+      'The biceps get two slots: arm behind the body, and arm in front on a preacher pad.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text. Regional results are less certain than whole muscle results.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kubo-2019-squat-depth',
+    title: 'Effects of squat training with different depths on lower limb muscle volumes',
+    publisher: 'European Journal of Applied Physiology (Kubo and colleagues)',
+    url: 'https://doi.org/10.1007/s00421-019-04181-y',
+    published: '2019',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Deep squats grew the glutes and adductors more than half squats, and the quads similarly.',
+    productDecision:
+      'Every squat option is done deep, with safety stops set to that depth.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'plotkin-2023-hip-thrust-squat',
+    title: 'Hip thrust and back squat training elicit similar gluteus muscle hypertrophy and transfer similarly to the deadlift',
+    publisher: 'Frontiers in Physiology (Plotkin and colleagues)',
+    url: 'https://doi.org/10.3389/fphys.2023.1279170',
+    published: '2023',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Hip thrusts and squats grew the glutes about equally, and neither grew the side of the hip much.',
+    productDecision:
+      'Hip thrusts, split squats, and lunges are equal glute choices. The side of the hip has its own slot.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kassiano-2023-calf-long-length',
+    title: 'Greater Gastrocnemius Muscle Hypertrophy After Partial Range of Motion Training Performed at Long Muscle Lengths',
+    publisher: 'Journal of Strength and Conditioning Research 37(9):1746-1753 (Kassiano and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37015016/',
+    published: '2023',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Training the stretched half of the calf raise grew the calf more than the full range, about 15 against 7 percent.',
+    productDecision:
+      'Calf raises use a two second pause in the deep stretch.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kinoshita-2023-standing-seated-calf',
+    title: 'Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training',
+    publisher: 'Frontiers in Physiology 14:1272106 (Kinoshita and colleagues)',
+    url: 'https://doi.org/10.3389/fphys.2023.1272106',
+    published: '2023',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Standing calf raises grew the gastrocnemius far more than seated raises, and the soleus about equally.',
+    productDecision:
+      'The calf slot uses straight knee raises only. The seated calf raise stays in the library.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'larsen-2024-leg-extension-hip-angle',
+    title: 'The effects of hip flexion angle on quadriceps femoris muscle hypertrophy in the leg extension exercise',
+    publisher: 'Journal of Sports Sciences 43(2):210-221 (Larsen and colleagues)',
+    url: 'https://pure.solent.ac.uk/en/publications/the-effects-of-hip-flexion-angle-on-quadriceps-femoris-muscle-hyp/',
+    published: '2024',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Leg extensions with the hips more extended, leaning back, grew the rectus femoris more.',
+    productDecision:
+      'Leg extensions are done leaning back in the seat.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'kinoshita-2026-knee-extension-leg-press',
+    title: 'Hypertrophic Effects of Single- versus Multi-Joint Exercise: A Direct Comparison between Knee Extension and Leg Press',
+    publisher: 'Medicine and Science in Sports and Exercise 58(7) (Kinoshita and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41630124/',
+    published: '2026',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Leg extensions grew the rectus femoris much more than the leg press, which barely grew it.',
+    productDecision:
+      'The rectus femoris has its own slot, twice a week.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'haroy-2019-adductor-programme',
+    title: 'The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial',
+    publisher: 'British Journal of Sports Medicine 53(3):145-152 (Harøy and colleagues)',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/29891614/',
+    published: '2019',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'A short adductor programme reduced groin problems in football players.',
+    productDecision:
+      'The inner thigh has its own slot twice a week.',
+    uncertainty: 'Football players, not volleyball players.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'andersson-2017-shoulder-warmup',
+    title: 'Preventing overuse shoulder injuries among throwing athletes: a cluster-randomised controlled trial in 660 elite handball players',
+    publisher: 'British Journal of Sports Medicine 51(14):1073-1080 (Andersson and colleagues)',
+    url: 'https://ostrc.no/en/projects/preventing-overuse-shoulder-injuries-among-throwing-athletes-a-cluster-randomised-controlled-trial-in-660-elite-handball-players/',
+    published: '2017',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'A shoulder warm up three times a week reduced shoulder problems in overhead athletes, from about 23 to 17 percent.',
+    productDecision:
+      'Every upper day starts with two light sets of external rotation.',
+    uncertainty: 'Handball players, not volleyball players.',
+    access: 'search-snippet',
+  },
+  {
+    id: 'baz-valle-2019-variation',
+    title: 'The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men',
+    publisher: 'PLoS ONE (Baz-Valle and colleagues)',
+    url: 'https://doi.org/10.1371/journal.pone.0226989',
+    published: '2019',
+    reviewedOn: '2026-09-30',
+    topic: 'youth-training',
+    conclusion:
+      'Varying exercises gave the same muscle and strength gains as a fixed plan and raised motivation.',
+    productDecision:
+      'The athlete picks a favourite exercise for each muscle head, with an optional second choice for variety, and can change picks later.',
+    uncertainty: 'Adult participants. Only search results and abstract level numbers were read, not the full text.',
     access: 'search-snippet',
   },
   {

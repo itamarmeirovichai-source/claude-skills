@@ -68,7 +68,7 @@ Journal of Clinical Epidemiology 140:111-124 (Impellizzeri, McCall, van Smeden).
 Sports Medicine 53(3):649-665 (Refalo, Helms, Trexler, Hamilton, Fyfe). Source date: March 2023. Access: search snippet only.
 
 - Conclusion: Training to set failure showed only a trivial hypertrophy advantage over stopping short of failure (effect size about 0.19, confidence interval touching zero), so failure is not required for muscle growth.
-- Product decision: PeakForm prescribes sets by reps in reserve (2 to 3 in the seeded plan), never prescribes routine failure, and blocks plan edits or imported recommendations below 1 RIR.
+- Product decision: Since 2.0.0, at the athlete's request, small machine and cable exercises go to technical failure and machine compounds take only the last set to failure. Dumbbell presses, lunges, and hinges stop one rep short, and imported recommendations still cannot go below 1 RIR.
 - Uncertainty: Participants were adults. RIR estimates are known to be imprecise, especially in novices, which is why the app also logs form and pain.
 
 ### [Effects of resistance training performed to repetition failure or non-failure on muscular strength and hypertrophy: A systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/33497853/)
@@ -76,7 +76,7 @@ Sports Medicine 53(3):649-665 (Refalo, Helms, Trexler, Hamilton, Fyfe). Source d
 Journal of Sport and Health Science 11(2):202-211 (Grgic and colleagues). Source date: 2022. Access: search snippet only.
 
 - Conclusion: Across 15 studies in young adults, training to failure did not produce significantly more strength or hypertrophy than non-failure training, and non-failure training favoured strength when volume was not equated.
-- Product decision: Reinforces ending sets with reps in reserve. Progression holds or reduces load when logged RIR falls below the prescription.
+- Product decision: Failure is used only where it is safe alone and cheap in fatigue: the extra growth is small. Progression holds or reduces load when logged RIR falls below the prescription.
 - Uncertainty: Adult participants only. Full text was not opened.
 
 ### [Progressive overload without progressing load? The effects of load or repetition progression on muscular adaptations](https://peerj.com/articles/14142/)
@@ -94,6 +94,202 @@ Alpha Progression glossary (commercial training app). Source date: Not stated in
 - Conclusion: Double progression means working up to the top of a rep range at a fixed load, then increasing load and returning toward the bottom of the range. It is a widely used coaching rule of thumb, not a protocol that has been tested as such in trials.
 - Product decision: PeakForm uses double progression as its default rule and describes it as a coaching convention, not a studied protocol.
 - Uncertainty: Source is a commercial glossary used only to define the term. No study was found that tests double progression itself in adolescents.
+
+## Muscle building program (2.0.0)
+
+These sources shaped the head by head program and the exercise questionnaire in 2.0.0. They were searched on 2026-09-30, after the user asked for simpler sessions that maximise muscle growth, with one exercise for each muscle head, three sets to failure, and exercises that stretch the muscle. Direct page access was blocked again, so every record is search snippet only. Almost all of these trials were run on adults. No trial of training to failure in adolescents was found, so applying these findings to a teenage athlete is extrapolation.
+
+What changed as a result:
+
+- Effort. Growth rises a little as sets get closer to failure, but failure and one or two reps in reserve gave the same growth in a direct comparison. Because the athlete trains alone, failure is used only where a failed rep is safe: every set of small machine and cable exercises, and the last set of machine and Smith compounds. Dumbbell presses, lunges, and hinges stop one rep short. Free barbell lifts are not offered. A new exercise stays two reps short for its first two sessions.
+- Volume. About 9 to 18 direct sets a week for each muscle, never above 20, split over two or three days.
+- Exercise choice. Exercises that load the muscle at a long length are preferred where trials favour them: the seated leg curl, overhead triceps work, calf raises paused in the stretch with a straight knee, and leg extensions with the seat reclined. Machines and free weights built muscle about equally, and choosing among equivalent exercises is supported, so the questionnaire offers two to four equal options for each slot.
+- Order and rest. Exercise order did not change growth, so big exercises go first for safety and performance, not for growth. Rest is at least 90 seconds, and two to three minutes on big exercises.
+- Injury prevention. Shoulder care starts every upper day and adductor work stays in the week.
+
+### [Exploring the Dose-Response Relationship Between Estimated Resistance Training Proximity to Failure, Strength Gain, and Muscle Hypertrophy: A Series of Meta-Regressions](https://doi.org/10.1007/s40279-024-02069-2)
+
+Sports Medicine 54:2209-2231 (Robinson and colleagues). Source date: 2024. Access: search snippet only.
+
+- Conclusion: Muscle growth rose modestly as sets ended closer to failure, while strength barely depended on it.
+- Product decision: Sets now end close to failure: small machine and cable exercises at technical failure, machine compounds one rep short with the last set to failure.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Proximity was estimated, not measured.
+
+### [Similar muscle hypertrophy following eight weeks of resistance training to momentary muscular failure or with repetitions-in-reserve in resistance-trained individuals](https://doi.org/10.1080/02640414.2024.2321021)
+
+Journal of Sports Sciences (Refalo and colleagues). Source date: 2024. Access: search snippet only.
+
+- Conclusion: Training to momentary failure and stopping one to two reps short produced the same quadriceps growth, about 7 percent in both.
+- Product decision: Heavier dumbbell work and hinges stop one rep short with no loss of growth. Failure is kept for exercises where it is safe and cheap in fatigue.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Without Fail: Muscular Adaptations in Single-Set Resistance Training Performed to Failure or with Repetitions-in-Reserve](https://pubmed.ncbi.nlm.nih.gov/40249908/)
+
+Medicine and Science in Sports and Exercise 57(9):2021-2031 (Hermann and colleagues). Source date: 2025. Access: search snippet only.
+
+- Conclusion: With a single set per exercise, going to failure modestly beat stopping two reps short on some growth measures.
+- Product decision: Supports taking the last set to failure on safe exercises.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Low volume design, so the effect may be smaller with three sets.
+
+### [Accuracy in Predicting Repetitions to Task Failure in Resistance Exercise: A Scoping Review and Exploratory Meta-analysis](https://doi.org/10.1007/s40279-021-01559-x)
+
+Sports Medicine (Halperin and colleagues). Source date: 2022. Access: search snippet only.
+
+- Conclusion: People tend to underestimate how many reps they have left by about one rep, most of all at high rep counts.
+- Product decision: Occasional sets to technical failure on safe exercises help calibrate reps in reserve. New exercises stay two reps short for two sessions.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [The Resistance Training Dose Response: Meta-Regressions Exploring the Effects of Weekly Volume and Frequency on Muscle Hypertrophy and Strength Gains](https://doi.org/10.1007/s40279-025-02344-w)
+
+Sports Medicine (Pelland and colleagues). Source date: 2025. Access: search snippet only.
+
+- Conclusion: Growth rose with weekly sets with diminishing returns, and frequency added little once weekly volume was equal.
+- Product decision: About 9 to 15 direct sets per muscle a week, with no muscle above 20. Six days keeps each session within 75 to 90 minutes.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [What influence does resistance exercise order have on muscular strength gains and muscle hypertrophy? A systematic review and meta-analysis](https://doi.org/10.1080/17461391.2020.1733672)
+
+European Journal of Sport Science 21:149-157 (Nunes and colleagues). Source date: 2021. Access: search snippet only.
+
+- Conclusion: Hypertrophy was similar whether multi joint or single joint exercises came first.
+- Product decision: Big and demanding exercises come first in each session, for technique and safety, not because order changes growth.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Give it a rest: a systematic review with Bayesian meta-analysis on the effect of inter-set rest interval duration on muscle hypertrophy](https://doi.org/10.3389/fspor.2024.1429789)
+
+Frontiers in Sports and Active Living (Singer and colleagues). Source date: 2024. Access: search snippet only.
+
+- Conclusion: Resting longer than about 60 seconds gave a small growth benefit, with no clear further benefit past about 90 seconds.
+- Product decision: Rest is 150 to 180 seconds on big exercises and 75 to 90 seconds on small ones.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Few studies.
+
+### [Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance: a systematic review and meta-analysis](https://doi.org/10.1186/s13102-023-00713-4)
+
+BMC Sports Science, Medicine and Rehabilitation (Haugen and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Free weights and machines produced similar muscle growth.
+- Product decision: The program uses machines, cables, the Smith machine, and dumbbells only, because the athlete trains alone, with no expected loss of growth.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007](https://doi.org/10.1177/0363546509351560)
+
+American Journal of Sports Medicine 38(4):765-771 (Kerr and colleagues). Source date: 2010. Access: search snippet only.
+
+- Conclusion: Most weight training injuries seen in emergency departments involved free weights, and many came from dropped weights.
+- Product decision: No free barbell when training alone. Smith and plate loaded machines always use their safety stops.
+- Uncertainty: Emergency department data, not a trial. The percentages came from a summary.
+
+### [Effects of Horizontal and Incline Bench Press on Neuromuscular Adaptations in Untrained Young Men](https://pubmed.ncbi.nlm.nih.gov/32922646/)
+
+International Journal of Exercise Science 13(6):859-872 (Chaves and colleagues). Source date: 2020. Access: search snippet only.
+
+- Conclusion: The incline press grew the upper chest more than the flat press.
+- Product decision: The upper chest has its own slot with three incline presses at 30 to 45 degrees.
+- Uncertainty: Untrained young men, a small study.
+
+### [Dumbbell versus cable lateral raises for lateral deltoid hypertrophy: an experimental study](https://pubmed.ncbi.nlm.nih.gov/40692697/)
+
+Frontiers in Physiology (Larsen and colleagues). Source date: 2025. Access: search snippet only.
+
+- Conclusion: Cable and dumbbell lateral raises grew the side of the shoulder about equally.
+- Product decision: Cable, dumbbell, and machine lateral raises are offered as equal choices.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Greater Hamstrings Muscle Hypertrophy but Similar Damage Protection after Training at Long versus Short Muscle Lengths](https://pubmed.ncbi.nlm.nih.gov/33009197/)
+
+Medicine and Science in Sports and Exercise 53(4):825-837 (Maeo and colleagues). Source date: 2021. Access: search snippet only.
+
+- Conclusion: Seated leg curls grew the hamstrings more than lying leg curls, about 14 against 9 percent.
+- Product decision: The knee bend slot uses the seated leg curl only.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Triceps brachii hypertrophy is substantially greater after elbow extension training performed in the overhead versus neutral arm position](https://doi.org/10.1080/17461391.2022.2100279)
+
+European Journal of Sport Science (Maeo and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Overhead extensions grew the triceps about 1.4 times more than pushdowns.
+- Product decision: The long head of the triceps has its own slot, trained twice a week with overhead options.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Distinct muscle growth and strength adaptations after preacher and incline biceps curls](https://pubmed.ncbi.nlm.nih.gov/39809454/)
+
+International Journal of Sports Medicine 46(5):334-343 (Kassiano and colleagues). Source date: 2025. Access: search snippet only.
+
+- Conclusion: Incline curls, with the arm behind the body, grew the upper biceps more than preacher curls, while preacher curls favoured other regions.
+- Product decision: The biceps get two slots: arm behind the body, and arm in front on a preacher pad.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Regional results are less certain than whole muscle results.
+
+### [Effects of squat training with different depths on lower limb muscle volumes](https://doi.org/10.1007/s00421-019-04181-y)
+
+European Journal of Applied Physiology (Kubo and colleagues). Source date: 2019. Access: search snippet only.
+
+- Conclusion: Deep squats grew the glutes and adductors more than half squats, and the quads similarly.
+- Product decision: Every squat option is done deep, with safety stops set to that depth.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Hip thrust and back squat training elicit similar gluteus muscle hypertrophy and transfer similarly to the deadlift](https://doi.org/10.3389/fphys.2023.1279170)
+
+Frontiers in Physiology (Plotkin and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Hip thrusts and squats grew the glutes about equally, and neither grew the side of the hip much.
+- Product decision: Hip thrusts, split squats, and lunges are equal glute choices. The side of the hip has its own slot.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Greater Gastrocnemius Muscle Hypertrophy After Partial Range of Motion Training Performed at Long Muscle Lengths](https://pubmed.ncbi.nlm.nih.gov/37015016/)
+
+Journal of Strength and Conditioning Research 37(9):1746-1753 (Kassiano and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Training the stretched half of the calf raise grew the calf more than the full range, about 15 against 7 percent.
+- Product decision: Calf raises use a two second pause in the deep stretch.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training](https://doi.org/10.3389/fphys.2023.1272106)
+
+Frontiers in Physiology 14:1272106 (Kinoshita and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Standing calf raises grew the gastrocnemius far more than seated raises, and the soleus about equally.
+- Product decision: The calf slot uses straight knee raises only. The seated calf raise stays in the library.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [The effects of hip flexion angle on quadriceps femoris muscle hypertrophy in the leg extension exercise](https://pure.solent.ac.uk/en/publications/the-effects-of-hip-flexion-angle-on-quadriceps-femoris-muscle-hyp/)
+
+Journal of Sports Sciences 43(2):210-221 (Larsen and colleagues). Source date: 2024. Access: search snippet only.
+
+- Conclusion: Leg extensions with the hips more extended, leaning back, grew the rectus femoris more.
+- Product decision: Leg extensions are done leaning back in the seat.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [Hypertrophic Effects of Single- versus Multi-Joint Exercise: A Direct Comparison between Knee Extension and Leg Press](https://pubmed.ncbi.nlm.nih.gov/41630124/)
+
+Medicine and Science in Sports and Exercise 58(7) (Kinoshita and colleagues). Source date: 2026. Access: search snippet only.
+
+- Conclusion: Leg extensions grew the rectus femoris much more than the leg press, which barely grew it.
+- Product decision: The rectus femoris has its own slot, twice a week.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
+
+### [The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial](https://pubmed.ncbi.nlm.nih.gov/29891614/)
+
+British Journal of Sports Medicine 53(3):145-152 (Harøy and colleagues). Source date: 2019. Access: search snippet only.
+
+- Conclusion: A short adductor programme reduced groin problems in football players.
+- Product decision: The inner thigh has its own slot twice a week.
+- Uncertainty: Football players, not volleyball players.
+
+### [Preventing overuse shoulder injuries among throwing athletes: a cluster-randomised controlled trial in 660 elite handball players](https://ostrc.no/en/projects/preventing-overuse-shoulder-injuries-among-throwing-athletes-a-cluster-randomised-controlled-trial-in-660-elite-handball-players/)
+
+British Journal of Sports Medicine 51(14):1073-1080 (Andersson and colleagues). Source date: 2017. Access: search snippet only.
+
+- Conclusion: A shoulder warm up three times a week reduced shoulder problems in overhead athletes, from about 23 to 17 percent.
+- Product decision: Every upper day starts with two light sets of external rotation.
+- Uncertainty: Handball players, not volleyball players.
+
+### [The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men](https://doi.org/10.1371/journal.pone.0226989)
+
+PLoS ONE (Baz-Valle and colleagues). Source date: 2019. Access: search snippet only.
+
+- Conclusion: Varying exercises gave the same muscle and strength gains as a fixed plan and raised motivation.
+- Product decision: The athlete picks a favourite exercise for each muscle head, with an optional second choice for variety, and can change picks later.
+- Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
 
 ## Nutrition and energy availability
 
@@ -475,18 +671,18 @@ Open Food Facts. Source date: Not stated in search result. Access: search snippe
 
 ## Social media claims
 
-Two TikTok links from the user were reviewed. Both short links were blocked by the proxy, and searches for the short codes returned nothing about the videos. Neither claim could be seen, so neither changes the app. Records are in `CLAIM_REVIEWS` in `src/content/media.ts`.
+Two TikTok links from the user were reviewed. Both short links were still blocked by the proxy, so the videos were not seen. In 2.0.0 the user described them: one exercise for each muscle head, three sets to failure, and exercises that stretch the muscle. That description was checked against the sources in the muscle building section above. Records are in `CLAIM_REVIEWS` in `src/content/media.ts`.
 
 | Link | Accessible | What was claimed | Verdict |
 | --- | --- | --- | --- |
-| [vt.tiktok.com/ZSbhYxd9R](https://vt.tiktok.com/ZSbhYxd9R/) | No | Not visible: the video could not be opened from the build environment. | Not reviewed, no change |
-| [vt.tiktok.com/ZSbh2L6Fg](https://vt.tiktok.com/ZSbh2L6Fg/) | No | Not visible: the video could not be opened from the build environment. | Not reviewed, no change |
+| [vt.tiktok.com/ZSbhYxd9R](https://vt.tiktok.com/ZSbhYxd9R/) | No | As described by the user: one exercise per muscle head, three sets to failure, stretch focused exercises. | Mostly supported. Changed the app in 2.0.0, with failure limited to exercises that are safe to fail alone |
+| [vt.tiktok.com/ZSbh2L6Fg](https://vt.tiktok.com/ZSbh2L6Fg/) | No | Reviewed together with the first video. | Same as the first video |
 
-Context only: the user earlier noticed that another app seemed to miss upper back, calves and forearms, so these videos may be about muscle coverage or exercise selection. That was not assumed. The current library does include upper back work (face pull, reverse machine fly, high row, seated cable row), calves (standing and seated calf raise, tibialis raise) and forearms (palm up and palm down wrist curls, hammer curl). To review either video, the next step is the creator name, the caption, and the exact claim, which can then be compared with the sources above. Social media claims are treated as leads, not evidence.
+Growth rises a little as sets get closer to failure, but stopping one or two reps short grew muscle just as well in a direct comparison, so failure is used where a failed rep is safe when training alone: machines and cables. Stretch focused exercises are supported for the hamstrings, triceps, and calves. Social media claims are treated as leads, not evidence.
 
 ## Open questions for a parent and a pediatric sports dietitian or clinician
 
-1. Is the athlete cleared for supervised barbell squats, bench press and hip thrusts, and who will supervise the heavier sessions?
+1. Since 2.0.0 the plan uses machines, cables, the Smith machine, and dumbbells, with no free barbell, and takes small machine and cable exercises to failure with clean form. Is that level of effort appropriate for the athlete, and is anyone available to check technique on new exercises?
 2. How many total weekly sessions (volleyball practice, matches, gym, jump work) are appropriate right now, and what should be cut first in a heavy tournament week?
 3. Is there any history of Osgood-Schlatter, Sever's disease, back pain, shoulder pain or a previous hamstring strain that should change exercise choices?
 4. What daily energy intake range is appropriate for the athlete's growth and training, and should the app show calories at all or only meal structure?
