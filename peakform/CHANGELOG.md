@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.1.0, 2026-10-02
+
+The jump program for the dunk goal.
+
+- **Training blocks** from 5 October 2026 to 31 January 2027: landing and technique, strength and power, a lighter test week, reactive and specific work, another lighter week, dunk practice, and a taper before the final test. After that the reactive block keeps going with a test every four weeks. A new block rebuilds the plan on its Monday as a new version, and Today says so once.
+- **Jump days** on Monday and Friday start with drills on fresh legs, about 50 jumps a session at first and never more than about 100: Pogo Hop, Snap Down and Stick, Box Jump, Hurdle Hop, Standing Broad Jump, Depth Jump, Single Leg Hop, and Approach Jump and Reach. Eight new drills with instructions, landings, stop rules, and original illustrations.
+- **Legs serve the jump.** Heavy leg work follows the jumps and stops two or three reps short of failure, with fewer reps and more weight in later blocks. Wednesday is the lighter leg day with no failure, so Friday's jumps are fresh. Only the small leg exercises on Monday may go to failure. Weekly direct leg sets drop by about a third. The Nordic curl is out of the plan, because it needs a partner or an anchor. The upper body does not change.
+- **Dunk goal on Progress:** the best touch height from approach jumps, the centimetres still missing, milestones from touching the rim to the dunk, standing reach, approach jump height, and the next jump test. Approach jumps show the Reach field directly.
+- **Safer weight loss:** PeakForm now suggests more food when weight falls faster than about 0.5 kg a week, down from 0.7, because a growing athlete needs the energy to jump.
+- New rules for counting volleyball jumps, knee and heel pain, and sleep. 21 new research sources.
+- Installed apps get a card on Today and Train that adds the jump program and keeps the exercise choices.
+- "Not now" on that card hides it straight away.
+
 ## 2.0.0, 2026-09-30
 
 A new program built from the athlete's own exercise choices.

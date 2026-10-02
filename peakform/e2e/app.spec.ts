@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
-import { MONDAY, SATURDAY_MORNING, atTime, exerciseChip, go, logStrengthSet, onboard, startSession } from './helpers';
+import { FRIDAY, MONDAY, SATURDAY_MORNING, WEDNESDAY, atTime, exerciseChip, go, logStrengthSet, onboard, startSession } from './helpers';
 import { OLD_VOLLEYBALL_DAYS } from '../tests/fixtures/volleyballDays';
 
 async function restoreVolleyballDays(page: Page) {
@@ -33,6 +33,8 @@ async function restoreVolleyballDays(page: Page) {
 
 test.describe('first run and install', () => {
   test('first run setup lands on Today with the profile saved locally', async ({ page }) => {
+    // A training day, so Today has a next session to show. On the Saturday rest day it says all done.
+    await atTime(page, MONDAY);
     await onboard(page, { name: 'Sam' });
     await expect(page.getByTestId('next-card').or(page.getByTestId('resume-workout')).first()).toBeVisible();
     await go(page, '/more/settings');
@@ -66,20 +68,27 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3); // Leg Press
+    // Monday starts with the warm up and five jump drills, then the heavy leg work.
+    await exerciseChip(page, 1);
+    await expect(page.getByTestId('exercise-name')).toHaveText('Pogo Hop');
+    await exerciseChip(page, 6); // Leg Press
     await expect(page.getByTestId('exercise-name')).toHaveText('Leg Press');
-    await expect(page.getByTestId('prescription')).toContainText('3 × 8 to 12');
-    // A new exercise stays two reps short while it is learned, then the last set goes to failure.
-    await expect(page.getByTestId('prescription')).toContainText('2 RIR while learning');
-    await expect(page.getByTestId('learning-note')).toContainText('1 RIR, last set to failure');
-    await logStrengthSet(page, 50, 12);
+    // Heavy, but two reps short of failure, so the jumps stay fresh.
+    await expect(page.getByTestId('prescription')).toContainText('3 × 6 to 8');
+    await expect(page.getByTestId('prescription')).toContainText('2 RIR');
+    await logStrengthSet(page, 50, 8);
     // The rest timer starts from the prescribed 180 seconds.
     await expect(page.getByTestId('restbar')).toBeVisible();
     await expect(page.getByTestId('rest-remaining')).toHaveText(/^(3:00|2:5\d)$/);
-    await logStrengthSet(page, null, 12);
-    await logStrengthSet(page, null, 12);
+    await logStrengthSet(page, null, 8);
+    await logStrengthSet(page, null, 8);
     await expect(page.getByTestId('logged-sets')).toContainText('Set 3');
     await expect(page.getByTestId('exercise-done')).toBeVisible();
+    // A small leg exercise on Monday may go to failure, but a new one stays two reps short first.
+    await exerciseChip(page, 8);
+    await expect(page.getByTestId('exercise-name')).toHaveText('Leg Press Calf Raise');
+    await expect(page.getByTestId('prescription')).toContainText('2 RIR while learning');
+    await expect(page.getByTestId('learning-note')).toContainText('to failure');
     await page.getByTestId('finish-workout').click();
     await page.getByTestId('confirm-finish').click();
     await expect(page.getByTestId('workout-summary')).toBeVisible();
@@ -87,10 +96,10 @@ test.describe('training', () => {
     await expect(sug).toContainText('Leg Press');
     await expect(sug).toContainText('Try 52.5 kg');
     await expect(sug).toContainText('smallest practical increase');
-    await expect(page.getByTestId('plan-vs-actual')).toContainText('50×12');
+    await expect(page.getByTestId('plan-vs-actual')).toContainText('50×8');
     await sug.getByTestId('accept-suggestion').first().click();
     await go(page, '/exercise/leg-press');
-    await expect(page.getByTestId('detail-last')).toContainText('50 kg × 12, 12, 12');
+    await expect(page.getByTestId('detail-last')).toContainText('50 kg × 8, 8, 8');
     await expect(page.getByTestId('detail-target')).toContainText('Try 52.5 kg');
     await expect(page.getByTestId('detail-target')).toContainText('Confirmed');
   });
@@ -184,7 +193,9 @@ test.describe('training', () => {
     await expect(day).toContainText('Shadow Passing Footwork');
     await go(page, '/train/day/5?date=2026-10-02');
     await expect(day).toContainText('Lower C and Swim');
-    await expect(day).toContainText('to failure');
+    // Friday starts with the dunk approach, and no leg set goes to failure before it.
+    await expect(day).toContainText('Approach Jump and Reach');
+    await expect(day).not.toContainText('to failure');
     await go(page, '/more/plan');
     await expect(page.getByText('Version 2').first()).toBeVisible();
   });
@@ -201,6 +212,83 @@ test.describe('training', () => {
     await expect(page.getByTestId('program')).toBeVisible();
   });
 
+  test('a plan saved before the jump program is offered it, and adding it keeps the choices', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    // A phone that saved its exercise choices in 2.0, before training blocks existed.
+    await page.evaluate(async () => {
+      const db: IDBDatabase = await new Promise((res) => {
+        const r = indexedDB.open('peakform');
+        r.onsuccess = () => res(r.result);
+      });
+      const tx = db.transaction('kv', 'readwrite');
+      const kv = tx.objectStore('kv');
+      kv.put({ id: 'programPicks', value: { quads: ['smith-squat'] }, updatedAt: Date.now() });
+      kv.put({ id: 'planUpdates', value: { 'program-v2': 'applied' }, updatedAt: Date.now() });
+      kv.delete('programPhase');
+      await new Promise((res) => (tx.oncomplete = res));
+    });
+    await page.reload();
+    const card = page.getByTestId('plan-update');
+    await expect(card).toContainText('the jump program for your dunk goal');
+    await card.getByTestId('plan-update-apply').click();
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+    await go(page, '/train/day/1?date=2026-09-28');
+    const day = page.getByTestId('train-day');
+    await expect(day).toContainText('Pogo Hop');
+    await expect(day).toContainText('Smith Machine Squat');
+    await go(page, '/train');
+    await expect(page.getByTestId('plan-update')).toHaveCount(0);
+  });
+
+  test('a new training block rebuilds the plan on its Monday and says so once', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await expect(page.getByTestId('phase-notice')).toHaveCount(0);
+    await page.clock.setSystemTime(new Date('2026-11-02T16:40:00+02:00'));
+    await page.reload();
+    const notice = page.getByTestId('phase-notice');
+    await expect(notice).toContainText('Block 2: Strength and power');
+    await go(page, '/train/day/1?date=2026-11-02');
+    const day = page.getByTestId('train-day');
+    await expect(day).toContainText('Depth Jump');
+    await expect(day).toContainText('4 × 4 to 6');
+    await go(page, '/today');
+    await notice.getByRole('button', { name: 'Got it' }).click();
+    await expect(page.getByTestId('phase-notice')).toHaveCount(0);
+    await page.reload();
+    await expect(page.getByTestId('phase-notice')).toHaveCount(0);
+    await go(page, '/more/plan');
+    await expect(page.getByText('Version 2').first()).toBeVisible();
+  });
+
+  test('approach touches feed the dunk goal on Progress', async ({ page }) => {
+    await atTime(page, FRIDAY);
+    await onboard(page);
+    await go(page, '/progress');
+    const goal = page.getByTestId('dunk-goal');
+    await expect(goal.getByTestId('dunk-gap')).toContainText('Needs a touch');
+    await expect(goal.getByTestId('dunk-next-test')).toContainText('October 9');
+    await goal.getByTestId('input-standing-reach').fill('243');
+    await startSession(page);
+    await exerciseChip(page, 1);
+    await expect(page.getByTestId('exercise-name')).toHaveText('Approach Jump and Reach');
+    await page.getByTestId('input-reach').fill('298');
+    await page.getByTestId('input-reps').fill('1');
+    await page.getByTestId('complete-set').click();
+    await expect(page.getByTestId('logged-sets')).toContainText('298 cm');
+    await page.getByTestId('finish-workout').click();
+    await page.getByTestId('confirm-finish').click();
+    await expect(page.getByTestId('workout-summary')).toBeVisible();
+    await go(page, '/progress');
+    await expect(goal.getByTestId('dunk-best')).toContainText('298 cm');
+    await expect(goal.getByTestId('dunk-gap')).toContainText('27 cm');
+    await expect(goal.getByTestId('dunk-vertical')).toContainText('about 55 cm');
+    await expect(goal.getByTestId('milestone-rim')).not.toContainText('Done');
+    await goal.getByTestId('input-palm').check();
+    await expect(goal.getByTestId('dunk-gap')).toContainText('22 cm');
+  });
+
   test('About checks for a new version on request', async ({ page }) => {
     await onboard(page);
     await page.evaluate(async () => navigator.serviceWorker.ready);
@@ -213,7 +301,7 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3);
+    await exerciseChip(page, 6);
     await logStrengthSet(page, 50, 9);
     await page.getByTestId('finish-workout').click();
     await page.getByTestId('confirm-finish').click();
@@ -225,7 +313,7 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3);
+    await exerciseChip(page, 6);
     await logStrengthSet(page, 50, 8);
     await expect(page.getByTestId('rest-remaining')).toBeVisible();
     // Simulate the phone being locked for 70 seconds.
@@ -260,11 +348,11 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3);
+    await exerciseChip(page, 6);
     await logStrengthSet(page, 50, 8);
     await expect(page.getByTestId('restbar')).toBeVisible();
     const tones = await page.evaluate(() => (window as unknown as { __tones: number[] }).__tones);
-    // Hack squat rest is three minutes, so the first tone is queued about 180 seconds ahead.
+    // Leg press rest is three minutes, so the first tone is queued about 180 seconds ahead.
     expect(tones.length).toBeGreaterThanOrEqual(3);
     expect(tones[0]).toBeGreaterThan(170);
     expect(tones[0]).toBeLessThan(181);
@@ -274,16 +362,16 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page, { demo: true });
     await startSession(page);
-    await exerciseChip(page, 3);
+    await exerciseChip(page, 6);
     await expect(page.getByTestId('last-performance')).toContainText('kg ×');
     await expect(page.locator('.stepper-label .prev').first()).toContainText('Last');
   });
 
   test('a unilateral exercise logs left and right separately', async ({ page }) => {
-    await atTime(page, MONDAY);
+    await atTime(page, WEDNESDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 5);
+    await exerciseChip(page, 0);
     await expect(page.getByTestId('exercise-name')).toHaveText('Bulgarian Split Squat');
     await expect(page.getByTestId('current-set')).toContainText('Set 1 of 3, Left');
     await logStrengthSet(page, 14, 10);
@@ -297,7 +385,7 @@ test.describe('training', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await startSession(page);
-    await exerciseChip(page, 3);
+    await exerciseChip(page, 6);
     await logStrengthSet(page, 40, 8);
     await page.getByTestId('finish-workout').click();
     await page.getByTestId('confirm-finish').click();
@@ -309,9 +397,9 @@ test.describe('training', () => {
     await page.getByTestId('save-plan').click();
     await expect(page.getByTestId('plan-editor')).toContainText('Version 2');
     await page.goto(url);
-    await expect(page.getByTestId('plan-vs-actual')).toContainText('3 × 8 to 12');
+    await expect(page.getByTestId('plan-vs-actual')).toContainText('3 × 6 to 8');
     await go(page, '/train/day/1?date=2026-09-28');
-    await expect(page.getByTestId('train-day')).toContainText('4 × 8 to 12');
+    await expect(page.getByTestId('train-day')).toContainText('4 × 6 to 8');
   });
 
   test('every exercise shows instructions, a muscle diagram, and a visual offline', async ({ page }) => {
@@ -319,7 +407,7 @@ test.describe('training', () => {
     await go(page, '/library');
     await expect(page.getByTestId('library').locator('a.item').first()).toBeVisible();
     const links = await page.locator('[data-testid="library"] a.item').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).hash));
-    expect(links.length).toBe(91);
+    expect(links.length).toBe(99);
     for (const h of links) {
       await go(page, h.replace('#', ''));
       const d = page.getByTestId('exercise-detail');

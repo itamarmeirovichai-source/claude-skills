@@ -37,10 +37,12 @@ export async function ensureInitialized(): Promise<AppSettings> {
   }
   const t = now();
   const s = defaultSettings(t);
-  await db.transaction('rw', db.settings, db.profile, db.plans, db.migrations, async () => {
+  await db.transaction('rw', db.settings, db.profile, db.plans, db.migrations, db.kv, async () => {
     await db.settings.put(s);
     await db.profile.put(defaultProfile(t));
     await db.plans.put(baselinePlanRecord(t));
+    // The baseline plan is the first training block. Later blocks are applied as their dates come.
+    await db.kv.put({ id: KV.programPhase, value: 'foundation', updatedAt: t });
     await db.migrations.put({ id: 'init-1', createdAt: t, updatedAt: t, fromVersion: 0, toVersion: 1, appliedAt: t, note: 'Created database.' });
   });
   return s;
@@ -317,6 +319,11 @@ export const KV = {
   planUpdates: 'planUpdates',
   programPicks: 'programPicks',
   programDraft: 'programDraft',
+  /** The training block the active plan was built for. */
+  programPhase: 'programPhase',
+  /** A block that started and has not been acknowledged on Today yet. */
+  phaseNotice: 'phaseNotice',
+  dunkProfile: 'dunkProfile',
 } as const;
 
 /** Editable daily nutrition targets. Falls back to the seeded baseline. */

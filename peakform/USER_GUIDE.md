@@ -17,6 +17,8 @@ The timeline shows every planned item. During the Sabbath window, items fade and
 
 - **This week** lists the seven days, starting with today. Saturday is full rest.
 - The week alternates upper and lower body over six gym days. Each main session has one exercise for each muscle head, three work sets each, with a slow stretch at the bottom of every rep.
+- **The jump program** runs in training blocks until the end of January. Monday and Friday start with jump drills; do them first, at full effort, with full rest, and stop a drill when height or landing quality drops. Every landing counts as a jump, so in a week with a lot of volleyball, do fewer of the planned ones. A new block updates your plan on its Monday, and Today tells you what changed.
+- **Approach Jump and Reach** logs the height you touch in the Reach field. On test Fridays, do 3 to 5 touches with each takeoff after the warm up and log the best. Progress shows your best touch, how many centimetres are still missing to a dunk, and the milestones on the way. Add your standing reach there, and tick the box once you can hold a basketball in one hand.
 - **Choose your exercises** (in Train and More) is a short questionnaire. For each muscle head you pick from exercises that build it about equally, with a picture and **How to do it** for each. Muscles trained twice a week can take a second choice, so the two days differ. Only machines, cables, the Smith machine, and dumbbells are offered. Your answers from the questionnaire you filled in before 2.0 are already filled in, so a card on Today and Train can add them with one tap (**Add to my plan**), or show the week first. Saving builds your plan as a new version; history is kept, and you can change your choices at any time.
 - Open a day to see each exercise with sets, reps, rest, effort, and a front and back muscle diagram.
 - Effort says how close to failure a set goes. **To failure** means the last rep you can finish with clean form, never a cheated or grinding rep. Small machine and cable exercises go to failure on every set, big machine exercises on the last set, and dumbbell presses, lunges, and hinges stop one rep short. A new exercise stays two reps short for its first two sessions while you learn it.
@@ -63,9 +65,10 @@ Takes under a minute: morning weight, optional scale body fat, waist once a week
 
 ## Progress
 
+- **Dunk goal** shows your best approach touch, the centimetres still missing to a dunk (about 325 cm, or 320 cm if you can palm the ball), the milestones, your approach jump height once you add your standing reach, and the date of the next jump test. The milestone heights are rough coaching figures.
 - **Body weight** shows single mornings as dots and a seven day average line. The line needs at least four morning weights in a week.
 - **Waist**, **Scale body fat** (weekly trend only), **Sleep**, and **How you feel** show trends.
-- **Nutrition check** runs only on fourteen days of useful data. It never goes below 2,000 calories, never uses body fat, and always needs your confirmation.
+- **Nutrition check** runs only on fourteen days of useful data. It never goes below 2,000 calories, never uses body fat, suggests more food when weight falls faster than about 0.5 kg a week, and always needs your confirmation.
 - **Muscle coverage** shows direct and indirect sets per muscle, confirms upper back, calves, and forearms, and lists shoulder load across pressing, volleyball, swimming, and shoulder care.
 - **Exercise progress** lists each exercise's sessions and best clean set.
 

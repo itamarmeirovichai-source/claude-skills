@@ -1,6 +1,7 @@
 import type { LibraryExerciseId } from './exercises/ids';
 import { exercise } from './library';
 import type { PlanDay, PlanItem, SetTarget, Weekday } from './plan';
+import { PHASES, type DoseKey, type JumpDrill, type ProgramPhase } from './phases';
 
 // The training program, built from the athlete's own exercise choices.
 //
@@ -355,22 +356,27 @@ export const SLOT_BY_ID: Record<SlotId, ProgramSlot> = Object.fromEntries(PROGRA
 export interface SlotEntry {
   slot: SlotId;
   choice: 0 | 1;
+  /** Leg exercises take their sets, reps, and effort from the current training block. */
+  dose?: DoseKey;
 }
 
-/** Items that are not chosen, such as jumps and the Nordic curl. */
+/** Items that are not chosen, such as the warm up. */
 export type FixedEntry = { fixed: Omit<PlanItem, 'id' | 'session'> };
+
+/** The jump drills of the current training block. */
+export type JumpEntry = { jumps: 'mon' | 'monComplex' | 'fri' };
 
 export interface ProgramDay {
   weekday: Weekday;
   key: PlanDay['key'];
   title: string;
   short: string;
-  main: Array<SlotEntry | FixedEntry>;
+  main: Array<SlotEntry | FixedEntry | JumpEntry>;
 }
 
-const s = (slot: SlotId, choice: 0 | 1 = 0): SlotEntry => ({ slot, choice });
+const s = (slot: SlotId, choice: 0 | 1 = 0, dose?: DoseKey): SlotEntry => (dose ? { slot, choice, dose } : { slot, choice });
 const r = (min: number, max: number): SetTarget => ({ type: 'reps', min, max });
-const QUALITY_FIRST = 'Quality first. Stop the set when height, speed, landing control, or coordination drops.';
+const WARM_UP = { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30, notes: [] } as const;
 
 // Six gym days, upper and lower in turn, so every muscle is trained two or three times a week.
 // Big and demanding exercises come first while you are fresh; order itself does not change growth
@@ -389,17 +395,9 @@ export const PROGRAM_DAYS: ProgramDay[] = [
     key: 'mon',
     title: 'Lower A and Jumps',
     short: 'Lower A',
-    main: [
-      { fixed: { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30, notes: [] } },
-      { fixed: { exerciseId: 'volleyball-approach-jump', sets: 3, target: r(2, 2), restSec: 180, notes: [QUALITY_FIRST] } },
-      { fixed: { exerciseId: 'countermovement-jump', sets: 3, target: r(2, 2), restSec: 150, notes: [QUALITY_FIRST] } },
-      s('quads'),
-      s('hinge'),
-      s('glutes'),
-      s('adductors'),
-      s('calves'),
-      s('abs'),
-    ],
+    // Jumps first on fresh legs, then the heavy leg work. Monday's small leg exercises may go to
+    // failure, because the next jump day is four days away.
+    main: [{ fixed: { ...WARM_UP, notes: [] } }, { jumps: 'mon' }, s('quads', 0, 'heavy'), { jumps: 'monComplex' }, s('hinge', 0, 'hinge'), s('calves'), s('adductors'), s('abs')],
   },
   {
     weekday: 2,
@@ -413,7 +411,8 @@ export const PROGRAM_DAYS: ProgramDay[] = [
     key: 'wed',
     title: 'Lower B',
     short: 'Lower B',
-    main: [s('glutes', 1), s('hamstring-curl'), s('rectus-femoris'), s('glute-med'), s('calves', 1), s('abs', 1), s('obliques')],
+    // The lighter leg day: no failure, so Friday's jumps are done on fresh legs.
+    main: [s('glutes', 0, 'wedMain'), s('hamstring-curl', 0, 'wedMain'), s('rectus-femoris', 0, 'wedSmall'), s('glute-med', 0, 'wedSmall'), s('calves', 1, 'wedSmall'), s('abs', 1), s('obliques')],
   },
   {
     weekday: 4,
@@ -427,16 +426,8 @@ export const PROGRAM_DAYS: ProgramDay[] = [
     key: 'fri',
     title: 'Lower C and Swim',
     short: 'Lower C',
-    main: [
-      { fixed: { exerciseId: 'nordic-hamstring-curl', sets: 2, target: r(4, 6), restSec: 180, rir: 3, notes: ['First, while the hamstrings are fresh. Difficulty never increases automatically.'] } },
-      s('quads', 1),
-      s('hinge', 1),
-      s('hamstring-curl'),
-      s('rectus-femoris'),
-      s('glute-med', 1),
-      s('adductors', 1),
-      s('calves'),
-    ],
+    // The approach and the dunk first, then single leg strength. Every leg set stops short of failure.
+    main: [{ fixed: { ...WARM_UP, notes: [] } }, { jumps: 'fri' }, s('glutes', 1, 'friMain'), s('hamstring-curl', 0, 'friSmall'), s('glute-med', 1, 'friSmall')],
   },
 ];
 
@@ -540,26 +531,53 @@ export function effortFor(exerciseId: string, slot: ProgramSlot): Pick<PlanItem,
   }
 }
 
-/** The main session of one program day, with the athlete's choices filled in. */
-export function buildMainItems(day: ProgramDay, picks: Record<SlotId, LibraryExerciseId[]>): PlanItem[] {
-  return day.main.map((entry, i): PlanItem => {
-    if ('fixed' in entry) return { ...entry.fixed, id: `${day.key}-${i + 1}-${entry.fixed.exerciseId}`, session: 'main', notes: [...entry.fixed.notes] };
+function jumpItem(day: ProgramDay, n: number, d: JumpDrill): PlanItem {
+  const item: PlanItem = { id: `${day.key}-${n}-${d.exerciseId}`, exerciseId: d.exerciseId, session: 'main', sets: d.sets, target: r(d.reps, d.reps), restSec: d.restSec, notes: [...(d.notes ?? [])] };
+  if (d.per) item.per = d.per;
+  return item;
+}
+
+function jumpsOf(phase: ProgramPhase, which: JumpEntry['jumps']): JumpDrill[] {
+  return which === 'mon' ? phase.jumpsMon : which === 'monComplex' ? phase.complexMon : phase.jumpsFri;
+}
+
+/** The main session of one program day, with the athlete's choices and the training block filled in. */
+export function buildMainItems(day: ProgramDay, picks: Record<SlotId, LibraryExerciseId[]>, phase: ProgramPhase = PHASES[0]!): PlanItem[] {
+  const out: PlanItem[] = [];
+  for (const entry of day.main) {
+    const n = out.length + 1;
+    if ('fixed' in entry) {
+      out.push({ ...entry.fixed, id: `${day.key}-${n}-${entry.fixed.exerciseId}`, session: 'main', notes: [...entry.fixed.notes] });
+      continue;
+    }
+    if ('jumps' in entry) {
+      for (const d of jumpsOf(phase, entry.jumps)) out.push(jumpItem(day, out.length + 1, d));
+      continue;
+    }
     const slot = SLOT_BY_ID[entry.slot];
+    const dose = entry.dose ? phase.doses[entry.dose] : undefined;
     const exerciseId = pickFor(picks, entry);
     const ex = exercise(exerciseId);
     const hold = ex?.kind === 'hold';
+    const reps = dose?.reps ?? slot.reps;
+    const effort = effortFor(exerciseId, slot);
+    if (dose?.rirMin !== undefined && effort.rir !== undefined) {
+      effort.rir = Math.max(effort.rir, dose.rirMin);
+      delete effort.lastSetRir;
+    }
     const item: PlanItem = {
-      id: `${day.key}-${i + 1}-${exerciseId}`,
+      id: `${day.key}-${n}-${exerciseId}`,
       exerciseId,
       session: 'main',
-      sets: slot.sets,
-      target: hold ? { type: 'hold', seconds: slot.holdSeconds ?? 20 } : r(slot.reps[0], slot.reps[1]),
-      restSec: slot.restSec,
+      sets: dose?.sets ?? slot.sets,
+      target: hold ? { type: 'hold', seconds: slot.holdSeconds ?? 20 } : r(reps[0], reps[1]),
+      restSec: dose?.restSec ?? slot.restSec,
       notes: [],
-      ...effortFor(exerciseId, slot),
+      ...effort,
     };
     if (ex?.logSides) item.per = 'side';
     if (ex?.laterality === 'alternating') item.notes.push('Count the reps for each leg.');
-    return item;
-  });
+    out.push(item);
+  }
+  return out;
 }

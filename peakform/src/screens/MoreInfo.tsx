@@ -152,11 +152,14 @@ export function SafetyScreen() {
           <ul className="bullets">
             <li>Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep, and stop at once for pain.</li>
             <li>Only machines, cables, and the Smith machine with safety stops go to failure. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.</li>
+            <li>During the jump program, leg sets stop short of failure on Wednesday and Friday, and only the small leg exercises on Monday may go to failure, so jumps are done on fresh legs.</li>
+            <li>Count every landing as a jump, including volleyball. Pain below the kneecap, at the bump under the knee, or at the heel that lasts into the next morning means fewer jumps and telling a parent.</li>
+            <li>Step down from boxes. Step off the box for depth jumps, never jump off it, and start at 20 to 30 cm.</li>
             <li>A new exercise stays two reps short for its first two sessions while you learn it.</li>
             <li>No leg sets to failure in the 48 hours before a volleyball match.</li>
             <li>Warm up sets never count as work sets.</li>
             <li>Stop jumps and sprints as soon as height, speed, landing, or coordination drops.</li>
-            <li>Load goes up only with good form on every work set: when sets go to failure, once the first set reaches the top of its range. Jump, sprint, Nordic curl, and swim volume never increase automatically.</li>
+            <li>Load goes up only with good form on every work set: when sets go to failure, once the first set reaches the top of its range. Jump, sprint, Nordic curl, and swim volume never increase automatically; jump drills change only with the planned training blocks.</li>
             <li>No one repetition maximum tests. Ask a gym instructor to check your technique on anything new.</li>
           </ul>
         </Section>
@@ -164,7 +167,7 @@ export function SafetyScreen() {
           <ul className="bullets">
             <li>Never fewer than 2,000 calories a day in the plan, and never fewer than 130 g carbohydrate without a clinician.</li>
             <li>No water cutting, fasting with hard training, carbohydrate elimination, punishment cardio, or exercise to make up for food.</li>
-            <li>If weight drops faster than about 0.7 kg a week after the first week, or performance, concentration, sleep, mood, or recovery drop, add 150 to 200 calories and talk with a parent.</li>
+            <li>If weight drops faster than about 0.5 kg a week after the first week, or performance, concentration, sleep, mood, or recovery drop, add 150 to 200 calories and talk with a parent.</li>
             <li>No weight, body fat, muscle, or date based result is promised. Growth, water, and measurement error make precise predictions impossible.</li>
           </ul>
         </Section>

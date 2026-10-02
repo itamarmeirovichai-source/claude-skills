@@ -1,13 +1,13 @@
 {
-  "generated": "2026-09-30T21:21:14.146Z",
+  "generated": "2026-10-02T22:08:22.609Z",
   "counts": {
-    "exercises": 91,
+    "exercises": 99,
     "muscles": 31,
     "planItems": 74,
     "mealTemplates": 15,
     "recipes": 10,
     "foods": 45,
-    "sources": 76,
+    "sources": 97,
     "media": 35
   },
   "exercises": [
@@ -2768,6 +2768,238 @@
         "Low to high cable woodchop"
       ],
       "media": []
+    },
+    {
+      "id": "pogo-hop",
+      "name": "Pogo Hop",
+      "kind": "jump",
+      "primary": [
+        "gastrocnemius",
+        "soleus"
+      ],
+      "secondary": [
+        "tibialis_anterior",
+        "quads"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Easy Jump Rope",
+        "Pogo hops on flat grass",
+        "Standing Calf Raise"
+      ],
+      "media": []
+    },
+    {
+      "id": "snap-down-stick",
+      "name": "Snap Down and Stick",
+      "kind": "jump",
+      "primary": [
+        "quads",
+        "glute_max"
+      ],
+      "secondary": [
+        "hamstrings",
+        "obliques_core"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Slow drop to athletic stance",
+        "Snap down and stick on flat grass",
+        "Countermovement Jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "box-jump",
+      "name": "Box Jump",
+      "kind": "jump",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "gastrocnemius",
+        "soleus",
+        "hamstrings"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Snap Down and Stick",
+        "Countermovement Jump",
+        "Low box jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "hurdle-hop",
+      "name": "Hurdle Hop",
+      "kind": "jump",
+      "primary": [
+        "gastrocnemius",
+        "soleus",
+        "quads"
+      ],
+      "secondary": [
+        "glute_max",
+        "hip_flexors"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Pogo Hop",
+        "Hops over floor lines",
+        "Snap Down and Stick"
+      ],
+      "media": []
+    },
+    {
+      "id": "broad-jump",
+      "name": "Standing Broad Jump",
+      "kind": "jump",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "hamstrings",
+        "gastrocnemius",
+        "soleus"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Snap Down and Stick",
+        "Countermovement Jump",
+        "Box Jump"
+      ],
+      "media": []
+    },
+    {
+      "id": "depth-jump",
+      "name": "Depth Jump",
+      "kind": "jump",
+      "primary": [
+        "quads",
+        "glute_max",
+        "gastrocnemius",
+        "soleus"
+      ],
+      "secondary": [
+        "hamstrings"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Snap Down and Stick",
+        "Pogo Hop",
+        "Depth drop and stick"
+      ],
+      "media": []
+    },
+    {
+      "id": "single-leg-hop",
+      "name": "Single Leg Hop",
+      "kind": "jump",
+      "primary": [
+        "gastrocnemius",
+        "soleus",
+        "quads"
+      ],
+      "secondary": [
+        "glute_med",
+        "glute_max"
+      ],
+      "pattern": "jump",
+      "laterality": "unilateral",
+      "logSides": true,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Pogo Hop",
+        "Single Leg Dumbbell Calf Raise",
+        "Bulgarian Split Squat"
+      ],
+      "media": []
+    },
+    {
+      "id": "approach-touch-jump",
+      "name": "Approach Jump and Reach",
+      "kind": "jump",
+      "primary": [
+        "glute_max",
+        "quads",
+        "gastrocnemius"
+      ],
+      "secondary": [
+        "soleus",
+        "hamstrings",
+        "obliques_core",
+        "delt_anterior"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Countermovement Jump",
+        "Volleyball Approach Jump",
+        "Volleyball Approach Footwork"
+      ],
+      "media": []
     }
   ],
   "plan": [
@@ -3148,112 +3380,138 @@
           "notes": []
         },
         {
-          "id": "mon-2-volleyball-approach-jump",
+          "id": "mon-2-pogo-hop",
           "session": "main",
-          "exercise": "Volleyball Approach Jump",
-          "sets": 3,
+          "exercise": "Pogo Hop",
+          "sets": 2,
           "target": {
             "type": "reps",
-            "min": 2,
-            "max": 2
+            "min": 10,
+            "max": 10
           },
           "per": null,
-          "restSec": 180,
+          "restSec": 60,
           "rir": null,
           "tempo": null,
           "rpe": null,
           "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+            "Quick, light contacts. Part warm up, part ankle spring."
           ]
         },
         {
-          "id": "mon-3-countermovement-jump",
+          "id": "mon-3-snap-down-stick",
           "session": "main",
-          "exercise": "Countermovement Jump",
-          "sets": 3,
+          "exercise": "Snap Down and Stick",
+          "sets": 2,
           "target": {
             "type": "reps",
-            "min": 2,
-            "max": 2
+            "min": 5,
+            "max": 5
           },
           "per": null,
-          "restSec": 150,
+          "restSec": 60,
           "rir": null,
           "tempo": null,
           "rpe": null,
           "notes": [
-            "Quality first. Stop the set when height, speed, landing control, or coordination drops."
+            "Freeze each landing for 2 seconds."
           ]
         },
         {
-          "id": "mon-4-leg-press",
+          "id": "mon-4-box-jump",
+          "session": "main",
+          "exercise": "Box Jump",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 3
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Step down from the box. Do not jump down.",
+            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops."
+          ]
+        },
+        {
+          "id": "mon-5-hurdle-hop",
+          "session": "main",
+          "exercise": "Hurdle Hop",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 4,
+            "max": 4
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Hurdles or cones 15 to 30 cm.",
+            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops."
+          ]
+        },
+        {
+          "id": "mon-6-broad-jump",
+          "session": "main",
+          "exercise": "Standing Broad Jump",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 3,
+            "max": 3
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Stick every landing."
+          ]
+        },
+        {
+          "id": "mon-7-leg-press",
           "session": "main",
           "exercise": "Leg Press",
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 8,
-            "max": 12
+            "min": 6,
+            "max": 8
           },
           "per": null,
           "restSec": 180,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "mon-5-dumbbell-romanian-deadlift",
+          "id": "mon-8-dumbbell-romanian-deadlift",
           "session": "main",
           "exercise": "Dumbbell Romanian Deadlift",
           "sets": 3,
           "target": {
             "type": "reps",
             "min": 8,
-            "max": 12
+            "max": 10
           },
           "per": null,
           "restSec": 150,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "mon-6-bulgarian-split-squat",
-          "session": "main",
-          "exercise": "Bulgarian Split Squat",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": "side",
-          "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "mon-7-copenhagen-plank",
-          "session": "main",
-          "exercise": "Copenhagen Plank",
-          "sets": 3,
-          "target": {
-            "type": "hold",
-            "seconds": 25
-          },
-          "per": "side",
-          "restSec": 75,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "mon-8-leg-press-calf-raise",
+          "id": "mon-9-leg-press-calf-raise",
           "session": "main",
           "exercise": "Leg Press Calf Raise",
           "sets": 3,
@@ -3270,7 +3528,23 @@
           "notes": []
         },
         {
-          "id": "mon-9-cable-crunch",
+          "id": "mon-10-copenhagen-plank",
+          "session": "main",
+          "exercise": "Copenhagen Plank",
+          "sets": 3,
+          "target": {
+            "type": "hold",
+            "seconds": 25
+          },
+          "per": "side",
+          "restSec": 75,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-11-cable-crunch",
           "session": "main",
           "exercise": "Kneeling Cable Crunch",
           "sets": 3,
@@ -3631,11 +3905,11 @@
           "target": {
             "type": "reps",
             "min": 8,
-            "max": 12
+            "max": 10
           },
           "per": "side",
           "restSec": 150,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3647,12 +3921,12 @@
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 10,
-            "max": 15
+            "min": 8,
+            "max": 10
           },
           "per": null,
           "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3661,7 +3935,7 @@
           "id": "wed-3-leg-extension",
           "session": "main",
           "exercise": "Leg Extension",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 10,
@@ -3669,7 +3943,7 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 0,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3678,7 +3952,7 @@
           "id": "wed-4-hip-abduction-machine",
           "session": "main",
           "exercise": "Seated Hip Abduction Machine",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 12,
@@ -3686,7 +3960,7 @@
           },
           "per": null,
           "restSec": 75,
-          "rir": 0,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3695,7 +3969,7 @@
           "id": "wed-5-leg-press-calf-raise",
           "session": "main",
           "exercise": "Leg Press Calf Raise",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 10,
@@ -3703,7 +3977,7 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 0,
+          "rir": 1,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -4060,63 +4334,84 @@
           "notes": []
         },
         {
-          "id": "fri-1-nordic-hamstring-curl",
+          "id": "fri-1-dynamic-volleyball-warm-up",
           "session": "main",
-          "exercise": "Nordic Hamstring Curl",
-          "sets": 2,
+          "exercise": "Dynamic Volleyball Warm Up",
+          "sets": 1,
           "target": {
-            "type": "reps",
-            "min": 4,
-            "max": 6
+            "type": "duration",
+            "totalMin": 8
           },
           "per": null,
-          "restSec": 180,
-          "rir": 3,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "fri-2-approach-touch-jump",
+          "session": "main",
+          "exercise": "Approach Jump and Reach",
+          "sets": 6,
+          "target": {
+            "type": "reps",
+            "min": 1,
+            "max": 1
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": null,
           "tempo": null,
           "rpe": null,
           "notes": [
-            "First, while the hamstrings are fresh. Difficulty never increases automatically."
+            "First 2 or 3 slow walk throughs of the last two steps, then 3 or 4 run ups at about 80 percent.",
+            "Alternate two foot and one foot takeoffs to find the one that touches higher.",
+            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops.",
+            "Log the height you touch in Reach. The rim is 305 cm."
           ]
         },
         {
-          "id": "fri-2-leg-press",
+          "id": "fri-3-single-leg-hop",
           "session": "main",
-          "exercise": "Leg Press",
-          "sets": 3,
+          "exercise": "Single Leg Hop",
+          "sets": 2,
           "target": {
             "type": "reps",
-            "min": 8,
-            "max": 12
+            "min": 5,
+            "max": 5
           },
-          "per": null,
-          "restSec": 180,
-          "rir": 1,
+          "per": "side",
+          "restSec": 60,
+          "rir": null,
           "tempo": null,
           "rpe": null,
-          "notes": []
+          "notes": [
+            "Low, quick hops in place."
+          ]
         },
         {
-          "id": "fri-3-dumbbell-romanian-deadlift",
+          "id": "fri-4-bulgarian-split-squat",
           "session": "main",
-          "exercise": "Dumbbell Romanian Deadlift",
+          "exercise": "Bulgarian Split Squat",
           "sets": 3,
           "target": {
             "type": "reps",
-            "min": 8,
-            "max": 12
+            "min": 6,
+            "max": 8
           },
-          "per": null,
+          "per": "side",
           "restSec": 150,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "fri-4-seated-leg-curl",
+          "id": "fri-5-seated-leg-curl",
           "session": "main",
           "exercise": "Seated Leg Curl",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 10,
@@ -4124,24 +4419,7 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-5-leg-extension",
-          "session": "main",
-          "exercise": "Leg Extension",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -4150,7 +4428,7 @@
           "id": "fri-6-hip-abduction-machine",
           "session": "main",
           "exercise": "Seated Hip Abduction Machine",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 12,
@@ -4158,40 +4436,7 @@
           },
           "per": null,
           "restSec": 75,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-7-copenhagen-plank",
-          "session": "main",
-          "exercise": "Copenhagen Plank",
-          "sets": 3,
-          "target": {
-            "type": "hold",
-            "seconds": 25
-          },
-          "per": "side",
-          "restSec": 75,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-8-leg-press-calf-raise",
-          "session": "main",
-          "exercise": "Leg Press Calf Raise",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -4274,7 +4519,7 @@
         "present": true,
         "directSets": 50,
         "indirectSets": 39,
-        "exposures": 5,
+        "exposures": 8,
         "exercises": [
           "Cable External Rotation",
           "Wide Grip Lat Pulldown",
@@ -4295,18 +4540,22 @@
         "key": "calves",
         "label": "Calves",
         "present": true,
-        "directSets": 9,
-        "indirectSets": 10.5,
-        "exposures": 26,
+        "directSets": 5,
+        "indirectSets": 8.5,
+        "exposures": 36,
         "exercises": [
           "Easy Jump Rope",
           "Shadow Passing Footwork",
           "Blocking Footwork, No Jump",
           "Dynamic Volleyball Warm Up",
-          "Volleyball Approach Jump",
-          "Countermovement Jump",
+          "Pogo Hop",
+          "Box Jump",
+          "Hurdle Hop",
+          "Standing Broad Jump",
+          "Leg Press Calf Raise",
           "Bulgarian Split Squat",
-          "Leg Press Calf Raise"
+          "Approach Jump and Reach",
+          "Single Leg Hop"
         ]
       },
       {
@@ -4314,7 +4563,7 @@
         "label": "Forearms",
         "present": true,
         "directSets": 9,
-        "indirectSets": 19.5,
+        "indirectSets": 18,
         "exposures": 0,
         "exercises": [
           "Incline Dumbbell Curl",
@@ -4347,7 +4596,7 @@
         "muscle": "delt_anterior",
         "direct": 6,
         "indirect": 3,
-        "exposures": 4
+        "exposures": 5
       },
       {
         "muscle": "delt_lateral",
@@ -4359,13 +4608,13 @@
         "muscle": "delt_posterior",
         "direct": 10,
         "indirect": 8,
-        "exposures": 1
+        "exposures": 2
       },
       {
         "muscle": "serratus_anterior",
         "direct": 0,
         "indirect": 0,
-        "exposures": 1
+        "exposures": 2
       },
       {
         "muscle": "biceps",
@@ -4394,7 +4643,7 @@
       {
         "muscle": "forearm_flexors",
         "direct": 3,
-        "indirect": 12,
+        "indirect": 10.5,
         "exposures": 0
       },
       {
@@ -4411,15 +4660,15 @@
       },
       {
         "muscle": "obliques_core",
-        "direct": 17,
-        "indirect": 10.5,
-        "exposures": 17
+        "direct": 14,
+        "indirect": 9,
+        "exposures": 18
       },
       {
         "muscle": "hip_flexors",
         "direct": 0,
         "indirect": 4,
-        "exposures": 3
+        "exposures": 5
       },
       {
         "muscle": "traps_upper",
@@ -4431,7 +4680,7 @@
         "muscle": "traps_middle",
         "direct": 9,
         "indirect": 9.5,
-        "exposures": 1
+        "exposures": 2
       },
       {
         "muscle": "traps_lower",
@@ -4443,7 +4692,7 @@
         "muscle": "rhomboids",
         "direct": 6,
         "indirect": 6.5,
-        "exposures": 1
+        "exposures": 2
       },
       {
         "muscle": "lats",
@@ -4461,61 +4710,61 @@
         "muscle": "rotator_cuff",
         "direct": 13,
         "indirect": 8,
-        "exposures": 3
+        "exposures": 4
       },
       {
         "muscle": "erectors",
         "direct": 0,
-        "indirect": 6.5,
+        "indirect": 5,
         "exposures": 0
       },
       {
         "muscle": "glute_max",
-        "direct": 18,
-        "indirect": 3,
-        "exposures": 15
+        "direct": 12,
+        "indirect": 2,
+        "exposures": 20
       },
       {
         "muscle": "glute_med",
-        "direct": 6,
-        "indirect": 6,
-        "exposures": 7
+        "direct": 4,
+        "indirect": 4.5,
+        "exposures": 9
       },
       {
         "muscle": "adductors",
-        "direct": 6,
-        "indirect": 9,
-        "exposures": 7
+        "direct": 3,
+        "indirect": 6,
+        "exposures": 8
       },
       {
         "muscle": "quads",
-        "direct": 18,
+        "direct": 11,
         "indirect": 0,
-        "exposures": 17
+        "exposures": 23
       },
       {
         "muscle": "hamstrings",
-        "direct": 14,
-        "indirect": 6,
-        "exposures": 3
+        "direct": 8,
+        "indirect": 4.5,
+        "exposures": 6
       },
       {
         "muscle": "gastrocnemius",
-        "direct": 9,
+        "direct": 5,
         "indirect": 3,
-        "exposures": 15
+        "exposures": 20
       },
       {
         "muscle": "soleus",
         "direct": 0,
-        "indirect": 7.5,
-        "exposures": 11
+        "indirect": 5.5,
+        "exposures": 16
       },
       {
         "muscle": "tibialis_anterior",
         "direct": 2,
         "indirect": 0,
-        "exposures": 6
+        "exposures": 7
       }
     ],
     "shoulderNotes": []
@@ -6195,6 +6444,153 @@
       "url": "https://world.openfoodfacts.org/terms-of-use",
       "access": "search-snippet",
       "topic": "media"
+    },
+    {
+      "id": "ramirez-campillo-2023-plyo-maturity",
+      "title": "Plyometric-Jump Training Effects on Physical Fitness and Sport-Specific Performance According to Maturity: A Systematic Review with Meta-analysis",
+      "url": "https://sportsmedicine-open.springeropen.com/articles/10.1186/s40798-023-00568-6",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "moran-2017-youth-cmj-maturity",
+      "title": "Age-related variation in male youth athletes' countermovement jump after plyometric training: a meta-analysis",
+      "url": "https://pure.hartpury.ac.uk/en/publications/age-related-variation-in-male-youth-athletes-countermovement-jump/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "saez-de-villarreal-2009-plyo-dose",
+      "title": "Determining variables of plyometric training for improving vertical jump height performance: a meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19197203/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "bedoya-2015-youth-plyo-volume",
+      "title": "Plyometric training effects on athletic performance in youth soccer athletes: a systematic review",
+      "url": "https://lida.sport-iat.de/ta/Record/4035788?lng=en",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "lloyd-2014-youth-consensus",
+      "title": "Position statement on youth resistance training: the 2014 International Consensus",
+      "url": "https://bjsm.bmj.com/content/48/7/498",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "ma-2025-vertical-jump-programs",
+      "title": "Effects of Physical Training Programs on Healthy Athletes' Vertical Jump Height: A Systematic Review and Meta-Analysis",
+      "url": "https://www.jssm.org/jssm-24-236.xml-abst",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "pareja-blanco-2017-velocity-loss",
+      "title": "Effects of velocity loss during resistance training on athletic performance, strength gains and muscle adaptations",
+      "url": "https://www.uloyola.es/en/research-transfer/publications/effects-of-velocity-loss-during-resistance-training-on-athletic-performance-strength-gains-and-muscle-adaptations-article",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "moran-navarro-2017-failure-recovery",
+      "title": "Time course of recovery following resistance training leading or not to failure",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28965198/",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "cmj-vs-drop-jump-2020-volleyball",
+      "title": "Countermovement Jump Training Is More Effective Than Drop Jump Training in Enhancing Jump Height in Non-professional Female Volleyball Players",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7091110/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "fuchs-2020-spike-technique",
+      "title": "Effect of differential training on female volleyball spike-jump technique and performance",
+      "url": "https://www.mdpi.com/2076-3417/10/17/5921",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "vint-1996-one-two-foot",
+      "title": "Differences between One-Foot and Two-Foot Vertical Jump Performances",
+      "url": "https://researchgate.net/profile/Richard-Hinrichs-2/publication/288544133_Differences_between_One-Foot_and_Two-Foot_Vertical_Jump_Performances/links/591b901c4585153b614fa759/Differences-between-One-Foot-and-Two-Foot-Vertical-Jump-Performances.pdf",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "vaverka-2016-arm-swing",
+      "title": "Effect of an Arm Swing on Countermovement Vertical Jump Performance in Elite Volleyball Players",
+      "url": "https://johk.pl/?p=3938",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "dunk-height-calculators",
+      "title": "Dunk calculators: how high above the rim the hand must reach",
+      "url": "https://www.omnicalculator.com/sports/dunk",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "barlow-2007-expert-committee",
+      "title": "Expert committee recommendations regarding the prevention, assessment, and treatment of child and adolescent overweight and obesity: summary report",
+      "url": "https://www.citedrive.com/en/discovery/expert-committee-recommendations-regarding-the-prevention-assessment-and-treatment-of-child-and-adolescent-overweight-and-obesity-summary-report/",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "desbrow-2014-adolescent-athlete",
+      "title": "Sports Dietitians Australia position statement: sports nutrition for the adolescent athlete",
+      "url": "https://sportsdietitians.com.au/wp-content/uploads/2020/07/15432742-International-Journal-of-Sport-Nutrition-and-Exercise-Metabolism-Sports-Dietitians-Australia-Position-Statement_-Sports-Nutrition-for-the-Adolescent-Athlete.pdf",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "murphy-2022-deficit-lean-mass",
+      "title": "Energy deficiency impairs resistance training gains in lean mass but not strength: A meta-analysis and meta-regression",
+      "url": "https://portal.fis.tum.de/en/publications/energy-deficiency-impairs-resistance-training-gains-in-lean-mass-/",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "mountjoy-2023-reds",
+      "title": "2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37752011/",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "smart-scale-accuracy-2021",
+      "title": "Accuracy of Smart Scales on Weight and Body Composition: Observational Study",
+      "url": "https://mhealth.jmir.org/2021/4/e22487",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "bahr-2014-jump-frequency",
+      "title": "Jump frequency may contribute to risk of jumper's knee: a study of interindividual and sex differences in a total of 11,943 jumps video recorded during training and matches in young elite volleyball players",
+      "url": "https://bjsm.bmj.com/content/48/17/1322",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "visnes-2013-jumpers-knee",
+      "title": "Training volume and body composition as risk factors for developing jumper's knee among young elite volleyball players",
+      "url": "https://lida.sport-iat.de/ta/Record/4030037?lng=en",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "rathleff-2020-osgood-schlatter",
+      "title": "Activity Modification and Knee Strengthening for Osgood-Schlatter Disease: A Prospective Cohort Study",
+      "url": "https://vbn.aau.dk/ws/files/330945567/2325967120911106.pdf",
+      "access": "search-snippet",
+      "topic": "youth-training"
     }
   ],
   "claimReviews": [

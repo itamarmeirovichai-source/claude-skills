@@ -4,6 +4,7 @@ import { db } from '../db/db';
 import { currentTarget, decideSuggestion, deleteSet, lastExposure, logSet, priorExposureCount, restoreSet, updateExerciseSession } from '../db/repo';
 import type { ExerciseSession, SetLog, WorkoutSession } from '../db/records';
 import { exercise, sideLabel, sidesFor, equipmentType, allExercises } from '../content/library';
+import { TOUCH_EXERCISES } from '../domain/dunk';
 import type { PlanItem } from '../content/plan';
 import { useSettings, useTimer } from '../ui/state';
 import { Note, Seg, Sheet, Stepper, useToast } from '../ui/components';
@@ -57,6 +58,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const toast = useToast();
   const timer = useTimer();
   const ex = exercise(es.exerciseId);
+  const touchJump = (TOUCH_EXERCISES as readonly string[]).includes(es.exerciseId);
   const sides = sidesFor(item, ex);
   const kind = ex?.kind ?? 'strength';
   const [extraSets, setExtraSets] = useState(0);
@@ -356,6 +358,12 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
                   <Seg label="Quality" value={draft.quality} onChange={(v) => set({ quality: v })} options={[1, 2, 3, 4, 5].map((q) => ({ value: q, label: String(q) }))} />
                   <p className="hint">5 means your best height, speed, and control today.</p>
                 </div>
+                {touchJump && (
+                  <div>
+                    <Stepper label="Reach" unit="cm" value={draft.reachCm} onChange={(v) => set({ reachCm: v })} max={400} prev={prev?.reachCm ? `${prev.reachCm}` : undefined} testId="input-reach" />
+                    <p className="hint">The highest point your fingertips touched. The rim is 305 cm.</p>
+                  </div>
+                )}
                 {kind === 'jump' && (
                   <div>
                     <div className="stepper-label">
@@ -435,11 +443,11 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
                 </div>
               )}
             </div>
-            {QUALITY.includes(kind) && (kind === 'jump' || kind === 'sprint') && (
+            {QUALITY.includes(kind) && ((kind === 'jump' && !touchJump) || kind === 'sprint') && (
                 <details className="disclosure">
                     <summary>Optional measures</summary>
                     <div className="set-inputs">
-                      {kind === 'jump' && <Stepper label="Reach" unit="cm" value={draft.reachCm} onChange={(v) => set({ reachCm: v })} max={400} />}
+                      {kind === 'jump' && !touchJump && <Stepper label="Reach" unit="cm" value={draft.reachCm} onChange={(v) => set({ reachCm: v })} max={400} />}
                       {kind === 'sprint' && <Stepper label="Time" unit="s" value={draft.timeSec} onChange={(v) => set({ timeSec: v })} step={0.01} decimals={2} max={60} />}
                     </div>
                   </details>

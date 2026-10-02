@@ -10,3 +10,7 @@ export const EFFORT_RULE: Record<FailurePolicy, string> = {
 
 export const PAIN_RULE =
   'Pain of 4 out of 10 or higher, or pain that worsens or changes your technique, pauses this exercise. Report it to a parent, coach, or clinician.';
+
+/** Jumps, hops, and bounds are power work: every rep at full speed with a quiet landing. */
+export const QUALITY_RULE =
+  'Quality first, never to failure. End the set as soon as jump height, speed, or landing control drops, even if reps are left.';

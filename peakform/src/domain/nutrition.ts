@@ -135,7 +135,8 @@ export interface AdjustmentResult {
   involveGuardian: boolean;
 }
 
-export const FAST_LOSS_KG_PER_WEEK = 0.7;
+/** Above this the plan adds food. Kept low for a growing athlete who also needs energy for jumping. */
+export const FAST_LOSS_KG_PER_WEEK = 0.5;
 export const STABLE_WEIGHT_KG = 0.25;
 export const STABLE_WAIST_CM = 0.5;
 export const MIN_FOOD_DAYS = 10;
