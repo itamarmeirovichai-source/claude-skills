@@ -3,6 +3,10 @@ import { expect, type Page } from '@playwright/test';
 /** Monday 28 September 2026, 16:40 in Jerusalem: a Lower A day, just after training starts. */
 export const MONDAY = new Date('2026-09-28T16:40:00+03:00');
 export const SATURDAY_MORNING = new Date('2026-10-03T09:00:00+03:00');
+/** Wednesday 30 September 2026, 16:40: Lower B, the lighter leg day. */
+export const WEDNESDAY = new Date('2026-09-30T16:40:00+03:00');
+/** Friday 2 October 2026, 16:40: jumps, Lower C, and the swim. */
+export const FRIDAY = new Date('2026-10-02T16:40:00+03:00');
 
 export async function atTime(page: Page, when: Date) {
   await page.clock.install({ time: when });

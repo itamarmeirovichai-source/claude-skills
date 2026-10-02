@@ -291,6 +291,188 @@ PLoS ONE (Baz-Valle and colleagues). Source date: 2019. Access: search snippet o
 - Product decision: The athlete picks a favourite exercise for each muscle head, with an optional second choice for variety, and can change picks later.
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
 
+## Jump program and dunk goal (2.1.0)
+
+These sources shaped the jump program added in 2.1.0, after the user set two goals for the end of January 2027: dunk a basketball on a regulation rim and lose body fat. They were searched on 2026-10-02. Direct page access was blocked again, so every record is search snippet only, and many trials were run on adults or older teens.
+
+What changed as a result:
+
+- Jumps. Monday and Friday start with jump drills on fresh legs, in training blocks from 5 October 2026 to 31 January 2027: landing and technique, strength and power, reactive and specific, and dunk practice, with a lighter week before tests and a taper at the end. Sessions start near 50 foot contacts and stay under about 100. The drills mix countermovement style jumps, depth jumps, hurdle hops, broad jumps, single leg hops, and approach jumps, because mixed programs beat single drills and approach technique improves within weeks. No jump is loaded with extra weight.
+- Legs. Strength and jumps together beat either alone, and sets stopped well short of failure transferred better to jumping and recovered faster. So during the program legs train heavy but stop two or three reps short, Wednesday is the lighter leg day, and only the small leg exercises on Monday may go to failure. Weekly direct leg sets drop by about a third. Upper body training does not change.
+- Tests. Standing reach and the best approach touch are tested on Fridays at the end of blocks, and the dunk goal on Progress shows the gap to the rim. The heights for grabbing the rim and dunking come from coaching calculators, not research, so the app says so.
+- Body fat. Pediatric and adolescent sports nutrition guidance favours slow loss or maintenance for growing athletes, and a deficit of about 500 kcal a day blocked lean gains in adults. A safe rate means only a gradual drop in body fat by the end of January, so the app sets no body fat target. PeakForm now adds food when weight falls faster than about 0.5 kg a week, down from 0.7, and still never uses smart scale body fat for decisions.
+- Injury. Jump volume, volleyball hours, growth spurts, and short sleep raise the risk of jumper's knee, Osgood-Schlatter disease, and heel pain. The app asks for volleyball jumps to be counted, fewer planned jumps in heavy volleyball weeks, and fewer jumps plus a parent's involvement when knee or heel pain lasts into the next morning.
+
+The dunk itself is uncertain, and how far off it is depends on the athlete's measured touch height, which stays on the phone. A plausible gain over 17 weeks from training, technique, slow fat loss, and growth is about 8 to 19 cm, while a dunk without palming the ball needs about 325 cm. Touching and grabbing the rim and dunking a smaller ball are realistic January milestones, and a full dunk is more likely later in 2027.
+
+### [Plyometric-Jump Training Effects on Physical Fitness and Sport-Specific Performance According to Maturity: A Systematic Review with Meta-analysis](https://sportsmedicine-open.springeropen.com/articles/10.1186/s40798-023-00568-6)
+
+Sports Medicine - Open (Ramirez-Campillo and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Youth before and after peak height velocity gained small to moderate improvements from jump training over 4 to 36 weeks at 1 to 3 sessions a week. The minimal effective dose was about 4 weeks, 8 sessions, and 92 jumps a week.
+- Product decision: The jump program runs two jump sessions a week for 17 weeks, well above the minimal dose.
+- Uncertainty: Search snippets only. Maturity groups were pooled across sports.
+
+### [Age-related variation in male youth athletes' countermovement jump after plyometric training: a meta-analysis](https://pure.hartpury.ac.uk/en/publications/age-related-variation-in-male-youth-athletes-countermovement-jump/)
+
+Journal of Strength and Conditioning Research (Moran and colleagues). Source date: 2017. Access: search snippet only.
+
+- Conclusion: Countermovement jump gains were smaller around the growth spurt (ages about 13 to 16, effect size 0.47) than before or after it (about 0.9 to 1.0).
+- Product decision: The dunk estimates in the app are kept modest, and progress is judged by tests every four weeks rather than promised.
+- Uncertainty: Search snippets only. Maturity was estimated from age bands.
+
+### [Determining variables of plyometric training for improving vertical jump height performance: a meta-analysis](https://pubmed.ncbi.nlm.nih.gov/19197203/)
+
+Journal of Strength and Conditioning Research 23(2):495-506 (Saez de Villarreal and colleagues). Source date: 2009. Access: search snippet only.
+
+- Conclusion: Programs longer than 10 weeks with more than 20 sessions gave the largest gains. Mixing jump types beat a single type, and adding external weight to jumps gave no extra benefit.
+- Product decision: Each jump session mixes several drills, the program lasts 17 weeks, and no jump is done with added weight.
+- Uncertainty: Mostly adult studies. Search snippets only.
+
+### [Plyometric training effects on athletic performance in youth soccer athletes: a systematic review](https://lida.sport-iat.de/ta/Record/4035788?lng=en)
+
+Journal of Strength and Conditioning Research (Bedoya and colleagues). Source date: 2015. Access: search snippet only.
+
+- Conclusion: For youth, two sessions a week with about 72 hours between them worked. Sessions should start at 50 to 60 foot contacts and rise to no more than 80 to 120, to prevent overuse injuries.
+- Product decision: Jump days are Monday and Friday, and sessions start near 50 contacts and stay under about 100.
+- Uncertainty: Soccer players. Search snippets only.
+
+### [Position statement on youth resistance training: the 2014 International Consensus](https://bjsm.bmj.com/content/48/7/498)
+
+British Journal of Sports Medicine 48(7):498-505 (Lloyd and colleagues). Source date: 2014. Access: search snippet only.
+
+- Conclusion: Youth resistance and power training is safe and effective with qualified supervision and sound technique. Rest of 2 to 3 minutes may be needed between sets of high intensity power work.
+- Product decision: Jump drills get 60 to 120 seconds of rest and heavy sets 2.5 to 3 minutes. The app asks for technique checks with a coach, because the athlete trains alone.
+- Uncertainty: Search snippets only.
+
+### [Effects of Physical Training Programs on Healthy Athletes' Vertical Jump Height: A Systematic Review and Meta-Analysis](https://www.jssm.org/jssm-24-236.xml-abst)
+
+Journal of Sports Science and Medicine 24:236-257 (Ma and colleagues). Source date: 2025. Access: search snippet only.
+
+- Conclusion: Combining strength work with jumps improved countermovement jump by about 5 cm, against about 2 cm for jumps or strength training alone.
+- Product decision: Monday pairs heavy leg sets with box jumps from block 2, and both jump days are followed by heavy leg work.
+- Uncertainty: Mixed ages and sports. Search snippets only.
+
+### [Effects of velocity loss during resistance training on athletic performance, strength gains and muscle adaptations](https://www.uloyola.es/en/research-transfer/publications/effects-of-velocity-loss-during-resistance-training-on-athletic-performance-strength-gains-and-muscle-adaptations-article)
+
+Scandinavian Journal of Medicine and Science in Sports (Pareja-Blanco and colleagues). Source date: 2017. Access: search snippet only.
+
+- Conclusion: Ending squat sets well short of failure improved countermovement jump by 9.5 percent, against 3.5 percent for sets taken much closer to failure, with similar strength gains and 40 percent fewer reps.
+- Product decision: Heavy leg sets stop two or three reps short of failure during the jump program.
+- Uncertainty: Adult men. Search snippets only.
+
+### [Time course of recovery following resistance training leading or not to failure](https://pubmed.ncbi.nlm.nih.gov/28965198/)
+
+European Journal of Applied Physiology (Moran-Navarro and colleagues). Source date: 2017. Access: search snippet only.
+
+- Conclusion: Sets to failure caused a larger drop in jump height and slowed recovery by up to 24 to 48 hours compared with the same volume stopped short of failure.
+- Product decision: Wednesday and Friday leg sets never go to failure, so Friday jumps are done on fresh legs. Only small leg exercises on Monday may go to failure, four days before the next jump day.
+- Uncertainty: Ten trained adult men. Search snippets only.
+
+### [Countermovement Jump Training Is More Effective Than Drop Jump Training in Enhancing Jump Height in Non-professional Female Volleyball Players](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7091110/)
+
+Frontiers in Physiology. Source date: 2020. Access: search snippet only.
+
+- Conclusion: Over 6 weeks, training built mostly on countermovement jumps raised jump height about 17 percent, against about 7 percent for training built mostly on drop jumps.
+- Product decision: Countermovement style jumps (box jumps, approach jumps) are the core of the program, and depth jumps are a smaller part from block 2.
+- Uncertainty: Adult women. Search snippets only.
+
+### [Effect of differential training on female volleyball spike-jump technique and performance](https://www.mdpi.com/2076-3417/10/17/5921)
+
+Applied Sciences (Fuchs and colleagues). Source date: 2020. Access: search snippet only.
+
+- Conclusion: Six weeks of short approach technique sessions raised spike jump height about 12 percent in elite female players.
+- Product decision: Every Friday starts with approach technique and maximal approach jumps, with the touch height logged.
+- Uncertainty: Elite adult women. Search snippets only.
+
+### [Differences between One-Foot and Two-Foot Vertical Jump Performances](https://researchgate.net/profile/Richard-Hinrichs-2/publication/288544133_Differences_between_One-Foot_and_Two-Foot_Vertical_Jump_Performances/links/591b901c4585153b614fa759/Differences-between-One-Foot-and-Two-Foot-Vertical-Jump-Performances.pdf)
+
+Journal of Applied Biomechanics (Vint and Hinrichs). Source date: 1996. Access: search snippet only.
+
+- Conclusion: With a four step approach, one foot and two foot takeoffs reached similar overall heights, through different mechanics.
+- Product decision: Block 1 alternates both takeoffs so the athlete keeps the one that touches higher.
+- Uncertainty: Fourteen adults. Search snippets only.
+
+### [Effect of an Arm Swing on Countermovement Vertical Jump Performance in Elite Volleyball Players](https://johk.pl/?p=3938)
+
+Journal of Human Kinetics (Vaverka and colleagues). Source date: 2016. Access: search snippet only.
+
+- Conclusion: A full arm swing raised jump height substantially in elite volleyball players; other studies put the gain at about 10 to 15 percent.
+- Product decision: Box jumps, broad jumps, and approach jumps all use a hard double arm swing.
+- Uncertainty: Elite adults. Search snippets only.
+
+### [Dunk calculators: how high above the rim the hand must reach](https://www.omnicalculator.com/sports/dunk)
+
+Omni Calculator and other coaching tools (not peer reviewed). Source date: Not stated in search result. Access: search snippet only.
+
+- Conclusion: A one hand dunk needs the hand about 15 cm above the 305 cm rim when the ball can be palmed, and about 20 cm or more when it cannot.
+- Product decision: The dunk goal on Progress uses 320 cm when the athlete can palm the ball and 325 cm when not, and says these are rough figures.
+- Uncertainty: Not research. Arm length and hand size vary a lot, so the app relies on measured touch heights.
+
+### [Expert committee recommendations regarding the prevention, assessment, and treatment of child and adolescent overweight and obesity: summary report](https://www.citedrive.com/en/discovery/expert-committee-recommendations-regarding-the-prevention-assessment-and-treatment-of-child-and-adolescent-overweight-and-obesity-summary-report/)
+
+Pediatrics (Barlow and the Expert Committee). Source date: 2007. Access: search snippet only.
+
+- Conclusion: For adolescents in the upper BMI bands the goal is weight maintenance or gradual loss. Even at the highest band, loss should not exceed an average of about 0.9 kg a week.
+- Product decision: PeakForm adds food when weight falls faster than about 0.5 kg a week, and does not set a body fat target.
+- Uncertainty: Replaced in part by the 2023 AAP guideline, whose snippets gave no rate target. Search snippets only.
+
+### [Sports Dietitians Australia position statement: sports nutrition for the adolescent athlete](https://sportsdietitians.com.au/wp-content/uploads/2020/07/15432742-International-Journal-of-Sport-Nutrition-and-Exercise-Metabolism-Sports-Dietitians-Australia-Position-Statement_-Sports-Nutrition-for-the-Adolescent-Athlete.pdf)
+
+International Journal of Sport Nutrition and Exercise Metabolism (Desbrow and colleagues). Source date: 2014. Access: search snippet only.
+
+- Conclusion: Severe or prolonged energy restriction is not recommended in developing athletes, and weight maintenance is often more appropriate than loss. Body composition checks are rarely needed and belong with a trained professional.
+- Product decision: Fat loss stays slow, food is added when weight falls fast or performance drops, and smart scale body fat is shown as a trend only.
+- Uncertainty: Search snippets only.
+
+### [Energy deficiency impairs resistance training gains in lean mass but not strength: A meta-analysis and meta-regression](https://portal.fis.tum.de/en/publications/energy-deficiency-impairs-resistance-training-gains-in-lean-mass-/)
+
+Scandinavian Journal of Medicine and Science in Sports (Murphy and Koehler). Source date: 2022. Access: search snippet only.
+
+- Conclusion: An energy deficit reduced lean mass gains from resistance training, and a deficit of about 500 kcal a day prevented them, while strength still improved.
+- Product decision: Calorie reductions stay small, 100 to 150 kcal at a time, so muscle can still be built while fat comes down.
+- Uncertainty: Adults. Search snippets only.
+
+### [2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs)](https://pubmed.ncbi.nlm.nih.gov/37752011/)
+
+British Journal of Sports Medicine (Mountjoy and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Low energy availability harms health and performance in male and female athletes. Warning signs include falling performance, frequent illness or injury, poor sleep and mood, and stalled growth.
+- Product decision: Falling energy, mood, concentration, or sleep makes the weekly review suggest more food and a talk with a parent.
+- Uncertainty: Search snippets only.
+
+### [Accuracy of Smart Scales on Weight and Body Composition: Observational Study](https://mhealth.jmir.org/2021/4/e22487)
+
+JMIR mHealth and uHealth. Source date: 2021. Access: search snippet only.
+
+- Conclusion: Consumer smart scales measured weight well but were not accurate for body composition, with median fat mass errors of about 2 to 4 kg.
+- Product decision: Smart scale body fat is shown only as a trend and never drives a nutrition change. Waist and weight trends are used instead.
+- Uncertainty: Adults. Search snippets only.
+
+### [Jump frequency may contribute to risk of jumper's knee: a study of interindividual and sex differences in a total of 11,943 jumps video recorded during training and matches in young elite volleyball players](https://bjsm.bmj.com/content/48/17/1322)
+
+British Journal of Sports Medicine 48(17):1322 (Bahr and Bahr). Source date: 2014. Access: search snippet only.
+
+- Conclusion: Young elite male volleyball players jumped between about 50 and 666 times a week, and total jump volume may matter more for jumper's knee than training hours.
+- Product decision: The app asks the athlete to count volleyball jumps with the planned jumps, and to do fewer planned jumps in heavy volleyball weeks.
+- Uncertainty: Players aged 16 to 18. Search snippets only.
+
+### [Training volume and body composition as risk factors for developing jumper's knee among young elite volleyball players](https://lida.sport-iat.de/ta/Record/4030037?lng=en)
+
+Scandinavian Journal of Medicine and Science in Sports (Visnes and Bahr). Source date: 2013. Access: search snippet only.
+
+- Conclusion: Over four years, the risk of jumper's knee rose with every extra weekly hour of volleyball training and every extra match set.
+- Product decision: Pain below the kneecap that lasts into the next morning means fewer jumps and telling a parent.
+- Uncertainty: Elite students aged 16 to 18. Search snippets only.
+
+### [Activity Modification and Knee Strengthening for Osgood-Schlatter Disease: A Prospective Cohort Study](https://vbn.aau.dk/ws/files/330945567/2325967120911106.pdf)
+
+Orthopaedic Journal of Sports Medicine 8(4) (Rathleff and colleagues). Source date: 2020. Access: search snippet only.
+
+- Conclusion: Managing knee load by pain, with knee strengthening, gave a successful outcome in 80 percent of young athletes with Osgood-Schlatter disease at 12 weeks, though return to full sport took longer.
+- Product decision: Pain at the bump under the knee reduces jumps and is a reason to see a physio, rather than training through it.
+- Uncertainty: Ages 10 to 14, 51 participants. Search snippets only.
+
 ## Nutrition and energy availability
 
 ### [Promotion of Healthy Weight-Control Practices in Young Athletes (clinical report)](https://publications.aap.org/pediatrics/article/140/3/e20171871/38384/Promotion-of-Healthy-Weight-Control-Practices-in)
@@ -306,7 +488,7 @@ American Academy of Pediatrics, Pediatrics 140(3):e20171871 (Carl, Johnson, Mart
 HealthyChildren.org (American Academy of Pediatrics parent site). Source date: Not stated in search result. Access: search snippet only.
 
 - Conclusion: Young athletes who lose weight should not lose more than about 1 to 2 pounds per week, because faster loss is often muscle or water. Weight cycling should be avoided and large changes discussed with a doctor first.
-- Product decision: If the seven day average falls faster than about 0.7 kg a week after the first week, PeakForm suggests adding 150 to 200 calories and talking with a parent. That threshold sits inside the 1 to 2 lb a week guidance.
+- Product decision: If the seven day average falls faster than about 0.5 kg a week after the first week, PeakForm suggests adding 150 to 200 calories and talking with a parent. Since 2.1.0 that threshold sits at the low end of the 1 to 2 lb a week guidance, because a growing athlete training for jump height needs the energy.
 - Uncertainty: Page date not visible. Content seen only as a search snippet.
 
 ### [Nutrition and Supplement Use (Care of the Young Athlete patient education)](https://publications.aap.org/patiented/article-pdf/720898/peo_document566_en.pdf)

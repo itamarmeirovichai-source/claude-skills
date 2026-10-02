@@ -80,7 +80,13 @@ describe('fourteen day nutrition gate', () => {
     expect(r.status).toBe('insufficient-data');
   });
 
-  it('holds when loss is 0.25 to 0.6 kg per week', () => {
+  it('flags a loss of 0.6 kg a week as too fast for a growing athlete', () => {
+    const r = nutritionAdjustment(input(slope(89, 0.6), [[0, 90], [8, 89.4]]));
+    expect(r.status).toBe('increase');
+    expect(r.kcalChange).toEqual([150, 200]);
+  });
+
+  it('holds when loss is 0.25 to 0.5 kg per week', () => {
     const r = nutritionAdjustment(input(slope(89, 0.4), [[0, 90], [8, 89.5]]));
     expect(r.status).toBe('hold');
     expect(r.kcalChange).toBeNull();

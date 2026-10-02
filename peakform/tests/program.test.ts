@@ -6,6 +6,8 @@ import { PROGRAM_DAYS, PROGRAM_SLOTS, defaultPicks, normalizePicks, slotExposure
 import { coverageFrom, planCoverageInputs } from '../src/domain/coverage';
 import { baselinePlanRecord } from '../src/domain/defaults';
 import { withProgram, withProgramTargetLabels } from '../src/services/planUpdate';
+import { JUMP_TEST_DATES, PHASES, contacts, nextJumpTest, phaseFor } from '../src/content/phases';
+import { addDays, weekdayOf } from '../src/domain/dates';
 import type { PlanRecord } from '../src/db/records';
 import { OLD_VOLLEYBALL_DAYS } from './fixtures/volleyballDays';
 
@@ -47,7 +49,7 @@ describe('program slots', () => {
 
   it('put every slot in the week, and train most muscles at least twice', () => {
     for (const slot of PROGRAM_SLOTS) expect(slotExposures(slot.id), slot.id).toBeGreaterThanOrEqual(1);
-    for (const id of ['chest-upper', 'lats', 'row', 'side-delt', 'rear-delt', 'biceps-long', 'triceps-long', 'quads', 'rectus-femoris', 'hamstring-curl', 'hinge', 'glutes', 'glute-med', 'adductors', 'calves', 'abs'] as const) {
+    for (const id of ['chest-upper', 'lats', 'row', 'side-delt', 'rear-delt', 'biceps-long', 'triceps-long', 'hamstring-curl', 'glutes', 'glute-med', 'calves', 'abs'] as const) {
       expect(slotExposures(id), id).toBeGreaterThanOrEqual(2);
     }
   });
@@ -70,11 +72,13 @@ describe('program slots', () => {
 describe('the default week', () => {
   const main = (weekday: number) => BASELINE_PLAN.days.find((d) => d.weekday === weekday)!.items.filter((i) => i.session === 'main');
 
-  it('has six gym days of about 18 to 26 work sets, a full rest Saturday, and both swims', () => {
+  it('has three upper days of 18 to 27 work sets, three lower days with fewer leg sets, a full rest Saturday, and both swims', () => {
     for (const d of PROGRAM_DAYS) {
-      const sets = main(d.weekday).reduce((n, i) => n + i.sets, 0);
-      expect(sets, d.key).toBeGreaterThanOrEqual(18);
-      expect(sets, d.key).toBeLessThanOrEqual(27);
+      const items = main(d.weekday).filter((i) => exercise(i.exerciseId)?.kind !== 'jump' && exercise(i.exerciseId)?.kind !== 'warmup');
+      const sets = items.reduce((n, i) => n + i.sets, 0);
+      const upper = [0, 2, 4].includes(d.weekday);
+      expect(sets, d.key).toBeGreaterThanOrEqual(upper ? 18 : 6);
+      expect(sets, d.key).toBeLessThanOrEqual(upper ? 27 : 20);
     }
     expect(BASELINE_PLAN.days.find((d) => d.weekday === 6)!.isRest).toBe(true);
     for (const wd of [0, 5]) expect(BASELINE_PLAN.days.find((d) => d.weekday === wd)!.items.some((i) => i.session === 'swim')).toBe(true);
@@ -95,7 +99,8 @@ describe('the default week', () => {
 
   it('gives every major muscle about 9 to 18 direct sets a week and none more than 20', () => {
     const cov = coverageFrom(planCoverageInputs(BASELINE_PLAN.days), lookup);
-    const floors: Record<string, number> = { pec_clavicular: 6, pec_sternal: 6, lats: 9, traps_middle: 6, delt_lateral: 9, delt_posterior: 6, biceps: 9, triceps: 9, quads: 12, hamstrings: 12, glute_max: 12, glute_med: 6, adductors: 6, gastrocnemius: 9, rectus_abdominis: 6 };
+    // Legs get fewer direct sets during the jump program, because the jumps load them too.
+    const floors: Record<string, number> = { pec_clavicular: 6, pec_sternal: 6, lats: 9, traps_middle: 6, delt_lateral: 9, delt_posterior: 6, biceps: 9, triceps: 9, quads: 10, hamstrings: 8, glute_max: 10, glute_med: 4, adductors: 3, gastrocnemius: 5, rectus_abdominis: 6 };
     for (const [m, min] of Object.entries(floors)) expect(cov[m as keyof typeof cov].direct, m).toBeGreaterThanOrEqual(min);
     for (const c of Object.values(cov)) expect(c.direct, c.muscle).toBeLessThanOrEqual(20);
   });
@@ -111,13 +116,14 @@ describe('the default week', () => {
   });
 
   it('builds the chosen exercises into the right days', () => {
-    const picks = { ...defaultPicks(), 'side-delt': ['machine-lateral-raise' as const], quads: ['leg-press' as const, 'smith-squat' as const] };
+    const picks = { ...defaultPicks(), 'side-delt': ['machine-lateral-raise' as const], quads: ['smith-squat' as const], glutes: ['bulgarian-split-squat' as const, 'walking-lunge' as const] };
     const days = planDaysFor(picks);
     const ids = (wd: number) => days.find((d) => d.weekday === wd)!.items.map((i) => i.exerciseId);
     for (const wd of [0, 2, 4]) expect(ids(wd)).toContain('machine-lateral-raise');
-    expect(ids(1)).toContain('leg-press');
-    expect(ids(5)).toContain('smith-squat');
-    expect(ids(1)).not.toContain('smith-squat');
+    expect(ids(1)).toContain('smith-squat');
+    expect(ids(3)).toContain('bulgarian-split-squat');
+    expect(ids(5)).toContain('walking-lunge');
+    expect(ids(5)).not.toContain('bulgarian-split-squat');
   });
 });
 
@@ -166,5 +172,100 @@ describe('exercise library', () => {
       if (['strength', 'bodyweight', 'hold'].includes(ex.kind)) expect(ex.failure, ex.id).toBeDefined();
       if (FREE_BARBELL.includes(ex.id)) expect(ex.failure).toBe('never');
     }
+  });
+});
+
+describe('the jump program for the dunk goal', () => {
+  const lowerIds = new Set(['quads', 'hamstrings', 'glute_max', 'glute_med', 'adductors', 'gastrocnemius', 'soleus']);
+  const isLeg = (id: string) => {
+    const ex = exercise(id);
+    return !!ex && ex.kind !== 'jump' && ex.kind !== 'warmup' && ex.muscles.primary.some((m) => lowerIds.has(m));
+  };
+
+  it('runs in back to back blocks from Monday 5 October to Sunday 31 January, then keeps going', () => {
+    expect(PHASES[0]!.start).toBe('2026-10-05');
+    for (const [i, p] of PHASES.entries()) {
+      expect(weekdayOf(p.start), p.id).toBe(1);
+      if (p.end) expect(weekdayOf(p.end), p.id).toBe(0);
+      const next = PHASES[i + 1];
+      if (next) expect(next.start, p.id).toBe(addDays(p.end!, 1));
+    }
+    expect(PHASES.find((p) => p.id === 'taper')!.end).toBe('2027-01-31');
+    expect(PHASES.at(-1)!.end).toBeNull();
+    expect(phaseFor('2026-10-02').id).toBe('foundation');
+    expect(phaseFor('2026-11-02').id).toBe('power');
+    expect(phaseFor('2026-11-25').id).toBe('deload-1');
+    expect(phaseFor('2027-01-29').id).toBe('taper');
+    expect(phaseFor('2027-03-01').id).toBe('build');
+  });
+
+  it('tests on Fridays, at the end of blocks, and every four weeks after the goal date', () => {
+    for (const d of JUMP_TEST_DATES) expect(weekdayOf(d), d).toBe(5);
+    expect(nextJumpTest('2026-10-02')).toBe('2026-10-09');
+    expect(nextJumpTest('2026-10-10')).toBe('2026-10-30');
+    expect(phaseFor('2026-11-27').id).toBe('deload-1');
+    expect(phaseFor('2027-01-29').id).toBe('taper');
+    expect(nextJumpTest('2027-01-30')).toBe('2027-02-26');
+  });
+
+  it('keeps jump sessions between about 20 and 100 contacts, with lighter weeks before tests', () => {
+    for (const p of PHASES) {
+      const mon = contacts([...p.jumpsMon, ...p.complexMon]);
+      const fri = contacts(p.jumpsFri);
+      expect(mon, p.id).toBeLessThanOrEqual(100);
+      expect(fri, p.id).toBeLessThanOrEqual(100);
+      expect(mon + fri, p.id).toBeLessThanOrEqual(200);
+      expect(mon, p.id).toBeGreaterThanOrEqual(20);
+      for (const d of [...p.jumpsMon, ...p.complexMon, ...p.jumpsFri]) expect(exercise(d.exerciseId)?.kind, d.exerciseId).toBe('jump');
+    }
+    const week = (id: string) => {
+      const p = PHASES.find((x) => x.id === id)!;
+      return contacts([...p.jumpsMon, ...p.complexMon, ...p.jumpsFri]);
+    };
+    expect(week('deload-1')).toBeLessThan(week('power'));
+    expect(week('deload-2')).toBeLessThan(week('reactive'));
+    expect(week('taper')).toBeLessThan(week('realize'));
+    expect(PHASES.find((p) => p.id === 'deload-2')!.jumpsMon.some((d) => d.exerciseId === 'depth-jump')).toBe(false);
+  });
+
+  it('puts the jumps first and never takes legs to failure on Wednesday or Friday', () => {
+    for (const p of PHASES) {
+      const days = planDaysFor(defaultPicks(), p);
+      for (const wd of [1, 5]) {
+        const items = days.find((d) => d.weekday === wd)!.items.filter((i) => i.session === 'main');
+        const firstLeg = items.findIndex((i) => isLeg(i.exerciseId));
+        const jumps = items.map((i, k) => (exercise(i.exerciseId)?.kind === 'jump' ? k : -1)).filter((k) => k >= 0);
+        // Only the paired box jumps of the complex sets come after the first heavy set.
+        expect(jumps.filter((k) => k < firstLeg).length, `${p.id} ${wd}`).toBe(wd === 1 ? p.jumpsMon.length : p.jumpsFri.length);
+        expect(jumps.filter((k) => k > firstLeg).length, `${p.id} ${wd}`).toBe(wd === 1 ? p.complexMon.length : 0);
+      }
+      for (const wd of [3, 5]) {
+        for (const i of days.find((d) => d.weekday === wd)!.items.filter((x) => x.session === 'main' && isLeg(x.exerciseId))) {
+          if (exercise(i.exerciseId)!.kind === 'hold') continue;
+          expect(i.rir, `${p.id} ${i.id}`).toBeGreaterThanOrEqual(1);
+          expect(i.lastSetRir, `${p.id} ${i.id}`).toBeUndefined();
+        }
+      }
+      const mon = days.find((d) => d.weekday === 1)!.items;
+      for (const slotEx of [mon.find((i) => i.exerciseId === 'leg-press'), mon.find((i) => i.exerciseId === 'dumbbell-romanian-deadlift')]) {
+        expect(slotEx, p.id).toBeDefined();
+        expect(slotEx!.rir, p.id).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('builds each block into an installed plan, keeping the morning work and the swim', () => {
+    const power = PHASES.find((p) => p.id === 'power')!;
+    const before = baselinePlanRecord(0);
+    const after = withProgram(before, defaultPicks(), false, power);
+    const mon = after.days.find((d) => d.weekday === 1)!;
+    expect(mon.items.some((i) => i.exerciseId === 'depth-jump')).toBe(true);
+    expect(mon.items.find((i) => i.exerciseId === 'leg-press')!.sets).toBe(4);
+    for (const d of after.days) {
+      const old = before.days.find((x) => x.weekday === d.weekday)!;
+      expect(d.items.filter((i) => i.session === 'morning')).toEqual(old.items.filter((i) => i.session === 'morning'));
+      expect(d.items.filter((i) => i.session === 'swim')).toEqual(old.items.filter((i) => i.session === 'swim'));
+    }
+    expect(after.days.flatMap((d) => d.items).some((i) => i.exerciseId === 'nordic-hamstring-curl')).toBe(false);
   });
 });

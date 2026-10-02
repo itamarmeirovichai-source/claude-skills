@@ -3,7 +3,8 @@ import { exercise } from '../content/library';
 import { PROGRAM_DAYS, PROGRAM_SLOTS, SLOT_BY_ID, normalizePicks, slotExposures, togglePick, type ProgramPicks, type ProgramSlot } from '../content/program';
 import type { LibraryExerciseId } from '../content/exercises/ids';
 import type { FailurePolicy } from '../content/types';
-import { WEEKDAY_NAMES } from '../domain/dates';
+import { WEEKDAY_NAMES, dateKey } from '../domain/dates';
+import { contacts, phaseFor, type ProgramPhase } from '../content/phases';
 import { activePlan } from '../db/repo';
 import { applyProgram, draftPicks, saveDraftPicks } from '../services/planUpdate';
 import { PoseSvg } from '../svg/Figures';
@@ -82,18 +83,32 @@ function SlotStep({ slot, picks, onChange }: { slot: ProgramSlot; picks: Library
   );
 }
 
+function doseLabel(phase: ProgramPhase, key: keyof ProgramPhase['doses']): string {
+  const d = phase.doses[key];
+  return `${d.sets} sets, ${d.rirMin ?? 1} rep${d.rirMin === 1 ? '' : 's'} short of failure`;
+}
+
 function Summary({ picks, onEdit }: { picks: ProgramPicks; onEdit: (step: number) => void }) {
   const chosen = normalizePicks(picks);
+  const phase = phaseFor(dateKey());
   return (
     <div className="stack" data-testid="program-summary">
+      <p className="small muted" data-testid="program-phase">
+        Training block now: {phase.name}. {phase.summary}
+      </p>
       {PROGRAM_DAYS.map((d) => (
         <Section key={d.key} title={`${WEEKDAY_NAMES[d.weekday]}, ${d.title}`}>
           <div className="group">
             {d.main.map((e, i) => {
               if ('fixed' in e) return <Item key={i} title={exercise(e.fixed.exerciseId)?.name ?? e.fixed.exerciseId} sub="Always in the plan" />;
+              if ('jumps' in e) {
+                const drills = e.jumps === 'mon' ? phase.jumpsMon : e.jumps === 'monComplex' ? phase.complexMon : phase.jumpsFri;
+                if (!drills.length) return null;
+                return <Item key={i} title={drills.map((x) => exercise(x.exerciseId)?.name ?? x.exerciseId).join(', ')} sub={e.jumps === 'monComplex' ? 'Jumps paired with the heavy sets' : `Jump drills, about ${contacts(drills)} jumps. They change with each training block.`} />;
+              }
               const slot = SLOT_BY_ID[e.slot];
               const id = chosen[e.slot][e.choice] ?? chosen[e.slot][0]!;
-              return <Item key={i} title={exercise(id)?.name ?? id} sub={`${slot.title}. ${effortLabel(id)}.`} onClick={() => onEdit(PROGRAM_SLOTS.indexOf(slot))} />;
+              return <Item key={i} title={exercise(id)?.name ?? id} sub={`${slot.title}. ${e.dose ? doseLabel(phase, e.dose) : effortLabel(id)}.`} onClick={() => onEdit(PROGRAM_SLOTS.indexOf(slot))} />;
             })}
           </div>
         </Section>
@@ -136,7 +151,8 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
               <li>One exercise for each muscle head, three work sets, with a slow stretch at the bottom of every rep.</li>
               <li>For each muscle you choose from exercises that build it about equally, so pick what you enjoy and what your gym has.</li>
               <li>Machines, cables, the Smith machine, and dumbbells only. No free barbell, because you train alone.</li>
-              <li>Small exercises go to failure on every set, big machine exercises on the last set. Dumbbell presses, lunges, and hinges stop one rep short.</li>
+              <li>Small upper body exercises go to failure on every set, big machine exercises on the last set. Dumbbell presses, lunges, and hinges stop one rep short.</li>
+              <li>Legs serve the jump: Monday and Friday start with jump drills, and leg sets stop short of failure except the small ones on Monday. The jump drills change with each training block until the end of January.</li>
               <li>A new exercise stays two reps short for its first two sessions while you learn it.</li>
             </ul>
           </Note>

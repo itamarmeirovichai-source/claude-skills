@@ -14,6 +14,7 @@ import { BodyMap } from '../svg/BodyMap';
 import { useSettings } from '../ui/state';
 import type { SetLog } from '../db/records';
 import { summarizeSets } from '../ui/format';
+import { DunkGoalSection } from './DunkGoal';
 
 const lookup = (id: string) => {
   const e = exercise(id);
@@ -81,6 +82,8 @@ export function ProgressScreen() {
   return (
     <div data-testid="progress">
       <PageHead title="Progress" end={<Link to="/review" className="btn btn-sm btn-primary" data-testid="open-review">Weekly review</Link>} />
+
+      <DunkGoalSection />
 
       <Section title="Body weight">
         <div className="metric-row">

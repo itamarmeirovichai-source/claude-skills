@@ -1,5 +1,6 @@
 import type { LibraryExerciseId } from './exercises/ids';
 import { PROGRAM_DAYS, buildMainItems, defaultPicks, normalizePicks, type ProgramPicks } from './program';
+import { PHASES, type ProgramPhase } from './phases';
 
 // The baseline weekly plan. Seeded exactly as prescribed.
 // Plan data is separate from logged data. Editing a plan creates a new plan version;
@@ -125,7 +126,12 @@ export const GLOBAL_RULES = [
   'One exercise for each muscle head, three work sets, with a slow, controlled stretch at the long muscle length.',
   'Warm up sets do not count as working sets. Do one or two lighter sets before the first exercise for a muscle.',
   'Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep.',
-  'Machines, cables, and the Smith machine with safety stops go to failure as prescribed. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.',
+  'Upper body machines and cables go to failure as prescribed. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.',
+  'Legs serve the jump: on Monday only the small leg exercises after the heavy work may go to failure. Wednesday and Friday leg sets always stop short, so the jumps are done on fresh legs.',
+  'Jumps come first in the session, every one at full effort with full rest. Stop a drill as soon as height, speed, or landing quality drops.',
+  'Count every landing as a jump, including volleyball practice and games. In a week with a lot of volleyball, do fewer of the planned jumps.',
+  'Pain below the kneecap, at the bump under the knee, or at the heel that lasts into the next morning means fewer jumps for a few days, and telling a parent. Pain of 4 out of 10 or more stops jumping that day.',
+  'Sleep 8 to 10 hours. With a 05:30 start, that means lights out around 21:00 to 21:30. Short sleep raises the risk of injury.',
   'For a new exercise, stop two reps short for the first two sessions while you learn it.',
   'Rest two to three minutes on the big exercises and about ninety seconds on the small ones.',
   'Do not test a one repetition maximum.',
@@ -137,7 +143,7 @@ export const GLOBAL_RULES = [
 ];
 
 /** Builds the week from program choices. Morning sessions and swims are fixed. */
-export function planDaysFor(picks: ProgramPicks | undefined): PlanDay[] {
+export function planDaysFor(picks: ProgramPicks | undefined, phase: ProgramPhase = PHASES[0]!): PlanDay[] {
   const chosen = normalizePicks(picks);
   const days: PlanDay[] = PROGRAM_DAYS.map((d) => ({
     weekday: d.weekday,
@@ -145,7 +151,7 @@ export function planDaysFor(picks: ProgramPicks | undefined): PlanDay[] {
     title: d.title,
     short: d.short,
     isRest: false,
-    items: [...MORNING[d.key as Exclude<PlanDay['key'], 'sat'>], ...buildMainItems(d, chosen), ...(d.key === 'sun' || d.key === 'fri' ? [swim(d.key)] : [])],
+    items: [...MORNING[d.key as Exclude<PlanDay['key'], 'sat'>], ...buildMainItems(d, chosen, phase), ...(d.key === 'sun' || d.key === 'fri' ? [swim(d.key)] : [])],
   }));
   days.push({
     weekday: 6,

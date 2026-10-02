@@ -30,6 +30,7 @@ const ProgramScreen = lazy(() => import('./screens/Program').then((m) => ({ defa
 import { LockGate } from './screens/Lock';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { unlockAudio } from './lib/device';
+import { syncProgramPhase } from './services/planUpdate';
 
 const TABS = [
   { to: '/today', label: 'Today', Icon: IconToday, match: ['today', 'checkin'] },
@@ -222,7 +223,18 @@ export function App() {
     const unlock = () => unlockAudio();
     window.addEventListener('pointerdown', unlock);
     if (!window.location.hash) navigate('/today', { replace: true });
-    return () => window.removeEventListener('pointerdown', unlock);
+    // A new training block starts on its Monday, so check when the app opens or comes back.
+    const block = () => {
+      if (document.visibilityState === 'visible') void syncProgramPhase().catch(() => undefined);
+    };
+    block();
+    document.addEventListener('visibilitychange', block);
+    const hourly = window.setInterval(block, 60 * 60 * 1000);
+    return () => {
+      window.removeEventListener('pointerdown', unlock);
+      document.removeEventListener('visibilitychange', block);
+      window.clearInterval(hourly);
+    };
   }, []);
   return (
     <SettingsProvider>
