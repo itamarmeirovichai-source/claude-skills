@@ -1,0 +1,38 @@
+<section class="dark"><div class="wrap">
+  <span class="pill b rv">{{ section.settings.pill }}</span>
+  <h2 class="rv" style="margin-top:18px">{{ section.settings.headline }}</h2>
+  <p class="body-l rv">{{ section.settings.body }}</p>
+  <div class="vs">
+    <div class="cell win rv">
+      <span class="pill o">{{ section.settings.a_label }}</span><h3>{{ section.settings.a_title }}</h3>
+      {%- for block in section.blocks -%}{%- if block.type == 'good' -%}
+        <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.3l3.2 3.2L13 4.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ block.settings.text }}</span></div>
+      {%- endif -%}{%- endfor -%}
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">{{ section.settings.a_cold }}</span></div><div class="track"><div class="fill a" style="--v:1"></div></div></div>
+    </div>
+    <div class="cell lose rv">
+      <span class="pill o">{{ section.settings.b_label }}</span><h3>{{ section.settings.b_title }}</h3>
+      {%- for block in section.blocks -%}{%- if block.type == 'bad' -%}
+        <div class="attr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>{{ block.settings.text }}</span></div>
+      {%- endif -%}{%- endfor -%}
+      <div class="meter rv"><div class="meter-l"><span>Still cold</span><span class="tnum">{{ section.settings.b_cold }}</span></div><div class="track"><div class="fill b" style="--v:.25"></div></div></div>
+    </div>
+  </div>
+</div></section>
+{% schema %}
+{"name":"Material compare","settings":[
+ {"type":"text","id":"pill","label":"Pill","default":"The material"},
+ {"type":"textarea","id":"headline","label":"Headline","default":"Every complaint about these tools is a complaint about stone."},
+ {"type":"textarea","id":"body","label":"Body","default":"It snaps when you press. It's porous. It warms in about five minutes."},
+ {"type":"text","id":"a_label","label":"Ours label","default":"This set"},
+ {"type":"text","id":"a_title","label":"Ours title","default":"Solid 304 stainless"},
+ {"type":"text","id":"a_cold","label":"Ours cold","default":"20+ min"},
+ {"type":"text","id":"b_label","label":"Theirs label","default":"The $15 set"},
+ {"type":"text","id":"b_title","label":"Theirs title","default":"Jade or rose quartz"},
+ {"type":"text","id":"b_cold","label":"Theirs cold","default":"~5 min"}],
+ "blocks":[
+ {"type":"good","name":"Ours — point","settings":[{"type":"text","id":"text","label":"Text","default":"Non-porous"}]},
+ {"type":"bad","name":"Theirs — point","settings":[{"type":"text","id":"text","label":"Text","default":"Snaps under pressure"}]}],
+ "presets":[{"name":"Material compare","blocks":[
+ {"type":"good"},{"type":"good"},{"type":"good"},{"type":"bad"},{"type":"bad"},{"type":"bad"}]}]}
+{% endschema %}

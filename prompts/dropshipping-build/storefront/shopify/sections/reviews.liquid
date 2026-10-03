@@ -1,0 +1,23 @@
+<section><div class="wrap">
+  <span class="pill c rv">{{ section.settings.pill }}</span>
+  <h2 class="rv" style="margin-top:18px">{{ section.settings.headline }}</h2>
+  <div class="revs" data-stg>
+    {%- for block in section.blocks -%}
+      <div class="rev">
+        <div class="stars">{% for i in (1..block.settings.stars) %}★{% endfor %}{% assign e = 5 | minus: block.settings.stars %}{% for i in (1..e) %}☆{% endfor %}</div>
+        <p>“{{ block.settings.quote }}”</p>
+        <div class="who">{{ block.settings.name }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div></section>
+{% schema %}
+{"name":"Reviews","settings":[
+ {"type":"text","id":"pill","label":"Pill","default":"Owners"},
+ {"type":"text","id":"headline","label":"Headline","default":"What people actually say."}],
+ "blocks":[{"type":"review","name":"Review","settings":[
+ {"type":"range","id":"stars","label":"Stars","min":1,"max":5,"step":1,"default":5},
+ {"type":"textarea","id":"quote","label":"Quote","default":"I've dropped this one twice on tile and it doesn't have a mark on it."},
+ {"type":"text","id":"name","label":"Name","default":"Dana R. — Verified buyer"}]}],
+ "presets":[{"name":"Reviews","blocks":[{"type":"review"},{"type":"review"},{"type":"review"}]}]}
+{% endschema %}

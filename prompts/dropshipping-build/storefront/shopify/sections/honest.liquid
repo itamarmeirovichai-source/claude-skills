@@ -1,0 +1,12 @@
+<section class="honest"><div class="wrap narrow rv" data-stg>
+  <span class="pill c">{{ section.settings.pill }}</span>
+  <p style="margin-top:20px">{{ section.settings.headline }}</p>
+  <small>{{ section.settings.body }}</small>
+</div></section>
+{% schema %}
+{"name":"Straight talk","settings":[
+ {"type":"text","id":"pill","label":"Pill","default":"Straight talk"},
+ {"type":"textarea","id":"headline","label":"Headline","default":"Nobody tells you this, so we will: the results are temporary."},
+ {"type":"textarea","id":"body","label":"Body","default":"You de-puff in the morning, it holds through the day, and tomorrow you wake up puffy again. That is how facial massage works, and anyone promising permanent change is selling you something else."}],
+ "presets":[{"name":"Straight talk"}]}
+{% endschema %}

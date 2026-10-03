@@ -1,0 +1,22 @@
+<footer><div class="wrap fg">
+  <div>
+    <div class="brand" style="margin-bottom:14px">{{ section.settings.brand_a }} <em>{{ section.settings.brand_b }}</em></div>
+    <p style="margin:0;max-width:32ch;opacity:.82">{{ section.settings.blurb }}</p>
+  </div>
+  {% for block in section.blocks %}
+    <div><b>{{ block.settings.title }}</b><ul>
+      {% assign items = block.settings.items | newline_to_br | split: '<br />' %}
+      {% for item in items %}<li>{{ item | strip }}</li>{% endfor %}
+    </ul></div>
+  {% endfor %}
+</div></footer>
+{% schema %}
+{"name":"Footer","settings":[
+ {"type":"text","id":"brand_a","label":"Brand word 1","default":"Still"},
+ {"type":"text","id":"brand_b","label":"Brand word 2","default":"Cold"},
+ {"type":"textarea","id":"blurb","label":"Blurb","default":"Three minutes, every morning. We make one thing, and we make it out of steel."}],
+ "blocks":[{"type":"col","name":"Column","settings":[
+ {"type":"text","id":"title","label":"Title","default":"Help"},
+ {"type":"textarea","id":"items","label":"Links (one per line)","default":"Shipping\nReturns & guarantee\nTrack your order\nContact"}]}],
+ "presets":[{"name":"Footer","blocks":[{"type":"col"},{"type":"col"}]}]}
+{% endschema %}

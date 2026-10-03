@@ -1,0 +1,24 @@
+<section><div class="wrap">
+  <span class="pill s rv">{{ section.settings.pill }}</span>
+  <h2 class="rv" style="margin-top:18px">{{ section.settings.headline }}</h2>
+  <p class="body-l rv" style="color:var(--ink-2)">{{ section.settings.sub }}</p>
+  <div class="steps" data-stg>
+    {% for block in section.blocks %}
+      <div class="step">
+        <span class="n">{{ forloop.index }}</span>
+        <b>{{ block.settings.title }}</b>
+        <span>{{ block.settings.body }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div></section>
+{% schema %}
+{"name":"Routine","settings":[
+ {"type":"text","id":"pill","label":"Pill","default":"The routine"},
+ {"type":"text","id":"headline","label":"Headline","default":"Four moves. Three minutes."},
+ {"type":"text","id":"sub","label":"Sub","default":"Outward and up, never down. Light pressure, unhurried."}],
+ "blocks":[{"type":"step","name":"Step","settings":[
+ {"type":"text","id":"title","label":"Title","default":"Jaw"},
+ {"type":"textarea","id":"body","label":"Body","default":"Chin, out along the jaw to the ear. Eight passes each side."}]}],
+ "presets":[{"name":"Routine","blocks":[{"type":"step"},{"type":"step"},{"type":"step"},{"type":"step"}]}]}
+{% endschema %}
