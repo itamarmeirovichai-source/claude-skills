@@ -550,3 +550,12 @@ down before running, tested on 8 years of S&P minute data: 860 trades, gross
 0.21R average cost on 3.2-point stops. All seven variants lose. Fourth test to
 reach the same answer and the first independent of the bot's code.
 `tjr.md`.
+
+## 3 Oct — check-in: no replies
+
+Apex: nothing in 13 days since the first letter (20 Sep) and 4 since the
+follow-up, no bounce, no ticket-system mail. Email is not where Apex answers;
+the next channel is its help-center ticket form or Discord, which only Itamar
+can use. Accountant (office@bshcpa.co.il): nothing in 4 days, two of them the
+Israeli weekend, no bounce; next step if still silent is a phone call to
+03-6050606. Nothing bought, nothing changed.
