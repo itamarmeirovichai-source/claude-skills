@@ -1,0 +1,351 @@
+#!/usr/bin/env python3
+"""
+בדיקות ל-futures_bars.
+
+הליבה שאפשר לבדוק בלי IBKR היא בחירת החוזה הקדמי. היא זו שקובעת אם
+הסדרה המורכבת נאמנה למה שהבוט ראה, ושגיאה בה מכניסה קפיצת מחיר שקטה
+בדיוק במקום שבו אי אפשר לראות אותה — באמצע התקופה.
+"""
+
+from datetime import date
+from zoneinfo import ZoneInfo
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from futures_bars import pick_front, to_frame
+
+ET = ZoneInfo("America/New_York")
+
+
+def frame(days, price, volume):
+    """נרות שעתיים ליום, במחיר ובמחזור נתונים."""
+    rows = []
+    for d in days:
+        for h in range(9, 16):
+            rows.append({"ts": pd.Timestamp(f"{d} {h:02d}:00", tz=ET),
+                         "open": price, "high": price, "low": price,
+                         "close": price, "volume": volume})
+    return pd.DataFrame(rows)
+
+
+DAYS_A = ["2026-05-18", "2026-05-19", "2026-05-20"]
+DAYS_B = ["2026-05-21", "2026-05-22"]
+ALL = DAYS_A + DAYS_B
+
+
+def test_the_busier_contract_wins_each_day():
+    front = frame(DAYS_A, 7500, 1000)
+    back = frame(DAYS_A, 7530, 10)
+    df, rolls = pick_front({"202606": front, "202609": back})
+    assert (df.close == 7500).all()
+    assert rolls == []
+
+
+def test_the_roll_is_read_from_volume_not_guessed():
+    a = pd.concat([frame(DAYS_A, 7500, 1000), frame(DAYS_B, 7500, 10)])
+    b = pd.concat([frame(DAYS_A, 7530, 10), frame(DAYS_B, 7530, 1000)])
+    df, rolls = pick_front({"202606": a, "202609": b})
+    assert len(rolls) == 1
+    d, old, new = rolls[0]
+    assert d == date(2026, 5, 21)
+    assert (old, new) == ("202606", "202609")
+    before = df[df.ts.dt.date < date(2026, 5, 21)]
+    after = df[df.ts.dt.date >= date(2026, 5, 21)]
+    assert (before.close == 7500).all()
+    assert (after.close == 7530).all()
+
+
+def test_every_day_appears_exactly_once():
+    a = pd.concat([frame(DAYS_A, 7500, 1000), frame(DAYS_B, 7500, 10)])
+    b = pd.concat([frame(DAYS_A, 7530, 10), frame(DAYS_B, 7530, 1000)])
+    df, _ = pick_front({"202606": a, "202609": b})
+    assert df.ts.is_unique
+    assert sorted({str(d) for d in df.ts.dt.date}) == sorted(ALL)
+    assert len(df) == len(ALL) * 7
+
+
+def test_a_single_contract_is_used_whole():
+    only = frame(ALL, 7500, 500)
+    df, rolls = pick_front({"202606": only})
+    assert len(df) == len(only)
+    assert rolls == []
+
+
+def test_an_empty_contract_is_ignored():
+    df, rolls = pick_front({"202606": frame(ALL, 7500, 100),
+                            "202609": pd.DataFrame()})
+    assert len(df) == len(ALL) * 7
+    assert rolls == []
+
+
+def test_nothing_at_all_is_not_a_crash():
+    df, rolls = pick_front({})
+    assert df.empty and rolls == []
+    df, rolls = pick_front({"202606": pd.DataFrame()})
+    assert df.empty and rolls == []
+
+
+def test_a_days_worth_of_volume_decides_not_a_single_bar():
+    """נר בודד עם מחזור חריג לא אמור להעביר את כל היום לחוזה האחורי."""
+    a = frame(["2026-05-18"], 7500, 100)
+    b = frame(["2026-05-18"], 7530, 10)
+    b.loc[b.index[0], "volume"] = 500        # ספייק אחד, עדיין פחות מ-700
+    df, _ = pick_front({"202606": a, "202609": b})
+    assert (df.close == 7500).all()
+
+
+def test_two_rolls_are_both_reported():
+    x = ["2026-05-18"]
+    y = ["2026-05-19"]
+    z = ["2026-05-20"]
+    a = pd.concat([frame(x, 1, 100), frame(y, 1, 1), frame(z, 1, 100)])
+    b = pd.concat([frame(x, 2, 1), frame(y, 2, 100), frame(z, 2, 1)])
+    _, rolls = pick_front({"202606": a, "202609": b})
+    assert len(rolls) == 2
+
+
+# ── המרה מ-IBKR ───────────────────────────────────────────────
+
+class Bar:
+    def __init__(self, d, o, h, l, c, v):
+        self.date, self.open, self.high = d, o, h
+        self.low, self.close, self.volume = l, c, v
+
+
+def test_bars_keep_their_timezone():
+    b = [Bar(pd.Timestamp("2026-05-18 14:30", tz="UTC"), 1, 2, 0.5, 1.5, 10)]
+    df = to_frame(b)
+    assert str(df.ts.dt.tz) == "America/New_York"
+    assert df.ts.iloc[0].hour == 10
+
+
+def test_duplicate_timestamps_collapse():
+    t = pd.Timestamp("2026-05-18 14:30", tz="UTC")
+    df = to_frame([Bar(t, 1, 2, 0.5, 1.5, 10), Bar(t, 1, 2, 0.5, 1.5, 10)])
+    assert len(df) == 1
+
+
+def test_no_bars_gives_an_empty_frame_with_the_right_columns():
+    df = to_frame([])
+    assert df.empty
+    assert list(df.columns) == ["ts", "open", "high", "low", "close", "volume"]
+
+
+# ---------- בחירת החוזה מול הסדרה שהבוט ניתח ----------
+#
+# הבחירה לפי מחזור עונה על "מי החוזה הקדמי". השאלה כאן אחרת: מאיזה
+# חוזה חושבו הרמות שנרשמו. כשהפיד מגלגל בתאריך אחר מהבורסה אלה שני
+# חוזים שונים, וההפרש ביניהם הוא ה-carry — 60 נקודות ב-ES ו-279
+# ב-NQ, שהם 3R ו-14R מול סטופ טיפוסי.
+
+from futures_bars import (apply_offset, choose_by_error, daily_error,
+                          daily_offset, fill_choice, hourly_close,
+                          lagged_offset, stitch)
+
+MONTHS_ORDER = ("202606", "202609")
+
+
+def make_err(days, near, far):
+    return pd.DataFrame({"202606": near, "202609": far},
+                        index=[date(2026, 5, d) for d in days])
+
+
+def test_the_near_contract_wins_before_the_roll():
+    err = make_err([18, 19, 20], [0.1, 0.1, 0.1], [279.0, 279.0, 279.0])
+    chosen, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert set(chosen.values()) == {"202606"}
+    assert switches == [] and warn == ""
+
+
+def test_one_clean_switch_is_accepted_and_reported():
+    err = make_err([18, 19, 20, 21],
+                   [0.1, 0.1, 300.0, 300.0],
+                   [279.0, 279.0, 0.1, 0.1])
+    chosen, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert warn == ""
+    assert len(switches) == 1
+    assert switches[0][0] == date(2026, 5, 20)
+    assert switches[0][1] == "202606" and switches[0][2] == "202609"
+
+
+def test_a_choice_that_flip_flops_is_refused():
+    """אם הבחירה מקפצת, ההתאמה לא זיהתה גלגול אלא רעש."""
+    err = make_err([18, 19, 20, 21],
+                   [0.1, 300.0, 0.1, 300.0],
+                   [300.0, 0.1, 300.0, 0.1])
+    _, switches, warn = choose_by_error(err, MONTHS_ORDER)
+    assert len(switches) == 3
+    assert "מקפצת" in warn
+
+
+def test_a_backwards_roll_is_refused():
+    err = make_err([18, 19], [300.0, 0.1], [0.1, 300.0])
+    _, _, warn = choose_by_error(err, MONTHS_ORDER)
+    assert "הפוך" in warn
+
+
+def test_an_empty_table_refuses_rather_than_guessing():
+    chosen, switches, warn = choose_by_error(pd.DataFrame(), MONTHS_ORDER)
+    assert chosen == {} and switches == [] and warn
+
+
+def test_a_day_with_only_one_contract_still_chooses():
+    err = pd.DataFrame({"202606": [np.nan, 0.1], "202609": [5.0, 9.0]},
+                       index=[date(2026, 5, 18), date(2026, 5, 19)])
+    chosen, _, warn = choose_by_error(err, MONTHS_ORDER)
+    assert chosen[date(2026, 5, 18)] == "202609"
+    assert chosen[date(2026, 5, 19)] == "202606"
+
+
+# ---------- התפירה ----------
+
+def two_contracts():
+    t0 = pd.Timestamp("2026-05-18 09:30", tz=ET)
+    ts = [t0 + pd.Timedelta(days=d, minutes=5 * i)
+          for d in range(3) for i in range(6)]
+    near = pd.DataFrame({"ts": ts, "open": 7500.0, "high": 7501.0,
+                         "low": 7499.0, "close": 7500.0, "volume": 100.0})
+    far = near.copy()
+    for c in ("open", "high", "low", "close"):
+        far[c] = far[c] + 60.0
+    return {"202606": near, "202609": far}
+
+
+def test_the_stitch_takes_each_day_from_the_contract_chosen_for_it():
+    f = two_contracts()
+    chosen = {date(2026, 5, 18): "202606", date(2026, 5, 19): "202606",
+              date(2026, 5, 20): "202609"}
+    out = stitch(f, chosen)
+    by_day = out.groupby(out.ts.dt.date).close.first()
+    assert by_day[date(2026, 5, 18)] == 7500.0
+    assert by_day[date(2026, 5, 20)] == 7560.0
+
+
+def test_the_stitch_keeps_its_timezone_and_stays_sorted():
+    f = two_contracts()
+    chosen = {d: "202606" for d in
+              (date(2026, 5, 18), date(2026, 5, 19), date(2026, 5, 20))}
+    out = stitch(f, chosen)
+    assert out.ts.dt.tz is not None
+    assert out.ts.is_monotonic_increasing
+
+
+def test_an_unknown_contract_in_the_choice_is_skipped_not_fatal():
+    assert stitch(two_contracts(), {date(2026, 5, 18): "202612"}).empty
+
+
+# ---------- השגיאה היומית ----------
+
+def test_the_carry_gap_shows_up_as_the_daily_error():
+    f = two_contracts()
+    ref = hourly_close(f["202606"])
+    err = daily_error(f, ref)
+    assert err["202606"].max() < 1e-9
+    assert err["202609"].min() == pytest.approx(60.0)
+
+
+def test_hourly_close_survives_a_five_minute_series():
+    h = hourly_close(two_contracts()["202606"])
+    assert len(h) > 0 and h.index.tz is not None
+
+
+# ---------- ימים בלי סדרת ייחוס ----------
+
+def test_a_day_without_a_reference_inherits_the_previous_choice():
+    """חג או יום שחסר ב-yfinance נופל מטבלת השגיאות. בלי השלמה הוא
+    נופל גם מהסדרה, בשקט, ואף שורה לא אומרת שהוא נעלם."""
+    chosen = {date(2026, 5, 18): "202606", date(2026, 5, 20): "202609"}
+    days = [date(2026, 5, d) for d in (18, 19, 20, 21)]
+    out = fill_choice(chosen, days)
+    assert out[date(2026, 5, 19)] == "202606"
+    assert out[date(2026, 5, 21)] == "202609"
+
+
+def test_a_gap_before_the_first_choice_takes_the_first():
+    chosen = {date(2026, 5, 20): "202606"}
+    days = [date(2026, 5, d) for d in (18, 19, 20)]
+    out = fill_choice(chosen, days)
+    assert out[date(2026, 5, 18)] == "202606"
+
+
+def test_no_choice_at_all_fills_nothing():
+    assert fill_choice({}, [date(2026, 5, 18)]) == {}
+
+
+# ---------- תיקון ה-carry ----------
+
+def ref_and_series(gap=60.0, days=3):
+    """סדרה שנשלפה, וסדרת ייחוס שנמוכה ממנה ב-gap נקודות."""
+    t0 = pd.Timestamp("2026-05-18 09:30", tz=ET)
+    ts, px = [], []
+    for d in range(days):
+        for i in range(12):
+            ts.append(t0 + pd.Timedelta(days=d, minutes=5 * i))
+            px.append(7500.0 + d * 3 + i * 0.25)
+    df = pd.DataFrame({"ts": ts, "open": px, "high": [p + 1 for p in px],
+                       "low": [p - 1 for p in px], "close": px,
+                       "volume": 100.0})
+    ref = hourly_close(df) - gap
+    return df, ref
+
+
+def test_the_carry_gap_is_measured_per_day():
+    df, ref = ref_and_series(gap=279.0)
+    off = daily_offset(df, ref)
+    assert len(off) == 3
+    assert off.offset.median() == pytest.approx(279.0)
+
+
+def test_subtracting_the_offset_brings_the_series_onto_the_reference():
+    df, ref = ref_and_series(gap=60.0)
+    adj = apply_offset(df, lagged_offset(daily_offset(df, ref)))
+    left = daily_offset(adj, ref)
+    assert left.offset.abs().max() < 1e-6
+
+
+def test_the_offset_used_is_yesterdays_not_todays():
+    """היסט של היום עצמו נגזר מסגירות שטרם קרו ברגע המילוי."""
+    off = pd.DataFrame({"offset": [60.0, 61.0, 62.0]},
+                       index=[date(2026, 5, d) for d in (18, 19, 20)])
+    lag = lagged_offset(off)
+    assert lag[date(2026, 5, 19)] == 60.0
+    assert lag[date(2026, 5, 20)] == 61.0
+
+
+def test_the_first_day_has_no_yesterday_and_uses_its_own():
+    off = pd.DataFrame({"offset": [60.0, 61.0]},
+                       index=[date(2026, 5, 18), date(2026, 5, 19)])
+    assert lagged_offset(off)[date(2026, 5, 18)] == 60.0
+
+
+def test_a_matching_contract_is_left_untouched():
+    """יוני ויולי כבר תואמים. התיקון חייב להיות אפס שם."""
+    df, ref = ref_and_series(gap=0.0)
+    adj = apply_offset(df, lagged_offset(daily_offset(df, ref)))
+    assert (adj.close - df.close).abs().max() < 1e-9
+
+
+def test_a_day_with_no_measured_offset_is_not_shifted():
+    df, _ = ref_and_series()
+    only = {date(2026, 5, 18): 60.0}
+    adj = apply_offset(df, only)
+    later = adj[adj.ts.dt.date == date(2026, 5, 19)]
+    orig = df[df.ts.dt.date == date(2026, 5, 19)]
+    assert (later.close.values - orig.close.values).max() == pytest.approx(0.0)
+
+
+def test_every_price_column_moves_together():
+    """להזיז סגירה בלי להזיז גבוה ונמוך הופך כל נר לשקר."""
+    df, ref = ref_and_series(gap=60.0)
+    adj = apply_offset(df, {d: 60.0 for d in df.ts.dt.date.unique()})
+    for c in ("open", "high", "low", "close"):
+        assert (df[c] - adj[c]).abs().min() == pytest.approx(60.0)
+    assert (adj.high >= adj.low).all()
+
+
+def test_an_empty_offset_table_is_a_no_op():
+    df, _ = ref_and_series()
+    assert apply_offset(df, {}).equals(df)
+    assert daily_offset(pd.DataFrame(), None).empty
