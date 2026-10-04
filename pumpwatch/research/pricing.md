@@ -33,7 +33,7 @@
 | **Reddit Data API** | **$0.24 per 1,000 calls**; optional $12k/month bundle for 50M calls | Secondary, consistent across sources: https://www.techloy.com/reddit-api-pricing-in-2026-complete-guide-for-developers-and-businesses/ |
 | Market data (Polygon/Massive) | $199/mo Advanced is for **individual, non-professional use only**. Commercial or business licence is separate and its price is **UNVERIFIED**. | https://apicostcalc.com/es/blog/polygon-massive-rebrand-api-pricing.html |
 | SEC EDGAR | Free (rate-limited) | https://www.sec.gov/os/accessing-edgar-data |
-| Telegram public channels | API is free. Using it for this must comply with Telegram ToS and our red lines. | **UNVERIFIED** on ToS terms |
+| Telegram public channels | API is free, **but Telegram's terms prohibit this use** (non-ordinary access to user content, scraping public channels, ML use). Not a usable source without a lawyer-approved path. See regulation.md §0/§2. | https://telegram.org/tos/content-licensing ; https://telegram.org/tos/bot-developers (verified by dept. head 2026-10-04) |
 
 **Unit economics (estimate, UNVERIFIED):**
 - Social data cost is **shared across customers**, because everyone watches the same ~2,000-3,000 small-cap tickers. Each customer adds almost no data cost, so COGS is close to a fixed monthly amount.
@@ -41,6 +41,7 @@
 - Reddit is cheap: 1M calls costs $240.
 - Assumed data budget: Phase 1 (pilots) about **$1-3k/month** (X capped by a spending limit, plus Reddit, Stocktwits public, EDGAR, an entry market-data licence). Phase 2 (10 customers) about **$8-20k/month**.
 - That means gross margin at about 10 small customers is roughly 50-70%, rising to over 80% at 25 or more customers. These are typical data-SaaS figures, **UNVERIFIED**.
+- **Bigger than cost: permission.** X's Developer Agreement bans use for "surveillance or gathering intelligence" and crime-related profiling without X's written approval; Reddit bans "surveillance purposes" (see regulation.md). The X cost lines above only matter if X approves the use case in writing. Until then, budget for StockTwits (licenses to financial institutions) + EDGAR + market data.
 - **Contractual risk:** X and Reddit terms may restrict redistributing raw content to third parties. Ship **derived signals and post links**, not copied posts. Check the terms before the first paid contract (**UNVERIFIED**, not yet reviewed).
 - **Budget fit:** with a $30k budget, the founder cannot pay for X Enterprise. Start on pay-per-use with a hard monthly cap ($500-1,000) and focus on cashtag queries for watchlist tickers only.
 
