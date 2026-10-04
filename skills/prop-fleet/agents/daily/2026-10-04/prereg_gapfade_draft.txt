@@ -1,0 +1,34 @@
+PRE-REGISTRATION DRAFT (Head of Edge Research, 2026-10-04). NOT RUN. NO RESULT EXISTS.
+The director copies this into ledger.csv BEFORE anyone runs it. Count = 1.
+
+Hypothesis: overnight-gap fade on the S&P (Grant, Wolf & Yu 2005, JBF 29(5) 1311-1327;
+paper sample Nov 1987 - Sep 2002, so every year tested here is outside the paper's sample).
+
+Data (fixed now):
+  D1  SPXUSD 1m, FutureSharks/HistData, 2010-11-14..2018-12-31, NY clock (tjr_backtest.load_minutes)
+  D2  SPY 1m RTH, Ascensao commit 5a9e9569..., 2019-01-02..2025-07-18 (dividend-adjusted; this removes
+      the ex-dividend drop from the gap, which is closer to ES than raw SPY)  <- primary out-of-sample
+  D3  NQ 1m front month, hindsight-finance commit 9f00a853..., 2020-08-31..2025-11-21; drop Mon-Fri of the
+      week containing the third Friday of Mar/Jun/Sep/Dec and the following Monday (roll handling)
+  Fetch with agents/daily/2026-10-04/data_fetch.py (sha256-checked).
+
+Rules (one variant, nothing tuned):
+  P0  = close of the prior session's 15:59 bar;  O = open of today's 09:30 bar
+  g   = O/P0 - 1 ;  s = stdev of g over the previous 20 sessions (today excluded)
+  Trade only if |g| > 1.0 * s and all of 09:30, 09:31, 15:59 bars exist. Weekdays only.
+  Side = -sign(g). Entry = open of the 09:31 bar (not the 09:30 print).
+  Target = P0 (gap fill). 1R = max(|entry - P0|, 0.15% of entry). Stop = entry -/+ 1R.
+  If the target is already beyond entry (gap filled by 09:31), skip the day.
+  Each bar 09:31-15:59: if stop and target both touched in one bar, the stop counts first;
+  stop fills at the worse of stop and bar open. Otherwise exit at the 15:59 close.
+  Cost = 2 bp of entry price round trip (about 0.6 pt at SPX 3000, 1 pt at 5000). R = net / 1R.
+  One trade per day max; flat before the close (fits prop flat-by-close rules).
+
+Report, all three datasets, no other cut: n, trades/yr, gross and net mean R,
+bootstrap (day-level, 10,000) 5th percentile AND the one-sided lower bound at alpha = 0.05/N
+(N = ledger N after today's rows), by-year net mean R, correlation of daily P&L with the
+H0005 intraday-momentum sign if available.
+
+Decision rule fixed now:
+  Worth further work only if D2 net lower bound at 0.05/N > 0 AND D3 net mean has the same sign
+  AND D1 gross mean > 0. Anything else: close the family, log it, do not try other k, stops or targets.
