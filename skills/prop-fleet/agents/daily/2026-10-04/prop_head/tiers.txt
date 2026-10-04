@@ -13,3 +13,13 @@ C  B + Tradeify5 (only if 'not at other firms' waived) n=20 +0.10R    37,074 =  
 R needed for 20% of nominal, by tier (grid 0.20..0.50 step 0.02)
 A  Bulenox5+Lucid5 (rule1 on own FAQ snippet)        first R with >=20%: (0.32, np.float64(20.624017528308478))
 B  A + Topstep5 Express (until Live)                 first R with >=20%: (0.32, np.float64(20.321002610732823))
+C  B + Tradeify5 (only if 'not at other firms' waived) first R with >=20%: (0.32, np.float64(20.21084761239869))
+
+sensitivity Bulenox (5 accts)
++0.10R base   12,792 | equal $80 risk    8,298 | keep_off 3000   12,940
++0.25R base   52,010 | equal $80 risk   39,667 | keep_off 3000   52,120
++0.40R base   89,908 | equal $80 risk   69,844 | keep_off 3000   89,914
+0.1 0.367 0.069 SR@250 1.09 SR@750 1.89
+0.25 0.417 0.169 SR@250 2.67 SR@750 4.63
+0.32 0.44 0.215 SR@250 3.4 SR@750 5.88
+0.4 0.467 0.267 SR@250 4.23 SR@750 7.32
