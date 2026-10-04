@@ -82,13 +82,12 @@ def test_engine_score_identical_whatever_lies_after_scored_day():
 
 
 @pytest.mark.xfail(strict=True, reason="QA-1")
-def test_engine_score_independent_of_other_tickers():
-    """A post about a different ticker must not change PUMP's score."""
+def test_engine_score_ignores_future_rows_of_other_tickers():
+    """A victim report about another ticker, a year after D, must not change PUMP on D."""
 
     spike = DAYS[75]
     alone = truncate(DATA, spike)
-    alone.reports.clear()
     with_other = truncate(DATA, spike)
-    with_other.reports[:] = [VictimReport("OTHER", D0)]
+    with_other.reports.append(VictimReport("OTHER", spike + timedelta(days=365)))
     with_other.bars.extend(Bar("OTHER", d, 1, 1, 1, 1, 1) for d in weekdays(D0, 5))
     assert _scores(alone)[spike] == _scores(with_other)[spike]

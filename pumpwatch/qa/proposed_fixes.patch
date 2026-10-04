@@ -1,0 +1,552 @@
+diff -ru '--exclude=__pycache__' src/pumpwatch/audit.py src/pumpwatch/audit.py
+--- src/pumpwatch/audit.py	2026-10-04 19:38:24.378426367 +0000
++++ src/pumpwatch/audit.py	2026-10-04 19:49:33.627546689 +0000
+@@ -17,6 +17,15 @@
+ GENESIS = "0" * 64
+ 
+ 
++def _strict_object(pairs):
++    out = {}
++    for k, v in pairs:
++        if k in out:
++            raise ValueError(f"duplicate key {k!r}")
++        out[k] = v
++    return out
++
++
+ def _digest(body: dict) -> str:
+     return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+ 
+@@ -27,21 +36,21 @@
+     records: int
+     broken_at: int | None = None
+     reason: str = ""
++    head: str = GENESIS
+ 
+ 
+ class AuditLog:
+     def __init__(self, path: str | Path) -> None:
+         self.path = Path(path)
++        # Head anchor: record count + last hash. Copy it somewhere the log's
++        # writer cannot edit (WORM bucket, daily e-mail) for full protection.
++        self.head_path = self.path.with_name(self.path.name + ".head")
+ 
+     def _last_hash(self) -> str:
+-        if not self.path.exists():
+-            return GENESIS
+-        last = GENESIS
+-        with self.path.open(encoding="utf-8") as fh:
+-            for line in fh:
+-                if line.strip():
+-                    last = json.loads(line)["hash"]
+-        return last
++        res = self.verify()
++        if not res.ok:
++            raise RuntimeError(f"refusing to append to a broken log: line {res.broken_at}: {res.reason}")
++        return res.head
+ 
+     def append(self, alert: Alert, engine_version: str, config_hash: str) -> dict:
+         body = {
+@@ -53,11 +62,21 @@
+         }
+         record = {**body, "hash": _digest(body)}
+         self.path.parent.mkdir(parents=True, exist_ok=True)
++        n = self.verify().records
+         with self.path.open("a", encoding="utf-8") as fh:
+             fh.write(json.dumps(record, ensure_ascii=False) + "\n")
++        self.head_path.write_text(json.dumps({"records": n + 1, "hash": record["hash"]}), encoding="utf-8")
+         return record
+ 
+     def verify(self) -> VerifyResult:
++        res = self._verify_chain()
++        if res.ok and self.head_path.exists():
++            head = json.loads(self.head_path.read_text(encoding="utf-8"))
++            if head != {"records": res.records, "hash": res.head}:
++                return VerifyResult(False, res.records, res.records + 1, "log does not match its head anchor (truncated or rewritten)")
++        return res
++
++    def _verify_chain(self) -> VerifyResult:
+         if not self.path.exists():
+             return VerifyResult(True, 0)
+         prev = GENESIS
+@@ -68,19 +87,30 @@
+                     continue
+                 n += 1
+                 try:
+-                    rec = json.loads(line)
+-                except json.JSONDecodeError:
+-                    return VerifyResult(False, n, i, "line is not valid JSON")
++                    rec = json.loads(line, object_pairs_hook=_strict_object)
++                except ValueError as exc:  # JSONDecodeError is a ValueError
++                    return VerifyResult(False, n, i, f"line is not valid JSON: {exc}")
++                if not isinstance(rec, dict):
++                    return VerifyResult(False, n, i, "record is not a JSON object")
+                 claimed = rec.pop("hash", None)
+                 if rec.get("prev") != prev:
+                     return VerifyResult(False, n, i, "chain broken: prev hash does not match")
+                 if _digest(rec) != claimed:
+                     return VerifyResult(False, n, i, "record content was modified")
+                 prev = claimed
+-        return VerifyResult(True, n)
++        return VerifyResult(True, n, head=prev)
+ 
+ 
+ def config_fingerprint(cfg) -> str:
+     from dataclasses import asdict
+ 
+-    return _digest(asdict(cfg))[:16]
++    from . import config, text
++
++    rules = {
++        "news_forms": sorted(config.NEWS_FORMS),
++        "dilution_forms": sorted(config.DILUTION_FORMS),
++        "red_flag_words": list(config.RED_FLAG_TITLE_WORDS),
++        "hype_phrases": text.HYPE_PHRASES,
++        "hype_emoji": text.HYPE_EMOJI,
++    }
++    return _digest({**asdict(cfg), "rules": rules})[:16]
+diff -ru '--exclude=__pycache__' src/pumpwatch/backtest.py src/pumpwatch/backtest.py
+--- src/pumpwatch/backtest.py	2026-10-04 19:38:24.378426367 +0000
++++ src/pumpwatch/backtest.py	2026-10-04 19:49:55.652098720 +0000
+@@ -42,13 +42,21 @@
+ 
+ def load_cases(path: str | Path) -> list[Case]:
+     out: list[Case] = []
+-    with open(path, newline="", encoding="utf-8") as fh:
+-        for row in csv.DictReader(fh):
+-            if not row.get("ticker") or row["ticker"].startswith("#"):
++    with open(path, newline="", encoding="utf-8-sig") as fh:
++        reader = csv.DictReader(fh)
++        reader.fieldnames = [f.strip().lower() for f in reader.fieldnames or []]
++        missing = {"ticker", "label", "start", "end"} - set(reader.fieldnames)
++        if missing:
++            raise ValueError(f"{path}: missing columns {sorted(missing)}")
++        for line, row in enumerate(reader, start=2):
++            ticker = (row.get("ticker") or "").strip().lstrip("$").upper()
++            if not ticker or ticker.startswith("#"):
+                 continue
++            if any(not (row.get(k) or "").strip() for k in ("label", "start", "end")):
++                raise ValueError(f"{path}:{line}: incomplete row")
+             out.append(
+                 Case(
+-                    row["ticker"].strip().upper(),
++                    ticker,
+                     row["label"].strip().lower(),
+                     date.fromisoformat(row["start"].strip()),
+                     date.fromisoformat(row["end"].strip()),
+@@ -61,12 +69,19 @@
+ def split_cases(cases: Iterable[Case]) -> tuple[list[Case], list[Case]]:
+     """Deterministic 50/50 split by ticker hash, stratified by label."""
+ 
++    by_ticker: dict[str, list[Case]] = {}
++    for c in cases:
++        by_ticker.setdefault(c.ticker, []).append(c)
+     calib: list[Case] = []
+     hold: list[Case] = []
+     for label in ("pump", "legit"):
+-        group = sorted((c for c in cases if c.label == label), key=lambda c: hashlib.sha1(c.ticker.encode()).hexdigest())
+-        for i, c in enumerate(group):
+-            (calib if i % 2 == 0 else hold).append(c)
++        # A ticker goes to one half with all its cases; stratify by "has a pump".
++        group = sorted(
++            (t for t, cs in by_ticker.items() if ("pump" if any(c.label == "pump" for c in cs) else "legit") == label),
++            key=lambda t: hashlib.sha1(t.encode()).hexdigest(),
++        )
++        for i, t in enumerate(group):
++            (calib if i % 2 == 0 else hold).extend(by_ticker[t])
+     return calib, hold
+ 
+ 
+@@ -94,11 +109,13 @@
+ 
+     @property
+     def recall(self) -> float:
+-        return self.caught / self.pumps if self.pumps else 0.0
++        return self.caught / self.pumps if self.pumps else None
+ 
+     @property
+     def false_per_catch(self) -> float:
+-        return self.false_alerts / self.caught if self.caught else float(self.false_alerts or 0)
++        if self.caught:
++            return self.false_alerts / self.caught
++        return float("inf") if self.false_alerts else 0.0
+ 
+     @property
+     def median_lead(self) -> float | None:
+@@ -109,12 +126,12 @@
+             "threshold": self.threshold,
+             "pumps": self.pumps,
+             "caught_before_collapse": self.caught,
+-            "recall": round(self.recall, 3),
++            "recall": None if self.recall is None else round(self.recall, 3),
+             "median_lead_days": self.median_lead,
+             "legit_cases": self.legit,
+             "legit_flagged": self.legit_flagged,
+             "false_alerts": self.false_alerts,
+-            "false_alerts_per_catch": round(self.false_per_catch, 2),
++            "false_alerts_per_catch": self.false_per_catch if self.false_per_catch == float("inf") else round(self.false_per_catch, 2),
+         }
+ 
+ 
+@@ -124,6 +141,7 @@
+     threshold: float,
+     lookback_days: int = 30,
+     universe: Iterable[str] | None = None,
++    pre_start_days: int = 5,
+ ) -> Metrics:
+     """Score alerts against cases.
+ 
+@@ -134,12 +152,21 @@
+     m = Metrics(threshold)
+     case_tickers = {c.ticker for c in cases}
+     used: set[tuple[str, date]] = set()
++    pump_windows: dict[str, list[tuple[date, date]]] = {}
++    prev_end: dict[str, date] = {}
+     for c in cases:
++        if c.label == "pump":
++            pump_windows.setdefault(c.ticker, []).append((c.start - timedelta(days=pre_start_days), c.end))
++    for c in sorted(cases, key=lambda c: (c.ticker, c.start)):
+         ticker_alerts = sorted(alerts.get(c.ticker, []), key=lambda a: a.day)
+         lo = c.start - timedelta(days=lookback_days)
+         if c.label == "pump":
+             m.pumps += 1
+-            early = [a for a in ticker_alerts if lo <= a.day < c.end]
++            lo = c.start - timedelta(days=pre_start_days)
++            if c.ticker in prev_end:
++                lo = max(lo, prev_end[c.ticker] + timedelta(days=1))
++            prev_end[c.ticker] = c.end
++            early = [a for a in ticker_alerts if lo <= a.day < c.end and (c.ticker, a.day) not in used]
+             first = early[0].day if early else None
+             lead = (c.end - first).days if first else None
+             m.results.append(CaseResult(c, first, lead))
+@@ -149,7 +176,12 @@
+                 used.update((c.ticker, a.day) for a in early)
+         else:
+             m.legit += 1
+-            flagged = [a for a in ticker_alerts if lo <= a.day <= c.end + timedelta(days=lookback_days)]
++            flagged = [
++                a
++                for a in ticker_alerts
++                if lo <= a.day <= c.end + timedelta(days=lookback_days)
++                and not any(s <= a.day < e for s, e in pump_windows.get(c.ticker, []))
++            ]
+             m.results.append(CaseResult(c, flagged[0].day if flagged else None, None))
+             if flagged:
+                 m.legit_flagged += 1
+@@ -167,6 +199,7 @@
+     holdout: Metrics
+     overall: Metrics
+     grid: list[dict]
++    constraint_met: bool = True
+ 
+ 
+ def calibrate_and_test(
+@@ -187,6 +220,8 @@
+     hold_bg = set(ul_sorted[1::2])
+ 
+     thresholds = list(grid) if grid is not None else [20 + 2.5 * i for i in range(25)]
++    if not thresholds:
++        raise ValueError("empty threshold grid")
+     table: list[dict] = []
+     best: tuple[float, float, float] | None = None  # (recall, -false, threshold)
+     for th in thresholds:
+@@ -206,6 +241,7 @@
+         evaluate(alerts, hold, chosen, universe=hold_t | hold_bg),
+         evaluate(alerts, cases, chosen),
+         table,
++        constraint_met=best is not None,
+     )
+ 
+ 
+@@ -216,7 +252,7 @@
+         return (
+             f"### {title}\n\n"
+             f"| metric | value |\n|---|---|\n"
+-            f"| pumps caught before collapse | {s['caught_before_collapse']} / {s['pumps']} ({s['recall']:.0%}) |\n"
++            f"| pumps caught before collapse | {s['caught_before_collapse']} / {s['pumps']} ({'n/a' if s['recall'] is None else format(s['recall'], '.0%')}) |\n"
+             f"| median warning (days before collapse) | {lead} |\n"
+             f"| legit movers wrongly flagged | {s['legit_flagged']} / {s['legit_cases']} |\n"
+             f"| false alerts | {s['false_alerts']} ({s['false_alerts_per_catch']} per catch) |\n"
+diff -ru '--exclude=__pycache__' src/pumpwatch/config.py src/pumpwatch/config.py
+--- src/pumpwatch/config.py	2026-10-04 19:38:24.378426367 +0000
++++ src/pumpwatch/config.py	2026-10-04 19:49:11.853609126 +0000
+@@ -38,6 +38,7 @@
+     vol_ratio_trigger: float = 5.0
+     vol_ratio_full: float = 50.0
+     news_window_days: int = 1
++    vol_min_dollar_base: float = 5_000.0
+ 
+     # S2 quiet accumulation
+     acc_window: int = 20
+@@ -64,6 +65,7 @@
+     # S6 broker flow
+     flow_min_new_buyers: int = 20
+     flow_ratio_trigger: float = 5.0
++    flow_min_history: int = 10
+ 
+     # S7 victim reports
+     report_window_days: int = 14
+@@ -85,6 +87,12 @@
+     min_families: int = 2
+     cooldown_days: int = 10
+ 
++    def __post_init__(self) -> None:
++        if self.signal_memory_days < 1:
++            raise ValueError("signal_memory_days must be >= 1")
++        if self.cooldown_days < 0 or self.min_families < 1:
++            raise ValueError("cooldown_days must be >= 0 and min_families >= 1")
++
+     def with_(self, **changes) -> "Config":
+         return replace(self, **changes)
+ 
+diff -ru '--exclude=__pycache__' src/pumpwatch/context.py src/pumpwatch/context.py
+--- src/pumpwatch/context.py	2026-10-04 19:38:24.378426367 +0000
++++ src/pumpwatch/context.py	2026-10-04 19:49:11.855516516 +0000
+@@ -24,7 +24,7 @@
+     _posts_by_day: dict[date, list[Post]] = field(init=False)
+ 
+     def __post_init__(self) -> None:
+-        self.bars.sort(key=lambda b: b.day)
++        self.bars[:] = sorted({b.day: b for b in self.bars}.values(), key=lambda b: b.day)
+         self.filings.sort(key=lambda f: f.day)
+         self.reports.sort(key=lambda r: r.day)
+         self.days = [b.day for b in self.bars]
+@@ -79,6 +79,9 @@
+     def flow(self, day: date) -> BrokerFlow | None:
+         return self.broker_flow.get(day)
+ 
++    def flow_history(self, day: date, days: int = 30) -> list[int]:
++        return [f.new_buyers for d, f in self.broker_flow.items() if day - timedelta(days=days) <= d < day]
++
+     def flow_baseline(self, day: date, days: int = 30) -> float | None:
+         vals = [
+             f.new_buyers
+@@ -102,7 +105,7 @@
+     for f in data.filings:
+         filings[f.ticker].append(f)
+     for p in data.posts:
+-        for t in p.tickers:
++        for t in dict.fromkeys(x.upper() for x in p.tickers):
+             posts[t].append(p)
+     for fl in data.broker_flow:
+         flows[fl.ticker][fl.day] = fl
+diff -ru '--exclude=__pycache__' src/pumpwatch/engine.py src/pumpwatch/engine.py
+--- src/pumpwatch/engine.py	2026-10-04 19:38:24.378426367 +0000
++++ src/pumpwatch/engine.py	2026-10-04 19:49:11.852521501 +0000
+@@ -34,18 +34,20 @@
+ }
+ 
+ 
+-def available_signals(data: Dataset) -> set[str]:
+-    """Signals whose underlying data source is present at all."""
++def available_signals(data: Dataset) -> dict[str, date]:
++    """First day each signal's data source has coverage (as-of, never look-ahead)."""
+ 
+-    out = {"S1_abnormal_volume", "S2_quiet_accumulation"}
+-    if data.filings:
+-        out.add("S3_suspicious_filings")
+-    if data.posts:
+-        out |= {"S4_hype_burst", "S5_coordinated_promotion"}
+-    if data.broker_flow:
+-        out.add("S6_broker_flow")
+-    if data.reports:
+-        out.add("S7_victim_reports")
++    out = {"S1_abnormal_volume": date.min, "S2_quiet_accumulation": date.min}
++    for names, rows in (
++        (("S3_suspicious_filings",), data.filings),
++        (("S4_hype_burst", "S5_coordinated_promotion"), data.posts),
++        (("S6_broker_flow",), data.broker_flow),
++        (("S7_victim_reports",), data.reports),
++    ):
++        if rows:
++            first = min(r.day for r in rows)
++            for n in names:
++                out[n] = first
+     return out
+ 
+ 
+@@ -62,20 +64,25 @@
+ 
+     # ------------------------------------------------------------------
+     def score_ticker(
+-        self, ctx: TickerContext, available: set[str], days: Iterable[date] | None = None
++        self, ctx: TickerContext, available, days: Iterable[date] | None = None
+     ) -> list[DayScore]:
+         cfg = self.cfg
+-        active = [name for name in ALL_SIGNALS if name in available]
+-        denom = sum(cfg.weights.get(n, 0.0) for n in active) or 1.0
++        starts = available if isinstance(available, dict) else dict.fromkeys(available, date.min)
+         recent: list[SignalHit] = []
+         out: list[DayScore] = []
+         for day in days if days is not None else ctx.days:
++            active = [n for n in ALL_SIGNALS if starts.get(n, date.max) <= day]
++            denom = sum(cfg.weights.get(n, 0.0) for n in active) or 1.0
+             for name in active:
+                 hit = ALL_SIGNALS[name](ctx, day, cfg)
+                 if hit is not None:
+                     recent.append(hit)
+-            horizon = day - timedelta(days=cfg.signal_memory_days - 1)
+-            recent = [h for h in recent if h.day >= horizon]
++            i = ctx.index(day)
++            if i is not None:  # memory counts trading sessions, not calendar days
++                recent = [h for h in recent if (j := ctx.index(h.day)) is not None and i - j < cfg.signal_memory_days]
++            else:
++                horizon = day - timedelta(days=cfg.signal_memory_days - 1)
++                recent = [h for h in recent if h.day >= horizon]
+             best: dict[str, SignalHit] = {}
+             for h in recent:
+                 if h.signal not in best or h.strength > best[h.signal].strength:
+diff -ru '--exclude=__pycache__' src/pumpwatch/signals/client.py src/pumpwatch/signals/client.py
+--- src/pumpwatch/signals/client.py	2026-10-04 19:38:24.378809551 +0000
++++ src/pumpwatch/signals/client.py	2026-10-04 19:49:11.854941928 +0000
+@@ -20,8 +20,11 @@
+     flow = ctx.flow(day)
+     if flow is None or flow.new_buyers < cfg.flow_min_new_buyers:
+         return None
+-    base = ctx.flow_baseline(day)
+-    ratio = flow.new_buyers / base if base else float("inf")
++    hist = ctx.flow_history(day)
++    if len(hist) < cfg.flow_min_history:
++        return None
++    base = max(sorted(hist)[len(hist) // 2], 1)
++    ratio = flow.new_buyers / base
+     if ratio < cfg.flow_ratio_trigger:
+         return None
+     first_timers = flow.first_time_microcap_buyers / flow.new_buyers if flow.new_buyers else 0.0
+diff -ru '--exclude=__pycache__' src/pumpwatch/signals/market.py src/pumpwatch/signals/market.py
+--- src/pumpwatch/signals/market.py	2026-10-04 19:38:24.378809551 +0000
++++ src/pumpwatch/signals/market.py	2026-10-04 19:49:11.854140715 +0000
+@@ -15,14 +15,13 @@
+     """S1: dollar volume many times its normal level with no filing to explain it."""
+ 
+     bar = ctx.bar(day)
+-    if bar is None:
++    if bar is None or not math.isfinite(bar.dollar_volume) or bar.dollar_volume < 0:
+         return None
+-    history = ctx.bars_before(day, cfg.vol_lookback)
+-    if len(history) < cfg.vol_min_history:
++    history = [b.dollar_volume for b in ctx.bars_before(day, cfg.vol_lookback)]
++    traded = [v for v in history if math.isfinite(v) and v > 0]
++    if len(history) < cfg.vol_min_history or len(traded) < cfg.vol_min_history // 2:
+         return None
+-    base = median(b.dollar_volume for b in history)
+-    if base <= 0:
+-        base = 1.0
++    base = max(median(traded), cfg.vol_min_dollar_base)
+     ratio = bar.dollar_volume / base
+     if ratio < cfg.vol_ratio_trigger:
+         return None
+@@ -53,6 +52,8 @@
+     if today is None or len(window) < cfg.acc_window:
+         return None
+     seq = window + [today]
++    if not all(math.isfinite(b.close) and math.isfinite(b.volume) for b in seq):
++        return None
+     first, last = seq[0].close, seq[-1].close
+     if first <= 0:
+         return None
+diff -ru '--exclude=__pycache__' src/pumpwatch/signals/social.py src/pumpwatch/signals/social.py
+--- src/pumpwatch/signals/social.py	2026-10-04 19:38:24.378809551 +0000
++++ src/pumpwatch/signals/social.py	2026-10-04 19:49:11.854387021 +0000
+@@ -14,12 +14,15 @@
+ def hype_burst(ctx: TickerContext, day: date, cfg: Config) -> SignalHit | None:
+     """S4: mentions jump far above normal and the messages read like promotion."""
+ 
+-    today = ctx.posts_on(day)
++    i = ctx.index(day)
++    prev = ctx.days[i - 1] if i else day - timedelta(days=1)
++    start = prev + timedelta(days=1)  # every post since the previous session
++    today = ctx.posts_between(start, day)
+     n = len(today)
+     if n < cfg.mention_min_count:
+         return None
+-    history = ctx.daily_mentions(day, cfg.mention_baseline_days)
+-    base = mean(history) if history else 0.0
++    history = ctx.daily_mentions(start, cfg.mention_baseline_days)
++    base = mean(history) * (day - prev).days if history else 0.0
+     ratio = n / base if base > 0 else float("inf")
+     if ratio < cfg.mention_ratio_trigger:
+         return None
+diff -ru '--exclude=__pycache__' src/pumpwatch/text.py src/pumpwatch/text.py
+--- src/pumpwatch/text.py	2026-10-04 19:38:24.378809551 +0000
++++ src/pumpwatch/text.py	2026-10-04 19:49:33.624668546 +0000
+@@ -12,7 +12,10 @@
+ import unicodedata
+ from typing import Callable, Iterable
+ 
+-CASHTAG = re.compile(r"(?<![\w$])\$([A-Za-z]{1,5})(?![A-Za-z])")
++CASHTAG = re.compile(r"(?<![A-Za-z0-9_$])\$([A-Za-z]{1,5}(?:\.[A-Za-z])?)(?![A-Za-z0-9])")
++QUOTES = str.maketrans({"\u2019": "'", "\u2018": "'", "\u02bc": "'", "\u201c": '"', "\u201d": '"'})
++NEGATABLE = {"guaranteed", "מובטח"}
++NEGATION = re.compile(r"(?:\bnot|\bno|\bnever|לא)\s+(?:\S+\s+)?$")
+ 
+ # Weighted hype phrases. Weights reflect how specific the phrase is to
+ # promotion rather than ordinary discussion. Hebrew phrases are included
+@@ -59,8 +62,15 @@
+ HypeScorer = Callable[[str], float]
+ 
+ 
++def clean(text: str) -> str:
++    """NFKC, drop invisible format characters (Cf), fold typographic quotes."""
++
++    text = unicodedata.normalize("NFKC", text)
++    return "".join(c for c in text if unicodedata.category(c) != "Cf").translate(QUOTES)
++
++
+ def normalize(text: str) -> str:
+-    text = unicodedata.normalize("NFKC", text).lower()
++    text = clean(text).lower()
+     return re.sub(r"\s+", " ", text).strip()
+ 
+ 
+@@ -71,7 +81,7 @@
+     removes noise such as currency amounts written like "$5".
+     """
+ 
+-    found = [m.group(1).upper() for m in CASHTAG.finditer(text)]
++    found = [m.group(1).upper() for m in CASHTAG.finditer(clean(text))]
+     if known is not None:
+         allowed = {k.upper() for k in known}
+         found = [t for t in found if t in allowed]
+@@ -85,11 +95,16 @@
+     without any single message exceeding 1.
+     """
+ 
+-    t = normalize(text)
++    t = re.sub(r"[-_]", " ", normalize(text))
+     miss = 1.0
+     for phrase, w in HYPE_PHRASES.items():
+-        if phrase in t:
++        pre = r"(?<!\w)" if phrase[0].isascii() and phrase[0].isalnum() else ""
++        post = r"(?!\w)" if phrase[-1].isalnum() else ""
++        for m in re.finditer(pre + re.escape(phrase) + post, t):
++            if phrase in NEGATABLE and NEGATION.search(t[: m.start()]):
++                continue
+             miss *= 1.0 - w
++            break
+     for emoji, w in HYPE_EMOJI.items():
+         n = min(text.count(emoji), 3)
+         for _ in range(n):
+@@ -104,11 +119,18 @@
+     return round(1.0 - miss, 4)
+ 
+ 
+-def shingles(text: str, k: int = 4) -> frozenset[str]:
+-    words = re.findall(r"\w+", normalize(CASHTAG.sub(" ", text)))
++def shingles(text: str, k: int = 4, n: int = 5) -> frozenset[str]:
++    """Character ``n``-grams of the normalised words; messages under ``k`` words get none.
++
++    Character grams survive one-word paraphrases far better than word grams, and
++    short generic replies ("What happened?") can never form a campaign.
++    """
++
++    words = re.findall(r"\w+", normalize(CASHTAG.sub(" ", clean(text))))
+     if len(words) < k:
+-        return frozenset([" ".join(words)]) if words else frozenset()
+-    return frozenset(" ".join(words[i : i + k]) for i in range(len(words) - k + 1))
++        return frozenset()
++    s = " ".join(words)
++    return frozenset(s[i : i + n] for i in range(len(s) - n + 1))
+ 
+ 
+ def jaccard(a: frozenset[str], b: frozenset[str]) -> float:
