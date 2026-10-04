@@ -1,0 +1,145 @@
+{
+"cik": "0000320193",
+"entityType": "operating",
+"sic": "3571",
+"sicDescription": "Electronic Computers",
+"ownerOrg": "06 Technology",
+"insiderTransactionForOwnerExists": 0,
+"insiderTransactionForIssuerExists": 1,
+"name": "Apple Inc.",
+"tickers": [
+"AAPL"
+],
+"exchanges": [
+"Nasdaq"
+],
+"category": "Large accelerated filer",
+"fiscalYearEnd": "0926",
+"stateOfIncorporation": "CA",
+"stateOfIncorporationDescription": "CA",
+"formerNames": [
+{
+"name": "APPLE INC",
+"from": "2007-01-10T00:00:00.000Z",
+"to": "2019-08-05T00:00:00.000Z"
+},
+{
+"name": "APPLE COMPUTER INC",
+"from": "1994-01-26T00:00:00.000Z",
+"to": "2007-01-04T00:00:00.000Z"
+},
+{
+"name": "APPLE COMPUTER INC/ FA",
+"from": "1997-07-28T00:00:00.000Z",
+"to": "1997-07-28T00:00:00.000Z"
+}
+],
+"filings": {
+"recent": {
+"accessionNumber": [
+"0001958244-26-000636",
+"0001959173-26-007235",
+"0001969223-26-001055",
+"0000000000-15-044866"
+],
+"filingDate": [
+"2026-10-02",
+"2026-10-02",
+"2026-10-02",
+"2015-09-09"
+],
+"reportDate": [
+"",
+"",
+"",
+""
+],
+"acceptanceDateTime": [
+"2026-10-02T21:17:10.000Z",
+"2026-10-02T20:20:06.000Z",
+"2026-10-02T20:09:51.000Z",
+"2015-09-09T16:44:51.000Z"
+],
+"act": [
+"33",
+"33",
+"33",
+""
+],
+"form": [
+"144",
+"144",
+"144",
+"UPLOAD"
+],
+"fileNumber": [
+"001-36743",
+"001-36743",
+"001-36743",
+""
+],
+"filmNumber": [
+"261437893",
+"261436787",
+"261436477",
+""
+],
+"items": [
+"",
+"",
+"",
+""
+],
+"core_type": [
+"144",
+"144",
+"144",
+"LETTER"
+],
+"size": [
+5383,
+5724,
+4440,
+33225
+],
+"isXBRL": [
+0,
+0,
+0,
+0
+],
+"isInlineXBRL": [
+0,
+0,
+0,
+0
+],
+"isXBRLNumeric": [
+0,
+0,
+0,
+null
+],
+"primaryDocument": [
+"xsl144X01/primary_doc.xml",
+"xsl144X01/primary_doc.xml",
+"xsl144X01/primary_doc.xml",
+"filename1.pdf"
+],
+"primaryDocDescription": [
+"",
+"",
+"",
+""
+]
+},
+"files": [
+{
+"name": "CIK0000320193-submissions-001.json",
+"filingCount": 1259,
+"filingFrom": "1994-01-26",
+"filingTo": "2015-09-08"
+}
+]
+}
+}
