@@ -20,6 +20,9 @@
   "payment_fee_pct": 2.9,
   "payment_fee_fixed": 0.30,
 
+  "_platform_fee_note": "Shopify charges a third-party-gateway surcharge on every order when Shopify Payments is not used. Israel is not a supported Shopify Payments country, so this is permanent, not avoidable. 2026 rates: Basic 2.0, Grow 1.0, Advanced 0.6. VERIFY on shopify.com/pricing before relying on it.",
+  "platform_fee_pct": 2.0,
+
   "refund_rate_pct": 3.0,
   "support_cost_per_order": 0.40,
   "app_cost_per_order": 0.70,

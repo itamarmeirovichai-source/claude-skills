@@ -1,0 +1,38 @@
+Post-de-minimis landed cost scenarios — gua sha set,,,,
+,,,,
+"THE CHANGE: the $800 de minimis exemption is gone. CBP interim final rules of 24 June 2026 indefinitely suspended it for all modes of importation; the Court of International Trade upheld the rescission in Aug 2026; statutory repeal is set for 1 July 2027. Every commercial parcel now needs a formal customs entry with a 10-digit HTS code and full duty, regardless of value or carrier.",,,,
+"Sources: KPMG taxnewsflash 2026-06; BDO; Thompson Hine SmarTrade 2026-06; cbp.gov newsroom",,,,
+,,,,
+"WHAT IS NOT KNOWN: the HTS line for a stainless-steel facial massage tool set, and therefore the actual duty rate. Secondary sources cite ~37.5% above MFN for China-origin consumer goods (12.5% forced-labour tier + 25% Section 301) but that is NOT from CBP and must be confirmed by a customs broker. The per-entry brokerage/processing fee is also unknown and varies by carrier and service level.",,,,
+,,,,
+FIXED NON-COGS VARIABLE COST PER ORDER,Value,,,
+Payment fee (2.9% + 0.30),1.52,,,
+Shopify third-party gateway surcharge (2% Basic),0.84,,,
+Refund reserve (3%),1.26,,,
+Support,0.40,,,
+Apps,0.70,,,
+Subtotal,4.72,,,
+,,,,
+SCENARIO,Landed COGS,Contribution at $42,CM %,Break-even ROAS
+A — pre-de-minimis baseline (no longer available),14.00,23.28,55.4%,1.80
+B — optimistic: 25% duty on product only; carrier absorbs entry fee,16.13,21.15,50.4%,1.98
+C — mid: 37.5% duty on product+freight; $2 entry fee,20.88,16.40,39.0%,2.56
+D — bad: 37.5% duty on product+freight; $5-8 formal entry fee,26.00,11.28,26.9%,3.72
+,,,,
+"READ THIS: a new store with a new ad account does not hit ROAS 2.56, let alone 3.72. Scenarios C and D are not 'thinner margin' — they are 'the model does not work'.",,,,
+,,,,
+PRICE REQUIRED TO HOLD BREAK-EVEN ROAS AT 1.80,,,,
+Scenario,Landed COGS,Required price,Contribution,CM %
+B,16.13,46.00,25.52,55.5%
+C,20.88,56.00,30.64,54.7%
+D,26.00,66.00,35.47,53.7%
+,,,,
+"The $42 price point was already contested (Mount Lai from $28). At $56-66 the offer is a different product in a different market, and the comparison-table argument in 03-store-copy.md no longer holds.",,,,
+,,,,
+THE STRUCTURAL ALTERNATIVE,,,,
+"Duty paid ONCE on a bulk inbound, then fulfil from a US warehouse. Per-parcel duty disappears; delivery drops from 8-17 days to 2-4; the US warehouse becomes a return address. CJdropshipping private inventory does this at 10 pcs/variant and 100 pcs total — far below Birstone's 200/200/500.",,,,
+Cost to pre-stock 100-150 units incl. duty and freight,1000,1800,USD,
+Capital available,2000,,,
+Left for ad testing if pre-stocked first,200,1000,USD,"Below a realistic Meta test budget for a new account"
+,,,,
+"THE HONEST CONCLUSION: $2,000 buys a market TEST on slow China-direct shipping, not a launch of a fast branded store. At roughly $4,000-5,000 the bulk-import + US-3PL structure becomes affordable and wins on every axis: 2-5 day delivery, duty paid once, full branding, local returns.",,,,

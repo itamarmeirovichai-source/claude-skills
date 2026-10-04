@@ -54,6 +54,7 @@ LOG_FIELDS = [
     "packaging",
     "supplier_shipping",
     "payment_fee",
+    "platform_fee",
     "refund_reserve",
     "support_cost",
     "app_cost",
@@ -115,6 +116,11 @@ def evaluate(cfg, *, net_revenue, gross_charged, units, line_items=None):
         + cfg["supplier_shipping_per_extra_unit"] * (units - 1)
     )
     payment_fee = gross_charged * cfg["payment_fee_pct"] / 100.0 + cfg["payment_fee_fixed"]
+    # Shopify's third-party-gateway surcharge. Israel is not a supported
+    # Shopify Payments country, so this is charged on every order for as long
+    # as the store exists -- it is not a fee that goes away with volume, only
+    # one that shrinks with a higher plan tier.
+    platform_fee = gross_charged * cfg.get("platform_fee_pct", 0.0) / 100.0
     refund_reserve = net_revenue * cfg["refund_rate_pct"] / 100.0
     support_cost = cfg["support_cost_per_order"]
     app_cost = cfg["app_cost_per_order"]
@@ -124,6 +130,7 @@ def evaluate(cfg, *, net_revenue, gross_charged, units, line_items=None):
         + packaging
         + supplier_shipping
         + payment_fee
+        + platform_fee
         + refund_reserve
         + support_cost
         + app_cost
@@ -161,6 +168,7 @@ def evaluate(cfg, *, net_revenue, gross_charged, units, line_items=None):
         "packaging": round(packaging, 2),
         "supplier_shipping": round(supplier_shipping, 2),
         "payment_fee": round(payment_fee, 2),
+        "platform_fee": round(platform_fee, 2),
         "refund_reserve": round(refund_reserve, 2),
         "support_cost": round(support_cost, 2),
         "app_cost": round(app_cost, 2),
