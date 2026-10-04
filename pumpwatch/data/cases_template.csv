@@ -1,0 +1,3 @@
+ticker,label,start,end,note
+# label: pump or legit. start: first public promotion (pump) or news day (legit). end: collapse day (pump) or end of move (legit).
+EXMP,pump,2024-05-06,2024-05-10,"example row - replace with a real case and its SEC/DOJ source"
