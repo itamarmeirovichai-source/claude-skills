@@ -1,7 +1,7 @@
 export const meta = {
   name: 'prop-fleet-daily',
   description: 'Daily run of the MeiroX prop-fleet agent organization: workers research, heads decide, the statistics referee vetoes, the director writes the board',
-  whenToUse: 'Once per trading day, from the scheduled routine. Args: {date: "YYYY-MM-DD"}.',
+  whenToUse: 'Once per trading day, from the scheduled routine. Args: {date: "YYYY-MM-DD", n: <sum of ledger count column>}.',
   phases: [
     { title: 'Workers', detail: 'eight workers across four divisions' },
     { title: 'Heads', detail: 'four division heads, each seeing every worker' },
@@ -154,7 +154,7 @@ const heads = (await parallel(HEADS.map(h => () =>
 
 phase('Referee')
 const tested = workers.flatMap(w => (w.hypotheses_tested || []).map(t => ({ ...t, by: w.key })))
-const nPrior = 110
+const nPrior = (args && args.n) || 173   // the routine passes the ledger's current N
 const verdicts = await parallel(tested.map(t => () =>
   parallel([0, 1, 2].map(i => () =>
     agent(`${COMMON}\n\nYou are ${i === 0 ? 'the Head of Statistics & Risk (veto holder)' : `skeptic #${i} of the red team`}. Decide whether this result passes ALL FOUR criteria of the gate in ORG.md. Prior N from the ledger is ${nPrior} plus today's variants. Re-run the script yourself if it exists (${t.script}) and check the numbers match. Default to passes_gate=false when anything is missing or uncertain.\n\nResult:\n${JSON.stringify(t, null, 1)}`,

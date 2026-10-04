@@ -19,14 +19,18 @@ firm, the sizing, the code.
 
 ## What these two rules already imply (found 4 Oct)
 
-- **Apex is out as the main firm.** Third-party summaries of its User Agreement
-  say automated order submission is forbidden on funded (PA) accounts. Rule 1
-  rules it out unless Apex answers otherwise in writing (asked 20 + 29 Sep).
+- **Apex is out.** Its own compliance page (support.apextraderfunding.com,
+  via search snippet, day 1) bans automated order submission on **all** account
+  types, evaluations included. Rule 1 rules it out unless Apex answers otherwise
+  in writing (asked 20 + 29 Sep).
 - **Firms that reportedly allow full automation:** MyFundedFutures, Bulenox,
   Tradeify, Lucid; Topstep on Express Funded accounts, via its ProjectX API, with
   the code running on the trader's own computer (not a VPS). Most cap accounts
-  at about 5 per firm, so "many accounts" means about 20 spread over four
-  firms, not 20 at one. Every one of these is a claim to verify, not a fact.
+  at about 5 per firm. Planning fleet until the firms confirm in writing:
+  **Tier A = Bulenox 5 + Lucid 5 = 10 accounts**; Topstep Express, Tradeify
+  and MyFundedFutures are Tier B (automation allowed with conditions, e.g. no
+  VPS at Topstep, Tradovate API live-only). Every one of these is a claim to
+  verify, not a fact.
 
 ## The organization
 
@@ -58,12 +62,17 @@ of these hold:
 1. Its rules were written in `ledger.csv` **before** its first backtest.
 2. Out-of-sample, after realistic costs, the bootstrap 5th percentile of the
    mean R per trade is above zero.
-3. The result survives the multiple-testing correction for **N = the sum of
-   the `count` column in `ledger.csv`** (every hypothesis and variant ever
-   tested, by anyone, any day). Today N = 110.
-4. Translated to annual Sharpe at its trade frequency, it reaches about **3**,
-   the level at which a 21-day evaluation stops being a lottery
-   (`references/stack.md`, section 3).
+3. The result survives a **one-sided Bonferroni correction, alpha = 0.05 / N**,
+   with N = the sum of the `count` column in `ledger.csv` (every hypothesis and
+   variant ever tested, by anyone, any day, pre-registered ones included). The
+   current N is printed on the board.
+4. **Per firm**, at its R per trade and trades per day, it passes that firm's
+   evaluation more often than it blows it and reaches the 20% goal in the
+   fleet model (`daily/2026-10-04/prop_head/`). For a 21-day clock this is
+   about annual Sharpe 3; for firms without a clock it is lower. Always report
+   R per trade **and** trades per day, never one without the other. (Changed
+   day 1: the red team showed the old flat "Sharpe ~3" came from Apex's
+   21-day clock. Rule 3 keeps the significance bar unchanged.)
 
 The ledger is what stops an organization that tests something new every day
 from finding "edges" by chance: every day adds to N, and N raises the bar.
