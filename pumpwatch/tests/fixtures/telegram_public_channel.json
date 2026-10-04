@@ -1,0 +1,15 @@
+{
+ "name": "Synthetic Promo Channel (test fixture)",
+ "type": "public_channel",
+ "id": 9000000001,
+ "messages": [
+  {"id": 1, "type": "service", "date": "2026-03-01T08:00:00", "date_unixtime": "1772352000", "actor": "Synthetic Promo Channel (test fixture)", "actor_id": "channel9000000001", "action": "create_channel", "title": "Synthetic Promo Channel (test fixture)", "text": "", "text_entities": []},
+  {"id": 2, "type": "message", "date": "2026-03-03T01:30:00", "date_unixtime": "1772494200", "from": "Synthetic Promo Channel (test fixture)", "from_id": "channel9000000001",
+   "text": ["🚀🚀 ", {"type": "cashtag", "text": "$ZZZQ"}, " is about to explode! Get in now before it explodes 💰"],
+   "text_entities": [{"type": "plain", "text": "🚀🚀 "}, {"type": "cashtag", "text": "$ZZZQ"}, {"type": "plain", "text": " is about to explode! Get in now before it explodes 💰"}]},
+  {"id": 3, "type": "message", "date": "2026-03-03T11:15:00", "date_unixtime": "1772529300", "from": "Synthetic Promo Channel (test fixture)", "from_id": "channel9000000001", "photo": "(File not included. Change data exporting settings to download.)", "text": "", "text_entities": []},
+  {"id": 4, "type": "message", "date": "2026-03-03T12:00:00", "date_unixtime": "1772532000", "from": "Synthetic Promo Channel (test fixture)", "from_id": "channel9000000001", "text": "General market chatter today, nothing specific.", "text_entities": [{"type": "plain", "text": "General market chatter today, nothing specific."}]},
+  {"id": 5, "type": "message", "date": "2026-03-04T10:00:00", "date_unixtime": "1772611200", "from": "Synthetic Promo Channel (test fixture)", "from_id": "channel9000000001", "text": "Watching $ZZZQ and $ABCD. Members get a $5 coupon.", "text_entities": [{"type": "plain", "text": "Watching $ZZZQ and $ABCD. Members get a $5 coupon."}]},
+  {"id": 6, "type": "message", "date": "2026-03-04T10:05:00", "date_unixtime": "1772611500", "from": "Synthetic Promo Channel (test fixture)", "from_id": "channel9000000001", "forwarded_from": "Fixture Person A", "text": [{"type": "bold", "text": "פי 10"}, " על ", {"type": "cashtag", "text": "$ZZZQ"}, " — להיכנס עכשיו"], "text_entities": []}
+ ]
+}

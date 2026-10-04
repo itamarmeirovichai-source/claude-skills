@@ -1,0 +1,19 @@
+{
+ "about": "Synthetic whole-account export (test fixture)",
+ "chats": {
+  "about": "fixture",
+  "list": [
+   {"name": "Fixture Friend", "type": "personal_chat", "id": 1001,
+    "messages": [{"id": 1, "type": "message", "date": "2026-03-04T10:00:00", "date_unixtime": "1772611200", "from": "Fixture Friend", "from_id": "user1001", "text": "private note about $ZZZQ", "text_entities": []}]},
+   {"name": "Synthetic Open Traders Group (test fixture)", "type": "public_supergroup", "id": 9000000003,
+    "messages": [
+     {"id": 10, "type": "message", "date": "2026-03-04T10:00:00", "date_unixtime": "1772611200", "from": "Fixture User One", "from_id": "user2001", "text": "$ZZZQ huge news coming this week, load up before it explodes", "text_entities": []},
+     {"id": 11, "type": "message", "date": "2026-03-04T10:05:00", "date_unixtime": "1772611500", "from": "Fixture User Two", "from_id": "user2002", "text": "$ZZZQ huge news coming this week, load up before it explodes!!", "text_entities": []},
+     {"id": 12, "type": "message", "date": "2026-03-04T10:11:00", "date_unixtime": "1772611860", "from": "Fixture User Three", "from_id": "user2003", "text": "huge news coming this week $ZZZQ, load up before it explodes", "text_entities": []},
+     {"id": 13, "type": "message", "date": "2026-03-04T14:00:00", "date_unixtime": "1772625600", "from": "Fixture User One", "from_id": "user2001", "text": "$ZZZQ anyone read the 10-Q?", "text_entities": []}
+    ]},
+   {"name": "Synthetic Closed Group (test fixture)", "type": "private_supergroup", "id": 9000000004,
+    "messages": [{"id": 1, "type": "message", "date": "2026-03-04T10:00:00", "date_unixtime": "1772611200", "from": "Fixture Insider", "from_id": "user3001", "text": "$ZZZQ buy now", "text_entities": []}]}
+  ]
+ }
+}
