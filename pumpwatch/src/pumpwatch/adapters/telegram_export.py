@@ -16,6 +16,12 @@ Message text is either a string or a list mixing strings and entity objects
 (``{"type": "cashtag", "text": "$ABC"}``); both are flattened to plain text.
 The day is taken from ``date_unixtime`` (UTC) when present, because ``date``
 is in the exporting computer's local time zone.
+
+Licensing: Telegram's terms restrict commercial monitoring and any use of
+its data in machine-learning models (``research/social_data_access.md``
+section 1.3). Until a lawyer signs off, use this adapter for offline
+backtests with the rule-based signals only, and delete raw exports after
+feature extraction.
 """
 
 from __future__ import annotations
