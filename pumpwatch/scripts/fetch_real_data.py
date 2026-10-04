@@ -21,8 +21,8 @@ return nothing or another company's data. The script warns when Yahoo's first
 trade date is after a case start, when the Yahoo and EDGAR names share no
 significant word, or when the CIK only started filing after the case; bars that
 do not overlap any case window at all are dropped (status ``no_bars``). Use
-``--cik-overrides`` (ticker,cik,company) to pin the historical CIK for delisted
-tickers.
+``--cik-overrides`` (ticker,cik,company[,yahoo_symbol]) to pin the historical CIK
+for delisted tickers and the current Yahoo symbol for renamed ones.
 
 Raw responses are cached in ``--cache-dir`` so re-runs do not hit the network
 (delete the cache to refresh). SEC calls are throttled to <= 5/s with a
@@ -159,8 +159,14 @@ def read_overrides(path: Path | None) -> dict[str, tuple[str, str]]:
     with open(path, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
             t = (row.get("ticker") or "").strip().upper()
-            if t and not t.startswith("#") and (row.get("cik") or "").strip():
-                out[t] = (edgar.cik10(row["cik"]), (row.get("company") or "").strip())
+            if not t or t.startswith("#"):
+                continue
+            cik = (row.get("cik") or "").strip()
+            out[t] = (
+                edgar.cik10(cik) if cik else "",
+                (row.get("company") or "").strip(),
+                (row.get("yahoo_symbol") or "").strip().upper() or t,
+            )
     return out
 
 
@@ -188,10 +194,14 @@ def fetch_ticker(job: TickerJob, http: Http, ticker_ciks: dict[str, str], overri
 
     # --- bars (Yahoo) -------------------------------------------------------
     p1, p2 = _unix(w_start), _unix(w_end + timedelta(days=1))
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{t}?period1={p1}&period2={p2}&interval=1d&events=split"
+    # The symbol may have changed since the case (e.g. EDAP -> FOCL); overrides pin the current one.
+    ysym = overrides[t][2] if t in overrides else t
+    if ysym != t:
+        warnings.append(f"yahoo symbol {ysym} (override)")
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ysym}?period1={p1}&period2={p2}&interval=1d&events=split"
     yahoo_names: set[str] = set()
     try:
-        chart = http.get_json(url, f"yahoo_{t}_{p1}_{p2}.json", "yahoo", keep_status=(400, 404))
+        chart = http.get_json(url, f"yahoo_{ysym}_{p1}_{p2}.json", "yahoo", keep_status=(400, 404))
         meta = market_csv.yahoo_meta(chart)
         bars = market_csv.parse_yahoo_chart(chart, t)
         row["yahoo_name"] = meta.get("long_name") or meta.get("short_name") or ""
@@ -217,7 +227,7 @@ def fetch_ticker(job: TickerJob, http: Http, ticker_ciks: dict[str, str], overri
 
     # --- filings (EDGAR) ----------------------------------------------------
     cik, source = None, ""
-    if t in overrides:
+    if t in overrides and overrides[t][0]:
         cik, source = overrides[t][0], "override"
     elif t in ticker_ciks:
         cik, source = ticker_ciks[t], "sec_tickers"
