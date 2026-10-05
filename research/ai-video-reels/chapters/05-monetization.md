@@ -341,7 +341,7 @@ Keep wardrobe from @Image3. No logos, no text, no extra people in foreground.
 |---|---|---|
 | **Fiverr** | מתחילים ב-$25–50 עד 10–15 ביקורות, ואז קופצים. בגיג מגדירים היקף מדויק: "סרטון אחד מתסריט מאושר + חומרים שסופקו, עם קריינות, כתוביות ו-export סופי" ([fluxnote](https://fluxnote.io/blog/sell-ai-video-services-on-fiverr-2026)) | הקטגוריה: $45–222. פרסומות קולנועיות: $1K–5K ([genra.ai](https://genra.ai/blog/ai-video-freelancer-business-guide)). גיג פתיחה מומלץ "AI Cinematic Product Commercial" בשלוש רמות: $60 / $180 / $450 (₪182 / ₪547 / ₪1,368) |
 | **Upwork** | חברות אמריקאיות. עדיף fixed-price לפי חבילות | $50–120 לשעה. מדרגות לפי F2: $15–25 כניסה, $30–55 ביניים, $50–80 קולנועי |
-| **Contra** | סטארטאפים ומעצבים, הצגת תיק עבודות | 0% עמלה לפרילנסר **[לא מאומת ל-2026]** |
+| **Contra** | סטארטאפים ומעצבים, הצגת תיק עבודות | 0% עמלה לפרילנסר (אומת 2026). הלקוח משלם עמלה קבועה של $2–29 לתשלום; Contra Pro אופציונלי ב-$199 לשנה ([golance](https://golance.com/blogs/freelance-platforms-no-fees-complete-guide), [jobbers](https://www.jobbers.io/which-freelance-platform-has-no-commission-in-2026-the-complete-guide-to-zero-fee-marketplaces/)) |
 | **ישיר (LinkedIn, מייל קר)** | מותגי DTC אמריקאיים | ראו מייל קר בסעיף 2.7, באנגלית |
 
 **חבילות "productized" לשוק האמריקאי** ([aivideobootcamp UGC playbook](https://aivideobootcamp.com/blog/ai-ugc-ads-2026-freelancer-playbook/)):
@@ -530,7 +530,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 ```
 ההנחה של "עד 50% ל-3 שעות" היא תנאי רשמי של תוכנית האפילייט של Higgsfield ([Higgsfield](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026)). חובה להוסיף ב-DM: "הקישור הוא קישור שותפים. אני מקבל עמלה בלי עלות נוספת לך".
 
-**עלות:** ManyChat Free עד שעוברים 500 אנשי קשר. Pro עולה $15 (₪46) ל-500 אנשי קשר, כ-$45 ל-5K וכ-$75 ל-10K, ותוספת AI עולה $29 (F2). E2 מעריך ₪55–90 לחודש כולל רשימת מייל.
+**עלות:** ManyChat Free עד שעוברים 500 אנשי קשר. Pro עולה $15 (₪46) ל-500 אנשי קשר, $45 ל-5K ו-$65 ל-10K (תוקן; F2 ציין כ-$75), ותוספת AI עולה $29 ([featurebase](https://www.featurebase.app/blog/manychat-pricing)). שימו לב: מ-2.3.2026 חשבונות חדשים עוברים למודל תמחור חדש של חמש תוכניות, והמחירים האלה הם של המודל הישן. E2 מעריך ₪55–90 לחודש כולל רשימת מייל.
 
 ### 5.2 סולם המוצרים
 
@@ -562,9 +562,9 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 ### 5.4 קהילות: Skool מול Whop
 
-- **AI Video Bootcamp (Skool):** $9 לחודש, כ-26,600 חברים (אוגוסט 2026), כלומר כ-$2.39M בשנה. המייסד Daniel Riley מתכנן עלייה ל-$50. כלולים 21 מודולים, תחרויות, "Opportunity Hub" ו-gamification (ברמה 9 מקבלים $400 במזומן) ([aifunnelinsider](https://aifunnelinsider.com/ai-video-bootcamp-skool-review/)). הקהילה טוענת למקום 22 מתוך 250K קהילות ב-Skool.
+- **AI Video Bootcamp (Skool):** $9 לחודש או $55 לשנה, כ-26,600 חברים (אוגוסט 2026; במרץ 2026 דווח על 20,000+), כלומר כ-$2.39M בשנה. המייסד Daniel Riley מתכנן עלייה ל-$50. כלולים 21 מודולים, תחרויות, "Opportunity Hub" ו-gamification (ברמה 9 מקבלים $400 במזומן) ([aifunnelinsider](https://aifunnelinsider.com/ai-video-bootcamp-skool-review/)). הקהילה טוענת למקום 22 מתוך 250K קהילות ב-Skool.
 - **מחיר:** בשוק הבינלאומי המחיר נלחץ ל-$9 (₪27). המוצר העברי צריך להצדיק את המחיר דרך לוקליזציה: שפה, לקוחות ישראליים ודוגמאות מקומיות.
-- **Skool:** $99 לחודש (₪301) + עמלה של 2.9%+ [לא מאומת לתמחור 2026]. **Whop:** יש marketplace עם תנועה אורגנית, אפשר למכור קורס וקהילה יחד, ויש Content Rewards (סעיף 7.2).
+- **Skool:** שתי תוכניות. Hobby ב-$9 לחודש עם עמלת עסקה של 10% + $0.30, ו-Pro ב-$99 לחודש (₪301) עם 2.9% + $0.30 (3.9% מעל $900). נקודת האיזון בערך $1,200–1,400 הכנסה חודשית ([schoolmaker](https://schoolmaker.com/blog/skool-pricing)). **Whop:** יש marketplace עם תנועה אורגנית, אפשר למכור קורס וקהילה יחד, ויש Content Rewards (סעיף 7.2).
 - **יעד אחרי 90 יום** [הערכה]: 100 חברים × ₪39 = ₪3,900 לחודש.
 
 ---
@@ -573,13 +573,13 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 | כלי | עמלה | משך | Cookie | מינימום / תשלום | דרישות | מקור |
 |---|---|---|---|---|---|---|
-| **Higgsfield** | עד **25%**, מדורג לפי הכנסה (מנויים, חידושים, שדרוגים) | עד 12 חודשים | לא פורסם | לכרטיס; מינימום לא פורסם | פתוח, **הקישור פעיל מיד**. אסור: מודעות ממומנות, ביד על המותג, אתרי קופונים. אין עמלה על החזרים. המופנה מקבל עד 50% הנחה ל-3 שעות | [Higgsfield](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
+| **Higgsfield** | עד **25%**, מדורג לפי הכנסה (מנויים, חידושים, שדרוגים) | עד 12 חודשים (בתוכניות שנתיות ורבעוניות העמלה לכל התקופה נזקפת מראש) | לא פורסם | לכרטיס; מינימום לא פורסם | פתוח, **הקישור פעיל מיד**. אסור: מודעות ממומנות, ביד על המותג, אתרי קופונים. אין עמלה על החזרים. המופנה מקבל עד 50% הנחה ל-3 שעות | [Higgsfield](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
 | **ElevenLabs** | **22%** (Starter–Scale), 11% ב-Business | 12 חודשים | **90 יום** | $5 דרך PartnerStack; משולם אחרי 90 יום של מנוי פעיל | חינם | [ElevenLabs](https://elevenlabs.io/affiliate) |
 | **HeyGen** (Social Creator) | **35%** חוזר; **50% עד 31.10.2026** | 3 חודשים | 30 יום | $100 ב-PayPal, 60 יום אימות | **5K+ עוקבים**, תוכן וידאו מקורי, בלי SEO/PPC | [HeyGen](https://www.heygen.com/affiliate) |
 | **Hailuo (MiniMax)** | 10% עד 30% מדורג | לא פורסם | — | $10; נעול 27 יום | Pro חינם לשותפים פעילים | [Hailuo](https://hailuoai.video/affiliate) |
-| **Freepik** | 15% חוזר | לא פורסם | 30 יום | $20 דרך Awin | מקורות אחרים מדווחים 5–12% | [affpaying](https://www.affpaying.com/freepik), [flexoffers](https://www.flexoffers.com/affiliate-programs/freepik-us-affiliate-program/) |
+| **Freepik** | 15% חוזר | לא פורסם | 30 יום | $20 דרך Awin | מקורות אחרים מדווחים 5–12%. **באוקטובר 2026 תוכניות Freepik US ו-UK ב-Awin מסומנות "Closed"**. לבדוק רשת חלופית (FlexOffers) לפני הרשמה | [affpaying](https://www.affpaying.com/freepik), [flexoffers](https://www.flexoffers.com/affiliate-programs/freepik-us-affiliate-program/), [affi.io](https://affi.io/m/freepik) |
 | **Hedra** | 20% ל-3 חודשים; Creator Program 15% ל-12 חודשים | | | Dub Partners | | [Hedra](https://partners.dub.co/hedra) |
-| **Kling** | "עד 30%" [לא מאומת] | — | — | **רק דרך CityAds** (CPS, מ-7/2025) | שיעור רשמי לא פורסם | [affilitizer](https://www.affilitizer.com/programs/app.klingai.com) |
+| **Kling** | "עד 30%" (מקורות משניים בלבד; שיעור רשמי לא פורסם) [לא מאומת] | — | — | **רק דרך CityAds** (CPS, מ-7/2025) | שיעור רשמי לא פורסם | [affilitizer](https://www.affilitizer.com/programs/app.klingai.com) |
 | **Lovart** | **לא נמצאה תוכנית ציבורית** | — | — | — | rourke מתייג @lovart.ai, כנראה עסקה ישירה [לא מאומת] | — |
 
 **כמה זה שווה:**
@@ -601,7 +601,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 ### 7.1 Higgsfield Earn
 
 - **מבנה:** מחברים את חשבון האינסטגרם, מאמתים קוד בביו, מפרסמים סרטון AI שנוצר ב-Higgsfield ומדביקים את הלינק. התשלום ב-3 שלבים: באישור, בונוס אחרי 24 שעות ובונוס אחרי 7 ימים. **עד $1,000 (₪3,040) ביום הראשון, עד $2,500 (₪7,600) לסרטון**, ומותר להגיש כמה סרטונים לקמפיין. משיכה אחרי יום 7 ([higgsfield.ai/earn](https://higgsfield.ai/earn)). תעריף ה-CPM לא פורסם.
-- **המציאות:** לפי A2 שולם עד היום יותר מ-$1M ל-10K יוצרים, כלומר **ממוצע של כ-$100 (₪304) ליוצר**. 36Kr דיווח על בונוסים שבועיים עד $100K לכלל היוצרים.
+- **המציאות:** לפי Higgsfield עצמה שולם עד היום יותר מ-$1M ליותר מ-10,000 יוצרים מאומתים, עם 90% אישור הגשות ([Higgsfield blog](https://higgsfield.ai/blog/how-to-make-money-online-using-higgsfield-earn)), כלומר **ממוצע של כ-$100 (₪304) ליוצר או פחות**. 36Kr דיווח על בונוסים שבועיים עד $100K לכלל היוצרים.
 - **זמינות לישראל:** לא צוינה מגבלת מדינה. כנראה זמין [לא מאומת בפועל].
 - **טקטיקה:** כל רילס שנעשה ב-Higgsfield מגישים גם ל-Earn. אין התנגשות עם אפילייט. **גילוי נאות:** רילס שמקבל תשלום מ-Earn הוא תוכן ממומן, וצריך לסמן `#ad` / "שיתוף פעולה בתשלום".
 - **Pika:** בתנאי השימוש יש סעיף "profit share on AI self-monetization" ([conductatlas](https://conductatlas.com/platform/pika/pika-terms-of-service/pika-profit-share-on-ai-self-monetization/)) [לא נבדק לעומק]. בודקים לפני שמשתמשים בפלט של Pika בתוכנית מונטיזציה.
@@ -610,7 +610,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 - מותגים קובעים תקציב ותעריף ל-1,000 צפיות, וכל אחד יכול להצטרף ([opus.pro](https://www.opus.pro/blog/whop-content-rewards)).
 - **תעריפים:** clipping רגיל $1–3 ל-1,000 צפיות. UGC/talking-head $2–50 ל-1,000. קמפיינים גדולים $0.50–1.50. רוב הקמפיינים בין $0.30 ל-$6 ([clipaffiliates](https://www.clipaffiliates.com/blog/clipping-cpm-rates-2026)). לפי Forbes (אפריל 2026) מדובר ביותר מ-$40K ביום על כמיליון סרטונים בחודש (דרך [postiz](https://postiz.com/blog/whop-clipping-how-to-make-money-automate-it)).
-- **סתירה בין המקורות לגבי תשלום לישראלים:** לפי E2 המשיכה עוברת דרך Stripe, ו-"Stripe עובד בישראל" עם עמלות משיכה גבוהות [לא מאומת]. לפי E3, ישראל **לא מופיעה** ברשימת המדינות הנתמכות ב-[stripe.com/global](https://stripe.com/global), ובמזרח התיכון מופיעה רק UAE. האימות של E3 מבוסס על העמוד הרשמי, ולכן **ההנחה הבטוחה היא ש-Stripe Connect לא זמין לחשבון ישראלי בלי ישות זרה**. לפני השקעת זמן ב-Whop כ-clipper, צריך לבדוק בפועל את אפשרויות המשיכה.
+- **סתירה בין המקורות לגבי תשלום לישראלים:** לפי E2 המשיכה עוברת דרך Stripe, ו-"Stripe עובד בישראל" עם עמלות משיכה גבוהות [לא מאומת]. לפי E3, ישראל **לא מופיעה** ברשימת המדינות הנתמכות ב-[stripe.com/global](https://stripe.com/global), ובמזרח התיכון מופיעה רק UAE. **בדיקת עובדות:** אומת ש-Stripe לא נותנת שירות סליקה לחשבון ישראלי ([Globes](https://en.globes.co.il/en/article-1001381078)). אבל לפי התיעוד הרשמי של Whop, Whop היא Merchant of Record ומשלמת לחשבון בנק, ארנק מובייל, PayPal או ארנק קריפטו ביותר מ-200 מדינות, והאפשרויות משתנות לפי מדינה ([Whop docs](https://docs.whop.com/manage-your-business/manage-payouts/payout-methods)). כלומר משיכה מ-Whop לא בהכרח תלויה ב-Stripe. האם ישראל ברשימה ואיזו שיטה זמינה לה: **[לא מאומת]**. לפני השקעת זמן ב-Whop כ-clipper, פותחים חשבון ובודקים במסך המשיכה.
 - **הזדמנות הפוכה:** להשיק קמפיין Content Rewards **לקורס שלך** ולשלם ל-clippers להפיץ אותו.
 
 ---
@@ -634,9 +634,9 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 | תחרות | פרסים | דדליין | דמי השתתפות | מקור |
 |---|---|---|---|---|
-| **Chroma Awards Season 2** (ElevenLabs + FAL, Freepik, Dreamina, CapCut) | **יותר מ-$175K במזומן (₪532K) ויותר מ-$1M בקרדיטים**, 25 קטגוריות | **31.12.2026** | חינם (Devpost) | [aifilmcontests](https://aifilmcontests.com/topics/free-ai-film-contests-2026) |
-| **HKBU Future Film Fest 3F** | מאגר $66K (₪200K), $5K ל-Best AI Short | **31.10.2026** | FilmFreeway, בתשלום | [aifilmcontests](https://aifilmcontests.com/topics/ai-film-contests-with-cash-prizes) |
-| **Slamdance DIG (AI Films)** | מלגת AGBO של $25K + הפצה ב-Utopia | **6.10.2026 (מחר)** | בתשלום | שם |
+| **Chroma Awards Season 2** (ElevenLabs, Google Cloud, Fal, Freepik, Dreamina, CapCut) | **יותר מ-$175K במזומן (₪532K) ויותר מ-$1M בקרדיטים**, 25 קטגוריות | **31.12.2026** | חינם (Devpost) | [aifilmcontests](https://aifilmcontests.com/contests/chroma-awards-season-2-2026) |
+| **HKBU Future Film Fest 3F** | מאגר $66K (₪200K), $5K ל-Best AI Short + $3K לפרס השופטים. **רק במאים עד גיל 30** (נכון ל-31.12.2026) | **31.10.2026** | FilmFreeway, בתשלום | [aifilmcontests](https://aifilmcontests.com/topics/ai-film-contests-with-cash-prizes) |
+| **Slamdance DIG (AI Films)** | מלגת AGBO של $25K + הפצה ב-Utopia; הפסטיבל 18–24.2.2027 בלוס אנג'לס | **6.10.2026 (מחר)** | בתשלום | [aifilmcontests](https://aifilmcontests.com/contests/slamdance-dig-ai-2027) |
 | AI London Film Festival | לפי קטגוריות | 7.10.2026 | — | שם |
 | **Runway Gen:48** | $5K גרנד פרי + מיליון קרדיטים + רישיון Epidemic Sound + הקרנה ב-AIFF | לפי סבב של 48 שעות [לבדוק מועד הבא] | חינם | [aifilmcontests](https://aifilmcontests.com/contests/runway-gen48-2026) |
 | BIAIFF Busan | $2.5K סה"כ ($1.2K לגרנד פרי) | ראו FilmFreeway | בתשלום | [FilmFreeway](https://filmfreeway.com/BIAIFF2026) |
@@ -645,7 +645,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 | תחרות | פרסים | הערות |
 |---|---|---|
-| **Higgsfield Global Film Festival** | **$1M**: $500K / $200K / $100K + $100K Audience Choice + 10 × $10K | נפתח 10.8, הדדליין הוארך ל-14.9. shortlist והצבעת קהל ב-8.10, שיפוט 9–14.10, **זוכים בשבוע האחרון של אוקטובר**. 67,223 הגשות (A1), כלומר סיכוי של כ-0.02% לזכייה. Higgsfield מקבלת רישיון "non-exclusive, perpetual, irrevocable, worldwide, royalty-free", והזכויות נשארות אצל היוצר ([Rules](https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules)) |
+| **Higgsfield Global Film Festival** | **$1M**: $500K / $200K / $100K + $100K Audience Choice + 10 × $10K | נפתח 10.8, הדדליין הוארך ל-**16.9.2026, 23:59 UTC** (תוקן; לפי התקנון הרשמי). סינון, shortlist והצבעת קהל 17.9–8.10, שיפוט 9–14.10, **זוכים בשבוע האחרון של אוקטובר** (תאריך מדויק טרם נקבע). 67,223 הגשות (A1; המספר לא מופיע בתקנון), כלומר סיכוי של כ-0.02% לזכייה. Higgsfield מקבלת רישיון "non-exclusive, perpetual, irrevocable, worldwide, royalty-free", והזכויות נשארות אצל היוצר ([Rules](https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules)) |
 | Higgsfield App Contest | $100K | 8–22.7.2026 |
 | Future Vision XPRIZE | $3.5M | נסגר 15.8 |
 | Astana AI Film Festival | קרן $1M | נסגר 15.8 |
@@ -662,9 +662,9 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 | תוכנית | זמינה? | דרישות | RPM מציאותי ל-1,000 צפיות |
 |---|---|---|---|
-| **YouTube Partner Program, Shorts** | ✅ כן, ישראל ברשימה הרשמית ([Google](https://support.google.com/youtube/answer/7101720)) | 1,000 מנויים + 10M צפיות Shorts ב-90 יום (מ-1.2.2027: 20M ליוצרים חדשים) | $0.03–0.15; קהל עברי כ-$0.03–0.08 [הערכה, לא מאומת] |
+| **YouTube Partner Program, Shorts** | ✅ כן, ישראל ברשימה הרשמית ([Google](https://support.google.com/youtube/answer/7101720)) | 1,000 מנויים + 10M צפיות Shorts ב-90 יום (מ-1.2.2027: 20M בשנה ליוצרים חדשים; חברי YPP קיימים לא מושפעים מספי הכניסה) | $0.03–0.15; קהל עברי כ-$0.03–0.08 [הערכה, לא מאומת] |
 | **YouTube long-form** | ✅ | 1,000 מנויים + 4,000 שעות ב-12 חודשים (מ-1.2.2027: 8,000 ליוצרים חדשים) | $2–10 באנגלית; בעברית $1–3 [לא מאומת] |
-| **TikTok Creator Rewards** | ❌ לא. ישראל לא מופיעה בשתי רשימות 2026; "most of Africa and the Middle East" לא זכאיות ([ttcalculator](https://ttcalculator.net/data/reference/creator-fund-countries/), [ShortSync](https://www.shortsync.app/resources/tiktok-creator-rewards-program-2026)) | 18+, 10K עוקבים, 100K צפיות ב-30 יום, **רק סרטונים מעל דקה** | $0.40–1.00 ל-qualified view; אפקטיבי $0.20–0.50 |
+| **TikTok Creator Rewards** | ❌ לא. ישראל לא מופיעה בשתי רשימות 2026 (לפי מקורות משניים התוכנית זמינה ב-8 מדינות: US, UK, גרמניה, צרפת, יפן, דרום קוריאה, ברזיל, מקסיקו); "most of Africa and the Middle East" לא זכאיות ([ttcalculator](https://ttcalculator.net/data/reference/creator-fund-countries/), [ShortSync](https://www.shortsync.app/resources/tiktok-creator-rewards-program-2026)) | 18+, 10K עוקבים, 100K צפיות ב-30 יום, **רק סרטונים מעל דקה** | $0.40–1.00 ל-qualified view; אפקטיבי $0.20–0.50 |
 | **TikTok Effect Creator Rewards** (אפקטים ב-Effect House) | ✅ ישראל נוספה במרץ 2024 | אפקט שמשמש ב-100K סרטונים | עד $14K (₪42.6K) לאפקט ([Search Engine Land](https://searchengineland.com/tiktok-expands-effect-creator-rewards-438353)) |
 | **Facebook Content Monetization** | ⚠️ כנראה לא [לא מאומת, העמוד הרשמי החזיר 404] | 10K עוקבים, 600K דקות ב-60 יום, 5 סרטונים | הערכה שמרנית לריילס $0.05–0.30. פער גדול בין המקורות: SocialCal $0.01–0.05; SocialBee $0.02–0.20; ShortSync $8–20 (כנראה כולל וידאו ארוך) |
 | **Instagram** | ❌ אין תשלום על צפיות. Reels Play Bonus נסגר ב-2023 | — | $0 |
@@ -699,7 +699,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 **המשמעות לעברית:** בקהל דובר עברית יש כ-10 מיליון איש. רק ערוצים מהגדולים בארץ יחזיקו 10M צפיות Shorts ברבעון. **אחרי פברואר 2027, Shorts בעברית כמעט לא ישלמו לרוב היוצרים.** מי שנכנס ל-YPP לפני 1.2.2027 נשאר בספים הישנים, אבל הרצפה של 10M חלה על כולם.
 
-**ציר הזמן של מדיניות AI ב-YouTube:** "repetitious content" שונה ל-**"inauthentic content"** ב-15.7.2025 (לפי AIR. בלוגים משניים כותבים 2026, ו-E3 מעדיף את 2025). בינואר 2026 היה גל אכיפה: 16 ערוצים, 35M מנויים, 4.7B צפיות וכ-$10M הכנסה שנתית ([HackerNoon](https://hackernoon.com/youtubes-ai-slop-crackdown-cant-tell-a-directed-ai-film-from-a-bot-farm)). ב-27.5.2026 YouTube התחילה להוסיף אוטומטית תווית AI לתוכן פוטוריאליסטי שלא סומן. ב-16.7.2026 המדיניות חודדה לשלוש קטגוריות. באוקטובר 2026 צומצם ה-reach של ערוצי re-upload. ההגדרה הרשמית של הפרה ([YPP policies](https://support.google.com/youtube/answer/1311392)):
+**ציר הזמן של מדיניות AI ב-YouTube:** "repetitious content" שונה ל-**"inauthentic content"** ב-15.7.2025 (אומת: [Search Engine Journal](https://www.searchenginejournal.com/youtube-monetization-update-spam-not-reaction-channels/550755/), [Social Media Today](https://www.socialmediatoday.com/news/youtube-clarifies-monetization-update-inauthentic-repeated-content/752892/). התאריך 2026 בבלוגים משניים שגוי). בינואר 2026 היה גל אכיפה: 16 ערוצים, 35M מנויים, 4.7B צפיות וכ-$10M הכנסה שנתית ([HackerNoon](https://hackernoon.com/youtubes-ai-slop-crackdown-cant-tell-a-directed-ai-film-from-a-bot-farm)). ב-27.5.2026 YouTube התחילה להוסיף אוטומטית תווית AI לתוכן פוטוריאליסטי שלא סומן. ב-16.7.2026 המדיניות חודדה לשלוש קטגוריות. באוקטובר 2026 צומצם ה-reach של ערוצי re-upload. ההגדרה הרשמית של הפרה ([YPP policies](https://support.google.com/youtube/answer/1311392)):
 > "AI-generated content made with generic or unoriginal templates giving the impression of mass production without adding the creator's original, authentic insights or perspective"
 
 **סיכון גבוה:** 10+ סרטונים כמעט זהים ביום, TTS על stock לא קשור, אותו קול בכמה ערוצים, חפיפה של 90%+ בתסריט, ערוצי "Reddit stories", שיבוט קול בלי גילוי. **בטוח יחסית:** AI ככלי, פנים או נוכחות אנושית ("no visible human face" משמש בפועל כסיגנל לאיכות נמוכה), פורמט היברידי, וסדרה עם עלילה ופרסונה קבועה.
@@ -708,7 +708,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 
 **P&L של ערוץ faceless** (Shorts, קהל US): 5M צפיות × $0.10 = $500 לחודש, כלים $50–150, ו-30–60 שעות. יוצא **$6–15 לשעה (₪18–46)**, עם סיכון בינארי של demonetization. **ערוץ long-form באנגלית:** 250K צפיות × $4 = $1,000 לחודש, כלים $100–400, ו-40–80 שעות. כלכלי פי כמה, אבל דורש סיפור והמשכיות.
 
-**מס:** למלא W-8BEN ב-AdSense כדי להפחית את הניכוי במקור (בלי הטופס עד 24%; עם אמנת המס ישראל–ארה"ב פחות [שיעור מדויק לא מאומת]), ולדווח על ההכנסה בישראל.
+**מס:** למלא W-8BEN ב-AdSense כדי להפחית את הניכוי במקור. בלי טופס תקף Google מנכה 24% (backup withholding) **מכל ההכנסה העולמית**. עם הטופס הניכוי חל רק על הכנסה מצופים בארה"ב, בשיעור האמנה ([AIR](https://air.io/en/creators-spotlight/24-revenue-saved-the-youtube-tax-optimization-case), [pbl.legal](https://pbl.legal/insights/tax-guide-international-creators-youtubers/)). מקור משני מציין 10% לישראל (סעיף 14 באמנה) ([acadifi](https://acadifi.com/community/how-to-determine-treaty-rate-w-8ben)) [לא מאומת מול Google/IRS]. ומדווחים על ההכנסה בישראל.
 
 ---
 
@@ -721,10 +721,10 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 | **TikTok** | מ-**21.7.2026** כל מודעה עם דמויות, סצנות או קולות פוטוריאליסטיים שנוצרו ב-AI, או תמונת מוצר AI שמוצגת כצילום, חייבת תווית. מתג "AI-generated content" ב-Ads Manager. 24 שעות לתקן אחרי זיהוי. ענישה מדורגת עד באן | [CommonThread](https://commonthreadco.com/blogs/coachs-corner/tiktok-ai-ad-disclosure-rules-ecommerce-2026), [Cinerads](https://www.cinerads.com/blog/tiktok-ai-content-policy) |
 | **Meta** | מותר, בתנאי גילוי. תווית "AI info". אדם פוטוריאליסטי שנוצר ב-AI מקבל תווית ליד "Sponsored". כלים בלי C2PA: חובה להפעיל ידנית את ה-AI disclosure. **ההפרה הנפוצה ביותר היא לדלג על זה.** קופי שנכתב ב-AI ורטוש קל לא דורשים גילוי | [Meta](https://about.fb.com/news/2025/02/gen-ai-transparency-metas-ads-products/), [Cinerads](https://www.cinerads.com/blog/ai-ugc-facebook-ad-policy) |
 | **YouTube/Google** | חובה לסמן תוכן ריאליסטי שמראה אדם אמיתי עושה משהו שלא עשה, משנה אירוע אמיתי, או מייצר סצנה ריאליסטית שלא קרתה. ב-Studio: Attributes → "AI use: Yes". הסימון לא פוגע בהפצה. Google הוסיפה תוויות AI למודעות ביולי 2026 | [Google](https://support.google.com/youtube/answer/14328491) |
-| **EU AI Act, סעיף 50** | בתוקף מ-2.8.2026: סימון שמכונה יכולה לקרוא וסימון גלוי, ללקוחות שפונים לקהל אירופי | [Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements) |
-| **FTC** | ביקורות ועדויות מזויפות, כולל כאלה שנוצרו ב-AI, אסורות (הכלל הסופי מ-2024). קנס **עד $53,088 להפרה** (כ-₪161K). E4 מציין "כ-52 אלף", שזה הסכום לפני עדכון ההצמדה, ואין כאן סתירה מהותית | [Hunton](https://hunton.com/hunton-retail-law-resource/ftc-issues-final-rule-targeting-fake-consumer-reviews-and-testimonials-including-those-generated-by-artificial-intelligence-ai-and-online-bots), [Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements) |
+| **EU AI Act, סעיף 50** | בתוקף מ-2.8.2026: סימון שמכונה יכולה לקרוא וסימון גלוי, ללקוחות שפונים לקהל אירופי. לפי ה-Digital Omnibus, חובת הסימון הממוכן (50(2)) למערכות שהושקו לפני 2.8.2026 חלה רק מ-2.12.2026. קנס עד €15M או 3% מהמחזור | [Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements), [Cooley](https://www.cooley.com/news/insight/2026/2026-08-03-eu-ai-act-transparency-obligations-take-effect-2-august-2026) |
+| **FTC** | ביקורות ועדויות מזויפות, כולל כאלה שנוצרו ב-AI, אסורות (הכלל הסופי מ-2024). קנס **עד $53,088 להפרה** (כ-₪161K). E4 מציין "כ-52 אלף", שזה הסכום לפני עדכון ההצמדה ($51,744), ואין כאן סתירה מהותית. לפי הנחיית OMB, הסכום לא עודכן ב-2026 ונשאר $53,088 | [Hunton](https://hunton.com/hunton-retail-law-resource/ftc-issues-final-rule-targeting-fake-consumer-reviews-and-testimonials-including-those-generated-by-artificial-intelligence-ai-and-online-bots), [Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements) |
 | **מדינות בארה"ב** | California AB 853, New York S.8420-A, Tennessee ELVIS Act (שכפול קול) | [aivideobootcamp](https://aivideobootcamp.com/blog/ai-ugc-ads-2026-freelancer-playbook/) |
-| **ישראל** | אין חוק ייעודי שמחייב סימון AI במודעות מסחריות [לא מאומת]. חוק הגנת הצרכן אוסר הטעיה בפרסומת, כולל עדות לקוח, תוצאות, מחיר ומבצע. ועדת הבחירות פרסמה לראשונה כללי סימון לתעמולה שנוצרה ב-AI לקראת הבחירות ב-27.10.2026 ([Gadgety](https://www.gadgety.co.il/?p=366336)). סקר: 71% מהישראלים רוצים סימון ברור, 67% לא מזהים AI בעצמם | E1, E4 |
+| **ישראל** | אין חוק ייעודי שמחייב סימון AI במודעות מסחריות [לא מאומת]. חוק הגנת הצרכן אוסר הטעיה בפרסומת, כולל עדות לקוח, תוצאות, מחיר ומבצע. לקראת הבחירות ב-27.10.2026 נכנס לתוקף חוק שמחייב סימון ברור של תעמולת בחירות שנוצרה או שונתה מהותית ב-AI, בטקסט מפורש או באחד משני לוגואים רשמיים ([Gadgety](https://www.gadgety.co.il/?p=366336), [IDI](https://en.idi.org.il/media/31572/ensuring-the-integrity-of-the-2026-elections-cropped.pdf)). סקר: 71% מהישראלים רוצים סימון ברור, 67% לא מזהים AI בעצמם | E1, E4 |
 
 **ההבדל בין פרזנטור לעדות מזויפת** (E4): שחקן AI שאומר "קניתי את זה וירדתי 5 קילו" = עדות מזויפת. שחקן AI שאומר "הנה 3 דברים שהמוצר הזה עושה" = פרזנטור, כמו שחקן בפרסומת. **ההבדל הוא בתסריט.**
 
@@ -749,7 +749,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 - [ ] גרסאות 9:16, 1:1, 16:9, עם safe zones (באינסטגרם ה-UI חותך כ-15% למטה)
 
 ### 11.4 מס [להתייעץ עם רו"ח]
-- כל ההכנסות (לקוחות, אפילייט, Earn, מוצרים, חסויות, AdSense) הן הכנסה עסקית. תקרת עוסק פטור היא בסביבות ₪120K בשנה [לא מאומת ל-2026]. **תרחיש ההכנסה הצדדית של F2 (כ-₪10K לחודש) כבר חוצה אותה**, ואז נדרש עוסק מורשה ומע"מ של 18% ללקוחות ישראליים.
+- כל ההכנסות (לקוחות, אפילייט, Earn, מוצרים, חסויות, AdSense) הן הכנסה עסקית. תקרת עוסק פטור ב-2026 היא **₪122,833** בשנה (מחזור, לא רווח) ([חשבונית ירוקה](https://www.greeninvoice.co.il/magazine/%d7%aa%d7%a7%d7%a8%d7%aa-%d7%a2%d7%95%d7%a1%d7%a7-%d7%a4%d7%98%d7%95%d7%a8/)). **תרחיש ההכנסה הצדדית של F2 (כ-₪10K לחודש) כבר חוצה אותה**, ואז נדרש עוסק מורשה ומע"מ של 18% ללקוחות ישראליים.
 - ייצוא שירותים ללקוחות בחו"ל: בדרך כלל מע"מ 0% [לא מאומת].
 - מכירת מוצר דיגיטלי ב-Gumroad או Whop ללקוח ישראלי: צריך לבדוק חובת מע"מ.
 
@@ -761,13 +761,13 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 |---|---|---|---|
 | שער דולר | E1: 3.6; E2, E3, E4: 3.7 | F2 והמפקח: 3.04 | **3.04** בכל הפרק. כל סכום בשקלים שהועתק מ-E1–E4 חושב מחדש |
 | רצפת מחיר לרילס | E1: לא לרדת מ-₪2,500 לסרטון בודד; Starter ב-₪1,800 | F2: לא לרדת מ-₪1,000; פיילוט ב-₪800–1,200 | פיילוט ב-₪800–1,200 ל-2–3 לקוחות ראשונים בלבד; אחר כך ₪1,800+ להיברידי ו-₪2,500+ לקולנועי (סעיף 2.4) |
-| Stripe בישראל | E2: "Stripe עובד בישראל" [לא מאומת] | E3: ישראל לא ברשימה הרשמית של stripe.com/global | E3 (מקור ראשון). משיכות X ו-Whop כנראה חסומות בלי ישות זרה |
+| Stripe בישראל | E2: "Stripe עובד בישראל" [לא מאומת] | E3: ישראל לא ברשימה הרשמית של stripe.com/global | E3 (מקור ראשון), ואומת: Stripe לא זמינה לחשבון ישראלי. משיכות X כנראה חסומות בלי ישות זרה. Whop משלמת גם בלי Stripe (בנק, PayPal, קריפטו ב-200+ מדינות), אבל זמינות לישראל [לא מאומת] |
 | עלות לקליפ | E4: כ-$5 לקליפ 15 שניות | F2: $28–44 לרילס פרימיום 30 שניות 1080p | שניהם נכונים, לרמות שונות: 720p Marketing Studio מול Seedance 2.5 1080p. מכונת וריאציות = 720p |
 | עלות 1080p ב-Seedance 2.5 | מדריך Higgsfield 15.09: 9 קרדיט לשנייה | מדריך Higgsfield 14.08: 18 קרדיט לשנייה | לתקצב לפי 18 עד שכפתור Generate מראה אחרת (F2) |
 | סט מנויים | E1: כ-$268 לחודש | F2: $187 לחודש + top-ups | F2 בהתחלה, ו-HeyGen רק כשיש צורך |
 | Retainer | E1: ₪3,500 ל-4 רילסים | F2: ₪7,500 ל-8 רילסים; E4: ₪4K–7K ל-20–30 מודעות | תלוי בתמהיל Hero מול וריאציות. בכל הצעה כותבים במפורש כמה Hero וכמה וריאציות |
 | FTC | E1: $53,088 | E4: כ-$52K | $53,088 (מעודכן להצמדה) |
-| תאריך "inauthentic content" | AIR: 15.7.2025 | בלוגים: 15.7.2026 | 2025 (מקור מסודר יותר) |
+| תאריך "inauthentic content" | AIR: 15.7.2025 | בלוגים: 15.7.2026 | 2025 (אומת בבדיקת העובדות מול SEJ ו-Social Media Today) |
 | Higgsfield Earn | תקרה $2,500 לסרטון | ממוצע כ-$100 ליוצר (A2) | שניהם נכונים. בתכנון מניחים את הממוצע, ולא את התקרה |
 | מחיר מנוי Higgsfield לחישוב אפילייט | E2: $29–49 [לא מאומת] | F2: $19 / $59 / $129 | הטווח של E2 סביר כממוצע משוקלל; חישובי האפילייט נשארים כהערכה |
 
@@ -788,7 +788,7 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 | **ברקע** | שוטף | Earn על כל רילס של Higgsfield; Chroma Awards עד 31.12.2026 (חינם) כתוכן "מאחורי הקלעים"; פתיחת ערוץ YouTube **לפני 1.2.2027** | בונוסים. בתכנון התקציב הם לא יותר מ-5–10% מההכנסה |
 
 ### 10 צעדים לשבוע הקרוב
-1. **היום:** הרשמה לאפילייט של Higgsfield (הקישור פעיל מיד), ElevenLabs (PartnerStack) ו-Freepik (Awin). הגשה ל-Higgsfield CPP (בלי סף עוקבים) ול-Earn.
+1. **היום:** הרשמה לאפילייט של Higgsfield (הקישור פעיל מיד), ElevenLabs (PartnerStack) ו-Freepik (Awin, אם התוכנית נפתחה מחדש; אחרת FlexOffers). הגשה ל-Higgsfield CPP (בלי סף עוקבים) ול-Earn.
 2. **היום:** ManyChat Free ו-Beehiiv. בונים flow אחד: מילת מפתח, DM שמבקש תשובה, איסוף מייל, Notion עם פרומפט וקישור אפילייט, ותזכורת אחת אחרי 24 שעות.
 3. **ימים 1–3:** ספק-אד היברידי אחד עם עצמך (בריף הצילום מסעיף 2.8), בפורמט split-screen "צולם בחניון ← התוצאה". מוסיפים "comment 'פרסומת'".
 4. **ימים 2–5:** 2 ספק-אדים למותגים ישראליים מוכרים, עם "Spec ad, not affiliated". עלות של כ-₪300 compute.
@@ -805,6 +805,48 @@ Want the full 12-prompt pack (cars, fashion, real estate) in Hebrew + English? R
 - **קרדיטים:** תמחור פי 3 מעלות גנרציה אחת, טיוטות ב-480p/720p, ושורת "Generation budget" בכל retainer.
 - **היברידי עדיף:** הוא הכי פחות תחרותי בעברית, הכי בטוח מבחינת מדיניות וזכויות, והכי ויראלי ברילס המקור.
 - **מועדים קרובים:** Slamdance DIG ב-6.10, AI London ב-7.10, HKBU ו-HeyGen 50% ב-31.10, זוכי פסטיבל Higgsfield בסוף אוקטובר, בחירות ב-27.10 (לא לקבל לקוחות פוליטיים), Chroma Awards ב-31.12.2026, וספי YouTube החדשים ב-1.2.2027.
+
+## בדיקת עובדות (Fact-check)
+
+בדיקה אדוורסרית ב-5.10.2026 מול מקורות רשמיים ומקורות 2026. התיקונים כבר הוכנסו לגוף הפרק.
+
+| טענה | פסק דין | מקור |
+|---|---|---|
+| אפילייט Higgsfield: עד 25%, מדורג, עד 12 חודשים; המופנה מקבל עד 50% הנחה ל-3 שעות | אומת (נוסף: בתוכניות שנתיות/רבעוניות העמלה נזקפת מראש) | [Higgsfield](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
+| ElevenLabs: 22% ל-12 חודשים (11% ב-Business), cookie 90 יום, PartnerStack, תשלום אחרי 90 יום | אומת | [ElevenLabs](https://elevenlabs.io/affiliate) |
+| HeyGen: 35% ל-3 חודשים, 50% עד 31.10.2026, 5K עוקבים, $100 מינימום, 60 יום אימות | אומת | [HeyGen](https://www.heygen.com/geniverse/social-creator-program) |
+| Hailuo: 10%–30% מדורג, מינימום $10 | אומת | [Hailuo](https://hailuoai.video/affiliate) |
+| Freepik: 15% דרך Awin | תוקן (תוכניות Freepik ב-Awin מסומנות Closed; שיעורים סותרים 5–15%) | [affi.io](https://affi.io/m/freepik), [flexoffers](https://www.flexoffers.com/affiliate-programs/freepik-us-affiliate-program/) |
+| Kling: "עד 30%" דרך CityAds | לא מאומת (רק מקורות משניים) | [affilitizer](https://www.affilitizer.com/programs/app.klingai.com) |
+| Higgsfield Earn: עד $1,000 ביום הראשון, עד $2,500 לסרטון; $1M+ ל-10K+ יוצרים | אומת | [higgsfield.ai/earn](https://higgsfield.ai/earn), [Higgsfield blog](https://higgsfield.ai/blog/how-to-make-money-online-using-higgsfield-earn) |
+| מחירי Higgsfield: $19 / $59 ($47 שנתי) / $129 ($99 שנתי) | אומת | [Creatify](https://creatify.ai/blog/higgsfield-pricing-(2026)-plans-and-what-you-ll-actually-pay) |
+| Chroma Awards S2: $175K+ במזומן, $1M+ קרדיטים, 25 קטגוריות, חינם, דדליין 31.12.2026 | אומת (נוסף Google Cloud לרשימת השותפים) | [aifilmcontests](https://aifilmcontests.com/contests/chroma-awards-season-2-2026) |
+| HKBU 3F: $66K, $5K ל-Best AI Short, דדליין 31.10.2026 | אומת (נוספה הגבלת גיל: עד 30) | [aifilmcontests](https://aifilmcontests.com/contests/hkbu-future-film-fest-3f-2026) |
+| Slamdance DIG: מלגת AGBO $25K, דדליין 6.10.2026 | אומת | [aifilmcontests](https://aifilmcontests.com/contests/slamdance-dig-ai-2027) |
+| פסטיבל Higgsfield: דדליין הוארך ל-14.9, זוכים בסוף אוקטובר | תוקן (דדליין סופי 16.9.2026 23:59 UTC; shortlist 17.9–8.10; שיפוט 9–14.10; זוכים בשבוע האחרון של אוקטובר) | [Rules](https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules) |
+| 67,223 הגשות לפסטיבל Higgsfield | לא מאומת (לא מופיע בתקנון; מקור A1) | — |
+| TikTok Creator Rewards לא זמינה בישראל | אומת (מקורות משניים: 8 מדינות בלבד) | [ttcalculator](https://ttcalculator.net/data/reference/creator-fund-countries/), [toptal](https://www.toptal.com/creator/post/how-to-join-the-tiktok-creator-rewards-program) |
+| TikTok Effect Creator Rewards: ישראל נוספה, סף 100K סרטונים | אומת | [Search Engine Land](https://searchengineland.com/tiktok-expands-effect-creator-rewards-438353) |
+| YouTube מ-1.2.2027: 10M צפיות Shorts ב-90 יום מתגלגלים; 20M / 8,000 שעות ליוצרים חדשים | אומת | [exchange4media](https://www.exchange4media.com/industry-briefing-news/youtube-sets-10-million-shorts-views-for-monetisation-from-2027-157245.html), [vidIQ](https://vidiq.com/blog/post/youtube-partner-program-changes-2027/) |
+| RPM של Shorts: $0.03–0.15; קהל עברי $0.03–0.08 | אומת חלקית (טווח גלובלי $0.05–0.15, אירופה $0.04–0.10); הנתון לעברית נשאר הערכה | [ShortSync](https://www.shortsync.app/resources/how-much-do-youtube-shorts-pay-2026) |
+| "inauthentic content" מ-15.7.2025 | אומת | [Search Engine Journal](https://www.searchenginejournal.com/youtube-monetization-update-spam-not-reaction-channels/550755/) |
+| Stripe לא זמינה בישראל | אומת | [Globes](https://en.globes.co.il/en/article-1001381078) |
+| משיכות Whop חסומות לישראלים בגלל Stripe | תוקן (Whop משלמת גם בבנק/PayPal/קריפטו ב-200+ מדינות; ישראל לא אומתה) | [Whop docs](https://docs.whop.com/manage-your-business/manage-payouts/payout-methods) |
+| Facebook Content Monetization לא זמינה בישראל | לא מאומת | — |
+| 2site: ₪2,500+מע"מ עד 40 שניות, ₪3,000+מע"מ עד דקה | אומת | [2site](https://2site.co.il/how-much-does-an-ai-video-cost/) |
+| AI Video Bootcamp: $9 לחודש, כ-26,600 חברים | אומת חלקית ($9 לחודש / $55 לשנה; 20K+ במרץ 2026; 26,600 באוגוסט לפי מקור יחיד) | [aifunnelinsider](https://aifunnelinsider.com/ai-video-bootcamp-skool-review/) |
+| Skool: $99 לחודש + 2.9% | אומת (+$0.30; קיימת גם Hobby ב-$9 עם 10%) | [schoolmaker](https://schoolmaker.com/blog/skool-pricing) |
+| ManyChat Pro: $15 / $45 / $75 ל-10K | תוקן ($65 ל-10K; מודל תמחור חדש מ-2.3.2026 לחשבונות חדשים) | [featurebase](https://www.featurebase.app/blog/manychat-pricing) |
+| Contra: 0% עמלה לפרילנסר | אומת | [golance](https://golance.com/blogs/freelance-platforms-no-fees-complete-guide) |
+| Andromeda: איחוד מודעות עם Creative Similarity מעל כ-60% | אומת חלקית (מקורות משניים בלבד; "Entity ID" אינו מונח רשמי של Meta) | [chatterbuzz](https://www.chatterbuzzmedia.com/blog/meta-andromeda-creative-targeting/), [segwise](https://segwise.ai/blog/meta-andromeda-update-creative-strategy-2026) |
+| FTC: עד $53,088 להפרה | אומת (ללא עדכון ב-2026) | [FTC](https://www.ftc.gov/node/87476), [Benesch](https://www.beneschlaw.com/insight/five-stars-zero-tolerance-ftc-turns-up-enforcement-under-consumer-review-rule/pdf/) |
+| TikTok: חובת תווית AI במודעות מ-21.7.2026 | אומת | [CommonThread](https://commonthreadco.com/blogs/coachs-corner/tiktok-ai-ad-disclosure-rules-ecommerce-2026) |
+| EU AI Act סעיף 50 בתוקף מ-2.8.2026 | אומת (נוסף: דחייה ל-2.12.2026 לסעיף 50(2) במערכות קיימות) | [Cooley](https://www.cooley.com/news/insight/2026/2026-08-03-eu-ai-act-transparency-obligations-take-effect-2-august-2026) |
+| תקרת עוסק פטור כ-₪120K | תוקן (₪122,833 ב-2026) | [חשבונית ירוקה](https://www.greeninvoice.co.il/magazine/%d7%aa%d7%a7%d7%a8%d7%aa-%d7%a2%d7%95%d7%a1%d7%a7-%d7%a4%d7%98%d7%95%d7%a8/) |
+| ניכוי במקור ב-AdSense: 24% בלי W-8BEN | אומת (24% מכל ההכנסה העולמית); שיעור האמנה לישראל לא מאומת | [AIR](https://air.io/en/creators-spotlight/24-revenue-saved-the-youtube-tax-optimization-case) |
+| בחירות 27.10.2026 וחובת סימון AI בתעמולה | אומת | [Gadgety](https://www.gadgety.co.il/?p=366336) |
+| Sora: האפליקציה נסגרה 26.4.2026, ה-API ב-24.9.2026 | אומת | [The Decoder](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/) |
+| Genjutsu הושק 1.9.2026 | אומת | [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
 
 ---
 
