@@ -128,7 +128,7 @@ C) Plain seconds:       0s to 8s: steadicam follow ... 8s to 18s: whip pan ...
 | מספר יציב בפועל | 1 עד 8 תמונות; 9 עד 12 "עובד, פחות יציב" | 3 עד 6 | Runware, C2/C3 |
 | פורמט ומידות תמונה | jpeg/png/webp/bmp/tiff/gif; ‏300–6000px לצלע; יחס 0.4–2.5; עד 30MB | — | [Evolink](https://docs.evolink.ai/cn/api-manual/video-series/seedance2.5/seedance-2.5-image-to-video.md) |
 | וידאו קלט | MP4/MOV, ‏1.8–30.2 שניות לרפרנס, 30 שניות במצטבר, ≤200MB, ‏24–60fps | 4 עד 30 שניות (צד שלישי: 3–30), קובץ בלבד (לא קישור) | [fal](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5), [riffkit](https://riffkit.ai/blog/how-to-use-higgsfield-genjutsu) |
-| פלט | 4–30 שניות, 24fps קבוע, ‏480/720/1080p (1080p ב-Higgsfield early access ו-fal; אצל רוב הספקים 720p) | עד 1080p | B1 |
+| פלט | 4–30 שניות, 24fps קבוע, ‏480/720/1080p (1080p אומת ב-Higgsfield וב-fal; חלק מהספקים מציעים רק 480/720p; "early access" ב-Higgsfield [לא מאומת: דף Higgsfield לא מציין זאת]) | עד 1080p | B1, [fal](https://fal.ai/models/bytedance/seedance-2.5/image-to-video), [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
 | יחסי מסך | 21:9, 16:9, 4:3, 1:1, 3:4, 9:16 | כמו המקור | fal |
 | Seedance 2.0 להשוואה | 12 רפרנסים (9/3/3), עד 15 שניות, עד 4K | — | Dreamina FAQ, B1 |
 
@@ -362,8 +362,8 @@ from eye level, 35mm, natural candid moment, photorealistic, shallow depth of fi
 | Seedance 2.0 | עד 12: ‏9/3/3 | `@image1`, `@video1`, `@audio1` |
 | **Seedance 2.5** | עד 50: ‏30 תמונות (4K), 10 וידאו (30 שניות במצטבר), 10 אודיו | `@Image 1` / `@Video1` (לפי הממשק) |
 | Kling 3.0 | Elements (דמות/אובייקט כולל קול) | `@Element1` |
-| Veo 3.1 | Ingredients (עד 3 [לא מאומת בדף רשמי]), First & Last frame | תיאור טקסטואלי |
-| Gemini Omni Flash 1.1 | 1–10 תמונות, first+last frame; video ref הוסר | תיוג בפרומפט |
+| Veo 3.1 | Ingredients (עד 3 תמונות, לפי [Google AI docs](https://ai.google.dev/gemini-api/docs/veo); עם רפרנסים רק קליפ של 8 שניות), First & Last frame | תיאור טקסטואלי |
+| Gemini Omni Flash 1.1 | 1–10 תמונות, first+last frame; video ref: **סתירה** (Segmind: הוסר ב-1.1; Runware/aicybr: עד 3 קליפים) [לא מאומת] | תיוג בפרומפט |
 | Higgsfield Genjutsu | וידאו מקור + 3–6 (מקס' 30, ראו 3.2) + שורת טקסט | משפט אחד או CHANGE/PRESERVE |
 
 > משתמשים בדיוק בטוקן שהממשק מכניס בלחיצה על הנכס. Higgsfield כותב `@Image 1` עם רווח, Lovart כותב `@Video1`. ייתכן ששתיהן עובדות [לא מאומת].
@@ -448,9 +448,9 @@ CONSTRAINTS: same car color and model in every shot, no extra cars in lane, no w
 ### 4.8 בחירת מודל לפי משימה (מעודכן מול B1, בלי Sora)
 | | **Seedance 2.5** | **Kling 3.0** | **Veo 3.1** | **Gemini Omni Flash 1.1** |
 |---|---|---|---|---|
-| אורך מקס' | **30 שניות** | 15 שניות | 4–8 שניות לקליפ (Extend ב-Flow) | 3–10 שניות (שרשור עד ~40) |
+| אורך מקס' | **30 שניות** | 15 שניות | 4/6/8 שניות לקליפ (‏1080p/4K רק ב-8 ש'); Extend של 7 ש' עד 148 ש' ב-720p | 3–10 שניות (שרשור עד ~40) |
 | רב-שוטי | נייטיב, timecodes | עד 6 שוטים | `[00:00-00:02]` | לא נייטיב |
-| רזולוציה | 720p ברוב הספקים, 1080p ב-Higgsfield/fal | **4K native**, 60fps ב-Ultra | עד 4K | 4K/1080p ב-upscale מ-720p |
+| רזולוציה | 720p ברוב הספקים, 1080p ב-Higgsfield/fal | **4K native** (ב-API מ-23.04.2026), 60fps ב-Ultra [לא מאומת] | עד 4K | 4K/1080p ב-upscale מ-720p |
 | רפרנסים | 50 | Elements | Ingredients, first/last | 1–10 תמונות |
 | חוזקות | פרסומות, רכבים, multi-shot, V2V, Region Edit, הארכה | תנועה, ריקוד, מוצר חד, ליפ-סינק זול (Turbo) | אודיו ודיאלוג אנגלי, ריאליזם, Lite זול | מקום 1 ב-Arena, אווירה, draft זול ב-360p |
 | חולשות | יקר לשנייה, 24fps קבוע | 15 שניות | קצר, ירד ל-~מקום 12 | "Action descriptions are followed loosely", טקסט קטן מתפרק |
@@ -530,17 +530,17 @@ Keep location, actions and timing identical to @Video1.
 ### 5.2 מחירון Seedance 2.5 (לפי ספק; המחירים משתנים פי 2 ויותר)
 | ספק | 480p | 720p | 1080p | הערה |
 |---|---|---|---|---|
-| **Higgsfield** (קרדיט ≈ $0.05) | 10 שניות = $1.50 (‏4.6 ₪) | 10 שניות = $3.50 (‏10.6 ₪) | 10 שניות = 120 קרדיטים = **$6 (‏18 ₪)** | [Higgsfield](https://higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026); ‏1080p כ-early access, בקרדיטים ולא ב-"Unlimited" |
-| **fal** | $0.22/ש' (‏0.67 ₪) | $0.47/ש' (‏1.43 ₪) | ~$1.36/ש' (‏4.13 ₪) | B1 |
+| **Higgsfield** (קרדיט ≈ $0.05) | 10 שניות = $1.50 (‏4.6 ₪) | 10 שניות = $3.50 (‏10.6 ₪) | 10 שניות = 120 קרדיטים = **$6 (‏18 ₪)** | [Higgsfield](https://higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026) (אומת); "early access" ו"לא ב-Unlimited" [לא מאומת]. מדריך מחירים אחר של Higgsfield מציג 52 קרדיטים ל-8 ש' ב-720p ([Higgsfield](https://higgsfield.ai/blog/seedance-2-5-pricing-2026)), קרוב אך לא זהה |
+| **fal** | $0.22/ש' (‏0.67 ₪) | $0.47/ש' (‏1.43 ₪) | ~$1.16/ש' (‏3.54 ₪) | [fal](https://fal.ai/models/bytedance/seedance-2.5/image-to-video) (תוקן מ-$1.36) |
 | **OpenRouter** | — | $0.231/ש' | — | B1 |
 | **Segmind** (V2V) | $0.06/ש' | $0.14/ש' | — | C3 |
-| מצב Edit (V2V) | ×0.6 ממחיר יצירה (~$0.28/ש' ב-720p ב-fal) | | | B1 |
+| מצב Edit (V2V) | ×0.6 ממחיר יצירה (~$0.28/ש' ב-720p ב-fal) [לא מאומת; בדוגמת fal עריכה של 20 ש' עלתה $5.18 ב-480p ו-$27.40 ב-1080p, כלומר כ-$0.26/ש' וכ-$1.36/ש'] | | | B1, [fal](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5) |
 
 **דוגמאות פרויקט (30 שניות):**
 | תרחיש | הרכב | $ | ₪ |
 |---|---|---|---|
 | Higgsfield, רשמי | 2 טסטים 480p ($9) + 1080p אחד ($18) | ~$27 | ~82 |
-| fal, B1 | 3 טיוטות 480p ($20) + 720p ($14) + 1080p ($41) | $60–75 | 182–228 |
+| fal, B1 (מתוקן) | 3 טיוטות 480p ($20) + 720p ($14) + 1080p ($35) | ~$69 | ~210 |
 | A1 (הערכה) | 30 שניות 1080p ב-Higgsfield | $11–14 | 33–43 [לא מאומת; נמוך מהמחירון הרשמי של $18, אולי לפי מנוי] |
 | זול (B1) | 6 טיוטות Gemini Omni 360p + ‏4 קליפים Veo 3.1 Fast 1080p | $8–12 | 24–36 |
 | סטנדרט (B1) | 3 טיוטות Seedance 480p + רינדור 720p | $25–35 | 76–106 |
@@ -593,7 +593,7 @@ Keep location, actions and timing identical to @Video1.
 | **Genjutsu: Object Swap** | מחליף אלמנט אחד, השאר נשאר | כנ"ל | כנ"ל | כנ"ל | לא מתועד | כנ"ל | [Higgsfield](https://higgsfield.ai/genjutsu) |
 | **Genjutsu: Restyle** (30.9) | מצייר מחדש בסגנון (20+ או מרפרנס), כולל אנימה | כנ"ל | כנ"ל | עד 30 | — | כנ"ל [לא מאומת] | [Changelog](https://higgsfield.ai/creator-hub/changelog) |
 | **Seedance 2.5 Edit/Reference** | זוויות מצלמה חדשות מאותו טייק, Region Edit, Extend | עד 10 סרטונים, 1.8–30.2 שניות, ≤200MB | 4–30 שניות | 30/10/10 | מסנכרן לאודיו המקור ("the performance and its soundtrack stay fixed") | ראו 5.2 | [fal](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5) |
-| **Runway Aleph 2.0** | עריכה מקומית לפי פריים ערוך, רב-שוטית; הוספה/הסרה/החלפה, תאורה | **עד 30 שניות ב-1080p** (B1, הודעת Runway) | 1080p | פריים ערוך + פרומפט | שומר מקור | 28 קרדיטים/ש' ≈ $0.44–0.67/ש'; 10 שניות ≈ $4.4–6.7 (‏13–20 ₪) | [Runway](https://runway.com/news/introducing-aleph-2-and-edit-studio) |
+| **Runway Aleph 2.0** | עריכה מקומית לפי פריים ערוך, רב-שוטית; הוספה/הסרה/החלפה, תאורה | **עד 30 שניות ב-1080p** (B1, הודעת Runway) | 1080p | פריים ערוך + פרומפט | שומר מקור | 28 קרדיטים/ש' (‏140 קרדיטים ל-5 ש', [runway.com/pricing](https://runway.com/pricing)) ≈ $0.44–0.67/ש' באפליקציה, $0.28/ש' ב-API ($0.01 לקרדיט); 10 שניות ≈ $4.4–6.7 (‏13–20 ₪) | [Runway](https://runway.com/news/introducing-aleph-2-and-edit-studio) |
 | **Luma Ray 3.2 V2V** | שינוי עולם עם Structure / Bodies / Poses / Face | עד 20 שניות, פלט באורך זהה | עד 1080p | — | לא מתועד | לפי רזולוציה | [Luma](https://lumalabs.ai/learning-center/articles/ray-3-2-video-to-video) |
 | **Kling O1 Edit** | החלפת דמות/סביבה/סגנון בשפה טבעית | **3–10 שניות** | 720–2160px | עד 4 | `keep_audio` (ברירת מחדל false) | $0.168/ש' (‏0.51 ₪) | [fal](https://fal.ai/models/fal-ai/kling-video/o1/video-to-video/edit) |
 | **Kling Omni (O3)** | עריכה עם עקביות למקור, Elements | 3–15 שניות | 4K | Elements | — | $0.044–0.168/ש' | B1 |
@@ -775,7 +775,7 @@ Keep motion, framing and timing. Replace the plain white living room with a luxu
 | Object Swap: 5 גרסאות מצילום אחד | 82–164 ₪ | 2 שעות | 2,000–4,000 ₪ |
 | הפקה היברידית מלאה (3 עולמות) | 152–329 ₪ | 4–6 שעות | 3,000–6,000 ₪ |
 
-**מנויים (בדקו באתר; המקורות סותרים):** Higgsfield לפי Creatify: Starter ~$19 (‏58 ₪, 270 קרדיטים), Plus ‏$47–59 (‏143–179 ₪, 1,200), Ultra ‏$99–129 (‏301–392 ₪, 3,000) [לא מאומת מול higgsfield.ai/pricing]; קרדיטים לא עוברים לחודש הבא. Runway: C3 (מ-runway.com/pricing) Standard $12 / Pro $28 / Max $76, ו-B1 (מ-Creatify) $15 / $35 / $95. ההפרש כנראה חיוב שנתי מול חודשי [לא מאומת]. ב-Pro מקבלים כ-80 שניות Aleph בחודש. Kling: Standard $6.99 (‏21 ₪). Lovart: תמחור לא נבדק [לא מאומת].
+**מנויים (בדקו באתר; המקורות סותרים):** Higgsfield לפי Creatify: Starter ~$19 (‏58 ₪, 270 קרדיטים), Plus ‏$47–59 (‏143–179 ₪, 1,200), Ultra ‏$99–129 (‏301–392 ₪, 3,000); הטווחים הם חיוב שנתי מול חודשי (Creatify, 08.2026) [לא מאומת מול higgsfield.ai/pricing, שלא נטען בבדיקה]; קרדיטים לא עוברים לחודש הבא. Runway (אומת ב-[runway.com/pricing](https://runway.com/pricing)): Standard $12 / Pro $28 / Max $76 בחיוב שנתי, ו-$15 / $35 / $95 בחיוב חודשי; 625 / 2,250 / 9,500 קרדיטים בחודש. ב-Pro מקבלים כ-80 שניות Aleph בחודש (2,250 ÷ 28). Kling: Standard $6.99 (‏21 ₪). Lovart: Seedance 2.5 זמין (עד 30 שניות, עד 50 רפרנסים, [Lovart](https://www.lovart.ai/landing/seedance_2_5)); תמחור בקרדיטים לא מפורט בדף [לא מאומת].
 
 ---
 
@@ -933,7 +933,7 @@ ffmpeg -i ai.mp4 -i original.mp4 -filter_complex \
 ### 8.2 איפה כל כלי עומד בעברית (10/2026)
 | כלי | תמלול עברי | הערה |
 |---|---|---|
-| Premiere Pro | **אין** (בקשות פתוחות, עד פברואר 2026) | SRT עברי מתהפך ← Track Settings ← Styling ← Text Engine = **"South Asian and Middle Eastern"**; גם ב-Preferences ← Graphics ← Text Engine ([Adobe Community](https://community.adobe.com/t5/premiere-pro-discussions/srt-import-with-right-to-left-language-e-g-hebrew-arabic-text-is-reversed/m-p/13592853/highlight/true)) |
+| Premiere Pro | **אין** (בקשות פתוחות בקהילת Adobe, עדיין ללא מענה באפריל 2026; פתרון עוקף: תוסף צד ג' או SRT מ-Whisper) | SRT עברי מתהפך ← Track Settings ← Styling ← Text Engine = **"South Asian and Middle Eastern"**; גם ב-Preferences ← Graphics ← Text Engine ([Adobe Community](https://community.adobe.com/t5/premiere-pro-discussions/srt-import-with-right-to-left-language-e-g-hebrew-arabic-text-is-reversed/m-p/13592853/highlight/true)) |
 | DaVinci Resolve | כן, לפי דיווחי קהילה | [לא מאומת בגרסה הנוכחית] |
 | CapCut | בחירת שפה ב-Auto captions; בחירה שגויה = ריק/שגוי | [לא מאומת: איכות עברית]; לבדוק פיסוק |
 | Submagic | מצהירה על עברית עם אנימציה ואמוג'י, מסמנת מילים מפוקפקות בכתום | "99.5%" לפי היצרן [לא מאומת] |
@@ -1053,8 +1053,8 @@ ffmpeg -i master.mov -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -r 30 \
 | מספר רפרנסים ב-Genjutsu | 6 (ממשק ברילס, פרק 00/C1) · עד 30 (דף רשמי, C2/C3) · עד 40 (CreativeAINews) | מקסימום רשמי 30; עבודה מעשית עם 3–6 |
 | אורך קטע ב-Aleph 2.0 | ~5 ש' (C3, לפי Aleph 1, לא מאומת) · 30 ש' ב-1080p (B1, הודעת Runway) | 30 שניות (מקור רשמי) |
 | מחיר 30 שניות 1080p ב-Higgsfield | $11–14 (A1, דרך C2/C4) · 360 קרדיטים = $18 (מחירון 120 קרדיטים ל-10 ש') | מתקצבים לפי $18 (‏55 ₪); $11–14 [לא מאומת] |
-| מחיר 1080p ב-Seedance 2.5 | $0.60/ש' (Higgsfield) · ~$1.36/ש' (fal) | שני המחירים נכונים לספקים שונים; משווים ספקים לפני פרויקט |
-| מחירי Runway | $12/$28/$76 (C3) · $15/$35/$95 (B1) | כנראה שנתי מול חודשי [לא מאומת]; בודקים באתר |
+| מחיר 1080p ב-Seedance 2.5 | $0.60/ש' (Higgsfield) · ~$1.16/ש' (fal; תוקן מ-$1.36, שהוא בערך מחיר העריכה ב-1080p) | שני המחירים נכונים לספקים שונים; משווים ספקים לפני פרויקט |
+| מחירי Runway | $12/$28/$76 (C3) · $15/$35/$95 (B1) | אומת: שנתי ($12/$28/$76) מול חודשי ($15/$35/$95), runway.com/pricing |
 | Sora 2 | מופיע בטבלאות וב-meta-prompt של C1 | הוסר; הוחלף ב-Gemini Omni Flash (B1) |
 | אורך קליפים קטנים | 5–8 ש' (C1) · 3–8 ש' (C3) | 3–8 שניות; מינימום פלט 4 ש' |
 | 30 שניות בטייק אחד או פיצול | C2: עדיף טייק רב-שוטי לעקביות · C1/C3: קליפים קטנים | Image→Video: לנסות 30 ש' ב-480p, לפצל אם נכשל. V2V ואינסוף זוויות: תמיד קטן |
@@ -1323,6 +1323,46 @@ Locked-off medium shot: a woman stands still in a desert at sunset, then from he
 11. **ארכבו כל פרומפט ורפרנס שעבד** (עם עלות ומספר ניסיונות). אחרי 10–15 פרויקטים זו חבילת פרומפטים בעברית או פרק בקורס, ו-meta-prompt שמור הוא נכס למכירה.
 12. **אל תבנו על מודל אחד.** השוק מתחלף כל 4–8 שבועות (B1). בנו על ה-workflow: רפרנסים עם תפקיד ← timeline מתוזמן ← 480p ← 1080p ← V2V ← עריכה. עקבו אחרי ה-changelog של Higgsfield, Kling ו-Runway ופרסמו מדריך בתוך 24–72 שעות מכל השקה.
 13. **פתוח לבדיקה בשטח** (לא אומת במחקר): האם Genjutsu שומר את האודיו המקורי בפלט; איכות תמלול עברי ב-CapCut וב-DaVinci; מחירי Lovart ו-Higgsfield העדכניים; איך נראית שורת דיאלוג עברית ב-Seedance 2.5. כל אחד מאלה הוא גם רילס ("בדקתי בשבילכם").
+
+---
+
+## בדיקת עובדות (Fact-check)
+
+> נבדק ב-05.10.2026 מול מקורות רשת עדכניים (עדיפות לתיעוד רשמי). עובדות שמקורן בפרק 00 (ניתוח הרילס) לא נבדקו מחדש.
+
+| טענה | פסק דין (אומת / תוקן / לא מאומת) | מקור |
+|---|---|---|
+| Seedance 2.5: עד 30 שניות לג'נרציה, פלט 4–30 ש' | אומת | [fal](https://fal.ai/models/bytedance/seedance-2.5/image-to-video), [Higgsfield changelog](https://higgsfield.ai/creator-hub/changelog) |
+| Seedance 2.5: רפרנסים 30 תמונות / 10 וידאו / 10 אודיו (50) | אומת | [Kapwing](https://www.kapwing.com/resources/how-to-use-seedance-2-5-a-guide-for-ai-video-creators/), [OpenRouter](https://openrouter.ai/blog/insights/seedance-2-5-review) |
+| Seedance 2.5: ‏24fps קבוע; יחסי מסך 21:9 עד 9:16 | אומת | [fal](https://fal.ai/models/bytedance/seedance-2.5/image-to-video) |
+| Seedance 2.5: 480/720/1080p; חלק מהספקים רק עד 720p | אומת | fal, Higgsfield, [seedance.tv](https://www.seedance.tv/blog/seedance-2-5-1080p-not-available) |
+| 1080p ב-Higgsfield הוא "early access" ולא ב-Unlimited | לא מאומת | דף Higgsfield לא מציין זאת |
+| וידאו קלט ב-Seedance: ‏1.8–30.2 ש', ≤200MB, ‏24–60fps, MP4/MOV | אומת | [fal multi-angle](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5) |
+| Higgsfield Seedance 2.5: ‏10 ש' = 30/70/120 קרדיטים ($1.5/$3.5/$6), קרדיט $0.05 | אומת | [Higgsfield](https://higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026) |
+| fal Seedance 2.5 ‏1080p ≈ $1.36/ש' | תוקן ל-~$1.16/ש' (480p $0.22, 720p $0.47 אומתו) | [fal](https://fal.ai/models/bytedance/seedance-2.5/image-to-video) |
+| מצב Edit = ×0.6 ממחיר יצירה | לא מאומת (בדוגמת fal עריכה ב-1080p ≈ $1.36/ש') | [fal multi-angle](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5) |
+| fal: ‏13 זוויות מטייק של 20 ש'; טסט 480p ≈ $5, ‏1080p ≈ $27 | אומת ($5.18 / $27.40) | [fal multi-angle](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5) |
+| Draft Mode ‏480p ב-Higgsfield מ-22.09 | אומת | [Higgsfield changelog](https://higgsfield.ai/creator-hub/changelog) |
+| Genjutsu: קלט 4–30 ש', פלט עד 1080p | אומת | [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
+| Genjutsu: עד 30 תמונות רפרנס | אומת (6 משבצות בממשק שברילס, ההסבר לפער לא מאומת) | [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
+| Genjutsu: ‏15 ש' = 40 / 104 / 144 קרדיטים ($2 / $5.2 / $7.2) | אומת | [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
+| Genjutsu מצבים: Motion Transfer, Object Swap (01.09), Restyle (30.09), ‏`/genjutsu` ב-ChatGPT (30.09) | אומת | [Higgsfield changelog](https://higgsfield.ai/creator-hub/changelog) |
+| Genjutsu: טיפול באודיו / lip-sync | לא מאומת (לא מתועד בדף הרשמי) | [Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
+| AI Influencer ‏(02.10), cashback ב-API ‏($15 אחרי $100, עד 20%), All Unlimited ‏(20.07) | אומת | [Higgsfield changelog](https://higgsfield.ai/creator-hub/changelog) |
+| Runway Aleph 2.0: עד 30 ש' ב-1080p, כל התוכניות בתשלום | אומת | [Runway](https://runway.com/news/introducing-aleph-2-and-edit-studio) |
+| Aleph 2.0: ‏28 קרדיטים/ש' | אומת (140 קרדיטים ל-5 ש'; API ‏$0.01 לקרדיט) | [runway.com/pricing](https://runway.com/pricing) |
+| מחירי Runway ‏$12/$28/$76 מול $15/$35/$95 | אומת: שנתי מול חודשי | [runway.com/pricing](https://runway.com/pricing) |
+| Kling 3.0: עד 6 שוטים, 15 ש', ‏4K native | אומת (4K ב-API מ-23.04.2026); ‏60fps לא מאומת | [Atlabs](https://www.atlabs.ai/blog/kling-3-0-prompting-guide-master-ai-video-generation), [CineD](https://www.cined.com/kling-3-0-ai-video-model-introduced-native-4k-) |
+| Kling O1 Edit: קלט 3–10 ש', ‏720–2160px, עד 4 רפרנסים, `keep_audio` כבוי, $0.168/ש' | אומת | [fal](https://fal.ai/models/fal-ai/kling-video/o1/video-to-video/edit) |
+| Veo 3.1: קליפ 4–8 ש'; Ingredients עד 3 | אומת (4/6/8; ‏1080p/4K ורפרנסים רק 8 ש'; Extend של 7 ש' עד 148 ש' ב-720p) | [Google AI docs](https://ai.google.dev/gemini-api/docs/veo) |
+| Gemini Omni Flash 1.1: ‏3–10 ש', שרשור עד 40, ‏1–10 תמונות, ‏1080p/4K הם upscale מ-720p, draft ב-360p | אומת | [Segmind](https://blog.segmind.com/gemini-omni-1-1-flash-features-examples-and-1-0-compared/), [aicybr](https://aicybr.com/blog/gemini-omni-1-1-flash-video-api-guide) |
+| Gemini Omni 1.1: הוסר video ref | לא מאומת (מקורות סותרים: Runware ו-aicybr מתעדים עד 3 קליפי רפרנס) | [Runware](https://runware.ai/docs/models/google-gemini-omni-flash-1-1/guides/reference-driven-video) |
+| Lovart: Seedance 2.5 זמין, עד 30 ש' | אומת; תמחור לא מאומת | [Lovart](https://www.lovart.ai/landing/seedance_2_5) |
+| Premiere Pro: אין תמלול עברי | אומת (בקשות פתוחות, אפריל 2026) | [Adobe Community](https://community.adobe.com/feature-requests-730/hebrew-voice-transcription-support-in-premiere-pro-1328496) |
+| מנויי Higgsfield: Starter ~$19 / Plus $47–59 / Ultra $99–129 | לא מאומת מול האתר הרשמי (תואם Creatify, 08.2026) | [Creatify](https://creatify.ai/blog/higgsfield-pricing-(2026)-plans-and-what-you-ll-actually-pay) |
+| Instagram: ‏1080×1920, H.264, ‏23–60fps, ‏8–15 Mbps, AAC ‏48kHz ≥128k | אומת (מקורות משניים) | [Argil](https://argil.ai/blog/instagram-reel-size-e350f) |
+| CapCut Pro: ‏$19.99 לחודש / $179.99 לשנה | אומת | [nemovideo](https://www.nemovideo.com/blog/capcut-pro-pricing-2026) |
+| Topaz Video ~$299 לשנה; Astra ‏$39 לחודש ($19 במבצע) / $328 לשנה | אומת | [MyArchitectAI](https://www.myarchitectai.com/blog/topaz-ai-pricing), [Renderahouse](https://www.renderahouse.com/blog/topaz-ai-pricing) |
 
 ---
 
