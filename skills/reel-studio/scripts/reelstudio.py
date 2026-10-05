@@ -1786,6 +1786,9 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
     ffmpeg = which_or_die("ffmpeg")
     which_or_die("ffprobe")
     spec, base = load_spec(spec_path)
+    # canvas: the spec's own export preset first (so `--preset draft` previews a feed spec at 4:5),
+    # then the requested preset if it forces an aspect
+    spec = apply_preset_canvas(spec, resolve_preset(None, spec))
     preset = resolve_preset(preset, spec)
     spec = apply_preset_canvas(spec, preset)
     ctx = Ctx(spec, base)
@@ -2376,6 +2379,7 @@ def main(argv=None) -> int:
             render(a.spec, a.preset, a.out, a.dry_run, a.keep, a.fast, a.verbose, a.workdir)
         elif a.cmd == "plan":
             spec, base = load_spec(a.spec)
+            spec = apply_preset_canvas(spec, resolve_preset(None, spec))
             spec = apply_preset_canvas(spec, resolve_preset(a.preset, spec))
             ctx = Ctx(spec, base)
             plans = plan_timeline(spec, ctx)
