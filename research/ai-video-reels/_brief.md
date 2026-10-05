@@ -15,3 +15,8 @@ Key facts: the reels use Higgsfield (Seedance 2.5 1080p, Genjutsu "hybrid produc
 Tricks: Instagram metadata: `curl -A "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)" https://www.instagram.com/reel/<ID>/` (rate-limited, sleep 20s, retry on 302). Video download: `yt-dlp --impersonate chrome -f b <url>` works (installed).
 
 Writing rules: Hebrew (clear, practical, headings/tables), but keep tool names, technical terms and ALL example prompts in English. Concrete: numbers, prices (USD and ILS where relevant), step-by-step, real examples, copy-paste prompts. No fluff. Start with "תקציר" and end with "מקורות".
+
+## Supervisor notes for division heads / editors (added later)
+- **FX rate:** USD/ILS = **3.04** (open.er-api.com, 05.10.2026). Some workers used 3.6 — recompute ILS figures with 3.04.
+- The session's WebSearch quota (200) is exhausted. Use WebFetch on specific URLs if you must verify; otherwise preserve [לא מאומת] marks.
+- Sora was shut down (app 26.04.2026, API 24.09.2026) — do not recommend it.
