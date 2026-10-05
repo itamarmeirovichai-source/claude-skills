@@ -1212,6 +1212,10 @@ def build_segment(seg: dict, ctx: Ctx) -> SegPlan:
             lcol = line.get("color", "white")
             glow = line.get("glow", True)
             cur = comp
+            # a finished/unstarted wipe parks the line at the frame edge: only show it while moving
+            line_en = ""
+            if layout == "split_wipe" and not seg.get("keys"):
+                line_en = f":enable='between(t,{fnum(max(0, at - 0.04))},{fnum(at + wd + 0.04)})'"
             for gw, ga in ([(lw * 5, 0.22), (lw * 2.5, 0.35)] if glow else []) + [(lw, 1.0)]:
                 gw = even(gw)
                 r, gg, b, _ = parse_color(lcol)
@@ -1221,13 +1225,10 @@ def build_segment(seg: dict, ctx: Ctx) -> SegPlan:
                       f"format=rgba[{bar}]")
                 out = g.label()
                 if vertical_line:
-                    g.add(f"[{cur}][{bar}]overlay=x='{lx_e}-{gw // 2}':y=0:eval=frame:shortest=1[{out}]")
+                    g.add(f"[{cur}][{bar}]overlay=x='{lx_e}-{gw // 2}':y=0:eval=frame:shortest=1{line_en}[{out}]")
                 else:
-                    g.add(f"[{cur}][{bar}]overlay=x=0:y='{ly_e}-{gw // 2}':eval=frame:shortest=1[{out}]")
+                    g.add(f"[{cur}][{bar}]overlay=x=0:y='{ly_e}-{gw // 2}':eval=frame:shortest=1{line_en}[{out}]")
                 cur = out
-            if layout == "split_wipe" and not seg.get("keys"):
-                # hide the line once the wipe is finished
-                pass
             comp = cur
         P.v = g.chain(comp, "format=yuv420p")
         aud = seg.get("audio", "after" if layout == "split_wipe" else "before")
