@@ -376,13 +376,37 @@ PRESETS = {
                                       "-crf", "16", "-maxrate", "30M", "-bufsize", "40M"],
                "audio": ["-c:a", "aac", "-b:a", "320k", "-ar", "48000"],
                "inter": ["-preset", "veryfast", "-crf", "12"]},
-    "draft": {"scale": (480, 854), "video": ["-c:v", "libx264", "-profile:v", "high", "-preset",
+    "feed": {"scale": None, "canvas": (1080, 1350),
+             "video": ["-c:v", "libx264", "-profile:v", "high", "-level:v", "4.2",
+                       "-preset", "slow", "-b:v", "10M", "-maxrate", "12M", "-bufsize", "20M"],
+             "audio": ["-c:a", "aac", "-b:a", "192k", "-ar", "48000"],
+             "inter": ["-preset", "veryfast", "-crf", "14"]},
+    "draft": {"scale": (480, -2), "video": ["-c:v", "libx264", "-profile:v", "high", "-preset",
                                             "veryfast", "-crf", "27"],
               "audio": ["-c:a", "aac", "-b:a", "96k", "-ar", "48000"],
               "inter": ["-preset", "ultrafast", "-crf", "22"]},
 }
 PRESET_ALIASES = {"ig": "instagram", "reels": "instagram", "tt": "tiktok", "yt": "shorts",
-                  "youtube": "shorts", "preview": "draft"}
+                  "youtube": "shorts", "preview": "draft", "feed45": "feed", "4x5": "feed",
+                  "4:5": "feed", "ig_feed": "feed", "facebook": "feed"}
+
+
+def resolve_preset(name: str | None, spec: dict) -> str:
+    name = name or spec.get("export") or "instagram"
+    name = PRESET_ALIASES.get(name, name)
+    if name not in PRESETS:
+        raise SpecError(f"unknown export preset {name!r}. Valid: {', '.join(PRESETS)} "
+                        f"(aliases: {', '.join(PRESET_ALIASES)})")
+    return name
+
+
+def apply_preset_canvas(spec: dict, preset: str) -> dict:
+    """Presets with a fixed aspect (feed 4:5) override the canvas size; layout coords scale with it."""
+    cv = PRESETS[preset].get("canvas")
+    if cv:
+        spec = dict(spec)
+        spec["canvas"] = {**(spec.get("canvas") or {}), "width": cv[0], "height": cv[1]}
+    return spec
 
 
 # --------------------------------------------------------------------------------------
@@ -970,7 +994,59 @@ class SegPlan:
 
 
 LAYOUTS = ["full", "split_vertical", "split_horizontal", "split_wipe", "before_after_slider",
-           "input_prompt_result", "pip"]
+           "input_prompt_result", "pip", "reveal"]
+REVEAL_MODES = ["wipe", "slider", "split", "split_vertical", "cut"]
+
+
+def expand_reveal(seg: dict) -> dict:
+    """'reveal' = blocks->reality: a blockout/greybox clip turns into the AI render.
+
+    Keys: blockout, real (clip specs; time-aligned, same 'in'), mode wipe|slider|split|split_vertical|cut,
+    at (s, when the reveal starts), wipe_dur, direction, labels {blockout, real}, flash (bool),
+    glitch (bool). Expands into one of the other layouts plus effects.
+    """
+    s = {k: v for k, v in seg.items() if k not in ("blockout", "real", "mode", "flash", "glitch")}
+    mode = seg.get("mode", "wipe")
+    if mode not in REVEAL_MODES:
+        raise SpecError(f"reveal mode must be one of {', '.join(REVEAL_MODES)}, got {mode!r}")
+    if seg.get("blockout") is None or seg.get("real") is None:
+        raise SpecError("reveal layout needs 'blockout' and 'real' clips")
+    lab = seg.get("labels", {"blockout": "BLOCKOUT", "real": "AI RENDER"}) or {}
+    effects = list(seg.get("effects") or [])
+    at = seg.get("at")
+    if mode in ("wipe", "slider"):
+        s["layout"] = "split_wipe" if mode == "wipe" else "before_after_slider"
+        s["before"], s["after"] = seg["blockout"], seg["real"]
+        s["labels"] = {"before": lab.get("blockout"), "after": lab.get("real")}
+        s.setdefault("audio", "after")
+    elif mode in ("split", "split_vertical"):
+        horiz = mode == "split"
+        k1, k2 = ("left", "right") if horiz else ("top", "bottom")
+        s["layout"] = "split_horizontal" if horiz else "split_vertical"
+        s[k1], s[k2] = seg["blockout"], seg["real"]
+        s["labels"] = {k1: lab.get("blockout"), k2: lab.get("real")}
+        s.setdefault("audio", k2)
+    else:  # hard cut from blockout to real at 'at' (same timeline => perfect match cut)
+        s["layout"] = "split_wipe"
+        s["before"], s["after"] = seg["blockout"], seg["real"]
+        a = sec(at if at is not None else 1.0)
+        s["keys"] = [[0, 0], [a, 0], [a + 0.001, 1]]
+        s["line"] = False
+        s["labels"] = {"before": lab.get("blockout"), "after": lab.get("real")}
+        s.setdefault("audio", "after")
+    if mode != "cut" and at is not None:
+        s["at"] = at
+    hit = sec(at if at is not None else 1.0)
+    if mode in ("split", "split_vertical", "slider"):
+        hit = sec(at) if at is not None else 0.0
+    if seg.get("glitch"):
+        effects.append({"type": "glitch", "start": max(0.0, hit - 0.15), "end": hit + 0.35})
+    if seg.get("flash"):
+        flash_at = hit + (sec(seg.get("wipe_dur", 0.6)) if mode == "wipe" else 0.0)
+        effects.append({"type": "flash", "at": flash_at, "dur": 0.3, "strength": 0.8})
+    if effects:
+        s["effects"] = effects
+    return s
 
 
 def seg_duration(seg: dict, primary: dict, others: list[dict], fps: float) -> float:
@@ -1001,6 +1077,10 @@ def build_segment(seg: dict, ctx: Ctx) -> SegPlan:
     layout = seg.get("layout", "full")
     if layout not in LAYOUTS:
         raise SpecError(f"unknown layout {layout!r}. Valid: {', '.join(LAYOUTS)}")
+    if layout == "reveal":
+        P = build_segment(expand_reveal(seg), ctx)
+        P.layout = f"reveal/{seg.get('mode', 'wipe')}"
+        return P
     P = SegPlan()
     P.layout = layout
     g = P.g
@@ -1701,12 +1781,12 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
     ffmpeg = which_or_die("ffmpeg")
     which_or_die("ffprobe")
     spec, base = load_spec(spec_path)
+    preset = resolve_preset(preset, spec)
+    spec = apply_preset_canvas(spec, preset)
     ctx = Ctx(spec, base)
     runner = Runner(dry=dry, verbose=verbose)
-    ensure_fonts(runner) if not dry else None
-    preset = PRESET_ALIASES.get(preset or spec.get("export", "instagram"), preset or spec.get("export", "instagram"))
-    if preset not in PRESETS:
-        raise SpecError(f"unknown export preset {preset!r}. Valid: {', '.join(PRESETS)}")
+    if not dry:
+        ensure_fonts(runner)
     pr = PRESETS[preset]
     inter = pr["inter"]
     if fast:
@@ -1834,7 +1914,7 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
                 user_ass = str(pa)
             else:
                 wav16 = None
-                if src == "auto" and not dry:
+                if src == "auto" and not dry and not cap.get("lines"):
                     wav16 = str(tmp / "speech16k.wav")
                     runner.run([ffmpeg, "-hide_banner", "-y", "-i", str(speech), "-ac", "1", "-ar", "16000",
                                 str(wav16)], "speech -> 16k mono for whisper")
@@ -2165,6 +2245,7 @@ def main(argv=None) -> int:
 
     pl = sub.add_parser("plan", help="validate a spec and print the resolved timeline")
     pl.add_argument("spec")
+    pl.add_argument("--preset")
 
     p = sub.add_parser("probe", help="media info as JSON")
     p.add_argument("files", nargs="+")
@@ -2204,6 +2285,7 @@ def main(argv=None) -> int:
             render(a.spec, a.preset, a.out, a.dry_run, a.keep, a.fast, a.verbose, a.workdir)
         elif a.cmd == "plan":
             spec, base = load_spec(a.spec)
+            spec = apply_preset_canvas(spec, resolve_preset(a.preset, spec))
             ctx = Ctx(spec, base)
             plans = plan_timeline(spec, ctx)
             print_plan(plans, plans[-1]["start"] + plans[-1]["plan"].dur)
