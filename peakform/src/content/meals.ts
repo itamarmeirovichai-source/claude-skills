@@ -13,6 +13,8 @@ export interface MealItem {
   /** Whether an optional item is included by default. */
   defaultOn?: boolean;
   note?: string;
+  /** Training fuel: counted in the day's target only once that day's main workout has started. */
+  trainingFuel?: boolean;
 }
 
 export interface MealTemplate {
@@ -87,10 +89,10 @@ export const PREWORKOUT: MealTemplate[] = TRAINING_DAYS.map((d) => ({
   weekdays: [d],
   recipeId: 'chicken-rice-boxes',
   items: [
-    { foodId: 'rice-cooked', grams: PRE_RICE[d], note: 'Cooked weight' },
+    { foodId: 'rice-cooked', grams: PRE_RICE[d], note: 'Cooked weight. Training fuel: leave it out on a day you do not train.', trainingFuel: true },
     { foodId: 'chicken-breast', grams: 120, note: 'Cooked weight' },
   ],
-  notes: ['Eat about an hour before training.'],
+  notes: ['Eat about an hour before training.', 'The rice is training fuel. It counts in your target once the workout starts, so skip it on a day you do not train.'],
 }));
 
 function dinner(d: Weekday, name: string, protein: [string, number], potato: number, oil: number, recipeId: string): MealTemplate {

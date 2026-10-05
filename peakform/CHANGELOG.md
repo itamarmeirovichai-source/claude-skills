@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.1, 2026-10-05
+
+Food that does not depend on training.
+
+- Each day's calorie target is now a base you eat whether or not you train. The rice in the meal before training is training fuel: it joins the day's target only once that day's main workout starts. On a day you miss the workout, the target is lower by that rice (about 290 to 390 kcal), so you still lose fat. On a day you train, nothing changes.
+- Eat explains the base and the training fuel, and Today shows "+ fuel if you train" until the workout starts. The weekly review judges each day against the right target.
+- The nutrition check judges any calorie reduction against the base, so a day without training never falls below the 2,000 kcal floor.
+- Progress explains, during the first three weeks of a plan, that weight often rises a little while muscles adapt to new training, and that the trend counts from the third week on.
+
 ## 2.1.0, 2026-10-02
 
 The jump program for the dunk goal.

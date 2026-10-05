@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-10-02. Build 2.1.0.
+Date: 2026-10-05. Build 2.1.1.
 
 ## Summary
 
@@ -8,8 +8,8 @@ Date: 2026-10-02. Build 2.1.0.
 | --- | --- |
 | TypeScript strict (`npm run typecheck`) | Pass, no errors |
 | ESLint (`npm run lint`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 122 of 122 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 82 of 82 pass: 34 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
+| Unit and integration tests (Vitest) | 126 of 126 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
+| End to end tests (Playwright) | 83 of 83 pass: 35 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
 | Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
 | Dependency audit (`npm audit`) | 0 vulnerabilities |
@@ -43,6 +43,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 - **Program (2.0.0):** every slot offers only machine, cable, Smith, or dumbbell exercises that share the slot's main muscle; slots trained twice take a second choice; choices are cleaned of unknown or extra exercises and fall back to the defaults; the default week, built from the athlete's questionnaire answers, has 18 to 27 sets a day, gives every major muscle enough direct weekly sets and none more than 20, starts every upper day with shoulder care, and puts big exercises before small ones; each exercise follows its failure policy, and no free barbell or dumbbell compound is taken to failure; rebuilding the plan keeps the morning work, the swim, and exercises the user added, and old installs get the morning sessions and new day names.
 - **Plan updates:** morning sessions are added to old installs without touching other items; food target labels change only when they still have the default names.
 - **Jump program (2.1.0):** training blocks run back to back from Monday 5 October to Sunday 31 January and then continue; tests fall on Fridays, at block ends, and every four weeks after; every session stays between about 20 and 100 foot contacts with lighter weeks before tests and no depth jumps in the second lighter week; jumps come before the first leg exercise, only the paired box jumps follow it; no Wednesday or Friday leg set goes to failure, and Monday's heavy leg exercises stop at least two reps short; each block rebuilds an installed plan and keeps morning work and swims, with no Nordic curl.
+- **Training fuel (2.1.1):** the fuel is the rice before training, 286 to 390 kcal, and nothing on Saturday; the target leaves it out until a main workout is started or done, not for a morning session or an abandoned one; the base never goes below the calorie or carbohydrate floors.
 - **Sets to failure:** progression is judged on the first set; below the range holds, reaching the top of the range adds load, and otherwise the first set adds one rep.
 - **Fixtures:** example plain and encrypted backups validate, the recommendation example applies cleanly, and no fixture contains the real profile.
 - **Private access gate:** fails closed with no password or a short one; every path, including the service worker and manifest, returns the password page with a 401 and no-store; wrong passwords and forged cookies are rejected; the right password sets an HttpOnly, Secure cookie that holds a keyed hash, not the password; changing the password signs everyone out.
@@ -83,6 +84,7 @@ SEO is intentionally low: the app is private and asks search engines not to inde
 32. A plan saved before the jump program gets a card for it, and adding it keeps the saved exercise choices.
 33. When the clock reaches a new training block, the plan is rebuilt as a new version, Today shows the block once, and the Monday shows its depth jumps and heavier sets.
 34. An approach touch logged in Reach feeds the dunk goal on Progress: best touch, centimetres still missing, approach jump height from standing reach, and a smaller gap once palming is ticked.
+35. Eat shows the base target and the training fuel before the workout, and the full target with the fuel once the main session starts.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
 

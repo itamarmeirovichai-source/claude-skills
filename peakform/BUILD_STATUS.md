@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-10-02. Version 2.1.0.
+Last updated: 2026-10-05. Version 2.1.1.
 
 ## State
 
@@ -21,14 +21,15 @@ Complete and tested. Publishing is private: after the pull request is merged, th
 - **Program (2.0.0):** the main sessions are built from slots, one per muscle head, each with two to four exercises that build it about equally. The athlete chose the exercises in a questionnaire before the release, and those answers are the starting choices; the same questionnaire is in the app to change them. No free barbell, because the athlete trains alone.
 - **Effort (2.0.0):** each exercise has a failure policy. Small machine and cable exercises go to technical failure on every set, machine and Smith compounds on the last set, and dumbbell compounds, lunges, and hinges stop one rep short. A new exercise stays two reps short for two sessions. Sets to failure progress from the first set.
 - **Jump program (2.1.0):** training blocks by date (`src/content/phases.ts`) set the Monday and Friday jump drills and the leg doses. The plan is rebuilt as a new version when a block starts, from the saved choices. Legs stop short of failure except small Monday exercises, so jump days are fresh. The dunk goal reads touch heights from approach jumps.
+- **Training fuel (2.1.1):** day targets are a base plus the pre-workout rice, which counts only once that day's main workout has started (`src/domain/fuel.ts`), so missed workouts do not erase the deficit. Stored targets are unchanged; the split is computed.
 - **Bundle:** less frequent screens load on demand. The service worker precaches every chunk, so everything still opens offline.
 
 ## Completed
 
 - Content: 99 exercises, including eight jump drills for the dunk program added in 2.1.0, including five no ball morning volleyball drills and the 34 machine, cable, Smith, and dumbbell alternatives added for the questionnaire in 2.0.0, with instructions, muscles, safety, substitutions, effort rules, and original keyframes or drill diagrams. Since 2.0.0 the main sessions come from the athlete's own exercise choices, at the user's request. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines, the access gate, the program builder, and plan updates with unit tests (122 tests).
+- Engines, the access gate, the program builder, and plan updates with unit tests (126 tests).
 - All screens, onboarding, and app lock.
-- End to end tests (82), layout and accessibility checks at 375, 390, 393, and 430 px.
+- End to end tests (83), layout and accessibility checks at 375, 390, 393, and 430 px.
 - Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
 - Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
 - Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.

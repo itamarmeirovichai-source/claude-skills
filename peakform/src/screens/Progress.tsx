@@ -5,7 +5,8 @@ import { useToday, usePlan, useTargets } from '../ui/hooks';
 import { Item, Note, PageHead, Section, Metric } from '../ui/components';
 import { LineChart } from '../ui/Chart';
 import { Link } from '../ui/router';
-import { addDays, formatDateKey, reviewWeekStart, weekdayOf, rangeKeys } from '../domain/dates';
+import { addDays, diffDays, formatDateKey, reviewWeekStart, weekdayOf, rangeKeys } from '../domain/dates';
+import { dayTarget } from '../domain/fuel';
 import { morningWeights, rollingAverages, sevenDayAverage, nutritionAdjustment, dayTotals } from '../domain/nutrition';
 import { coverageFrom, focusChecks, shoulderOverlap, COVERAGE_WEIGHTS, planCoverageInputs, type CoverageInput } from '../domain/coverage';
 import { exercise, exerciseName, allExercises } from '../content/library';
@@ -60,7 +61,7 @@ export function ProgressScreen() {
     checkins: data.checkins,
     waist: data.waist,
     foodLogDays: foodDays,
-    currentKcal: targets.find((t) => t.weekday === weekdayOf(today))!.kcal,
+    currentKcal: dayTarget(targets.find((t) => t.weekday === weekdayOf(today))!, false).baseKcal,
     performanceDecline: false,
     wellbeing: {
       previous: wellbeing(data.checkins, data.sleep, addDays(today, -13), addDays(today, -7)),
@@ -94,6 +95,13 @@ export function ProgressScreen() {
           <LineChart points={weights.filter((p) => p.date >= from).map((p) => ({ x: p.date, y: p.kg }))} line={avg} unit="kg" label="Seven day average weight" />
           <p className="small muted">Dots are single mornings. The line is the seven day average, drawn only when a week has at least four morning weights. Daily changes of half a kilogram are normal water and food.</p>
         </div>
+        {settings.planStartDate && diffDays(today, settings.planStartDate) < 21 && (
+          <div style={{ marginTop: 8 }} data-testid="early-weight-note">
+            <Note tone="info" title="Weight often rises a little in the first weeks">
+              New and harder training makes muscles hold more water and stored carbohydrate while they adapt, so the scale can go up for a week or two even when you eat less. That is not fat. Judge the trend from the seven day averages after the third week, together with your waist. The nutrition check waits fourteen days for the same reason.
+            </Note>
+          </div>
+        )}
       </Section>
 
       <Section title="Waist">
