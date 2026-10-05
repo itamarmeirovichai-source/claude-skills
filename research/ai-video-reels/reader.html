@@ -1,0 +1,214 @@
+<title>מחקר סרטוני AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: right-side chapter rail (RTL) + reading column ~70ch; rail becomes a top drawer on phones. Theme: "edit suite" — cool slate neutrals, cobalt timeline accent, amber for unverified marks. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --fg:#161a22; --muted:#5b6474; --line:#dfe3ea;
+  --accent:#2747c9; --accent-soft:#e6ebfb; --warn:#a45a00; --warn-soft:#fff1dc; --code-bg:#0f1420; --code-fg:#e6ebf5;
+  --f-display:"Frank Ruhl Libre", "David Libre", Georgia, serif;
+  --f-body:"Assistant", "Segoe UI", Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1117; --surface:#151a23; --fg:#e6e9ef; --muted:#9aa3b2; --line:#262d3a;
+  --accent:#8ea2ff; --accent-soft:#1d2540; --warn:#ffb655; --warn-soft:#2e2414; --code-bg:#0a0d13; --code-fg:#dfe6f3; color-scheme: dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1117; --surface:#151a23; --fg:#e6e9ef; --muted:#9aa3b2; --line:#262d3a;
+  --accent:#8ea2ff; --accent-soft:#1d2540; --warn:#ffb655; --warn-soft:#2e2414; --code-bg:#0a0d13; --code-fg:#dfe6f3; color-scheme: dark}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.7;margin:0}
+a{color:var(--accent)}
+.shell{display:grid;grid-template-columns:290px minmax(0,1fr);gap:0;min-height:100vh}
+aside{border-inline-start:0;border-inline-end:1px solid var(--line);background:var(--surface);position:sticky;top:env(safe-area-inset-top,0px);height:100vh;overflow-y:auto;padding:22px 18px}
+.brand{font-family:var(--f-display);font-weight:900;font-size:24px;line-height:1.2;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+.search{width:100%;font:inherit;font-size:15px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.search:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav ol{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:2px}
+nav li a{display:grid;grid-template-columns:2.2em 1fr;align-items:baseline;text-decoration:none;color:var(--fg);padding:6px 8px;border-radius:6px;font-size:15px;line-height:1.35}
+nav li a .n{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+nav li a:hover{background:var(--accent-soft)}
+nav li a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.group{font-size:11px;letter-spacing:.08em;color:var(--muted);margin:14px 8px 4px;text-transform:uppercase}
+.toc{margin:6px 0 4px 0;padding-inline-start:2.6em;font-size:13px}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:2px 0}
+.toc a:hover{color:var(--accent)}
+main{padding-block:28px 80px;padding-inline:clamp(16px,4vw,56px);min-width:0}
+.doc{max-width:74ch;margin:0 auto}
+.doc h1{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.2;text-wrap:balance;margin:.2em 0 .6em}
+.doc h2{font-family:var(--f-display);font-weight:700;font-size:26px;line-height:1.3;text-wrap:balance;margin:2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+.doc h3{font-weight:700;font-size:19px;margin:1.6em 0 .4em}
+.doc h4{font-weight:700;font-size:17px;margin:1.3em 0 .3em;color:var(--muted)}
+.doc p,.doc li{max-width:70ch}
+.doc blockquote{margin:1em 0;padding:10px 16px;border-inline-start:3px solid var(--accent);background:var(--accent-soft);border-radius:0 6px 6px 0}
+.doc blockquote p{margin:.3em 0}
+.doc img{max-width:100%;border-radius:6px;border:1px solid var(--line)}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.doc table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.5}
+.doc th,.doc td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+.doc th{background:var(--bg);font-weight:700;white-space:nowrap}
+.doc tr:last-child td{border-bottom:0}
+.doc code{font-family:var(--f-mono);font-size:.86em;background:var(--accent-soft);padding:1px 5px;border-radius:4px;direction:ltr;unicode-bidi:isolate}
+.pre{position:relative;margin:1em 0}
+.doc pre{direction:ltr;text-align:left;background:var(--code-bg);color:var(--code-fg);padding:16px 16px 14px;border-radius:8px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.doc pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;left:8px;font:600 12px var(--f-body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+.copy.ok{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.unv{background:var(--warn-soft);color:var(--warn);font-size:.82em;font-weight:700;padding:0 5px;border-radius:4px;white-space:nowrap}
+.status{color:var(--muted);padding:40px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:48px;padding-top:18px;border-top:1px solid var(--line);flex-wrap:wrap}
+.pager a{text-decoration:none;font-weight:600}
+.results{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.results button{all:unset;cursor:pointer;display:block;padding:7px 8px;border-radius:6px;font-size:13px;line-height:1.4}
+.results button:hover,.results button:focus-visible{background:var(--accent-soft)}
+.results b{display:block;font-size:12px;color:var(--accent)}
+.results mark,.doc mark{background:var(--warn-soft);color:var(--fg)}
+.theme{margin-top:18px;font:600 12px var(--f-body);background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 10px;cursor:pointer}
+.menu{display:none}
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  aside{position:static;height:auto;border-inline-end:0;border-bottom:1px solid var(--line);padding:14px 16px}
+  aside nav,.side-extra{display:none}
+  aside.open nav,aside.open .side-extra{display:block}
+  .menu{display:inline-block;font:600 14px var(--f-body);background:var(--accent);color:var(--surface);border:0;border-radius:6px;padding:7px 14px;cursor:pointer;margin-top:8px}
+  main{padding-inline:16px}
+  body{font-size:16px}
+}
+@media (prefers-reduced-motion:no-preference){nav li a,.results button{transition:background .15s}}
+</style>
+
+<div class="shell">
+  <aside id="side">
+    <p class="brand">איך מייצרים סרטוני AI ויראליים ומרוויחים מהם</p>
+    <p class="sub">מחקר · 05.10.2026 · 14 פרקים · 1$ = ₪3.04</p>
+    <input id="q" class="search" type="search" placeholder="חיפוש בכל המחקר…" aria-label="חיפוש בכל המחקר">
+    <div id="results" class="results" aria-live="polite"></div>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="side">תוכן העניינים</button>
+    <nav aria-label="פרקים"><ol id="nav"></ol></nav>
+    <div class="side-extra"><button class="theme" id="theme">מצב כהה / בהיר</button></div>
+  </aside>
+  <main><article class="doc" id="doc"><p class="status">טוען…</p></article></main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+const CH = [
+  {id:"home", n:"★", file:"README.md", t:"סקירה ותובנות מרכזיות", g:"התחלה"},
+  {id:"ch11", n:"11", file:"chapters/11-first-video-60-minutes.md", t:"סרטון ראשון ב-60 דקות", g:"התחלה"},
+  {id:"ch09", n:"09", file:"chapters/09-90-day-plan.md", t:"תוכנית 90 יום", g:"התחלה"},
+  {id:"ch00", n:"00", file:"chapters/00-visual-analysis.md", t:"ניתוח ויזואלי של 10 הרילס", g:"הבנה"},
+  {id:"ch01", n:"01", file:"chapters/01-reels-and-market.md", t:"הרילס והשוק", g:"הבנה"},
+  {id:"ch02", n:"02", file:"chapters/02-tools-stack.md", t:"כלים וטכנולוגיה", g:"הבנה"},
+  {id:"ch03", n:"03", file:"chapters/03-craft.md", t:"אומנות ההפקה", g:"ייצור"},
+  {id:"ch07", n:"07", file:"chapters/07-prompt-library.md", t:"ספריית פרומפטים", g:"ייצור"},
+  {id:"ch08", n:"08", file:"chapters/08-recreate-source-reels.md", t:"שחזור 10 הרילס", g:"ייצור"},
+  {id:"ch12", n:"12", file:"chapters/12-troubleshooting.md", t:"פתרון תקלות", g:"ייצור"},
+  {id:"ch04", n:"04", file:"chapters/04-audience-growth.md", t:"קהל וצמיחה", g:"צמיחה וכסף"},
+  {id:"ch05", n:"05", file:"chapters/05-monetization.md", t:"מפת הכסף", g:"צמיחה וכסף"},
+  {id:"ch10", n:"10", file:"chapters/10-numbers-capacity-pricing.md", t:"מספרים, קיבולת ומחירון", g:"צמיחה וכסף"},
+  {id:"ch06", n:"06", file:"chapters/06-legal-ops.md", t:"משפט, סיכונים ותפעול", g:"עסק"},
+  {id:"ch13", n:"13", file:"chapters/13-israel-business-and-payments.md", t:"עסק בישראל ותשלומים", g:"עסק"},
+  {id:"src", n:"·", file:"00-source-reels.md", t:"10 רילס המקור", g:"חומר גלם"},
+];
+const byFile = Object.fromEntries(CH.map(c=>[c.file,c]));
+const cache = {};
+const $ = s=>document.querySelector(s);
+const nav = $("#nav"), doc = $("#doc"), side = $("#side");
+
+function buildNav(cur){
+  let html="", g="";
+  for(const c of CH){
+    if(c.g!==g){ g=c.g; html+=`<li class="group">${g}</li>`; }
+    html+=`<li><a href="#${c.id}" data-id="${c.id}" ${c.id===cur?'aria-current="page"':''}><span class="n">${c.n}</span><span>${c.t}</span></a>${c.id===cur?'<div class="toc" id="toc"></div>':''}</li>`;
+  }
+  nav.innerHTML=html;
+}
+function resolve(base, rel){
+  if(/^(https?:|mailto:|#)/.test(rel)) return null;
+  const parts = base.split("/"); parts.pop();
+  for(const p of rel.split("/")){ if(p==="..") parts.pop(); else if(p!=="."&&p!=="") parts.push(p); }
+  return parts.join("/");
+}
+async function getText(file){
+  if(cache[file]) return cache[file];
+  const r = await fetch(file); if(!r.ok) throw new Error(r.status);
+  return cache[file] = await r.text();
+}
+function slug(s,i){ return "s"+i; }
+async function show(id, focusText){
+  const c = CH.find(x=>x.id===id) || CH[0];
+  buildNav(c.id);
+  doc.innerHTML='<p class="status">טוען…</p>';
+  let md;
+  try{ md = await getText(c.file); }catch(e){ doc.innerHTML='<p class="status">לא הצלחתי לטעון את הפרק. נסו לרענן את הדף.</p>'; return; }
+  let html = marked.parse(md, {gfm:true});
+  html = html.replace(/\[(לא מאומת|לא נבדק בפועל|נגזר|הערכה)\]/g,'<span class="unv">$1</span>');
+  doc.innerHTML = html;
+  doc.querySelectorAll("table").forEach(t=>{const w=document.createElement("div");w.className="tw";t.replaceWith(w);w.appendChild(t);});
+  doc.querySelectorAll("pre").forEach(p=>{
+    const w=document.createElement("div");w.className="pre";p.replaceWith(w);w.appendChild(p);
+    const b=document.createElement("button");b.className="copy";b.type="button";b.textContent="העתק";
+    b.addEventListener("click",()=>{const txt=p.innerText;
+      const done=()=>{b.textContent="הועתק";b.classList.add("ok");setTimeout(()=>{b.textContent="העתק";b.classList.remove("ok")},1500)};
+      if(navigator.clipboard){navigator.clipboard.writeText(txt).then(done).catch(()=>sel(p));}else sel(p);});
+    w.appendChild(b);
+  });
+  doc.querySelectorAll("img").forEach(im=>{const s=im.getAttribute("src");const r=s&&resolve(c.file,s);if(r)im.src=r;im.loading="lazy";});
+  doc.querySelectorAll("a[href]").forEach(a=>{
+    const h=a.getAttribute("href"); if(/^https?:/.test(h)){a.target="_blank";a.rel="noopener";return;}
+    const r=resolve(c.file,h.split("#")[0]); const t=r&&byFile[r];
+    if(t){a.href="#"+t.id;} else if(r && !h.startsWith("#")){a.removeAttribute("href");a.title="קובץ גלם במאגר (GitHub)";}
+  });
+  const toc=$("#toc"); let i=0, tl="";
+  doc.querySelectorAll("h2").forEach(h=>{h.id=slug(h.textContent,i++);tl+=`<a href="#${c.id}" data-jump="${h.id}">${h.textContent}</a>`;});
+  if(toc) toc.innerHTML=tl;
+  const idx=CH.indexOf(c), prev=CH[idx-1], next=CH[idx+1];
+  doc.insertAdjacentHTML("beforeend",`<div class="pager">${next?`<a href="#${next.id}">← הבא: ${next.t}</a>`:'<span></span>'}${prev?`<a href="#${prev.id}">הקודם: ${prev.t} →</a>`:''}</div>`);
+  if(focusText){ scrollToText(focusText); } else window.scrollTo(0,0);
+  try{localStorage.setItem("last",c.id)}catch(e){}
+}
+function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+function scrollToText(q){
+  const w=document.createTreeWalker(doc,NodeFilter.SHOW_TEXT); let n;
+  while((n=w.nextNode())){ const i=n.nodeValue.toLowerCase().indexOf(q.toLowerCase()); if(i>=0){
+    const r=document.createRange(); r.setStart(n,i); r.setEnd(n,i+q.length); const m=document.createElement("mark");
+    try{r.surroundContents(m);}catch(e){} (m.isConnected?m:n.parentElement).scrollIntoView({block:"center"}); return; } }
+}
+nav.addEventListener("click",e=>{
+  const j=e.target.closest("[data-jump]"); if(j){e.preventDefault();document.getElementById(j.dataset.jump)?.scrollIntoView({behavior:"smooth"});return;}
+  if(e.target.closest("a")) { side.classList.remove("open"); $("#menu").setAttribute("aria-expanded","false"); }
+});
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+$("#menu").addEventListener("click",()=>{const o=side.classList.toggle("open");$("#menu").setAttribute("aria-expanded",o);});
+$("#theme").addEventListener("click",()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dark?"light":"dark";});
+
+let timer;
+$("#q").addEventListener("input",e=>{clearTimeout(timer);timer=setTimeout(()=>search(e.target.value.trim()),250);});
+async function search(q){
+  const box=$("#results");
+  if(q.length<2){box.innerHTML="";return;}
+  box.innerHTML='<span class="sub">מחפש…</span>';
+  const hits=[];
+  await Promise.all(CH.map(c=>getText(c.file).catch(()=>"")));
+  const ql=q.toLowerCase();
+  for(const c of CH){ const lines=(cache[c.file]||"").split("\n");
+    for(const l of lines){ const i=l.toLowerCase().indexOf(ql); if(i>=0){
+      const s=l.replace(/[#>*|`]/g," ").trim(); const k=s.toLowerCase().indexOf(ql);
+      const a=Math.max(0,k-40); const snip=s.slice(a,k+q.length+60);
+      hits.push({c,snip}); if(hits.filter(h=>h.c===c).length>=3) break; } } }
+  if(!hits.length){box.innerHTML='<span class="sub">לא נמצאו תוצאות.</span>';return;}
+  box.innerHTML="";
+  hits.slice(0,30).forEach(h=>{const b=document.createElement("button");
+    const esc=t=>t.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+    b.innerHTML=`<b>${esc(h.c.t)}</b>${esc(h.snip).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"),m=>`<mark>${m}</mark>`)}`;
+    b.addEventListener("click",()=>{ if(location.hash.slice(1)===h.c.id) show(h.c.id,q); else { history.replaceState(null,"","#"+h.c.id); show(h.c.id,q);} });
+    box.appendChild(b);});
+}
+let start=location.hash.slice(1);
+if(!start){try{start=localStorage.getItem("last")||"home"}catch(e){start="home"}}
+show(start);
+</script>
