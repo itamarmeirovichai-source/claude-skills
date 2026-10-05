@@ -1,0 +1,53 @@
+{
+  "_about": "Typical 15s Hebrew product ad: hook, speed ramp, punch-ins, captions over voice, logo bug, packshot, music ducked under speech, -14 LUFS.",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "export": "instagram",
+  "output": "out/hebrew_ad.mp4",
+  "timeline": [
+    {
+      "clip": {"path": "media/clip1.mp4", "in": 0.2, "out": 2.6,
+               "effects": [{"type": "zoom_punch", "at": [0.0, 1.2], "dur": 0.5, "scale": 1.18}, {"type": "color", "preset": "teal_orange"}]},
+      "overlays": [{"type": "title", "text": "עצרו לגלול ✋", "position": "top", "anim": "pop", "highlight": ["עצרו"]}]
+    },
+    {
+      "clip": {"path": "media/clip2.mp4", "in": 0, "out": 4.0,
+               "ramps": [{"from": 0.8, "to": 2.4, "speed": 3.0}],
+               "effects": [{"type": "shake", "start": 0, "end": 0.6, "intensity": 14}, {"type": "rgb_split", "start": 0, "end": 0.3}]},
+      "transition": {"type": "zoom"}
+    },
+    {
+      "clip": {"path": "media/talk.mp4", "in": 0, "out": 4.5, "effects": ["ken_burns"]},
+      "transition": {"type": "slideup", "dur": 0.35}
+    },
+    {
+      "layout": "split_horizontal", "duration": 2.5, "transition": "flash",
+      "left": "media/clip1.mp4", "right": {"path": "media/clip3.mp4", "fit": "cover"},
+      "labels": {"left": "רגיל", "right": "עם AI"}, "audio": "left"
+    },
+    {
+      "clip": {"path": "media/packshot.png", "duration": 2.5},
+      "transition": "fadeblack",
+      "overlays": [
+        {"type": "image", "path": "media/logo.png", "y": 820, "width": 460, "fade": 0.3},
+        {"type": "cta", "text": "הורידו עכשיו – חינם", "position": "cta", "box": true, "anim": "pop"}
+      ]
+    }
+  ],
+  "overlays": [
+    {"type": "image", "path": "media/logo.png", "x": 960, "y": 150, "width": 180, "opacity": 0.85, "start": 0, "end": 11.5}
+  ],
+  "captions": {
+    "style": "highlight_word",
+    "position": "lower",
+    "lines": [
+      {"start": 6.2, "end": 7.6, "text": "זה הכלי שחסך לי שעות"},
+      {"start": 7.6, "end": 9.2, "text": "עריכה אוטומטית עם AI"}
+    ]
+  },
+  "audio": {
+    "original_volume": 1.0,
+    "music": {"path": "media/music.wav", "volume": 0.45, "duck": {"threshold": 0.03, "ratio": 8}},
+    "sfx_on_cuts": "auto",
+    "loudnorm": -14
+  }
+}
