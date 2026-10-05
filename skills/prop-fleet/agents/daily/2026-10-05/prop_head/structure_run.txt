@@ -1,0 +1,43 @@
+net/yr after 25% tax, mean yrs 2-4, $80 funded / $200 eval risk, 2:1, n=600 seed 11; % = of 50K x accounts nominal
+
+##### A. model R is BEFORE costs (economist default: $1.30/MES RT + 0.25 pt slip on losers)
+  P1 Bulenox5+Topstep5 (10)          base  3/day | +0.10R    9,399 ( 1.9%, p10   -2,222, fees  8,458) | +0.25R   67,452 (13.5%, p10   50,038, fees  4,998) | +0.40R  136,723 (27.3%, p10  119,298, fees  2,342)
+  P1 Bulenox5+Topstep5 (10)          base  1/day | +0.10R   -1,268 (-0.3%, p10   -6,037, fees  6,079) | +0.25R   14,989 ( 3.0%, p10    6,717, fees  5,608) | +0.40R   34,994 ( 7.0%, p10   24,600, fees  5,079)
+  P1 Bulenox5+Topstep5 (10)          exit3 3/day | +0.10R    3,391 ( 0.7%, p10   -3,081, fees  9,891) | +0.25R   30,549 ( 6.1%, p10   22,729, fees 10,634) | +0.40R   61,291 (12.3%, p10   52,661, fees 12,642)
+  P1 Bulenox5+Topstep5 (10)          exit3 1/day | +0.10R   -2,473 (-0.5%, p10   -6,050, fees  6,400) | +0.25R    5,407 ( 1.1%, p10    1,614, fees  7,175) | +0.40R   12,934 ( 2.6%, p10    8,879, fees  8,483)
+  P2 +Lucid5 if approved (15)        base  3/day | +0.10R   16,084 ( 2.1%, p10      779, fees 11,741) | +0.25R   91,917 (12.3%, p10   70,003, fees  7,366) | +0.40R  180,613 (24.1%, p10  158,077, fees  4,899)
+  P2 +Lucid5 if approved (15)        base  1/day | +0.10R      982 ( 0.1%, p10   -6,274, fees  7,344) | +0.25R   22,674 ( 3.0%, p10   12,165, fees  6,625) | +0.40R   48,399 ( 6.5%, p10   35,935, fees  6,317)
+  P2 +Lucid5 if approved (15)        exit3 3/day | +0.10R   10,076 ( 1.3%, p10     -391, fees 13,174) | +0.25R   55,014 ( 7.3%, p10   42,315, fees 13,003) | +0.40R  105,181 (14.0%, p10   91,325, fees 15,198)
+  P2 +Lucid5 if approved (15)        exit3 1/day | +0.10R     -223 (-0.0%, p10   -6,416, fees  7,665) | +0.25R   13,092 ( 1.7%, p10    6,714, fees  8,192) | +0.40R   26,339 ( 3.5%, p10   20,129, fees  9,721)
+  Bulenox5 alone (5)                 base  3/day | +0.10R    7,458 ( 3.0%, p10     -365, fees  2,659) | +0.25R   39,667 (15.9%, p10   31,871, fees  1,245) | +0.40R   69,843 (27.9%, p10   61,790, fees  1,201)
+  Bulenox5 alone (5)                 base  1/day | +0.10R      594 ( 0.2%, p10   -2,677, fees  1,858) | +0.25R   12,420 ( 5.0%, p10    7,244, fees  1,240) | +0.40R   23,508 ( 9.4%, p10   18,895, fees  1,200)
+  Bulenox5 alone (5)                 exit3 3/day | +0.10R    3,001 ( 1.2%, p10   -1,101, fees  3,761) | +0.25R   17,996 ( 7.2%, p10   14,150, fees  4,212) | +0.40R   32,798 (13.1%, p10   28,822, fees  5,774)
+  Bulenox5 alone (5)                 exit3 1/day | +0.10R     -123 (-0.0%, p10   -2,677, fees  2,081) | +0.25R    5,422 ( 2.2%, p10    2,641, fees  2,283) | +0.40R    9,817 ( 3.9%, p10    7,376, fees  2,888)
+  Tradeify5 alone, own instance (5)  base  3/day | +0.10R    9,294 ( 3.7%, p10    4,337, fees  2,301) | +0.25R   34,509 (13.8%, p10   27,137, fees  1,028) | +0.40R   67,311 (26.9%, p10   57,817, fees    385)
+  Tradeify5 alone, own instance (5)  base  1/day | +0.10R    3,959 ( 1.6%, p10      441, fees    776) | +0.25R   13,128 ( 5.3%, p10    8,563, fees    223) | +0.40R   23,424 ( 9.4%, p10   18,833, fees     59)
+
+##### B. model R is AFTER costs (commission and slippage set to 0 in the simulator; use for backtest net R)
+  P1 Bulenox5+Topstep5 (10)          base  3/day | +0.10R   28,515 ( 5.7%, p10   15,984, fees  6,668) | +0.25R   92,838 (18.6%, p10   74,414, fees  3,468) | +0.40R  159,032 (31.8%, p10  142,363, fees  1,804)
+  P1 Bulenox5+Topstep5 (10)          base  1/day | +0.10R    3,743 ( 0.7%, p10   -3,112, fees  5,681) | +0.25R   21,625 ( 4.3%, p10   13,483, fees  5,431) | +0.40R   42,993 ( 8.6%, p10   32,292, fees  4,580)
+  P1 Bulenox5+Topstep5 (10)          exit3 3/day | +0.10R   13,616 ( 2.7%, p10    6,835, fees  9,443) | +0.25R   42,831 ( 8.6%, p10   34,538, fees 10,990) | +0.40R   74,206 (14.8%, p10   65,532, fees 13,248)
+  P1 Bulenox5+Topstep5 (10)          exit3 1/day | +0.10R      464 ( 0.1%, p10   -3,442, fees  6,390) | +0.25R    8,089 ( 1.6%, p10    4,613, fees  7,542) | +0.40R   15,648 ( 3.1%, p10   11,782, fees  8,911)
+  P2 +Lucid5 if approved (15)        base  3/day | +0.10R   41,460 ( 5.5%, p10   24,631, fees  9,225) | +0.25R  124,607 (16.6%, p10  101,598, fees  5,797) | +0.40R  211,091 (28.1%, p10  188,866, fees  4,419)
+  P2 +Lucid5 if approved (15)        base  1/day | +0.10R    7,924 ( 1.1%, p10   -1,413, fees  6,764) | +0.25R   31,247 ( 4.2%, p10   20,146, fees  6,512) | +0.40R   58,366 ( 7.8%, p10   45,011, fees  5,945)
+  P2 +Lucid5 if approved (15)        exit3 3/day | +0.10R   26,561 ( 3.5%, p10   15,480, fees 12,000) | +0.25R   74,600 ( 9.9%, p10   61,498, fees 13,319) | +0.40R  126,265 (16.8%, p10  111,911, fees 15,862)
+  P2 +Lucid5 if approved (15)        exit3 1/day | +0.10R    4,646 ( 0.6%, p10   -1,704, fees  7,473) | +0.25R   17,711 ( 2.4%, p10   11,797, fees  8,622) | +0.40R   31,021 ( 4.1%, p10   24,637, fees 10,275)
+  Bulenox5 alone (5)                 base  3/day | +0.10R   19,232 ( 7.7%, p10   11,647, fees  1,608) | +0.25R   49,814 (19.9%, p10   41,899, fees  1,209) | +0.40R   79,727 (31.9%, p10   71,881, fees  1,200)
+  Bulenox5 alone (5)                 base  1/day | +0.10R    4,376 ( 1.8%, p10     -877, fees  1,442) | +0.25R   16,343 ( 6.5%, p10   11,533, fees  1,208) | +0.40R   26,861 (10.7%, p10   22,246, fees  1,200)
+  Bulenox5 alone (5)                 exit3 3/day | +0.10R    8,736 ( 3.5%, p10    5,207, fees  3,482) | +0.25R   23,581 ( 9.4%, p10   19,523, fees  4,680) | +0.40R   38,361 (15.3%, p10   34,209, fees  6,340)
+  Bulenox5 alone (5)                 exit3 1/day | +0.10R    1,971 ( 0.8%, p10     -877, fees  1,956) | +0.25R    6,912 ( 2.8%, p10    4,837, fees  2,471) | +0.40R   11,145 ( 4.5%, p10    9,125, fees  3,093)
+  Tradeify5 alone, own instance (5)  base  3/day | +0.10R   17,252 ( 6.9%, p10   11,493, fees  1,560) | +0.25R   45,918 (18.4%, p10   37,343, fees    681) | +0.40R   79,320 (31.7%, p10   70,830, fees    154)
+  Tradeify5 alone, own instance (5)  base  1/day | +0.10R    6,909 ( 2.8%, p10    2,872, fees    495) | +0.25R   16,568 ( 6.6%, p10   11,863, fees    131) | +0.40R   26,803 (10.7%, p10   22,146, fees     31)
+
+##### R needed for 20% of nominal (grid 0.02), costs-in-R view (B)
+  P1 Bulenox5+Topstep5 (10)          base  3/day: R +0.28 net 106,643
+  P1 Bulenox5+Topstep5 (10)          base  1/day: R +0.78 net 102,894
+  P1 Bulenox5+Topstep5 (10)          exit3 3/day: R +0.52 net 100,111
+  P1 Bulenox5+Topstep5 (10)          exit3 1/day: none up to +1.50R
+  P2 +Lucid5 if approved (15)        base  3/day: R +0.30 net 154,395
+  P2 +Lucid5 if approved (15)        base  1/day: R +0.88 net 151,271
+  P2 +Lucid5 if approved (15)        exit3 3/day: R +0.48 net 154,831
+  P2 +Lucid5 if approved (15)        exit3 1/day: none up to +1.50R

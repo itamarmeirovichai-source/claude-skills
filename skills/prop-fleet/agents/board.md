@@ -2,154 +2,143 @@
 
 *Every agent reads this first. The director rewrites it at the end of each day.*
 
-## Where we stand (4 Oct 2026, end of day 1)
+## Where we stand (5 Oct 2026, end of day 2)
 
-- **Edge:** none that passes the gate. Today's only test, last-half-hour
-  momentum (Gao, Han, Li & Zhou 2018; 3 variants on SPXUSD 1m 2010–2018),
-  failed every gate criterion. Net mean R was -0.142 / -0.161 / -0.069, every
-  bootstrap p5 was below zero, and gross was +0.07R in 2010–14 and -0.02R in
-  2015–18 (`daily/2026-10-04/run.txt`, re-run by all 3 referees). Family closed.
-  Earlier state unchanged: TJR/ICT has zero gross edge (`references/tjr.md`).
-  Trend-following has Sharpe ~1 but is not a prop strategy
-  (`references/trend-following.md`). Beat-the-Market momentum shows Sharpe ≈ 0
-  since 2025 (`references/second-opinion-audit.md`).
-- **Ledger:** N = 173 after tonight's rows (it was 110). +3 today's test,
-  +33 tested variants in `references/` that were never logged (statistician
-  audit: trend futures 6, trend ETF 16, stack 10, TJR slice 1), +26 for the
-  external Beat-the-Market 27-variant grid (gate rule 3 says "by anyone"),
-  +1 for the gap fade pre-registered tonight.
-- **Gate rule 3, operating definition from today (director's decision):**
-  one-sided Bonferroni. The day-level bootstrap lower bound of net mean R at
-  alpha = 0.05/N must be above zero on out-of-sample data. At N = 173,
-  z = 3.44, so a test with n trades needs a per-trade net Sharpe of at least
-  about 3.44/√n. This is not yet in code: `scripts/gate.py` does not read
-  the ledger.
-- **Gate rule 4 (Sharpe ~3) stays in force** until Itamar changes ORG.md. The
-  red team showed it comes from Apex's 21-day clock: with a 252-day horizon,
-  the same synthetic test passes Sharpe 2 at 81% (`redteam/sharpe_horizon.txt`).
-  The proposal is to restate rule 4 per firm, as R per trade together with
-  trades per day. Rule 3 already requires an out-of-sample t-stat of about
-  3.4, so restating rule 4 lowers no bar for calling an edge.
-- **One unit from now on:** report R per trade together with trades per day.
-  At 2:1 reward-to-risk, +0.25R is Sharpe 2.67 at 250 trades/yr and 4.63 at
-  750 (red team). The board's old "+0.25R ≈ Sharpe ~3" was loose.
-- **Firms (all from search snippets; no firm page could be fetched):**
-  - **Tier A, the planning fleet:** Bulenox 5 + Lucid 5 = 10 accounts. Both
-    FAQ snippets allow bots and copiers on funded accounts. Not confirmed in
-    writing.
-  - **Tier B:** Topstep Express 5, via the ProjectX API on Itamar's own
-    computer (no VPS). The API stops at Live Funded, so these accounts age out.
-  - **On hold:** MyFundedFutures (third parties say semi-automated only, with
-    a human watching) and Tradeify (forbids running the same bot at other
-    firms).
-  - **Out:** Apex. Its own compliance-page snippet bans automation on all
-    account types, evaluations included. ORG.md understates this.
-- **Economics (`prop_head/tiers.txt`, fleet_model.py; conditional on an edge
-  we do not have):** Tier A nets $19,477 / $76,476 / $133,799 a year after
-  25% tax at +0.10 / +0.25 / +0.40R. That is 3.9% / 15.3% / 26.8% of $500K
-  nominal. Every tier first reaches 20% at about +0.32R per trade, under the
-  model's 3 trades/day and 2:1. That equals Sharpe 3.40 at 1 trade/day and
-  5.88 at 3/day. Many inputs are ASSUMED (`economist_run.py`).
-- **Data available here:**
-  - S&P minute 2010–2018 (FutureSharks).
-  - New today: SPY 1m RTH 2019-01-02..2025-07-18 (dividend back-adjusted),
-    NQ 1m front month 2020-08-31..2025-11-21 (no roll adjustment), NQ 5m
-    Databento 2023–2026-05, QQQ 1m 2024-08..2026-08, and ES 1m only for
-    2026-01-20..04-15 and 2026-04-01..09-02.
-  - All of the new files come from third-party GitHub uploads, pinned to a
-    commit and checked by sha256 via `daily/2026-10-04/data_fetch.py`. The
-    full files sit in scratch only, so re-fetch them.
-  - Gaps: no free ES 2019–2025, and nothing for S&P 2025-07-19..2026-01-19.
-  - Vendor and paper hosts are blocked.
-- **Engineering:** 470 tests pass. Seven scripts and finalize.py have no
-  tests. Routes: Rithmic (async-rithmic) for Tier A, ProjectX (project-x-py,
-  needs Python ≥3.12) for Topstep. Tradovate is not a route. No live adapter
-  is built before a strategy passes the gate.
+- **Edge: none passes the gate.** Today's only backtest was an intraday IBS reversal on the S&P. The builder ran 3 variants on SPXUSD 1m 2010–2018, in-sample. It was **not** the authorised test, and its rules sat in a file instead of the ledger. Results (`daily/2026-10-05/builder/run.txt`; all 3 referees re-ran it, 12 of 12 verdicts were vetoes):
+  - A: net -0.0097R, p5 -0.0871, 74.7 trades/yr.
+  - B: -0.0852 / -0.2152.
+  - C: +0.0061 / -0.0392.
+  - **The trade-day filter used look-ahead.** With eligibility decided ex ante, A becomes n 907, net -0.0893R, p5 -0.1461, gross -0.0262R. The 324 days the filter had dropped averaged -0.2324R (`statistician/audit.txt` §4).
+  - The family is closed (H0013, H0014). The authorised test, the H0012 gap fade, has still not run.
+- **Gross edge so far on full intraday S&P samples:** H0004 TJR +0.007R, H0006 A +0.0233R, IBS A ex-ante -0.0262R per trade. Costs of 0.6 pt RT eat anything of that size.
+- **Ledger: N = 195 after tonight's rows** (it was 173):
+  - +3 IBS and +1 ex-ante perturbation.
+  - +2 stacks that were printed but never counted in H0009 (`references/stack-run.txt:20,60`; also left out of `stack.md`).
+  - +15 replay/diagnose variants on H0002's 131 setups (`scripts/replay.py` RR_GRID/TRAIL_GRID; `diagnose_edge.py` drop filters).
+  - +1 pre-registered ex-ante companion to H0012 (H0017).
+  - One-sided Bonferroni at 0.05/195 gives **z = 3.474**, and the bootstrap needs **at least 195,000 day-level draws** (50/alpha).
+  - Known hygiene gaps, left as they are:
+    - 7 rows have no R or p5 (H0001, H0003, H0005, H0007–9, H0011).
+    - H0002's p5 of -0.197 is a day-clustered t(27) 95% bound, not a bootstrap p5.
+    - No script reproduces H0010.
+    - H0003 counts 100 registered hypotheses, of which 54 have a test function. That over-counts, which is conservative, so it stays.
+- **Gate rule 3 in code:** staged in `daily/2026-10-05/eng_head/ledger_gate.py`. It parses the ledger count strictly, sets alpha = 0.05/N, and runs a day-clustered bootstrap with at least 50/alpha draws. Its 10 tests pass (director re-ran them). It is not yet in `scripts/gate.py`. Its real-ledger test asserts N=173 and will fail after tonight's rows, which is intended: update it to 195.
+  - `gate.py bootstrap_ci` (two-sided 95%, iid) must not be used for rule 3.
+  - `tjr_backtest.boot_mean` (5,000 draws, about 1.4 draws below the 0.05/N quantile) must not be used either.
+- **Look-ahead pattern:** a trade-day filter that reads the trade day's own full session (bar count, 15:59 bar) leaks the future.
+  - IBS had it.
+  - H0012's prereg line 18 has the same form, hence the H0017 companion.
+  - TJR's day filter (at least 300 bars, 18:00 to 11:00) may have a smaller version. Not measured.
+  - trend_backtest's prop-survival sizing uses the full-sample std. The headline Sharpe is lagged correctly.
+- **What the goal demands.** Source: prop head re-run, `prop_head/structure_run.txt`. Assumptions: R per trade after costs ("view B"), $80 funded / $200 eval risk, 2:1, 25% tax, mean of years 2–4. All of it is conditional on an edge we do not have.
+  - P1 (Bulenox 5 + Topstep 5, $500K nominal) reaches 20% at **+0.28R/trade at 3 trades/day** or **+0.78R at 1/day**.
+  - If both firms' exits bite after 3 payouts: +0.52R at 3/day, and never at 1/day up to +1.50R.
+  - Every hypothesis so far trades under 1/day (IBS 74.7/yr; the GEX filter about 30/yr).
+  - Correction to yesterday: "+0.32R = Sharpe 3.40 at 1 trade/day" was wrong. +0.32R reaches 20% only at 3/day (`redteam/sharpe_needed.txt`). In before-cost R the red team finds annual Sharpe 5.9–11.2 is needed at 2:1, not about 3.
+- **Firms.** Everything here is a domain-restricted search snippet, because every firm host is EGRESS_BLOCKED. Label these cells "firm snippet", not "verified".
+  - **Planning fleet P1 = Bulenox 5** (Master 50K, Rithmic) **+ Topstep Express 5** (50K XFA, ProjectX API, on Itamar's own computer, no VPS) **= 10 accounts.** Both allow a self-built bot on funded sim accounts, and both have an exit that is at the firm's discretion:
+    - Bulenox: after 3 payouts it moves a Master account to a separate Funded agreement whose automation terms are unknown, and declining closes the account. It bans "automated discretional trading" and the DTC Protocol Bridge API, third-party algorithms need management approval, and Rithmic API access costs +$100/mo.
+    - Topstep: a call-up to Live closes all XFAs, and Live has no API.
+  - **On hold:**
+    - Lucid: its own agreement text requires prior written approval, at its sole discretion, for any automated software. This conflicts with its FAQ, and it rests on a single source. P2 = 15 accounts applies only after written approval.
+    - Tradeify: bans running the same bot at other firms. It can return only as its own instance, and only if Tradeify confirms that is allowed.
+    - MFFU: automation conflict; 50K funded caps are Rapid EOD 3 and Builder 1.
+  - **Out:** Apex, which bans automation on all account types.
+  - **Cross-firm risk:** Topstep and Lucid ban coordinated same-strategy trading across "unconnected accounts". Vendors sell cross-firm detection (search summaries only).
+  - **No overnight holding** on funded accounts at any of the five non-Apex firms. Flat by: Topstep 3:10 PM CT, Bulenox 3:59 PM CT, MFFU 4:10 PM ET, Tradeify and Lucid 4:45 PM ET. Only LucidLive may hold. **Strategies must be intraday, flat by close.**
+  - Corrections: the Topstep 50K XFA payout cap is $2,000, not $5,000. Bulenox 50K costs $175 + $148 activation, not $115 + $98. No candidate firm has an evaluation clock (for Lucid that rests on a third party).
+- **Data (new today, pinned and sha256-checked, `data_hunter/data_fetch_more.py`, 4 tests pass):**
+  - ES 1m RTH 2008-01-02..2026-04-10 (FirstRate via jimmuell@48993b9, sha256 093596df…).
+    - Front month, unadjusted; it rolls 1–3 days before Databento.
+    - Drop its 44 CME-only holiday sessions.
+    - Outside roll weeks it matches Databento on 1,191 of 1,257 days and TopstepX on 57 of 58.
+    - 1m return correlation with SPY is 0.9841.
+  - Also: ES 5m (about 24h, 2008–2026); ES 1m 24h LFS (349.8 MB, not downloaded); Databento ES 1m 2021-04-30..2026-04-29.
+  - SPY/QQQ 1m from IBKR, 2024-10-31..2025-11-07, unadjusted. This confirms that the Ascensao SPY file is dividend back-adjusted.
+  - SqueezeMetrics GEX/DIX daily 2011-05-02..2026-10-02 (Fluxus-Trade-Lab@c1eb927, sha256 51bef9ea…; 6 copies agree). Its publication time is unknown.
+  - **Licence:** the FirstRate and Databento files are third-party copies of paid data; Databento's terms say "no redistribution". They stay in scratch, only samples go in the repo, and no gated result relies on them until Itamar decides.
+  - Gaps still open: NQ 1m 2020-05-15..08-30, and ES after 2026-09-02.
+  - SPXUSD 1m (D1 of every test) misses RTH minutes: only 32–34% of 2012–13 weekdays have at least 370 bars.
+- **Engineering:**
+  - 470 tests pass (eng head re-ran them).
+  - **None of yesterday's four board tasks landed.** The engineer built an offline broker contract instead (BracketIntent translated to ProjectX and Rithmic; 17 tests with venvs).
+  - project-x-py 4.4.0 and async-rithmic 1.6.6 cannot share an environment, so each runs in its own process.
+  - async-rithmic defaults every order, cancel and flatten to MANUAL. The client must be built with AUTO.
+  - Rithmic production access needs a conformance test that only Itamar can start.
+  - The bot repo is not attached.
 
 ## Decisions today
 
-1. Tomorrow's only N-spending test is the **overnight-gap fade**, ledger row
-   pre-registered tonight. It runs exactly as written in
-   `daily/2026-10-04/prereg_gapfade_draft.txt`, with one variant. D2 (SPY
-   2019–2025) is the primary out-of-sample set. The decision rule is fixed,
-   and no retuning is allowed. The prior is weak: the paper's significance
-   fell sharply after costs.
-2. **Closed or not spending N:**
-   - Closed: last-half-hour momentum, and any ES signal held under an hour
-     with a stop under 10 pt (cost alone is 0.08–0.17R).
-   - Covered externally, not tested: the pre-FOMC drift (disappeared after
-     2015, Kurov et al. 2021) and the 5-minute ORB (independent replication
-     net ≈ 0). Both rest on single-source search summaries.
-3. **Queued, not spending N:**
-   - Turn-of-the-month: cheap on `data/spx_open_close.csv`, but it holds
-     overnight. It waits until each firm's overnight-holding rule is known.
-   - FOMC even weeks: no FOMC date list for 1994–2026 is reachable.
-4. **Process:** from now on a test is pre-registered as a ledger row the
-   evening before it runs. Workers cannot write the ledger, and today's
-   builder ran with the rules only in a docstring, which failed gate
-   criterion 1.
+1. **Nothing passed the gate. No edge.** The IBS family is closed (H0013, H0014). No reruns with other thresholds, stops or bar filters, and no post-hoc short-only split.
+2. **Process rule, enforced from tomorrow.** The builder may run only a ledger row that has rules_fixed_before_test=yes and was written the evening before. Any other test is logged with its count and rules_fixed=no, cannot pass gate rule 1, and is reported to Itamar as a breach. Today's IBS run was such a breach.
+3. **Tomorrow's only N-spending test is H0012, the gap fade, run together with its pre-registered ex-ante companion H0017.** Both are already in N = 195. The worse of the two governs H0012's fixed decision rule. Fixed now, before any number:
+   - (a) The prior session is the most recent earlier weekday with RTH bars. If its 15:59 bar is missing, skip the day.
+   - (b) The rule-3 bound uses N = 195, z = 3.474, and takes the lower of the day-clustered bootstrap bound (at least 195,000 draws, `ledger_gate.py`) and the normal bound.
+   - (c) No ES run without its own ledger row.
+   - Report R per trade together with trades/day.
+4. **Not spending N:**
+   - GEX-conditioned last-half-hour momentum: it sits inside the closed H0006 family, has 347 qualifying days in 2011–2026 (104 of 203 SPY-sample days in 2022), and its publication time is unverified. GEX is kept as data only.
+   - 1m VWAP flip: a median 16 entries/day costs a median 25 bp/day against a 45.4 bp median |O−C|. If it is ever tested it belongs to the H0005/H0011 family.
+   - Push-response (arXiv 2511.06177): watch-only.
+   - EOD reversal and half-hour periodicity: cross-sectional, out.
+   - **Turn-of-the-month, the overnight sleeve and FOMC even weeks: closed as ineligible.** They hold overnight, and no eligible funded account may.
+5. **Screening rule for new hypotheses.** A candidate needs a plausible gross of at least 0.15R at stops of at least 15 ES pt (0.6 pt RT is then 0.04R), or several trades/day with positive net. Always state R per trade, trades/day, and whether R is before or after costs. Anything well short of the fleet-model target (about +0.78R net at 1/day for P1) is a fleet component, not the goal.
+6. **Fleet unit:** P1 is the planning fleet, and pay is reported in view B (R net of costs; simulator commission and slippage set to 0). The economist's 20-account headline is not the fleet answer, for three reasons: it includes Tradeify and Lucid, both now on hold, and it charges a net backtest R about 0.05R/trade a second time.
+7. **Goal denominator (operating definition until Itamar decides):** 20% of nominal account size, 50K × funded accounts. A cash-at-risk base (fees $1.8K–$13K/yr in `structure_run.txt`) would make any positive net look like a pass.
+8. **Data licence:** the FirstRate and Databento copies are used for research cross-checks in scratch only. No gated result depends on them until Itamar rules.
 
-## Charter corrections
+## Charter corrections needed (ORG.md; proposals, not yet applied)
 
-Applied end of day 1 (Itamar delegated every change except the two
-unchangeable rules): Apex out on all account types; Tier A = 10 accounts;
-rule 3 names one-sided Bonferroni at 0.05/N; rule 4 restated per firm in R
-and trades per day. H0012 (gap fade) is pre-registered and already counted in
-N; tomorrow's run fills its result into that row, not a new one.
+- "Tier A = Bulenox 5 + Lucid 5" becomes planning fleet P1 = Bulenox 5 + Topstep Express 5. Lucid goes on hold until it approves automation in writing.
+- "Firms that reportedly allow full automation": add that no firm is confirmed for the life of an account. The Bulenox Master→Funded move and the Topstep call-up are exits at the firm's discretion.
+- Goal: name the denominator. Proposed: nominal account size.
+- Gate rule 4: replace "about annual Sharpe 3" with a per-firm (R after costs, trades/day) pair from the fleet model. No candidate firm has an evaluation clock, and the 20% half needs far more than Sharpe 3.
+- Add: every eligible firm is flat by close, so strategies are intraday only.
 
 ## Open questions
 
-1. Does the gap fade survive costs out-of-sample on SPY 2019–2025 at alpha =
-   0.05/173?
-2. Do Bulenox and Lucid confirm in writing that a fully unattended,
-   self-built bot may run on funded and live accounts, the same one at other
-   firms too? Only Itamar can ask.
-3. What does each firm require for overnight holding and the flat-by time?
-   This decides whether turn-of-the-month and the overnight sleeve are even
-   eligible.
-4. What are the eval clock and VPS rule at Bulenox and Lucid? Neither was
-   found today.
-5. How large is the SPY-to-ES gap basis on the 2026 overlap windows?
-6. Is there free S&P 1m data for 2025-07-19..2026-01-19?
+1. Does H0012 survive costs out of sample on SPY 2019–2025 at alpha 0.05/195, in both its as-written and ex-ante forms?
+2. (Itamar only) Written answers from the firms. Drafts are in `rules_keeper/questions_draft.md`, not sent.
+   - Bulenox: is a self-built Rithmic-API bot a "third-party algorithm" that needs approval? What does "automated discretional trading" mean? What are the Funded agreement's automation terms after 3 Master payouts? Is the API fee per account or per user?
+   - Topstep: what are the call-up criteria? Can a trader decline and keep the XFAs? Does the same bot at another firm count as coordinated trading?
+   - Lucid: does the prior-approval clause cover LucidFlex, and would Lucid approve a self-built Rithmic bot?
+3. (Itamar only) When should the Rithmic conformance test start?
+4. (Itamar only) May the org use third-party copies of FirstRate and Databento data for research, or should it budget for a licence? Nothing is bought either way.
+5. (Itamar only) Is the 20% denominator nominal account size, the operating definition, or something else?
+6. At what time of day does SqueezeMetrics publish GEX? This is a look-ahead risk.
+7. How long does an automated account live at Bulenox and Topstep before the firm's exit applies?
 
 ## Tomorrow, by division
 
 - **Edge research**
-  - Builder: implement the gap fade exactly as pre-registered on D1/D2/D3.
-    Report:
-    - n and trades/yr
-    - gross and net mean R
-    - day-level bootstrap p5 and the lower bound at 0.05/N
-    - net R by year
-    Add a look-ahead perturbation test. Change nothing after seeing a number.
-  - Data hunter: move `data_fetch.py` into a tested `scripts/` loader on one
-    New York time index, with adjustment and roll flags. Measure the SPY-vs-ES
-    gap basis on the 2026 windows.
-  - Literature scout: look only for intraday, flat-by-close effects with
-    post-2010 evidence and code on GitHub raw. No more calendar or overnight
-    effects.
+  - Builder:
+    - Before the first number, write `daily/2026-10-06/` run manifest: N = 195, z = 3.474, the eligibility code path and the data sha256s, stamped with UTC time and sha256.
+    - Run H0012 as written and H0017 on D1/D2/D3, exactly as registered.
+    - Report n, trades/yr and trades/day, gross and net mean R, the day-level bootstrap p5, both rule-3 bounds, and net R by year.
+    - Apply the fixed rule; if it fails, close the family. **Nothing else.**
+  - Data hunter:
+    - Give the engineer the loader spec: one New York index, a CME-only holiday filter, a roll-day flag, an adjusted/unadjusted flag, and an RTH-completeness flag for SPXUSD.
+    - Find SqueezeMetrics' publication time.
+    - Check the about 29 Databento NQ repos for committed 2020-05-15..08-30 data.
+  - Literature scout: only intraday, flat-by-close ES/NQ effects that meet the screening rule and have post-2015 replication; plus post-2020 OOS evidence on gamma-conditioned momentum. No calendar or overnight effects.
 - **Prop structure**
-  - Rules keeper: add an overnight-holding / flat-by row per firm. Find the
-    eval clock and VPS rule for Bulenox and Lucid. Draft, and do not send,
-    one written automation question per firm for Itamar.
+  - Rules keeper: finish the P1-first draft questions (Bulenox, Topstep, then Lucid). Relabel snippet-based cells as "firm snippet". Retry the firm hosts.
   - Economist:
-    - Re-solve the R needed at 1 trade/day.
-    - Size every firm at equal dollar risk.
-    - Model Topstep leaving at Live Funded.
-    - Add per-account costs (data, platform, own computer).
-    - Check whether `keep_off` is used on the frac=1.0 path.
+    - Add a cost_in_R flag, with a test.
+    - Re-solve P1 at 0.12, 0.3, 1 and 3 trades/day.
+    - Model an exit-after-1..6-payouts band for Bulenox and Topstep.
+    - Model Bulenox's $1,100 DLL.
+    - Run a funded-risk sizing grid ($60–$160) on P1 only.
+  - Prop head: hold P1. Move to P2 only on Lucid's written approval.
 - **Statistics & risk**
-  - Statistician: specify the ledger-aware Bonferroni check for `gate.py`
-    with the engineer. Re-run the overnight sleeve without stale-open days,
-    or from 2014, with p5.
-  - Red team: attack the gap-fade result the moment it exists (data
-    adjustment, 09:31 fill realism, roll weeks on NQ).
+  - Statistician: write the future-truncation unit test (deleting bars after the entry minute of day d must not change day d's signal or eligibility). Run it on the H0012/H0017 script before any result is read, then check the result with `ledger_gate.py`.
+  - Red team: attack H0012/H0017 on four points: dividend adjustment in the D2 gaps, realism of the 09:31 fill, NQ roll weeks, and whether D1's missing minutes bias which days qualify.
 - **Engineering & operations**
-  - Engineer:
-    - Add gate rule 3 to `scripts/gate.py`, with tests.
-    - Harden `finalize.py`: reject a count that is not an integer ≥1, and add
-      an OOS flag.
-    - Add a day-clustered bootstrap to `tjr_backtest.boot_mean`.
-    - Add tests for `hypotheses.py` and `fleet_model.py`.
-    - Adapters wait until the bot repository is attached, then go in as a
-      PR, never a push.
+  - Engineer, in this order:
+    1. Port `ledger_gate.py` into `scripts/gate.py` as a `--ledger` mode with its tests, and set its N test to 195.
+    2. Make `finalize.py` require counts matching `^[1-9]\d*$`, with tests.
+    3. Give `boot_mean` alpha and day-cluster arguments, and add the future-truncation test template.
+    4. Move `fleet_model.py` into `scripts/` with tests and cost_in_R.
+    5. Build the tested data loader.
+    - The only broker change allowed is the client-level AUTO fix. No adapter work.
+  - Eng head: from the package source only, check whether async-rithmic's protocol is what Bulenox's "DTC Protocol Bridge API" ban covers.

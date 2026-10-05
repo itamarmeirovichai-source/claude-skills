@@ -1,0 +1,12 @@
+SPY 1m 2019-01-02..2025-07-18 RTH days: 1645
+  VWAP entries/day  median 16  mean 17.7  p90 31
+  cost/day at 0.6 ES pt per round trip (ES~10xSPY): median 25.0 bp  mean 28.3 bp
+  median |open->close| 45.4 bp ; mean 63.6 bp
+  by year, mean entries/day: {2019: 18.5, 2020: 17.7, 2021: 17.2, 2022: 17.1, 2023: 18.2, 2024: 17.8, 2025: 16.9}
+NQ 1m RTH 2020-08-31..2025-11-21 days: 1349
+  VWAP entries/day  median 15  mean 16.4  p90 30
+  median |open->close| 64.9 bp
+GEX rows 3879  2011-05-02..2026-10-02
+SPY sample days with lagged GEX available: 1645 ; lagged GEX<0: 203
+  lagged GEX<0 days by year: {2019: 19, 2020: 31, 2021: 16, 2022: 104, 2023: 23, 2024: 1, 2025: 9}
+All 2011-05-03..2026-10-02 lagged GEX<0 days: 347 of 3878

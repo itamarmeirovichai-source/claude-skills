@@ -77,6 +77,16 @@ of these hold:
 The ledger is what stops an organization that tests something new every day
 from finding "edges" by chance: every day adds to N, and N raises the bar.
 
+## Procedure rules added by the organization
+
+- Day 2: **only a hypothesis pre-registered in `ledger.csv` the evening before
+  may be run.** On day 2 the builder ran an unregistered test and skipped the
+  one that was registered.
+- Day 2: a hypothesis whose day filter can see the trade day itself (bar
+  counts, the closing bar) must also be run with an ex-ante filter, and the
+  worse of the two results decides. The statistician found this look-ahead in
+  the IBS test.
+
 ## What the organization does not do
 
 - Buy anything, move money, or sign up for anything.
