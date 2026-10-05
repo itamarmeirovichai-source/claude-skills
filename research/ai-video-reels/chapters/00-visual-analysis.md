@@ -115,3 +115,42 @@
 - **Higgsfield (רכבת תחתית):** "Go to Genjutsu, upload the original footage, describe the result you want in one simple prompt, and let AI rebuild the shot. Replacing a single element or transforming the entire scene... **doesn't require a green screen, heavy CGI, or weeks in post-production**".
 - **maorhani1:** הקטע המבוים כמעט ללא מלל ("מיסטר חני... תודה"). הדיבור בעברית שבתוך הרכב לא נקלט בתמלול האוטומטי, אבל הוא מופיע ככתוביות על המסך. כלומר **כתוביות צרובות** הן חלק מהפורמט.
 - רילס דובאי, Hybrid Production ו-API: ללא דיבור, רק מוזיקה, סאונד ותמלול על המסך. **רילס בלי דיבור עובדים בכל שפה** ומתאימים לקהל עולמי.
+
+## גלריית פריימים
+כל תמונה היא רשת פריימים מהסרטון. בפינת כל פריים מוטבעת חותמת זמן.
+
+### הפרומפטים שנחשפו על המסך
+![הפרומפט של רילס דובאי](../assets/frames/dubai_prompt.png)
+
+![הפרומפט של rourke ב-Lovart](../assets/frames/rourke_lovart_prompt.png)
+
+### edbert_yienson: Dubai (פרומפט על המסך)
+![edbert_yienson: Dubai (פרומפט על המסך)](../assets/frames/DcDrXjXsLcU.jpg)
+
+### maorhani1: רולס מול חניון
+![maorhani1: רולס מול חניון](../assets/frames/DdyIfcjSm3P.jpg)
+
+### rourke: אינסוף זוויות (Lovart)
+![rourke: אינסוף זוויות (Lovart)](../assets/frames/DclqVvdqvZw.jpg)
+
+### sidequestpat_: Genjutsu + Seedance
+![sidequestpat_: Genjutsu + Seedance](../assets/frames/Dd6gkuVR7jS.jpg)
+
+### Higgsfield: רכבת תחתית (Genjutsu)
+![Higgsfield: רכבת תחתית (Genjutsu)](../assets/frames/DdwEiL4KzVS.jpg)
+
+### Higgsfield: Hybrid Production
+![Higgsfield: Hybrid Production](../assets/frames/Ddjk5fCq1VK.jpg)
+
+### Higgsfield: AI Influencer
+![Higgsfield: AI Influencer](../assets/frames/DeHZl65CI2G.jpg)
+
+### Higgsfield: Seedance 2.5 API
+![Higgsfield: Seedance 2.5 API](../assets/frames/Ddwky9yq-Jt.jpg)
+
+### ANERNEQ: סרט 20 דקות
+![ANERNEQ: סרט 20 דקות](../assets/frames/Dd1xCWei0CF.jpg)
+
+### Higgsfield: פסטיבל הסרטים
+![Higgsfield: פסטיבל הסרטים](../assets/frames/DdmkVEgKLE4.jpg)
+
