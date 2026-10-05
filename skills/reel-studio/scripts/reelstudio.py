@@ -414,6 +414,7 @@ class Graph:
         self.lines: list[str] = []
         self.n = 0
         self.prefix = prefix
+        self.kinds: dict[str, str] = {}
 
     def add_input(self, args: list[str]) -> int:
         self.inputs.append(args)
@@ -421,7 +422,9 @@ class Graph:
 
     def label(self, hint: str = "v") -> str:
         self.n += 1
-        return f"{self.prefix}{hint}{self.n}"
+        name = f"{self.prefix}{hint}{self.n}"
+        self.kinds[name] = "a" if hint == "a" else "v"
+        return name
 
     def add(self, line: str) -> None:
         self.lines.append(line)
@@ -435,6 +438,21 @@ class Graph:
 
     def script(self) -> str:
         return ";\n".join(self.lines)
+
+    def sink_unused(self, keep: list[str]) -> None:
+        """Terminate every produced-but-never-consumed label (ffmpeg rejects dangling outputs)."""
+        produced, consumed = [], set()
+        for ln in self.lines:
+            m_in = re.match(r"^((?:\[[^\]]+\])+)", ln)
+            if m_in:
+                consumed.update(re.findall(r"\[([^\]]+)\]", m_in.group(1)))
+            m_out = re.search(r"((?:\[[^\]]+\])+)$", ln)
+            if m_out and (not m_in or m_out.start() > m_in.end()):
+                produced += re.findall(r"\[([^\]]+)\]", m_out.group(1))
+        for lab in produced:
+            if lab not in consumed and lab not in keep:
+                sink = "anullsink" if self.kinds.get(lab) == "a" else "nullsink"
+                self.add(f"[{lab}]{sink}")
 
     def cmd_inputs(self) -> list[str]:
         out = []
@@ -1716,6 +1734,7 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
         for p in plans:
             P: SegPlan = p["plan"]
             f = tmp / f"seg_{p['i']:03d}.mkv"
+            P.g.sink_unused([P.v, P.a])
             cmd = [ffmpeg, "-hide_banner", "-y", *P.g.cmd_inputs(), "-filter_complex", P.g.script(),
                    "-map", f"[{P.v}]", "-map", f"[{P.a}]", "-r", fnum(ctx.fps), "-frames:v",
                    str(int(round(P.dur * ctx.fps))), *venc, "-c:a", "pcm_s16le", "-ar", "48000", "-ac", "2",
