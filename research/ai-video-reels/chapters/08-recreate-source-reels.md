@@ -28,7 +28,7 @@
 | 2 | **DdyIfcjSm3P**, ‏maorhani1, חניון → מלון ורכב יוקרה, בעברית | V2V, ‏Genjutsu | 2 | **₪169 / ₪252** (‏40 שניות) | 2.5–3.5 ש' כולל צילום (5–7) | רילס היברידי לעסקים ולאירועים ₪1,000 / ₪1,800 / ₪3,000, ומדריך (d) |
 | 3 | **DclqVvdqvZw**, ‏rourke, "אינסוף זוויות" מטייק אחד | Claude → Seedance 2.5 Edit | 2 | **₪80 / ₪113** | 2–3 ש' (4–5) | שירות Infinite Angles לפודקאסטים, שפים ומוצרים ₪1,200 / ₪1,800 / ₪2,500 |
 | 4 | **Dd6gkuVR7jS**, ‏sidequestpat_, סלון → פנטהאוז → זוויות | Genjutsu ואחריו Seedance Edit | 3.5 | **₪218 / ₪318** | 3–4 ש' (6–8) | פרסומת יוקרה למותג אישי מצילום ביתי: Premium ₪3,000 |
-| 5 | **DdwEiL4KzVS**, ‏Higgsfield, חדר ריק → רכבת, רחוב ושדה קרב | V2V, ‏Genjutsu, ‏3 עולמות | 3 | **כ-₪182 / כ-₪272** | 3–4 ש' (6–8) | הפקה היברידית של 3 עולמות: Premium ₪3,000 |
+| 5 | **DdwEiL4KzVS**, ‏Higgsfield, חדר ריק → רכבת, רחוב ושדה קרב | V2V, ‏Genjutsu, ‏3 עולמות | 3 | **כ-₪182–198 / כ-₪272–292** | 3–4 ש' (6–8) | הפקה היברידית של 3 עולמות: Premium ₪3,000 |
 | 6 | **Ddjk5fCq1VK**, ‏Higgsfield, ‏Hybrid Production ל-B2B | V2V ו-Object Swap, ‏5 וינייטות | 4 | **כ-₪138 / כ-₪205** ועוד גרפיקה | 5–7 ש' (10–12) | שואוריל לסוכנויות: חבילת השקה ₪3,500 / ₪4,900, ‏₪350 לגרסה נוספת |
 | 7 | **DeHZl65CI2G**, ‏Higgsfield, ‏AI Influencer אבסורדי | AI Influencer ו-Motion Transfer | 2 | **₪40–75 / ₪104** לפרק | 1.5–2 ש' לפרק (3–4) | צפיות, ‏Earn ושיבוץ מוצרים (c). ללקוח: קמע AI בריטיינר ₪3,500 / ₪7,500 |
 | 8 | **Ddwky9yq-Jt**, ‏Higgsfield, פרסומת FOMO עם מונה | Image→Video ו-motion graphics | 2.5 | **כ-₪84 / כ-₪111** | 3–4 ש' (6–7) | ‏Pilot-10 למסחר אונליין ₪2,500 / ₪3,500 |
@@ -840,7 +840,7 @@ Same video, but on a muddy medieval battlefield under a stormy sky: he wears the
 
 **עלות וזמן.**
 - **3 מקטעים, כ-42 שניות.**
-- **בתכנון:** ‏42 × 12 × 2.5 + 3 × 24 רפרנסים = 1,332 קרדיט ≈ **₪198**. אם מוותרים על חלק מהרפרנסים או מקצרים ל-40 שניות: כ-₪182.
+- **בתכנון:** ‏42 × 12 × 2.5 + 3 × 24 רפרנסים = 1,332 קרדיט ≈ **₪198**. ב-40 שניות עם סט רפרנסים אחד משותף לשלושת העולמות: כ-₪182.
 - **בתמחור:** ‏42 × 18 × 2.5 + 72 = 1,962 ≈ **₪292**. ב-40 שניות: כ-₪272.
 - **רפרנסים במודל תמונה:** סנטים לכל אחד [הערכה].
 - **זמן:** ‏3–4 שעות (למתחיל 6–8). כשעה מתוכן היא הרפרנסים.
@@ -1067,7 +1067,7 @@ Replace only the can in his hand with the drink can from @Image2 (exact shape, c
 תגיבו "דמות" ואשלח לכם איך בונים דמות כזאת ומעבירים אליה כל ריקוד.
 דמות AI בדיונית.
 ```
-**Keywords:** `דמות, DEMUT, CHARACTER, character`.
+**Keywords:** `דמות, דמויות, CHARACTER, character`.
 
 **זרימת DM.**
 - **DM 1:** `היי {first_name}! ה-kit לבניית דמות AI מוכן. לחץ/י` [`שלח לי`]
@@ -1218,3 +1218,376 @@ Sela Skin הוא מותג בדיוני לצורך הדגמה. נוצר ב-AI.
 4. **מכירה נוספת:** "מונה חי" שמחובר למלאי בחנות. זה פיתוח, לא וידאו, ולכן מתומחר בנפרד [הערכה, לא בפרק 10].
 
 ---
+## 9. ‏Dd1xCWei0CF: ‏Higgsfield Originals, "ANERNEQ": גרסה מוקטנת, סרט קצר של 75 שניות
+
+**מה זה ולמה זה עובד.**
+- **הפורמט:** סרט מלא של 20 דקות ב-16:9, עם יחס קולנועי בתוך הפריים, כתוביות לבנות קטנות במרכז התחתון, וסימן מים "HIGGSFIELD CINEMA STUDIO" בפינה העליונה.
+- **מה רואים לאורך הסרט:**
+  - **0:00:** שועל ארקטי מייבב בשלג ("[Whines]").
+  - **0:40:** פני אישה מוארים באש.
+  - **1:20–2:00:** אוהל נשרף, ודמות בתוך הלהבות.
+  - **2:40–3:20:** צלליות של בני שבט בפרוות, בלילה.
+  - **4:00–4:40:** צייד בברדס פרווה, וזקן שאומר "Take him to the sacred Bones".
+  - **6:40–7:20:** אישה במשקפי שלג מעצם ("Stop this!"), ושיר ערש ליד מזחלת כלבים ("[Sings a lullaby]").
+  - **10:40–11:20:** קרח נסדק.
+  - **16:00–18:40:** קשתות של עצמות ענק בשלג ("Father!").
+  - **19:20:** זוהר צפוני.
+- **למה זה עובד:**
+  - **קולנועית:** דמויות עקביות ותאורת אש, שהייתה בעבר נקודת תורפה של AI.
+  - **שיווקית:** ההבטחה "Comment 'UNLOCK' to get the prompts". כל הפרומפטים פתוחים, ולכן יחס התגובות/לייקים הגיע ל-0.62, גבוה לחשבון של מותג.
+- **20 דקות לא משחזרים בהתחלה.** הגרסה כאן היא **סרט קצר של 75 שניות** עם אותה שפה ויזואלית, ועוד טיזר של 25 שניות לרילס.
+
+**קושי, כלים ותוכנית.** קושי 5: דמויות נעולות לאורך 13 שוטים, תאורה קשה, וסאונד. כלים:
+- Seedance 2.5 (Image→Video, שוטים של 5–8 שניות), או Higgsfield Cinema Studio.
+- מודל תמונה: character sheets ו-start frames לכל שוט.
+- Claude: תסריט, ‏beat sheet ופרומפטים.
+- ספריית SFX.
+- זמרת אמיתית לשיר הערש (או אתה).
+- DaVinci או Premiere: grade וגריין.
+
+**תוכנית:**
+1. לוגליין ו-beat sheet.
+2. ‏3 דמויות נעולות.
+3. ‏13 start frames.
+4. ‏13 שוטים ב-480p.
+5. ‏1080p.
+6. סאונד.
+7. עריכה וצבע.
+8. טיזר.
+
+**הסרט שלנו: "שיר ערש לקרח" (ICE LULLABY).**
+- **לוגליין:** בלילה של סופה, נערה יוצאת לחפש את אביה, הצייד שלא חזר. היא מוצאת אותו קפוא תחת עצמות ענק, ושרה לו את שיר הערש שלימד אותה, כדי שלא יירדם.
+- **הדמויות (מומצאות, משבט ארקטי בדיוני ולא שבט אמיתי ספציפי):** איה (16), האב (45), והזקן.
+
+**מה להכין.**
+1. **3 character sheets** (פרק 03 §3.7, ‏"no text labels"). דוגמה לאיה:
+```
+Create a professional character reference sheet of an original fictional character: a 16-year-old girl from a fictional Arctic people, round face, dark eyes, long black braided hair, wind-burned cheeks, hooded parka of light caribou fur with darker fur trim, bone snow goggles hanging at her neck. Clean light-gray background, consistent soft studio lighting. Top row: front, left profile, right profile, back (full body). Bottom row: three close-ups — front, left 3/4, right profile. Photoreal, 4K, no text labels, no watermark.
+```
+2. **13 start frames** (אחד לכל שוט), ב-16:9 ובאותה פלטה: ‏night blue, ‏firelight amber, וזוהר ירוק בסוף. משתמשים ב-character sheet כרפרנס.
+3. **אודיו:**
+   - שיר ערש באורך 20 שניות, מוקלט בקול אמיתי. מילים בשפה מומצאת, או בעברית עם תרגום בכתוביות.
+   - שלוש שורות דיאלוג, באנגלית או בעברית, ככתוביות.
+   - ‏SFX: רוח, אש, צעדים בשלג, קרח נסדק, כלבים.
+   - מוזיקה מורשית או מקורית.
+
+**רשימת שוטים מתוזמנת (75 שניות, 13 שוטים, קצב דרמה של 4–8 שניות לשוט).**
+
+| זמן | שוט | פרטים |
+|---|---|---|
+| 0:00–0:05 | S1 | Extreme wide: כפר אוהלים בסופה בלילה, מדורה אחת. כותרת |
+| 0:05–0:10 | S2 | CU על איה, מוארת באש, מביטה אל החושך |
+| 0:10–0:15 | S3 | הזקן בברדס: "He should have been back by now." (כתובית) |
+| 0:15–0:20 | S4 | MCU: איה מורידה את משקפי השלג מעצם על העיניים. נחושה |
+| 0:20–0:26 | S5 | Tracking לצד איה, שהולכת עם פנס שמן לתוך הסופה |
+| 0:26–0:31 | S6 | מאקרו: הקרח נסדק תחת המגף. היא קופאת במקום |
+| 0:31–0:37 | S7 | Wide: צורה כהה מתחת לקשתות של עצמות ענק בשלג |
+| 0:37–0:43 | S8 | היא כורעת ליד האב החצי-קבור: "Father!" (כתובית) |
+| 0:43–0:50 | S9 | CU על האב: כפור בזקן, עיניים בקושי נפתחות |
+| 0:50–0:58 | S10 | היא מחזיקה את ראשו ושרה ("[Sings a lullaby]"). הקול האמיתי |
+| 0:58–1:04 | S11 | ידיים: מדליקה אש קטנה עם אבן צור, ניצוצות |
+| 1:04–1:10 | S12 | Wide: זוהר צפוני פורח מעל העצמות. שתי דמויות קטנות ליד האש |
+| 1:10–1:15 | S13 | כותרת סיום וקרדיטים |
+
+**פרומפטים.** בלוק הגלובלי חוזר מילה במילה בכל שוט (פרק 03 נספח 27):
+```
+GLOBAL STYLE: photochemical epic, large-format film look, fine grain, halation, 16:9 with 2.39:1 framing, natural handheld camera movement, realistic firelight, detailed snow textures, no music, no subtitles, no on-screen text.
+CHARACTERS: @Image1 = Aya (identity and fur parka exact). @Image2 = the father (identity, frosted beard, dark fur parka). @Image3 = the elder (identity, heavy hood). Faces identical across shots.
+```
+```
+S1: Extreme wide shot of a small fictional Arctic tent village during a night blizzard, snow streaking horizontally, a single fire glowing between the tents, tiny silhouettes. Locked-off, 24mm. Audio: howling wind, crackling fire.
+```
+```
+S2: Close-up of Aya (@Image1) lit warm from the fire on camera left, cold blue night behind her; she stares into the darkness, breath visible, snow catching in her fur hood. 85mm, shallow depth of field, slow push-in. Audio: wind, fire.
+```
+```
+S3: Medium close-up of the elder (@Image3) in a heavy fur hood by the fire, he speaks quietly: "He should have been back by now." Firelight flicker on his face, 50mm, handheld micro-drift. Audio: his voice low, wind.
+```
+```
+S5: Tracking shot alongside Aya walking into the blizzard holding a small oil lantern, the lantern glow the only warm light, snow accumulating on her shoulders and never resetting. 35mm, handheld. Audio: footsteps crunching, wind rising.
+```
+```
+S7: Wide shot: giant arching bones of an ancient creature rising out of the snow like ribs, a dark half-buried shape beneath them; Aya enters frame left with the lantern. Blue night, light snowfall. 24mm, slow crane down. Audio: wind dropping to near silence.
+```
+```
+S9: Close-up of the father (@Image2) lying in the snow, frost in his beard and eyelashes, eyes barely opening toward the lantern light. 85mm, very shallow depth of field. Audio: faint breathing.
+```
+```
+S12: Extreme wide shot: green aurora borealis blooms across the sky above the giant bones; two small figures sit by a tiny fire in the snow. Locked-off, 18mm. Snow has stopped. Audio: soft wind, fire crackle.
+```
+שאר השוטים (S4, ‏S6, ‏S8, ‏S10, ‏S11) נכתבים באותו מבנה: נושא ופעולה, עדשה, אור, תנועת מצלמה אחת, ואודיו. אפשר לבקש מ-Claude עם ה-meta-prompt בפרק 03 §4.9.
+
+**רמה משפטית.**
+- **תוכן:** סיפור ודמויות מקוריים, ו**שבט בדיוני**. לא מייחסים מנהגים ל-Inuit או לעם אמיתי אחר, ונמנעים מסטריאוטיפים.
+- **מוזיקה:** מורשית, והקול שלך או של זמרת שחתמה.
+- **תחרויות:** לפני הגשה קוראים את התקנון. בפסטיבל של Higgsfield, ‏Higgsfield מקבלת רישיון שיווקי "perpetual, irrevocable" לכל ההגשות, והפרויקטים ציבוריים עם הפרומפטים (פרק 01 §1.5).
+- **סימון:** תווית AI.
+
+**אסטרטגיית ג'נרציה (שיטת Anchor Shot, פרק 03 §5.3).**
+1. **קודם שוט עוגן:** S2, הקלוז-אפ של איה. מייצרים אותו עד שהפנים, הפרווה והפלטה נכונים. הוא ננעל ומשמש רפרנס `@Video` לשוטים הבאים של איה.
+2. **כל שוט בנפרד:** start frame ו-Image→Video של 5–8 שניות.
+3. ‏480p לכל 13 השוטים (כ-75 × 3 = 225 קרדיט, כ-₪34). בודקים עקביות פנים, שהשלג לא "מתאפס", ושהאש לא מהבהבת.
+4. **1080p רק לשוטים שאושרו.** שוט שנכשל 3 פעמים: מחליפים אותו בשוט רחב יותר, או בכנס (cutaway) של ידיים או אש.
+5. **שוטים שבהם מדברים (S3, ‏S8):**
+   - **אפשרות א':** דיאלוג אנגלי נייטיב של Seedance.
+   - **אפשרות ב':** בלי פה גלוי (גב או צללית), ושורת הדיאלוג נשמעת מעל.
+   - **עברית נייטיב לא אמינה,** ולכן זה ניסוי ב-480p בלבד (פרק 03 §4.5). ניסוי כזה עולה כ-₪3.
+6. **שיר הערש (S10):** הפנים בשוט רחב או בפרופיל, והשירה האמיתית מעל. לא צריך ליפ-סינק.
+
+**עריכה, פריסה וכתוביות.**
+- **הסרט (16:9):**
+  - טיימליין 24fps, ‏letterbox של 2.39:1.
+  - כתוביות לבנות דקות של 40–48px, בתחתית האזור הבטוח. עברית ואנגלית (פרק 03 §8.1).
+  - ‏grade: ‏night blue ו-amber. ‏LUT ב-50%–70%, גריין 15%–20%, ‏halation.
+  - ‏J-cuts בין שוטים, כדי להסתיר תפרים.
+  - בלי crossfades ארוכים, כי הם חושפים הבדלים בפנים.
+- **טיזר לרילס (9:16, 25 שניות):**
+  - הסרט ממוקם במרכז המסך (Y≈660–1260).
+  - מעליו כותרת `שיר ערש לקרח`, ומתחתיו `סרט קצר שנוצר כולו ב-AI`. בסוף CTA.
+  - **עדיף:** לייצר 3 שוטי מפתח מחדש ב-9:16 (S2, ‏S7, ‏S12). זה ‏₪15–25 נוספים [הערכה].
+  - **מבנה:** ‏S1 (הוק), ‏S2, ‏S6, ‏S8 ("Father!"), ‏S12, ו-CTA.
+
+**כיתוב ו-CTA.**
+```
+"שיר ערש לקרח": סרט קצר של 75 שניות שנוצר כולו ב-AI. 3 דמויות, 13 שוטים, ושיר ערש אמיתי.
+הסרט המלא ביוטיוב (לינק בביו).
+תגיבו "סרט" ואשלח לכם את כל הפרומפטים של הסרט, כולל ה-character sheets.
+דמויות ושבט בדיוניים. נוצר ב-AI.
+```
+**Keywords:** `סרט, FILM, film, UNLOCK`.
+
+**זרימת DM (חבילת פרומפטים פתוחה, כמו "UNLOCK").**
+- **DM 1:** `היי {first_name}! חבילת הפרומפטים של "שיר ערש לקרח" מוכנה: 13 שוטים, 3 דמויות ו-SFX. לאיזה מייל לשלוח?`
+  - **לפני השדה:** שורת ההסכמה.
+  - **כפתור חלופי:** `רק הלינק` ← Notion.
+- **DM 2:** `נשלח! ובינתיים, הסרט המלא: [כפתור: לצפייה]. רוצה לשמוע כשאני מעלה את הפרק הבא?` [`כן`]
+- **ענף "יש לי עסק":** `סרט מותג קצר בסגנון הזה? 60–90 שניות, עם הסיפור של המותג שלך` ← תבנית 4.
+
+**עלות וזמן.**
+- **75 שניות:** לפי היחס של Hero בפרק 10 (850 קרדיט ל-30 שניות בתכנון, 1,120 בתמחור), יוצא ‏2,125 קרדיט, **כ-₪317 בתכנון**, ו-2,800 קרדיט, **כ-₪417 בתמחור**.
+- **תוספות:** כ-₪15–30 לגיליונות דמות ול-start frames [הערכה]. ‏זמרת: לפי הסכם.
+- **התקציב החודשי:** סרט כזה לבד שורף יותר ממאגר Plus (1,200 קרדיט). צריך Ultra (3,000 קרדיט), או Plus ו-Top-up (פרק 10 §2).
+- **זמן:** ‏12–20 שעות (למתחיל 25–35), בפריסה של שבוע.
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **תחרויות ופסטיבלים:** בפסטיבל של Higgsfield הפרס הראשון היה $500K (פרק 01 §1.5). ההגשות לפסטיבל הנוכחי נסגרו. עוקבים אחרי הסבב הבא ואחרי תחרויות אחרות. **לא מתכננים הכנסה מפרסים.**
+2. **סרט מותג (Brand film):** חבילת מותג Premium, ‏**₪12,000+**: קונספט ותסריט, ‏Hero של 30–45 שניות, ‏8 גרסאות ו-3 יחסי מסך (פרק 10 §3.2). ה"שיר ערש" הוא תיק העבודות שמוכר את זה. מתאים לעמותות, למוזיאונים, למותגי מורשת ולחברות עם סיפור.
+3. **חבילת פרומפטים או מיני-קורס "סרט קצר ב-AI" (d):** מדריך ב-₪79–149, או סדנה (תבנית 3 בפרק 04).
+4. **YouTube:** הסרט המלא ומאחורי הקלעים. מונטיזציה רק עם ערך מוסף מקורי, בגלל מדיניות ה-"inauthentic content" (פרק 06 §5.3).
+
+---
+
+## 10. ‏DdmkVEgKLE4: ‏Higgsfield, "Global Film Festival $1M": פרומו לאירוע או לתחרות
+
+**מה זה ולמה זה עובד.**
+- **הפורמט:** ‏74 שניות ב-16:9, ‏21 חיתוכים, מיני-סרט נרטיבי.
+- **מהלך הרילס:**
+  - **0:00:** פרודיה על פתיח MGM: ילד בכובע פרופלור עם שפם מצויר שואג בתוך טבעת זהב, ‏"$1,000,000 CONTEST" ‏/ "GLOBAL FILM FESTIVAL".
+  - **0:03.7:** מנחה בטוקסידו מושך חבל עם ציצית.
+  - **0:07.4:** כותרת "GLOBAL FILM FESTIVAL $1,000,000 · SUBMISSIONS CLOSED" על רקע וילון.
+  - **0:11:** המנחה מצביע: "Check this out!".
+  - **0:14.8:** ‏"FROM 145 COUNTRIES" מעל סצנה מערבונית עם רכבת וסוסים, ושם הסרט בפינה.
+  - **0:18.5:** ‏"OVER 3,000,000 VIEWS ON HIGGSFIELD" מעל ירח ומכונית מעופפת.
+  - **0:22–0:33:** המנחה והילד במערה, ובורחים מפיצוץ.
+  - **0:36.9:** גלקסיה.
+  - **0:40.6–0:44:** מסדרון קולנוע עם פוסטרים, ודלתות.
+  - **0:48:** שמות השופטים (Edwin Catmull, ‏Phedon Papamichael) מעל המנחה והילד שמציצים ("They're going in").
+  - **0:55.4:** אגודל במסדרון.
+  - **0:59:** רגליים עולות לבמה.
+  - **1:02.8:** ‏"Ready to announce the next...".
+  - **1:06.5:** במה מול אולם מלא: "THE SHORTLIST OPENS SOON" ‏/ "SELECTED PROJECTS WILL BE PUBLISHED SHORTLY".
+  - **1:10:** ‏"STAY TUNED".
+- **למה זה עובד:**
+  - פרודיה מוכרת מזוהה מיד.
+  - צמד דמויות (מנחה וילד) שעובר בין "סרטים".
+  - מספרים כהוכחה חברתית, ושמות שופטים כסמכות.
+- **מה זה אומר עלינו:** זו **תבנית לפרומו של אירוע**: כנס, תחרות, טקס או השקה.
+
+**קושי, כלים ותוכנית.** קושי 4. מומלץ **היברידי**:
+- **המנחה:** אתה, מצולם אמיתי בעברית ומועבר ב-Genjutsu למסדרון ולבמה. כך הדיבור בעברית נשמר.
+- **שוטי ה"פעולה" והפתיח:** ב-Image→Video.
+- **מונטאז' ה"סרטים":** קטעים מעבודות שלך או של משתתפים, **באישור**.
+- **כלים:** ‏Genjutsu, ‏Seedance 2.5, מודל תמונה, ו-Premiere או CapCut לכותרות זהב.
+
+**הדוגמה כאן:** פרומו ל"אתגר סרטוני ה-AI של [שם הקהילה]", עם פרסים אמיתיים. בעבודת לקוח: כנס, פסטיבל, טקס הצטיינות או מסיבת סיום.
+
+**מה לצלם ולהכין.**
+1. **צילום המנחה (סלון או חדר ריק, חצובה, 9:16 וגם 16:9, מיקרופון דש):**
+   - **H1:** מושך חבל דמיוני.
+   - **H2:** מצביע למצלמה: "תראו את זה!".
+   - **H3:** מציץ מעבר לפינה (לשוט השופטים).
+   - **H4:** אגודל.
+   - **H5:** עומד ומכריז: "מוכנים להכריז על..." / "הרשימה הקצרה תתפרסם בקרוב".
+   - ‏3 טייקים לכל אחד.
+   - **תלבושת:** חולצה לבנה וז'קט כהה. ‏Genjutsu יהפוך אותם לטוקסידו.
+2. **הילד:**
+   - **מומלץ:** דמות AI מקורית (character sheet של ילד בכובע פרופלור ובאוברול).
+   - **ילד אמיתי:** רק עם **הסכמת הורה בכתב** (פרק 06 §3, §5.5).
+3. **סמל מקורי** במקום MGM: טבעת זהב עם השם שלך וסרט, מייצרים במודל תמונה.
+4. **רפרנסים:** מסדרון קולנוע עם פוסטרים (בלי שמות סרטים אמיתיים), במה ואולם מלא, מערה.
+5. **הקטעים למונטאז' והנתונים:** מספר משתתפים, ערים וצפיות, **אמיתיים**.
+6. **שופטים:** שמות רק באישור בכתב שלהם.
+
+**רשימת שוטים מתוזמנת (גרסה של 45 שניות).**
+
+| זמן | שוט | איך |
+|---|---|---|
+| 0:00–0:03 | פתיח: הילד שואג בתוך טבעת הזהב של הסמל שלך | Image→Video מהסמל ומהדמות |
+| 0:03–0:06 | המנחה מושך חבל, וילון אדום נפתח | Genjutsu על H1 |
+| 0:06–0:09 | כותרת: `אתגר ה-AI של [שם] · פרס ₪[X]` | גרפיקה על וילון |
+| 0:09–0:12 | המנחה מצביע: "תראו את זה!" | Genjutsu על H2 |
+| 0:12–0:24 | מונטאז' של 4 קטעים מעבודות, עם נתונים: `[N] הגשות`, `[M] ערים` | קטעים מאושרים וגרפיקה |
+| 0:24–0:30 | המנחה והילד בורחים מפיצוץ במערה | Image→Video |
+| 0:30–0:36 | מסדרון קולנוע, הילד הולך לעבר דלתות | Image→Video |
+| 0:36–0:40 | המנחה מציץ, ושמות השופטים על המסך | Genjutsu על H3 וגרפיקה |
+| 0:40–0:45 | במה מול אולם מלא: `הרשימה הקצרה תתפרסם בקרוב · הישארו מעודכנים` | Genjutsu על H5 |
+
+**פרומפטים.**
+
+**פתיח (Seedance 2.5, ‏4 שניות):**
+```
+@Image1 = the emblem: an ornate gold ring with a ribbon banner (exact design). @Image2 = the boy (identity, propeller cap, overalls).
+Classic movie-studio-style opening: the boy from @Image2 is framed inside the gold ring of @Image1 against a black starry background; he roars playfully at camera, cap propeller spinning, golden light rays behind. Locked-off, centered. Audio: comic roar, orchestral fanfare hit. No text, no other logos.
+```
+**המנחה (Genjutsu על H1–H5), תבנית:**
+```
+Keep the original motion, lip movement, eye line and timing exactly. Dress him in a black tuxedo with a bow tie. Replace the room with [a grand red-velvet theater curtain and gold tassel rope | an ornate cinema corridor with framed movie posters with no readable titles | a theater stage facing a full audience under spotlights]. Keep his face identical to Ref 1. Warm theatrical lighting, photoreal, no text, no logos.
+```
+**הבריחה במערה (Seedance 2.5, ‏6 שניות):**
+```
+@Image1 = the host (identity, tuxedo). @Image2 = the boy (identity, propeller cap).
+Inside a dark rocky cave, the host from @Image1 grabs the boy from @Image2 by the hand and they run toward camera as a fiery explosion blooms behind them, sparks and dust; camera tracks backward at waist height, 24mm. Speed ramp into slow motion as the fireball peaks. Audio: deep boom, debris, the boy's excited shout. No text.
+```
+**מסדרון (Seedance 2.5, ‏5 שניות):**
+```
+@Image1 = the boy. A long ornate cinema corridor with red carpet, brass wall lamps and framed posters with no readable titles; the boy walks away from camera toward tall double doors, cap propeller spinning slowly. Low angle behind him, 35mm, slow follow. Warm tungsten light. Audio: muffled audience murmur behind the doors.
+```
+
+**רמה משפטית.**
+- **הפתיח:** פרודיה מדויקת על פתיח MGM היא סיכון של **trade dress** ושל מצג קשר עסקי (פרק 06 §4; פרק 10 §4 רמה 3). לכן **סמל מקורי** ולא אריה בטבעת MGM.
+- **אנשים אמיתיים:**
+  - שמות של שופטים, ידוענים או גופים אמיתיים: רק באישור בכתב (פרק 06 §3).
+  - ילד: הסכמת הורה, או דמות AI.
+- **נתונים:** מספרים אמיתיים בלבד (חוק הגנת הצרכן).
+- **תחרות עם פרסים:**
+  - תקנון כתוב.
+  - תחרות לפי שיפוט ולא הגרלה.
+  - **[להתייעץ עם עו"ד לגבי דיני הגרלות ותחרויות בישראל, הנושא לא נחקר במחקר הזה]**.
+- **קטעים של משתתפים:** רישיון שימוש מוגדר, לא "perpetual, irrevocable" גורף כמו אצל Higgsfield.
+
+**אסטרטגיית ג'נרציה.**
+1. **שוטי המנחה:** ‏5 קליפים קצרים של 3–6 שניות, ב-Genjutsu. ‏480p ואחר כך 1080p. הדיבור בעברית מהאודיו המקורי.
+2. **שוטי הפעולה:** פתיח, מערה ומסדרון. ‏Image→Video, ‏480p, ‏2–3 ניסיונות לכל שוט. בפיצוץ: שוט קצר עם speed ramp, כדי שהמריחה תוסתר (פרק 00: "תנועות מהירות נמרחות").
+3. **עקביות הילד:** אותו character sheet בכל השוטים, ומעט זמן מסך לפנים.
+4. **גרסה כפולה:** כל שוט Image→Video מייצרים ב-16:9, ואת שלושת שוטי ההוק גם ב-9:16.
+
+**עריכה, פריסה וכתוביות.**
+- **16:9 ראשי** (YouTube, ‏LinkedIn, מסך באירוע):
+  - כותרות זהב, ‏Suez One או Secular One, עם Glow.
+  - נתונים בספירה עולה.
+  - פסקול טריילר מורשה.
+  - ‏SFX: ‏whoosh, ‏boom, מחיאות כפיים.
+- **9:16 לרילס (30–35 שניות):**
+  - הוק בשנייה 0: הילד שואג בטבעת.
+  - שוטי המנחה ב-9:16 (צולמו כך מראש).
+  - קטעי 16:9 ממורכזים, עם כותרות מעל ומתחת.
+- **כתוביות בעברית** לדיבור של המנחה: מילה-מילה, לבן וזהב.
+
+**כיתוב ו-CTA.**
+```
+אתגר סרטוני ה-AI של [שם] נפתח! [N] יוצרים כבר בפנים, פרס ראשון: [X].
+צילמתי את עצמי בסלון. ה-AI הלביש אותי טוקסידו ושלח אותי לאולם קולנוע.
+תגיבו "פסטיבל" ואשלח לכם את התקנון ואת טופס ההרשמה.
+נוצר ב-AI. כל המספרים אמיתיים, נכון ל-[תאריך].
+```
+**Keywords:** `פסטיבל, FESTIVAL, festival`.
+
+**זרימת DM.**
+- **DM 1:** `היי {first_name}! רוצה להשתתף באתגר? לחץ/י ואשלח תקנון + טופס` [`שלח לי`]
+- **DM 2:**
+```
+הנה:
+1. תקנון (נושא, אורך, דדליין, שופטים, פרסים): [כפתור: לתקנון]
+2. טופס הרשמה: [כפתור: להרשמה]
+3. ערכת פתיחה: 5 פרומפטים + צ'קליסט צילום, במייל.
+```
+  לפני הבקשה למייל: שורת ההסכמה.
+- **ענף "יש לי עסק":** `מארגנים כנס, פסטיבל או טקס? אני מפיק פרומו כזה בשבוע. מה האירוע?` ← תבנית 4.
+
+**עלות וזמן.**
+- **שוטי המנחה ב-Genjutsu (כ-20 שניות):** ‏20 × 12 × 2.5 + 24 = 624 קרדיט, ₪93 בתכנון. ‏924 קרדיט, ₪138 בתמחור.
+- **שוטי Image→Video (כ-25 שניות):** לפי יחס Hero, ₪106 בתכנון ו-₪139 בתמחור.
+- **סה"כ:** **כ-₪200 בתכנון / כ-₪280 בתמחור** (פרק 10 §1.2).
+- **זמן:** ‏8–12 שעות (למתחיל 16–20). כולל צילום של שעה ו-motion graphics.
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **פרומו לאירוע:**
+   - **למי:** כנסים, פסטיבלים, טקסי הצטיינות בחברות, מסיבות סיום ותחרויות.
+   - **מחיר:** חבילת השקה ₪3,500 / ₪4,900 (פרומו של 30–45 שניות, 4 גרסאות קצרות, 3 הוקים). עם תסריט, ‏16:9 למסך באירוע ו-3 יחסי מסך: חבילת מותג, **₪12,000+**.
+   - **משפט לפיץ':** "המנכ"ל שלכם כמנחה הטקס, באולם קולנוע, בלי יום צילום".
+2. **אתגר משלך כמנוף צמיחה:** תחרות קהילתית מביאה הגשות (תוכן), עוקבים ומיילים. הפרסים יכולים להיות שירותים שלך, בלי מזומן. לפני כן: תקנון ועו"ד.
+3. **וריאציות בעלות ₪0:**
+   - "הזוכים הם...": אותו מנחה, שוט במה חדש.
+   - קטעים מההגשות, באישור, כרילסים קבועים לאורך האתגר.
+
+---
+
+## מה עושים עם זה: צעדים מעשיים
+
+1. **שבוע 1:**
+   - מתכון 3 (אינסוף זוויות, ‏₪80) ומתכון 2 (חניון, ‏₪169).
+   - שניהם בעברית, עם הפנים שלך, ובלי מותגים.
+   - מקימים InstantDM עם keywords של `זוויות` ו-`חניון`.
+2. **שבוע 2:**
+   - מתכון 1 (Prompt Reveal, ‏₪127).
+   - מתכון 7: בונים דמות אחת, ופרק ראשון.
+   - מכל רילס מקורי חותכים 2 וריאציות בעלות ₪0 (פרק 10 §2.1).
+3. **שבוע 3:**
+   - מתכון 4 או 5 כ**דמו מכירה**.
+   - מתכון 6 כ**שואוריל B2B**, ומצמידים אותו לפרופיל.
+4. **שבוע 4:**
+   - מתכון 8 כדמו ל-Pilot-10. שולחים אותו **בפרטיות** (פרק 10 §4, רמה 1) ל-5 חנויות אונליין.
+   - ספק-אדים למותג אמיתי רק בפרטיות, עם ווטרמרק "SPEC".
+5. **חודש 2 ואילך:**
+   - מתכונים 9 ו-10, כשיש זמן וכשיש Ultra.
+   - שומרים כל פרומפט שעבד ב-`prompts.csv` (פרק 06 §14.2). זה הנכס של העסק, וזה גם התוכן של המדריך שתמכרו.
+
+**שלושה כללים שחוזרים בכל המתכונים:**
+1. **אין מותג אמיתי ברילס עם "תגיבו מילה".**
+2. **480p לפני 1080p, וקליפים קצרים לפני ארוכים.**
+3. **הדיבור בעברית מגיע מצילום אמיתי**, וה-AI משנה רק את העולם סביבו.
+
+---
+
+## מקורות
+
+**פנימיים (ground truth ומספרים):**
+- `chapters/00-visual-analysis.md`: ניתוח פריים-אחר-פריים, הפרומפטים שנחשפו על המסך ותמלולים.
+- `assets/frames/DcDrXjXsLcU.jpg`, ‏`DdyIfcjSm3P.jpg`, ‏`DclqVvdqvZw.jpg`, ‏`Dd6gkuVR7jS.jpg`, ‏`DdwEiL4KzVS.jpg`, ‏`Ddjk5fCq1VK.jpg`, ‏`DeHZl65CI2G.jpg`, ‏`Ddwky9yq-Jt.jpg`, ‏`Dd1xCWei0CF.jpg`, ‏`DdmkVEgKLE4.jpg`: מהן נקראו כל חותמות הזמן של "המקור".
+- `chapters/10-numbers-capacity-pricing.md` §1.1–1.2 (עלות לרילס), §2 (קיבולת), §3.2–3.4 (מחירון, Generation budget), §4 (ספק-אדים ושלוש רמות).
+- `chapters/06-legal-ops.md` §3.3 (מטריצת פנים), §4 (מותגים וטבלת החלפות), §5 (סימון), §6 ("פייק עשיר"), §8 (חוזה), §9.2 (טופס הסכמה), §10.2.
+- `chapters/03-craft.md` §2–§3 (שוטים ורפרנסים), §4.7 (פרומפט דובאי), §4.9 (meta-prompt), §5 (אסטרטגיית ג'נרציה), §6.2–§6.5 (Genjutsu, ‏Reality-Swap, ‏Infinite Angles, פורמטים), §7–§8 (עריכה, פריסות, כתוביות בעברית), נספח א'.
+- `chapters/01-reels-and-market.md` §1.4–§1.7 (רילס-אחר-רילס, כלכלה, תזמון), §2 (טקסונומיה).
+- `chapters/04-audience-growth.md` §5.2–§5.8 (כללי Meta, כלים, צ'קליסט, תבניות DM, מילות מפתח, Compliance).
+- `chapters/11-first-video-60-minutes.md` §2 (מה לקנות, אזהרת Starter, חסימת פנים).
+- `workers/A1.md` (ניתוח פורנזי, נתוני מעורבות, פרומפט ה"סגנון" של rourke, AI Influencer, הפסטיבל), `workers/C3.md` (Reality-Swap צעד-אחר-צעד, Infinite Angles, מתכוני פורמטים, מגבלות V2V).
+
+**חיצוניים (כפי שצוטטו בפרקים שעליהם הפרק נשען):**
+- https://higgsfield.ai/genjutsu
+- https://higgsfield.ai/blog/higgsfield-genjutsu
+- https://higgsfield.ai/ai-influencer
+- https://higgsfield.ai/creator-hub/changelog
+- https://higgsfield.ai/earn
+- https://higgsfield.ai/blog/higgsfield-affiliate-program-2026
+- https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules
+- https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5
+- https://fal.ai/models/bytedance/seedance-2.5/image-to-video
+- https://www.kapwing.com/resources/how-to-prompt-seedance-2-5-a-guide-for-ai-video-creators/
+- https://www.mindstudio.ai/blog/seedance-2-5-multimodal-reference-system-explained
+- https://www.media.io/video-effects/higgsfield-ai-genjutsu-tutorial.html
+- https://curiousrefuge.com/blog/how-to-change-camera-angles-with-ai-video
+- https://www.heyuan110.com/posts/ai/2026-07-11-seedance-2-prompt-guide/
+- https://www.lovart.ai/landing/seedance_2_5
+- https://developers.facebook.com/docs/messenger-platform/instagram/features/private-replies
+- https://www.contentgrip.com/higgsfield-film-festival-growth/
+- https://earlygame.com/news/entertainment/this-influencer-doesnt-exist-jean-phil-leaves-the-internet-fooled
