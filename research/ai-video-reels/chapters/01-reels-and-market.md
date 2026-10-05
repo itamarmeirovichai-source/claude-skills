@@ -62,7 +62,7 @@
 | שיטה | מה נכנס | מה יוצא | דוגמאות | כלי |
 |---|---|---|---|---|
 | **1. Image→Video עם פרומפט רב-שוטי מתוזמן** | תמונת פנים אחת + פרומפט עם timecodes | 30 שניות של "פרסומת" שלמה עם 8 עד 9 שוטים | edbert (דובאי/למבורגיני) | Seedance 2.5 1080p ב-Higgsfield. מודל שמייצר עד 30 שניות בטייק אחד ([APIYI](https://docs.apiyi.com/en/live/2026-08/seedance-2-5-launch)) |
-| **2. Video→Video "Genjutsu", הפקה היברידית** | צילום טלפון אמיתי (חניון, סטודיו ריק, גרין-סקרין, סלון) + תמונות רפרנס + שורת טקסט | אותה תנועה ואותו משחק בעולם אחר | maorhani1 (רולס), Higgsfield רכבת תחתית, האסטרונאוט, האופנוע | Higgsfield Genjutsu (הושק 01.09.2026): Motion Transfer ו-Object Swap, קלט וידאו של 3/4 עד 30 שניות, 480p-1080p ([higgsfield.ai/genjutsu](https://higgsfield.ai/genjutsu)) |
+| **2. Video→Video "Genjutsu", הפקה היברידית** | צילום טלפון אמיתי (חניון, סטודיו ריק, גרין-סקרין, סלון) + תמונות רפרנס + שורת טקסט | אותה תנועה ואותו משחק בעולם אחר | maorhani1 (רולס), Higgsfield רכבת תחתית, האסטרונאוט, האופנוע | Higgsfield Genjutsu (הושק 01.09.2026): Motion Transfer ו-Object Swap, קלט וידאו של 4 עד 30 שניות (בעמוד AI Influencer כתוב 3-30), עד 30 תמונות רפרנס; רזולוציות 480p-1080p לא מופיעות בעמוד המוצר [לא מאומת] ([higgsfield.ai/genjutsu](https://higgsfield.ai/genjutsu)) |
 | **3. "אינסוף זוויות" מקליפ אחד** | טייק אחד מזווית אחת + רשימת זוויות עם timecodes, ש-Claude מרחיב לפרומפט | אותו טייק, כאילו צילם אותו צוות שלם: קלוז-אפ, רחפן, low angle, "בתוך הכוס" | rourke (Lovart × Seedance 2.5), sidequestpat_ (Genjutsu ואז Seedance) | Claude → Lovart/Higgsfield → Seedance 2.5 במצב editing |
 
 ### 1.4 שלושה מקרי בוחן מפורטים
@@ -118,9 +118,9 @@ Golden Driveway grade: sun-bleached lemon yellow as the hero tone, warm cream st
 - **sidequestpat_ (Genjutsu + Seedance, 29 שניות, 11 חיתוכים):** הוק של "believe it or not", ובאמצע המשפט wipe הופך סלון לבן ופשוט (חולצה שחורה) לפנטהאוז עם נוף לים (פולו בז', שעון זהב). אחר כך Seedance 2.5 נותן קלוז-אפ על השעון, שוט רחפן, ושוט רחב שחושף "סט צילום" שלא קיים. **שרשור כלים** (סביבה, ואז זוויות). הקהל המוצהר: "If you work in video production... If you have a personal brand... You don't need insane skills... neither a massive budget". תג `#higgsfieldpartner`, ופורסם ביום ההשקה של Genjutsu Restyle (30.09).
 - **Higgsfield רכבת תחתית (59 שניות, בלי חיתוכים):** למטה סטודיו לבן עם גרין-סקרין קטן; למעלה אותו שחקן ברכבת מלאה דמויות (ליצן, אביר, דינוזאור, כלב), ברחוב ובשדה קרב. בסוף מוצג הממשק: **Original video + References (6 תמונות) + שורה אחת**: "Same video, but inside a subway." הרילס הרשמי היחיד עם אדם מדבר בפורמט של יוצר, והוא קיבל הכי הרבה לייקים ותגובות מכל הרשמיים. **הלקח: "נראה כמו UGC של יוצר" עדיף על "נראה כמו פרסומת".**
 - **Higgsfield Hybrid Production (41 שניות, 16:9):** גרין-סקרין עם מאוורר ונדנדת קפיץ כחולה שהופכים לאופנוע מעופף במדבר; הליכה על קורה שהופכת להליכה על חבל בין גורדי שחקים; אסטרונאוט עם כוס קפה על הירח (product placement); "Space Food"; שלט SALE שמוחלף ("Fix it in post"). הכותרות "FOR LARGE STUDIOS & PRODUCTION TEAMS" ו-"NOW IN API". **זה הפיץ' ל-B2B**: כל זוג לפני/אחרי הוא תבנית לשירות.
-- **Higgsfield AI Influencer (49 שניות):** דמויות אבסורדיות (שיער מוגזם, ראש חתול ספינקס בחליפה, ראש צפרדע, שרימפס במדי כדורסל) בסצנות רחוב מציאותיות. ממשק "Character Type" ו-"TRANSFER ANY MOTION WITH GENJUTSU". על המסך מוצגים חשבונות עם **6.4M ו-6.3M** צפיות. הדמות הבולטת דומה ל-@jean_philanthrope (ראו סעיף 3). הכלי הושק ב-02.10.2026: 5 ג'נרציות חינם, Motion Transfer מתבניות טרנדיות, עד 40 תמונות לדמות ([higgsfield.ai/ai-influencer](https://higgsfield.ai/ai-influencer)).
+- **Higgsfield AI Influencer (49 שניות):** דמויות אבסורדיות (שיער מוגזם, ראש חתול ספינקס בחליפה, ראש צפרדע, שרימפס במדי כדורסל) בסצנות רחוב מציאותיות. ממשק "Character Type" ו-"TRANSFER ANY MOTION WITH GENJUTSU". על המסך מוצגים חשבונות עם **6.4M ו-6.3M** צפיות. הדמות הבולטת דומה ל-@jean_philanthrope (ראו סעיף 3). הכלי הושק ב-02.10.2026 (Changelog): קרדיטים חינם בהרשמה ("5 ג'נרציות" [לא מאומת]), Motion Transfer מתבניות טרנדיות, עד 40 תמונות לסרטון, פלט 1080p ([higgsfield.ai/ai-influencer](https://higgsfield.ai/ai-influencer)).
 - **Higgsfield API Cashback (22 שניות):** פתיחה בזווית נמוכה עם בחורה עם ציוד, בילבורד "BEST AI VIDEO MODEL FOR ENTERPRISE", מונה "$20,000,000 CASHBACK POOL / $17,998,344 LEFT", ודוגמנית עם בקבוק ובושם. לפי הכיתוב: עד $200K לעסק / $1,000 ליחיד, בתוקף עד 30.09. **טכניקת FOMO**, וגם רמז שכדאי לספק שירות לעקוב אחרי מבצעי cashback שמורידים את עלות הייצור.
-- **ANERNEQ (20 דקות):** דרמה ארקטית עם אש, שלג, דמויות עקביות, כתוביות וזוהר צפוני, בחותמת "HIGGSFIELD CINEMA STUDIO". CTA "UNLOCK" לקבלת הפרומפטים. הסדרה "Higgsfield Originals" כוללת גם את Hell Grind (95 דקות, כ-$500K, הוקרן בקאן 2026; [Variety](https://variety.com/2026/film/features/i-saw-hell-grind-ai-generated-film-cannes-shocking-realistic-1236770720/)) ואת The Cully Hill Boys (110 דקות, כ-$2M; [Crypto Briefing](https://cryptobriefing.com/higgsfield-ai-movie-2m-budget/)). **פרומפטים פתוחים של סרט שלם הם משאב הלימוד הטוב ביותר לפרומפטים ארוכים.**
+- **ANERNEQ (20 דקות):** דרמה ארקטית עם אש, שלג, דמויות עקביות, כתוביות וזוהר צפוני, בחותמת "HIGGSFIELD CINEMA STUDIO". CTA "UNLOCK" לקבלת הפרומפטים. הסדרה "Higgsfield Originals" כוללת גם את Hell Grind (95 דקות, כ-$500K, מתוכם כ-$400K מחשוב; הוקרן בקאן במקביל לפסטיבל 2026, לא במסגרתו הרשמית ([Wikipedia](https://en.wikipedia.org/wiki/Hell_Grind)); [Variety](https://variety.com/2026/film/features/i-saw-hell-grind-ai-generated-film-cannes-shocking-realistic-1236770720/)) ואת The Cully Hill Boys (110 דקות, כ-$2M; [Crypto Briefing](https://cryptobriefing.com/higgsfield-ai-movie-2m-budget/)). **פרומפטים פתוחים של סרט שלם הם משאב הלימוד הטוב ביותר לפרומפטים ארוכים.**
 - **Global Film Festival $1M (74 שניות):** פרודיית MGM עם ילד במקום האריה, "145 COUNTRIES", "OVER 3,000,000 VIEWS ON HIGGSFIELD", שופטים Edwin Catmull ו-Phedon Papamichael. לפי הכיתוב: 67,223 הגשות מ-176 מדינות. פרסים: $500K / $200K / $100K + $100K פרס הקהל + 10 × $10K ([Official Rules](https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules)). שימו לב: Higgsfield מקבלת רישיון שיווקי "perpetual, irrevocable" לכל ההגשות, וכל הפרויקטים ציבוריים עם הפרומפטים ([ContentGrip](https://www.contentgrip.com/higgsfield-film-festival-growth/)). כלומר יש ספרייה של עשרות אלפי סרטים עם פרומפטים פתוחים.
 
 ### 1.6 עשרת הדפוסים המנצחים (מה לשכפל)
@@ -194,18 +194,18 @@ Golden Driveway grade: sun-bleached lemon yellow as the hero tone, warm cream st
 | F3 | **Luxury Self-Insert "I filmed myself"** (דובאי, למבו, יאכטה) | [edbert](https://www.instagram.com/edbert_yienson/reel/DcDrXjXsLcU/) (24K תגובות ב-43K עוקבים); @menezes.ai | Seedance 2.5 1080p (Image→Video), תמונת פנים אחת | ★★★★ | 3 | (c) Earn, אפילייט; (d) | פתוח; עובד גם בלי דיבור |
 | F4 | **Infinite Angles / Coverage** | [rourke](https://www.instagram.com/rourke/reel/DclqVvdqvZw/) (72K לייקים) | Claude → Lovart/Higgsfield → Seedance 2.5 | ★★★★ | 2 | (a) B2B לעורכים ולעסקים; (c) שותפויות עם כלים | פתוח |
 | F5 | **Tool-Launch Demo + Comment-for-Link** | כל 6 הרילסים של Higgsfield | הכלי שהושק השבוע | ★★ | 1 | (c) אפילייט ו-partner; (d) | **הפער הגדול ביותר בעברית** |
-| F6 | **AI Influencer / Persona ריאליסטית** | [@fit_aitana](https://www.instagram.com/fit_aitana/) 404K, עד $11.5K לחודש; [@miazelu](https://www.instagram.com/miazelu/) 283K; [@lilmiquela](https://www.instagram.com/lilmiquela/) 2M | Higgsfield Soul ID / AI Influencer, Nano Banana, Kling | ★★★ | 3 | חסויות, Fanvue/Passes, UGC | בינוני (סיכון אתי); המשביר ניסה "דני" [לא מאומת] |
+| F6 | **AI Influencer / Persona ריאליסטית** | [@fit_aitana](https://www.instagram.com/fit_aitana/) 404K, עד כ-$11K לחודש (Entrepreneur); [@miazelu](https://www.instagram.com/miazelu/) 283K; [@lilmiquela](https://www.instagram.com/lilmiquela/) 2M | Higgsfield Soul ID / AI Influencer, Nano Banana, Kling | ★★★ | 3 | חסויות, Fanvue/Passes, UGC | בינוני (סיכון אתי); המשביר ניסה "דני" [לא מאומת] |
 | F7 | **Absurd Meme Character** | [@jean_philanthrope](https://www.instagram.com/jean_philanthrope/) קליפ של 35.9M, 239K עוקבים מ-10 פוסטים; Italian Brainrot 35M-50M+ | Higgsfield AI Influencer + Genjutsu Motion Transfer | ★★★★★ | 2 | מרצ'נדייז, IP, חסויות (לא meme coin) | פתוח; דמות ישראלית אבסורדית |
 | F8 | **Guru / Wisdom Persona** (נזיר, סבא, מאמן) | Yang Mun (@yangmunus), כ-2.5M עוקבים, כ-$213K ב-90 יום | HeyGen, ElevenLabs, LLM לתסריט | ★★★★ | 2 | **(b) ספר, קורס, מנוי** | הוכח על ידי ישראלי (באנגלית). **חובה לגלות שזה AI** |
 | F9 | **Cryptid / Character Fake Vlog** (Bigfoot, Yeti, סטורמטרופר) | Big Yowie 35M מ-20 פוסטים; Yeti-Boo 8.6M בשבוע | Veo 3/3.1, Seedance 2.5 עם אודיו | ★★★★ | 2 | (c) creator funds; מכירת פרומפטים ב-Gumroad | אפשרי באנגלית; בעברית הדיבור המסונתז חלש |
 | F10 | **POV היסטורי / תנ"כי** ("If Moses had an iPhone") | @holyvlogsz: משה 30M, דניאל 6.1M ב-3 ימים; @timetravellerpov צ'רנוביל 21.8M | Veo 3.1, Seedance 2.5 | ★★★★★ | 2 | (c) creator funds, חסויות | **נישה כמעט ריקה בעברית** (התרשמות, לא נבדק) |
 | F11 | **AI Soap Opera / סדרה** (פירות, חתולים) | Fruit Love Island ‏(@ai.cinema021): 35M לפרק 1, 3.1M עוקבים ב-9 ימים, 300M+ לערוץ | Seedance 2.5, Kling 3.0, Nano Banana ל-keyframes | ★★★★★ | 3 | (c) creator funds, חסויות; הצבעות קהל | פתוח; סדרה עברית סאטירית |
 | F12 | **Impossible ASMR** | @asmraiworks 11.3M בשבוע; @crackleai 11M ביום | Veo 3, Seedance 2.5 (אודיו מובנה) | ★★★★ | 1 | (c) creator funds | בלי שפה, ולכן גלובלי. הטרנד מתחיל להישחק |
-| F13 | **Fake CCTV / מצלמת אבטחה עם חיות** | ארנבות על טרמפולינה (@rachelthecatlovers): 203M+, 18M לייקים ב-2 ימים | Veo / Kling, פילטר "Ring cam" | ★★★★★ | 1 | (c) | גלובלי. **גבול ההטעיה**: לסמן AI |
+| F13 | **Fake CCTV / מצלמת אבטחה עם חיות** | ארנבות על טרמפולינה (@rachelthecatlovers): 148.8M צפיות ו-18M לייקים ב-2 ימים ([KYM](https://knowyourmeme.com/memes/ai-bunnies-jumping-on-a-trampoline-video)); 203M+ מצטבר [לא מאומת] | Veo / Kling, פילטר "Ring cam" | ★★★★★ | 1 | (c) | גלובלי. **גבול ההטעיה**: לסמן AI |
 | F14 | **Miniature World** (אנשים זעירים בעולם שלנו) | Hanlab "Mini Republic" (@haniverse_00): 120M+, לקוחות Nongshim, CJ ENM | Seedance 2.5, Nano Banana | ★★★★★ | 3 | **(a) IP ופרסומות למותגים** | פתוח; פורמט בטוח למותגי מזון ישראליים |
 | F15 | **Dialogue Gag** (ראיון רחוב, פודקאסט תינוקות) | ראיון רחוב Veo 14M+; פודקאסט תינוקות 13M [לא מאומת] | Veo 3.1, Seedance 2.5 | ★★★★ | 2 | (c) חסויות | בעברית צריך קול אמיתי או Hybrid |
 | F16 | **IP / Celebrity Mashup** | Ruairi Robinson "Tom Cruise vs Brad Pitt" 1.8M; C&D מ-Disney, Netflix ואחרות תוך 72 שעות | — | ★★★★★ | 1 | **אין. סיכון משפטי** | ❌ לא לעשות |
-| F17 | **Spec Ad / פרסומת AI** | PJ Accetturo (Genre.ai) ל-Kalshi: $2,000, יומיים, 300-400 ג'נרציות, 3M+ צפיות ב-X בשבוע | Seedance 2.5, Veo 3.1, Kling, ElevenLabs | ★★★★ | 4 | **(a) לקוחות B2B** | Lusha/Enso הוכיחו ביקוש. ספק-אד למותג ישראלי מוכר = תיק עבודות |
+| F17 | **Spec Ad / פרסומת AI** | PJ Accetturo (Genre.ai) ל-Kalshi: פחות מ-$2,000, יומיים, 300-400 ג'נרציות, 3M+ צפיות ב-X בשבוע | Seedance 2.5, Veo 3.1, Kling, ElevenLabs | ★★★★ | 4 | **(a) לקוחות B2B** | Lusha/Enso הוכיחו ביקוש. ספק-אד למותג ישראלי מוכר = תיק עבודות |
 | F18 | **AI Short Film / סדרה** | ANERNEQ, Hell Grind (קאן), Santiago | Higgsfield Cinema Studio, Seedance 2.5 | ★★ | 5 | פסטיבלים (פרס ראשון $500K), סטודיו | ויראליות נמוכה ויוקרה גבוהה |
 | F19 | **Effect Template** (Earth Zoom Out, ריקוד Motion Control) | #EarthZoomOut 1B+ בהאשטג (מקור שיווקי) | Higgsfield presets, Kling 3.0 Motion Control | ★★★★ | 1 | (c) Earn, לידים | גל של 1-3 שבועות; מהירות היא הכול |
 | F20 | **AI Product UGC / TikTok Shop** | Jade roller: 1.2M צפיות, 487 הזמנות, כ-$3 עלות (מקור שיווקי, [לא מאומת]); Daria Simhony | HeyGen, Seedance 2.5, Nano Banana | ★★★ | 2 | (a) רטיינר; (c) עמלות | פתוח לחנויות אונליין ישראליות |
@@ -275,14 +275,14 @@ I have a Hebrew dialogue script for a 30-second vertical ad (below). Produce a t
 | 13 | @trombonechef | TT | — | דרמת אוכל | 26M | יצר את הטרנד שהועתק |
 | 14 | @holyvlogsz | TT | 435K | Bible vlogs | 30M | "If X had an iPhone" |
 | 15 | @timetravellerpov | TT | 329K | POV היסטורי | 21.8M | כ-20M לסרטון |
-| 16 | Big Yowie (Seiji) | TT/IG | כ-450K | Cryptid vlog | 35M מ-20 פוסטים | שקיפות מלאה בעלויות |
+| 16 | Big Yowie (Seiji) | TT/IG | כ-490K (IG 278K, TT 151K) | Cryptid vlog | 35M מ-20 פוסטים | שקיפות מלאה בעלויות |
 | 17 | @stormtrooper.vlogz | TT | — | IP vlog | 1.2M לייקים ב-13 ימים | (סיכון IP) |
 | 18 | Yeti-Boo / @YetiVlogLife | TT | — | ASMR vlog | 28.6M-30M מ-16 פוסטים | — |
 | 19 | @asmraiworks / @crackleai | TT | — | AI ASMR | 11M ביום | — |
 | 20 | Hanlab / @haniverse_00 | IG | 200K | Miniature IP | 120M+ | IP שהפך לחוזים עם מותגים |
-| 21 | @rachelthecatlovers | TT | — | Fake CCTV | 203M | — |
+| 21 | @rachelthecatlovers | TT | — | Fake CCTV | 148.8M ב-2 ימים (203M מצטבר [לא מאומת]) | — |
 | 22 | [@lilmiquela](https://www.instagram.com/lilmiquela/) | IG/TT | 2M (og) / 3.4M | Virtual influencer | "$10M בשנה" [לא מאומת] | Prada, Calvin Klein |
-| 23 | [@fit_aitana](https://www.instagram.com/fit_aitana/) | IG | **404K** (og) | Fitness AI model | עד $11.5K לחודש | מקורות שמדברים על 4.3M שגויים |
+| 23 | [@fit_aitana](https://www.instagram.com/fit_aitana/) | IG | **404K** (og) | Fitness AI model | עד כ-$11K לחודש ([Entrepreneur](https://entrepreneur.com/business-news/this-ai-fitness-model-makes-11000-a-month/465975)) | מקורות שמדברים על 4.3M שגויים |
 | 24 | [@miazelu](https://www.instagram.com/miazelu/) | IG | 283K (og) | Fashion AI | — | עיתוי לאירוע אמיתי (ווימבלדון) |
 | 25 | @naina_avtr | IG | כ-376K | AI influencer הודית | €28K לפוסט [לא מאומת] | — |
 | 26 | Aze Alter | IG/YT | — | Sci-fi דיסטופי | — | מרצ'נדייז |
@@ -297,11 +297,11 @@ I have a Hebrew dialogue script for a 30-second vertical ad (below). Produce a t
 - **Jean Phil (@jean_philanthrope):** מתאגרף צללים בפריז עם פאה בלונדינית ושפם מסולסל. הופיע ב-17.09.2026, צבר 228K+ עוקבים תוך ימים, וקליפ אחד הגיע ל-35.9M צפיות. הביו קישר למטבע מם JEANPHIL שהגיע לשווי של כ-$8.8M וקרס ב-99% באותו יום ([EarlyGame](https://earlygame.com/news/entertainment/this-influencer-doesnt-exist-jean-phil-leaves-the-internet-fooled)). היום יש לו 239K עוקבים מ-10 פוסטים בלבד. Higgsfield מציגה אותו כהוכחה ש-"every viral AI influencer was made on Higgsfield". **הלקח:** דמות מוזרה ועקבית + Motion Transfer של טרנד = ויראליות. את ה-meme coin לא לחקות.
 - **Yang Mun (שלו חני):** נזיר AI שנבנה כולו ב-HeyGen, עם כ-2.5M עוקבים, לקהל בני 25-50. סרטון לוקח כ-20 דקות הפקה, ובזכות ייצור באצוות הקצב עלה לסרטון ביום (פי 7) ([HeyGen case study](https://www.heygen.com/he-il/customer-stories/yangmun)). מוצרים: ספר דיגיטלי $23.99 (₪73; כ-470 בחודש, כ-$11K), קורס $49.99 (₪152), מנטורינג $799 לשעה (₪2,429). כ-$213K (₪648K) ב-90 יום לפי dashboard, והיוצר טוען ל-$300K+ ([instantdm](https://instantdm.com/blog/yang-mun-ai-influencer-digital-product-funnel)). ספג ביקורת חריפה על חוסר גילוי ([Columbia News Service](https://columbianewsservice.com/2026/03/24/millions-found-comfort-in-a-buddhist-monk-but-he-was-never-real/), [EBU Spotlight](https://spotlight.ebu.ch/p/yang-mun-ai-influencer-scam)). **הלקח:** ישראלי בנה מותג גלובלי באנגלית. המשפך עובד, אבל חובה לגלות שמדובר ב-AI.
 - **Fruit Love Island (@ai.cinema021):** ריאליטי של פירות (Strawberina, Bananito). פרק 1: 35M צפיות ו-2.7M לייקים; 3.1M עוקבים ב-9 ימים; פרק 15: 39M בשבועיים; 300M+ לערוץ; הצופים מצביעים על העלילה ([The Decoder](https://the-decoder.com/ai-generated-dating-show-pulls-10-million-views-per-episode-on-tiktok/), [The Triangle](https://thetriangle.org/article/the-rise-and-fall-of-fruit-love-island)). הרעיון המקורי של @trombonechef (26M), שהועתק.
-- **Big Yowie (Seiji):** 35M צפיות מ-20 פוסטים וכ-450K עוקבים, אבל עם Veo 3 Ultra ב-$250 לחודש (₪760) ו-$50-150 לסרטון (₪152-456) **הוא הפסיד כסף** מ-creator funds ([Kapwing](https://www.kapwing.com/resources/what-it-takes-to-make-viral-ai-video-content-we-asked-bigfoot/)). זו ההוכחה שצפיות לבד לא מספיקות.
-- **Genre.ai / PJ Accetturo:** פרסומת Kalshi ל-NBA Finals: $2,000 (₪6,080), יומיים, 300-400 ג'נרציות ל-15 קליפים, 3M+ צפיות ב-X בשבוע, בערך 95% חיסכון ([OPB/NPR](https://www.opb.org/article/2025/06/23/an-ai-video-ad-is-making-a-splash-is-it-the-future-of-advertising/)). היום הסוכנות עובדת עם Nike, LVMH, Qatar Airways, Oracle, Popeyes, Google ו-Disney ([Wrapbook](https://www.wrapbook.com/on-production-podcast/the-real-economics-of-ai-native-production-featuring-pj-accetturo)).
+- **Big Yowie (Seiji):** 35M צפיות מ-20 פוסטים וכ-490K עוקבים בכל הפלטפורמות, אבל עם Veo 3 Ultra ב-$250 לחודש (₪760) ו-$50-150 לסרטון (₪152-456) **הוא עדיין פועל בהפסד** ("still operating at a loss") מ-creator funds ([Kapwing](https://www.kapwing.com/resources/what-it-takes-to-make-viral-ai-video-content-we-asked-bigfoot/)). זו ההוכחה שצפיות לבד לא מספיקות.
+- **Genre.ai / PJ Accetturo:** פרסומת Kalshi ל-NBA Finals: פחות מ-$2,000 (₪6,080) בעלויות פרומפטים, יומיים, 300-400 ג'נרציות ל-15 קליפים, 3M+ צפיות ב-X בשבוע; "95% חיסכון" לא מופיע במקור [לא מאומת] ([OPB/NPR](https://www.opb.org/article/2025/06/23/an-ai-video-ad-is-making-a-splash-is-it-the-future-of-advertising/)). היום הסוכנות עובדת עם Nike, LVMH, Qatar Airways, Oracle, Popeyes, Google ו-Disney ([Wrapbook](https://www.wrapbook.com/on-production-podcast/the-real-economics-of-ai-native-production-featuring-pj-accetturo)).
 - **Mini Republic (Hanlab):** פועלים זעירים קוטפים פרי מעולם בני האדם; 120M+ צפיות ו-200K עוקבים, ומזה חוזים עם Nongshim, CJ ENM ו-GS E&C ([KOCCA](https://welcon.kocca.kr/en/directory/content/mini-republic--10139)). דמות או עולם חזותי שהופך ל-IP שמותגים קונים.
 - **מקרה אנונימי של AI influencer ב-Passes:** Higgsfield Soul ID + Gemini + ChatGPT + Claude ב-$77 לחודש (₪234); 50K עוקבים ב-30 יום; $12.5K לחודש (₪38K) ביום 90 (מנויים $7.5K, DM בתשלום $3K, PPV $1.5K, חסויות $2K) **(מקור שיווקי, [לא מאומת])** ([AI Journal](https://aijourn.com/?p=533249)).
-- **דוגמה שאסור לחקות: "Rabbi Goldman".** "רב" AI עם תוכן אנטישמי, 1.5M עוקבים, מכר מדריך ב-$9 ל-"4,000+". Meta הורידה את החשבון במרץ 2026 ([Jewish Insider](https://jewishinsider.com/2026/03/a-i-rabbi-goldman-account-removed-instagram-backlash/)).
+- **דוגמה שאסור לחקות: "Rabbi Goldman".** "רב" AI עם תוכן אנטישמי, 1.4M+ עוקבים, מכר מדריך "get rich" ב-$9 (מספר הקונים "4,000+" [לא מאומת]). Meta הורידה את החשבון בסוף מרץ 2026 ([Jewish Insider](https://jewishinsider.com/2026/03/a-i-rabbi-goldman-account-removed-instagram-backlash/)).
 
 ### 3.3 מפת מונטיזציה: מי מרוויח וכמה
 | מודל | דוגמה מוכחת | מספרים (USD / ₪) | פורמטים |
@@ -339,19 +339,19 @@ I have a Hebrew dialogue script for a 30-second vertical ad (below). Produce a t
 | **Too Short for Modeling** (טל רוזנטל ונועם שרון) | סטודיו AI ישראלי שמוכר למותגים אמריקאיים | קמפיין ויראלי ל-Liquid Death ([Globes](https://www.globes.co.il/news/article.aspx?did=1001529974)) | המקבילה הישראלית ל-Genre.ai; מסלול (a) בגרסה הגדולה |
 | **LetsAI** (אבי סתר אדרי ומאור אדרי) | מגזין AI עברי, קורסים, WhatsApp, YouTube, TikTok, Telegram | קורס וידאו AI ב-₪2,990, 1,000+ בוגרים לפי האתר; כתבו על Seedance 2 (29.06.2026) ועל Seedance 2.5 Omni-Reference (09.08.2026) | המתחרה החזק ביותר במסלול (d), אבל עובד במאמרים ובקורסים, לא ברילס ויראליים |
 | **"המעצבים ב-AI"** (נטלי סדובניק שפיר, סטודיו PNG) | קהילת WhatsApp + זום שבועי | 500+ פעילים; תערוכה "כמעט אמיתי" בת"א (02-03.2026) | בעיקר תמונה, פחות וידאו |
-| **Artlist** (חברה ישראלית) | פלטפורמת סטוק + AI | סרט חג מולד: 3 אנשים, 3 שבועות, $3,000 (₪9,120), לעומת $1M, 30 אנשים וחצי שנה; קיצוץ של 85% בתקציב ההפקה ל-2026 ([mako](https://www.mako.co.il/nexter-news/Article-16249e6d4955b91027.htm)) | הוכחה שהתעשייה עוברת ל-AI, וגם שיש תגובת נגד |
+| **Artlist** (חברה ישראלית) | פלטפורמת סטוק + AI | סרט חג מולד: 3 אנשים, 3 שבועות, $3,000 (₪9,120), לעומת $1M, 30 אנשים וחצי שנה; קיצוץ של 85% בתקציב ההפקה ל-2026 [לא מאומת; לא מופיע בכתבה] ([mako](https://www.mako.co.il/nexter-news/Article-16249e6d4955b91027.htm)) | הוכחה שהתעשייה עוברת ל-AI, וגם שיש תגובת נגד |
 
 **סטודיואים וסוכנויות שמוכרים וידאו AI לעסקים:**
 
 | ספק | סוג | מחיר | מקור |
 |---|---|---|---|
-| **SmartPush** | סטודיו קטן; "סרטון פרסומי AI", רילס, קריינות בעברית/רוסית/אנגלית | **רילס פרסומי ₪1,200-1,290**, אנימציה ₪1,200, סרטון מוצר ₪1,200, וידאו לפייסבוק מ-₪1,000 | [smartpush.co.il](https://smartpush.co.il), [ערוץ 7 (ממומן)](https://www.inn.co.il/news/677784) |
+| **SmartPush** | סטודיו קטן; "סרטון פרסומי AI", רילס, קריינות בעברית/רוסית/אנגלית | **₪1,200-1,290** (באתר: סרטוני תדמית/אנימציה; מחיר נפרד ל"רילס AI" לא נמצא), אנימציה ₪1,200, סרטון מוצר ₪1,200, וידאו לפייסבוק מ-₪1,000 | [smartpush.co.il](https://smartpush.co.il), [ערוץ 7 (ממומן)](https://www.inn.co.il/news/677784) |
 | **אקסטרה דיגיטל** | סוכנות דיגיטל (18 שנה; רמי לוי, Lastprice) | לא פורסם. טוענים לחיסכון של 60-80%, "מאות עד אלפי שקלים בודדים" לסרטון סושיאל | [ice, ממומן, 27.05.2026](https://www.ice.co.il/contentpoint-sponsored/news/article/1114491) |
 | **KNBL / Kanibal Media** | משרד פרסום | קמפיין H&O | — |
 | **Arlo Digital + FLOW** | משרד + פוסט | קמפיין תדיראן | — |
 | **Alison.ai** | SaaS לניתוח קריאייטיב ויצירת פרסומות וידאו | גייסו $13.3M (11.2024) | [ice](https://www.ice.co.il/digital-140/news/article/1037737) |
 
-**חברות טכנולוגיה ישראליות** (כלים ושותפים, לא מתחרים): D-ID (אווטארים ו-Video Translate ל-30 שפות), Deepdub (דיבוב AI, 30+ שפות, גיוס $26M, דיבבו את "חטופים" לאנגלית; [Calcalist](https://www.calcalistech.com/ctechnews/article/bl93aqoik)), Canny AI (lip-sync), Lightricks (LTX Studio/LTX Video בקוד פתוח, מחיר עדכני [לא מאומת]), Artlist.
+**חברות טכנולוגיה ישראליות** (כלים ושותפים, לא מתחרים): D-ID (אווטארים ו-Video Translate ל-30 שפות), Deepdub (דיבוב AI, 30 שפות ויעד של 60, גיוס $26M, דיבבו את "חטופים" לאנגלית; [Calcalist](https://www.calcalistech.com/ctechnews/article/bl93aqoik)), Canny AI (lip-sync), Lightricks (LTX Studio/LTX Video בקוד פתוח, מחיר עדכני [לא מאומת]), Artlist.
 
 **קורסים בעברית (מתחרים למסלול d):**
 
@@ -485,6 +485,57 @@ I have a Hebrew dialogue script for a 30-second vertical ad (below). Produce a t
 13. **לגוון פלטפורמות.** לא לבנות עסק רק על Higgsfield, בגלל ההיסטוריה של שערוריות ובעיות תשלום. לשמור גרסה של כל workflow גם ב-Lovart, ב-fal.ai או ב-Kling. לא להשתמש ב-Sora (נסגרה).
 
 **מדדי הצלחה ל-30 הימים הראשונים:** יחס תגובות/לייקים מעל 0.6 ברילסים עם CTA; 3 לקוחות ניסיון עם case study; מכירה ראשונה של מדריך; לפחות רילס אחד שפורסם בתוך 72 שעות מהשקה.
+
+---
+
+## בדיקת עובדות (Fact-check)
+
+> נבדק ב-05.10.2026 מול מקורות ראשוניים ככל האפשר. עובדות שמקורן בניתוח הוויזואלי (`00-visual-analysis.md`) לא נבדקו מחדש (למשל לייקים/תגובות ברילס, המונה $17,998,344, השופטים שמופיעים על המסך). פרופילי אינסטגרם: רק edbert_yienson, sidequestpat_, menezes.ai ו-lilmiquela החזירו og:description; השאר נחסמו (תגובה ריקה) ונשארו כפי שנשלפו קודם.
+
+| טענה | פסק דין | מקור |
+|---|---|---|
+| @edbert_yienson: 43K עוקבים, 53 פוסטים | אומת | og:description, 05.10.2026 |
+| @sidequestpat_: 22K עוקבים, 44 פוסטים | אומת | og:description, 05.10.2026 |
+| @menezes.ai: 12K עוקבים, 400 פוסטים | אומת | og:description, 05.10.2026 |
+| @lilmiquela: 2M עוקבים | אומת | og:description, 05.10.2026 |
+| Seedance 2.5 ב-Higgsfield 06.08; 1080p ב-14.08; Genjutsu 01.09; Genjutsu Restyle ו-ChatGPT 30.09; AI Influencer 02.10 | אומת | [Higgsfield Changelog](https://higgsfield.ai/creator-hub/changelog) |
+| Genjutsu: קלט וידאו "3/4 עד 30 שניות", 480p-1080p | תוקן: 4-30 שניות, עד 30 רפרנסים; רזולוציה לא מופיעה בעמוד | [higgsfield.ai/genjutsu](https://higgsfield.ai/genjutsu) |
+| AI Influencer: 5 ג'נרציות חינם, עד 40 תמונות | תוקן חלקית: "קרדיטים חינם" ועד 40 תמונות לסרטון; "5" לא מאומת | [higgsfield.ai/ai-influencer](https://higgsfield.ai/ai-influencer) |
+| Earn: עד $1,000 ביום הראשון, עד $2,500 לסרטון, בונוסים ב-24 שעות וביום 7 | אומת | [higgsfield.ai/earn](https://higgsfield.ai/earn) |
+| Earn: כ-$492K שולמו עד ינואר 2026 | אומת ($491,909, 25.01.2026) | [Joe Youngblood](https://www.joeyoungblood.com/creator-marketing/higgsfield-launched-earn-a-way-for-creators-to-earn-money-with-generative-ai-videos/) |
+| אפילייט: עד 25% ל-12 חודשים; המופנה עד 50% הנחה ל-3 שעות | אומת | [Higgsfield Affiliate](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
+| Higgsfield ARR $230M (01.2026) ו-$500M+ (06.2026); שווי טרום-כסף $5B | אומת | [36Kr](https://eu.36kr.com/en/p/3933070123089287) |
+| גיוס $400M בשווי $5.4B | אומת | [ContentGrip](https://www.contentgrip.com/higgsfield-film-festival-growth/) |
+| פסטיבל: $500K/$200K/$100K + $100K קהל + 10×$10K; רישיון perpetual, irrevocable | אומת | [Official Rules](https://higgsfield.ai/contests/higgsfield-global-film-festival?tab=rules) |
+| Hell Grind: 95 דק', כ-$500K, "הוקרן בקאן 2026" | תוקן: הוקרן בקאן במקביל לפסטיבל, לא במסגרתו | [Wikipedia](https://en.wikipedia.org/wiki/Hell_Grind), [TechNode](https://technode.com/2026/05/22/bytedances-seedance-2-0-hits-cannes-with-95-minute-ai-film-hell-grind/) |
+| The Cully Hill Boys: 110 דק', $2M | אומת | [Crypto Briefing](https://cryptobriefing.com/higgsfield-ai-movie-2m-budget/) |
+| חשבון Higgsfield ב-X הושעה בפברואר 2026 | אומת | [tech.az](https://tech.az/en/posts/higgsfield-ai-039-s-x-account-has-been-closed-6558), [Qazinform](https://qazinform.com/amp/scam-claims-and-backlash-hit-kazakhstans-ai-unicorn-higgsfield-b311a7/) |
+| Sora: אפליקציה נסגרה 26.04.2026, API 24.09.2026 | אומת | [The Decoder](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/) |
+| מעורבות ממוצעת לרילס 0.48% ברבעון 2 של 2026 | אומת | [Socialinsider](https://www.socialinsider.io/blog/instagram-reels-engagement/) |
+| Yang Mun: כ-2.5M עוקבים, $213K ב-90 יום (dashboard), טענה ל-$300K; ספר $23.99, קורס $49.99, מנטורינג $799 | אומת (נתוני הכנסה מדווחים על ידי היוצר) | [instantdm](https://instantdm.com/blog/yang-mun-ai-influencer-digital-product-funnel), [virtualhumans.org](https://virtualhumans.org/article/who-is-yang-mun-the-ai-generated-wellness-guru-with-2-6m-followers) |
+| Yang Mun: כ-20 דקות לסרטון, קהל 25-50, היוצר Shalev Hani | אומת | [HeyGen](https://www.heygen.com/he-il/customer-stories/yangmun) |
+| Jean Phil: הופיע 17.09, 228K+ עוקבים, קליפ 35.9M, מטבע $8.8M וקריסה של 99% | אומת | [EarlyGame](https://earlygame.com/news/entertainment/this-influencer-doesnt-exist-jean-phil-leaves-the-internet-fooled) |
+| Fruit Love Island: פרק 1 35M ו-2.7M לייקים, 3M+ עוקבים, 300M+ לערוץ | אומת (המספר "9 ימים" ו-"פרק 15: 39M" לא נמצאו במקור שנבדק) | [The Triangle](https://thetriangle.org/article/the-rise-and-fall-of-fruit-love-island) |
+| ארנבות על טרמפולינה: 203M+ | תוקן: 148.8M ו-18M לייקים ב-2 ימים; 203M מצטבר לא מאומת | [Know Your Meme](https://knowyourmeme.com/memes/ai-bunnies-jumping-on-a-trampoline-video) |
+| Big Yowie: כ-450K עוקבים, "הפסיד כסף" | תוקן: כ-490K בכל הפלטפורמות; "still operating at a loss" | [Kapwing](https://www.kapwing.com/resources/what-it-takes-to-make-viral-ai-video-content-we-asked-bigfoot/) |
+| Mini Republic: 120M+ צפיות, 200K+ עוקבים, Nongshim, CJ ENM, GS E&C | אומת | [KOCCA](https://welcon.kocca.kr/en/directory/content/mini-republic--10139) |
+| Ruairi Robinson: 1.8M צפיות מפרומפט של 2 שורות; C&D מאולפנים תוך 72 שעות | אומת (Disney 13.02, Netflix 17-19.02) | [Let's Data Science](https://letsdatascience.com/blog/bytedances-seedance-2.0-spooked-all-of-hollywood-in-72-hours) |
+| Kalshi (Genre.ai): $2,000, יומיים, 300-400 ג'נרציות, 3M+ צפיות; 95% חיסכון | תוקן: "פחות מ-$2,000"; 95% לא מופיע במקור | [OPB/NPR](https://www.opb.org/article/2025/06/23/an-ai-video-ad-is-making-a-splash-is-it-the-future-of-advertising/) |
+| fit_aitana: עד $11.5K לחודש | תוקן: עד כ-$11K לחודש | [Entrepreneur](https://entrepreneur.com/business-news/this-ai-fitness-model-makes-11000-a-month/465975) |
+| Rabbi Goldman: 1.5M עוקבים, מדריך $9 ל-4,000+, הורד במרץ 2026 | תוקן: 1.4M+; מספר הקונים לא מאומת | [Jewish Insider](https://jewishinsider.com/2026/03/a-i-rabbi-goldman-account-removed-instagram-backlash/) |
+| Lusha $500; Enso $150 ו-6 שעות; Too Short for Modeling × Liquid Death | אומת | [Globes](https://www.globes.co.il/news/article.aspx?did=1001529974) |
+| H&O 11.2024, KNBL/Kanibal, "קמפיין הקמעונאות הראשון ב-AI" | אומת | [Ads of the World](https://www.adsoftheworld.com/campaigns/kids-week-campaign-a-first-of-its-kind-ai-initiative) |
+| תדיראן 09.03.2025, Arlo Digital + FLOW | אומת | [ice](https://www.ice.co.il/advertising-marketing/news/article/1054523) |
+| FreeTV: ₪44.90 מול ₪69.90, ויתור על משרד הפרסום, Green + צוות AI של 4 | אומת | [ice](https://www.ice.co.il/advertising-marketing/news/article/1085904) |
+| תמנון 19.04.2026, ₪50/₪30, "נרחיב משמעותית" | אומת | [ice](https://www.ice.co.il/consumerism/news/article/1110077) |
+| Artlist: $3,000, 3 אנשים, 3 שבועות, כ-60K צפיות; קיצוץ 85% | אומת חלקית: 85% לא מופיע בכתבה | [mako](https://www.mako.co.il/nexter-news/Article-16249e6d4955b91027.htm) |
+| BCG: 251 מנהלים, 92% אופטימיים, כשליש עקביים, 51% רוצים ROI | אומת | [Globes](https://www.globes.co.il/news/article.aspx?did=1001541589) |
+| LetsAI: ₪2,990, עד 10 תשלומים, כ-50 שעות, כ-100 שיעורים, 30 זומים, 1,000+ בוגרים | אומת | [letsai](https://letsai.co.il/product/videoai-workshop/) |
+| קורסי AI לסרטונים ₪1,000-6,000 + ₪200-300 לחודש, כ-3 חודשים | אומת | [study.co.il](https://www.study.co.il/P47148/) |
+| מידרג: תדמית ₪3,000-4,000 + מע"מ; יום צילום ₪1,000-2,500; עריכה ₪1,400; גרפיקה ₪1,000-1,600; טלוויזיה ₪10,000+ | אומת | [מידרג](https://www.midrag.co.il/Content/Tip/11772) |
+| SmartPush: "רילס פרסומי AI ₪1,200-1,290" | תוקן: המחיר מופיע לסרטוני תדמית/אנימציה; אין מחיר נפרד לרילס AI | [smartpush.co.il](https://smartpush.co.il) |
+| Alison.ai גייסה $13.3M ב-11.2024 | אומת | [ice](https://www.ice.co.il/digital-140/news/article/1037737) |
+| Deepdub: 30+ שפות, $26M, דיבוב "חטופים" | תוקן: 30 שפות (יעד 60); השאר אומת | [Calcalist](https://www.calcalistech.com/ctechnews/article/bl93aqoik) |
 
 ---
 
