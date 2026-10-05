@@ -350,6 +350,86 @@ def make_handler(cfg, secret):
     return Handler
 
 
+# --------------------------------------------------------------------------
+# candidate comparison
+# --------------------------------------------------------------------------
+
+def score_candidate(shared, c):
+    """Work out what a candidate product has to achieve to pay for itself.
+
+    Break-even CAC is just the contribution: the most you can pay to acquire
+    an order before the order stops being worth having. The required
+    conversion rate falls out of CPA = CPC / CVR, so CVR = CPC / break-even
+    CAC. That last number is the one that decides things, because it has to be
+    compared against what stores actually convert at -- year-one Shopify
+    stores run 0.6-1.0%, and paid social 0.8-1.5%.
+    """
+    aov = float(c["aov"])
+    landed = float(c["goods"]) + float(c["freight"]) + float(c["duty"])
+    payment = aov * shared["payment_fee_pct"] / 100.0 + shared["payment_fee_fixed"]
+    platform = aov * shared["platform_fee_pct"] / 100.0
+    refund = aov * float(c["refund_rate_pct"]) / 100.0
+    other = shared["support_cost_per_order"] + shared["app_cost_per_order"]
+
+    contribution = aov - (landed + payment + platform + refund + other)
+    cm_pct = contribution / aov * 100.0 if aov else 0.0
+    be_roas = (aov / contribution) if contribution > 0 else float("inf")
+
+    return {
+        "name": c["name"],
+        "aov": aov,
+        "landed": landed,
+        "contribution": contribution,
+        "cm_pct": cm_pct,
+        "be_cac": contribution,
+        "be_roas": be_roas,
+        "note": c.get("note", ""),
+    }
+
+
+def cmd_compare(args):
+    path = Path(args.candidates) if args.candidates else HERE / "candidates.json"
+    with path.open(encoding="utf-8") as fh:
+        doc = json.load(fh)
+
+    shared = doc["_shared"]
+    cpcs = args.cpc or doc.get("_cpc_scenarios") or [0.57, 0.80, 1.00]
+    rows = [score_candidate(shared, c) for c in doc["candidates"]]
+
+    head = f"{'Product':<38}{'AOV':>8}{'Landed':>8}{'Contrib':>9}{'CM%':>7}{'BE CAC':>8}{'BE ROAS':>9}"
+    print(head)
+    print("-" * len(head))
+    for r in rows:
+        roas = f"{r['be_roas']:.2f}" if r["be_roas"] != float("inf") else "n/a"
+        print(
+            f"{r['name']:<38}{r['aov']:>8.2f}{r['landed']:>8.2f}"
+            f"{r['contribution']:>9.2f}{r['cm_pct']:>6.1f}%{r['be_cac']:>8.2f}{roas:>9}"
+        )
+
+    print()
+    print("Conversion rate required to break even, by cost per click:")
+    head2 = f"{'Product':<38}" + "".join(f"{'CPC ' + format(c, '.2f'):>12}" for c in cpcs)
+    print(head2)
+    print("-" * len(head2))
+    for r in rows:
+        cells = ""
+        for cpc in cpcs:
+            cvr = (cpc / r["be_cac"] * 100.0) if r["be_cac"] > 0 else float("inf")
+            cells += f"{cvr:>11.2f}%" if cvr != float("inf") else f"{'n/a':>12}"
+        print(f"{r['name']:<38}{cells}")
+
+    print()
+    print("Reference: year-one Shopify stores convert at 0.6-1.0%; paid social at")
+    print("0.8-1.5%. A required CVR above roughly 2% means you need a top-quartile")
+    print("store on day one. Duty is the weakest figure in every row -- the HTS")
+    print("classification is unresolved, so a customs broker moves these numbers.")
+
+    if args.json:
+        print()
+        print(json.dumps(rows, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_serve(args):
     cfg = load_config(args.config)
     secret = os.environ.get("SHOPIFY_WEBHOOK_SECRET")
@@ -408,6 +488,12 @@ def main(argv=None):
     p.add_argument("--gross", type=float, help="amount charged, including tax")
     p.add_argument("--units", type=int, default=1)
     p.set_defaults(func=cmd_check)
+
+    p = sub.add_parser("compare", help="compare candidate products on what each must achieve")
+    p.add_argument("--candidates", help="path to candidates.json")
+    p.add_argument("--cpc", type=float, action="append", help="a cost-per-click to model; repeatable")
+    p.add_argument("--json", action="store_true", help="also dump the rows as JSON")
+    p.set_defaults(func=cmd_compare)
 
     p = sub.add_parser("replay", help="evaluate a saved Shopify order payload")
     p.add_argument("order", help="path to an order JSON file")

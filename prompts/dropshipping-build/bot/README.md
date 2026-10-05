@@ -34,6 +34,10 @@ python3 margin_guard.py serve --port 8787
 
 # הרצה חוזרת על payload שמור
 python3 margin_guard.py replay order.json --log
+
+# השוואת מוצרים מועמדים — מה כל אחד חייב להשיג
+python3 margin_guard.py compare
+python3 margin_guard.py compare --cpc 0.96 --json
 ```
 
 בלי `SHOPIFY_WEBHOOK_SECRET` השרת **מסרב לעלות** — endpoint לא מאומת הוא דלת פתוחה לכל מי שמוצא את ה-URL.
@@ -64,6 +68,14 @@ python3 margin_guard.py replay order.json --log
 הספים ב-`config.json` תחת `thresholds`.
 
 ---
+
+## `compare` — הכלי להחלטה על המוצר
+
+קורא את `candidates.json` ומחשב לכל מועמד: Landed COGS, תרומה, CM%, **Break-Even CAC**, **Break-Even ROAS**, ואת **שיעור ההמרה הנדרש** בכמה תרחישי CPC.
+
+**למה זה הטבלה שמכריעה:** CPA = CPC ÷ CVR, ולכן ה-CVR הנדרש לאיזון הוא CPC ÷ BE CAC. את המספר הזה צריך להשוות למה שחנויות באמת ממירות — **0.6-1.0% בשנה הראשונה, 0.8-1.5% בפרסום חברתי.** דרישה מעל ~2% אומרת שצריך חנות ברביעון העליון מהיום הראשון.
+
+⚠️ **המכס הוא המספר החלש בכל שורה.** סיווג ה-HTS לא הוכרע, ולכן עמיל מכס מזיז את כל הטבלה. כל מספר ב-`candidates.json` הוא **אומדן ממחקר, לא ציטוט ספק** — להחליף ברגע שמגיע ציטוט אמיתי.
 
 ## `config.json`
 
