@@ -20,6 +20,8 @@ Commands
   cuts    VIDEO [--threshold 0.3]        scene-cut detection
   fonts                                  download Heebo/Rubik/Secular One/JetBrains Mono
   sfx     [--out DIR]                    write the synthetic SFX library as wav files
+  demo-media [--out DIR]                 synthetic placeholder clips for examples/ and smoke tests
+  lut     OUT.cube [--kind warm]         write a simple 3D LUT
 
 Run `reelstudio.py <command> -h` for options. Full spec reference: ../SKILL.md
 """
@@ -1207,6 +1209,8 @@ def build_segment(seg: dict, ctx: Ctx) -> SegPlan:
         comp = g.label()
         g.add(f"[{vb}][{am}]overlay=0:0:shortest=1,format=yuv420p[{comp}]")
         line = seg.get("line", {})
+        if line is True or line is None:
+            line = {}
         if line is not False:
             lw = int(line.get("width", 8))
             lcol = line.get("color", "white")
@@ -2224,6 +2228,83 @@ def cmd_sfx(out_dir: str) -> None:
     print(f"wrote {len(SFX)} sfx to {od}")
 
 
+def write_cube(path: str | Path, kind: str = "warm", n: int = 17) -> str:
+    """Write a simple 3D LUT (.cube). kinds: warm, cool, teal_orange, identity."""
+    rows = [f'TITLE "reelstudio {kind}"', f"LUT_3D_SIZE {n}"]
+    for bi in range(n):
+        for gi in range(n):
+            for ri in range(n):
+                r, g, b = ri / (n - 1), gi / (n - 1), bi / (n - 1)
+                if kind == "warm":
+                    r, g, b = r * 1.06 + 0.02, g * 1.01, b * 0.90
+                elif kind == "cool":
+                    r, g, b = r * 0.92, g * 1.0, b * 1.06 + 0.02
+                elif kind == "teal_orange":
+                    lum = 0.299 * r + 0.587 * g + 0.114 * b
+                    r, g, b = r + 0.10 * (lum - 0.4), g + 0.02 * (lum - 0.5), b - 0.10 * (lum - 0.6)
+                rows.append(" ".join(f"{min(1.0, max(0.0, x)):.5f}" for x in (r, g, b)))
+    Path(path).write_text("\n".join(rows) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def cmd_demo_media(out_dir: str, blockout: str | None = None, force: bool = False) -> list[str]:
+    """Synthetic placeholder media matching the file names used in examples/*.json.
+
+    Lets every example render without real footage (smoke tests, dry runs). Real AI
+    clips simply replace these files. boca_villa_ai.mp4 is faked from the blockout
+    (graded + noise) so the blocks->reality reveal stays geometry-aligned.
+    """
+    ff = which_or_die("ffmpeg")
+    od = Path(out_dir)
+    od.mkdir(parents=True, exist_ok=True)
+    made = []
+
+    def run(args: list[str], dst: Path) -> None:
+        if dst.exists() and not force:
+            return
+        p = subprocess.run([ff, "-hide_banner", "-loglevel", "error", "-y", *args, str(dst)],
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if p.returncode:
+            raise RenderError(f"demo media {dst.name}: {tail(p.stderr)}")
+        made.append(str(dst))
+
+    x264 = ["-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p"]
+    aac = ["-c:a", "aac", "-b:a", "128k"]
+    run(["-f", "lavfi", "-i", "testsrc2=s=720x1280:r=30:d=5", "-f", "lavfi", "-i",
+         "sine=f=330:d=5:sample_rate=48000", *x264, *aac, "-shortest"], od / "clip1.mp4")
+    run(["-f", "lavfi", "-i", "mandelbrot=s=1280x720:r=24", "-t", "5", "-f", "lavfi", "-i",
+         "sine=f=550:d=5:sample_rate=48000", *x264, *aac, "-shortest"], od / "clip2.mp4")
+    run(["-f", "lavfi", "-i", "smptehdbars=s=1080x1920:r=30:d=4", *x264], od / "clip3.mp4")
+    # "talking head": tone bursts so ducking/captions have something to react to
+    run(["-f", "lavfi", "-i", "testsrc=s=1080x1920:r=30:d=6", "-f", "lavfi", "-i",
+         "aevalsrc='0.4*sin(2*PI*180*t)*gt(sin(2*PI*0.7*t),0)':s=48000:d=6", *x264, *aac, "-shortest"],
+        od / "talk.mp4")
+    if not (od / "music.wav").exists() or force:
+        render_sfx("bed", str(od / "music.wav"), Runner(), dur=30)
+        made.append(str(od / "music.wav"))
+    run(["-f", "lavfi", "-i", "color=c=0x0B3D91@1:s=400x160,format=rgba,"
+         "drawbox=x=8:y=8:w=384:h=144:color=white@1:t=6,drawbox=x=40:y=60:w=320:h=40:color=0xFFC83D@1:t=fill",
+         "-frames:v", "1"], od / "logo.png")
+    run(["-f", "lavfi", "-i", "gradients=s=1080x1920:c0=0x0B3D91:c1=0x111111:d=1", "-frames:v", "1"],
+        od / "packshot.png")
+    if not (od / "grade.cube").exists() or force:
+        made.append(write_cube(od / "grade.cube", "teal_orange"))
+    blk = od / "boca_villa_blockout.mp4"
+    if blockout and Path(blockout).exists() and (not blk.exists() or force):
+        shutil.copy(blockout, blk)
+        made.append(str(blk))
+    # stand-in for the Blender blockout: flat colored blocks drifting (camera push-in feel)
+    run(["-f", "lavfi", "-i", "color=c=0xD9E6FA:s=540x960:r=24:d=6", "-vf",
+         "drawbox=x=0:y=560:w=540:h=400:color=0xBFB38C:t=fill,"
+         "drawbox=x='60-t*8':y=380:w='300+t*16':h=200:color=0xEBEBEB:t=fill,"
+         "drawbox=x=120:y=600:w='220+t*10':h=60:color=0x8CE6D9:t=fill,"
+         "drawbox=x=60:y=640:w=40:h=50:color=0xD91414:t=fill,"
+         "drawbox=x=0:y=820:w=540:h=140:color=0x8CE6D9:t=fill", *x264], blk)
+    run(["-i", str(blk), "-vf", "hue=s=1.6:h=15,eq=contrast=1.25:brightness=0.03,"
+         "noise=alls=18:allf=t,gblur=sigma=1.2,unsharp=5:5:1.2", *x264], od / "boca_villa_ai.mp4")
+    return made
+
+
 # --------------------------------------------------------------------------------------
 # CLI
 # --------------------------------------------------------------------------------------
@@ -2280,6 +2361,15 @@ def main(argv=None) -> int:
     s = sub.add_parser("sfx", help="write the synthetic SFX library as wav files")
     s.add_argument("--out", default="sfx")
 
+    dm = sub.add_parser("demo-media", help="write synthetic placeholder clips used by examples/*.json")
+    dm.add_argument("--out", default="media")
+    dm.add_argument("--blockout", help="copy this real blockout render in as boca_villa_blockout.mp4")
+    dm.add_argument("--force", action="store_true")
+
+    lt = sub.add_parser("lut", help="write a simple .cube LUT (warm/cool/teal_orange/identity)")
+    lt.add_argument("out")
+    lt.add_argument("--kind", default="warm", choices=["warm", "cool", "teal_orange", "identity"])
+
     a = ap.parse_args(argv)
     try:
         if a.cmd == "render":
@@ -2304,6 +2394,11 @@ def main(argv=None) -> int:
             print(f"{len(got)}/{len(FONT_SOURCES)} fonts in {FONT_DIR}")
         elif a.cmd == "sfx":
             cmd_sfx(a.out)
+        elif a.cmd == "demo-media":
+            made = cmd_demo_media(a.out, a.blockout, a.force)
+            print(f"{len(made)} files written to {a.out}")
+        elif a.cmd == "lut":
+            print(write_cube(a.out, a.kind))
     except SpecError as e:
         print(f"spec error: {e}", file=sys.stderr)
         return 2
