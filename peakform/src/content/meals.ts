@@ -13,8 +13,6 @@ export interface MealItem {
   /** Whether an optional item is included by default. */
   defaultOn?: boolean;
   note?: string;
-  /** Training fuel: counted in the day's target only once that day's main workout has started. */
-  trainingFuel?: boolean;
 }
 
 export interface MealTemplate {
@@ -79,7 +77,9 @@ export const SCHOOL_LUNCH: MealTemplate = {
   notes: ['No added oil or mayonnaise by default.', 'Works without food from home.'],
 };
 
-const PRE_RICE: Record<Weekday, number> = { 0: 250, 1: 250, 2: 220, 3: 250, 4: 220, 5: 300, 6: 0 };
+// Since 2.1.1 every day is eaten like a rest day, so a missed workout or rope session never
+// leaves extra food. The rice before training and two dinners are sized so each day lands near 2,250 kcal.
+const PRE_RICE: Record<Weekday, number> = { 0: 100, 1: 100, 2: 100, 3: 100, 4: 100, 5: 100, 6: 0 };
 
 export const PREWORKOUT: MealTemplate[] = TRAINING_DAYS.map((d) => ({
   id: `preworkout-${d}`,
@@ -89,10 +89,10 @@ export const PREWORKOUT: MealTemplate[] = TRAINING_DAYS.map((d) => ({
   weekdays: [d],
   recipeId: 'chicken-rice-boxes',
   items: [
-    { foodId: 'rice-cooked', grams: PRE_RICE[d], note: 'Cooked weight. Training fuel: leave it out on a day you do not train.', trainingFuel: true },
+    { foodId: 'rice-cooked', grams: PRE_RICE[d], note: 'Cooked weight' },
     { foodId: 'chicken-breast', grams: 120, note: 'Cooked weight' },
   ],
-  notes: ['Eat about an hour before training.', 'The rice is training fuel. It counts in your target once the workout starts, so skip it on a day you do not train.'],
+  notes: ['Eat about an hour before training.', 'A small carbohydrate portion, so the workout and the jumps are fuelled while the day stays at the rest day amount.'],
 }));
 
 function dinner(d: Weekday, name: string, protein: [string, number], potato: number, oil: number, recipeId: string): MealTemplate {
@@ -118,10 +118,10 @@ function dinner(d: Weekday, name: string, protein: [string, number], potato: num
 export const DINNERS: MealTemplate[] = [
   dinner(0, 'Salmon, potato, lentils, vegetables', ['salmon', 180], 150, 0, 'sheet-pan-salmon'),
   dinner(1, 'Lean beef, potato, lentils, vegetables', ['beef-lean', 180], 150, 0, 'beef-bowl'),
-  dinner(2, 'White fish, potato, lentils, vegetables', ['white-fish', 220], 250, 10, 'white-fish-plate'),
+  dinner(2, 'White fish, potato, lentils, vegetables', ['white-fish', 220], 200, 10, 'white-fish-plate'),
   dinner(3, 'Salmon, potato, lentils, vegetables', ['salmon', 180], 150, 0, 'sheet-pan-salmon'),
   dinner(4, 'Lean beef, potato, lentils, vegetables', ['beef-lean', 180], 150, 0, 'beef-bowl'),
-  dinner(5, 'Turkey, potato, lentils, vegetables', ['turkey-breast', 180], 250, 10, 'turkey-plate'),
+  dinner(5, 'Turkey, potato, lentils, vegetables', ['turkey-breast', 180], 200, 5, 'turkey-plate'),
 ];
 
 export const EVENING: MealTemplate = {
@@ -158,15 +158,25 @@ export interface NutritionTarget {
 
 const band = (k: number): [number, number] => [k - 100, k + 100];
 
+/**
+ * Every day is eaten like the rest day (2.1.1), so the deficit never depends on a workout or the
+ * morning rope happening. Training days keep a little more carbohydrate and less fat.
+ */
+export const REST_DAY_KCAL = 2250;
+const day = (weekday: Weekday, label: string): NutritionTarget => ({ weekday, label, kcal: REST_DAY_KCAL, kcalBand: band(REST_DAY_KCAL), protein: 155, proteinRange: [150, 175], carbs: 215, fat: 85 });
+
 export const BASELINE_TARGETS: NutritionTarget[] = [
-  { weekday: 0, label: 'Upper A and swim', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
-  { weekday: 1, label: 'Lower A and jump', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
-  { weekday: 2, label: 'Upper B', kcal: 2350, kcalBand: band(2350), protein: 150, proteinRange: [150, 175], carbs: 230, fat: 92 },
-  { weekday: 3, label: 'Lower B', kcal: 2450, kcalBand: band(2450), protein: 155, proteinRange: [150, 175], carbs: 260, fat: 88 },
-  { weekday: 4, label: 'Upper C', kcal: 2350, kcalBand: band(2350), protein: 150, proteinRange: [150, 175], carbs: 230, fat: 92 },
-  { weekday: 5, label: 'Lower C and swim', kcal: 2550, kcalBand: band(2550), protein: 155, proteinRange: [150, 175], carbs: 285, fat: 88 },
-  { weekday: 6, label: 'Rest', kcal: 2250, kcalBand: [2150, 2350], protein: 150, proteinRange: [150, 175], carbs: 190, fat: 93 },
+  day(0, 'Upper A and swim'),
+  day(1, 'Lower A and jump'),
+  day(2, 'Upper B'),
+  day(3, 'Lower B'),
+  day(4, 'Upper C'),
+  day(5, 'Lower C and swim'),
+  { weekday: 6, label: 'Rest', kcal: REST_DAY_KCAL, kcalBand: [2150, 2350], protein: 150, proteinRange: [150, 175], carbs: 190, fat: 93 },
 ];
+
+/** Training day calories before 2.1.1, to move installed apps that still have them. */
+export const OLD_TRAINING_KCAL: Partial<Record<Weekday, number>> = { 0: 2450, 1: 2450, 2: 2350, 3: 2450, 4: 2350, 5: 2550 };
 
 /** Hard floors that no suggestion may cross. */
 export const NUTRITION_FLOORS = {

@@ -200,28 +200,32 @@ describe('meal templates and targets', () => {
       ['protein-powder', 15],
     ]);
     expect(SCHOOL_LUNCH.items.find((i) => i.foodId === 'olive-oil')).toBeUndefined();
-    expect(PREWORKOUT.map((p) => p.items[0]!.grams)).toEqual([250, 250, 220, 250, 220, 300]);
+    // Since 2.1.1 every day is eaten like the rest day, with 100 g rice before training.
+    expect(PREWORKOUT.map((p) => p.items[0]!.grams)).toEqual([100, 100, 100, 100, 100, 100]);
     expect(PREWORKOUT.every((p) => p.items[1]!.grams === 120)).toBe(true);
     expect(DINNERS.map((d) => d.items[0]!.foodId)).toEqual(['salmon', 'beef-lean', 'white-fish', 'salmon', 'beef-lean', 'turkey-breast']);
-    expect(DINNERS.map((d) => d.items[1]!.grams)).toEqual([150, 150, 250, 150, 150, 250]);
-    expect(DINNERS.map((d) => d.items.find((i) => i.foodId === 'olive-oil')?.grams ?? 0)).toEqual([0, 0, 10, 0, 0, 10]);
+    expect(DINNERS.map((d) => d.items[1]!.grams)).toEqual([150, 150, 200, 150, 150, 200]);
+    expect(DINNERS.map((d) => d.items.find((i) => i.foodId === 'olive-oil')?.grams ?? 0)).toEqual([0, 0, 10, 0, 0, 5]);
     expect(EVENING.items[0]).toMatchObject({ foodId: 'milk', grams: 300 });
   });
 
-  it('keeps targets at or above the safety floors and matches the weekly average', () => {
+  it('keeps targets at or above the safety floors, with every day at the rest day amount', () => {
     for (const t of BASELINE_TARGETS) {
       expect(t.kcalBand[0]).toBeGreaterThanOrEqual(NUTRITION_FLOORS.kcal);
       expect(t.carbs).toBeGreaterThanOrEqual(NUTRITION_FLOORS.carbs);
+      expect(t.kcal, t.label).toBe(2250);
+      // The macros add up to the calories, within the band.
+      const fromMacros = t.protein * 4 + t.carbs * 4 + t.fat * 9;
+      expect(Math.abs(fromMacros - t.kcal), t.label).toBeLessThanOrEqual(100);
     }
-    const avg = BASELINE_TARGETS.reduce((a, t) => a + t.kcal, 0) / 7;
-    expect(avg).toBeGreaterThan(2350);
-    expect(avg).toBeLessThan(2450);
   });
 
-  it('default Monday calories land near the target', () => {
-    const d = templatesForDay(1).reduce((a, t) => a + templateTotals(t).mid.kcal, 0);
-    expect(d).toBeGreaterThan(2300);
-    expect(d).toBeLessThan(2650);
+  it('default meals land near the target on every training day, so a missed workout leaves no extra food', () => {
+    for (let wd = 0; wd < 6; wd++) {
+      const d = templatesForDay(wd as 0).reduce((a, t) => a + templateTotals(t).mid.kcal, 0);
+      expect(d, `weekday ${wd}`).toBeGreaterThan(2150);
+      expect(d, `weekday ${wd}`).toBeLessThan(2350);
+    }
   });
 });
 

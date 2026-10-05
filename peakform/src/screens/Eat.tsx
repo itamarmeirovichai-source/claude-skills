@@ -8,7 +8,6 @@ import { Item, Note, PageHead, RangeBar, Section, Sheet, useToast } from '../ui/
 import { Link, navigate } from '../ui/router';
 import { IconCheck, IconWater } from '../ui/icons';
 import { addDays, formatDateKey, weekdayOf } from '../domain/dates';
-import { dayTarget, trainedOn } from '../domain/fuel';
 import { SLOT_LABELS, templatesForDay, type MealTemplate } from '../content/meals';
 import { FOOD_BY_ID } from '../content/foods';
 import { dayTotals, templateTotals } from '../domain/nutrition';
@@ -47,8 +46,7 @@ export function EatScreen() {
   const supLogs = useLiveQuery(() => db.supplementLogs.where('date').equals(date).toArray(), [date]) ?? [];
   const optionalOn = useLiveQuery(() => kvGet<Record<string, boolean>>(KV.optionalFoods), []) ?? {};
   const targets = useTargets();
-  const sessions = useLiveQuery(() => db.sessions.where('date').equals(date).toArray(), [date]) ?? [];
-  const target = dayTarget(targets.find((t) => t.weekday === wd)!, trainedOn(sessions, date));
+  const target = targets.find((t) => t.weekday === wd)!;
   const templates = templatesForDay(wd);
   const totals = dayTotals(logs);
   const waterMl = water.filter((w) => w.drink === 'water').reduce((a, w) => a + w.ml, 0);
@@ -90,13 +88,6 @@ export function EatScreen() {
             <div className="small faint">{target.label}</div>
           </div>
         </div>
-        {target.fuelKcal > 0 && (
-          <p className="small muted" style={{ margin: 0 }} data-testid="training-fuel">
-            {target.fuelIncluded
-              ? `Includes ${target.fuelKcal} kcal of training fuel, the rice before your workout.`
-              : `Base target. The rice before training adds ${target.fuelKcal} kcal once your workout starts. Not training today? Leave the rice out.`}
-          </p>
-        )}
         <RangeBar low={totals.low.kcal} mid={totals.mid.kcal} high={totals.high.kcal} band={target.kcalBand} max={Math.max(3200, totals.high.kcal)} label={`Calories about ${Math.round(totals.mid.kcal)} of target ${target.kcal}`} />
         <div className="metric-row cols-2" style={{ boxShadow: 'none' }}>
           <div className="metric">

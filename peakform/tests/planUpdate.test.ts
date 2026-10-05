@@ -86,3 +86,35 @@ describe('morning volleyball plan', () => {
     expect(bedtimeFor('00:30')).toBe('16:15');
   });
 });
+
+describe('rest day food (2.1.1)', () => {
+  it('moves training days that still have the old default calories, and keeps names and edited days', async () => {
+    const { BASELINE_TARGETS } = await import('../src/content/meals');
+    const { withRestDayFood } = await import('../src/services/planUpdate');
+    const old = BASELINE_TARGETS.map((t) => ({ ...t, kcal: [2450, 2450, 2350, 2450, 2350, 2550, 2250][t.weekday]! }));
+    old[1]!.label = 'My Monday';
+    old[4]!.kcal = 2400;
+    const next = withRestDayFood(old);
+    expect(next.map((t) => t.kcal)).toEqual([2250, 2250, 2250, 2250, 2400, 2250, 2250]);
+    expect(next[1]!.label).toBe('My Monday');
+    expect(next[0]!.carbs).toBe(215);
+  });
+
+  it('runs once on an installed app with saved targets', async () => {
+    const { db } = await import('../src/db/db');
+    const { KV, kvGet, kvSet } = await import('../src/db/repo');
+    const { BASELINE_TARGETS } = await import('../src/content/meals');
+    const { syncFoodTargets } = await import('../src/services/planUpdate');
+    await db.kv.clear();
+    const old = BASELINE_TARGETS.map((t) => ({ ...t, kcal: [2450, 2450, 2350, 2450, 2350, 2550, 2250][t.weekday]! }));
+    await kvSet(KV.targets, old);
+    expect(await syncFoodTargets()).toBe(true);
+    const saved = await kvGet<typeof old>(KV.targets);
+    expect(saved!.map((t) => t.kcal)).toEqual([2250, 2250, 2250, 2250, 2250, 2250, 2250]);
+    // A later choice of 2,450 on Monday is left alone.
+    saved![1]!.kcal = 2450;
+    await kvSet(KV.targets, saved);
+    expect(await syncFoodTargets()).toBe(false);
+    expect((await kvGet<typeof old>(KV.targets))![1]!.kcal).toBe(2450);
+  });
+});

@@ -16,7 +16,6 @@ import type {
 } from '../db/records';
 import { addDays, minutesOf, rangeKeys, weekdayOf, type DateKey } from './dates';
 import { calorieStatus, dayTotals, morningWeights, proteinMet, sevenDayAverage, FAST_LOSS_KG_PER_WEEK } from './nutrition';
-import { dayTarget, trainedOn } from './fuel';
 import { safetyState } from './safety';
 
 // Deterministic weekly review. Every conclusion lists its evidence and a confidence.
@@ -151,9 +150,8 @@ export function weekMetrics(data: ReviewData, weekStart: DateKey): WeekMetrics {
   let lowCalorieDays = 0;
   for (const [date, logs] of foodByDay) {
     const t = dayTotals(logs);
-    const plain = data.targets.find((x) => x.weekday === weekdayOf(date));
-    if (!plain) continue;
-    const target = dayTarget(plain, trainedOn(data.sessions, date));
+    const target = data.targets.find((x) => x.weekday === weekdayOf(date));
+    if (!target) continue;
     if (proteinMet(t, target)) proteinDays++;
     if (calorieStatus(t, target) === 'within') calorieDays++;
     // Only count a low day when most of the day was logged, to avoid flagging partial logs.

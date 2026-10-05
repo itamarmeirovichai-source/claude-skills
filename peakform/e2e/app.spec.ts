@@ -439,24 +439,11 @@ test.describe('food', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await go(page, '/eat');
+    // Every day is eaten like the rest day, so the Monday target matches Saturday's.
+    await expect(page.getByTestId('day-totals')).toContainText('2150 to 2350');
     await page.getByTestId('log-planned-breakfast').click();
     await expect(page.getByTestId('meal-breakfast')).toContainText('Logged as planned');
     await expect(page.getByTestId('kcal-range')).toContainText('to');
-  });
-
-  test('training fuel joins the day target only once the workout starts', async ({ page }) => {
-    await atTime(page, MONDAY);
-    await onboard(page);
-    await go(page, '/eat');
-    // Before training, the target is the base: a missed workout still means a deficit.
-    const fuel = page.getByTestId('training-fuel');
-    await expect(fuel).toContainText('Base target');
-    await expect(fuel).toContainText('325 kcal');
-    await expect(page.getByTestId('day-totals')).toContainText('2025 to 2225');
-    await startSession(page);
-    await go(page, '/eat');
-    await expect(fuel).toContainText('Includes 325 kcal of training fuel');
-    await expect(page.getByTestId('day-totals')).toContainText('2350 to 2550');
   });
 
   test('an estimated restaurant meal is stored as a range', async ({ page }) => {

@@ -70,12 +70,12 @@ export const RECIPES: Recipe[] = [
     servings: 6,
     ingredients: [
       { foodId: 'chicken-breast', name: 'Chicken breast, raw weight about 1 kg', grams: 720, state: 'cooked', amount: 'About 1 kg raw, which cooks down to about 720 g' },
-      { foodId: 'rice-cooked', name: 'White rice, cooked', grams: 1490, state: 'cooked', amount: 'About 500 g dry rice' },
+      { foodId: 'rice-cooked', name: 'White rice, cooked', grams: 600, state: 'cooked', amount: 'About 220 g dry rice' },
       { name: 'Salt, pepper, paprika, garlic powder', amount: 'To taste' },
     ],
-    weightNote: 'The plan uses cooked weights: 120 g cooked chicken per box. Rice per box: Sunday 250 g, Monday 250 g, Tuesday 220 g, Wednesday 250 g, Thursday 220 g, Friday 300 g, all cooked.',
+    weightNote: 'The plan uses cooked weights: 120 g cooked chicken per box. Rice per box: 100 g cooked every day, so each day stays at the rest day amount of food.',
     steps: [
-      'Rinse 500 g dry rice and cook it with water by the packet instructions.',
+      'Rinse 220 g dry rice and cook it with water by the packet instructions.',
       'Season the raw chicken with salt and spices. Wash your hands and any surface the raw chicken touched.',
       'Bake the chicken at about 200°C for 20 to 25 minutes, or pan cook it without extra oil.',
       'Check the thickest piece with a thermometer. It must reach 74°C.',
@@ -147,7 +147,7 @@ export const RECIPES: Recipe[] = [
     servings: 1,
     ingredients: [
       { foodId: 'white-fish', name: 'White fish, about 270 g raw', grams: 220, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes', grams: 250, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes', grams: 200, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 100, state: 'cooked' },
       { foodId: 'veg-mixed', name: 'Vegetables', grams: 300 },
       { foodId: 'olive-oil', name: 'Olive oil', grams: 10 },
@@ -169,18 +169,18 @@ export const RECIPES: Recipe[] = [
   {
     id: 'turkey-plate',
     name: 'Turkey, potato, lentil, and vegetable plate',
-    summary: 'Friday dinner. Includes 10 g olive oil.',
+    summary: 'Friday dinner. Includes 5 g olive oil.',
     servings: 1,
     ingredients: [
       { foodId: 'turkey-breast', name: 'Turkey breast, about 250 g raw', grams: 180, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes', grams: 250, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes', grams: 200, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 100, state: 'cooked' },
       { foodId: 'veg-mixed', name: 'Vegetables', grams: 300 },
-      { foodId: 'olive-oil', name: 'Olive oil', grams: 10 },
+      { foodId: 'olive-oil', name: 'Olive oil', grams: 5 },
     ],
     weightNote: '180 g cooked turkey comes from about 250 g raw.',
     steps: [
-      'Season the turkey and bake it at 200°C, or pan cook it with the 10 g olive oil.',
+      'Season the turkey and bake it at 200°C, or pan cook it with the 5 g olive oil.',
       'Check that the thickest part reaches 74°C.',
       'Cook the potatoes and vegetables.',
       'Serve with the lentils.',
@@ -324,11 +324,11 @@ export const SHOPPING_LIST: ShoppingItem[] = [
   { id: 'yogurt', name: 'Yogurt or skyr, about 2 to 3% fat', qty: 1800, unit: 'g', section: 'Dairy' },
   { id: 'milk', name: 'Milk', qty: 1800, unit: 'ml', section: 'Dairy' },
   { id: 'oats', name: 'Oats', qty: 360, unit: 'g', section: 'Grains' },
-  { id: 'rice', name: 'Dry rice', qty: 500, unit: 'g', section: 'Grains' },
+  { id: 'rice', name: 'Dry rice', qty: 220, unit: 'g', section: 'Grains' },
   { id: 'lentils', name: 'Dry lentils', qty: 250, unit: 'g', section: 'Grains' },
   { id: 'bananas', name: 'Bananas', qty: 6, unit: 'pcs', section: 'Produce' },
   { id: 'berries', name: 'Frozen berries', qty: 600, unit: 'g', section: 'Produce' },
-  { id: 'potatoes', name: 'Potatoes', qty: 1300, unit: 'g', section: 'Produce' },
+  { id: 'potatoes', name: 'Potatoes', qty: 1200, unit: 'g', section: 'Produce' },
   { id: 'vegetables', name: 'Mixed vegetables, at least', qty: 2000, unit: 'g', section: 'Produce' },
   { id: 'chicken', name: 'Raw chicken for pre workout boxes', qty: 1000, unit: 'g', section: 'Meat and fish' },
   { id: 'salmon', name: 'Raw salmon', qty: 450, unit: 'g', section: 'Meat and fish' },
@@ -353,7 +353,7 @@ export function scaleShopping(item: ShoppingItem, days: number): number {
 }
 
 export const PREP_STEPS: Array<{ id: string; title: string; detail: string }> = [
-  { id: 'rice', title: 'Cook the rice', detail: 'Cook 500 g dry rice. Portion cooked rice: Sunday 250 g, Monday 250 g, Tuesday 220 g, Wednesday 250 g, Thursday 220 g, Friday 300 g.' },
+  { id: 'rice', title: 'Cook the rice', detail: 'Cook 220 g dry rice. Portion 100 g cooked rice into each box.' },
   { id: 'chicken', title: 'Cook the chicken', detail: 'Cook the chicken until the thickest part reaches 74°C. Portion 120 g cooked into six containers.' },
   { id: 'dinners', title: 'Prepare the six dinners', detail: 'Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with potato, 100 g cooked lentils, and 300 g vegetables.' },
   { id: 'breakfast', title: 'Prepare breakfast parts', detail: 'Portion 60 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready.' },

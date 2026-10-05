@@ -8,7 +8,6 @@ import { Item, Note, Section, Sheet, Stepper, Toggle, useToast } from '../ui/com
 import { IconCheck, IconScale, IconTrain, IconEat, IconChevron } from '../ui/icons';
 import { Link, navigate } from '../ui/router';
 import { addDays, formatDateKey, minutesOf, reviewWeekStart, weekdayOf, WEEKDAY_NAMES } from '../domain/dates';
-import { dayTarget, trainedOn } from '../domain/fuel';
 import { buildTimeline, nextEntry, type TimelineEntry } from '../services/today';
 import { logTemplate } from '../services/food';
 import { readiness, safetyState } from '../domain/safety';
@@ -66,7 +65,7 @@ export function TodayScreen() {
   const ready = readiness(today, data.checkins[0] ?? null, data.sleep ?? null, data.pain, safety);
   const inSabbath = isSabbathAt(Date.now(), today, settings.sabbath);
   const totals = dayTotals(data.food);
-  const target = dayTarget(targets.find((t) => t.weekday === wd)!, trainedOn(data.sessions, today));
+  const target = targets.find((t) => t.weekday === wd)!;
   // On Monday the review covers last week, which only counts if the plan had started by then.
   const reviewDue = (wd === 0 && nowMin >= minutesOf('20:00')) || (wd === 1 && !data.reviews && (!settings.planStartDate || settings.planStartDate < today));
   const yesterdayDay = plan.days.find((d) => d.weekday === weekdayOf(addDays(today, -1)));
@@ -289,7 +288,7 @@ export function TodayScreen() {
           <Item
             title="Food so far"
             sub={totals.mid.kcal > 0 ? `About ${Math.round(totals.low.kcal / 10) * 10} to ${Math.round(totals.high.kcal / 10) * 10} kcal, protein ${Math.round(totals.mid.protein)} g` : 'Nothing logged yet'}
-            end={`Target ${target.kcal}${target.fuelKcal > 0 && !target.fuelIncluded ? ` + ${target.fuelKcal} if you train` : ''}`}
+            end={`Target ${target.kcal}`}
             to="/eat"
           />
         </div>

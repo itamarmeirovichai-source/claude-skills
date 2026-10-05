@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T11:14:41.643Z",
+  "generated": "2026-10-05T11:35:56.089Z",
   "counts": {
     "exercises": 99,
     "muscles": 31,
@@ -3263,20 +3263,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2452,
-        "protein": 199,
-        "carbs": 266,
-        "fat": 69
+        "kcal": 2257,
+        "protein": 195,
+        "carbs": 223,
+        "fat": 68
       },
       "target": {
-        "kcal": 2450,
+        "kcal": 2250,
         "band": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -3562,20 +3562,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2442,
-        "protein": 208,
-        "carbs": 266,
-        "fat": 65
+        "kcal": 2247,
+        "protein": 204,
+        "carbs": 223,
+        "fat": 64
       },
       "target": {
-        "kcal": 2450,
+        "kcal": 2250,
         "band": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -3797,20 +3797,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2449,
-        "protein": 211,
-        "carbs": 277,
+        "kcal": 2250,
+        "protein": 207,
+        "carbs": 233,
         "fat": 59
       },
       "target": {
-        "kcal": 2350,
+        "kcal": 2250,
         "band": [
-          2250,
-          2450
+          2150,
+          2350
         ],
-        "protein": 150,
-        "carbs": 230,
-        "fat": 92
+        "protein": 155,
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -4018,20 +4018,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2452,
-        "protein": 199,
-        "carbs": 266,
-        "fat": 69
+        "kcal": 2257,
+        "protein": 195,
+        "carbs": 223,
+        "fat": 68
       },
       "target": {
-        "kcal": 2450,
+        "kcal": 2250,
         "band": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -4253,20 +4253,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2403,
-        "protein": 207,
-        "carbs": 257,
+        "kcal": 2247,
+        "protein": 204,
+        "carbs": 223,
         "fat": 64
       },
       "target": {
-        "kcal": 2350,
+        "kcal": 2250,
         "band": [
-          2250,
-          2450
+          2150,
+          2350
         ],
-        "protein": 150,
-        "carbs": 230,
-        "fat": 92
+        "protein": 155,
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -4467,20 +4467,20 @@
         }
       ],
       "defaultMealsTotal": {
-        "kcal": 2587,
-        "protein": 217,
-        "carbs": 300,
-        "fat": 61
+        "kcal": 2239,
+        "protein": 210,
+        "carbs": 233,
+        "fat": 55
       },
       "target": {
-        "kcal": 2550,
+        "kcal": 2250,
         "band": [
-          2450,
-          2650
+          2150,
+          2350
         ],
         "protein": 155,
-        "carbs": 285,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       }
     },
     {
@@ -4778,98 +4778,98 @@
       {
         "weekday": 0,
         "label": "Upper A and swim",
-        "kcal": 2450,
+        "kcal": 2250,
         "kcalBand": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
         "proteinRange": [
           150,
           175
         ],
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       },
       {
         "weekday": 1,
         "label": "Lower A and jump",
-        "kcal": 2450,
+        "kcal": 2250,
         "kcalBand": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
         "proteinRange": [
           150,
           175
         ],
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       },
       {
         "weekday": 2,
         "label": "Upper B",
-        "kcal": 2350,
+        "kcal": 2250,
         "kcalBand": [
-          2250,
-          2450
+          2150,
+          2350
         ],
-        "protein": 150,
+        "protein": 155,
         "proteinRange": [
           150,
           175
         ],
-        "carbs": 230,
-        "fat": 92
+        "carbs": 215,
+        "fat": 85
       },
       {
         "weekday": 3,
         "label": "Lower B",
-        "kcal": 2450,
+        "kcal": 2250,
         "kcalBand": [
-          2350,
-          2550
+          2150,
+          2350
         ],
         "protein": 155,
         "proteinRange": [
           150,
           175
         ],
-        "carbs": 260,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
       },
       {
         "weekday": 4,
         "label": "Upper C",
-        "kcal": 2350,
+        "kcal": 2250,
         "kcalBand": [
-          2250,
-          2450
-        ],
-        "protein": 150,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 230,
-        "fat": 92
-      },
-      {
-        "weekday": 5,
-        "label": "Lower C and swim",
-        "kcal": 2550,
-        "kcalBand": [
-          2450,
-          2650
+          2150,
+          2350
         ],
         "protein": 155,
         "proteinRange": [
           150,
           175
         ],
-        "carbs": 285,
-        "fat": 88
+        "carbs": 215,
+        "fat": 85
+      },
+      {
+        "weekday": 5,
+        "label": "Lower C and swim",
+        "kcal": 2250,
+        "kcalBand": [
+          2150,
+          2350
+        ],
+        "protein": 155,
+        "proteinRange": [
+          150,
+          175
+        ],
+        "carbs": 215,
+        "fat": 85
       },
       {
         "weekday": 6,
@@ -5024,9 +5024,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 250,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5046,9 +5045,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 250,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5068,9 +5066,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 220,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5090,9 +5087,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 250,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5112,9 +5108,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 220,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5134,9 +5129,8 @@
       "items": [
         {
           "foodId": "rice-cooked",
-          "grams": 300,
-          "note": "Cooked weight. Training fuel: leave it out on a day you do not train.",
-          "trainingFuel": true
+          "grams": 100,
+          "note": "Cooked weight"
         },
         {
           "foodId": "chicken-breast",
@@ -5221,7 +5215,7 @@
         },
         {
           "foodId": "potato",
-          "grams": 250,
+          "grams": 200,
           "note": "Cooked weight"
         },
         {
@@ -5315,7 +5309,7 @@
         },
         {
           "foodId": "potato",
-          "grams": 250,
+          "grams": 200,
           "note": "Cooked weight"
         },
         {
@@ -5329,7 +5323,7 @@
         },
         {
           "foodId": "olive-oil",
-          "grams": 10
+          "grams": 5
         }
       ],
       "estimatedAtSchool": false
@@ -5405,9 +5399,9 @@
         {
           "foodId": "rice-cooked",
           "name": "White rice, cooked",
-          "grams": 1490,
+          "grams": 600,
           "state": "cooked",
-          "amount": "About 500 g dry rice"
+          "amount": "About 220 g dry rice"
         },
         {
           "name": "Salt, pepper, paprika, garlic powder",
@@ -5506,7 +5500,7 @@
         {
           "foodId": "potato",
           "name": "Potatoes",
-          "grams": 250,
+          "grams": 200,
           "state": "cooked"
         },
         {
@@ -5548,7 +5542,7 @@
         {
           "foodId": "potato",
           "name": "Potatoes",
-          "grams": 250,
+          "grams": 200,
           "state": "cooked"
         },
         {
@@ -5565,7 +5559,7 @@
         {
           "foodId": "olive-oil",
           "name": "Olive oil",
-          "grams": 10
+          "grams": 5
         }
       ],
       "suitableFor": [
@@ -5737,7 +5731,7 @@
       {
         "id": "rice",
         "name": "Dry rice",
-        "qty": 500,
+        "qty": 220,
         "unit": "g",
         "section": "Grains"
       },
@@ -5765,7 +5759,7 @@
       {
         "id": "potatoes",
         "name": "Potatoes",
-        "qty": 1300,
+        "qty": 1200,
         "unit": "g",
         "section": "Produce"
       },
@@ -5854,7 +5848,7 @@
       {
         "id": "rice",
         "title": "Cook the rice",
-        "detail": "Cook 500 g dry rice. Portion cooked rice: Sunday 250 g, Monday 250 g, Tuesday 220 g, Wednesday 250 g, Thursday 220 g, Friday 300 g."
+        "detail": "Cook 220 g dry rice. Portion 100 g cooked rice into each box."
       },
       {
         "id": "chicken",

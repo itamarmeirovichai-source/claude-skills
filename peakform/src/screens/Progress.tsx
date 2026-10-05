@@ -6,7 +6,6 @@ import { Item, Note, PageHead, Section, Metric } from '../ui/components';
 import { LineChart } from '../ui/Chart';
 import { Link } from '../ui/router';
 import { addDays, diffDays, formatDateKey, reviewWeekStart, weekdayOf, rangeKeys } from '../domain/dates';
-import { dayTarget } from '../domain/fuel';
 import { morningWeights, rollingAverages, sevenDayAverage, nutritionAdjustment, dayTotals } from '../domain/nutrition';
 import { coverageFrom, focusChecks, shoulderOverlap, COVERAGE_WEIGHTS, planCoverageInputs, type CoverageInput } from '../domain/coverage';
 import { exercise, exerciseName, allExercises } from '../content/library';
@@ -61,7 +60,7 @@ export function ProgressScreen() {
     checkins: data.checkins,
     waist: data.waist,
     foodLogDays: foodDays,
-    currentKcal: dayTarget(targets.find((t) => t.weekday === weekdayOf(today))!, false).baseKcal,
+    currentKcal: targets.find((t) => t.weekday === weekdayOf(today))!.kcal,
     performanceDecline: false,
     wellbeing: {
       previous: wellbeing(data.checkins, data.sleep, addDays(today, -13), addDays(today, -7)),

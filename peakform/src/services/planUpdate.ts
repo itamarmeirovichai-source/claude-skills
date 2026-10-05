@@ -1,5 +1,5 @@
 import { BASELINE_PLAN, GLOBAL_RULES, planDaysFor, type PlanItem } from '../content/plan';
-import { BASELINE_TARGETS, type NutritionTarget } from '../content/meals';
+import { BASELINE_TARGETS, OLD_TRAINING_KCAL, type NutritionTarget } from '../content/meals';
 import { EXERCISE_BY_ID } from '../content/library';
 import { defaultPicks, normalizePicks, type ProgramPicks } from '../content/program';
 import { PHASES, phaseFor, type PhaseId, type ProgramPhase } from '../content/phases';
@@ -15,8 +15,10 @@ export const MORNING_UPDATE_ID = 'morning-volleyball-v1';
 export const PROGRAM_UPDATE_ID = 'program-v2';
 /** The jump program for the dunk goal, in training blocks (2.1.0). */
 export const DUNK_UPDATE_ID = 'dunk-v1';
+/** Every day eaten like the rest day (2.1.1). */
+export const REST_DAY_FOOD_ID = 'rest-day-food-v1';
 
-type UpdateId = typeof MORNING_UPDATE_ID | typeof PROGRAM_UPDATE_ID | typeof DUNK_UPDATE_ID;
+type UpdateId = typeof MORNING_UPDATE_ID | typeof PROGRAM_UPDATE_ID | typeof DUNK_UPDATE_ID | typeof REST_DAY_FOOD_ID;
 type UpdateState = Record<string, 'applied' | 'dismissed'>;
 
 export async function updateState(id: UpdateId): Promise<'applied' | 'dismissed' | null> {
@@ -122,6 +124,29 @@ const OLD_TARGET_LABELS: Record<number, string[]> = { 2: ['Volleyball and should
 
 export function withProgramTargetLabels(targets: NutritionTarget[]): NutritionTarget[] {
   return targets.map((t) => ((OLD_TARGET_LABELS[t.weekday] ?? []).includes(t.label) ? { ...t, label: BASELINE_TARGETS.find((b) => b.weekday === t.weekday)!.label } : t));
+}
+
+/**
+ * Training days move to the rest day amount of food, so a missed workout or rope session never
+ * leaves extra food. Only days that still have the old default calories change; names and any
+ * numbers the user set stay.
+ */
+export function withRestDayFood(targets: NutritionTarget[]): NutritionTarget[] {
+  return targets.map((t) => {
+    if (OLD_TRAINING_KCAL[t.weekday] !== t.kcal) return t;
+    const b = BASELINE_TARGETS.find((x) => x.weekday === t.weekday)!;
+    return { ...t, kcal: b.kcal, kcalBand: [...b.kcalBand] as [number, number], protein: b.protein, proteinRange: [...b.proteinRange] as [number, number], carbs: b.carbs, fat: b.fat };
+  });
+}
+
+/** Moves an installed app's saved food targets to the rest day amounts, once. */
+export async function syncFoodTargets(): Promise<boolean> {
+  if (await updateState(REST_DAY_FOOD_ID)) return false;
+  const saved = await kvGet<NutritionTarget[]>(KV.targets);
+  const changed = !!saved && saved.length === 7 && withRestDayFood(saved).some((t, i) => t.kcal !== saved[i]!.kcal);
+  if (changed) await saveTargets(withRestDayFood(saved!));
+  await mark([REST_DAY_FOOD_ID], 'applied');
+  return changed;
 }
 
 /** Saves the choices and the plan rebuilt for the current training block as a new version. */
