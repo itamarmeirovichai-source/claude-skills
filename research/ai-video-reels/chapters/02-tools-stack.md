@@ -14,8 +14,8 @@
 3. **מחירי Higgsfield לא יציבים.** מצאנו שלוש טבלאות תוכניות שונות מ-2026. ההכרעה שלנו: לתכנן לפי **Starter ‏$19 / 270 קרדיט, Plus ‏$59 חודשי או $47 שנתי / 1,200 קרדיט, Ultra ‏$129 או $99 / 3,000 קרדיט**. כך מופיע בדף המחירים לפי שני מקורות עצמאיים מ-05.10. **שווי הקרדיט כמעט זהה בכל הגרסאות** (כ-$0.049 בחודשי, כ-$0.039 בשנתי), ולכן הסתירה משנה את סכום החשבון החודשי, אבל כמעט לא את העלות לשנייה.
 4. **סתירת Seedance 2.5 ב-1080p (9 או 18 קרדיט לשנייה):** שני הנתונים אמיתיים ומגיעים משני מדריכים רשמיים של Higgsfield מתאריכים שונים. המחיר כנראה ירד אחרי ההשקה. **מתקצבים לפי 18 ומצפים ל-9 עד 12.** הכלל המחייב הוא הסכום שמופיע על כפתור Generate. **רילס של 30 שניות בסגנון edbert עולה ‎$28–44 (‏₪85–133) בקרדיטים**, כולל טיוטות וניסיונות חוזרים.
 5. **לעברית אין מודל וידאו שמדבר עברית ברמה מוכחת.** הדרך המוכחת היא זו של @maorhani1: **מצלמים את עצמכם מדברים עברית ומעבירים דרך Genjutsu**. כך השפתיים והקול נשמרים, ולא צריך lip-sync. לקריינות: **ElevenLabs Eleven v3 עם `language_code: "he"`** (ב-Multilingual v2 העברית "unintelligible"). לכתוביות: **ivrit.ai** ותיקון RTL.
-6. **ManyChat הוא מלכודת עלויות ברילס ויראלי.** מאז 02.03.2026 החיוב הוא לפי Active Contacts, ורילס עם 24K תגובות יכול להקפיץ את החשבון למאות דולרים. לכן צריך לנקות contacts כל חודש, או לעבור לכלי במחיר קבוע (InstantDM ‏$9.99).
-7. **שלושה סטאקים מומלצים:** **בדיקת היתכנות כ-₪230 לחודש**, **הכנסה צדדית כ-₪670 לחודש**, **סטודיו או סוכנות כ-₪1,370–1,610 לחודש** (ועוד DaVinci Studio חד-פעמי, כ-₪900). לפי F2, רילס לקוח אחד ב-₪1,200 מכסה את כל עלות הכלים בסטאק הצדדי.
+6. **ManyChat הוא מלכודת עלויות ברילס ויראלי.** מאז 02.03.2026 החיוב הוא לפי Active Contacts: כל אדם שהייתה איתו אינטראקציה בחודש החיוב נספר (Free כולל רק 25). רילס עם 24K תגובות יכול להקפיץ את החשבון של אותו חודש למאות דולרים (‏~$850 ב-Pro השנתי, לפי חישוב מדף המחירים הרשמי). לכן כדאי לעבור בחודש ויראלי לתוכנית שכוללת יותר contacts, או לעבור לכלי במחיר קבוע (InstantDM ‏$9.99).
+7. **שלושה סטאקים מומלצים:** **בדיקת היתכנות כ-₪230 לחודש**, **הכנסה צדדית כ-₪670 לחודש**, **סטודיו או סוכנות כ-₪1,360–1,620 לחודש** (ועוד DaVinci Studio חד-פעמי, כ-₪900). לפי F2, רילס לקוח אחד ב-₪1,200 מכסה את כל עלות הכלים בסטאק הצדדי.
 
 ---
 
@@ -26,7 +26,7 @@
 | המשימה | הכלי הראשי | גיבוי / חלופה זולה | למה | עלות אינדיקטיבית |
 |---|---|---|---|---|
 | **פרסומת "אני ביוקרה" מתמונה אחת** (edbert: פספורט → למבורגיני בדובאי, 30 שניות) | **Seedance 2.5 ב-Higgsfield** (Plus ומעלה), במצב Draft ב-480p ורינדור סופי ב-1080p | invideo Plus (Seedance 2.5 ב-1080p); fal או OpenRouter ב-API | טייק של 30 שניות, חותמות זמן, hard cuts, תמונה אחת כ-`@Image1` | ‏$28–44 (‏₪85–133) לרילס (F2) |
-| **צילום זול → לוקיישן יוקרתי, עם דיבור בעברית** (maorhani1: חניון → Hotel de Paris) | **Higgsfield Genjutsu** (Motion Transfer / Object Swap) | Runway Aleph 2.0; Seedance 2.5 edit | שומר תנועה, פנים ואודיו מקורי. **הדרך היחידה שהוכחה לעברית** | ‏144 קרדיט ל-15 שניות ב-1080p (כ-$5.6–7.1) [מקור משני] |
+| **צילום זול → לוקיישן יוקרתי, עם דיבור בעברית** (maorhani1: חניון → Hotel de Paris) | **Higgsfield Genjutsu** (Motion Transfer / Object Swap) | Runway Aleph 2.0; Seedance 2.5 edit | שומר תנועה, פנים ואודיו מקורי. **הדרך היחידה שהוכחה לעברית** | ‏144 קרדיט ל-15 שניות ב-1080p (כ-$5.6–7.2; אומת בבלוג Higgsfield) |
 | **"אינסוף זוויות" מטייק אחד** (rourke) | **Seedance 2.5 edit** דרך Lovart, Higgsfield או fal | — | שום מודל אחר לא עושה את זה ברמה הזו | ‏×0.6 ממחיר יצירה (‏~$0.28 לשנייה ב-720p ב-fal) |
 | **אנימה או סגנון מצויר מצילום** (sidequestpat_) | **Genjutsu Restyle** (מ-30.09) | Seedance 2.x; Wan 2.x עם LoRA | Restyle שומר תנועה אמיתית | קרדיטים של Higgsfield |
 | **AI influencer / דמות קבועה לסדרה** | **Higgsfield AI Influencer + Soul ID** | OpenArt (עד 80 דמויות עקביות ב-Pro); LoRA של Flux | עקביות פנים בין סצנות | ‏1.12 קרדיט ליצירה או עריכה של דמות |
@@ -43,7 +43,7 @@
 | **SFX** (whoosh, דלת רכב) | **ElevenLabs Sound Effects** | אודיו נייטיב של Seedance או Veo | ‏$0.03–0.04 לג'נרציה | סנטים |
 | **עריכה, split-screen, CTA** | **CapCut** (Free, ואחר כך Pro) | DaVinci Resolve 21 (חינם) | מהיר, תבניות, הסגנון של הרילס | ‏$0–19.99 (‏₪0–61) |
 | **כתוביות עבריות** | **ivrit.ai → SRT → CapCut**, או צריבה ב-FFmpeg/libass | CapCut auto-captions עם תיקון ידני | דיוק בעברית ופתרון RTL | חינם |
-| **"תגיבו X → DM"** | **ManyChat** (Free, ואחר כך Pro) | InstantDM ‏$9.99 ללא הגבלה; LinkDM; Inro | סטנדרט השוק. **מלכודת Active Contacts** | ‏$0–65 (‏₪0–198) |
+| **"תגיבו X → DM"** | **ManyChat** (Free, ואחר כך Pro) | InstantDM ‏$9.99 ללא הגבלה; LinkDM; Inro | סטנדרט השוק. **מלכודת Active Contacts** | ‏$0–69 (‏₪0–210) |
 | **אוטומציה ותמחור שקוף ללקוח** | **Higgsfield API** (open.higgsfield.ai) | fal, OpenRouter, Atlas, Segmind | תשלום לפי שנייה, SDK, ג'נרציה כושלת לא מחויבת | Seedance 2.5 ב-1080p: ‏$1.137 לשנייה |
 | **מודעות UGC בכמות ללקוח e-commerce** | **Creatify** (Ad Clone, Ad Launcher) | Arcads | וריאציות ל-A/B, לא "וואו קולנועי" | מ-$39 (₪119) לחודש |
 
@@ -70,7 +70,7 @@
 | 31.07 | **MiniMax H3 / Hailuo 3** |
 | 06.08 | **Seedance 2.5** ב-Higgsfield (1080p מ-14.08) |
 | 24.08 | **Wan 3.0** (API בלבד) |
-| 28.08 | **Gemini Omni Flash 1.1** |
+| 27.08 | **Gemini Omni Flash 1.1** (שוחרר ב-27.08 והוכרז ב-28.08, לפי [DataNorth](https://datanorth.ai/news/google-releases-gemini-omni-1-1-flash)) |
 | 31.08 / 30.09 | **Higgsfield Genjutsu** ו-**Genjutsu Restyle** |
 
 **המסקנה:** השוק מתחלף כל 4 עד 8 שבועות. לא בונים שירות או קורס סביב מודל אחד. בונים סביב **workflow** (רפרנסים → פרומפט עם חותמות זמן → טיוטה זולה → רינדור סופי → וידאו-לווידאו), ומחליפים את המנוע כשצריך. לפי A1, מי שמפרסם ב-24 עד 72 השעות שאחרי השקה מקבל את רוב החשיפה.
@@ -90,9 +90,11 @@
 | 7 | **Seedance 2.5 (720p)** | 1474 | |
 | 8 | MiniMax H3 | 1460 | |
 | 9 | Meta Muse Video | 1456 | |
-| 12–16 | Veo 3.1 (כל הווריאנטים) | 1358–1364 | ירד מהפסגה |
+| 10 | HappyHorse 1.0 (Alibaba-ATH) | 1427 | |
+| 11 | Sora 2 Pro | 1368 | עדיין בטבלה, אבל הופסק |
+| 12–15 | Veo 3.1 (כל הווריאנטים) | 1358–1364 | ירד מהפסגה. במקום 16 נמצא Veo 3 Fast (1348) |
 
-**איך לקרוא את הטבלה:** הפער בין מקום 2 למקום 9 הוא כ-50 נקודות, וזה פחות מההבדל שעושה פרומפט טוב. הזירה בודקת קליפ קצר מטקסט בלבד. היא לא מודדת טייק של 30 שניות, רפרנסי פנים, עריכת וידאו או multi-shot, ובדיוק שם Seedance 2.5 מנצח. Kling 3.0 לא מופיע ב-Top 20, ואולי פשוט לא נבדק בזירה [לא מאומת].
+**איך לקרוא את הטבלה:** הפער בין מקום 2 למקום 9 הוא כ-50 נקודות, וזה פחות מההבדל שעושה פרומפט טוב. הזירה בודקת קליפ קצר מטקסט בלבד. היא לא מודדת טייק של 30 שניות, רפרנסי פנים, עריכת וידאו או multi-shot, ובדיוק שם Seedance 2.5 מנצח. Kling 3.0 לא מופיע בכלל בטבלה, כלומר לא נבדק בזירה. דגם ה-Kling הגבוה ביותר הוא kling-2.6-pro, במקום 29 עם 1216 נקודות (נבדק ב-arena.ai, ‏05.10.2026).
 
 ### 2.3 טבלת ההשוואה הראשית
 
@@ -100,7 +102,7 @@
 
 | מודל | רזולוציה מקסימלית | אורך לג'נרציה | אודיו | Multi-shot | רפרנסים | API לשנייה |
 |---|---|---|---|---|---|---|
-| **Seedance 2.5** | ‏720p ברוב הספקים; **1080p** ב-Higgsfield, invideo ו-fal | **4–30 שניות** | כן, תמיד (דיאלוג, foley, מוזיקה) | כן, חותמות זמן ו-hard cuts | **50** (30 תמונות, 10 וידאו, 10 אודיו) + first/last frame | ‏480p: ‏$0.09–0.22 · ‏720p: ‏$0.23–0.47 · ‏1080p: ‏$1.14–1.36 · edit ‏×0.6 |
+| **Seedance 2.5** | ‏720p ברוב הספקים; **1080p** ב-Higgsfield (כולל ה-API), invideo ו-Magnific. **ב-fal וב-OpenRouter יש רק 480p/720p** | **4–30 שניות** | כן, תמיד (דיאלוג, foley, מוזיקה) | כן, חותמות זמן ו-hard cuts | **50** (30 תמונות, 10 וידאו, 10 אודיו) + first/last frame | ‏480p: ‏$0.10–0.22 · ‏720p: ‏$0.23–0.47 · ‏1080p: ‏$1.14 (Higgsfield API) · edit ‏×0.6 |
 | **Seedance 2.0** | **4K** | 4–15 שניות | כן | כן | 12 | ‏720p: ‏$0.15–0.30 · ‏1080p: ‏$0.51–0.93 |
 | **Gemini Omni Flash 1.1** | 4K (upscale מ-720p) | 3–10 שניות, שרשור עד ~40 | כן | רק דרך first/last frame | עד 10 תמונות | ‏360p: ‏$0.03–0.04 · ‏720p: ‏$0.10–0.13 · ‏1080p: ‏$0.15–0.19 |
 | **Veo 3.1** (Std / Fast / Lite) | 4K | 4–8 שניות, Extend ב-Flow | כן | דרך Flow | עד 3 ("Ingredients") [לא מאומת בדף רשמי] | Std: ‏$0.40 · Fast: ‏$0.10–0.12 · **Lite: ‏$0.05–0.08** |
@@ -109,7 +111,7 @@
 | **Kling Omni (O3)** | 4K | 3–15 שניות | כן | — | עריכת וידאו קיים, Elements | ‏$0.044–0.168 |
 | **Runway Aleph 2.0** (עריכה) | 1080p | **30 שניות** | שומר את המקור | עריכה רב-שוטית | פריים ערוך | ‏$0.44–0.67 |
 | **MiniMax H3 / Hailuo 3** | 2K native (טענה ל-4K/60fps נראית שיווקית) | 5–15 שניות, הארכה עד ~30 | כן, סטריאו | Director Mode | 9 תמונות, 3 וידאו, 3 אודיו | ‏$0.08–0.13 |
-| **Wan 3.0** | 1080p | **2–30 שניות** | אופציונלי | [לא מאומת] | first frame ורפרנסים | ‏~$0.10 (720p) |
+| **Wan 3.0** | 1080p | **2–30 שניות** | אופציונלי | [לא מאומת] | first frame ורפרנסים | ‏~$0.10 (720p); ‏$0.0425 (480p) עד $0.17 (1080p) לפי [OrcaRouter](https://www.orcarouter.ai/blog/wan-3-0-release-date) |
 | **Wan 2.x** (משקלים פתוחים) | 720p–1080p | 5–10 שניות | חלקי | — | — | חינם על GPU עצמאי |
 | **FLUX 3 Video** | 720p | 5–20 שניות | כן, דיאלוג רב-לשוני | keyframes | 10 תמונות | לא פורסם |
 | **Grok Imagine 1.5** | 1080p | 15 שניות | כן | — | תמונה, וידאו | ‏$0.07–0.25 |
@@ -119,7 +121,7 @@
 
 מקורות לטבלה: [fal Seedance 2.5 vs 2.0](https://fal.ai/learn/devs/seedance-2-5-vs-seedance-2-0), [fal multi-angle](https://fal.ai/learn/tools/how-to-create-multi-angle-video-seedance-2-5), [OpenRouter](https://openrouter.ai/blog/insights/seedance-2-5-review), [Segmind](https://blog.segmind.com/gemini-omni-1-1-flash-features-examples-and-1-0-compared/), [Google pricing](https://ai.google.dev/gemini-api/docs/pricing), [Kling](https://kling.ai/blog/kling-video-3-0-credit-cost-guide), [Atlas Cloud](https://www.atlascloud.ai/blog/guides/kling-3.0-turbo-vs-kling-3.0), [Runway](https://runway.com/news/introducing-aleph-2-and-edit-studio), [OrcaRouter](https://www.orcarouter.ai/vi/blog/minimax-h3-hailuo-3-explained), [Atlas Wan](https://www.atlascloud.ai/nl/blog/tips/is-wan-3.0-open-source), [MindStudio](https://www.mindstudio.ai/blog/flux-3-video-model-launch), [WaveSpeed Luma](https://wavespeed.ai/blog/cost-and-billing/luma-ai-pricing/), ‏[Blotato/KIE](https://www.blotato.com/blog/higgsfield-pricing) (Seedance 2.0 ב-1080p ב-$0.51, ו-2.5 ב-480p ב-$0.085).
 
-> **מחיר Seedance 2.5 משתנה מאוד בין ספקים.** ב-720p: OpenRouter ‏$0.231, ‏Letz.ai ‏$0.40, ‏Higgsfield API ‏$0.462, ‏fal ‏$0.473 לשנייה. **לפני פרויקט גדול כדאי תמיד להשוות כמה אגרגטורים.**
+> **מחיר Seedance 2.5 משתנה מאוד בין ספקים.** ב-720p: OpenRouter ‏$0.231, ‏Letz.ai ‏$0.40, ‏Higgsfield API ‏$0.462, ‏fal ‏$0.473 לשנייה. ב-1080p, מבין ספקי ה-API שנבדקו רק Higgsfield מציע את 2.5 (‏$1.14 לשנייה). **לפני פרויקט גדול כדאי תמיד להשוות כמה אגרגטורים.**
 
 ### 2.4 כרטיסי מודל: מה צריך לדעת על כל אחד
 
@@ -158,7 +160,7 @@
 
 ### 3.1 מה זה
 
-- חברה מסן פרנסיסקו, עם צוות פיתוח בקזחסטן. המייסד הוא Alex Mashrabov, לשעבר ראש ה-AI ב-Snap. ב-2026 גייסה $400M בשווי של $5.4B ([ContentGrip](https://www.contentgrip.com/higgsfield-film-festival-growth/)). לפי 36Kr (דרך A1), ה-ARR עלה מ-$230M בינואר ל-$500M ביוני 2026. יש לה 15M+ משתמשים.
+- חברה מסן פרנסיסקו, עם צוות פיתוח בקזחסטן. המייסד הוא Alex Mashrabov, לשעבר ראש ה-AI ב-Snap. ב-17.08.2026 הודיעה על Series B של $400M בשווי של $5.4B, בהובלת DST Global ([ContentGrip](https://www.contentgrip.com/higgsfield-film-festival-growth/), ‏[TNW](https://thenextweb.com/news/higgsfield-series-b-400m-5-4bn-valuation-700m-revenue)). לפי 36Kr (דרך A1), ה-ARR עלה מ-$230M בינואר ל-$500M ביוני 2026. לפי החברה, באוגוסט הוא כבר הגיע ל-$700M, ויש לה 30M+ משתמשים.
 - **המהות:** "a wrapper for other services" ([The Register](https://www.theregister.com/2026/02/06/higgsfield_ai_job_loss/)). היא מוכרת גישה ל-50+ מודלים של צד שלישי (Seedance, Kling, Veo, Wan, MiniMax, Grok, FLUX 3, Gemini Omni, Nano Banana), ובונה מעליהם מוצרים משלה. **היתרון:** מודל חדש מגיע אליה ביום ההשקה, ומגיע עם presets ו-workflows מוכנים. Sora 2 עדיין מופיע ברשימות ישנות שלה, אבל הוא כבר לא רלוונטי.
 
 ### 3.2 מפת הפיצ'רים (לפי [ה-Changelog](https://higgsfield.ai/creator-hub/changelog), יוני עד אוקטובר 2026)
@@ -216,7 +218,7 @@
 **נקודות קריטיות:**
 - **Seedance 2.5 מתחיל רק ב-Plus.** מי שקונה Starter כדי "לנסות את הרילס של edbert" לא יקבל את המודל הזה.
 - **קרדיטים לא עוברים לחודש הבא.** הם פוקעים בסוף המחזור.
-- **"Unlimited"** ב-Plus וב-Ultra חל על 6 מודלי **תמונה** ל-365 יום, ועל חלונות של 7 ימים על Nano Banana. בשנתי מתווסף חלון Kling 3.0. ‏Unlimited **פועל רק באתר**, "with dynamic speed adjustments", ולא ב-MCP, ‏CLI, ‏Canvas או Supercomputer. לדגמים חדשים נפתחים מדי פעם חלונות של 7 עד 33 ימים. לפי הבלוג מ-06.08, ב-Ultra החודשי היו "33 days on Seedance 2.5". **מבחינת וידאו, מאגר הקרדיטים הוא התוכנית האמיתית.** חלונות Unlimited הם בונוס שמנצלים לייצור מלאי.
+- **"Unlimited"** ב-Plus וב-Ultra חל על 6 מודלי **תמונה** ל-365 יום, ועל חלונות של 7 ימים על Nano Banana. בשנתי מתווסף חלון Kling 3.0. ‏Unlimited **פועל רק באתר**, "with dynamic speed adjustments", ולא ב-MCP, ‏CLI, ‏Canvas או Supercomputer. לדגמים חדשים נפתחים מדי פעם חלונות של 7 עד 33 ימים. לפי הבלוג מ-06.08, ב-Ultra החודשי היו "33 days on Seedance 2.5". לפי [דף המבצע](https://higgsfield.ai/blog/33-days-unlimited-seedance-2-5), צריך היה להפעיל אותו עד 09.08, והוא היה מוגבל ל-720p. **מבחינת וידאו, מאגר הקרדיטים הוא התוכנית האמיתית.** חלונות Unlimited הם בונוס שמנצלים לייצור מלאי.
 
 ### 3.4 עלות לג'נרציה וסתירת ה-1080p
 
@@ -233,7 +235,7 @@
 | Seedance 2.5, 10 שניות, 1080p | 120 | 12 | ‏$4.68 | ‏₪14.2 | בלוג 06.08 |
 | **Seedance 2.5, 15 שניות, 1080p** | **270** | **18** | **‏$10.53** | **‏₪32** | מדריך 14.08 (Novoads) |
 | Seedance 2.5, 30 שניות, טייק אחד | 540 | 18 | ‏$21.06 | ‏₪64 | מדריך 14.08 |
-| Genjutsu, 15 שניות, 480p / 720p / 1080p | 40 / 104 / 144 | 2.7 / 6.9 / 9.6 | ‏$1.56 / $4.06 / $5.62 | ‏₪4.7 / ‏₪12.3 / ‏₪17.1 | Rekreate [מקור משני] |
+| Genjutsu, 15 שניות, 480p / 720p / 1080p | 40 / 104 / 144 | 2.7 / 6.9 / 9.6 | ‏$1.56 / $4.06 / $5.62 | ‏₪4.7 / ‏₪12.3 / ‏₪17.1 | Rekreate; אומת ב-[בלוג Genjutsu של Higgsfield](https://higgsfield.ai/blog/higgsfield-genjutsu) |
 | Seedance 2.0, 5 שניות, 720p / 1080p / 4K | 22 / 45 / 110 | 4.4 / 9 / 22 | — | — | Creatify, vdobloom |
 | Seedance 2.0 Fast, 5 שניות | ~17 | 3.4 | ‏$0.66 | ‏₪2 | Creatify |
 | Kling 3.0, 5 שניות, 720p / 1080p / 4K | 7–10 / 8 / 30 | — | — | — | vdobloom, Creatify |
@@ -284,11 +286,11 @@
 | Kling 3.0 (10 שניות) | ‏$1.12 לקליפ | | |
 | Soul 2 (תמונה) | ‏$0.0032 לתמונה | | |
 
-מקורות: ‏[playground של Seedance 2.5](https://open.higgsfield.ai/models/bytedance/seedance-2.5/text-to-video/playground), ‏[API blog](https://higgsfield.ai/blog/higgsfield-api). השוואה: fal גובה $0.2205/$0.473/$1.164 לשנייה. **בלי cashback, ה-API של Higgsfield זול רק בכ-2% מ-fal.** הטענה ש-Seedance 2.5 עולה "~18 cents per second" ([Chase AI](https://www.chaseai.io/blog/higgsfield-api-pay-as-you-go-ai-video)) נכונה רק ל-480p.
+מקורות: ‏[playground של Seedance 2.5](https://open.higgsfield.ai/models/bytedance/seedance-2.5/text-to-video/playground), ‏[API blog](https://higgsfield.ai/blog/higgsfield-api). השוואה: fal גובה $0.2205/$0.473 לשנייה ב-480p/720p, ולא מציע 1080p ב-Seedance 2.5 ([fal](https://fal.ai/learn/devs/seedance-2-5-vs-seedance-2-0); גם OpenRouter מוגבל ל-720p). **בלי cashback, ה-API של Higgsfield זול רק בכ-2% מ-fal ב-720p. ב-1080p הוא החלופה היחידה מבין ספקי ה-API שנבדקו.** הטענה ש-Seedance 2.5 עולה "~18 cents per second" ([Chase AI](https://www.chaseai.io/blog/higgsfield-api-pay-as-you-go-ai-video)) נכונה רק ל-480p.
 
 **ציר הזמן של ה-Cashback:**
 - **ספטמבר 2026:** ‏100% cashback על כל המודלים, מבריכה של $20M. התקרה הייתה $100K לעסק, וב-24.09 עלתה ל-$200K עם אימות עסקי ([X](https://x.com/higgsfield/status/2103234987403481500)). ליחידים התקרה הייתה $1,000 (לפי הרילס). **המבצע הסתיים ב-30.09.** המונה "‎$17,998,344 LEFT" שהופיע ברילס הוא כלי FOMO, ולא אומת. לא ברור אם ההחזר ניתן בכסף או בקרדיט API [לא מאומת].
-- **מ-02.10.2026 (בתוקף עכשיו):** בונוס של $15 אחרי הוצאה ראשונה של $100, ועד **20% cashback** במחזורים של 30 יום. ‏$15 נוספים בהרשמה עם מייל עסקי.
+- **מ-02.10.2026 (בתוקף עכשיו):** בונוס של $15 אחרי הוצאה ראשונה של $100, ועד **20% cashback** במחזורים של 30 יום. ‏$15 נוספים בהרשמה עם מייל עסקי. [לא מאומת: ב-05.10 לא נמצא מקור רשמי נגיש. בלוג ה-API לא מזכיר את התוכנית, ו-X חסום לשליפה]
 
 **מתי להשתמש ב-API:**
 1. **תמחור שקוף ללקוח.** למשל: "כל שנייה ב-1080p עולה לי $1.14, ובחישוב של 3 ניסיונות זה $3.42 לשנייה סופית".
@@ -345,12 +347,12 @@
 |---|---|---|---|---|---|---|
 | **Higgsfield** | Plus | ‏$59 / ‏$47 שנתי (‏₪143–179) | ‏$0.35–0.89 (תלוי ב-9 או 18 קרדיט לשנייה) | ‏$0.25–0.32 | **Genjutsu, AI Influencer**, Earn ו-Affiliate | ★★★★★ חובה להיברידי |
 | Higgsfield API | בלי מנוי | לפי שימוש | ‏$1.137 (עד 20% החזר) | ‏$0.462 | שקיפות, אוטומציה | ★★★ לפרויקטים |
-| fal.ai | בלי מנוי | לפי שימוש | ‏$1.164 | ‏$0.473 | API למפתחים, edit ×0.6 | ★★ |
+| fal.ai | בלי מנוי | לפי שימוש | אין 1080p ב-2.5 | ‏$0.473 | API למפתחים, edit ×0.6 | ★★ |
 | OpenRouter | בלי מנוי | לפי שימוש | — | **‏$0.231** | הזול ב-API ל-720p | ★★★ |
 | **invideo** | Plus | ‏$36 שנתי (‏₪109); ~$60 חודשי (‏₪182) | **‏$0.29–0.35** | ‏~$0.20 | עורך timeline מלא, 10 מושבים ועוד 10 אורחים | ★★★★ נפח ועריכה |
 | **Dreamina** (CapCut) | Basic / Super | מ-$19 (‏₪58) לפי F2; מבצע חודש ראשון $1.50 בארה"ב | — | **‏$0.035** (מבצע חודש ראשון), ‏$0.047 (Super שנתי, שנה ראשונה), ‏$0.097 (Advanced שנתי, מחיר "רגיל") | הכי זול ל-720p. מבצע עד 09.10, ב-12 מדינות בלבד | ★★★ לטיוטות ולכמות |
 | **OpenArt** | Pro | ‏$56 / ‏$44 שנתי (‏₪134–170) | ‏10% הנחה (עד 50% במבצע עד 07.10) [עלות בסיס לא אומתה] | — | Director, ‏80 דמויות עקביות, MCP | ★★★★ |
-| Magnific (לשעבר Freepik) | Premium+ | ‏$45 / ‏$33.75 שנתי (‏₪103–137) | לא פורסם | ‏~$0.30 | **קרדיטים שנתיים בלי איפוס**, סטוק, Upscaler | ★★★ |
+| Magnific (לשעבר Freepik) | Premium+ | ‏$45 / ‏$33.75 שנתי (‏₪103–137) | ‏4,400 קרדיט ל-4 שניות, פי 2.5 מ-720p (כ-$0.75 בהערכה) | ‏~$0.30 | **קרדיטים שנתיים בלי איפוס**, סטוק, Upscaler | ★★★ |
 | **Lovart** | Starter / Basic | ‏$19 / ‏$16 שנתי עד $32 (‏₪49–97) | [לא מאומת] | Seedance 2.0: ‏~$0.17 | סוכן עיצוב, `@Video1`. **"prohibits real human faces" ב-Seedance 2** | ★★★★ זוויות ועיצוב |
 | Pollo | ‏$29 | ‏$14.5–29 (‏₪44–88) | — | ‏480p: ‏~$0.22 | Unlimited על מודלים ישנים, אפקטים | ★★ |
 | Krea | Pro | ‏$35 / ‏$21 (‏₪64–106) | [לא מאומת] | — | תמונה בזמן אמת, רישיון מסחרי בכל התוכניות | ★★★ משלים |
@@ -369,7 +371,7 @@
 
 **תמחור Kling (סתירה בין B1 ל-F2):** לפי B1, המחירים הם $6.99/$25.99/$64.99/$127.99. לפי F2, הם $10/$37/$92/$180. בדקתי את [דף הקרדיטים של Kling](https://kling.ai/blog/kling-video-3-0-credit-cost-guide): **שני הנתונים נכונים.** ‏$10/$37/$92/$180 הוא המחירון. ‏$6.99/$25.99/$64.99/$127.99 הוא **הנחה לחודש הראשון בלבד**. החידוש החודשי עולה $8.80/$32.56/$80.96/$159.99. **לתקציב שוטף משתמשים במחיר החידוש:** ‏Standard ‏$8.80 (‏₪27), ‏Pro ‏$32.56 (‏₪99), ‏Premier ‏$80.96 (‏₪246). רישיון מסחרי מתחיל ב-Standard. ב-Free אין שימוש מסחרי.
 
-**Dreamina (ב-F2 מופיע $0.035–0.047 לשנייה):** בדקתי, ו-**$0.035 הוא מבצע לחודש הראשון בלבד** (‏90% הנחה, ‏23.09–09.10.2026, ב-12 מדינות). ישראל לא מופיעה ברשימת המדינות שפורטה (בריטניה, גרמניה, צרפת, איטליה וספרד באירופה) [לא מאומת לגבי שאר המדינות]. המחיר "הרגיל" שמופיע כנקודת השוואה הוא **$0.097 לשנייה ב-720p** בתוכנית Advanced השנתית. גם זה עדיין זול מ-Higgsfield (שם ההשוואה של Dreamina הייתה ‏$0.120). **מסקנה:** ‏Dreamina היא חלופה זולה וטובה לטיוטות ולתוכן בכמות ב-720p, אבל אסור לתמחר ללקוח לפי $0.035.
+**Dreamina (ב-F2 מופיע $0.035–0.047 לשנייה):** בדקתי, ו-**$0.035 הוא מבצע לחודש הראשון בלבד** (‏90% הנחה, ‏23.09–09.10.2026, ב-12 מדינות). **ישראל לא נכללת במבצע.** רשימת 12 המדינות המלאה: יפן, דרום קוריאה, בריטניה, גרמניה, צרפת, איטליה, ספרד, מקסיקו, ברזיל, ארה"ב, קנדה ואוסטרליה (נבדק בדף Dreamina ב-05.10). המחיר "הרגיל" שמופיע כנקודת השוואה הוא **$0.097 לשנייה ב-720p** בתוכנית Advanced השנתית. גם זה עדיין זול מ-Higgsfield (שם ההשוואה של Dreamina הייתה ‏$0.120). **מסקנה:** ‏Dreamina היא חלופה זולה וטובה לטיוטות ולתוכן בכמות ב-720p, אבל אסור לתמחר ללקוח לפי $0.035.
 
 **invideo:** ‏$36 לחודש הוא מחיר שנתי. לפי "Save $288 per seat", המחיר החודשי יוצא כ-$60 (‏₪182). זו עדיין **התוכנית הזולה ביותר ל-Seedance 2.5 ב-1080p במנוי**, בתנאי ש-96 קרדיט ל-5 שניות עדיין בתוקף (נתון של B2, לא בדקתי מחדש).
 
@@ -379,7 +381,7 @@
 
 - **Lovart:** ‏canvas עם סוכן שבוחר מודל לבד. קרדיטי טעינה תקפים 366 יום. ‏Starter נותן 100 קרדיט מתחדשים כל יום. מתאים כשמשלבים עיצוב גרפי (באנרים, מיתוג) עם וידאו, או כשרוצים בדיוק את ה-workflow של rourke: Claude, פרומפט מתוזמן, `@Video1`.
 - **OpenArt:** ב-Starter **אין רישיון מסחרי**. הוא מתחיל ב-Plus (‏$34/$27). ב-Pro יש עד 80 דמויות עקביות, Director ו-One-Click Story. יש להם [מדריך פרומפטים טוב ל-Seedance 2.5](https://openart.ai/de/blog/seedance-2-5-prompt-guide/).
-- **Magnific:** היתרון הוא **"no monthly resets"**. זה טוב ליוצר שעובד בגלים של פרויקטים. Seedance 2.5 ב-720p עולה 1,760 קרדיט ל-4 שניות.
+- **Magnific:** היתרון הוא **"no monthly resets"**. זה טוב ליוצר שעובד בגלים של פרויקטים. Seedance 2.5 ב-720p עולה 1,760 קרדיט ל-4 שניות, ב-1080p ‏4,400, ובטיוטת 480p ‏800 (לפי דף המחירים, 05.10).
 - **Creatify:** ‏Starter ‏$39 עם 300 שחקני AI ו-75+ שפות. ב-Pro יש **Ad Clone ו-Competitor Ad Tracker**. מתאים כשהלקוח משלם על **כמות וריאציות** ל-A/B.
 - **Hedra:** ‏Character-3 עושה lip-sync מתמונה ואודיו. רישיון מסחרי בכל התוכניות. מתאים לאווטאר שמקריא תסריט בעברית בקורס.
 - **Captions (שעובר למותג Mirage):** כתוביות ב-100+ שפות, AI Lipdub ו-Voice Clone. **הוא משלים את Higgsfield בשלב הפוסט, לא מתחרה בו.**
@@ -518,8 +520,8 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 **ManyChat: המחירים סותרים, אבל המבנה ידוע.**
 - **גרסה א'** (‏[layer3labs](https://www.layer3labs.io/guides/manychat-pricing), ‏[schedulingkit](https://www.schedulingkit.com/pricing-guides/manychat-pricing), ‏F2): Pro מתחיל ב-$15 ל-500 contacts. ‏$25 ל-1K, ‏~$45 ל-2.5K–5K, ‏~$75 ל-10K. תוספת AI ב-$29.
 - **גרסה ב'** ([dev.to](https://dev.to/sakthivel_instantdm/manychat-pricing-2026-real-costs-5-honest-alternatives-with-math-4d74), נכתב על ידי מתחרה): Essential ‏$14, ‏Pro ‏$29 ל-2,500 ועוד $0.05 לכל contact נוסף, ‏Business ‏$69.
-- **הכרעה:** בתקציב משתמשים בגרסה א', שמבוססת על שני מקורות ניטרליים. **הוודאות היחידה:** מאז **02.03.2026 החיוב הוא לפי Active Contacts**, ו-contact ממשיך להיספר עד שמוחקים אותו. רילס עם 24K תגובות (כמו של edbert) יכול להעלות את החשבון ל-$100–1,000 לחודש [הערכה].
-- **מה עושים:** מעבירים כל contact למייל או לוואטסאפ, ומוחקים אחת לחודש. או שעוברים לכלי במחיר קבוע:
+- **הכרעה (תוקנה בבדיקת העובדות):** **גרסה ב' היא הנכונה לחשבונות חדשים.** לפי [דף המחירים הרשמי](https://manychat.com/pricing) (נבדק 05.10.2026, במחירי חיוב שנתי): ‏Free ‏$0 ל-25 Active Contacts, ‏Essential ‏$14 ל-250, ‏Pro ‏$29 ל-2,500, ‏Business ‏$69 ל-7,500 ו-Advanced ‏$139 ל-25,000. כל contact מעבר למכסה עולה $0.10/$0.05/$0.025 בחודשי (‏$0.082/$0.038/$0.018 בשנתי) ב-Essential/Pro/Business. גרסה א' (‏$15 ל-500) תקפה רק לחשבונות Pro ותיקים (legacy). מאז **02.03.2026 החיוב הוא לפי Active Contacts**: "a real person you interact with during a monthly billing period". כלומר הספירה מתאפסת כל חודש, ונספר כל מי שהייתה איתו אינטראקציה באותו חודש. מחיקה לא מבטלת חיוב על אינטראקציה שכבר התקיימה. רילס עם 24K תגובות (כמו של edbert) יעלה בחודש הוויראלי כ-$850 ב-Pro השנתי (‏$29 + ‏21,500 × $0.038). ב-Advanced (‏$139) זה נכנס במכסה.
+- **מה עושים:** בחודש ויראלי משדרגים מראש ל-Business או ל-Advanced. מעבירים כל contact למייל או לוואטסאפ, ומוחקים contacts לא פעילים כדי לשמור על רשימה נקייה. או שעוברים לכלי במחיר קבוע:
 
 | חלופה | מחיר | ‏₪ | מודל |
 |---|---|---|---|
@@ -552,7 +554,7 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 | קול | ElevenLabs | Starter (‏$1 בחודש הראשון במבצע) | 6 | 18 |
 | מוזיקה | ספריית אינסטגרם (לחשבון שלכם בלבד) | — | 0 | 0 |
 | עריכה וכתוביות | CapCut Free + ivrit.ai | — | 0 | 0 |
-| DM | **InstantDM**, או ManyChat Free עד 500 contacts | — | 0–10 | 0–30 |
+| DM | **InstantDM**, או ManyChat Free (רק 25 Active Contacts לחודש בחשבון חדש) | — | 0–10 | 0–30 |
 | LLM לפרומפטים | Claude או ChatGPT בחינם | — | 0 | 0 |
 | **סה"כ** | | | **‏$65–75** | **‏₪197–228** |
 
@@ -571,16 +573,16 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 | קול | ElevenLabs | Creator (PVC, ‏SFX loops) | 22 | 67 |
 | מוזיקה (מסחרית ללקוחות) | Suno | Pro | 10 | 30 |
 | עריכה | CapCut | Pro שנתי | 15 | 46 |
-| DM | ManyChat Pro (~1K–2.5K contacts, עם מחיקה חודשית), או LinkDM | | 19–30 | 58–91 |
+| DM | ManyChat Pro (עד 2,500 Active Contacts, ‏$29 בשנתי), או LinkDM | | 19–29 | 58–88 |
 | LLM | Claude Pro | | 20 | 61 |
 | Top-ups (קרדיטים מעבר לחבילה) | Higgsfield | | 40 | 122 |
-| **סה"כ** | | | **‏$206–217** | **‏₪626–659** |
+| **סה"כ** | | | **‏$206–216** | **‏₪625–655** |
 
 **חלופה:** במקום Kling Pro אפשר **invideo Plus שנתי** (‏$36, ‏₪109) אם רוב העבודה היא Seedance 2.5 ב-1080p ולא B-roll. ההחלטה לפי הלוג אחרי חודשיים: באיזה מודל באמת השתמשתם יותר.
 
 **כלכלה (לפי F2):** העלויות הקבועות של הכלים הן ‏₪570–660. **רילס לקוח אחד ב-₪1,200 מכסה את כל הסטאק.** עלות הכלים היא כ-6% מההכנסה.
 
-### 6.3 סטאק 3: "סטודיו / סוכנות" (חודש 6 ואילך): כ-₪1,370–1,610 לחודש
+### 6.3 סטאק 3: "סטודיו / סוכנות" (חודש 6 ואילך): כ-₪1,360–1,620 לחודש
 
 המטרה: ריטיינרים (‏2 Hero ו-6 וריאציות לכל לקוח), סרטים לתחרויות, פרסונות דיגיטליות למותגים, ופרילנסר אחד או שניים.
 
@@ -596,9 +598,9 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 | Lip-sync ודיבוב | HeyGen שנתי או Sync.so | | 24–30 | 73–91 |
 | Upscale (רק אם לקוחות מבקשים 4K) | Topaz שנתי | | 33 | 100 |
 | עריכה | CapCut Pro שנתי | | 15 | 46 |
-| DM | ManyChat Pro (~5K contacts) | | 45–65 | 137–198 |
+| DM | ManyChat Business (‏7,500 Active Contacts, שנתי) | | 69 | 210 |
 | API לבנייה עצמית | Higgsfield API או fal | | 50 | 152 |
-| **סה"כ** | | | **‏$444–530** | **‏₪1,349–1,611** |
+| **סה"כ** | | | **‏$448–534** | **‏₪1,362–1,623** |
 | חד-פעמי | DaVinci Resolve Studio | | 295 | 897 |
 
 **הערות:**
@@ -609,8 +611,8 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 
 | | בדיקת היתכנות | הכנסה צדדית | סטודיו / סוכנות |
 |---|---|---|---|
-| ‏₪ לחודש | **‏~230** | **‏~670** | **‏~1,370–1,610** (ועוד ‏~900 חד-פעמי) |
-| ‏$ לחודש | ‏~75 | ‏~215 | ‏~445–530 |
+| ‏₪ לחודש | **‏~230** | **‏~670** | **‏~1,360–1,620** (ועוד ‏~900 חד-פעמי) |
+| ‏$ לחודש | ‏~75 | ‏~215 | ‏~450–535 |
 | רילסים פרימיום בחודש (Seedance ב-1080p) | 1–2 | 2–3 ועוד Kling בלי הגבלה מעשית | 4–5 ועוד invideo |
 | Genjutsu | כן | כן | כן |
 | מוזיקה מסחרית ללקוח | לא | כן | כן |
@@ -625,11 +627,11 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 | 1 | **תוכניות Higgsfield** (‏$19/$59/$129 מול $15/$49/$129 מול $9/$29/$79) | Creatify, Blotato, Krea, F2, B3 מול בלוג Higgsfield ו-B2 מול vdobloom | **לתקציב: $19/$59 ($47)/$129 ($99).** שווי הקרדיט זהה בשתי הגרסאות הראשונות. הגרסה השלישית ישנה (יוני) |
 | 2 | **Seedance 2.5 ב-1080p: 9 או 18 קרדיט לשנייה** (ויש גם 12) | מדריכי Higgsfield מ-14.08, 06.08 ו-11/15.09 | המחיר כנראה ירד. **בתקציב ללקוח: 18. בתכנון: 12. בפועל: כפתור Generate** |
 | 3 | **קיבולת Plus:** ‏3–4 רילסים (B2) מול ~1.3 (F2) | B2, F2 | **1–2 רילסים פרימיום של 30 שניות.** F2 סופר ניסיונות חוזרים ו-keyframes |
-| 4 | **עלות Genjutsu:** "לא נמצא" (F2) מול 144 קרדיט ל-15 שניות ב-1080p (B2) | Rekreate | **9.6 קרדיט לשנייה ב-1080p** [מקור משני]. כ-₪88 לרילס של 30 שניות ב-2.5 ניסיונות |
+| 4 | **עלות Genjutsu:** "לא נמצא" (F2) מול 144 קרדיט ל-15 שניות ב-1080p (B2) | Rekreate; בלוג Higgsfield | **9.6 קרדיט לשנייה ב-1080p** (אומת בבלוג Genjutsu הרשמי: 40/104/144 קרדיט ל-15 שניות). כ-₪88 לרילס של 30 שניות ב-2.5 ניסיונות |
 | 5 | **מנוי מול API:** "המנוי זול פי 2–3" (B2) | B2 | נכון ב-9 קרדיט לשנייה. **ב-18 המנוי זול רק פי 1.3–1.9** |
 | 6 | **Kling:** ‏$6.99 (B1) מול $10 (F2) | דף Kling | ‏$6.99 הוא חודש ראשון בלבד. **החידוש: $8.80/$32.56/$80.96/$159.99** |
 | 7 | **Dreamina ב-$0.035 לשנייה** (F2) | דף Dreamina | **מבצע לחודש הראשון בלבד** (עד 09.10, ב-12 מדינות). המחיר הרגיל: ‏~$0.097 לשנייה ב-720p |
-| 8 | **ManyChat Pro:** ‏$15 ל-500 מול $29 ל-2,500 | layer3labs ו-schedulingkit מול dev.to (מתחרה) | גרסה א'. החיוב לפי Active Contacts הוא ודאי |
+| 8 | **ManyChat Pro:** ‏$15 ל-500 מול $29 ל-2,500 | layer3labs ו-schedulingkit מול dev.to (מתחרה) | **תוקן: גרסה ב'**, לפי דף המחירים הרשמי (‏Free ל-25, ‏Pro ‏$29 ל-2,500, ‏Business ‏$69 ל-7,500). ‏$15 ל-500 תקף רק ל-legacy. Active Contacts נספרים מחדש כל חודש |
 | 9 | **שער המרה:** 3.6 (B1, ‏B3), ‏3.7 (B2) מול 3.04 (F2) | הערת המפקח | **3.04.** כל סכומי השקלים בפרק חושבו מחדש |
 | 10 | **Sora 2** מופיע ברשימת המודלים של Higgsfield (B2) ושל Arcads | B1 | **הופסק ב-24.09.2026.** לא להשתמש, לא ללמד |
 | 11 | **Seedance 2.5 ב-Lovart** (rourke השתמש בו) מול "לא מופיע בדף המחירים" ו-"prohibits real human faces" | B2 | **[לא מאומת].** לרילס עם פנים אמיתיות עדיפים Higgsfield או invideo |
@@ -672,6 +674,50 @@ Here is a Hebrew SRT generated by speech-to-text. Fix spelling and Hebrew gramma
 - כל דבר שקשור ל-Sora.
 
 ---
+
+## בדיקת עובדות (Fact-check)
+
+> נבדק ב-05.10.2026 בחיפוש רשת ובשליפת דפים (WebFetch / r.jina.ai). מטרת הבדיקה הייתה להפריך כל טענה. הדפים higgsfield.ai/pricing ו-x.com היו חסומים לשליפה.
+
+| טענה | פסק דין | מקור |
+|---|---|---|
+| Higgsfield: ‏Starter ‏$19/270, ‏Plus ‏$59 ($47 שנתי)/1,200, ‏Ultra ‏$129 ($99)/3,000 | אומת (מקור צד ג'. דף המחירים עצמו חסום) | [Creatify](https://creatify.ai/blog/higgsfield-pricing-(2026)-plans-and-what-you-ll-actually-pay), ‏[Blotato](https://www.blotato.com/blog/higgsfield-pricing) |
+| גרסה ב': ‏$15/200, ‏$49 ($39)/1,000 במדריכי Higgsfield | אומת (גם בלוג התמחור של Higgsfield, בעדכון 28.08, משתמש ב-$49/1,000) | [Novoads](https://novoads.ai/blog/higgsfield-pricing), ‏[Higgsfield](https://higgsfield.ai/blog/seedance-2-5-pricing-2026) |
+| Starter לא כולל Seedance 2.5 (רק 2.0 Fast/Mini) | אומת | [Blotato](https://www.blotato.com/blog/higgsfield-pricing) |
+| Seedance 2.5 ב-1080p: ‏72 קרדיט ל-8 שניות (9/ש') | אומת | [Novoads](https://novoads.ai/blog/higgsfield-pricing) (מדריך 15.09) |
+| Seedance 2.5 ב-1080p: ‏270 קרדיט ל-15 שניות (18/ש') | אומת | [Novoads](https://novoads.ai/blog/higgsfield-pricing) (מדריך 14.08) |
+| Seedance 2.5, 10 שניות: ‏30/70/120 קרדיט ב-480p/720p/1080p | אומת | [Higgsfield blog](https://higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026) |
+| Genjutsu: ‏40/104/144 קרדיט ל-15 שניות; קלט 4–30 שניות; עד 30 רפרנסים; השקה 31.08 | אומת (היה "מקור משני", כעת מקור רשמי) | [Higgsfield Genjutsu blog](https://higgsfield.ai/blog/higgsfield-genjutsu) |
+| 33 ימי Unlimited על Seedance 2.5 | אומת + הובהר: הפעלה עד 09.08, מוגבל ל-720p | [Higgsfield](https://higgsfield.ai/blog/33-days-unlimited-seedance-2-5) |
+| Sora: הכרזה 24.03, האפליקציה נסגרה ב-26.04, ה-API ב-24.09.2026 | אומת | [The Decoder](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/), ‏[Zilliz](https://zilliz.com/ai-faq/what-is-the-sora-shutdown-timeline) |
+| Arena T2V ‏(21.09): ‏Omni 1.1 Flash ‏1516, ‏Omni Flash ‏1513 ... Seedance 2.0 מקום 5, ‏2.5 מקום 7 | אומת | [Arena](https://arena.ai/leaderboard/text-to-video/overall) |
+| Veo 3.1 במקומות 12–16 | תוקן: 12–15. מקום 16 הוא Veo 3 Fast. ‏Sora 2 Pro במקום 11 | [Arena](https://arena.ai/leaderboard/text-to-video/overall) |
+| Kling 3.0 לא ב-Top 20 [לא מאומת] | תוקן/אומת: לא מופיע כלל. ה-Kling הגבוה ביותר הוא 2.6 Pro, במקום 29 | [Arena](https://arena.ai/leaderboard/text-to-video/overall) |
+| Seedance 2.5: ‏4–30 שניות, 50 רפרנסים (30/10/10); ‏2.0: ‏4–15 שניות, עד 4K, ‏12 רפרנסים | אומת | [fal](https://fal.ai/learn/devs/seedance-2-5-vs-seedance-2-0) |
+| Seedance 2.5 ב-1080p זמין ב-fal (‏$1.164 לשנייה) | **תוקן:** ב-fal וב-OpenRouter יש ל-2.5 רק 480p/720p. ‏1080p ב-API רק ב-Higgsfield (‏~$1.14) | [fal](https://fal.ai/learn/devs/seedance-2-5-vs-seedance-2-0), ‏[OpenRouter](https://openrouter.ai/blog/insights/seedance-2-5-review), ‏[Higgsfield API](https://open.higgsfield.ai/models/bytedance/seedance-2.5/text-to-video/playground) |
+| OpenRouter ‏$0.231 לשנייה ב-720p | אומת (‏480p: ‏$0.103) | [OpenRouter](https://openrouter.ai/blog/insights/seedance-2-5-review) |
+| Veo 3.1: ‏Std ‏$0.40, ‏Fast ‏$0.10–0.12, ‏Lite ‏$0.05–0.08; ‏Omni Flash ‏~$0.10 ב-720p | אומת | [Google pricing](https://ai.google.dev/gemini-api/docs/pricing) |
+| Gemini Omni Flash 1.1 הושק ב-28.08 | תוקן: שוחרר ב-27.08 (הוכרז ב-28.08). ‏360p עולה כשליש מ-720p | [DataNorth](https://datanorth.ai/news/google-releases-gemini-omni-1-1-flash) |
+| Kling 3.0: ‏05.02, ‏4K native, ‏60fps, ‏3–15 שניות, עד 6 קאטים, 5 שפות | אומת | [Atlas Cloud](https://www.atlascloud.ai/blog/kling-3.0-review-features-pricing-ai-alternatives) |
+| Kling: מחירון $10/$37/$92/$180, חודש ראשון $6.99/$25.99/$64.99/$127.99, חידוש $8.80/$32.56/$80.96/$159.99; ‏4K = ‏30 קרדיט לשנייה | אומת | [Kling](https://kling.ai/blog/kling-video-3-0-credit-cost-guide) |
+| Wan 3.0: ‏24.08, ‏API בלבד, ‏2–30 שניות | אומת (‏$0.0425–0.17 לשנייה) | [OrcaRouter](https://www.orcarouter.ai/blog/wan-3-0-release-date) |
+| MiniMax H3: ‏31.07, ‏2K, עד 15 שניות, סטריאו | אומת. מחיר API רשמי לא פורסם | [EvoLink](https://evolink.ai/blog/tag/minimax) |
+| Runway Aleph 2.0: ‏21.05, עריכה של עד 30 שניות ב-1080p | אומת (קרדיטים לשנייה לא בהודעה) | [Runway](https://runway.com/news/introducing-aleph-2-and-edit-studio) |
+| Dreamina: ‏$1.50 לחודש הראשון, ‏23.09–09.10, ‏12 מדינות; ‏$0.035/$0.047/$0.097 לשנייה | אומת. ישראל **לא** ברשימה (הוסר [לא מאומת]) | [Dreamina](https://dreamina.capcut.com/seedance/seedance-2-5-pricing-2026) |
+| invideo Plus: ‏$36 שנתי, ‏2,000 קרדיט למושב, כולל Seedance; ‏Starter בלי Seedance 2.5 | אומת | [invideo](https://invideo.io/pricing) |
+| Magnific Premium+ ‏$45/$33.75; קרדיטים ל-שנה; Seedance 2.5 ב-1080p "לא פורסם" | תוקן: ‏1080p = ‏4,400 קרדיט ל-4 שניות (‏720p: ‏1,760; ‏480p: ‏800) | [Magnific](https://www.magnific.com/pricing) |
+| OpenArt: ‏Pro ‏$44 שנתי, ‏80 דמויות; מסחרי מ-Plus | אומת | [OpenArt](https://openart.ai/pricing) |
+| Lovart: ‏Starter ‏$19/$16, ‏Basic ‏$32/$27; ‏Seedance 2.0 ב-720p ‏~$0.17 לשנייה; טעינה תקפה 366 יום | אומת (‏90 קרדיט ל-5 שניות). אזהרת "real human faces" לא נמצאה בדף ב-05.10, ולכן נשארת [לא מאומת] | [Lovart](https://www.lovart.ai/pricing) |
+| Higgsfield: גיוס $400M בשווי $5.4B | אומת (‏17.08.2026, ‏Series B). עודכן: ARR של $700M באוגוסט, 30M+ משתמשים | [TNW](https://thenextweb.com/news/higgsfield-series-b-400m-5-4bn-valuation-700m-revenue) |
+| Earn: מקסימום $1,000 ביום הראשון ו-$2,500 לסרטון, 7 ימי מעקב | אומת | [Higgsfield Earn](https://higgsfield.ai/earn) |
+| Affiliate: עד 25% ל-12 חודשים, המופנה מקבל עד 50% ל-3 שעות, אסור ממומן או אתרי קופונים | אומת | [Higgsfield](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
+| API: cashback של 20% ו-$15 מ-02.10 | לא מאומת | — |
+| Trustpilot: ‏4.0 מתוך 4,816; תלונה על חיוב של $49 | אומת | [Trustpilot](https://www.trustpilot.com/review/higgsfield.ai) |
+| ElevenLabs: ‏$6/$22/$99, ‏30K/121K/600K; ‏Starter מבצע עד 18.10; ‏Creator ‏50% בחודש הראשון | אומת | [ElevenLabs](https://elevenlabs.io/pricing) |
+| Suno: ‏Pro ‏$10 (‏$8 בשנתי), ‏Premier ‏$30; מסחרי מ-Pro | אומת | [gptprompts](https://gptprompts.ai/suno-pricing) |
+| CapCut Pro: ‏$19.99 לחודש או $179.99 לשנה | אומת | [eesel](https://eesel.ai/blog/capcut-pricing) |
+| ManyChat: חיוב לפי Active Contacts מ-02.03.2026 | אומת | [ManyChat](https://manychat.com/pricing), ‏[chatarmin](https://chatarmin.com/en/blog/manychat-pricing) |
+| ManyChat: גרסה א' (‏Pro ‏$15/500, ‏Free עד 500) + "contact נספר עד שמוחקים" | **תוקן:** ‏Free ל-25, ‏Essential ‏$14/250, ‏Pro ‏$29/2,500, ‏Business ‏$69/7,500, ‏Advanced ‏$139/25,000. ‏Active Contact נספר לפי חודש של אינטראקציה. הסטאקים עודכנו בהתאם | [ManyChat](https://manychat.com/pricing) |
 
 ## מקורות
 
