@@ -490,13 +490,14 @@ I have a Hebrew dialogue script for a 30-second vertical ad (below). Produce a t
 
 ## בדיקת עובדות (Fact-check)
 
-> נבדק ב-05.10.2026 מול מקורות ראשוניים ככל האפשר. עובדות שמקורן בניתוח הוויזואלי (`00-visual-analysis.md`) לא נבדקו מחדש (למשל לייקים/תגובות ברילס, המונה $17,998,344, השופטים שמופיעים על המסך). פרופילי אינסטגרם: רק edbert_yienson, sidequestpat_ ו-menezes.ai החזירו og:description; השאר נחסמו (תגובה ריקה) ונשארו כפי שנשלפו קודם.
+> נבדק ב-05.10.2026 מול מקורות ראשוניים ככל האפשר. עובדות שמקורן בניתוח הוויזואלי (`00-visual-analysis.md`) לא נבדקו מחדש (למשל לייקים/תגובות ברילס, המונה $17,998,344, השופטים שמופיעים על המסך). פרופילי אינסטגרם: רק edbert_yienson, sidequestpat_, menezes.ai ו-lilmiquela החזירו og:description; השאר נחסמו (תגובה ריקה) ונשארו כפי שנשלפו קודם.
 
 | טענה | פסק דין | מקור |
 |---|---|---|
 | @edbert_yienson: 43K עוקבים, 53 פוסטים | אומת | og:description, 05.10.2026 |
 | @sidequestpat_: 22K עוקבים, 44 פוסטים | אומת | og:description, 05.10.2026 |
 | @menezes.ai: 12K עוקבים, 400 פוסטים | אומת | og:description, 05.10.2026 |
+| @lilmiquela: 2M עוקבים | אומת | og:description, 05.10.2026 |
 | Seedance 2.5 ב-Higgsfield 06.08; 1080p ב-14.08; Genjutsu 01.09; Genjutsu Restyle ו-ChatGPT 30.09; AI Influencer 02.10 | אומת | [Higgsfield Changelog](https://higgsfield.ai/creator-hub/changelog) |
 | Genjutsu: קלט וידאו "3/4 עד 30 שניות", 480p-1080p | תוקן: 4-30 שניות, עד 30 רפרנסים; רזולוציה לא מופיעה בעמוד | [higgsfield.ai/genjutsu](https://higgsfield.ai/genjutsu) |
 | AI Influencer: 5 ג'נרציות חינם, עד 40 תמונות | תוקן חלקית: "קרדיטים חינם" ועד 40 תמונות לסרטון; "5" לא מאומת | [higgsfield.ai/ai-influencer](https://higgsfield.ai/ai-influencer) |
