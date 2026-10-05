@@ -20,3 +20,4 @@ Writing rules: Hebrew (clear, practical, headings/tables), but keep tool names, 
 - **FX rate:** USD/ILS = **3.04** (open.er-api.com, 05.10.2026). Some workers used 3.6 — recompute ILS figures with 3.04.
 - The session's WebSearch quota (200) is exhausted. Use WebFetch on specific URLs if you must verify; otherwise preserve [לא מאומת] marks.
 - Sora was shut down (app 26.04.2026, API 24.09.2026) — do not recommend it.
+- **Fetch tip:** pages that block WebFetch can often be read via `curl -s https://r.jina.ai/<full-url>`.
