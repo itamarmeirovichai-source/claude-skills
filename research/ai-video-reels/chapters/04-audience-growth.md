@@ -2,7 +2,7 @@
 
 > חטיבה D (קהל וצמיחה) · 2026-10-05 · מאחד את דוחות D1 (פסיכולוגיית קהל, פרסונות, ניתוח 144 תגובות אמיתיות), D2 (אלגוריתמים 2026, משפך Comment→DM, כללי Meta, תבניות DM) ו-D3 (אסטרטגיית תוכן, מקרי בוחן, הוקים, 15 רעיונות, תוכנית 30 יום).
 > שער המרה בכל הפרק: **$1 = ₪3.04** (open.er-api.com, 05.10.2026). סכומים שהעובדים חישבו בשער 3.6–3.7 חושבו מחדש.
-> **[לא מאומת]** מסמן נתון ממקור יחיד, מקור של ספק כלי, או הערכה. מכסת החיפוש של הסשן נגמרה, כך שהסימונים נשמרו כפי שהם.
+> **[לא מאומת]** מסמן נתון ממקור יחיד, מקור של ספק כלי, או הערכה. בדיקת עובדות נערכה ב-05.10.2026 (ראו "בדיקת עובדות" בסוף הפרק): נתונים שאומתו מול מקור עדכני עודכנו והסימון הוסר; השאר נשמרו מסומנים.
 
 ---
 
@@ -11,9 +11,9 @@
 1. **מקטע התגובות ברילס האלה הוא טופס הרשמה, לא שיחה.** מתוך 144 תגובות שנדגמו מ-10 רילס המקור, 138 (95.8%) היו מילת המפתח בלבד ("Dubai", "רולס", "Unlock"). מי שמגיב רוצה לקבל משהו. רוב המגיבים הם "יוצרים מתחילים", ובעלי עסקים נכנסים לאותו DM ומתערבבים איתם. **ה-DM הוא המקום שבו מפרידים בין הקבוצות**, בעזרת שאלת סינון אחת.
 2. **שלושה פלחים קונים:** בעלי עסקים (שירות, ₪1.5K–₪15K לפרויקט [לא מאומת]), יוצרים מתחילים (ידע, ₪30–₪600) ואנשי וידאו מקצועיים (workflow, סדנאות, שותפות white-label). צופי הבידור, חובבי הטכנולוגיה והספקנים מביאים reach ולא כסף. בלי reach, עם זאת, הסרטון לא מגיע לקונים.
 3. **מיצוב: "Real vs AI" עם הפנים שלך, בעברית, ושהסרטון יהיה מובן גם בלי סאונד.** החל מ-31.8.2026 אינסטגרם מגבילה חשבונות שבנויים סביב "אדם AI" ואינם מסומנים. יוצר אמיתי שמשתמש ב-AI על עצמו פטור מהתווית. המיצוב הזה עונה בבת אחת על כלל המקוריות, על העדפת התוכן ה"אנושי" ועל הסיבה שאנשים שולחים סרטון לחבר. בנוסף, השוק בעברית כמעט ריק: המתחרה הישיר, maorhani1, מחזיק 3.7K עוקבים.
-4. **חוקי האלגוריתם ב-2026:** אינסטגרם מדרגת לפי watch time, sends per reach (משקל של פי 3–5 מלייק לחשיפה ללא-עוקבים) ו-likes per reach. מקוריות היא כלל קשיח: חפיפה של 70% לסרטון קיים מורידה את החשיפה ל-24 שעות עד 30 יום, וסרטון עם ווטרמרק מקבל דימוט. מותר עד 5 האשטגים. ל-AI עצמו אין עונש, בתנאי שהתוכן מקורי ומסומן.
+4. **חוקי האלגוריתם ב-2026:** אינסטגרם מדרגת לפי watch time, sends per reach (לפי Mosseri, האות החשוב ביותר לחשיפה ללא-עוקבים; המכפיל "פי 3–5 מלייק" שמופיע בבלוגים [לא מאומת]) ו-likes per reach. מקוריות היא כלל קשיח: מאז עדכון אפריל 2026, חשבון שרוב התוכן שלו ממוחזר מפסיק להיות מומלץ ללא-עוקבים; לפי מקור משני, חפיפה של 70% לסרטון קיים מורידה את החשיפה ל-24 שעות עד 30 יום [לא מאומת מול Meta], וסרטון עם ווטרמרק מקבל דימוט. מותר עד 5 האשטגים. ל-AI עצמו אין עונש, בתנאי שהתוכן מקורי ומסומן.
 5. **שני מסלולי תוכן, שני CTA.** מסלול "Wow + Recipe" ("תגנבו לי את הפרומפט") מביא reach ומוכר ידע, אבל מרחיק בעלי עסקים, שחושבים "אז למה לשלם לו?". מסלול "Case study + Price anchor" ("פרסומת לפלאפל, צולמה בטלפון, 72 שעות, מחיר") מביא לקוחות. לא מערבבים את שניהם באותו רילס.
-6. **משפך Comment→DM חוקי** כשהוא עובר דרך ה-API הרשמי של Meta. הכללים: Private Reply אחד לכל תגובה, עד 7 ימים אחרי התגובה. אחרי שהמשתמש עונה או לוחץ על כפתור נפתח חלון של 24 שעות. בערך 200 DM אוטומטיים בשעה. אסור לשלוח DM קר. לרילס ויראלי עדיף כלי במחיר קבוע (InstantDM, החל מ-$9.99, כ-₪30). ManyChat עדיף כשצריך תגיות, רצפים ואינטגרציה למייל (Pro ב-$29, כ-₪88, עם חיוב לפי איש קשר).
+6. **משפך Comment→DM חוקי** כשהוא עובר דרך ה-API הרשמי של Meta. הכללים: Private Reply אחד לכל תגובה, עד 7 ימים אחרי התגובה. אחרי שהמשתמש עונה או לוחץ על כפתור נפתח חלון של 24 שעות. לפי Meta, עד 750 Private Replies בשעה לחשבון (לתגובות על פוסטים ורילס). אסור לשלוח DM קר. לרילס ויראלי עדיף כלי במחיר קבוע (InstantDM, החל מ-$9.99, כ-₪30, בחיוב שנתי; $12 בחיוב חודשי). ManyChat עדיף כשצריך תגיות, רצפים ואינטגרציה למייל (Pro ב-$29, כ-₪88, בחיוב שנתי, עם חיוב לפי איש קשר פעיל).
 7. **התוצאה הצפויה, לפי ספקי הכלים:** בין 0.3% ל-1% מהצופים קונים בסוף המשפך, ובמשפך ממוטב 2%–4% [נתוני ספקים]. ריל של 200K צפיות עם מדריך ב-₪79 שווה בערך 90 מכירות (כ-₪7,300) וכ-1,400 כתובות מייל.
 8. **30 הימים הראשונים:** 20 רילס (5 בשבוע) בחמישה עמודי תוכן, ManyChat או InstantDM פעילים מהיום הראשון, ו-PDF בעברית כמגנט. היעד הריאלי: 1,000–3,000 עוקבים, 300–800 לידים ב-DM, ו-2–5 פניות מעסקים [הערכה].
 
@@ -57,7 +57,7 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 | עלייה באמון במודעה כשיש גילוי ברור | 73% | שם |
 | מעורבות נמוכה יותר כשחושדים ב-AI | 52% | שם |
 | רוצים סרטוני AI ממותגים | 74% (65% שנה קודם); 87% בקרב בעלי הכנסה גבוהה | [Idomoo 2026](https://www.idomoo.com/blog/2026-market-study-ai-video-and-personalization-trends/) |
-| גילאי 18–24 מול 13–17 | פער של 58 נקודות לרעת ה-18–24 ביחס לתוכן AI ברשתות | [Luminate, יולי 2026](https://luminatedata.com/blog/how-u-s-audiences-feel-about-gen-ai-in-entertainment-content/) |
+| גילאי 18–24 מול 13–17 | פער של 58 נקודות לרעת ה-18–24 ביחס לתוכן AI ברשתות (ובסרטים/טלוויזיה בתסריט AI) | [Luminate, 24.7.2026](https://luminatedata.com/blog/how-u-s-audiences-feel-about-gen-ai-in-entertainment-content/) |
 | Gen Z: שונאים / חוששים / חיוביים | 41% / 31% / 28% | [Luminate](https://luminatedata.com/studies/ai-media-audience-attitudes/) [לא מאומת בטקסט המלא] |
 
 **הפרדוקס:** אנשים אומרים שהם לא אוהבים AI, לא מצליחים לזהות אותו, וצורכים אותו בכמויות. "AI slop", כלומר תוכן המוני וזול בלי כוונה, הוא מושג השנאה של 2026. **ההבדל בין "וואו" ל-"slop" נשען על שלושה דברים:** (1) כוונה אנושית שרואים על המסך, כמו הפנים שלך, החניון שלך או הסלפי שלך; (2) הצגת התהליך (לפני/אחרי, הפרומפט על המסך); (3) הומור ומודעות עצמית. כל רילס המקור עומדים בשלושתם. **המסקנה: מוכרים תוצאה ויכולת, לא "AI", ומגלים בשקיפות שהשתמשנו ב-AI.**
@@ -76,7 +76,7 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 
 \* האחוזים הם הערכה של D1 **[לא מאומת]**, שמבוססת על הדגימה, על ה-handles ועל נתוני השוק. אין נתון ציבורי שמפלח את קהל רילס ה-AI.
 
-**נתוני שוק לפלח 2 (הפלח שמשלם):** 37% מהמשווקים משתמשים בווידאו AI, ו-74% רוצים ללמוד, פער של 37 נקודות ([Social Media Examiner](https://www.socialmediaexaminer.com/?p=279620)). הביקוש לפרילנסרים לווידאו AI ב-Fiverr עלה ב-66% בחצי שנה ([Fiverr](https://www.fiverr.com/news/2025-fall-business-trends-index)). 45% ממודעות הווידאו של מפרסמים קטנים יהיו מבוססות AI ב-2026, לעומת 36% אצל הגדולים ([PPC Land](https://ppc.land/nearly-90-of-advertisers-will-use-ai-to-build-video-ads-by-2026/)). בישראל 39% מהעסקים משתמשים בכלי AI, לעומת 28% ביוני 2025 [לא מאומת במקור ראשוני].
+**נתוני שוק לפלח 2 (הפלח שמשלם):** 37% מהמשווקים משתמשים בווידאו AI, ו-74% רוצים ללמוד, פער של 37 נקודות ([Social Media Examiner](https://www.socialmediaexaminer.com/?p=279620)). הביקוש לפרילנסרים לווידאו AI ב-Fiverr עלה ב-66% בחצי שנה ([Fiverr](https://www.fiverr.com/news/2025-fall-business-trends-index)). 45% ממודעות הווידאו של מפרסמים קטנים יהיו מבוססות AI ב-2026, לעומת 36% אצל הגדולים ([PPC Land](https://ppc.land/nearly-90-of-advertisers-will-use-ai-to-build-video-ads-by-2026/)). בישראל 39% מהעסקים משתמשים בכלי AI (סקר מגמות בעסקים של הלמ"ס, מרץ 2026), לעומת 28% ביוני 2025 (נתון יוני 2025 אומת ב-[Bizportal](https://www.bizportal.co.il/general/news/article/20019372); ה-39% אומת רק בדיווחים משניים).
 
 **מטריצת הקונים:**
 
@@ -94,7 +94,7 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 |---|---|---|
 | משתמשי אינסטגרם | 5,807,300 (60.4% מהאוכלוסייה), 54% נשים | [NapoleonCat, ספט' 2026](https://napoleoncat.com/stats/instagram-users-in-israel/) |
 | קבוצות גיל | 25–34: 33%; 18–24: 20.3%; 35–44: 18.8%; 45–54: 12.6% | שם |
-| ChatGPT | 88% (יותר מאינסטגרם, 82%); 90% בגילאי 18–34 | [Calcalist, מאי 2026](https://www.calcalistech.com/ctechnews/article/rkqhuhexfl) |
+| ChatGPT | 88% (יותר מאינסטגרם, 82%); 90% בגילאי 18–34 | "Israel Digital Trends 2026" של איגוד האינטרנט הישראלי (גיאוקרטוגרפיה, מאי 2026), דרך [Calcalist](https://www.calcalistech.com/ctechnews/article/rkqhuhexfl) |
 | TikTok | 59%; שימוש יומי ירד ל-34% (55% ב-2025) | שם |
 | קורס וידאו AI אקדמי | ₪1,000–₪6,000 ועוד ₪200–₪300 לחודש לכלים | [study.co.il](https://www.study.co.il/P47148/) |
 
@@ -167,7 +167,7 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 
 | שיקול | מה ידוע | מקור |
 |---|---|---|
-| **תווית "AI-generated profile"** | הוכרזה ב-31.8.2026 ועדיין לא נאכפת במלואה. חשבון שבנוי סביב אדם שנוצר ב-AI וללא התווית מוגבל ב-Reels וב-Explore. יוצר אמיתי שמשתמש ב-AI על עצמו לא צריך את התווית. הגילוי עצמו לא מוריד reach | [Business Today](https://www.businesstoday.in/technology/artificial-intelligence/story/no-ai-label-no-reach-instagram-cracks-down-on-ai-generated-influencers-552520-2026-09-01), [Implicator](https://www.implicator.ai/instagram-will-cut-the-reach-of-ai-personas-that-skip-its-new-label/) |
+| **תווית "AI-generated profile"** | הוכרזה ב-31.8.2026 (מחליפה את התווית "AI creator") ועדיין לא נאכפת במלואה: הזיהוי וההתראות לבעלי חשבונות מתגלגלים בשבועות שאחרי ההכרזה. חשבון שבנוי סביב אדם שנוצר ב-AI וללא התווית מפסיק להיות מומלץ ללא-עוקבים ב-Reels וב-Explore (אפשר להוסיף תווית או לערער). יוצר אמיתי שמשתמש ב-AI על עצמו לא צריך את התווית. הגילוי עצמו לא מוריד reach | [Business Today](https://www.businesstoday.in/technology/artificial-intelligence/story/no-ai-label-no-reach-instagram-cracks-down-on-ai-generated-influencers-552520-2026-09-01), [Implicator](https://www.implicator.ai/instagram-will-cut-the-reach-of-ai-personas-that-skip-its-new-label/) |
 | **"Raw, real, human"** | Mosseri (31.12.2025): "the polished, perfect aesthetic is dead", ו-2026 תעדיף תוכן אנושי ו-provenance | [SocialPilot](https://www.socialpilot.co/de/blog/instagram-reels-algorithm) |
 | **מקוריות** | input משלך (פנים, רכב, לוקיישן) הוא הדרך הטבעית ביותר לעמוד בכלל של 70% חפיפה | D2 |
 | **תיק עבודות** | אותו פורמט, כשמחילים אותו על עסק אמיתי, הופך ל-case study | D1, D3 |
@@ -206,24 +206,24 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 | אות או כלל | 2026 | מקור |
 |---|---|---|
 | Watch time, completion, rewatch | האות הראשי | [eclincher](https://www.eclincher.com/articles/how-the-instagram-algorithm-works-in-2026) |
-| **Sends per reach** | האות החזק ביותר לחשיפה ללא-עוקבים, פי 3–5 מלייק. Mosseri: likes חשובים יותר לעוקבים, sends ללא-עוקבים | [SocialPilot](https://www.socialpilot.co/blog/instagram-reels-algorithm) |
+| **Sends per reach** | האות החזק ביותר לחשיפה ללא-עוקבים. Mosseri: watch time, likes ו-sends הם שלושת האותות המובילים; likes חשובים יותר לעוקבים, sends ללא-עוקבים. המכפיל "פי 3–5 מלייק" מגיע מבלוגים ולא מ-Meta [לא מאומת] | [SocialPilot](https://www.socialpilot.co/blog/instagram-reels-algorithm), [Social Media Today](https://www.socialmediatoday.com/news/instagram-shares-algorithm-insights-2025/738034/) |
 | Likes per reach | נספר, במשקל נמוך יותר | שם |
 | Saves, Comments | אותות משניים | eclincher |
 | אורך | אפשר עד 20 דקות, אבל ההמלצה ללא-עוקבים נעצרת בערך ב-3 דקות. 15–30 שניות מביאים את שיעור הצפייה המלאה הגבוה ביותר | SocialPilot, [SocialBu](https://socialbu.com/blog/instagram-algorithm-changes) |
 | ווטרמרק | לוגו של TikTok, CapCut וכו' גורם לדימוט | SocialPilot |
-| **האשטגים** | מדצמבר 2025 מקסימום 5 לפוסט, כולל התגובה הראשונה. "לא מגדילים חשיפה" (Mosseri) | [fanpagekarma](https://www.fanpagekarma.com/insights/?p=3917) |
-| "Your Algorithm" | המשתמש עורך את תחומי העניין שלו (Reels מדצמבר 2025, פיד ביוני 2026) | SocialPilot |
+| **האשטגים** | מדצמבר 2025 מקסימום 5 לפוסט או רילס, כולל התגובה הראשונה. "לא מגדילים חשיפה" (Mosseri) | [fanpagekarma](https://www.fanpagekarma.com/insights/?p=3917), [Social Media Today](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/) |
+| "Your Algorithm" | המשתמש עורך את תחומי העניין שלו (Reels מסוף 2025, Explore באפריל 2026, הפיד הראשי ב-10.6.2026) | SocialPilot, [Search Engine Land](https://searchengineland.com/instagram-your-algorithm-expands-main-feed-479922) |
 | חשבונות קטנים | חשבונות עם 1K–5K עוקבים מקבלים view rate של כ-20%, לעומת 4% מעל 100K | SocialBu [לא מאומת] |
 | אחרי ויראלי | פרסום נוסף בתוך 24 שעות משפר את ביצועי הרילס הבא | SocialBu |
 | ספטמבר 2026 | לא הוכרזו שינויי דירוג | SocialPilot |
 
 **כללי מקוריות (הכלל החשוב ביותר ליוצרי AI):**
-- חפיפה של 70% ומעלה למקור נחשבת near-duplicate, והעונש הוא 24 שעות עד 30 יום של חשיפה מופחתת ([SociallyIn](https://sociallyin.com/blog/instagram-algorithm-update-repost/)).
-- חשבון "אגרגטור" (רוב התוכן ממוחזר ב-30 הימים האחרונים) מקבל חשיפה מופחתת. לפי הדיווחים, אגרגטורים איבדו 60–80% מהחשיפה, ויוצרים מקוריים הרוויחו 40–60%.
+- חפיפה של 70% ומעלה למקור נחשבת near-duplicate, והעונש הוא 24 שעות עד 30 יום של חשיפה מופחתת ([SociallyIn](https://sociallyin.com/blog/instagram-algorithm-update-repost/)) [מקור משני; הסף והמשך לא פורסמו רשמית על ידי Meta].
+- חשבון "אגרגטור" (רוב התוכן ממוחזר ב-30 הימים האחרונים) מקבל חשיפה מופחתת. בעדכון של סוף אפריל 2026 הורחב הכלל גם לתמונות ולקרוסלות: חשבון שרוב התוכן שלו של אחרים מפסיק להיות מומלץ ללא-עוקבים (העוקבים עדיין רואים אותו). קרדיט, ווטרמרק או חיתוך קל לא נחשבים "שינוי מהותי". לפי Meta, 75% מההמלצות בארה"ב מגיעות כיום מתוכן מקורי ([PetaPixel](https://petapixel.com/2026/04/30/new-instagram-policies-target-reposted-content/)). לפי הדיווחים, אגרגטורים איבדו 60–80% מהחשיפה, ויוצרים מקוריים הרוויחו 40–60%.
 - כשמישהו מעלה עותק של הסרטון שלך, בהמלצות מוצג המקור.
 - **בפועל:** לא מעלים מחדש רילס של Higgsfield, edbert או maorhani1 "כהשראה". מייצרים input, פרומפט וקול משלכם. Genjutsu (video-to-video) ו-Lovart "infinite angles" על צילום שלכם עומדים בכלל באופן טבעי.
 
-**Trial Reels:** פתוח לחשבונות ציבוריים מ-1,000 עוקבים. הרילס מוצג קודם רק ללא-עוקבים. לפי Meta, ל-80% מהמשתמשים עלתה החשיפה. **שימוש:** בודקים 2–3 הוקים לאותו סרטון, ואחרי 24–72 שעות הופכים את המנצח לרילס רגיל. האם טריגר comment ב-ManyChat עובד על Trial? [לא מאומת]. צריך לבדוק עם "Specific post".
+**Trial Reels:** פתוח לחשבונות Professional ציבוריים (Creator או Business), ואצל רוב היוצרים מופיע מ-1,000 עוקבים. הרילס מוצג קודם רק ללא-עוקבים, למשך 24–72 שעות. לפי Meta, 40% מהיוצרים שניסו את הפיצ'ר מפרסמים רילס בתדירות גבוהה יותר, ו-80% מהם ראו עלייה בחשיפה ללא-עוקבים ([Social Media Today](https://socialmediatoday.com/news/instagram-trial-reels-increase-reach-tests/750121/)). **שימוש:** בודקים 2–3 הוקים לאותו סרטון, ואחרי 24–72 שעות הופכים את המנצח לרילס רגיל. האם טריגר comment ב-ManyChat עובד על Trial? [לא מאומת]. צריך לבדוק עם "Specific post".
 
 **תוויות AI:** Meta מוסיפה "AI info" לפי C2PA/IPTC או לפי הצהרת היוצר. לא נמצאה הצהרה רשמית שהתווית מורידה חשיפה באינסטגרם [לא מאומת]. ברילס המקור ה-AI גלוי והוא חלק מה-hook ("I filmed myself… then AI").
 
@@ -233,9 +233,9 @@ D1 שלף עם `yt-dlp --impersonate chrome --skip-download --write-comments` א
 
 | | TikTok | YouTube Shorts | Facebook Reels |
 |---|---|---|---|
-| אות מס' 1 | Completion. סף ויראליות של כ-70% (היה 50% ב-2024). מודל follower-first | Viewed מול swiped away. יעד swipe-away מתחת ל-25% (עד 30 שניות) או מתחת ל-35% (30–60 שניות). מעל 40% ב-3 השניות הראשונות, ההפצה נעצרת | שיתוף פרטי (Messenger/WhatsApp). תגובה של 5 מילים ומעלה שווה פי 3 מתגובה של מילה אחת |
+| אות מס' 1 | Completion. סף ויראליות של כ-70% (היה 50% ב-2024). מודל follower-first | Viewed מול swiped away. יעד swipe-away מתחת ל-25% (עד 30 שניות) או מתחת ל-35% (30–60 שניות). מעל 40% ב-3 השניות הראשונות, ההפצה נעצרת | שיתוף פרטי (Messenger/WhatsApp). תגובות משמעותיות (מעבר לאימוג'י או מילה אחת) שוקלות יותר; הסף "5 מילים = פי 3" לא נמצא במקור עדכני [לא מאומת] |
 | תווית AI | AIGC חובה בתוכן ריאליסטי, "will not affect distribution". למשתמש יש slider להפחתת AI בפיד (מנובמבר 2025) | גילוי altered/synthetic | "Made with AI" לתוכן פוטו-ריאליסטי, בלי דימוט |
-| תשלום על AI מלא | ❌ לא זכאי ל-Creator Rewards (AI ככלי כן זכאי) | ⚠️ 16.7.2026: אין מונטיזציה לתוכן "תבניתי", ל-shock בלי payoff ולפרסונות AI שמתחזות למומחים | ✅ Creator Fast Track, "no penalty" כשהתוכן מקורי |
+| תשלום על AI מלא | ❌ לא זכאי ל-Creator Rewards (AI ככלי כן זכאי) | ⚠️ 15–16.7.2026 (המקורות חלוקים ביום): אין מונטיזציה לתוכן "תבניתי"/חוזר, לתוכן מניפולטיבי או shock בלי payoff ולפרסונות AI שמייעצות בנושאים רגישים (בריאות, כסף, משפט). AI לבד לא פוסל | ✅ Creator Fast Track, "no penalty" כשהתוכן מקורי |
 | Comment→DM | ❌ אף כלי לא תומך | ❌ (תגובה מוצמדת או תיאור) | ✅ דרך Messenger |
 | אורך מיטבי | 21–60 שניות | 15–45 שניות | 15–60 שניות |
 | מקור | [eclincher TikTok](https://www.eclincher.com/articles/how-the-tiktok-algorithm-works-in-2026), [cinerads](https://www.cinerads.com/blog/tiktok-ai-content-policy), [storrito](https://storrito.com/resources/what-tiktoks-ai-monetization-restrictions-signal-for-creator-income/) | [easyviral](https://easyviral.ai/blog/youtube-shorts-algorithm-2026), [outlierkit](https://outlierkit.com/blog/youtube-updates-july-2026) | [SocialPilot FB](https://www.socialpilot.co/blog/facebook-algorithms-change), [opus.pro](https://www.opus.pro/blog/facebook-paying-ai-generated-reels-creator-fast-track) |
@@ -329,7 +329,7 @@ S8 משכפל את המנגנון של Fruit Love Island, שבו הקהל מרג
 - שעות 3–4: עריכה ב-CapCut (split/wipe, כותרת עם שם הכלי, CTA).
 - שעה 4: מפרסמים, עם מילה חדשה ב-ManyChat ו-PDF של עמוד אחד שנכתב עם Claude.
 
-**כלל ברזל:** בלי סלבריטאים, בלי פוליטיקאים ובלי IP מוגן (דיסני, מארוול). A2 תיעד מכתבי C&D תוך 72 שעות. Sora נסגרה (האפליקציה ב-26.04.2026, ה-API ב-24.09.2026), בין השאר בגלל דיפ-פייקים של מפורסמים. לא ממליצים עליה.
+**כלל ברזל:** בלי סלבריטאים, בלי פוליטיקאים ובלי IP מוגן (דיסני, מארוול). A2 תיעד מכתבי C&D תוך 72 שעות. Sora נסגרה (הוכרז ב-24.3.2026; האפליקציה ב-26.04.2026, ה-API ב-24.09.2026). המקורות מציינים בעיקר עלויות compute וקיימות; הקשר לדיפ-פייקים של מפורסמים [לא מאומת]. לא ממליצים עליה.
 
 ---
 
@@ -354,11 +354,11 @@ S8 משכפל את המנגנון של Fruit Love Island, שבו הקהל מרג
 
 | כלל | פירוט | מקור |
 |---|---|---|
-| **Private Reply אחד לכל תגובה** | מותר לשלוח הודעה פרטית **אחת** לתגובה, **בתוך 7 ימים** מהתגובה. בלייב, רק בזמן השידור | [Inrō guide](https://inro.social/blog/instagram-dm-automation-guide-2026), [spurnow](https://www.spurnow.com/en/blogs/instagram-dm-automation-rules) |
+| **Private Reply אחד לכל תגובה** | מותר לשלוח הודעה פרטית **אחת** לתגובה, **בתוך 7 ימים** מהתגובה. בלייב, רק בזמן השידור. ההודעה נוחתת ב-Inbox אם המשתמש עוקב, וב-Requests אם לא | [Meta Developers](https://developers.facebook.com/docs/messenger-platform/instagram/features/private-replies), [Inrō guide](https://inro.social/blog/instagram-dm-automation-guide-2026), [spurnow](https://www.spurnow.com/en/blogs/instagram-dm-automation-rules) |
 | **חלון 24 שעות** | נפתח רק אחרי שהמשתמש שולח הודעה או לוחץ על כפתור. בתוכו מותרות הודעות חופשיות, כולל שיווקיות. אחריו צריך opt-in או סוג הודעה מאושר | שם, [creatorflow](https://creatorflow.so/blog/instagram-24-hour-messaging-window-error-10/) |
 | **רק טריגר של המשתמש** | תגובה, תשובה לסטורי, mention, מודעת click-to-message או DM נכנס. **אסור DM קר** | Inrō |
-| **אין auto-DM לעוקבים חדשים** | לא ב-API הכללי. מ-22.10.2025 יש בטא follow-triggered רק ב-ManyChat, באישור Meta, לחשבונות עם יותר מ-1,000 עוקבים בערך | Inrō, [zorcha](https://zorcha.com/blogs/what-is-an-instagram-follow-gate-and-how-does-it-work/) |
-| **Rate limit** | בערך 200 DM אוטומטיים בשעה לחשבון. private replies עד 750 קריאות API בשעה. **[לא מאומת: יש סתירה בין המקורות. כדאי לבדוק בכלי]** | [dev.to](https://dev.to/sakthivel_instantdm/instagram-auto-reply-to-comments-2026-guide-3emm), [storrito](https://storrito.com/resources/instagram-penalizes-aggressive-automation/) |
+| **אין auto-DM לעוקבים חדשים** | לא ב-API הכללי. מ-22.10.2025 יש בטא follow-triggered ("Say hi to new followers") רק ב-ManyChat, באישור Meta, לחשבונות עם יותר מ-1,000 עוקבים בערך. הטריגר יורה באופן לא עקבי, ו-Meta חוסמת שליחה למי שקיבל follow-DM מחשבון אחר בשבוע האחרון | Inrō, [zorcha](https://zorcha.com/blogs/what-is-an-instagram-follow-gate-and-how-does-it-work/), [creatorflow](https://creatorflow.so/blog/auto-dm-new-instagram-followers/) |
+| **Rate limit** | **לפי התיעוד של Meta:** Private Replies לתגובות על פוסטים ורילס, עד **750 קריאות בשעה** לחשבון Professional; לתגובות בלייב 100 בשנייה; Send API (הודעות בתוך שיחה פתוחה) 300 בשנייה. הנתון "200 DM בשעה" שמופיע בבלוגים הוא נוסחת מכסה ישנה ברמת האפליקציה (200 קריאות × משתמשים פעילים), ולא המכסה של Private Replies. ייתכן שכלים מגבילים לקצב נמוך יותר מטעמי בטיחות | [Meta rate limits](https://developers.facebook.com/docs/messenger-platform/overview/rate-limiting), [dev.to](https://dev.to/sakthivel_instantdm/instagram-auto-reply-to-comments-2026-guide-3emm), [storrito](https://storrito.com/resources/instagram-penalizes-aggressive-automation/) |
 | **אין בוטים לא רשמיים** | auto-like, auto-comment ו-follow/unfollow מובילים ל-shadowban או להגבלה. האכיפה הוחמרה מסוף 2025 | storrito |
 
 **יישוב הסתירה:** D3 ציטט את Buffer: "DM אוטומטי אחד לאדם ב-24 שעות". D2 ציטט את Inrō ו-spurnow: "אחד לתגובה, בתוך 7 ימים, ואחר כך חלון 24 שעות". **שני הנתונים מתארים מנגנונים שונים, והגרסה של D2 היא הכלל המחייב:**
@@ -369,23 +369,23 @@ S8 משכפל את המנגנון של Fruit Love Island, שבו הקהל מרג
 **מה נובע מזה בפועל:**
 1. ה-DM הראשון חייב להכיל **כפתור**, כי בלי לחיצה לא נפתח חלון ואי אפשר לשלוח את ההודעה השנייה.
 2. Follow-up נשלח אחרי 22–23 שעות, עדיין בתוך החלון.
-3. **ברילס ויראלי:** 24K תגובות (edbert) חלקי 200 בשעה הם כ-120 שעות של תור, כ-5 ימים. זה בתוך חלון 7 הימים, אבל על הגבול. מגיבים מאוחרים עלולים לא לקבל הודעה, ולכן תמיד מוסיפים "או לינק בביו".
+3. **ברילס ויראלי:** 24K תגובות (edbert) חלקי 750 בשעה (המכסה הרשמית) הם כ-32 שעות של תור, הרבה בתוך חלון 7 הימים. אם הכלי מגביל את עצמו ל-200 בשעה, זה כ-120 שעות (כ-5 ימים), כבר על הגבול. מגיבים מאוחרים עלולים לא לקבל הודעה בזמן, ולכן תמיד מוסיפים "או לינק בביו".
 
 ### 5.3 כלים ומחירים (אוקטובר 2026)
 
 | כלי | מחיר (USD / ₪) | חינם | חיוב | יתרון | חיסרון |
 |---|---|---|---|---|---|
-| **ManyChat** | Essential $14 / ₪43 (250 אנשי קשר) · **Pro $29 / ₪88 (2,500)** · Business $69 / ₪210 (7,500) · Advanced $139 / ₪423 (25,000). מעבר לזה $0.10–$0.004 לאיש קשר. AI בתוספת כ-$29 / ₪88 | 25 אנשי קשר פעילים, 2 ערוצים, 4 אוטומציות, תווית "Powered by" (צומצם במרץ 2026) | **לפי active contact** | הסטנדרט: flows, תגיות, שדות, Zapier, Sheets, Mailchimp, Kit, FB, WhatsApp, follow-trigger beta | המחיר מתנפח כשרילס הופך ויראלי |
-| **InstantDM** | Legend Pro $9.99 / ₪30 · Trendsetter $24.99 / ₪76 | 500 DM בחודש (לפי האתר) או 7 ימי ניסיון (לפי Inrō) | **מחיר קבוע** | נשאר קבוע גם ב-300K תגובות, איסוף מייל, "viral mode" | flows פחות עמוקים |
-| **LinkDM** | $19–$99 / ₪58–₪301 | 1,000 DM בחודש | מדורג לפי DM | פשוט מאוד | אין AI |
-| **Inrō** | €12.99 (כולל AI) | 100 אנשי קשר, 3 אוטומציות | לפי הפעלה | AI כלול | אינסטגרם בלבד |
+| **ManyChat** | (מחירי חיוב שנתי; בחיוב חודשי יקר יותר, עד כ-30%) Essential $14 / ₪43 (250 אנשי קשר) · **Pro $29 / ₪88 (2,500)** · Business $69 / ₪210 (7,500) · Advanced $139 / ₪423 (25,000). חריגה: $0.10 / $0.05 / $0.025 / $0.004 לאיש קשר לפי המדרגה. AI בתוספת $29 / ₪88 | 25 אנשי קשר פעילים, 2 ערוצים, 4 אוטומציות, תווית "Powered by" (צומצם במרץ 2026) | **לפי active contact** | הסטנדרט: flows, תגיות, שדות, Zapier, Sheets, Mailchimp, Kit, FB, WhatsApp, follow-trigger beta | המחיר מתנפח כשרילס הופך ויראלי |
+| **InstantDM** | Legend Pro $9.99 / ₪30 · Trendsetter $24.99 / ₪76 (חיוב שנתי; בחודשי $12 / ₪36 ו-$29.99 / ₪91) | 500 קרדיטים בחודש **וגם** 7 ימי ניסיון מלא, בלי כרטיס אשראי | **מחיר קבוע** | נשאר קבוע גם ב-300K תגובות, איסוף מייל, "viral mode" | flows פחות עמוקים |
+| **LinkDM** | Pro $19 / ₪58 (25,000 DM) · Platinum+ $99 / ₪301 (300,000 DM) | 1,000 DM בחודש | מדורג לפי DM שנשלחו (לא לפי איש קשר) | פשוט מאוד | אין AI |
+| **Inrō** | Pro החל מ-€12.99 (כולל AI agent, 500+ אנשי קשר פעילים) | 100 אנשי קשר פעילים, 3 אוטומציות; ניסיון 14 יום | לפי אנשי קשר פעילים | AI כלול | אינסטגרם בלבד |
 | **Chatfuel** | $49 / ₪149 | Light | קבוע | flow builder ויזואלי | יקר |
 | **ReplyRush** | $9.99 / ₪30 | ? | קבוע | זול | פחות מוכר |
 | Elev8or Engage, Zorcha, CreatorFlow | ? | ? | ? | – | [לא מאומת] |
 
-מקורות: [eesel](https://www.eesel.ai/blog/manychat-pricing), [chatarmin](https://chatarmin.com/en/blog/manychat-pricing), [Inrō alternatives](https://inro.social/blog/manychat-competitors-alternatives-2026), [instantdm](https://instantdm.com/blog/instagram-comment-to-dm-the-complete-guide-for-creators-in-2026). אף כלי לא תומך ב-TikTok.
+מקורות: [eesel](https://www.eesel.ai/blog/manychat-pricing), [chatarmin](https://chatarmin.com/en/blog/manychat-pricing), [blotato InstantDM](https://www.blotato.com/blog/instantdm-pricing), [setsmart LinkDM](https://setsmart.io/blog/linkdm-pricing), [Inrō pricing calculator](https://www.inro.social/tools/instagram-dm-automation-savings-calculator), [Inrō alternatives](https://inro.social/blog/manychat-competitors-alternatives-2026), [instantdm](https://instantdm.com/blog/instagram-comment-to-dm-the-complete-guide-for-creators-in-2026). אף כלי לא תומך ב-TikTok.
 
-**יישוב סתירת המחיר של ManyChat:** D3 כתב "Pro ~$15+ לחודש [לא מאומת]", וזה מחיר הכניסה הישן של Pro, לפני שנוספו מדרגות. D2 הציג מבנה מדרגות עדכני מ-2026 משני מקורות (eesel, chatarmin), ולכן **הפרק משתמש ב-Essential $14 ו-Pro $29**. שימו לב שזה מחיר מוצהר של הכלים, והמחיר בפועל נקבע לפי מספר אנשי הקשר הפעילים. אפילו תגובה לסטורי נספרת כאיש קשר פעיל ([eesel](https://www.eesel.ai/blog/manychat-pricing)).
+**יישוב סתירת המחיר של ManyChat:** D3 כתב "Pro ~$15+ לחודש [לא מאומת]", וזה מחיר הכניסה הישן של Pro, לפני שנוספו מדרגות. D2 הציג מבנה מדרגות עדכני מ-2026 משני מקורות (eesel, chatarmin): המעבר למודל לפי אנשי קשר פעילים נכנס לתוקף ב-2.3.2026. לכן **הפרק משתמש ב-Essential $14 ו-Pro $29** (מחיר חודשי בחיוב שנתי; דף המחירים הרשמי חסם גישה אוטומטית בבדיקה). שימו לב שזה מחיר מוצהר של הכלים, והמחיר בפועל נקבע לפי מספר אנשי הקשר הפעילים. אפילו תגובה לסטורי נספרת כאיש קשר פעיל ([eesel](https://www.eesel.ai/blog/manychat-pricing)).
 
 **עלות כשרילס הופך ויראלי ב-ManyChat:**
 - 10K אנשי קשר פעילים: כ-$145 + $29 AI, כלומר כ-$174 (₪529) לחודש.
@@ -601,7 +601,7 @@ Yang Mun מסכם: "מילה אחת. אם תכתוב GUIDE או HEAL או COURSE
 
 ### 5.8 Compliance ישראלי וגילוי נאות
 
-- **חוק התקשורת, סעיף 30א ("חוק הספאם"):** משלוח "דבר פרסומת" במייל, ב-SMS או בהודעה אלקטרונית דורש **הסכמה מפורשת מראש**. ההודעה צריכה להיות מסומנת כ"פרסומת" (בשורת הנושא במייל), לזהות את המפרסם ולכלול אפשרות הסרה. הפיצוי ללא הוכחת נזק הוא עד ₪1,000 להודעה. **[לא מאומת בסשן הזה: מבוסס על ידע כללי, לאמת מול עו"ד]**.
+- **חוק התקשורת, סעיף 30א ("חוק הספאם"):** משלוח "דבר פרסומת" במייל, ב-SMS או בהודעה אלקטרונית דורש **הסכמה מפורשת מראש**. ההודעה צריכה להיות מסומנת כ"פרסומת" (בשורת הנושא במייל, או במקום בולט), לכלול את שם המפרסם ודרכי יצירת קשר, ולכלול אפשרות הסרה נוחה וללא תשלום. שתיקה של הנמען אינה הסכמה. הפיצוי ללא הוכחת נזק הוא עד ₪1,000 לכל דבר פרסומת ששוגר ביודעין בניגוד לחוק ([Bizportal/תקדין](https://www.bizportal.co.il/takdin/news/article/20017396), [לשכת המסחר](https://www.chamber.org.il/serviceslobby/legal/74023/115485/)). זה לא ייעוץ משפטי; ליישום ספציפי מומלץ עו"ד.
   - בפועל: (1) שורת הסכמה ב-DM לפני איסוף מייל (תבנית 2); (2) "פרסומת" בשורת הנושא של מיילים עם הצעה; (3) לינק הסרה בכל מייל; (4) מספר וואטסאפ שנאסף לצורך שיחת B2B לא מכניסים לרשימת תפוצה בלי הסכמה נפרדת.
   - האם DM אוטומטי בתגובה לבקשה של המשתמש נחשב "דבר פרסומת"? כנראה שלא, כשהוא מוסר בדיוק את מה שהתבקש. הצעת מכר בתוך ה-DM היא אזור אפור [לא מאומת].
 - **Meta:** אסור להשתמש במייל או במספר שנאספו לספאם, ואסור לשלוח DM שיווקי מחוץ לחלון 24 השעות בלי opt-in.
@@ -664,11 +664,11 @@ Yang Mun מסכם: "מילה אחת. אם תכתוב GUIDE או HEAL או COURSE
 | מקרה | נתונים | מנוף | לקח | מתאים? |
 |---|---|---|---|---|
 | **edbert_yienson** | 43K עוקבים. Dubai Lambo (15.8.2026): 19K לייקים ו-**24K תגובות**. הלייקים לבדם הם 44% מבסיס העוקבים | פרסום יום אחרי Seedance 2.5 1080p, תמונת פספורט אחת, פרומפט גולל, "STEAL MY PROMPT" | מהירות + "כמה מעט צריך" + פרומפט גלוי = מכונת לידים גם בחשבון קטן | ✅ מאוד |
-| **Yang Mun** (@yangmunus, פרסונת נזיר AI. לפי D3 היוצר הוא הישראלי שלו חני [לא מאומת]) | כ-2.5M עוקבים עד אוגוסט 2026. ספר ב-$23.99 (₪73), כ-$11K (₪33K) בחודש; קורס $49.99; מנטורינג $799 לשעה. כ-$213K (כ-₪648K) ב-90 יום לפי dashboard ([instantdm](https://instantdm.com/blog/yang-mun-ai-influencer-digital-product-funnel)) | פרסונה עקבית, רילס יומי, מוצר זול, תגובות | "Commenters convert better than profile visitors", "470 cheap sales beat 4 expensive sales". ספג ביקורת על אי-גילוי | ✅ המשפך. ⚠️ פרסונה רק עם תווית |
+| **Yang Mun** (@yangmunus, פרסונת נזיר AI. היוצר הוא הישראלי שלו חני, לפי LinkedIn ופוסטים פומביים שלו ([radioinfo](https://radioinfo.com.au/news/timeless-influencer-wisdom-from-ai-generated-fake-monk/))) | כ-2.5M עוקבים עד אוגוסט 2026. ספר ב-$23.99 (₪73), כ-$11K (₪33K) בחודש [הערכה]; קורס $49.99; מנטורינג $799 לשעה. כ-$213K (כ-₪648K) ב-90 יום לפי dashboard ([instantdm](https://instantdm.com/blog/yang-mun-ai-influencer-digital-product-funnel)); חני עצמו טוען ל-$300K רווח (לא מבוקר) | פרסונה עקבית, רילס יומי, מוצר זול, תגובות | "Commenters convert better than profile visitors", "470 cheap sales beat 4 expensive sales". ספג ביקורת על אי-גילוי | ✅ המשפך. ⚠️ פרסונה רק עם תווית |
 | **Big Yowie** | 35M צפיות מ-20 פוסטים, כ-430K עוקבים, ועדיין בהפסד. 5–10 ניסיונות לכל קליפ ([Kapwing](https://www.kapwing.com/resources/what-it-takes-to-make-viral-ai-video-content-we-asked-bigfoot/)) | דמות, תסריט, חוקי קולנוע | "התריסר הראשון נכשל". צפיות לבד לא משלמות: צריך 100K–250K צפיות בטיקטוק כדי לכסות $100 לסרטון | ⚠️ ניסוי |
-| **Fruit Love Island** | פרק 1 (13.3.2026): 35M צפיות. 3.2M עוקבים בתוך כ-10 ימים ו-300M+ צפיות, ואז backlash, הסרות ו"no more fruit love island" ([The Triangle](https://thetriangle.org/article/the-rise-and-fall-of-fruit-love-island)) | פרודיה על פורמט מוכר, דמויות עם שמות, cliffhangers יומיים | הסדרה הכי מהירה שתועדה, אבל חשבון אנונימי בלי מוצר נשאר בלי כלום | ⚠️ רק המנגנון (S8) |
+| **Fruit Love Island** | פרק 1 (13.3.2026, TikTok, @ai.cinema021). יותר מ-3M עוקבים בתוך 9 ימים (עד 24.3) ו-300M+ צפיות ב-22 פרקים (ממוצע מעל 10M לפרק). אחרי backlash והסרות הוכרז "no more fruit love island", והגמר עלה ב-1.4.2026 ([The Triangle](https://thetriangle.org/article/the-rise-and-fall-of-fruit-love-island)) | פרודיה על פורמט מוכר, דמויות עם שמות, cliffhangers יומיים | הסדרה הכי מהירה שתועדה, אבל חשבון אנונימי בלי מוצר נשאר בלי כלום | ⚠️ רק המנגנון (S8) |
 | **Jean Phil** | פוסט ראשון ב-17.9.2026, קליפ של 35.9M צפיות, 239K עוקבים מ-10 פוסטים. מטבע מם שהגיע לכ-$8.8M וירד 99% ([EarlyGame](https://earlygame.com/news/entertainment/this-influencer-doesnt-exist-jean-phil-leaves-the-internet-fooled)) | לוק אבסורדי, "remixability" | מעתיקים את העיצוב, לא את הקריפטו ולא את הפרסונה הלא-מסומנת | ⚠️ |
-| **PJ Accetturo / Genre.ai** | Kalshi: $2,000, יומיים, 3M+ צפיות ב-X, אחריו 400 מועמדים ולקוחות. IM8 של בקהאם: **120M צפיות ביומיים** ([PJ](https://pjace.beehiiv.com/p/120m-views-in-two-days-how-we-made-our-new-viral-ai-ad-for-david-beckham-s-company-im8)) | מפרסם את הפרומפטים והתהליך של כל פרויקט ללקוח | כל עבודה ללקוח (באישור) הופכת לרילס P3 ולפוסט "איך עשיתי". "Your video lives or dies in the opening shot" | ✅ המודל העסקי |
+| **PJ Accetturo / Genre.ai** | Kalshi: $2,000, יומיים, 3M+ צפיות ב-X, אחריו 400 מועמדים ולקוחות. IM8 של בקהאם (תאומה AI של ארינה סבלנקה): **120M צפיות ביומיים** באינסטגרם של IM8 ([PJ](https://pjace.beehiiv.com/p/120m-views-in-two-days-how-we-made-our-new-viral-ai-ad-for-david-beckham-s-company-im8)) | מפרסם את הפרומפטים והתהליך של כל פרויקט ללקוח | כל עבודה ללקוח (באישור) הופכת לרילס P3 ולפוסט "איך עשיתי". "Your video lives or dies in the opening shot" | ✅ המודל העסקי |
 | **maorhani1** | 3,729 עוקבים. "רולס" (27.9.2026): 144 לייקים ו-242 תגובות (יחס 1.68) | פורמט מצוין, הפצה חלשה | יש ביקוש בעברית והמקום הראשון פנוי | ✅ |
 
 ### 6.5 שלושים הוקים
@@ -789,8 +789,8 @@ Same video, the man now stands on the surface of Mars next to a small rover, red
 | מועד | אירוע | רעיון |
 |---|---|---|
 | אוקטובר 2026 | Halloween | "הפכתי את הדירה לבית רדוף" (Genjutsu), לחשבון האנגלי |
-| נובמבר 2026 | Black Friday (27.11 [לא מאומת]) | P3: "פרסומת Black Friday לעסק שלך ב-10 דקות", **שיא הפניות מעסקים** |
-| דצמבר 2026 | חנוכה [לא מאומת, לבדוק תאריך] | "המכבים ב-vlog", "סופגנייה בגודל של מגדל עזריאלי" |
+| נובמבר 2026 | Black Friday (27.11.2026, היום שאחרי Thanksgiving ב-26.11) | P3: "פרסומת Black Friday לעסק שלך ב-10 דקות", **שיא הפניות מעסקים** |
+| דצמבר 2026 | חנוכה (מערב 4.12 עד 12.12.2026) | "המכבים ב-vlog", "סופגנייה בגודל של מגדל עזריאלי" |
 | ינואר 2027 | Year in review | "10 סרטוני AI מ-2026 ומה כל אחד הכניס" |
 | מרץ 2027 | פורים | **הזדמנות הזהב בעברית:** תחפושת AI (R7) + S8 |
 
@@ -878,10 +878,10 @@ Same video, the man now stands on the surface of Mars next to a small rover, red
 
 - הדגימה כוללת רק 144 תגובות מהעמוד הראשון. מיון "Most relevant" עשוי להסתיר ספקנים.
 - אחוזי הפלחים הם הערכה בלבד. מחירי B2B בישראל לא נבדקו מול הצעות מחיר אמיתיות (מומלץ לבדוק Fiverr IL וקבוצות פרילנסרים).
-- rate limit: האם 200 או 750 בשעה? צריך לבדוק בכלי.
+- rate limit: נפתר חלקית. לפי Meta, 750 Private Replies בשעה; צריך לבדוק אם הכלי שבחרתם מגביל לקצב נמוך יותר.
 - האם Trial Reels מפעילים טריגר comment?
 - האם התווית "AI info" באינסטגרם מורידה חשיפה?
-- חוק הספאם: הסכום של ₪1,000 והאם DM נחשב "דבר פרסומת". לאמת מול עו"ד.
+- חוק הספאם: הסכום של ₪1,000 לכל הודעה אומת. פתוח: האם DM באינסטגרם נחשב "הודעה אלקטרונית" ו"דבר פרסומת". לאמת מול עו"ד.
 - תמיכה בעברית ב-Meta AI translations.
 - שעות פרסום אופטימליות לקהל ישראלי (בודקים ב-Insights).
 - התעריף של Higgsfield Earn לכל 1,000 צפיות לא מפורסם. ידועות רק התקרות.
@@ -912,6 +912,51 @@ Same video, the man now stands on the surface of Mars next to a small rover, red
 
 **לפני Black Friday (27.11):**
 13. מכינים 3 ספק-אדים לנישות (מסעדה, רכב, נדל"ן) ומשיקים בהם את "פרסומת Black Friday לעסק שלך". זו נקודת השיא של פניות B2B ברבעון.
+
+---
+
+## בדיקת עובדות (Fact-check)
+
+נבדק ב-05.10.2026 מול מקורות עדכניים, עדיפות למקורות רשמיים (Meta Developers, Instagram, דפי המחירים של הכלים). "אומת" = נמצא תואם במקור עדכני; "תוקן" = הטקסט עודכן; "לא מאומת" = לא נמצא מקור מספק, והסימון נשאר.
+
+| טענה | פסק דין | מקור |
+|---|---|---|
+| תווית "AI-generated profile" הוכרזה ב-31.8.2026; חשבון AI לא מסומן לא יומלץ ב-Reels/Explore; יוצר אמיתי שמשתמש ב-AI פטור; תיוג לא פוגע ב-reach | אומת (נוסף: מחליפה את "AI creator", אפשר לערער) | [Implicator](https://www.implicator.ai/instagram-will-cut-the-reach-of-ai-personas-that-skip-its-new-label/), [TechWyse](https://www.techwyse.com/?p=78112), [Unite.AI](https://www.unite.ai/instagram-renames-ai-creator-label-and-restricts-unlabeled-ai-generated-profiles/) |
+| Mosseri: watch time, likes, sends הם האותות המובילים; sends חשובים יותר ללא-עוקבים | אומת | [Social Media Today](https://www.socialmediatoday.com/news/instagram-shares-algorithm-insights-2025/738034/) |
+| sends שווים "פי 3–5 מלייק" | לא מאומת (לא מ-Meta; נוסף סימון) | בלוגים בלבד |
+| Mosseri (סוף 2025): האסתטיקה המלוטשת מתה, תוכן גולמי/אנושי | אומת | [Tom's Guide](https://www.tomsguide.com/ai/instagram-says-ai-killed-the-curated-feed-now-its-scrambling-to-prove-whats-real) |
+| מקוריות: חשבון שרוב התוכן שלו ממוחזר לא מומלץ ללא-עוקבים | אומת ועודכן (הורחב באפריל 2026 לתמונות וקרוסלות; 75% מההמלצות בארה"ב מתוכן מקורי) | [PetaPixel](https://petapixel.com/2026/04/30/new-instagram-policies-target-reposted-content/) |
+| סף 70% חפיפה ועונש של 24 שעות עד 30 יום | לא מאומת (מקור משני בלבד) | [SociallyIn](https://sociallyin.com/blog/instagram-algorithm-update-repost/) |
+| מקסימום 5 האשטגים לפוסט/רילס; "לא מגדילים reach" | אומת | [Social Media Today](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/) |
+| Reels עד 20 דקות; מעל 3 דקות לא מומלץ ללא-עוקבים | אומת | [Buffer](https://buffer.com/resources/instagram-reels-length) |
+| "Your Algorithm": Reels מדצמבר 2025, פיד ביוני 2026 | תוקן (Reels סוף 2025, Explore אפריל 2026, פיד 10.6.2026) | [Search Engine Land](https://searchengineland.com/instagram-your-algorithm-expands-main-feed-479922) |
+| Trial Reels: חשבון Professional ציבורי, ~1,000 עוקבים | אומת | [Publer](https://publer.com/blog/instagram-trial-reels-guide/) |
+| "לפי Meta, ל-80% מהמשתמשים עלתה החשיפה" ב-Trial Reels | תוקן (40% מהיוצרים מפרסמים יותר, ו-80% מהם ראו יותר חשיפה ללא-עוקבים) | [Social Media Today](https://socialmediatoday.com/news/instagram-trial-reels-increase-reach-tests/750121/) |
+| CTA של מילה אחת (למשל דרך ManyChat) אינו engagement bait כשהוא לצורך לידים | אומת | [Social Media Today](https://www.socialmediatoday.com/news/instagram-clarifies-advice-single-word-ctas-longer-reels/718151/) |
+| Private Reply: הודעה אחת לתגובה, בתוך 7 ימים; בלייב רק בזמן השידור; חלון 24 שעות רק אחרי תגובת המשתמש | אומת (מקור רשמי) | [Meta Developers](https://developers.facebook.com/docs/messenger-platform/instagram/features/private-replies) |
+| Rate limit: "בערך 200 DM בשעה" מול 750 | תוקן: 750 Private Replies בשעה (פוסטים/רילס), Send API 300 לשנייה; 200 הוא נוסחה ישנה ברמת האפליקציה. החישוב לרילס ויראלי עודכן (כ-32 שעות במקום כ-120) | [Meta rate limits](https://developers.facebook.com/docs/messenger-platform/overview/rate-limiting) |
+| בטא follow-trigger ב-ManyChat מ-22.10.2025, ~1,000+ עוקבים | אומת (נוסף: יורה באופן לא עקבי) | [creatorflow](https://creatorflow.so/blog/auto-dm-new-instagram-followers/), [nowbam](https://nowbam.com/this-new-manychat-feature-just-made-instagram-dms-way-smarter/) |
+| ManyChat 2026: Free 25 · Essential $14 (250) · Pro $29 (2,500) · Business $69 (7,500) · Advanced $139 (25,000); חיוב לפי active contact; AI +$29 | אומת ותוקן (המחירים הם בחיוב שנתי; חריגה $0.10/$0.05/$0.025/$0.004 לפי מדרגה; המודל מ-2.3.2026). דף המחירים הרשמי חסם גישה | [eesel](https://www.eesel.ai/blog/manychat-pricing), [featurebase](https://www.featurebase.app/blog/manychat-pricing) |
+| InstantDM: Legend Pro $9.99, Trendsetter $24.99; חינם 500 DM או ניסיון 7 ימים | תוקן (מחירי חיוב שנתי, בחודשי $12/$29.99; חינם 500 קרדיטים **וגם** 7 ימי ניסיון) | [blotato](https://www.blotato.com/blog/instantdm-pricing) |
+| LinkDM: $19–$99, חינם 1,000 DM | אומת ופורט (Pro $19 = 25K DM, Platinum+ $99 = 300K DM; חיוב לפי DM) | [setsmart](https://setsmart.io/blog/linkdm-pricing) |
+| Inrō: €12.99, חינם 100 אנשי קשר ו-3 אוטומציות, חיוב "לפי הפעלה" | תוקן (החיוב לפי אנשי קשר פעילים; ניסיון 14 יום) | [Inrō](https://www.inro.social/tools/instagram-dm-automation-savings-calculator) |
+| חוק התקשורת 30א: הסכמה מפורשת מראש, "פרסומת", פרטי מפרסם, הסרה; פיצוי עד ₪1,000 להודעה | אומת (הסימון הוסר); האם DM באינסטגרם בתחולת החוק — לא מאומת | [Bizportal/תקדין](https://www.bizportal.co.il/takdin/news/article/20017396), [לשכת המסחר](https://www.chamber.org.il/serviceslobby/legal/74023/115485/) |
+| NapoleonCat: 5,807,300 משתמשי אינסטגרם בישראל (60.4%), 54% נשים, התפלגות גילים | אומת | [NapoleonCat](https://napoleoncat.com/stats/instagram-users-in-israel/) |
+| ChatGPT 88%, אינסטגרם 82%, TikTok 59%, שימוש יומי ב-TikTok 34% (55% ב-2025) | אומת (המקור: איגוד האינטרנט/גיאוקרטוגרפיה, מאי 2026) | [Calcalist](https://www.calcalistech.com/ctechnews/article/rkqhuhexfl) |
+| 39% מהעסקים בישראל משתמשים ב-AI (28% ביוני 2025) | אומת חלקית (28% אומת; 39% בדיווח משני על סקר הלמ"ס, מרץ 2026) | [Bizportal](https://www.bizportal.co.il/general/news/article/20019372) |
+| Animoto: 83% צפו בסרטון שחשדו שהוא AI; 36% אומרים שזה מוריד תדמית | אומת | [Adweek](https://www.adweek.com/adweek-wire/83-of-consumers-can-spot-ai-videos-36-say-it-hurts-brand-trust-new-animoto-report/) |
+| Luminate: פער של 58 נקודות בין 13–17 ל-18–24 | אומת (24.7.2026) | [Luminate](https://luminatedata.com/blog/how-u-s-audiences-feel-about-gen-ai-in-entertainment-content/) |
+| YouTube: מדיניות "inauthentic content" מ-16.7.2026 | אומת עם הסתייגות (מקורות מציינים 15 או 16 ביולי) | [outlierkit](https://outlierkit.com/blog/youtube-updates-july-2026), [TechRepublic](https://techrepublic.com/article/news-youtube-ai-video-monetization-rules) |
+| TikTok: תוכן AI מלא לא זכאי ל-Creator Rewards; 51K סרטונים הוסרו ו-8,600 חשבונות נחסמו ב-H2 2025 | אומת (מקורות משניים) | [storrito](https://storrito.com/resources/what-tiktoks-ai-monetization-restrictions-signal-for-creator-income/) |
+| Facebook: תגובה של 5+ מילים שווה פי 3 | לא מאומת (רק "תגובות משמעותיות שוקלות יותר") | [fanpagekarma](https://www.fanpagekarma.com/insights/the-facebook-algorithm-2026-explained-what-marketers-need-to-know/) |
+| Higgsfield Earn: עד $1K ביום הראשון, עד $2.5K לסרטון; affiliate עד 25% ל-12 חודשים | אומת (תעריף ל-1,000 צפיות לא מפורסם) | [higgsfield.ai/earn](https://higgsfield.ai/earn), [Higgsfield affiliate](https://higgsfield.ai/blog/higgsfield-affiliate-program-2026) |
+| Yang Mun: ~2.5M עוקבים, ספר $23.99, קורס $49.99, ~$213K ב-90 יום; היוצר הישראלי שלו חני | אומת (הסימון על זהות היוצר הוסר); ההכנסות מבוססות dashboard ודיווח עצמי | [instantdm](https://instantdm.com/blog/yang-mun-ai-influencer-digital-product-funnel), [radioinfo](https://radioinfo.com.au/news/timeless-influencer-wisdom-from-ai-generated-fake-monk/) |
+| Fruit Love Island: "3.2M עוקבים בתוך כ-10 ימים", 300M+ צפיות | תוקן (3M+ בתוך 9 ימים, 300M+ צפיות, 22 פרקים, גמר 1.4.2026) | [The Triangle](https://thetriangle.org/article/the-rise-and-fall-of-fruit-love-island), [The Decoder](https://the-decoder.com/ai-generated-dating-show-pulls-10-million-views-per-episode-on-tiktok/) |
+| PJ Accetturo / IM8: 120M צפיות ביומיים | אומת | [PJ's Newsletter](https://pjace.beehiiv.com/p/120m-views-in-two-days-how-we-made-our-new-viral-ai-ad-for-david-beckham-s-company-im8) |
+| Sora נסגרה (אפליקציה 26.4.2026, API 24.9.2026) "בין השאר בגלל דיפ-פייקים" | תאריכים אומתו; הסיבה תוקנה ל"לא מאומת" (המקורות מציינים compute וקיימות) | [The Decoder](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/) |
+| Black Friday 27.11.2026; חנוכה בדצמבר 2026 | אומת (חנוכה: מערב 4.12 עד 12.12.2026) | לוח שנה |
+| נתוני maorhani1 ו-edbert (עוקבים, לייקים, תגובות) | לא נבדקו מחדש (נלקחו מ-`00-source-reels.md`, שמשמש כ-ground truth) | פנימי |
+| בנצ'מרקים של המשפך (0.3–1% צפייה←מכירה וכו') | לא מאומת (נתוני ספקים בלבד, כפי שמצוין בטקסט) | ספקי כלים |
 
 ---
 
