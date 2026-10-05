@@ -15,7 +15,7 @@
 3. **סימון AI הוא חובה בפועל, גם אם בישראל אין עדיין חוק.** Meta ("AI info"), TikTok (מתג AIGC, ענישה מדורגת עד חסימה) ו-YouTube ("altered or synthetic") מחייבים סימון. סעיף 50 ל-EU AI Act חל מ-2 באוגוסט 2026. בישראל חוק הגנת הצרכן אוסר הטעיה, ופרסומת סמויה, כולל קרדיטים או cashback מ-Higgsfield, מחייבת גילוי. **"פייק עשיר" כהומור גלוי מותר. "פייק עשיר" כהוכחת הכנסה במכירת קורס הוא הטעיה.**
 4. **הכסף: כלים הם 3–10% מההכנסה. הזמן והתמחור קובעים את הרווח.** עלות כלים לרילס פרימיום של 30 שניות היא $28–44 (₪85–133) עם Seedance 2.5 1080p ב-Higgsfield, כולל ניסיונות חוזרים. במסלול Kling זה בערך $10–16 (₪32–47). יחס הניסיונות הריאלי הוא 3 יצירות לכל שוט שימושי. מתחיל עובד 5–8 שעות על רילס ומנוסה עם תבנית 2–3 שעות. ב-₪500 לרילס ו-5 שעות השכר הוא ₪71 לשעה. ב-₪2,000 ו-3 שעות הוא ₪603 לשעה.
 5. **התפעול הוא הנכס:** SOP של 12 שלבים, מבנה תיקיות ולוג פרומפטים (`prompts.csv`), עבודה באצוות, "1 Hero → 4 וריאציות" וניצול חלונות Unlimited. כך מורידים קרדיטים לשנייה סופית מ-45 ל-25 ושעות לרילס מ-5 ל-2.5. הלוג הוא גם מוצר (prompt pack) וגם בסיס לתמחור.
-6. **שלושה תרחישים חודשיים:** תחביב, רווח של כ-₪1,190 ב-24 שעות (₪49 לשעה). הכנסה צדדית, כ-₪8,700 ב-55 שעות (₪159 לשעה). סוכנות, כ-₪31,400 לבעלים ב-90 שעות שלו (₪349 לשעה, מרווח 62%). **רילס לקוח אחד ב-₪1,200 מכסה את כל עלויות הכלים של התרחיש הצדדי.**
+6. **שלושה תרחישים חודשיים:** תחביב, רווח של כ-₪1,190 ב-24 שעות (₪49 לשעה). הכנסה צדדית, כ-₪8,700 ב-55 שעות (₪159 לשעה). סוכנות, כ-₪31,200 לבעלים ב-90 שעות שלו (₪347 לשעה, מרווח 61%). **רילס לקוח אחד ב-₪1,200 מכסה את כל עלויות הכלים של התרחיש הצדדי.**
 
 ---
 
@@ -29,7 +29,7 @@
 - **מה כן מוגן:** החלקים האנושיים. צילום מקור שצילמת בעצמך (בהפקה היברידית ב-Genjutsu, הצילום שלך בחניון מוגן), תסריט, דיאלוג, עריכה, בחירה וסידור של קליפים, מוזיקה מקורית וטקסט על המסך. מאז מקרה Zarya of the Dawn (2023) משרד זכויות היוצרים רושם את "הבחירה והסידור", ולא את התמונות שה-AI יצר.
 
 ### 1.2 האיחוד האירופי ובריטניה
-- המבחן הוא "יצירה אינטלקטואלית של המחבר עצמו" (פסיקת CJEU, החל מ-Infopaq). המבחן מניח מחבר אנושי שעשה בחירות יצירתיות. בית משפט בפראג קבע ב-2023 שתמונה שנוצרה ב-AI מפרומפט אינה מוגנת **[לא מאומת: לא נבדק מחדש]**.
+- המבחן הוא "יצירה אינטלקטואלית של המחבר עצמו" (פסיקת CJEU, החל מ-Infopaq). המבחן מניח מחבר אנושי שעשה בחירות יצירתיות. בית המשפט העירוני בפראג קבע ב-11 באוקטובר 2023 (S.Š. v. Taubel Legal) שתמונה שנוצרה ב-AI מפרומפט אינה מוגנת, כי מחבר יכול להיות רק אדם ([CMS case tracker](https://cms.law/en/sau/publication/artificial-intelligence-and-copyright-case-tracker/czech-republic-s.-s.-v-taubel-legal-advokatni-kancelar-s.r.o)).
 - ה-AI Act **לא** מסדיר בעלות על פלט. הוא מסדיר שקיפות (סעיף 50, ראו סעיף 5 בפרק) ושקיפות של נתוני אימון.
 - **החריג:** בבריטניה יש סעיף מיוחד ל-"computer-generated works" (CDPA s.9(3)), שנמצא בבחינה מחודשת.
 
@@ -57,13 +57,13 @@
 | כלי | בעלות על הפלט | שימוש מסחרי | הערות חשובות |
 |---|---|---|---|
 | **Higgsfield** (Seedance 2.5, Genjutsu, Kling ועוד דרך הפלטפורמה) | "does not claim ownership of your inputs or outputs" | **כל התוכניות**, כולל עבודה ללקוחות. הזכויות נשארות גם אחרי ביטול המנוי | בחשבון חינמי יש סימן מים. **אסור להעלות תמונה של אדם אחר בלי רשותו.** אסור לאמן מודלים על הפלט ([Help Center](https://higgsfield.ai/creator-hub/help-center/account/who-owns-my-generations-and-can-i-use-them-commercially), [עדכון התנאים](https://higgsfield.ai/blog/terms-of-use-privacy-policy-update)) |
-| **Seedance (ByteDance)** ישירות, דרך Dreamina, CapCut או BytePlus | לפי תנאי הפלטפורמה שדרכה ניגשים **[לא מאומת]** | בדרך כלל בתוכנית בתשלום **[לא מאומת]** | אחרי מכתבי ההתראה של Disney ו-Paramount (פברואר 2026) ByteDance **השביתה יצירה מתמונה של אדם אמיתי** ואת Face-to-Voice ([Euronews](https://euronews.com/next/2026/02/17/bytedance-says-it-will-add-safeguards-to-ai-video-tool-seedance-20-following-hollywood-bac), [Variety](https://au.variety.com/2026/film/news/bytedance-safeguards-seedance-disney-legal-threat-ip-violations-33139/), [Videomaker](https://www.videomaker.com/news/bytedance-agrees-to-restrict-seedance-after-disney-threatens-legal-action/)). דרך צד שלישי (Higgsfield, Lovart) חלים התנאים של הצד השלישי |
-| **Kling** | לא מוגדר במפורש. האחריות על הקלט על המשתמש | **מנויים בלבד:** "not restricted... for any commercial purpose" (חוץ ממוצר מתחרה). **לא-מנויים: אסור בלי אישור בכתב**, וחייבים להציג מיתוג Kling | Standard מתחיל ב-$6.49 (כ-₪20) לפי F1, או $10 לפי F2 (ראו טבלת סתירות, סעיף 19) ([Kling policy](https://kling.ai/docs/payment-policy), [Atlas Cloud](https://www.atlascloud.ai/blog/guides/kling-ai-pricing)) |
-| **Google Veo 3/3.1** (Gemini, Flow, Vertex) | Google לא תובעת בעלות | מותר | **SynthID** בלתי נראה בכל פלט, שורד חיתוך ודחיסה. שיפוי IP רק ללקוחות Enterprise/Vertex ([Hakky](https://book.st-hakky.com/en/data-science/veo3-copyright-portrait-rights-risks-and-countermeasures-commercial-use-precautions), [GlobalGPT](https://www.glbgpt.com/hub/es/can-i-use-veo-3-1-for-commercial-use/)). סימן מים גלוי באפליקציית Gemini בחלק מהתוכניות **[לא מאומת]** |
+| **Seedance (ByteDance)** ישירות, דרך Dreamina, CapCut או BytePlus | לפי תנאי הפלטפורמה שדרכה ניגשים **[לא מאומת]** | בדרך כלל בתוכנית בתשלום **[לא מאומת]** | אחרי מכתבי ההתראה של Disney ו-Paramount (פברואר 2026) ByteDance **השהתה העלאת תמונות של אנשים אמיתיים** (לפי BBC דרך Euronews). את Face-to-Voice (קול מתמונת פנים) השעתה כבר ב-10 בפברואר 2026, יומיים לפני ההשקה הרשמית ([aiwiki](https://aiwiki.ai/wiki/seedance_2), [Euronews](https://euronews.com/next/2026/02/17/bytedance-says-it-will-add-safeguards-to-ai-video-tool-seedance-20-following-hollywood-bac), [Variety](https://au.variety.com/2026/film/news/bytedance-safeguards-seedance-disney-legal-threat-ip-violations-33139/), [Videomaker](https://www.videomaker.com/news/bytedance-agrees-to-restrict-seedance-after-disney-threatens-legal-action/)). דרך צד שלישי (Higgsfield, Lovart) חלים התנאים של הצד השלישי |
+| **Kling** | לא מוגדר במפורש. האחריות על הקלט על המשתמש | **מנויים בלבד:** "not restricted... for any commercial purpose" (חוץ ממוצר מתחרה). **לא-מנויים: חייבים לסמן כל פלט במיתוג Kling, אלא אם קיבלו אישור בכתב** (Terms of Paid Service, עדכון 21.04.2026). לפי סקירות, הפלט החינמי אינו מורשה לשימוש מסחרי | Standard עולה $10 לחודש (660 קרדיט). ה-$6.49–6.99 הוא הנחת חודש ראשון (עד 30%) או מחיר בחיוב שנתי (חיסכון 34%) ([eesel](https://www.eesel.ai/en/blog/kling-ai-pricing), [Kling policy](https://kling.ai/docs/payment-policy), [Atlas Cloud](https://www.atlascloud.ai/blog/guides/kling-ai-pricing)) |
+| **Google Veo 3/3.1** (Gemini, Flow, Vertex) | Google לא תובעת בעלות | מותר | **SynthID** בלתי נראה בכל פלט, שורד חיתוך ודחיסה. שיפוי IP רק ללקוחות Enterprise/Vertex ([Hakky](https://book.st-hakky.com/en/data-science/veo3-copyright-portrait-rights-risks-and-countermeasures-commercial-use-precautions), [GlobalGPT](https://www.glbgpt.com/hub/es/can-i-use-veo-3-1-for-commercial-use/)). סימן מים גלוי באפליקציית Gemini: מ-14 באוגוסט 2026 אפשר לכבות אותו (Settings > Media Watermark) ב-Gemini וב-Flow, אבל SynthID ו-C2PA נשארים בקובץ ([ProPakistani, 15.08.2026](https://propakistani.pk/2026/08/15/google-will-let-you-remove-geminis-watermark-from-photos-and-videos/)) |
 | **Sora (OpenAI)** | – | – | **נסגר.** ההודעה ב-24 במרץ 2026, האפליקציה נסגרה ב-26 באפריל 2026 וה-API ב-24 בספטמבר 2026 ([Engadget](https://engadget.com/ai/openai-is-shutting-down-its-sora-video-generation-app-211023358.html), [Zilliz](https://zilliz.com/ai-faq/what-is-the-sora-shutdown-timeline)). לא בונים עליו שום תהליך. סרטוני Sora ישנים נושאים C2PA וסימן מים גלוי |
 | **Midjourney** (תמונות ווידאו) | המנוי "בעלים" ככל שהחוק מאפשר | מנויים בתשלום. **חברה עם הכנסה שנתית מעל $1M חייבת Pro ($60, כ-₪182) או Mega ($120, כ-₪365).** ניסיון חינמי: CC BY-NC בלבד | כברירת מחדל הכל מופיע **בגלריה ציבורית**. Stealth Mode זמין רק ב-Pro/Mega, וזה קריטי לעבודה תחת NDA. אין שיפוי. Disney ו-Universal תובעות את Midjourney מיוני 2025 ([terms.law](https://www.terms.law/2026/01/15/midjourney-commercial-use-rights-complete-2026-guide/)) |
 | **Lovart.ai** | **[לא מאומת]** | זכויות מסחריות בתוכניות בתשלום. בחינמי נדרש קרדיט "Generated with Lovart" **[לא מאומת: לפי סקירות, לא לפי התנאים]** | דף התנאים החזיר 404 בבדיקה. לבדוק ב-lovart.ai לפני עבודה ללקוח ([Lovart blog](https://www.lovart.ai/ko/blog/ai-art-platforms-compared-2026), [tooldirectory](https://tooldirectory.ai/tools/lovart)) |
-| **Suno** (מוזיקה, מתוך B3) | – | Pro ($10) ו-Premier: מסחרי, בלי revenue share. Free: אין זכויות מסחריות | Warner הגיעה להסדר (11/2025). Universal ו-Sony עדיין לא, ולכן יש סיכון משפטי שיורי. Udio לא מאפשר הורדת קבצים מאז אוקטובר 2025 |
+| **Suno** (מוזיקה, מתוך B3) | – | Pro ($10) ו-Premier: מסחרי, בלי revenue share. Free: אין זכויות מסחריות | Warner הגיעה להסדר (11/2025). Universal ו-Sony עדיין לא (Universal הגיעה להסדר עם Udio, לא עם Suno), ולכן יש סיכון משפטי שיורי ([Dubspot](https://blog.dubspot.com/suno-udio-ai-music-lawsuits-2026), [MBW](https://www.musicbusinessworldwide.com/suno-fights-to-keep-warner-music-settlement-terms-away-from-umg-and-sony/)). Udio לא מאפשר הורדת קבצים מאז אוקטובר 2025 |
 | **ElevenLabs** (קול, מתוך B3) | – | Starter ($6) ומעלה: רישיון מסחרי ושיבוט מיידי (IVC). Free: אין רישיון מסחרי | שיבוט קול רק שלך או של מי שחתם (סעיף 3) |
 
 **כללי אצבע:**
@@ -77,13 +77,13 @@
 
 ### 3.1 ישראל
 - **חוק הגנת הפרטיות, סעיף 2(6):** "שימוש בשם אדם, בכינויו, בתמונתו או בקולו, לשם ריווח" בלי הסכמה הוא פגיעה בפרטיות, עוולה אזרחית ואף עבירה. זה הבסיס הישראלי ל"זכות לפרסום". הפסיקה מוסיפה עשיית עושר ולא במשפט.
-- **תיקון 13 לחוק הגנת הפרטיות** (בתוקף מאוגוסט 2025): נותן לרשות להגנת הפרטיות סמכות להטיל עיצומים כספיים ומרחיב את הגדרת "מידע אישי" ([Pearl Cohen](https://www.pearlcohen.com/major-amendment-to-israeli-privacy-law-set-to-take-effect/), [DLA Piper](https://www.dlapiperdataprotection.com/?c=IL)). תמונות פנים של לקוחות שנשמרות לאימון דמות (Soul ID, character) הן מידע ביומטרי, ולכן מידע בעל רגישות מיוחדת **[לא מאומת: הסיווג המדויק]**. נדרשים מינימום נתונים, אבטחה ומחיקה.
+- **תיקון 13 לחוק הגנת הפרטיות** (בתוקף מ-14 באוגוסט 2025): נותן לרשות להגנת הפרטיות סמכות להטיל עיצומים כספיים ומרחיב את הגדרת "מידע אישי" ([Pearl Cohen](https://www.pearlcohen.com/major-amendment-to-israeli-privacy-law-set-to-take-effect/), [DLA Piper](https://www.dlapiperdataprotection.com/?c=IL), [RSM](https://www.rsm.global/israel/he/node/228)). תמונות פנים של לקוחות שנשמרות לאימון דמות (Soul ID, character) הן מידע ביומטרי. "מידע ביומטרי" (מזהה שמשמש או מיועד לזיהוי אדם) נכלל בהגדרת "מידע בעל רגישות מיוחדת" בתיקון ([Meitar](https://meitar.com/wp-content/uploads/2025/02/In-honor-of-International-Data-Privacy-Day-–-Key-updates-in-the-field-of-privacy-in-Israel-HEB.pdf)). השאלה אם תמונת פנים שלא משמשת לזיהוי נחשבת "ביומטרית" עדיין פתוחה **[לא מאומת]**. נדרשים מינימום נתונים, אבטחה ומחיקה.
 - **מסמך הרשות להגנת הפרטיות על deepfake (22 בינואר 2026):** הפצה ללא הסכמה של deepfake שמציג אדם באופן משפיל, או חושף פרטים פרטיים ועשוי להיתפס כאמיתי, היא פגיעה בפרטיות. deepfake אינטימי חשוף לעד 5 שנות מאסר. גוף שמחזיק מאגר deepfakes שנראים אמיתיים כפוף לתקנות אבטחת מידע, **אלא אם יש עליהם סימן מים גלוי** ([סרוגים](https://www.srugim.co.il/1291854-משרד-המשפטים-זיוף-תיעוד-אינטימי-בבינה)).
 - **הצעות חוק שעוד לא נחקקו:** תיקון לחוק העונשין בעניין deepfake (עד 5 שנים על deepfake מיני, 7 על הונאה, 10 על השפעה על בחירות), ו**הצעת חוק לסימון פרסומות שמכילות תוכן AI** ([Kangxin](https://eservice.kangxin.com/html/1/393/6959.html)).
 
 ### 3.2 ארה"ב
-- **NO FAKES Act of 2026 (S.4591):** עבר בוועדת המשפט של הסנאט פה אחד ב-18 ביוני 2026. ניסיון להעביר אותו במליאה ב-30 בספטמבר נחסם, ולכן **טרם נחקק**. החוק ייתן זכות פדרלית על "digital replica" של קול ומראה לכל אדם, עם פיצוי סטטוטורי של $5,000–25,000 להפרה ומנגנון notice-and-takedown ([Manatt](https://www.manatt.com/insights/newsletters/client-alert/congress-reintroduces-the-no-fakes-act-what-s-new-in-the-2026-bill), [Byte Back](https://www.bytebacklaw.com/2026/08/a-federal-shift-in-ai-and-the-right-of-publicity-no-fakes-act-advances-in-congress/), [Steptoe tracker](https://www.steptoe.com/a/web/dkVL6BDZnGdLmjjGzB3zCm/steptoe-federal-ai-legislative-tracker_september-2026.pdf)).
-- **מדינות:** ELVIS Act בטנסי (2024). **ניו יורק S.8420A (דצמבר 2025)** מחייב גילוי בפרסומות שמופיעים בהן "synthetic performers". זה רלוונטי ישירות ל"משפיען AI" בפרסומת ללקוח אמריקאי. עוד כ-8 מדינות חוקקו הגנות על "digital replica".
+- **NO FAKES Act of 2026 (S.4591):** עבר בוועדת המשפט של הסנאט פה אחד ב-18 ביוני 2026. ניסיון של הסנאטורית Blackburn להעביר אותו במליאה בהסכמה פה אחד ב-30 בספטמבר 2026 נחסם בהתנגדות של הסנאטור Ted Cruz ([Raw Story](https://www.rawstory.com/ted-cruz-marsha-blackburn/)), ולכן **טרם נחקק**. החוק ייתן זכות פדרלית על "digital replica" של קול ומראה לכל אדם, עם פיצוי סטטוטורי של $5,000–25,000 להפרה ומנגנון notice-and-takedown ([Manatt](https://www.manatt.com/insights/newsletters/client-alert/congress-reintroduces-the-no-fakes-act-what-s-new-in-the-2026-bill), [Byte Back](https://www.bytebacklaw.com/2026/08/a-federal-shift-in-ai-and-the-right-of-publicity-no-fakes-act-advances-in-congress/), [Steptoe tracker](https://www.steptoe.com/a/web/dkVL6BDZnGdLmjjGzB3zCm/steptoe-federal-ai-legislative-tracker_september-2026.pdf)).
+- **מדינות:** ELVIS Act בטנסי (2024). **ניו יורק S.8420A** (נחתם ב-11 בדצמבר 2025, בתוקף מ-9 ביוני 2026) מחייב גילוי בולט ("conspicuously disclose") בפרסומות שמופיעים בהן "synthetic performers". הקנס: $1,000 על הפרה ראשונה ו-$5,000 על כל הפרה נוספת ([Hunton](https://www.hunton.com/privacy-and-cybersecurity-law-blog/new-york-enacts-law-regulating-the-use-of-ai-generated-synthetic-performers-in-advertising), [Cooley](https://www.cooley.com/news/insight/2026/2026-01-29-new-york-enacts-synthetic-performer-disclosure-law-for-advertisements-including-those-using-generative-ai)). זה רלוונטי ישירות ל"משפיען AI" בפרסומת ללקוח אמריקאי. עוד כ-8 מדינות חוקקו הגנות על "digital replica".
 - **TAKE IT DOWN Act:** חוק פדרלי שעוסק בתמונות אינטימיות לא-מוסכמות, כולל AI.
 
 ### 3.3 מטריצת סיכון לפנים וקול
@@ -139,20 +139,20 @@
 ### 5.2 TikTok
 - סימון חובה (מתג **AI-generated content**) לכל תוכן שמציג אנשים או סצנות ריאליסטיים שעלולים להיתפס כאמיתיים, כולל קולות משונים ו-"digital humans". TikTok מזהה C2PA אוטומטית ([Cinerads TikTok](https://www.cinerads.com/blog/tiktok-ai-content-policy), [EchoTik](https://www.echotik.live/blog/tiktok-ai-content-labeling-rules-2026/)).
 - **במודעות:** מ-**21 ביולי 2026** כל מודעה עם תוכן AI ריאליסטי חייבת תווית גלויה, עם ענישה מדורגת עד חסימה לצמיתות ([Commonthread](https://commonthreadco.com/blogs/coachs-corner/tiktok-ai-ad-disclosure-rules-ecommerce-2026), לפי E1).
-- **אכיפה על אורגני:** לפי בלוג משני, מספטמבר 2025 על תוכן לא מסומן מקבלים **strike מיידי** במקום אזהרה **[לא מאומת]**.
+- **אכיפה על אורגני:** לפי כמה בלוגים משניים, מספטמבר 2025 על תוכן לא מסומן מקבלים **strike מיידי** במקום אזהרה. המדרג: הסרה ו-strike, אחר כך הגבלת פרסום ל-7 ימים, אחר כך 30 יום, אחר כך חסימת מונטיזציה קבועה, ובסוף סגירת החשבון ([Storrito](https://storrito.com/resources/tiktok-removed-51000-ai-videos-creators-feeling-it/), [Dynamoi](https://dynamoi.com/learn/statistics/tiktok-ai-content-statistics)) **[לא מאומת: אין מקור רשמי של TikTok]**.
 - **תוכן ממותג** צריך שני מתגים: AIGC וגם תוכן מסחרי.
 - **Creator Rewards:** יש דיווחים שתוכן AI לא כשיר למונטיזציה **[לא מאומת: ייתכן שמדובר ב-"unoriginal content" ולא בכל AI]**. TikTok מצהירה שהמתג עצמו לא מוריד חשיפה.
 
 ### 5.3 YouTube
-- **הצהרת "altered or synthetic content"** במנהל ההעלאה, כשתוכן "meaningfully altered or synthetically generated in a way a viewer could mistake for real". בתוכן רגיל התווית מופיעה בתיאור. בנושאים רגישים (חדשות, **ייעוץ פיננסי**, בריאות, בחירות) מוצג תג בולט על הנגן ([Primetel](https://primetel.com.cy/youtube-adds-mandatory-disclosure-b-badges-for-ai-generated-and-altered-content-8705), [minimatters](https://minimatters.com/youtube-ai-content-labeling-update-in-may-2026/)).
-- **מונטיזציה:** מדיניות "inauthentic content" ב-YPP מוציאה ממונטיזציה תוכן גנרי, חוזר או מבוסס תבניות, כולל ערוצים שמסתמכים בכבדות על AI, וגם "tutorials that simply repackage material" ([TechRepublic](https://techrepublic.com/article/news-youtube-ai-video-monetization-rules), [Creator Handbook](https://www.creatorhandbook.net/youtube-updates-monetization-policy-for-inauthentic-content/)). **ההשלכה:** ערוץ Shorts של "עוד פרומפט, עוד סרטון" בלי ערך מוסף עלול לאבד מונטיזציה. YouTube מצהירה שהסימון עצמו לא פוגע בהכנסה.
+- **הצהרת "altered or synthetic content"** במנהל ההעלאה, כשתוכן "meaningfully altered or synthetically generated in a way a viewer could mistake for real". עד מאי 2026 התווית בתוכן רגיל הופיעה בתיאור. לפי עדכון מאי 2026 היא מופיעה ישירות מתחת לנגן (בסרטון ארוך) וכשכבה על הסרטון (ב-Shorts) **[לא מאומת במקור רשמי של YouTube]**. בנושאים רגישים (חדשות, **ייעוץ פיננסי**, בריאות, בחירות) מוצג תג בולט על הנגן ([Primetel](https://primetel.com.cy/youtube-adds-mandatory-disclosure-b-badges-for-ai-generated-and-altered-content-8705), [minimatters](https://minimatters.com/youtube-ai-content-labeling-update-in-may-2026/)).
+- **מונטיזציה:** מדיניות "inauthentic content" ב-YPP (שם חדש מ-15 ביולי 2025 למדיניות "repetitious content") מוציאה ממונטיזציה תוכן גנרי, חוזר או מבוסס תבניות, כולל ערוצים שמסתמכים בכבדות על AI, וגם "tutorials that simply repackage material" ([TechRepublic](https://techrepublic.com/article/news-youtube-ai-video-monetization-rules), [Creator Handbook](https://www.creatorhandbook.net/youtube-updates-monetization-policy-for-inauthentic-content/)). **ההשלכה:** ערוץ Shorts של "עוד פרומפט, עוד סרטון" בלי ערך מוסף עלול לאבד מונטיזציה. YouTube מצהירה שהסימון עצמו לא פוגע בהכנסה.
 
 ### 5.4 EU AI Act, סעיף 50
 - **2 באוגוסט 2026:** חובות השקיפות נכנסו לתוקף. **סעיף 50(4):** מי שמפרסם (deployer) deepfake, כלומר תמונה, אודיו או וידאו שדומים באופן מובהק לאנשים, מקומות או אירועים אמיתיים, חייב לגלות שהתוכן נוצר או שונה ב-AI. **ביצירות אמנותיות, סאטיריות או בדיוניות** מספיק גילוי שלא פוגע ביצירה, אבל עדיין חייבים לגלות ([Dudkowiak](https://www.dudkowiak.com/blog/ai-act-article-50-ai-content-labeling-and-code-of-practice-from-august-2-2026/), [Jones Day](https://jonesday.com/en/insights/2026/01/european-commission-publishes-draft-code-of-practice-on-ai-labelling-and-transparency)).
-- **סעיף 50(2)** (סימון נקרא-מכונה, חובה **של ספק הכלי** ולא שלך): ב-Digital Omnibus (טרילוג מ-7 במאי 2026) הוסכם על דחייה של 4 חודשים, עד **2 בדצמבר 2026**, למערכות שכבר היו בשוק. פתרונות זיהוי בני-תאימות נדרשים עד פברואר 2027 ([Lewis Silkin](https://www.lewissilkin.com/insights/2026/04/01/the-latest-on-the-digital-omnibus-on-ai-102momk), [Gibson Dunn](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement), [CSA note](https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/09/CSA_research_note_eu_ai_act_article50_watermarking_deadline_20260921-csa-styled.pdf)).
-- **Code of Practice:** טיוטה בדצמבר 2025, גרסה סופית וולונטרית ב-10 ביוני 2026 **[לא מאומת: תאריך מסיכום משני]**.
+- **סעיף 50(2)** (סימון נקרא-מכונה, חובה **של ספק הכלי** ולא שלך): ב-Digital Omnibus (טרילוג מ-7 במאי 2026; אישור הפרלמנט ב-16 ביוני ואימוץ סופי במועצה ב-29 ביוני 2026) הוסכם על דחייה של 4 חודשים, עד **2 בדצמבר 2026**, למערכות שהיו בשוק לפני 2 באוגוסט 2026. הדחייה לא חלה על סעיף 50(4) (גילוי deepfake, החובה שלך). פתרונות זיהוי בני-תאימות נדרשים עד פברואר 2027 ([Lewis Silkin](https://www.lewissilkin.com/insights/2026/04/01/the-latest-on-the-digital-omnibus-on-ai-102momk), [Gibson Dunn](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement), [CSA note](https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/09/CSA_research_note_eu_ai_act_article50_watermarking_deadline_20260921-csa-styled.pdf)).
+- **Code of Practice:** טיוטה בדצמבר 2025, גרסה סופית וולונטרית פורסמה ב-10 ביוני 2026. היא דורשת מהחותמים לפחות שתי שכבות של סימון נקרא-מכונה ([European Commission](https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content), [Jones Day](https://www.jonesday.com/en/insights/2026/06/european-commission-publishes-final-code-of-practice-on-marking-and-labelling-aigenerated-content)).
 - **האם זה חל עליך כיוצר ישראלי?** ה-AI Act חל גם על deployer מחוץ לאיחוד כשהפלט "משמש באיחוד". אם אתה מכוון לקהל אירופי או מפיק ללקוח אירופי, תניח שכן. הפתרון זול: תווית הפלטפורמה ועוד טקסט "AI" על המסך מספיקים כמעט תמיד.
-- **כיוון עולמי:** טורקיה הוסיפה מאוגוסט 2026 חובת גילוי בפרסומות לדמויות AI שאי אפשר להבחין בינן לבין אדם אמיתי, ואסרה להציג העתק AI של אדם אמיתי כממליץ ([Gala Law](https://blog.galalaw.com/post/102nfkm/a-new-era-begins-for-digital-advertising-new-rules-for-targeted-advertising-and)).
+- **כיוון עולמי:** טורקיה הוסיפה (תקנה שפורסמה ב-1 ביולי 2026 ונכנסה לתוקף ב-1 באוגוסט 2026) חובת גילוי בפרסומות לדמויות AI שאי אפשר להבחין בינן לבין אדם אמיתי, ואסרה להציג העתק AI של אדם אמיתי כממליץ ([Gala Law](https://blog.galalaw.com/post/102nfkm/a-new-era-begins-for-digital-advertising-new-rules-for-targeted-advertising-and)).
 
 ### 5.5 ישראל: הגנת הצרכן ופרסומת סמויה
 - **אין (עדיין) חובה חוקית ספציפית לסמן AI**, יש רק הצעת חוק. המדיניות הממשלתית (עקרונות מדיניות ורגולציה ל-AI, 2023) מעדיפה רגולציה "רכה" לפי מגזרים **[לא מאומת: פרטי המסמך]**.
@@ -181,7 +181,7 @@
 | מסך מפוצל: החניון למטה והרולס למעלה (הפורמט של מאור חני) | **הפורמט עצמו מגלה שמדובר ב-AI.** הומור גלוי, סיכון נמוך. עדיין מוסיפים תווית AI בפלטפורמה |
 | רק הגרסה "העשירה", בלי מקור, עם טקסט "ככה אני חי מאז שהתחלתי X" | **מטעה.** אם זה מוביל למכירת קורס או שירות, זה חשוף לפי סעיף 2 לחוק הגנת הצרכן ולתביעה ייצוגית |
 | "תגיבו רולס ואשלח מדריך" כשהמדריך חינמי | לא מכירה. עדיין מומלץ שהמדריך יהיה אמיתי ולא יוביל ל"הוק" מטעה |
-| עדויות של "לקוחות מרוצים" שנוצרו ב-AI | **אסור.** כלל ה-FTC נגד ביקורות ועדויות מזויפות (בתוקף מ-21.10.2024) אוסר במפורש עדויות של אנשים שלא קיימים, כולל AI, עם קנס של עד **$53,088 להפרה** ([Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements), לפי E1). בישראל זו הטעיה רגילה |
+| עדויות של "לקוחות מרוצים" שנוצרו ב-AI | **אסור.** כלל ה-FTC נגד ביקורות ועדויות מזויפות (בתוקף מ-21.10.2024) אוסר במפורש עדויות של אנשים שלא קיימים, כולל AI, עם קנס של עד **$53,088 להפרה** (הסכום מינואר 2025; לא עודכן ב-2026) ([Cinerads](https://www.cinerads.com/blog/ai-ad-disclosure-requirements), לפי E1; [FTC](https://www.ftc.gov/node/87476)). בישראל זו הטעיה רגילה |
 | טענות הכנסה ("אני מרוויח 50 אלף בחודש מרילס AI") בשיווק קורס | חייבות להיות **אמיתיות, מגובות ומייצגות**. אחרת זו הטעיה. ב-YouTube "ייעוץ פיננסי" מקבל תווית AI בולטת |
 | תוכן שמזכיר קזינו או מכונות מזל (כמו הדיאלוג ברילס של מאור חני) | בהומור אורגני זה בסדר. **בפרסומת ממומנת לא:** הימורים לא חוקיים אסורים בישראל, ופלטפורמות מגבילות פרסום הימורים |
 | החלפת שלט SALE או product placement בדיעבד ("Fix it in post") | שירות לגיטימי ללקוח. אבל שינוי מחיר, תנאי מבצע או תוצאת מוצר (למשל "לפני ואחרי" של קרם) **הוא הטעיה** |
@@ -325,14 +325,14 @@ F1 ו-E1 הגיעו לאותו עיקרון: **לא מבטיחים "בעלות"*
 | | Plus | $47 שנתי / $59 חודשי | 1,200 | $0.039–0.049 | שם |
 | | Ultra | $99 שנתי / $129 חודשי | 3,000 | $0.033–0.043 | שם |
 | | Top-up | $5–80 | 80–1,700 | $0.047–0.0625 | שם |
-| **Kling** | Standard / Pro / Premier / Ultra | $10 / $37 / $92 / $180 | 660 / 3,000 / 8,000 / 26,000 | ~$0.012–0.015 | [eesel, יוני 2026](https://eesel.ai/blog/kling-ai-pricing) |
+| **Kling** | Standard / Pro / Premier / Ultra | $10 / $37 / $92 / $180 (חודשי; שנתי חוסך 34%, חוץ מ-Ultra) | 660 / 3,000 / 8,000 / 26,000 | ~$0.012–0.015 | [eesel, יוני 2026](https://eesel.ai/blog/kling-ai-pricing) |
 | **Lovart** | Starter / Basic / Pro / Ultimate | $19 / $32 / $90 / $199 | 2,000 / 3,500 / 11,000 / 27,000 | לא ברי השוואה ישירה | [aireiter, 24.09.26](https://aireiter.com/blog/lovart-pricing) |
-| **Dreamina (CapCut)** | Basic / Super | מ-$19 | 1,575 | Seedance 2.5 720p: **$0.035–0.047 לשנייה** | [Dreamina](https://dreamina.capcut.com/seedance/seedance-2-5-pricing-2026) |
-| **Google Veo 3.1** | AI Ultra (Flow) | $199.99 | 25,000 Flow credits | – | [magichour](https://magichour.ai/blog/veo-3-pricing) |
+| **Dreamina (CapCut)** | Basic / Super | מ-$19 | 1,575 | Seedance 2.5 720p: **$0.035–0.047 לשנייה**. ה-$0.035 הוא מבצע ספטמבר (חודש ראשון ב-$1.50, עד 9.10.2026). בתוכנית שנתית, 720p עם וידאו רפרנס: $0.097 לשנייה | [Dreamina](https://dreamina.capcut.com/seedance/seedance-2-5-pricing-2026), [Dreamina FAQ](https://dreamina.capcut.com/resource/dreamina-september-offer-faq-2026) |
+| **Google Veo 3.1** | AI Ultra (Flow) | $199.99 (הורד מ-$249.99 ב-I/O 2026). יש גם Ultra ב-$99.99 עם 10,000 קרדיט | 25,000 Flow credits | – | [magichour](https://magichour.ai/blog/veo-3-pricing), [eesel](https://www.eesel.ai/blog/google-ai-ultra) |
 | | API | – | – | Fast: $0.12 לשנייה ב-1080p. Standard: $0.40 לשנייה | [wavespeed](https://wavespeed.ai/blog/cost-and-billing/google-veo-3-pricing/) |
-| **ManyChat** | Pro | $15 (500 אנשי קשר) → ~$45 (5K) → ~$75 (10K). AI: תוספת $29 | – | – | [schedulingkit](https://www.schedulingkit.com/pricing-guides/manychat-pricing). ראו אזהרת חיוב בסעיף 19 |
+| **ManyChat** | Pro | **חשבון חדש (מ-2.3.2026):** Pro ‏$29 ל-2,500 Active Contacts + $0.05 לכל איש קשר נוסף (AI כלול). Business ‏$69 ל-7,500 (+$0.025), Advanced ‏$139 ל-25,000. **חשבון ישן (legacy):** $15 (500 אנשי קשר) → ~$45 (5K) → ~$75 (10K), AI בתוספת $29 | – | – | [eesel ManyChat](https://www.eesel.ai/blog/manychat-pricing), [schedulingkit](https://www.schedulingkit.com/pricing-guides/manychat-pricing). ראו אזהרת חיוב בסעיף 19 |
 | **CapCut** | Pro | $19.99, או $179.99 לשנה | – | – | [eesel CapCut](https://eesel.ai/blog/capcut-pricing) |
-| Claude / ChatGPT | Pro / Plus | ~$20 | – | – | [לא מאומת: מחיר מוכר] |
+| Claude / ChatGPT | Pro / Plus | ~$20 (Claude Max: ‏$100 או $200) | – | – | [Zenken](https://ai.zenken.co.jp/en/post/claude-pro-vs-max-comparison/) (Claude). ChatGPT Plus: [לא מאומת] |
 | ElevenLabs | Starter–Pro | $6–99 | – | – | B3 |
 
 **חשוב:** קרדיטים ב-Higgsfield **לא מתגלגלים** לחודש הבא (B3). ה-Unlimited בחלונות השקה חל רק על ה-web app. MCP, CLI ו-Canvas עדיין מנכים קרדיטים.
@@ -630,25 +630,25 @@ Shot list:
 | Lovart Pro | 90 | 274 |
 | Claude Max [לא מאומת: מחיר] | 100 | 304 |
 | CapCut Pro × 2 | 40 | 122 |
-| ManyChat Pro (~10K) | 75 | 228 |
+| ManyChat Business (~10K Active Contacts, מודל 2026: $69 + 2,500 × $0.025) | 132 | 401 |
 | ElevenLabs Pro | 99 | 301 |
 | אחסון / Frame.io | 30 | 91 |
 | הנהלת חשבונות וחשבוניות | 25 | 76 |
-| **סה"כ כלים** | **1,009** | **3,067** |
+| **סה"כ כלים** | **1,066** | **3,240** |
 | Top-ups ו-API (34 רילסים, ~₪50 ממוצע מעבר לחבילות) | 600 | 1,824 |
 | פרילנסרים: 2 × 80 ש' × $25 (operator ו-editor) | 4,000 | 12,160 |
 | עמלות 5% | 839 | 2,550 |
-| **סה"כ עלויות** | **6,448** | **19,601** |
-| **רווח לבעלים** | **10,328** | **31,399** |
+| **סה"כ עלויות** | **6,505** | **19,774** |
+| **רווח לבעלים** | **10,271** | **31,226** |
 | שעות הבעלים (מכירות, בימוי, QA, קריאייטיב) | 90 | |
-| **רווח לשעת בעלים** | **$115** | **₪349** |
-| מרווח | 62% | |
+| **רווח לשעת בעלים** | **$114** | **₪347** |
+| מרווח | 61% | |
 
 **הערות למודל:**
 - עלות הכלים היא **6% מההכנסה** בסוכנות ו-5.6% בתרחיש הצדדי. כוח האדם הוא העלות האמיתית.
 - ריטיינר של ₪7,500 ל-8 רילסים הוא ₪940 לרילס, וזה אפשרי רק בגלל **וריאציות**. בנצ'מרק: ריטיינרים של 12 מודעות בחודש ב-$2,500–8,000 ([motionbox](https://motionbox.io/blog/how-much-to-charge-clients-for-ai-ugc-ads)), ו-5 מודעות UGC בשבוע ב-$3,200–5,500 ([betonai](https://betonai.net/how-much-ai-video-freelancers-actually-make-in-2026-real-income-data-across-kling-runway-sora-and-veo-6-niches-with-pricing-tables/)). E1 מציע בישראל ריטיינרים של ₪3,500 (4 רילסים), ₪6,500 (8 מודעות + 2 hero) ו-₪12,000 (15 מודעות + קריאייטיב + דוח). הריטיינר של F2 (₪7,500) נמצא באמצע הטווח.
 - **מחיר יחידה מול השוק (E1):** בישראל הרצפה היא ₪700–3,000 לסרטון AI לעסק קטן. ספקים מסודרים גובים ₪2,500+מע"מ ל-40 שניות. E1 ממליץ להתמקם מעל ₪2,500 ולא להתחרות ב"אווטאר + קריין". F2 קובע רצפה של ₪1,000 לרילס 30 שניות ומשתמש ב-₪1,200 בתרחיש הצדדי. **ההכרעה:** ₪1,000–1,500 הוא מחיר השקה לפיילוטים ולתיק עבודות. אחרי 3–5 case studies עוברים ל-₪1,800–2,500 ומעלה, לפי מדרג E1 (Starter ₪1,800, Pro ₪4,900, Premium ₪12,000+, כולם +מע"מ).
-- **מיסוי בישראל [לבדוק עם רו"ח]:** בתרחיש הסוכנות ההכנסה השנתית (~₪612K) מחייבת **עוסק מורשה** וגביית מע"מ מלקוחות ישראלים. המע"מ 18% מ-2025 לפי E1 **[לא מאומת לשנת 2026]**. מלקוחות בחו"ל (Fiverr, Upwork) לרוב חל מע"מ 0% על יצוא שירותים **[לא מאומת]**. תקרת עוסק פטור היא כ-₪120K בשנה **[לא מאומת ל-2026]**, ותיחצה כבר בתרחיש הצדדי בקצב של ₪10K בחודש. גם חברות שמבקשות חשבונית מס מחייבות עוסק מורשה.
+- **מיסוי בישראל [לבדוק עם רו"ח]:** בתרחיש הסוכנות ההכנסה השנתית (~₪612K) מחייבת **עוסק מורשה** וגביית מע"מ מלקוחות ישראלים. המע"מ 18% מ-1.1.2025, ונשאר 18% גם ב-2026 ([ice](https://www.ice.co.il/top-5/news/article/1111363)). מלקוחות תושבי חוץ (Fiverr, Upwork) חל לרוב מע"מ 0% על יצוא שירותים לפי סעיף 30(א)(5) לחוק מע"מ, אבל לא כשהשירות ניתן בפועל גם לתושב ישראל בישראל ([Bizportal](https://www.bizportal.co.il/general/news/article/240740)). זה תלוי בנסיבות ולכן בודקים עם רו"ח. תקרת עוסק פטור ל-2026 היא **₪122,833** בשנה ([חשבונית ירוקה](https://www.greeninvoice.co.il/magazine/תקרת-עוסק-פטור/)), ותיחצה כבר בתרחיש הצדדי בקצב של ₪10K בחודש. גם חברות שמבקשות חשבונית מס מחייבות עוסק מורשה.
 - **סיכוני תלות:** payouts של פלטפורמות (Higgsfield Earn, עד $2,500 לסרטון לפי A1) הם לא הכנסה יציבה. במודל הם בכוונה רק 5–10% מההכנסה.
 
 ### 16.4 שכר שעתי לפי מחיר רילס ושעות עבודה
@@ -734,8 +734,8 @@ Editor ב-$25 לשעה × 1.5 שעות = $37.5 לרילס. Operator ב-$30 × 1.
 | שער דולר-שקל | F2: 3.04 (שער חי, 05.10.2026) | B3, E1: 3.6 (משוער) | **3.04.** ההמרות של B3/E1 מנופחות בכ-18%. Starter Stack של B3 ($105–110) הוא כ-₪320–335 ולא ₪380–400. Pro Stack ($340–400) הוא כ-₪1,030–1,215 |
 | Seedance 2.5 ב-1080p | מדריך Higgsfield 15.09: 9 ק'/שנ' | מדריך Higgsfield 14.08: 18 ק'/שנ' | מתקצבים לפי 18 עד שכפתור Generate מראה אחרת |
 | עלות כלים לרילס | F2: $28–44 (מסלול A עם ניסיונות) | B3: 150–250 ק' (~$7–12) לרילס היברידי. E1: ~$20 לקליפ שמיש | F2 לתמחור, B3 כתרחיש אופטימי (סעיף 12.5) |
-| Kling Standard | F1: מ-$6.49 | F2: $10 | כנראה הפרש בין חיוב שנתי לחודשי או בין תאריכי מקור **[לא מאומת]**. מתקצבים $10 |
-| ManyChat | F2: Pro מ-$15 (500 אנשי קשר) עד ~$75 (10K) | B3: מאז 2.3.2026 חיוב לפי **Active Contacts**. גרסה אחרת: Pro $29 ל-2,500 + $0.05 לכל איש קשר נוסף (מקור מתחרה). רילס עם 24K תגובות יכול לעלות $100–1,000 בחודש | **אזהרה:** רילס ויראלי עם "comment KEYWORD" עלול לנפח את חשבון ManyChat. לבדוק את המחיר בפועל לפני קמפיין. חלופות במחיר קבוע: InstantDM ($9.99), LinkDM ($19), Inro ($15) |
+| Kling Standard | F1: מ-$6.49 | F2: $10 | **אומת:** $10 הוא המחיר החודשי. $6.49–6.99 הוא הנחת חודש ראשון (עד 30%) או מחיר בחיוב שנתי (eesel). מתקצבים $10 |
+| ManyChat | F2: Pro מ-$15 (500 אנשי קשר) עד ~$75 (10K) | B3: מאז 2.3.2026 חיוב לפי **Active Contacts**. גרסה אחרת: Pro $29 ל-2,500 + $0.05 לכל איש קשר נוסף (מקור מתחרה). רילס עם 24K תגובות יכול לעלות $100–1,000 בחודש | **אומת (eesel):** שתי הגרסאות נכונות. $15/500 הוא המודל הישן לחשבונות שנפתחו לפני 2.3.2026, ו-$29/2,500 + $0.05 הוא המודל החדש. בתרחיש הסוכנות (סעיף 16.3) עודכן ל-Business בכ-$132 לחודש ל-10K. **אזהרה:** רילס ויראלי עם "comment KEYWORD" עלול לנפח את חשבון ManyChat. לבדוק את המחיר בפועל לפני קמפיין. חלופות במחיר קבוע: InstantDM ($9.99), LinkDM ($19), Inro ($15) |
 | אכיפת סימון ב-TikTok | F1: strike מיידי מספטמבר 2025 [לא מאומת] | E1: חובת תווית גלויה במודעות מ-21.7.2026, ענישה מדורגת עד חסימה | שתיהן יכולות להיות נכונות (אורגני מול מודעות). בכל מקרה: מסמנים תמיד |
 | עלות בדיקת חוזה אצל עו"ד | F1: ₪1,500–4,000 | E1: ₪1,000–2,000 | טווח כולל ₪1,000–4,000, שתיהן הערכות |
 | זכויות שימוש ממומן | F2: +40% ל-90 יום | E1: +30% עד +100% | +40% כברירת מחדל ל-90 יום, עד +100% לשנה |
@@ -770,6 +770,50 @@ Editor ב-$25 לשעה × 1.5 שעות = $37.5 לרילס. Operator ב-$30 × 1.
 14. QA משפטי (פנים, לוגו, סימון, טענות) נשאר אצלך תמיד.
 
 **קווים אדומים, בלי יוצא מן הכלל:** פנים או קול של אדם שלא חתם. סלבריטאים ופוליטיקאים. לוגו של מותג צד שלישי בפרסומת בתשלום. עדויות לקוח שנוצרו ב-AI. טענות הכנסה לא אמיתיות. פרסום הימורים. עבודה מסחרית מחשבון חינמי. בנייה על Sora.
+
+---
+
+## בדיקת עובדות (Fact-check)
+
+בדיקה של 05.10.2026: ניסיון להפריך את הטענות המרכזיות בפרק בחיפושי רשת עדכניים. התיקונים כבר הוכנסו לגוף הפרק.
+
+| טענה | פסק דין (אומת / תוקן / לא מאומת) | מקור |
+|---|---|---|
+| העליון בארה"ב סירב לדון ב-Thaler v. Perlmutter ב-2 במרץ 2026 | אומת | [Baker Donelson](https://www.bakerdonelson.com/supreme-court-denies-certiorari-in-thaler-v-perlmutter-ai-cannot-be-an-author-under-the-copyright-act), [Holland & Knight](https://www.hklaw.com/en/insights/publications/2026/03/the-final-word-supreme-court-refuses-to-hear-case-on-ai-authorship) |
+| בית משפט בפראג (2023): תמונת AI מפרומפט אינה מוגנת | אומת (תאריך: 11.10.2023) | [CMS](https://cms.law/en/sau/publication/artificial-intelligence-and-copyright-case-tracker/czech-republic-s.-s.-v-taubel-legal-advokatni-kancelar-s.r.o) |
+| Higgsfield לא תובעת בעלות, שימוש מסחרי בכל התוכניות, סימן מים בחינמי | אומת | [Higgsfield Help Center](https://higgsfield.ai/creator-hub/help-center/account/who-owns-my-generations-and-can-i-use-them-commercially) |
+| ByteDance הגבילה את Seedance אחרי מכתבי Disney ו-Paramount (פברואר 2026), כולל תמונות של אנשים אמיתיים ו-Face-to-Voice | אומת, עם דיוק: העלאת תמונות של אנשים אמיתיים הושהתה; Face-to-Voice הושעה ב-10.2.2026 | [Euronews](https://euronews.com/next/2026/02/17/bytedance-says-it-will-add-safeguards-to-ai-video-tool-seedance-20-following-hollywood-bac), [Storyboard18](https://storyboard18.com/how-it-works/bytedance-to-strengthen-seedance-2-0-safeguards-after-disney-paramount-legal-notices-89733.htm) |
+| Kling: לא-מנויים "אסור בלי אישור בכתב" | תוקן: לא-מנויים חייבים מיתוג Kling אלא אם יש אישור בכתב; מנויים: שימוש מסחרי לא מוגבל | [Kling Terms of Paid Service](https://kling.ai/docs/payment-policy) |
+| Kling Standard: $6.49 (F1) מול $10 (F2) | תוקן: $10 לחודש; $6.49–6.99 הוא הנחת חודש ראשון או חיוב שנתי | [eesel](https://www.eesel.ai/en/blog/kling-ai-pricing) |
+| Veo: סימן מים גלוי ב-Gemini | תוקן/עודכן: מ-14.8.2026 אפשר לכבות אותו; SynthID ו-C2PA נשארים | [ProPakistani](https://propakistani.pk/2026/08/15/google-will-let-you-remove-geminis-watermark-from-photos-and-videos/) |
+| Sora: הודעה 24.3.2026, האפליקציה נסגרה 26.4.2026, ה-API ב-24.9.2026 | אומת | [The Decoder](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/), [Zilliz](https://zilliz.com/ai-faq/what-is-the-sora-shutdown-timeline) |
+| Midjourney: חברה מעל $1M חייבת Pro ($60) או Mega ($120) | אומת | [CometAPI](https://www.cometapi.com/how-much-does-midjourney-cost/), [MyArchitectAI](https://www.myarchitectai.com/blog/midjourney-pricing) |
+| Suno: Warner הגיעה להסדר (11/2025), Universal ו-Sony עדיין לא | אומת (Universal הגיעה להסדר עם Udio, לא עם Suno) | [Dubspot](https://blog.dubspot.com/suno-udio-ai-music-lawsuits-2026) |
+| תיקון 13 בתוקף מאוגוסט 2025; מידע ביומטרי = מידע בעל רגישות מיוחדת | אומת (14.8.2025); הסיווג של תמונת פנים שלא משמשת לזיהוי לא מאומת | [RSM](https://www.rsm.global/israel/he/node/228), [Meitar](https://meitar.com/wp-content/uploads/2025/02/In-honor-of-International-Data-Privacy-Day-–-Key-updates-in-the-field-of-privacy-in-Israel-HEB.pdf) |
+| מסמך הרשות להגנת הפרטיות על deepfake, 22.1.2026, כולל חריג לסימן מים גלוי | אומת | [סרוגים](https://www.srugim.co.il/1291854-משרד-המשפטים-זיוף-תיעוד-אינטימי-בבינה) |
+| NO FAKES Act (S.4591): עבר בוועדה פה אחד ב-18.6.2026; נחסם במליאה ב-30.9.2026 | אומת (Cruz התנגד לבקשת Blackburn) | [Mondaq](https://www.mondaq.com/unitedstates/patent/1805904/senate-committee-advances-bill-to-protect-name-image-likeness-and-voice-against-unauthorized-ai-use), [Raw Story](https://www.rawstory.com/ted-cruz-marsha-blackburn/) |
+| ניו יורק S.8420A (דצמבר 2025): גילוי synthetic performers בפרסומות | אומת, עם השלמה: נחתם 11.12.2025, בתוקף 9.6.2026, $1,000/$5,000 | [Hunton](https://www.hunton.com/privacy-and-cybersecurity-law-blog/new-york-enacts-law-regulating-the-use-of-ai-generated-synthetic-performers-in-advertising) |
+| Meta: תווית "AI info" אוטומטית במודעות מיולי 2026, כולל זיהוי C2PA | אומת | [Common Thread](https://commonthreadco.com/blogs/coachs-corner/meta-ai-ad-labels-mandatory-disclosure-ecommerce-2026), [Billo](https://billo.app/blog/ai-labeling/) |
+| TikTok: תווית AI חובה במודעות מ-21.7.2026, ענישה עד חסימה | אומת | [Stellar Search](https://www.stellarsearch.co.uk/insight/tiktoks-ai-ad-disclosure-rules-are-live-what-brands-running-ai-creative-need-to-do-now), [Common Thread](https://commonthreadco.com/blogs/coachs-corner/tiktok-ai-ad-disclosure-rules-ecommerce-2026) |
+| TikTok: strike מיידי על אורגני לא מסומן מספטמבר 2025 | לא מאומת (רק מקורות משניים, אין הודעה רשמית) | [Storrito](https://storrito.com/resources/tiktok-removed-51000-ai-videos-creators-feeling-it/) |
+| YouTube: "inauthentic content" ב-YPP; תווית "altered or synthetic" | אומת (שם המדיניות שונה ב-15.7.2025). מיקום התווית עודכן לפי עדכון מאי 2026, לא מאומת במקור רשמי | [Gulf News](https://gulfnews.com/technology/youtube-updates-monetisation-policies-ai-and-repetitive-content-ban-begins-july-15-1.500192660), [minimatters](https://minimatters.com/youtube-ai-content-labeling-update-in-may-2026/) |
+| EU AI Act סעיף 50 חל מ-2.8.2026; 50(2) נדחה ל-2.12.2026 למערכות קיימות | אומת (Omnibus אומץ סופית במועצה ב-29.6.2026) | [Gibson Dunn](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement), [Usercentrics](https://usercentrics.com/knowledge-hub/eu-ai-act-high-risk-delay-article-50-transparency-consent/) |
+| Code of Practice לסימון AI: גרסה סופית 10.6.2026 | אומת | [European Commission](https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content) |
+| טורקיה: חובת גילוי לדמויות AI בפרסומות מאוגוסט 2026 | אומת (פורסם 1.7.2026, בתוקף 1.8.2026) | [CMS Türkiye](https://cms.law/en/tur/legal-updates/turkiye-launches-new-era-of-digital-advertising-with-amendments-to-the-commercial-advertising-and-unfair-commercial-practices-regulation), [Mondaq](https://www.mondaq.com/turkey/consumer-law/1823078/a-new-era-begins-for-digital-advertising-new-rules-for-targeted-advertising-and-ai-generated-ads) |
+| כלל FTC נגד ביקורות מזויפות מ-21.10.2024, עד $53,088 להפרה | אומת (אין עדכון אינפלציה ל-2026) | [WSGR](https://wsgr.com/en/insights/ftc-issues-final-rule-banning-fake-and-misleading-consumer-reviews-and-testimonials.html), [Beancount](https://beancount.io/blog/2026/07/16/ftc-fake-reviews-crackdown-consumer-review-rule-guide) |
+| Higgsfield: Starter ~$19 / 270, Plus $47–59 / 1,200, Ultra $99–129 / 3,000; קרדיטים לא מתגלגלים | אומת | [Creatify](https://creatify.ai/blog/higgsfield-pricing-(2026)-plans-and-what-you-ll-actually-pay) |
+| Lovart: $19 / $32 / $90 / $199 | אומת (לפי aireiter, 24.9.2026); תנאי השימוש הרשמיים לא נבדקו | [aireiter](https://aireiter.com/blog/lovart-pricing) |
+| Dreamina: Seedance 2.5 720p ב-$0.035–0.047 לשנייה | תוקן/הובהר: $0.035 הוא מבצע ספטמבר (עד 9.10.2026); בתוכנית שנתית עם וידאו רפרנס $0.097 | [Dreamina FAQ](https://dreamina.capcut.com/resource/dreamina-september-offer-faq-2026) |
+| Google AI Ultra ב-$199.99 עם 25,000 קרדיט Flow | אומת (הורד מ-$249.99 ב-I/O 2026; יש גם רמה של $99.99) | [eesel](https://www.eesel.ai/blog/google-ai-ultra) |
+| Veo 3.1 API: Fast ‏$0.12 לשנייה, Standard ‏$0.40 לשנייה | אומת | [wavespeed](https://wavespeed.ai/blog/cost-and-billing/google-veo-3-pricing/), [benchlm](https://benchlm.ai/media-pricing/veo) |
+| ManyChat Pro: $15 (500) עד ~$75 (10K) | תוקן: זה המודל הישן. בחשבון חדש (מ-2.3.2026) Pro עולה $29 ל-2,500 Active Contacts + $0.05; 10K ≈ $132 (Business). תרחיש הסוכנות חושב מחדש | [eesel ManyChat](https://www.eesel.ai/blog/manychat-pricing) |
+| CapCut Pro: ‏$19.99 לחודש או $179.99 לשנה | אומת (משתנה לפי אזור) | [nemovideo](https://www.nemovideo.com/blog/capcut-pro-pricing-2026) |
+| Claude Pro ~$20; Claude Max ‏$100 | אומת (Max: ‏$100 או $200) | [Zenken](https://ai.zenken.co.jp/en/post/claude-pro-vs-max-comparison/) |
+| מע"מ 18% ב-2026 | אומת | [ice](https://www.ice.co.il/top-5/news/article/1111363) |
+| תקרת עוסק פטור ~₪120K | תוקן: ₪122,833 ב-2026 | [חשבונית ירוקה](https://www.greeninvoice.co.il/magazine/תקרת-עוסק-פטור/) |
+| מע"מ 0% על יצוא שירותים ללקוחות בחו"ל | אומת עם הסתייגות: סעיף 30(א)(5), לא חל כשהשירות ניתן בפועל גם לתושב ישראל | [Bizportal](https://www.bizportal.co.il/general/news/article/240740) |
+
+**לא נבדק מחדש בסבב הזה:** עלות קרדיטים של Seedance 2.5 ב-1080p (סתירה פנימית ב-Higgsfield, 9 מול 18 קרדיט לשנייה), מחיר Genjutsu, עלויות עו"ד, תעריפי פרילנסרים ובנצ'מרקים של KPI. הסימונים **[לא מאומת]** שלהם נשארו.
 
 ---
 
