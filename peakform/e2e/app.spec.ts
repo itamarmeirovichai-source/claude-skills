@@ -439,6 +439,8 @@ test.describe('food', () => {
     await atTime(page, MONDAY);
     await onboard(page);
     await go(page, '/eat');
+    // Every day is eaten like the rest day, so the Monday target matches Saturday's.
+    await expect(page.getByTestId('day-totals')).toContainText('2150 to 2350');
     await page.getByTestId('log-planned-breakfast').click();
     await expect(page.getByTestId('meal-breakfast')).toContainText('Logged as planned');
     await expect(page.getByTestId('kcal-range')).toContainText('to');

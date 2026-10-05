@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.1, 2026-10-05
+
+Every day is eaten like a rest day.
+
+- All seven days now aim for about 2,250 kcal, the rest day amount, so a missed workout or a forgotten rope session never leaves extra food. Training itself does not change.
+- The meal before training keeps 100 g of cooked rice every day, so the workout and the jumps are still fuelled. Tuesday and Friday dinners have a little less potato, and Friday a little less oil. Training days keep slightly more carbohydrate and less fat than Saturday. The recipes and the shopping list follow.
+- Installed apps move their saved training day targets to the new amounts once. Days whose calories were changed by hand stay as they are.
+- The safety nets stay: if weight falls faster than about 0.5 kg a week, or energy, mood, sleep, or performance drop, PeakForm suggests eating more and talking with a parent. It never plans below 2,000 kcal.
+- Progress explains, during the first three weeks of a plan, that weight often rises a little while muscles adapt to new training, and that the trend counts from the third week on.
+
 ## 2.1.0, 2026-10-02
 
 The jump program for the dunk goal.

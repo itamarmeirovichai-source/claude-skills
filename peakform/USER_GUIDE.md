@@ -51,6 +51,7 @@ After a session, PeakForm suggests a next target for each exercise and explains 
 
 - The top panel shows calories as a range, then protein, carbohydrate, fat, fibre, calcium, and water.
 - Each meal has **Log as planned** for one tap logging, or **Change** to swap foods or amounts.
+- **Every day is eaten like a rest day:** about 2,250 kcal, whether or not you train or do the rope, so a missed session never leaves extra food. The meal before training keeps a small rice portion for the workout.
 - **Quick food** and **Restaurant estimate** add anything else. Wherever grams are asked, **Estimate by eye** lets you pick a palm, fist, cupped hand, thumb, spoon, cup, or a small, medium, or large restaurant portion. PeakForm stores the method and a range, not a false exact number.
 - The hidden oil allowance widens the range for restaurant and hosted food.
 - **Drinks** logs water and zero calorie drinks.

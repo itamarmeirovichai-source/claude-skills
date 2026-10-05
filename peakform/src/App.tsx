@@ -30,7 +30,7 @@ const ProgramScreen = lazy(() => import('./screens/Program').then((m) => ({ defa
 import { LockGate } from './screens/Lock';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { unlockAudio } from './lib/device';
-import { syncProgramPhase } from './services/planUpdate';
+import { syncFoodTargets, syncProgramPhase } from './services/planUpdate';
 
 const TABS = [
   { to: '/today', label: 'Today', Icon: IconToday, match: ['today', 'checkin'] },
@@ -227,6 +227,8 @@ export function App() {
     const block = () => {
       if (document.visibilityState === 'visible') void syncProgramPhase().catch(() => undefined);
     };
+    // Installed apps move to the rest day amount of food once.
+    void syncFoodTargets().catch(() => undefined);
     block();
     document.addEventListener('visibilitychange', block);
     const hourly = window.setInterval(block, 60 * 60 * 1000);
