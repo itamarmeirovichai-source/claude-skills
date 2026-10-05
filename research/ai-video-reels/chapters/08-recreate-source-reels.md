@@ -419,3 +419,303 @@ Keep the original motion, lip movements, framing and timing exactly. Replace the
 3. **המדריך עצמו (d):** ‏PDF או Notion עם התהליך המלא ב-₪79 (תבנית 3 בפרק 04).
 
 ---
+## 3. ‏DclqVvdqvZw: ‏@rourke, "Infinite Camera Angles": טייק אחד → 9 זוויות
+
+**מה זה ולמה זה עובד.**
+- **הפורמט:** ‏60 שניות ב-9:16, בשלושה חלקים:
+  - **0:00–0:22:** מסך מפוצל: למעלה "AI Video", למטה "Original" (טייק רחב ונעול של דוכן לימונדה). כותרת קבועה: "Lovart × Seedance 2.5 · Infinite Camera Angles".
+  - **0:25–0:45:** הדרכה. מעל ה-Original מוקלדים timecodes, ואחריהם צילומי מסך של Claude (רשימה קצרה, ואז הפרומפט המורחב) ושל Lovart (פרומפט, תגית Seedance 2.5 וקובץ וידאו מצורף). ‏rourke מדבר בשליש התחתון.
+  - **0:47–0:57:** עוד זוויות בפריסה תלת-שכבתית: AI למעלה, ‏Original באמצע, ‏talking head למטה. מסתיים ב-"Comment 'AI'".
+- **הזוויות במקור:**
+  - **0:00–0:22:** ‏tracking מבעד לעלים, לימון באוויר בסלואו, ‏low angle, סכין חותכת לימון בקלוז-אפ, ‏extreme close-up על הפנים, סחיטה לכוס, ‏tracking על הכד, ו-POV דרך חלון.
+  - **0:47–0:57:** טופ-דאון, מצלמה בתוך הכוס, מאקרו של הסכין.
+- **למה זה עובד:** הקונספט מובן בשנייה, יש ערך מקצועי ברור ("צוות צילום מטייק אחד"), ותהליך שקוף.
+- **התוצאה:** ‏72K לייקים, הגבוה בסט.
+
+**קושי, כלים ותוכנית.** קושי 2 בטכניקה, 3 בתזמון. כלים:
+- **Claude:** מקבל את הווידאו או פריימים ממנו, ומרחיב את הרשימה.
+- **Seedance 2.5 Edit/Reference:** ב-Lovart (כמו במקור; התמחור בקרדיטים לא מפורט [לא מאומת]), ב-Higgsfield, או ב-fal.
+- **ElevenLabs Scribe או Whisper:** תמלול ברמת מילה למפת הפה.
+- **CapCut:** עריכה.
+- **הערה:** ב-Lovart הופיעה אזהרה ש-Seedance 2 "prohibits real human faces" (פרק 11 §2). ‏rourke עבד עם הפנים שלו, אז כנראה V2V עובר [לא מאומת ל-2.5]. אם יש חסימה, עוברים ל-Higgsfield.
+
+תוכנית: (1) טייק רחב, ‏(2) מפת timecodes, ‏(3) רשימה קצרה ל-Claude, ‏(4) פרומפט מורחב, ‏(5) קטעים של 3–8 שניות ב-480p, ‏(6) ‏1080p, ‏(7) עריכה בשני חלקים.
+
+**מה לצלם (גרסה ישראלית: דוכן לימונענע במרפסת או בחצר).**
+- **שוט אחד:** רחב ונעול על חצובה, 9:16, ‏4K/30, ‏18–22 שניות. אתה מאחורי שולחן, וכל האביזרים בפריים "within arm's reach".
+- **אביזרים:** לימונים, נענע, קרש חיתוך וסכין, קנקן זכוכית, 3 כוסות שקופות **בלי לוגו**.
+- **פעולות ברורות שיוצרות נקודות קאט:**
+  - פונה למצלמה ומדבר.
+  - זורק לימון באוויר ותופס.
+  - פורס.
+  - סוחט לכוס.
+  - מוזג מהקנקן.
+  - שותה ומחייך.
+- **מונולוג קצר בעברית** (מיקרופון דש), למשל: "הלימונענע הכי טובה בשכונה... סוד: הרבה נענע ומעט סוכר".
+- אור יום רך או שמש. בלי שלטים וטקסט בפריים.
+- **אין צורך בתמונות רפרנס.** ה-`@Video1` הוא הרפרנס.
+
+**רשימת שוטים מתוזמנת (נקודות קאט על טייק של 20 שניות).**
+
+| נקודת קאט | זווית | מה קורה בטייק |
+|---|---|---|
+| 00:00 | Tracking אליי מבעד לצמחים | פתיחת משפט |
+| 02:20 | קלוז-אפ סלואו על הלימון באוויר | זריקה |
+| 04:10 | Low angle, ‏hero | מדבר למצלמה |
+| 06:00 | טופ-דאון על הקרש, הסכין פורסת | חיתוך |
+| 08:30 | Extreme close-up על הפנים | משפט מפתח |
+| 11:00 | מאקרו של סחיטה לכוס | סחיטה |
+| 13:30 | מצלמה בתוך הכוס מסתכלת למעלה | מזיגה מהקנקן |
+| 15:30 | Tracking על הקנקן | מזיגה |
+| 18:00 | Dolly zoom לסיום | שתייה וחיוך |
+
+**פרומפט 1: הרשימה הקצרה ל-Claude** (מדביקים יחד עם הווידאו או 20 פריימים ממנו, ועם התמלול):
+```
+00:00 Tracking shot toward me through the plants
+02:20 Close up slow motion of the lemon toss
+04:10 Low angle hero
+06:00 Top down shot on the cutting board, knife slicing
+08:30 Extreme close up on my face
+11:00 Macro of the lemon squeeze into the cup
+13:30 Camera inside the cup looking up
+15:30 Tracking shot of the jug pour
+18:00 Dolly zoom ending
+Keep the location, dialogue, and actions identical to the original video.
+```
+**פרומפט 2: ה-meta-prompt של Claude** (פרק 03 §6.4; מדביקים לפני הרשימה):
+```
+You are a cinematographer writing a Seedance 2.5 video-edit prompt.
+Source: @Video1, a single locked-off wide take, 20s, 9:16. Setup: a man behind a small outdoor lemonade-and-mint stand on a sunny Israeli balcony; props: lemons, fresh mint, cutting board, knife, glass jug, three clear unbranded cups.
+Shot list (my cut points): [paste list].
+Write one timecoded prompt in this structure:
+THE TAKE: what @Video1 shows.
+LOCKED ELEMENTS: nothing about the event changes — same location, actions, dialogue, wardrobe, props, timing; only camera position and lens change.
+MOUTH MAP: talking windows [paste from transcript] — whenever the mouth is in frame during a talking window, lips follow the original audio; never invent dialogue in quiet windows.
+WHERE HE LOOKS: eyes stay on the original A-camera position unless stated.
+CLOCK: real-time playback, no retiming, except where slow motion is requested.
+COVERAGE: for each shot — [start-end] Shot N: subject, camera placement, lens feel (wide/standard prime/macro), depth of field, movement (dolly, handheld micro-drift, crane), lighting, and transition ("Hard cut to Shot N+1").
+CONTINUITY BIBLE: performer, wardrobe, props count (exactly one lemon in the air, one jug, three cups), set.
+CONSTRAINTS: no crew, no extra props, no text, no logos on cups, no duplicated objects.
+Also output a SPLIT PLAN: the same prompt cut into 4 segments of 3-8s with local timecodes.
+```
+**דוגמת פלט מורחב** (סגנון rourke, לבדיקה מול מה ש-Claude מחזיר):
+```
+STYLE: ARRI Alexa 35 look, Cooke S4/i primes, Kodak Vision3 250D look, 9:16, shallow depth of field, gentle halation, fine organic grain, lifted blacks, no sharpening, no HDR. Grade: sun-bleached lemon yellow and fresh mint green as hero tones, warm terracotta balcony tiles, soft daylight shadows that never reach true black. Naturalistic performance, real dialogue sync, no music.
+[00:00-02.20] Shot 1: The man from @Video1 speaks to camera behind the stand, same performance and dialogue. Camera tracks slowly toward him through out-of-focus mint and potted plants in the foreground. Standard prime. Soft midday sun from camera left. Hard cut to Shot 2.
+[02.20-04.10] Shot 2: The lemon from @Video1 tosses up from his hand, ramping into deep slow motion as it spins midair against the blue sky. Tight close-up, close prime, frame effectively still. Hard cut to Shot 3.
+[04.10-06.00] Shot 3: Low angle from table height looking up at him as he talks, sky behind, same lip movement as the original audio. Wide prime, handheld micro-drift. Hard cut to Shot 4.
+[06.00-08.30] Shot 4: Top-down shot over the cutting board; the knife from @Video1 slices the lemon in the same rhythm as the original. Exactly one lemon. Hard cut to Shot 5.
+```
+**בעיה נפוצה:** אם Claude ממציא אביזרים, חוזרים ל-CONTINUITY BIBLE ומוסיפים `exactly one knife, one board`.
+
+**רמה משפטית.** הפנים שלך, הכוסות בלי לוגו, ושמות הכלים (Claude, ‏Seedance) הם עובדות, ולכן הסיכון נמוך. אם יש חסות מכלי, צריך "שיתוף פעולה בתשלום". ‏rourke תייג את Lovart בלי #ad שנראה בכיתוב [לא מאומת]. לא חוזרים על זה.
+
+**אסטרטגיית ג'נרציה (הטיפ של rourke: "small clips incrementally").**
+1. **חותכים את המקור לקטעים:**
+   - S1: ‏00:00–04:10 (שוטים 1–2)
+   - S2: ‏04:10–08:30 (שוטים 3–4)
+   - S3: ‏08:30–13:30 (שוטים 5–6)
+   - S4: ‏13:30–20:00 (שוטים 7–9)
+2. לכל קטע: הקטע כ-`@Video1` ‏ובלוק SPLIT PLAN המתאים. ‏1–2 זוויות בכל קטע.
+3. ‏480p לכל קטע.
+4. **רשימת כשלים לבדיקה:**
+   - פה סגור בזמן דיבור.
+   - עיניים שמסתכלות לזווית החדשה.
+   - שני לימונים.
+   - צוות או ציוד בפריים.
+   - אורך שלא תואם למקור.
+5. ‏1080p רק לקטעים שאושרו.
+6. קטע שנכשל פעמיים: משאירים את השוט המקורי. "גם זווית רחבה אמיתית היא זווית".
+7. **מחברים על הפסקול המקורי הרציף**, כי האודיו מדביק את החיתוכים (פרק 03 §6.4).
+8. **שוט "בתוך הכוס" הוא הכי מסוכן,** בגלל נוזל ושקיפות. מכינים לו גיבוי: מאקרו מזיגה מהצד.
+
+**עריכה, פריסה וכתוביות.**
+- **חלק 1 (0:00–0:20), Split:**
+  - AI למעלה (1080×960), ‏Original למטה (1080×960).
+  - תוויות "AI" ו"מקור" בפינה השמאלית העליונה של כל חצי.
+  - כותרת קבועה ב-Y≈150: `טייק אחד · אינסוף זוויות` ומתחתיה `Seedance 2.5` בקטן.
+  - זווית מתחלפת כל 1.5–3 שניות. בין זוויות: ‏whip/blur של 6–8 פריימים (פרק 03 §7.6).
+- **חלק 2 (0:20–0:42), הדרכה:**
+  - **רצועה עליונה:** הקלטות מסך של Claude (הקלדת הרשימה, ואז זום על הפרומפט המורחב) ושל ממשק ה-Seedance (צירוף `@Video1`, בחירת המודל, Generate). כ-2 שניות לכל מסך.
+  - **שליש תחתון:** ‏talking head שלך, מצולם בנפרד בסלפי, ומסביר בעברית.
+  - **כתוביות מילה-מילה בעברית:** ‏1–3 מילים, ‏70–90px, המילה הפעילה בצהוב.
+- **חלק 3 (0:42–0:50):** פריסה תלת-שכבתית כמו אצל rourke: ‏AI למעלה, ‏Original באמצע, ‏talking head למטה. אחריה CTA במסך מלא.
+- **אורך מומלץ:** ‏45–50 שניות. ‏rourke הגיע ל-60, אבל יש לו קהל גדול.
+
+**תסריט עברי לחלק 2 (מבוסס על התמלול של rourke):** "קודם רושמים את כל הנקודות שבהן המצלמה תחתוך לזווית חדשה. ב-Claude מדביקים את הסרטון ואת הרשימה, ומוסיפים: תשאיר את המקום, הדיאלוג והפעולות בדיוק כמו במקור. Claude נותן פרומפט, ומדביקים אותו עם הסרטון ב-Seedance 2.5. וטיפ: זה לא ייצא מושלם בפעם אחת. חותכים לקליפים קטנים ומייצרים כל אחד לבד."
+
+**כיתוב ו-CTA.**
+```
+צילמתי טייק אחד בטלפון, מחצובה אחת.
+ה-AI "צילם" אותו מחדש מ-9 זוויות: רחפן, מאקרו, ומצלמה בתוך הכוס.
+תגיבו "זוויות" ואשלח לכם את הרשימה ל-Claude + הפרומפט המלא.
+למעלה: AI | למטה: מקור
+```
+**Keywords:** `זוויות, זווית, ANGLE, angles`. לא משתמשים במילה `AI` כמו rourke, כי היא גנרית ומפעילה את הטריגר בטעות (פרק 04 §5.7).
+
+**זרימת DM.**
+- **DM 1:** `היי {first_name}! ה-workflow של "טייק אחד, אינסוף זוויות" מוכן. לחץ/י ואני שולח` [`שלח לי`]
+- **DM 2:**
+```
+הנה זה:
+1. איך לצלם את הטייק (רחב, נעול, אביזרים ליד היד): [כפתור: לצ'קליסט]
+2. הרשימה ל-Claude + ה-meta-prompt (העתק-הדבק): [כפתור: לפרומפטים]
+3. הטריק: לחתוך לקליפים של 3–8 שניות ולבדוק ב-480p קודם.
+```
+- **ענף "אני עורך/צלם":** `אתה עובד עם לקוחות? יש לי גרסה למקצוענים: איך מתמחרים "מולטי-קאם מטלפון אחד" לפודקאסטים ולמסעדות` [`ספר לי`]
+- **ענף "יש לי עסק":** תבנית 4.
+
+**עלות וזמן.**
+- **בתכנון:** ‏540 קרדיט, **₪80**.
+- **בתמחור:** ‏756 קרדיט, **₪113**. הנתונים ל-Seedance 2.5 Edit, טייק של 30 שניות ב-1080p, לפי פרק 10 §1.2. מכפיל ה-Edit ‏×0.6 [לא מאומת ב-Higgsfield].
+- **ב-fal:** עריכה של 20 שניות עלתה $5.18 ב-480p ו-$27.40 ב-1080p, כלומר ₪16 ו-₪83 (פרק 03 §5.2).
+- **זמן:** ‏2–3 שעות (למתחיל 4–5). ההקלטות של חלק 2 לוקחות כ-30 דקות.
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **שירות Infinite Angles:**
+   - **מחיר:** ₪1,200 בפיילוט, ₪1,800 ברשמי, ₪2,500 ב-Premium.
+   - **מה כלול:** טייק אחד שהלקוח מצלם לפי הצ'קליסט, 6–10 זוויות, 30 שניות.
+   - **למי:** פודקאסט במצלמה אחת שנראה כמו מולטי-קאם. שף שמכין מנה. מוכר שמדגים מוצר. מאמן כושר.
+   - **משפט לפיץ':** "צילמתם בטלפון אחד, קיבלתם צוות של 5 מצלמות".
+2. **ריטיינר לפודקאסט:** כל פרק מקבל קליפ Hero אחד באינסוף זוויות ועוד 3 וריאציות. ריטיינר ₪3,500 (1 Hero ו-3 וריאציות), עם שורת Generation budget (פרק 10 §3.3).
+3. **סדנה לעורכי וידאו (d):** ה-meta-prompt וה-workflow. זה הקהל של sidequestpat_, ראו מתכון 4.
+
+---
+
+## 4. ‏Dd6gkuVR7jS: ‏@sidequestpat_, "Genjutsu + Seedance": סלון לבן → פנטהאוז → אינסוף זוויות
+
+**מה זה ולמה זה עובד.**
+- **הפורמט:** ‏29 שניות ב-9:16, ‏talking head במסך מלא עם כתוביות מילה-מילה במרכז.
+- **0:00–0:01:** סלון לבן ופשוט, חולצה שחורה. ‏**wipe אנכי באמצע המשפט** ("believe it or not...") חושף פנטהאוז עם נוף לים, פולו בז' וכוס ביד.
+- **0:00–0:05:** כותרת "GENJUTSU · REALITY MANIPULATION".
+- **מ-0:06:** כותרת "SEEDANCE 2.5 · INFINITE ANGLES", ואחריה זוויות:
+  - **0:07:** שוט רחב שחושף מצלמה על סטנד ("limitless angles").
+  - **0:08.5:** קלוז-אפ על השעון ("a close up").
+  - **0:09.8:** ‏low angle מהרגליים ("an imaginary camera").
+  - **0:11:** זווית גבוהה ("a drone shot").
+  - **0:12.2:** פרופיל מול הים ("keep it rolling").
+  - **0:13.4–0:17:** רחב מאוד עם חצובה ("what this means... video production... your clients?").
+  - **0:19.5:** שוב השעון ("ad look like?").
+  - **0:20.7–0:22:** מאחורי הגב, עם סט צילום שלם: תאורה, ‏softbox ומצלמות ("insane skills").
+  - **0:23–0:25.6:** פרופיל ("because video AI has come to this").
+  - **0:26.9:** ‏CTA ‏"If you want to learn how comment 'ANGLE'".
+- **למה זה עובד:**
+  - ה-wipe באמצע המשפט: הצופה לא בטוח מה ראה, ונשאר.
+  - שני כלים יחד נשמעים כמו "קומבו סודי".
+  - פנייה ישירה לקהל משלם: אנשי וידאו ובעלי מותג אישי.
+  - הרילס עלה ביום ההשקה של Restyle.
+
+**קושי, כלים ותוכנית.** קושי 3.5. שני מעברי AI ("AI על AI"), ולכן חייבים 1080p נקי בשלב 1.
+- **שלב 1:** ‏Genjutsu (Restyle או Motion Transfer) על כל הטייק.
+- **שלב 2:** ‏Seedance 2.5 Edit על **התוצאה של שלב 1**, בקליפים של 2–4 שניות.
+- **עריכה:** ‏CapCut, כולל ה-wipe.
+
+**מה לצלם.**
+- **שוט אחד:** סלון רגיל, ספה, חצובה **גבוהה** בזווית 3/4 מלמעלה (כמו במקור). שוט רחב ונעול, 9:16, ‏4K/30.
+- **הטייק:** ‏28–30 שניות של מונולוג בעברית, מיקרופון דש.
+- **ביגוד:** חולצה כהה חלקה, בלי לוגו.
+- **אביזרים:** כוס זכוכית ביד ושעון כלשהו על היד השמאלית. השעון ישמש פרוקסי לשעון הזהב.
+- **תנועה:** תנועות ידיים ברורות. הרמת רגל על הדום (בשביל ה-low angle). מבט החוצה לחלון (בשביל הפרופיל מול הים).
+
+**תסריט עברי (29 שניות, אחרי כל משפט יש נקודת קאט):**
+```
+"תאמינו או לא... הסרטון הזה | צולם במצלמה אחת | מזווית אחת. | ואיכשהו | יש לי אינסוף זוויות: | קלוז-אפ, | מצלמה דמיונית, | רחפן... | ותמשיכו לצלם. | מה זה אומר? | אם אתם עובדים בהפקות וידאו, | מה אתם מציעים ללקוחות? | אם יש לכם מותג אישי, | איך תיראה הפרסומת הבאה שלכם? | פעם הייתם צריכים סט ותקציב ענק. | וידאו AI הגיע לרמה הזאת. | רוצים ללמוד איך? תגיבו 'זווית'."
+```
+
+**רפרנסים לשלב 1 (Genjutsu):**
+1. אתה, פנים קדמי.
+2. אתה, גוף מלא בפולו סרוג בז' ובמכנסי פשתן חומים (נוצר במודל תמונה).
+3. פנטהאוז (נוצר במודל תמונה).
+4. שעון זהב בלי מותג, קלוז-אפ על פרק כף יד.
+5. נוף הים מהחלון.
+```
+Luxury penthouse living room, floor-to-ceiling windows overlooking the Mediterranean at sunset, large curved cream boucle sofa, olive-green cushions and ottoman, travertine floor, warm cove lighting in the ceiling, photoreal, eye-level 24mm, no text, no logos.
+```
+```
+Close-up of a man's left wrist wearing a gold dress watch with a dark dial and a brown leather strap, no visible brand, no text on the dial, soft window light, photoreal.
+```
+
+**פרומפט שלב 1 (Genjutsu):**
+```
+Keep the original motion, framing, timing, lip movement and gestures exactly.
+CHANGE: Replace the plain white living room with the luxury penthouse from Ref 3: floor-to-ceiling windows overlooking the sea at sunset, curved cream sofa, olive-green cushions. Change his black t-shirt to the beige knit polo and brown linen trousers from Ref 2. Add the gold dress watch from Ref 4 on his left wrist, no visible brand.
+PRESERVE: his face identical to Ref 1, the glass in his hand, every hand gesture and the leg raise.
+Photorealistic, warm sunset light from the windows matched to the original light direction, no text, no logos.
+```
+**פרומפט שלב 2 (Seedance 2.5 Edit, ‏`@Video1` = תוצאת שלב 1, בקליפים):**
+```
+@Video1 = the penthouse take (performance, dialogue and timing stay identical; only the camera changes).
+[00:00-01.50] Shot 1: Very wide shot from the far corner of the room revealing a cinema camera on a stand and a light stand near the window; he sits on the sofa talking, same performance. 18mm, locked-off. Hard cut.
+[01.50-03.00] Shot 2: Extreme close-up of the gold dress watch on his left wrist as he gestures; no visible brand, no text on the dial. Macro, shallow depth of field. Hard cut.
+[03.00-04.20] Shot 3: Low angle from floor level past his raised shoe on the ottoman, looking up at him talking. Wide prime. Hard cut.
+[04.20-05.50] Shot 4: High overhead angle as if from a drone inside the room, slow descending crane. Hard cut.
+[05.50-07.00] Shot 5: Profile close-up against the sea window, he looks out, sunset rim light. 85mm.
+CONSTRAINTS: same face, same polo and watch, exactly one glass, no extra people, lips follow the original audio when the mouth is visible.
+```
+**פרומפט לשוט "חשיפת הסט"** (0:20–0:23):
+```
+[00:00-02.50] Shot: From behind the sofa, over his shoulder, revealing a full film set in the penthouse: a large white lantern softbox, two LED panels on stands, a cinema camera on a tripod pointed at him. Slow push-in. Same dialogue and gestures as @Video1. No crew visible.
+```
+
+**רמה משפטית.**
+- **מותג:** השעון בלי מותג, והפנטהאוז גנרי, ולכן הסיכון נמוך (פרק 06 §10.2).
+- **מה מותר:** הרילס עוסק ב-AI באופן גלוי, ולכן אין בו מצג של עושר.
+- **מה אסור:** להשתמש בפנטהאוז כ"ככה אני חי" במכירת קורס (פרק 06 §6).
+- **מה מוגן:** הצילום, הביצוע ובחירת הזוויות הם יצירה אנושית. זה טוב לטענת זכויות.
+
+**אסטרטגיית ג'נרציה.**
+1. **שלב 1:** ‏480p על כל 29 השניות (כ-80 קרדיט, כ-₪12).
+2. בודקים פנים, את הכוס, ושהשעון לא מקבל לוגו.
+3. ‏1080p לשלב 1. **חובה**, כי זה המקור של שלב 2.
+4. **שלב 2:** חותכים את תוצאת שלב 1 לקליפים של 3–5 שניות סביב כל נקודת קאט. 1–2 זוויות בכל קליפ, ‏480p ואז 1080p.
+5. **שוטים של 1.2–2.5 שניות בעריכה:** ככה ירידת האיכות של הדור השני לא מורגשת.
+6. **שוט "חשיפת הסט"** נכשל לפעמים, למשל כשמופיע צוות. אז מוסיפים `No crew visible, no people besides him`.
+
+**עריכה, פריסה וכתוביות.**
+- **מסך מלא, בלי פיצול.**
+- **ה-wipe:** ב-0:00.8 המקור מוצג מעל תוצאת שלב 1 (Overlay מיושר 100%). ‏Mask Linear 90° עם keyframe מצד לצד תוך 0.5 שניות, קו ניאון של 8px עם Glow, ו-whoosh שמתחיל 2 פריימים לפני. **ה-wipe נופל על מילה, לא בין משפטים** (פרק 03 §7.5).
+- **כותרות:**
+  - **0:00–0:05:** ‏`GENJUTSU` ומתחתיה `מניפולציה של המציאות`.
+  - **מ-0:06:** ‏`SEEDANCE 2.5` ומתחתיה `אינסוף זוויות`.
+  - שתיהן ב-Y≈280–400.
+- **כתוביות מילה-מילה בעברית:** במרכז המסך (Y≈1000), ‏1–3 מילים, ‏80px, לבן עם stroke.
+- **CTA:** ב-0:26.5 בצבע צהוב: `רוצים ללמוד איך? תגיבו 'זווית'`.
+- **אודיו:** המקור בלבד, ומוזיקת ambient שקטה.
+
+**כיתוב ו-CTA.**
+```
+הסרטון הזה צולם בסלון שלי, במצלמה אחת, מזווית אחת.
+שלב 1: Genjutsu החליף את החדר ואת הבגדים. שלב 2: Seedance 2.5 "צילם" אותו מחדש מ-8 זוויות.
+אם אתם בהפקות וידאו או בונים מותג אישי, זה משנה את המשחק.
+תגיבו "זווית" ואשלח לכם את ה-workflow המלא, שלב אחרי שלב.
+נוצר ב-AI.
+```
+**Keywords:** `זווית, זוויות, ANGLE`. אפשר לחלוק את המילה עם מתכון 3, אבל עדיף מילה ייחודית לכל רילס בשביל המדידה. למשל `קומבו` / `COMBO`.
+
+**זרימת DM.**
+- **DM 1:** `היי {first_name}! ה-workflow של "סלון ← פנטהאוז ← 8 זוויות" מוכן. לחץ/י` [`שלח לי`]
+- **DM 2:** קישורים ל:
+  - צ'קליסט צילום (חצובה גבוהה, 3/4 מלמעלה).
+  - 5 הרפרנסים ופרומפט שלב 1.
+  - פרומפט שלב 2.
+  - "חוק ה-AI על AI": ‏1080p בשלב 1, ושוטים קצרים בשלב 2.
+  - ואחריהם שאלת הסינון.
+- **ענף "אני עורך/צלם" (הקהל העיקרי כאן):** `רוצה למכור את זה ללקוחות? יש לי מחירון ותבנית הצעת מחיר מוכנה` [`ספר לי`]. ממשיכים לתבנית 3 (מדריך ב-₪79) או לסדנה ב-₪97 (תבנית 6).
+
+**עלות וזמן.**
+- **בתכנון:** שלב 1 (Genjutsu, 30 שניות) ₪138 ועוד שלב 2 (IA, 30 שניות) ₪80, כלומר **כ-₪218**.
+- **בתמחור:** ‏₪205 ועוד ₪113, כלומר **כ-₪318** (פרק 10 §1.2).
+- **ההערכה של פרק 03 §6.5** ($45–65, ‏₪137–198) נמוכה יותר כי היא בלי מקדם הניסיונות של פרק 10.
+- **זמן:** ‏3–4 שעות (למתחיל 6–8).
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **"פרסומת יוקרה למותג אישי מצילום ביתי":**
+   - **למי:** מאמנים, יועצים, מתווכים ואנשי מקצוע שמצלמים בבית או במשרד.
+   - **מה מקבלים:** סט של פנטהאוז ושוטים של צוות צילום.
+   - **מחיר:** רילס היברידי Premium, ₪3,000. גרסה פשוטה בלי שלב 2: ₪1,800.
+2. **White-label לחברות הפקה (B2B):** זה הקהל המוצהר של sidequestpat_.
+   - מוכרים יום הפקה היברידי, או 3 רילסים בחודש בריטיינר (₪7,500 ל-2 Hero ו-6 וריאציות).
+   - בחוזה: איסור להציג בתיק עבודות בלי אישור, ו-NDA על הפרומפטים (פרק 06 §8).
+3. **תוכן לתיק עבודות:** אותו רילס מוצג גם בגרסת 16:9 ל-LinkedIn. יחס מסך נוסף: ₪150 אצל לקוח.
+
+---
