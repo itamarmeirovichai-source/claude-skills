@@ -110,3 +110,312 @@
 - ויתור על הצגה בתיק העבודות (NDA): ‏+20%.
 
 ---
+## 1. ‏DcDrXjXsLcU: ‏@edbert_yienson, "Dubai": תמונת פספורט אחת → פרסומת רכב של 30 שניות
+
+**מה זה ולמה זה עובד.**
+- **מה על המסך:** 30 שניות ב-9:16, בפריסה קבועה של שלושה חלקים:
+  - למעלה: הווידאו, עם באדג' צהוב "HIGGSFIELD SEEDANCE 2.5 1080P".
+  - באמצע: "STEAL MY PROMPT · COMMENT 'DUBAI'".
+  - למטה: **INPUT** (תמונת פספורט אחת על רקע אפור) ולידה **PROMPT** שגולל בסנכרון עם הווידאו.
+- **שוטים:** צלילה מהצריח (0:00–0:05), רכב צהוב על מחלף (0:06), פרופיל צד ועקיפה (0:07–0:15), עיניים במראה האחורית (0:16), חזית (0:17.5), נהג מצד ימין (0:18.8–0:20), מאחור בתנועה (0:21–0:22.5), **POV על ההגה** (0:23.8–0:25, שוט שלא מופיע בחלק הגלוי של הפרומפט), מעבר צד מטושטש (0:26–0:27.6), וסיום סטטי ב-3/4 (0:28.8). אין דיבור.
+- **למה זה עובד:**
+  - הפער בין קלט משעמם (פספורט) לתוצאה של פרסומת יוקרה.
+  - הפרומפט גלוי **חלקית**: מספיק כדי להוכיח שזה אמיתי, לא מספיק כדי לוותר על התגובה.
+  - תזמון: הרילס עלה יום אחרי השקת 1080p.
+  - אין דיבור, אז הרילס עובד בכל שפה.
+- **התוצאה:** ‏24K תגובות מול 19K לייקים (יחס 1.26) בחשבון של 43K עוקבים (A1 §1).
+
+**קושי, כלים ותוכנית.** קושי 3. כלים:
+- Higgsfield Plus עם Seedance 2.5 (Image→Video, ‏@Image1).
+- Claude, להרחבת הפרומפט ולכתיבת SPLIT PLAN.
+- מודל תמונה (Nano Banana Pro / Soul / Seedream) לניקוי הפספורט, אופציונלי.
+- CapCut או Premiere לפריסת Prompt Reveal.
+- **החלופה הזולה:** fal או OpenRouter ב-480p (פרק 11 §2). שימו לב שייתכנו שם חסימות של פנים אמיתיות [לא מאומת ל-2.5].
+
+תוכנית: (1) תמונת INPUT, ‏(2) פרומפט, ‏(3) ‏30 שניות ב-480p, ‏(4) תיקון או פיצול, ‏(5) ‏1080p, ‏(6) פריסת Prompt Reveal, ‏(7) משפך DM.
+
+**מה לצלם ואיזה רפרנסים להכין (רשימה מדויקת).**
+1. **תמונה 1, חובה (`@Image1`):** פספורט קדמי, ראש וכתפיים.
+   - מצלמה אחורית ב-2x, מרחק 1.5–2 מטר.
+   - קיר אפור חלק, אור חלון רך, הבעה ניטרלית.
+   - ז'קט שחור (בגד היעד), בלי משקפיים ובלי כובע.
+   - JPEG מקורי ברוחב של 2K ומעלה, לא צילום מסך מוואטסאפ (פרק 03 §3.3–§3.4).
+2. **תמונה 2, מומלצת:** פנים ב-3/4 שמאל, באותו יום ובאותה תאורה. משמשת לשוט הקוקפיט.
+3. **תמונה 3, אופציונלית:** פרופיל 90°.
+4. **אופציונלי, start frame לשוט הפתיחה** (מייצרים במודל תמונה, פרק 03 §3.7, 9:16):
+```
+Vertical 9:16 frame. Aerial view from just above the spire of a needle-shaped supertall skyscraper in a desert metropolis at golden hour, looking straight down a 12-lane highway; a tiny sleek yellow Italian-style supercar with no visible badges is visible on the right side of the road. Photoreal, light haze, warm sun, no text, no logos.
+```
+**אם אין תמונה טובה,** מנקים אותה עם פרומפט ה-Anchor portrait בפרק 03 §3.7. מבחן חבר: אם חבר לא אומר מיד "זה אתה", לא ממשיכים.
+
+**רשימת שוטים מתוזמנת (הגרסה שלנו, 30 שניות, 9 שוטים).**
+
+| זמן | שוט | מצלמה | איך נגמר |
+|---|---|---|---|
+| 0:00–0:06 | צלילה מהצריח עד הכביש; הרכב מסומן בצד ימין | FPV אווירי רציף | הרכב נכנס לפריים |
+| 0:06–0:09 | פרופיל צד, הרכב עוקף את המצלמה | Lateral tracking בגובה הגלגל | יוצא מהפריים שמאלה. Hard cut |
+| 0:09–0:11 | עיניים במראה האחורית, הקו האופקי מתרחק | מתוך הקבינה | Cut |
+| 0:11–0:13 | חזית, גריל ופנסים | Low angle, ‏nose-on | Cut |
+| 0:13–0:16 | הנהג ב-3/4, חצי חיוך | מצד הנוסע, 35mm | Cut |
+| 0:16–0:19 | POV ידיים על ההגה, כביש נפתח | POV נהג | Cut |
+| 0:19–0:23 | פגוש אחורי ב-3/4, הרכב מתרחק בכביש ישר | Tracking מאחור | מתרחק |
+| 0:23–0:27 | פרופיל צד, מעבר שני | Lateral hold, ‏motion blur | עובר את המצלמה |
+| 0:27–0:30 | 3/4 רחב ונעול בשקיעה | Locked-off | הרכב יוצא; נשארים על כביש ריק |
+
+**פרומפט להעתקה (Seedance 2.5, ‏Image→Video, ‏30 שניות).** נבנה על בסיס הפרומפט המקורי (פרק 00) והגרסה המשוכתבת בפרק 03 §4.7, בלי מותגים:
+```
+@Image1 is the driver's face and identity only — keep facial features identical in every shot; ignore its background and lighting.
+GLOBAL STYLE: premium automotive commercial, 9:16, photoreal, warm desert golden-hour grade, light haze, anamorphic flares, crisp 1080p, no on-screen text, no logos, no badges.
+SCENE: The man from @Image1, black tailored suit, white shirt, drives a sleek yellow Italian-style supercar with no visible badges or logos through a desert metropolis of glass towers at golden hour.
+0:00-0:06  Continuous FPV aerial dive from the tip of a needle-shaped supertall skyscraper down toward street level; the yellow supercar is picked out on the right side of frame as it comes into view below.
+0:06-0:09  Lateral tracking shot at wheel height; camera holds the side profile, then the car accelerates and overtakes the camera, exiting frame left. Hard cut.
+0:09-0:11  Inside the cabin, center rear-view mirror shot: his eyes in the mirror, road and skyline receding behind.
+0:11-0:13  Nose-on low angle, grille and headlights filling frame, heat shimmer off the asphalt.
+0:13-0:16  Cockpit view from the passenger side, 35mm: his face in 3/4, calm half-smile, one hand on the wheel.
+0:16-0:19  Driver POV: both hands on a leather steering wheel with no emblem, the empty highway opening ahead.
+0:19-0:23  Rear-bumper 3/4 tracking shot, the car pulling away down a straightaway in light traffic.
+0:23-0:27  Lateral profile hold again; the car accelerates and passes the camera a second time, wheels motion-blurred.
+0:27-0:30  Locked-off 3/4 wide shot at sunset; the car drives through and out of frame. Hold on the empty road.
+AUDIO: high-revving engine roar rising on each pass, tire hiss, wind, deep cinematic bass hits on cuts, no dialogue, no music.
+CONSTRAINTS: same car color and shape in every shot, no badges, no license plate text, no extra cars in lane, wheels rotate correctly, no face drift.
+```
+**SPLIT PLAN** (אם 2–3 שוטים נכשלים ב-480p): שלושה קליפים של 10 שניות. בכל אחד חוזרים על שורות `@Image1`, ‏GLOBAL STYLE, ‏SCENE ו-CONSTRAINTS מילה במילה, ומדביקים רק את הבלוק המתאים (הזמנים מתחילים מאפס בכל קליפ):
+```
+CLIP A (10s): 0:00-0:06 [aerial dive line] / 0:06-0:10 [lateral overtake line]
+CLIP B (10s): 0:00-0:02 [mirror] / 0:02-0:04 [nose-on] / 0:04-0:07 [cockpit 3/4] / 0:07-0:10 [steering POV]
+CLIP C (10s): 0:00-0:04 [rear-bumper pull-away] / 0:04-0:07 [second pass] / 0:07-0:10 [locked-off exit, hold]
+```
+**וריאנט ישראלי, החלפה של שורה אחת:**
+```
+SCENE: The man from @Image1 drives the same supercar along a coastal highway into Tel Aviv at golden hour, glass towers and the Mediterranean on the left.
+```
+בווריאנט הזה מחליפים גם את שוט 0:00–0:06 בצלילה מעל קו החוף.
+
+**רמה משפטית.**
+- **פנים:** שלך, ולכן סיכון נמוך (פרק 06 §3.3).
+- **מותג:** גנרי לגמרי, כי זה מגנט לידים (פרק 10 §4 רמה 3). המילה "למבורגיני" לא מופיעה בפרומפט, בכיתוב או בהאשטג. לוגו מעוות שיוצא בכל זאת מטשטשים ב-CapCut.
+- **רקע:** מגדל ציבורי ברקע הוא סיכון זניח (פרק 06 §4).
+- **סימון:** תווית AI. אם יש לינק שותפים או Earn, גם "שיתוף פעולה בתשלום".
+
+**אסטרטגיית ג'נרציה.**
+1. ‏30 שניות ב-480p: כ-90 קרדיט, כ-₪13.
+2. בודקים: הפנים בשוט 0:13, צבע הרכב בכל השוטים, לוגואים, גלגלים, ושהשוט של 0:16 לא מכניס סמל להגה.
+3. אם 7 מתוך 9 שוטים טובים, מריצים 1080p לכל ה-30 שניות, ושוט פגום מחליפים בשוט מקליפ פיצול.
+4. אם 3 שוטים או יותר נכשלים, עוברים ל-CLIP A/B/C. מריצים כל קליפ ב-480p, ואחר כך ב-1080p.
+5. **טריק הבימוי של דובאי:** הפנים ברורות רק ב-2–3 שוטים, ולכן יש פחות דריפט (פרק 03 §2.2).
+
+**עריכה, פריסה וכתוביות (Prompt Reveal, קנבס 1080×1920, פרק 03 §7.4).**
+
+| אזור | Y | תוכן |
+|---|---|---|
+| UI עליון | 0–220 | רקע כהה. באדג' `SEEDANCE 2.5 · 1080P` ב-Y≈150 (שם כלי מותר) |
+| RESULT | 220–1100 | הווידאו, crop ל-1080×880 |
+| כותרת ו-CTA | 1100–1220 | `תגנבו לי את הפרומפט` ‏(Heebo Black, ‏60px), ומתחת `תגיבו "דובאי"` בטורקיז |
+| INPUT + PROMPT | 1220–1600 | שמאל: הפספורט 320×320 עם התווית `INPUT`. ימין: הפרומפט גולל בפונט מונו 26–28px. שורת ה-timecode הנוכחית מודגשת ומסונכרנת לשוט |
+| תחתית | 1600–1920 | רקע בלבד |
+
+- **מוזיקה:** מורשית בלבד (Meta Sound Collection או ספריית CapCut Pro), ‏SFX מנוע על כל מעבר.
+- **כתוביות בעברית:** אין דיבור, ולכן אין כתוביות. במקומן כותרת עליונה בשנייה 0–2: `מתמונת פספורט אחת ← פרסומת של 30 שניות`, ובסוף `נוצר ב-AI`.
+- **הפרומפט שעל המסך נשאר באנגלית**, כי זה מה שהצופה רוצה להעתיק.
+
+**כיתוב ו-CTA.**
+```
+תמונת פספורט אחת. פרומפט אחד. 30 שניות של פרסומת רכב.
+בלי צילום, בלי רכב ובלי טיסה לדובאי: Seedance 2.5 ופרומפט שמחולק לשניות.
+תגיבו "דובאי" ואשלח לכם את הפרומפט המלא + איך לצלם את התמונה.
+(או לינק בביו)
+נוצר ב-AI. הרכב גנרי ואינו מייצג יצרן.
+#וידאוAI #AIvideo #Seedance #פרומפט
+```
+**Keywords לאוטומציה:** `דובאי, דוביי, DUBAI, Dubai, dubai`.
+
+**זרימת DM.**
+- **DM 1:** `היי {first_name}! הפרומפט של סרטון הדובאי מוכן. לחץ/י ואני שולח` [`שלח לי`]
+- **DM 2:**
+```
+הנה זה:
+1. הפרומפט המלא + SPLIT PLAN (העתק-הדבק): [כפתור: לפרומפט]
+2. איך לצלם את תמונת ה-INPUT (צ'קליסט של 8 סעיפים): [כפתור: לצ'קליסט]
+3. הכלי: Higgsfield, Seedance 2.5 (לינק שותפים, מקבלים הנחה): [כפתור: לכלי]
+טיפ: תמונה אחת ברורה באור יום, בלי משקפי שמש. ולא Starter, הוא לא כולל Seedance 2.5.
+```
+- **אחר כך:** שאלת הסינון מסעיף 0.3.
+- **ענף "יש לי עסק":** `רוצה פרסומת כזאת למותג האישי או למוצר שלך? 3 שאלות ואשלח הצעה` (תבנית 4 בפרק 04).
+- **Follow-up:** `הספקת לנסות? שלח/י לי את התוצאה, אולי אעלה אותה לסטורי`.
+
+**עלות וזמן.**
+- **מעבר יחיד:** ‏270–360 קרדיט, ‏₪40–54.
+- **רילס גמור:** ‏**850 קרדיט, ₪127 בתכנון**. בתמחור ללקוח: 1,120 קרדיט, ‏₪167 (פרק 10 §1.2).
+- **בלי שיטת הטיוטות:** כ-₪242.
+- **זמן:** ‏1.5–2 שעות למנוסה, 4–5 למתחיל. כ-40 דקות מתוכן הן פריסת ה-Prompt Reveal. בפעם השנייה משכפלים תבנית.
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **"פרסומת קולנועית מתמונה" למותג אישי:**
+   - **למי:** מתווכים, מאמנים, DJ, עורכי דין, בעלי קליניקות.
+   - **מה כלול:** הלקוח שולח 3 תמונות לפי הנוסח המוכן בפרק 03 §3.5, ומקבל פרסומת של 20–30 שניות שבה הוא "מגיע" לאירוע, לנכס או לבמה.
+   - **מחיר:** ₪1,500 בפיילוט, ₪2,500 ברשמי, ₪4,000 ב-Premium (עם 2 הוקים ו-2 יחסי מסך).
+   - **מה צריך:** טופס הסכמה ל-AI (פרק 06 §9.2). **רק supercar גנרי, ובלי מותג אמיתי** (פרק 06 §4 רמה 3).
+2. **וריאציות בעלות ₪0 לחשבון שלך** (פרק 10 §2.1):
+   - גרסה של 15 שניות עם הוק אחר.
+   - גרסת "רק תוצאה" במסך מלא.
+   - גרסת BTS: "ככה נראתה התמונה".
+3. **שירות לעוקבים** ("שלח תמונה ← קבל סרטון"): רק עם אימות שהתמונה שייכת לשולח (סלפי וידאו קצר ותיבת סימון), כי הסיכון כאן בינוני-גבוה (פרק 06 §3.3). המחיר לא מופיע בפרק 10, ולכן כל מחיר הוא [הערכה].
+4. **חבילת פרומפטים** (d): ‏10 וריאציות של "דובאי" (חוף, שלג, מדבר, לילה), עם צ'קליסט צילום, ב-₪49–149. זה טווח המחיר למדריך בפרק 04 §5.7.
+
+---
+
+## 2. ‏DdyIfcjSm3P: ‏@maorhani1, חניון ורכב זול → מלון יוקרה ורכב שרד, בעברית
+
+**מה זה ולמה זה עובד.**
+- **הפריסה:** ‏40 שניות ב-9:16, מסך מפוצל לכל האורך: למעלה AI, למטה המקור. כותרת קבועה "Higgsfield + ChatGPT". כתוביות צרובות על התפר בין החצאים.
+- **ביט A (0:00–0:17):**
+  - יציאה מהלובי (במקור: יציאה מחניון תת-קרקעי).
+  - החבר פותח דלת ("hello mr hani", ‏"good morning, good morning").
+  - שטרות נמסרים ("this is for you thank you") ונופלים לרצפה, והחבר מרים אותם ("are you sure??? yeah i'm sure").
+  - קידה ("oh thank you sir", ‏"thank you mr hani"), ודלת נסגרת.
+- **ביט B (0:18.6–0:30.5):** ‏וידוי בעברית מהמושב האחורי ("בדיוק סגרנו עסקה עכשיו של מאה מיליון דולר...").
+- **ביט C (0:32–0:37):** ‏CTA בעמידה ליד הרכב, וגם הוא מותמר ("אז אם אתם רוצים ללמוד... תגיבו רולס תעקבו אחריי ואשלח לכם את המדריך"). אחריו מסך סיום "המלא!".
+- **למה זה עובד:** פער סטטוס, הומור "פייק עשיר", עברית מדוברת שנשמרת בסינכרון, וההפקה כולה בטלפון.
+- **התוצאה:** יחס תגובות/לייקים 1.68, הגבוה בסט (A1 §1).
+
+**קושי, כלים ותוכנית.** קושי 2. הכלים:
+- Higgsfield Genjutsu, ‏Motion Transfer. אפשר גם מתוך ChatGPT עם `/genjutsu`.
+- מודל תמונה לרפרנסים.
+- CapCut לפיצול המסך.
+- Whisper או ivrit.ai לכתוביות.
+- ציוד: חצובה ומיקרופון דש (כ-₪250 חד-פעמי, פרק 03 §6.3).
+
+תוכנית: (1) תסריט של 3 ביטים, ‏(2) צילום של 30–60 דקות, ‏(3) רפרנסים, ‏(4) ‏3 ג'נרציות Genjutsu, ‏(5) מסך מפוצל וכתוביות, ‏(6) משפך DM.
+
+**מה לצלם (חבר + טלפון + חצובה + חניון).**
+- **ביט A:** חצובה בגובה עיניים, 9:16, ‏4K/30, ‏shutter 1/50 (נגד פליקר בחניון), ‏HDR כבוי. שלושה setups קצרים של 4–8 שניות, 3–5 טייקים לכל אחד:
+  - **A1:** יציאה מדלת המעלית או מחדר המדרגות לעבר המצלמה.
+  - **A2:** הליכה לרכב, החבר פותח דלת אחורית ואתה מושיט שטרות (שטרות אמיתיים או "כסף מונופול").
+  - **A3:** השטרות על הרצפה, החבר מרים ומשתחווה, אתה נכנס והדלת נסגרת.
+  - **תנועות גדולות וברורות.** הרכב הקטן משמש פרוקסי בגודל דומה (פרק 03 §3.9).
+- **ביט B:** הטלפון בתפסנית על משענת הראש הקדמית, מיקרופון דש, פנים ופה גלויים, ‏15–20 שניות של מונולוג בעברית.
+- **ביט C:** עמידה ליד הרכב, 6–8 שניות של CTA בעברית.
+- **אופציונלי:** ‏clean plate, כלומר 5 שניות של המקום ריק.
+
+**תסריט עברי מוצע** (הומור בלי קזינו והימורים, לפי פרק 06 §6):
+```
+ביט A: "בוקר טוב, מיסטר [שם]" / "זה בשבילך" / "בטוח?" / "בטוח." / "תודה, מיסטר [שם], תודה!"
+ביט B: "בדיוק סגרנו עסקה של מאה מיליון דולר... אנחנו הולכים להיות יבואני הפיתות הכי גדולים בעולם. וזאת רק ההתחלה."
+ביט C: "אז אם אתם רוצים ללמוד לעשות סרטונים כאלה, תגיבו 'חניון' ואשלח לכם את המדריך המלא."
+```
+
+**רפרנסים (6 משבצות לכל ג'נרציה, פרק 03 נספח 2e):**
+
+| Ref | ביט A | ביט B | ביט C |
+|---|---|---|---|
+| 1 | אתה, פנים קדמי (מאותו יום) | אתה, פנים קדמי | אתה, פנים קדמי |
+| 2 | אתה, גוף מלא בחליפה כהה (נוצר במודל תמונה) | אתה בחליפה, חצי גוף, יושב | אתה, גוף מלא בחליפה |
+| 3 | החבר: פנים + חליפת נהג וכפפות לבנות | פנים הקבינה האחורית | הרכב, 3/4 קדמי |
+| 4 | הרכב, 3/4 קדמי | הנוף מחוץ לחלון: נמל עם יאכטות | חזית המלון |
+| 5 | חזית המלון | — | — |
+| 6 | אביזר: חבילת שטרות | — | — |
+
+**פרומפטים לרפרנסים (מודל תמונה):**
+```
+Studio product shot of a stately black ultra-luxury British-style sedan, front three-quarter view, no grille emblem, no hood ornament, no badges, no license plate text, neutral light-gray background, soft even light, photoreal, 4K, no text.
+```
+```
+A grand Belle Époque luxury hotel facade on the Riviera, wide marble entrance steps, potted palms, warm late-afternoon golden light, eye-level 35mm, no signage text, no logos, photoreal.
+```
+```
+Rear passenger cabin of an ultra-luxury sedan: white leather seats, starlight headliner, dark wood veneer, champagne flute in the armrest, harbor with yachts visible through the windows in daylight, no logos, photoreal.
+```
+```
+Using the person in the uploaded photo: same face, same hairstyle. Full-body standing pose, black chauffeur suit, white gloves, chauffeur cap, plain light-gray background, soft studio light, photoreal, no text.
+```
+
+**פרומפטים ל-Genjutsu (Motion Transfer).** הגרסה הקצרה, בסגנון הממשק:
+```
+Same video, but at the grand entrance of the Riviera hotel from the references, and the small car becomes the black luxury sedan from the references.
+```
+**ביט A, הגרסה המלאה (CHANGE/PRESERVE, פרק 03 §6.2–§6.3):**
+```
+Keep the original motion, camera position, framing, cuts and timing exactly.
+CHANGE: Replace the underground parking garage with the grand Belle Époque hotel entrance from Ref 5, late-afternoon golden light, marble steps, potted palms. Replace the small blue car with the stately black ultra-luxury sedan from Ref 4, same position and scale, no grille emblem, no hood ornament. The man opening the door becomes a uniformed chauffeur (Ref 3): black suit, white gloves, cap. Dress the main character in the dark tailored suit from Ref 2.
+PRESERVE: both men's faces identical to Ref 1 and Ref 3, every gesture, the door opening, the banknotes falling to the ground and being picked up, lip movement.
+Photorealistic, lighting matched to the original footage, no text, no logos, no signage.
+```
+**ביט B (עברית):**
+```
+Keep the original motion, head movements, lip movements, eye line and timing exactly — the man is speaking; preserve his mouth shapes frame by frame.
+Replace the car interior with the rear cabin from Ref 3: white leather, starlight headliner, wood veneer, champagne flute in the armrest. Outside the windows: a Riviera harbor with yachts, daylight (Ref 4).
+Keep the man's face identical to Ref 1; dark tailored suit, white shirt. Same lighting direction as the original. No text, no logos.
+```
+**ביט C:**
+```
+Keep the original motion, lip movements, framing and timing exactly. Replace the parking garage with the hotel entrance from Ref 4 and the small car behind him with the black luxury sedan from Ref 3, no emblem. Keep his face identical to Ref 1, dark tailored suit. Photorealistic, no text, no logos.
+```
+
+**רמה משפטית.**
+- **פורמט:** המסך המפוצל עצמו מגלה שזה AI, וההומור גלוי, ולכן הסיכון נמוך (פרק 06 §6).
+- **מותג:** הרכב והמלון גנריים, כי זה מגנט לידים (פרק 10 §4 רמה 3). גם מילת ה-CTA לא יכולה להיות "רולס".
+- **החבר:** חותם על טופס הסכמה.
+- **לוגו של כלי:** אם מקבלים מ-Higgsfield תמורה (קרדיטים, Earn) ומציגים את הלוגו שלה: "שיתוף פעולה בתשלום" ו-#פרסומת (פרק 06 §5.5).
+- **מה לא עושים:** לא משתמשים בגרסה ה"עשירה" בלבד כהוכחת הכנסה במכירת קורס (פרק 06 §6).
+
+**אסטרטגיית ג'נרציה.**
+1. בעריכה מחברים את A1–A3 לקליפ אחד של 15–17 שניות. ‏Genjutsu שומר חיתוכים, וקלט של עד 30 שניות.
+2. **מייצאים WAV נפרד של ביט B.** זה הביטוח של העברית.
+3. ‏480p לכל ביט: כ-40–45 קרדיט ל-15 שניות, כ-₪6.
+4. **בודקים:** פנים, ידית הדלת, השטרות, שהרכב לא "מתנפח", ושאין סמל על הגריל.
+5. **תיקון:** משתנה אחד בכל פעם. אם הפנים זזות: עוד רפרנס פנים, או קיצור הקליפ. אם הרכב מעוות: רפרנס רכב מזווית שתואמת לצילום.
+6. אחר כך 1080p. בעומס, רינדור לוקח עד כ-10 דקות.
+7. **סינכרון שפתיים בביט B:** משתיקים את אודיו ה-AI ומניחים את ה-WAV. אם יש פספוס, מזיזים 1–3 פריימים או חותכים ל-B-roll (פרק 03 §6.3).
+
+**עריכה, פריסה וכתוביות (פרק 03 §7.2A, §7.5).**
+- **פריסה:** למעלה RESULT ‏1080×960, למטה ORIGINAL ‏1080×960, וקו מפריד של 6px ב-Y=960.
+- **תוויות:** בפינה **השמאלית** העליונה של כל חצי: "AI" ו"מקור".
+- **פס עליון:** ‏0–150, עם שם הכלי.
+- **הוק בשנייה 0–2:** כותרת גדולה `צילמתי את זה בחניון` מעל התפר.
+- **כתוביות:** ‏Whisper large-v3 עם `--word_timestamps True`, ואחריו מעבר ידני. פונט Heebo Black או Rubik Bold, ‏70–90px, ‏stroke שחור, על התפר ב-Y≈900–1020 (כמו במקור).
+- **דיאלוג באנגלית ("good morning"):** נשאר כתובית באנגלית, או מתורגם.
+- **Pattern interrupt ב-0:17:** ‏wipe, ואז ביט B במסך מלא ל-3–4 שניות. אחר כך חזרה למפוצל.
+- **אודיו:** רק מהמקור. מעליו מוזיקת luxury חלשה (ducking של ‎-10dB) ו-SFX של דלת ושטרות.
+- **סיום:** ‏CTA על המסך `תגיבו "חניון"` מ-0:30 ועד הסוף, ולופ לפריים הראשון.
+- **בדיקת bidi:** כל שורה שמערבבת עברית ואנגלית נבדקת (פרק 03 §8.3).
+
+**כיתוב ו-CTA.**
+```
+צילמנו את זה בחניון של הבניין, עם חבר, טלפון ורכב רגיל לגמרי.
+ה-AI החליף את החניון, את הרכב ואת הבגדים, והשאיר את התנועה ואת העברית שלי.
+תגיבו "חניון" ואשלח לכם את המדריך המלא: מה לצלם, איזה רפרנסים להכין, והפרומפטים.
+למעלה: AI | למטה: מקור. הרכב והמלון גנריים.
+```
+**Keywords לאוטומציה:** `חניון, חנייה, PARKING, parking`. ‏Follow-gate אופציונלי (תבנית 5 בפרק 04), ותמיד משחררים בלחיצה השנייה.
+
+**זרימת DM.**
+- **DM 1:** `היי {first_name}! המדריך של "חניון ← מלון יוקרה" מוכן. לחץ/י ואני שולח` [`שלח לי`]
+- **DM 2:**
+```
+הנה זה:
+1. רשימת צילום (3 ביטים, 30 דקות, חבר + טלפון): [כפתור: לצ'קליסט]
+2. 6 הרפרנסים + הפרומפטים לכל ביט: [כפתור: לפרומפטים]
+3. הכלי: Higgsfield Genjutsu (לינק שותפים): [כפתור: לכלי]
+טיפ: שמרו קובץ אודיו נפרד מהצילום. ככה העברית נשארת מושלמת.
+```
+- **ענף "יש לי עסק":** `רוצה כזה לעסק? למשל "הבעלים מגיע לפתיחה" או סרטון לאירוע. מה סוג העסק?` [`מסעדה/בר`] [`אירועים`] [`נדל"ן`] [`אחר`]
+
+**עלות וזמן.**
+- **ג'נרציה של 37 שניות:** ‏A ‏17 + B ‏13 + C ‏7 שניות.
+- **בתכנון:** ‏37 × 12 × 2.5 + 24 רפרנסים = 1,134 קרדיט ≈ **₪169**.
+- **בתמחור:** ‏37 × 18 × 2.5 + 24 = 1,689 ≈ **₪252** (לפי הנוסחה של פרק 10 §1.2).
+- **גרסה של 30 שניות:** ‏₪138 / ₪205.
+- **זמן:** ‏2.5–3.5 שעות כולל צילום (למתחיל 5–7). העריכה לבדה לוקחת 30–45 דקות.
+
+**איך הופכים את זה למוצר בתשלום.**
+1. **רילס היברידי לעסק:** ₪1,000 בפיילוט, ₪1,800 ברשמי, ₪3,000 ב-Premium.
+   - **דוגמאות:** "השף מגיע במסוק לפתיחת המסעדה". בעל אולם אירועים. מספרה שהופכת לסלון בפריז.
+   - **מה כלול:** הלקוח מצלם לפי הנחיות (נוסח וואטסאפ בפרק 03 §3.5), ואתה מעביר את הצילום לעולם אחר. העברית המקורית נשמרת, עם כתוביות ותיקון אחד.
+   - **כלל:** ה-AI מייפה את הסביבה, לא את המוצר. אסור, למשל, להציג דירה גדולה מכפי שהיא (פרק 06 §5.5).
+2. **סקיטים לבר/בת מצווה ולאירועים:**
+   - "הנער מגיע לאירוע ברכב שרד", שימוש פרטי, ובכך סיכון נמוך.
+   - מוכרים כרילס היברידי, או כחבילה עם הוק נוסף (+₪200).
+   - בקטינים: הסכמת הורה בכתב.
+3. **המדריך עצמו (d):** ‏PDF או Notion עם התהליך המלא ב-₪79 (תבנית 3 בפרק 04).
+
+---
