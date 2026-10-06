@@ -1,0 +1,3 @@
+opportunistic signal tickers: 11495 | with Yahoo history: 5134 | without: 6361 (55.3%)
+IS 2009-2016: stock-month signals 51204, share with no price history 54.7%, share of purchase dollars with no price history 40.6%
+OOS 2017-2026: stock-month signals 47111, share with no price history 28.9%, share of purchase dollars with no price history 8.7%

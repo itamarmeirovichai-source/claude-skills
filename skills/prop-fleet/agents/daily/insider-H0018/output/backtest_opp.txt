@@ -1,0 +1,47 @@
+signal-level drops: {'dropped_no_price': 45713, 'dropped_mismatch': 1589, 'dropped_under5': 11458}
+
+== opportunistic, cost 20bp (pre-registered) ==
+IS 2009-2016 (2009-02..2017-01 holding months)
+   months          96.0000
+   mean_ret        0.0150
+   mean_excess     0.0019
+   t_excess        0.9196
+   sharpe          1.1668
+   max_dd         -0.1841
+   avg_stocks      160.9062
+   avg_turnover    0.7824
+   mean_spy        0.0131
+OOS 2017-latest (2017-02..2026-04 holding months)
+   months          111.0000
+   mean_ret        0.0078
+   mean_excess    -0.0050
+   t_excess       -1.6570
+   sharpe          0.4808
+   max_dd         -0.3394
+   avg_stocks      217.1081
+   avg_turnover    0.8191
+   mean_spy        0.0128
+
+DECISION (pre-registered, OOS @20bp): mean excess > 0 and t >= 3.48 -> FAIL
+
+== opportunistic, cost 50bp (SENSITIVITY only) ==
+IS 2009-2016 (2009-02..2017-01 holding months)
+   months          96.0000
+   mean_ret        0.0127
+   mean_excess    -0.0004
+   t_excess       -0.2107
+   sharpe          0.9832
+   max_dd         -0.1944
+   avg_stocks      160.9062
+   avg_turnover    0.7824
+   mean_spy        0.0131
+OOS 2017-latest (2017-02..2026-04 holding months)
+   months          111.0000
+   mean_ret        0.0054
+   mean_excess    -0.0074
+   t_excess       -2.4775
+   sharpe          0.3296
+   max_dd         -0.3450
+   avg_stocks      217.1081
+   avg_turnover    0.8191
+   mean_spy        0.0128
