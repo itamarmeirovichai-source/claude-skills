@@ -1,0 +1,53 @@
+{
+  "_about": "Boca Raton villa: Blender blockout -> AI render reveal. Make media/boca_villa_blockout.mp4 with scripts/blockout.py (examples/blockout/boca_villa.json); media/boca_villa_ai.mp4 is the AI (Seedance/Runway V2V) render driven by that blockout. Same in/out on both so geometry lines up.",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "export": "instagram",
+  "output": "out/blocks_to_reality.mp4",
+  "defaults": {"font": "Heebo"},
+  "timeline": [
+    {
+      "clip": {"path": "media/boca_villa_blockout.mp4", "in": 0, "out": 2.0,
+               "effects": [{"type": "ken_burns", "from": 1.0, "to": 1.08}]},
+      "overlays": [
+        {"type": "chip", "text": "BLOCKOUT · BLENDER", "x": 48, "y": 290},
+        {"type": "text", "text": "ככה זה התחיל", "position": "upper", "anim": "pop", "size": 88}
+      ]
+    },
+    {
+      "layout": "reveal", "mode": "wipe", "transition": {"type": "flash", "dur": 0.2},
+      "blockout": {"path": "media/boca_villa_blockout.mp4", "in": 2.0, "out": 5.5},
+      "real": {"path": "media/boca_villa_ai.mp4", "in": 2.0, "out": 5.5},
+      "at": 0.6, "wipe_dur": 1.0, "direction": "right", "glitch": true, "flash": true,
+      "labels": {"blockout": "BLOCKOUT", "real": "AI"},
+      "overlays": [{"type": "text", "text": "וככה זה נגמר", "position": "upper", "start": 1.6, "anim": "slide_up", "size": 88}]
+    },
+    {
+      "layout": "reveal", "mode": "split_vertical", "transition": "glitch",
+      "blockout": {"path": "media/boca_villa_blockout.mp4", "in": 0, "out": 3.0},
+      "real": {"path": "media/boca_villa_ai.mp4", "in": 0, "out": 3.0},
+      "labels": {"blockout": "לפני", "real": "אחרי"}
+    },
+    {
+      "clip": {"path": "media/boca_villa_ai.mp4", "in": 3.0, "out": 6.0,
+               "speed": 1.0, "ramps": [{"from": 0, "to": 1.2, "speed": 0.5}],
+               "effects": [{"type": "lut", "path": "media/grade.cube", "mix": 0.8}, {"type": "film_grain", "strength": 6}]},
+      "transition": {"type": "whip", "sfx": "whoosh"}
+    },
+    {
+      "clip": {"path": "media/packshot.png", "duration": 2.5, "fit": "cover"},
+      "transition": "dip",
+      "overlays": [
+        {"type": "image", "path": "media/logo.png", "y": 760, "width": 420},
+        {"type": "title", "text": "וילה על המים · בוקה רטון", "position": "center", "anim": "pop"},
+        {"type": "cta", "text": "לסיור פרטי ← שלחו DM", "position": "cta", "box": true, "anim": "slide_up"}
+      ]
+    }
+  ],
+  "effects": [{"type": "vignette", "angle": 0.45}],
+  "audio": {
+    "music": {"path": "media/music.wav", "volume": 0.5, "fade_out": 1.0},
+    "sfx_on_cuts": "auto",
+    "sfx": [{"type": "riser", "at": 2.6}, {"type": "impact", "at": 2.6}],
+    "loudnorm": -14
+  }
+}
