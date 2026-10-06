@@ -551,7 +551,7 @@ BENCH_TESTS = [
     ("T11", "v2v_blockout", "V2V", "Blender blockout to photoreal; layout and camera respected."),
     ("T12", "stylised_world", "I2V", "Claymation/miniature world with the product as a character; style consistent all clip."),
 ]
-BENCH_MODELS = ["seedance", "kling", "veo", "runway", "hailuo", "wan"]
+BENCH_MODELS = ["seedance25", "kling30pro", "veo31", "minimax_h3", "wan30", "omni_flash", "runway45"]
 SCORE_COLS = ["prompt_adherence", "product_fidelity", "artifacts", "motion_physics", "aesthetic",
               "audio", "time_to_keeper_takes", "cost_usd"]
 

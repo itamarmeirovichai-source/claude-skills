@@ -28,7 +28,7 @@ python3 $D dice --client "Driftline" --lock format=asmr_macro -n 3   # explore i
 python3 $D log --client "Driftline" --title "Heat Index" --seed-json '<seed JSON>' --result "chosen"
 python3 $D history --client "Driftline"
 python3 $D qc final.mp4 --packshot packshot.png --duration 15 [--one-take] --out qc/
-python3 $D bench --out bench/ --models seedance,kling,veo   # model test matrix
+python3 $D bench --out bench/ --models seedance25,kling30pro,veo31   # model test matrix
 python3 $D bench-summary bench/bench_matrix.csv
 ```
 The ledger defaults to `~/.ad-director/ledger.jsonl`; override it with `--ledger` or `AD_DIRECTOR_LEDGER`. Keep one ledger per studio and back it up, because it is the memory that prevents repeats.
