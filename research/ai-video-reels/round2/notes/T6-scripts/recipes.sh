@@ -124,8 +124,6 @@ with open('teal_orange.cube','w') as f:
             for r in range(N):
                 R,G,B=r/(N-1),g/(N-1),b/(N-1)
                 L=0.2126*R+0.7152*G+0.0722*B
-                s=lambda x: x*x*(3-2*x)
-                c=0.5+ (s(L)-0.5)*1.0 - L + L  # keep luma
                 sh=(1-L)**2; hi=L**2
                 R2=R+0.06*hi-0.05*sh; G2=G+0.01*hi+0.02*sh; B2=B-0.07*hi+0.07*sh
                 R2=0.06+0.9*R2; G2=0.06+0.9*G2; B2=0.06+0.9*B2   # lifted blacks, rolled highs
@@ -140,7 +138,7 @@ r_duotone() { # duotone / brand-colour grade (gray -> map shadows to navy, highl
 $FF -i $LOOK -filter_complex "[0:v]format=gray,format=gbrp,curves=r='0/0.05 1/1':g='0/0.08 1/0.6':b='0/0.3 1/0.2',format=yuv420p[v]" -map "[v]" $ENC out/duotone.mp4; }
 
 # ---------- TEXT ----------
-r_kinetic_he() { # Hebrew kinetic captions via ASS (libass+fribidi do RTL shaping) - pop, word highlight, slide, shake
+r_kinetic_he() { # Hebrew kinetic captions via ASS: Encoding=-1 + RLM (U+200F) at line start = correct bidi (verified by bidi_test.py)
 cat > kin.ass <<'ASS'
 [Script Info]
 ScriptType: v4.00+
@@ -151,21 +149,21 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Pop,Heebo,110,&H00FFFFFF,&H0000E5FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,9,4,5,60,60,0,1
-Style: Kara,Heebo,84,&H00FFFFFF,&H0000E5FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,7,3,2,80,80,520,1
-Style: Box,Heebo,64,&H00000000,&H00000000,&H0000E5FF,&H0000E5FF,-1,0,0,0,100,100,0,0,3,18,0,8,80,80,260,1
+Style: Pop,Heebo,110,&H00FFFFFF,&H0000E5FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,9,4,5,60,60,0,-1
+Style: Kara,Heebo,84,&H0000E5FF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,7,3,2,80,80,520,-1
+Style: Box,Heebo,64,&H00000000,&H00000000,&H0000E5FF,&H0000E5FF,-1,0,0,0,100,100,0,0,3,18,0,8,80,80,260,-1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:00.90,Pop,,0,0,0,,{\pos(540,900)\fscx40\fscy40\t(0,90,\fscx118\fscy118)\t(90,160,\fscx100\fscy100)}תראו את זה
-Dialogue: 0,0:00:00.90,0:00:01.80,Pop,,0,0,0,,{\pos(540,900)\fscx40\fscy40\t(0,90,\fscx118\fscy118)\t(90,160,\fscx100\fscy100)\c&H0000E5FF&}בחינם!
-Dialogue: 0,0:00:01.80,0:00:03.20,Kara,,0,0,0,,{\k35}יצרתי {\k35}את {\k30}זה {\k40}ב-Seedance‏ {\k40}2.5‏
-Dialogue: 0,0:00:01.80,0:00:04.00,Box,,0,0,0,,{\move(1300,260,540,260,0,180)}הפרומפט בתגובות 👇
-Dialogue: 0,0:00:03.20,0:00:04.00,Pop,,0,0,0,,{\pos(540,900)\t(0,400,\frz-4)\c&H004BFF2D&}מטורף
+Dialogue: 0,0:00:00.00,0:00:00.90,Pop,,0,0,0,,{\pos(540,900)\fscx40\fscy40\t(0,90,\fscx118\fscy118)\t(90,160,\fscx100\fscy100)}‏תראו את זה
+Dialogue: 0,0:00:00.90,0:00:01.80,Pop,,0,0,0,,{\pos(540,900)\fscx40\fscy40\t(0,90,\fscx118\fscy118)\t(90,160,\fscx100\fscy100)\c&H0000E5FF&}‏בחינם!
+Dialogue: 0,0:00:01.80,0:00:03.20,Kara,,0,0,0,,{\k35}‏יצרתי {\k35}את {\k30}זה {\k40}ב-Seedance {\k40}2.5
+Dialogue: 0,0:00:01.80,0:00:04.00,Box,,0,0,0,,{\move(1300,260,540,260,0,180)}‏הפרומפט בתגובות 👇
+Dialogue: 0,0:00:03.20,0:00:04.00,Pop,,0,0,0,,{\pos(540,900)\t(0,400,\frz-4)\c&H004BFF2D&}‏מטורף
 ASS
 $FF -i A.mp4 -vf "ass=kin.ass:fontsdir=." $ENC out/kinetic_he.mp4; }
 
-r_drawtext_he() { # drawtext fallback (NO bidi in drawtext 6.1 -> must pre-reverse with python-bidi / fribidi) - test shows the problem
+r_drawtext_he() { # drawtext: pure-Hebrew renders OK (6.1 has text_shaping), but MIXED Hebrew+Latin/digits/punctuation comes out in the wrong order -> use ASS
 $FF -i A.mp4 -vf "drawtext=fontfile=heebo.ttf:text='שלום עולם':fontsize=120:fontcolor=white:borderw=8:x=(w-tw)/2:y=h*0.3" $ENC out/drawtext_he.mp4; }
 
 # ---------- AUDIO ----------
