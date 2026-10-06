@@ -1,6 +1,16 @@
+# generated media - never commit renders or synthetic clips
 examples/media/
+examples/out/
 out/
+work*/
 *.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.m4a
+*.mp3
+*_grid.jpg
 __pycache__/
 *.pyc
 .pytest_cache/

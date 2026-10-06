@@ -182,3 +182,11 @@ def test_plan_timeline_overlaps_transitions(media):
         {"clip": {"path": "media/clip3.mp4", "out": 1}, "transition": "cut"}]}
     plans = rs.plan_timeline(spec, rs.Ctx(spec, media))
     assert [round(p["start"], 2) for p in plans] == [0.0, 1.6, 3.6]
+
+
+def test_user_xy_are_reference_coords_scaled_to_canvas():
+    feed = rs.Ctx({"canvas": {"width": 1080, "height": 1350}, "timeline": [1]}, rs.Path("."))
+    assert rs.resolve_xy({"x": 540, "y": 960}, feed)[:2] == (540, 675)
+    assert rs.resolve_xy({"x": 0.25, "y": 0.5}, feed)[:2] == (270, 675)
+    assert rs.resolve_xy({"x": 10, "y": 20, "_px": True}, feed)[:2] == (10, 20)
+    assert rs.resolve_xy({"position": "top"}, feed)[1] == round(330 * 1350 / 1920)
