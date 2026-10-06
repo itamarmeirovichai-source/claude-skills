@@ -1,0 +1,45 @@
+PRE-REGISTRATION (hypothesis builder, run 2026-10-06-0247). NOT RUN ON MARKET DATA. NO RESULT EXISTS.
+Proposed ledger row (the director writes it; count = 3; rules_fixed_before_test = yes):
+  "PRE-REGISTERED NOT RUN: S&P 30-minute opening-range breakout, flat by close: A base; B 2R target; C narrow-OR filter"
+
+Family: opening-range breakout (Crabel 1990; Holmberg, Lonnbark & Lundstrom 2013, Finance Research
+Letters 10(1) 27-33, crude oil; Zarattini & Aziz 2023, SSRN 4416622, 5-minute ORB on QQQ, reported
++0.13R/trade gross of spread and slippage, no out-of-sample period). The 5-minute version is NOT
+registered here: its stop is the first 5-minute range (a few S&P points), so 0.6 pt RT is a large
+fraction of 1R and it fails the board's screening rule (stops >= 15 ES pt) before any test; a public
+replication (mql5.com/en/blogs/post/776235, search snippet only) reports gross reproduced, net zero.
+The 30-minute range is used because its stop is several times wider. Not in ledger.csv: H0005/H0011
+(noise-area band with VWAP trail, entries every half hour) is the nearest family; this differs in the
+trigger (fixed 09:30-09:59 range, one entry), the stop (opposite range edge) and the exit (15:59).
+
+Data (fixed now): D1 SPXUSD 1m, FutureSharks/HistData, 2010-11..2018-12, NY clock, loaded with
+scripts/tjr_backtest.load_minutes (in-sample). No other dataset is run under this row.
+
+Rules, one session d at a time, using only bars of day d up to the decision minute:
+  1. Eligibility, decided at 10:00 (ex ante; nothing after 09:59 is read): d is a weekday, the
+     09:30 bar exists, and at least 25 of the 30 bars 09:30..09:59 exist.
+  2. Opening range: ORH = max high, ORL = min low of bars 09:30..09:59. W = ORH - ORL.
+  3. Trigger: the first bar with time in 10:00..11:59 whose CLOSE is > ORH (long) or < ORL (short).
+     Only the first trigger of the day counts; at most one trade per day.
+  4. Entry: open of the next existing bar after the trigger bar, provided that bar's time <= 12:00.
+     Otherwise no trade.
+  5. Stop: long ORL, short ORH. Risk = |entry - stop|. No trade if Risk < 1.0 pt (tjr MIN_RISK)
+     or if the entry open is already at/beyond the stop.
+  6. Exit: from the entry bar inclusive, each bar: if the stop is touched, exit at the worse of the
+     stop and that bar's open (stop-first on any ambiguous bar). Otherwise exit at the close of the
+     last existing bar at or before 15:59 (the 15:59 bar is NOT required).
+  7. Cost: 0.6 pt round trip (tjr COST_PTS). Gross R = side*(exit-entry)/Risk; net R = gross R - 0.6/Risk.
+Variants (all three reported, none chosen afterwards):
+  A  rules 1-7, no target.
+  B  A plus target = entry + side*2*Risk; a bar touching both stop and target counts as stop.
+  C  A, traded only if W < median W of the previous 20 eligible sessions (today excluded; needs 20).
+
+Report: n, trades/yr, trades/day (per eligible weekday), gross and net mean R, day-level bootstrap
+p5 (10,000 draws, seed 0), the one-sided lower bound at alpha = 0.05/N (N = 195 + 3 = 198,
+>= 198,000 day-clustered draws, daily/2026-10-05/eng_head/ledger_gate.py) and the normal bound,
+net R by year, long vs short, median Risk in pt, exits by type.
+
+Decision rule fixed now: D1 is in-sample and cannot pass gate rule 2. The family earns an
+out-of-sample row (ES 1m RTH 2019-2026, its own ledger row) only if variant A's D1 net bootstrap p5
+> 0. B and C cannot rescue the family. Otherwise close it: no other range lengths (5/15/60 min),
+entry windows, targets or filters.

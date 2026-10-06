@@ -1,0 +1,52 @@
+== clock_check.py
+Jan-Feb (no DST)   top-6 |r| minutes: 10:00 5.26bp, 18:00 5.21bp, 15:59 4.94bp, 08:30 4.79bp, 09:35 4.74bp, 09:31 4.52bp
+   08:30 mean|r| 4.79bp
+   09:30 mean|r| 4.20bp
+   15:59 mean|r| 4.94bp
+   16:00 mean|r| 4.10bp
+   16:14 mean|r| 3.35bp
+   17:00 mean|r| 1.15bp
+   18:00 mean|r| 5.21bp
+Jun-Aug (DST)      top-6 |r| minutes: 18:00 5.58bp, 10:00 4.99bp, 08:30 4.27bp, 09:30 4.23bp, 15:59 4.10bp, 09:35 4.01bp
+   08:30 mean|r| 4.27bp
+   09:30 mean|r| 4.23bp
+   15:59 mean|r| 4.10bp
+   16:00 mean|r| 3.79bp
+   16:14 mean|r| 3.01bp
+   17:00 mean|r| 1.15bp
+   18:00 mean|r| 5.58bp
+Jan-Feb: reopen time after 30m-6h gaps (weekday), top counts: {'18:00': 224, '00:14': 2, '00:43': 1, '23:54': 1}
+Jun-Aug: reopen time after 30m-6h gaps (weekday), top counts: {'18:00': 376, '18:01': 13, '18:04': 3, '19:43': 3}
+09:30-15:59 bars/session median by month: {1: 367.5, 2: 371.0, 3: 381.0, 4: 379.0, 5: 378.0, 6: 380.0, 7: 368.5, 8: 372.0, 9: 379.0, 10: 387.0, 11: 380.0, 12: 375.0}
+== tjr_filter_check.py
+weekdays passing the asia>=120 test: 1149
+pass tjr filter (>=300 bars 18:00..11:00, reads up to 11:00): 1149  fail: 0
+ex-ante (>=159 of 540 bars 18:00..02:59): pass 1149
+  fail as-written but pass ex-ante (look-ahead drops): 0
+  pass as-written but fail ex-ante: 0
+  dropped days, window (03:00-11:00) bars: min/median/max None None None
+  dropped days list (first 15): []
+existing base trades file: n=860  mean R -0.2035
+== h0006_filter_check.py
+weekdays 2102; with 09:59,14:59,15:29,15:30 (all known by 15:30 entry): 1737
+  of which also have the trade day's 15:59 bar (H0006 as written): 1736
+  dropped only because the 15:59 bar AFTER entry is missing: 1 (0.1%)
+H0006 as-written eligible days with prev_close > 4 calendar days back: 14 of 1735; max 10 days
+== tjr_repro.py
+base trades n=860  net mean -0.2035R  (tjr-run.txt:4 says n=860 -0.203R)
+(a) gross mean +0.0072R  boot_mean 5/95 [-0.071, +0.085]  mean cost 0.211R
+(b) risk>=4: n=266 net mean +0.0566R  5/95 [-0.086, +0.201]  2010-14 +0.0041  2015-18 +0.0788
+N=195 alpha=2.564e-04 z=3.474
+  H0004 base net     rule-3 LB boot -0.3669 (195000 draws)  normal -0.3695
+  H0004 base gross   rule-3 LB boot -0.1558 (195000 draws)  normal -0.1582
+  H0010 slice net    rule-3 LB boot -0.2401 (195000 draws)  normal -0.2462
+== horizon_at_gate.py
+anchor SE 0.1450R at 28 clusters; N=195 z=3.474
+  true +0.101R: detect.py (t 95%) 222 days -> gate z 697 days (3.14x)
+  true +0.200R: detect.py (t 95%) 59 days -> gate z 178 days (3.02x)
+  true +0.250R: detect.py (t 95%) 39 days -> gate z 114 days (2.92x)
+  true +0.300R: detect.py (t 95%) 28 days -> gate z 79 days (2.82x)
+  true +0.500R: detect.py (t 95%) 12 days -> gate z 29 days (2.42x)
+.........                                                                [100%]
+9 passed in 54.62s
+2026-10-06T00:17:58Z

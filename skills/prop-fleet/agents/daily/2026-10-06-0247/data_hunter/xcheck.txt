@@ -1,0 +1,15 @@
+ES Eric vs Warrenn overlap rows 1757339 of Warrenn 1757339
+  equal open 1.0
+  equal high 1.0
+  equal low 1.0
+  equal close 1.0
+  equal volume 1.0
+  equal instrument_id 1.0
+FirstRate cols ['Open', 'High', 'Low', 'Close', 'Volume']
+ES Eric vs FirstRate RTH joined minutes 709148 days 1848 days median diff 0: 1748 exact close frac 0.9446
+  nonzero-day years {2019: 14, 2020: 16, 2021: 14, 2022: 11, 2023: 8, 2024: 14, 2025: 18, 2026: 5}
+hindsight cols ['DateTime_ET', 'session', 'window', 'Open', 'High', 'Low', 'Close', 'Volume', 'DateTime_UTC']
+NQ Eric vs hindsight joined 1834431 days 1627 days median diff 0: 1536 exact close frac 0.9454
+  nonzero days sample {'2020-09-14': 13.25, '2020-09-15': 14.25, '2020-09-16': 14.0, '2020-09-17': 14.5, '2020-09-18': 17.0, '2020-12-15': -6.0, '2020-12-16': -4.25, '2020-12-17': -2.25, '2020-12-18': 3.5, '2021-03-15': 9.25, '2021-03-16': 9.75, '2021-03-17': 12.25}
+ES RTH volume / prior-month median, last ~7 sessions before each c.0 roll (first 4 rolls): [[1.32, 0.61, 0.29, 0.2, 0.18, 0.1], [0.64, 0.35, 0.17, 0.22, 0.15, 0.11], [1.0, 0.44, 0.22, 0.16, 0.18, 0.12], [1.94, 0.85, 0.32, 0.27, 0.2, 0.15]]
+NQ RTH volume / prior-month median, last ~7 sessions before each c.0 roll (first 4 rolls): [[1.48, 0.64, 0.32, 0.26, 0.22, 0.14], [0.67, 0.35, 0.21, 0.22, 0.14, 0.11], [0.97, 0.45, 0.27, 0.19, 0.17, 0.09], [1.8, 0.67, 0.31, 0.18, 0.16, 0.09]]
