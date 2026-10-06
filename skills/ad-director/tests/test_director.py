@@ -149,3 +149,17 @@ def test_qc_on_synthetic_clip(tmp_path):
     assert rep["measurements"]["width"] == 1080
     assert (tmp_path / "qc" / "qc_sheet.jpg").exists()
     assert (tmp_path / "qc" / "qc_report.md").exists()
+
+
+def test_predict_and_rank():
+    viral = {"hook": 5, "curiosity": 4, "emotion": 5, "novelty": 5, "rewatch": 4, "identity": 5,
+             "comment_bait": 4, "utility": 1, "product_desire": 3, "offer_clarity": 2, "brand_early": 2, "trust": 2}
+    seller = {"hook": 3, "curiosity": 3, "emotion": 2, "novelty": 2, "rewatch": 2, "identity": 2,
+              "comment_bait": 1, "utility": 3, "product_desire": 5, "offer_clarity": 5, "brand_early": 5, "trust": 5}
+    cs = [{"title": "viral", "drivers": viral}, {"title": "seller", "drivers": seller}]
+    assert D.rank(cs, "awareness")[0]["title"] == "viral"
+    assert D.rank(cs, "conversion")[0]["title"] == "seller"
+    assert D.predict({**viral, "ai_backlash": 5})["shares"] < D.predict(viral)["shares"]
+    assert all(0 <= v <= 100 for v in D.predict(viral).values())
+    with pytest.raises(ValueError):
+        D.predict({"virality": 5})

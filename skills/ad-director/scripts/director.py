@@ -9,6 +9,7 @@ Commands
   new      scaffold a job folder (brief, concepts, script, shots, prompts, qc)
   qc       automated technical + pacing + product-fidelity checks on a render,
            plus a contact sheet with safe-zone overlay for the visual review
+  rank     rank finalists by predicted retention/likes/shares/saves/comments/clicks/purchases
   bench    write the model benchmark matrix (tests x models) and a score sheet
 
 Standard library + ffmpeg/ffprobe. `qc` also uses numpy and Pillow when present
@@ -593,6 +594,53 @@ def summarize_bench(csv_path: Path) -> dict:
     return res
 
 
+
+# ───────────────────────────── engagement ranking ─────────────────────────────
+# Heuristic predictor: each concept is scored 0-5 on drivers; each metric is a weighted
+# mix of drivers. It ranks concepts against each other - it does NOT predict absolute numbers.
+# Validate the winner with a cheap hook test (5 hooks x $10) before full production.
+
+DRIVERS = ("hook", "curiosity", "emotion", "novelty", "rewatch", "identity", "utility",
+           "comment_bait", "product_desire", "offer_clarity", "brand_early", "trust", "ai_backlash")
+METRICS = {
+    "retention": {"hook": .4, "curiosity": .3, "rewatch": .3},
+    "likes": {"emotion": .3, "hook": .2, "novelty": .2, "rewatch": .1, "product_desire": .1, "identity": .1},
+    "shares": {"identity": .35, "emotion": .25, "novelty": .2, "comment_bait": .1, "hook": .1},
+    "saves": {"utility": .5, "rewatch": .2, "product_desire": .15, "novelty": .15},
+    "comments": {"comment_bait": .5, "curiosity": .2, "identity": .15, "emotion": .15},
+    "clicks": {"offer_clarity": .3, "curiosity": .25, "product_desire": .25, "hook": .2},
+    "purchases": {"product_desire": .3, "trust": .3, "offer_clarity": .25, "brand_early": .15},
+}
+GOALS = {
+    "balanced": {m: 1 / len(METRICS) for m in METRICS},
+    "awareness": {"retention": .3, "shares": .25, "likes": .2, "comments": .15, "saves": .1},
+    "engagement": {"shares": .25, "comments": .25, "saves": .2, "likes": .15, "retention": .15},
+    "conversion": {"purchases": .35, "clicks": .3, "retention": .2, "shares": .1, "saves": .05},
+}
+
+
+def predict(drivers: dict) -> dict:
+    """drivers: {name: 0-5}. Returns metric scores 0-100 (AI-backlash risk discounts all)."""
+    bad = [k for k in drivers if k not in DRIVERS]
+    if bad:
+        raise ValueError(f"unknown drivers {bad}")
+    penalty = 1 - 0.06 * float(drivers.get("ai_backlash", 0))
+    return {m: round(sum(w * float(drivers.get(d, 0)) for d, w in W.items()) / 5 * 100 * penalty, 1)
+            for m, W in METRICS.items()}
+
+
+def rank(concepts: list[dict], goal: str = "balanced") -> list[dict]:
+    """concepts: [{"title":..., "drivers": {...}}] -> sorted with per-metric scores, total and weakest metric."""
+    G = GOALS[goal]
+    out = []
+    for c in concepts:
+        sc = predict(c["drivers"])
+        total = round(sum(G.get(m, 0) * v for m, v in sc.items()), 1)
+        weak = min(G, key=lambda m: sc[m])
+        out.append({"title": c["title"], "total": total, "metrics": sc, "weakest": weak})
+    out.sort(key=lambda r: -r["total"])
+    return out
+
 # ───────────────────────────── CLI ─────────────────────────────
 
 def main(argv: list[str] | None = None) -> int:
@@ -629,6 +677,9 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--models", default=",".join(BENCH_MODELS))
     bs = sub.add_parser("bench-summary", help="rank models per test from a filled matrix")
     bs.add_argument("csv")
+    rk = sub.add_parser("rank", help="rank concepts by predicted likes/shares/saves/comments/clicks/purchases")
+    rk.add_argument("json", help='file: [{"title":..,"drivers":{"hook":4,...}}]')
+    rk.add_argument("--goal", choices=sorted(GOALS), default="balanced")
     a = ap.parse_args(argv)
     ledger_path = Path(a.ledger)
 
@@ -671,6 +722,14 @@ def main(argv: list[str] | None = None) -> int:
     elif a.cmd == "bench":
         for p in cmd_bench(Path(a.out), [m.strip() for m in a.models.split(",") if m.strip()]):
             print(p)
+    elif a.cmd == "rank":
+        rows = rank(json.loads(Path(a.json).read_text(encoding="utf-8")), a.goal)
+        cols = list(METRICS)
+        print(f"goal={a.goal}\n| # | concept | total | " + " | ".join(cols) + " | weakest |")
+        print("|---" * (len(cols) + 4) + "|")
+        for i, r in enumerate(rows, 1):
+            print(f"| {i} | {r['title']} | **{r['total']}** | " + " | ".join(str(r['metrics'][c]) for c in cols)
+                  + f" | {r['weakest']} |")
     elif a.cmd == "bench-summary":
         for t, ranks in sorted(summarize_bench(Path(a.csv)).items()):
             print(t, "  ".join(f"{r['model']}={r['quality']}" for r in ranks))

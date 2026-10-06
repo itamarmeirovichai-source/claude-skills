@@ -27,6 +27,7 @@ python3 $D dice --client "Driftline" -n 5               # 5 fresh, mutually diff
 python3 $D dice --client "Driftline" --lock format=asmr_macro -n 3   # explore inside one format
 python3 $D log --client "Driftline" --title "Heat Index" --seed-json '<seed JSON>' --result "chosen"
 python3 $D history --client "Driftline"
+python3 $D rank finalists.json --goal conversion     # predicted likes/shares/saves/comments/clicks/purchases
 python3 $D qc final.mp4 --packshot packshot.png --duration 15 [--one-take] --out qc/
 python3 $D bench --out bench/ --models seedance25,kling30pro,veo31   # model test matrix
 python3 $D bench-summary bench/bench_matrix.csv
@@ -63,6 +64,26 @@ Seeds are *provocations, not orders*. For each seed, write the best idea it prov
 - Gates: legal ≤2, AI-feasibility ≤2 (with no hybrid fix) or brand ≤2 → killed.
 - Pick 3 finalists from at least 2 mechanisms. One of them must be "safe-but-sharp" (legal 5, cost ≥4).
 - Present all 3 to the user with a recommendation. After the choice, `log` it (also log rejected finalists with `--result rejected` when the client saw them).
+
+### 4b. Upgrade round: make each of the 3 finalists better, then filter by predicted engagement
+The first score only picks the 3 finalists. Next, each finalist gets a **second creative pass**. Run every lens below on every finalist, write the upgraded version, and keep only changes that do not break the idea:
+1. **Crazier.** Run `dice --client X --lock mechanism=<its mechanism> -n 3`. Steal one dimension that makes the idea bolder (a stranger format, a harsher constraint). Push it to "too much", then pull back 20%.
+2. **Hook.** Write 5 alternative first seconds (anomaly / payoff-first / sound-led / text-tension / scale-shock) and keep the strongest. The product or its effect should be visible by 1.5 s.
+3. **Shares.** Add an identity trigger: "this is so me / tag the friend who…", a local in-joke (Boca, Florida heat, an Israeli-American moment), or an "I need to show someone" moment.
+4. **Saves.** Add a reason to come back: a micro-tip, a recipe, a hidden detail, a list, or a "part 1 of a series".
+5. **Comments.** Add one harmless debate or a spot-the-detail ("which one would you pick?", a deliberate Easter egg). No rage bait about people.
+6. **Clicks and purchases.** Make the product *desirable on screen* (demo, sensory close-up), brand by 3 s, one clear offer and CTA, and one trust element (a real product shot, real filmed plate, or hybrid).
+7. **Rewatch.** Make it a loop, add a fast detail, or let the payoff reframe the opening.
+
+Then score every upgraded finalist 0–5 on the drivers below and run `director.py rank concepts.json --goal <awareness|engagement|conversion|balanced>`.
+
+Drivers:
+- **Positive:** hook, curiosity, emotion, novelty, rewatch, identity, utility, comment_bait, product_desire, offer_clarity, brand_early, trust.
+- **Negative:** ai_backlash (it discounts every metric).
+
+The tool predicts retention, likes, shares, saves, comments, clicks and purchases (0–100), a goal-weighted total, and the **weakest metric**. For the winner, run one more fix aimed at its weakest metric. Present the winner plus the runner-up as the A/B pair.
+- Score drivers like a sceptical media buyer, not like the creator of the idea.
+- The ranking is *relative*: it orders our options; it does not forecast numbers. Real data decides. Before full production, run 5 hook variants at about $10 each and compare 3-second view rate and CTR. Then log the real results in the ledger (`--result`).
 
 ### 5. Script (`03-script.md`)
 - Beats: Hook / Setup / Turn / Proof / Payoff+brand / CTA.
