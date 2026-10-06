@@ -7,7 +7,7 @@
     {
       "clip": {"path": "media/clip1.mp4", "in": 0.2, "out": 2.6,
                "effects": [{"type": "zoom_punch", "at": [0.0, 1.2], "dur": 0.5, "scale": 1.18}, {"type": "color", "preset": "teal_orange"}]},
-      "overlays": [{"type": "title", "text": "עצרו לגלול ✋", "position": "top", "anim": "pop", "highlight": ["עצרו"]}]
+      "overlays": [{"type": "title", "text": "עצרו לגלול!", "position": "top", "anim": "pop", "highlight": ["עצרו"]}]
     },
     {
       "clip": {"path": "media/clip2.mp4", "in": 0, "out": 4.0,

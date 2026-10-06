@@ -241,10 +241,12 @@ _PROBE_CACHE: dict[str, dict] = {}
 
 def probe(path: str | Path) -> dict:
     path = str(path)
-    if path in _PROBE_CACHE:
-        return _PROBE_CACHE[path]
     if not os.path.exists(path):
         raise SpecError(f"file not found: {path}")
+    st = os.stat(path)
+    key = f"{path}|{st.st_mtime_ns}|{st.st_size}"  # re-probe files that were re-rendered
+    if key in _PROBE_CACHE:
+        return _PROBE_CACHE[key]
     cmd = [which_or_die("ffprobe"), "-v", "error", "-print_format", "json", "-show_format",
            "-show_streams", path]
     p = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -285,7 +287,7 @@ def probe(path: str | Path) -> dict:
             pass
         if info["duration"] is None and v.get("duration"):
             info["duration"] = float(v["duration"])
-    _PROBE_CACHE[path] = info
+    _PROBE_CACHE[key] = info
     return info
 
 
@@ -1998,9 +2000,8 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
                 warn(f"output duration {info['duration']:.2f}s differs from plan {total:.2f}s")
         return str(out_path)
     finally:
-        if keep or dry:
-            if keep:
-                log(f"kept work dir {tmp}")
+        if keep:
+            log(f"kept work dir {tmp}")
         elif not workdir:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -2156,7 +2157,8 @@ def cmd_grid(video: str, cols: int, rows: int, width: int, out: str | None, star
     tw = even(width / cols)
     out = out or str(Path(video).with_suffix("")) + "_grid.jpg"
     font = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-    dt = (f",drawtext=fontfile={esc_filter_path(font)}:text='%{{pts\\:hms\\:{fnum(start)}}}':x=6:y=6:"
+    step = dur / n
+    dt = (f",drawtext=fontfile={esc_filter_path(font)}:text='%{{pts\\:hms\\:{fnum(start + step / 2)}}}':x=6:y=6:"
           f"fontsize={max(12, tw // 14)}:fontcolor=yellow:box=1:boxcolor=black@0.6:boxborderw=4"
           if os.path.exists(font) else "")
     step = dur / n
