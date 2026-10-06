@@ -871,19 +871,32 @@ NAMED_Y = {"top": 330, "upper": 560, "center": 960, "middle": 960, "lower": 1340
 
 
 def resolve_xy(ov: dict, ctx: Ctx) -> tuple[int, int, int]:
-    """Returns (x, y, ass_alignment). Coordinates are canvas pixels (1080x1920 reference scaled)."""
+    """Returns (x, y, ass_alignment) in canvas pixels.
+
+    User x/y are in the 1080x1920 reference frame (scaled to the real canvas, so the same spec
+    works for 4:5 feed or a low-res draft); floats in (0, 1] are fractions of the canvas.
+    Internal chips set `_px` and pass canvas pixels directly.
+    """
     an = int(ov.get("align", 5))
     pos = ov.get("position")
     x = ov.get("x")
     y = ov.get("y")
-    if pos and isinstance(pos, str):
-        if pos not in NAMED_Y:
-            raise SpecError(f"unknown text position {pos!r}. Valid: {', '.join(NAMED_Y)} or x/y")
-        y = ctx.Y(NAMED_Y[pos]) if y is None else y
     if isinstance(pos, (list, tuple)):
         x, y = pos[0], pos[1]
-    x = ctx.W // 2 if x is None else (int(float(x) * ctx.W) if 0 < float(x) <= 1 and isinstance(x, float) else int(x))
-    y = ctx.Y(960) if y is None else (int(float(y) * ctx.H) if 0 < float(y) <= 1 and isinstance(y, float) else int(y))
+    elif pos:
+        if pos not in NAMED_Y:
+            raise SpecError(f"unknown text position {pos!r}. Valid: {', '.join(NAMED_Y)} or x/y")
+        if y is None:
+            y = NAMED_Y[pos]
+    raw = bool(ov.get("_px"))
+
+    def conv(v, size: int, scale) -> int:
+        if isinstance(v, float) and 0 < v <= 1:
+            return int(round(v * size))
+        return int(v) if raw else scale(float(v))
+
+    x = ctx.W // 2 if x is None else conv(x, ctx.W, ctx.X)
+    y = ctx.H // 2 if y is None else conv(y, ctx.H, ctx.Y)
     return x, y, an
 
 
@@ -977,7 +990,7 @@ def text_overlay_events(ov: dict, ctx: Ctx, seg_dur: float | None = None) -> lis
 
 
 def chip(text: str, x: int, y: int, start: float, end: float, ctx: Ctx, **kw) -> dict:
-    d = {"type": "chip", "text": text, "x": x, "y": y, "start": start, "end": end, "anim": "fade"}
+    d = {"type": "chip", "text": text, "x": x, "y": y, "start": start, "end": end, "anim": "fade", "_px": True}
     d.update(kw)
     return d
 
@@ -1308,7 +1321,7 @@ def build_segment(seg: dict, ctx: Ctx) -> SegPlan:
         if labels.get("prompt"):
             P.overlays.append(chip(labels["prompt"], px0 - 14, chip_y, 0, P.dur, ctx, **label_kw))
         if seg.get("title"):
-            tov = {"type": "text", "text": seg["title"], "x": W // 2, "y": ctx.Y(1160), "size": 50,
+            tov = {"type": "text", "text": seg["title"], "x": W // 2, "y": ctx.Y(1160), "_px": True, "size": 50,
                    "weight": 900, "start": 0, "end": P.dur, "anim": "fade"}
             tov.update(seg.get("title_style") or {})
             P.overlays.append(tov)
@@ -1490,7 +1503,9 @@ def caption_events(cap: dict, words: list[dict], ctx: Ctx, total: float) -> list
     y = cap.get("y")
     if y is None:
         y = ctx.Y({"lower": 1340, "middle": 960, "center": 960, "upper": 560, "bottom": 1480}.get(pos, 1340))
-    x = int(cap.get("x", ctx.W // 2))
+    else:
+        y = ctx.Y(float(y))  # 1080x1920 reference coords, like overlays
+    x = ctx.X(float(cap["x"])) if cap.get("x") is not None else ctx.W // 2
     upper = cap.get("uppercase", False)
     offset = float(cap.get("offset", 0.0))
     ws = []

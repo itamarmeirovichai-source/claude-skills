@@ -193,7 +193,7 @@ def test_captions_from_srt_and_json(media):
 
 def test_logo_and_packshot_overlay(media):
     spec = small({"timeline": [{"clip": {"color": "#000000", "duration": 1.5},
-                                "overlays": [{"type": "image", "path": "media/logo.png", "y": 480,
+                                "overlays": [{"type": "image", "path": "media/logo.png", "y": 960,
                                               "width": 400, "fade": 0}]}],
                   "overlays": [{"type": "image", "path": "media/logo.png", "x": 900, "y": 150, "width": 150,
                                 "opacity": 0.8, "start": 0.2, "end": 1.2}],
