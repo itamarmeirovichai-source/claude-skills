@@ -9,12 +9,14 @@ text and captions (libass + fribidi + harfbuzz), music with ducking, synthetic
 SFX on cuts and two-pass loudness normalisation.
 
 Stdlib only. Needs ffmpeg + ffprobe on PATH (built with libass, libx264).
-Optional: faster-whisper for automatic captions.
+Optional: faster-whisper for automatic captions; librosa or numpy for better/faster beat
+detection (a pure-stdlib beat tracker is the last fallback).
 
 Commands
   render  SPEC.json [--preset P] [--out FILE] [--dry-run] [--keep] [--fast]
   plan    SPEC.json                      print the resolved timeline only
   probe   FILE...                        media info as JSON
+  beats   MUSIC [--band low] [--every 2] [--engine auto]   beats / downbeats / drop as JSON
   captions VIDEO [--lang he] [--style bold_pop]   whisper -> words.json/.srt/.ass
   grid    VIDEO [--cols 4 --rows 3]      contact sheet jpg with timestamps
   cuts    VIDEO [--threshold 0.3]        scene-cut detection
@@ -43,7 +45,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 CACHE_DIR = Path(os.environ.get("REELSTUDIO_CACHE", Path.home() / ".cache" / "reel-studio"))
 FONT_DIR = CACHE_DIR / "fonts"
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff"}
@@ -431,7 +433,14 @@ COLOR_PRESETS = {
 
 EFFECTS = ["zoom_punch", "ken_burns", "shake", "glitch", "rgb_split", "flash", "film_grain",
            "vignette", "letterbox", "lut", "color", "blur", "sharpen", "fade", "mirror",
-           "speed_ramp", "blur_bg", "dip"]
+           "speed_ramp", "blur_bg", "dip",
+           # round-2 (T6) additions
+           "impact_shake", "handheld", "motion_blur", "echo", "glow", "vhs", "duotone", "velocity"]
+CURVES_PRESETS = ["vintage", "cross_process", "darker", "lighter", "increase_contrast", "linear_contrast",
+                  "medium_contrast", "strong_contrast", "negative", "color_negative"]
+# effects whose start/end window is applied by trim+concat instead of enable= (tmix and friends
+# corrupt chroma with enable=, see T6 section 8)
+WINDOWED_EFFECTS = {"motion_blur", "echo", "vhs", "duotone", "glow"}
 
 
 class Graph:
@@ -492,9 +501,123 @@ class Graph:
 def _times(v) -> list[float]:
     if v is None:
         return []
+    if isinstance(v, str) and v in BEAT_REFS:
+        raise SpecError(f"'at': {v!r} needs beat analysis: use it in global 'effects' with audio.music set "
+                        f"(times of clip/segment effects are local, so paste numbers from the `beats` command)")
     if isinstance(v, (list, tuple)):
         return [sec(x) for x in v]
     return [sec(v)]
+
+
+def windowed(g: Graph, src: str, a: float, b: float, total: float, fps: float, fn) -> str:
+    """Apply fn(g, label, window_dur) -> label only on [a, b) by split/trim/concat.
+
+    Used for filters that misbehave with enable= (tmix turns chroma green) and for the
+    window-based transitions (spin, zoom_through, light_leak). Times are snapped to frames;
+    inside fn the local time starts at 0.
+    """
+    ka, kb = max(0, int(round(a * fps))), int(round(min(b, total) * fps))
+    kt = int(round(total * fps))
+    if kb <= ka:
+        return src
+    parts = []
+    if ka > 0:
+        parts.append(("pre", f"trim=end_frame={ka}"))
+    parts.append(("mid", f"trim=start_frame={ka}:end_frame={kb}"))
+    if kb < kt:
+        parts.append(("post", f"trim=start_frame={kb}"))
+    if len(parts) == 1:
+        return fn(g, src, (kb - ka) / fps)
+    labs = [g.label() for _ in parts]
+    g.add(f"[{src}]split={len(parts)}" + "".join(f"[{x}]" for x in labs))
+    outs = []
+    for lab, (kind, trim) in zip(labs, parts):
+        o = g.chain(lab, f"{trim},setpts=PTS-STARTPTS")
+        if kind == "mid":
+            o = g.chain(fn(g, o, (kb - ka) / fps), "format=yuv420p,setpts=PTS-STARTPTS")
+        outs.append(o)
+    out = g.label()
+    g.add("".join(f"[{o}]" for o in outs) + f"concat=n={len(outs)}:v=1:a=0[{out}]")
+    return out
+
+
+def _chan(c) -> tuple[float, float, float]:
+    r, gg, b, _ = parse_color(c)
+    return r / 255, gg / 255, b / 255
+
+
+def look_effect(t: str, eff: dict, W: int, H: int, fps: float):
+    """Builder fn(g, label, dur) -> label for the windowable T6 looks."""
+    if t == "motion_blur":
+        n = int(eff.get("frames", 5))
+        if n < 2 or n > 9:
+            raise SpecError("motion_blur frames must be 2..9")
+        half = (n + 1) // 2
+        weights = " ".join(str(min(i + 1, n - i, half)) for i in range(n))
+        return lambda g, s, d: g.chain(s, f"tmix=frames={n}:weights='{weights}',format=yuv420p")
+    if t == "echo":
+        dec = float(eff.get("decay", 0.94))
+        return lambda g, s, d: g.chain(s, f"format=gbrp,lagfun=decay={fnum(dec)},format=yuv420p")
+    if t == "vhs":
+        lw = even(W / 3)
+        sh = max(1, int(round(6 * W / 1080)))
+        band = max(2, int(round(40 * H / 1920)))
+        line = max(2, even(4 * H / 1920))
+        speed = 700 * H / 1920
+        return lambda g, s, d: g.chain(
+            s, f"scale={lw}:-2,scale={W}:{H}:flags=neighbor,chromashift=cbh={sh}:crh=-{sh},gblur=sigma=1.2,"
+               f"noise=alls=18:allf=t,eq=saturation=1.35:contrast=1.1:gamma=1.05,colorbalance=rs=0.08:bs=-0.06,"
+               f"drawbox=x=0:y='mod(t*{fnum(speed)},ih)':w=iw:h={band}:color=white@0.12:t=fill,"
+               f"drawgrid=w=iw:h={line}:t=1:color=black@0.22,format=yuv420p")
+    if t == "duotone":
+        sr, sg, sb = _chan(eff.get("shadows", "#0B1E4D"))
+        hr, hg, hb = _chan(eff.get("highlights", "#FF9A3C"))
+        return lambda g, s, d: g.chain(
+            s, f"format=gray,format=gbrp,curves=r='0/{fnum(sr)} 1/{fnum(hr)}':g='0/{fnum(sg)} 1/{fnum(hg)}':"
+               f"b='0/{fnum(sb)} 1/{fnum(hb)}',format=yuv420p")
+    if t == "glow":  # highlight bloom / 35mm halation; screen blend MUST run in gbrp (YUV turns magenta)
+        thr = float(eff.get("threshold", 0.7))
+        if not 0 < thr < 1:
+            raise SpecError("glow threshold must be between 0 and 1")
+        sig = float(eff.get("sigma", 25)) * W / 1080
+        strength = float(eff.get("strength", 0.6))
+        tr_, tg, tb = _chan(eff.get("tint", "#FF5926"))
+
+        def fn(g, s, d):
+            a, b = g.label(), g.label()
+            g.add(f"[{s}]format=gbrp,split[{a}][{b}]")
+            gl = g.chain(b, f"curves=all='0/0 {fnum(thr)}/0 1/1',gblur=sigma={fnum(sig)},"
+                            f"colorchannelmixer=rr={fnum(tr_)}:gg={fnum(tg)}:bb={fnum(tb)}")
+            out = g.label()
+            g.add(f"[{a}][{gl}]blend=all_mode=screen:all_opacity={fnum(strength)},format=yuv420p[{out}]")
+            return out
+        return fn
+    raise SpecError(f"internal: no look builder for {t}")
+
+
+def impact_shake_expr(ats: list[float], amp: float, decay: float, freq: float, m: int) -> tuple[str, str]:
+    """Decaying shake: amp*exp(-decay*(t-hit))*sin(freq*(t-hit)) per hit, clamped to the margin m."""
+    xs, ys = [], []
+    for a in ats:
+        u = f"(t-{fnum(a)})"
+        xs.append(f"gte(t,{fnum(a)})*{fnum(amp)}*exp(-{fnum(decay)}*{u})*sin({fnum(freq)}*{u})")
+        ys.append(f"gte(t,{fnum(a)})*{fnum(amp * 0.8)}*exp(-{fnum(decay)}*{u})*cos({fnum(freq * 0.76)}*{u})")
+    cx = f"{m}+max(-{m},min({m},{'+'.join(xs)}))"
+    cy = f"{m}+max(-{m},min({m},{'+'.join(ys)}))"
+    return cx, cy
+
+
+def flash_rate_check(ats: list[float], where: str = "") -> None:
+    """WCAG: more than 3 flashes in any 1 s window is a photosensitivity risk."""
+    ts = sorted(ats)
+    for i in range(len(ts)):
+        j = i
+        while j + 1 < len(ts) and ts[j + 1] - ts[i] < 1.0:
+            j += 1
+        if j - i + 1 > 3:
+            warn(f"{where}{j - i + 1} flashes within 1 s around t={ts[i]:.2f}s - more than 3/s is a "
+                 f"photosensitivity (epilepsy) risk; flash every 2nd/4th beat instead")
+            return
 
 
 def apply_effects(g: Graph, src: str, effects: list, W: int, H: int, fps: float, dur: float) -> str:
@@ -510,8 +633,33 @@ def apply_effects(g: Graph, src: str, effects: list, W: int, H: int, fps: float,
         end = sec(eff.get("end", dur))
         win = f"between(t,{fnum(start)},{fnum(end)})"
 
-        if t in ("speed_ramp", "blur_bg"):
+        if t in ("speed_ramp", "blur_bg", "velocity"):
             continue  # handled at clip level
+
+        if t in WINDOWED_EFFECTS:
+            fn = look_effect(t, eff, W, H, fps)
+            if "start" in eff or "end" in eff:
+                cur = windowed(g, cur, start, end, dur, fps, fn)
+            else:
+                cur = fn(g, cur, dur)
+            continue
+
+        if t == "impact_shake":
+            amp = float(eff.get("intensity", 28)) * W / 1080
+            m = int(math.ceil(amp * 1.1)) + 2
+            cx, cy = impact_shake_expr(_times(eff.get("at", 0)) or [0.0], amp, float(eff.get("decay", 9)),
+                                       float(eff.get("freq", 70)), m)
+            cur = g.chain(cur, f"scale={W + 2 * m}:{H + 2 * m},crop={W}:{H}:x='{cx}':y='{cy}',setsar=1")
+            continue
+
+        if t == "handheld":
+            amp = float(eff.get("intensity", 18)) * W / 1080
+            sp = float(eff.get("speed", 1.0))
+            m = int(math.ceil(amp * 1.6)) + 2
+            xe = (f"{m}+{fnum(amp)}*{win}*(sin(t*{fnum(1.3 * sp)})+0.5*sin(t*{fnum(2.9 * sp)}+1))")
+            ye = (f"{m}+{fnum(amp * 0.78)}*{win}*(sin(t*{fnum(1.1 * sp)}+2)+0.5*sin(t*{fnum(3.7 * sp)}))")
+            cur = g.chain(cur, f"scale={W + 2 * m}:{H + 2 * m},crop={W}:{H}:x='{xe}':y='{ye}',setsar=1")
+            continue
 
         if t == "zoom_punch":
             scale = float(eff.get("scale", 1.15))
@@ -568,7 +716,10 @@ def apply_effects(g: Graph, src: str, effects: list, W: int, H: int, fps: float,
             color = eff.get("color", "white" if t == "flash" else "black")
             fd = float(eff.get("dur", 0.25 if t == "flash" else 0.4))
             strength = float(eff.get("strength", 1.0))
-            for a in _times(eff.get("at", 0)) or [0.0]:
+            flash_ats = _times(eff.get("at", 0)) or [0.0]
+            if t == "flash":
+                flash_rate_check(flash_ats, "flash effect: ")
+            for a in flash_ats:
                 src_l = g.label("fl")
                 g.add(f"color=c={ff_color(color)}:s={W}x{H}:r={fnum(fps)}:d={fnum(fd)},format=rgba,"
                       f"colorchannelmixer=aa={fnum(strength)},"
@@ -578,8 +729,25 @@ def apply_effects(g: Graph, src: str, effects: list, W: int, H: int, fps: float,
                 cur = out
 
         elif t == "film_grain":
-            s = int(eff.get("strength", 10))
-            cur = g.chain(cur, f"noise=c0s={s}:c0f=t+u")
+            if eff.get("mode", "noise") == "overlay":
+                # real film grain (T6 4.1): monochrome noise at 1/size resolution, upscaled, overlay-blended
+                # in gbrp (strong in mids, weak in black/white; survives IG compression)
+                op = float(eff.get("opacity", 0.35))
+                size = max(1.0, float(eff.get("size", 2)))
+                gl, sl, out = g.label("gr"), g.label(), g.label()
+                g.add(f"color=c=gray:s={even(W / size)}x{even(H / size)}:r={fnum(fps)}:d={fnum(dur + 0.5)},"
+                      f"format=gray,noise=alls=60:allf=t,scale={W}:{H}:flags=bicubic,format=gbrp[{gl}]")
+                g.add(f"[{cur}]format=gbrp[{sl}]")
+                en = f":enable='{win}'" if ("start" in eff or "end" in eff) else ""
+                g.add(f"[{sl}][{gl}]blend=all_mode=overlay:all_opacity={fnum(op)}:shortest=1{en},"
+                      f"format=yuv420p[{out}]")
+                cur = out
+            elif eff.get("mode", "noise") == "noise":
+                s = int(eff.get("strength", 10))
+                # luma-only noise: force YUV first so the grain stays grayscale (noise on RGB is colored)
+                cur = g.chain(cur, f"format=yuv420p,noise=c0s={s}:c0f=t+u")
+            else:
+                raise SpecError("film_grain mode must be noise or overlay")
 
         elif t == "vignette":
             cur = g.chain(cur, f"vignette=angle={fnum(float(eff.get('angle', 0.55)))}")
@@ -615,8 +783,17 @@ def apply_effects(g: Graph, src: str, effects: list, W: int, H: int, fps: float,
             eqp = {k: eff[k] for k in ("contrast", "saturation", "brightness", "gamma") if k in eff}
             if eqp:
                 parts.append("eq=" + ":".join(f"{k}={fnum(v)}" for k, v in eqp.items()))
+            if eff.get("curves"):
+                if eff["curves"] not in CURVES_PRESETS:
+                    raise SpecError(f"unknown curves preset {eff['curves']!r}. Valid: {', '.join(CURVES_PRESETS)}")
+                parts.append(f"curves=preset={eff['curves']}")
+            if eff.get("temperature") is not None:  # Kelvin: 3000 very warm, 6500 neutral, 9000 cool
+                parts.append(f"colortemperature=temperature={int(float(eff['temperature']))}")
+            if eff.get("vibrance") is not None:
+                parts.append(f"vibrance=intensity={fnum(float(eff['vibrance']))}")
             if not parts:
-                raise SpecError("color effect needs a preset or contrast/saturation/brightness/gamma")
+                raise SpecError("color effect needs a preset, curves, temperature, vibrance or "
+                                "contrast/saturation/brightness/gamma")
             f = ",".join(parts) + ",format=yuv420p"
             if "start" in eff or "end" in eff:  # timeline-limited grade
                 f = ",".join(p + f":enable='{win}'" if not p.startswith("curves") else p
@@ -671,6 +848,8 @@ def norm_clip(c, base: Path, role: str = "clip") -> dict:
         e = {"type": e} if isinstance(e, str) else dict(e)
         if e.get("type") == "speed_ramp":
             c.setdefault("ramps", e.get("ramps") or [{k: e[k] for k in ("from", "to", "speed") if k in e}])
+        elif e.get("type") == "velocity":
+            c.setdefault("velocity", {k: e[k] for k in ("points", "preset", "steps", "blur") if k in e})
         elif e.get("type") == "blur_bg":
             c["fit"] = "blur_bg"
         else:
@@ -714,13 +893,124 @@ def clip_pieces(c: dict, info: dict) -> list[tuple[float, float, float]]:
     return pieces
 
 
+# CapCut-style "velocity" curves: (fraction of the source length, speed). Eased between points.
+VELOCITY_PRESETS = {
+    "montage": [(0, 1), (0.3, 1), (0.38, 3), (0.55, 3), (0.62, 0.4), (0.8, 0.4), (0.88, 1), (1, 1)],
+    "hero": [(0, 1.5), (0.35, 1.5), (0.45, 0.35), (0.75, 0.35), (0.85, 1.5), (1, 1.5)],
+    "bullet": [(0, 3), (0.3, 3), (0.4, 0.3), (0.7, 0.3), (0.8, 3), (1, 3)],
+    "rush": [(0, 1), (0.45, 1), (0.6, 4), (1, 4)],
+}
+
+
+def velocity_points(v, L: float, base_speed: float = 1.0) -> tuple[list[tuple[float, float]], int]:
+    """Clip 'velocity' -> sorted (source_time, speed) points covering [0, L], and ease steps.
+
+    Accepts a preset name, "t:speed,t:speed" string, [[t, speed], ...], or
+    {"points"|"preset": ..., "steps": 8}. Times are seconds relative to the clip 'in'.
+    """
+    steps = 8
+    if isinstance(v, dict):
+        steps = int(v.get("steps", 8))
+        v = v.get("points", v.get("preset"))
+    if isinstance(v, str) and v in VELOCITY_PRESETS:
+        pts = [(f * L, sp) for f, sp in VELOCITY_PRESETS[v]]
+    elif isinstance(v, str):
+        try:
+            pts = [(sec(a.split(":")[0]), float(a.split(":")[1])) for a in v.split(",") if a.strip()]
+        except (IndexError, ValueError):
+            raise SpecError(f"velocity: bad points {v!r}. Use a preset ({', '.join(VELOCITY_PRESETS)}), "
+                            f"\"t:speed,t:speed\" or [[t, speed], ...]")
+    elif isinstance(v, (list, tuple)):
+        pts = []
+        for p in v:
+            if isinstance(p, dict):
+                pts.append((sec(p.get("t", p.get("at"))), float(p["speed"])))
+            else:
+                pts.append((sec(p[0]), float(p[1])))
+    else:
+        raise SpecError("velocity needs a preset name or points")
+    if len(pts) < 2:
+        raise SpecError("velocity needs at least 2 points")
+    pts = sorted((min(max(0.0, t), L), sp * base_speed) for t, sp in pts)
+    if any(sp < 0.05 or sp > 20 for _, sp in pts):
+        raise SpecError("velocity speeds must be between 0.05 and 20")
+    if pts[0][0] > 0:
+        pts.insert(0, (0.0, pts[0][1]))
+    if pts[-1][0] < L:
+        pts.append((L, pts[-1][1]))
+    if not 1 <= steps <= 32:
+        raise SpecError("velocity steps must be 1..32")
+    return pts, steps
+
+
+def velocity_knots(points: list[tuple[float, float]], steps: int = 8) -> tuple[list[tuple[float, float]], float]:
+    """Ease (cosine) the speed between points and integrate dt/speed -> (source_t, output_t) knots."""
+    knots = [(points[0][0], 0.0)]
+    out = 0.0
+    for (t0, s0), (t1, s1) in zip(points, points[1:]):
+        if t1 - t0 < 1e-6:
+            continue
+        n = steps if abs(s0 - s1) > 1e-9 else 1
+        for i in range(n):
+            a, b = t0 + (t1 - t0) * i / n, t0 + (t1 - t0) * (i + 1) / n
+            e = (1 - math.cos(math.pi * (i + 0.5) / n)) / 2
+            out += (b - a) / (s0 + (s1 - s0) * e)
+            knots.append((b, out))
+    return knots, out
+
+
+def velocity_setpts(knots: list[tuple[float, float]]) -> str:
+    """Piecewise-linear source->output time map as one setpts expression (T = source seconds)."""
+    expr = None
+    for (a, oa), (b, ob) in reversed(list(zip(knots, knots[1:]))):
+        k = (ob - oa) / (b - a)
+        seg = f"{oa:.5f}+(T-{a:.5f})*{k:.5f}"
+        expr = seg if expr is None else f"if(lt(T,{b:.5f}),{seg},{expr})"
+    return f"({expr})/TB"
+
+
+def clip_velocity(c: dict, info: dict):
+    """(knots, output duration) for a clip with 'velocity', else None."""
+    if not c.get("velocity") or info.get("is_image") or "path" not in c:
+        return None
+    if c.get("ramps"):
+        raise SpecError(f"clip {c.get('path')}: use either 'ramps' or 'velocity', not both")
+    t_in = sec(c.get("in", 0), "in")
+    src_end = sec(c["out"], "out") if c.get("out") is not None else (info.get("duration") or 0)
+    if src_end <= t_in:
+        raise SpecError(f"clip {c.get('path')}: out ({src_end}) must be > in ({t_in})")
+    pts, steps = velocity_points(c["velocity"], src_end - t_in, float(c.get("speed", 1.0)))
+    return velocity_knots(pts, steps)
+
+
+def freeze_spec(c: dict):
+    """Clip 'freeze': number (at) or {at, dur, zoom, saturation} -> dict or None."""
+    fz = c.get("freeze")
+    if fz in (None, False):
+        return None
+    if not isinstance(fz, dict):
+        fz = {"at": fz}
+    d = {"at": sec(fz.get("at", 0)), "dur": sec(fz.get("dur", 1.5)), "zoom": float(fz.get("zoom", 1.12)),
+         "saturation": float(fz.get("saturation", 0.2))}
+    if d["dur"] <= 0:
+        raise SpecError("freeze dur must be > 0")
+    return d
+
+
 def clip_duration(c: dict) -> float:
     info = clip_info(c)
     if info.get("is_image") or "path" not in c:
         return sec(c.get("duration", 3.0))
-    if c.get("duration") is not None and not c.get("ramps"):
+    if c.get("duration") is not None and not c.get("ramps") and not c.get("velocity"):
         return sec(c["duration"])
-    return sum((b - a) / s for a, b, s in clip_pieces(c, info))
+    vel = clip_velocity(c, info)
+    d = vel[1] if vel else sum((b - a) / s for a, b, s in clip_pieces(c, info))
+    if c.get("boomerang"):
+        d *= 2
+    fz = freeze_spec(c)
+    if fz:
+        d += fz["dur"]
+    return d
 
 
 def atempo_chain(speed: float) -> str:
@@ -757,6 +1047,17 @@ def add_clip(g: Graph, c: dict, bw: int, bh: int, dur: float, ctx: "Ctx", want_a
         idx = g.add_input(["-loop", "1", "-framerate", fnum(fps), "-t", fnum(dur + 0.5), "-i", c["path"]])
         v = g.chain(f"{idx}:v", "setpts=PTS-STARTPTS")
         pieces = [(0, dur, 1.0)]
+    elif clip_velocity(c, info):
+        knots, _vd = clip_velocity(c, info)
+        L = knots[-1][0]
+        pieces = []
+        t_in = sec(c.get("in", 0))
+        idx = g.add_input(["-ss", fnum(t_in, 3), "-t", fnum(L + 0.25, 3), "-i", c["path"]])
+        vf = f"setpts=PTS-STARTPTS,trim=end={fnum(L, 5)},setpts='{velocity_setpts(knots)}',fps={fnum(fps)}"
+        vel = c["velocity"] if isinstance(c["velocity"], dict) else {}
+        if vel.get("blur", True):  # light motion blur hides duplicated frames in the slow part
+            vf += ",tmix=frames=3:weights='1 2 1'"
+        v = g.chain(f"{idx}:v", vf)
     else:
         pieces = clip_pieces(c, info)
         t_in = sec(c.get("in", 0))
@@ -795,6 +1096,33 @@ def add_clip(g: Graph, c: dict, bw: int, bh: int, dur: float, ctx: "Ctx", want_a
             v = g.label()
             g.add(f"[{bgl}][{fgl}]overlay=(W-w)/2:(H-h)/2[{v}]")
     v = g.chain(v, "setsar=1,format=yuv420p")
+    is_video = "path" in c and not info.get("is_image")
+    if c.get("boomerang") and is_video:
+        f1, r1, rv = g.label(), g.label(), g.label()
+        g.add(f"[{v}]split[{f1}][{r1}]")
+        g.add(f"[{r1}]reverse,setpts=PTS-STARTPTS[{rv}]")
+        nv = g.label()
+        g.add(f"[{f1}][{rv}]concat=n=2:v=1:a=0[{nv}]")
+        v = nv
+    fz = freeze_spec(c) if is_video else None
+    if fz:  # freeze-frame intro: hold one frame (punch-in + desaturate), then continue
+        k = int(round(fz["at"] * fps))
+        nf = max(1, int(round(fz["dur"] * fps)))
+        labs = [g.label() for _ in range(3 if k > 0 else 2)]
+        g.add(f"[{v}]split={len(labs)}" + "".join(f"[{x}]" for x in labs))
+        parts = []
+        if k > 0:
+            parts.append(g.chain(labs[0], f"trim=end_frame={k},setpts=PTS-STARTPTS"))
+        z = fz["zoom"]
+        parts.append(g.chain(labs[-2], f"trim=start_frame={k}:end_frame={k + 1},setpts=PTS-STARTPTS,"
+                                       f"loop=loop={nf - 1}:size=1:start=0,setpts=N/({fnum(fps)}*TB),"
+                                       f"zoompan=z='1+{fnum(z - 1)}*min(1,on/8)':x='iw/2-(iw/zoom/2)':"
+                                       f"y='ih/2-(ih/zoom/2)':d=1:s={bw}x{bh}:fps={fnum(fps)},"
+                                       f"hue=s={fnum(fz['saturation'])},setsar=1,format=yuv420p"))
+        parts.append(g.chain(labs[-1], f"trim=start_frame={k},setpts=PTS-STARTPTS"))
+        nv = g.label()
+        g.add("".join(f"[{x}]" for x in parts) + f"concat=n={len(parts)}:v=1:a=0[{nv}]")
+        v = nv
     v = apply_effects(g, v, c.get("effects"), bw, bh, fps, dur)
     v = g.chain(v, f"tpad=stop_mode=clone:stop_duration={fnum(dur + 1)},trim=duration={fnum(dur)},"
                    f"setpts=PTS-STARTPTS,format=yuv420p")
@@ -803,7 +1131,8 @@ def add_clip(g: Graph, c: dict, bw: int, bh: int, dur: float, ctx: "Ctx", want_a
         return v, None
     a = None
     vol = float(c.get("volume", 1.0))
-    if idx is not None and info.get("has_audio") and not c.get("mute") and not info.get("is_image") and vol > 0:
+    if (idx is not None and info.get("has_audio") and not c.get("mute") and not info.get("is_image") and vol > 0
+            and pieces):  # velocity clips (no pieces) are silent: put music/SFX under them
         if len(pieces) == 1:
             tempo = atempo_chain(pieces[0][2])
             a = g.chain(f"{idx}:a", "asetpts=PTS-STARTPTS" + ("," + tempo if tempo else ""), "a")
@@ -817,6 +1146,28 @@ def add_clip(g: Graph, c: dict, bw: int, bh: int, dur: float, ctx: "Ctx", want_a
                                          + ("," + tempo if tempo else ""), "a"))
             a = g.label("a")
             g.add("".join(f"[{o}]" for o in outs) + f"concat=n={len(outs)}:v=0:a=1[{a}]")
+        a = g.chain(a, "aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo", "a")
+        if c.get("boomerang"):
+            a1, a2, ar = g.label("a"), g.label("a"), g.label("a")
+            g.add(f"[{a}]asplit[{a1}][{a2}]")
+            g.add(f"[{a2}]areverse,asetpts=PTS-STARTPTS[{ar}]")
+            a = g.label("a")
+            g.add(f"[{a1}][{ar}]concat=n=2:v=0:a=1[{a}]")
+        if fz:
+            at = int(round(fz["at"] * fps)) / fps
+            nf = max(1, int(round(fz["dur"] * fps)))
+            gap = silent(g, nf / fps)
+            if at > 0:
+                a1, a2 = g.label("a"), g.label("a")
+                g.add(f"[{a}]asplit[{a1}][{a2}]")
+                pa = g.chain(a1, f"atrim=end={fnum(at, 5)},asetpts=PTS-STARTPTS", "a")
+                pb = g.chain(a2, f"atrim=start={fnum(at, 5)},asetpts=PTS-STARTPTS", "a")
+                a = g.label("a")
+                g.add(f"[{pa}][{gap}][{pb}]concat=n=3:v=0:a=1[{a}]")
+            else:
+                na = g.label("a")
+                g.add(f"[{gap}][{a}]concat=n=2:v=0:a=1[{na}]")
+                a = na
         a = g.chain(a, f"volume={fnum(vol)},aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,"
                        f"apad,atrim=duration={fnum(dur)}", "a")
     else:
@@ -858,12 +1209,71 @@ class Ctx:
         self.base = base
         self.sx = self.W / 1080.0
         self.sy = self.H / 1920.0
+        self.safe = parse_safe_zone(spec.get("safe_zone", True))
 
     def X(self, v: float) -> int:
         return int(round(v * self.sx))
 
     def Y(self, v: float) -> int:
         return int(round(v * self.sy))
+
+
+# Meta Reels / TikTok UI: keep text out of the top 14 %, the bottom 35 % (caption, CTA button, icons)
+# and 6 % on each side.
+SAFE_ZONE = {"top": 0.14, "bottom": 0.35, "side": 0.06}
+
+
+def parse_safe_zone(v) -> dict | None:
+    if v in (False, None, "off", "none"):
+        return None
+    z = dict(SAFE_ZONE)
+    if isinstance(v, dict):
+        for k in ("top", "bottom", "side"):
+            if k in v:
+                z[k] = float(v[k])
+                if not 0 <= z[k] < 0.5:
+                    raise SpecError(f"safe_zone.{k} must be a fraction between 0 and 0.5")
+    elif v not in (True, "on", "auto"):
+        raise SpecError("safe_zone must be true, false or {top, bottom, side}")
+    return z
+
+
+def text_box(text: str, size_px: float, border: float = 0.0) -> tuple[float, float]:
+    """Rough rendered size (w, h) of a text block: ~0.55 em per character, 1.25 line height."""
+    lines = [ln for ln in str(text).replace("\\N", "\n").split("\n")] or [""]
+    w = max(len(ln) for ln in lines) * size_px * 0.55 + 2 * border
+    h = len(lines) * size_px * 1.25 + 2 * border
+    return w, h
+
+
+def safe_place(ctx: "Ctx", x: int, y: int, an: int, w: float, h: float, explicit: bool, what: str) -> tuple[int, int]:
+    """Move a text block (anchor x,y with ASS alignment an, size w x h) inside the platform safe zone.
+    Warns when the user gave an explicit position that had to move."""
+    z = ctx.safe
+    if not z:
+        return x, y
+    W, H = ctx.W, ctx.H
+    t_lim, b_lim = z["top"] * H, H * (1 - z["bottom"])
+    l_lim, r_lim = z["side"] * W, W * (1 - z["side"])
+    vf = {7: 0, 8: 0, 9: 0, 4: 0.5, 5: 0.5, 6: 0.5, 1: 1, 2: 1, 3: 1}.get(an, 0.5)
+    hf = {1: 0, 4: 0, 7: 0, 2: 0.5, 5: 0.5, 8: 0.5, 3: 1, 6: 1, 9: 1}.get(an, 0.5)
+    top = y - vf * h
+    if h >= b_lim - t_lim:
+        top = (t_lim + b_lim - h) / 2
+    elif top < t_lim:
+        top = t_lim
+    elif top + h > b_lim:
+        top = b_lim - h
+    w = min(w, r_lim - l_lim)
+    left = min(max(x - hf * w, l_lim), r_lim - w)
+    nx, ny = int(round(left + hf * w)), int(round(top + vf * h))
+    if explicit and (abs(nx - x) > 1 or abs(ny - y) > 1):
+        rx = lambda v: int(round(v / ctx.sx))  # noqa: E731  (report in 1080x1920 reference coords)
+        ry = lambda v: int(round(v / ctx.sy))  # noqa: E731
+        warn(f"{what}: position ({rx(x)}, {ry(y)}) enters the platform UI zone (top {z['top']:.0%} / bottom "
+             f"{z['bottom']:.0%} / sides {z['side']:.0%}); moved to ({rx(nx)}, {ry(ny)}). Set \"safe\": false "
+             f"on it or \"safe_zone\": false to keep it")
+    return nx, ny
 
 
 NAMED_Y = {"top": 330, "upper": 560, "center": 960, "middle": 960, "lower": 1340, "bottom": 1540,
@@ -942,6 +1352,11 @@ def text_overlay_events(ov: dict, ctx: Ctx, seg_dur: float | None = None) -> lis
     stroke = ov.get("stroke", 0 if box else 6)
     stroke_color = ov.get("stroke_color", ov.get("box_color", "#000000B0") if box else "black")
     shadow = ov.get("shadow", 0 if box else 2)
+    if not ov.get("_px") and ov.get("safe", True) is not False:
+        pos_v = ov.get("position")
+        explicit = ov.get("x") is not None or ov.get("y") is not None or isinstance(pos_v, (list, tuple))
+        bw_, bh_ = text_box(raw, size * ctx.sy, (ov.get("pad", 12) if box else stroke) * ctx.sy)
+        x, y = safe_place(ctx, x, y, an, bw_, bh_, explicit, f"{t} {raw[:24]!r}")
     tags = [f"\\an{an}", f"\\fn{font}", f"\\fs{int(size * ctx.sy)}", f"\\b{weight}",
             f"\\1c{ass_color(color)}", f"\\1a{ass_alpha(color)}",
             f"\\3c{ass_color(stroke_color)}", f"\\3a{ass_alpha(stroke_color)}",
@@ -1438,6 +1853,11 @@ CAPTION_STYLES = {
     "bold_pop":       {"size": 96, "weight": 900, "max_words": 2, "max_chars": 14, "stroke": 8, "anim": "pop"},
     "highlight_word": {"size": 78, "weight": 900, "max_words": 4, "max_chars": 22, "stroke": 7, "anim": "none"},
     "karaoke":        {"size": 76, "weight": 900, "max_words": 4, "max_chars": 22, "stroke": 7, "anim": "none"},
+    # T6 kin.ass / stack.ass styles
+    "pop":            {"size": 104, "weight": 900, "max_words": 3, "max_chars": 16, "stroke": 9, "anim": "pop"},
+    "slide":          {"size": 80, "weight": 900, "max_words": 4, "max_chars": 22, "stroke": 7, "anim": "slide"},
+    "stack":          {"size": 72, "weight": 800, "max_words": 5, "max_chars": 30, "stroke": 5, "anim": "pop",
+                       "big_size": 160},
 }
 
 
@@ -1494,7 +1914,7 @@ def caption_events(cap: dict, words: list[dict], ctx: Ctx, total: float) -> list
     if style not in CAPTION_STYLES:
         raise SpecError(f"unknown caption style {style!r}. Valid: {', '.join(CAPTION_STYLES)}")
     st = dict(CAPTION_STYLES[style])
-    st.update({k: cap[k] for k in ("size", "weight", "max_words", "max_chars", "stroke") if k in cap})
+    st.update({k: cap[k] for k in ("size", "weight", "max_words", "max_chars", "stroke", "big_size") if k in cap})
     font = cap.get("font", ctx.font)
     color = cap.get("color", "white")
     hcol = cap.get("highlight_color", "#FFE000")
@@ -1506,6 +1926,17 @@ def caption_events(cap: dict, words: list[dict], ctx: Ctx, total: float) -> list
     else:
         y = ctx.Y(float(y))  # 1080x1920 reference coords, like overlays
     x = ctx.X(float(cap["x"])) if cap.get("x") is not None else ctx.W // 2
+    if cap.get("safe", True) is not False:
+        fs = st["size"] * ctx.sy
+        if style == "stack":
+            bh_ = (st["big_size"] * 1.2 + 2 * st["size"] * 1.25) * ctx.sy
+            bw_ = int(st["max_chars"]) * fs * 0.55
+        else:
+            bw_, bh_ = text_box("x" * int(st["max_chars"]), fs, st["stroke"] * ctx.sy)
+            if bw_ > ctx.W * 0.88:  # libass wraps long groups onto a second line
+                bh_ *= 2
+        x, y = safe_place(ctx, x, y, 5, bw_, bh_, cap.get("x") is not None or cap.get("y") is not None,
+                          f"captions ({style})")
     upper = cap.get("uppercase", False)
     offset = float(cap.get("offset", 0.0))
     ws = []
@@ -1532,14 +1963,43 @@ def caption_events(cap: dict, words: list[dict], ctx: Ctx, total: float) -> list
         g1 = min(g1, total)
         if g1 <= g0:
             continue
-        if style in ("clean", "bold_pop"):
-            txt = " ".join(ass_escape(w["text"]) for w in grp)
+        if style in ("clean", "bold_pop", "pop", "slide"):
+            raw_txt = " ".join(w["text"] for w in grp)
+            txt = ass_escape(raw_txt)
             tags = base
             if style == "bold_pop":
                 tags += "\\fscx55\\fscy55\\t(0,90,\\fscx110\\fscy110)\\t(90,160,\\fscx100\\fscy100)"
+            elif style == "pop":  # CapCut bounce: 40 % -> 118 % -> 100 % in 160 ms
+                tags += "\\fscx40\\fscy40\\t(0,90,\\fscx118\\fscy118)\\t(90,160,\\fscx100\\fscy100)\\fad(30,60)"
+            elif style == "slide":  # enters from the reading side (right for Hebrew) in 180 ms
+                tw = text_box(raw_txt, st["size"] * ctx.sy)[0]
+                x0 = int(ctx.W + tw / 2 + 20) if is_rtl(raw_txt) else int(-tw / 2 - 20)
+                tags = tags.replace(f"\\pos({x},{y})", f"\\move({x0},{y},{x},{y},0,180)") + "\\fad(0,80)"
             else:
                 tags += "\\fad(80,60)"
             evs.append(TextEvent(g0, g1, style_name, "{" + tags + "}" + rtl_fix(txt), 6))
+        elif style == "stack":
+            # hierarchy (T6 5.4): the key word big + highlighted in the centre, the rest small above/below
+            emph = set(cap.get("emphasis") or cap.get("highlight") or [])
+            k = next((i for i, w in enumerate(grp) if w["text"].strip(".,!?:") in emph), None)
+            if k is None:
+                k = max(range(len(grp)), key=lambda i: len(grp[i]["text"]))
+            small_fs = int(st["size"] * ctx.sy)
+            big_fs = int(st["big_size"] * ctx.sy)
+            gap = int((st["big_size"] * 0.62 + st["size"] * 0.62) * ctx.sy)
+            common = (f"\\an5\\fn{font}\\b{int(st['weight'])}\\3c{ass_color(scol)}"
+                      f"\\bord{fnum(st['stroke'] * ctx.sy)}\\shad{fnum(6 * ctx.sy)}\\4a&H70&")
+            before = " ".join(w["text"] for w in grp[:k])
+            after = " ".join(w["text"] for w in grp[k + 1:])
+            if before:
+                evs.append(TextEvent(g0, g1, style_name, "{" + common + f"\\pos({x},{y - gap})\\fs{small_fs}"
+                                     f"\\1c{ass_color(color)}\\fad(80,0)}}" + rtl_fix(ass_escape(before)), 6))
+            evs.append(TextEvent(g0, g1, style_name, "{" + common + f"\\pos({x},{y})\\fs{big_fs}"
+                                 f"\\1c{ass_color(hcol)}\\fscx30\\fscy30\\t(0,100,\\fscx112\\fscy112)"
+                                 f"\\t(100,180,\\fscx100\\fscy100)}}" + rtl_fix(ass_escape(grp[k]["text"])), 7))
+            if after:
+                evs.append(TextEvent(g0, g1, style_name, "{" + common + f"\\pos({x},{y + gap})\\fs{small_fs}"
+                                     f"\\1c{ass_color(color)}\\fad(80,0)}}" + rtl_fix(ass_escape(after)), 6))
         elif style == "highlight_word":
             for j, w in enumerate(grp):
                 s0 = g0 if j == 0 else w["start"]
@@ -1675,9 +2135,15 @@ def ass_document(ctx: Ctx, events: list[TextEvent]) -> str:
 
 # name: (duration, anchor seconds = the moment that should land on the cut, lavfi graph)
 SFX = {
-    "whoosh": (0.8, 0.45, "anoisesrc=d=0.8:c=pink:r=48000:a=0.9,highpass=f=300,lowpass=f=6000,"
+    "whoosh": (0.8, 0.4, "anoisesrc=d=0.8:c=pink:r=48000:a=0.9,highpass=f=300,lowpass=f=6000,"
                           "volume='pow(sin(PI*min(t/0.8,1)),3)*1.6':eval=frame,"
                           "aphaser=in_gain=0.7:out_gain=0.9:delay=2.5:decay=0.6:speed=1.8"),
+    # sub layer under a whoosh ("layering a cake"): same envelope, low band only
+    "whoosh_low": (0.8, 0.4, "anoisesrc=d=0.8:c=brown:r=48000:a=0.9,lowpass=f=260,"
+                             "volume='pow(sin(PI*min(t/0.8,1)),3)*2.4':eval=frame"),
+    # record scratch / rewind for freeze-frame intros
+    "scratch": (0.5, 0.0, "aevalsrc='0.55*sgn(sin(2*PI*(900*t-1400*t*t)))*exp(-5*t)"
+                          "+0.25*(random(0)*2-1)*exp(-9*t)':s=48000:d=0.5,lowpass=f=5000"),
     "swish": (0.3, 0.15, "anoisesrc=d=0.3:c=white:r=48000:a=0.7,highpass=f=1200,lowpass=f=9000,"
                          "volume='pow(sin(PI*min(t/0.3,1)),2)*1.2':eval=frame"),
     "riser": (2.0, 2.0, "aevalsrc='0.32*sin(2*PI*(160*t+700*t*t*t/(3*4)))*pow(t/2,2)"
@@ -1696,7 +2162,108 @@ SFX = {
 }
 SFX_FOR_TRANSITION = {"whip": "whoosh", "whip_left": "whoosh", "whip_right": "whoosh", "whip_up": "whoosh",
                       "whip_down": "whoosh", "zoom": "whoosh", "flash": "hit", "glitch": "glitch",
-                      "cut": "swish", "slide": "swish"}
+                      "cut": "swish", "slide": "swish", "spin": "whoosh", "zoom_through": "whoosh",
+                      "light_leak": "swish", "leak": "swish", "film_burn": "swish"}
+
+
+PEAK_SFX = {"whoosh", "whoosh_low", "swish", "riser"}  # user files of these kinds land on their loudest point
+
+
+def sfx_library(audio: dict, base: Path) -> dict[str, str]:
+    """audio.sfx_library: a folder of <name>.wav/.mp3/... or {name: path}. Missing names stay synthetic."""
+    lib = audio.get("sfx_library")
+    if not lib:
+        return {}
+    out = {}
+    if isinstance(lib, dict):
+        for k, v in lib.items():
+            pth = Path(v) if Path(v).is_absolute() else base / v
+            if not pth.exists():
+                raise SpecError(f"sfx_library[{k}]: file not found: {pth}")
+            out[k] = str(pth)
+        return out
+    d = Path(lib) if Path(lib).is_absolute() else base / lib
+    if not d.is_dir():
+        raise SpecError(f"sfx_library folder not found: {d}")
+    for f in sorted(d.iterdir()):
+        if f.suffix.lower() in (".wav", ".mp3", ".m4a", ".aac", ".flac", ".ogg") and f.stem not in out:
+            out[f.stem] = str(f)
+    return out
+
+
+def decode_pcm(path: str, sr: int, lowpass: float | None = None, highpass: float | None = None):
+    """Decode audio to mono float samples (array('f')) with ffmpeg - stdlib only."""
+    import array
+    af = []
+    if highpass:
+        af.append(f"highpass=f={fnum(highpass)}")
+    if lowpass:
+        af += [f"lowpass=f={fnum(lowpass)}"] * 2
+    cmd = [which_or_die("ffmpeg"), "-v", "error", "-i", str(path), "-vn", "-ac", "1", "-ar", str(sr)]
+    if af:
+        cmd += ["-af", ",".join(af)]
+    p = subprocess.run(cmd + ["-f", "f32le", "-"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if p.returncode != 0:
+        raise SpecError(f"cannot decode audio {path}: {tail(p.stderr.decode(errors='replace'), 5)}")
+    a = array.array("f")
+    a.frombytes(p.stdout[: len(p.stdout) // 4 * 4])
+    if sys.byteorder != "little":
+        a.byteswap()
+    return a
+
+
+def audio_peak_time(path: str, win: float = 0.08) -> float:
+    """Centre (s) of the loudest 80 ms window (10 ms hop): the moment a whoosh 'hits' (align it to the cut).
+    The window smooths noise-based sounds so the envelope peak, not a random spike, is found."""
+    sr = 8000
+    x = decode_pcm(path, sr)
+    n = max(1, int(sr * win))
+    best, bi = -1.0, 0
+    for i in range(0, max(1, len(x) - n + 1), sr // 100):
+        e = sum(v * v for v in x[i:i + n])
+        if e > best:
+            best, bi = e, i
+    return round((bi + n / 2) / sr, 3)
+
+
+def cut_sfx_items(audio: dict, cut_points: list, total: float) -> list[dict]:
+    """sfx_on_cuts ('auto', a name, 'layered' or a dict) + transition 'sfx' + drop riser/impact."""
+    items = []
+    auto = audio.get("sfx_on_cuts")
+    if auto:
+        auto = {"type": auto} if isinstance(auto, str) else dict(auto)
+        vol = float(auto.get("volume", 0.7))
+        mode = auto.get("type", "auto")
+        for t, tr in cut_points:
+            if tr.get("sfx") in ("none", False):
+                continue
+            if tr.get("sfx"):
+                items.append({"type": tr["sfx"], "at": t, "volume": tr.get("sfx_volume", vol)})
+            elif mode == "layered":
+                # T6 6.2: whoosh with its PEAK on the cut + a sub layer, optional hit on the cut
+                items.append({"type": "whoosh", "at": t, "volume": vol})
+                items.append({"type": "whoosh_low", "at": t, "volume": vol * 0.8})
+                if auto.get("hit") in (True, "all"):
+                    items.append({"type": "hit", "at": t, "volume": vol * 0.7})
+            else:
+                kind = SFX_FOR_TRANSITION.get(tr["type"], "whoosh") if mode == "auto" else mode
+                if kind not in (None, "none"):
+                    items.append({"type": kind, "at": t, "volume": vol})
+    else:
+        for t, tr in cut_points:
+            if tr.get("sfx") not in (None, "none", False):
+                items.append({"type": tr["sfx"], "at": t, "volume": tr.get("sfx_volume", 0.7)})
+    drop = audio.get("_drop_time")
+    if drop is None and isinstance(audio.get("drop"), (int, float, str)) and audio.get("drop") != "auto":
+        drop = sec(audio["drop"])
+    dsfx = audio.get("drop_sfx", True)
+    if drop is not None and dsfx and 0 < drop < total:
+        dsfx = dsfx if isinstance(dsfx, dict) else {}
+        if dsfx.get("riser", True) and drop > 0.5:
+            items.append({"type": "riser", "at": drop, "volume": float(dsfx.get("riser_volume", 0.55))})
+        if dsfx.get("impact", True):
+            items.append({"type": "impact", "at": drop, "volume": float(dsfx.get("impact_volume", 0.8))})
+    return items
 
 
 def render_sfx(name: str, out: str, runner: Runner, dur: float | None = None) -> str:
@@ -1708,6 +2275,194 @@ def render_sfx(name: str, out: str, runner: Runner, dur: float | None = None) ->
     runner.run([which_or_die("ffmpeg"), "-hide_banner", "-y", "-f", "lavfi", "-i", graph, "-ac", "2",
                 "-ar", "48000", "-c:a", "pcm_s16le", out], f"synth sfx '{name}'")
     return out
+
+
+# --------------------------------------------------------------------------------------
+# beats (T6 section 7): bass-band onset detection -> beats, downbeats, cut grid, drop
+# --------------------------------------------------------------------------------------
+
+BEAT_REFS = ("beats", "downbeats", "cuts", "drop")
+_BEAT_CACHE: dict[str, dict] = {}
+
+
+def _tempo_from_onsets(env: list[float], fps: float) -> tuple[float, float]:
+    """Autocorrelation tempo in 60..180 BPM with a log-gaussian prior around 120 (octave errors).
+    Returns (bpm, period in frames, fractional)."""
+    n = len(env)
+    lo, hi = int(fps * 60 / 180), int(math.ceil(fps * 60 / 60))
+    hi = min(hi, n - 2)
+    if hi <= lo + 1:
+        raise SpecError("music too short for beat detection (need a few seconds)")
+    ac = {}
+    for lag in range(max(1, lo - 1), hi + 2):
+        ac[lag] = sum(env[i] * env[i + lag] for i in range(n - lag))
+    best, blag = -1e18, lo
+    for lag in range(lo, hi + 1):
+        bpm = 60 * fps / lag
+        prior = math.exp(-0.5 * (math.log2(bpm / 120.0) / 0.9) ** 2)
+        if ac[lag] * prior > best:
+            best, blag = ac[lag] * prior, lag
+    a0, a1, a2 = ac.get(blag - 1, 0), ac[blag], ac.get(blag + 1, 0)
+    den = a0 - 2 * a1 + a2
+    per = blag + (0.5 * (a0 - a2) / den if abs(den) > 1e-12 else 0.0)
+    return 60 * fps / per, per
+
+
+def _grid_beats(env: list[float], fps: float, per: float) -> list[float]:
+    """Phase that maximises onset strength on the beat grid, then snap each beat to the local peak (+-35 ms)."""
+    n = len(env)
+    best, phase = -1e18, 0
+    for o in range(int(per) + 1):
+        sc = sum(env[int(round(o + k * per))] for k in range(int((n - 1 - o) / per) + 1))
+        if sc > best:
+            best, phase = sc, o
+    w = max(1, int(0.035 * fps))
+    beats, k = [], 0
+    while phase + k * per < n:
+        c = int(round(phase + k * per))
+        lo, hi = max(0, c - w), min(n, c + w + 1)
+        j = max(range(lo, hi), key=lambda i: env[i])
+        beats.append(j / fps)
+        k += 1
+    return beats
+
+
+def _stdlib_beats(path: str, band: str) -> tuple[float, list[float], list[float]]:
+    """No numpy: low-band (or full) energy envelope at 200 frames/s -> onset strength -> tempo/beats."""
+    sr = 4000 if band == "low" else 11025
+    x = decode_pcm(path, sr, lowpass=160 if band == "low" else None)
+    hop = sr // 200
+    fps = sr / hop
+    n = len(x) // hop
+    energy = []
+    for i in range(n):
+        seg = x[i * hop:(i + 2) * hop]
+        energy.append(math.log(1e-6 + sum(v * v for v in seg)))
+    env = [0.0] + [max(0.0, energy[i] - energy[i - 1]) for i in range(1, n)]
+    m = sum(env) / max(1, len(env))
+    sd = math.sqrt(sum((e - m) ** 2 for e in env) / max(1, len(env))) or 1.0
+    env = [(e - m) / sd for e in env]
+    bpm, per = _tempo_from_onsets(env, fps)
+    beats = _grid_beats(env, fps, per)
+    ons = [i / fps for i in range(1, n - 1) if env[i] > 1.5 and env[i] >= env[i - 1] and env[i] > env[i + 1]]
+    return bpm, beats, ons
+
+
+def _numpy_beats(path: str, band: str) -> tuple[float, list[float], list[float]]:
+    """Spectral flux (log magnitude, 1024/256 @ 22.05 kHz) -> tempo by autocorrelation -> beats (T6 beats.py)."""
+    import numpy as np  # noqa: F401  (optional dependency)
+    sr, hop, nfft = 22050, 256, 1024
+    y = np.asarray(decode_pcm(path, sr, lowpass=160 if band == "low" else None), dtype=np.float32)
+    if len(y) < nfft * 4:
+        raise SpecError("music too short for beat detection")
+    frames = np.lib.stride_tricks.sliding_window_view(np.pad(y, (nfft // 2, nfft // 2)), nfft)[::hop]
+    spec = np.abs(np.fft.rfft(frames * np.hanning(nfft), axis=1))
+    flux = np.maximum(0, np.diff(np.log1p(10 * spec), axis=0)).sum(axis=1)
+    flux = np.concatenate([[0], flux])
+    flux = (flux - flux.mean()) / (flux.std() + 1e-9)
+    fps = sr / hop
+    ac = np.correlate(flux, flux, "full")[len(flux) - 1:]
+    lags = np.arange(len(ac))
+    bpm_l = 60 * fps / np.maximum(lags, 1)
+    ok = (bpm_l >= 60) & (bpm_l <= 180) & (lags > 0)
+    prior = np.exp(-0.5 * (np.log2(np.maximum(bpm_l, 1) / 120.0) / 0.9) ** 2)
+    lag = int(lags[ok][np.argmax((ac * prior)[ok])])
+    a0, a1, a2 = ac[lag - 1], ac[lag], ac[lag + 1]
+    den = a0 - 2 * a1 + a2
+    per = lag + (0.5 * (a0 - a2) / den if abs(den) > 1e-12 else 0.0)
+    env = flux.tolist()
+    beats = _grid_beats(env, fps, per)
+    ons = [i / fps for i in range(1, len(env) - 1) if env[i] > 1.0 and env[i] >= env[i - 1] and env[i] > env[i + 1]]
+    return float(60 * fps / per), beats, ons
+
+
+def _librosa_beats(path: str, band: str) -> tuple[float, list[float], list[float]]:
+    import librosa  # type: ignore  # noqa: F401  (optional dependency)
+    import numpy as np
+    sr = 22050
+    y = np.asarray(decode_pcm(path, sr), dtype=np.float32)
+    low = band == "low"
+    env = librosa.onset.onset_strength(y=y, sr=sr, fmax=200 if low else None, n_mels=32 if low else 128)
+    tempo, bf = librosa.beat.beat_track(onset_envelope=env, sr=sr, units="frames")
+    beats = librosa.frames_to_time(bf, sr=sr).tolist()
+    ons = librosa.onset.onset_detect(y=y, sr=sr, units="time", backtrack=False).tolist()
+    return float(np.atleast_1d(tempo)[0]), beats, ons
+
+
+def drop_and_downbeats(path: str, beats: list[float]) -> tuple[float, list[float]]:
+    """drop = largest jump in <150 Hz energy between 0.25 s windows; downbeats = the beat phase (of 4)
+    with the most bass energy (approximate bar starts)."""
+    sr = 2000
+    x = decode_pcm(path, sr, lowpass=150)
+    w = int(sr * 0.25)
+    rms = [math.sqrt(sum(v * v for v in x[i:i + w]) / w) for i in range(0, len(x) - w + 1, w)]
+    drop = 0.0
+    if len(rms) >= 3:
+        j = max(range(len(rms) - 1), key=lambda i: rms[i + 1] - rms[i])
+        drop = round((j + 1) * 0.25, 3)
+    if not beats:
+        return drop, []
+    bw = int(sr * 0.05)
+
+    def e(t):
+        i = int(t * sr)
+        return sum(v * v for v in x[i:i + bw])
+    phase = max(range(min(4, len(beats))), key=lambda ph: sum(e(b) for b in beats[ph::4]))
+    return drop, beats[phase::4]
+
+
+def analyze_beats(path: str, band: str = "low", every: int = 1, min_gap: float = 0.3,
+                  engine: str = "auto") -> dict:
+    """Beat/onset/drop analysis of a music file.
+
+    engine: auto (librosa -> numpy -> stdlib), librosa, numpy, stdlib. band: low (<160 Hz, locks on
+    the kick: pop/EDM/trap/phonk) or full (acoustic, no drums).
+    """
+    if band not in ("low", "full"):
+        raise SpecError("beats band must be low or full")
+    if engine not in ("auto", "librosa", "numpy", "stdlib"):
+        raise SpecError("beats engine must be auto, librosa, numpy or stdlib")
+    if not os.path.exists(path):
+        raise SpecError(f"music not found: {path}")
+    st = os.stat(path)
+    key = f"{path}|{st.st_mtime_ns}|{band}|{engine}"
+    if key not in _BEAT_CACHE:
+        order = {"auto": ["librosa", "numpy", "stdlib"]}.get(engine, [engine])
+        fns = {"librosa": _librosa_beats, "numpy": _numpy_beats, "stdlib": _stdlib_beats}
+        res, used, err = None, None, None
+        for name in order:
+            try:
+                res, used = fns[name](path, band), name
+                break
+            except ImportError as e:
+                err = e
+                if engine != "auto":
+                    raise SpecError(f"beats engine {name!r} needs {e.name}: pip install {e.name}")
+        if res is None:
+            raise RenderError(f"beat detection failed: {err}")
+        bpm, beats, ons = res
+        beats = [round(float(b), 3) for b in beats]
+        drop, down = drop_and_downbeats(path, beats)
+        dur = (probe(path).get("duration") or 0.0)
+        _BEAT_CACHE[key] = {"engine": used, "band": band, "bpm": round(bpm, 2), "beats": beats,
+                            "downbeats": down, "onsets": [round(float(o), 3) for o in ons], "drop": drop,
+                            "duration": round(dur, 3)}
+    info = dict(_BEAT_CACHE[key])
+    cuts, last = [], -1e9
+    for b in info["beats"][::max(1, int(every))]:
+        if b - last >= min_gap:
+            cuts.append(b)
+            last = b
+    info.update(cuts=cuts, every=int(every))
+    return info
+
+
+def cmd_beats(path: str, band: str, every: int, min_gap: float, engine: str) -> dict:
+    info = analyze_beats(path, band, every, min_gap, engine)
+    print(json.dumps(info))
+    log(f"{info['engine']}: {info['bpm']} BPM, {len(info['beats'])} beats, drop at {info['drop']}s, "
+        f"{len(info['cuts'])} cut points (every {every})")
+    return info
 
 
 # --------------------------------------------------------------------------------------
@@ -1728,7 +2483,54 @@ CUSTOM_TRANS = {
     "whip_down": ("slidedown", 0.28, "blur_v"), "flash": ("fadewhite", 0.3, None),
     "dip": ("fadeblack", 0.5, None), "zoom": ("zoomin", 0.35, "blur_r"), "glitch": ("pixelize", 0.3, "glitch"),
     "slide": ("slideup", 0.35, None),
+    # T6 transitions. xfade None = hard cut; `dur` is then the effect window centred on the cut
+    # (no overlap, the timeline does not get shorter)
+    "spin": (None, 0.4, "spin"), "zoom_through": (None, 0.34, "zoom_through"),
+    "light_leak": ("fade", 0.6, "leak"), "leak": ("fade", 0.6, "leak"), "film_burn": ("fade", 0.6, "leak"),
 }
+
+
+def tr_overlap(tr: dict) -> float:
+    """Seconds the two neighbours overlap (0 for cuts and hard-cut effect transitions)."""
+    if tr["type"] == "cut":
+        return 0.0
+    if tr["type"] in CUSTOM_TRANS and CUSTOM_TRANS[tr["type"]][0] is None:
+        return 0.0
+    return tr["dur"]
+
+
+def transition_window(kind: str, ctx: "Ctx", d: float):
+    """Window builders for the hard-cut T6 transitions (local time 0 = window start, cut at d/2)."""
+    W, H, fps = ctx.W, ctx.H, ctx.fps
+    h = d / 2
+    zp = f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s={W}x{H}:fps={fnum(fps)}"
+    if kind == "spin":
+        # A rotates out 0 -> 45 deg, B rotates in -45 -> 0; zoom = cos+(H/W)sin hides the corners
+        ang = f"if(lt(t,{fnum(h)}),t/{fnum(h)},-({fnum(d)}-t)/{fnum(h)})*PI/4"
+        r = max(W, H) / min(W, H)
+        z = f"cos(PI/4*abs(if(lt(it,{fnum(h)}),it/{fnum(h)},({fnum(d)}-it)/{fnum(h)})))" \
+            f"+{fnum(r)}*sin(PI/4*abs(if(lt(it,{fnum(h)}),it/{fnum(h)},({fnum(d)}-it)/{fnum(h)})))"
+        sig = 18 * W / 1080
+        return lambda g, s, wd: g.chain(s, f"rotate=a='{ang}':c=black,zoompan=z='{z}':{zp},"
+                                           f"gblur=sigma={fnum(sig)},setsar=1")
+    if kind == "zoom_through":
+        # Premiere zoom transition: 100 -> 300 % over the frames before the cut, 300 -> 100 % after
+        z = f"1+2*pow(if(lt(it,{fnum(h)}),it/{fnum(h)},({fnum(d)}-it)/{fnum(h)}),2)"
+        bl = max(2, int(round(18 * W / 1080)))
+        return lambda g, s, wd: g.chain(s, f"zoompan=z='{z}':{zp},avgblur=sizeX={bl}:sizeY={bl},setsar=1")
+    if kind == "leak":
+        # warm gradient blob blended with 'screen' - in gbrp, YUV screen blend turns magenta (T6 8.2)
+        def fn(g, s, wd):
+            lk, sl, out = g.label("lk"), g.label(), g.label()
+            fi, fo = wd * 0.35, wd * 0.45
+            g.add(f"gradients=s={W}x{H}:c0=0xff6a00:c1=0xffd36b:c2=0x000000:c3=0xff2d55:nb_colors=4:"
+                  f"speed=0.08:type=radial:d={fnum(wd + 0.2)}:r={fnum(fps)},format=gbrp,"
+                  f"fade=t=in:st=0:d={fnum(fi)},fade=t=out:st={fnum(wd - fo)}:d={fnum(fo)}[{lk}]")
+            g.add(f"[{s}]format=gbrp[{sl}]")
+            g.add(f"[{sl}][{lk}]blend=all_mode=screen:shortest=1,format=yuv420p[{out}]")
+            return out
+        return fn
+    raise SpecError(f"internal: unknown transition window {kind}")
 
 
 def norm_transition(tr) -> dict:
@@ -1783,10 +2585,190 @@ def plan_timeline(spec: dict, ctx: Ctx) -> list[dict]:
                 warn(f"timeline[{i}]: transition {tr['dur']}s too long, clamped to {maxd:.2f}s")
                 tr["dur"] = maxd
             tr["dur"] = max(1, int(round(tr["dur"] * ctx.fps))) / ctx.fps
-        start = t - (tr["dur"] if i > 0 else 0)
+        start = t - (tr_overlap(tr) if i > 0 else 0)
         plans.append({"i": i, "seg": seg, "plan": P, "trans": tr, "start": start})
         t = start + P.dur
     return plans
+
+
+def music_file(audio: dict, base: Path, workdir: Path, total_hint: float = 60.0) -> tuple[str | None, float]:
+    """(path, music 'in' offset) of the music track; a synth bed is rendered into workdir."""
+    music = audio.get("music")
+    if not music:
+        return None, 0.0
+    if isinstance(music, str):
+        music = {"path": music}
+    off = sec(music.get("in", 0))
+    if music.get("synth"):
+        workdir.mkdir(parents=True, exist_ok=True)
+        mp = workdir / f"music_synth_{music['synth']}.wav"
+        if not mp.exists():
+            d, _a, graph = SFX[music["synth"]]
+            if music["synth"] == "bed":
+                graph = graph.replace("d=8", f"d={fnum(total_hint + 1)}")
+            p = subprocess.run([which_or_die("ffmpeg"), "-v", "error", "-y", "-f", "lavfi", "-i", graph, "-ac", "2",
+                                "-ar", "48000", str(mp)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            if p.returncode:
+                raise RenderError(f"synth music: {tail(p.stderr)}")
+        return str(mp), off
+    mp = Path(music["path"]) if Path(music["path"]).is_absolute() else base / music["path"]
+    if not mp.exists():
+        raise SpecError(f"music not found: {mp}")
+    return str(mp), off
+
+
+def _uses_beat_refs(spec: dict) -> bool:
+    return any(isinstance(e, dict) and isinstance(e.get("at"), str) and e["at"] in BEAT_REFS
+               for e in spec.get("effects", []) or [])
+
+
+def beat_info_for(spec: dict, base: Path, workdir: Path, total_hint: float) -> dict | None:
+    """Analyse the music if beat_sync, audio.drop:"auto" or a global effect 'at': 'beats' needs it."""
+    audio = spec.get("audio") or {}
+    bs = audio.get("beat_sync")
+    if not (bs or audio.get("drop") == "auto" or _uses_beat_refs(spec)):
+        return None
+    cfg = bs if isinstance(bs, dict) else {}
+    every = int(cfg.get("every", 1))
+    if cfg.get("beats") is not None:  # explicit beat list (e.g. from `reelstudio beats`), music time
+        beats = sorted(sec(b) for b in cfg["beats"])
+        info = {"engine": "given", "bpm": None, "beats": beats, "downbeats": beats[::4],
+                "drop": sec(cfg["drop"]) if cfg.get("drop") not in (None, True, False, "auto") else None}
+    else:
+        mp, _off = music_file(audio, base, workdir, total_hint)
+        if not mp:
+            raise SpecError("audio.beat_sync / drop:auto / 'at':'beats' need audio.music (or beat_sync.beats)")
+        info = analyze_beats(mp, cfg.get("band", "low"), 1, 0.0, cfg.get("engine", "auto"))
+    music = audio.get("music")
+    off = sec(music.get("in", 0)) if isinstance(music, dict) else 0.0
+    off -= sec(cfg.get("offset", 0))  # positive offset = cuts later
+    sh = lambda ts: [round(t - off, 4) for t in ts if t - off > 0]  # noqa: E731
+    out = {"engine": info["engine"], "bpm": info.get("bpm"), "beats": sh(info["beats"]),
+           "downbeats": sh(info.get("downbeats") or [])}
+    out["cuts"] = out["beats"][::max(1, every)]
+    d = info.get("drop")
+    if audio.get("drop") not in (None, "auto", False, True):
+        d = sec(audio["drop"]) + off  # explicit drop is timeline time
+    out["drop"] = round(d - off, 4) if d is not None and d - off > 0 else None
+    return out
+
+
+def resolve_beat_refs(effects: list, info: dict | None) -> list:
+    """Global effects: 'at': 'beats'|'downbeats'|'cuts'|'drop' -> timeline times."""
+    out = []
+    for e in effects or []:
+        e = {"type": e} if isinstance(e, str) else dict(e)
+        ref = e.get("at")
+        if isinstance(ref, str) and ref in BEAT_REFS:
+            if not info:
+                raise SpecError(f"effect {e.get('type')}: 'at': {ref!r} needs audio.music")
+            ts = [info["drop"]] if ref == "drop" else info[ref]
+            ts = [t for t in ts if t is not None]
+            if e.get("max") is not None:
+                ts = ts[:int(e["max"])]
+            if not ts:
+                warn(f"effect {e.get('type')}: no {ref} found in the music")
+                continue
+            e["at"] = ts
+        out.append(e)
+    return out
+
+
+def apply_beat_sync(spec: dict, ctx: "Ctx", info: dict) -> tuple[dict, list[dict]]:
+    """Snap every cut (transition midpoint) to the beat grid; one cut can land exactly on the drop.
+
+    beat_sync options: every (beats per cut grid, 1), snap 'floor' (never longer than the clip, default)
+    or 'nearest', min_len (0.4 s), drop (true: the cut nearest the drop lands on it) or drop_segment (index
+    of the segment that starts on the drop), end (snap the reel end to a beat, true). Segments with
+    "beat_sync": false keep their length.
+    """
+    cfg = (spec.get("audio") or {}).get("beat_sync")
+    cfg = cfg if isinstance(cfg, dict) else {}
+    snap = cfg.get("snap", "floor")
+    if snap not in ("floor", "nearest"):
+        raise SpecError("beat_sync.snap must be floor or nearest")
+    min_len = float(cfg.get("min_len", 0.4))
+    fps = ctx.fps
+    grid = [t for t in info["cuts"] if t > 0]
+    if not grid:
+        raise SpecError("beat_sync: no beats found in the music")
+    plans = plan_timeline(spec, ctx)
+    n = len(plans)
+    ovl = [0.0] + [tr_overlap(p["trans"]) for p in plans[1:]]
+    # natural cut times
+    nat = []
+    for i, p in enumerate(plans):
+        if i > 0:
+            nat.append(p["start"] + ovl[i] / 2)
+    drop_idx = None
+    drop = info.get("drop")
+    if drop is not None and cfg.get("drop_segment") is not None:
+        drop_idx = int(cfg["drop_segment"])
+        if not 1 <= drop_idx < n:
+            raise SpecError(f"beat_sync.drop_segment must be 1..{n - 1}")
+    elif drop is not None and cfg.get("drop", True) and nat:
+        drop_idx = 1 + min(range(len(nat)), key=lambda k: abs(nat[k] - drop))
+        if abs(nat[drop_idx - 1] - drop) > 2.5:  # no cut anywhere near the drop: leave the grid alone
+            drop_idx = None
+    spec = json.loads(json.dumps(spec))
+    start, prev_cut, report = 0.0, 0.0, []
+    for i, p in enumerate(plans):
+        seg = spec["timeline"][i]
+        d_nat = p["plan"].dur
+        if i == n - 1:
+            d = d_nat
+            if cfg.get("end", True) and seg.get("beat_sync", True) is not False:
+                ends = [b for b in info["beats"] if start + min_len < b <= start + d_nat + 0.5 / fps]
+                if ends:
+                    d = ends[-1] - start
+            d = max(1, round(d * fps)) / fps
+            if abs(d - d_nat) > 1e-6:
+                seg["duration"] = d
+            report.append({"i": i, "from": d_nat, "to": d, "cut": None})
+            break
+        d_next = ovl[i + 1]
+        c_nat = start + d_nat - d_next / 2
+        lo = max(prev_cut + min_len, start - d_next / 2 + max(min_len, ovl[i] + d_next + 1 / fps))
+        if seg.get("beat_sync", True) is False:
+            c = c_nat
+        elif drop_idx == i + 1 and drop >= lo:
+            c = drop
+            if c > c_nat + 0.25:
+                warn(f"beat sync: timeline[{i}] is held {c - c_nat:.2f}s past its end to cut on the drop; "
+                     f"give it a later 'out' (or set beat_sync.drop: false)")
+        else:
+            cands = [b for b in grid if b >= lo - 1e-6]
+            floor = [b for b in cands if b <= c_nat + 0.5 / fps]
+            if snap == "floor" and floor:
+                c = floor[-1]
+            elif cands:
+                c = min(cands, key=lambda b: abs(b - c_nat))
+            else:
+                c = c_nat
+        d = max(1, round((c - start + d_next / 2) * fps)) / fps
+        seg["duration"] = d
+        report.append({"i": i, "from": d_nat, "to": d, "cut": round(start + d - d_next / 2, 3),
+                       "drop": drop_idx == i + 1})
+        start = start + d - d_next
+        prev_cut = start + d_next / 2
+    return spec, report
+
+
+def resolve_timeline(spec: dict, ctx: "Ctx", base: Path, workdir: Path) -> tuple[dict, list, float, dict | None]:
+    """Plan the timeline, applying audio.beat_sync when asked. Prints the plan."""
+    plans = plan_timeline(spec, ctx)
+    total = plans[-1]["start"] + plans[-1]["plan"].dur
+    info = beat_info_for(spec, base, workdir, total)
+    if info and (spec.get("audio") or {}).get("beat_sync"):
+        spec, report = apply_beat_sync(spec, ctx, info)
+        plans = plan_timeline(spec, ctx)
+        total = plans[-1]["start"] + plans[-1]["plan"].dur
+        moved = [r for r in report if abs(r["to"] - r["from"]) > 1e-3]
+        log(f"beat sync ({info['engine']}, {info.get('bpm') or '?'} BPM, drop {info.get('drop')}): "
+            f"{len(moved)}/{len(report)} segment lengths changed; cuts at "
+            + ", ".join(f"{r['cut']:.2f}{'*' if r.get('drop') else ''}" for r in report if r["cut"] is not None))
+    print_plan(plans, total)
+    return spec, plans, total, info
 
 
 def print_plan(plans: list[dict], total: float) -> None:
@@ -1823,16 +2805,13 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
     if preset == "draft" and not out and "_draft" not in out_path.stem:
         out_path = out_path.with_name(out_path.stem + "_draft.mp4")
 
-    plans = plan_timeline(spec, ctx)
-    total = plans[-1]["start"] + plans[-1]["plan"].dur
-    print_plan(plans, total)
-    if total > 180:
-        warn(f"total duration {total:.1f}s is longer than most reel limits")
-
     tmp = Path(workdir) if workdir else Path(tempfile.mkdtemp(prefix="reelstudio_"))
     tmp.mkdir(parents=True, exist_ok=True)
     log(f"work dir: {tmp}")
     try:
+        spec, plans, total, beat_info = resolve_timeline(spec, ctx, base, tmp)
+        if total > 180:
+            warn(f"total duration {total:.1f}s is longer than most reel limits")
         venc = ["-c:v", "libx264", *inter, "-pix_fmt", "yuv420p", "-g", str(int(ctx.fps * 2))]
         # 1) segments
         seg_files = []
@@ -1865,11 +2844,13 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
                 tr = p["trans"]
                 vi = g.chain(f"{i}:v", "settb=AVTB,format=yuv420p")
                 ai = g.chain(f"{i}:a", "aformat=sample_fmts=fltp:channel_layouts=stereo", "a")
-                if tr["type"] == "cut":
+                if tr_overlap(tr) == 0:
                     nv, na = g.label(), g.label("a")
                     g.add(f"[{v}][{vi}]concat=n=2:v=1:a=0[{nv}]")
                     g.add(f"[{a}][{ai}]concat=n=2:v=0:a=1[{na}]")
                     cut_points.append((acc, tr))
+                    if tr["type"] != "cut":
+                        posts.append((CUSTOM_TRANS[tr["type"]][2], acc - tr["dur"] / 2, tr["dur"]))
                     acc += p["plan"].dur
                 else:
                     d = tr["dur"]
@@ -1894,6 +2875,10 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
                 elif post == "glitch":
                     v = g.chain(v, f"rgbashift=rh=-16:bh=16:edge=smear:enable='{win}',"
                                    f"noise=alls=30:allf=t:enable='{win}',format=yuv420p")
+                elif post in ("spin", "zoom_through", "leak"):
+                    a0, a1 = (off - d * 0.5, off + d * 1.6) if post == "leak" else (off, off + d)
+                    v = windowed(g, v, max(0.0, a0), min(total, a1), total, ctx.fps,
+                                 transition_window(post, ctx, a1 - a0 if post == "leak" else d))
             cmd = [ffmpeg, "-hide_banner", "-y", *g.cmd_inputs(), "-filter_complex", g.script(),
                    "-map", f"[{v}]", "-map", f"[{a}]", "-r", fnum(ctx.fps), "-frames:v",
                    str(int(round(total * ctx.fps))), *venc, "-c:a", "pcm_s16le", str(joined)]
@@ -1955,15 +2940,17 @@ def render(spec_path: str, preset: str | None = None, out: str | None = None, dr
             ass_file.write_text(ass_document(ctx, events), encoding="utf-8")
 
         final_wav = tmp / "final.wav"
-        build_audio(spec.get("audio") or {}, ctx, runner, ffmpeg, tmp, speech, total, cut_points,
-                    final_wav, base)
+        audio_spec = dict(spec.get("audio") or {})
+        if audio_spec.get("drop") == "auto" and beat_info:
+            audio_spec["_drop_time"] = beat_info.get("drop")
+        build_audio(audio_spec, ctx, runner, ffmpeg, tmp, speech, total, cut_points, final_wav, base)
 
         # 5) final encode
         g = Graph("f")
         g.add_input(["-i", str(joined)])
         v = g.chain("0:v", "setpts=PTS-STARTPTS,format=yuv420p")
         geff = []
-        for e in spec.get("effects", []) or []:
+        for e in resolve_beat_refs(spec.get("effects", []) or [], beat_info):
             e = {"type": e} if isinstance(e, str) else dict(e)
             if e.get("type") == "lut" and e.get("path") and not os.path.isabs(e["path"]):
                 e["path"] = str((base / e["path"]).resolve())
@@ -2060,32 +3047,28 @@ def build_audio(audio: dict, ctx: Ctx, runner: Runner, ffmpeg: str, tmp: Path, s
                   f"release={fnum(duck.get('release', 350))}:makeup=1[{ml2}]")
             ml = ml2
         mix.append(ml)
-    # sfx list (explicit) + automatic sfx on cuts
-    sfx_items = []
-    for s in audio.get("sfx", []) or []:
-        sfx_items.append(dict(s))
-    auto = audio.get("sfx_on_cuts")
-    if auto:
-        auto = {"type": auto} if isinstance(auto, str) else dict(auto)
-        for t, tr in cut_points:
-            kind = tr.get("sfx") or (SFX_FOR_TRANSITION.get(tr["type"], "whoosh") if auto["type"] == "auto"
-                                     else auto["type"])
-            if kind in (None, "none", False):
-                continue
-            sfx_items.append({"type": kind, "at": t, "volume": auto.get("volume", 0.7)})
-    else:
-        for t, tr in cut_points:
-            if tr.get("sfx"):
-                sfx_items.append({"type": tr["sfx"], "at": t, "volume": tr.get("sfx_volume", 0.7)})
+    # sfx list (explicit) + automatic sfx on cuts + riser/impact into the drop
+    sfx_items = [dict(s) for s in audio.get("sfx", []) or []]
+    sfx_items += cut_sfx_items(audio, cut_points, total)
+    library = sfx_library(audio, base)
     files: dict[str, int] = {}
     for s in sfx_items:
+        name = s.get("type", "whoosh")
+        if not s.get("path") and name in library:  # user file replaces the synthetic sound
+            s["path"] = library[name]
+            s.setdefault("align", "peak" if name in PEAK_SFX else "start")
         if s.get("path"):
             pth = Path(s["path"]) if Path(s["path"]).is_absolute() else base / s["path"]
             if not pth.exists():
                 raise SpecError(f"sfx file not found: {pth}")
-            key, anchor = str(pth), float(s.get("anchor", 0))
+            key = str(pth)
+            if s.get("anchor") is not None:
+                anchor = float(s["anchor"])
+            elif s.get("align") == "peak":
+                anchor = 0.0 if runner.dry else audio_peak_time(key)
+            else:
+                anchor = 0.0
         else:
-            name = s.get("type", "whoosh")
             if name not in SFX:
                 raise SpecError(f"unknown sfx {name!r}. Valid: {', '.join(SFX)} (or give 'path')")
             key = str(tmp / f"sfx_{name}.wav")
@@ -2349,6 +3332,14 @@ def main(argv=None) -> int:
     pl.add_argument("spec")
     pl.add_argument("--preset")
 
+    bt = sub.add_parser("beats", help="beat / downbeat / drop detection of a music file (JSON)")
+    bt.add_argument("music")
+    bt.add_argument("--band", default="low", choices=["low", "full"],
+                    help="low = <160 Hz, locks on the kick (pop/EDM/trap); full = acoustic / no drums")
+    bt.add_argument("--every", type=int, default=1, help="cut grid = every Nth beat")
+    bt.add_argument("--min-gap", type=float, default=0.3, help="minimum seconds between cut points")
+    bt.add_argument("--engine", default="auto", choices=["auto", "librosa", "numpy", "stdlib"])
+
     p = sub.add_parser("probe", help="media info as JSON")
     p.add_argument("files", nargs="+")
 
@@ -2399,8 +3390,10 @@ def main(argv=None) -> int:
             spec = apply_preset_canvas(spec, resolve_preset(None, spec))
             spec = apply_preset_canvas(spec, resolve_preset(a.preset, spec))
             ctx = Ctx(spec, base)
-            plans = plan_timeline(spec, ctx)
-            print_plan(plans, plans[-1]["start"] + plans[-1]["plan"].dur)
+            with tempfile.TemporaryDirectory(prefix="reelstudio_plan_") as td:
+                resolve_timeline(spec, ctx, base, Path(td))
+        elif a.cmd == "beats":
+            cmd_beats(a.music, a.band, a.every, a.min_gap, a.engine)
         elif a.cmd == "probe":
             cmd_probe(a.files)
         elif a.cmd == "captions":
