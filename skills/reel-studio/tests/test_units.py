@@ -43,11 +43,15 @@ def test_ass_escape_and_time():
     assert rs.ass_time(62.345) == "0:01:02.35" or rs.ass_time(62.345) == "0:01:02.34"
 
 
-def test_atempo_chain_splits_extreme_speeds():
+@pytest.mark.parametrize("speed", [4.0, 0.25, 3.0, 0.7, 1.25])
+def test_atempo_chain_splits_extreme_speeds(speed):
     assert rs.atempo_chain(1.0) == ""
-    assert rs.atempo_chain(4.0) == "atempo=2.0,atempo=2.0"
-    assert rs.atempo_chain(0.25) == "atempo=0.5,atempo=0.5"
-    assert rs.atempo_chain(3.0).startswith("atempo=2.0,atempo=1.5")
+    vals = [float(f.split("=")[1]) for f in rs.atempo_chain(speed).split(",")]
+    assert all(0.5 <= v <= 2.0 for v in vals)
+    prod = 1.0
+    for v in vals:
+        prod *= v
+    assert prod == pytest.approx(speed, rel=1e-3)
 
 
 def test_clip_pieces_speed_ramp_duration():
