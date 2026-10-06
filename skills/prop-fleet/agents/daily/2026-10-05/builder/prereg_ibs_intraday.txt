@@ -1,0 +1,55 @@
+PRE-REGISTRATION (hypothesis builder, 2026-10-05). Written before any code for it ran.
+Count = 3 (variants A, B, C). Not in ledger.csv (checked H0001..H0012: no IBS / close-location rule).
+
+Hypothesis: intraday IBS reversal on the S&P.
+Idea source: the "internal bar strength" (IBS) close-location effect in equity indices
+(Pagonidis, "The IBS Effect: Mean Reversion in Equity ETFs", NAAIM 2013 Wagner award paper —
+cited from memory, not fetched today). The published effect is close-to-close (holds
+overnight). This test takes ONLY the intraday part: enter after the open, flat by the close,
+so it fits prop flat-by-close rules and is not an overnight / calendar effect.
+
+Data: SPXUSD 1m, FutureSharks/HistData, 2010-11-14..2018-12-31, via tjr_backtest.load_minutes().
+
+Clock (fixed now, decided by a diagnostic that looks at no trade outcome):
+  diag: for each of January and July (all years), mean |1m close-to-close return| per
+  minute of day, data time 07:00-11:59. Peak minute = the open of the cash session.
+  If the July peak is 60 min earlier than the January peak -> data is fixed EST (UTC-5,
+  HistData's documented clock); convert every timestamp from UTC-5 to America/New_York.
+  If the peaks are the same minute -> use timestamps as New York time unchanged.
+
+Session definitions (New York time after the clock step):
+  RTH bars of a date = bars with time 09:30..15:59 (bar-open timestamps).
+  A session is valid if it is a weekday, has >= 370 RTH bars and has both the 09:31 and the
+  15:59 bar.  H, L = RTH high/low; C = close of the 15:59 bar.
+  Previous session = the most recent valid session before d.
+  IBS(d-1) = (C - L) / (H - L) of the previous session; skip if H == L.
+  ATR14(d) = mean of (H - L) over the 14 most recent valid sessions before d (d excluded);
+  skip until 14 exist.
+
+Signal (variant A, base):
+  long  if IBS(d-1) <= 0.20 ; short if IBS(d-1) >= 0.80 ; otherwise no trade.
+Entry: open of the 09:31 bar of d (not the 09:30 print).
+Stop:  entry -/+ 0.5 * ATR14(d). Risk = 0.5 * ATR14 (must be >= 1.0 pt, tjr MIN_RISK).
+  Checked on every bar 09:31..15:59 including the entry bar. Stop fill = the worse of the
+  stop price and that bar's open (gap-through).
+Target: none. Exit: close of the 15:59 bar if not stopped.
+  (No target, so no stop-and-target bar exists; stop-first is trivially satisfied.)
+Cost: 0.6 pt round trip (tjr_backtest.COST_PTS). Net R = (pts - 0.6)/risk; gross R = pts/risk.
+One trade per day at most.
+
+Variants (all three reported, none chosen after the fact):
+  A  base: thresholds 0.20 / 0.80, both sides, stop 0.5 * ATR14
+  B  long-only: same as A but only the IBS <= 0.20 longs
+  C  wide stop: same as A with stop 1.0 * ATR14
+
+Report for each variant: n, trades/yr, net mean R, gross mean R, bootstrap 5th pct of net
+mean (tjr_backtest.boot_mean: 5000 draws, seed 0; one trade per day so trade = day level),
+gross p5, one-sided lower bound of net mean at alpha = 0.05/N with N = 176 (board N 173 + these 3;
+normal approximation mean - z*sd/sqrt(n)), annualised Sharpe, stop rate, median risk in points,
+long/short split, halves 2010-2014 and 2015-2018, net mean R by year.
+
+Decision rule (fixed now): all of 2010-2018 is in-sample for this test. Worth a pre-registered
+out-of-sample run on SPY 1m 2019-2025 ONLY IF variant A net p5 > 0 AND both halves of A have
+net mean > 0. Otherwise close the family (no other thresholds, stops, targets or filters).
+Nothing here can be called an edge; gate rule 1 needs a ledger row written before the run,
+which this worker cannot write.

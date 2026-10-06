@@ -1,0 +1,49 @@
+firm,field,value,confidence,source
+MyFundedFutures,automation_funded,"automated strategies allowed if they do not exploit sim fills; no HFT; no trading tier-1 news; third-party summaries conflict on fully unattended bots (one says prohibited without human oversight)",verified(help-center snippet; page EGRESS_BLOCKED) + conflicting third-party,https://help.myfundedfutures.com/en/articles/8444599-fair-play-and-prohibited-trading-practices ; https://tradersunion.com/brokers/prop/view/myfundedfutures/
+MyFundedFutures,max_accounts,"10 active evals; 5 Sim-Funded if only 25K/50K; 3 total if any 100K/150K; some plans 1-3",verified(help-center snippet),https://help.myfundedfutures.com/en/articles/16498635-moving-from-evaluation-to-sim-funded-account
+MyFundedFutures,copy_own_accounts,"allowed; Tradesyncer is the preferred copier; copying other traders forbidden",verified(help-center snippet),https://help.myfundedfutures.com/en/articles/10771500-copy-trading-at-myfundedfutures
+MyFundedFutures,platform_api,"Tradovate/NinjaTrader/Rithmic/TradingView/ProjectX per third party; Tradovate API live-only per a help-center snippet (attribution between Tradeify/MFFU unclear)",corroborated,https://crosstrade.io/prop-firms/my-funded-futures
+MyFundedFutures,vps,"not found on firm page; third party says VPS usable",unverified,https://crosstrade.io/prop-firms/my-funded-futures
+MyFundedFutures,dd_50k,"$2,000 EOD (Rapid, Rapid EOD, Flex, Builder)",verified(help-center snippet),https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide
+MyFundedFutures,eval_clock,"min 1-4 days by plan; max not found",unverified,help.myfundedfutures.com plan pages
+MyFundedFutures,payout_cap_50k,"Flex $2,000/request; Builder $2,000, up to 5 sim payouts 80/20; Rapid EOD no per-cycle cap",verified(help-center snippet),https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide
+Bulenox,automation_funded,"bots, algorithms, copiers permitted; only user-built for own use; commercial/shared/rented tools banned; +$100/month for third-party Rithmic API connection",verified(bulenox.com FAQ snippet),https://bulenox.com/faq
+Bulenox,max_accounts,"5 total Master+Fast Track+Momentum Master; unlimited Qualification; one Rithmic user ID",verified(bulenox.com snippet),https://bulenox.com/faq
+Bulenox,copy_own_accounts,"copiers permitted per FAQ; one third-party says copy trading across accounts prohibited",verified + conflicting,https://bulenox.com/faq ; https://proptradingvibes.com/blog/bulenox-permitted-strategies
+Bulenox,platform_api,"Rithmic only (NinjaTrader via Rithmic); not Tradovate",corroborated,https://affordableindicators.com/ninjatrader-help/does-bulenox-use-tradovate/
+Bulenox,vps,not found,unverified,
+Bulenox,dd_50k,"$2,500; trailing or EOD option (Option 1 EOD no DLL, Option 2 EOD+DLL)",verified(size, bulenox.com snippet) / corroborated(type),https://bulenox.com/accounts-pricing ; https://tradetanto.com/learn/bulenox-rules-what-traders-need-to-know
+Bulenox,eval_clock,not found,unverified,
+Bulenox,payout_cap_50k,"$1,500 for first 3 payouts then uncapped; min $1,000; 10 trading days; 40% consistency; 100% of first $10k then 90%",corroborated,https://tradingfinder.com/props/bulenox/rules/ ; https://www.quantvps.com/blog/bulenox-payout-rules
+Tradeify,automation_funded,"bots allowed in eval and funded only if trader is sole owner, not used at other firms, not HFT; may require live video of enabling code on own PC; shared strategies detected and banned",corroborated (firm page help.tradeify.co/10468318 listed but not quoted),https://help.tradeify.co/en/articles/10468318-guidelines-for-traders ; https://tradetanto.com/learn/tradeify-rules-explained-what-every-trader-should-know
+Tradeify,max_accounts,"5 Sim Funded per household",verified(help-center snippet),https://help.tradeify.co/en/articles/10468251-how-many-simulated-funded-accounts-can-i-have-at-once
+Tradeify,copy_own_accounts,"permitted if same direction, no hedging",verified(help-center snippet),https://help.tradeify.co/en/articles/12268494-common-faqs
+Tradeify,platform_api,"Tradovate, NinjaTrader (Tradovate creds), TradingView via Tradovate, Rithmic via Tradesea/Quantower/Sierra/R|Trader; ProjectX dropped; Tradovate API LIVE accounts only",verified(help-center snippet),https://help.tradeify.co/en/articles/10468221-supported-platforms
+Tradeify,vps,"no login via VPN/VPS; after normal login VPS trading at own risk",verified(help-center snippet),https://help.tradeify.co/en/articles/12268494-common-faqs
+Tradeify,dd_50k,"Select 50K $2,000 EOD",verified(help-center snippet)+corroborated,https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts
+Tradeify,eval_clock,"no maximum; min 3 days (40% consistency)",corroborated,https://saveonpropfirms.com/blog/tradeify-select-guide
+Tradeify,payout_cap_50k,"Select Daily $1,000 per cycle; Flex not found",corroborated,https://tradetanto.com/learn/tradeify-rules-explained-what-every-trader-should-know
+Lucid,automation_funded,"automated strategies and copiers permitted; trader liable for software errors; no HFT",verified(lucidtrading.com FAQ snippet),https://lucidtrading.com/general-faq/
+Lucid,max_accounts,"10 evals and 5 funded per household; 10 combined",verified(support snippet),https://support.lucidtrading.com/en/articles/11404617-maximum-number-of-accounts
+Lucid,copy_own_accounts,"permitted (in-platform and third-party copiers; Tradovate Group Trading up to 5)",verified(FAQ) + corroborated,https://lucidtrading.com/general-faq/ ; https://tradedupe.com/blog/does-lucid-allow-copy-trading-full-2026-guide
+Lucid,platform_api,"Tradovate and Rithmic (firm has Rithmic setup and Rithmic copier guides)",corroborated,https://lucidtrading.com/rithmic-setup/ ; https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms
+Lucid,vps,"not found on firm page; third party says VPS used",unverified,https://fxvps.biz/blog/best-vps-for-lucid-trading/
+Lucid,dd_50k,"$2,000 EOD trailing (LucidDaily funded intraday)",corroborated,https://damnpropfirms.com/prop-firms/lucid-trading-rules-payouts/
+Lucid,eval_clock,"no time limit",corroborated,https://proptradingvibes.com/blog/lucid-trading-lucidflex-account
+Lucid,payout_cap_50k,"LucidFlex $2,000/request, 50% of balance, min $500, 5 payouts then live review",corroborated,https://proptradingvibes.com/blog/lucid-trading-payout-rules
+Topstep,automation_funded,"bots allowed via TopstepX/ProjectX API in Combine and Express Funded; API not available on Live Funded",verified(help-center snippet),https://help.topstep.com/en/articles/11187768-topstepx-api-access
+Topstep,max_accounts,"5 active XFAs",verified(help-center snippet),https://help.topstep.com/en/articles/8284215-express-funded-account-parameters
+Topstep,copy_own_accounts,"copier across XFAs allowed up to $750K buying power; no hedging",verified(help-center snippet),https://help.topstep.com/en/articles/8284215-express-funded-account-parameters
+Topstep,platform_api,"TopstepX / ProjectX Gateway API; $29/month ($14.50 with code) per third party",verified(API exists)/corroborated(price),https://help.topstep.com/en/articles/11187768-topstepx-api-access ; https://blog.pickmytrade.io/topstep-api-getting-a-key-and-placing-your-first-automated-trade/
+Topstep,vps,"VPS/VPN/remote servers prohibited; trading must originate from personal device",verified(help-center snippet),https://help.topstep.com/en/articles/10296582-prohibited-conduct
+Topstep,dd_50k,"$2,000 MLL trailing, locks at starting balance",verified(help-center snippet),https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit
+Topstep,eval_clock,"no time limit; monthly subscription rebills every 30 days; min 2 days",verified(help-center snippet),https://help.topstep.com/en/articles/8284197-trading-combine-parameters
+Topstep,payout_cap_50k,"50% of balance up to $5,000; Standard path 5 winning days >= $150",verified(help-center snippet),https://help.topstep.com/en/articles/8284233-topstep-payout-policy
+Apex,automation_funded,"PROHIBITED on all account types per firm compliance page (AI, autobots, algorithms, fully automated); alerts and manually-set brackets only",verified(help-center snippet),https://support.apextraderfunding.com/hc/en-us/articles/31519788944411-Performance-Account-PA-and-Compliance
+Apex,max_accounts,"20 PA per household",verified(help-center snippet),https://support.apextraderfunding.com/hc/en-us/articles/4406804554779-How-Many-Paid-Funded-Accounts-Am-I-Allowed-to-Have
+Apex,copy_own_accounts,"PA/Live may not be influenced by copy-trading service or mirroring software (firm page); third parties say manual-lead copy to 20 PAs allowed",verified + conflicting,https://apextraderfunding.com/help-center/getting-started/apex-live-prop-trading-program-faq/
+Apex,platform_api,"Rithmic, Tradovate, WealthCharts",verified(help-center snippet),https://support.apextraderfunding.com/hc/en-us/articles/4406804554779-How-Many-Paid-Funded-Accounts-Am-I-Allowed-to-Have
+Apex,vps,moot (automation banned),n/a,
+Apex,dd_50k,"firm snippet $2,500 (likely legacy page); third parties $2,000 for post-Mar-2026 accounts; EOD or intraday",conflicting,https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-evaluations/ ; references/apex-rules.md
+Apex,eval_clock,"30 calendar days continuous",verified(help-center snippet),https://apextraderfunding.com/help-center/billing/evaluation-plan-fees-and-access-explained/
+Apex,payout_cap_50k,"ladder 1500/1500/2000/2500/2500/3000 then close",corroborated,references/apex-rules.md

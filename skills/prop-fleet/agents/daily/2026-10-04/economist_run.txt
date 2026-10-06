@@ -1,0 +1,34 @@
+copy reproduces original apex_model on 50K-2026: OK
+
+=== expectancy +0.10R, 4 accounts per firm, net after 25% tax, mean of years 2-4 ===
+firm                     gross/yr   fees/yr     net/yr   dead/yr evals/yr
+MFFU Flex 50K              10,476     1,850      6,434      17.2     18.2
+Bulenox 50K                15,997     2,387     10,057       8.3      9.3
+Tradeify Select 50K        11,785     1,884      7,392      17.2     18.2
+LucidFlex 50K               9,861     2,627      5,347      16.8     19.5
+Topstep 50K                11,849     2,938      6,630      17.2     18.2
+FLEET 20 accounts                               35,860  = 3.6% of $1M nominal; p10 14,015 p90 58,655
+ref: Apex 50K-2026 x20                          27,095  (excluded: bans automation)
+
+=== expectancy +0.25R, 4 accounts per firm, net after 25% tax, mean of years 2-4 ===
+firm                     gross/yr   fees/yr     net/yr   dead/yr evals/yr
+MFFU Flex 50K              33,370       843     24,396       7.6      8.6
+Bulenox 50K                56,465     1,280     41,389       0.8      1.8
+Tradeify Select 50K        37,760       824     27,702       7.3      8.3
+LucidFlex 50K              27,984     1,891     19,569       5.9     13.8
+Topstep 50K                38,031     1,819     27,159       7.1      8.1
+FLEET 20 accounts                              140,215  = 14.0% of $1M nominal; p10 111,010 p90 169,114
+ref: Apex 50K-2026 x20                         142,823  (excluded: bans automation)
+
+=== expectancy +0.40R, 4 accounts per firm, net after 25% tax, mean of years 2-4 ===
+firm                     gross/yr   fees/yr     net/yr   dead/yr evals/yr
+MFFU Flex 50K              63,983       318     47,749       2.8      3.8
+Bulenox 50K                96,853     1,202     71,738       0.1      1.1
+Tradeify Select 50K        73,089       168     54,691       1.6      2.6
+LucidFlex 50K              48,849     2,049     35,100       1.9     14.7
+Topstep 50K                72,980       842     54,103       2.1      3.1
+FLEET 20 accounts                              263,381  = 26.3% of $1M nominal; p10 230,017 p90 297,129
+ref: Apex 50K-2026 x20                         256,100  (excluded: bans automation)
+0.3 180117 18.0
+0.32 196301 19.6
+0.34 212539 21.3

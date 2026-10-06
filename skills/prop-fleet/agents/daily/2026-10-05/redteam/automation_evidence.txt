@@ -1,0 +1,25 @@
+Red team 2026-10-05: evidence against "Bulenox, Lucid (Tier A) and Topstep XFA (Tier B) allow full automation on funded accounts".
+All items are WebSearch summaries (search engine paraphrase), not fetched pages. Fetch attempts EGRESS_BLOCKED:
+www.lucidtrading.com, www.mql5.com, blog.pickmytrade.io, pipback.com, www.track360.io.
+
+1. Lucid: contract text requires PRIOR WRITTEN APPROVAL, at Lucid's sole discretion, for "any custom, algorithmic, or other
+   automated trading software". Domain-restricted search (lucidtrading.com) attributed it once to the LucidDirect Account
+   Agreement PDF (lucidtrading.com/wp-content/uploads/2025/05/LucidDirect-Account-Agreement-5-19.pdf, May 2025) and once to
+   lucidtrading.com/lucid-trader-agreement/ and lucidtrading.com/terms-of-use/. Support page 11404728 still says automated
+   systems are permitted. Conflict: the FAQ permits, the agreement requires approval. Which document governs LucidFlex is unknown.
+   Lucid ToU also bans coordinated trading "between unconnected accounts and third parties, to pool or hedge risk".
+   Lucid moves funded traders to LucidLive after 5 payouts (rules_matrix); automation terms for LucidLive not found.
+2. Bulenox (bulenox.com, domain-restricted search): prohibits "scalping algorithms, DTC Protocol Bridge API or automated
+   discretional trading in any trading environments"; "if abuse is suspected, Bulenox reserves the right to refuse to claim
+   any profit". Third-party algorithms need management approval. After 3 Master payouts, move to Funded is at Bulenox's
+   discretion, requires a separate Funded Account Agreement, and if the trader does not consent "the Master Account will be
+   closed and no additional Reward will be issued" (bulenox.com/help-center/funded, /master). Automation terms of the
+   Funded Account Agreement not found. Third-party reports (trustpilot.com reviews via search) of payouts denied on
+   rules not in public docs ("Section 5.6 of the Master Agreement").
+3. Topstep (help.topstep.com, domain-restricted search): call-up to Live is at the Risk team's discretion; the trader cannot
+   decline and keep the XFA (move to Live or close); on call-up ALL XFAs close; the API is not available on Live, so automation
+   is "not possible" there (articles 13747178, 10657969). Prohibited Conduct bans coordinated trading "including unconnected
+   accounts or third parties ... to trade the same or opposite strategy simultaneously" (article 10296582).
+4. Cross-firm: Tradeify bans the same bot at other firms (rules_matrix 2026-10-05). Industry tools for shared cross-firm
+   detection exist (Centroid PropShield, tradeinformer.com; QuantSentry, fundedtrading.com). July 2026 ban waves at Tradeify
+   and Lucid (pipback.com via search, single source).

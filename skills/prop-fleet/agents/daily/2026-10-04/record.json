@@ -1,0 +1,971 @@
+{
+ "date": "2026-10-04",
+ "workers": [
+  {
+   "summary": "I found four short-horizon ES/NQ edge families that board.md and ledger.csv (N=110) have not covered. Ranked by how testable they are with data we can reach, they are: turn-of-the-month, the overnight-gap reversal (fading the overnight move during the day), FOMC-cycle timing (even weeks and the pre-FOMC drift), and the 5-minute opening-range breakout. Two of them come with published evidence that the edge disappeared after publication or does not survive costs. None is likely to reach the gate's Sharpe ~3 alone, so these are inputs for the hypothesis builder and possible stack parts, not edges. I ran no backtests, so N does not change, and every paper number below comes from search-engine summaries because all primary paper hosts were EGRESS_BLOCKED.",
+   "findings": [
+    {
+     "claim": "Candidate 1 (most testable): turn-of-the-month (TOTM): long S&P from the close of the last trading day of the month through the 3rd trading day of the next month. McConnell & Xu (FAJ 2008, v64 i2 p49-64): over 1926-2005 investors were on average rewarded for market risk only at turns of the month. Since 1987, the average daily value-weighted excess return in the 4-day window is 0.14%, against -0.01% on the other 16 days. The effect appears in 31 of 35 countries.",
+     "evidence": "Web search summary of the CFA Institute and IDEAS/RePEc records for McConnell & Xu 2008. Primary PDF not fetched (ideas.repec.org and cfainstitute were not tried or were blocked). Arithmetic from the summary's own numbers: 0.14% x 4 days x 12 months = about 6.7%/yr excess, before costs, invested about 48 days a year. No Sharpe, drawdown or cost figures were found.",
+     "source": "https://ideas.repec.org/a/taf/ufajxx/v64y2008i2p49-64.html (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "The evidence on whether TOTM persisted after publication is mixed. Etula, Rinne, Suominen & Vaittinen, 'Dash for Cash' (RFS 33(1), Jan 2020), report that it persists and attribute it to institutions' month-end liquidity needs. Carcano & Tornero ('Calendar Anomalies in Stock Index Futures') call the TOTM effect in S&P 500 futures the only calendar effect that is significant and persistent. Maberly & Waggoner (Atlanta Fed WP 2000-11) find that TOTM in S&P futures disappears after 1990.",
+     "evidence": "WebSearch summaries (Aalto news item on the RFS acceptance; etftrends/validea summaries of Etula et al.; Atlanta Fed WP 2000-11 listing). The primary papers were not read.",
+     "source": "https://www.atlantafed.org/research/publications/wp/2000/11.aspx ; https://www.aalto.fi/en/news/finance-paper-accepted-to-be-published-in-the-review-of-financial-studies (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "TOTM can be tested today with data already in the repo, with no new download: data/spx_open_close.csv has S&P daily close from 1990-01-02 to 2026-09-25 (9,251 rows). Close-to-close returns are valid over the whole span, even though index opens before 2010 are not real opens. That leaves 1990-2008 in-sample and 2009-2026 as post-publication out-of-sample, against the Lakonishok-Smidt 1988 and McConnell-Xu 2008 rules.",
+     "evidence": "Ran head/tail/wc -l on data/spx_open_close.csv: first row 1990-01-02, last row 2026-09-25, 9,252 lines including the header. data/README.md documents the pre-2010 open problem.",
+     "source": "/home/user/claude-skills/skills/prop-fleet/data/spx_open_close.csv",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Candidate 2 (testable, and the only one that trades daily): the overnight-gap reversal (CO->OC). Fade the close-to-open move during the next open-to-close session. Grant, Wolf & Yu (Journal of Banking & Finance 29(5), 2005, pp. 1311-1327) find highly significant intraday reversals after large opening moves in US index futures over Nov 1987 - Sep 2002. After a bid-ask cost proxy, that significance is sharply reduced. Yu, Rentzler & Wolf (JOIM 3(3), 2005): in NASDAQ-100 futures, last night's return goes mainly with intraday reversals. Della Corte, Kosowski & Wang, 'Market Closure and Short-Term Reversal' (working paper, Nov 2015), report that the CO-OC reversal beats the classic reversal in equity-index, rate, commodity and FX futures. That is cross-sectional, about 100%/day turnover, and no index-futures-only Sharpe was found.",
+     "evidence": "WebSearch summaries; the IDEAS URL encodes v29 i5 p1311-1327. Every primary host was blocked. This differs from the board's overnight-drift test (long close->open, stack.md) and from H0005 (first half-hour -> last half-hour momentum).",
+     "source": "https://ideas.repec.org/a/eee/jbfina/v29y2005i5p1311-1327.html ; https://joim.com/article/nasdaq-100-index-futures-intraday-momentum-or-reversal/ (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "The gap reversal can be tested on two local datasets. (a) data/spx_open_close.csv, 2010-2026: the open is the index's composite first print, a proxy for an ES 09:30 fill (README caveat). (b) FutureSharks S&P minute bars, 2010-2018 (board.md), for a real 09:30 entry and stop. At about 250 possible trades a year it is the only candidate whose frequency could plausibly reach the gate's Sharpe ~3, and the only prior evidence says costs remove most of it.",
+     "evidence": "board.md 'Data available here'. data/README.md section on spx_open_close.csv: open equals prior close on 6% of days in the 2010s and 0.1% in the 2020s.",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/board.md ; /home/user/claude-skills/skills/prop-fleet/data/README.md",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Candidate 3a: FOMC-cycle even weeks. Cieslak, Morse & Vissing-Jorgensen (Journal of Finance, Oct 2019): since 1994 the equity premium is earned entirely in weeks 0, 2, 4 and 6 after an FOMC meeting. A long-only even-week strategy returned 11.8% vs 8.3% excess for buy-and-hold over 1994-2015. No independent post-2016 replication was found.",
+     "evidence": "WebSearch summary (cxoadvisory 'hold stocks only during FOMC even weeks'; Duke scholars record). The paper PDFs on stern.nyu.edu and bis.org were not readable (stern.nyu.edu EGRESS_BLOCKED). No Sharpe, drawdown or cost figure was obtained.",
+     "source": "https://www.cxoadvisory.com/calendar-effects/hold-stocks-only-during-fomc-even-weeks (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Candidate 3b: the pre-FOMC drift. Lucca & Moench (JF 2015, NY Fed SR512; sample Sep 1994 - Mar 2011): the S&P 500 rose on average 49 bp in the 24 hours before scheduled FOMC announcements. Holding only those windows gave an annualized Sharpe above 1.1. Kurov, Wolfe & Gilbert (Finance Research Letters 40, 2021; sample extended to Dec 2019) find the drift essentially disappeared after 2015, with and without press conferences. This is a published case of an edge dying after publication, so the prior is low.",
+     "evidence": "WebSearch summaries of the VoxEU/CEPR column and the SSRN author page. newyorkfed.org, papers.ssrn.com and skidmore.edu (the Kurov PDF) were EGRESS_BLOCKED. Arithmetic from the summary's own numbers: 49 bp x 8 meetings = about 3.9%/yr gross.",
+     "source": "https://cepr.org/voxeu/columns/predictable-movements-asset-prices-around-fomc-meetings ; https://papers.ssrn.com/author=3571041 (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Both FOMC tests are blocked by missing data: no full list of FOMC dates from 1994 to 2026 has been found from here. GitHub raw borisjoffe/FOMC-dates.js (master/dates.csv) returns only 32 dates, 2021-01-27 to 2024-12-18. federalreserve.gov is blocked. The ScrapeFOMC repo only holds a scraper that needs the Fed site. PyPI pyfedwatch 1.2.0 ships no dates.",
+     "evidence": "Commands: curl raw.githubusercontent.com/borisjoffe/FOMC-dates.js/master/dates.csv -> HTTP 200, 32 rows (main branch: 404). curl federalreserve.gov -> CONNECT tunnel failed, 403. pip download pyfedwatch==1.2.0 and inspected pyfedwatch/fomc.py: dates are a caller argument. curl the ScrapeFOMC master README: 'history (up to 2016)' scraped via selenium from the Fed site.",
+     "source": "https://raw.githubusercontent.com/borisjoffe/FOMC-dates.js/master/dates.csv ; https://raw.githubusercontent.com/marcburri/ScrapeFOMC/master/README.md",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Candidate 4 (testable, low prior): the 5-minute opening-range breakout (ORB). Zarattini & Aziz, 'Can Day Trading Really Be Profitable?' (SSRN 4416622, 2016-2023; working paper, not peer-reviewed). Rules: trade in the direction of the first 5-minute candle, stop at its other side, target 10R or the close. Reported: 24% hit rate, +0.13R per trade, and 33%/yr on QQQ at 4x leverage. One independent replication on NQ, SPX, Dow, DAX and FTSE CFDs (Jan 2015 - Jun 2026, about 2,900 sessions each) reproduces +0.131R gross on NQ. Net of costs, no market is distinguishable from zero and four of five are negative.",
+     "evidence": "WebSearch summaries of the SSRN abstract, concretumgroup.com and an mql5.com blog post. mql5.com and papers.ssrn.com are EGRESS_BLOCKED, so the replication's code and cost model were not inspected. It can be tested here only on FutureSharks S&P minute bars, 2010-2018.",
+     "source": "https://www.mql5.com/en/blogs/post/776235 ; https://papers.ssrn.com/abstract=4416622 (via WebSearch)",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Gate implication: candidates 1 and 3 trade only about 8 to 48 days a year and report Sharpe around 1 at best. They cannot reach the gate's annual Sharpe of about 3 alone. At most they could be uncorrelated stack parts (stack.md). Candidate 2 is the only one at about 250 trades a year, and candidate 4 already has external net-of-cost evidence of zero. Every test raises N, so a test is worth spending only where the prior is not already refuted.",
+     "evidence": "ORG.md gate item 4 (Sharpe ~3). stack.md section 3 (21-day evaluation table). Trade-frequency counts follow from each paper's rules (4 days x 12 months; 8 FOMC meetings a year; even weeks are about half the year).",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/ORG.md ; /home/user/claude-skills/skills/prop-fleet/references/stack.md",
+     "confidence": "corroborated"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "EGRESS_BLOCKED (WebFetch) on every primary source: www.mql5.com, papers.ssrn.com, www.newyorkfed.org, www.skidmore.edu, stern.nyu.edu, quantpedia.com, quantreturns.substack.com, trademachine.substack.com, researchwith.montclair.edu. Paper figures therefore come only from search-engine summaries, not from the papers themselves.",
+    "curl HTTP 000 (connection refused through the proxy) for arxiv.org, export.arxiv.org, cepr.org, cxoadvisory.com, nber.org, conference.nber.org, academic.oup.com, sciencedirect.com, scholar.archive.org, api.openalex.org, api.crossref.org, api.semanticscholar.org, econstor.eu, ideas.repec.org, core.ac.uk. federalreserve.gov and fred.stlouisfed.org: CONNECT tunnel failed, 403. pypi.org: 200.",
+    "gh api search/repositories is refused (403: session bound to its configured repositories), so GitHub replications with code cannot be searched. Only known raw.githubusercontent.com paths can be fetched.",
+    "No FOMC date list for 1994-2026 is reachable. The one GitHub raw file found covers 2021-01-27 to 2024-12-18 (32 dates). Without the dates, candidates 3a and 3b cannot be tested."
+   ],
+   "next": [
+    "Hypothesis builder: pre-register in ledger.csv, before any run, TOTM with the McConnell-Xu rule (last trading day to day +3, close-to-close, 1 bp ES cost per side). Treat 1990-2008 as in-sample and 2009-2026-09-25 as post-publication out-of-sample on data/spx_open_close.csv. Report its correlation with the 60/40 and overnight-drift sleeves. Count = 1 only.",
+    "Hypothesis builder: pre-register one overnight-gap fade on ES. Example: if |close->open| > k x trailing 20-day stdev, fade it from 09:30 to 16:00, with k fixed before the test, 0.5 bp/side plus 1 tick slippage. Test first on the FutureSharks 2010-2018 minute bars, with 2019-2026 spx_open_close as an index-proxy out-of-sample check. Keep the variant count small because N=110 already.",
+    "Data hunter: find a 1994-2026 list of scheduled FOMC announcement dates on GitHub raw or PyPI. One option is a PyPI package with an embedded calendar; inspect its sdist the same way as pyfedwatch. Without it, the FOMC even-week test (Cieslak et al.) cannot be run.",
+    "Do not spend N on the pre-FOMC drift or on ORB unless someone finds new evidence. One has a peer-reviewed disappearance (Kurov et al. 2021), the other an independent net-zero replication. Log them on the board as 'covered externally, not tested'.",
+    "Tomorrow's literature pass: look for intraday ES/NQ effects that are not calendar effects and have code on GitHub raw. Leads: options-expiry/gamma hedging flow (Baltussen et al. JFE 2021; check whether the board counts it as H0005's intraday-momentum family), the pre-holiday effect, and macro-announcement-day premia (Savor & Wilson 2013)."
+   ],
+   "key": "literature",
+   "title": "Literature scout",
+   "division": "edge"
+  },
+  {
+   "summary": "I found free 1-minute bars for SPY (2019-01-02 to 2025-07-18), NQ futures (2020-08-31 to 2025-11-21, plus 5-minute bars to 2026-05-07) and QQQ (2024-08-22 to 2026-08-21). All of it comes from public GitHub repos through raw.githubusercontent.com, media.githubusercontent.com (Git LFS) or a blobless git clone. Each full file was downloaded to scratch and checked against a sha256; only six one-session samples (340 KB) were saved under daily/2026-10-04/data_samples/, together with a fetch script pinned to each commit. There is no free continuous ES file for 2019–2026: S&P futures exist here only for 2026 (Jan 20–Apr 15 and Apr 1–Sep 2), so the S&P side of 2019–2025 has to use SPY as a proxy. Every market-data vendor host I probed is blocked.",
+   "findings": [
+    {
+     "claim": "SPY 1-minute bars, regular hours only, 2019-01-02 to 2025-07-18, are reachable as a Git LFS file: 640,753 rows, 1,645 sessions (252/253/252/251/250/252/135 per year 2019 to 2025). 1,625 sessions have all 390 bars. The other 20 are early-close days, which still carry bars up to 15:59, or the halt days of March 2020 (376 bars each). Every missing weekday is an exchange holiday, including 2025-01-09. There are 283 gaps inside a session, the longest 20 minutes. No row has an impossible open/high/low/close, and no bar has zero volume.",
+     "evidence": "Columns are caldt, open, high, low, close, volume. Times are New York time with no zone attached; the first bar is 09:30 and the last is 15:59. Source is Polygon.io according to the repo README and download_market_data.py. 35,376,879 bytes, sha256 d4671c48… (matches the LFS pointer). Sample saved as data_samples/spy_1m_polygon_2019-01-02_and_2025-07-18.csv.",
+     "source": "https://media.githubusercontent.com/media/Ascensao/Intraday-momentum-strategy/5a9e956994d1ca9ef16e5e0ae6af4ce4e04e87eb/spy_intra_data.csv",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The SPY prices in the Ascensao file look dividend back-adjusted. A second, independent copy (noiiiise, 2021-01-04 to 2024-12-30, 391,195 rows, 1,004 sessions) has exactly the same volume on 100% of the 391,195 shared minutes. The price ratio between the two files rises steadily from 0.9413 in 2021 to 0.9970 in 2024. So use it for returns, and do not use it for absolute price levels without converting.",
+     "evidence": "Pandas join of the two files: 'volume equal frac 1.0'. Per-year minimum/maximum of the price ratio: 2021 0.9413–0.9540, 2022 0.9540–0.9696, 2023 0.9695–0.9844, 2024 0.9844–0.9970. At 2021-01-04 09:30 the open is 353.30 in one file and 375.31 in the other. The README's download script calls Polygon with adjusted=false, so the adjustment must happen somewhere else; I did not trace where.",
+     "source": "https://raw.githubusercontent.com/noiiiise/SPY-Intraday-Momentum/d5af5981fd66477b5791a445b97077bcd8d07a01/data/spy_intra_data.csv (sha256 ab9b2790…)",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The same Ascensao repo also holds a larger SPY file with pre-market and after-hours bars (04:00 to 20:00), 2019-01-02 to 2025-07-18, Alpaca source, 86,655,764 bytes. I read only its first and last rows, not the full file.",
+     "evidence": "Columns are date, time, open, high, low, close, volume, vw, n. First row is 2019-01-02 04:00:00 and last is 2025-07-18 19:59:00 (byte-range requests). LFS oid ba83cc26ffded1329dbcdee20fe09d945515006fc50836239b47fda3386f1983.",
+     "source": "https://media.githubusercontent.com/media/Ascensao/Intraday-momentum-strategy/main/Polygon_Vs_Alpaca_Market_Data/SPY_1min_adjusted_alpaca.csv",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "QQQ 1-minute bars from the Alpaca SIP feed (consolidated across all exchanges, prices not adjusted), 04:00 to 20:00 New York time, 2024-08-22 to 2026-08-21: 446,948 rows. There are 501 regular-hours sessions; 496 have all 390 bars and the other 5 are early-close days. The file's hash matches the repo's own manifest.",
+     "evidence": "Columns: open, high, low, close, volume, trade_count, vwap. Index is datetime with a New York offset. sha256 65058e81… is identical to the one in data_cache/mega_cap_sip_manifest.json. Sample: data_samples/qqq_1m_alpaca_sip_2026-08-21.csv.",
+     "source": "https://raw.githubusercontent.com/ramires666/rtharb/3c95880f5b9977f84e042a4076b96669f2f8f895/data_cache/QQQ_1m.parquet",
+     "confidence": "verified"
+    },
+    {
+     "claim": "NQ futures 1-minute bars, nearly 24-hour session, 2020-08-31 to 2025-11-21: 1,850,335 rows over 1,627 trading days. 1,304 of 1,349 regular-hours sessions have all 390 bars. The series is the front-month contract with no roll adjustment. It matches a separate Databento NQ 5-minute file exactly on 95% of the 203,996 overlapping 5-minute closes. The mismatches fall on 44 roll-week days, where the two sources differ by a median of 217.5 points, so a backtest must handle the roll itself.",
+     "evidence": "Columns: DateTime_ET, session, window, Open, High, Low, Close, Volume, DateTime_UTC. sha256 46f2a9a6…. In the cross-check, every quarter from 2023Q1 to 2025Q4 has a median difference of 0.0. Mismatch days include 2023-03-14..17, 2024-06-17..21 and 2025-06-17..20. Sample: data_samples/nq_1m_hindsight_2025-11-21.csv.",
+     "source": "https://raw.githubusercontent.com/hindsight-finance/Silver-Bullet-AM-Session/9f00a853288db4e7cf5026491d0fcab1c0db1dc9/nq_1m.parquet",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "NQ futures 5-minute bars from Databento (continuous front month, symbol NQ.c.0, CME Globex feed), times in UTC, 2023-01-02 to 2026-05-07: 235,667 rows. 818 of 849 regular-hours sessions have all 78 bars.",
+     "evidence": "Columns: datetime (+00:00), open, high, low, close, volume. data/fetch_databento.py shows dataset GLBX.MDP3, symbol NQ.c.0, schema ohlcv-1m, stype continuous. sha256 748add42…. Sample: data_samples/nq_5m_databento_2026-05-07_utc.csv.",
+     "source": "https://raw.githubusercontent.com/prashanthaitha24/nq-strategy-b-bot/bc199e73d733ab41fdc9b4dbaf27a915c93a6b7e/data/nq_databento_5min.csv",
+     "confidence": "verified"
+    },
+    {
+     "claim": "ES futures 1-minute bars exist here only for 2026-01-20 15:58 to 2026-04-15 23:29 UTC: 83,924 rows, continuous apart from the daily 21:59→23:00 UTC maintenance break and weekends. They were pulled from the TopstepX/ProjectX API. The README says the files update nightly, but the last commit is 2026-04-15. The same repo has NQ, MES and MNQ for the same window.",
+     "evidence": "Columns: datetime (UTC per README), open, high, low, close, volume. 62 gaps longer than 5 minutes, all starting at 22:00 or 23:00 UTC. sha256 e24e9a02…. Sample: data_samples/es_1m_topstepx_2026-04-15_utc.csv.",
+     "source": "https://raw.githubusercontent.com/axb0306/cme-futures-ohlc/60abd3fb6369c6ce0b6a4a65b0f2562fc96b1264/ES/ES_1min_20260120_20260415.csv",
+     "confidence": "verified"
+    },
+    {
+     "claim": "getdata-finance offers free samples, but each covers only about the last six months: ES 1m and NQ 1m 2026-04-01 to 2026-09-02 (55,440 rows each), and S&P 500 / Nasdaq-100 CFD 1m and 5m 2026-03-26 to 2026-09-25. The full archives back to 2014 are paid, on a website not checked from here. The repos' git history starts 2026-08-04, so older windows cannot be rebuilt from past commits.",
+     "evidence": "README lines: 'NQ_1m.csv (55,440 rows, 2026-04-01 -> 2026-09-02)', 'ES_1m.csv (55,440 rows, 2026-04-01 -> 2026-09-02)', 'SPX500_1m.csv (180,320 rows, 2026-03-26 -> 2026-09-25)'. Running git log on spx500-1m shows its first commit on 2026-08-04. Sample: data_samples/es_1m_getdata_head800.csv (UTC timestamps).",
+     "source": "https://github.com/getdata-finance/es-1m-ohlcv-stocks-historical-data , https://github.com/getdata-finance/spx500-1m-ohlcv-index-historical-data",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Older CFD index data (contracts that track the index; not futures, not exchange data) can fill early gaps. FutureSharks has Oanda SPX500_USD and NAS100_USD 1m up to May 2020; the NAS100 file named 2020-5 ends 2020-05-14. TheSnowGuru repo has Dukascopy USA500 and USATECH 5m from 2020-09-24 to 2023-09-11, and 1m from Feb 2023 to Sep 2023. The Dukascopy files have no real volume (a constant count per bar), and I did not verify their timezone.",
+     "evidence": "Blobless git clone + ls-tree: oanda NAS100_USD and SPX500_USD have 24 files per year through 2019 and 10 in 2020. Head/tail byte ranges of USA500IDXUSD_M5.csv: 2020-09-24 14:30 .. 2023-09-11 09:55.",
+     "source": "https://github.com/FutureSharks/financial-data (commit 7ba1d404, 2020-05-28); https://github.com/TheSnowGuru/Stocks-Futures-Financial-Time-series-Tick-Bar-Data (commit 5fa48d39)",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Taken together, Nasdaq has 1-minute coverage from 2019 to Sep 2026 with mixed instruments: Oanda CFD to 2020-05-14, NQ 1m from 2020-08-31, QQQ to 2026-08-21, getdata NQ to 2026-09-02. One gap remains, 2020-05-15 to 2020-08-30. S&P has SPY 1m 2019-01-02 to 2025-07-18, then nothing free from 2025-07-19 to 2026-01-19, then ES/CFD samples through Sep 2026. No PyPI package checked ships any of this data.",
+     "evidence": "Combination of the periods measured above. PyPI JSON API: backtesting 0.6.6 (190,843-byte wheel, no intraday ES or SPY data), hftbacktest, finrl and qlib wheels are code only; pyfinancialdata, intraday-data and market-data do not exist on PyPI.",
+     "source": "commands run in scratch dir /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/dh",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The fetch script data_fetch.py downloads the six full files from commit-pinned URLs into scratch (outside the repo), checks sha256 and size, and passed for all six today. The large files are not in the repository.",
+     "evidence": "Ran `CLAUDE_SCRATCH=... python3 data_fetch.py`; it fetched all six (spy_rth, spy_rth_raw_2021_2024, qqq_sip, nq_1m, nq_5m, es_1m_2026) with no mismatch.",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/data_fetch.py ; samples in /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/data_samples/",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Blocked from this environment: curl got 'CONNECT tunnel failed, response 403' or code 000 for query1.finance.yahoo.com, stooq.com, histdata.com, firstratedata.com, kaggle.com, api.polygon.io, data.alpaca.markets, hist.databento.com, alphavantage.co, api.tiingo.com, financialmodelingprep.com, huggingface.co, dukascopy.com, datafeed.dukascopy.com, cboe.com, cmegroup.com, archive.org, zenodo.org, figshare.com, backtestmarket.com, portaracqg.com, pitrading.com, quantconnect.com, data.nasdaq.com, investing.com, eodhd.com, twelvedata.com, marketdata.app, finnhub.io, iexcloud.io and barchart.com. Reachable: raw.githubusercontent.com, media.githubusercontent.com (LFS), github.com via git clone, and pypi.org. `gh api` returns 403 for repos not attached to this session.",
+     "evidence": "curl -I loop printing http_code per host, plus a verbose curl to huggingface.co and stooq.com showing the proxy 403. gh api repos/FutureSharks/... returned 'GitHub access to this repository is not enabled for this session'.",
+     "source": "curl probes run 2026-10-04",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The codecat-ops/zarattini-2024-momentum-spy repo cited in references/second-opinion-audit.md (read 29/09) now returns 404 and a clone asks for credentials. A repo with the same name and description exists at giovannibrusco/zarattini-2024-momentum-spy. It ships only data/es_1min_rolls.csv (ES roll dates with point offsets, 2024-09-16 to 2026-06-15), not the bars.",
+     "evidence": "curl to the raw README gave 404, and git clone failed with 'could not read Username'. The giovannibrusco ls-tree shows data/es_1min_rolls.csv; its rows include '2024-09-16,ESU4,ESZ4,61.5'.",
+     "source": "https://github.com/giovannibrusco/zarattini-2024-momentum-spy",
+     "confidence": "verified"
+    },
+    {
+     "claim": "MapleFrogStudio's daily DATA-YYYY-MM repos (Yahoo 1-minute stock bars collected from 2023-03 to 2026-08) contain no SPY, QQQ or futures, so they are not useful for this goal. Warning: repos named 'Data-Grip' under the es-futures/nq-futures topics look like fake software-download lures. Do not clone or run them.",
+     "evidence": "Full amex1-2026-08-14.csv (31,857 rows, 214 tickers) has no SPY or QQQ. The first 400 KB of 8 other ticker groups for 2026-08-14 also matched none of SPY, QQQ, IVV, VOO, ES=F or NQ=F. Three near-identical 'Data-Grip' repos were created 2026-10-01/02 with 'datagrip-download-windows' topics.",
+     "source": "https://github.com/MapleFrogStudio/DATA-2026-08 ; GitHub topic search topic:es-futures",
+     "confidence": "verified"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "There is no free continuous ES futures 1m series for 2019–2025 reachable from here. The S&P side has to use SPY 1m as a proxy, and nothing free covers S&P from 2025-07-19 to 2026-01-19.",
+    "SPY 2019–2025 prices appear dividend back-adjusted; check this before using absolute price levels or point-based stops.",
+    "The futures series (NQ 1m/5m, ES 2026) are front month without roll adjustment, with jumps of about 200+ NQ points at each roll. Backtests need roll handling, for example the offsets in giovannibrusco/.../data/es_1min_rolls.csv for ES.",
+    "Every vendor and API host is blocked (Yahoo, Stooq, HistData, Polygon, Alpaca, Databento, Kaggle, HuggingFace, Dukascopy, FirstRate, CME, and others). `gh api` works only for repos attached to this session; git clone and raw/LFS downloads were used instead.",
+    "All the sources found are third-party GitHub uploads; only the Databento-based ones state their method. Treat them as research data, not verified exchange data."
+   ],
+   "next": [
+    "Build one loader (in scripts/, with a test) that combines SPY 1m 2019–2025 regular hours, NQ 1m 2020–2025 and QQQ 1m 2024–2026 into a common New York time index, with explicit flags for adjustment and roll. Use it to rerun the TJR/ICT test and any new pre-registered hypothesis on 2019–2025 out-of-sample data.",
+    "Measure the SPY-to-ES and QQQ-to-NQ basis on the overlapping 2026 windows (ES TopstepX Jan–Apr 2026, getdata ES Apr–Sep 2026, QQQ vs NQ 2024-08 to 2025-11) to judge whether SPY minute returns are a good enough proxy for ES.",
+    "Keep searching for a free ES or SPY 1m source for 2025-07-19 to 2026-01-19, for example other Zarattini or ORB replication repos that commit their data via Git LFS.",
+    "Spot-check the NQ 1m regular-hours sessions with fewer than 380 bars (45 of them) and the 31 short NQ 5m sessions against the holiday calendar before any backtest."
+   ],
+   "key": "data",
+   "title": "Data hunter",
+   "division": "edge"
+  },
+  {
+   "summary": "I pre-registered and tested one new intraday hypothesis: last-half-hour momentum, from Gao, Han, Li & Zhou (2018). The rule takes the sign of the S&P return from the previous 16:00 close to 10:00, enters at the 15:30 open with a percentage stop, and exits at the 15:59 close. All 3 variants lost money net of the 0.6 pt cost: mean R was -0.142, -0.161 and -0.069, and every bootstrap 5th percentile was below -0.09R, so this fails the gate. Before costs the signal was near zero (+0.002 to +0.023R). It was small but positive in 2010-14 and gone in 2015-18, and the 0.6 pt cost is 15-30% of a 4-8 pt stop, so cost and not the signal decides the result.",
+   "findings": [
+    {
+     "claim": "Variant A (base, 0.20% stop) has negative net expectancy: mean -0.1418R, bootstrap 5th pct -0.1818R, 95th pct -0.1021R, n=1720, 211.7 trades/yr, Sharpe -2.07, stop rate 24.3%, median risk 3.98 pt",
+     "evidence": "python3 hypothesis.py output; eligible days 1720 from 2,117,667 one-minute bars, 2010-11-14..2018-12-31",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Variant A gross (before cost) mean is +0.0233R with gross bootstrap 5th pct -0.0168R; the 0.6 pt round trip costs about 0.165R per trade",
+     "evidence": "gross_mean_R 0.0233 vs mean_R -0.1418 in run output",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The gross signal decayed between halves: 2010-14 gross +0.0698R (n=828), 2015-18 gross -0.0199R (n=892); net was -0.1318R and -0.1512R",
+     "evidence": "half-split lines for A_base_0.20pct",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Variant B (trade only when the 12th half-hour return agrees with the first): mean -0.1605R, p5 -0.2193R, n=825, 101.6/yr, gross +0.0026R, Sharpe -1.58. Adding the second predictor did not help",
+     "evidence": "B_agree12_0.20pct line",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Variant C (0.40% stop): mean -0.0689R, p5 -0.0913R, n=1720, 211.7/yr, gross +0.0136R (gross p5 -0.0087R), Sharpe -1.80, stop rate 7.2%, median risk 7.96 pt. Only 2013 was positive (+0.007R)",
+     "evidence": "C_base_0.40pct line and by-year dict",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Last-half-hour momentum (Gao et al. 2018) was not in ledger.csv; the only earlier mention in the repo is a pointer in a prompt file",
+     "evidence": "grep -i gao over references/*.md matched only second-opinion-prompt.md line 101; ledger rows H0001-H0005 do not include it",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/ledger.csv",
+     "confidence": "verified"
+    }
+   ],
+   "hypotheses_tested": [
+    {
+     "hypothesis": "Last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018): the sign of the return from the previous 16:00 close to 10:00 predicts 15:30-16:00 on the S&P. Variant A: base, 0.20% stop",
+     "rules": "Weekdays only. P0 = 15:59 close of the previous trading day; r1 = close(09:59)/P0 - 1; side = sign(r1); skip if r1 == 0 or any of the 09:59/14:59/15:29/15:30/15:59 bars is missing. Enter at the market at the 15:30 bar open. Stop = entry -/+ 0.20% of entry (risk >= 1.0 pt), checked on every bar 15:30-15:59 including the entry bar, filled at the worse of stop and bar open. No target; exit at the 15:59 close. Cost 0.6 pt round trip. R = net pts / risk.",
+     "count": 1,
+     "data": "SPXUSD 1-minute (HistData via FutureSharks GitHub), 2010-11-14..2018-12-31, NY clock, tjr_backtest.load_minutes",
+     "mean_R": -0.1418,
+     "p5_R": -0.1818,
+     "trades": 1720,
+     "trades_per_year": 211.7,
+     "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py"
+    },
+    {
+     "hypothesis": "Last-half-hour momentum. Variant B: trade only when the 12th half-hour return (14:59->15:29 close) has the same sign as r1",
+     "rules": "Same as A, plus the filter sign(close(15:29)/close(14:59) - 1) == sign(r1). Stop 0.20%.",
+     "count": 1,
+     "data": "SPXUSD 1-minute 2010-11..2018-12",
+     "mean_R": -0.1605,
+     "p5_R": -0.2193,
+     "trades": 825,
+     "trades_per_year": 101.6,
+     "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py"
+    },
+    {
+     "hypothesis": "Last-half-hour momentum. Variant C: base with a wider 0.40% stop",
+     "rules": "Same as A with stop = 0.40% of entry.",
+     "count": 1,
+     "data": "SPXUSD 1-minute 2010-11..2018-12",
+     "mean_R": -0.0689,
+     "p5_R": -0.0913,
+     "trades": 1720,
+     "trades_per_year": 211.7,
+     "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py"
+    }
+   ],
+   "blockers": [
+    "Only 1720 of roughly 2050 weekdays had all five required minute bars (09:59, 14:59, 15:29, 15:30, 15:59). Half-days and gaps in the HistData CFD file were skipped. I did not check how many of the skips are data gaps rather than real half-days.",
+    "The data is SPXUSD, a CFD quote on the index, not ES. The previous-day close is taken as 15:59 on the CFD, which may differ from the ES settlement used in Gao et al.",
+    "There is no data after 2018 here, so the true out-of-sample test (2019-2026) the gate needs is impossible. The 2015-18 half is only a pseudo out-of-sample check."
+   ],
+   "next": [
+    "Director: add one ledger row for this hypothesis with count = 3, which takes N from 110 to 113. Result: failed, gross about 0 in 2015-18.",
+    "Close this family (end-of-day momentum, 30-minute hold) for prop use. With a 4-8 pt stop, the 0.6 pt cost is 0.08-0.17R, and the measured gross is at most +0.07R even in the best half.",
+    "Point the next hypothesis at structures where cost is a small share of R, for example stops of 15 pt or more with multi-hour holds, rather than another short-hold signal.",
+    "Data hunter: look for 2019-2026 ES or SPY minute data on GitHub raw so any later candidate gets a real out-of-sample test."
+   ],
+   "key": "builder",
+   "title": "Hypothesis builder",
+   "division": "edge"
+  },
+  {
+   "summary": "I could not open any firm site from here: every firm help center and the ProjectX host returned EGRESS_BLOCKED or a proxy CONNECT 403. \"Verified\" in this report therefore means a web-search snippet that was limited to the firm's own domain, not a page I fetched. Four firms' own pages permit bots on funded (sim-funded) accounts: Bulenox, Tradeify, Lucid and Topstep (Express Funded only). MyFundedFutures' own page also permits automated strategies, but third-party sources disagree about bots running with nobody watching. Apex's own compliance page bans automation on all account types, not only on funded ones. Each firm allows about 5 funded accounts per person or household, and the most a single person could legally run fully automated is about 25 accounts across the five firms (MFFU drops to 3 if any account is 100K or larger). Two hard engineering limits came up: Topstep forbids a VPS, and the Tradovate API works only on LIVE accounts, so on sim-funded Tradovate accounts a bot has to run through NinjaTrader on the trader's own machine.",
+   "findings": [
+    {
+     "claim": "Apex bans automated order submission on ALL account types, including evaluations. Allowed: tools that send alerts but place no orders, and stop/target orders the trader sets by hand at entry. Its own page also says PA and Live accounts may not be influenced by copy-trading or mirroring software. This is stricter than ORG.md's 'evaluation permitted'.",
+     "evidence": "WebSearch limited to support.apextraderfunding.com and apextraderfunding.com: 'the use of automation is strictly prohibited on all account types, including any form of AI, Autobots, algorithms, fully automated trading systems'",
+     "source": "https://support.apextraderfunding.com/hc/en-us/articles/31519788944411-Performance-Account-PA-and-Compliance ; https://apextraderfunding.com/help-center/getting-started/apex-live-prop-trading-program-faq/",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Apex: 20 PA accounts per household (Rithmic, Tradovate, WealthCharts); the evaluation runs 30 consecutive calendar days. The firm's snippet gives a 50K drawdown of $2,500, but that is probably a legacy page: third parties put post-March-2026 accounts at $2,000.",
+     "evidence": "Apex-domain search snippets; the $2,000 figure is from references/apex-rules.md",
+     "source": "https://support.apextraderfunding.com/hc/en-us/articles/4406804554779-How-Many-Paid-Funded-Accounts-Am-I-Allowed-to-Have ; https://apextraderfunding.com/help-center/billing/evaluation-plan-fees-and-access-explained/",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Topstep: bots are allowed through the TopstepX/ProjectX API in the Combine and on Express Funded accounts. The API is not available on Live Funded accounts. VPS, VPN and remote servers are prohibited, so trading must originate from the trader's personal device.",
+     "evidence": "help.topstep.com search snippets: API access, Prohibited Conduct, Terms of Use",
+     "source": "https://help.topstep.com/en/articles/11187768-topstepx-api-access ; https://help.topstep.com/en/articles/10296582-prohibited-conduct",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Topstep: up to 5 active XFAs; a copier across your own XFAs is allowed up to $750K buying power, with no hedging. The 50K Maximum Loss Limit is $2,000 trailing and locks at the starting balance. The Combine has no time limit but rebills monthly. The 50K payout is capped at 50% of balance, up to $5,000.",
+     "evidence": "help.topstep.com search snippets",
+     "source": "https://help.topstep.com/en/articles/8284215-express-funded-account-parameters ; https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit ; https://help.topstep.com/en/articles/8284197-trading-combine-parameters ; https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Topstep API price: $29/month, or $14.50 with a code.",
+     "evidence": "third-party blog, search result only",
+     "source": "https://blog.pickmytrade.io/topstep-api-getting-a-key-and-placing-your-first-automated-trade/",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "MyFundedFutures: automated strategies are allowed if they do not exploit simulated fills. Prohibited: HFT, stacked limit orders, and trading tier-1 news releases. Third parties disagree on whether fully autonomous bots running unsupervised are banned.",
+     "evidence": "Search snippet from the MFFU Fair Play page (MFFU domain only) versus a general search summary saying fully autonomous unsupervised bots are prohibited",
+     "source": "https://help.myfundedfutures.com/en/articles/8444599-fair-play-and-prohibited-trading-practices ; https://tradersunion.com/brokers/prop/view/myfundedfutures/",
+     "confidence": "verified"
+    },
+    {
+     "claim": "MyFundedFutures: 10 active evaluations; 5 Sim-Funded accounts if all are 25K/50K, but only 3 in total once any 100K/150K is held, and some plans cap at 1–3. Copying across your own accounts is allowed (Tradesyncer is the preferred copier). Copying other traders is forbidden.",
+     "evidence": "MFFU help-center search snippets",
+     "source": "https://help.myfundedfutures.com/en/articles/16498635-moving-from-evaluation-to-sim-funded-account ; https://help.myfundedfutures.com/en/articles/10771500-copy-trading-at-myfundedfutures",
+     "confidence": "verified"
+    },
+    {
+     "claim": "MyFundedFutures 50K: $2,000 EOD drawdown on the Rapid, Rapid EOD, Flex and Builder plans. Payout caps: Flex $2,000 per request; Builder $2,000, up to 5 sim payouts at an 80/20 split; Rapid EOD has no per-cycle cap. No maximum evaluation duration was found.",
+     "evidence": "MFFU plan-page search snippets",
+     "source": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide ; https://help.myfundedfutures.com/en/articles/15072271-flex-plan-50-000-a-comprehensive-guide ; https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Bulenox: bots, algorithms and trade copiers are permitted, but only tools the trader built for personal use. Commercial, shared or rented tools are banned. A third-party API connection to Rithmic costs an extra $100/month. Up to 5 accounts in total across Master, Fast Track and Momentum Master; Qualification accounts are unlimited; all accounts sit under one Rithmic user ID.",
+     "evidence": "bulenox.com search snippets (FAQ, help-center/funded)",
+     "source": "https://bulenox.com/faq ; https://bulenox.com/help-center/funded",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Bulenox 50K: $2,500 drawdown. Payouts are capped at $1,500 for each of the first 3, with no cap after that. Minimum withdrawal $1,000 after 10 trading days, with a 40% consistency rule. 100% of the first $10k is the trader's, then 90%. Bulenox runs on Rithmic only.",
+     "evidence": "$2,500 from a bulenox.com snippet; payout terms from third-party pages",
+     "source": "https://bulenox.com/accounts-pricing ; https://tradingfinder.com/props/bulenox/rules/ ; https://affordableindicators.com/ninjatrader-help/does-bulenox-use-tradovate/",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Tradeify: bots are allowed on evaluation and funded accounts only if the trader is the sole owner, the bot is not used at other firms, and it is not HFT. Tradeify may ask for a live video of the trader enabling the code on their own PC.",
+     "evidence": "Third-party search summaries that cite help.tradeify.co 'Guidelines for Traders' (the firm page was listed but its text was not quoted)",
+     "source": "https://help.tradeify.co/en/articles/10468318-guidelines-for-traders ; https://tradetanto.com/learn/tradeify-rules-explained-what-every-trader-should-know",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Tradeify: 5 Sim Funded accounts per household. Copy trading is allowed in the same direction only, with no hedging. VPN/VPS may not be used to log in, but a VPS may be used for trading after a normal login, at the trader's own risk. ProjectX is no longer offered.",
+     "evidence": "help.tradeify.co search snippets",
+     "source": "https://help.tradeify.co/en/articles/10468251-how-many-simulated-funded-accounts-can-i-have-at-once ; https://help.tradeify.co/en/articles/12268494-common-faqs ; https://help.tradeify.co/en/articles/10468221-supported-platforms",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Platform constraint: the Tradovate API is available only for LIVE funded accounts, not for evaluation or sim-funded accounts. On Tradovate-based firms, a bot on sim-funded accounts therefore has to run inside NinjaTrader (with Tradovate credentials, connection set to Simulation) or go through Rithmic.",
+     "evidence": "Snippet from a search limited to help.tradeify.co, help.myfundedfutures.com and lucidtrading.com (the source page is most likely Tradeify's Supported Platforms page)",
+     "source": "https://help.tradeify.co/en/articles/10468221-supported-platforms",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Tradeify Select 50K: $2,000 EOD drawdown, $3,000 target, 40% consistency rule, no maximum evaluation time. The Daily payout path is capped at $1,000 per cycle.",
+     "evidence": "third-party search summaries",
+     "source": "https://saveonpropfirms.com/blog/tradeify-select-guide ; https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Lucid: automated strategies and trade copiers (in-platform or third-party) are permitted, and the trader is responsible for software errors. Limits: 10 evaluation and 5 funded accounts per household, 10 combined.",
+     "evidence": "lucidtrading.com / support.lucidtrading.com search snippets",
+     "source": "https://lucidtrading.com/general-faq/ ; https://support.lucidtrading.com/en/articles/11404617-maximum-number-of-accounts",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Lucid 50K: $2,000 EOD trailing drawdown (LucidDaily funded uses intraday). No evaluation time limit. LucidFlex payout capped at $2,000 per request and 50% of balance; minimum $500; after 5 payouts the account goes to a live review.",
+     "evidence": "third-party search summaries",
+     "source": "https://damnpropfirms.com/prop-firms/lucid-trading-rules-payouts/ ; https://proptradingvibes.com/blog/lucid-trading-payout-rules",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Blocked hosts (EGRESS_BLOCKED or CONNECT 403): help.myfundedfutures.com, myfundedfutures.com, bulenox.com, help.bulenox.com, tradeify.co, help.tradeify.co, lucidtrading.com, support.lucidtrading.com, help.topstep.com, www.topstep.com, support.apextraderfunding.com, apextraderfunding.com, help.projectx.com, gateway.docs.projectx.com, blog.pickmytrade.io, proptradingvibes.com.",
+     "evidence": "curl -m 15 on each host returned 000 (CONNECT tunnel failed, 403); WebFetch returned EGRESS_BLOCKED for help.topstep.com, blog.pickmytrade.io and proptradingvibes.com",
+     "source": "bash curl loop; WebFetch",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Full cell-by-cell matrix (6 firms x 8 fields, with source and confidence for each cell) saved to file",
+     "evidence": "49-line CSV written",
+     "source": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/rules_matrix.csv",
+     "confidence": "verified"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "Every firm's help center returns EGRESS_BLOCKED, so no page could be fetched. 'Verified' rests on domain-restricted search-engine snippets, which can paraphrase or mix pages together.",
+    "VPS rules for MFFU, Bulenox and Lucid, and evaluation clocks for MFFU and Bulenox, were not found on any firm page.",
+    "Copy-trading permissions conflict for Bulenox and Apex, and the policy on fully unattended bots conflicts for MFFU."
+   ],
+   "next": [
+    "Have the director update ORG.md: Apex's own page bans automation on evaluations too, not only on funded accounts.",
+    "Have the engineer plan the automation route per firm: Topstep via the ProjectX API on the trader's own PC with no VPS; Tradeify, MFFU and Lucid (Tradovate) via NinjaTrader, because the Tradovate API is live-only; Bulenox via a Rithmic API at +$100/month.",
+    "Settle the MFFU 'fully autonomous / human oversight' question, the Tradeify 'bot used at other firms' clause, and the Bulenox copy-trading conflict in writing; this needs Itamar to send a letter, since the organization does not contact anyone.",
+    "Hand the economist the per-firm 50K drawdown and payout caps: about 5 funded accounts per firm (MFFU 3 at 100K or larger), roughly 25 automated accounts across five firms."
+   ],
+   "key": "rules",
+   "title": "Rules keeper",
+   "division": "prop"
+  },
+  {
+   "summary": "I estimated net yearly income for a 20-account fleet: 4 x 50K accounts at each of the five firms on the board (MyFundedFutures, Bulenox, Tradeify, Lucid, Topstep). I used a copy of apex_model.py that adds each firm's plan, and the copy reproduces the original exactly on the Apex 50K-2026 plan. After 25% tax, steady-state income is about $36k a year at +0.10R (3.6% of $1M nominal), $140k at +0.25R (14.0%) and $263k at +0.40R (26.3%), so reaching 20% takes about +0.33R in this model, against about +0.25R in the old Apex model in references/numbers.md. Many firm inputs are third-party or assumed, so read these as rough indications. They are not edge claims, and no measured strategy currently has positive expectancy.",
+   "findings": [
+    {
+     "claim": "20-account fleet (4 each at MFFU Flex, Bulenox, Tradeify Select, LucidFlex, Topstep, all 50K), net after 25% tax, mean of years 2-4: +0.10R -> $35,860/yr (3.6% of $1M nominal; p10 $14,015, p90 $58,655); +0.25R -> $140,215/yr (14.0%; p10 $111,010, p90 $169,114); +0.40R -> $263,381/yr (26.3%; p10 $230,017, p90 $297,129).",
+     "evidence": "python3 economist_run.py; n=600 paths, 4 years, seed 11 for every firm so all accounts take the same trades (copy-trade correlated), risk 4% of drawdown when funded and 10% in evaluation, 3 trades/day, 1:2 reward-to-risk, $1.30 MES round trip, 0.25pt slippage on stops (all taken from apex_model.py). Output saved in economist_run.txt",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/economist_run.py ; skills/prop-fleet/agents/daily/2026-10-04/economist_run.txt",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "In this model the fleet reaches 20%/yr net at about +0.33R per trade: 18.0% at +0.30R, 19.6% at +0.32R, 21.3% at +0.34R. That is higher than the +0.250R the original Apex 20x50K model needed (references/numbers.md), because these firms pay out 50% of profit per request and MFFU keeps 20% of each payout.",
+     "evidence": "Ran fleet sum at R=0.30, 0.32, 0.34: $180,117 / $196,301 / $212,539 per year",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/economist_run.txt",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Per firm at +0.25R (4 accounts, net/yr): Bulenox $41,389, Tradeify $27,702, Topstep $27,159, MFFU $24,396, Lucid $19,569. Bulenox leads because of its $2,500 drawdown (larger dollar risk at 4%) and payouts with no cap after the third. But the 4% sizing gives Bulenox $100 of risk per trade against $80 elsewhere, so part of its lead is just bigger size, and its payout buffer (keep_off) is an assumption.",
+     "evidence": "economist_run.py output, +0.25R block",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/economist_run.txt",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Copy check: the extended model fleet_model.py gives the same net_year array as the original scripts/apex_model.py on plan 50K-2026 (4 slots, 2 years, n=200, seed 3). The original was not edited.",
+     "evidence": "check_reproduces_original() printed 'copy reproduces original apex_model on 50K-2026: OK' (np.array_equal)",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/fleet_model.py",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Reference only, not part of the fleet: Apex 50K-2026 x20 in the original model gives $27,095 / $142,823 / $256,100 net per year at +0.10 / +0.25 / +0.40R. Apex is excluded because its compliance page bans automation (rules_matrix.csv, verified help-center snippet).",
+     "evidence": "am.simulate('50K-2026', slots=20, same KW) in economist_run.py",
+     "source": "skills/prop-fleet/scripts/apex_model.py ; agents/daily/2026-10-04/rules_matrix.csv",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Inputs with a source: MFFU Flex 50K is $107 list with no activation fee since Jul 2025 and a $3,000 target (fundedtrading.com via web search); 50% of profit per request, 5 winning days >= $150, 80/20 split (propfirmsfinder.com / h2tfunding.com via web search); $2,000 EOD drawdown and $2,000/request cap (help.myfundedfutures.com snippets in rules_matrix.csv). Bulenox 50K: $115 fee, $98 activation, 90% split, 40% consistency (thedesk.onrender.com via web search); $2,500 drawdown and +$100/month Rithmic API (bulenox.com FAQ in rules_matrix.csv); $1,500 cap on the first 3 payouts, $1,000 minimum, 10 trading days, 100% of the first $10k (tradingfinder.com / quantvps.com, corroborated). Tradeify Select 50K: $109 one-time, $3,000 target, no activation fee, 90/10 (blog.traderspost.io via web search); $2,000 EOD (help.tradeify.co); $1,000 per cycle (tradetanto.com). LucidFlex 50K: $140, $3,000 target, $2,000 EOD, 90% split, no funded consistency rule (proptradingvibes.com / tradingfunder.com via web search); $2,000/request, 50% of balance, $500 minimum, 5 payouts then live review (proptradingvibes.com). Topstep 50K Standard: $49/month, $149 activation, 90/10, $125 minimum (blog.traderspost.io via web search); drawdown locks at the starting balance, no time limit with 30-day rebills, 50% up to $5,000, 5 days >= $150 (help.topstep.com snippets); API $29/month (blog.pickmytrade.io).",
+     "evidence": "Web searches run today plus rules_matrix.csv rows; every value is cited inline in FIRM_PLANS",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/economist_run.py (FIRM_PLANS comments)",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "UNVERIFIED or ASSUMED inputs, each marked ASSUMED in the code: (1) MFFU and Tradeify minimum payout $250. (2) Every firm's floor lock offset (100, Topstep 0) except Topstep's lock at start, which comes from its help center. (3) Bulenox keeps an Apex-style buffer of start + $2,600 after a payout. (4) Tradeify takes 50% of profit with 5 qualifying days >= $150, and Lucid uses the same 5 days >= $150. (5) Topstep MLL is end-of-day, not intraday. (6) Lucid activation fee is $0. (7) Bulenox fee is charged once per attempt; one source says $115 monthly, another says recurring eval subscriptions were removed. (8) No eval time limit at MFFU or Bulenox (not found). (9) Every firm charges $1.30 MES round trip in commission. (10) No funded consistency rule at MFFU or Tradeify. (11) After 5 Lucid payouts the account closes and is replaced; the 'live review' step is not modelled. (12) Topstep's move to Live Funded, where the API is not available, is not modelled. (13) Tax is applied per firm per year on positive years only. (14) The Bulenox and Topstep API fees are counted once per firm, not per account. Not modelled: data feeds, the own-computer requirement (Topstep bans VPS), MFFU's sale price, and firms closing or changing rules.",
+     "evidence": "FIRM_PLANS comments; rules_matrix.csv rows marked unverified or 'not found'; the firms' own sites could not be fetched directly (help-center content came only as search snippets)",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/economist_run.py",
+     "confidence": "unverified"
+    },
+    {
+     "claim": "Account-cap check: 4 accounts per firm is within every firm's reported funded cap (MFFU 5 Sim-Funded at 25K/50K, Bulenox 5, Tradeify 5 per household, Lucid 5, Topstep 5 XFAs).",
+     "evidence": "max_accounts rows of rules_matrix.csv",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/rules_matrix.csv",
+     "confidence": "corroborated"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "Firm websites (help.myfundedfutures.com, bulenox.com, help.tradeify.co, lucidtrading.com, help.topstep.com) were not fetched directly; I used only search snippets and third-party summaries, so payout minimums, lock levels and qualifying-day rules for several firms are assumptions.",
+    "Conflicting sources on whether the Bulenox evaluation fee is monthly or one-time, and on whether MFFU allows fully unattended bots.",
+    "No strategy has a measured positive expectancy (board: none passes the gate; legacy measured +0.101R with a CI crossing zero), so these income figures are conditional, not forecasts."
+   ],
+   "next": [
+    "Have the rule keeper confirm the ASSUMED fields from the firm pages: Bulenox payout buffer and fee type, Tradeify Select payout rule, Lucid qualifying days, minimum payouts, floor-lock levels, and per-contract commissions.",
+    "Run sensitivity on the two largest assumptions: Bulenox keep_off and fee type, and Tradeify frac/cap. Re-solve the R needed for 20% for each.",
+    "Size each firm to the same dollar risk instead of 4% of its own drawdown, so firms are compared on rules alone, and test 6-8% risk after the floor locks at +0.33R.",
+    "Add a per-account VPS/data cost line and the Topstep own-computer constraint, then add tests for fleet_model.py's EOD, frac-payout and split-tier logic."
+   ],
+   "key": "econ",
+   "title": "Economist",
+   "division": "prop"
+  },
+  {
+   "summary": "The ledger adds up correctly (N = 110), but that N is too low. At least 33 tested variants written up in references/ (trend-following futures and ETF, the stack components and combinations, the post-hoc TJR wide-stop slice) were never logged, so the real N is at least 143, and nowhere in the code is the multiple-testing correction actually applied. I found no look-ahead in the signal timing of trend_backtest, stack_backtest, tjr_backtest or today's hypothesis.py, but the overnight-drift headline (Sharpe 0.65) rests on data with stale opens in 25-26% of 2012-2013 days and has no bootstrap lower bound. No result in references/ is truly out-of-sample by the gate's rule 2 except the ETF 11/2016-9/2026 segment.",
+   "findings": [
+    {
+     "claim": "The arithmetic of N in ledger.csv is correct: N = 110, matching ORG.md",
+     "evidence": "Sum of the count column = 1+1+100+7+1 = 110 (python csv sum, and statistician_audit.py prints 'ledger N = 110')",
+     "source": "skills/prop-fleet/agents/ledger.csv; skills/prop-fleet/agents/daily/2026-10-04/statistician_audit.py",
+     "confidence": "verified"
+    },
+    {
+     "claim": "N is undercounted: at least 33 variants tested and reported in references/ have no ledger row, so the real N is at least 143. Fix: the director should add rows for trend-futures (count 6), trend-ETF (16), stack (10) and the TJR wide-stop slice (1).",
+     "evidence": "trend-following.md: long/short at 12 months, long-only, and 4 other windows in the line-53 table = 6. trend-following-etf.md: 6 main variants (lines 58-64), 4+4 extra windows (line 140), 7-asset variant (line 144), --etf-all (line 146) = 16. stack.md: xsmom, value, 3 futures stacks, overnight, intraday reference, 3 investable stacks = 10. tjr.md:70 post-hoc slice of stops 4+ points (+0.057R, n=266) = 1. Total 33.",
+     "source": "skills/prop-fleet/references/trend-following.md, trend-following-etf.md, stack.md, tjr.md",
+     "confidence": "verified"
+    },
+    {
+     "claim": "H0005 counts as 1, but the external replication behind it ran a 27-variant grid plus a quarterly walk-forward. If 'by anyone' in ORG.md:61-63 includes outside work we rely on, N rises by about 27 more.",
+     "evidence": "second-opinion-audit.md:61 says '48 בדיקות' (48 tests); line 73 says 'רשת 27 וריאנטים' (a 27-variant grid); line 74 mentions walk-forward",
+     "source": "skills/prop-fleet/references/second-opinion-audit.md:61-74",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Gate rule 3 (the multiple-testing correction) is not implemented anywhere: no script reads ledger N or applies a correction, and ORG.md names no method. Fix: state in ORG.md:61-63 a one-sided Bonferroni rule (alpha = 0.05/N) and add a function to scripts/gate.py that reads ledger.csv and requires the bootstrap lower quantile at 0.05/N, not at 5%, to be above 0.",
+     "evidence": "gate.py defs are load, integrity_warnings, bootstrap_ci (CONF=95.0 at line 44), permitted, longest_losing_run and main, with no ledger reference. The one-sided z is 1.645 uncorrected, 3.317 at N=110 and 3.39 at N=143 (NormalDist.inv_cdf).",
+     "source": "skills/prop-fleet/scripts/gate.py:44,126; skills/prop-fleet/agents/ORG.md:61-63",
+     "confidence": "verified"
+    },
+    {
+     "claim": "ORG.md:63 hard-codes 'Today N = 110', which goes stale on the next ledger append. finalize.py:68 silently counts a blank count as 1 and does not check the type of the count column. Fix: have finalize.py reject rows whose count is not an integer of at least 1, and print N into board.md instead of keeping it in ORG.md.",
+     "evidence": "finalize.py:68 reads: n = sum(int(r[\"count\"] or 1) ...)",
+     "source": "skills/prop-fleet/agents/finalize.py:68; skills/prop-fleet/agents/ORG.md:63",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Three of the five ledger rows have no bootstrap lower bound: H0001, H0003 and H0005 have blank result_mean_R and result_p5_R",
+     "evidence": "statistician_audit.py prints: rows without p5: ['H0001', 'H0003', 'H0005']",
+     "source": "skills/prop-fleet/agents/ledger.csv:2,4,6",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Several results in references/ are reported with no bootstrap lower bound: the overnight Sharpe at each cost level and by period, the intraday reference, the futures trend window and asset-class tables, the ETF window sensitivity and --etf-all. Fix: print the 5th percentile next to every Sharpe through stack_backtest.row() (stack_backtest.py:208) and trend_backtest.stationary_bootstrap_sharpe (trend_backtest.py:274).",
+     "evidence": "stack.md:58-63 shows Sharpe only (0.84/0.65/0.47/0.10, by period -0.17/1.17/0.41/1.21). trend-following.md:53-58 and :69-72 show Sharpe only. trend-following-etf.md:140-146 shows Sharpe only (2.14 for --etf-all).",
+     "source": "skills/prop-fleet/references/stack.md:58-63; trend-following.md:53-80; trend-following-etf.md:140-146",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The overnight-drift result (stack.md, Sharpe 0.65 at 0.5 bp) is contaminated by stale opens inside its 2010+ test window. In 25.2% of 2012 days and 26.2% of 2013 days the S&P Open equals the prior Close, which forces the overnight return to zero minus cost and moves the move into the intraday reference. Fix: in stack_backtest.overnight_returns (lines 181-185), drop days where Open == prior Close, or move ON_START (line 72) to 2014-01-01, and re-run.",
+     "evidence": "Share of opens equal to the prior close, by year: 2010 0.012, 2011 0.091, 2012 0.252, 2013 0.262, 2014 0.004 (statistician_audit.py on data/spx_open_close.csv). stack.md reports 2010-14 Sharpe -0.17.",
+     "source": "skills/prop-fleet/scripts/stack_backtest.py:72,181-185; skills/prop-fleet/agents/daily/2026-10-04/statistician_audit.py",
+     "confidence": "verified"
+    },
+    {
+     "claim": "No look-ahead in the signal timing of trend_backtest.tsmom_positions or stack_backtest (vol_scale, xs_component, hold_monthly): every month-end value is forward-filled and then shifted by one day. All 40 tests in the three backtest suites pass.",
+     "evidence": "trend_backtest.py:228-229 does groupby(month).tail(1).reindex(ffill).shift(1); stack_backtest.py:86 and :100 shift(1). pytest on test_trend_backtest, test_stack_backtest and test_tjr_backtest: 40 passed in 2.41s.",
+     "source": "skills/prop-fleet/scripts/trend_backtest.py:228-229; stack_backtest.py:86,100",
+     "confidence": "verified"
+    },
+    {
+     "claim": "No look-ahead in tjr_backtest: pivots are confirmed k bars late, the break-of-structure check uses the pivot confirmed by t-1, the fair-value-gap search uses bars up to t only, and the limit order is armed at break-bar label + 5 min. The only look-ahead test, though, covers the pivots. Fix: add a test in test_tjr_backtest.py that perturbs the bars after s['t'] and asserts that find_setup returns the same setup, and the same kind of test for agents/daily/2026-10-04/hypothesis.py build_days.",
+     "evidence": "tjr_backtest.py:112-129 (p=t-k), :153 (sl[t-1]), :156 (range from t down to the sweep extreme), :192 (start = t + 5 min). The only future test is test_tjr_backtest.py:20 test_pivots_do_not_use_the_future.",
+     "source": "skills/prop-fleet/scripts/tjr_backtest.py:112-192; test_tjr_backtest.py:20",
+     "confidence": "verified"
+    },
+    {
+     "claim": "The SPXUSD minute data clock is New York local time with daylight-saving changes, not fixed EST, so the session windows in tjr_backtest and today's hypothesis.py are aligned in both summer and winter",
+     "evidence": "The most volatile minutes are 10:00, 08:30 and 09:30/09:31 in both Jan-Feb and Jul-Aug, and the session reopens at 18:00 in both (counts 270 and 292)",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/statistician_audit.py; /tmp/.../scratchpad/dst_check.py",
+     "confidence": "verified"
+    },
+    {
+     "claim": "No ledger p5 is out-of-sample as gate rule 2 requires. H0004's -0.282 is the full 2010-2018 sample, and the trend futures 12-month window was chosen by the source paper on 1985-2009, which overlaps the test data. The only true out-of-sample segment is ETF trend 11/2016-9/2026, where the 5th percentile of the long/short Sharpe is 0.08. Fix: add an oos_p5_R column (or an oos=yes/no flag) to ledger.csv and require it in finalize.py.",
+     "evidence": "tjr-run.txt base row [-0.282, -0.125] covers the full sample; trend-following.md section 2 states the 12-month window was the paper's choice on 1985-2009; trend-following-etf.md:93 shows 0.08",
+     "source": "skills/prop-fleet/references/tjr-run.txt; trend-following.md; trend-following-etf.md:91-96",
+     "confidence": "verified"
+    },
+    {
+     "claim": "tjr_backtest.boot_mean is an i.i.d. bootstrap of mean R. That is acceptable at one trade a day, but for any future multi-trade-per-day strategy it overstates precision. Fix: use a day-clustered or stationary block bootstrap in tjr_backtest.py:262-265.",
+     "evidence": "tjr_backtest.py:264 draws rng.choice(x, size=(n, len(x)), replace=True)",
+     "source": "skills/prop-fleet/scripts/tjr_backtest.py:262-265",
+     "confidence": "verified"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "No method for gate rule 3 is defined in ORG.md, so I cannot tell whether any result 'survives the correction'. The director has to choose one (I propose one-sided Bonferroni: z of about 3.32 at N=110, 3.39 at N=143).",
+    "I cannot edit ledger.csv or ORG.md. Adding the 33 missing variants and fixing the N text is for the director's step."
+   ],
+   "next": [
+    "Director: add ledger rows for the 33 unlogged variants (trend-futures 6, trend-ETF 16, stack 10, TJR slice 1) and decide whether H0005 should carry the external 27-variant grid",
+    "Implement ledger-aware Bonferroni in scripts/gate.py with a test, and require oos_p5_R in finalize.py",
+    "Re-run the stack overnight component with stale-open days removed, or start in 2014, and report the 5th percentile next to every Sharpe",
+    "Add look-ahead perturbation tests for tjr_backtest.find_setup/simulate and for daily/2026-10-04/hypothesis.py",
+    "Check today's three last-half-hour variants (A/B/C in daily/2026-10-04/run.txt, all with negative p5) and make sure they enter the ledger with count 3"
+   ],
+   "key": "stats",
+   "title": "Statistician",
+   "division": "risk"
+  },
+  {
+   "summary": "I attacked both claims. The claim that firms allow full automation on funded accounts survives only for Bulenox and Lucid, and only on snippets of their own FAQ pages. It is refuted for MyFundedFutures, which sources describe as semi-automated only with a human watching. It is weakened for Tradeify, whose rule that a bot may not run at other firms conflicts with a fleet copying one bot across firms, and for Topstep, where the API stops at the Live Funded stage. The claim that the required Sharpe is about 3 is mostly refuted as a general rule: it comes from Apex's 21-day evaluation clock. The same code with no clock (which all the candidate firms report) passes 81% of the time at Sharpe 2, so the right bar is net dollars per dollar of fees per firm, not one Sharpe number.",
+   "findings": [
+    {
+     "claim": "Claim A, MyFundedFutures: REFUTED (default rule, evidence conflicts). Third-party summaries say MFFU allows only semi-automated trading with the trader actively watching, and bans fully autonomous set-and-forget bots. That conflicts with Rule 1 (fully automatic).",
+     "evidence": "WebSearch result summary: 'MyFundedFutures permits semi-automated trading only, with fully automated set-and-forget strategies prohibited. Traders using TradersPost must actively monitor and manage all trades.' Today's rules_matrix.csv already notes that third-party sources conflict ('one says prohibited without human oversight'). The firm's own page help.myfundedfutures.com/en/articles/8444599 and crosstrade.io returned EGRESS_BLOCKED, so the firm's own wording could not be read.",
+     "source": "https://blog.traderspost.io/article/automate-my-funded-futures-with-traderspost ; skills/prop-fleet/agents/daily/2026-10-04/rules_matrix.csv",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Claim A, Tradeify: the bot is allowed, but the condition 'not used at other firms' contradicts the plan's '~20 accounts over four firms running the same bot'. Running the same bot at Tradeify and at any other firm breaks Tradeify's policy. They may also ask for a live video of the trader turning the code on, on their own PC.",
+     "evidence": "WebSearch summary of Tradeify's guidelines: 'Using the bot across multiple firms is against Tradeify's policy'; 'Tradeify will require a live video of you enabling the code on your own PC'. The same condition appears in rules_matrix.csv (Tradeify automation_funded, corroborated). The firm page help.tradeify.co/en/articles/10468318 is listed in results, but I did not quote it directly.",
+     "source": "https://help.tradeify.co/en/articles/10468318-guidelines-for-simulated-funded-traders ; https://tradetanto.com/learn/tradeify-rules-explained-what-every-trader-should-know",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Claim A, Topstep: automation holds only through the Combine and Express Funded stages. The API is not available on Live Funded, so the bot stops exactly when an account reaches real capital. It must also run from a personal device: no VPS or VPN.",
+     "evidence": "rules_matrix.csv (help-center snippet): 'API not available on Live Funded'; 'VPS/VPN/remote servers prohibited'. A WebSearch summary agrees: 'Tradecopia supports TopstepX evaluation and funded accounts, but Live accounts are not supported'; 'bans VPS hosting outright'.",
+     "source": "https://help.topstep.com/en/articles/11187768-topstepx-api-access ; https://help.topstep.com/en/articles/10296582-prohibited-conduct",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Claim A, route: Tradovate's direct API is not available on prop-firm accounts (evaluation or funded). Any firm that runs on Tradovate needs a third-party webhook bridge or a Rithmic route. That adds cost and another dependency outside our control.",
+     "evidence": "WebSearch summary of Tradovate community threads: 'prop firm and evaluation accounts don't qualify at all'; 'prop firm accounts have api access disabled (during both demo and live account)'. rules_matrix.csv: 'Tradovate API LIVE accounts only' (Tradeify help-center snippet); Bulenox charges +$100/month for a third-party Rithmic API connection.",
+     "source": "https://community.tradovate.com/t/how-can-i-use-tradovate-apis-for-prop-firm-eval-and-paid-accounts/7814 ; rules_matrix.csv",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Claim A survives, but not verified in writing, for Bulenox and Lucid. Bulenox's FAQ allows bots that the trader built for their own use, with a limit of 5 Master accounts. Lucid's FAQ allows automated strategies and copiers, reportedly also on LucidLive, with a limit of 5 funded accounts. Both rest on page snippets from search, not on a page we could fetch, and neither is confirmed in writing. So the realistic fully automatic fleet is about 10 accounts at 2 firms, plus Topstep Express Funded until Live, not about 20 at 4 firms.",
+     "evidence": "rules_matrix.csv: Bulenox 'bots, algorithms, copiers permitted; only user-built for own use', '5 total Master+Fast Track+Momentum Master'; Lucid 'automated strategies and copiers permitted', '5 funded per household'. A third-party source conflicts on Bulenox copy trading (proptradingvibes). A WebSearch summary says LucidLive automation is permitted, and its basis is third-party.",
+     "source": "https://bulenox.com/faq ; https://lucidtrading.com/general-faq/ ; https://support.lucidtrading.com/en/articles/11404617-maximum-number-of-accounts",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Claim B (Sharpe ~3 required): the threshold comes from Apex's 21-day evaluation clock. With a 252-day horizon (none of the candidate firms reports a maximum evaluation time), the same function shows a Sharpe 2 strategy at $150 daily vol passing 81.0% and blowing up 10.8%. Sharpe 1 at $150 passes 47.2% and blows up 32.8%. Under 21 days, Sharpe 3 at $500 passes only 40.9% and blows up 23.6%, which reproduces the 41/23 in stack.md. So 'Sharpe ~3' is not a structural requirement at the candidate firms. The binding constraint becomes time to pass multiplied by the monthly fee (Topstep's evaluation rebills every 30 days) and the funded-stage payout caps. Those can only be judged with the per-firm model, not a single Sharpe number.",
+     "evidence": "I ran stack_backtest.required_sharpe_table unchanged except the horizon; n=2000; synthetic i.i.d. normal returns, $3,000 target, $2,000 trailing drawdown. Output saved. Horizon 21: SR3 $500 pass 40.9% / blown 23.6%. Horizon 252: SR2 $150 81.0%/10.8%, median 119 days; SR3 $150 96.2%/2.4%, median 94 days; SR1 $150 47.2%/32.8%, median 140 days; SR0.5 $150 32.2%/47.1%. rules_matrix.csv eval_clock: Tradeify 'no maximum', Lucid 'no time limit', Topstep 'no time limit; monthly subscription rebills every 30 days'; MFFU and Bulenox 'not found'.",
+     "source": "python3 skills/prop-fleet/agents/daily/2026-10-04/redteam/sharpe_horizon.py -> skills/prop-fleet/agents/daily/2026-10-04/redteam/sharpe_horizon.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Claim B, internal inconsistency: the board treats '+0.25R per trade at one trade a day' and 'Sharpe ~3' as the same thing. At a 2:1 reward-to-risk ratio, +0.25R at 250 trades a year is a gross Sharpe of 2.67, and the economist's model (3 trades a day) turns +0.25R into a gross Sharpe of 4.63. The two bars the organization uses are not the same bar.",
+     "evidence": "I computed it with the same win-probability formula as fleet_model.py (p=(R+1)/(rr+1)). Per-trade Sharpe is 0.169 at +0.25R with rr=2: annual 2.67 at 250 trades/yr, 4.63 at 750 trades/yr. At +0.10R with rr=2 and 750 trades/yr it is 1.89. economist_run.txt uses TRADES_DAY=3 (fleet_model.py line 26).",
+     "source": "python3 -c inline R-to-Sharpe calculation; skills/prop-fleet/agents/daily/2026-10-04/fleet_model.py",
+     "confidence": "verified"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "EGRESS_BLOCKED: help.myfundedfutures.com, crosstrade.io, blog.pickmytrade.io. I could not read the firms' own automation wording; every firm claim rests on search snippets or third parties.",
+    "None of the five firms has confirmed automation in writing. The organization cannot contact them, so only Itamar can get written confirmation."
+   ],
+   "next": [
+    "Board change for the director: drop MyFundedFutures from the fully automatic list. Mark Tradeify as incompatible with a one-bot, many-firm fleet. Mark Topstep as automation only until Live Funded. The working fleet becomes about 10 accounts (Bulenox 5 + Lucid 5), plus Topstep's 5 Express Funded accounts while they last.",
+    "Replace gate item 4 (Sharpe ~3) with a per-firm economic test: run fleet_model.py with each firm's eval_days=None and eval_monthly fees, find the break-even edge per firm, and convert it to Sharpe at the actual trade frequency.",
+    "Make the organization use one consistent unit: R per trade together with trades per day, or annual Sharpe, never both loosely.",
+    "Draft (not send) a written question about automation for Bulenox and Lucid, for Itamar to send: is a fully unattended bot allowed on funded and live accounts, and may the same bot run at other firms?"
+   ],
+   "key": "redteam",
+   "title": "Red team",
+   "division": "risk"
+  },
+  {
+   "summary": "All 22 test files in skills/prop-fleet/scripts/ pass (470 tests, 0 failures), so no script was changed. Tradovate is not a route because a firm help-center snippet says its API serves live accounts only. Two adapters cover all five allowed firms: ProjectX for Topstep Express (and possibly MFFU) and Rithmic for Bulenox, Lucid and Tradeify (and possibly MFFU). The smallest first step is an offline Broker interface plus a ProjectX adapter built on project-x-py, tested against a fake gateway, which needs the bot repository attached to this session.",
+   "findings": [
+    {
+     "claim": "All test suites in scripts/ pass: 470 passed, 0 failed, 0 errors, across 22 test files; no script was modified",
+     "evidence": "'470 passed in 122.63s'; per-file counts saved (test_replay 84, test_futures_bars 33, test_paper_check 30, ... test_sizing_grid 5, test_tjr_backtest 5)",
+     "source": "cd skills/prop-fleet/scripts && python3 -m pytest -q; output in skills/prop-fleet/agents/daily/2026-10-04/eng_pytest.txt",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Topstep Express Funded route is the ProjectX Gateway API (REST api.topstepx.com/api, SignalR hubs rtc.topstepx.com); not on Live Funded; VPS prohibited, own device only",
+     "evidence": "rules_matrix.csv Topstep rows (help-center snippets); project-x-py README lines 35, 439-441 list these default URLs",
+     "source": "agents/daily/2026-10-04/rules_matrix.csv; https://raw.githubusercontent.com/TexasCoding/project-x-py/main/README.md",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Tradovate API is not a usable route for prop accounts: firm help-center snippet says Tradovate API is for LIVE accounts only; the only PyPI 'tradovate' package is a 2022 data-only 0.0.1",
+     "evidence": "rules_matrix Tradeify platform_api row; PyPI JSON tradovate 0.0.1 uploaded 2022-07-08",
+     "source": "https://help.tradeify.co/en/articles/10468221-supported-platforms; https://pypi.org/pypi/tradovate/json",
+     "confidence": "single-source"
+    },
+    {
+     "claim": "Rithmic covers Bulenox (Rithmic only, +$100/month for third-party Rithmic API, one Rithmic user id), Lucid and Tradeify",
+     "evidence": "rules_matrix rows Bulenox automation_funded/platform_api, Lucid platform_api, Tradeify platform_api",
+     "source": "agents/daily/2026-10-04/rules_matrix.csv",
+     "confidence": "corroborated"
+    },
+    {
+     "claim": "Usable maintained Python clients exist: project-x-py 4.4.0 (MIT) for ProjectX and async-rithmic 1.6.6 (MIT) for Rithmic; the bot's IBKR library line is ib_insync 0.9.86 (last release 2023) with the maintained fork ib_async 2.1.0",
+     "evidence": "PyPI JSON info.version/license for each package",
+     "source": "https://pypi.org/pypi/{project-x-py,async-rithmic,ib_insync,ib_async}/json",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Vendor API doc hosts are blocked from this environment",
+     "evidence": "curl: CONNECT tunnel failed, response 403 for gateway.docs.projectx.com, api.topstepx.com, api.tradovate.com, www.rithmic.com",
+     "source": "curl -sS -m 15 <host>",
+     "confidence": "verified"
+    },
+    {
+     "claim": "Automation route written: a Broker interface, native MES/ES orders with no ETF-to-futures ratio conversion, a local per-firm risk guard, fan-out to N own accounts with per-account reconciliation and a kill switch, running on Itamar's own computer",
+     "evidence": "design derived from rules_matrix and references/apex-rules.md / references/schedule.md (the platform gap and the proxy-bug conversion)",
+     "source": "skills/prop-fleet/agents/daily/2026-10-04/eng_route.md",
+     "confidence": "unverified"
+    }
+   ],
+   "hypotheses_tested": [],
+   "blockers": [
+    "The bot repository is not attached to this session, so the Broker interface and ProjectX adapter can only be proposals.",
+    "ProjectX, Tradovate and Rithmic documentation hosts are EGRESS_BLOCKED (proxy 403). As a result, API terms, the Rithmic conformance requirement and the ProjectX price (about $29 a month, from a third party) are unverified.",
+    "MyFundedFutures automation rules conflict between sources, so its route (ProjectX or Rithmic) is undecided."
+   ],
+   "next": [
+    "Once the bot repository is attached, add a Broker interface (connect, accounts, positions, place_bracket, cancel, flatten_all, fills stream, heartbeat) with IBKR as the first implementation, as a pull request.",
+    "Build a ProjectX adapter on project-x-py and test it against a fake gateway with no network. The key test checks that an MES bracket built from ES-point entry, stop and target at 1 contract is sent with exact prices and size, which guards against a repeat of the proxy bug.",
+    "Second, build a Rithmic adapter on async-rithmic, which covers Bulenox, Lucid and Tradeify. First verify the Rithmic conformance and API add-on requirements through any reachable mirror or a GitHub issue thread.",
+    "Add a per-account local risk guard that loads per-firm limits from rules_matrix.csv: drawdown type, daily loss limit, consistency, maximum contracts and flatten-before-close."
+   ],
+   "key": "engineer",
+   "title": "Engineer",
+   "division": "eng"
+  }
+ ],
+ "heads": [
+  {
+   "decision": "No candidate edge exists today, and nothing found today should be called one. The only result measured today, last-half-hour momentum (3 variants, run.txt), failed. Net mean R was -0.142, -0.161 and -0.069, every p5 was below zero, and the gross signal was gone in 2015-18. One candidate is worth tomorrow's work: the overnight-gap fade on the S&P (Grant, Wolf & Yu 2005). Five reasons. (1) It trades about daily and stays flat by the close, so it fits prop accounts. TOTM, overnight drift and FOMC weeks all hold overnight, and no worker has checked any firm's overnight-holding rule. (2) The data hunter's SPY 1m file (2019-01-02 to 2025-07-18, 1,645 sessions) gives the first real out-of-sample test this organization has had for an intraday idea, plus NQ 1m 2020-2025 as a second instrument. (3) I checked the dividend adjustment: on 1,003 shared days, adjusted and raw SPY gaps differ by more than 5 bp on only 16 days, all quarterly ex-dividend Fridays, by about 37-46 bp. So the adjusted file matches ES gaps better than raw SPY does. (4) The target is the prior close, so 1R is the gap size (at least 0.15%). That keeps cost a small share of R, which answers the builder's finding that a 0.6 pt cost against a 4-8 pt stop decided the last result. (5) Every sample year is outside the paper's 1987-2002 sample. The prior is weak, because the paper's significance was sharply reduced after costs. The statistical bar is also known in advance: one-sided Bonferroni at N=143 needs z=3.39. On 1,600 trades that is a per-trade Sharpe of 0.085, or about 1.34 a year at 250 trades/yr (computed today). So this is one cheap, fully pre-registered shot, not a favourite. The single best next experiment is this gap fade, count = 1, run exactly as written in /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/prereg_gapfade_draft.txt. That means one variant: k=1.0 x trailing 20-day gap stdev, entry at the 09:31 open, target at the prior close, 1R stop, exit at 15:59, cost 2 bp round trip. In-sample is SPXUSD 2010-2018, the primary out-of-sample is SPY 2019-2025 and the second out-of-sample is NQ 2020-2025. The decision rule is fixed in advance, and no retuning is allowed if it fails. The director should write that row into ledger.csv tonight, before anyone runs it.",
+   "keep": [
+    "Overnight-gap fade (CO->OC reversal), single pre-registered variant, SPY 1m 2019-2025 as true out-of-sample: tomorrow's only N-spending test",
+    "Data hunter's commit-pinned, sha256-checked loader set (data_fetch.py): SPY 1m 2019-2025, NQ 1m 2020-2025, QQQ 1m 2024-2026. This is the first real out-of-sample intraday data; build it into a tested scripts/ loader",
+    "Builder's lesson as a design rule: only structures where round-trip cost is a small share of 1R (wide stops, multi-hour holds)",
+    "Statistician's ledger-aware Bonferroni (alpha=0.05/N) as the explicit form of gate rule 3; I used it to size the bar above",
+    "Turn-of-the-month, kept only as a queued candidate: it is cheap on spx_open_close.csv but holds overnight. Do not spend N until the rules keeper confirms overnight holding is allowed at Bulenox/Lucid/Topstep"
+   ],
+   "drop": [
+    "Last-half-hour momentum (Gao et al. 2018): closed after 3 variants all negative net; gross was +0.07R in 2010-14 and -0.02R in 2015-18 (run.txt)",
+    "Pre-FOMC drift: published disappearance after 2015 (Kurov et al. 2021, via search summary); log as covered externally, not tested",
+    "5-minute opening-range breakout: independent replication net of costs indistinguishable from zero (single-source search summary); log as covered externally, not tested",
+    "FOMC even-week timing for now: no 1994-2026 FOMC date list is reachable, and it holds overnight",
+    "Any further short-hold (<1 hour, <10 pt stop) ES signal: cost alone is 0.08-0.17R per trade at those stops (builder)"
+   ],
+   "tomorrow": [
+    "Director, tonight: copy prereg_gapfade_draft.txt into ledger.csv as a new row with count=1 and results blank, before any code runs, so gate rule 1 is met by the ledger and not just a daily file",
+    "Hypothesis builder: implement the gap fade exactly as pre-registered on D1 SPXUSD 2010-2018, D2 SPY 2019-2025 and D3 NQ 2020-2025. Report n, trades/yr, gross and net mean R, day-level bootstrap p5, the lower bound at alpha=0.05/N, and by-year R. Add a test that perturbs bars after entry and asserts the signal does not change. Do not change k, stop or target after seeing any number",
+    "Data hunter: move data_fetch.py into a tested scripts/ loader (common NY index, adjustment and roll flags), and measure the SPY-vs-ES gap basis on the 2026 overlap windows (TopstepX ES Jan-Apr, getdata ES Apr-Sep)",
+    "Literature scout: find intraday-only, flat-by-close effects with peer-reviewed post-2010 evidence and code on GitHub raw. Do not look for more overnight or calendar effects",
+    "Rules keeper: add an overnight_holding / flat-by time row per firm to rules_matrix.csv. It decides whether TOTM and the overnight sleeve are even eligible"
+   ],
+   "concerns_about_other_divisions": [
+    "Process gap (director/statistician): workers cannot write ledger.csv, yet gate rule 1 requires the rules to be in the ledger before the first backtest. Today's builder ran 3 variants with the rules only in a daily file. Fix: the director pre-registers the next day's test in the ledger the evening before, as proposed for the gap fade",
+    "Statistician is right that real N is at least 143, not 110 (33 unlogged variants). The gap-fade bound must use the post-update N. At N=143 the one-sided Bonferroni z is 3.39, which for ~1,600 trades requires annual Sharpe of about 1.34 at 250 trades/yr (my computation)",
+    "Red team: dropping 'Sharpe ~3' for no-clock firms is reasonable, but it does not make passing easy. Gate rule 3 alone still requires a per-trade t-stat of about 3.4 out-of-sample. The two should be stated together so nobody reads 'Sharpe 2 passes 81%' as a lowered bar for calling an edge",
+    "Economist: the +0.33R-for-20% figure assumes 3 trades a day at 1:2 reward-to-risk, a profile that no measured or candidate strategy has. Re-solve at the trade frequency of whatever is actually tested (the gap fade would be at most 1 trade a day), and note that red team found +0.25R maps to Sharpe 2.67 at 250 trades/yr vs 4.63 at 750",
+    "Rules keeper: the matrix has no overnight-holding or flat-by-time field. Every calendar or overnight candidate (TOTM, overnight drift, FOMC weeks) depends on it",
+    "Firm list: red team's evidence that MFFU forbids unattended bots and that Tradeify forbids running the same bot at other firms shrinks the fully automatic fleet to roughly Bulenox 5 + Lucid 5 (+ Topstep Express until Live). Even a passing edge then has to clear the economics at about 10-15 accounts, not 20",
+    "Data hunter: the full data files live only in this session's scratch directory. Tomorrow's run must re-fetch them through data_fetch.py and must not assume they are still there; the hashes make that safe"
+   ],
+   "key": "edge",
+   "title": "Head of Edge Research"
+  },
+  {
+   "decision": "Only two firms meet both unchangeable rules on their own pages: Bulenox and Lucid. Both have a FAQ snippet that allows bots and copiers on funded accounts, and both cap funded accounts at 5. The fleet that clears both rules today is therefore 10 accounts, not about 20, and even that is unconfirmed in writing. Topstep's 5 Express Funded accounts count only as a conditional extension. Its bot route (ProjectX API, on Itamar's own machine, no VPS) ends when an account is promoted to Live Funded, so those accounts age out of the fleet. Tradeify forbids using the same bot at other firms, so it can be either a Tradeify-only fleet of 5 or nothing. MyFundedFutures stays out until it answers the unattended-bot question in writing. Apex bans automation on every account type, evaluations included. I re-ran the economist's fleet_model.py with 5 accounts per firm (prop_head/tiers.py and tiers.txt). Net yearly income after 25% tax, mean of years 2-4: Tier A (Bulenox 5 + Lucid 5) gives $19,477 at +0.10R, $76,476 at +0.25R and $133,799 at +0.40R, which is 3.9% / 15.3% / 26.8% of $500K nominal. Tier B (A plus Topstep 5) gives $27,833 / $110,481 / $201,489. Tier C (B plus Tradeify 5) gives $37,074 / $145,099 / $269,809. Every tier first reaches 20% of nominal at about +0.32R per trade. Adding firms adds dollars but does not lower the bar. In this model's own units (2:1 reward-to-risk, 3 trades a day), +0.32R is an annual Sharpe of 5.88. At one trade a day it would be 3.40. No measured strategy is positive (ledger N=110, all rows failed), so every figure is conditional. Bulenox's lead is partly sizing: at the same $80 risk as the other firms, it falls from $52,010 to $39,667 a year at +0.25R. My recommendation: plan around Tier A, treat Topstep Express as a temporary add-on, and do not count Tradeify or MFFU toward \"many accounts\" until they confirm in writing.",
+   "keep": [
+    "Bulenox as a core firm. Its FAQ snippet allows bots, algorithms and copiers if the trader built them for personal use. 5 funded accounts in total, Rithmic only, +$100/month for a third-party API (rules_matrix.csv). Model, 5 x 50K: $12,792 / $52,010 / $89,908 net a year at +0.10 / +0.25 / +0.40R (prop_head/tiers.txt).",
+    "Lucid as a core firm. Its FAQ snippet allows automated strategies and copiers. 5 funded per household, Tradovate and Rithmic (rules_matrix.csv). Model, 5 x 50K: $6,685 / $24,466 / $43,890 a year. It earns the least per account because it pays 50% of balance per request and the model closes the account after 5 payouts.",
+    "Topstep Express Funded as a conditional, temporary tier. Its help-center snippet allows the ProjectX API in the Combine and on Express Funded but not on Live Funded, and bans VPS. 5 accounts. Model: $8,356 / $34,006 / $67,691 a year, which overstates Topstep because the move to Live, where the API stops, is not modelled.",
+    "One planning number for the goal: about +0.32R per trade reaches 20% of nominal in every tier (A 20.6%, B 20.3%, C 20.2% at +0.32R, prop_head/tiers.txt). The economist's 20-account five-firm run gave about +0.33R. Fleet size changes dollars, not the required edge.",
+    "The economist's fleet_model.py as the per-firm engine. It reproduces apex_model on 50K-2026 exactly (economist_run.txt, check OK)."
+   ],
+   "drop": [
+    "The board's 'about 20 accounts over four or five firms' as the fleet size. The realistic fully automatic fleet today is 10 (Bulenox + Lucid), plus up to 5 Topstep Express accounts that age out at Live.",
+    "MyFundedFutures from the automatic list, until it confirms in writing. Third-party summaries say semi-automated only, with a human watching, which conflicts with rule 1 (red team, rules_matrix.csv).",
+    "Tradeify from the multi-firm fleet. Its guidelines (corroborated, third party citing help.tradeify.co) forbid using the same bot at other firms. It could only be a Tradeify-only alternative.",
+    "Apex entirely. Its own compliance-page snippet bans automation on all account types, including evaluations, which is stricter than ORG.md's current wording.",
+    "Reporting the fleet as '20 accounts = $140k at +0.25R' (economist). Under both rules today the figure is Tier A, $76,476 a year at +0.25R on 10 accounts.",
+    "Comparing firms at '4% of own drawdown'. It gives Bulenox $100 of risk against $80 elsewhere, and at equal $80 risk Bulenox drops from $52,010 to $39,667 a year at +0.25R (tiers.txt)."
+   ],
+   "tomorrow": [
+    "Rules keeper: draft (do not send) one written question per firm for Itamar to send to Bulenox, Lucid, Topstep, Tradeify and MFFU: is a fully unattended bot allowed on funded and live accounts, may the same self-built bot run at other firms, and is copying across one's own accounts allowed? Bulenox's copier rule conflicts between sources.",
+    "Economist: model the Topstep Live Funded transition. When an Express account is promoted, the API stops, so treat the account as leaving the automatic fleet and replace it. Report Tier B again with that in.",
+    "Economist: re-run every firm at equal dollar risk and at 6-8% risk once the floor locks. Report the break-even R per firm and the R needed for 20%, each with its Sharpe at the actual trade frequency, as one unit pair (R per trade + trades per day).",
+    "Economist: add per-account costs the model leaves out (data feed, NinjaTrader or Rithmic licence, the own-computer requirement), and change Bulenox's +$100/month API fee from per firm to per account if the firm's wording supports that.",
+    "Rules keeper: find the eval clock and VPS rule for Bulenox and Lucid on the firms' own pages (both 'not found' today), because Tier A rests on them.",
+    "Engineer: route priority follows the tiers. Rithmic adapter first (covers Bulenox and Lucid, that is Tier A), ProjectX second (Topstep Express only)."
+   ],
+   "concerns_about_other_divisions": [
+    "Edge division: the bar the structure needs is about +0.32R per trade. In the model's units (2:1, 3 trades a day) that is an annual Sharpe of 5.88, and 3.40 at one trade a day (tiers.txt). This is higher than the board's '+0.25R / Sharpe ~3'. Today's best candidates (TOTM, FOMC timing) are Sharpe ~1 or lower by their own sources, so at most they can be stack parts.",
+    "Risk division: the red team's point that the 'Sharpe ~3' gate item comes from Apex's 21-day clock holds for the remaining firms. Tradeify, Lucid and Topstep report no maximum evaluation time, and MFFU and Bulenox were not found. Gate item 4 should be restated per firm in R and trades per day, not as one Sharpe number, but the director decides that.",
+    "Economist: all five firms share seed 11, so the fleet is fully copy-correlated. That is right for one bot, but it means p10 is not a diversification figure. Several key inputs are ASSUMED (Bulenox keep_off and fee type, Tradeify frac, Lucid qualifying days, every lock_off). Changing Bulenox keep_off to 3,000 barely changed the result ($52,010 to $52,120 at +0.25R), so check whether keep_off is actually used on the frac=1.0 path.",
+    "Rules keeper: every 'verified' cell is a search-engine snippet, not a fetched page (all firm hosts EGRESS_BLOCKED). Tier A rests on two FAQ snippets, so it is a working assumption until the firms answer in writing.",
+    "Engineer: the Tradovate API is live-only, and Topstep forbids a VPS, so the whole fleet must run on Itamar's own computer. The plan needs one machine-uptime and kill-switch design that covers all 10-15 accounts.",
+    "Director: ORG.md's 'Apex forbids automation on funded (PA) accounts' understates the firm's own page, which bans it on all account types, including evaluations."
+   ],
+   "key": "prop",
+   "title": "Head of Prop Structure"
+  },
+  {
+   "decision": "The repository is healthy, but the gate code is missing a piece. I re-ran the full suite in skills/prop-fleet/scripts and got 470 passed, 0 failed in 157.37s, which matches the engineer's 470. Seven scripts have no test file: hypotheses.py (449 lines), install_watch_gate.py (143), lag_scan.py (140), claims.py (110), ladder.py (47), horizon.py (42) and streak_check.py (33). agents/finalize.py has no test either, and line 68 still counts a blank count as 1. The biggest engineering debt is not order routing; it is the gate. Rule 3 (multiple-testing correction for N) is written into ORG.md, but scripts/gate.py has no code for it, so nothing can be called an edge mechanically. Tomorrow engineering fixes that first. The shortest honest path to an automated order route has two adapters. The first is ProjectX for Topstep Express Funded: personal machine, no VPS, the API ends at Live Funded. The second is Rithmic for Bulenox and Lucid. Tradovate is dropped as a route. MyFundedFutures and Tradeify are put on hold, following the red team: MFFU reportedly allows only semi-automated trading, and Tradeify forbids running the same bot at other firms. The first build step is unchanged: an offline Broker interface plus a ProjectX adapter tested against a fake gateway, with no account and no money. It has three blockers. Itamar has to attach the bot repository. Every project-x-py release I listed on PyPI requires Python >=3.12, and the default python3 here is 3.11.15, although /usr/bin/python3.12 exists. And there is no edge yet. So adapter work stays at proposal/PR level and goes live only if the referee passes a strategy.",
+   "keep": [
+    "Engineer's two-adapter plan: ProjectX (project-x-py 4.4.0, MIT, Python >=3.12) for Topstep Express Funded, and Rithmic (async-rithmic 1.6.6, MIT, Python >=3.10) for Bulenox and Lucid. I checked both on the PyPI JSON API today.",
+    "Engineer's first step: Broker interface (connect, accounts, positions, place_bracket, cancel, flatten_all, fills stream, heartbeat), with IBKR as the first implementation, plus a ProjectX adapter tested offline against a fake gateway. The key test checks that an MES bracket built from ES-point entry/stop/target at 1 contract goes out with exact prices and size, which is the proxy-bug guard.",
+    "A local per-account risk guard that reads firm limits from daily/2026-10-04/rules_matrix.csv, with flatten-before-close and a kill switch. The bot runs on Itamar's own computer, because Topstep forbids a VPS.",
+    "Statistician's look-ahead perturbation tests for tjr_backtest.find_setup and daily/2026-10-04/hypothesis.py build_days.",
+    "Data hunter's commit-pinned, sha256-checked data_fetch.py pattern, with large files kept outside the repo.",
+    "Full test suite as the daily health check (470 passed today in 157.37s)."
+   ],
+   "drop": [
+    "Tradovate as an automation route. A firm help-center snippet says its API serves LIVE accounts only, and Tradovate community threads cited by the red team say prop accounts have API access disabled. eng_route.md still lists Lucid as 'Rithmic (or Tradovate)'; remove the Tradovate option.",
+    "Any NinjaTrader-on-sim route for Tradovate firms (the rules keeper's suggestion). It would add a second platform with no Python path for a fleet that already has Rithmic coverage.",
+    "Building or connecting any live adapter before a strategy passes the gate. Offline adapter code and tests only.",
+    "MyFundedFutures and Tradeify from the route plan until Itamar gets written confirmation. MFFU reportedly allows only semi-automated trading; Tradeify forbids using the same bot at other firms.",
+    "Unpinned project-x-py. PyPI shows 11 releases from 2026-08-30 to 2026-10-04, with 4.4.0 released today. Pin an exact version in any adapter PR."
+   ],
+   "tomorrow": [
+    "Implement gate rule 3 in scripts/gate.py with tests. Read N from agents/ledger.csv and require the bootstrap lower quantile at a one-sided 0.05/N (Bonferroni, as the statistician proposed) to be above 0. This needs the director to name the method in ORG.md.",
+    "Harden agents/finalize.py: reject a count that is not an integer >= 1 instead of `int(r[\"count\"] or 1)` at line 68, and add an oos flag / oos_p5_R column check. Add test_finalize.py.",
+    "Add a stationary or day-clustered block bootstrap to tjr_backtest.boot_mean (lines 262-265), and print a 5th-percentile Sharpe next to every Sharpe in stack_backtest.row() and trend_backtest. Re-run the overnight component with stale-open days dropped or ON_START=2014-01-01.",
+    "Write a tested loader in scripts/ for the data hunter's pinned files (SPY 1m 2019-2025, NQ 1m 2020-2025, QQQ 1m, ES 2026) on one New York time index, with explicit adjustment and roll flags, so the next hypothesis gets a real 2019+ out-of-sample test.",
+    "Ask Itamar (via the director) to attach the bot repository. Then open a PR, never a direct push, with the Broker interface and a ProjectX adapter that runs on Python 3.12 against a fake gateway.",
+    "Add minimal tests for hypotheses.py (449 lines, the largest untested script) and for daily/2026-10-04/fleet_model.py's EOD, fraction-payout and split-tier logic before the economist's numbers are used again."
+   ],
+   "concerns_about_other_divisions": [
+    "Risk: the statistician shows the real N is at least 143 (33 unlogged variants in references/), not 110, and gate rule 3 has no code. Until gate.py reads the ledger, no division can claim that a result 'survives the correction'.",
+    "Prop: the economist's fleet model still holds 4 accounts each at MFFU and Tradeify, which the red team says cannot run a fully automatic multi-firm bot. It also uses 3 trades/day while the board's bar uses 1 trade/day: +0.25R works out to gross Sharpe 2.67 at 250 trades/yr versus 4.63 at 750 (red team calculation). The economist's 20%-at-+0.33R figure is therefore not comparable with the board's +0.25R. fleet_model.py has no tests.",
+    "Prop: the rules keeper suggests NinjaTrader for Tradovate firms, which conflicts with a single Python bot. The Tradovate claims also differ: the rules keeper says the API works on LIVE accounts only, while the red team says prop accounts have it disabled on both demo and live. Either way, it is not a route.",
+    "Prop: ORG.md says Apex bans automation only on funded accounts. The rules keeper found Apex's own compliance page bans it on all account types, including evaluations. The director should correct this.",
+    "Engineering's own worker: eng_route.md lists Lucid as 'Rithmic (or Tradovate)' and lists Tradeify fan-out as permitted, which contradicts its own 'Tradovate is not a route' and Tradeify's no-other-firms clause. It also does not mention that project-x-py requires Python >=3.12 (default python3 here is 3.11.15), and the bot's Python version is unknown.",
+    "Edge: the data hunter's sources are third-party GitHub uploads that can vanish (codecat-ops/zarattini repo now 404). Pinned commits plus sha256 help, but a local snapshot policy is needed before any result depends on them. SPY 2019-2025 appears dividend back-adjusted, and NQ is unadjusted across rolls; both must be handled in the loader, not ad hoc per hypothesis.",
+    "Edge: today's hypothesis.py (last-half-hour momentum, 3 variants) lives under daily/ with no look-ahead test. It must enter the ledger with count 3."
+   ],
+   "key": "eng",
+   "title": "Head of Engineering & Operations"
+  }
+ ],
+ "judged": [
+  {
+   "hypothesis": "Last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018): the sign of the return from the previous 16:00 close to 10:00 predicts 15:30-16:00 on the S&P. Variant A: base, 0.20% stop",
+   "rules": "Weekdays only. P0 = 15:59 close of the previous trading day; r1 = close(09:59)/P0 - 1; side = sign(r1); skip if r1 == 0 or any of the 09:59/14:59/15:29/15:30/15:59 bars is missing. Enter at the market at the 15:30 bar open. Stop = entry -/+ 0.20% of entry (risk >= 1.0 pt), checked on every bar 15:30-15:59 including the entry bar, filled at the worse of stop and bar open. No target; exit at the 15:59 close. Cost 0.6 pt round trip. R = net pts / risk.",
+   "count": 1,
+   "data": "SPXUSD 1-minute (HistData via FutureSharks GitHub), 2010-11-14..2018-12-31, NY clock, tjr_backtest.load_minutes",
+   "mean_R": -0.1418,
+   "p5_R": -0.1818,
+   "trades": 1720,
+   "trades_per_year": 211.7,
+   "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py",
+   "by": "builder",
+   "verdicts": [
+    {
+     "hypothesis": "Last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018), Variant A: sign of the return from the previous 15:59 close to the 09:59 close sets the side, entry at the 15:30 open, 0.20% stop, exit at the 15:59 close, 0.6 pt cost, SPXUSD 1-minute bars 2010-2018.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules are not in ledger.csv before the first backtest. ledger.csv has only H0001-H0005, and the pre-registration exists only in the hypothesis.py docstring (file mtime 21:35, the same minute as run.txt)",
+      "2: the bootstrap p5 of mean R is -0.1818, below zero. In the 2015-2018 pseudo-OOS half it is -0.2028 and the mean is -0.1512",
+      "3: it does not survive the multiple-testing correction at N = 110 + 3 of today's variants (A, B, C) = 113. The mean R is negative, so nothing is left to correct",
+      "4: annual Sharpe is -2.07 at 211.7 trades a year, against the required ~3"
+     ],
+     "reasoning": "I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py. Its output matches the claimed result and run.txt exactly:\n\n- Data: 2,117,667 bars, 2010-11-14..2018-12-31, 1720 eligible days.\n- Variant A: n=1720, 211.7 trades a year, mean_R -0.1418, p5_R -0.1818, p95_R -0.1021, gross_mean_R +0.0233, gross_p5_R -0.0168, Sharpe -2.07, stop rate 0.243, median risk 3.98 pt.\n- Halves: 2010-14 mean -0.1318 (p5 -0.1916); 2015-18 mean -0.1512 (p5 -0.2028).\n- Only one of the nine years is positive (2013: +0.003).\n- The ledger count column sums to 110 (awk over ledger.csv). The script tests 3 variants, so N for today is 113, not 111.\n\nThe gross edge is indistinguishable from zero (gross p5 -0.0168) and is fully eaten by the 0.6 pt cost on a ~4 pt risk. Variants B and C in the same run are also negative after costs:\n\n| Variant | mean R | p5 R | Sharpe |\n|---|---|---|---|\n| B | -0.1605 | -0.2193 | -1.58 |\n| C | -0.0689 | -0.0913 | -1.80 |\n\nAll four gate criteria fail. Verdict: refuted. Record it in the ledger as tested with count 3, passed_gate=no."
+    },
+    {
+     "hypothesis": "Last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018), Variant A: the sign of the return from the previous 16:00 close to 10:00 sets the S&P trade side for 15:30-16:00, with a 0.20% stop and a 0.6 pt round-trip cost.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules were not in ledger.csv before the first backtest. The ledger has no row for Gao/Han/Li/Zhou or last-half-hour momentum (grep found nothing), and its last row is H0005. The result's count of 1 is also wrong, because hypothesis.py tests 3 variants (A_base_0.20pct, B_agree12_0.20pct, C_base_0.40pct), so today adds at least 3.",
+      "2: the bootstrap 5th percentile of mean R after costs is -0.1818, which is below zero. The 2015-18 later sub-period has p5 -0.2028 and mean -0.1512. Even the gross p5 is -0.0168. Variants B (p5 -0.2193) and C (p5 -0.0913) are also below zero.",
+      "3: it fails the multiple-testing correction at N = 110 + 3 = 113. It cannot survive any correction with a mean R below zero.",
+      "4: the annual Sharpe printed by the script is -2.07, against a required level of about 3."
+     ],
+     "reasoning": "I read ORG.md (the gate's four criteria, with N=110 today) and ledger.csv. The sum of the count column is 110 (python sum), and there is no row for this hypothesis. I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py myself. It printed 2,117,667 bars (2010-11-14..2018-12-31) and 1720 eligible days. For A_base_0.20pct it gave n=1720, per_year=211.7, mean_R=-0.1418, p5_R=-0.1818, sharpe=-2.07 and gross_mean_R=0.0233. Those match the result I was given exactly (mean_R, p5_R, trades, trades_per_year).\n\nThe same run also produced variant B (agree12, mean -0.1605, p5 -0.2193) and variant C (0.40% stop, mean -0.0689, p5 -0.0913). So the result's count of 1 understates today's tests. The director should log count=3, which makes N=113.\n\nThe small gross edge (+0.023R) is far smaller than the 0.6 pt cost on a median risk of about 3.98 pts. That cost alone is about 0.15R per trade, so net R is negative in every year except 2013 (+0.003).\n\nAll four criteria fail, so passes_gate is false. This is a clean refutation: the effect does not survive realistic costs on this data."
+    },
+    {
+     "hypothesis": "Last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018), Variant A: base, 0.20% stop, SPXUSD 1m 2010-11..2018-12",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules are not in ledger.csv before the first backtest. A grep of the ledger for Gao/half-hour finds no row (H0005 is a different rule), and the ledger sum is still 110. The rules are pre-registered only in the script docstring.",
+      "2: the bootstrap p5 of mean R is -0.1818, below zero. The whole interval is negative (p95 -0.1021), the period is in-sample with no true out-of-sample set, and the 2015-18 pseudo-OOS half has mean -0.1512 and p5 -0.2028.",
+      "3: it does not survive a multiple-testing correction at N = 110 + 3 = 113, because the result is significantly negative, not positive.",
+      "4: the annual Sharpe is -2.07 at 211.7 trades/yr, far from the target of about +3."
+     ],
+     "reasoning": "I read ORG.md (the gate's four criteria), ledger.csv (the count column sums to 110 by a python check; there is no row for this hypothesis) and the script /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py.\n\nI re-ran the script myself (python3 hypothesis.py). Its output matches the reported numbers exactly and also matches run.txt in the same folder: Variant A n=1720, per_year 211.7, mean_R -0.1418, p5_R -0.1818, p95_R -0.1021, gross_mean_R 0.0233, gross_p5_R -0.0168, Sharpe -2.07, stop_rate 0.243.\n\nThe script defines 3 variants (A, B, C), so today's N is at least 113, not 1 as the \"count\" field says. Variants B (mean -0.1605, p5 -0.2193) and C (mean -0.0689, p5 -0.0913) are also negative.\n\nEven before costs the result is no edge: gross p5 is -0.0168. The 0.6 pt cost against a median risk of 3.98 pt costs about 0.15 R per trade.\n\nThe result fails all four criteria. It is a clean refutation and should go into the ledger with count 3."
+    }
+   ],
+   "passes": false
+  },
+  {
+   "hypothesis": "Last-half-hour momentum. Variant B: trade only when the 12th half-hour return (14:59->15:29 close) has the same sign as r1",
+   "rules": "Same as A, plus the filter sign(close(15:29)/close(14:59) - 1) == sign(r1). Stop 0.20%.",
+   "count": 1,
+   "data": "SPXUSD 1-minute 2010-11..2018-12",
+   "mean_R": -0.1605,
+   "p5_R": -0.2193,
+   "trades": 825,
+   "trades_per_year": 101.6,
+   "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py",
+   "by": "builder",
+   "verdicts": [
+    {
+     "hypothesis": "Last-half-hour momentum, Variant B: trade the 15:30-16:00 S&P half hour in the direction of sign(r1), only when the 12th half-hour return (14:59->15:29) has the same sign as r1. Stop 0.20%. SPXUSD 1-minute data, 2010-11 to 2018-12.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules are not in ledger.csv before the first backtest. The ledger has no 2026-10-04 or last-half-hour row, and the only pre-registration is the docstring in hypothesis.py",
+      "2: the bootstrap 5th percentile of mean R per trade is -0.2193 net, which is below zero. Mean R is -0.1605. The pseudo-OOS half 2015-2018 has p5 = -0.2042 and mean = -0.13",
+      "3: it does not survive the multiple-testing correction at N = 110 + 3 = 113 (A, B and C all ran today). The mean is negative, and even gross mean R is 0.0026 with a gross p5 of -0.0559",
+      "4: annual Sharpe is -1.58 at 101.6 trades a year. The bar is about +3"
+     ],
+     "reasoning": "I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py myself. For B_agree12_0.20pct it printed n=825, per_year=101.6, mean_R=-0.1605, p5_R=-0.2193, p95_R=-0.1001, gross_mean_R=0.0026, sharpe=-1.58. These match the reported result and run.txt exactly. Split by period: 2010-14 has mean -0.1964 (p5 -0.2873) and 2015-18 has mean -0.13 (p5 -0.2042). Only 2013 is positive (+0.006). The gross edge is about zero (0.0026R). The 0.6 pt round-trip cost on a median risk of 4.01 pts costs about 0.15R a trade, and that cost produces the net loss. Summing the ledger count column gives N = 110. Today's three variants (A, B, C) make N = 113. Criterion 1 also fails formally, because no ledger row exists for this hypothesis. The rules are fixed only in the script docstring. The director has to add a ledger row with count 3 so N becomes 113. The result fails all four criteria, so I veto it: no edge."
+    },
+    {
+     "hypothesis": "Last-half-hour momentum, Variant B: trade only when the 12th half-hour return (14:59->15:29) has the same sign as r1, stop 0.20%",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: rules not in ledger.csv before first backtest (pre-registered only in hypothesis.py docstring; ledger has no row for this hypothesis, H0005 is a different rule)",
+      "2: bootstrap p5 of mean R after costs = -0.2193 (full sample) and -0.2042 on the 2015-18 pseudo-OOS half, both below zero; mean R itself is -0.1605",
+      "3: cannot survive multiple-testing correction at N = 110 + 3 variants = 113 when the uncorrected p5 is already negative",
+      "4: annualised Sharpe = -1.58 at 101.6 trades/yr, far from about 3"
+     ],
+     "reasoning": "I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py myself. Variant B came out at n=825, 101.6 trades/yr, mean_R -0.1605, p5_R -0.2193, p95_R -0.1001, gross mean R 0.0026, Sharpe -1.58 and stop rate 0.258. These match the reported result and run.txt exactly. Gate check against ORG.md: (1) The rules are pre-registered only in the script's docstring. ledger.csv has no row for this hypothesis; grep found only H0005, which is a different rule (the Beat-the-Market noise-area breakout). So criterion 1 is not shown to hold. (2) After 0.6 pt round-trip costs, the bootstrap 5th percentile is negative on the full sample (-0.2193) and on the 2015-18 pseudo-OOS half (-0.2042, mean -0.13). The 95th percentile is also negative (-0.1001), so this is a reliably losing rule, not a borderline one. Before costs it is about zero (gross mean 0.0026, gross p5 -0.0559). Adding the r12-agreement filter made it worse than variant A (mean -0.1418). (3) The script defines three variants, so N = 110 + 3 = 113. A result that is negative before any correction cannot survive one. (4) A Sharpe of -1.58 is nowhere near about 3. It fails all four criteria; the verdict is refuted."
+    },
+    {
+     "hypothesis": "Last-half-hour momentum, Variant B: trade the 15:30-16:00 S&P move in the direction of r1, only on days when the 12th half-hour return has the same sign as r1. Stop 0.20%, cost 0.6 pt round trip.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: rules not written in ledger.csv before the first backtest (ledger has only H0001-H0005; the rules are pre-registered only in the hypothesis.py docstring)",
+      "2: bootstrap 5th percentile of mean R is -0.2193, not above zero (the 2015-18 pseudo-OOS half is also negative: p5 -0.2042, mean -0.130)",
+      "3: cannot survive the multiple-testing correction at N >= 113 (110 from the ledger plus today's 3 variants A/B/C) when the point estimate itself is negative (mean -0.1605R)",
+      "4: annualised Sharpe is -1.58 at 101.6 trades/yr, far below the required ~3"
+     ],
+     "reasoning": "I read ORG.md (four-part gate, N = sum of the ledger's count column), board.md and ledger.csv. Summing the count column with python gives N = 110 across 5 rows (H0001-H0005). With today's three variants (A, B, C, all in VARIANTS in hypothesis.py) N becomes at least 113. I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py and got the same Variant B numbers as the builder: n=825, per_year=101.6, mean_R=-0.1605, p5_R=-0.2193, p95_R=-0.1001, gross_mean_R=+0.0026 (gross p5 -0.0559), sharpe=-1.58. The halves are 2010-14 mean -0.1964 (p5 -0.2873) and 2015-18 mean -0.130 (p5 -0.2042). Positive years: only 2013 (+0.006). These match daily/2026-10-04/run.txt.\n\nCriterion 1: ledger.csv has no row for this hypothesis. The rules exist only in the script's docstring, which says they were written before the run, but the gate requires them to be in the ledger. Fail.\n\nCriterion 2: p5 is -0.2193 overall and -0.2042 out of sample. Neither is above zero. Fail.\n\nCriterion 3: the mean is negative, so no correction can rescue it. Fail.\n\nCriterion 4: Sharpe is -1.58 against a required ~3. Fail.\n\nBefore costs the edge is essentially zero (+0.0026R), so the 0.6-pt cost on a ~4-pt risk produces the whole loss. Refuted on every criterion. The director should still add this to the ledger as count 3 (variants A/B/C) so that N rises to 113."
+    }
+   ],
+   "passes": false
+  },
+  {
+   "hypothesis": "Last-half-hour momentum. Variant C: base with a wider 0.40% stop",
+   "rules": "Same as A with stop = 0.40% of entry.",
+   "count": 1,
+   "data": "SPXUSD 1-minute 2010-11..2018-12",
+   "mean_R": -0.0689,
+   "p5_R": -0.0913,
+   "trades": 1720,
+   "trades_per_year": 211.7,
+   "script": "/home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py",
+   "by": "builder",
+   "verdicts": [
+    {
+     "hypothesis": "Last-half-hour momentum (Gao, Han, Li & Zhou 2018), Variant C: base rule with a wider stop at 0.40% of entry. SPXUSD 1-minute, 2010-11 to 2018-12.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules were not written in ledger.csv before the first backtest. The ledger has only H0001-H0005 (sum of count = 110) and no row for last-half-hour momentum. The pre-registration exists only in the hypothesis.py docstring.",
+      "2: the bootstrap 5th percentile of mean R after costs is -0.0913, not above zero. The 2015-18 pseudo-OOS half is also negative (mean -0.0789, p5 -0.1082).",
+      "3: it cannot survive the multiple-testing correction at N = 110 + 3 (variants A, B and C today) = 113, because the result is significantly negative, not positive.",
+      "4: the annualised Sharpe is -1.8 at 211.7 trades/yr, far below the required ~3."
+     ],
+     "reasoning": "I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py myself. It loaded 2,117,667 bars (2010-11-14 to 2018-12-31) and found 1,720 eligible days.\n\nFor variant C_base_0.40pct the re-run gave:\n- n = 1720, per_year = 211.7\n- mean_R = -0.0689, p5_R = -0.0913, p95_R = -0.0469\n- gross_mean_R = +0.0136, gross_p5_R = -0.0087\n- sharpe = -1.8, stop_rate = 0.072\n- 2010-14: mean -0.0582\n- 2015-18: mean -0.0789, p5 -0.1082\n- Only 2013 is positive by year (+0.007)\n\nAll of these match the builder's reported numbers and run.txt exactly.\n\nThe verdict on each criterion:\n1. Fails. ledger.csv has no row for this hypothesis. The script itself says \"Not in ledger.csv\", so the rules were pre-registered only in the script docstring and not in the ledger as the gate requires.\n2. Fails. The whole 90% bootstrap interval of mean R is below zero, both in-sample and in the 2015-18 half.\n3. Fails. N for today is 110 plus 3 variants run in the same script, so 113. A negative mean cannot clear any correction.\n4. Fails. The annual Sharpe is -1.8.\n\nEven before costs the edge is not distinguishable from zero (gross p5 = -0.0087), and it turns negative after 2015 (gross mean -0.0133). The 0.6 pt round-trip cost is about 0.075R at the 7.96 pt median risk, which is larger than the gross mean.\n\nThe director should add all 3 variants (A, B, C) to the ledger count. Verdict: REFUTED, and it must not be called an edge."
+    },
+    {
+     "hypothesis": "Last-half-hour momentum, Variant C: same as base A with a wider stop at 0.40% of entry (SPXUSD 1-minute, 2010-11..2018-12)",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: rules not in ledger.csv before first backtest. grep of ledger.csv for 2026-10-04/momentum/half finds only H0001-H0005 legacy rows (sum of count = 110), no pre-registered row for this hypothesis",
+      "2: bootstrap p5 of mean R after costs is -0.0913 (below zero). The held-out 2015-18 half is also negative: mean -0.0789, p5 -0.1082",
+      "3: cannot survive multiple-testing correction at N = 110 + 3 variants (A, B, C) = 113, since even the uncorrected p5 is negative",
+      "4: annual Sharpe reported by the script is -1.8, far below about 3"
+     ],
+     "reasoning": "I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py. It loaded 2,117,667 bars from 2010-11-14 to 2018-12-31 and found 1720 eligible days. For C_base_0.40pct it printed n=1720, per_year=211.7, mean_R=-0.0689, p5_R=-0.0913, p95_R=-0.0469, gross_mean_R=+0.0136, gross_p5_R=-0.0087, sharpe=-1.8, stop_rate=0.072. All of these match the builder's claimed numbers exactly, and the output matches daily/2026-10-04/run.txt.\n\nThe result fails all four gate criteria.\n- Even before costs, the bootstrap p5 is below zero (-0.0087).\n- After costs the mean is negative in both halves: 2010-14 is -0.0582 and 2015-18 is -0.0789.\n- By year, the only non-negative year is 2013, at +0.007.\n- Widening the stop from 0.20% to 0.40% roughly halves the per-trade loss in R terms (A is -0.1418), because the cost is spread over a larger risk. It does not create an edge.\n\nThe ledger's count column sums to 110, so N for today is at least 113 with variants A, B and C. No ledger row pre-registers this hypothesis. A draft file exists (prereg_gapfade_draft.txt), but it is for a different hypothesis, and the gate requires the rules to be written in ledger.csv."
+    },
+    {
+     "hypothesis": "Last-half-hour momentum (Gao-Han-Li-Zhou 2018), Variant C: trade side = sign(prev 16:00 close to 10:00 return), enter at the 15:30 bar open, stop at 0.40% of entry, exit at the 15:59 close, 0.6 pt round-trip cost. Data: SPXUSD 1-minute, 2010-11 to 2018-12.",
+     "passes_gate": false,
+     "failed_criteria": [
+      "1: the rules are not in ledger.csv before the first backtest. The ledger has only H0001-H0005 and none of them is this hypothesis. The pre-registration exists only in the script's docstring.",
+      "2: the bootstrap 5th percentile of mean R is below zero. Full sample p5 = -0.0913; the 2015-2018 out-of-sample half has p5 = -0.1082 and mean = -0.0789.",
+      "3: it does not survive the multiple-testing correction at N = 110 + 3 (today's variants A/B/C) = 113. With p5 below zero it is not significant even uncorrected.",
+      "4: annualised Sharpe is -1.8 (from the script output), not about +3."
+     ],
+     "reasoning": "Variant C fails all four gate criteria. Its result is a loss after costs, not a borderline case.\n\n**Check of the reported numbers.** I re-ran /home/user/claude-skills/skills/prop-fleet/agents/daily/2026-10-04/hypothesis.py myself. It loaded 2,117,667 bars (2010-11-14 to 2018-12-31) and found 1720 eligible days. Its C_base_0.40pct output matches every reported number exactly:\n- n = 1720 trades, 211.7 per year\n- mean R = -0.0689\n- p5 R = -0.0913, p95 R = -0.0469\n- gross mean R = +0.0136, gross p5 = -0.0087\n- Sharpe = -1.8, stop rate = 0.072\n\nMy run also matched daily/2026-10-04/run.txt line for line.\n\n**Gate criteria (ORG.md):**\n1. **Pre-registration.** ledger.csv contains only H0001-H0005, and N = 110 by my awk sum of the count column. There is no entry for last-half-hour momentum, so the rules were not written in the ledger before the first test. The docstring pre-registration does not meet the gate's wording.\n2. **Positive p5 after costs.** Full-sample p5 is -0.0913. The 2015-18 pseudo-out-of-sample half is worse: mean -0.0789, p5 -0.1082. Every year from 2010 to 2018 has negative mean R except 2013 (+0.007).\n3. **Multiple testing.** N is at least 113 (110 + today's three variants). A p5 below zero cannot survive any correction.\n4. **Sharpe about 3.** Annualised Sharpe is -1.8.\n\n**What the gross numbers show.** Even before costs there is no evidence of an edge. Gross p5 is -0.0087, and gross mean is +0.0426 in 2010-14 but -0.0133 in 2015-18. That decay matches the other intraday-momentum results already on file (references/second-opinion-audit.md for H0005).\n\n**Note for the director.** The ledger row should record count = 3 (variants A, B and C) and passed_gate = no."
+    }
+   ],
+   "passes": false
+  }
+ ],
+ "director": {
+  "board_md": "# Board — shared state of the organization\n\n*Every agent reads this first. The director rewrites it at the end of each day.*\n\n## Where we stand (4 Oct 2026, end of day 1)\n\n- **Edge:** none that passes the gate. Today's only test, last-half-hour\n  momentum (Gao, Han, Li & Zhou 2018; 3 variants on SPXUSD 1m 2010–2018),\n  failed every gate criterion. Net mean R was -0.142 / -0.161 / -0.069, every\n  bootstrap p5 was below zero, and gross was +0.07R in 2010–14 and -0.02R in\n  2015–18 (`daily/2026-10-04/run.txt`, re-run by all 3 referees). Family closed.\n  Earlier state unchanged: TJR/ICT has zero gross edge (`references/tjr.md`).\n  Trend-following has Sharpe ~1 but is not a prop strategy\n  (`references/trend-following.md`). Beat-the-Market momentum shows Sharpe ≈ 0\n  since 2025 (`references/second-opinion-audit.md`).\n- **Ledger:** N = 173 after tonight's rows (it was 110). +3 today's test,\n  +33 tested variants in `references/` that were never logged (statistician\n  audit: trend futures 6, trend ETF 16, stack 10, TJR slice 1), +26 for the\n  external Beat-the-Market 27-variant grid (gate rule 3 says \"by anyone\"),\n  +1 for the gap fade pre-registered tonight.\n- **Gate rule 3, operating definition from today (director's decision):**\n  one-sided Bonferroni. The day-level bootstrap lower bound of net mean R at\n  alpha = 0.05/N must be above zero on out-of-sample data. At N = 173,\n  z = 3.44, so a test with n trades needs a per-trade net Sharpe of at least\n  about 3.44/√n. This is not yet in code: `scripts/gate.py` does not read\n  the ledger.\n- **Gate rule 4 (Sharpe ~3) stays in force** until Itamar changes ORG.md. The\n  red team showed it comes from Apex's 21-day clock: with a 252-day horizon,\n  the same synthetic test passes Sharpe 2 at 81% (`redteam/sharpe_horizon.txt`).\n  The proposal is to restate rule 4 per firm, as R per trade together with\n  trades per day. Rule 3 already requires an out-of-sample t-stat of about\n  3.4, so restating rule 4 lowers no bar for calling an edge.\n- **One unit from now on:** report R per trade together with trades per day.\n  At 2:1 reward-to-risk, +0.25R is Sharpe 2.67 at 250 trades/yr and 4.63 at\n  750 (red team). The board's old \"+0.25R ≈ Sharpe ~3\" was loose.\n- **Firms (all from search snippets; no firm page could be fetched):**\n  - **Tier A, the planning fleet:** Bulenox 5 + Lucid 5 = 10 accounts. Both\n    FAQ snippets allow bots and copiers on funded accounts. Not confirmed in\n    writing.\n  - **Tier B:** Topstep Express 5, via the ProjectX API on Itamar's own\n    computer (no VPS). The API stops at Live Funded, so these accounts age out.\n  - **On hold:** MyFundedFutures (third parties say semi-automated only, with\n    a human watching) and Tradeify (forbids running the same bot at other\n    firms).\n  - **Out:** Apex. Its own compliance-page snippet bans automation on all\n    account types, evaluations included. ORG.md understates this.\n- **Economics (`prop_head/tiers.txt`, fleet_model.py; conditional on an edge\n  we do not have):** Tier A nets $19,477 / $76,476 / $133,799 a year after\n  25% tax at +0.10 / +0.25 / +0.40R. That is 3.9% / 15.3% / 26.8% of $500K\n  nominal. Every tier first reaches 20% at about +0.32R per trade, under the\n  model's 3 trades/day and 2:1. That equals Sharpe 3.40 at 1 trade/day and\n  5.88 at 3/day. Many inputs are ASSUMED (`economist_run.py`).\n- **Data available here:**\n  - S&P minute 2010–2018 (FutureSharks).\n  - New today: SPY 1m RTH 2019-01-02..2025-07-18 (dividend back-adjusted),\n    NQ 1m front month 2020-08-31..2025-11-21 (no roll adjustment), NQ 5m\n    Databento 2023–2026-05, QQQ 1m 2024-08..2026-08, and ES 1m only for\n    2026-01-20..04-15 and 2026-04-01..09-02.\n  - All of the new files come from third-party GitHub uploads, pinned to a\n    commit and checked by sha256 via `daily/2026-10-04/data_fetch.py`. The\n    full files sit in scratch only, so re-fetch them.\n  - Gaps: no free ES 2019–2025, and nothing for S&P 2025-07-19..2026-01-19.\n  - Vendor and paper hosts are blocked.\n- **Engineering:** 470 tests pass. Seven scripts and finalize.py have no\n  tests. Routes: Rithmic (async-rithmic) for Tier A, ProjectX (project-x-py,\n  needs Python ≥3.12) for Topstep. Tradovate is not a route. No live adapter\n  is built before a strategy passes the gate.\n\n## Decisions today\n\n1. Tomorrow's only N-spending test is the **overnight-gap fade**, ledger row\n   pre-registered tonight. It runs exactly as written in\n   `daily/2026-10-04/prereg_gapfade_draft.txt`, with one variant. D2 (SPY\n   2019–2025) is the primary out-of-sample set. The decision rule is fixed,\n   and no retuning is allowed. The prior is weak: the paper's significance\n   fell sharply after costs.\n2. **Closed or not spending N:**\n   - Closed: last-half-hour momentum, and any ES signal held under an hour\n     with a stop under 10 pt (cost alone is 0.08–0.17R).\n   - Covered externally, not tested: the pre-FOMC drift (disappeared after\n     2015, Kurov et al. 2021) and the 5-minute ORB (independent replication\n     net ≈ 0). Both rest on single-source search summaries.\n3. **Queued, not spending N:**\n   - Turn-of-the-month: cheap on `data/spx_open_close.csv`, but it holds\n     overnight. It waits until each firm's overnight-holding rule is known.\n   - FOMC even weeks: no FOMC date list for 1994–2026 is reachable.\n4. **Process:** from now on a test is pre-registered as a ledger row the\n   evening before it runs. Workers cannot write the ledger, and today's\n   builder ran with the rules only in a docstring, which failed gate\n   criterion 1.\n\n## Charter corrections pending (ORG.md, for Itamar)\n\n- Apex bans automation on all account types, evaluations included, not only\n  on funded accounts.\n- Replace \"Today N = 110\" with \"N is printed on the board\". Today it is 173.\n- Name the method for gate rule 3: one-sided Bonferroni, alpha = 0.05/N.\n- Decide whether gate rule 4 becomes a per-firm requirement stated in R and\n  trades per day.\n- Replace \"about 20 accounts over four firms\" with Tier A = 10 until the\n  firms confirm in writing.\n\n## Open questions\n\n1. Does the gap fade survive costs out-of-sample on SPY 2019–2025 at alpha =\n   0.05/173?\n2. Do Bulenox and Lucid confirm in writing that a fully unattended,\n   self-built bot may run on funded and live accounts, the same one at other\n   firms too? Only Itamar can ask.\n3. What does each firm require for overnight holding and the flat-by time?\n   This decides whether turn-of-the-month and the overnight sleeve are even\n   eligible.\n4. What are the eval clock and VPS rule at Bulenox and Lucid? Neither was\n   found today.\n5. How large is the SPY-to-ES gap basis on the 2026 overlap windows?\n6. Is there free S&P 1m data for 2025-07-19..2026-01-19?\n\n## Tomorrow, by division\n\n- **Edge research**\n  - Builder: implement the gap fade exactly as pre-registered on D1/D2/D3.\n    Report:\n    - n and trades/yr\n    - gross and net mean R\n    - day-level bootstrap p5 and the lower bound at 0.05/N\n    - net R by year\n    Add a look-ahead perturbation test. Change nothing after seeing a number.\n  - Data hunter: move `data_fetch.py` into a tested `scripts/` loader on one\n    New York time index, with adjustment and roll flags. Measure the SPY-vs-ES\n    gap basis on the 2026 windows.\n  - Literature scout: look only for intraday, flat-by-close effects with\n    post-2010 evidence and code on GitHub raw. No more calendar or overnight\n    effects.\n- **Prop structure**\n  - Rules keeper: add an overnight-holding / flat-by row per firm. Find the\n    eval clock and VPS rule for Bulenox and Lucid. Draft, and do not send,\n    one written automation question per firm for Itamar.\n  - Economist:\n    - Re-solve the R needed at 1 trade/day.\n    - Size every firm at equal dollar risk.\n    - Model Topstep leaving at Live Funded.\n    - Add per-account costs (data, platform, own computer).\n    - Check whether `keep_off` is used on the frac=1.0 path.\n- **Statistics & risk**\n  - Statistician: specify the ledger-aware Bonferroni check for `gate.py`\n    with the engineer. Re-run the overnight sleeve without stale-open days,\n    or from 2014, with p5.\n  - Red team: attack the gap-fade result the moment it exists (data\n    adjustment, 09:31 fill realism, roll weeks on NQ).\n- **Engineering & operations**\n  - Engineer:\n    - Add gate rule 3 to `scripts/gate.py`, with tests.\n    - Harden `finalize.py`: reject a count that is not an integer ≥1, and add\n      an OOS flag.\n    - Add a day-clustered bootstrap to `tjr_backtest.boot_mean`.\n    - Add tests for `hypotheses.py` and `fleet_model.py`.\n    - Adapters wait until the bot repository is attached, then go in as a\n      PR, never a push.\n",
+  "ledger_rows": [
+   "2026-10-04,builder,Last-half-hour momentum (Gao Han Li Zhou 2018): A base 0.20% stop; B r12-agree filter; C 0.40% stop,3,no,SPXUSD 1m 2010-11..2018-12,-0.1418,-0.1818,no,A shown. B mean -0.1605 p5 -0.2193; C mean -0.0689 p5 -0.0913; A gross +0.0233R. Rules only in hypothesis.py docstring not in ledger before run. Referee 9/9 veto. Family closed.",
+   "2026-09-29,legacy-backfill,Trend-following futures tsmom: long/short 12m + long-only + 3/6/9/18m windows (references/trend-following.md),6,yes,54 futures daily 1984-2016,,,no,Sharpe not R. Backfilled 2026-10-04 from statistician audit. 12m window chosen by paper on overlapping 1985-2009.",
+   "2026-09-29,legacy-backfill,Trend-following ETF: 6 main variants + 4+4 window sensitivity + 7-asset + --etf-all (references/trend-following-etf.md),16,yes,ETF daily 1991-2026,,,no,Sharpe not R. Backfilled 2026-10-04. Only true OOS segment 11/2016-9/2026: long/short Sharpe p5 0.08.",
+   "2026-09-29,legacy-backfill,Stack: xsmom + value + 3 futures stacks + overnight drift + intraday reference + 3 investable stacks (references/stack.md),10,yes,54 futures 1990-2016; SPX daily open/close 2010-2026,,,no,Backfilled 2026-10-04. Overnight Sharpe 0.65 has no p5 and stale opens on 25-26% of 2012-13 days.",
+   "2026-09-29,legacy-backfill,TJR post-hoc slice: trades with stop >= 4 pt (references/tjr.md),1,no,SPX 1m 2010-2018,0.057,-0.09,no,n=266; slice chosen after seeing results; 90% interval [-0.09 +0.20]. Backfilled 2026-10-04.",
+   "2026-09-29,external-backfill,Beat the Market external replication: frozen 27-variant grid + quarterly walk-forward (codecat-ops repo; references/second-opinion-audit.md),26,yes,SPY/ES 1m 2020-2026,,,no,27-variant grid minus the base config already counted in H0005. Counted because gate rule 3 says by anyone. Source repo now 404.",
+   "2026-10-04,edge-head,PRE-REGISTERED NOT RUN: S&P overnight-gap fade (Grant Wolf Yu 2005). Trade if |gap| > 1.0 x 20-session gap stdev; side against gap; entry 09:31 open; target prior 15:59 close; 1R = max(|entry-P0| 0.15% of entry); stop 1R; exit 15:59 close; cost 2 bp round trip,1,yes,D1 SPXUSD 1m 2010-2018 (in-sample); D2 SPY 1m RTH 2019-2025 (primary OOS); D3 NQ 1m 2020-2025 ex roll weeks (second OOS),,,pending,Full rules: daily/2026-10-04/prereg_gapfade_draft.txt. Decision fixed: continue only if D2 net lower bound at alpha 0.05/N > 0 AND D3 net mean same sign AND D1 gross mean > 0; otherwise close family; no retuning of k stop or target."
+  ],
+  "report_he": "איתמר, סיכום יום 1 (4/10):\n\n**שום דבר לא עבר את השער. אין קצה.**\n\n**מה נכשל:** מומנטום חצי-השעה האחרונה (Gao ועמיתיו 2018). נבדקו 3 וריאנטים על S&P בדקה, 2010–2018, וכולם הפסידו אחרי עלויות: ממוצע ‎-0.142R, ‎-0.161R ו-‎-0.069R, וכל אחוזון 5 שלילי. שלושת השופטים הריצו מחדש וקיבלו אותם מספרים. המשפחה הזאת נסגרה.\n\n**מה נמצא:**\n- **נתונים:** לראשונה יש נתוני דקה חינמיים אחרי 2018: ‏SPY‏ 2019–2025 ו-NQ‏ 2020–2025. זה מאפשר בדיקת out-of-sample אמיתית.\n- **המונה N:** תוקן מ-110 ל-173. 33 וריאנטים שנבדקו בעבר לא נרשמו, ונוספו גם הגריד החיצוני וחלק מהבדיקות של היום. לכן הרף הסטטיסטי עלה.\n- **פירמות:** רק Bulenox ו-Lucid מתירות בוט מלא, וגם זה לפי קטעי חיפוש מה-FAQ שלהן. יחד זה 10 חשבונות ולא 20. ‏Topstep מתירה רק עד שלב ה-Live. ‏MFFU ו-Tradeify בהמתנה. ‏Apex אוסרת אוטומציה בכל סוגי החשבונות, גם בהערכה.\n- **כלכלה:** במודל, 10 חשבונות צריכים בערך ‎+0.32R לעסקה כדי להגיע ל-20% בשנה. אין היום אסטרטגיה מדודה שמגיעה לזה.\n\n**ההחלטה היחידה:** מחר נבדקת רק השערה אחת, סגירת פער הפתיחה (gap fade) ב-S&P, בווריאנט אחד. היא נרשמה ב-ledger הלילה, לפני שהורצה. כלל ההחלטה קבוע מראש ואין כיוונון. הסיכוי מוקדם נמוך, כי במאמר המקורי המובהקות נחלשה מאוד אחרי עלויות.\n\n**מחר:**\n- הבונה מריץ את ההשערה על SPY 2019–2025 ו-NQ.\n- ההנדסה מכניסה לקוד את תיקון ריבוי הבדיקות.\n- שומר הכללים מנסח שאלות לפירמות.\n\n**ממך:** אם תרצה, שלח ל-Bulenox ול-Lucid שאלה בכתב: האם מותר בוט לא מפוקח בחשבונות funded ו-live, ואותו בוט גם בפירמות אחרות? בנוסף, ב-ORG.md יש תיקונים שממתינים לאישורך (מפורטים ב-board).",
+  "edge_found": false
+ },
+ "dropped": 0
+}

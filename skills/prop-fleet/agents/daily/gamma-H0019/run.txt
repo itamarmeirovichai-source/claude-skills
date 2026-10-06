@@ -1,0 +1,20 @@
+ledger N = 197; one-sided alpha = 0.05/197 = 2.538e-04; bar z = 3.4767
+GEX rows 3879 (2011-05-02..2026-10-02); share < 0: 0.089
+
+=== D1: sessions in window 1972 (2011-05-02..2018-12-31, 7.67 yr); missing 15:29 bar 166, missing 15:59 bar 65
+    future-truncation test (all days, both regimes, both thresholds): 1972 days OK
+  GEX<0 (test): n 123  trades/yr 16.0  mean bp gross +3.70  net +1.70  t net +0.32 (gross +0.70)  boot p5 net -7.09 (gross -5.09)  win 0.545  long share 0.53  [fills not at 15:30/15:59: 0; unfillable: 0]
+     by year (n, gross bp, net bp): 2011:27/+7.0/+5.0  2012:13/+7.9/+5.9  2013:2/+2.6/+0.6  2014:5/-6.8/-8.8  2015:22/+2.2/+0.2  2016:19/+6.9/+4.9  2017:1/+3.1/+1.1  2018:34/+0.3/-1.7
+  GEX>=0 (control): n 1621  trades/yr 211.5  mean bp gross +1.33  net -0.67  t net -1.26 (gross +2.52)  boot p5 net -1.54 (gross +0.46)  win 0.452  long share 0.54  [fills not at 15:30/15:59: 49; unfillable: 0]
+     by year (n, gross bp, net bp): 2011:135/+5.4/+3.4  2012:204/-0.5/-2.5  2013:218/+4.0/+2.0  2014:216/+2.3/+0.3  2015:216/+2.0/-0.0  2016:219/-1.5/-3.5  2017:212/-1.1/-3.1  2018:201/+1.5/-0.5
+
+=== D2: sessions in window 1645 (2019-01-02..2025-07-18, 6.54 yr); missing 15:29 bar 7, missing 15:59 bar 3
+    future-truncation test (all days, both regimes, both thresholds): 1644 days OK
+  GEX<0 (test): n 202  trades/yr 30.9  mean bp gross +9.69  net +7.69  t net +1.47 (gross +1.85)  boot p5 net -1.01 (gross +0.99)  win 0.540  long share 0.52  [fills not at 15:30/15:59: 0; unfillable: 0]
+     by year (n, gross bp, net bp): 2019:18/+7.4/+5.4  2020:31/+42.0/+40.0  2021:16/-11.2/-13.2  2022:104/+5.0/+3.0  2023:23/+0.3/-1.7  2024:1/-0.4/-2.4  2025:9/+20.1/+18.1
+  GEX>=0 (control): n 1427  trades/yr 218.2  mean bp gross -0.05  net -2.05  t net -2.92 (gross -0.07)  boot p5 net -3.20 (gross -1.20)  win 0.465  long share 0.56  [fills not at 15:30/15:59: 3; unfillable: 0]
+     by year (n, gross bp, net bp): 2019:229/+0.3/-1.7  2020:217/+1.7/-0.3  2021:235/+0.5/-1.5  2022:147/+2.7/+0.7  2023:224/+0.3/-1.7  2024:249/-2.6/-4.6  2025:126/-3.3/-5.3
+
+=== decision rule: D2 net mean > 0 with one-sided t >= 3.4767: net +7.69 bp, t +1.47 -> False | D1 gross mean > 0: +3.70 bp -> True => FAIL
+
+stage 2 not run (pre-registered: only if stage 1 passes)
