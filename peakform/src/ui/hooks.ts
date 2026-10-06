@@ -5,8 +5,9 @@ import { dateKey, type DateKey } from '../domain/dates';
 import type { PlanRecord } from '../db/records';
 import { useSettings } from './state';
 import { registerCustomExercises } from '../content/library';
-import { BASELINE_TARGETS, type NutritionTarget } from '../content/meals';
-import { getTargets } from '../db/repo';
+import type { DayOptions, MealSlot } from '../content/meals';
+import { getAthlete } from '../db/repo';
+import { DEFAULT_ATHLETE, type AthleteProfile } from '../domain/athlete';
 
 /** Today's date key, refreshed when the app returns to the foreground or the day changes. */
 export function useToday(): DateKey {
@@ -56,6 +57,21 @@ export function round(n: number, step = 1): number {
   return Math.round(n / step) * step;
 }
 
-export function useTargets(): NutritionTarget[] {
-  return useLiveQuery(() => getTargets(), []) ?? BASELINE_TARGETS;
+/** The athlete profile, with cautious defaults while it loads. */
+export function useAthlete(): AthleteProfile {
+  return useLiveQuery(() => getAthlete(), []) ?? DEFAULT_ATHLETE;
+}
+
+/** Meal times from the reminders and the family's meat and dairy interval, for the example meals. */
+export function useMealOptions(): DayOptions {
+  const s = useSettings();
+  const a = useAthlete();
+  const times: Partial<Record<MealSlot, string>> = {};
+  for (const slot of ['breakfast', 'lunch', 'preworkout', 'dinner'] as const) {
+    const r = s.reminders.find((x) => x.id === slot);
+    if (r) times[slot] = r.time;
+  }
+  const milk = s.reminders.find((x) => x.id === 'milk');
+  if (milk) times.evening = milk.time;
+  return { times, meatToDairyHours: a.kosher.enabled ? a.kosher.meatToDairyHours : null };
 }

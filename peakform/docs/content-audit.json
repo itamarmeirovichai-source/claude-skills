@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T11:35:56.089Z",
+  "generated": "2026-10-06T16:30:54.063Z",
   "counts": {
-    "exercises": 99,
+    "exercises": 103,
     "muscles": 31,
-    "planItems": 74,
-    "mealTemplates": 15,
+    "planItems": 34,
+    "mealTemplates": 12,
     "recipes": 10,
-    "foods": 45,
-    "sources": 97,
+    "foods": 55,
+    "sources": 115,
     "media": 35
   },
   "exercises": [
@@ -3000,90 +3000,156 @@
         "Volleyball Approach Footwork"
       ],
       "media": []
+    },
+    {
+      "id": "home-movement-prep",
+      "name": "Home Movement Prep",
+      "kind": "warmup",
+      "primary": [
+        "glute_max",
+        "quads"
+      ],
+      "secondary": [
+        "hamstrings",
+        "glute_med",
+        "hip_flexors",
+        "gastrocnemius",
+        "soleus",
+        "tibialis_anterior",
+        "obliques_core"
+      ],
+      "pattern": "general_preparation",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 2,
+      "substitutions": [
+        "Five minutes of easy walking and marching",
+        "Dynamic Volleyball Warm Up"
+      ],
+      "media": []
+    },
+    {
+      "id": "lateral-line-hop",
+      "name": "Lateral Line Hop",
+      "kind": "jump",
+      "primary": [
+        "gastrocnemius",
+        "soleus"
+      ],
+      "secondary": [
+        "glute_med",
+        "quads",
+        "tibialis_anterior",
+        "adductors"
+      ],
+      "pattern": "jump",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 0,
+        "diagram": "lane"
+      },
+      "stopRules": 4,
+      "substitutions": [
+        "Side to side step overs",
+        "Hops over a crack in the pavement",
+        "Pogo Hop"
+      ],
+      "media": []
+    },
+    {
+      "id": "spike-arm-swing-shadow",
+      "name": "Spike Arm Swing, No Ball",
+      "kind": "skill",
+      "primary": [
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "secondary": [
+        "lats",
+        "triceps",
+        "obliques_core",
+        "rotator_cuff",
+        "serratus_anterior"
+      ],
+      "pattern": "overhead_strike",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 3,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Arm swing only, no bow and arrow",
+        "Arm swing outdoors",
+        "Volleyball Approach Footwork"
+      ],
+      "media": []
+    },
+    {
+      "id": "wall-spike-control",
+      "name": "Wall Spike Control",
+      "kind": "skill",
+      "primary": [
+        "delt_anterior",
+        "pec_clavicular"
+      ],
+      "secondary": [
+        "lats",
+        "triceps",
+        "forearm_flexors",
+        "rotator_cuff",
+        "obliques_core"
+      ],
+      "pattern": "overhead_strike",
+      "laterality": "bilateral",
+      "logSides": false,
+      "loadIncrement": "none",
+      "visual": {
+        "poses": 2,
+        "diagram": null
+      },
+      "stopRules": 3,
+      "substitutions": [
+        "Spike Arm Swing, No Ball",
+        "Self toss and catch"
+      ],
+      "media": []
     }
   ],
   "plan": [
     {
       "weekday": 0,
-      "title": "Upper A and Swim",
+      "title": "Upper A",
       "rest": false,
+      "sessions": [
+        {
+          "session": "main",
+          "location": "Gym",
+          "minutes": 70,
+          "landings": 0,
+          "space": "A normal gym floor.",
+          "equipment": [
+            "Cable pulley",
+            "Single D handle",
+            "Chest press machine",
+            "Lat pulldown station",
+            "Long straight bar",
+            "Incline chest press machine, with a weight stack or plate loaded",
+            "A pair of dumbbells",
+            "Adjustable bench set to about 30 to 45 degrees"
+          ]
+        }
+      ],
       "items": [
-        {
-          "id": "sun-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 6,
-            "workSec": 60,
-            "restSec": 30
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
-          ]
-        },
-        {
-          "id": "sun-am-1-shadow-pass-footwork",
-          "session": "morning",
-          "exercise": "Shadow Passing Footwork",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 8
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
-            "Eight directions per set, exact rather than fast."
-          ]
-        },
-        {
-          "id": "sun-am-2-dead-bug",
-          "session": "morning",
-          "exercise": "Dead Bug",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 8
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-am-3-tibialis-raise",
-          "session": "morning",
-          "exercise": "Tibialis Raise",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 15,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
         {
           "id": "sun-1-cable-external-rotation",
           "session": "main",
@@ -3102,9 +3168,9 @@
           "notes": []
         },
         {
-          "id": "sun-2-incline-machine-press",
+          "id": "sun-2-machine-bench-press",
           "session": "main",
-          "exercise": "Incline Machine Chest Press",
+          "exercise": "Machine Bench Press",
           "sets": 3,
           "target": {
             "type": "reps",
@@ -3113,7 +3179,7 @@
           },
           "per": null,
           "restSec": 150,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3130,13 +3196,30 @@
           },
           "per": null,
           "restSec": 150,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "sun-4-chest-supported-dumbbell-row",
+          "id": "sun-4-incline-machine-press",
+          "session": "main",
+          "exercise": "Incline Machine Chest Press",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-5-chest-supported-dumbbell-row",
           "session": "main",
           "exercise": "Chest Supported Dumbbell Row",
           "sets": 3,
@@ -3147,24 +3230,7 @@
           },
           "per": null,
           "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-5-pec-deck-fly",
-          "session": "main",
-          "exercise": "Pec Deck Fly",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3181,7 +3247,7 @@
           },
           "per": "side",
           "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
@@ -3190,110 +3256,95 @@
           "id": "sun-7-incline-dumbbell-curl",
           "session": "main",
           "exercise": "Incline Dumbbell Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-8-dumbbell-overhead-triceps-extension",
-          "session": "main",
-          "exercise": "Seated Dumbbell Overhead Triceps Extension",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-9-palm-up-wrist-curl",
-          "session": "main",
-          "exercise": "Seated Palm Up Wrist Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "sun-swim",
-          "session": "swim",
-          "exercise": "Easy Moderate Pool Round Trip",
           "sets": 2,
           "target": {
-            "type": "roundTrips",
-            "count": 10
+            "type": "reps",
+            "min": 10,
+            "max": 15
           },
           "per": null,
-          "restSec": 300,
-          "rir": null,
+          "restSec": 90,
+          "rir": 2,
           "tempo": null,
-          "rpe": [
-            4,
-            5
-          ],
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "sun-8-rope-overhead-triceps-extension",
+          "session": "main",
+          "exercise": "Rope Overhead Triceps Extension",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
           "notes": [
-            "Twenty round trips in total, with a five minute break after the first ten.",
-            "Easy to moderate effort, RPE 4 to 5.",
-            "Separate swimming from the main workout by at least three hours when possible.",
-            "Distance depends on pool length. Set it in the log."
+            "Planned instead of Seated Dumbbell Overhead Triceps Extension while the wrist is not cleared."
           ]
         }
       ],
-      "defaultMealsTotal": {
-        "kcal": 2257,
-        "protein": 195,
-        "carbs": 223,
-        "fat": 68
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-0",
+        "evening-pareve"
+      ],
+      "exampleMealsTotal": {
+        "kcal": 2921,
+        "protein": 204,
+        "carbs": 331,
+        "fat": 95
       }
     },
     {
       "weekday": 1,
-      "title": "Lower A and Jumps",
+      "title": "Home jumps and Lower A",
       "rest": false,
+      "sessions": [
+        {
+          "session": "home",
+          "location": "Home",
+          "minutes": 10,
+          "landings": 0,
+          "space": "About 2 by 2 metres of clear floor, any ceiling, and a floor that is not slippery.",
+          "equipment": [
+            "Supportive trainers",
+            "Optional mat",
+            "A clear wall"
+          ]
+        },
+        {
+          "session": "main",
+          "location": "Gym",
+          "minutes": 40,
+          "landings": 0,
+          "space": "A normal gym floor.",
+          "equipment": [
+            "45 degree leg press machine",
+            "A pair of dumbbells",
+            "Seated leg curl machine",
+            "Cable machine with a high pulley",
+            "Rope attachment"
+          ]
+        }
+      ],
       "items": [
         {
-          "id": "mon-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
+          "id": "mon-home-1-home-movement-prep",
+          "session": "home",
+          "exercise": "Home Movement Prep",
           "sets": 1,
           "target": {
             "type": "duration",
-            "totalMin": 9,
-            "workSec": 60,
-            "restSec": 30
+            "totalMin": 7
           },
           "per": null,
           "restSec": 30,
@@ -3301,190 +3352,37 @@
           "tempo": null,
           "rpe": null,
           "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
+            "Skip the jumps today if anything hurts during the warm up."
           ]
         },
         {
-          "id": "mon-am-1-block-footwork",
-          "session": "morning",
-          "exercise": "Blocking Footwork, No Jump",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 6
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Six moves per set. No jump, or only a tiny soft hop at the stop."
-          ]
-        },
-        {
-          "id": "mon-am-2-dumbbell-y-raise",
-          "session": "morning",
-          "exercise": "Bent Over Dumbbell Y Raise",
+          "id": "mon-home-2-tibialis-raise",
+          "session": "home",
+          "exercise": "Tibialis Raise",
           "sets": 2,
           "target": {
             "type": "reps",
-            "min": 12,
+            "min": 15,
             "max": 15
           },
           "per": null,
           "restSec": 60,
-          "rir": 3,
-          "tempo": "3011",
-          "rpe": null,
-          "notes": [
-            "Light dumbbells, usually 1 to 3 kg."
-          ]
-        },
-        {
-          "id": "mon-am-3-side-lying-external-rotation",
-          "session": "morning",
-          "exercise": "Side Lying Dumbbell External Rotation",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": "3011",
-          "rpe": null,
-          "notes": [
-            "Light dumbbell, usually 1 to 2 kg."
-          ]
-        },
-        {
-          "id": "mon-1-dynamic-volleyball-warm-up",
-          "session": "main",
-          "exercise": "Dynamic Volleyball Warm Up",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 8
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "mon-2-pogo-hop",
-          "session": "main",
-          "exercise": "Pogo Hop",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 10
-          },
-          "per": null,
-          "restSec": 60,
           "rir": null,
           "tempo": null,
           "rpe": null,
           "notes": [
-            "Quick, light contacts. Part warm up, part ankle spring."
+            "Planned instead of Pogo Hop, because the ceiling is too low and the floor is not known to be safe for landings and it is too loud for the noise limits."
           ]
         },
         {
-          "id": "mon-3-snap-down-stick",
-          "session": "main",
-          "exercise": "Snap Down and Stick",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 5,
-            "max": 5
-          },
-          "per": null,
-          "restSec": 60,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Freeze each landing for 2 seconds."
-          ]
-        },
-        {
-          "id": "mon-4-box-jump",
-          "session": "main",
-          "exercise": "Box Jump",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 3
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Step down from the box. Do not jump down.",
-            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops."
-          ]
-        },
-        {
-          "id": "mon-5-hurdle-hop",
-          "session": "main",
-          "exercise": "Hurdle Hop",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 4,
-            "max": 4
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Hurdles or cones 15 to 30 cm.",
-            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops."
-          ]
-        },
-        {
-          "id": "mon-6-broad-jump",
-          "session": "main",
-          "exercise": "Standing Broad Jump",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 3,
-            "max": 3
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Stick every landing."
-          ]
-        },
-        {
-          "id": "mon-7-leg-press",
+          "id": "mon-1-leg-press",
           "session": "main",
           "exercise": "Leg Press",
           "sets": 3,
           "target": {
             "type": "reps",
             "min": 6,
-            "max": 8
+            "max": 10
           },
           "per": null,
           "restSec": 180,
@@ -3494,7 +3392,7 @@
           "notes": []
         },
         {
-          "id": "mon-8-dumbbell-romanian-deadlift",
+          "id": "mon-2-dumbbell-romanian-deadlift",
           "session": "main",
           "exercise": "Dumbbell Romanian Deadlift",
           "sets": 3,
@@ -3511,10 +3409,10 @@
           "notes": []
         },
         {
-          "id": "mon-9-leg-press-calf-raise",
+          "id": "mon-3-seated-leg-curl",
           "session": "main",
-          "exercise": "Leg Press Calf Raise",
-          "sets": 3,
+          "exercise": "Seated Leg Curl",
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 10,
@@ -3522,16 +3420,421 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 0,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "mon-10-copenhagen-plank",
+          "id": "mon-4-leg-press-calf-raise",
+          "session": "main",
+          "exercise": "Leg Press Calf Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "mon-5-cable-crunch",
+          "session": "main",
+          "exercise": "Kneeling Cable Crunch",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-1",
+        "evening-pareve"
+      ],
+      "exampleMealsTotal": {
+        "kcal": 2910,
+        "protein": 213,
+        "carbs": 331,
+        "fat": 90
+      }
+    },
+    {
+      "weekday": 2,
+      "title": "No structured training",
+      "rest": true,
+      "sessions": [],
+      "items": [],
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-2",
+        "evening-pareve"
+      ],
+      "exampleMealsTotal": {
+        "kcal": 2760,
+        "protein": 210,
+        "carbs": 331,
+        "fat": 75
+      }
+    },
+    {
+      "weekday": 3,
+      "title": "Upper B",
+      "rest": false,
+      "sessions": [
+        {
+          "session": "main",
+          "location": "Gym",
+          "minutes": 75,
+          "landings": 0,
+          "space": "A normal gym floor.",
+          "equipment": [
+            "Cable pulley",
+            "Single D handle",
+            "Incline chest press machine, with a weight stack or plate loaded",
+            "Seated cable row station",
+            "Close grip V handle",
+            "Pulldown station or high cable pulley",
+            "Pec deck machine with handles or arm pads",
+            "Pec deck or rear delt fly machine"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "wed-1-cable-external-rotation",
+          "session": "main",
+          "exercise": "Cable External Rotation",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 20
+          },
+          "per": "side",
+          "restSec": 45,
+          "rir": 3,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-2-incline-machine-press",
+          "session": "main",
+          "exercise": "Incline Machine Chest Press",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-3-seated-cable-row",
+          "session": "main",
+          "exercise": "Seated Cable Row",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": null,
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-4-one-arm-lat-pulldown",
+          "session": "main",
+          "exercise": "One Arm Lat Pulldown",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 12
+          },
+          "per": "side",
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-5-pec-deck-fly",
+          "session": "main",
+          "exercise": "Pec Deck Fly",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-6-reverse-machine-fly",
+          "session": "main",
+          "exercise": "Reverse Machine Fly",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-7-machine-lateral-raise",
+          "session": "main",
+          "exercise": "Machine Lateral Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-8-machine-preacher-curl",
+          "session": "main",
+          "exercise": "Machine Preacher Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "wed-9-triceps-pushdown",
+          "session": "main",
+          "exercise": "Triceps Pushdown",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-3",
+        "evening-pareve"
+      ],
+      "exampleMealsTotal": {
+        "kcal": 2921,
+        "protein": 204,
+        "carbs": 331,
+        "fat": 95
+      }
+    },
+    {
+      "weekday": 4,
+      "title": "Home jumps and Lower B",
+      "rest": false,
+      "sessions": [
+        {
+          "session": "home",
+          "location": "Home",
+          "minutes": 10,
+          "landings": 0,
+          "space": "About 2 by 2 metres of clear floor, any ceiling, and a floor that is not slippery.",
+          "equipment": [
+            "Supportive trainers",
+            "Optional mat",
+            "A clear wall"
+          ]
+        },
+        {
+          "session": "main",
+          "location": "Gym",
+          "minutes": 50,
+          "landings": 0,
+          "space": "A normal gym floor.",
+          "equipment": [
+            "Flat bench or box about knee height",
+            "Two dumbbells",
+            "Leg extension machine",
+            "Seated leg curl machine",
+            "Seated hip abduction machine",
+            "Flat bench or sturdy box about knee height",
+            "Exercise mat",
+            "45 degree leg press machine"
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "thu-home-1-home-movement-prep",
+          "session": "home",
+          "exercise": "Home Movement Prep",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 7
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Skip the jumps today if anything hurts during the warm up."
+          ]
+        },
+        {
+          "id": "thu-home-2-tibialis-raise",
+          "session": "home",
+          "exercise": "Tibialis Raise",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 15,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 60,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": [
+            "Planned instead of Pogo Hop, because the ceiling is too low and the floor is not known to be safe for landings and it is too loud for the noise limits."
+          ]
+        },
+        {
+          "id": "thu-1-bulgarian-split-squat",
+          "session": "main",
+          "exercise": "Bulgarian Split Squat",
+          "sets": 3,
+          "target": {
+            "type": "reps",
+            "min": 8,
+            "max": 10
+          },
+          "per": "side",
+          "restSec": 150,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-2-leg-extension",
+          "session": "main",
+          "exercise": "Leg Extension",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-3-seated-leg-curl",
+          "session": "main",
+          "exercise": "Seated Leg Curl",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 10,
+            "max": 15
+          },
+          "per": null,
+          "restSec": 90,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-4-hip-abduction-machine",
+          "session": "main",
+          "exercise": "Seated Hip Abduction Machine",
+          "sets": 2,
+          "target": {
+            "type": "reps",
+            "min": 12,
+            "max": 20
+          },
+          "per": null,
+          "restSec": 75,
+          "rir": 2,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        },
+        {
+          "id": "thu-5-copenhagen-plank",
           "session": "main",
           "exercise": "Copenhagen Plank",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "hold",
             "seconds": 25
@@ -3544,429 +3847,7 @@
           "notes": []
         },
         {
-          "id": "mon-11-cable-crunch",
-          "session": "main",
-          "exercise": "Kneeling Cable Crunch",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        }
-      ],
-      "defaultMealsTotal": {
-        "kcal": 2247,
-        "protein": 204,
-        "carbs": 223,
-        "fat": 64
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
-      }
-    },
-    {
-      "weekday": 2,
-      "title": "Upper B",
-      "rest": false,
-      "items": [
-        {
-          "id": "tue-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 9,
-            "workSec": 60,
-            "restSec": 30
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
-          ]
-        },
-        {
-          "id": "tue-am-1-shadow-pass-footwork",
-          "session": "morning",
-          "exercise": "Shadow Passing Footwork",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 8
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
-            "Eight directions per set, exact rather than fast."
-          ]
-        },
-        {
-          "id": "tue-am-2-dead-bug",
-          "session": "morning",
-          "exercise": "Dead Bug",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 8
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-1-cable-external-rotation",
-          "session": "main",
-          "exercise": "Cable External Rotation",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 15,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-2-machine-bench-press",
-          "session": "main",
-          "exercise": "Machine Bench Press",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-3-seated-cable-row",
-          "session": "main",
-          "exercise": "Seated Cable Row",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-4-straight-arm-cable-pulldown",
-          "session": "main",
-          "exercise": "Straight Arm Cable Pulldown",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-5-machine-lateral-raise",
-          "session": "main",
-          "exercise": "Machine Lateral Raise",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-6-reverse-machine-fly",
-          "session": "main",
-          "exercise": "Reverse Machine Fly",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-7-machine-preacher-curl",
-          "session": "main",
-          "exercise": "Machine Preacher Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-8-triceps-pushdown",
-          "session": "main",
-          "exercise": "Triceps Pushdown",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "tue-9-dumbbell-shrug",
-          "session": "main",
-          "exercise": "Dumbbell Shrug",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        }
-      ],
-      "defaultMealsTotal": {
-        "kcal": 2250,
-        "protein": 207,
-        "carbs": 233,
-        "fat": 59
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
-      }
-    },
-    {
-      "weekday": 3,
-      "title": "Lower B",
-      "rest": false,
-      "items": [
-        {
-          "id": "wed-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 9,
-            "workSec": 60,
-            "restSec": 30
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
-          ]
-        },
-        {
-          "id": "wed-am-1-block-footwork",
-          "session": "morning",
-          "exercise": "Blocking Footwork, No Jump",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 6
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Six moves per set. No jump, or only a tiny soft hop at the stop."
-          ]
-        },
-        {
-          "id": "wed-am-2-dumbbell-y-raise",
-          "session": "morning",
-          "exercise": "Bent Over Dumbbell Y Raise",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 60,
-          "rir": 3,
-          "tempo": "3011",
-          "rpe": null,
-          "notes": [
-            "Light dumbbells, usually 1 to 3 kg."
-          ]
-        },
-        {
-          "id": "wed-am-3-side-lying-external-rotation",
-          "session": "morning",
-          "exercise": "Side Lying Dumbbell External Rotation",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 15
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": "3011",
-          "rpe": null,
-          "notes": [
-            "Light dumbbell, usually 1 to 2 kg."
-          ]
-        },
-        {
-          "id": "wed-1-bulgarian-split-squat",
-          "session": "main",
-          "exercise": "Bulgarian Split Squat",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 10
-          },
-          "per": "side",
-          "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-2-seated-leg-curl",
-          "session": "main",
-          "exercise": "Seated Leg Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 10
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-3-leg-extension",
-          "session": "main",
-          "exercise": "Leg Extension",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-4-hip-abduction-machine",
-          "session": "main",
-          "exercise": "Seated Hip Abduction Machine",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-5-leg-press-calf-raise",
+          "id": "thu-6-leg-press-calf-raise",
           "session": "main",
           "exercise": "Leg Press Calf Raise",
           "sets": 2,
@@ -3977,33 +3858,16 @@
           },
           "per": null,
           "restSec": 90,
-          "rir": 1,
+          "rir": 2,
           "tempo": null,
           "rpe": null,
           "notes": []
         },
         {
-          "id": "wed-6-cable-crunch",
-          "session": "main",
-          "exercise": "Kneeling Cable Crunch",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "wed-7-cable-woodchop",
+          "id": "thu-7-cable-woodchop",
           "session": "main",
           "exercise": "Cable Woodchop",
-          "sets": 3,
+          "sets": 2,
           "target": {
             "type": "reps",
             "min": 10,
@@ -4017,492 +3881,82 @@
           "notes": []
         }
       ],
-      "defaultMealsTotal": {
-        "kcal": 2257,
-        "protein": 195,
-        "carbs": 223,
-        "fat": 68
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
-      }
-    },
-    {
-      "weekday": 4,
-      "title": "Upper C",
-      "rest": false,
-      "items": [
-        {
-          "id": "thu-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 15,
-            "workSec": 60,
-            "restSec": 30
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
-          ]
-        },
-        {
-          "id": "thu-am-1-shadow-pass-footwork",
-          "session": "morning",
-          "exercise": "Shadow Passing Footwork",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 8
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
-            "Eight directions per set, exact rather than fast."
-          ]
-        },
-        {
-          "id": "thu-am-2-dead-bug",
-          "session": "morning",
-          "exercise": "Dead Bug",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 8
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-1-cable-external-rotation",
-          "session": "main",
-          "exercise": "Cable External Rotation",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 15,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-2-incline-machine-press",
-          "session": "main",
-          "exercise": "Incline Machine Chest Press",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": null,
-          "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-3-one-arm-lat-pulldown",
-          "session": "main",
-          "exercise": "One Arm Lat Pulldown",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 12
-          },
-          "per": "side",
-          "restSec": 150,
-          "rir": 1,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-4-single-arm-cable-lateral-raise",
-          "session": "main",
-          "exercise": "Single Arm Cable Lateral Raise",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": "side",
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-5-face-pull",
-          "session": "main",
-          "exercise": "Face Pull",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-6-incline-dumbbell-curl",
-          "session": "main",
-          "exercise": "Incline Dumbbell Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-7-rope-overhead-triceps-extension",
-          "session": "main",
-          "exercise": "Rope Overhead Triceps Extension",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-8-rope-hammer-curl",
-          "session": "main",
-          "exercise": "Cable Rope Hammer Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "thu-9-palm-down-wrist-curl",
-          "session": "main",
-          "exercise": "Seated Palm Down Wrist Curl",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 0,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        }
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-4",
+        "evening-pareve"
       ],
-      "defaultMealsTotal": {
-        "kcal": 2247,
-        "protein": 204,
-        "carbs": 223,
-        "fat": 64
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
+      "exampleMealsTotal": {
+        "kcal": 2910,
+        "protein": 213,
+        "carbs": 331,
+        "fat": 90
       }
     },
     {
       "weekday": 5,
-      "title": "Lower C and Swim",
+      "title": "Volleyball skills at home",
       "rest": false,
-      "items": [
+      "sessions": [
         {
-          "id": "fri-rope",
-          "session": "morning",
-          "exercise": "Easy Jump Rope",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 6,
-            "workSec": 60,
-            "restSec": 30
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "1 minute easy work and 30 seconds rest.",
-            "No double unders.",
-            "Stop when speed, jump height, landing control, or technique declines."
-          ]
-        },
-        {
-          "id": "fri-am-1-shadow-pass-footwork",
-          "session": "morning",
-          "exercise": "Shadow Passing Footwork",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 8,
-            "max": 8
-          },
-          "per": null,
-          "restSec": 45,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.",
-            "Eight directions per set, exact rather than fast."
-          ]
-        },
-        {
-          "id": "fri-am-2-dead-bug",
-          "session": "morning",
-          "exercise": "Dead Bug",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 8
-          },
-          "per": "side",
-          "restSec": 45,
-          "rir": 3,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-1-dynamic-volleyball-warm-up",
-          "session": "main",
-          "exercise": "Dynamic Volleyball Warm Up",
-          "sets": 1,
-          "target": {
-            "type": "duration",
-            "totalMin": 8
-          },
-          "per": null,
-          "restSec": 30,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-2-approach-touch-jump",
-          "session": "main",
-          "exercise": "Approach Jump and Reach",
-          "sets": 6,
-          "target": {
-            "type": "reps",
-            "min": 1,
-            "max": 1
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "First 2 or 3 slow walk throughs of the last two steps, then 3 or 4 run ups at about 80 percent.",
-            "Alternate two foot and one foot takeoffs to find the one that touches higher.",
-            "Full effort on every jump with full rest. Stop the drill as soon as height or landing quality drops.",
-            "Log the height you touch in Reach. The rim is 305 cm."
-          ]
-        },
-        {
-          "id": "fri-3-single-leg-hop",
-          "session": "main",
-          "exercise": "Single Leg Hop",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 5,
-            "max": 5
-          },
-          "per": "side",
-          "restSec": 60,
-          "rir": null,
-          "tempo": null,
-          "rpe": null,
-          "notes": [
-            "Low, quick hops in place."
-          ]
-        },
-        {
-          "id": "fri-4-bulgarian-split-squat",
-          "session": "main",
-          "exercise": "Bulgarian Split Squat",
-          "sets": 3,
-          "target": {
-            "type": "reps",
-            "min": 6,
-            "max": 8
-          },
-          "per": "side",
-          "restSec": 150,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-5-seated-leg-curl",
-          "session": "main",
-          "exercise": "Seated Leg Curl",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 10,
-            "max": 15
-          },
-          "per": null,
-          "restSec": 90,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-6-hip-abduction-machine",
-          "session": "main",
-          "exercise": "Seated Hip Abduction Machine",
-          "sets": 2,
-          "target": {
-            "type": "reps",
-            "min": 12,
-            "max": 20
-          },
-          "per": null,
-          "restSec": 75,
-          "rir": 2,
-          "tempo": null,
-          "rpe": null,
-          "notes": []
-        },
-        {
-          "id": "fri-swim",
-          "session": "swim",
-          "exercise": "Easy Moderate Pool Round Trip",
-          "sets": 2,
-          "target": {
-            "type": "roundTrips",
-            "count": 10
-          },
-          "per": null,
-          "restSec": 300,
-          "rir": null,
-          "tempo": null,
-          "rpe": [
-            4,
-            5
-          ],
-          "notes": [
-            "Twenty round trips in total, with a five minute break after the first ten.",
-            "Easy to moderate effort, RPE 4 to 5.",
-            "Separate swimming from the main workout by at least three hours when possible.",
-            "Distance depends on pool length. Set it in the log."
+          "session": "home",
+          "location": "Home",
+          "minutes": 5,
+          "landings": 0,
+          "space": "About 2 by 2 metres of clear floor, any ceiling, and a floor that is not slippery.",
+          "equipment": [
+            "Supportive trainers",
+            "Optional mat"
           ]
         }
       ],
-      "defaultMealsTotal": {
-        "kcal": 2239,
-        "protein": 210,
-        "carbs": 233,
-        "fat": 55
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "carbs": 215,
-        "fat": 85
+      "items": [
+        {
+          "id": "fri-home-1-home-movement-prep",
+          "session": "home",
+          "exercise": "Home Movement Prep",
+          "sets": 1,
+          "target": {
+            "type": "duration",
+            "totalMin": 6
+          },
+          "per": null,
+          "restSec": 30,
+          "rir": null,
+          "tempo": null,
+          "rpe": null,
+          "notes": []
+        }
+      ],
+      "exampleMeals": [
+        "breakfast",
+        "school-snack",
+        "school-lunch",
+        "afternoon",
+        "dinner-5"
+      ],
+      "exampleMealsTotal": {
+        "kcal": 2606,
+        "protein": 214,
+        "carbs": 302,
+        "fat": 66
       }
     },
     {
       "weekday": 6,
       "title": "Full Rest",
       "rest": true,
+      "sessions": [],
       "items": [],
-      "defaultMealsTotal": {
+      "exampleMeals": [],
+      "exampleMealsTotal": {
         "kcal": 0,
         "protein": 0,
         "carbs": 0,
         "fat": 0
-      },
-      "target": {
-        "kcal": 2250,
-        "band": [
-          2150,
-          2350
-        ],
-        "protein": 150,
-        "carbs": 190,
-        "fat": 93
       }
     }
   ],
@@ -4517,377 +3971,241 @@
         "key": "upper_back",
         "label": "Upper back",
         "present": true,
-        "directSets": 50,
-        "indirectSets": 39,
-        "exposures": 8,
+        "directSets": 30,
+        "indirectSets": 24,
+        "exposures": 0,
         "exercises": [
           "Cable External Rotation",
           "Wide Grip Lat Pulldown",
           "Chest Supported Dumbbell Row",
-          "Bent Over Dumbbell Y Raise",
-          "Dynamic Volleyball Warm Up",
           "Seated Cable Row",
           "Reverse Machine Fly",
-          "Dumbbell Shrug",
-          "Face Pull",
-          "Straight Arm Cable Pulldown",
-          "One Arm Lat Pulldown",
-          "Easy Moderate Pool Round Trip",
-          "Side Lying Dumbbell External Rotation"
+          "One Arm Lat Pulldown"
         ]
       },
       {
         "key": "calves",
         "label": "Calves",
         "present": true,
-        "directSets": 5,
-        "indirectSets": 8.5,
-        "exposures": 36,
+        "directSets": 4,
+        "indirectSets": 5,
+        "exposures": 6,
         "exercises": [
-          "Easy Jump Rope",
-          "Shadow Passing Footwork",
-          "Blocking Footwork, No Jump",
-          "Dynamic Volleyball Warm Up",
-          "Pogo Hop",
-          "Box Jump",
-          "Hurdle Hop",
-          "Standing Broad Jump",
+          "Home Movement Prep",
           "Leg Press Calf Raise",
-          "Bulgarian Split Squat",
-          "Approach Jump and Reach",
-          "Single Leg Hop"
+          "Bulgarian Split Squat"
         ]
       },
       {
         "key": "forearms",
         "label": "Forearms",
         "present": true,
-        "directSets": 9,
-        "indirectSets": 18,
+        "directSets": 0,
+        "indirectSets": 10.5,
         "exposures": 0,
         "exercises": [
           "Incline Dumbbell Curl",
-          "Seated Palm Up Wrist Curl",
           "Dumbbell Romanian Deadlift",
           "Seated Cable Row",
-          "Dumbbell Shrug",
           "One Arm Lat Pulldown",
-          "Seated Palm Down Wrist Curl",
           "Chest Supported Dumbbell Row",
-          "Machine Preacher Curl",
-          "Cable Rope Hammer Curl"
+          "Machine Preacher Curl"
         ]
       }
     ],
     "perMuscle": [
       {
         "muscle": "pec_clavicular",
-        "direct": 6,
-        "indirect": 3,
+        "direct": 5,
+        "indirect": 2.5,
         "exposures": 0
       },
       {
         "muscle": "pec_sternal",
-        "direct": 6,
-        "indirect": 3,
-        "exposures": 2
+        "direct": 5,
+        "indirect": 2.5,
+        "exposures": 0
       },
       {
         "muscle": "delt_anterior",
-        "direct": 6,
-        "indirect": 3,
-        "exposures": 5
+        "direct": 5,
+        "indirect": 2.5,
+        "exposures": 0
       },
       {
         "muscle": "delt_lateral",
-        "direct": 9,
+        "direct": 5,
         "indirect": 0,
-        "exposures": 2
+        "exposures": 0
       },
       {
         "muscle": "delt_posterior",
-        "direct": 10,
-        "indirect": 8,
-        "exposures": 2
+        "direct": 3,
+        "indirect": 5,
+        "exposures": 0
       },
       {
         "muscle": "serratus_anterior",
         "direct": 0,
         "indirect": 0,
-        "exposures": 2
+        "exposures": 0
       },
       {
         "muscle": "biceps",
-        "direct": 9,
-        "indirect": 7.5,
+        "direct": 4,
+        "indirect": 6,
         "exposures": 0
       },
       {
         "muscle": "brachialis",
-        "direct": 6,
-        "indirect": 9,
+        "direct": 2,
+        "indirect": 7,
         "exposures": 0
       },
       {
         "muscle": "brachioradialis",
-        "direct": 3,
-        "indirect": 7.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "triceps",
-        "direct": 9,
-        "indirect": 6,
-        "exposures": 2
-      },
-      {
-        "muscle": "forearm_flexors",
-        "direct": 3,
-        "indirect": 10.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "forearm_extensors",
-        "direct": 3,
-        "indirect": 0,
-        "exposures": 0
-      },
-      {
-        "muscle": "rectus_abdominis",
-        "direct": 14,
-        "indirect": 1.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "obliques_core",
-        "direct": 14,
-        "indirect": 9,
-        "exposures": 18
-      },
-      {
-        "muscle": "hip_flexors",
-        "direct": 0,
-        "indirect": 4,
-        "exposures": 5
-      },
-      {
-        "muscle": "traps_upper",
-        "direct": 3,
-        "indirect": 4.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "traps_middle",
-        "direct": 9,
-        "indirect": 9.5,
-        "exposures": 2
-      },
-      {
-        "muscle": "traps_lower",
-        "direct": 4,
-        "indirect": 10.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "rhomboids",
-        "direct": 6,
-        "indirect": 6.5,
-        "exposures": 2
-      },
-      {
-        "muscle": "lats",
-        "direct": 15,
-        "indirect": 0,
-        "exposures": 2
-      },
-      {
-        "muscle": "teres_major",
-        "direct": 6,
-        "indirect": 4.5,
-        "exposures": 0
-      },
-      {
-        "muscle": "rotator_cuff",
-        "direct": 13,
-        "indirect": 8,
-        "exposures": 4
-      },
-      {
-        "muscle": "erectors",
         "direct": 0,
         "indirect": 5,
         "exposures": 0
       },
       {
-        "muscle": "glute_max",
+        "muscle": "triceps",
+        "direct": 4,
+        "indirect": 4,
+        "exposures": 0
+      },
+      {
+        "muscle": "forearm_flexors",
+        "direct": 0,
+        "indirect": 5.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "forearm_extensors",
+        "direct": 0,
+        "indirect": 0,
+        "exposures": 0
+      },
+      {
+        "muscle": "rectus_abdominis",
+        "direct": 2,
+        "indirect": 1,
+        "exposures": 0
+      },
+      {
+        "muscle": "obliques_core",
+        "direct": 4,
+        "indirect": 4,
+        "exposures": 3
+      },
+      {
+        "muscle": "hip_flexors",
+        "direct": 0,
+        "indirect": 0,
+        "exposures": 3
+      },
+      {
+        "muscle": "traps_upper",
+        "direct": 0,
+        "indirect": 2.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "traps_middle",
+        "direct": 6,
+        "indirect": 5,
+        "exposures": 0
+      },
+      {
+        "muscle": "traps_lower",
+        "direct": 0,
+        "indirect": 6.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "rhomboids",
+        "direct": 6,
+        "indirect": 3,
+        "exposures": 0
+      },
+      {
+        "muscle": "lats",
         "direct": 12,
-        "indirect": 2,
-        "exposures": 20
+        "indirect": 0,
+        "exposures": 0
+      },
+      {
+        "muscle": "teres_major",
+        "direct": 3,
+        "indirect": 4.5,
+        "exposures": 0
+      },
+      {
+        "muscle": "rotator_cuff",
+        "direct": 4,
+        "indirect": 4,
+        "exposures": 0
+      },
+      {
+        "muscle": "erectors",
+        "direct": 0,
+        "indirect": 3,
+        "exposures": 0
+      },
+      {
+        "muscle": "glute_max",
+        "direct": 9,
+        "indirect": 1,
+        "exposures": 3
       },
       {
         "muscle": "glute_med",
-        "direct": 4,
-        "indirect": 4.5,
-        "exposures": 9
+        "direct": 2,
+        "indirect": 2.5,
+        "exposures": 3
       },
       {
         "muscle": "adductors",
-        "direct": 3,
-        "indirect": 6,
-        "exposures": 8
+        "direct": 2,
+        "indirect": 4.5,
+        "exposures": 0
       },
       {
         "muscle": "quads",
-        "direct": 11,
+        "direct": 8,
         "indirect": 0,
-        "exposures": 23
+        "exposures": 3
       },
       {
         "muscle": "hamstrings",
-        "direct": 8,
-        "indirect": 4.5,
-        "exposures": 6
+        "direct": 7,
+        "indirect": 3,
+        "exposures": 3
       },
       {
         "muscle": "gastrocnemius",
-        "direct": 5,
-        "indirect": 3,
-        "exposures": 20
+        "direct": 4,
+        "indirect": 1.5,
+        "exposures": 3
       },
       {
         "muscle": "soleus",
         "direct": 0,
-        "indirect": 5.5,
-        "exposures": 16
+        "indirect": 3.5,
+        "exposures": 3
       },
       {
         "muscle": "tibialis_anterior",
-        "direct": 2,
+        "direct": 4,
         "indirect": 0,
-        "exposures": 7
+        "exposures": 3
       }
     ],
     "shoulderNotes": []
   },
   "nutrition": {
-    "floors": {
-      "kcal": 2000,
-      "carbs": 130
-    },
-    "targets": [
-      {
-        "weekday": 0,
-        "label": "Upper A and swim",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 1,
-        "label": "Lower A and jump",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 2,
-        "label": "Upper B",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 3,
-        "label": "Lower B",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 4,
-        "label": "Upper C",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 5,
-        "label": "Lower C and swim",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 155,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 215,
-        "fat": 85
-      },
-      {
-        "weekday": 6,
-        "label": "Rest",
-        "kcal": 2250,
-        "kcalBand": [
-          2150,
-          2350
-        ],
-        "protein": 150,
-        "proteinRange": [
-          150,
-          175
-        ],
-        "carbs": 190,
-        "fat": 93
-      }
-    ],
+    "note": "Example serving. Adjust to appetite and activity; this is not a daily limit.",
+    "defaultTarget": null,
     "sabbathPlate": [
       {
         "label": "Protein",
@@ -4901,7 +4219,7 @@
       },
       {
         "label": "Rice or potatoes",
-        "detail": "One normal serving, about the size of your fist.",
+        "detail": "One normal serving, about the size of your fist, or more when hungry.",
         "foodId": "rice-cooked",
         "grams": [
           110,
@@ -4935,6 +4253,7 @@
     {
       "id": "breakfast",
       "slot": "breakfast",
+      "kosher": "dairy",
       "time": "07:10",
       "weekdays": [
         0,
@@ -4947,35 +4266,69 @@
       "items": [
         {
           "foodId": "yogurt-hp",
-          "grams": 300
-        },
-        {
-          "foodId": "banana",
-          "grams": 118
+          "grams": 300,
+          "household": "one and a half 200 g tubs"
         },
         {
           "foodId": "oats",
-          "grams": 60
+          "grams": 80,
+          "household": "about 1 cup, weighed dry"
+        },
+        {
+          "foodId": "banana",
+          "grams": 118,
+          "household": "1 medium banana"
         },
         {
           "foodId": "berries-frozen",
           "grams": 100,
+          "household": "a large handful",
           "optional": true,
           "defaultOn": true
+        }
+      ],
+      "more": [
+        "Another 30 g oats",
+        "A slice of whole wheat bread with a tablespoon of tahini",
+        "A second piece of fruit"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "school-snack",
+      "slot": "snack",
+      "kosher": "pareve",
+      "time": "10:00",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "items": [
+        {
+          "foodId": "apple",
+          "grams": 180,
+          "household": "1 medium apple"
         },
         {
-          "foodId": "protein-powder",
-          "grams": 15,
-          "optional": true,
-          "defaultOn": false,
-          "note": "Only if food protein is short that day."
+          "foodId": "almonds",
+          "grams": 30,
+          "household": "a handful"
         }
+      ],
+      "more": [
+        "A banana as well",
+        "A second handful of nuts"
       ],
       "estimatedAtSchool": false
     },
     {
       "id": "school-lunch",
       "slot": "lunch",
+      "kosher": "pareve",
       "time": "12:00",
       "weekdays": [
         0,
@@ -4989,349 +4342,41 @@
         {
           "foodId": "egg",
           "grams": 100,
-          "note": "2 whole eggs"
+          "household": "2 large eggs"
         },
         {
           "foodId": "egg-white",
           "grams": 66,
-          "note": "2 egg whites"
+          "household": "2 egg whites"
         },
         {
           "foodId": "tofu",
           "grams": 135,
-          "note": "120 to 150 g"
+          "household": "a palm sized piece"
         },
         {
           "foodId": "salad",
           "grams": 300,
-          "note": "Large salad"
+          "household": "half a plate or a large bowl"
         },
         {
           "foodId": "olives",
           "grams": 30,
-          "note": "Small measured serving, about 7 olives"
+          "household": "about 7 olives"
         }
+      ],
+      "more": [
+        "Another egg or a larger piece of tofu",
+        "Hummus or tahini with the salad",
+        "Rice, potatoes, or bread if the cafeteria has them and you are hungry"
       ],
       "estimatedAtSchool": true
     },
     {
-      "id": "preworkout-0",
+      "id": "afternoon",
       "slot": "preworkout",
+      "kosher": "meat",
       "time": "15:20",
-      "weekdays": [
-        0
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "preworkout-1",
-      "slot": "preworkout",
-      "time": "15:20",
-      "weekdays": [
-        1
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "preworkout-2",
-      "slot": "preworkout",
-      "time": "15:20",
-      "weekdays": [
-        2
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "preworkout-3",
-      "slot": "preworkout",
-      "time": "15:20",
-      "weekdays": [
-        3
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "preworkout-4",
-      "slot": "preworkout",
-      "time": "15:20",
-      "weekdays": [
-        4
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "preworkout-5",
-      "slot": "preworkout",
-      "time": "15:20",
-      "weekdays": [
-        5
-      ],
-      "items": [
-        {
-          "foodId": "rice-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "chicken-breast",
-          "grams": 120,
-          "note": "Cooked weight"
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-0",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        0
-      ],
-      "items": [
-        {
-          "foodId": "salmon",
-          "grams": 180,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 150,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-1",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        1
-      ],
-      "items": [
-        {
-          "foodId": "beef-lean",
-          "grams": 180,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 150,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-2",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        2
-      ],
-      "items": [
-        {
-          "foodId": "white-fish",
-          "grams": 220,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 200,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        },
-        {
-          "foodId": "olive-oil",
-          "grams": 10
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-3",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        3
-      ],
-      "items": [
-        {
-          "foodId": "salmon",
-          "grams": 180,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 150,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-4",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        4
-      ],
-      "items": [
-        {
-          "foodId": "beef-lean",
-          "grams": 180,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 150,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "dinner-5",
-      "slot": "dinner",
-      "time": "18:45",
-      "weekdays": [
-        5
-      ],
-      "items": [
-        {
-          "foodId": "turkey-breast",
-          "grams": 180,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "potato",
-          "grams": 200,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "lentils-cooked",
-          "grams": 100,
-          "note": "Cooked weight"
-        },
-        {
-          "foodId": "veg-mixed",
-          "grams": 300
-        },
-        {
-          "foodId": "olive-oil",
-          "grams": 5
-        }
-      ],
-      "estimatedAtSchool": false
-    },
-    {
-      "id": "evening-milk",
-      "slot": "evening",
-      "time": "20:30",
       "weekdays": [
         0,
         1,
@@ -5342,12 +4387,1180 @@
       ],
       "items": [
         {
-          "foodId": "milk",
-          "grams": 300,
-          "note": "300 ml"
+          "foodId": "rice-cooked",
+          "grams": 200,
+          "household": "about one and a quarter cups cooked, from 75 g dry",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "chicken-breast",
+          "grams": 120,
+          "household": "a palm sized piece, from about 165 g raw",
+          "note": "Cooked weight"
         }
       ],
+      "more": [
+        "Another 50 to 100 g cooked rice",
+        "A banana before training"
+      ],
       "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-0",
+      "slot": "dinner",
+      "kosher": "pareve",
+      "time": "19:00",
+      "weekdays": [
+        0
+      ],
+      "items": [
+        {
+          "foodId": "salmon",
+          "grams": 180,
+          "household": "a fillet about the size of your hand",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-1",
+      "slot": "dinner",
+      "kosher": "meat",
+      "time": "19:00",
+      "weekdays": [
+        1
+      ],
+      "items": [
+        {
+          "foodId": "beef-lean",
+          "grams": 180,
+          "household": "two palm sized portions",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-2",
+      "slot": "dinner",
+      "kosher": "pareve",
+      "time": "19:00",
+      "weekdays": [
+        2
+      ],
+      "items": [
+        {
+          "foodId": "white-fish",
+          "grams": 200,
+          "household": "a large fillet",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-3",
+      "slot": "dinner",
+      "kosher": "pareve",
+      "time": "19:00",
+      "weekdays": [
+        3
+      ],
+      "items": [
+        {
+          "foodId": "salmon",
+          "grams": 180,
+          "household": "a fillet about the size of your hand",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-4",
+      "slot": "dinner",
+      "kosher": "meat",
+      "time": "19:00",
+      "weekdays": [
+        4
+      ],
+      "items": [
+        {
+          "foodId": "beef-lean",
+          "grams": 180,
+          "household": "two palm sized portions",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "dinner-5",
+      "slot": "dinner",
+      "kosher": "meat",
+      "time": "19:00",
+      "weekdays": [
+        5
+      ],
+      "items": [
+        {
+          "foodId": "turkey-breast",
+          "grams": 180,
+          "household": "two palm sized portions",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "potato",
+          "grams": 250,
+          "household": "2 to 3 medium potatoes",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "lentils-cooked",
+          "grams": 100,
+          "household": "about half a cup cooked",
+          "note": "Cooked weight"
+        },
+        {
+          "foodId": "veg-mixed",
+          "grams": 300,
+          "household": "half the plate"
+        },
+        {
+          "foodId": "olive-oil",
+          "grams": 5,
+          "household": "about one teaspoon",
+          "note": "Cooking oil counts. Log what you use."
+        }
+      ],
+      "more": [
+        "Another 100 g potato or rice",
+        "More lentils or vegetables",
+        "Bread with the meal"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "evening-milk",
+      "slot": "evening",
+      "kosher": "dairy",
+      "time": "20:45",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "items": [
+        {
+          "foodId": "milk",
+          "grams": 300,
+          "household": "a large glass, 300 ml"
+        }
+      ],
+      "more": [
+        "A piece of fruit"
+      ],
+      "estimatedAtSchool": false
+    },
+    {
+      "id": "evening-pareve",
+      "slot": "evening",
+      "kosher": "pareve",
+      "time": "20:45",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "items": [
+        {
+          "foodId": "apple",
+          "grams": 180,
+          "household": "1 medium apple"
+        },
+        {
+          "foodId": "almonds",
+          "grams": 20,
+          "household": "a small handful"
+        }
+      ],
+      "more": [
+        "More almonds or a second fruit"
+      ],
+      "estimatedAtSchool": false
+    }
+  ],
+  "foods": [
+    {
+      "id": "yogurt-hp",
+      "name": "High protein yogurt or skyr, 0 to 3% fat",
+      "state": "as sold",
+      "kosher": "dairy",
+      "per100": {
+        "kcal": 68,
+        "protein": 10.5,
+        "carbs": 4,
+        "fat": 1.2,
+        "fibre": 0,
+        "calcium": 120
+      },
+      "source": null
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 89,
+        "protein": 1.1,
+        "carbs": 22.8,
+        "fat": 0.3,
+        "fibre": 2.6,
+        "calcium": 5
+      },
+      "source": null
+    },
+    {
+      "id": "oats",
+      "name": "Rolled oats",
+      "state": "dry",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 379,
+        "protein": 13.2,
+        "carbs": 67.7,
+        "fat": 6.5,
+        "fibre": 10.1,
+        "calcium": 52
+      },
+      "source": null
+    },
+    {
+      "id": "berries-frozen",
+      "name": "Frozen mixed berries",
+      "state": "frozen",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 50,
+        "protein": 0.8,
+        "carbs": 11.5,
+        "fat": 0.3,
+        "fibre": 3.5,
+        "calcium": 15
+      },
+      "source": null
+    },
+    {
+      "id": "protein-powder",
+      "name": "Whey protein powder",
+      "state": "as sold",
+      "kosher": "dairy",
+      "per100": {
+        "kcal": 390,
+        "protein": 78,
+        "carbs": 8,
+        "fat": 5,
+        "fibre": 0,
+        "calcium": 400
+      },
+      "source": null
+    },
+    {
+      "id": "egg",
+      "name": "Egg, whole",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 143,
+        "protein": 12.6,
+        "carbs": 0.7,
+        "fat": 9.5,
+        "fibre": 0,
+        "calcium": 56
+      },
+      "source": "USDA FDC 171287, egg, whole, raw"
+    },
+    {
+      "id": "egg-white",
+      "name": "Egg white",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 52,
+        "protein": 10.9,
+        "carbs": 0.7,
+        "fat": 0.2,
+        "fibre": 0,
+        "calcium": 7
+      },
+      "source": "USDA FDC 172183, egg, white, raw"
+    },
+    {
+      "id": "tofu",
+      "name": "Tofu, firm",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 144,
+        "protein": 17.3,
+        "carbs": 2.8,
+        "fat": 8.7,
+        "fibre": 2.3,
+        "calcium": 350
+      },
+      "source": "USDA FDC 172475, tofu, firm, for the macros"
+    },
+    {
+      "id": "salad",
+      "name": "Salad vegetables, no dressing",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 20,
+        "protein": 0.9,
+        "carbs": 4,
+        "fat": 0.2,
+        "fibre": 1.3,
+        "calcium": 15
+      },
+      "source": null
+    },
+    {
+      "id": "olives",
+      "name": "Olives",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 130,
+        "protein": 1,
+        "carbs": 5,
+        "fat": 13,
+        "fibre": 3,
+        "calcium": 60
+      },
+      "source": null
+    },
+    {
+      "id": "rice-cooked",
+      "name": "White rice, cooked",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 130,
+        "protein": 2.7,
+        "carbs": 28.2,
+        "fat": 0.3,
+        "fibre": 0.4,
+        "calcium": 10
+      },
+      "source": "USDA FDC 168878, rice, white, long grain, cooked"
+    },
+    {
+      "id": "rice-dry",
+      "name": "White rice, dry (uncooked)",
+      "state": "dry",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 365,
+        "protein": 7.1,
+        "carbs": 80,
+        "fat": 0.7,
+        "fibre": 1.3,
+        "calcium": 28
+      },
+      "source": "USDA FDC 168877, rice, white, long grain, raw"
+    },
+    {
+      "id": "potato",
+      "name": "Potato, boiled, no oil",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 87,
+        "protein": 1.9,
+        "carbs": 20.1,
+        "fat": 0.1,
+        "fibre": 1.8,
+        "calcium": 5
+      },
+      "source": "USDA SR 11365, potato, boiled in skin"
+    },
+    {
+      "id": "potato-raw",
+      "name": "Potato, raw",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 77,
+        "protein": 2,
+        "carbs": 17.5,
+        "fat": 0.1,
+        "fibre": 2.1,
+        "calcium": 12
+      },
+      "source": "USDA FDC 170026, potato, flesh and skin, raw"
+    },
+    {
+      "id": "sweet-potato",
+      "name": "Sweet potato, baked",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 90,
+        "protein": 2,
+        "carbs": 20.7,
+        "fat": 0.2,
+        "fibre": 3.3,
+        "calcium": 38
+      },
+      "source": null
+    },
+    {
+      "id": "pasta-cooked",
+      "name": "Pasta",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 158,
+        "protein": 5.8,
+        "carbs": 30.9,
+        "fat": 0.9,
+        "fibre": 1.8,
+        "calcium": 7
+      },
+      "source": null
+    },
+    {
+      "id": "couscous-cooked",
+      "name": "Couscous",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 112,
+        "protein": 3.8,
+        "carbs": 23.2,
+        "fat": 0.2,
+        "fibre": 1.4,
+        "calcium": 8
+      },
+      "source": null
+    },
+    {
+      "id": "quinoa-cooked",
+      "name": "Quinoa",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 120,
+        "protein": 4.4,
+        "carbs": 21.3,
+        "fat": 1.9,
+        "fibre": 2.8,
+        "calcium": 17
+      },
+      "source": null
+    },
+    {
+      "id": "bread-wholewheat",
+      "name": "Whole wheat bread",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 250,
+        "protein": 12,
+        "carbs": 43,
+        "fat": 3.5,
+        "fibre": 7,
+        "calcium": 100
+      },
+      "source": null
+    },
+    {
+      "id": "challah",
+      "name": "Challah",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 290,
+        "protein": 8.5,
+        "carbs": 50,
+        "fat": 6,
+        "fibre": 2,
+        "calcium": 60
+      },
+      "source": null
+    },
+    {
+      "id": "lentils-cooked",
+      "name": "Lentils, cooked",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 116,
+        "protein": 9,
+        "carbs": 20.1,
+        "fat": 0.4,
+        "fibre": 7.9,
+        "calcium": 19
+      },
+      "source": "USDA SR 16070, lentils, boiled, without salt"
+    },
+    {
+      "id": "lentils-dry",
+      "name": "Lentils, dry (uncooked)",
+      "state": "dry",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 352,
+        "protein": 24.6,
+        "carbs": 63.4,
+        "fat": 1.1,
+        "fibre": 10.7,
+        "calcium": 35
+      },
+      "source": "USDA FDC 172420, lentils, raw"
+    },
+    {
+      "id": "chickpeas-cooked",
+      "name": "Chickpeas",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 164,
+        "protein": 8.9,
+        "carbs": 27.4,
+        "fat": 2.6,
+        "fibre": 7.6,
+        "calcium": 49
+      },
+      "source": null
+    },
+    {
+      "id": "chicken-breast",
+      "name": "Chicken breast, skinless, cooked",
+      "state": "cooked",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 165,
+        "protein": 31,
+        "carbs": 0,
+        "fat": 3.6,
+        "fibre": 0,
+        "calcium": 15
+      },
+      "source": "USDA FDC 171477, chicken breast, meat only, roasted"
+    },
+    {
+      "id": "chicken-raw",
+      "name": "Chicken breast, skinless, raw",
+      "state": "raw",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 120,
+        "protein": 22.5,
+        "carbs": 0,
+        "fat": 2.6,
+        "fibre": 0,
+        "calcium": 5
+      },
+      "source": "USDA FDC 171077, chicken breast, meat only, raw"
+    },
+    {
+      "id": "salmon",
+      "name": "Salmon",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 206,
+        "protein": 22.1,
+        "carbs": 0,
+        "fat": 12.4,
+        "fibre": 0,
+        "calcium": 15
+      },
+      "source": null
+    },
+    {
+      "id": "beef-lean",
+      "name": "Lean beef, about 90% lean",
+      "state": "cooked",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 200,
+        "protein": 27,
+        "carbs": 0,
+        "fat": 10,
+        "fibre": 0,
+        "calcium": 15
+      },
+      "source": null
+    },
+    {
+      "id": "white-fish",
+      "name": "White fish (cod, hake, tilapia)",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 105,
+        "protein": 23,
+        "carbs": 0,
+        "fat": 1.2,
+        "fibre": 0,
+        "calcium": 15
+      },
+      "source": null
+    },
+    {
+      "id": "turkey-breast",
+      "name": "Turkey breast, skinless",
+      "state": "cooked",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 147,
+        "protein": 30,
+        "carbs": 0,
+        "fat": 2.1,
+        "fibre": 0,
+        "calcium": 12
+      },
+      "source": null
+    },
+    {
+      "id": "tuna-water",
+      "name": "Tuna in water, drained",
+      "state": "drained",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 116,
+        "protein": 25.5,
+        "carbs": 0,
+        "fat": 0.8,
+        "fibre": 0,
+        "calcium": 11
+      },
+      "source": "USDA FDC 171986, light tuna in water, drained"
+    },
+    {
+      "id": "cottage-cheese",
+      "name": "Cottage cheese, 5%",
+      "state": "as sold",
+      "kosher": "dairy",
+      "per100": {
+        "kcal": 95,
+        "protein": 11,
+        "carbs": 1.5,
+        "fat": 5,
+        "fibre": 0,
+        "calcium": 90
+      },
+      "source": null
+    },
+    {
+      "id": "veg-mixed",
+      "name": "Non starchy vegetables, cooked",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 35,
+        "protein": 2,
+        "carbs": 7,
+        "fat": 0.3,
+        "fibre": 3,
+        "calcium": 35
+      },
+      "source": null
+    },
+    {
+      "id": "green-beans",
+      "name": "Green beans, boiled and drained",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 35,
+        "protein": 1.9,
+        "carbs": 7.9,
+        "fat": 0.3,
+        "fibre": 3.2,
+        "calcium": 44
+      },
+      "source": "USDA SR 11053, snap beans, green, boiled, drained, without salt"
+    },
+    {
+      "id": "green-beans-raw",
+      "name": "Green beans, raw",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 31,
+        "protein": 1.8,
+        "carbs": 7,
+        "fat": 0.2,
+        "fibre": 2.7,
+        "calcium": 37
+      },
+      "source": "USDA FDC 169961, snap beans, green, raw"
+    },
+    {
+      "id": "green-beans-frozen",
+      "name": "Green beans, frozen, cooked and drained",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 28,
+        "protein": 1.5,
+        "carbs": 6.5,
+        "fat": 0.2,
+        "fibre": 3,
+        "calcium": 40
+      },
+      "source": "USDA FDC 169963, snap beans, green, frozen, boiled, drained"
+    },
+    {
+      "id": "green-beans-canned",
+      "name": "Green beans, canned, drained",
+      "state": "drained",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 22,
+        "protein": 1.1,
+        "carbs": 4.3,
+        "fat": 0.5,
+        "fibre": 1.9,
+        "calcium": 26
+      },
+      "source": "USDA FDC 169143, snap beans, green, canned, drained solids"
+    },
+    {
+      "id": "peas",
+      "name": "Peas",
+      "state": "cooked",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 84,
+        "protein": 5.4,
+        "carbs": 15.6,
+        "fat": 0.2,
+        "fibre": 5.5,
+        "calcium": 27
+      },
+      "source": null
+    },
+    {
+      "id": "lentil-soup",
+      "name": "Lentil soup (PeakForm recipe)",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 44,
+        "protein": 2.5,
+        "carbs": 7.3,
+        "fat": 0.5,
+        "fibre": 1.5,
+        "calcium": 10
+      },
+      "source": null
+    },
+    {
+      "id": "olive-oil",
+      "name": "Olive oil",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 884,
+        "protein": 0,
+        "carbs": 0,
+        "fat": 100,
+        "fibre": 0,
+        "calcium": 1
+      },
+      "source": "USDA SR 04053, olive oil"
+    },
+    {
+      "id": "tahini",
+      "name": "Tahini sauce, prepared",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 290,
+        "protein": 8,
+        "carbs": 10,
+        "fat": 25,
+        "fibre": 4,
+        "calcium": 150
+      },
+      "source": null
+    },
+    {
+      "id": "tahini-raw",
+      "name": "Tahini, raw paste",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 595,
+        "protein": 17,
+        "carbs": 21.2,
+        "fat": 53.8,
+        "fibre": 9.3,
+        "calcium": 426
+      },
+      "source": "USDA FDC 170189, sesame butter, tahini"
+    },
+    {
+      "id": "almonds",
+      "name": "Almonds",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 579,
+        "protein": 21.2,
+        "carbs": 21.6,
+        "fat": 49.9,
+        "fibre": 12.5,
+        "calcium": 269
+      },
+      "source": "USDA FDC 170567, almonds"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "state": "raw",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 52,
+        "protein": 0.3,
+        "carbs": 13.8,
+        "fat": 0.2,
+        "fibre": 2.4,
+        "calcium": 6
+      },
+      "source": "USDA FDC 171688, apples, raw, with skin"
+    },
+    {
+      "id": "milk",
+      "name": "Milk, 2%",
+      "state": "as sold",
+      "kosher": "dairy",
+      "per100": {
+        "kcal": 50,
+        "protein": 3.3,
+        "carbs": 4.8,
+        "fat": 2,
+        "fibre": 0,
+        "calcium": 120
+      },
+      "source": null
+    },
+    {
+      "id": "coke-zero",
+      "name": "Coke Zero",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 0.3,
+        "protein": 0,
+        "carbs": 0,
+        "fat": 0,
+        "fibre": 0,
+        "calcium": 0,
+        "caffeine": 9.6
+      },
+      "source": null
+    },
+    {
+      "id": "zero-drink",
+      "name": "Zero calorie drink",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 0,
+        "protein": 0,
+        "carbs": 0,
+        "fat": 0,
+        "fibre": 0,
+        "calcium": 0
+      },
+      "source": null
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 0,
+        "protein": 0,
+        "carbs": 0,
+        "fat": 0,
+        "fibre": 0,
+        "calcium": 0
+      },
+      "source": null
+    },
+    {
+      "id": "sweet-portion",
+      "name": "Sweet portion (cake, cookies, dessert)",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 400,
+        "protein": 5,
+        "carbs": 55,
+        "fat": 18,
+        "fibre": 1.5,
+        "calcium": 50
+      },
+      "source": null
+    },
+    {
+      "id": "hummus",
+      "name": "Hummus",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 240,
+        "protein": 7,
+        "carbs": 14,
+        "fat": 17,
+        "fibre": 6,
+        "calcium": 40
+      },
+      "source": null
+    },
+    {
+      "id": "pita",
+      "name": "Pita bread",
+      "state": "as sold",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 275,
+        "protein": 9.1,
+        "carbs": 55.7,
+        "fat": 1.2,
+        "fibre": 2.2,
+        "calcium": 86
+      },
+      "source": null
+    },
+    {
+      "id": "falafel",
+      "name": "Falafel",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 333,
+        "protein": 13.3,
+        "carbs": 31.8,
+        "fat": 17.8,
+        "fibre": 5,
+        "calcium": 54
+      },
+      "source": null
+    },
+    {
+      "id": "schnitzel",
+      "name": "Chicken schnitzel, fried",
+      "state": "prepared",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 260,
+        "protein": 21,
+        "carbs": 14,
+        "fat": 13,
+        "fibre": 0.8,
+        "calcium": 20
+      },
+      "source": null
+    },
+    {
+      "id": "shawarma",
+      "name": "Shawarma meat",
+      "state": "prepared",
+      "kosher": "meat",
+      "per100": {
+        "kcal": 230,
+        "protein": 22,
+        "carbs": 2,
+        "fat": 15,
+        "fibre": 0,
+        "calcium": 20
+      },
+      "source": null
+    },
+    {
+      "id": "fries",
+      "name": "French fries",
+      "state": "prepared",
+      "kosher": "pareve",
+      "per100": {
+        "kcal": 312,
+        "protein": 3.4,
+        "carbs": 41,
+        "fat": 15,
+        "fibre": 3.8,
+        "calcium": 18
+      },
+      "source": null
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza, cheese",
+      "state": "prepared",
+      "kosher": "dairy",
+      "per100": {
+        "kcal": 266,
+        "protein": 11.4,
+        "carbs": 33,
+        "fat": 10,
+        "fibre": 2.3,
+        "calcium": 190
+      },
+      "source": null
     }
   ],
   "recipes": [
@@ -5365,7 +5578,7 @@
         {
           "foodId": "oats",
           "name": "Rolled oats",
-          "grams": 60,
+          "grams": 80,
           "state": "dry"
         },
         {
@@ -5386,22 +5599,22 @@
     },
     {
       "id": "chicken-rice-boxes",
-      "name": "Chicken and rice pre workout boxes",
+      "name": "Chicken and rice boxes",
       "servings": 6,
       "ingredients": [
         {
           "foodId": "chicken-breast",
-          "name": "Chicken breast, raw weight about 1 kg",
+          "name": "Chicken breast, cooked (about 1 kg raw)",
           "grams": 720,
           "state": "cooked",
           "amount": "About 1 kg raw, which cooks down to about 720 g"
         },
         {
           "foodId": "rice-cooked",
-          "name": "White rice, cooked",
-          "grams": 600,
+          "name": "White rice, cooked (about 450 g dry)",
+          "grams": 1200,
           "state": "cooked",
-          "amount": "About 220 g dry rice"
+          "amount": "About 450 g dry rice"
         },
         {
           "name": "Salt, pepper, paprika, garlic powder",
@@ -5409,7 +5622,7 @@
         }
       ],
       "suitableFor": [
-        "before training"
+        "any day"
       ]
     },
     {
@@ -5426,7 +5639,7 @@
         {
           "foodId": "potato",
           "name": "Potatoes, cubed",
-          "grams": 300,
+          "grams": 500,
           "state": "cooked"
         },
         {
@@ -5437,8 +5650,13 @@
         },
         {
           "foodId": "veg-mixed",
-          "name": "Vegetables: broccoli, zucchini, peppers, carrots",
+          "name": "Vegetables: broccoli, zucchini, peppers",
           "grams": 600
+        },
+        {
+          "foodId": "olive-oil",
+          "name": "Olive oil for the tray",
+          "grams": 10
         },
         {
           "name": "Lemon, garlic, salt, pepper, dill or paprika",
@@ -5463,7 +5681,7 @@
         {
           "foodId": "potato",
           "name": "Potatoes",
-          "grams": 300,
+          "grams": 500,
           "state": "cooked"
         },
         {
@@ -5476,6 +5694,11 @@
           "foodId": "veg-mixed",
           "name": "Mixed vegetables",
           "grams": 600
+        },
+        {
+          "foodId": "olive-oil",
+          "name": "Olive oil for the vegetables",
+          "grams": 10
         },
         {
           "name": "Onion, garlic, cumin, paprika, salt",
@@ -5493,14 +5716,14 @@
       "ingredients": [
         {
           "foodId": "white-fish",
-          "name": "White fish, about 270 g raw",
-          "grams": 220,
+          "name": "White fish, about 250 g raw",
+          "grams": 200,
           "state": "cooked"
         },
         {
           "foodId": "potato",
           "name": "Potatoes",
-          "grams": 200,
+          "grams": 250,
           "state": "cooked"
         },
         {
@@ -5517,7 +5740,7 @@
         {
           "foodId": "olive-oil",
           "name": "Olive oil",
-          "grams": 10
+          "grams": 5
         },
         {
           "name": "Lemon, parsley, salt, pepper",
@@ -5542,7 +5765,7 @@
         {
           "foodId": "potato",
           "name": "Potatoes",
-          "grams": 200,
+          "grams": 250,
           "state": "cooked"
         },
         {
@@ -5672,7 +5895,7 @@
           "name": "Challah: one or two slices"
         },
         {
-          "name": "One planned sweet portion right after one meal"
+          "name": "A sweet portion after a meal, if you want one"
         },
         {
           "name": "Water or a zero calorie drink"
@@ -5709,36 +5932,36 @@
     "shopping": [
       {
         "id": "yogurt",
-        "name": "Yogurt or skyr, about 2 to 3% fat",
+        "name": "High protein yogurt or skyr",
         "qty": 1800,
         "unit": "g",
         "section": "Dairy"
       },
       {
         "id": "milk",
-        "name": "Milk",
-        "qty": 1800,
+        "name": "Milk, for evenings after a fish dinner",
+        "qty": 900,
         "unit": "ml",
         "section": "Dairy"
       },
       {
         "id": "oats",
         "name": "Oats",
-        "qty": 360,
+        "qty": 480,
         "unit": "g",
         "section": "Grains"
       },
       {
         "id": "rice",
         "name": "Dry rice",
-        "qty": 220,
+        "qty": 450,
         "unit": "g",
         "section": "Grains"
       },
       {
         "id": "lentils",
         "name": "Dry lentils",
-        "qty": 250,
+        "qty": 200,
         "unit": "g",
         "section": "Grains"
       },
@@ -5757,22 +5980,36 @@
         "section": "Produce"
       },
       {
+        "id": "apples",
+        "name": "Apples, for the school snack and evenings after a meat dinner",
+        "qty": 8,
+        "unit": "pcs",
+        "section": "Produce"
+      },
+      {
         "id": "potatoes",
         "name": "Potatoes",
-        "qty": 1200,
+        "qty": 1500,
         "unit": "g",
         "section": "Produce"
       },
       {
         "id": "vegetables",
-        "name": "Mixed vegetables, at least",
-        "qty": 2000,
+        "name": "Non starchy vegetables, at least",
+        "qty": 1800,
         "unit": "g",
         "section": "Produce"
       },
       {
+        "id": "almonds",
+        "name": "Almonds",
+        "qty": 220,
+        "unit": "g",
+        "section": "Pantry"
+      },
+      {
         "id": "chicken",
-        "name": "Raw chicken for pre workout boxes",
+        "name": "Raw chicken breast for the afternoon boxes",
         "qty": 1000,
         "unit": "g",
         "section": "Meat and fish"
@@ -5794,7 +6031,7 @@
       {
         "id": "white-fish",
         "name": "Raw white fish",
-        "qty": 270,
+        "qty": 250,
         "unit": "g",
         "section": "Meat and fish"
       },
@@ -5848,7 +6085,12 @@
       {
         "id": "rice",
         "title": "Cook the rice",
-        "detail": "Cook 220 g dry rice. Portion 100 g cooked rice into each box."
+        "detail": "Cook 450 g dry rice, which makes about 1,200 g cooked. Spread it out to cool quickly and portion 200 g into each box."
+      },
+      {
+        "id": "lentils",
+        "title": "Cook the lentils",
+        "detail": "Simmer 200 g dry lentils for about 20 to 30 minutes. They make about 600 g cooked, 100 g for each dinner."
       },
       {
         "id": "chicken",
@@ -5858,17 +6100,17 @@
       {
         "id": "dinners",
         "title": "Prepare the six dinners",
-        "detail": "Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with potato, 100 g cooked lentils, and 300 g vegetables."
+        "detail": "Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with 250 g potato, 100 g cooked lentils, 300 g vegetables, and about 5 g oil."
       },
       {
         "id": "breakfast",
         "title": "Prepare breakfast parts",
-        "detail": "Portion 60 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready."
+        "detail": "Portion 80 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready. Pack apples and almonds for school."
       },
       {
         "id": "lunch",
         "title": "Plan school lunch",
-        "detail": "Lunch comes from the cafeteria. Nothing needs refrigeration from home. Buy eggs and tofu only if the cafeteria does not have them."
+        "detail": "Lunch comes from the cafeteria. If the cafeteria has no eggs or tofu and you bring them, pack them cold with two ice packs in an insulated bag."
       },
       {
         "id": "label",
@@ -5877,13 +6119,13 @@
       },
       {
         "id": "fridge",
-        "title": "Refrigerate Sunday to Wednesday",
-        "detail": "Keep Sunday, Monday, Tuesday, and Wednesday meals in the fridge."
+        "title": "Refrigerate the next two days",
+        "detail": "Keep the meals for the next one or two days in the fridge."
       },
       {
         "id": "freeze",
-        "title": "Freeze Thursday and Friday",
-        "detail": "Freeze Thursday and Friday meals as soon as they have cooled."
+        "title": "Freeze the rest",
+        "detail": "Freeze the other meals, and all rice boxes after the second day, as soon as they have cooled."
       },
       {
         "id": "thaw",
@@ -6589,6 +6831,132 @@
       "id": "rathleff-2020-osgood-schlatter",
       "title": "Activity Modification and Knee Strengthening for Osgood-Schlatter Disease: A Prospective Cohort Study",
       "url": "https://vbn.aau.dk/ws/files/330945567/2325967120911106.pdf",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "schoenfeld-2019-frequency",
+      "title": "How many times per week should a muscle be trained to maximize muscle hypertrophy? A systematic review and meta-analysis",
+      "url": "https://mennohenselmans.com/training-frequency-2018-meta-analysis-review/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "saric-2019-3-vs-6-days",
+      "title": "Resistance Training Frequencies of 3 and 6 Times Per Week Produce Similar Muscular Adaptations in Resistance-Trained Men",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30363041/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "jayanthi-2015-hours-vs-age",
+      "title": "Sports-Specialized Intensive Training and the Risk of Injury in Young Athletes: A Clinical Case-Control Study",
+      "url": "https://journals.sagepub.com/doi/10.1177/0363546514567298",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "aap-overuse-2024",
+      "title": "Overuse Injuries, Overtraining, and Burnout in Young Athletes",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38247370/",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "aasm-2016-sleep-consensus",
+      "title": "Recommended Amount of Sleep for Pediatric Populations: A Consensus Statement of the American Academy of Sleep Medicine",
+      "url": "https://depts.washington.edu/dbpeds/pediatricsleepdurationconsensus.pdf",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "gudmundsdottir-2020-early-training-sleep",
+      "title": "Training Schedule and Sleep in Adolescent Swimmers",
+      "url": "https://opinvisindi.is/handle/20.500.11815/2351",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "bhanushali-2023-forearm-fracture-rts",
+      "title": "Return to sport after forearm fractures in children: A scoping review and survey",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10080236/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "schoenfeld-2013-soreness",
+      "title": "Is Postexercise Muscle Soreness a Valid Indicator of Muscular Adaptations?",
+      "url": "https://bretcontreras.com/wp-content/uploads/Is-Postexercise-Muscle-Soreness-a-Valid-Indicator-of-Muscular-Adaptations.pdf",
+      "access": "search-snippet",
+      "topic": "recovery"
+    },
+    {
+      "id": "aap-pes-2016",
+      "title": "Use of Performance-Enhancing Substances",
+      "url": "https://publications.aap.org/pediatrics/article/138/1/e20161300/52580/",
+      "access": "search-snippet",
+      "topic": "supplements"
+    },
+    {
+      "id": "nasem-2023-energy-dri",
+      "title": "Dietary Reference Intakes for Energy",
+      "url": "https://www.nationalacademies.org/read/26818/chapter/2",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "chen-2023-plyo-adolescents",
+      "title": "Meta-Analysis of the Effects of Plyometric Training on Lower Limb Explosive Strength in Adolescent Athletes",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9915200/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "collins-2018-rt-weight-status-youth",
+      "title": "The effect of resistance training interventions on weight status in youth: a meta-analysis",
+      "url": "https://discovery.dundee.ac.uk/en/publications/the-effect-of-resistance-training-interventions-on-weight-status-/",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "bia-children-validity",
+      "title": "Validity of Four Commercial Bioelectrical Impedance Scales in Measuring Body Fat among Chinese Children and Adolescents",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4475745/",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "turicchi-2020-weight-fluctuation",
+      "title": "Weekly, seasonal and holiday body weight fluctuation patterns (title shortened in the search result)",
+      "url": "https://doaj.org/article/d41eea5765d944d8b6e3f5e1cd1d6af4",
+      "access": "search-snippet",
+      "topic": "body-composition"
+    },
+    {
+      "id": "geyer-2004-supplement-contamination",
+      "title": "Analysis of non-hormonal nutritional supplements for anabolic-androgenic steroids: results of an international study",
+      "url": "https://www.thieme-connect.com/products/ejournals/html/10.1055/s-2004-819955",
+      "access": "search-snippet",
+      "topic": "supplements"
+    },
+    {
+      "id": "usda-sr28-green-beans",
+      "title": "USDA National Nutrient Database for Standard Reference, Release 28: snap beans (raw, boiled, frozen, canned) and olive oil",
+      "url": "https://fdc.nal.usda.gov/",
+      "access": "search-snippet",
+      "topic": "nutrition"
+    },
+    {
+      "id": "rossler-2014-youth-injury-prevention",
+      "title": "Exercise-Based Injury Prevention in Child and Adolescent Sport: A Systematic Review and Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25129698/",
+      "access": "search-snippet",
+      "topic": "youth-training"
+    },
+    {
+      "id": "ioc-2015-youth-development",
+      "title": "International Olympic Committee consensus statement on youth athletic development",
+      "url": "https://bjsm.bmj.com/content/49/13/843",
       "access": "search-snippet",
       "topic": "youth-training"
     }

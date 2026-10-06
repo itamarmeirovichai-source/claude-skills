@@ -1,8 +1,10 @@
 import type { LibraryExerciseId } from './exercises/ids';
 import { PROGRAM_DAYS, buildMainItems, defaultPicks, normalizePicks, type ProgramPicks } from './program';
-import { PHASES, type ProgramPhase } from './phases';
+import { HOME_JUMP_SESSION, HOME_SKILL_SESSION, buildHomeItems, type JumpLevel } from './homeSessions';
+import type { WristStatus } from './traits';
+import { DEFAULT_HOME, type HomeSetup } from '../domain/athlete';
 
-// The baseline weekly plan. Seeded exactly as prescribed.
+// The weekly plan. Seeded from the program and the athlete's choices.
 // Plan data is separate from logged data. Editing a plan creates a new plan version;
 // sessions store a snapshot of the prescription they were performed against.
 
@@ -14,7 +16,8 @@ export type SetTarget =
   | { type: 'hold'; seconds: number }
   | { type: 'roundTrips'; count: number };
 
-export type SessionKey = 'morning' | 'main' | 'swim';
+/** 'morning' only exists in plans saved before 3.0.0. 'main' is the gym strength session. */
+export type SessionKey = 'morning' | 'home' | 'main' | 'swim';
 
 export interface PlanItem {
   id: string;
@@ -56,132 +59,70 @@ export interface WorkoutPlan {
   globalRules: string[];
 }
 
-const ROPE_NOTE_QUALITY = 'Stop when speed, jump height, landing control, or technique declines.';
-const SWIM_SPACING = 'Separate swimming from the main workout by at least three hours when possible.';
-
-function rope(day: PlanDay['key'], totalMin: number, extra: string[] = []): PlanItem {
-  return {
-    id: `${day}-rope`,
-    exerciseId: 'easy-jump-rope',
-    session: 'morning',
-    sets: 1,
-    target: { type: 'duration', totalMin, workSec: 60, restSec: 30 },
-    restSec: 30,
-    notes: ['1 minute easy work and 30 seconds rest.', 'No double unders.', ROPE_NOTE_QUALITY, ...extra],
-  };
-}
-
-function swim(day: PlanDay['key']): PlanItem {
-  return {
-    id: `${day}-swim`,
-    exerciseId: 'easy-pool-round-trip',
-    session: 'swim',
-    sets: 2,
-    target: { type: 'roundTrips', count: 10 },
-    restSec: 300,
-    rpe: [4, 5],
-    notes: [
-      'Twenty round trips in total, with a five minute break after the first ten.',
-      'Easy to moderate effort, RPE 4 to 5.',
-      SWIM_SPACING,
-      'Distance depends on pool length. Set it in the log.',
-    ],
-  };
-}
-
-const r = (min: number, max: number): SetTarget => ({ type: 'reps', min, max });
-
-type ItemInput = Omit<PlanItem, 'id' | 'session' | 'notes'> & { notes?: string[]; session?: SessionKey };
-
-const AM_NOTE = 'Home session at 05:30 with no ball: a rope, a few light dumbbells, and some floor space. Rope first as the warm up.';
-
-/** Morning volleyball work added after the baseline: footwork without a ball, shoulder care, and trunk control. */
-function morning(day: PlanDay['key'], list: ItemInput[]): PlanItem[] {
-  return list.map((it, i) => ({
-    ...it,
-    id: `${day}-am-${i + 1}-${it.exerciseId}`,
-    session: 'morning',
-    notes: it.notes ?? [],
-  }));
-}
-
-const PASS = (sets = 3): ItemInput => ({ exerciseId: 'shadow-pass-footwork', sets, target: r(8, 8), restSec: 45, notes: [AM_NOTE, 'Eight directions per set, exact rather than fast.'] });
-const BLOCK = (sets = 3): ItemInput => ({ exerciseId: 'block-footwork', sets, target: r(6, 6), restSec: 45, notes: ['Six moves per set. No jump, or only a tiny soft hop at the stop.'] });
-const YRAISE: ItemInput = { exerciseId: 'dumbbell-y-raise', sets: 2, target: r(12, 15), restSec: 60, rir: 3, tempo: '3011', notes: ['Light dumbbells, usually 1 to 3 kg.'] };
-const EXTROT: ItemInput = { exerciseId: 'side-lying-external-rotation', sets: 2, target: r(12, 15), restSec: 45, rir: 3, tempo: '3011', per: 'side', notes: ['Light dumbbell, usually 1 to 2 kg.'] };
-const DEADBUG: ItemInput = { exerciseId: 'dead-bug', sets: 2, target: r(6, 8), restSec: 45, rir: 3, per: 'side' };
-
-/** Morning home sessions at 05:30: rope first as the warm up, then footwork, shoulder care, and trunk work. */
-const MORNING: Record<Exclude<PlanDay['key'], 'sat'>, PlanItem[]> = {
-  sun: [rope('sun', 6), ...morning('sun', [PASS(), DEADBUG, { exerciseId: 'tibialis-raise', sets: 2, target: r(15, 20), restSec: 45, rir: 2 }])],
-  mon: [rope('mon', 9), ...morning('mon', [BLOCK(), YRAISE, EXTROT])],
-  tue: [rope('tue', 9), ...morning('tue', [PASS(), DEADBUG])],
-  wed: [rope('wed', 9), ...morning('wed', [BLOCK(), YRAISE, EXTROT])],
-  thu: [rope('thu', 15), ...morning('thu', [PASS(), DEADBUG])],
-  fri: [rope('fri', 6), ...morning('fri', [PASS(2), DEADBUG])],
-};
-
 export const GLOBAL_RULES = [
-  'Morning volleyball sessions at 05:30 stay easy: footwork without a ball, light shoulder care, and trunk control. Hard jumps and heavy work stay in the main session.',
-  'One exercise for each muscle head, three work sets, with a slow, controlled stretch at the long muscle length.',
-  'Warm up sets do not count as working sets. Do one or two lighter sets before the first exercise for a muscle.',
-  'Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep.',
-  'Upper body machines and cables go to failure as prescribed. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.',
-  'Legs serve the jump: on Monday only the small leg exercises after the heavy work may go to failure. Wednesday and Friday leg sets always stop short, so the jumps are done on fresh legs.',
-  'Jumps come first in the session, every one at full effort with full rest. Stop a drill as soon as height, speed, or landing quality drops.',
-  'Count every landing as a jump, including volleyball practice and games. In a week with a lot of volleyball, do fewer of the planned jumps.',
-  'Pain below the kneecap, at the bump under the knee, or at the heel that lasts into the next morning means fewer jumps for a few days, and telling a parent. Pain of 4 out of 10 or more stops jumping that day.',
-  'Sleep 8 to 10 hours. With a 05:30 start, that means lights out around 21:00 to 21:30. Short sleep raises the risk of injury.',
-  'For a new exercise, stop two reps short for the first two sessions while you learn it.',
-  'Rest two to three minutes on the big exercises and about ninety seconds on the small ones.',
+  'Gym sessions are for strength. Jumps, landings, footwork, and volleyball skills happen at home, never inside a gym session.',
+  'On Monday and Thursday do the home jumps first, on fresh legs, then the gym leg session. Treat both as one training day.',
+  'Work sets stop about two reps short of failure, and three reps short for shoulder care and while you learn a new exercise. No routine sets to failure.',
+  'Warm up sets do not count as work sets. Do one or two lighter sets before the first exercise for a muscle.',
+  'The weight goes up only when every work set reaches the top of its range with good form, the planned reps in reserve, and no pain. One good set is not enough.',
+  'Stop a jump drill as soon as height, speed, or landing control drops. Jump volume never goes up automatically.',
+  'Count every landing, including school and club volleyball and basketball. After a day with a lot of jumping, keep the home jumps short or skip them.',
+  'Soreness in a trained muscle that fades within two or three days is common. Pain in a joint, a tendon, the heel, below the kneecap, or the wrist is different: it pauses that exercise. Pain of 4 out of 10 or more, pain that worsens, or pain that changes your technique means telling a parent and a coach or clinician.',
+  'While a clinician has not cleared the wrist, gripping and pressing exercises keep their load, and there is no ball contact or falling onto the hands.',
+  'Sleep 8 to 10 hours. Training is never planned at the cost of sleep.',
   'Do not test a one repetition maximum.',
-  'No leg sets to failure in the 48 hours before a volleyball match.',
-  'Stop explosive work as soon as quality drops.',
-  'Separate swimming and the main workout by at least three hours when possible.',
-  'Do not add extra high intensity intervals.',
-  'Take a reduced week when performance, sleep, pain, or motivation show accumulated fatigue.',
+  'Rest two to three minutes on the big exercises and about ninety seconds on the small ones.',
+  'Take a lighter week when performance, sleep, pain, mood, or motivation show accumulated fatigue, and tell a parent or coach.',
 ];
 
-/** Builds the week from program choices. Morning sessions and swims are fixed. */
-export function planDaysFor(picks: ProgramPicks | undefined, phase: ProgramPhase = PHASES[0]!): PlanDay[] {
+export interface PlanOptions {
+  home?: HomeSetup;
+  wrist?: WristStatus;
+  jumpLevel?: JumpLevel;
+}
+
+const restDay = (weekday: Weekday, key: PlanDay['key'], title: string, short: string, restNotes: string[]): PlanDay => ({ weekday, key, title, short, isRest: true, items: [], restNotes });
+
+/**
+ * Builds the week (3.0.0): four gym strength days, two home jump days that come before the gym leg
+ * sessions, one light home skill day, and two days without structured training. Home drills are
+ * fitted to the space and the wrist, and gym exercises to the wrist.
+ */
+export function planDaysFor(picks: ProgramPicks | undefined, opts: PlanOptions = {}): PlanDay[] {
   const chosen = normalizePicks(picks);
-  const days: PlanDay[] = PROGRAM_DAYS.map((d) => ({
-    weekday: d.weekday,
-    key: d.key,
-    title: d.title,
-    short: d.short,
-    isRest: false,
-    items: [...MORNING[d.key as Exclude<PlanDay['key'], 'sat'>], ...buildMainItems(d, chosen, phase), ...(d.key === 'sun' || d.key === 'fri' ? [swim(d.key)] : [])],
-  }));
-  days.push({
-    weekday: 6,
-    key: 'sat',
-    title: 'Full Rest',
-    short: 'Rest',
-    isRest: true,
-    items: [],
-    restNotes: [
-      'No formal training.',
-      'Comfortable walking is fine if you feel like it.',
-      'Sabbath Mode keeps the app quiet.',
-      'No make up workout and no food rules to compensate.',
-    ],
-  });
-  return days;
+  const home = opts.home ?? DEFAULT_HOME;
+  const wrist = opts.wrist ?? 'unknown';
+  const jumps = HOME_JUMP_SESSION[opts.jumpLevel ?? 'intro'];
+  const gym = (wd: Weekday) => PROGRAM_DAYS.find((d) => d.weekday === wd)!;
+  const main = (wd: Weekday) => buildMainItems(gym(wd), chosen, wrist);
+  return [
+    { weekday: 0, key: 'sun', title: 'Upper A', short: 'Upper A', isRest: false, items: main(0) },
+    { weekday: 1, key: 'mon', title: 'Home jumps and Lower A', short: 'Lower A', isRest: false, items: [...buildHomeItems('mon', jumps, home, wrist), ...main(1)] },
+    restDay(2, 'tue', 'No structured training', 'Off', [
+      'No planned training. School sport still counts as training.',
+      'Easy walking or play is fine if you feel like it.',
+      'A good day to sleep a little longer and eat normally. Meals do not change on days off.',
+    ]),
+    { weekday: 3, key: 'wed', title: 'Upper B', short: 'Upper B', isRest: false, items: main(3) },
+    { weekday: 4, key: 'thu', title: 'Home jumps and Lower B', short: 'Lower B', isRest: false, items: [...buildHomeItems('thu', jumps, home, wrist), ...main(4)] },
+    { weekday: 5, key: 'fri', title: 'Volleyball skills at home', short: 'Skills', isRest: false, items: buildHomeItems('fri', HOME_SKILL_SESSION, home, wrist) },
+    restDay(6, 'sat', 'Full Rest', 'Rest', ['No formal training.', 'Comfortable walking is fine if you feel like it.', 'Sabbath Mode keeps the app quiet.', 'No make up workout and no food rules to compensate.']),
+  ];
 }
 
 export const BASELINE_PLAN: WorkoutPlan = {
   id: 'baseline',
   version: 1,
-  name: 'PeakForm baseline week',
-  createdAt: '2026-09-29T00:00:00.000Z',
+  name: 'PeakForm week',
+  createdAt: '2026-10-06T00:00:00.000Z',
   globalRules: GLOBAL_RULES,
   days: planDaysFor(defaultPicks()),
 };
 
 export const SESSION_LABELS: Record<SessionKey, string> = {
-  morning: 'Morning volleyball and rope',
-  main: 'Main session',
+  morning: 'Morning session',
+  home: 'Home jumps and skills',
+  main: 'Gym strength',
   swim: 'Swim',
 };
 
@@ -196,7 +137,7 @@ export function sessionItems(day: PlanDay, session: SessionKey): PlanItem[] {
 }
 
 export function sessionsForDay(day: PlanDay): SessionKey[] {
-  const order: SessionKey[] = ['morning', 'main', 'swim'];
+  const order: SessionKey[] = ['morning', 'home', 'main', 'swim'];
   return order.filter((s) => day.items.some((i) => i.session === s));
 }
 

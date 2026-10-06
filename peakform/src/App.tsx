@@ -27,10 +27,10 @@ const ReviewScreen = lazy(() => import('./screens/Review').then((m) => ({ defaul
 const MoreScreen = lazy(() => import('./screens/More').then((m) => ({ default: m.MoreScreen })));
 const MoreSubScreen = lazy(() => import('./screens/More').then((m) => ({ default: m.MoreSubScreen })));
 const ProgramScreen = lazy(() => import('./screens/Program').then((m) => ({ default: m.ProgramScreen })));
+const PlanPreviewScreen = lazy(() => import('./screens/PlanUpdate').then((m) => ({ default: m.PlanPreviewScreen })));
 import { LockGate } from './screens/Lock';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { unlockAudio } from './lib/device';
-import { syncFoodTargets, syncProgramPhase } from './services/planUpdate';
 
 const TABS = [
   { to: '/today', label: 'Today', Icon: IconToday, match: ['today', 'checkin'] },
@@ -174,6 +174,9 @@ function Routes() {
     case 'program':
       screen = <ProgramScreen step={query.get('step')} />;
       break;
+    case 'plan':
+      screen = <PlanPreviewScreen />;
+      break;
     case 'eat':
       if (b === 'log') screen = <FoodLogScreen slot={c ?? 'other'} date={query.get('date')} mode={query.get('mode')} />;
       else if (b === 'sabbath') screen = <SabbathPlateScreen date={query.get('date')} />;
@@ -201,7 +204,7 @@ function Routes() {
       screen = <ReviewScreen weekStart={b ?? null} />;
       break;
     case 'more':
-      screen = b ? <MoreSubScreen page={b} /> : <MoreScreen />;
+      screen = b ? <MoreSubScreen page={b} next={query.get('next')} /> : <MoreScreen />;
       break;
     default:
       screen = <TodayScreen />;
@@ -223,19 +226,8 @@ export function App() {
     const unlock = () => unlockAudio();
     window.addEventListener('pointerdown', unlock);
     if (!window.location.hash) navigate('/today', { replace: true });
-    // A new training block starts on its Monday, so check when the app opens or comes back.
-    const block = () => {
-      if (document.visibilityState === 'visible') void syncProgramPhase().catch(() => undefined);
-    };
-    // Installed apps move to the rest day amount of food once.
-    void syncFoodTargets().catch(() => undefined);
-    block();
-    document.addEventListener('visibilitychange', block);
-    const hourly = window.setInterval(block, 60 * 60 * 1000);
     return () => {
       window.removeEventListener('pointerdown', unlock);
-      document.removeEventListener('visibilitychange', block);
-      window.clearInterval(hourly);
     };
   }, []);
   return (

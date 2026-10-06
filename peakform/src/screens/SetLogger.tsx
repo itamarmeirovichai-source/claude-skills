@@ -70,7 +70,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const last = useLiveQuery(() => lastExposure(es.exerciseId, session.id), [es.exerciseId, session.id]);
   const target = useLiveQuery(() => currentTarget(item.id, es.exerciseId), [item.id, es.exerciseId]);
   const exposures = useLiveQuery(() => priorExposureCount(es.exerciseId, session.id), [es.exerciseId, session.id]);
-  // While an exercise is new, sets stop two reps short so the technique is learned first.
+  // While an exercise is new, sets stop three reps short so the technique is learned first.
   const learning = exposures !== undefined && exposures < LEARNING_SESSIONS && (item.rir ?? 99) < LEARNING_RIR && ex?.kind !== 'hold';
   const rirFor = (setIndex: number): number | undefined => {
     const t = setRirTarget(item, setIndex);
@@ -89,7 +89,18 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const doneKeys = new Set(work.map((s) => `${s.setIndex}:${s.side}`));
   const skippedKey = (k: string) => skipped.includes(k);
   const [skipped, setSkipped] = useState<string[]>([]);
-  const nextSlot = slots.find((s) => !doneKeys.has(`${s.setIndex}:${s.side}`) && !skippedKey(`${s.setIndex}:${s.side}`));
+  // Slots taken by a tap whose set has not reached the stored list yet. A quick next tap goes to the
+  // following slot instead of saving the same set twice. Read from a ref, so even an older click
+  // handler sees it.
+  const claimed = useRef(new Set<string>());
+  useEffect(() => {
+    for (const k of [...claimed.current]) if (doneKeys.has(k)) claimed.current.delete(k);
+  });
+  const slotKeyOf = (x: { setIndex: number; side: Side }) => `${x.setIndex}:${x.side}`;
+  const free = (x: { setIndex: number; side: Side }) => !doneKeys.has(slotKeyOf(x)) && !skippedKey(slotKeyOf(x)) && !claimed.current.has(slotKeyOf(x));
+  const nextSlot = slots.find(free);
+  const [saving, setSaving] = useState(false);
+  const savingNow = useRef(false);
 
   const slotRir = rirFor(nextSlot?.setIndex ?? 0);
   const prevFor = (setIndex: number, side: Side) => last?.sets.find((s) => s.setIndex === setIndex && s.side === side) ?? last?.sets.find((s) => s.side === side) ?? last?.sets[0];
@@ -135,10 +146,10 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slotKey]);
   useEffect(() => {
-    // Last performance and targets load a moment later. Fill them in unless the user already typed.
+    // Last performance, targets, and the learning reps in reserve load a moment later. Fill them in unless the user already typed.
     if (!touched.current) setDraft(defaults(nextSlot));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target?.id, target?.status, last?.session.id]);
+  }, [target?.id, target?.status, last?.session.id, learning]);
   const set = (patch: Partial<Draft>) => {
     touched.current = true;
     setDraft((d) => ({ ...d, ...patch }));
@@ -149,39 +160,56 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
   const eqStep = kind === 'strength' ? incrementFor(equipmentType(ex), settings.equipment) || 2.5 : 1;
   const prev = nextSlot ? prevFor(nextSlot.setIndex, nextSlot.side) : undefined;
   const complete = async () => {
-    if (!nextSlot && !draft.warmup) return;
-    const slot = nextSlot ?? { setIndex: 0, side: null };
-    const rec = await logSet({
-      sessionId: session.id,
-      exerciseSessionId: es.id,
-      exerciseId: es.exerciseId,
-      planItemId: item.id,
-      setIndex: draft.warmup ? warm.length : slot.setIndex,
-      side: slot.side,
-      warmup: draft.warmup,
-      weightKg: draft.weightKg,
-      reps: draft.reps,
-      rir: kind === 'strength' || kind === 'bodyweight' ? draft.rir : null,
-      seconds: draft.seconds,
-      form: draft.form,
-      pain: draft.pain,
-      painScore: draft.pain === 'none' ? null : draft.painScore,
-      quality: draft.quality,
-      landing: draft.landing,
-      reachCm: draft.reachCm,
-      timeSec: draft.timeSec,
-      roundTrips: draft.roundTrips,
-      stroke: draft.stroke,
-      rpe: draft.rpe,
-      symptoms: draft.symptoms,
-      note: draft.note.trim().slice(0, 2000),
-      completedAt: Date.now(),
-    });
+    // One save at a time: a double tap must not log the same set twice.
+    if (savingNow.current) return;
+    const open = slots.filter(free);
+    const found = open[0];
+    if (!found && !draft.warmup) return;
+    const slot = found ?? { setIndex: 0, side: null };
+    const key = slotKeyOf(slot);
+    savingNow.current = true;
+    setSaving(true);
+    if (!draft.warmup) claimed.current.add(key);
+    let rec: SetLog;
+    try {
+      rec = await logSet({
+        sessionId: session.id,
+        exerciseSessionId: es.id,
+        exerciseId: es.exerciseId,
+        planItemId: item.id,
+        setIndex: draft.warmup ? warm.length : slot.setIndex,
+        side: slot.side,
+        warmup: draft.warmup,
+        weightKg: draft.weightKg,
+        reps: draft.reps,
+        rir: kind === 'strength' || kind === 'bodyweight' ? draft.rir : null,
+        seconds: draft.seconds,
+        form: draft.form,
+        pain: draft.pain,
+        painScore: draft.pain === 'none' ? null : draft.painScore,
+        quality: draft.quality,
+        landing: draft.landing,
+        reachCm: draft.reachCm,
+        timeSec: draft.timeSec,
+        roundTrips: draft.roundTrips,
+        stroke: draft.stroke,
+        rpe: draft.rpe,
+        symptoms: draft.symptoms,
+        note: draft.note.trim().slice(0, 2000),
+        completedAt: Date.now(),
+      });
+    } catch {
+      claimed.current.delete(key);
+      toast('Could not save the set. Try again.');
+      return;
+    } finally {
+      savingNow.current = false;
+      setSaving(false);
+    }
     haptic(15);
     if (!draft.warmup) {
-      const done = new Set([...doneKeys, `${slot.setIndex}:${slot.side}`]);
-      const upcoming = slots.find((x) => !done.has(`${x.setIndex}:${x.side}`) && !skippedKey(`${x.setIndex}:${x.side}`));
-      prepared.current = upcoming ? `${upcoming.setIndex}:${upcoming.side}` : 'none';
+      const upcoming = slots.find(free);
+      prepared.current = upcoming ? slotKeyOf(upcoming) : 'none';
       touched.current = false;
       setDraft(defaults(upcoming, rec));
     } else {
@@ -190,9 +218,12 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
     }
     toast(draft.warmup ? 'Warm up set saved. It does not count as a work set.' : 'Set saved', {
       label: 'Undo',
-      run: () => void deleteSet(rec.id),
+      run: () => {
+        claimed.current.delete(key);
+        void deleteSet(rec.id);
+      },
     });
-    const isFinalSlot = !draft.warmup && slots.filter((s) => !doneKeys.has(`${s.setIndex}:${s.side}`)).length <= 1;
+    const isFinalSlot = !draft.warmup && open.length <= 1;
     if (settings.autoStartRest && !(isFinalSlot && isLast) && item.restSec > 0 && draft.pain !== 'stop') {
       // Between sides of the same set, rest briefly; between sets, use the prescribed rest.
       const betweenSides = sides.length > 1 && slot.side === 'left';
@@ -520,7 +551,7 @@ export function SetLogger({ session, es, item, onNext, isLast }: { session: Work
       <div className="dock" data-testid="workout-dock">
         <div className="dock-inner">
           {!allDone || draft.warmup ? (
-            <button type="button" className="btn btn-primary btn-large grow" onClick={() => void complete()} data-testid="complete-set">
+            <button type="button" className="btn btn-primary btn-large grow" onClick={() => void complete()} disabled={saving} data-testid="complete-set">
               {draft.warmup ? 'Save warm up set' : `Complete set ${(nextSlot?.setIndex ?? 0) + 1}${nextSlot?.side ? ` ${sideLabel(item, nextSlot.side).toLowerCase()}` : ''}`}
             </button>
           ) : (

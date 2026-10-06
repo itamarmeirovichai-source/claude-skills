@@ -431,3 +431,18 @@ function failureProgress(
     requiresConfirmation: true,
   };
 }
+
+/**
+ * While a clinician has not cleared the wrist, exercises that grip or press a load keep their load
+ * (3.0.0). A suggestion to add load becomes a hold; adding reps inside the range stays possible.
+ */
+export function wristGate(s: Suggestion, holdsLoad: boolean): Suggestion {
+  if (!holdsLoad || s.kind !== 'add_load') return s;
+  return {
+    kind: 'hold',
+    title: 'Same load until the wrist is cleared',
+    reason: `${s.reason} The load stays the same for now, because this exercise grips or presses a load and a clinician has not confirmed that the wrist is cleared. Record the clearance in More, Your profile.`,
+    targets: [],
+    requiresConfirmation: true,
+  };
+}

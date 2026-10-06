@@ -110,17 +110,18 @@ describe('ICS calendar', () => {
     const r = buildIcs(s, { today: '2026-09-29', weeks: 4, now: Date.UTC(2026, 8, 29), sequence: 1, calName: 'PeakForm' });
     expect(r.text.startsWith('BEGIN:VCALENDAR\r\n')).toBe(true);
     expect(r.text.trim().endsWith('END:VCALENDAR')).toBe(true);
-    // Ten reminders, including the 05:25 morning session reminder.
+    // Ten reminders, with no early morning session since 3.0.0.
     expect(r.eventCount).toBe(10);
+    expect(r.text).not.toContain('T052500');
     expect(r.text).toContain('RRULE:FREQ=WEEKLY;BYDAY=SU,MO,TU,WE,TH,FR,SA');
     expect(r.text).toContain('BEGIN:VALARM');
     expect(r.text).toContain('SUMMARY:Weekly review');
-    // The Saturday 05:15 check in falls inside the window and is excluded.
-    expect(r.text).toMatch(/EXDATE:20261003T051500/);
-    // Friday 20:45 wind down is excluded, Saturday 20:45 is not.
+    // The Saturday 07:00 check in falls inside the window and is excluded.
+    expect(r.text).toMatch(/EXDATE:20261003T070000/);
+    // Friday 21:30 wind down is excluded, Saturday 21:30 is not.
     const wind = r.text.split('BEGIN:VEVENT').find((e) => e.includes('Wind down'))!;
-    expect(wind).toContain('20261002T204500');
-    expect(wind).not.toContain('20261003T204500');
+    expect(wind).toContain('20261002T213000');
+    expect(wind).not.toContain('20261003T213000');
     expect(r.excludedCount).toBeGreaterThan(0);
     for (const line of r.text.split('\r\n')) expect(new TextEncoder().encode(line).length).toBeLessThanOrEqual(75);
   });

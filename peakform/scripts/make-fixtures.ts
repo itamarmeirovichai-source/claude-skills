@@ -31,8 +31,8 @@ writeFileSync(
       source: 'Example coach',
       createdAt: '2026-10-04',
       changes: [
-        { type: 'plan-item', planItemId: 'thu-6-lateral-raise', sets: 3, reason: 'Side delts are recovering well. Add one set for four weeks.' },
-        { type: 'nutrition-target', weekday: 6, kcal: 2300, reason: 'Rest day hunger was high. Small increase within the plan.' },
+        { type: 'plan-item', planItemId: 'wed-7-machine-lateral-raise', sets: 3, reason: 'Side delts are recovering well. Add one set for four weeks.' },
+        { type: 'plan-item', planItemId: 'mon-2-dumbbell-romanian-deadlift', repMin: 8, repMax: 12, reason: 'Keep the hinge a little lighter for now.' },
       ],
     },
     null,

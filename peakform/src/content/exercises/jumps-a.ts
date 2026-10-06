@@ -1,7 +1,7 @@
 import { PAIN_RULE, QUALITY_RULE } from './effort';
 import type { ExerciseContent, PoseProp } from '../types';
 
-// Jump drills for the dunk program, part A. Order matches JUMP_A_IDS in ids.ts.
+// Jump drills, part A (added in 2.1.0; since 3.0.0 done at home where the space allows). Order matches JUMP_A_IDS in ids.ts.
 // Written for a young, heavy, still growing jumper who trains alone: quality first, never to failure,
 // soft landings that protect the knees and heels, and no jumps beyond the plan.
 
@@ -262,7 +262,7 @@ export const JUMPS_A: ExerciseContent[] = [
     aliases: ['Box jump with step down'],
     kind: 'jump',
     purpose:
-      'Lets you practise a full effort takeoff with a big arm swing while the box takes away most of the landing. You land higher than you took off, so your legs absorb far less force than on a floor landing. That makes it a good way to train jump intent for the dunk while protecting the knees.',
+      'Lets you practise a full effort takeoff with a big arm swing while the box takes away most of the landing. You land higher than you took off, so your legs absorb far less force than on a floor landing. That makes it a good way to train jump intent while protecting the knees.',
     equipment: [
       'Stable plyo box 30 to 50 cm high that cannot slide or tip',
       'Firm, flat floor with some give, with clear space around the box',
@@ -391,7 +391,7 @@ export const JUMPS_A: ExerciseContent[] = [
     aliases: ['Two foot hurdle hop', 'Mini hurdle hop'],
     kind: 'jump',
     purpose:
-      'Builds reactive strength, the ability to land and leave the floor again quickly. Short, springy contacts between low hurdles train the same fast stretch and rebound your legs use on the plant step of a spike or dunk approach.',
+      'Builds reactive strength, the ability to land and leave the floor again quickly. Short, springy contacts between low hurdles train the same fast stretch and rebound your legs use on the plant step of a spike approach.',
     equipment: [
       '3 to 5 low hurdles or cones, 15 to 45 cm high, that tip over if you clip them',
       'Firm, flat floor with some give and a clear lane of about 6 metres',

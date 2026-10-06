@@ -1,120 +1,153 @@
-import { describe, expect, it } from 'vitest';
-import { BASELINE_PLAN } from '../src/content/plan';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { db } from '../src/db/db';
+import { KV, activePlan, ensureInitialized, getSettings, kvGet, kvSet, saveAthlete, startSession, updateSettings } from '../src/db/repo';
 import { baselinePlanRecord, defaultSettings } from '../src/domain/defaults';
-import { missingMorningItems, withMorningItems, withMorningTimes } from '../src/services/planUpdate';
+import { activateProposal, currentProposal, discardProposal, pendingUpdates, proposeExact, proposePlan, V3_UPDATE_ID, withV3Times } from '../src/services/planUpdate';
 import { bedtimeFor } from '../src/services/today';
+import { contacts } from '../src/content/phases';
 import type { AppSettings, PlanRecord } from '../src/db/records';
+import type { HomeSetup } from '../src/domain/athlete';
 
-/** The plan as installed before the morning sessions existed: only the rope in the morning, none on Sunday. */
-function oldPlan(): PlanRecord {
-  const p = baselinePlanRecord(0);
-  for (const d of p.days) d.items = d.items.filter((i) => i.session !== 'morning' || (i.exerciseId === 'easy-jump-rope' && d.key !== 'sun'));
-  return p;
-}
-
+/** An app installed with 2.1: morning rope at 05:30, the early reminders, and a six day plan. */
 function oldSettings(): AppSettings {
   const s = defaultSettings(0);
-  s.sessionTimes.morning = '07:00';
-  s.reminders = s.reminders.filter((r) => r.id !== 'morning');
-  s.reminders.find((r) => r.id === 'checkin')!.time = '07:00';
-  s.reminders.find((r) => r.id === 'winddown')!.time = '21:45';
+  delete s.sessionTimes.home;
+  s.sessionTimes.morning = '05:30';
+  s.sessionTimes.main = { '0': '16:30', '1': '16:30', '2': '16:30', '3': '16:30', '4': '16:30', '5': '13:00' };
+  s.reminders = s.reminders.filter((r) => r.id !== 'home');
+  s.reminders.find((r) => r.id === 'checkin')!.time = '05:15';
+  s.reminders.find((r) => r.id === 'winddown')!.time = '20:45';
+  s.reminders.find((r) => r.id === 'dinner')!.time = '18:45';
+  s.reminders.find((r) => r.id === 'milk')!.time = '20:30';
+  s.reminders.find((r) => r.id === 'training')!.weekdays = [0, 1, 2, 3, 4, 5];
+  s.reminders.splice(1, 0, { id: 'morning', label: 'Morning volleyball and rope', time: '05:25', weekdays: [0, 1, 2, 3, 4, 5], enabled: true, kind: 'training' });
   return s;
 }
 
-describe('morning volleyball plan', () => {
-  it('has a no ball morning session with the rope first on every training day, and none on Saturday', () => {
-    for (const day of BASELINE_PLAN.days) {
-      const am = day.items.filter((i) => i.session === 'morning');
-      if (day.isRest) {
-        expect(am).toHaveLength(0);
-        continue;
-      }
-      expect(am.length).toBeGreaterThanOrEqual(3);
-      expect(am[0]!.exerciseId).toBe('easy-jump-rope');
-      expect(am.map((i) => i.exerciseId)).not.toContain('volleyball-spike');
-      // Nothing heavy or near failure in the morning.
-      for (const i of am) if (i.rir !== undefined) expect(i.rir).toBeGreaterThanOrEqual(2);
-    }
+/** The 2.1 plan in short: a morning rope every day and six gym days, with no home sessions. */
+function oldPlan(): PlanRecord {
+  const p = baselinePlanRecord(0);
+  for (const d of p.days) {
+    d.items = d.items.filter((i) => i.session === 'main');
+    if (d.weekday !== 6) d.items.unshift({ id: `${d.key}-rope`, exerciseId: 'easy-jump-rope', session: 'morning', sets: 1, target: { type: 'duration', totalMin: 9 }, restSec: 30, notes: [] });
+  }
+  return p;
+}
+
+const ROOMY: HomeSetup = { space: 'large', ceiling: 'standard', surface: 'mat', noiseLimits: 'no', breakables: 'no', outdoor: 'large', outdoorSurface: 'grass', equipment: ['tape', 'ball', 'wall'] };
+
+async function installOld() {
+  await db.delete();
+  await db.open();
+  await ensureInitialized();
+  await db.plans.clear();
+  await db.plans.put(oldPlan());
+  await updateSettings(oldSettings());
+  await kvSet(KV.planUpdates, {});
+}
+
+beforeEach(async () => {
+  await installOld();
+});
+
+describe('schedule for the 3.0 week', () => {
+  it('moves the early morning defaults and leaves times the user chose', () => {
+    const s = oldSettings();
+    s.reminders.find((r) => r.id === 'dinner')!.time = '19:30';
+    const { settings, changes } = withV3Times(s);
+    expect(settings.reminders.find((r) => r.id === 'checkin')!.time).toBe('07:00');
+    expect(settings.reminders.find((r) => r.id === 'winddown')!.time).toBe('21:30');
+    expect(settings.reminders.find((r) => r.id === 'morning')!.enabled).toBe(false);
+    expect(settings.reminders.find((r) => r.id === 'dinner')!.time).toBe('19:30');
+    expect(settings.reminders.find((r) => r.id === 'home')).toMatchObject({ time: '16:05', weekdays: [1, 4] });
+    expect(settings.sessionTimes.home).toEqual({ '1': '16:15', '4': '16:15', '5': '13:30' });
+    expect(settings.sessionTimes.main['1']).toBe('17:00');
+    expect(changes.join(' ')).toMatch(/05:25 morning session reminder is switched off/);
+    expect(withV3Times(settings).changes).toEqual([]);
   });
 
-  it('offers exactly the missing morning items to an installed plan and keeps everything else', () => {
-    const before = oldPlan();
-    const missing = missingMorningItems(before);
-    expect([...missing.keys()].sort()).toEqual([0, 1, 2, 3, 4, 5]);
-    expect(missing.get(0)!.map((i) => i.id)).toContain('sun-rope');
-
-    const after = withMorningItems(before);
-    expect(missingMorningItems(after).size).toBe(0);
-    for (const d of after.days) {
-      const old = before.days.find((x) => x.weekday === d.weekday)!;
-      // Every original item is still there, in the same order.
-      const kept = d.items.filter((i) => old.items.some((o) => o.id === i.id)).map((i) => i.id);
-      expect(kept).toEqual(old.items.map((i) => i.id));
-      const am = d.items.filter((i) => i.session === 'morning');
-      if (am.length) expect(am[0]!.exerciseId).toBe('easy-jump-rope');
-    }
-    expect(after.globalRules[0]).toMatch(/05:30/);
-  });
-
-  it('keeps items the user added and does not offer the update twice', () => {
-    const p = oldPlan();
-    p.days[1]!.items.push({ ...p.days[1]!.items[0]!, id: 'my-extra', notes: ['mine'] });
-    const after = withMorningItems(p);
-    expect(after.days[1]!.items.some((i) => i.id === 'my-extra')).toBe(true);
-    expect(missingMorningItems(withMorningItems(after)).size).toBe(0);
-  });
-
-  it('moves old default times to the 05:30 schedule but leaves times the user chose', () => {
-    const moved = withMorningTimes(oldSettings());
-    expect(moved.sessionTimes.morning).toBe('05:30');
-    expect(moved.reminders.find((r) => r.id === 'checkin')!.time).toBe('05:15');
-    expect(moved.reminders.find((r) => r.id === 'winddown')!.time).toBe('20:45');
-    expect(moved.reminders.filter((r) => r.id === 'morning')).toHaveLength(1);
-
-    const mine = oldSettings();
-    mine.sessionTimes.morning = '06:10';
-    mine.reminders.find((r) => r.id === 'winddown')!.time = '21:00';
-    const kept = withMorningTimes(mine);
-    expect(kept.sessionTimes.morning).toBe('06:10');
-    expect(kept.reminders.find((r) => r.id === 'winddown')!.time).toBe('21:00');
-    expect(withMorningTimes(kept).reminders.filter((r) => r.id === 'morning')).toHaveLength(1);
-  });
-
-  it('suggests a bedtime that keeps at least eight hours of sleep', () => {
-    expect(bedtimeFor('05:30')).toBe('21:15');
-    expect(bedtimeFor('07:00')).toBe('22:45');
-    expect(bedtimeFor('00:30')).toBe('16:15');
+  it('keeps at least eight and a half hours for sleep before the check in', () => {
+    expect(bedtimeFor('07:00')).toBe('22:15');
   });
 });
 
-describe('rest day food (2.1.1)', () => {
-  it('moves training days that still have the old default calories, and keeps names and edited days', async () => {
-    const { BASELINE_TARGETS } = await import('../src/content/meals');
-    const { withRestDayFood } = await import('../src/services/planUpdate');
-    const old = BASELINE_TARGETS.map((t) => ({ ...t, kcal: [2450, 2450, 2350, 2450, 2350, 2550, 2250][t.weekday]! }));
-    old[1]!.label = 'My Monday';
-    old[4]!.kcal = 2400;
-    const next = withRestDayFood(old);
-    expect(next.map((t) => t.kcal)).toEqual([2250, 2250, 2250, 2250, 2400, 2250, 2250]);
-    expect(next[1]!.label).toBe('My Monday');
-    expect(next[0]!.carbs).toBe(215);
+describe('plan proposals', () => {
+  it('offers the 3.0 week to an installed 2.1 plan, and not to a new install', async () => {
+    expect(await pendingUpdates()).toEqual({ v3: true });
+    await db.delete();
+    await db.open();
+    await ensureInitialized();
+    expect(await pendingUpdates({ includeDismissed: true })).toBeNull();
+    expect((await activePlan()).days.some((d) => d.items.some((i) => i.session === 'home'))).toBe(true);
   });
 
-  it('runs once on an installed app with saved targets', async () => {
-    const { db } = await import('../src/db/db');
-    const { KV, kvGet, kvSet } = await import('../src/db/repo');
-    const { BASELINE_TARGETS } = await import('../src/content/meals');
-    const { syncFoodTargets } = await import('../src/services/planUpdate');
-    await db.kv.clear();
-    const old = BASELINE_TARGETS.map((t) => ({ ...t, kcal: [2450, 2450, 2350, 2450, 2350, 2550, 2250][t.weekday]! }));
-    await kvSet(KV.targets, old);
-    expect(await syncFoodTargets()).toBe(true);
-    const saved = await kvGet<typeof old>(KV.targets);
-    expect(saved!.map((t) => t.kcal)).toEqual([2250, 2250, 2250, 2250, 2250, 2250, 2250]);
-    // A later choice of 2,450 on Monday is left alone.
-    saved![1]!.kcal = 2450;
-    await kvSet(KV.targets, saved);
-    expect(await syncFoodTargets()).toBe(false);
-    expect((await kvGet<typeof old>(KV.targets))![1]!.kcal).toBe(2450);
+  it('changes nothing until the proposal is activated', async () => {
+    const before = await activePlan();
+    const p = await proposePlan('v3');
+    expect(p.summary.length).toBeGreaterThan(3);
+    expect(p.settingsChanges.length).toBeGreaterThan(0);
+    expect((await activePlan()).id).toBe(before.id);
+    expect((await getSettings()).reminders.find((r) => r.id === 'checkin')!.time).toBe('05:15');
+    expect(await currentProposal()).not.toBeNull();
+  });
+
+  it('activates as a new version that keeps finished sessions on their old prescription', async () => {
+    const before = await activePlan();
+    const mon = before.days.find((d) => d.weekday === 1)!;
+    const ses = await startSession('2026-10-05', 'main', mon.items.filter((i) => i.session === 'main'), mon.title, before);
+    await db.sessions.update(ses.id, { status: 'done', finishedAt: ses.startedAt + 3_600_000 });
+    await proposePlan('v3');
+    const rec = await activateProposal();
+    expect(rec.version).toBe(before.version + 1);
+    expect((await getSettings()).activePlanId).toBe(rec.id);
+    expect(await db.plans.get(before.id)).toBeDefined();
+    const kept = await db.sessions.get(ses.id);
+    expect(kept!.planId).toBe(before.id);
+    expect(kept!.planSnapshot).toEqual(mon.items.filter((i) => i.session === 'main'));
+    expect((await getSettings()).reminders.find((r) => r.id === 'checkin')!.time).toBe('07:00');
+    expect(await currentProposal()).toBeNull();
+    expect(await pendingUpdates({ includeDismissed: true })).toBeNull();
+    expect((await kvGet<Record<string, string>>(KV.planUpdates))![V3_UPDATE_ID]).toBe('applied');
+    expect(rec.days.flatMap((d) => d.items).some((i) => i.session === 'morning')).toBe(false);
+  });
+
+  it('puts the offer away with Not now, and still shows it on Train', async () => {
+    await proposePlan('v3');
+    await discardProposal();
+    expect(await currentProposal()).toBeNull();
+    expect(await pendingUpdates()).toBeNull();
+    expect(await pendingUpdates({ includeDismissed: true })).toEqual({ v3: true });
+  });
+
+  it('fits the home sessions to the answers in the profile', async () => {
+    const quiet = await proposePlan('v3');
+    expect(contacts(quiet.plan.days.find((d) => d.weekday === 1)!.items)).toBe(0);
+    await saveAthlete('home', ROOMY);
+    await saveAthlete('wrist', { status: 'cleared', clearedBy: 'orthopaedic doctor', date: '2026-10-01', limits: '' });
+    const roomy = await proposePlan('profile');
+    expect(contacts(roomy.plan.days.find((d) => d.weekday === 1)!.items)).toBe(58);
+  });
+
+  it('changes the jump level only through a proposal the athlete activates', async () => {
+    await saveAthlete('home', ROOMY);
+    await proposePlan('v3');
+    await activateProposal();
+    expect(await kvGet(KV.jumpLevel)).toBe('intro');
+    const p = await proposePlan('jump-level', { level: 'build' });
+    expect(contacts(p.plan.days.find((d) => d.weekday === 4)!.items)).toBe(95);
+    expect(await kvGet(KV.jumpLevel)).toBe('intro');
+    await activateProposal();
+    expect(await kvGet(KV.jumpLevel)).toBe('build');
+  });
+
+  it('routes hand edits and going back to an older version through the same preview', async () => {
+    const before = await activePlan();
+    const edited = structuredClone(before);
+    edited.days[0]!.items[0]!.sets = 4;
+    await proposeExact(edited, 'Your edits', 'One more set');
+    expect((await activePlan()).id).toBe(before.id);
+    const rec = await activateProposal();
+    expect(rec.days[0]!.items[0]!.sets).toBe(4);
+    expect(rec.version).toBe(before.version + 1);
   });
 });

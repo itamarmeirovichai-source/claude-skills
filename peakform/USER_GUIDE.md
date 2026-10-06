@@ -1,93 +1,120 @@
 # PeakForm user guide
 
-PeakForm keeps your week in one place: training, food, sleep, pain, and a Sunday review. Everything stays on your phone.
+PeakForm keeps your week in one place: training at the gym and at home, food, sleep, pain, and a Sunday review. Everything stays on your phone.
+
+## First: your profile
+
+Open **More, Your profile** (Today also lists anything still missing). A few answers decide what PeakForm can plan safely:
+
+- **Wrist after an injury.** If a wrist or forearm injury is still healing, PeakForm keeps the load on gripping and pressing exercises the same, swaps heavy grip exercises, and plans no ball contact or falls onto the hands until a clinician confirms it is cleared. Choose **No injury, or cleared for full sport** when that is true, and write who cleared it.
+- **Your space at home.** Floor space, ceiling, surface, noise limits, things that could break, outdoor space, and equipment. Jumps are only planned where they fit. Until you answer, home sessions are quiet drills without jumps.
+- **School and club sport**, **sleep**, **supervision at the gym**, **supplements**, **how often to weigh**, **meat and dairy**, and, if it applies, **a large daily portion of green beans** (how it is weighed, oil, and how your stomach feels).
+
+When you tap **Update my plan from these answers** (or **See the new week** when the new week is offered), PeakForm builds the plan from these answers and shows it before anything changes.
+
+## Plan changes are always shown first
+
+Every change to the plan opens a preview: a short summary, the schedule changes, and a day by day list of what is added, removed, or changed. **Activate this plan** saves it as a new version. **Not now** keeps the current plan. Finished workouts always keep the prescription they were done against, so history never changes. This applies to the new week, your exercise choices, the jump level, hand edits, and recommendation files.
 
 ## Today
 
-Today answers four questions.
+- **What do I do next?** The Next card shows the next planned item and one button to do it.
+- **What did I do last time?** Last time shows your most recent session of the same kind.
+- **What can I log in one tap?** Start workout, Quick food, and, if weighing is on, Quick weight.
+- **Should I change anything?** The Recovery list uses sleep, soreness, pain, and illness. The best it ever says is "No warning signs logged". Safety notes appear at the top when something needs a parent's attention.
 
-- **What do I do next?** The Next card shows the next planned item and one button to do it. Meals have **Log as planned**.
-- **What did I do last time?** Last time shows your most recent session of the same kind with its key sets.
-- **What can I log in one tap?** Start workout, Quick food, and Quick weight sit under the Next card.
-- **Should I change anything?** The readiness tag and the Recovery list use last night's sleep, soreness, pain, and illness. Safety notes appear at the top when something needs a parent's attention.
-
-The timeline shows every planned item. During the Sabbath window, items fade and reminders stay quiet.
+During the Sabbath window, items fade and reminders stay quiet.
 
 ## Train
 
-- **This week** lists the seven days, starting with today. Saturday is full rest.
-- The week alternates upper and lower body over six gym days. Each main session has one exercise for each muscle head, three work sets each, with a slow stretch at the bottom of every rep.
-- **The jump program** runs in training blocks until the end of January. Monday and Friday start with jump drills; do them first, at full effort, with full rest, and stop a drill when height or landing quality drops. Every landing counts as a jump, so in a week with a lot of volleyball, do fewer of the planned ones. A new block updates your plan on its Monday, and Today tells you what changed.
-- **Approach Jump and Reach** logs the height you touch in the Reach field. On test Fridays, do 3 to 5 touches with each takeoff after the warm up and log the best. Progress shows your best touch, how many centimetres are still missing to a dunk, and the milestones on the way. Add your standing reach there, and tick the box once you can hold a basketball in one hand.
-- **Choose your exercises** (in Train and More) is a short questionnaire. For each muscle head you pick from exercises that build it about equally, with a picture and **How to do it** for each. Muscles trained twice a week can take a second choice, so the two days differ. Only machines, cables, the Smith machine, and dumbbells are offered. Your answers from the questionnaire you filled in before 2.0 are already filled in, so a card on Today and Train can add them with one tap (**Add to my plan**), or show the week first. Saving builds your plan as a new version; history is kept, and you can change your choices at any time.
-- Open a day to see each exercise with sets, reps, rest, effort, and a front and back muscle diagram.
-- Effort says how close to failure a set goes. **To failure** means the last rep you can finish with clean form, never a cheated or grinding rep. Small machine and cable exercises go to failure on every set, big machine exercises on the last set, and dumbbell presses, lunges, and hinges stop one rep short. A new exercise stays two reps short for its first two sessions while you learn it.
-- **Start** opens the guided workout. You can also start from Today.
+The week:
+
+| Day | Home | Gym |
+| --- | --- | --- |
+| Sunday | | Upper A, about 70 min |
+| Monday | Movement prep, landings, and jumps, about 30 min, first | Lower A, about 40 min |
+| Tuesday | No structured training. School sport counts | |
+| Wednesday | | Upper B, about 70 to 75 min |
+| Thursday | Movement prep, landings, and jumps, about 30 min, first | Lower B, about 50 min |
+| Friday | Volleyball skills without jumps, about 20 min | |
+| Saturday | Full rest | |
+
+- The gym is for strength. Home is for jumps, agility, approach footwork, and skills. Each muscle trains twice a week.
+- Every session shows where it happens, the equipment, the space it needs, about how long it takes, the number of landings for jump work, and **When to stop**.
+- Work sets stop about two reps short of failure: you could still do about two more clean reps. A new exercise stays three reps short for its first two sessions while you learn it. There are no sets to failure and no one repetition maximum tests.
+- **Home jumps** start at the starting level, about 60 landings a session. The build level (about 95) is offered in **Choose your exercises** and changes the plan only through the preview. Do the jumps fresh, before the gym, with full rest. Stop a drill when height, speed, or landing control drops, and stop jumping for the day for pain at the knee, below the kneecap, at the heel, or along the shin.
+- If sport had a lot of jumping the day before, keep the home jumps short. Jumping every day is not part of the plan.
+- **Choose your exercises** lets you pick, for each muscle head, from exercises that build it about equally. Saving shows the changes before they apply.
+- Open a day to see each exercise with sets, reps, rest, reps in reserve, and a front and back muscle diagram. Every exercise page shows its wrist load and how it progresses.
 
 ### During a workout
 
-- The workout shows one exercise at a time. Tap the numbered chips to jump between exercises.
-- Above the inputs you see **Last time** and any **Target today**. Each input shows the last value beside its label.
-- Log weight, reps, RIR, form, and pain. For jumps, sprints, throws, and spikes, log good quality reps and a quality score. For swims, log round trips, effort, pool length, and stroke.
-- One sided exercises ask for left and right in turn.
-- Tick **Warm up** for warm up sets. They never count as work sets.
-- **Complete set** sits at the bottom of the screen. The rest timer starts on its own and stays visible on every screen. Tap the time to pause it. **−15** and **+15** adjust it.
-- **Copy last**, **Skip set**, **Add set**, **Substitute**, and **Skip exercise** are under the set card.
-- Mark pain honestly. Pain of 4 out of 10 or more tells you to stop that exercise and tell a parent or coach.
-- **Finish** asks for session effort (RPE), energy, and soreness, then shows your plan and what you actually did.
+- One exercise at a time. Tap the numbered chips to move between exercises.
+- **Last time** and any **Target today** sit above the inputs.
+- Log weight, reps, reps in reserve, form, and pain. Jumps and skills log good quality reps. One sided exercises ask for left and right in turn. **Warm up** sets never count as work sets.
+- **Complete set** saves one set per tap, and the rest timer starts on its own.
+- Mark pain honestly. Pain of 4 out of 10 or more, pain that gets worse, or pain that changes how you move: stop that exercise and tell a parent or coach. Muscle soreness that fades in a few days is normal and is not the same as joint, tendon, heel, knee, or wrist pain.
+- **Finish** asks for session effort, energy, and soreness, then shows your plan next to what you did.
 
 ### Next targets
 
-After a session, PeakForm suggests a next target for each exercise and explains why. Nothing changes until you tap **Use it**.
+After a session, PeakForm suggests a next target and explains why. Nothing changes until you tap **Use it**.
 
-- Reps go up first, one rep on the lowest set, inside the prescribed range.
-- Load goes up only when every work set reaches the top of the range, with the prescribed RIR, good form, and no pain. The increase is the smallest step your equipment allows.
-- When sets go to failure, reps naturally drop from set to set, so the first set decides: one more rep on the first set, and more load once the first set reaches the top of the range.
-- One good set never raises the load.
-- Jumps, sprints, Nordic curls, and swims never progress automatically.
-- Every fourth session of an exercise, a short four session review appears.
+- Reps go up first, inside the range.
+- Load goes up only when every work set reaches the top of the range at the planned reps in reserve, with good form and no pain. The increase is the smallest step your equipment allows. One good set never raises the load.
+- While the wrist is not cleared, load on wrist loaded exercises stays the same; reps can still rise.
+- Jumps and skills never progress automatically.
 
 ## Eat
 
-- The top panel shows calories as a range, then protein, carbohydrate, fat, fibre, calcium, and water.
-- Each meal has **Log as planned** for one tap logging, or **Change** to swap foods or amounts.
-- **Every day is eaten like a rest day:** about 2,250 kcal, whether or not you train or do the rope, so a missed session never leaves extra food. The meal before training keeps a small rice portion for the workout.
-- **Quick food** and **Restaurant estimate** add anything else. Wherever grams are asked, **Estimate by eye** lets you pick a palm, fist, cupped hand, thumb, spoon, cup, or a small, medium, or large restaurant portion. PeakForm stores the method and a range, not a false exact number.
-- The hidden oil allowance widens the range for restaurant and hosted food.
-- **Drinks** logs water and zero calorie drinks.
-- **Day note** records "not hungry" or "schedule changed" without any penalty.
-- On Saturday, the **Sabbath plate guide** shows a discreet plate. After the Sabbath, log the day in two taps.
-- **Meal preparation** has the shopping list, cooking steps, storage, and food safety temperatures. **Recipes** scale by servings.
-- Barcode lookup is optional and needs internet. You can always type label values instead.
+- Example meals for each day, in grams with household measures, and with the state of the food: raw, cooked, dry, frozen, or drained. Each one says: "Example serving. Adjust to appetite and activity; this is not a daily limit." There are options for more food at every meal.
+- There is no calorie target. Teen athletes often need more than the examples. A pediatric sports dietitian can give you a personal number; record it in **More, Goals and reviews**, and Eat will show that range.
+- Each food and meal shows whether it is meat, dairy, or pareve. When dairy would come too soon after meat for your family's interval (set in Your profile; it starts at 6 hours), the evening milk is swapped for a pareve snack, and Eat shows when dairy is fine again.
+- **Log as planned** logs a meal in one tap. **Quick food** and **Restaurant estimate** add anything else, with **Estimate by eye** when you do not weigh. PeakForm stores a range, not a false exact number. Logging food is optional.
+- **Meal preparation** has the shopping list, cooking steps, storage, and food safety. Cafeteria food needs nothing from home; food from home goes in an insulated bag with ice packs.
+- On Saturday, the **Sabbath plate guide** shows a discreet plate. After a meat meal, choose a pareve dessert.
 
 ## Morning check in
 
-Takes under a minute: morning weight, optional scale body fat, waist once a week, sleep times and quality, energy, mood, concentration, soreness, pain from 0 to 10 in six areas, illness, and anything worrying. Weigh after the toilet and before food or drink.
+Under a minute: sleep, energy, mood, concentration, soreness, pain from 0 to 10 by area (including the wrist and heel), illness, and anything worrying. Morning weight is optional; once a week is enough.
 
 ## Progress
 
-- **Dunk goal** shows your best approach touch, the centimetres still missing to a dunk (about 325 cm, or 320 cm if you can palm the ball), the milestones, your approach jump height once you add your standing reach, and the date of the next jump test. The milestone heights are rough coaching figures.
-- **Body weight** shows single mornings as dots and a seven day average line. The line needs at least four morning weights in a week.
-- **Waist**, **Scale body fat** (weekly trend only), **Sleep**, and **How you feel** show trends.
-- **Nutrition check** runs only on fourteen days of useful data. It never goes below 2,000 calories, never uses body fat, suggests more food when weight falls faster than about 0.5 kg a week, and always needs your confirmation.
-- **Muscle coverage** shows direct and indirect sets per muscle, confirms upper back, calves, and forearms, and lists shoulder load across pressing, volleyball, swimming, and shoulder care.
-- **Exercise progress** lists each exercise's sessions and best clean set.
+- **Jump tests** every four weeks: standing reach and the best of a few standing jumps and reaches, with the method, surface, and shoes. Only tests done the same way are compared, and small changes are treated as noise. There is no dunk target.
+- **Body weight** follows the weighing setting: weekly by default, several mornings a week, or off, and numbers can be hidden. Five days of steady weight is never called a plateau. Growth, training, water, food in the gut, and creatine all move the scale.
+- **Nutrition check** needs at least three weekly weights in four weeks (or two full weeks in the frequent mode). It never suggests eating less. It suggests more food and a talk with a parent when weight falls faster than about 0.45 kg a week, or when energy, mood, sleep, or performance dip.
+- **Scale body fat** is shown as a rough trend only and never sets a target.
+- **Muscle coverage** and **Exercise progress** show sets per muscle and each exercise's history.
+
+## Goals and reviews
+
+**More, Goals and reviews** keeps three things apart:
+
+- **Your aspirations**, in your own words. They are kept exactly as written and never become targets, deadlines, or plans.
+- **Targets a professional reviewed**, with who gave them, their role, the date, and whether a professional reviewed them or they were only discussed with a parent.
+- **Planning stages**: a flexible four month outline (technique and workload check, gradual progression, consolidation and skill, review and the next block), with a measurement every four weeks. Stages never change the plan by themselves.
+
+Calorie targets, supplements, and body composition goals belong in a calm talk with a parent and a pediatrician or pediatric sports dietitian.
+
+## School sport
+
+**More, School sport** logs practices and games with minutes, intensity, and how much jumping. The weekly review adds them to the plan's minutes, and when sport and training together take more hours than your age in years (once the birth year is set), it lists that as a recovery point to talk through with a parent or coach.
 
 ## Weekly review
 
-Opens on Sunday evening, or next time you open the app. It has four sections: **Keep doing**, **Ready to progress**, **Improve next week**, and **Safety flags**. Each point shows its evidence and confidence. You also get one to three priorities and a comparison with the week before.
+Opens on Sunday evening. Sections: **Evidence of progress**, **Not enough data yet**, **Recovery**, **Worth a professional review**, **Keep doing**, **Ready to progress**, **Improve next week**, and **Safety flags**. Each point shows its evidence and confidence.
 
-**Prepare coach report**, then **Share or save**, creates a Markdown file and a JSON file. Send them to Codex, Claude, a coach, or a parent. Photos and private notes stay out unless you switch them on. No assistant can read your phone by itself.
+**Prepare coach report**, then **Share or save**, creates a Markdown file and a JSON file with the week, the profile answers, your aspirations, and any reviewed targets, kept apart. Photos and private notes stay out unless you switch them on.
 
-A coach or assistant can send back a recommendation file. Import it in **More, Import a recommendation**. You see every change, and nothing below the safety floors can be applied.
+**More, Import a recommendation** reads a file from a coach or assistant. Plan changes open in the plan preview. Food targets and sets to failure are never imported.
 
 ## More
 
 - **Schedule and reminders**, **Calendar export**, **Sabbath Mode**
-- **Edit the training plan** (saved as a new version), **Nutrition targets**
-- **Supplements**: a tracker only. Creatine logging needs a one time parent and clinician confirmation.
-- **Backup and data**: encrypted or plain backups, CSV export, import with preview, safety copies, demo data, delete all data
-- **App lock**, **Privacy**, **Safety**, **Research sources**, **Media attribution**, **Settings**, **About** with the install QR code
+- **Your profile**, **Goals and reviews**, **School sport**, **Choose your exercises**, **Edit the training plan**
+- **Supplements**: a record only. PeakForm never starts or increases a supplement.
+- **Backup, export, and import**: encrypted or plain backups, CSV export, **Prepare the plan file** (the week and the example meals for you, a parent, or a coach), import with preview, delete all data
+- **App lock**, **Privacy**, **Safety**, **Research sources**, **Media attribution**, **Settings**, **About**
 
 ## Reminders
 

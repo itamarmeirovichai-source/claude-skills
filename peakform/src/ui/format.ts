@@ -58,6 +58,6 @@ export function setRirTarget(item: { rir?: number; lastSetRir?: number; sets: nu
   return item.rir;
 }
 
-/** A new exercise stays two reps short for its first two sessions while the technique is learned. */
+/** A new exercise stays three reps short for its first two sessions while the technique is learned. */
 export const LEARNING_SESSIONS = 2;
-export const LEARNING_RIR = 2;
+export const LEARNING_RIR = 3;

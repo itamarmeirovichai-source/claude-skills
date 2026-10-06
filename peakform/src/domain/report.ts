@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { FoodLog, SetLog, WorkoutSession } from '../db/records';
-import { NUTRITION_FLOORS } from '../content/meals';
 import { dayTotals } from './nutrition';
+import type { AthleteProfile } from './athlete';
 import type { ReviewItem, WeeklyReview } from './review';
 
 // Coach report: a readable Markdown file plus structured JSON of the same review.
@@ -19,6 +19,48 @@ export interface ReportLogs {
   setLogs: SetLog[];
   foodLogs: FoodLog[];
   exerciseName: (id: string) => string;
+  /** The athlete profile and plan, so a coach or clinician sees the context. */
+  context?: ReportContext;
+}
+
+export interface ReportContext {
+  athlete: AthleteProfile;
+  /** One line per day: the sessions with their location. */
+  week: string[];
+  planVersion: string;
+}
+
+const WRIST_LABEL: Record<AthleteProfile['wrist']['status'], string> = { unknown: 'not answered', 'not-cleared': 'not cleared yet', cleared: 'cleared by a clinician', symptoms: 'pain or swelling now' };
+
+/** The profile part of the report. Aspirations and reviewed targets are listed separately on purpose. */
+export function contextMarkdown(c: ReportContext): string[] {
+  const a = c.athlete;
+  const sportLine = (n: string, x: { sessions: number | null; minutes: number | null }) => `${n}: ${x.sessions ?? '?'} sessions a week, ${x.minutes ?? '?'} min each`;
+  return [
+    '## Context',
+    '',
+    `Plan: ${c.planVersion}`,
+    ...c.week.map((w) => `- ${w}`),
+    '',
+    '### User aspirations (in the athlete\'s words, not reviewed targets)',
+    '',
+    ...(a.aspirations.length ? a.aspirations.map((x) => `- ${x.text} (recorded ${x.recordedOn})`) : ['- None recorded.']),
+    '',
+    '### Professionally reviewed targets',
+    '',
+    ...(a.reviewed.length ? a.reviewed.map((t) => `- ${t.value} ${t.units}: ${t.source}, ${t.role}, ${t.date}, ${t.status}`) : ['- None recorded. PeakForm sets no calorie, weight, or body fat targets itself.']),
+    '',
+    '### Readiness and load',
+    '',
+    `- Wrist after an injury: ${WRIST_LABEL[a.wrist.status]}${a.wrist.status === 'cleared' && a.wrist.clearedBy ? ` (${a.wrist.clearedBy}${a.wrist.date ? `, ${a.wrist.date}` : ''})` : ''}${a.wrist.limits ? `. Limits: ${a.wrist.limits}` : ''}`,
+    `- School sport, usual week (${a.sport.confirmed ? 'confirmed' : 'not confirmed'}): ${sportLine('volleyball', a.sport.volleyball)}; ${sportLine('basketball', a.sport.basketball)}; jumping ${a.sport.jumping}`,
+    `- Home space: floor ${a.home.space}, ceiling ${a.home.ceiling}, surface ${a.home.surface}, outdoor ${a.home.outdoor}`,
+    `- Gym supervision: ${a.basics.supervision}. Usual sleep: ${a.basics.typicalSleepH ?? '?'} h`,
+    `- Creatine: ${a.supplements.creatineProduct || 'not recorded'}${a.supplements.creatineDoseG !== null ? `, ${a.supplements.creatineDoseG} g a day` : ''}${a.supplements.startedOn ? `, since ${a.supplements.startedOn}` : ''}; third party tested ${a.supplements.thirdPartyTested}; reviewed by ${a.supplements.reviewedBy || 'nobody yet'}`,
+    `- Large green bean portion: ${a.veg.grams ?? '?'} g a day, ${a.veg.state}, ${a.veg.role}, oil ${a.veg.oilG ?? '?'} g, stomach ${a.veg.stomach}`,
+    `- Meat and dairy interval: ${a.kosher.enabled ? `${a.kosher.meatToDairyHours} h` : 'off'}. Weighing: ${a.weight.mode}`,
+    '',
+  ];
 }
 
 const section = (title: string, items: ReviewItem[]) =>
@@ -38,6 +80,10 @@ export function coachReportMarkdown(review: WeeklyReview, logs: ReportLogs, opts
     '',
     ...review.priorities.map((p, i) => `${i + 1}. ${p}`),
     '',
+    section('Evidence of progress', review.progress ?? []),
+    section('Not enough data yet', review.insufficient ?? []),
+    section('Recovery concerns', review.recovery ?? []),
+    section('Reasons for a professional review', review.professional ?? []),
     section('Keep doing', review.keepDoing),
     section('Ready to progress', review.readyToProgress),
     section('Improve next week', review.improve),
@@ -48,6 +94,7 @@ export function coachReportMarkdown(review: WeeklyReview, logs: ReportLogs, opts
     '| --- | --- | --- | --- |',
     ...review.comparison.map((c) => `| ${c.label} | ${c.previous} | ${c.current} | ${c.note} |`),
     '',
+    ...(logs.context ? contextMarkdown(logs.context) : []),
     '## Sessions',
     '',
   ];
@@ -107,6 +154,10 @@ export function coachReportJson(review: WeeklyReview, logs: ReportLogs, opts: Re
       readyToProgress: review.readyToProgress,
       improveNextWeek: review.improve,
       safetyFlags: review.safety,
+      progressEvidence: review.progress ?? [],
+      insufficientData: review.insufficient ?? [],
+      recoveryConcerns: review.recovery ?? [],
+      professionalReview: review.professional ?? [],
       comparison: review.comparison,
       metrics: { current: review.current, previous: review.previous },
     },
@@ -142,6 +193,9 @@ export function coachReportJson(review: WeeklyReview, logs: ReportLogs, opts: Re
         photoIncluded: opts.includePhotos && f.photoId !== null,
         note: opts.includeNotes ? f.note : undefined,
       })),
+    context: logs.context
+      ? { week: logs.context.week, planVersion: logs.context.planVersion, aspirations: logs.context.athlete.aspirations, reviewedTargets: logs.context.athlete.reviewed, wrist: logs.context.athlete.wrist, sport: logs.context.athlete.sport, home: logs.context.athlete.home, supplements: logs.context.athlete.supplements, greenBeans: logs.context.athlete.veg }
+      : undefined,
     privacy: { photosIncluded: opts.includePhotos, notesIncluded: opts.includeNotes },
   };
 }
@@ -183,7 +237,11 @@ export interface RecommendationCheck {
   rec: Recommendation | null;
 }
 
-/** Validate a recommendation file. Changes that break safety floors are blocked, not applied. */
+/**
+ * Validate a recommendation file. Plan changes are shown as a difference before they apply. Energy and
+ * macro targets are never imported from a file: they are recorded in Goals and reviews together with the
+ * professional who gave them.
+ */
 export function checkRecommendation(text: string): RecommendationCheck {
   let json: unknown;
   try {
@@ -195,10 +253,8 @@ export function checkRecommendation(text: string): RecommendationCheck {
   if (!r.success) return { ok: false, errors: r.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`), blocked: [], rec: null };
   const blocked: string[] = [];
   for (const c of r.data.changes) {
-    if (c.type === 'nutrition-target') {
-      if (c.kcal !== undefined && c.kcal < NUTRITION_FLOORS.kcal) blocked.push(`Weekday ${c.weekday}: ${c.kcal} kcal is below the ${NUTRITION_FLOORS.kcal} kcal floor.`);
-      if (c.carbs !== undefined && c.carbs < NUTRITION_FLOORS.carbs) blocked.push(`Weekday ${c.weekday}: ${c.carbs} g carbohydrate is below ${NUTRITION_FLOORS.carbs} g.`);
-    }
+    if (c.type === 'nutrition-target') blocked.push(`Weekday ${c.weekday}: food targets are not imported from files. Record a target a professional gave you in More, Goals and reviews.`);
+    if (c.type === 'plan-item' && c.rir !== undefined && c.rir < 1) blocked.push(`${c.planItemId}: sets to failure are not prescribed.`);
     if (c.type === 'plan-item' && c.repMin !== undefined && c.repMax !== undefined && c.repMin > c.repMax) blocked.push(`${c.planItemId}: rep range is reversed.`);
   }
   return { ok: true, errors: [], blocked, rec: r.data };

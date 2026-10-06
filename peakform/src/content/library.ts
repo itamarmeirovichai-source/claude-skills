@@ -8,13 +8,14 @@ import { PULL_CHOICES } from './exercises/choice-pull';
 import { LEGS_CHOICES } from './exercises/choice-legs';
 import { JUMPS_A } from './exercises/jumps-a';
 import { JUMPS_B } from './exercises/jumps-b';
+import { HOME_EXERCISES } from './exercises/home';
 import type { ExerciseContent } from './types';
 import type { CustomExercise } from '../db/records';
 import type { EquipmentType, Prescription } from '../domain/progression';
 import type { PlanItem } from './plan';
 import type { MuscleId } from './muscles';
 
-export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES, ...GYM_EXERCISES, ...PUSH_CHOICES, ...PULL_CHOICES, ...LEGS_CHOICES, ...JUMPS_A, ...JUMPS_B];
+export const LIBRARY: ExerciseContent[] = [...LOWER_EXERCISES, ...UPPER_EXERCISES, ...ATHLETIC_EXERCISES, ...MORNING_EXERCISES, ...GYM_EXERCISES, ...PUSH_CHOICES, ...PULL_CHOICES, ...LEGS_CHOICES, ...JUMPS_A, ...JUMPS_B, ...HOME_EXERCISES];
 export const EXERCISE_BY_ID: Record<string, ExerciseContent> = Object.fromEntries(LIBRARY.map((e) => [e.id, e]));
 
 let customs: Record<string, ExerciseContent> = {};

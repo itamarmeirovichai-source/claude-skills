@@ -41,11 +41,11 @@ export const RECIPES: Recipe[] = [
   {
     id: 'yogurt-oat-breakfast',
     name: 'Yogurt, oat, banana, and berry breakfast',
-    summary: 'The default breakfast after the morning session. Takes two minutes to assemble.',
+    summary: 'The example breakfast. Takes two minutes to assemble.',
     servings: 1,
     ingredients: [
       { foodId: 'yogurt-hp', name: 'High protein yogurt or skyr, 0 to 3% fat', grams: 300, state: 'as sold' },
-      { foodId: 'oats', name: 'Rolled oats', grams: 60, state: 'dry' },
+      { foodId: 'oats', name: 'Rolled oats', grams: 80, state: 'dry' },
       { foodId: 'banana', name: 'Banana, sliced', grams: 118, amount: '1 medium' },
       { foodId: 'berries-frozen', name: 'Frozen berries (optional)', grams: 100 },
     ],
@@ -55,7 +55,6 @@ export const RECIPES: Recipe[] = [
       'Add the dry oats and stir. Let it sit for a minute if you like softer oats.',
       'Slice the banana on top.',
       'Add frozen berries straight from the freezer. They thaw in a few minutes.',
-      'Add half a scoop of protein powder only if food protein is short that day.',
     ],
     storage: ['Overnight version: mix yogurt and oats in a jar and keep it in the fridge for up to two days. Add the banana in the morning.'],
     reheating: ['Eat cold.'],
@@ -65,42 +64,43 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'chicken-rice-boxes',
-    name: 'Chicken and rice pre workout boxes',
-    summary: 'Six boxes for Sunday to Friday. Rice amounts change by day.',
+    name: 'Chicken and rice boxes',
+    summary: 'Six afternoon meals for Sunday to Friday, the same on training days and days off.',
     servings: 6,
     ingredients: [
-      { foodId: 'chicken-breast', name: 'Chicken breast, raw weight about 1 kg', grams: 720, state: 'cooked', amount: 'About 1 kg raw, which cooks down to about 720 g' },
-      { foodId: 'rice-cooked', name: 'White rice, cooked', grams: 600, state: 'cooked', amount: 'About 220 g dry rice' },
+      { foodId: 'chicken-breast', name: 'Chicken breast, cooked (about 1 kg raw)', grams: 720, state: 'cooked', amount: 'About 1 kg raw, which cooks down to about 720 g' },
+      { foodId: 'rice-cooked', name: 'White rice, cooked (about 450 g dry)', grams: 1200, state: 'cooked', amount: 'About 450 g dry rice' },
       { name: 'Salt, pepper, paprika, garlic powder', amount: 'To taste' },
     ],
-    weightNote: 'The plan uses cooked weights: 120 g cooked chicken per box. Rice per box: 100 g cooked every day, so each day stays at the rest day amount of food.',
+    weightNote: 'Weights are cooked: 120 g chicken and 200 g rice per box, an example serving. 1 kg raw chicken gives about 720 g cooked, and 450 g dry rice about 1,200 g cooked.',
     steps: [
-      'Rinse 220 g dry rice and cook it with water by the packet instructions.',
+      'Rinse 450 g dry rice and cook it with water by the packet instructions.',
       'Season the raw chicken with salt and spices. Wash your hands and any surface the raw chicken touched.',
       'Bake the chicken at about 200°C for 20 to 25 minutes, or pan cook it without extra oil.',
       'Check the thickest piece with a thermometer. It must reach 74°C.',
-      'Let the rice and chicken cool for a short time, then weigh 120 g chicken into each of six boxes.',
-      'Weigh the rice for each day into the labelled box.',
+      'Spread the rice in a shallow container so it cools quickly, ideally within about an hour.',
+      'Weigh 120 g chicken and 200 g rice into each of six boxes.',
     ],
-    storage: ['Label each box with the day.', 'Keep Sunday to Wednesday boxes in the fridge.', 'Freeze Thursday and Friday boxes as soon as they have cooled.', COOL_AND_CHILL, FRIDGE],
+    storage: ['Label each box with the day.', 'Keep the next day or two in the fridge.', 'Freeze the other boxes as soon as they have cooled. Cooked rice is safest eaten soon or frozen, and reheated only once.', COOL_AND_CHILL, FRIDGE],
     reheating: ['Move a frozen box to the fridge the night before.', REHEAT],
     substitutions: ['Chicken can be swapped for 120 g cooked turkey breast, 140 g tuna in water, or 200 g firm tofu. PeakForm shows the estimated change.', 'Rice can be swapped for the same energy in potato, sweet potato, couscous, or pasta.'],
     foodSafety: ['Poultry must reach 74°C.', 'Cooked rice should be cooled and refrigerated quickly. Do not leave it out for hours.', COOL_AND_CHILL],
-    suitableFor: ['before training'],
+    suitableFor: ['any day'],
   },
   {
     id: 'sheet-pan-salmon',
     name: 'Sheet pan salmon, potato, and vegetables',
-    summary: 'Dinner for Sunday and Wednesday. One tray, no extra oil.',
+    summary: 'Dinner for Sunday and Wednesday. One tray, 5 g oil per serving.',
     servings: 2,
     ingredients: [
       { foodId: 'salmon', name: 'Salmon fillet, about 450 g raw for two cooked portions of 180 g', grams: 360, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes, cubed', grams: 300, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes, cubed', grams: 500, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 200, state: 'cooked' },
-      { foodId: 'veg-mixed', name: 'Vegetables: broccoli, zucchini, peppers, carrots', grams: 600 },
+      { foodId: 'veg-mixed', name: 'Vegetables: broccoli, zucchini, peppers', grams: 600 },
+      { foodId: 'olive-oil', name: 'Olive oil for the tray', grams: 10 },
       { name: 'Lemon, garlic, salt, pepper, dill or paprika', amount: 'To taste' },
     ],
-    weightNote: 'Per serving: 180 g cooked salmon, 150 g cooked potato, 100 g cooked lentils, 300 g vegetables.',
+    weightNote: 'Per serving: 180 g cooked salmon, 250 g cooked potato, 100 g cooked lentils, 300 g vegetables, 5 g oil.',
     steps: [
       'Heat the oven to 200°C and line a tray with baking paper.',
       'Roast the potato cubes for 15 minutes.',
@@ -121,12 +121,13 @@ export const RECIPES: Recipe[] = [
     servings: 2,
     ingredients: [
       { foodId: 'beef-lean', name: 'Lean beef, about 500 g raw for two cooked portions of 180 g', grams: 360, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes', grams: 300, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes', grams: 500, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 200, state: 'cooked' },
       { foodId: 'veg-mixed', name: 'Mixed vegetables', grams: 600 },
+      { foodId: 'olive-oil', name: 'Olive oil for the vegetables', grams: 10 },
       { name: 'Onion, garlic, cumin, paprika, salt', amount: 'To taste' },
     ],
-    weightNote: 'Per serving: 180 g cooked lean beef, 150 g cooked potato, 100 g cooked lentils, 300 g vegetables.',
+    weightNote: 'Per serving: 180 g cooked lean beef, 250 g cooked potato, 100 g cooked lentils, 300 g vegetables, 5 g oil.',
     steps: [
       'Boil or bake the potatoes until soft.',
       'Brown the beef in a non stick pan without extra oil. Pour off visible fat.',
@@ -143,20 +144,20 @@ export const RECIPES: Recipe[] = [
   {
     id: 'white-fish-plate',
     name: 'White fish, potato, lentil, and vegetable plate',
-    summary: 'Tuesday dinner. Includes 10 g olive oil.',
+    summary: 'Tuesday dinner. Includes 5 g olive oil.',
     servings: 1,
     ingredients: [
-      { foodId: 'white-fish', name: 'White fish, about 270 g raw', grams: 220, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes', grams: 200, state: 'cooked' },
+      { foodId: 'white-fish', name: 'White fish, about 250 g raw', grams: 200, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes', grams: 250, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 100, state: 'cooked' },
       { foodId: 'veg-mixed', name: 'Vegetables', grams: 300 },
-      { foodId: 'olive-oil', name: 'Olive oil', grams: 10 },
+      { foodId: 'olive-oil', name: 'Olive oil', grams: 5 },
       { name: 'Lemon, parsley, salt, pepper', amount: 'To taste' },
     ],
-    weightNote: '220 g cooked fish comes from about 270 g raw.',
+    weightNote: '200 g cooked fish comes from about 250 g raw.',
     steps: [
       'Boil or bake the potatoes.',
-      'Brush the fish with the 10 g olive oil and season it.',
+      'Brush the fish with the 5 g olive oil and season it.',
       'Bake at 200°C for 10 to 14 minutes until it flakes and reaches 63°C.',
       'Serve with the lentils and vegetables.',
     ],
@@ -169,11 +170,11 @@ export const RECIPES: Recipe[] = [
   {
     id: 'turkey-plate',
     name: 'Turkey, potato, lentil, and vegetable plate',
-    summary: 'Friday dinner. Includes 5 g olive oil.',
+    summary: 'Friday dinner, cooked before the Sabbath. Includes 5 g olive oil.',
     servings: 1,
     ingredients: [
       { foodId: 'turkey-breast', name: 'Turkey breast, about 250 g raw', grams: 180, state: 'cooked' },
-      { foodId: 'potato', name: 'Potatoes', grams: 200, state: 'cooked' },
+      { foodId: 'potato', name: 'Potatoes', grams: 250, state: 'cooked' },
       { foodId: 'lentils-cooked', name: 'Cooked lentils', grams: 100, state: 'cooked' },
       { foodId: 'veg-mixed', name: 'Vegetables', grams: 300 },
       { foodId: 'olive-oil', name: 'Olive oil', grams: 5 },
@@ -194,7 +195,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'lentil-soup',
     name: 'Lentil soup',
-    summary: 'One pot, six servings. Counts toward the dinner vegetable target.',
+    summary: 'One pot, six servings. Replaces the lentils and part of the vegetables at dinner.',
     servings: 6,
     cookedYieldGrams: 2700,
     ingredients: [
@@ -225,7 +226,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'school-plate',
     name: 'Tofu, egg, and salad school plate',
-    summary: 'Built from cafeteria food. Nothing to bring from home.',
+    summary: 'Built from cafeteria food, so nothing perishable has to sit in a school bag.',
     servings: 1,
     ingredients: [
       { foodId: 'egg', name: 'Whole eggs', grams: 100, amount: '2' },
@@ -242,7 +243,7 @@ export const RECIPES: Recipe[] = [
       'Add a small serving of olives.',
       'Skip added oil and mayonnaise unless you want them. If you add them, log them.',
     ],
-    storage: ['Nothing to store. This plate needs no refrigeration from home.'],
+    storage: ['Cafeteria food needs nothing from home.', 'If you bring eggs or tofu from home, use an insulated bag with two ice packs. Perishable food should not sit warm for more than two hours, or one hour above 32°C.'],
     reheating: ['Not needed.'],
     substitutions: ['No tofu today: add two more egg whites or a serving of legumes.', 'No eggs today: take a larger tofu portion or cottage cheese if offered.'],
     foodSafety: ['Choose eggs that are fully cooked.'],
@@ -259,16 +260,15 @@ export const RECIPES: Recipe[] = [
       { name: 'Rice or potatoes: one normal serving' },
       { name: 'Salad or vegetables: a generous serving' },
       { name: 'Challah: one or two slices' },
-      { name: 'One planned sweet portion right after one meal' },
+      { name: 'A sweet portion after a meal, if you want one' },
       { name: 'Water or a zero calorie drink' },
     ],
     weightNote: 'Nothing is weighed. Log it after the Sabbath in one tap with an honest range.',
     steps: [
       'Start with salad or vegetables.',
       'Take two palm sized portions of protein.',
-      'Add one normal serving of rice or potatoes and one or two slices of challah.',
-      'Have one planned sweet portion right after one meal, and enjoy it.',
-      'Skip repeated grazing between meals.',
+      'Add rice or potatoes and one or two slices of challah. Take more if you are hungry.',
+      'Have a sweet portion after a meal if you want one, and enjoy it.',
       'There is no make up exercise and no guilt.',
     ],
     storage: ['Not needed.'],
@@ -311,7 +311,7 @@ export const RECIPE_BY_ID: Record<string, Recipe> = Object.fromEntries(RECIPES.m
 export interface ShoppingItem {
   id: string;
   name: string;
-  /** Quantity for the default six training days. */
+  /** Quantity for the six example days, Sunday to Friday. */
   qty: number;
   unit: 'g' | 'kg' | 'ml' | 'l' | 'pcs' | '';
   section: 'Dairy' | 'Grains' | 'Produce' | 'Meat and fish' | 'Pantry' | 'Cafeteria backup';
@@ -321,19 +321,21 @@ export interface ShoppingItem {
 }
 
 export const SHOPPING_LIST: ShoppingItem[] = [
-  { id: 'yogurt', name: 'Yogurt or skyr, about 2 to 3% fat', qty: 1800, unit: 'g', section: 'Dairy' },
-  { id: 'milk', name: 'Milk', qty: 1800, unit: 'ml', section: 'Dairy' },
-  { id: 'oats', name: 'Oats', qty: 360, unit: 'g', section: 'Grains' },
-  { id: 'rice', name: 'Dry rice', qty: 220, unit: 'g', section: 'Grains' },
-  { id: 'lentils', name: 'Dry lentils', qty: 250, unit: 'g', section: 'Grains' },
+  { id: 'yogurt', name: 'High protein yogurt or skyr', qty: 1800, unit: 'g', section: 'Dairy' },
+  { id: 'milk', name: 'Milk, for evenings after a fish dinner', qty: 900, unit: 'ml', section: 'Dairy' },
+  { id: 'oats', name: 'Oats', qty: 480, unit: 'g', section: 'Grains' },
+  { id: 'rice', name: 'Dry rice', qty: 450, unit: 'g', section: 'Grains' },
+  { id: 'lentils', name: 'Dry lentils', qty: 200, unit: 'g', section: 'Grains' },
   { id: 'bananas', name: 'Bananas', qty: 6, unit: 'pcs', section: 'Produce' },
   { id: 'berries', name: 'Frozen berries', qty: 600, unit: 'g', section: 'Produce' },
-  { id: 'potatoes', name: 'Potatoes', qty: 1200, unit: 'g', section: 'Produce' },
-  { id: 'vegetables', name: 'Mixed vegetables, at least', qty: 2000, unit: 'g', section: 'Produce' },
-  { id: 'chicken', name: 'Raw chicken for pre workout boxes', qty: 1000, unit: 'g', section: 'Meat and fish' },
+  { id: 'apples', name: 'Apples, for the school snack and evenings after a meat dinner', qty: 8, unit: 'pcs', section: 'Produce' },
+  { id: 'potatoes', name: 'Potatoes', qty: 1500, unit: 'g', section: 'Produce' },
+  { id: 'vegetables', name: 'Non starchy vegetables, at least', qty: 1800, unit: 'g', section: 'Produce' },
+  { id: 'almonds', name: 'Almonds', qty: 220, unit: 'g', section: 'Pantry' },
+  { id: 'chicken', name: 'Raw chicken breast for the afternoon boxes', qty: 1000, unit: 'g', section: 'Meat and fish' },
   { id: 'salmon', name: 'Raw salmon', qty: 450, unit: 'g', section: 'Meat and fish' },
   { id: 'beef', name: 'Raw lean beef', qty: 500, unit: 'g', section: 'Meat and fish' },
-  { id: 'white-fish', name: 'Raw white fish', qty: 270, unit: 'g', section: 'Meat and fish' },
+  { id: 'white-fish', name: 'Raw white fish', qty: 250, unit: 'g', section: 'Meat and fish' },
   { id: 'turkey', name: 'Raw turkey', qty: 250, unit: 'g', section: 'Meat and fish' },
   { id: 'olive-oil', name: 'Olive oil', qty: 0, unit: '', section: 'Pantry', fixed: true },
   { id: 'salt', name: 'Iodised salt', qty: 0, unit: '', section: 'Pantry', fixed: true },
@@ -353,14 +355,15 @@ export function scaleShopping(item: ShoppingItem, days: number): number {
 }
 
 export const PREP_STEPS: Array<{ id: string; title: string; detail: string }> = [
-  { id: 'rice', title: 'Cook the rice', detail: 'Cook 220 g dry rice. Portion 100 g cooked rice into each box.' },
+  { id: 'rice', title: 'Cook the rice', detail: 'Cook 450 g dry rice, which makes about 1,200 g cooked. Spread it out to cool quickly and portion 200 g into each box.' },
+  { id: 'lentils', title: 'Cook the lentils', detail: 'Simmer 200 g dry lentils for about 20 to 30 minutes. They make about 600 g cooked, 100 g for each dinner.' },
   { id: 'chicken', title: 'Cook the chicken', detail: 'Cook the chicken until the thickest part reaches 74°C. Portion 120 g cooked into six containers.' },
-  { id: 'dinners', title: 'Prepare the six dinners', detail: 'Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with potato, 100 g cooked lentils, and 300 g vegetables.' },
-  { id: 'breakfast', title: 'Prepare breakfast parts', detail: 'Portion 60 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready.' },
-  { id: 'lunch', title: 'Plan school lunch', detail: 'Lunch comes from the cafeteria. Nothing needs refrigeration from home. Buy eggs and tofu only if the cafeteria does not have them.' },
+  { id: 'dinners', title: 'Prepare the six dinners', detail: 'Sunday and Wednesday salmon, Monday and Thursday lean beef, Tuesday white fish, Friday turkey. Each with 250 g potato, 100 g cooked lentils, 300 g vegetables, and about 5 g oil.' },
+  { id: 'breakfast', title: 'Prepare breakfast parts', detail: 'Portion 80 g oats into six bags or jars. Keep yogurt, bananas, and frozen berries ready. Pack apples and almonds for school.' },
+  { id: 'lunch', title: 'Plan school lunch', detail: 'Lunch comes from the cafeteria. If the cafeteria has no eggs or tofu and you bring them, pack them cold with two ice packs in an insulated bag.' },
   { id: 'label', title: 'Label every container', detail: 'Write the day and the meal on each container.' },
-  { id: 'fridge', title: 'Refrigerate Sunday to Wednesday', detail: 'Keep Sunday, Monday, Tuesday, and Wednesday meals in the fridge.' },
-  { id: 'freeze', title: 'Freeze Thursday and Friday', detail: 'Freeze Thursday and Friday meals as soon as they have cooled.' },
+  { id: 'fridge', title: 'Refrigerate the next two days', detail: 'Keep the meals for the next one or two days in the fridge.' },
+  { id: 'freeze', title: 'Freeze the rest', detail: 'Freeze the other meals, and all rice boxes after the second day, as soon as they have cooled.' },
   { id: 'thaw', title: 'Thaw the night before', detail: 'Move a frozen meal to the fridge the night before you need it.' },
   { id: 'two-hours', title: 'Two hour rule', detail: 'Refrigerate or freeze cooked food within two hours.' },
   { id: 'fridge-temp', title: 'Fridge temperature', detail: 'Keep the fridge at or below 4°C.' },
@@ -376,4 +379,4 @@ export const COOKING_TEMPERATURES = [
 ] as const;
 
 export const RAW_COOKED_NOTE =
-  'Meat and fish lose about 25 to 30 percent of their weight when cooked. Rice and lentils gain weight: 100 g dry rice becomes about 250 to 300 g cooked, and 100 g dry lentils about 250 g. PeakForm meal weights are cooked unless a recipe says raw or dry.';
+  'Meat and fish lose about 25 to 30 percent of their weight when cooked. Rice and lentils gain weight: 100 g dry rice becomes about 270 g cooked, and 100 g dry lentils about 300 g. PeakForm meal weights are cooked unless a recipe says raw or dry, and the food list has separate raw and dry entries.';

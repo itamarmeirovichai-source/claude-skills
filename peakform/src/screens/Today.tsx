@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
 import { KV, kvGet, saveCheckIn, updateSettings } from '../db/repo';
 import { useSettings, useTimer } from '../ui/state';
-import { usePlan, useTargets, useToday } from '../ui/hooks';
+import { useAthlete, useMealOptions, usePlan, useToday } from '../ui/hooks';
 import { Item, Note, Section, Sheet, Stepper, Toggle, useToast } from '../ui/components';
 import { IconCheck, IconScale, IconTrain, IconEat, IconChevron } from '../ui/icons';
 import { Link, navigate } from '../ui/router';
@@ -12,11 +12,14 @@ import { buildTimeline, nextEntry, type TimelineEntry } from '../services/today'
 import { logTemplate } from '../services/food';
 import { readiness, safetyState } from '../domain/safety';
 import { isSabbathAt } from '../domain/sabbath';
-import { exerciseName } from '../content/library';
-import { dayTotals } from '../domain/nutrition';
+import { exercise, exerciseName } from '../content/library';
+import { dayTotals, exampleDayTotals } from '../domain/nutrition';
+import { templatesForDay } from '../content/meals';
+import { openQuestions, reviewedEnergy } from '../domain/athlete';
+import { heavyJumpingNear } from '../domain/exposure';
 import { formatClock, remainingMs } from '../domain/timer';
 import { summarizeSets } from '../ui/format';
-import { PhaseNoticeCard, PlanUpdateCard } from './PlanUpdate';
+import { PlanUpdateCard } from './PlanUpdate';
 
 export function TodayScreen() {
   const settings = useSettings();
@@ -25,12 +28,13 @@ export function TodayScreen() {
   const toast = useToast();
   const { timer, now } = useTimer();
   const [weightOpen, setWeightOpen] = useState(false);
-  const targets = useTargets();
+  const athlete = useAthlete();
+  const mealOpts = useMealOptions();
   const wd = weekdayOf(today);
   const day = plan?.days.find((d) => d.weekday === wd);
 
   const data = useLiveQuery(async () => {
-    const [food, sessions, checkins, sleep, pain, allCheckins, weekSessions, lastBackupAt, reviews, satFood, yesterdaySessions] = await Promise.all([
+    const [food, sessions, checkins, sleep, pain, allCheckins, weekSessions, lastBackupAt, reviews, satFood, yesterdaySessions, sport] = await Promise.all([
       db.foodLogs.where('date').equals(today).toArray(),
       db.sessions.where('date').equals(today).toArray(),
       db.checkins.where('date').equals(today).toArray(),
@@ -42,6 +46,7 @@ export function TodayScreen() {
       db.weeklyReviews.where('weekStart').equals(reviewWeekStart(addDays(today, wd === 0 ? 0 : -7))).first(),
       db.foodLogs.where('date').equals(addDays(today, wd === 0 ? -1 : wd === 6 ? 0 : -99)).count(),
       db.sessions.where('date').equals(addDays(today, -1)).toArray(),
+      db.sportLogs.where('date').between(addDays(today, -1), today, true, true).toArray(),
     ]);
     const active = await db.sessions.where('status').equals('active').first();
     const lastSame = day
@@ -54,18 +59,23 @@ export function TodayScreen() {
       for (const s of sets.filter((x) => !x.warmup && x.weightKg !== null)) byEx.set(s.exerciseId, [...(byEx.get(s.exerciseId) ?? []), s]);
       lastSets = [...byEx.entries()].slice(0, 3).map(([id, xs]) => `${exerciseName(id)}: ${summarizeSets(xs)}`);
     }
-    return { food, sessions, checkins, sleep, pain, allCheckins, weekSessions, lastBackupAt: lastBackupAt ?? null, reviews, satFood, active, lastSame, lastSets, yesterdaySessions };
+    return { food, sessions, checkins, sleep, pain, allCheckins, weekSessions, lastBackupAt: lastBackupAt ?? null, reviews, satFood, active, lastSame, lastSets, yesterdaySessions, sport };
   }, [today, wd, day?.title]);
 
   if (!data || !plan) return null;
-  const timeline = buildTimeline(today, settings, day, data.food, data.sessions, data.checkins);
+  const timeline = buildTimeline(today, settings, day, data.food, data.sessions, data.checkins, mealOpts);
   const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
   const next = nextEntry(timeline, nowMin);
   const safety = safetyState(today, data.allCheckins, data.pain);
   const ready = readiness(today, data.checkins[0] ?? null, data.sleep ?? null, data.pain, safety);
   const inSabbath = isSabbathAt(Date.now(), today, settings.sabbath);
   const totals = dayTotals(data.food);
-  const target = targets.find((t) => t.weekday === wd)!;
+  const reviewed = reviewedEnergy(athlete);
+  const example = exampleDayTotals(templatesForDay(wd, undefined, mealOpts));
+  const questions = openQuestions(athlete, { creatineActive: settings.supplements.some((x) => x.kind === 'creatine' && x.active) });
+  const homeJumps = !!day?.items.some((i) => i.session === 'home' && exercise(i.exerciseId)?.kind === 'jump');
+  const heavySport = homeJumps ? heavyJumpingNear(today, data.sport) : null;
+  const weighing = athlete.weight.mode !== 'off';
   // On Monday the review covers last week, which only counts if the plan had started by then.
   const reviewDue = (wd === 0 && nowMin >= minutesOf('20:00')) || (wd === 1 && !data.reviews && (!settings.planStartDate || settings.planStartDate < today));
   const yesterdayDay = plan.days.find((d) => d.weekday === weekdayOf(addDays(today, -1)));
@@ -95,18 +105,43 @@ export function TodayScreen() {
         </span>
       </header>
 
-      <PhaseNoticeCard />
       <PlanUpdateCard />
 
       {!settings.guardianReviewAck && (
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginBottom: 12 }} data-testid="guardian-note">
           <Note tone="accent" title="Worth a quick talk">
-            Go through the calorie targets, supplements, and any fast weight change with a parent, and ideally a pediatrician or pediatric sports dietitian.
-            <div style={{ marginTop: 8 }}>
-              <button type="button" className="btn btn-sm btn-outline" onClick={() => void updateSettings({ guardianReviewAck: true })}>
+            Go through how much to eat, supplements, body goals, and the wrist with a parent, and ideally a pediatrician or pediatric sports dietitian. Goals and reviews has a short list to talk through.
+            <div className="row wrap" style={{ marginTop: 8 }}>
+              <button type="button" className="btn btn-sm btn-outline" onClick={() => navigate('/more/goals')}>
+                Open the list
+              </button>
+              <button type="button" className="btn btn-sm btn-ghost" onClick={() => void updateSettings({ guardianReviewAck: true })}>
                 Got it
               </button>
             </div>
+          </Note>
+        </div>
+      )}
+      {questions.some((q) => q.gates) && (
+        <div style={{ marginBottom: 12 }} data-testid="open-questions">
+          <Note title={`${questions.length} thing${questions.length === 1 ? '' : 's'} to confirm`}>
+            <ul className="bullets small">
+              {questions.slice(0, 3).map((q) => (
+                <li key={q.id}>{q.title}</li>
+              ))}
+            </ul>
+            <div style={{ marginTop: 8 }}>
+              <button type="button" className="btn btn-sm btn-outline" onClick={() => navigate('/more/athlete')} data-testid="open-questions-go">
+                Answer now
+              </button>
+            </div>
+          </Note>
+        </div>
+      )}
+      {heavySport && !safety.urgent && (
+        <div style={{ marginBottom: 12 }} data-testid="sport-jumping-note">
+          <Note tone="warn" title="Lots of jumping at sport">
+            {heavySport.date === today ? 'Today' : 'Yesterday'}'s {heavySport.sport} had a lot of jumping. Keep today's home jumps short: do the warm up and the footwork, and skip or halve the jump drills.
           </Note>
         </div>
       )}
@@ -187,10 +222,17 @@ export function TodayScreen() {
           <IconEat />
           <span className="small">Log food</span>
         </button>
-        <button type="button" className="btn btn-outline quick-btn" onClick={() => setWeightOpen(true)} data-testid="quick-weight">
-          <IconScale />
-          <span className="small">Log weight</span>
-        </button>
+        {weighing ? (
+          <button type="button" className="btn btn-outline quick-btn" onClick={() => setWeightOpen(true)} data-testid="quick-weight">
+            <IconScale />
+            <span className="small">Log weight</span>
+          </button>
+        ) : (
+          <button type="button" className="btn btn-outline quick-btn" onClick={() => navigate('/more/sport')} data-testid="quick-sport">
+            <IconScale />
+            <span className="small">Log sport</span>
+          </button>
+        )}
       </div>
 
       {missedYesterday && !todayMainDone && !day?.isRest && (
@@ -288,7 +330,7 @@ export function TodayScreen() {
           <Item
             title="Food so far"
             sub={totals.mid.kcal > 0 ? `About ${Math.round(totals.low.kcal / 10) * 10} to ${Math.round(totals.high.kcal / 10) * 10} kcal, protein ${Math.round(totals.mid.protein)} g` : 'Nothing logged yet'}
-            end={`Target ${target.kcal}`}
+            end={reviewed?.kcalRange ? `Reviewed ${reviewed.kcalRange[0]} to ${reviewed.kcalRange[1]}` : `Examples about ${Math.round(example.mid.kcal / 50) * 50}`}
             to="/eat"
           />
         </div>
@@ -325,7 +367,7 @@ function QuickWeightSheet({ open, onClose, date }: { open: boolean; onClose: () 
         <div className="group">
           <Toggle checked={standard} onChange={setStandard} label="After the toilet, before food or drink" sub="Only these count toward the weekly trend." />
         </div>
-        <p className="small muted">One number means little. PeakForm shows a seven day average once there are four morning weights in a week.</p>
+        <p className="small muted">One number means little. Weight moves with water, food, and growth. PeakForm only shows a trend over weeks, never from one day.</p>
         <button
           type="button"
           className="btn btn-primary btn-large btn-block"

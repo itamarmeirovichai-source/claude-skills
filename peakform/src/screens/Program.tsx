@@ -1,29 +1,26 @@
 import { useEffect, useState } from 'react';
 import { exercise } from '../content/library';
-import { PROGRAM_DAYS, PROGRAM_SLOTS, SLOT_BY_ID, normalizePicks, slotExposures, togglePick, type ProgramPicks, type ProgramSlot } from '../content/program';
+import { ACTIVE_SLOTS, PROGRAM_DAYS, SLOT_BY_ID, normalizePicks, slotExposures, togglePick, type ProgramPicks, type ProgramSlot } from '../content/program';
 import type { LibraryExerciseId } from '../content/exercises/ids';
-import type { FailurePolicy } from '../content/types';
-import { WEEKDAY_NAMES, dateKey } from '../domain/dates';
-import { contacts, phaseFor, type ProgramPhase } from '../content/phases';
-import { activePlan } from '../db/repo';
-import { applyProgram, draftPicks, saveDraftPicks } from '../services/planUpdate';
+import { WEEKDAY_NAMES } from '../domain/dates';
+import { contacts } from '../content/phases';
+import { JUMP_LEVEL_LABEL } from '../content/homeSessions';
+import { draftPicks, jumpLevel, proposePlan, saveDraftPicks } from '../services/planUpdate';
 import { PoseSvg } from '../svg/Figures';
 import { Item, Note, PageHead, Section, useToast } from '../ui/components';
 import { Link, navigate } from '../ui/router';
+import { usePlan } from '../ui/hooks';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { wristLoad, WRIST_TEXT } from '../content/traits';
 
 // The exercise questionnaire. One step per muscle head. Every option in a step trains that head
 // about equally, so the choice is about what the athlete enjoys and what the gym has.
 
-const EFFORT_LABEL: Record<FailurePolicy, string> = {
-  all: 'Every set to failure',
-  last: 'Last set to failure',
-  never: 'Stops one rep short',
-};
-
 function effortLabel(id: string): string {
   const ex = exercise(id);
   if (ex?.kind === 'hold') return 'Timed hold';
-  return EFFORT_LABEL[ex?.failure ?? 'never'];
+  const w = wristLoad(id);
+  return `Stops about two reps short${w === 'high' ? '. Heavy on the wrist' : ''}`;
 }
 
 
@@ -83,36 +80,83 @@ function SlotStep({ slot, picks, onChange }: { slot: ProgramSlot; picks: Library
   );
 }
 
-function doseLabel(phase: ProgramPhase, key: keyof ProgramPhase['doses']): string {
-  const d = phase.doses[key];
-  return `${d.sets} sets, ${d.rirMin ?? 1} rep${d.rirMin === 1 ? '' : 's'} short of failure`;
+const LEVEL_CHECKS = [
+  'At least four weeks at the starting level',
+  'No knee, heel, shin, or back pain in the last two weeks',
+  'Landings rated good or OK on almost every set',
+  'School jumping is known and not heavy this month',
+  'Sleep mostly 8 hours or more',
+] as const;
+
+/** The jump level is a decision after a review, never an automatic step. */
+function JumpLevelCard() {
+  const level = useLiveQuery(() => jumpLevel(), []) ?? 'intro';
+  const [ticks, setTicks] = useState<string[]>([]);
+  const all = ticks.length === LEVEL_CHECKS.length;
+  return (
+    <Section title="Home jump level">
+      <div className="panel stack" data-testid="jump-level">
+        <p>
+          Now: <b>{JUMP_LEVEL_LABEL[level]}</b>.
+        </p>
+        {level === 'intro' ? (
+          <>
+            <p className="small muted">The next level adds sets, not harder jumps. It is worth it only when all of these are true. A coach's opinion helps.</p>
+            {LEVEL_CHECKS.map((c) => (
+              <label key={c} className="row" style={{ gap: 8, alignItems: 'flex-start' }}>
+                <input type="checkbox" className="check" checked={ticks.includes(c)} onChange={(e) => setTicks(e.target.checked ? [...ticks, c] : ticks.filter((x) => x !== c))} />
+                <span className="small">{c}</span>
+              </label>
+            ))}
+            <button type="button" className="btn btn-outline" disabled={!all} data-testid="jump-level-up" onClick={() => void proposePlan('jump-level', { level: 'build' }).then(() => navigate('/plan'))}>
+              See the next level
+            </button>
+          </>
+        ) : (
+          <button type="button" className="btn btn-outline" onClick={() => void proposePlan('jump-level', { level: 'intro' }).then(() => navigate('/plan'))}>
+            Go back to the starting level
+          </button>
+        )}
+      </div>
+    </Section>
+  );
 }
 
 function Summary({ picks, onEdit }: { picks: ProgramPicks; onEdit: (step: number) => void }) {
   const chosen = normalizePicks(picks);
-  const phase = phaseFor(dateKey());
+  const plan = usePlan();
+  const homeDays = (plan?.days ?? []).filter((d) => d.items.some((i) => i.session === 'home'));
   return (
     <div className="stack" data-testid="program-summary">
-      <p className="small muted" data-testid="program-phase">
-        Training block now: {phase.name}. {phase.summary}
+      <p className="small muted" data-testid="program-week">
+        Gym days are for strength. Jumps, landings, footwork, and volleyball skills are at home, fitted to the space you described in More, Your profile.
       </p>
       {PROGRAM_DAYS.map((d) => (
-        <Section key={d.key} title={`${WEEKDAY_NAMES[d.weekday]}, ${d.title}`}>
+        <Section key={d.key} title={`${WEEKDAY_NAMES[d.weekday]}, gym: ${d.title}`}>
           <div className="group">
             {d.main.map((e, i) => {
               if ('fixed' in e) return <Item key={i} title={exercise(e.fixed.exerciseId)?.name ?? e.fixed.exerciseId} sub="Always in the plan" />;
-              if ('jumps' in e) {
-                const drills = e.jumps === 'mon' ? phase.jumpsMon : e.jumps === 'monComplex' ? phase.complexMon : phase.jumpsFri;
-                if (!drills.length) return null;
-                return <Item key={i} title={drills.map((x) => exercise(x.exerciseId)?.name ?? x.exerciseId).join(', ')} sub={e.jumps === 'monComplex' ? 'Jumps paired with the heavy sets' : `Jump drills, about ${contacts(drills)} jumps. They change with each training block.`} />;
-              }
               const slot = SLOT_BY_ID[e.slot];
               const id = chosen[e.slot][e.choice] ?? chosen[e.slot][0]!;
-              return <Item key={i} title={exercise(id)?.name ?? id} sub={`${slot.title}. ${e.dose ? doseLabel(phase, e.dose) : effortLabel(id)}.`} onClick={() => onEdit(PROGRAM_SLOTS.indexOf(slot))} />;
+              const sets = e.sets ?? slot.sets;
+              return <Item key={i} title={exercise(id)?.name ?? id} sub={`${slot.title}. ${sets} sets. ${effortLabel(id)}.`} onClick={() => onEdit(ACTIVE_SLOTS.indexOf(slot))} />;
             })}
           </div>
         </Section>
       ))}
+      {homeDays.map((d) => {
+        const items = d.items.filter((i) => i.session === 'home');
+        const n = contacts(items);
+        return (
+          <Section key={`home-${d.key}`} title={`${WEEKDAY_NAMES[d.weekday]}, home`}>
+            <div className="group">
+              <Item title={items.map((i) => exercise(i.exerciseId)?.name ?? i.exerciseId).join(', ')} sub={n > 0 ? `About ${n} landings. In your current plan.` : 'No jumps. In your current plan.'} to="/more/athlete" />
+            </div>
+          </Section>
+        );
+      })}
+      <JumpLevelCard />
+      <p className="small faint">{WRIST_TEXT.moderate}</p>
     </div>
   );
 }
@@ -121,7 +165,7 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
   const toast = useToast();
   const [picks, setPicks] = useState<ProgramPicks | null>(null);
   const [busy, setBusy] = useState(false);
-  const total = PROGRAM_SLOTS.length;
+  const total = ACTIVE_SLOTS.length;
   const step = stepParam === null ? -1 : Math.max(-1, Math.min(total, Number(stepParam) || 0));
 
   useEffect(() => {
@@ -148,16 +192,16 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
         <div className="stack">
           <Note tone="accent" title="How your program works">
             <ul className="bullets small" style={{ marginTop: 4 }}>
-              <li>One exercise for each muscle head, three work sets, with a slow stretch at the bottom of every rep.</li>
+              <li>Four gym days, upper and lower body in turn, so every muscle is trained twice a week with two or three work sets per exercise.</li>
               <li>For each muscle you choose from exercises that build it about equally, so pick what you enjoy and what your gym has.</li>
               <li>Machines, cables, the Smith machine, and dumbbells only. No free barbell, because you train alone.</li>
-              <li>Small upper body exercises go to failure on every set, big machine exercises on the last set. Dumbbell presses, lunges, and hinges stop one rep short.</li>
-              <li>Legs serve the jump: Monday and Friday start with jump drills, and leg sets stop short of failure except the small ones on Monday. The jump drills change with each training block until the end of January.</li>
-              <li>A new exercise stays two reps short for its first two sessions while you learn it.</li>
+              <li>Work sets stop about two reps short of failure. That builds about as much muscle as going to failure, with less fatigue.</li>
+              <li>Jumps and volleyball footwork are at home, on Monday and Thursday before the gym, and a light skill session on Friday.</li>
+              <li>A new exercise stays three reps short for its first two sessions while you learn it.</li>
             </ul>
           </Note>
           <p className="small muted">
-            {total} short questions, with the answers from your questionnaire already filled in. Your history is kept, and you can change your choices here at any time. The plan is saved as a new version.
+            {total} short questions, with the answers from your questionnaire already filled in. You see every change before it is saved, and the plan is saved as a new version, so your history is kept.
           </p>
           <div className="row wrap">
             <button type="button" className="btn btn-primary" onClick={() => go(0)} data-testid="program-start">
@@ -171,7 +215,7 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
       )}
 
       {step >= 0 && step < total && (
-        <SlotStep slot={PROGRAM_SLOTS[step]!} picks={picks[PROGRAM_SLOTS[step]!.id] ?? []} onChange={(next) => update({ ...picks, [PROGRAM_SLOTS[step]!.id]: next })} />
+        <SlotStep slot={ACTIVE_SLOTS[step]!} picks={picks[ACTIVE_SLOTS[step]!.id] ?? []} onChange={(next) => update({ ...picks, [ACTIVE_SLOTS[step]!.id]: next })} />
       )}
 
       {step === total && <Summary picks={picks} onEdit={go} />}
@@ -183,7 +227,7 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
           </button>
         )}
         {step >= 0 && step < total && (
-          <button type="button" className="btn btn-primary" onClick={() => go(step + 1)} disabled={(picks[PROGRAM_SLOTS[step]!.id] ?? []).length === 0} data-testid="program-next">
+          <button type="button" className="btn btn-primary" onClick={() => go(step + 1)} disabled={(picks[ACTIVE_SLOTS[step]!.id] ?? []).length === 0} data-testid="program-next">
             {step === total - 1 ? 'See the week' : 'Next'}
           </button>
         )}
@@ -196,16 +240,15 @@ export function ProgramScreen({ step: stepParam }: { step: string | null }) {
             onClick={async () => {
               setBusy(true);
               try {
-                await applyProgram(await activePlan(), picks);
-                toast('Your program is saved');
-                navigate('/train');
+                await proposePlan('choices', { picks });
+                navigate('/plan');
               } catch {
                 setBusy(false);
                 toast('Could not save the program. Try again.');
               }
             }}
           >
-            Save my program
+            Review the changes
           </button>
         )}
       </div>

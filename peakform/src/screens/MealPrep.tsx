@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { KV, kvGet, kvSet } from '../db/repo';
-import { COOKING_TEMPERATURES, DEFAULT_PREP_DAYS, PREP_STEPS, RAW_COOKED_NOTE, RECIPES, RECIPE_BY_ID, SHOPPING_LIST, scaleShopping, type Recipe } from '../content/recipes';
-import { FOOD_BY_ID } from '../content/foods';
+import { COOKING_TEMPERATURES, DEFAULT_PREP_DAYS, PREP_STEPS, RAW_COOKED_NOTE, RECIPES, RECIPE_BY_ID, SHOPPING_LIST, scaleShopping } from '../content/recipes';
 import { Item, Note, PageHead, Section, Stepper } from '../ui/components';
-import { itemFromGrams, sumItems, formatRange } from '../domain/portions';
+import { formatRange } from '../domain/portions';
+import { recipeNutrition } from '../domain/recipeMath';
+import { rawWeightFor } from '../content/foods';
+
+/** The raw or dry weight behind a cooked weight, when the yield is known. */
+function rawHint(foodId: string, cookedGrams: number): string | undefined {
+  const raw = rawWeightFor(foodId, cookedGrams);
+  return raw ? `About ${raw.low} to ${raw.high} g ${raw.fromId.includes('rice') || raw.fromId.includes('lentils') ? 'dry' : 'raw'}` : undefined;
+}
 import { mediaFor } from '../content/mediaFor';
 
 interface PrepState {
@@ -121,11 +128,6 @@ export function RecipesScreen() {
   );
 }
 
-function recipeNutrition(r: Recipe, servings: number) {
-  const items = r.ingredients.filter((i) => i.foodId && i.grams).map((i) => itemFromGrams(FOOD_BY_ID[i.foodId!]!, (i.grams! * servings) / r.servings, 'template'));
-  return sumItems(items);
-}
-
 export function RecipeScreen({ id }: { id: string }) {
   const r = RECIPE_BY_ID[id];
   const [servings, setServings] = useState<number | null>(r?.servings ?? 1);
@@ -147,7 +149,7 @@ export function RecipeScreen({ id }: { id: string }) {
       <Section title="Ingredients">
         <div className="group">
           {r.ingredients.map((i) => (
-            <Item key={i.name} title={i.name} end={i.grams && !r.guideOnly ? `${Math.round(i.grams * k)} g${i.state && i.state !== 'as sold' ? ` ${i.state}` : ''}` : i.amount} />
+            <Item key={i.name} title={i.name} sub={i.grams && i.foodId && !r.guideOnly ? rawHint(i.foodId, i.grams * k) : undefined} end={i.grams && !r.guideOnly ? `${Math.round(i.grams * k)} g${i.state && i.state !== 'as sold' ? ` ${i.state}` : ''}` : i.amount} />
           ))}
         </div>
         <p className="small muted" style={{ marginTop: 8 }}>{r.weightNote}</p>
@@ -162,7 +164,8 @@ export function RecipeScreen({ id }: { id: string }) {
                 {formatRange(perServing.low.kcal, perServing.high.kcal, ' kcal')}, protein {formatRange(perServing.low.protein, perServing.high.protein, ' g')}, carbohydrate {formatRange(perServing.low.carbs, perServing.high.carbs, ' g')}, fat {formatRange(perServing.low.fat, perServing.high.fat, ' g')}.
               </p>
             )}
-            <p className="muted" style={{ marginTop: 4 }}>Labels and cooking change the real numbers. Ranges are honest about that.</p>
+            {s !== 1 && !soup && <p data-testid="recipe-total">For {s} servings: {formatRange(recipeNutrition(r, s).low.kcal, recipeNutrition(r, s).high.kcal, ' kcal')}, protein {formatRange(recipeNutrition(r, s).low.protein, recipeNutrition(r, s).high.protein, ' g')}.</p>}
+            <p className="muted" style={{ marginTop: 4 }}>Labels and cooking change the real numbers. Ranges are honest about that. Oil in the ingredient list is counted.</p>
           </div>
         </Section>
       )}

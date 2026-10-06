@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
-import { getProfile, getTargets, saveProfile, saveTargets, savePlanVersion, updateSettings, KV, kvGet, kvSet } from '../db/repo';
+import { getProfile, saveProfile, updateSettings, KV, kvGet } from '../db/repo';
+import { proposeExact } from '../services/planUpdate';
 import type { AppSettings, PlanRecord, Reminder, UserProfile } from '../db/records';
 import { useSettings } from '../ui/state';
 import { usePlan, useToday } from '../ui/hooks';
@@ -11,7 +12,6 @@ import { CITIES, fridayFor, sabbathWindow } from '../domain/sabbath';
 import { prepareCalendar, recordCalendarExport } from '../services/exporter';
 import { reminderHash } from '../domain/ics';
 import { cue, shareOrDownload } from '../lib/device';
-import { NUTRITION_FLOORS, type NutritionTarget } from '../content/meals';
 import { MUSCLES } from '../content/muscles';
 import { exercise } from '../content/library';
 import { navigate } from '../ui/router';
@@ -343,67 +343,6 @@ export function SettingsScreen() {
   );
 }
 
-// ---------- Nutrition targets ----------
-
-export function TargetsScreen() {
-  const saved = useLiveQuery(() => getTargets(), []);
-  const [t, setT] = useState<NutritionTarget[] | null>(null);
-  const toast = useToast();
-  const cur = t ?? saved;
-  if (!cur) return null;
-  const set = (i: number, patch: Partial<NutritionTarget>) => setT(cur.map((x, j) => (j === i ? { ...x, ...patch, kcalBand: patch.kcal !== undefined ? [Math.max(NUTRITION_FLOORS.kcal, patch.kcal - 100), patch.kcal + 100] : x.kcalBand } : x)));
-  return (
-    <div data-testid="targets">
-      <PageHead title="Nutrition targets" backTo="/more" />
-      <Note>These are starting points for a fourteen day observation. Review calorie targets with a parent, and ideally a pediatrician or pediatric sports dietitian. PeakForm never saves a day below {NUTRITION_FLOORS.kcal.toLocaleString('en-US')} calories or {NUTRITION_FLOORS.carbs} g carbohydrate.</Note>
-      {[0, 1, 2, 3, 4, 5, 6].map((wd) => {
-        const i = cur.findIndex((x) => x.weekday === wd);
-        const x = cur[i]!;
-        return (
-          <Section key={wd} title={`${WEEKDAY_NAMES[wd]}, ${x.label}`}>
-            <div className="panel grid-2">
-              <Stepper label="Calories" value={x.kcal} onChange={(v) => v && set(i, { kcal: v })} step={50} min={NUTRITION_FLOORS.kcal} max={4000} />
-              <Stepper label="Protein" unit="g" value={x.protein} onChange={(v) => v && set(i, { protein: v, proteinRange: [Math.min(v, 150), Math.max(v, 175)] })} step={5} max={250} />
-              <Stepper label="Carbohydrate" unit="g" value={x.carbs} onChange={(v) => v && set(i, { carbs: v })} step={5} min={NUTRITION_FLOORS.carbs} max={600} />
-              <Stepper label="Fat" unit="g" value={x.fat} onChange={(v) => v && set(i, { fat: v })} step={2} max={200} />
-            </div>
-          </Section>
-        );
-      })}
-      {t && (
-        <div className="save-bar" role="region" aria-label="Unsaved changes">
-          <span className="small">Unsaved changes</span>
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-testid="targets-save"
-            onClick={async () => {
-              await saveTargets(cur);
-              setT(null);
-              toast('Targets saved');
-            }}
-          >
-            Save targets
-          </button>
-        </div>
-      )}
-      <div style={{ marginTop: 16 }} className="stack">
-        <button
-          type="button"
-          className="btn btn-ghost btn-block"
-          onClick={async () => {
-            await kvSet(KV.targets, null);
-            setT(null);
-            toast('Baseline targets restored');
-          }}
-        >
-          Restore baseline targets
-        </button>
-      </div>
-    </div>
-  );
-}
-
 // ---------- Supplements ----------
 
 export function SupplementsScreen() {
@@ -458,10 +397,10 @@ export function SupplementsScreen() {
         );
       })}
       <Section title="Protein powder">
-        <p className="small muted">Optional food convenience, only when food protein is short. Prefer a third party tested product, reviewed with a parent.</p>
+        <p className="small muted">Food first: the example meals give plenty of protein without it, and PeakForm does not suggest protein powder. If the family already uses one, review the product with a parent and a clinician; a third party tested product is safer.</p>
       </Section>
       <Section title="About testosterone">
-        <p className="small muted">Normal development is supported by enough total food, enough dietary fat and carbohydrate, good sleep, gradual fat loss, and resistance training. Extreme dieting works against recovery and development. PeakForm has no testosterone score because there is no honest way to estimate one from these logs.</p>
+        <p className="small muted">Normal development is supported by enough total food, enough dietary fat and carbohydrate, good sleep, and resistance training. Extreme dieting works against recovery and development. PeakForm has no testosterone score because there is no honest way to estimate one from these logs.</p>
       </Section>
     </div>
   );
@@ -526,11 +465,10 @@ export function PlanEditorScreen() {
   const [draft, setDraft] = useState<PlanRecord | null>(null);
   const [itemId, setItemId] = useState<string | null>(null);
   const [note, setNote] = useState('');
-  const toast = useToast();
   if (!plan) return null;
   const cur = draft ?? plan;
   const item = cur.days.flatMap((d) => d.items).find((i) => i.id === itemId);
-  const minRir = item && exercise(item.exerciseId)?.failure === 'all' ? 0 : 1;
+  const minRir = 1;
   const editItem = (patch: Partial<typeof item>) =>
     setDraft({ ...cur, days: cur.days.map((d) => ({ ...d, items: d.items.map((i) => (i.id === itemId ? ({ ...i, ...patch } as typeof i) : i)) })) });
   return (
@@ -554,13 +492,7 @@ export function PlanEditorScreen() {
                 <Stepper label="Reps in reserve" value={item.rir} onChange={(v) => editItem({ rir: Math.max(minRir, v ?? 2) })} min={minRir} max={5} />
               )}
             </div>
-            <p className="small muted">
-              {minRir === 0
-                ? 'This exercise may go to failure: 0 means the last rep you can finish with clean form.'
-                : exercise(item.exerciseId)?.failure === 'last'
-                  ? 'The first sets stop at least one rep short. The last set goes to failure only as set by the program.'
-                  : 'This exercise always stops at least one rep short, because a failed rep is hard to escape safely alone.'}
-            </p>
+            <p className="small muted">Work sets stop at least one rep short of failure. PeakForm does not prescribe routine sets to failure.</p>
             <button type="button" className="btn btn-outline" onClick={() => setItemId(null)}>
               Done with this exercise
             </button>
@@ -587,13 +519,13 @@ export function PlanEditorScreen() {
             className="btn btn-primary"
             data-testid="save-plan"
             onClick={async () => {
-              await savePlanVersion(draft, note || 'Edited in the app.');
+              await proposeExact(draft, 'Your edits', note || 'Edited in the app.');
               setDraft(null);
               setNote('');
-              toast('New plan version saved');
+              navigate('/plan');
             }}
           >
-            Save as a new version
+            Review the changes
           </button>
           <button type="button" className="btn btn-ghost" onClick={() => setDraft(null)}>
             Discard changes
@@ -607,8 +539,8 @@ export function PlanEditorScreen() {
               key={v.id}
               title={`Version ${v.version}${v.id === plan.id ? ', active' : ''}`}
               sub={`${new Date(v.createdAt).toLocaleDateString()}. ${v.changeNote}`}
-              onClick={v.id === plan.id ? undefined : () => void updateSettings({ activePlanId: v.id })}
-              end={v.id === plan.id ? undefined : 'Use'}
+              onClick={v.id === plan.id ? undefined : () => void proposeExact(v, `Back to version ${v.version}`, v.changeNote).then(() => navigate('/plan'))}
+              end={v.id === plan.id ? undefined : 'Compare'}
             />
           ))}
         </div>

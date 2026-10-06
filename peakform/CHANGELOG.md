@@ -1,5 +1,44 @@
 # Changelog
 
+## 3.0.0, 2026-10-06
+
+A calmer week, home and gym sessions, and food without targets. Based on a full review of the training and nutrition assumptions (TRAINING_AUDIT.md, NUTRITION_DATA_AUDIT.md, RESEARCH.md).
+
+**Training**
+- Four gym strength days instead of six: Upper A on Sunday, Lower A on Monday, Upper B on Wednesday, Lower B on Thursday. Each muscle trains twice a week.
+- Home sessions: movement prep, landings, jumps, and approach footwork on Monday and Thursday before the gym legs (about 60 landings at the starting level, about 95 at the build level), and a light volleyball skill session without jumps on Friday. Tuesday has no structured training. Saturday is full rest. No early morning sessions.
+- Work sets stop about two reps short of failure, three while an exercise is new. No routine sets to failure and no one repetition maximum tests.
+- Every session shows its location, equipment, space, estimated duration (counting every rest), landings, and when to stop.
+- **Wrist gate.** Every exercise has a wrist load rating. Until a clinician's clearance (or no injury) is recorded, heavy grip exercises are swapped, load on wrist loaded exercises is held, and there is no ball contact or falling onto the hands.
+- **Home space gate.** Every home drill states the floor space, ceiling, surface, impact, and noise it needs. Drills that do not fit the answers are swapped for footwork or left out, with the reason shown. Unknown answers mean the smallest, quietest room.
+- Four new home drills: Home Movement Prep, Lateral Line Hop, Spike Arm Swing without a ball, and Wall Spike Control. The library has 103 exercises.
+- The dunk deadline, the dated training blocks, and the dunk goal are gone. Jump and reach tests on Progress every four weeks, compared only when done the same way.
+- School and club sport can be logged and counts toward the week. The review raises a recovery point when sport and training take more hours than the athlete's age.
+- Flexible four month planning stages, with measurements every four weeks. Stages never change the plan by themselves.
+
+**Plan changes**
+- Every plan change is a proposal: a summary, the schedule changes, and a day by day difference. Nothing changes until **Activate this plan**. This covers the new week, exercise choices, the jump level, hand edits, and recommendation files. Old versions and finished sessions keep their prescriptions.
+- Installed apps are offered the new week with a few questions first (wrist, home space). Early reminders move only if they are still at their old defaults.
+
+**Food**
+- No default calorie target and no 2,000 kcal floor. Example meals in grams with household measures, food state (raw, cooked, dry, frozen, drained), kosher category, storage, and options for more food, each labelled "Example serving. Adjust to appetite and activity; this is not a daily limit." The examples come to about 2,600 to 2,900 kcal on school days, with a note that teen athletes often need more.
+- Targets exist only when a professional reviewed them, with source, role, date, and status. The athlete's aspirations are stored word for word, apart from targets, and never become targets.
+- The nutrition check never suggests eating less. It suggests more food and a talk with a parent when weight falls faster than about 0.45 kg a week, or when energy, mood, sleep, or performance dip. Sparse food logs no longer block it.
+- Weighing is weekly by default, can be more frequent, off, or hidden. A few steady days are never called a plateau.
+- Meat, dairy, and pareve on every food and meal, with the family's interval after meat (default 6 hours). The evening milk becomes a pareve snack when it would come too soon after meat.
+- Food data fixes: lentil and rice yields, raw and dry entries, egg labels, tofu calcium note, vegetable mix naming, raw tahini, recipe nutrition computed from ingredients, and the green bean calculator by state with oil.
+- Storage: cafeteria lunch needs nothing from home; food from home goes cold with ice packs; rice boxes are frozen after the second day.
+
+**Review and reports**
+- The weekly review adds Evidence of progress, Not enough data yet, Recovery, and Worth a professional review.
+- The coach report includes the profile answers, aspirations and reviewed targets kept apart, and the week. A private plan file (More, Backup) holds the week and the example meals.
+
+**Fixes**
+- A double tap on Complete set saved the same set twice. It now saves one set per tap.
+- The learning reps in reserve (3) now show as the default for a new exercise as soon as its history loads.
+- Session time estimates now count the rest after every set and the time to change exercises.
+- Recommendation files open in the plan preview instead of saving straight away.
+
 ## 2.1.1, 2026-10-05
 
 Every day is eaten like a rest day.

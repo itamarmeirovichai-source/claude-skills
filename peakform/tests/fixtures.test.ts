@@ -27,6 +27,13 @@ describe('example fixtures', () => {
     expect(r.blocked).toEqual([]);
   });
 
+  it('never imports food targets or sets to failure from a file', () => {
+    const file = (change: object) => JSON.stringify({ format: 'peakform-recommendation', version: 1, source: 'Anyone', createdAt: '2026-10-06', changes: [change] });
+    expect(checkRecommendation(file({ type: 'nutrition-target', weekday: 1, kcal: 1800, reason: 'Cut' })).blocked[0]).toMatch(/not imported from files/);
+    expect(checkRecommendation(file({ type: 'nutrition-target', weekday: 1, kcal: 3200, reason: 'More' })).blocked).toHaveLength(1);
+    expect(checkRecommendation(file({ type: 'plan-item', planItemId: 'x', rir: 0, reason: 'Failure' })).ok).toBe(false);
+  });
+
   it('fixtures only carry the synthetic demo profile', () => {
     const b = JSON.parse(readFileSync('fixtures/example-backup-plain.json', 'utf8')) as BackupFile;
     const profile = b.tables.profile![0]!;

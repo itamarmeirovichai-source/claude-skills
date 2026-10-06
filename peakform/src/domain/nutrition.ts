@@ -1,5 +1,5 @@
 import { FOOD_BY_ID } from '../content/foods';
-import { NUTRITION_FLOORS, type MealTemplate, type NutritionTarget } from '../content/meals';
+import type { MealTemplate, NutritionTarget } from '../content/meals';
 import type { BodyCheckIn, FoodLog, FoodLogItem, WaistMeasurement } from '../db/records';
 import { addDays, diffDays, type DateKey } from './dates';
 import { itemFromGrams, sumItems, type Totals } from './portions';
@@ -93,7 +93,21 @@ export function rollingAverages(points: WeightPoint[], from: DateKey, to: DateKe
   return out;
 }
 
-// ---------- Fourteen day adjustment gate ----------
+// ---------- Weekly weighing ----------
+
+/** One morning weight per Monday to Sunday week, the first standard one, for people who weigh once a week. */
+export function weeklyWeights(points: WeightPoint[], end: DateKey, weeks: number): Array<{ weekEnd: DateKey; kg: number | null }> {
+  const out: Array<{ weekEnd: DateKey; kg: number | null }> = [];
+  for (let w = weeks - 1; w >= 0; w--) {
+    const we = addDays(end, -7 * w);
+    const ws = addDays(we, -6);
+    const p = points.find((x) => x.date >= ws && x.date <= we);
+    out.push({ weekEnd: we, kg: p ? p.kg : null });
+  }
+  return out;
+}
+
+// ---------- The nutrition check ----------
 
 export interface WellbeingWeek {
   energy: number | null;
@@ -108,24 +122,19 @@ export interface AdjustmentInput {
   checkins: BodyCheckIn[];
   waist: WaistMeasurement[];
   foodLogDays: DateKey[];
-  currentKcal: number;
   /** Signals from training and wellbeing. */
   performanceDecline: boolean;
   wellbeing: { previous: WellbeingWeek; current: WellbeingWeek };
+  /** How often the athlete chose to weigh. Defaults to several mornings a week. */
+  weightMode?: 'frequent' | 'weekly' | 'off';
 }
 
-export type AdjustmentStatus =
-  | 'insufficient-data'
-  | 'hold'
-  | 'hold-recomposition'
-  | 'check-then-reduce'
-  | 'increase'
-  | 'clinician-review';
+export type AdjustmentStatus = 'insufficient-data' | 'no-change' | 'eat-more' | 'talk-to-parent';
 
 export interface AdjustmentResult {
   status: AdjustmentStatus;
   title: string;
-  /** Suggested change to daily calories as a range, or null for no change. */
+  /** A suggested increase in daily food as a calorie range, or null. PeakForm never suggests eating less. */
   kcalChange: [number, number] | null;
   reasons: string[];
   missing: string[];
@@ -135,11 +144,17 @@ export interface AdjustmentResult {
   involveGuardian: boolean;
 }
 
-/** Above this the plan adds food. Kept low for a growing athlete who also needs energy for jumping. */
-export const FAST_LOSS_KG_PER_WEEK = 0.5;
+/**
+ * Above this weekly loss PeakForm suggests more food. About 0.45 kg (1 lb) a week is the upper rate
+ * the AAP gives for a growing athlete (Carl 2017).
+ */
+export const FAST_LOSS_KG_PER_WEEK = 0.45;
 export const STABLE_WEIGHT_KG = 0.25;
-export const STABLE_WAIST_CM = 0.5;
 export const MIN_FOOD_DAYS = 10;
+
+/** Said wherever stable weight comes up, because both mistakes are easy to make. */
+export const STABLE_WEIGHT_NOTE =
+  'A steady weight over a week or two is not a plateau, and it does not show whether you eat enough. Growth, training, water, food in the gut, and creatine all move the scale.';
 
 function wellbeingDeclined(prev: WellbeingWeek, cur: WellbeingWeek): string[] {
   const out: string[] = [];
@@ -154,124 +169,108 @@ function wellbeingDeclined(prev: WellbeingWeek, cur: WellbeingWeek): string[] {
 }
 
 /**
- * The nutrition decision gate. Runs only with fourteen days of useful data and never
- * suggests going below the calorie floor. Smart scale body fat is never an input.
+ * The nutrition check. It needs fourteen days of useful data, never uses smart scale body fat,
+ * never suggests eating less, and never changes anything by itself. Weight loss that is too fast,
+ * or a slide in energy, mood, sleep, or performance, leads to eating more and talking with a parent.
+ * Everything else is "no change": personal energy targets belong to a parent and a pediatric professional.
  */
 export function nutritionAdjustment(input: AdjustmentInput): AdjustmentResult {
   const end = input.today;
-  const w2 = sevenDayAverage(morningWeights(input.checkins), end);
-  const w1 = sevenDayAverage(morningWeights(input.checkins), addDays(end, -7));
+  const mode = input.weightMode ?? 'frequent';
+  const declines = wellbeingDeclined(input.wellbeing.previous, input.wellbeing.current);
+  const sliding = input.performanceDecline || declines.length > 0;
+  const base: Omit<AdjustmentResult, 'status' | 'title'> = { kcalChange: null, reasons: [], missing: [], confidence: 'low', weeklyChangeKg: null, waistChangeCm: null, involveGuardian: false };
+
+  const slideResult = (trend: string | null): AdjustmentResult => ({
+    ...base,
+    status: 'talk-to-parent',
+    title: 'Energy, mood, sleep, or performance dipped. Eat a bit more and talk with a parent',
+    kcalChange: [150, 250],
+    reasons: [...(trend ? [trend] : []), ...(input.performanceDecline ? ['Training performance declined.'] : []), ...declines, STABLE_WEIGHT_NOTE, 'An extra snack a day, such as fruit with yogurt or a sandwich, is a simple start. If it continues, a pediatrician or pediatric sports dietitian can check whether you are eating enough.'],
+    involveGuardian: true,
+  });
+
+  if (mode === 'off') {
+    if (sliding) return slideResult(null);
+    return { ...base, status: 'insufficient-data', title: 'Weighing is off', reasons: ['PeakForm reads energy, mood, sleep, recovery, and training instead. That is enough for day to day decisions.'] };
+  }
+
+  const points = morningWeights(input.checkins);
   const start14 = addDays(end, -13);
   const foodDays = new Set(input.foodLogDays.filter((d) => d >= start14 && d <= end)).size;
   const missing: string[] = [];
-  if (!w1.reliable) missing.push(`Week one has ${w1.count} of ${MIN_WEIGHTS_PER_WEEK} morning weights needed.`);
-  if (!w2.reliable) missing.push(`Week two has ${w2.count} of ${MIN_WEIGHTS_PER_WEEK} morning weights needed.`);
-  if (foodDays < MIN_FOOD_DAYS) missing.push(`Food was logged on ${foodDays} of the last 14 days. At least ${MIN_FOOD_DAYS} are needed.`);
+  let before: number | null = null;
+  let after: number | null = null;
+  let perWeek: number | null = null;
+  let counts = 0;
+  if (mode === 'weekly') {
+    const ws = weeklyWeights(points, end, 4).filter((w) => w.kg !== null);
+    if (ws.length < 3) missing.push(`${ws.length} of the last 4 weeks have a morning weight. At least 3 are needed for a trend.`);
+    else {
+      const first = ws[0]!;
+      const last = ws[ws.length - 1]!;
+      before = first.kg;
+      after = last.kg;
+      perWeek = Math.round(((last.kg! - first.kg!) / Math.max(1, diffDays(last.weekEnd, first.weekEnd) / 7)) * 100) / 100;
+      counts = ws.length;
+    }
+  } else {
+    const w2 = sevenDayAverage(points, end);
+    const w1 = sevenDayAverage(points, addDays(end, -7));
+    if (!w1.reliable) missing.push(`Week one has ${w1.count} of ${MIN_WEIGHTS_PER_WEEK} morning weights needed.`);
+    if (!w2.reliable) missing.push(`Week two has ${w2.count} of ${MIN_WEIGHTS_PER_WEEK} morning weights needed.`);
+    if (w1.reliable && w2.reliable && w1.avg !== null && w2.avg !== null) {
+      before = w1.avg;
+      after = w2.avg;
+      perWeek = Math.round((w2.avg - w1.avg) * 100) / 100;
+      counts = Math.min(w1.count, w2.count);
+    }
+  }
+  const foodNote = foodDays < MIN_FOOD_DAYS ? `Food was logged on ${foodDays} of the last 14 days. Logging is optional; with fewer logs the check reads only weight and wellbeing.` : null;
   if (input.planStart && diffDays(end, input.planStart) < 13) missing.push('The plan started less than fourteen days ago.');
 
-  const base: Omit<AdjustmentResult, 'status' | 'title'> = {
-    kcalChange: null,
-    reasons: [],
-    missing,
-    confidence: 'low',
-    weeklyChangeKg: null,
-    waistChangeCm: null,
-    involveGuardian: false,
-  };
-
-  if (missing.length > 0 || w1.avg === null || w2.avg === null) {
-    return { ...base, status: 'insufficient-data', title: 'Not enough data yet for a nutrition change' };
+  const trend = before !== null && after !== null && perWeek !== null ? `Weight went from about ${before.toFixed(1)} kg to ${after.toFixed(1)} kg (${perWeek > 0 ? '+' : ''}${perWeek.toFixed(2)} kg a week).` : null;
+  if (sliding) return { ...slideResult(trend), weeklyChangeKg: perWeek, missing };
+  if (missing.length > 0 || perWeek === null) {
+    return { ...base, status: 'insufficient-data', title: 'Not enough data yet to read the trend', missing, reasons: [STABLE_WEIGHT_NOTE] };
   }
+  if (foodNote) base.reasons.push(foodNote);
 
-  const change = Math.round((w2.avg - w1.avg) * 100) / 100; // kg per week, negative is loss
-  const loss = -change;
   const waistW1 = input.waist.filter((m) => m.date >= start14 && m.date <= addDays(end, -7)).sort((a, b) => a.date.localeCompare(b.date));
   const waistW2 = input.waist.filter((m) => m.date > addDays(end, -7) && m.date <= end).sort((a, b) => a.date.localeCompare(b.date));
   const waistChange = waistW1.length && waistW2.length ? Math.round((waistW2[waistW2.length - 1]!.cm - waistW1[0]!.cm) * 10) / 10 : null;
-  const declines = wellbeingDeclined(input.wellbeing.previous, input.wellbeing.current);
   const firstWeek = input.planStart !== null && diffDays(addDays(end, -13), input.planStart) < 7;
-  const confidence: AdjustmentResult['confidence'] = w1.count >= 6 && w2.count >= 6 && waistChange !== null ? 'high' : 'medium';
-  const r: Omit<AdjustmentResult, 'status' | 'title'> = { ...base, confidence, weeklyChangeKg: change, waistChangeCm: waistChange };
-  const trend = `Seven day average went from ${w1.avg.toFixed(1)} kg to ${w2.avg.toFixed(1)} kg (${change > 0 ? '+' : ''}${change.toFixed(2)} kg).`;
+  const confidence: AdjustmentResult['confidence'] = counts >= 6 && waistChange !== null ? 'high' : 'medium';
+  const r: Omit<AdjustmentResult, 'status' | 'title'> = { ...base, confidence, weeklyChangeKg: perWeek, waistChangeCm: waistChange };
+  const loss = -perWeek;
 
-  // Too fast, or wellbeing and performance are sliding: add food, involve a parent.
-  const sliding = input.performanceDecline || declines.length > 0;
-  if (sliding && change > STABLE_WEIGHT_KG) {
+  if (loss > FAST_LOSS_KG_PER_WEEK && !firstWeek) {
     return {
       ...r,
-      status: 'clinician-review',
-      title: 'Wellbeing or performance dipped. Talk with a parent',
-      reasons: [trend, ...(input.performanceDecline ? ['Training performance declined.'] : []), ...declines, 'Weight is not falling, so eating less is not the answer. Check sleep, illness, stress, and training load with a parent or coach.'],
-      involveGuardian: true,
-    };
-  }
-  if ((loss > FAST_LOSS_KG_PER_WEEK && !firstWeek) || sliding) {
-    const reasons = [trend];
-    if (loss > FAST_LOSS_KG_PER_WEEK && !firstWeek) reasons.push(`That is faster than about ${FAST_LOSS_KG_PER_WEEK} kg per week.`);
-    if (input.performanceDecline) reasons.push('Training performance declined.');
-    reasons.push(...declines);
-    return {
-      ...r,
-      status: 'increase',
-      title: 'Add 150 to 200 calories a day and talk with a parent',
-      kcalChange: [150, 200],
-      reasons: [...reasons, 'Speak with a parent, and a pediatrician or pediatric sports dietitian if it continues.'],
-      involveGuardian: true,
-    };
-  }
-
-  if (loss >= STABLE_WEIGHT_KG && loss <= FAST_LOSS_KG_PER_WEEK) {
-    return { ...r, status: 'hold', title: 'Keep the plan as it is', reasons: [trend, 'That is a steady, gradual rate with stable performance.'] };
-  }
-
-  const waistDown = waistChange !== null && waistChange <= -STABLE_WAIST_CM;
-  if (loss < STABLE_WEIGHT_KG && waistDown) {
-    return {
-      ...r,
-      status: 'hold-recomposition',
-      title: 'Keep the plan. This may be a recomposition pattern',
-      reasons: [trend, `Waist went down ${Math.abs(waistChange!).toFixed(1)} cm while weight held steady, and performance is stable.`],
-    };
-  }
-
-  if (waistChange === null) {
-    return {
-      ...r,
-      status: 'insufficient-data',
-      title: 'Measure your waist before changing anything',
-      confidence: 'low',
-      reasons: [trend],
-      missing: ['A waist measurement in each of the two weeks is needed to judge a stable weight.'],
-    };
-  }
-
-  // Weight and waist stable (or rising): check the estimates first, then a small change.
-  const reduction: [number, number] = [100, 150];
-  const reasons = [
-    trend,
-    `Waist changed ${waistChange > 0 ? '+' : ''}${waistChange.toFixed(1)} cm.`,
-    'First check portion estimates, cooking oil, sauces, weekend grazing, and missing logs.',
-    'You are still growing, so some weight gain can be growth. A parent or clinician can help judge this.',
-  ];
-  if (input.currentKcal - reduction[1] < NUTRITION_FLOORS.kcal || input.currentKcal - reduction[0] < NUTRITION_FLOORS.kcal) {
-    return {
-      ...r,
-      status: 'clinician-review',
-      title: 'Talk with a parent and a clinician before any reduction',
-      reasons: [...reasons, `A reduction would take daily calories below ${NUTRITION_FLOORS.kcal}. PeakForm never suggests that.`],
+      status: 'eat-more',
+      title: 'Weight is falling fast. Eat a bit more and talk with a parent',
+      kcalChange: [150, 250],
+      reasons: [trend!, `That is faster than about ${FAST_LOSS_KG_PER_WEEK} kg a week, the upper rate advised for a growing athlete.`, 'Speak with a parent, and a pediatrician or pediatric sports dietitian if it continues.', ...base.reasons],
       involveGuardian: true,
     };
   }
   return {
     ...r,
-    status: 'check-then-reduce',
-    title: 'Check your estimates, then consider 100 to 150 fewer calories',
-    kcalChange: [-reduction[1], -reduction[0]],
-    reasons: [...reasons, 'A modest routine change, such as a smaller evening portion, also works.'],
+    status: 'no-change',
+    title: 'No change suggested',
+    reasons: [
+      trend!,
+      ...(waistChange !== null ? [`Waist changed ${waistChange > 0 ? '+' : ''}${waistChange.toFixed(1)} cm.`] : []),
+      STABLE_WEIGHT_NOTE,
+      'PeakForm never cuts food from a weight trend. Goals about weight or body fat are worth reviewing with a parent and a pediatric professional, who can also say whether you eat enough.',
+      ...base.reasons,
+    ],
   };
 }
 
-/** Apply a confirmed calorie change, never crossing the floor. */
-export function applyKcalChange(current: number, delta: number): number {
-  return Math.max(NUTRITION_FLOORS.kcal, Math.round(current + delta));
+// ---------- Example day ----------
+
+/** What the example meals for a day add up to. A description of the examples, never a target or a limit. */
+export function exampleDayTotals(templates: MealTemplate[], optionalOn: Record<string, boolean> = {}): Totals {
+  return sumItems(templates.flatMap((t) => templateItems(t, optionalOn)));
 }

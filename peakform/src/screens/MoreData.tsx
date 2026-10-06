@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
-import { KV, deleteAllData, ensureInitialized, getTargets, kvGet, removeDemoData, restoreSnapshot, saveTargets, savePlanVersion, updateSettings, readAllTables, writeAllTables } from '../db/repo';
+import { KV, deleteAllData, ensureInitialized, kvGet, removeDemoData, restoreSnapshot, updateSettings, readAllTables, writeAllTables } from '../db/repo';
 import { useSettings } from '../ui/state';
 import { FilePick, Item, Note, PageHead, Section, Seg, useToast } from '../ui/components';
 import { ExportAction } from '../ui/ExportAction';
-import { applyImport, prepareBackup, prepareCsv, prepareImport } from '../services/exporter';
+import { applyImport, prepareBackup, prepareCsv, prepareImport, preparePlanExport } from '../services/exporter';
 import type { ConflictChoice, ImportPreview } from '../domain/backup';
 import { requestPersistence, storageEstimate } from '../lib/device';
 import { checkRecommendation, type RecommendationCheck } from '../domain/report';
-import { usePlan, useToday } from '../ui/hooks';
+import { proposeExact } from '../services/planUpdate';
+import { usePlan, useToday, useMealOptions } from '../ui/hooks';
 import { exercise } from '../content/library';
 import { WEEKDAY_NAMES, addDays } from '../domain/dates';
 import { navigate } from '../ui/router';
@@ -46,6 +47,7 @@ const TABLE_LABELS: Record<string, string> = {
 
 export function DataScreen() {
   const s = useSettings();
+  const mealOpts = useMealOptions();
   const today = useToday();
   const toast = useToast();
   const [pass, setPass] = useState('');
@@ -78,6 +80,13 @@ export function DataScreen() {
               toast(r === true ? 'Storage marked as persistent' : r === false ? 'The browser declined. Regular backups still protect you.' : 'Not supported in this browser');
             }}
           />
+        </div>
+      </Section>
+
+      <Section title="Your plan">
+        <div className="panel stack">
+          <p className="small muted">The week with locations, equipment, space, duration, and stop rules, plus the example meals in grams. A private file for you, a parent, or a coach.</p>
+          <ExportAction label="Prepare the plan file" testId="plan-export" prepare={() => preparePlanExport(mealOpts)} />
         </div>
       </Section>
 
@@ -346,17 +355,13 @@ export function RecommendationScreen() {
   const plan = usePlan();
   const toast = useToast();
   const [check, setCheck] = useState<RecommendationCheck | null>(null);
-  const [targets, setTargets] = useState<Awaited<ReturnType<typeof getTargets>> | null>(null);
-  useEffect(() => {
-    void getTargets().then(setTargets);
-  }, []);
-  if (!plan || !targets) return null;
+  if (!plan) return null;
   const items = plan.days.flatMap((d) => d.items);
   return (
     <div data-testid="recommendation">
       <PageHead title="Import a recommendation" backTo="/more" />
       <p className="small muted">
-        A recommendation is a small JSON file, for example from a coach or an assistant you shared your report with. PeakForm checks it, shows every change, and applies nothing until you confirm. Changes below the safety floors are blocked.
+        A recommendation is a small JSON file, for example from a coach or an assistant you shared your report with. PeakForm checks it and shows every change. Plan changes open in the plan preview and are saved only when you activate them. Food targets and sets to failure are never imported.
       </p>
       <div style={{ marginTop: 12 }}>
         <FilePick label="Choose a recommendation file" accept="application/json,.json" testId="rec-file" onFile={async (f) => setCheck(checkRecommendation(await f.text()))} />
@@ -380,9 +385,8 @@ export function RecommendationScreen() {
                 const to = [c.sets !== undefined && `${c.sets} sets`, c.repMin !== undefined && `${c.repMin} to ${c.repMax ?? c.repMin}`, c.restSec !== undefined && `${c.restSec} s rest`, c.rir !== undefined && `${c.rir} RIR`].filter(Boolean).join(', ');
                 return <Item key={i} title={it ? exercise(it.exerciseId)?.name ?? c.planItemId : c.planItemId} sub={`Now: ${from}. Proposed: ${to}. ${c.reason}`} />;
               }
-              const t = targets.find((x) => x.weekday === c.weekday)!;
               const to = [c.kcal !== undefined && `${c.kcal} kcal`, c.protein !== undefined && `${c.protein} g protein`, c.carbs !== undefined && `${c.carbs} g carbs`, c.fat !== undefined && `${c.fat} g fat`].filter(Boolean).join(', ');
-              return <Item key={i} title={`${WEEKDAY_NAMES[c.weekday]} targets`} sub={`Now: ${t.kcal} kcal, ${t.protein} g protein, ${t.carbs} g carbs, ${t.fat} g fat. Proposed: ${to}. ${c.reason}`} />;
+              return <Item key={i} title={`${WEEKDAY_NAMES[c.weekday]} food targets, not imported`} sub={`Proposed: ${to}. ${c.reason}`} />;
             })}
           </div>
           {check.blocked.length > 0 && (
@@ -417,23 +421,16 @@ export function RecommendationScreen() {
                         if (c.repMin !== undefined && it.target.type === 'reps') it.target = { type: 'reps', min: c.repMin, max: c.repMax ?? Math.max(c.repMin, it.target.max) };
                       }
                 }
-                await savePlanVersion(next, `Recommendation from ${rec.source}`);
+                // Like every other plan change, it is shown as a difference first and saved only when activated.
+                await proposeExact(next, `Recommendation from ${rec.source}`.slice(0, 120), 'Changes from an imported recommendation');
+                navigate('/plan');
+                return;
               }
-              const nut = rec.changes.filter((c) => c.type === 'nutrition-target');
-              if (nut.length) {
-                const next = targets.map((t) => {
-                  const c = nut.find((x) => x.type === 'nutrition-target' && x.weekday === t.weekday);
-                  if (!c || c.type !== 'nutrition-target') return t;
-                  const kcal = c.kcal ?? t.kcal;
-                  return { ...t, kcal, kcalBand: [kcal - 100, kcal + 100] as [number, number], protein: c.protein ?? t.protein, carbs: c.carbs ?? t.carbs, fat: c.fat ?? t.fat };
-                });
-                await saveTargets(next);
-              }
-              toast('Recommendation applied');
+              toast('Nothing in this file changes the plan');
               navigate('/more');
             }}
           >
-            Apply these changes
+            See the plan with these changes
           </button>
         </Section>
       )}
@@ -446,8 +443,8 @@ export function RecommendationScreen() {
   "changes": [
     { "type": "plan-item", "planItemId": "mon-5-barbell-squat",
       "repMin": 6, "repMax": 10, "reason": "Keep the range" },
-    { "type": "nutrition-target", "weekday": 1,
-      "kcal": 2450, "reason": "No change needed" }
+    { "type": "plan-item", "planItemId": "sun-2-machine-bench-press",
+      "sets": 3, "rir": 2, "reason": "Same dose" }
   ]
 }`}</pre>
       </Section>

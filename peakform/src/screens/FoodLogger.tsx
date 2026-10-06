@@ -385,6 +385,8 @@ function BarcodeLookup({ onFood }: { onFood: (f: Food) => void }) {
       onFood({
         id: `off-${code}`,
         name: j.product.product_name || `Product ${code}`,
+        // Meat or dairy is unknown for a looked up product, so the interval note does not judge it.
+        kosher: 'pareve',
         category: 'mixed',
         state: 'as sold',
         per100: { kcal: n['energy-kcal_100g'] ?? 0, protein: n['proteins_100g'] ?? 0, carbs: n['carbohydrates_100g'] ?? 0, fat: n['fat_100g'] ?? 0, fibre: n['fiber_100g'] ?? 0, calcium: (n['calcium_100g'] ?? 0) * 1000 },
@@ -427,7 +429,7 @@ function BarcodeLookup({ onFood }: { onFood: (f: Food) => void }) {
               className="btn btn-primary"
               disabled={!label.name || label.kcal === null}
               onClick={() =>
-                onFood({ id: `label-${Date.now()}`, name: label.name, category: 'mixed', state: 'as sold', per100: { kcal: label.kcal ?? 0, protein: label.protein ?? 0, carbs: label.carbs ?? 0, fat: label.fat ?? 0, fibre: 0, calcium: 0 }, variability: 0.05, note: 'From the food label.' })
+                onFood({ id: `label-${Date.now()}`, name: label.name, kosher: 'pareve', category: 'mixed', state: 'as sold', per100: { kcal: label.kcal ?? 0, protein: label.protein ?? 0, carbs: label.carbs ?? 0, fat: label.fat ?? 0, fibre: 0, calcium: 0 }, variability: 0.05, note: 'From the food label.' })
               }
             >
               Use these values
