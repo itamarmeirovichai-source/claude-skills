@@ -1,0 +1,49 @@
+{
+  "_about": "DEMO 3 - PAWSTEAD Hip & Joint Chews (FICTIONAL brand). Angle: daily ritual (no efficacy claims, no before/after). Hook: 'He waits by the cabinet at 7:02.' 15s, 9:16.",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "export": "instagram",
+  "output": "out/demo3_pawstead.mp4",
+  "timeline": [
+    {
+      "clip": {"path": "media/demo3/s1_hook_dog_cabinet.mp4", "in": 0.25, "out": 2.75},
+      "overlays": [{"type": "title", "text": "He waits by the cabinet\\Nat 7:02. Every day.", "position": "upper", "anim": "pop", "size": 78, "highlight": ["7:02."]}]
+    },
+    {
+      "clip": {"path": "media/demo3/s2_ears_perk.mp4", "in": 0.25, "out": 2.25},
+      "transition": "cut",
+      "overlays": [{"type": "text", "text": "(He knows the sound.)", "position": "upper", "anim": "fade", "size": 58, "start": 0.3}]
+    },
+    {
+      "clip": {"path": "media/demo3/s3_jar_hero.mp4", "in": 0.25, "out": 2.75},
+      "transition": "cut",
+      "overlays": [{"type": "image", "path": "media/demo3/logo.png", "y": 330, "width": 380, "fade": 0.3}]
+    },
+    {
+      "clip": {"path": "media/demo3/s4_chew_floor.mp4", "in": 0.25, "out": 2.75},
+      "transition": "cut",
+      "overlays": [{"type": "text", "text": "Glucosamine + chondroitin.\\NA flavor he actually waits for.", "position": "upper", "anim": "slide_up", "size": 58, "box": true, "start": 0.2}]
+    },
+    {
+      "clip": {"path": "media/demo3/s5_dog_hallway.mp4", "in": 0.25, "out": 2.25, "effects": [{"type": "color", "preset": "warm"}]},
+      "transition": "cut"
+    },
+    {
+      "clip": {"path": "media/demo3/packshot_real.png", "duration": 2.5},
+      "transition": {"type": "fade", "dur": 0.3},
+      "overlays": [
+        {"type": "image", "path": "media/demo3/logo.png", "y": 520, "width": 480, "fade": 0.3},
+        {"type": "text", "text": "The treat he won't let you forget.", "position": "center", "size": 54},
+        {"type": "cta", "text": "Start his ritual →", "position": "cta", "box": true, "anim": "pop", "start": 0.4}
+      ]
+    }
+  ],
+  "overlays": [
+    {"type": "text", "text": "AI-generated demo · fictional brand", "position": "bottom", "size": 30, "start": 0, "end": 15, "box": true}
+  ],
+  "audio": {
+    "music": {"path": "media/music.wav", "volume": 0.4, "fade_in": 0.2, "fade_out": 1.0},
+    "sfx": [{"type": "click", "at": 2.6, "volume": 0.8}, {"type": "pop", "at": 7.6, "volume": 0.6}],
+    "sfx_on_cuts": "none",
+    "loudnorm": -14
+  }
+}
