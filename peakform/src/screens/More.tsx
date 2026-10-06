@@ -1,6 +1,7 @@
 import { Item, PageHead, Section } from '../ui/components';
 import { useSettings } from '../ui/state';
-import { ScheduleScreen, CalendarScreen, SabbathSettingsScreen, SettingsScreen, TargetsScreen, SupplementsScreen, LockSettingsScreen, PlanEditorScreen, CustomExerciseScreen } from './MoreSettings';
+import { ScheduleScreen, CalendarScreen, SabbathSettingsScreen, SettingsScreen, SupplementsScreen, LockSettingsScreen, PlanEditorScreen, CustomExerciseScreen } from './MoreSettings';
+import { AthleteScreen, GoalsScreen, SportScreen } from './Athlete';
 import { DataScreen, RecommendationScreen } from './MoreData';
 import { AttributionScreen, SourcesScreen, PrivacyScreen, SafetyScreen, AboutScreen, InstallScreen } from './MoreInfo';
 import { navigate } from '../ui/router';
@@ -16,9 +17,11 @@ export function MoreScreen() {
           <Item title="Schedule and reminders" sub="Session times and reminder times" to="/more/schedule" testId="more-schedule" />
           <Item title="Calendar export" sub="Reminders with alarms for Apple Calendar" to="/more/calendar" testId="more-calendar" />
           <Item title="Sabbath Mode" sub={s.sabbath.enabled ? `On, Friday ${s.sabbath.mode === 'manual' ? s.sabbath.fridayStart : 'from sunset'} to Saturday night` : 'Off'} to="/more/sabbath" testId="more-sabbath" />
+          <Item title="Your profile" sub="Wrist, home space, school sport, supplements, weighing" to="/more/athlete" testId="more-athlete" />
+          <Item title="Goals and reviews" sub="Your aspirations, reviewed targets, and the talk with a parent" to="/more/goals" testId="more-goals" />
+          <Item title="School sport" sub="Practices and games count toward the weekly load" to="/more/sport" testId="more-sport" />
           <Item title="Choose your exercises" sub="Your favourite exercise for each muscle head" to="/program" testId="more-program" />
           <Item title="Edit the training plan" sub="Saved as a new version. History keeps the original." to="/more/plan" />
-          <Item title="Nutrition targets" sub="Daily ranges, never below the safety floors" to="/more/targets" />
         </div>
       </Section>
       <Section title="Library">
@@ -55,7 +58,7 @@ export function MoreScreen() {
   );
 }
 
-export function MoreSubScreen({ page }: { page: string }) {
+export function MoreSubScreen({ page, next = null }: { page: string; next?: string | null }) {
   switch (page) {
     case 'schedule':
       return <ScheduleScreen />;
@@ -66,7 +69,13 @@ export function MoreSubScreen({ page }: { page: string }) {
     case 'settings':
       return <SettingsScreen />;
     case 'targets':
-      return <TargetsScreen />;
+      return <Redirect to="/more/goals" />;
+    case 'athlete':
+      return <AthleteScreen next={next} />;
+    case 'goals':
+      return <GoalsScreen />;
+    case 'sport':
+      return <SportScreen />;
     case 'supplements':
       return <SupplementsScreen />;
     case 'lock':

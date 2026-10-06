@@ -1,50 +1,48 @@
 # PeakForm build status
 
-Last updated: 2026-10-05. Version 2.1.1.
+Last updated: 2026-10-06. Version 3.0.0.
 
 ## State
 
-Complete and tested. Publishing is private: after the pull request is merged, the user connects a free Cloudflare Pages project to the repository and sets a password (INSTALL_ON_IPHONE.md, Part 1). Nothing is published to a public address.
+Built and tested in the build environment (TEST_REPORT.md). Deployment happens when the pull request is merged into `main`: the Cloudflare Pages project that the user owns builds `main` behind the password gate. Nothing was tested on a real iPhone in this environment, and no clinician, dietitian, or coach has reviewed the 3.0 plan.
+
+## What 3.0.0 changed
+
+- **Week:** four gym strength days (Upper A, Lower A, Upper B, Lower B), home jumps and footwork on Monday and Thursday before the gym legs, a light skill session on Friday, Tuesday without structured training, Saturday full rest, no early mornings. Details and evidence: TRAINING_AUDIT.md.
+- **Effort:** about two reps in reserve, three while an exercise is new. No routine failure, no one repetition maximum tests.
+- **Gates:** a wrist load rating on every exercise and a wrist status in the profile; a space, ceiling, surface, impact, and noise rating on every home drill and a home setup in the profile. Unknown answers mean the cautious choice (`src/content/traits.ts`, `src/domain/homeSpace.ts`, `src/content/homeSessions.ts`).
+- **Plan changes:** every change is a proposal stored in the key value table, shown with a summary and a day by day difference (`src/domain/planDiff.ts`, `src/screens/PlanUpdate.tsx`), and saved as a new plan version only on activation. The automatic block sync and the dunk program were removed.
+- **Food:** no default calorie target; example meals in grams with state, household measures, kosher category, storage, and options for more; reviewed targets recorded with source and status; aspirations kept apart and never turned into targets; a nutrition check that never suggests eating less (`src/content/meals.ts`, `src/domain/nutrition.ts`, `src/domain/athlete.ts`). Details: NUTRITION_DATA_AUDIT.md.
+- **Data:** new key value entries for the profile, aspirations, reviewed targets, jump tests, the jump level, and the plan proposal; a new `sportLogs` table (Dexie version 2). Backups include all of them; older backups still import.
+- **Exports:** the coach report includes the profile answers, aspirations, and reviewed targets, kept apart; a private plan file holds the week and the example meals.
 
 ## Decisions
 
 - **Delivery:** installable PWA. React 19, Vite 8, TypeScript strict, Dexie on IndexedDB, Zod, vite-plugin-pwa (Workbox). No server, no account, no analytics.
 - **Location:** built in `peakform/` inside the existing `claude-skills` repository, so the unrelated skills files are untouched.
-- **Routing:** hash routes so any static host and the offline service worker work without rewrites. `base: './'` so the same build runs at any path.
-- **Privacy:** the source and the deployed site are generic. The personal profile is entered on the device or imported from a private setup file generated into `private/`, which is gitignored. A release gate rejects builds containing personal markers or trackers.
-- **Hosting:** a Cloudflare Pages project owned by the user, behind a same origin password gate (`functions/_middleware.ts`, `edge/gate.ts`). The user asked that nobody else be able to open or install the app. GitHub Pages was dropped because it cannot restrict access on the free plan. Cloudflare Access was considered, but its sign in redirects to another domain, which can loop inside an iPhone Home Screen app, so the gate signs in on the same origin instead.
-- **Reminders:** in app timeline plus an Apple Calendar ICS export with alarms and Sabbath exclusions. No Web Push, because it needs a push server. Nothing claims to alert while the app is closed.
-- **Coach access:** a two tap Share Coach Report (Markdown plus JSON). Nothing is sent automatically. Recommendation files can be imported with a visible diff and safety blocks.
-- **Nutrition ranges:** item ranges come from the portion method and food variability. Day totals combine item errors as independent (root of summed squares) instead of stacking worst cases.
-- **Week boundaries:** review weeks run Monday to Sunday so the Sunday evening review includes Sunday's session.
-- **Workout focus mode:** during an active workout the tab bar is replaced by a pinned Complete set dock. The rest timer bar stays visible across the app.
-- **Program (2.0.0):** the main sessions are built from slots, one per muscle head, each with two to four exercises that build it about equally. The athlete chose the exercises in a questionnaire before the release, and those answers are the starting choices; the same questionnaire is in the app to change them. No free barbell, because the athlete trains alone.
-- **Effort (2.0.0):** each exercise has a failure policy. Small machine and cable exercises go to technical failure on every set, machine and Smith compounds on the last set, and dumbbell compounds, lunges, and hinges stop one rep short. A new exercise stays two reps short for two sessions. Sets to failure progress from the first set.
-- **Jump program (2.1.0):** training blocks by date (`src/content/phases.ts`) set the Monday and Friday jump drills and the leg doses. The plan is rebuilt as a new version when a block starts, from the saved choices. Legs stop short of failure except small Monday exercises, so jump days are fresh. The dunk goal reads touch heights from approach jumps.
-- **Rest day food (2.1.1):** every day's target is the rest day amount, about 2,250 kcal, so the deficit never depends on training happening. Default meals are sized to match, and installed apps move saved training day targets once (`syncFoodTargets`), leaving hand edited days alone.
-- **Bundle:** less frequent screens load on demand. The service worker precaches every chunk, so everything still opens offline.
+- **Privacy:** the source, the documentation, and the deployed site are generic and de-identified. Personal answers are entered on the device or imported from a private setup file in the gitignored `private/` folder. The build gate rejects personal markers and trackers; tracked files are checked against the private marker list before release. Defaults that would mirror one family (for example the meat to dairy interval, now 6 hours by default) are set on the phone instead.
+- **Hosting:** a Cloudflare Pages project owned by the user, behind a same origin password gate (`functions/_middleware.ts`, `edge/gate.ts`).
+- **Reminders:** in app timeline plus an Apple Calendar ICS export with alarms and Sabbath exclusions. No Web Push. Nothing claims to alert while the app is closed.
+- **Durations:** session estimates count about 3 seconds a repetition, the rest after every set, side switches, changeovers, and a gym warm up (`src/domain/sessionInfo.ts`).
 
 ## Completed
 
-- Content: 99 exercises, including eight jump drills for the dunk program added in 2.1.0, including five no ball morning volleyball drills and the 34 machine, cable, Smith, and dumbbell alternatives added for the questionnaire in 2.0.0, with instructions, muscles, safety, substitutions, effort rules, and original keyframes or drill diagrams. Since 2.0.0 the main sessions come from the athlete's own exercise choices, at the user's request. Foods, meal templates, targets, recipes, meal preparation, and the Sabbath plate guide.
-- Engines, the access gate, the program builder, and plan updates with unit tests (124 tests).
-- All screens, onboarding, and app lock.
-- End to end tests (82), layout and accessibility checks at 375, 390, 393, and 430 px.
-- Design review sweep of every major screen in light, dark, offline, empty, long content, and large text states, with the defects fixed.
-- Documentation, content audit, synthetic fixtures, screenshots, and the CI workflow.
-- Private deployment: password gate for Cloudflare Pages with unit tests, checked end to end in Cloudflare's local runtime.
+- Content: 103 exercises, including four new home drills, each with a wrist load rating and, for home drills, space needs. Foods with states and sources, raw and dry entries, yields, example meals, recipes computed from ingredients, meal preparation, and the Sabbath plate guide.
+- Engines: plan proposals and differences, home space matching, wrist gate, exposure from school sport, jump tests, kosher timing, recipe math, the nutrition check, the weekly review with professional review reasons, and the plan export, with unit tests (167).
+- Screens: Your profile, Goals and reviews, School sport, Jump tests, the plan preview, and session information on Train.
+- End to end tests (84): 48 at 390 px, plus layout and accessibility at 375, 393, and 430 px.
+- Documentation: TRAINING_AUDIT.md, NUTRITION_DATA_AUDIT.md, RESEARCH.md (3.0 section and 18 new sources), CHANGELOG.md, TEST_REPORT.md, USER_GUIDE.md, PRIVACY_AND_SECURITY.md.
 
 ## Known limits
 
-- Research could only use search results. The build environment blocked direct page access, and every source records its access level.
-- Videos were matched by title and channel only, never watched. The app says so and lets the user confirm or reject each one.
-- Browser tests run on Chromium with iPhone emulation, because WebKit cannot be installed here.
-- The default meals as prescribed give more protein and less fat than the macro targets in the brief. This is flagged in RESEARCH.md and TEST_REPORT.md for a dietitian to review.
+- Research used search results only. Direct page access was blocked, the search budget ran out before food safety, kosher practice, and FODMAP content could be searched, and every source records its access level.
+- Adult evidence is used for proximity to failure and weekly volume; it is marked as adult in the audits.
+- Browser tests run on Chromium with iPhone emulation, because WebKit cannot be installed here. Lighthouse, the dependency audit, and the Cloudflare runtime gate test were not rerun for 3.0.0 (TEST_REPORT.md).
+- Session durations are estimates. Upper days come to about 70 to 75 minutes.
 - iOS may remove site data under storage pressure. Home Screen use, persistent storage, and backups mitigate this.
 
 ## Next steps
 
-1. Merge the pull request. This publishes nothing by itself.
-2. Create the Cloudflare Pages project and set the password (INSTALL_ON_IPHONE.md, Part 1).
-3. On the iPhone, follow INSTALL_ON_IPHONE.md, Part 2.
-4. Optional: after a few weeks of real use, review the macro targets with a pediatric sports dietitian and adjust them in More, Nutrition targets.
+1. On the phone: open the app, answer **More, Your profile** (wrist, home space, sport, meat and dairy interval), look at the new week in the preview, and activate it.
+2. Record the aspirations in **More, Goals and reviews**, in your own words.
+3. Review the open questions in RESEARCH.md with a parent and, where they apply, a pediatrician, a pediatric sports dietitian, and the clinician who treats any injury.

@@ -55,7 +55,7 @@ export const AppSettingsSchema = z.object({
   vibration: z.boolean(),
   keepScreenOn: z.boolean(),
   poolLengthM: z.number().positive().nullable(),
-  sessionTimes: z.object({ morning: hhmm, main: z.record(z.string(), hhmm), swim: z.record(z.string(), hhmm) }),
+  sessionTimes: z.object({ morning: hhmm, main: z.record(z.string(), hhmm), swim: z.record(z.string(), hhmm), home: z.record(z.string(), hhmm).optional() }),
   equipment: z.object({
     barbellKg: z.number().positive(),
     machineKg: z.number().positive(),
@@ -118,7 +118,7 @@ export const SetTargetSchema = z.discriminatedUnion('type', [
 export const PlanItemSchema = z.object({
   id,
   exerciseId: id,
-  session: z.enum(['morning', 'main', 'swim']),
+  session: z.enum(['morning', 'home', 'main', 'swim']),
   sets: z.number().int().min(1).max(20),
   target: SetTargetSchema,
   restSec: z.number().int().min(0).max(1800),
@@ -163,7 +163,7 @@ export const WorkoutSessionSchema = z.object({
   planWeekday: z.number().int().min(0).max(6),
   planId: id,
   planVersion: z.number().int(),
-  session: z.enum(['morning', 'main', 'swim']),
+  session: z.enum(['morning', 'home', 'main', 'swim']),
   title: z.string().max(100),
   status: z.enum(['active', 'done', 'abandoned']),
   startedAt: ms,
@@ -329,15 +329,17 @@ export type DayNote = z.infer<typeof DayNoteSchema>;
 
 // ---------- Body, sleep, pain ----------
 
-export const PAIN_REGIONS = ['achilles', 'shin', 'knee', 'lowBack', 'shoulder', 'elbowWrist'] as const;
+export const PAIN_REGIONS = ['achilles', 'heel', 'shin', 'knee', 'lowBack', 'shoulder', 'wrist', 'elbowWrist'] as const;
 export type PainRegion = (typeof PAIN_REGIONS)[number];
 export const PAIN_REGION_LABELS: Record<PainRegion, string> = {
   achilles: 'Achilles',
+  heel: 'Heel',
   shin: 'Shin',
   knee: 'Knee',
   lowBack: 'Low back',
   shoulder: 'Shoulder',
-  elbowWrist: 'Elbow or wrist',
+  wrist: 'Wrist',
+  elbowWrist: 'Elbow',
 };
 
 export const SORENESS_REGIONS = ['legs', 'glutes', 'back', 'chest', 'shoulders', 'arms', 'calves'] as const;
@@ -425,6 +427,19 @@ export const SupplementLogSchema = z.object({
   unit: z.string().max(20),
 });
 export type SupplementLog = z.infer<typeof SupplementLogSchema>;
+
+/** School and club sport, logged so it counts toward the same weekly load as the plan (3.0.0). */
+export const SportLogSchema = z.object({
+  ...base,
+  date: dateKey,
+  sport: z.enum(['volleyball', 'basketball', 'other']),
+  name: z.string().max(60),
+  minutes: z.number().int().min(0).max(600),
+  intensity: z.enum(['light', 'moderate', 'hard']),
+  jumping: z.enum(['little', 'some', 'lots']),
+  note: z.string().max(300),
+});
+export type SportLog = z.infer<typeof SportLogSchema>;
 
 // ---------- Reviews, exports, media, misc ----------
 
@@ -530,6 +545,7 @@ export const TABLE_SCHEMAS = {
   sleep: SleepLogSchema,
   pain: PainLogSchema,
   supplementLogs: SupplementLogSchema,
+  sportLogs: SportLogSchema,
   weeklyReviews: WeeklyReviewSchema,
   calendarExports: CalendarExportSchema,
   backups: BackupManifestSchema,

@@ -1,12 +1,12 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
 import { exposuresFor } from '../db/repo';
-import { useToday, usePlan, useTargets } from '../ui/hooks';
+import { useAthlete, useToday, usePlan } from '../ui/hooks';
 import { Item, Note, PageHead, Section, Metric } from '../ui/components';
 import { LineChart } from '../ui/Chart';
 import { Link } from '../ui/router';
-import { addDays, diffDays, formatDateKey, reviewWeekStart, weekdayOf, rangeKeys } from '../domain/dates';
-import { morningWeights, rollingAverages, sevenDayAverage, nutritionAdjustment, dayTotals } from '../domain/nutrition';
+import { addDays, diffDays, formatDateKey, reviewWeekStart, rangeKeys } from '../domain/dates';
+import { morningWeights, rollingAverages, sevenDayAverage, nutritionAdjustment, dayTotals, STABLE_WEIGHT_NOTE } from '../domain/nutrition';
 import { coverageFrom, focusChecks, shoulderOverlap, COVERAGE_WEIGHTS, planCoverageInputs, type CoverageInput } from '../domain/coverage';
 import { exercise, exerciseName, allExercises } from '../content/library';
 import { MUSCLES, MUSCLE_GROUP_LABELS, type MuscleId } from '../content/muscles';
@@ -14,7 +14,7 @@ import { BodyMap } from '../svg/BodyMap';
 import { useSettings } from '../ui/state';
 import type { SetLog } from '../db/records';
 import { summarizeSets } from '../ui/format';
-import { DunkGoalSection } from './DunkGoal';
+import { JumpTestsSection } from './JumpTests';
 
 const lookup = (id: string) => {
   const e = exercise(id);
@@ -24,7 +24,10 @@ const lookup = (id: string) => {
 export function ProgressScreen() {
   const today = useToday();
   const settings = useSettings();
-  const targets = useTargets();
+  const athlete = useAthlete();
+  const hide = athlete.weight.hideNumbers;
+  const weighOff = athlete.weight.mode === 'off';
+  const creatine = settings.supplements.some((x) => x.kind === 'creatine' && x.active) || athlete.supplements.creatineProduct !== '';
   const from = addDays(today, -55);
   const data = useLiveQuery(async () => {
     const [checkins, waist, sleep, food, sessions, exSessions, sets] = await Promise.all([
@@ -60,8 +63,8 @@ export function ProgressScreen() {
     checkins: data.checkins,
     waist: data.waist,
     foodLogDays: foodDays,
-    currentKcal: targets.find((t) => t.weekday === weekdayOf(today))!.kcal,
     performanceDecline: false,
+    weightMode: athlete.weight.mode,
     wellbeing: {
       previous: wellbeing(data.checkins, data.sleep, addDays(today, -13), addDays(today, -7)),
       current: wellbeing(data.checkins, data.sleep, addDays(today, -6), today),
@@ -70,10 +73,10 @@ export function ProgressScreen() {
   const weekStart = reviewWeekStart(today);
   const weekFood = data.food.filter((f) => f.date >= weekStart);
   const weekFoodDays = [...new Set(weekFood.map((f) => f.date))];
-  const proteinDays = weekFoodDays.filter((d) => dayTotals(weekFood.filter((f) => f.date === d)).mid.protein >= 150).length;
+  const proteinMeals = weekFood.filter((f) => dayTotals([f]).mid.protein >= 20).length;
   const quality = data.sets.filter((s) => s.quality !== null);
   const avgQuality = quality.length ? quality.reduce((a, s) => a + (s.quality ?? 0), 0) / quality.length : null;
-  const swims = data.sessions.filter((s) => s.session === 'swim' && s.status === 'done');
+  const homeSessions = data.sessions.filter((s) => (s.session === 'home' || s.session === 'morning') && s.status === 'done');
   const w = (k: 'energy' | 'mood' | 'concentration', start: string, end: string) => {
     const xs = data.checkins.filter((c) => c.date >= start && c.date <= end && c[k] !== null).map((c) => c[k]!);
     return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null;
@@ -83,8 +86,17 @@ export function ProgressScreen() {
     <div data-testid="progress">
       <PageHead title="Progress" end={<Link to="/review" className="btn btn-sm btn-primary" data-testid="open-review">Weekly review</Link>} />
 
-      <DunkGoalSection />
+      <JumpTestsSection />
 
+      {weighOff ? (
+        <Section title="Body weight">
+          <p className="small muted" data-testid="weight-off">Weighing is off. Change it in More, Your profile, Weighing. Training, recovery, and how you feel tell more day to day.</p>
+        </Section>
+      ) : hide ? (
+        <Section title="Body weight">
+          <p className="small muted" data-testid="weight-hidden">Weight numbers are hidden. They are still saved, and the weekly review reads the trend. Show them again in More, Your profile, Weighing.</p>
+        </Section>
+      ) : (
       <Section title="Body weight">
         <div className="metric-row">
           <Metric label="7 day average" value={thisWeek.reliable ? `${thisWeek.avg?.toFixed(1)} kg` : 'Not enough yet'} sub={`${thisWeek.count} morning weight${thisWeek.count === 1 ? '' : 's'}`} testId="weight-avg" />
@@ -97,11 +109,16 @@ export function ProgressScreen() {
         {settings.planStartDate && diffDays(today, settings.planStartDate) < 21 && (
           <div style={{ marginTop: 8 }} data-testid="early-weight-note">
             <Note tone="info" title="Weight often rises a little in the first weeks">
-              New and harder training makes muscles hold more water and stored carbohydrate while they adapt, so the scale can go up for a week or two even when you eat less. That is not fat. Judge the trend from the seven day averages after the third week, together with your waist. The nutrition check waits fourteen days for the same reason.
+              New training makes muscles hold more water and stored carbohydrate while they adapt, so the scale can go up for a week or two. Judge any trend over several weeks, together with your waist, performance, and how you feel.
             </Note>
           </div>
         )}
+        <p className="small muted" style={{ marginTop: 8 }} data-testid="stable-note">
+          {STABLE_WEIGHT_NOTE}
+          {creatine ? ' Creatine usually adds some water to the muscles in the first weeks, often 1 to 2 kg, but not every rise is creatine.' : ''}
+        </p>
       </Section>
+      )}
 
       <Section title="Waist">
         <div className="panel">
@@ -110,9 +127,9 @@ export function ProgressScreen() {
         </div>
       </Section>
 
-      <Section title="Scale body fat, trend only">
+      <Section title="Scale body fat, an uncertain estimate">
         <div className="panel">
-          <Note tone="warn">Smart scales estimate body fat from an electrical signal. The number moves with water, food, and timing, and can be several percent off. Watch the weekly trend, not the daily number.</Note>
+          <Note tone="warn">Smart scales estimate body fat from an electrical signal. The number moves with water, food, timing, and creatine, and can be off by several percentage points. Scale "muscle" figures are not skeletal muscle. Watch a weekly trend at most, never the daily number.</Note>
           <div style={{ marginTop: 8 }}>
             {bfWeekly.length >= 2 ? <LineChart points={[]} line={bfWeekly} unit="%" label="Weekly average scale body fat" /> : <p className="small muted">Needs at least three readings a week for two weeks before a trend is shown.</p>}
           </div>
@@ -131,12 +148,12 @@ export function ProgressScreen() {
           )}
           {gate.reasons.length > 0 && (
             <ul className="bullets small">
-              {gate.reasons.map((m) => (
+              {gate.reasons.filter((m) => !hide || !/kg/.test(m)).map((m) => (
                 <li key={m}>{m}</li>
               ))}
             </ul>
           )}
-          <p className="small faint">Runs on fourteen days of data. Never from one day, never from scale body fat, never below 2,000 calories. Any change needs your confirmation{gate.involveGuardian ? ' and a talk with a parent' : ''}.</p>
+          <p className="small faint">Reads two or more weeks of data, never one day and never scale body fat. It never suggests eating less and never changes anything by itself{gate.involveGuardian ? '. Talk it through with a parent' : ''}.</p>
         </div>
       </Section>
 
@@ -160,7 +177,7 @@ export function ProgressScreen() {
         <div className="metric-row">
           <Metric label="Sessions, 14 days" value={String(data.sessions.filter((s) => s.status === 'done').length)} />
           <Metric label="Jump and skill quality" value={avgQuality === null ? 'None yet' : `${avgQuality.toFixed(1)} / 5`} />
-          <Metric label="Swims, 14 days" value={`${swims.length} of 4`} />
+          <Metric label="Home sessions, 14 days" value={String(homeSessions.length)} />
         </div>
         <div className="group" style={{ marginTop: 8 }}>
           <Item title="Muscle coverage and weekly volume" sub="Direct and indirect sets, shoulder overlap" to="/coverage" testId="coverage-link" />
@@ -171,7 +188,7 @@ export function ProgressScreen() {
       <Section title="Meals this week">
         <div className="metric-row">
           <Metric label="Days logged" value={String(weekFoodDays.length)} />
-          <Metric label="Protein target days" value={String(proteinDays)} />
+          <Metric label="Meals with 20 g protein" value={String(proteinMeals)} />
           <Metric label="As planned" value={String(weekFood.filter((f) => f.asPlanned).length)} sub="meals" />
         </div>
       </Section>

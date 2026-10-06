@@ -15,6 +15,8 @@ import { usePlan } from '../ui/hooks';
 import { restText, targetText } from './Train';
 import { uid } from '../lib/id';
 import { effortText, summarizeSets } from '../ui/format';
+import { LOCATION_LABEL, WRIST_TEXT, locationOf, wristLoad } from '../content/traits';
+import type { ExerciseContent } from '../content/types';
 
 const FATIGUE_LABEL: Record<FatigueArea, string> = {
   shoulder: 'shoulder',
@@ -58,8 +60,11 @@ export function ExerciseScreen({ id }: { id: string }) {
   const subs = [ex.easierSubstitution, ex.equipmentSubstitution, ...(ex.otherSubstitutions ?? [])];
   return (
     <div data-testid="exercise-detail">
-      <PageHead title={ex.name} eyebrow={KIND_LABEL[ex.kind]} backTo="/train" />
+      <PageHead title={ex.name} eyebrow={`${KIND_LABEL[ex.kind]} · ${LOCATION_LABEL[locationOf(ex.id, ex.kind)]}`} backTo="/train" />
       <p className="muted">{ex.purpose}</p>
+      <p className="small muted" data-testid="exercise-equipment">
+        <b>Equipment:</b> {ex.equipment.join(', ')}.
+      </p>
 
       {item && (
         <div className="presc" style={{ marginTop: 10 }}>
@@ -159,6 +164,24 @@ export function ExerciseScreen({ id }: { id: string }) {
             </ul>
           </div>
         )}
+      </Section>
+
+      <Section title="Progress and step back">
+        <div className="panel small" data-testid="exercise-progression">
+          <ul className="bullets">
+            {progressionText(ex).map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <Section title="Wrist">
+        <div className="panel small" data-testid="exercise-wrist">
+          <p>
+            <b>{wristLoad(ex.id) === 'none' ? 'No wrist load' : `${wristLoad(ex.id)[0]!.toUpperCase()}${wristLoad(ex.id).slice(1)} wrist load`}.</b> {WRIST_TEXT[wristLoad(ex.id)]}
+          </p>
+        </div>
       </Section>
 
       <Section title="Substitutions">
@@ -273,4 +296,27 @@ export function LibraryScreen() {
       ))}
     </div>
   );
+}
+
+/** How this exercise moves forward and back. Nothing changes automatically. */
+function progressionText(ex: ExerciseContent): string[] {
+  const easier = `Step back: ${ex.easierSubstitution.name}. ${ex.easierSubstitution.reason}`;
+  switch (ex.kind) {
+    case 'strength':
+      return [
+        'Add one rep at a time at the same load, staying at the planned reps in reserve with good form.',
+        'Add the smallest load step only when every work set reaches the top of the range with good form and no pain. One good set is not enough.',
+        'If form slips or reps in reserve drop below the plan, keep the load or take a small step back.',
+        easier,
+      ];
+    case 'bodyweight':
+    case 'hold':
+      return ['Reach the planned reps or seconds on every set with good form first.', 'A harder version is a decision for you and a coach, never automatic.', easier];
+    case 'jump':
+    case 'sprint':
+    case 'throw':
+      return ['Better quality comes first: height, speed, and quiet, controlled landings.', 'Volume never goes up from completion alone. A new level is chosen after a review of pain, landings, school jumping, and sleep.', easier];
+    default:
+      return ['Make it smoother and more consistent before making it faster or longer.', easier];
+  }
 }

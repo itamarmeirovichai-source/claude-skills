@@ -46,7 +46,7 @@ export function safetyState(today: DateKey, checkins: BodyCheckIn[], pain: PainL
 }
 
 function label(region: string): string {
-  const map: Record<string, string> = { achilles: 'Achilles', shin: 'Shin', knee: 'Knee', lowBack: 'Low back', shoulder: 'Shoulder', elbowWrist: 'Elbow or wrist' };
+  const map: Record<string, string> = { achilles: 'Achilles', heel: 'Heel', shin: 'Shin', knee: 'Knee', lowBack: 'Low back', shoulder: 'Shoulder', wrist: 'Wrist', elbowWrist: 'Elbow', exercise: 'Exercise' };
   return map[region] ?? region;
 }
 
@@ -102,5 +102,5 @@ export function readiness(today: DateKey, checkin: BodyCheckIn | null, sleep: Sl
   if (!checkin && !sleep) return { level: 'ready', label: 'No check in yet', reasons: ['Do the morning check in for a readiness read.'] };
   if (score >= 3) return { level: 'rest', label: 'Take it easy today', reasons };
   if (score >= 1) return { level: 'easier', label: 'Train, but keep it comfortable', reasons };
-  return { level: 'ready', label: 'Ready to train', reasons: reasons.length ? reasons : ['Sleep, pain, and soreness look fine.'] };
+  return { level: 'ready', label: 'No warning signs logged', reasons: reasons.length ? reasons : ['No pain, illness, or short sleep was logged. Your own feel counts too: stop if something hurts.'] };
 }

@@ -110,9 +110,12 @@ export const LEGS_CHOICE_IDS = [
   'cable-woodchop',
 ] as const;
 
-/** Jump drills for the dunk program (2.1.0). */
+/** Jump drills (2.1.0). */
 export const JUMP_A_IDS = ['pogo-hop', 'snap-down-stick', 'box-jump', 'hurdle-hop'] as const;
 export const JUMP_B_IDS = ['broad-jump', 'depth-jump', 'single-leg-hop', 'approach-touch-jump'] as const;
 
-export const LIBRARY_IDS = [...LOWER_IDS, ...UPPER_IDS, ...ATHLETIC_IDS, ...MORNING_IDS, ...GYM_IDS, ...PUSH_CHOICE_IDS, ...PULL_CHOICE_IDS, ...LEGS_CHOICE_IDS, ...JUMP_A_IDS, ...JUMP_B_IDS] as const;
+/** Home drills for small spaces and the arm swing (3.0.0). */
+export const HOME_IDS = ['home-movement-prep', 'lateral-line-hop', 'spike-arm-swing-shadow', 'wall-spike-control'] as const;
+
+export const LIBRARY_IDS = [...LOWER_IDS, ...UPPER_IDS, ...ATHLETIC_IDS, ...MORNING_IDS, ...GYM_IDS, ...PUSH_CHOICE_IDS, ...PULL_CHOICE_IDS, ...LEGS_CHOICE_IDS, ...JUMP_A_IDS, ...JUMP_B_IDS, ...HOME_IDS] as const;
 export type LibraryExerciseId = (typeof LIBRARY_IDS)[number];

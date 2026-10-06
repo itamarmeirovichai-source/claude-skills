@@ -21,7 +21,8 @@ import type { PlanItem, SessionKey } from '../content/plan';
 import { dateKey, weekdayOf, type DateKey } from '../domain/dates';
 import { uid } from '../lib/id';
 import type { TableData } from '../domain/backup';
-import { BASELINE_TARGETS, NUTRITION_FLOORS, type NutritionTarget } from '../content/meals';
+import { parseAthlete, type AthleteProfile } from '../domain/athlete';
+import type { SportLog } from './records';
 import type { RestTimerState } from '../domain/timer';
 
 // Data access. Plan records are versioned and never rewritten; logs reference a
@@ -41,8 +42,8 @@ export async function ensureInitialized(): Promise<AppSettings> {
     await db.settings.put(s);
     await db.profile.put(defaultProfile(t));
     await db.plans.put(baselinePlanRecord(t));
-    // The baseline plan is the first training block. Later blocks are applied as their dates come.
-    await db.kv.put({ id: KV.programPhase, value: 'foundation', updatedAt: t });
+    // A new install starts on the current plan, so there is no update to offer.
+    await db.kv.put({ id: KV.planUpdates, value: { 'home-gym-v3': 'applied' }, updatedAt: t });
     await db.migrations.put({ id: 'init-1', createdAt: t, updatedAt: t, fromVersion: 0, toVersion: 1, appliedAt: t, note: 'Created database.' });
   });
   return s;
@@ -323,23 +324,63 @@ export const KV = {
   programPhase: 'programPhase',
   /** A block that started and has not been acknowledged on Today yet. */
   phaseNotice: 'phaseNotice',
+  /** Standing reach from 2.1.0, read by the jump measurements. */
   dunkProfile: 'dunkProfile',
+  athleteBasics: 'athleteBasics',
+  wrist: 'wristInfo',
+  homeSetup: 'homeSetup',
+  sportLoad: 'sportLoad',
+  weightPrefs: 'weightPrefs',
+  kosherPrefs: 'kosherPrefs',
+  supplementDetails: 'supplementDetails',
+  usualVeg: 'usualVeg',
+  aspirations: 'aspirations',
+  reviewedTargets: 'reviewedTargets',
+  jumpLevel: 'jumpLevel',
+  /** A plan waiting for the athlete to look at the differences and activate it. */
+  planProposal: 'planProposal',
+  jumpTests: 'jumpTests',
+  /** The review with a parent: when it was marked done, and what was discussed. */
+  parentReview: 'parentReview',
 } as const;
 
-/** Editable daily nutrition targets. Falls back to the seeded baseline. */
-export async function getTargets(): Promise<NutritionTarget[]> {
-  const t = await kvGet<NutritionTarget[]>(KV.targets);
-  return t && t.length === 7 ? t : BASELINE_TARGETS;
+// ---------- Athlete profile (3.0.0) ----------
+
+export const ATHLETE_KV: Record<keyof AthleteProfile, string> = {
+  basics: KV.athleteBasics,
+  wrist: KV.wrist,
+  home: KV.homeSetup,
+  sport: KV.sportLoad,
+  weight: KV.weightPrefs,
+  kosher: KV.kosherPrefs,
+  supplements: KV.supplementDetails,
+  veg: KV.usualVeg,
+  aspirations: KV.aspirations,
+  reviewed: KV.reviewedTargets,
+};
+
+/** The athlete profile, with cautious defaults for anything not answered yet. All reads start together. */
+export async function getAthlete(): Promise<AthleteProfile> {
+  const keys = Object.keys(ATHLETE_KV) as Array<keyof AthleteProfile>;
+  const values = await Promise.all(keys.map((k) => kvGet<unknown>(ATHLETE_KV[k])));
+  return parseAthlete(Object.fromEntries(keys.map((k, i) => [k, values[i]])));
 }
 
-/** Save targets, never below the safety floors. */
-export async function saveTargets(targets: NutritionTarget[]): Promise<void> {
-  const safe = targets.map((t) => {
-    const kcal = Math.max(NUTRITION_FLOORS.kcal, Math.round(t.kcal));
-    const lo = Math.max(NUTRITION_FLOORS.kcal, Math.min(t.kcalBand[0], kcal));
-    return { ...t, kcal, kcalBand: [lo, Math.max(kcal, t.kcalBand[1])] as [number, number], carbs: Math.max(NUTRITION_FLOORS.carbs, Math.round(t.carbs)) };
-  });
-  await kvSet(KV.targets, safe);
+export async function saveAthlete<K extends keyof AthleteProfile>(key: K, value: AthleteProfile[K]): Promise<void> {
+  await kvSet(ATHLETE_KV[key], value);
+}
+
+// ---------- School and club sport ----------
+
+export async function addSportLog(log: Omit<SportLog, 'id' | 'createdAt' | 'updatedAt'>): Promise<SportLog> {
+  const t = now();
+  const rec: SportLog = { ...log, id: uid('sport'), createdAt: t, updatedAt: t };
+  await db.sportLogs.put(rec);
+  return rec;
+}
+
+export async function deleteSportLog(id: string): Promise<void> {
+  await db.sportLogs.delete(id);
 }
 
 export async function saveTimer(t: RestTimerState | null): Promise<void> {
@@ -390,7 +431,7 @@ export async function deleteAllData(): Promise<void> {
 }
 
 export async function removeDemoData(): Promise<void> {
-  const tables = ['sessions', 'exerciseSessions', 'setLogs', 'foodLogs', 'waterLogs', 'checkins', 'waist', 'sleep', 'pain', 'suggestions', 'fourReviews', 'weeklyReviews'] as const;
+  const tables = ['sessions', 'exerciseSessions', 'setLogs', 'foodLogs', 'waterLogs', 'checkins', 'waist', 'sleep', 'pain', 'suggestions', 'fourReviews', 'weeklyReviews', 'sportLogs'] as const;
   await db.transaction('rw', tables.map((t) => db.table(t)), async () => {
     for (const t of tables) {
       const keys = (await db.table(t).toCollection().primaryKeys()) as string[];

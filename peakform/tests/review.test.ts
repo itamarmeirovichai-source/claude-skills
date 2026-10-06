@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { BASELINE_PLAN } from '../src/content/plan';
-import { BASELINE_TARGETS } from '../src/content/meals';
+import { DEFAULT_ATHLETE } from '../src/domain/athlete';
 import type { ActivityKind } from '../src/content/types';
 import { generateDemo } from '../src/domain/demo';
 import { generateWeeklyReview, type ReviewData } from '../src/domain/review';
@@ -37,7 +37,12 @@ function reviewData(end: string, weeks = 2, lastBackupAt: number | null = null):
     ...demo,
     suggestions: [],
     fourReviews: [],
-    targets: BASELINE_TARGETS,
+    reviewedKcal: null,
+    exampleKcal: 2450,
+    sportLogs: [],
+    athlete: DEFAULT_ATHLETE,
+    ageYears: 14,
+    creatineActive: false,
     lastBackupAt,
     exerciseKind: kind,
     exerciseName: (id) => id,
@@ -50,7 +55,7 @@ describe('weekly review', () => {
     const r = generateWeeklyReview(data, '2026-09-28', Date.UTC(2026, 9, 4, 18));
     expect(r.weekStart).toBe('2026-09-28');
     expect(r.weekEnd).toBe('2026-10-04');
-    for (const sec of [r.keepDoing, r.readyToProgress, r.improve, r.safety]) {
+    for (const sec of [r.keepDoing, r.readyToProgress, r.improve, r.safety, r.progress!, r.insufficient!, r.recovery!, r.professional!]) {
       for (const item of sec) {
         expect(item.evidence.length).toBeGreaterThan(0);
         expect(['high', 'medium', 'low']).toContain(item.confidence);
@@ -59,17 +64,40 @@ describe('weekly review', () => {
     }
     expect(r.priorities.length).toBeGreaterThan(0);
     expect(r.priorities.length).toBeLessThanOrEqual(3);
-    // Six main sessions, six morning sessions (Sunday to Friday), and two swims.
-    expect(r.current.plannedSessions).toBe(14);
-    expect(r.current.ropePlanned).toBe(6);
-    expect(r.current.swimPlanned).toBe(2);
+    // Four gym sessions and three home sessions (Monday, Thursday, Friday), no swims.
+    expect(r.current.plannedSessions).toBe(7);
+    expect(r.current.homePlanned).toBe(3);
+    expect(r.current.swimPlanned).toBe(0);
     expect(r.comparison.find((c) => c.label === 'Scale body fat')!.note).toMatch(/Trend only/);
+    expect(r.comparison.find((c) => c.label === 'Days in the reviewed energy range')!.current).toBe('No reviewed target');
+  });
+
+  it('lists missing data, recovery concerns, and reasons for a professional review', () => {
+    const data = reviewData('2026-10-04');
+    data.athlete = { ...DEFAULT_ATHLETE, aspirations: [{ id: 'a', text: 'Lower body fat and more muscle', recordedOn: '2026-10-01' }], supplements: { ...DEFAULT_ATHLETE.supplements, creatineProduct: 'Creatine monohydrate' } };
+    data.sportLogs = ['2026-09-29', '2026-09-30', '2026-10-01'].map((d, i) => ({ id: `sp${i}`, createdAt: 0, updatedAt: 0, date: d, sport: 'volleyball' as const, name: '', minutes: 600, intensity: 'hard' as const, jumping: 'lots' as const, note: '' }));
+    const r = generateWeeklyReview(data, '2026-09-28', Date.UTC(2026, 9, 4, 18));
+    const ids = (xs: Array<{ id: string }> | undefined) => (xs ?? []).map((x) => x.id);
+    expect(ids(r.professional)).toEqual(expect.arrayContaining(['wrist', 'creatine', 'physique']));
+    expect(ids(r.recovery)).toEqual(expect.arrayContaining(['sport-jumps', 'hours']));
+    expect(ids(r.insufficient)).toContain('home-data');
+    expect(r.current.sportMin).toBe(1800);
+  });
+
+  it('never flags intake against a fixed 2,000 calories, only against the examples or a reviewed range', () => {
+    const data = reviewData('2026-10-04');
+    const r = generateWeeklyReview({ ...data, exampleKcal: null, reviewedKcal: null }, '2026-09-28', Date.UTC(2026, 9, 4, 18));
+    expect(r.current.lowIntakeDays).toBe(0);
+    expect(r.current.reviewedRangeDays).toBeNull();
   });
 
   it('says when there are too few morning weights for a trend', () => {
     const data = reviewData('2026-10-04');
     data.checkins = data.checkins.map((c, i) => (i % 3 === 0 ? c : { ...c, weightKg: null }));
+    data.athlete = { ...DEFAULT_ATHLETE, weight: { mode: 'frequent', hideNumbers: false } };
     const r = generateWeeklyReview(data, '2026-09-28', Date.UTC(2026, 9, 4, 18));
+    // Weekly weighing, the default, does not ask for more weights.
+    expect(generateWeeklyReview({ ...data, athlete: DEFAULT_ATHLETE }, '2026-09-28', Date.UTC(2026, 9, 4, 18)).improve.some((i) => i.id === 'weights-few')).toBe(false);
     const item = r.improve.find((i) => i.id === 'weights-few');
     expect(item?.text).toMatch(/too uncertain for a nutrition change/);
   });
@@ -111,7 +139,7 @@ describe('weekly review', () => {
     const logs = { sessions: data.sessions, setLogs: data.setLogs, foodLogs: data.foodLogs, exerciseName: (id: string) => id };
     const opts = { includeNotes: false, includePhotos: false, appVersion: '1.0.0', appName: 'PeakForm' };
     const md = coachReportMarkdown(r, logs, opts);
-    for (const h of ['## Keep doing', '## Ready to progress', '## Improve next week', '## Safety flags']) expect(md).toContain(h);
+    for (const h of ['## Evidence of progress', '## Not enough data yet', '## Recovery concerns', '## Reasons for a professional review', '## Keep doing', '## Ready to progress', '## Improve next week', '## Safety flags']) expect(md).toContain(h);
     expect(md).not.toContain('private thought');
     expect(md).toMatch(/cannot share data by itself/);
     const json = coachReportJson(r, logs, opts);

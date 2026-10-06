@@ -1,7 +1,7 @@
 import { PAIN_RULE, QUALITY_RULE } from './effort';
 import type { ExerciseContent, PoseProp } from '../types';
 
-// Jump drills for the dunk program, part B. Order matches JUMP_B_IDS in ids.ts.
+// Jump drills, part B (added in 2.1.0; since 3.0.0 done at home where the space allows). Order matches JUMP_B_IDS in ids.ts.
 // Written for a young, heavy, still growing jumper who trains alone: quality first, never to failure,
 // soft landings that protect the knees and heels, and no jumps beyond the plan.
 
@@ -29,7 +29,7 @@ export const JUMPS_B: ExerciseContent[] = [
     aliases: ['Broad jump', 'Standing long jump'],
     kind: 'jump',
     purpose:
-      'Jump forward from both feet as far as you can and stick the landing. It builds hip extension power from the glutes and hamstrings and teaches you to time a full arm swing with the legs. Jumping forward does not take away from jumping up. The same hip drive lifts you off the floor in a vertical jump and in the dunk approach.',
+      'Jump forward from both feet as far as you can and stick the landing. It builds hip extension power from the glutes and hamstrings and teaches you to time a full arm swing with the legs. Jumping forward does not take away from jumping up. The same hip drive lifts you off the floor in a vertical jump and in the spike approach.',
     equipment: ['A clear, flat, non slip floor with about 3 metres of free space in front', 'A line or a strip of tape to start from', 'Optional cone and tape measure to mark and measure your landing'],
     setup: [
       'Warm up fully first, including a few easy standing jumps.',
@@ -156,7 +156,7 @@ export const JUMPS_B: ExerciseContent[] = [
     aliases: ['Drop jump', 'Box rebound jump'],
     kind: 'jump',
     purpose:
-      'Step off a low box, land, and rebound straight up as fast and as high as you can. It trains reactive strength, which is how well your legs catch a landing and turn it into a quick, high jump. That is the fast plant at the end of a dunk approach. Coaches measure it with the reactive strength index: jump height divided by ground contact time. In plain words, jump high while touching the floor as briefly as you can.',
+      'Step off a low box, land, and rebound straight up as fast and as high as you can. It trains reactive strength, which is how well your legs catch a landing and turn it into a quick, high jump. That is the fast plant at the end of a spike approach. Coaches measure it with the reactive strength index: jump height divided by ground contact time. In plain words, jump high while touching the floor as briefly as you can.',
     equipment: ['A stable plyo box, 20 to 30 cm to start and never above 40 cm', 'A firm floor with some give in front of the box', 'Optional phone filming in slow motion to check your ground contact'],
     setup: [
       'Warm up fully first, including a few countermovement jumps and pogo hops.',
@@ -391,10 +391,10 @@ export const JUMPS_B: ExerciseContent[] = [
   {
     id: 'approach-touch-jump',
     name: 'Approach Jump and Reach',
-    aliases: ['Dunk approach', 'Rim touch jump', 'Approach touch'],
+    aliases: ['Approach touch', 'Rim touch jump'],
     kind: 'jump',
     purpose:
-      'A short run up and a maximal jump to touch as high as you can on a hoop or a wall mark. This is the dunk approach, and it turns running speed into height. Your best touch, in centimetres, shows your progress toward the dunk. Later in the program you try dunk attempts with a smaller ball first: a tennis ball, then a volleyball, then a small basketball.',
+      'A short run up and a maximal jump to touch as high as you can on a wall mark or a backboard. It turns running speed into height. Done only on a court or outdoors where the run up and the landing are safe. A touch on a hoop is a training note, not a measurement: the jump tests on Progress use a marked wall and the same conditions every time.',
     equipment: [
       'A basketball hoop on a court, or a high wall you are allowed to mark',
       'Chalk, or water to wet your fingertips, to leave a touch mark',
@@ -417,7 +417,7 @@ export const JUMPS_B: ExerciseContent[] = [
     ],
     breathing: 'Breathe naturally on the run up. Many players breathe out sharply at takeoff. Take easy breaths while you rest.',
     tempo:
-      'Build speed through the run up, with the last two steps the quickest. Explosive takeoff, soft controlled landing. Rest fully, 60 to 120 seconds, between attempts. Full rest keeps every jump maximal, and only maximal jumps build the height you need to dunk.',
+      'Build speed through the run up, with the last two steps the quickest. Explosive takeoff, soft controlled landing. Rest fully, 60 to 120 seconds, between attempts. Full rest keeps every jump maximal, and maximal jumps are what build jump height.',
     rangeOfMotion:
       'A long, low second to last step, a quick dip to about a quarter squat at the plant, then full extension of the hips, knees, and ankles with the reaching arm fully stretched. On landing, bend the hips and knees until the force is absorbed.',
     muscles: {

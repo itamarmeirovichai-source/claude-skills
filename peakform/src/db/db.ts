@@ -19,6 +19,7 @@ import type {
   SetLog,
   SleepLog,
   Snapshot,
+  SportLog,
   SupplementLog,
   TableName,
   TimerHistory,
@@ -48,6 +49,7 @@ export class PeakFormDB extends Dexie {
   sleep!: EntityTable<SleepLog, 'id'>;
   pain!: EntityTable<PainLog, 'id'>;
   supplementLogs!: EntityTable<SupplementLog, 'id'>;
+  sportLogs!: EntityTable<SportLog, 'id'>;
   weeklyReviews!: EntityTable<WeeklyReviewRecord, 'id'>;
   calendarExports!: EntityTable<CalendarExport, 'id'>;
   backups!: EntityTable<BackupManifest, 'id'>;
@@ -89,6 +91,8 @@ export class PeakFormDB extends Dexie {
       kv: 'id',
       snapshots: 'id, createdAt',
     });
+    // 3.0.0: school and club sport logs.
+    this.version(2).stores({ sportLogs: 'id, date' });
   }
 
   table_(name: TableName) {

@@ -159,11 +159,11 @@ export function generateDemo(planDays: PlanDay[], end: DateKey, weeks: number, l
 
     // Training sessions.
     if (day && !day.isRest) {
-      for (const sessionKey of ['morning', 'main', 'swim'] as const) {
+      for (const sessionKey of ['morning', 'home', 'main', 'swim'] as const) {
         const items = day.items.filter((i) => i.session === sessionKey);
         if (!items.length) continue;
         if (rnd() < 0.06) continue; // an occasional missed session
-        const t0 = localDateTime(d, sessionKey === 'morning' ? '07:00' : sessionKey === 'main' ? '16:30' : '20:00').getTime();
+        const t0 = localDateTime(d, sessionKey === 'morning' ? '07:00' : sessionKey === 'home' ? '16:15' : sessionKey === 'main' ? '17:00' : '20:00').getTime();
         const sid = id('session');
         out.sessions.push({
           id: sid,
@@ -175,7 +175,7 @@ export function generateDemo(planDays: PlanDay[], end: DateKey, weeks: number, l
           planId: 'baseline-v1',
           planVersion: 1,
           session: sessionKey,
-          title: sessionKey === 'main' ? day.title : sessionKey === 'morning' ? 'Morning volleyball and rope' : 'Swim',
+          title: sessionKey === 'main' ? day.title : sessionKey === 'morning' ? 'Morning session' : sessionKey === 'home' ? 'Home jumps and skills' : 'Swim',
           status: 'done',
           startedAt: t0,
           finishedAt: t0 + 60 * 60 * 1000,

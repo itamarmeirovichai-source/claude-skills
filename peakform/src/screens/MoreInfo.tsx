@@ -140,39 +140,49 @@ export function SafetyScreen() {
       <PageHead title="Safety" backTo="/more" />
       <div className="stack">
         <Note tone="accent" title="For a parent and a clinician to review">
-          PeakForm is a log and a coach's notebook, not medical care. Please review calorie targets, supplements, and any fast change in weight with a parent or guardian and a pediatrician or pediatric sports dietitian.
+          PeakForm is a log and a coach's notebook, not medical care. Please review how much to eat, supplements, body goals, the wrist, and any fast change in weight with a parent or guardian and a pediatrician or pediatric sports dietitian.
         </Note>
         <Section title="Get help now">
           <p>Stop training, tell a parent, and get medical help for fainting, chest pain, shortness of breath outside normal exercise, severe dizziness, dark urine, an injury that keeps getting worse, repeated illness, or eating far less than planned. PeakForm pauses progression advice when you record any of these.</p>
         </Section>
-        <Section title="Pain">
-          <p>Pain of 4 out of 10 or more, pain that is getting worse, or pain that changes your technique pauses that exercise. Tell a parent, coach, or clinician. Pain tracking is not a diagnosis.</p>
+        <Section title="Soreness, pain, and injury">
+          <ul className="bullets">
+            <li>Muscle soreness after training usually peaks one to three days later and fades. It is common, and it does not prove that a muscle grew.</li>
+            <li>Pain in a joint or a tendon, pain at the heel, below the kneecap, or on the bump below the knee, pain in the wrist, pain at night, swelling, or pain in one exact spot on a bone is different. It pauses the exercises that load that area. Tell a parent and see a clinician if it lasts.</li>
+            <li>Pain of 4 out of 10 or more, pain that is getting worse, or pain that changes your technique pauses that exercise. Tell a parent, coach, or clinician. Pain tracking is not a diagnosis.</li>
+            <li>Very dark urine with severe muscle pain or weakness after training needs medical help the same day.</li>
+            <li>Massage, supplements, or a lighter week never replace having an injury checked.</li>
+          </ul>
+        </Section>
+        <Section title="Wrist after an injury">
+          <p>Return to full sport after a forearm or wrist injury, such as a fracture, depends on the type of injury and on healing, so the clinician who treated it decides. Until clearance is recorded in More, Your profile, loads on gripping and pressing exercises stay the same, heavy grip exercises are swapped, and there is no ball contact, falling onto the hands, or push ups on the hands. Stop any exercise that hurts the wrist.</p>
         </Section>
         <Section title="Training">
           <ul className="bullets">
-            <li>Failure means the last rep you can finish with clean form. Never cheat, bounce, or grind out a rep, and stop at once for pain.</li>
-            <li>Only machines, cables, and the Smith machine with safety stops go to failure. Dumbbell presses, lunges, and hinges stop one rep short. No free barbell when you train alone.</li>
-            <li>During the jump program, leg sets stop short of failure on Wednesday and Friday, and only the small leg exercises on Monday may go to failure, so jumps are done on fresh legs.</li>
-            <li>Count every landing as a jump, including volleyball. Pain below the kneecap, at the bump under the knee, or at the heel that lasts into the next morning means fewer jumps and telling a parent.</li>
-            <li>Step down from boxes. Step off the box for depth jumps, never jump off it, and start at 20 to 30 cm.</li>
-            <li>A new exercise stays two reps short for its first two sessions while you learn it.</li>
-            <li>No leg sets to failure in the 48 hours before a volleyball match.</li>
+            <li>Gym sessions are for strength. Jumps, landings, footwork, and volleyball skills are at home, only in a space that allows them.</li>
+            <li>Work sets stop about two reps short of failure, three while you learn an exercise. No routine sets to failure, no grinding, and no one repetition maximum tests.</li>
+            <li>The weight goes up only when every work set reaches the top of its range with good form, the planned reps in reserve, and no pain.</li>
+            <li>Jump volume never increases automatically. A new jump level is chosen after a review of pain, landings, school jumping, and sleep.</li>
+            <li>Count every landing, including school and club volleyball and basketball. After a day with a lot of jumping, keep the home jumps short or skip them.</li>
+            <li>Step down from boxes. Depth jumps are not in the plan.</li>
             <li>Warm up sets never count as work sets.</li>
-            <li>Stop jumps and sprints as soon as height, speed, landing, or coordination drops.</li>
-            <li>Load goes up only with good form on every work set: when sets go to failure, once the first set reaches the top of its range. Jump, sprint, Nordic curl, and swim volume never increase automatically; jump drills change only with the planned training blocks.</li>
-            <li>No one repetition maximum tests. Ask a gym instructor to check your technique on anything new.</li>
+            <li>Sleep 8 to 10 hours. Training is never planned at the cost of sleep, so there are no early morning sessions.</li>
+            <li>Ask a gym instructor or a qualified coach to check your technique on anything new.</li>
           </ul>
         </Section>
         <Section title="Food">
           <ul className="bullets">
-            <li>Never fewer than 2,000 calories a day in the plan, and never fewer than 130 g carbohydrate without a clinician.</li>
-            <li>No water cutting, fasting with hard training, carbohydrate elimination, punishment cardio, or exercise to make up for food.</li>
-            <li>If weight drops faster than about 0.5 kg a week after the first week, or performance, concentration, sleep, mood, or recovery drop, add 150 to 200 calories and talk with a parent.</li>
-            <li>No weight, body fat, muscle, or date based result is promised. Growth, water, and measurement error make precise predictions impossible.</li>
+            <li>Meals are example servings. They are not a daily limit, and food never has to be earned with exercise.</li>
+            <li>PeakForm sets no calorie target and never suggests eating less. Targets for a growing athlete come from a parent together with a pediatrician or pediatric sports dietitian.</li>
+            <li>No meal skipping, fasting, water cutting, carbohydrate elimination, or exercise to make up for food.</li>
+            <li>If weight drops faster than about 0.45 kg a week, or energy, concentration, sleep, mood, or recovery drop, eat more and talk with a parent.</li>
+            <li>A steady weight does not prove that you eat enough. Growth, water, and training all move the scale.</li>
+            <li>PeakForm never starts or increases a supplement. Review creatine and any other supplement with a parent and a clinician.</li>
+            <li>No weight, body fat, muscle, jump, or date based result is promised. Averages from studies are not predictions for one person.</li>
           </ul>
         </Section>
         <Section title="Body measurements">
-          <p>PeakForm does not use adult BMI categories. For a teenager, BMI needs age and sex specific growth charts read by a professional. Weight trend, waist trend, performance, sleep, and wellbeing are more useful here. Smart scale body fat is a rough trend signal only.</p>
+          <p>PeakForm does not use adult BMI categories. For a teenager, BMI needs age and sex specific growth charts read by a professional. Comparable performance, recovery, sleep, wellbeing, and a professional assessment are more useful here, with weight and waist trends over weeks if you choose to track them. Smart scale body fat and muscle figures are uncertain estimates, not measurements of fat or skeletal muscle.</p>
         </Section>
       </div>
     </div>

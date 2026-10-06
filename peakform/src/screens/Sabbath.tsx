@@ -5,7 +5,7 @@ import { FOOD_BY_ID } from '../content/foods';
 import { HIDDEN_OIL_RANGE, SABBATH_NOTES, SABBATH_PLATE } from '../content/meals';
 import { formatRange, hiddenOilItem, itemFromRange, itemFromPortion, sumItems } from '../domain/portions';
 import { PageHead, Section, Seg, useToast } from '../ui/components';
-import { useTargets, useToday } from '../ui/hooks';
+import { useToday } from '../ui/hooks';
 import { logItems } from '../services/food';
 import { navigate } from '../ui/router';
 import { formatDateKey, weekdayOf, addDays } from '../domain/dates';
@@ -35,7 +35,6 @@ export function SabbathPlateScreen({ date }: { date: string | null }) {
   const all = meals.flatMap((m) => plateItems(m));
   const withSweet = sweet ? [...all, itemFromPortion(FOOD_BY_ID['sweet-portion']!, 'cupped-hand', 2)] : all;
   const t = sumItems(withSweet);
-  const target = useTargets().find((x) => x.weekday === 6)!;
   return (
     <div data-testid="sabbath">
       <PageHead title="Sabbath plate" eyebrow="Guide for hosted meals" backTo="/eat" />
@@ -91,7 +90,7 @@ export function SabbathPlateScreen({ date }: { date: string | null }) {
               <strong>
                 {formatRange(t.low.kcal, t.high.kcal, ' kcal')} for the day, estimated
               </strong>
-              Rest day target about {target.kcalBand[0]} to {target.kcalBand[1]}. Hosted meals are uncertain, so the range is wide on purpose. Add breakfast or anything else from the Eat screen.
+              Hosted meals are uncertain, so the range is wide on purpose. It is an estimate, not a limit. Add breakfast or anything else from the Eat screen.
             </div>
             <button
               type="button"

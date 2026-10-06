@@ -1,5 +1,13 @@
 import { db } from '../db/db';
-import { KV, getTargets, kvGet, kvSet, readAllTables, restoreSnapshot, snapshotBeforeImport, writeAllTables } from '../db/repo';
+import { KV, getAthlete, kvGet, kvSet, readAllTables, restoreSnapshot, snapshotBeforeImport, writeAllTables } from '../db/repo';
+import { reviewedEnergy } from '../domain/athlete';
+import { exampleDayTotals } from '../domain/nutrition';
+import { templatesForDay } from '../content/meals';
+import { SESSION_LABELS } from '../content/plan';
+import { LOCATION_LABEL } from '../content/traits';
+import { WEEKDAY_NAMES } from '../domain/dates';
+import type { PlanRecord } from '../db/records';
+import type { ReportContext } from '../domain/report';
 import { TABLE_NAMES, type AppSettings } from '../db/records';
 import { buildPreview, decryptBackup, detectFile, encryptBackup, makeBackup, mergeTables, toCsv, type BackupFile, type ConflictChoice, type ImportPreview, type TableData } from '../domain/backup';
 import { generateWeeklyReview, type ReviewData, type WeeklyReview } from '../domain/review';
@@ -25,6 +33,10 @@ async function recordBackup(kind: 'plain' | 'encrypted' | 'coach-report' | 'csv'
 export async function reviewData(): Promise<ReviewData> {
   const settings = await db.settings.get('app');
   const plan = settings ? await db.plans.get(settings.activePlanId) : undefined;
+  const athlete = await getAthlete();
+  const reviewed = reviewedEnergy(athlete);
+  const profile = await db.profile.get('me');
+  const example = exampleDayTotals(templatesForDay(1, undefined, { meatToDairyHours: athlete.kosher.enabled ? athlete.kosher.meatToDairyHours : null }));
   return {
     planDays: plan?.days ?? [],
     sessions: await db.sessions.toArray(),
@@ -38,7 +50,12 @@ export async function reviewData(): Promise<ReviewData> {
     pain: await db.pain.toArray(),
     suggestions: await db.suggestions.toArray(),
     fourReviews: await db.fourReviews.toArray(),
-    targets: await getTargets(),
+    reviewedKcal: reviewed?.kcalRange ?? null,
+    exampleKcal: Math.round(example.mid.kcal),
+    sportLogs: await db.sportLogs.toArray(),
+    athlete,
+    ageYears: profile?.birthYear ? new Date().getFullYear() - profile.birthYear : null,
+    creatineActive: (settings?.supplements ?? []).some((x) => x.kind === 'creatine' && x.active),
     lastBackupAt: (await kvGet<number>(KV.lastBackupAt)) ?? null,
     exerciseKind: (id) => exercise(id)?.kind,
     exerciseName,
@@ -58,7 +75,8 @@ export async function runWeeklyReview(weekStart: string): Promise<WeeklyReview> 
  * by a second tap with no waiting in between.
  */
 export async function prepareCoachReport(review: WeeklyReview, settings: AppSettings): Promise<File[]> {
-  const logs = { sessions: await db.sessions.toArray(), setLogs: await db.setLogs.toArray(), foodLogs: await db.foodLogs.toArray(), exerciseName };
+  const plan = await db.plans.get(settings.activePlanId);
+  const logs = { sessions: await db.sessions.toArray(), setLogs: await db.setLogs.toArray(), foodLogs: await db.foodLogs.toArray(), exerciseName, context: plan ? reportContext(plan, await getAthlete()) : undefined };
   const opts = { includeNotes: settings.coachShare.includeNotes, includePhotos: settings.coachShare.includePhotos, appVersion: APP_VERSION, appName: settings.appName };
   const md = coachReportMarkdown(review, logs, opts);
   const json = coachReportJson(review, logs, opts);
@@ -88,7 +106,7 @@ export async function shareFiles(files: File[], title: string, record?: { kind: 
 export interface PreparedExport {
   files: File[];
   title: string;
-  record: { kind: 'plain' | 'encrypted' | 'coach-report' | 'csv'; checksum: string; counts: Record<string, number>; note: string };
+  record?: { kind: 'plain' | 'encrypted' | 'coach-report' | 'csv'; checksum: string; counts: Record<string, number>; note: string };
 }
 
 export async function prepareBackup(passphrase: string | null): Promise<PreparedExport> {
@@ -179,3 +197,32 @@ export async function recordCalendarExport(settings: AppSettings, events: number
 }
 
 export type { TableData };
+
+/** One line per day with each session's location, for reports and the plan export. */
+export function weekLines(plan: Pick<PlanRecord, 'days'>): string[] {
+  return [...plan.days]
+    .sort((a, b) => a.weekday - b.weekday)
+    .map((d) => {
+      if (d.isRest || d.items.length === 0) return `${WEEKDAY_NAMES[d.weekday]}: ${d.isRest ? d.title : 'nothing planned'}`;
+      const sessions = [...new Set(d.items.map((i) => i.session))].map((s) => {
+        const loc = s === 'main' ? LOCATION_LABEL.gym : s === 'swim' ? LOCATION_LABEL.pool : LOCATION_LABEL.home;
+        const names = d.items.filter((i) => i.session === s).map((i) => exerciseName(i.exerciseId));
+        return `${SESSION_LABELS[s]} (${loc}): ${names.join(', ')}`;
+      });
+      return `${WEEKDAY_NAMES[d.weekday]}, ${d.title}. ${sessions.join('. ')}`;
+    });
+}
+
+export function reportContext(plan: PlanRecord, athlete: Awaited<ReturnType<typeof getAthlete>>): ReportContext {
+  return { athlete, week: weekLines(plan), planVersion: `${plan.name}, version ${plan.version}` };
+}
+
+/** The plan, session details, and example meals as a private Markdown file. */
+export async function preparePlanExport(mealOpts: import('../content/meals').DayOptions): Promise<PreparedExport> {
+  const settings = await db.settings.get('app');
+  const plan = settings ? await db.plans.get(settings.activePlanId) : undefined;
+  if (!plan) throw new Error('No plan found.');
+  const { planMarkdown } = await import('../domain/planExport');
+  const md = planMarkdown(plan, await getAthlete(), mealOpts, settings?.appName);
+  return { files: [new File([md], `peakform-plan-${stamp()}.md`, { type: 'text/markdown' })], title: 'PeakForm plan' };
+}

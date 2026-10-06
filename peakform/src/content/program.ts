@@ -1,16 +1,17 @@
 import type { LibraryExerciseId } from './exercises/ids';
 import { exercise } from './library';
 import type { PlanDay, PlanItem, SetTarget, Weekday } from './plan';
-import { PHASES, type DoseKey, type JumpDrill, type ProgramPhase } from './phases';
+import { wristAllows, type WristStatus } from './traits';
 
 // The training program, built from the athlete's own exercise choices.
 //
 // Each slot is one muscle or muscle head. Its options are exercises that train that head in a
 // similar way, with a similar stretch, so any choice builds about the same muscle (machines and
 // free weights grow muscle similarly: Haugen 2023; Schwanbeck 2020). The weekly template decides
-// where each slot goes, how many sets, and the rest. The exercise's failure policy decides how
-// close to failure it goes. Only machines, cables, the Smith machine, and dumbbells are offered,
-// because the athlete trains alone.
+// where each slot goes, how many sets, and the rest. Since 3.0.0 work sets stop about two reps short
+// of failure (three for shoulder care and while learning), because sets close to failure build about
+// as much muscle with less fatigue, and youth guidance does not prescribe routine failure. Only
+// machines, cables, the Smith machine, and dumbbells are offered, because the athlete trains alone.
 
 export type SlotId =
   | 'shoulder-care'
@@ -57,14 +58,14 @@ export interface ProgramSlot {
   sets: number;
   reps: [number, number];
   restSec: number;
-  /** Reps in reserve when the exercise may not go to failure. */
+  /** Reps in reserve for work sets. */
   rirShort: number;
   /** Seconds, when an option is a hold. */
   holdSeconds?: number;
 }
 
-const BIG = { sets: 3, restSec: 150, rirShort: 1 } as const;
-const SMALL = { sets: 3, restSec: 90, rirShort: 1 } as const;
+const BIG = { sets: 3, restSec: 150, rirShort: 2 } as const;
+const SMALL = { sets: 3, restSec: 90, rirShort: 2 } as const;
 
 export const PROGRAM_SLOTS: ProgramSlot[] = [
   {
@@ -352,82 +353,62 @@ export const PROGRAM_SLOTS: ProgramSlot[] = [
 
 export const SLOT_BY_ID: Record<SlotId, ProgramSlot> = Object.fromEntries(PROGRAM_SLOTS.map((s) => [s.id, s])) as Record<SlotId, ProgramSlot>;
 
-/** A place in a session: which slot, and whether it uses the first or second choice. */
+/** A place in a session: which slot, whether it uses the first or second choice, and its dose. */
 export interface SlotEntry {
   slot: SlotId;
   choice: 0 | 1;
-  /** Leg exercises take their sets, reps, and effort from the current training block. */
-  dose?: DoseKey;
+  sets?: number;
+  reps?: [number, number];
+  restSec?: number;
 }
 
-/** Items that are not chosen, such as the warm up. */
+/** Items that are not chosen. */
 export type FixedEntry = { fixed: Omit<PlanItem, 'id' | 'session'> };
-
-/** The jump drills of the current training block. */
-export type JumpEntry = { jumps: 'mon' | 'monComplex' | 'fri' };
 
 export interface ProgramDay {
   weekday: Weekday;
   key: PlanDay['key'];
   title: string;
   short: string;
-  main: Array<SlotEntry | FixedEntry | JumpEntry>;
+  main: Array<SlotEntry | FixedEntry>;
 }
 
-const s = (slot: SlotId, choice: 0 | 1 = 0, dose?: DoseKey): SlotEntry => (dose ? { slot, choice, dose } : { slot, choice });
+const s = (slot: SlotId, choice: 0 | 1 = 0, dose: Omit<SlotEntry, 'slot' | 'choice'> = {}): SlotEntry => ({ slot, choice, ...dose });
 const r = (min: number, max: number): SetTarget => ({ type: 'reps', min, max });
-const WARM_UP = { exerciseId: 'dynamic-volleyball-warm-up', sets: 1, target: { type: 'duration', totalMin: 8 }, restSec: 30, notes: [] } as const;
 
-// Six gym days, upper and lower in turn, so every muscle is trained two or three times a week.
-// Big and demanding exercises come first while you are fresh; order itself does not change growth
-// (Nunes 2021). Weekly direct sets land at about 9 to 15 per muscle (Pelland 2025: gains flatten
-// above about 20).
+// Four gym days since 3.0.0, upper and lower body in turn, so every muscle is trained twice a week
+// with about 8 to 12 direct sets. With weekly sets the same, training a muscle two or three times a
+// week builds about as much as more frequent training (Schoenfeld 2016, 2019), and the days off
+// leave room for school sport, the home jump sessions, and recovery. Jumps never happen in the gym:
+// on Monday and Thursday they are done at home first, on fresh legs, and the leg work follows.
 export const PROGRAM_DAYS: ProgramDay[] = [
   {
     weekday: 0,
     key: 'sun',
-    title: 'Upper A and Swim',
+    title: 'Upper A',
     short: 'Upper A',
-    main: [s('shoulder-care'), s('chest-upper'), s('lats'), s('row'), s('chest-fly'), s('side-delt'), s('biceps-long'), s('triceps-long'), s('forearm-flexors')],
+    main: [s('shoulder-care', 0, { sets: 2 }), s('chest-press'), s('lats'), s('chest-upper', 0, { sets: 2 }), s('row'), s('side-delt'), s('biceps-long', 0, { sets: 2 }), s('triceps-long', 0, { sets: 2 })],
   },
   {
     weekday: 1,
     key: 'mon',
-    title: 'Lower A and Jumps',
+    title: 'Lower A',
     short: 'Lower A',
-    // Jumps first on fresh legs, then the heavy leg work. Monday's small leg exercises may go to
-    // failure, because the next jump day is four days away.
-    main: [{ fixed: { ...WARM_UP, notes: [] } }, { jumps: 'mon' }, s('quads', 0, 'heavy'), { jumps: 'monComplex' }, s('hinge', 0, 'hinge'), s('calves'), s('adductors'), s('abs')],
-  },
-  {
-    weekday: 2,
-    key: 'tue',
-    title: 'Upper B',
-    short: 'Upper B',
-    main: [s('shoulder-care', 1), s('chest-press'), s('row', 1), s('lats-stretch'), s('side-delt', 1), s('rear-delt'), s('biceps-short'), s('triceps-short'), s('traps')],
+    main: [s('quads', 0, { reps: [6, 10], restSec: 180 }), s('hinge', 0, { reps: [8, 10] }), s('hamstring-curl', 0, { sets: 2 }), s('calves', 0, { sets: 2 }), s('abs', 0, { sets: 2 })],
   },
   {
     weekday: 3,
     key: 'wed',
-    title: 'Lower B',
-    short: 'Lower B',
-    // The lighter leg day: no failure, so Friday's jumps are done on fresh legs.
-    main: [s('glutes', 0, 'wedMain'), s('hamstring-curl', 0, 'wedMain'), s('rectus-femoris', 0, 'wedSmall'), s('glute-med', 0, 'wedSmall'), s('calves', 1, 'wedSmall'), s('abs', 1), s('obliques')],
+    title: 'Upper B',
+    short: 'Upper B',
+    main: [s('shoulder-care', 1, { sets: 2 }), s('chest-upper', 1), s('row', 1), s('lats', 1), s('chest-fly', 0, { sets: 2 }), s('rear-delt'), s('side-delt', 1, { sets: 2 }), s('biceps-short', 0, { sets: 2 }), s('triceps-short', 0, { sets: 2 })],
   },
   {
     weekday: 4,
     key: 'thu',
-    title: 'Upper C',
-    short: 'Upper C',
-    main: [s('shoulder-care'), s('chest-upper', 1), s('lats', 1), s('side-delt'), s('rear-delt', 1), s('biceps-long', 1), s('triceps-long', 1), s('brachialis'), s('forearm-extensors')],
-  },
-  {
-    weekday: 5,
-    key: 'fri',
-    title: 'Lower C and Swim',
-    short: 'Lower C',
-    // The approach and the dunk first, then single leg strength. Every leg set stops short of failure.
-    main: [{ fixed: { ...WARM_UP, notes: [] } }, { jumps: 'fri' }, s('glutes', 1, 'friMain'), s('hamstring-curl', 0, 'friSmall'), s('glute-med', 1, 'friSmall')],
+    title: 'Lower B',
+    short: 'Lower B',
+    main: [s('glutes', 0, { reps: [8, 10] }), s('rectus-femoris', 0, { sets: 2 }), s('hamstring-curl', 0, { sets: 2 }), s('glute-med', 0, { sets: 2 }), s('adductors', 0, { sets: 2 }), s('calves', 1, { sets: 2 }), s('obliques', 0, { sets: 2 })],
   },
 ];
 
@@ -438,6 +419,9 @@ export type ProgramPicks = Partial<Record<SlotId, LibraryExerciseId[]>>;
 export function slotExposures(slot: SlotId): number {
   return PROGRAM_DAYS.reduce((n, d) => n + d.main.filter((e) => 'slot' in e && e.slot === slot).length, 0);
 }
+
+/** Slots used in the current week. Slots outside it keep their saved choices for later. */
+export const ACTIVE_SLOTS: ProgramSlot[] = PROGRAM_SLOTS.filter((sl) => slotExposures(sl.id) > 0);
 
 /** The first option, and the second option for the second weekly exposure. */
 export function firstOptionPicks(): ProgramPicks {
@@ -514,35 +498,27 @@ export function pickFor(picks: Record<SlotId, LibraryExerciseId[]>, entry: SlotE
   return list[entry.choice] ?? list[0]!;
 }
 
+/**
+ * The exercise for a slot that the wrist allows: the athlete's pick when it fits, otherwise their
+ * other pick, otherwise the first equivalent option that fits. Null when no option fits.
+ */
+export function wristSafePick(picks: Record<SlotId, LibraryExerciseId[]>, entry: SlotEntry, wrist: WristStatus): LibraryExerciseId | null {
+  const first = pickFor(picks, entry);
+  const order = [first, ...picks[entry.slot], ...SLOT_BY_ID[entry.slot].options];
+  return order.find((id) => wristAllows(id, wrist)) ?? null;
+}
+
 // ---------- Building plan items ----------
 
-/** Reps in reserve from the exercise's failure policy. Holds and shoulder care never go near failure. */
-export function effortFor(exerciseId: string, slot: ProgramSlot): Pick<PlanItem, 'rir' | 'lastSetRir'> {
+/** Reps in reserve for work sets. Holds have none. Nothing is prescribed to failure. */
+export function effortFor(exerciseId: string, slot: ProgramSlot): Pick<PlanItem, 'rir'> {
   const ex = exercise(exerciseId);
   if (!ex || ex.kind === 'hold') return {};
-  if (slot.id === 'shoulder-care') return { rir: slot.rirShort };
-  switch (ex.failure ?? 'never') {
-    case 'all':
-      return { rir: 0 };
-    case 'last':
-      return { rir: 1, lastSetRir: 0 };
-    case 'never':
-      return { rir: slot.rirShort };
-  }
+  return { rir: slot.rirShort };
 }
 
-function jumpItem(day: ProgramDay, n: number, d: JumpDrill): PlanItem {
-  const item: PlanItem = { id: `${day.key}-${n}-${d.exerciseId}`, exerciseId: d.exerciseId, session: 'main', sets: d.sets, target: r(d.reps, d.reps), restSec: d.restSec, notes: [...(d.notes ?? [])] };
-  if (d.per) item.per = d.per;
-  return item;
-}
-
-function jumpsOf(phase: ProgramPhase, which: JumpEntry['jumps']): JumpDrill[] {
-  return which === 'mon' ? phase.jumpsMon : which === 'monComplex' ? phase.complexMon : phase.jumpsFri;
-}
-
-/** The main session of one program day, with the athlete's choices and the training block filled in. */
-export function buildMainItems(day: ProgramDay, picks: Record<SlotId, LibraryExerciseId[]>, phase: ProgramPhase = PHASES[0]!): PlanItem[] {
+/** The gym session of one program day, with the athlete's choices, fitted to the wrist. */
+export function buildMainItems(day: ProgramDay, picks: Record<SlotId, LibraryExerciseId[]>, wrist: WristStatus = 'cleared'): PlanItem[] {
   const out: PlanItem[] = [];
   for (const entry of day.main) {
     const n = out.length + 1;
@@ -550,31 +526,23 @@ export function buildMainItems(day: ProgramDay, picks: Record<SlotId, LibraryExe
       out.push({ ...entry.fixed, id: `${day.key}-${n}-${entry.fixed.exerciseId}`, session: 'main', notes: [...entry.fixed.notes] });
       continue;
     }
-    if ('jumps' in entry) {
-      for (const d of jumpsOf(phase, entry.jumps)) out.push(jumpItem(day, out.length + 1, d));
-      continue;
-    }
     const slot = SLOT_BY_ID[entry.slot];
-    const dose = entry.dose ? phase.doses[entry.dose] : undefined;
-    const exerciseId = pickFor(picks, entry);
+    const exerciseId = wristSafePick(picks, entry, wrist);
+    if (!exerciseId) continue;
     const ex = exercise(exerciseId);
     const hold = ex?.kind === 'hold';
-    const reps = dose?.reps ?? slot.reps;
-    const effort = effortFor(exerciseId, slot);
-    if (dose?.rirMin !== undefined && effort.rir !== undefined) {
-      effort.rir = Math.max(effort.rir, dose.rirMin);
-      delete effort.lastSetRir;
-    }
+    const reps = entry.reps ?? slot.reps;
     const item: PlanItem = {
       id: `${day.key}-${n}-${exerciseId}`,
       exerciseId,
       session: 'main',
-      sets: dose?.sets ?? slot.sets,
+      sets: entry.sets ?? slot.sets,
       target: hold ? { type: 'hold', seconds: slot.holdSeconds ?? 20 } : r(reps[0], reps[1]),
-      restSec: dose?.restSec ?? slot.restSec,
+      restSec: entry.restSec ?? slot.restSec,
       notes: [],
-      ...effort,
+      ...effortFor(exerciseId, slot),
     };
+    if (exerciseId !== pickFor(picks, entry)) item.notes.push(`Planned instead of ${exercise(pickFor(picks, entry))?.name ?? 'your pick'} while the wrist is not cleared.`);
     if (ex?.logSides) item.per = 'side';
     if (ex?.laterality === 'alternating') item.notes.push('Count the reps for each leg.');
     out.push(item);

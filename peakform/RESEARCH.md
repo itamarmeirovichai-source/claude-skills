@@ -20,7 +20,7 @@ Two PubMed IDs needed checking:
 American Academy of Pediatrics, Pediatrics 145(6):e20201011 (Stricker, Faigenbaum, McCambridge; Council on Sports Medicine and Fitness). Source date: June 2020. Access: search snippet only.
 
 - Conclusion: Supervised resistance training with good technique is considered safe and beneficial for adolescents. Snippets describe starting with low resistance until technique is solid, sessions of roughly 20 to 30 minutes 2 to 3 times per week with gradual progression, and no added benefit (with more overuse risk) beyond about 4 sessions per week.
-- Product decision: PeakForm keeps the prescribed week: four resistance sessions and two volleyball sessions. It asks for a qualified coach for unfamiliar barbell and jump work, never tests a one rep maximum, and adds reps before load. Four resistance days sits at the upper end of the frequencies in these summaries, so it is listed as a question for a parent and coach.
+- Product decision: Since 3.0.0 the gym week has four strength sessions, upper and lower body in turn, instead of six. Youth guidance describes two to three sessions a week and no added benefit beyond about four, and the days off leave room for school sport. PeakForm asks for qualified supervision on new exercises, never tests a one rep maximum, and adds reps before load.
 - Uncertainty: The frequency and duration figures came from search snippets that may quote the 2008 AAP statement or secondary summaries rather than the 2020 report itself. The full report was not opened.
 
 ### [Effects of Resistance Training on Muscle Hypertrophy in Children and Adolescents: A Systematic Review and Meta-Analysis](https://pubmed.ncbi.nlm.nih.gov/42752819/)
@@ -68,7 +68,7 @@ Journal of Clinical Epidemiology 140:111-124 (Impellizzeri, McCall, van Smeden).
 Sports Medicine 53(3):649-665 (Refalo, Helms, Trexler, Hamilton, Fyfe). Source date: March 2023. Access: search snippet only.
 
 - Conclusion: Training to set failure showed only a trivial hypertrophy advantage over stopping short of failure (effect size about 0.19, confidence interval touching zero), so failure is not required for muscle growth.
-- Product decision: Since 2.0.0, at the athlete's request, small machine and cable exercises go to technical failure and machine compounds take only the last set to failure. Dumbbell presses, lunges, and hinges stop one rep short, and imported recommendations still cannot go below 1 RIR.
+- Product decision: Since 3.0.0 work sets stop about two reps short of failure. The extra growth from sets taken all the way to failure was trivial in this analysis, while fatigue and recovery time rise, and youth guidance does not prescribe routine failure.
 - Uncertainty: Participants were adults. RIR estimates are known to be imprecise, especially in novices, which is why the app also logs form and pain.
 
 ### [Effects of resistance training performed to repetition failure or non-failure on muscular strength and hypertrophy: A systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/33497853/)
@@ -76,7 +76,7 @@ Sports Medicine 53(3):649-665 (Refalo, Helms, Trexler, Hamilton, Fyfe). Source d
 Journal of Sport and Health Science 11(2):202-211 (Grgic and colleagues). Source date: 2022. Access: search snippet only.
 
 - Conclusion: Across 15 studies in young adults, training to failure did not produce significantly more strength or hypertrophy than non-failure training, and non-failure training favoured strength when volume was not equated.
-- Product decision: Failure is used only where it is safe alone and cheap in fatigue: the extra growth is small. Progression holds or reduces load when logged RIR falls below the prescription.
+- Product decision: Supports the 3.0.0 default of two reps in reserve: no significant difference in growth or strength between failure and non failure training.
 - Uncertainty: Adult participants only. Full text was not opened.
 
 ### [Progressive overload without progressing load? The effects of load or repetition progression on muscular adaptations](https://peerj.com/articles/14142/)
@@ -112,7 +112,7 @@ What changed as a result:
 Sports Medicine 54:2209-2231 (Robinson and colleagues). Source date: 2024. Access: search snippet only.
 
 - Conclusion: Muscle growth rose modestly as sets ended closer to failure, while strength barely depended on it.
-- Product decision: Sets now end close to failure: small machine and cable exercises at technical failure, machine compounds one rep short with the last set to failure.
+- Product decision: Growth rises a little closer to failure, so sets stop about two reps short rather than far from it. Strength barely depends on it. Routine failure is not prescribed for an adolescent (3.0.0).
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Proximity was estimated, not measured.
 
 ### [Similar muscle hypertrophy following eight weeks of resistance training to momentary muscular failure or with repetitions-in-reserve in resistance-trained individuals](https://doi.org/10.1080/02640414.2024.2321021)
@@ -120,7 +120,7 @@ Sports Medicine 54:2209-2231 (Robinson and colleagues). Source date: 2024. Acces
 Journal of Sports Sciences (Refalo and colleagues). Source date: 2024. Access: search snippet only.
 
 - Conclusion: Training to momentary failure and stopping one to two reps short produced the same quadriceps growth, about 7 percent in both.
-- Product decision: Heavier dumbbell work and hinges stop one rep short with no loss of growth. Failure is kept for exercises where it is safe and cheap in fatigue.
+- Product decision: Same growth with one or two reps in reserve as with failure, so PeakForm keeps two in reserve (3.0.0).
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
 
 ### [Without Fail: Muscular Adaptations in Single-Set Resistance Training Performed to Failure or with Repetitions-in-Reserve](https://pubmed.ncbi.nlm.nih.gov/40249908/)
@@ -128,7 +128,7 @@ Journal of Sports Sciences (Refalo and colleagues). Source date: 2024. Access: s
 Medicine and Science in Sports and Exercise 57(9):2021-2031 (Hermann and colleagues). Source date: 2025. Access: search snippet only.
 
 - Conclusion: With a single set per exercise, going to failure modestly beat stopping two reps short on some growth measures.
-- Product decision: Supports taking the last set to failure on safe exercises.
+- Product decision: A small advantage for failure on some measures with single sets; PeakForm uses two or three sets per exercise at two reps in reserve instead, which this study does not cover.
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text. Low volume design, so the effect may be smaller with three sets.
 
 ### [Accuracy in Predicting Repetitions to Task Failure in Resistance Exercise: A Scoping Review and Exploratory Meta-analysis](https://doi.org/10.1007/s40279-021-01559-x)
@@ -144,7 +144,7 @@ Sports Medicine (Halperin and colleagues). Source date: 2022. Access: search sni
 Sports Medicine (Pelland and colleagues). Source date: 2025. Access: search snippet only.
 
 - Conclusion: Growth rose with weekly sets with diminishing returns, and frequency added little once weekly volume was equal.
-- Product decision: About 9 to 15 direct sets per muscle a week, with no muscle above 20. Six days keeps each session within 75 to 90 minutes.
+- Product decision: With weekly sets equal, more training days added little or no growth, so the 3.0.0 week trains each muscle twice in four gym days instead of spreading the same work over six. Weekly direct sets land at about 4 to 12 per muscle, plus indirect work. These are adult data.
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
 
 ### [What influence does resistance exercise order have on muscular strength gains and muscle hypertrophy? A systematic review and meta-analysis](https://doi.org/10.1080/17461391.2020.1733672)
@@ -280,7 +280,7 @@ British Journal of Sports Medicine 53(3):145-152 (Harøy and colleagues). Source
 British Journal of Sports Medicine 51(14):1073-1080 (Andersson and colleagues). Source date: 2017. Access: search snippet only.
 
 - Conclusion: A shoulder warm up three times a week reduced shoulder problems in overhead athletes, from about 23 to 17 percent.
-- Product decision: Every upper day starts with two light sets of external rotation.
+- Product decision: Every upper gym day starts with light external rotation work, at three reps in reserve. The spike arm swing is practised at home without a ball until the wrist is cleared.
 - Uncertainty: Handball players, not volleyball players.
 
 ### [The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men](https://doi.org/10.1371/journal.pone.0226989)
@@ -292,6 +292,8 @@ PLoS ONE (Baz-Valle and colleagues). Source date: 2019. Access: search snippet o
 - Uncertainty: Adult participants. Only search results and abstract level numbers were read, not the full text.
 
 ## Jump program and dunk goal (2.1.0)
+
+> Superseded in 3.0.0. The dunk deadline, the dated training blocks, the dunk goal on Progress, and the jump drills inside gym sessions were removed. Jumps now happen at home on two days a week, gated by the home space and the wrist, and progress is read from repeatable jump and reach tests. The section below is kept as the record of what 2.1.0 did and why.
 
 These sources shaped the jump program added in 2.1.0, after the user set two goals for the end of January 2027: dunk a basketball on a regulation rim and lose body fat. They were searched on 2026-10-02. Direct page access was blocked again, so every record is search snippet only, and many trials were run on adults or older teens.
 
@@ -310,7 +312,7 @@ The dunk itself is uncertain, and how far off it is depends on the athlete's mea
 Sports Medicine - Open (Ramirez-Campillo and colleagues). Source date: 2023. Access: search snippet only.
 
 - Conclusion: Youth before and after peak height velocity gained small to moderate improvements from jump training over 4 to 36 weeks at 1 to 3 sessions a week. The minimal effective dose was about 4 weeks, 8 sessions, and 92 jumps a week.
-- Product decision: The jump program runs two jump sessions a week for 17 weeks, well above the minimal dose.
+- Product decision: Two home jump sessions a week, 72 hours apart, at about 60 landings each to start: within the effective weekly dose in this analysis. Volume changes only after a review, never automatically.
 - Uncertainty: Search snippets only. Maturity groups were pooled across sports.
 
 ### [Age-related variation in male youth athletes' countermovement jump after plyometric training: a meta-analysis](https://pure.hartpury.ac.uk/en/publications/age-related-variation-in-male-youth-athletes-countermovement-jump/)
@@ -334,7 +336,7 @@ Journal of Strength and Conditioning Research 23(2):495-506 (Saez de Villarreal 
 Journal of Strength and Conditioning Research (Bedoya and colleagues). Source date: 2015. Access: search snippet only.
 
 - Conclusion: For youth, two sessions a week with about 72 hours between them worked. Sessions should start at 50 to 60 foot contacts and rise to no more than 80 to 120, to prevent overuse injuries.
-- Product decision: Jump days are Monday and Friday, and sessions start near 50 contacts and stay under about 100.
+- Product decision: The introductory home session starts near 60 landings and the next level stays under about 100, on two days a week with 72 hours between them. No universal safe contact limit exists, so school jumping is counted too and quality decides when to stop.
 - Uncertainty: Soccer players. Search snippets only.
 
 ### [Position statement on youth resistance training: the 2014 International Consensus](https://bjsm.bmj.com/content/48/7/498)
@@ -358,7 +360,7 @@ Journal of Sports Science and Medicine 24:236-257 (Ma and colleagues). Source da
 Scandinavian Journal of Medicine and Science in Sports (Pareja-Blanco and colleagues). Source date: 2017. Access: search snippet only.
 
 - Conclusion: Ending squat sets well short of failure improved countermovement jump by 9.5 percent, against 3.5 percent for sets taken much closer to failure, with similar strength gains and 40 percent fewer reps.
-- Product decision: Heavy leg sets stop two or three reps short of failure during the jump program.
+- Product decision: Leg sets stop well short of failure, so the home jumps on the same day stay fast (3.0.0).
 - Uncertainty: Adult men. Search snippets only.
 
 ### [Time course of recovery following resistance training leading or not to failure](https://pubmed.ncbi.nlm.nih.gov/28965198/)
@@ -366,7 +368,7 @@ Scandinavian Journal of Medicine and Science in Sports (Pareja-Blanco and collea
 European Journal of Applied Physiology (Moran-Navarro and colleagues). Source date: 2017. Access: search snippet only.
 
 - Conclusion: Sets to failure caused a larger drop in jump height and slowed recovery by up to 24 to 48 hours compared with the same volume stopped short of failure.
-- Product decision: Wednesday and Friday leg sets never go to failure, so Friday jumps are done on fresh legs. Only small leg exercises on Monday may go to failure, four days before the next jump day.
+- Product decision: Sets to failure slow recovery by up to a day or two, one reason the 3.0.0 plan keeps two reps in reserve on the days next to jump work.
 - Uncertainty: Ten trained adult men. Search snippets only.
 
 ### [Countermovement Jump Training Is More Effective Than Drop Jump Training in Enhancing Jump Height in Non-professional Female Volleyball Players](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7091110/)
@@ -406,7 +408,7 @@ Journal of Human Kinetics (Vaverka and colleagues). Source date: 2016. Access: s
 Omni Calculator and other coaching tools (not peer reviewed). Source date: Not stated in search result. Access: search snippet only.
 
 - Conclusion: A one hand dunk needs the hand about 15 cm above the 305 cm rim when the ball can be palmed, and about 20 cm or more when it cannot.
-- Product decision: The dunk goal on Progress uses 320 cm when the athlete can palm the ball and 325 cm when not, and says these are rough figures.
+- Product decision: Retired in 3.0.0. PeakForm no longer sets a dunk height or deadline. Jump progress comes from repeatable jump and reach tests.
 - Uncertainty: Not research. Arm length and hand size vary a lot, so the app relies on measured touch heights.
 
 ### [Expert committee recommendations regarding the prevention, assessment, and treatment of child and adolescent overweight and obesity: summary report](https://www.citedrive.com/en/discovery/expert-committee-recommendations-regarding-the-prevention-assessment-and-treatment-of-child-and-adolescent-overweight-and-obesity-summary-report/)
@@ -422,7 +424,7 @@ Pediatrics (Barlow and the Expert Committee). Source date: 2007. Access: search 
 International Journal of Sport Nutrition and Exercise Metabolism (Desbrow and colleagues). Source date: 2014. Access: search snippet only.
 
 - Conclusion: Severe or prolonged energy restriction is not recommended in developing athletes, and weight maintenance is often more appropriate than loss. Body composition checks are rarely needed and belong with a trained professional.
-- Product decision: Fat loss stays slow, food is added when weight falls fast or performance drops, and smart scale body fat is shown as a trend only.
+- Product decision: Regular meals and snacks with protein spread over the day and carbohydrate around training. Example meals in grams are labelled as examples, never a limit, and personal targets come from a professional (3.0.0).
 - Uncertainty: Search snippets only.
 
 ### [Energy deficiency impairs resistance training gains in lean mass but not strength: A meta-analysis and meta-regression](https://portal.fis.tum.de/en/publications/energy-deficiency-impairs-resistance-training-gains-in-lean-mass-/)
@@ -438,7 +440,7 @@ Scandinavian Journal of Medicine and Science in Sports (Murphy and Koehler). Sou
 British Journal of Sports Medicine (Mountjoy and colleagues). Source date: 2023. Access: search snippet only.
 
 - Conclusion: Low energy availability harms health and performance in male and female athletes. Warning signs include falling performance, frequent illness or injury, poor sleep and mood, and stalled growth.
-- Product decision: Falling energy, mood, concentration, or sleep makes the weekly review suggest more food and a talk with a parent.
+- Product decision: Same decision as the other REDs entry: no automatic cuts, and warning signs lead to more food and a professional review, whatever the scale says.
 - Uncertainty: Search snippets only.
 
 ### [Accuracy of Smart Scales on Weight and Body Composition: Observational Study](https://mhealth.jmir.org/2021/4/e22487)
@@ -446,7 +448,7 @@ British Journal of Sports Medicine (Mountjoy and colleagues). Source date: 2023.
 JMIR mHealth and uHealth. Source date: 2021. Access: search snippet only.
 
 - Conclusion: Consumer smart scales measured weight well but were not accurate for body composition, with median fat mass errors of about 2 to 4 kg.
-- Product decision: Smart scale body fat is shown only as a trend and never drives a nutrition change. Waist and weight trends are used instead.
+- Product decision: Smart scale figures are shown at most as a weekly trend, with a note that water, food, timing, and creatine move them.
 - Uncertainty: Adults. Search snippets only.
 
 ### [Jump frequency may contribute to risk of jumper's knee: a study of interindividual and sex differences in a total of 11,943 jumps video recorded during training and matches in young elite volleyball players](https://bjsm.bmj.com/content/48/17/1322)
@@ -473,6 +475,186 @@ Orthopaedic Journal of Sports Medicine 8(4) (Rathleff and colleagues). Source da
 - Product decision: Pain at the bump under the knee reduces jumps and is a reason to see a physio, rather than training through it.
 - Uncertainty: Ages 10 to 14, 51 participants. Search snippets only.
 
+## Calmer week, home and gym, and food without targets (3.0.0)
+
+Searched on 2026-10-06 for a full review of the training and nutrition assumptions. Direct page access was blocked again for every primary site tried (AAP, IOC, BMJ, PubMed Central, NIH ODS, USDA FoodData Central, NHS, FSIS), so every new record is search snippet only. The one exception is the USDA SR28 nutrient file, read as raw data rows through a mirror. The search budget ran out before food safety, kosher practice, FODMAP content, and the 2016 AAP paper on preventing obesity and eating disorders could be searched; those points are general knowledge and are marked unverified in NUTRITION_DATA_AUDIT.md. Several earlier citations had URLs that could not be traced to a search result; they were replaced with URLs found in this session, and where a match is uncertain the record says so.
+
+The detailed audits are TRAINING_AUDIT.md and NUTRITION_DATA_AUDIT.md. In short:
+
+- **Week.** Four gym strength days (Upper A, Lower A, Upper B, Lower B) instead of six. Jumps, approach footwork, and agility move home, on Monday and Thursday before the gym legs, with a light skill session on Friday and two days without structured training. No early morning sessions.
+- **Effort.** Work sets stop about two reps short of failure, three while an exercise is new. No routine sets to failure and no one repetition maximum tests.
+- **Gates.** The state of the wrist after any injury and the home space gate what is planned. Unknown answers mean the cautious choice.
+- **Food.** No default calorie target, no automatic cut, and no suggestion ever to eat less. Example meals with grams and household measures, labelled as examples, with options for more food. Targets exist only when a professional reviewed them.
+- **Aspirations.** The athlete's own goals are stored word for word, apart from targets, and never turned into a target or a deadline. The dunk deadline and dated blocks were removed.
+- **Changes.** Every plan change is a proposal with a summary and a day by day difference, activated as a new version. History keeps the old prescription.
+
+### Decisions
+
+| Decision | Main sources | Population | Applicability | Uncertainty |
+| --- | --- | --- | --- | --- |
+| Four gym days, each muscle twice a week | AAP 2020; Lloyd 2014; Schoenfeld 2019; Pelland 2026; Saric 2019 | Youth guidance; adult trials | Guidance direct, muscle data adult | No adolescent trial compares six with four days |
+| Two reps in reserve, three while learning | Grgic 2022; Refalo 2023, 2024; Robinson 2024 | Adults | Adult data applied to a teenager | Teens may misjudge reps in reserve |
+| Jumps twice a week, 48 to 72 hours apart, at home | Bedoya 2015; Ramirez-Campillo 2023; Chen 2023 | Youth athletes | Direct | No universal safe contact count |
+| No mandatory daily jumps | Same | Youth | Direct | Very low intensity daily skill work is unresolved |
+| No early sessions; 8 to 10 hours of sleep | AASM 2016; Milewski 2014; Gudmundsdottir 2020 | Adolescents | Direct, observational | Association, not proof |
+| School sport counts toward the week | Jayanthi 2015; AAP 2024 overuse report | Youth athletes | Direct, case control | A prompt, not a threshold |
+| Wrist gate on every exercise | Bhanushali 2023; clinical leaflets | Children with forearm fractures | Direct when an injury is recorded | The app cannot know the injury type |
+| Home space, ceiling, surface, and noise gate every home drill | Practical judgement | n/a | Judgement | Each home differs |
+| Soreness is not pain | Schoenfeld 2013 | Mostly adults | Mostly adult | Teens probably similar |
+| No default calorie target or floor | NASEM 2023 energy equations; AAP 2017; IOC 2023 REDs | Children and adolescents; athletes | Illustrative only | Population equations; individual error of hundreds of kcal |
+| Never suggest eating less; more food when weight falls faster than about 0.45 kg a week | AAP 2017 | Growing athletes | Direct | Snippet only |
+| Weight read weekly; five stable days is never a plateau | Turicchi 2020; physics of food and water mass | Adults | Principle direct | Gut content data not retrieved |
+| Smart scale body fat never sets a target | BIA validity reviews in children | Children and adolescents | Direct | Error ranges differ by device |
+| No new or increased supplements; product questions go to a professional | AAP 2016 PES report; ISSN 2017; Geyer 2004 | Youth; supplement market | Conflicting expert views; old contamination data | Long term youth safety of creatine is not settled |
+| Green beans logged by state, with the arithmetic shown | USDA SR28 rows | Food data | Direct | FDC IDs partly via third party pages |
+| Body composition aspirations are reviewed, not planned | AAP 2017; ABCD Growth Study, Brazil (exact paper uncertain): lean tissue rose about 6 kg in 12 months with resistance training and growth, about 2.4 kg with growth alone | Adolescents | Direct for the rate; cohort details uncertain | A 4 month change of several kg of muscle, or a large body fat drop at a safe rate, is unlikely |
+
+### New sources (3.0.0)
+
+### [How many times per week should a muscle be trained to maximize muscle hypertrophy? A systematic review and meta-analysis](https://mennohenselmans.com/training-frequency-2018-meta-analysis-review/)
+
+Journal of Sports Sciences (Schoenfeld, Grgic, Krieger). Source date: 2019. Access: search snippet only.
+
+- Conclusion: Across 25 studies in adults, training a muscle more often did not increase growth when weekly volume was the same.
+- Product decision: Four gym days that train each muscle twice replace six days. Adult data, applied cautiously.
+- Uncertainty: Adult studies only. Seen through a secondary summary page, because the journal page was not captured in the search.
+
+### [Resistance Training Frequencies of 3 and 6 Times Per Week Produce Similar Muscular Adaptations in Resistance-Trained Men](https://pubmed.ncbi.nlm.nih.gov/30363041/)
+
+Journal of Strength and Conditioning Research (Saric and colleagues). Source date: 2019. Access: search snippet only.
+
+- Conclusion: Six weeks of training three or six days a week with equal volume gave similar strength and muscle gains in 27 trained men.
+- Product decision: Supports moving from six to four strength days without losing useful weekly volume.
+- Uncertainty: Small, short study in trained adult men.
+
+### [Sports-Specialized Intensive Training and the Risk of Injury in Young Athletes: A Clinical Case-Control Study](https://journals.sagepub.com/doi/10.1177/0363546514567298)
+
+American Journal of Sports Medicine 43(4) (Jayanthi and colleagues). Source date: 2015. Access: search snippet only.
+
+- Conclusion: In 1,190 athletes aged 7 to 18, more weekly hours of organised sport than the athlete's age in years, and specialised training, went with serious overuse injuries.
+- Product decision: School and club sport is logged and added to the plan's minutes; weeks above the athlete's age in hours become a recovery concern in the review. A prompt to review, not a limit.
+- Uncertainty: Case-control association, not proof of cause.
+
+### [Overuse Injuries, Overtraining, and Burnout in Young Athletes](https://pubmed.ncbi.nlm.nih.gov/38247370/)
+
+Pediatrics 153(2):e2023065129 (Brenner, Watson; AAP Council on Sports Medicine and Fitness). Source date: 2024. Access: search snippet only.
+
+- Conclusion: Advises one to two days a week off organised sport and training, time off across the year, and attention to growth related injuries.
+- Product decision: Tuesday and Saturday have no structured training, and school sport counts as training.
+- Uncertainty: Clinical report seen through search snippets only.
+
+### [Recommended Amount of Sleep for Pediatric Populations: A Consensus Statement of the American Academy of Sleep Medicine](https://depts.washington.edu/dbpeds/pediatricsleepdurationconsensus.pdf)
+
+Journal of Clinical Sleep Medicine 12(6) (Paruthi and colleagues). Source date: 2016. Access: search snippet only.
+
+- Conclusion: Teenagers aged 13 to 18 should sleep 8 to 10 hours per 24 hours.
+- Product decision: No early morning training; the timeline aims for sleep near 22:15 before a 07:00 check in.
+- Uncertainty: Expert consensus.
+
+### [Training Schedule and Sleep in Adolescent Swimmers](https://opinvisindi.is/handle/20.500.11815/2351)
+
+Pediatric Exercise Science 32(1) (Gudmundsdottir). Source date: 2020. Access: search snippet only.
+
+- Conclusion: Adolescent swimmers slept only about five to five and a half hours before early morning training sessions.
+- Product decision: Removes the 05:30 home sessions from the default week.
+- Uncertainty: Swimmers, actigraphy, one country; applied by analogy.
+
+### [Return to sport after forearm fractures in children: A scoping review and survey](https://pmc.ncbi.nlm.nih.gov/articles/PMC10080236/)
+
+Journal of Children's Orthopaedics (Bhanushali, Bright, Xu, Cundy, Williams). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Return to sport timing varies with the fracture type, roughly four weeks for buckle fractures and longer for others, and recommendations differ between surgeons.
+- Product decision: Wrist status is recorded in the profile. Until a clinician confirms clearance, gripping and pressing loads stay the same, heavy grip exercises are swapped, and there is no ball contact or falling onto the hands.
+- Uncertainty: Children, mixed fracture types, survey based; the treating clinician decides.
+
+### [Is Postexercise Muscle Soreness a Valid Indicator of Muscular Adaptations?](https://bretcontreras.com/wp-content/uploads/Is-Postexercise-Muscle-Soreness-a-Valid-Indicator-of-Muscular-Adaptations.pdf)
+
+Strength and Conditioning Journal (Schoenfeld, Contreras). Source date: 2013. Access: search snippet only.
+
+- Conclusion: Soreness is a poor indicator of muscle growth and fades as the body adapts to repeated training.
+- Product decision: The check in explains that soreness does not prove growth and separates it from joint, tendon, heel, and wrist pain.
+- Uncertainty: Narrative review.
+
+### [Use of Performance-Enhancing Substances](https://publications.aap.org/pediatrics/article/138/1/e20161300/52580/)
+
+Pediatrics 138(1):e20161300 (LaBotz, Griesemer; AAP Council on Sports Medicine and Fitness). Source date: 2016. Access: search snippet only.
+
+- Conclusion: Strongly discourages performance enhancing substances, including creatine, for young athletes, and notes that product purity cannot be assured.
+- Product decision: PeakForm never recommends or increases a supplement and lists an unreviewed supplement as a reason for a professional review.
+- Uncertainty: Search snippets only; other expert bodies accept creatine in supervised adolescents, so experts disagree.
+
+### [Dietary Reference Intakes for Energy](https://www.nationalacademies.org/read/26818/chapter/2)
+
+National Academies of Sciences, Engineering, and Medicine. Source date: 2023. Access: search snippet only.
+
+- Conclusion: Estimated energy requirements for boys depend on age, height, weight, and physical activity level, and for active teenage boys often exceed 3,000 kcal a day.
+- Product decision: PeakForm does not calculate a personal target. The Eat screen says that active teens often need more than the example meals and points to a pediatric sports dietitian.
+- Uncertainty: Population equations; individual needs differ, and the inputs here (height, activity) are unconfirmed.
+
+### [Meta-Analysis of the Effects of Plyometric Training on Lower Limb Explosive Strength in Adolescent Athletes](https://pmc.ncbi.nlm.nih.gov/articles/PMC9915200/)
+
+International Journal of Environmental Research and Public Health 20(3):1849 (Chen and colleagues). Source date: 2023. Access: search snippet only.
+
+- Conclusion: Plyometric programmes improved countermovement jump by about 2.7 cm on average in adolescent athletes.
+- Product decision: Jump progress is measured with repeatable tests every four weeks, and averages are explained as averages, never as a forecast for one person.
+- Uncertainty: Wide differences between studies and people.
+
+### [The effect of resistance training interventions on weight status in youth: a meta-analysis](https://discovery.dundee.ac.uk/en/publications/the-effect-of-resistance-training-interventions-on-weight-status-/)
+
+Sports Medicine Open (Collins and colleagues). Source date: 2018. Access: search snippet only.
+
+- Conclusion: Resistance training had a small effect on body fat percentage in youth, and the change in lean mass was not significant.
+- Product decision: No muscle or body fat forecasts. Aspirations are recorded in the athlete's words and reviewed with a professional.
+- Uncertainty: Mixed populations and measurement methods.
+
+### [Validity of Four Commercial Bioelectrical Impedance Scales in Measuring Body Fat among Chinese Children and Adolescents](https://pmc.ncbi.nlm.nih.gov/articles/PMC4475745/)
+
+PubMed Central record (journal not shown in the search result). Source date: Not shown in the search result. Access: search snippet only.
+
+- Conclusion: Consumer impedance scales agreed only poorly to moderately with DXA in children and adolescents.
+- Product decision: Smart scale numbers are labelled uncertain estimates and never drive any suggestion.
+- Uncertainty: Different population and devices.
+
+### [Weekly, seasonal and holiday body weight fluctuation patterns (title shortened in the search result)](https://doaj.org/article/d41eea5765d944d8b6e3f5e1cd1d6af4)
+
+PLoS ONE (Turicchi and colleagues). Source date: 2020. Access: search snippet only.
+
+- Conclusion: Body weight follows weekly and seasonal rhythms, so short windows mislead.
+- Product decision: Five days of stable weight is never called a plateau; trends need weeks, and weighing once a week is the default.
+- Uncertainty: Adults in a weight loss programme.
+
+### [Analysis of non-hormonal nutritional supplements for anabolic-androgenic steroids: results of an international study](https://www.thieme-connect.com/products/ejournals/html/10.1055/s-2004-819955)
+
+International Journal of Sports Medicine 25(2) (Geyer and colleagues). Source date: 2004. Access: search snippet only.
+
+- Conclusion: About 15 percent of 634 supplements contained undeclared anabolic steroids.
+- Product decision: The profile asks whether a supplement is third party tested, such as NSF Certified for Sport or Informed Sport.
+- Uncertainty: Older data, not specific to creatine.
+
+### [USDA National Nutrient Database for Standard Reference, Release 28: snap beans (raw, boiled, frozen, canned) and olive oil](https://fdc.nal.usda.gov/)
+
+USDA Agricultural Research Service. Source date: 2015 (SR28), in FoodData Central as SR Legacy. Access: search snippet only.
+
+- Conclusion: Per 100 g: raw 31 kcal, boiled and drained 35 kcal, frozen and boiled 28 kcal, canned and drained 22 kcal; olive oil 884 kcal.
+- Product decision: Separate food entries for each state, and the green bean calculator shows the arithmetic for the amount entered, with any oil.
+- Uncertainty: Rows read from a mirror of the SR28 data file; the FDC pages could not be opened.
+
+### [Exercise-Based Injury Prevention in Child and Adolescent Sport: A Systematic Review and Meta-Analysis](https://pubmed.ncbi.nlm.nih.gov/25129698/)
+
+Sports Medicine (Rössler and colleagues). Source date: 2014. Access: search snippet only.
+
+- Conclusion: Exercise based programmes with landing, balance, and strength work roughly halved injury rates in young athletes.
+- Product decision: Every home jump session starts with movement preparation and landing practice before any bigger jumps.
+- Uncertainty: Mixed sports and programmes.
+
+### [International Olympic Committee consensus statement on youth athletic development](https://bjsm.bmj.com/content/49/13/843)
+
+British Journal of Sports Medicine 49:843-851 (Bergeron and colleagues). Source date: 2015. Access: search snippet only.
+
+- Conclusion: Youth training should fit growth and maturation, put health first, and avoid excessive load.
+- Product decision: Flexible four month stages with process goals replace dated blocks aimed at a deadline.
+- Uncertainty: Expert consensus.
+
 ## Nutrition and energy availability
 
 ### [Promotion of Healthy Weight-Control Practices in Young Athletes (clinical report)](https://publications.aap.org/pediatrics/article/140/3/e20171871/38384/Promotion-of-Healthy-Weight-Control-Practices-in)
@@ -480,7 +662,7 @@ Orthopaedic Journal of Sports Medicine 8(4) (Rathleff and colleagues). Source da
 American Academy of Pediatrics, Pediatrics 140(3):e20171871 (Carl, Johnson, Martin; Council on Sports Medicine and Fitness). Source date: September 2017. Access: search snippet only.
 
 - Conclusion: The AAP advises that when weight change is appropriate for a young athlete it should be gradual and supervised, and it discourages rapid weight change methods such as restriction, dehydration, and weight cycling.
-- Product decision: No weight targets, no weigh in streaks, and no praise for weight loss. Calorie targets are ranges to review with a parent, never below 2,000 kcal, and they only change through the fourteen day gate with confirmation.
+- Product decision: PeakForm sets no calorie target and never suggests eating less. If weight falls faster than about 0.45 kg a week, it suggests eating more and talking with a parent. Weight and body fat goals go to a parent and a pediatric professional (3.0.0).
 - Uncertainty: The 1 to 2 lb per week ceiling appears on AAP parent material (see healthychildren-safe-weight-loss). Whether that exact phrasing is in this clinical report could not be confirmed.
 
 ### [Safe Weight Loss and Weight Gain for Young Athletes](https://www.healthychildren.org/English/healthy-living/sports/Pages/Safe-Weight-Loss-and-Weight-Gain-for-Young-Athletes.aspx)
@@ -504,7 +686,7 @@ American Academy of Pediatrics, Pediatric Patient Education (peo_document566). S
 British Journal of Sports Medicine 57(17):1073-1097 (Mountjoy, Ackerman, Burke, Stellingwerff and others). Source date: September 2023. Access: search snippet only.
 
 - Conclusion: REDs is a syndrome of health and performance harms in male and female athletes caused by low energy availability, which ranges from adaptable to problematic. The statement updates its conceptual models and adds a physiological model of individual risk factors.
-- Product decision: PeakForm treats underfuelling as a safety issue. It flags fast weight loss, fully logged days under 2,000 kcal, falling energy, mood, or concentration, repeated illness, and recorded red flags, and responds by pausing progression and asking to involve a parent and clinician, never with a diagnosis.
+- Product decision: Low intake on fully logged days, or a slide in energy, mood, sleep, or performance, leads to eating more and a parent, even when weight is stable, because stable weight does not prove that food is enough. The 30 kcal per kg threshold comes mostly from female athletes and is not used as a number.
 - Uncertainty: The page was blocked. Specific screening tools and cut offs in the statement were not reviewed.
 
 ### [Dietary Reference Intakes for Water, Potassium, Sodium, Chloride, and Sulfate, chapter 25 (National Academies reader page)](https://www.nationalacademies.org/read/10925/chapter/25)
@@ -546,7 +728,7 @@ NIH Office of Dietary Supplements. Source date: Not stated in search result. Acc
 JMIR mHealth and uHealth (Frija-Masson, Mullaert, Vidal-Petiot, Pons-Kerjean, Flamant, d'Ortho). Source date: April 2021. Access: search snippet only.
 
 - Conclusion: This is not a general review of bioelectrical impedance. It compared three consumer smart scales with DEXA in adult patients and found them accurate for total body weight but not reliable enough to use routinely for body composition, especially in severe obesity.
-- Product decision: Smart scale body fat is optional, labelled trend only, shown only as weekly averages when there are at least three readings, and never used for nutrition decisions.
+- Product decision: Smart scale body fat and muscle figures are labelled uncertain estimates, are never an input to the nutrition check, and are never turned into kilograms of muscle or fat.
 - Uncertainty: Adults in a clinical setting with specific scale models, so results may not transfer to a lean adolescent or newer devices. Findings seen only as snippets.
 
 ## Sleep and recovery
@@ -556,7 +738,7 @@ JMIR mHealth and uHealth (Frija-Masson, Mullaert, Vidal-Petiot, Pons-Kerjean, Fl
 American Academy of Sleep Medicine. Source date: 2017 (URL path); based on the 2016 AASM pediatric consensus (Paruthi and colleagues). Access: search snippet only.
 
 - Conclusion: Teens aged 13 to 18 should regularly sleep 8 to 10 hours per 24 hours. Regular short sleep is linked to attention, learning and mood problems, more injuries and accidents, and other health risks.
-- Product decision: The sleep target is 8 to 10 hours. The check in shows duration against it, readiness eases off after short nights, and the weekly review flags averages under eight hours.
+- Product decision: Since 3.0.0 there are no early morning sessions. The check in moves to 07:00 and wind down to 21:30, so 8 to 10 hours fit, and training is never planned at the cost of sleep.
 - Uncertainty: PDF was blocked. The advisory publication date is inferred from the URL path.
 
 ### [Chronic Lack of Sleep is Associated With Increased Sports Injury in Adolescents: A Systematic Review and Meta-analysis](https://journals.sagepub.com/doi/10.1177/2325967119S00132)
@@ -590,7 +772,7 @@ NIH Office of Dietary Supplements. Source date: Not stated in search result. Acc
 Journal of the International Society of Sports Nutrition 14:18 (Kreider and colleagues). Source date: June 2017. Access: search snippet only.
 
 - Conclusion: The ISSN considers creatine monohydrate acceptable for adolescent athletes only with proper precautions and supervision: serious supervised training, a good diet, understanding of correct use, and recommended doses. It reported no evidence of harm at recommended doses in under 18s.
-- Product decision: PeakForm never suggests creatine. If a parent and clinician have reviewed it, the tracker can record the product and dose.
+- Product decision: PeakForm never starts, increases, or recommends creatine. It records the product, dose, testing, and who reviewed it, explains early water gain on the scale, and lists an unreviewed supplement as a reason for a professional review.
 - Uncertainty: ISSN is a sports nutrition society with industry ties, and pediatric bodies such as the AAP are more cautious about supplements in minors.
 
 ### [Creatine supplementation in the pediatric and adolescent athlete: A literature review](https://pubmed.ncbi.nlm.nih.gov/37008451/)
@@ -598,7 +780,7 @@ Journal of the International Society of Sports Nutrition 14:18 (Kreider and coll
 Journal of Orthopaedics 38:73-78 (Metzger, Minneci, Gehred, Day, Klingele), DOI 10.1016/j.jor.2023.03.010. Source date: 2023. Access: search snippet only.
 
 - Conclusion: The authors found the pediatric creatine literature to be of poor overall quality, with no consistent performance findings and no studies designed to assess safety, and advised clinicians to explain these gaps to young athletes and families.
-- Product decision: Together with the ISSN stand, this is why creatine logging stays locked until a one time parent and clinician confirmation.
+- Product decision: Adolescent evidence is limited, so creatine stays a decision for the athlete, a parent, and a clinician, recorded but never promoted.
 - Uncertainty: PMID 37008451 was matched to this title by a search summary and the same title appeared on ScienceDirect, Nemours and jortho.org listings, so the match is likely but the PubMed page itself was not opened.
 
 ## Food safety
@@ -608,7 +790,7 @@ Journal of Orthopaedics 38:73-78 (Metzger, Minneci, Gehred, Day, Klingele), DOI 
 USDA Food Safety and Inspection Service. Source date: Not stated in search result. Access: search snippet only.
 
 - Conclusion: Refrigerate cooked food within 2 hours (1 hour above 90 F) in shallow containers at 40 F (4 C) or below, use most leftovers within 3 to 4 days, and reheat to 165 F (74 C) or until hot and steaming. Frozen food at 0 F stays safe indefinitely, with storage times given for quality only.
-- Product decision: Meal preparation labels containers by day and meal, lists the two hour rule, the 4 °C fridge, the three to four day limit, and reheating to 74 °C.
+- Product decision: Recipes refrigerate cooked food within two hours, cool rice quickly and freeze it after a day or two, and school food that is brought from home travels cold with two ice packs.
 - Uncertainty: Page could not be opened. The 1 hour above 90 F rule and freezer note came from FSIS snippets on related pages.
 
 ### [Safe Minimum Internal Temperatures](https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures)
@@ -864,7 +1046,7 @@ Growth rises a little as sets get closer to failure, but stopping one or two rep
 
 ## Open questions for a parent and a pediatric sports dietitian or clinician
 
-1. Since 2.0.0 the plan uses machines, cables, the Smith machine, and dumbbells, with no free barbell, and takes small machine and cable exercises to failure with clean form. Is that level of effort appropriate for the athlete, and is anyone available to check technique on new exercises?
+1. Since 3.0.0 the plan uses machines, cables, the Smith machine, and dumbbells, with no free barbell, and stops work sets about two reps short of failure (three while an exercise is new). Is that level of effort appropriate, and is anyone available to check technique on new exercises?
 2. How many total weekly sessions (volleyball practice, matches, gym, jump work) are appropriate right now, and what should be cut first in a heavy tournament week?
 3. Is there any history of Osgood-Schlatter, Sever's disease, back pain, shoulder pain or a previous hamstring strain that should change exercise choices?
 4. What daily energy intake range is appropriate for the athlete's growth and training, and should the app show calories at all or only meal structure?
@@ -876,4 +1058,10 @@ Growth rises a little as sets get closer to failure, but stopping one or two rep
 10. Is 8 to 10 hours of sleep realistic with the school and practice schedule, and what should the app suggest on weeks when it is not?
 11. Are there any food allergies, intolerances or family food rules the recipes must respect?
 12. Which of the matched YouTube videos should an adult watch first and approve before the athlete uses them as technique references?
-13. Since 2.1.1 the default meals calculate to about 2,250 kcal every day, the rest day amount, at the user's request so a missed workout never leaves extra food. Is that enough energy on training days, with six gym sessions and morning sessions a week? PeakForm adds food when weight falls faster than about 0.5 kg a week or wellbeing or performance drops, but a parent and a sports dietitian should check it. With standard food values they supply about 200 to 215 g protein and 60 to 70 g fat, while the targets say about 150 to 155 g protein and 88 to 92 g fat. Should portions change, or should the macro targets be updated?
+13. Since 3.0.0 PeakForm shows example meals but no calorie target. The examples add up to about 2,600 to 2,900 kcal on school days, likely below the needs of many active teenagers. What personal energy range is right, and should it be recorded in the app as a reviewed target?
+14. If a wrist injury is recorded, has a doctor cleared it, and are there limits on grip, pressing, push ups, ball contact, or falls?
+15. Is the home space safe for the jump sessions (room, ceiling, floor, neighbours), and should an adult be present for them?
+16. If a supplement such as creatine is recorded, which product and dose, is it third party tested and kosher certified, and should it continue at this age?
+17. How much school and club sport happens each week, and on which days, so the home jumps and the gym legs fit around it?
+18. If a large daily vegetable portion is recorded, does it cause gut symptoms, and does it crowd out other food on training days?
+19. If the athlete's aspirations include body composition changes, which of them are appropriate at this age, and at what pace?

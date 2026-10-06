@@ -1,107 +1,95 @@
 # PeakForm test report
 
-Date: 2026-10-05. Build 2.1.1.
+Date: 2026-10-06. Build 3.0.0.
+
+Everything below ran in the build environment: Linux, Node 22, Chromium with iPhone emulation. Nothing was tested on a real iPhone, and no clinician, dietitian, or coach reviewed the plan.
 
 ## Summary
 
 | Check | Result |
 | --- | --- |
-| TypeScript strict (`npm run typecheck`) | Pass, no errors |
-| ESLint (`npm run lint`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 124 of 124 pass, also run with the time zone set to Asia/Jerusalem, America/New_York, and UTC |
-| End to end tests (Playwright) | 82 of 82 pass: 34 functional flows at 390 px, plus layout and accessibility checks at 375, 390, 393, and 430 px |
-| Production build and release gate | Pass: no personal markers, no trackers, CSP present, offline assets present |
-| Private access gate in the Cloudflare runtime (Wrangler 4.143, local) | Pass: app files, service worker, and manifest locked without the password; wrong password rejected; after sign in the app installs its service worker and opens offline; a second device stays locked |
-| Dependency audit (`npm audit`) | 0 vulnerabilities |
-| Lighthouse, simulated mobile | Performance 94, Accessibility 100, Best Practices 96, SEO 66 |
-| Offline launch after first load | Pass |
-| Third party requests during normal use | None |
-| Console errors in primary flows | None |
-
-SEO is intentionally low: the app is private and asks search engines not to index it. Best Practices loses points for not shipping source maps, which is deliberate to keep the build small.
+| TypeScript strict (`tsc -b`) | Pass, no errors |
+| ESLint (`eslint .`) | Pass, no errors or warnings |
+| Unit and integration tests (Vitest) | 167 of 167 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
+| End to end tests (Playwright) | 84 of 84 pass: 48 at 390 px (36 functional flows, layout on eleven screens, and an accessibility scan), plus layout and accessibility at 375, 393, and 430 px |
+| Production build and release gate | Pass: no personal markers, no trackers, offline assets present. One cosmetic warning: a chunk over 500 kB |
+| Exercise content validator | 103 of 103 exercises pass |
+| Tracked files against the private marker list | No matches |
+| Not rerun for 3.0.0 | Lighthouse, `npm audit`, and the password gate in the Cloudflare runtime. Their last results are in the 2.1.1 report in the git history. The gate code did not change; its unit tests still pass |
 
 ## Environment limits
 
-- WebKit cannot be installed in the build environment, so browser tests run on Chromium with iPhone 13 emulation (viewport, touch, device scale, iOS user agent). The app avoids Chromium only APIs and feature detects Wake Lock, vibration, Web Share, BarcodeDetector, and storage persistence.
-- Web Share is not available in desktop Chromium, so the tests exercise the download fallback. On iPhone, the same buttons open the share sheet.
-- Add to Home Screen and Apple Calendar import need a real iPhone and were not automated. The manifest, icons, Apple meta tags, and service worker were verified.
+- WebKit cannot be installed in the build environment, so browser tests run on Chromium with iPhone emulation. The app avoids Chromium only APIs and feature detects Wake Lock, vibration, Web Share, BarcodeDetector, and storage persistence.
+- Web Share is not available in desktop Chromium, so the tests exercise the download fallback.
+- Add to Home Screen, Apple Calendar import, and the update on the installed phone need a real iPhone and were not automated.
 
 ## Unit tests (tests/)
 
-- **Progression:** one set of nine never raises load; 9, 8, 8 adds one rep at the same load; 10, 10, 10 at target RIR and good form suggests the smallest practical increase and resets reps; 10, 10, 9 does not qualify; poor and acceptable form hold; pain holds and severe pain asks to tell a parent or coach; low RIR holds or reduces; missing RIR or form never progresses; mixed loads judged at the lowest; reps below range hold; left and right must both qualify; equipment increments and custom increments; jumps, sprints, swims, and Nordic curls never auto progress.
-- **Nutrition:** seven day average needs four morning weights; non standard weights ignored; fourteen day gate refuses without enough weights or food logs; hold at 0.25 to 0.5 kg a week, and more food above 0.5 kg; recomposition label; check estimates then 100 to 150 kcal reduction when weight and waist are stable; fast loss and wellbeing decline add 150 to 200 kcal with a parent; never below 2,000 kcal; waist required before judging stable weight.
-- **Estimate by Eye:** stores method, midpoint, and range; restaurant ranges wider than household, household wider than weighed; honest range formatting; the approximate school and dinner day from the brief.
-- **Meals and targets:** exact default quantities for every meal and weekday; targets at or above floors; weekly average; Monday defaults near target; meal prep scaling.
-- **Time:** date arithmetic across Israeli and US clock changes; Monday to Sunday review weeks; date keys in named zones around midnight; sleep across midnight.
-- **Rest timer:** correct remaining time after backgrounding; overdue reporting; pause, resume, and adjust from the absolute end.
-- **Sabbath:** manual window, disabled mode, local sunset calculation for a city across the clock change, Friday detection.
-- **ICS:** weekly events with alarms, Sabbath exclusions, line folding under 75 octets, no exclusions when Sabbath Mode is off.
-- **Backup:** checksum stability and tamper detection; encryption round trip and wrong passphrase; short passphrase rejected; invalid files rejected; row validation; preview with added, identical, and conflicting rows; merge choices; version 0 migration; CSV escaping and formula neutralising; recommendation validation and safety blocks, including RIR 0.
-- **Weekly review:** four sections with evidence and confidence; too few morning weights; pain of 4 pauses progression and leads priorities; ready to progress with reasons; backup recency; coach report in Markdown and JSON without notes by default.
-- **Four exposure review:** due every fourth exposure; progress, hold, reduce, coach review for pain, and coach review for stable jump quality without height gains.
-- **Coverage:** transparent direct and indirect weights, activity exposure, upper back, calves, and forearms present, shoulder overlap notes.
-- **Program (2.0.0):** every slot offers only machine, cable, Smith, or dumbbell exercises that share the slot's main muscle; slots trained twice take a second choice; choices are cleaned of unknown or extra exercises and fall back to the defaults; the default week, built from the athlete's questionnaire answers, has 18 to 27 sets a day, gives every major muscle enough direct weekly sets and none more than 20, starts every upper day with shoulder care, and puts big exercises before small ones; each exercise follows its failure policy, and no free barbell or dumbbell compound is taken to failure; rebuilding the plan keeps the morning work, the swim, and exercises the user added, and old installs get the morning sessions and new day names.
-- **Plan updates:** morning sessions are added to old installs without touching other items; food target labels change only when they still have the default names.
-- **Jump program (2.1.0):** training blocks run back to back from Monday 5 October to Sunday 31 January and then continue; tests fall on Fridays, at block ends, and every four weeks after; every session stays between about 20 and 100 foot contacts with lighter weeks before tests and no depth jumps in the second lighter week; jumps come before the first leg exercise, only the paired box jumps follow it; no Wednesday or Friday leg set goes to failure, and Monday's heavy leg exercises stop at least two reps short; each block rebuilds an installed plan and keeps morning work and swims, with no Nordic curl.
-- **Rest day food (2.1.1):** every target is 2,250 kcal with macros that add up to it; default meals land within 100 kcal of it on every training day; saved training day targets with the old default calories move once, while names and hand edited days stay.
-- **Sets to failure:** progression is judged on the first set; below the range holds, reaching the top of the range adds load, and otherwise the first set adds one rep.
-- **Fixtures:** example plain and encrypted backups validate, the recommendation example applies cleanly, and no fixture contains the real profile.
-- **Private access gate:** fails closed with no password or a short one; every path, including the service worker and manifest, returns the password page with a 401 and no-store; wrong passwords and forged cookies are rejected; the right password sets an HttpOnly, Secure cookie that holds a keyed hash, not the password; changing the password signs everyone out.
+- **Week (program.test.ts):** four gym strength days, two days without structured training, no early sessions; no jumps, sprints, or skills in the gym and no gym strength work at home; home jumps on the gym leg days, before the gym, never on consecutive days; no sets to failure (two reps in reserve, three for shoulder care); 12 to 22 work sets and 75 minutes or less per gym session, counting every rest; direct weekly work for each main muscle and none over 20 sets; shoulder care first and big exercises before small ones; chosen exercises land on the right days; every session has a location, equipment, space, duration, and stop rules.
+- **Home space:** unknown answers mean the most limited room; the full introductory session (58 landings) when the space allows; no jumps in a small flat with a low ceiling, tiles, and noise limits; quiet swaps with the reason when only noise stops a drill; no maximal jumps under a standard ceiling indoors; the build level at about 95 landings; the skill session never has jumps.
+- **Wrist:** every library exercise rated; heavy wrist work only after clearance and little with symptoms; heavy picks swapped for an equivalent option; no ball contact before clearance; gripping and pressing left out with symptoms; load increases held, reps unaffected.
+- **Plan changes (planUpdate.test.ts, program.test.ts):** the 3.0 week is offered to a 2.1 install and not to a new one; nothing changes until activation; activation creates a new version and finished sessions keep their prescriptions; Not now hides the offer but Train still shows it; home sessions follow the profile; the jump level changes only through a proposal; hand edits go through the same preview; the difference lists added, removed, and changed items day by day; early reminders move only if still at their old defaults.
+- **Food (nutrition.test.ts):** the nutrition check never suggests eating less, whatever the trend; five steady days is not a plateau; too fast loss (above about 0.45 kg a week) or a slide in energy, mood, or sleep means more food and a parent; sparse food logs do not block it; weekly weighing and weighing off both work; smart scale body fat is never read; every example has a household measure, more food options, swaps, storage, and the example label; no meat and dairy in one example; evening milk becomes pareve when too soon after meat (3 hour and 6 hour settings, off, and custom times); dairy logged too soon is noted, not blocked; no food depends on finishing a workout; the sum of the examples is described, not made a target; no supplement in the examples; raw, dry, cooked, and drained conversions with ranges consistent with the energy values; the green bean arithmetic for each state; recipe nutrition from ingredients, including oil; meal preparation scaling.
+- **Profile and exports (athlete.test.ts):** the wrist gate on progression; school sport added to weekly exposure, hours compared with age only when the age is known, heavy jumping the day before a home jump day; jump test heights, like with like comparison, and noise; cautious defaults for missing answers; open questions with the gating ones first; only professionally reviewed energy targets used, newest first; readiness never certifies safety; the coach report keeps aspirations apart from reviewed targets; the plan export has locations, durations, stop rules, and example meals; backups round trip the profile and the sport log, and older backups without the sport log import.
+- **Weekly review (review.test.ts):** sections with evidence and confidence; missing data, recovery concerns, and reasons for a professional review; intake never judged against a fixed 2,000 kcal; too few weights; pain of 4 or more pauses progression; ready to progress reasons; backup recency; coach report without notes or photos by default; the four exposure review; muscle coverage.
+- **Unchanged areas:** progression (double progression, one set never adds load), time and dates across clock changes, rest timer, Sabbath window and sunset, ICS export, backups and encryption, fixtures, and the password gate.
 
-## End to end flows (e2e/app.spec.ts)
+## End to end flows (e2e/app.spec.ts), at 390 px
 
 1. First run setup lands on Today with the profile saved locally.
-2. Installable manifest, icons, Apple meta tags, CSP, and an active service worker.
-3. Start a workout that opens with jump drills, log the heavy leg press two reps short of failure, see the learning phase on a small leg exercise that may go to failure, log every set, rest timer starts at the prescribed time, finish, see plan and actual, accept the next target, and see it on the exercise page.
-4. One set of nine reps does not raise the load.
-5. Rest timer shows the right time after 70 seconds of simulated backgrounding and after a reload, then reports that rest finished.
-6. Last performance appears beside the inputs.
-7. A unilateral exercise logs left and right separately.
-8. Editing the plan creates version 2 while the finished session keeps its original prescription.
-9. All 99 exercises show instructions, a two view muscle diagram, and an offline visual.
-10. Videos load only after a tap, with no external requests before that.
-11. A default meal logs in one tap, against the same 2,150 to 2,350 kcal band as the rest day.
-12. A restaurant estimate is stored as a low confidence range.
-13. Saturday meals log with the plate guide.
-14. A morning weight is recorded and counted.
-15. A check in with pain of 5 shows the parent safety message.
-16. The weekly review shows its four sections and exports the coach report.
-17. Backup export, delete all data, and import restore the data.
-18. Invalid and broken imports are rejected with nothing changed.
-19. An encrypted backup opens only with its passphrase.
-20. Data survives a reload.
-21. Sabbath Mode quiets Saturday, and the ICS calendar has alarms and Sabbath exclusions.
-22. The app opens offline after the first load, every main screen renders, video shows "Needs internet", and no third party requests are made.
-23. Delete all data asks twice and returns to first run.
-24. App lock engages after five idle minutes, rejects a wrong PIN, opens with the right one, and is back on after a reload.
-25. Number fields accept typing one key at a time, including decimals and a comma, show a hint out of range, and never save a clamped value.
-26. A food that is not in the list is logged with your own totals as an honest range.
-27. Completing a set queues the rest end sound on the audio clock for the prescribed rest.
-28. An installed plan from before the morning sessions gets them, and the chosen program, with one tap on Add to my plan, as version 2.
-29. The questionnaire: the week preview, the intro, a first and second choice, choices kept after opening an exercise and after a reload, and saving builds Sunday, Tuesday, Thursday, and Friday from the choices while keeping the morning work.
-30. More, About checks for a new version on request.
-31. The program card put off with Not now on Today disappears at once and can still be found on Train, where it has no Not now.
-32. A plan saved before the jump program gets a card for it, and adding it keeps the saved exercise choices.
-33. When the clock reaches a new training block, the plan is rebuilt as a new version, Today shows the block once, and the Monday shows its depth jumps and heavier sets.
-34. An approach touch logged in Reach feeds the dunk goal on Progress: best touch, centimetres still missing, approach jump height from standing reach, and a smaller gap once palming is ticked.
+2. Installable manifest and an active service worker.
+3. A Monday gym workout: Leg Press with 3 reps in reserve while learning, rest timer at 3:00, three sets, finish, plan against actual, the next target accepted and shown on the exercise page with its wrist and progression notes.
+4. A gym day shows location, space, duration, equipment, and stop rules, with the home session before the gym, no jumps before the home space is known, and Tuesday without structured training.
+5. An installed 2.1 plan is offered the new week: the questions, the preview with the schedule change and the day by day difference, nothing changed before activation, then version 2 with the home jumps and the no ball arm swing while the wrist is not cleared.
+6. The new week offer put off with Not now is still on Train.
+7. The questionnaire: first and second choices, kept after a reload, and the difference shown before saving.
+8. Home drills follow the space and the wrist, change only through a preview, and the outdoor note appears in the workout.
+9. About checks for a new version.
+10. Jump tests on Progress compare like with like, with no dunk text.
+11. School sport counts toward the week.
+12. One set of nine reps never raises the load.
+13. A double tap on Complete saves one set, not two.
+14. The rest timer keeps the right time after backgrounding and a reload.
+15. The rest end sound is queued on the audio clock for the prescribed rest.
+16. Last performance appears beside the inputs.
+17. A unilateral exercise logs left and right separately.
+18. Editing the plan shows the difference, creates a version, and leaves history unchanged.
+19. All 103 exercises show instructions, a two view muscle diagram, a visual, stop rules, substitutions, wrist guidance, and progression offline.
+20. Videos load only after a tap.
+21. Example meals show "Example meals", "not a target", the context note, and the example label; a meal logs in one tap.
+22. A restaurant estimate is stored as a low confidence range.
+23. A food that is not in the list is logged with your own numbers as a range.
+24. Saturday meals log with the plate guide.
+25. A morning weight is recorded.
+26. Number fields accept typing one key at a time, and a professionally reviewed calorie range typed into Goals and reviews appears on Eat.
+27. A check in with pain of 5 shows the parent safety message.
+28. The weekly review shows progress, missing data, recovery, professional review reasons, and the older sections, and exports the coach report.
+29. Backup, delete all data, and import restore the data.
+30. Invalid and broken imports are rejected.
+31. An encrypted backup opens only with its passphrase.
+32. Data survives a reload.
+33. Sabbath Mode quiets Saturday; the calendar has alarms and leaves out the Saturday 07:00 check in.
+34. The app opens offline and makes no third party requests.
+35. Delete all data asks twice.
+36. The app lock engages after inactivity and opens with the PIN.
 
-Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on ten screens, every form field at 16 px or more (no zoom on focus), and an axe WCAG 2 A and AA scan of six main screens with no serious or critical issues.
+Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on eleven screens, form fields at 16 px or more, and an axe WCAG 2 A and AA scan of seven main screens with no serious or critical issues.
 
-## Manual visual review
+## Manual visual review (3.0.0)
 
-`scripts/sweep.ts` drives the built app through 53 to 64 screens and states per run (onboarding, Today, the whole workout flow including rest, pain stop, unilateral sets, substitution and finish, exercise detail, library, Eat, Estimate by Eye, restaurant estimates, Sabbath plate, meal preparation, recipes, Progress, coverage, history, weekly review, check in, every More page, offline, and the lock screen). Runs reviewed:
+Screenshots at 390 px, light theme, from a fresh install on a Monday: Today, Your profile, the plan preview after answering the profile, Train, the Monday and Friday days, Eat, Goals and reviews, Progress, and School sport. No console errors.
 
-| Width | Theme | State |
-| --- | --- | --- |
-| 375 | light | demo data |
-| 430 | dark | demo data |
-| 375 | light | no data |
-| 393 | light | no data |
-| 390 | light | long content (long app name, long custom exercise, long notes) |
-| 375 | light | text at 125 percent |
-| 390 | dark | offline |
+Defects found and fixed in 3.0.0:
 
-Defects found and fixed during review:
+- A double tap on Complete set saved the same set twice. Saving is now one set per tap, with a test that fails without the fix.
+- A new exercise showed 2 reps in reserve as the default even though the target was 3, because the history loaded after the default was set. The default now follows once the history loads.
+- Session times left out the rest after each exercise's last set and the time to change exercises, so gym days read about 30 to 65 minutes. They now read about 40 to 75 minutes, and home jump sessions about 30.
+- The home equipment line repeated floor space and said "No equipment" next to real equipment. Space, floor, and ceiling now stay on the Space line.
+- Recommendation files saved plan changes straight away. They now open in the plan preview.
+- Whey protein appeared as an optional breakfast item and in the recipe steps. Examples no longer suggest any supplement.
+- App text and public documents described one person's injury and food habits. They are now generic ("a wrist injury", "a large vegetable portion"), and the meat to dairy default is 6 hours, set per family on the phone.
+
+Defects found and fixed in earlier reviews (1.x to 2.x):
 
 - Complete set fell below the fold. The workout now uses a focus mode with a pinned action dock.
 - The rest bar label overlapped its buttons. Labels now truncate and the time itself toggles pause.
@@ -125,6 +113,6 @@ Defects found and fixed during review:
 
 ## Content checks
 
-- `scripts/validate-exercises.ts`: all 99 exercises have complete fields, known muscle IDs, valid substitutions, visuals, a failure policy on every loaded exercise, failure wording only where the policy allows it and always with clean form, and copy free of em dashes, isolation claims, "until failure", "grind it out", forced reps, and hype words.
-- `docs/content-audit.json`: since 2.0.0 the main sessions come from the athlete's own exercise choices, at the user's request, so they no longer match the original brief item by item. Upper days take about 77 to 84 minutes. Lower days with jumps take about 50 to 70 minutes, inside the 75 to 90 minutes available. Default meals land within about 100 kcal of each training day target. Focus checks confirm upper back, calves, and forearms.
-- Known plan inconsistency, reported and not hidden: with standard food values the default meals supply about 200 to 215 g protein and 60 to 70 g fat, against targets of about 150 to 155 g protein and 88 to 92 g fat. This is listed for review with a parent and a pediatric sports dietitian.
+- `scripts/validate-exercises.ts`: all 103 exercises have complete fields, known muscle IDs, valid substitutions, visuals, an effort rule on every loaded exercise, and copy free of em dashes, "until failure", "grind it out", forced reps, and hype words.
+- `docs/content-audit.json`: example days come to about 2,600 to 2,900 kcal on school days; they are descriptions, not targets. Gym sessions take about 40 to 75 minutes by the new estimate.
+- Food values were checked against USDA data through search snippets and the SR28 data file (NUTRITION_DATA_AUDIT.md).

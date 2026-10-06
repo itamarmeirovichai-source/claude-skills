@@ -4,7 +4,7 @@ import { db } from '../db/db';
 import { saveCheckIn } from '../db/repo';
 import { PAIN_REGIONS, PAIN_REGION_LABELS, RED_FLAGS, RED_FLAG_LABELS, SORENESS_REGIONS, type RedFlag } from '../db/records';
 import { Note, PageHead, Section, Seg, Stepper, Toggle, useToast } from '../ui/components';
-import { useToday } from '../ui/hooks';
+import { useAthlete, useToday } from '../ui/hooks';
 import { navigate } from '../ui/router';
 import { reviewWeekStart, sleepMinutes } from '../domain/dates';
 
@@ -15,6 +15,7 @@ export function CheckInScreen() {
   const today = useToday();
   const toast = useToast();
   const last = useLiveQuery(() => db.checkins.orderBy('at').reverse().filter((c) => c.weightKg !== null).first(), []);
+  const athlete = useAthlete();
   const lastSleep = useLiveQuery(() => db.sleep.orderBy('date').reverse().first(), []);
   const waistThisWeek = useLiveQuery(() => db.waist.where('date').between(reviewWeekStart(today), today, true, true).count(), [today]);
   const [weight, setWeight] = useState<number | null>(null);
@@ -96,15 +97,21 @@ export function CheckInScreen() {
 
       <Section title="Body">
         <div className="stack">
-          <Stepper label="Morning weight" unit="kg" value={weight} onChange={setWeight} step={0.1} decimals={1} min={20} max={300} base={last?.weightKg ?? null} placeholder="Not weighed" prev={last?.weightKg ? String(last.weightKg) : undefined} testId="checkin-weight" />
-          <div className="group">
-            <Toggle checked={standard} onChange={setStandard} label="After the toilet, before food or drink" sub="Standard conditions make the trend meaningful." />
-          </div>
-          <details className="disclosure">
-            <summary>Scale body fat, optional</summary>
-            <Stepper label="Body fat" unit="%" value={bf} onChange={setBf} step={0.1} decimals={1} min={2} max={70} />
-            <p className="hint">A trend signal only. It moves with water and timing.</p>
-          </details>
+          {athlete.weight.mode === 'off' ? (
+            <p className="small muted" data-testid="checkin-weight-off">Weighing is off. Change it in More, Your profile.</p>
+          ) : (
+            <>
+              <Stepper label={athlete.weight.mode === 'weekly' ? 'Morning weight, optional, once a week is enough' : 'Morning weight, optional'} unit="kg" value={weight} onChange={setWeight} step={0.1} decimals={1} min={20} max={300} base={athlete.weight.hideNumbers ? null : (last?.weightKg ?? null)} placeholder="Not weighed" prev={!athlete.weight.hideNumbers && last?.weightKg ? String(last.weightKg) : undefined} testId="checkin-weight" />
+              <div className="group">
+                <Toggle checked={standard} onChange={setStandard} label="After the toilet, before food or drink" sub="Standard conditions make a trend more meaningful." />
+              </div>
+              <details className="disclosure">
+                <summary>Scale body fat, optional</summary>
+                <Stepper label="Body fat" unit="%" value={bf} onChange={setBf} step={0.1} decimals={1} min={2} max={70} />
+                <p className="hint">An uncertain estimate. It moves with water, food, timing, and creatine, and can be several points off.</p>
+              </details>
+            </>
+          )}
           {needWaist ? (
             <div>
               <Stepper label="Waist, weekly" unit="cm" value={waist} onChange={setWaist} step={0.5} decimals={1} min={30} max={200} testId="checkin-waist" />
@@ -167,6 +174,7 @@ export function CheckInScreen() {
 
       <Section title="Soreness">
         <div className="panel stack">
+          <p className="small muted">Muscle soreness after training that fades within two or three days is common. It does not prove that a muscle grew. Pain in a joint, a tendon, the heel, below the kneecap, or the wrist is different: enter it under Pain.</p>
           {SORENESS_REGIONS.map((r) => (
             <div key={r} className="row" style={{ gap: 10 }}>
               <span className="small" style={{ width: 76, flex: '0 0 auto' }}>
@@ -182,7 +190,7 @@ export function CheckInScreen() {
 
       <Section title="Pain, 0 to 10">
         <div className="panel stack">
-          <p className="small muted">Leave at 0 if there is no pain. This is tracking, not a diagnosis.</p>
+          <p className="small muted">Leave at 0 if there is no pain. This is tracking, not a diagnosis. Pain that changes how you move, keeps you awake, or comes with swelling needs a parent and a clinician.</p>
           {PAIN_REGIONS.map((r) => (
             <Stepper key={r} label={PAIN_REGION_LABELS[r]} value={pain[r] ?? 0} onChange={(v) => setPain({ ...pain, [r]: v ?? 0 })} min={0} max={10} testId={`pain-${r}`} />
           ))}

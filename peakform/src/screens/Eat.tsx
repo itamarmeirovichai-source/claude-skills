@@ -3,14 +3,16 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/db';
 import { addWater, deleteFoodLog, addFoodLog, KV, kvGet, kvSet } from '../db/repo';
 import { useSettings } from '../ui/state';
-import { useTargets, useToday } from '../ui/hooks';
+import { useAthlete, useMealOptions, useToday } from '../ui/hooks';
 import { Item, Note, PageHead, RangeBar, Section, Sheet, useToast } from '../ui/components';
 import { Link, navigate } from '../ui/router';
 import { IconCheck, IconWater } from '../ui/icons';
 import { addDays, formatDateKey, weekdayOf } from '../domain/dates';
-import { SLOT_LABELS, templatesForDay, type MealTemplate } from '../content/meals';
+import { EXAMPLE_CONTEXT, EXAMPLE_NOTE, SLOT_LABELS, templateKosher, templatesForDay, type MealTemplate } from '../content/meals';
 import { FOOD_BY_ID } from '../content/foods';
-import { dayTotals, templateTotals } from '../domain/nutrition';
+import { dayTotals, exampleDayTotals, templateTotals } from '../domain/nutrition';
+import { reviewedEnergy } from '../domain/athlete';
+import { dairyFrom, meatDairyNotes } from '../domain/kosher';
 import { formatRange } from '../domain/portions';
 import { logTemplate } from '../services/food';
 import type { FoodLog } from '../db/records';
@@ -45,9 +47,13 @@ export function EatScreen() {
   const notes = useLiveQuery(() => db.dayNotes.where('date').equals(date).toArray(), [date]) ?? [];
   const supLogs = useLiveQuery(() => db.supplementLogs.where('date').equals(date).toArray(), [date]) ?? [];
   const optionalOn = useLiveQuery(() => kvGet<Record<string, boolean>>(KV.optionalFoods), []) ?? {};
-  const targets = useTargets();
-  const target = targets.find((t) => t.weekday === wd)!;
-  const templates = templatesForDay(wd);
+  const athlete = useAthlete();
+  const mealOpts = useMealOptions();
+  const reviewed = reviewedEnergy(athlete);
+  const templates = templatesForDay(wd, undefined, mealOpts);
+  const example = exampleDayTotals(templates, optionalOn);
+  const intervalNotes = meatDairyNotes(logs, mealOpts.meatToDairyHours ?? null);
+  const dairyTime = dairyFrom(logs, mealOpts.meatToDairyHours ?? null);
   const totals = dayTotals(logs);
   const waterMl = water.filter((w) => w.drink === 'water').reduce((a, w) => a + w.ml, 0);
   const zeroMl = water.filter((w) => w.drink !== 'water').reduce((a, w) => a + w.ml, 0);
@@ -80,30 +86,41 @@ export function EatScreen() {
               {totals.mid.kcal > 0 ? formatRange(totals.low.kcal, totals.high.kcal) : 'Nothing logged yet'}
             </div>
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div className="small muted">Target range</div>
-            <div className="num" style={{ fontWeight: 650 }}>
-              {target.kcalBand[0]} to {target.kcalBand[1]}
-            </div>
-            <div className="small faint">{target.label}</div>
+          <div style={{ textAlign: 'right' }} data-testid="example-total">
+            {reviewed?.kcalRange ? (
+              <>
+                <div className="small muted">Reviewed range</div>
+                <div className="num" style={{ fontWeight: 650 }}>
+                  {reviewed.kcalRange[0]} to {reviewed.kcalRange[1]}
+                </div>
+                <div className="small faint">{reviewed.source}</div>
+              </>
+            ) : (
+              <>
+                <div className="small muted">Example meals</div>
+                <div className="num" style={{ fontWeight: 650 }}>
+                  about {Math.round(example.mid.kcal / 50) * 50} kcal
+                </div>
+                <div className="small faint">not a target</div>
+              </>
+            )}
           </div>
         </div>
-        <RangeBar low={totals.low.kcal} mid={totals.mid.kcal} high={totals.high.kcal} band={target.kcalBand} max={Math.max(3200, totals.high.kcal)} label={`Calories about ${Math.round(totals.mid.kcal)} of target ${target.kcal}`} />
+        {reviewed?.kcalRange && <RangeBar low={totals.low.kcal} mid={totals.mid.kcal} high={totals.high.kcal} band={reviewed.kcalRange} max={Math.max(reviewed.kcalRange[1] * 1.3, totals.high.kcal)} label={`Calories about ${Math.round(totals.mid.kcal)}, reviewed range ${reviewed.kcalRange[0]} to ${reviewed.kcalRange[1]}`} />}
         <div className="metric-row cols-2" style={{ boxShadow: 'none' }}>
           <div className="metric">
             <div className="m-label">Protein</div>
             <div className="m-value">{Math.round(totals.mid.protein)} g</div>
-            <div className="m-sub">at least {target.proteinRange[0]}</div>
+            <div className="m-sub">spread over the meals</div>
           </div>
           <div className="metric">
             <div className="m-label">Carbs</div>
             <div className="m-value">{Math.round(totals.mid.carbs)} g</div>
-            <div className="m-sub">about {target.carbs}</div>
+            <div className="m-sub">fuel for training</div>
           </div>
           <div className="metric">
             <div className="m-label">Fat</div>
             <div className="m-value">{Math.round(totals.mid.fat)} g</div>
-            <div className="m-sub">about {target.fat}</div>
           </div>
           <div className="metric">
             <div className="m-label">Fibre</div>
@@ -114,6 +131,12 @@ export function EatScreen() {
           Calcium {Math.round(totals.mid.calcium + calciumSupp)} mg of about 1,300 mg{calciumSupp ? `, including ${Math.round(calciumSupp)} mg from supplements` : ''}. Water {waterMl} ml{zeroMl ? `, zero calorie drinks ${zeroMl} ml` : ''}.
         </p>
         {totals.mid.calcium + calciumSupp > 2500 && <Note tone="warn">Calcium is above 2,500 mg today. The upper limit for teens is 3,000 mg, and more than needed brings no benefit. Check supplement doses with a parent.</Note>}
+        <p className="small muted">{EXAMPLE_NOTE} Eat more when you are hungry or after a big day. Food never depends on finishing a workout.</p>
+        {!reviewed?.kcalRange && <p className="small muted" data-testid="example-context">{EXAMPLE_CONTEXT}</p>}
+        {dairyTime && <p className="small muted" data-testid="dairy-from">Meat logged today. Dairy fits from about {dairyTime}.</p>}
+        {intervalNotes.map((n) => (
+          <Note key={n.logId}>{n.text} Just so you know, nothing to fix.</Note>
+        ))}
       </div>
 
       <div className="grid-2" style={{ marginTop: 12 }}>
@@ -146,8 +169,10 @@ export function EatScreen() {
                   </div>
                   <p className="item-sub">{portionSummary(t, optionalOn)}</p>
                   <p className="item-sub faint">
+                    <span className="tag" style={{ marginRight: 6 }}>{KOSHER_LABEL[templateKosher(t)]}</span>
                     {formatRange(tt.low.kcal, tt.high.kcal, ' kcal')}, protein {Math.round(tt.mid.protein)} g{t.estimated ? ', estimated at school' : ''}
                   </p>
+                  <MealDetails t={t} />
                   {done.length > 0 ? (
                     <div className="row-between" style={{ marginTop: 6 }}>
                       <span className="tag tag-accent">
@@ -234,12 +259,12 @@ export function EatScreen() {
 
       <Section>
         <details className="disclosure panel">
-          <summary>About these targets</summary>
+          <summary>About these examples</summary>
           <div className="small muted stack">
-            <p>Targets are ranges and starting points for a fourteen day observation, not a diagnosis. Days within about 100 calories of the target count as equal.</p>
-            <p>Insulin rising after a meal is normal. For fat loss, total energy over weeks, enough protein, training quality, sleep, and consistency matter far more than keeping insulin low.</p>
-            <p>Carbohydrates around training fuel jumps, sprints, swimming, and lifting. PeakForm never plans fewer than 130 g a day or fewer than 2,000 calories.</p>
-            <p>Estimated meals show a range. Weighed food and labels narrow it.</p>
+            <p>The meals are example servings in grams with a household measure, so nothing has to be weighed. They are not a daily limit, and their total is not your energy requirement.</p>
+            <p>PeakForm sets no calorie target. If a pediatrician or a pediatric sports dietitian gives you one, record it in More, Goals and reviews, and it is shown here as their range.</p>
+            <p>Meals stay the same on days without training. Carbohydrates fuel jumps, sprints, and lifting, and protein spread over the day helps recovery.</p>
+            <p>Estimated meals show a range. Weighed food and labels narrow it. Raw, dry, and cooked weights have separate entries in the food list.</p>
           </div>
         </details>
       </Section>
@@ -252,7 +277,6 @@ export function EatScreen() {
 function OptionalFoods({ optionalOn }: { optionalOn: Record<string, boolean> }) {
   const opts = [
     { id: 'berries-frozen', label: 'Frozen berries at breakfast', def: true },
-    { id: 'protein-powder', label: 'Half scoop protein powder at breakfast', def: false },
   ];
   return (
     <details className="disclosure" style={{ marginTop: 6 }}>
@@ -270,7 +294,6 @@ function OptionalFoods({ optionalOn }: { optionalOn: Record<string, boolean> }) 
           );
         })}
       </div>
-      <p className="small muted" style={{ marginTop: 6 }}>Protein powder is optional. Only add it when food protein is short that day.</p>
     </details>
   );
 }
@@ -340,5 +363,37 @@ function DayNoteSheet({ open, onClose, date }: { open: boolean; onClose: () => v
         </button>
       </div>
     </Sheet>
+  );
+}
+
+const KOSHER_LABEL: Record<'meat' | 'dairy' | 'pareve', string> = { meat: 'Meat', dairy: 'Dairy', pareve: 'Pareve' };
+
+/** Household measures, raw or cooked state, more food, swaps, and storage for one example meal. */
+function MealDetails({ t }: { t: MealTemplate }) {
+  return (
+    <details className="disclosure" style={{ marginTop: 4 }}>
+      <summary className="small">Grams, swaps, and storage</summary>
+      <div className="small stack" data-testid={`meal-details-${t.slot}`}>
+        <ul className="bullets">
+          {t.items.map((i) => {
+            const f = FOOD_BY_ID[i.foodId];
+            return (
+              <li key={i.foodId}>
+                {i.grams} {f?.liquid ? 'ml' : 'g'} {(f?.name ?? i.foodId).toLowerCase()}
+                {f && f.state !== 'as sold' && !(f.name.toLowerCase().includes(f.state)) ? `, ${f.state}` : ''}
+                {i.household ? ` (${i.household})` : ''}
+                {i.optional ? ', optional' : ''}
+              </li>
+            );
+          })}
+        </ul>
+        <p className="muted">{EXAMPLE_NOTE}</p>
+        {t.prep.length > 0 && <p><b>Make it:</b> {t.prep.join(' ')}</p>}
+        {t.more.length > 0 && <p><b>Hungry or a big day:</b> {t.more.join('; ')}.</p>}
+        {t.substitutions.length > 0 && <p><b>Swaps:</b> {t.substitutions.join('; ')}.</p>}
+        {t.storage.length > 0 && <p><b>Storage:</b> {t.storage.join(' ')}</p>}
+        <p className="muted">Check for a kosher certification on packaged products. Values come from USDA data or typical labels and are estimates.</p>
+      </div>
+    </details>
   );
 }

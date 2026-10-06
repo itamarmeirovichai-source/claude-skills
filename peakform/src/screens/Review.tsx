@@ -16,7 +16,7 @@ function defaultWeek(today: string): string {
   return weekdayOf(today) === 0 ? reviewWeekStart(today) : addDays(reviewWeekStart(today), -7);
 }
 
-const SECTION_TONE: Record<string, string> = { keep: 'tag-accent', ready: 'tag-accent', improve: 'tag-warn', safety: 'tag-danger' };
+const SECTION_TONE: Record<string, string> = { keep: 'tag-accent', ready: 'tag-accent', improve: 'tag-warn', safety: 'tag-danger', progress: 'tag-accent', missing: '', recovery: 'tag-warn', professional: 'tag-warn' };
 
 function Items({ items, empty, tone }: { items: ReviewItem[]; empty: string; tone: string }) {
   if (!items.length) return <p className="small muted" style={{ padding: '4px 4px' }}>{empty}</p>;
@@ -96,6 +96,26 @@ export function ReviewScreen({ weekStart }: { weekStart: string | null }) {
                   <li key={p}>{p}</li>
                 ))}
               </ol>
+            </div>
+          </Section>
+          <Section title="Evidence of progress">
+            <div data-testid="review-progress">
+              <Items items={review.progress ?? []} tone="progress" empty="Nothing measurable yet. Comparable sets, landings, and jump tests over the coming weeks will show it. The scale alone cannot." />
+            </div>
+          </Section>
+          <Section title="Not enough data yet">
+            <div data-testid="review-missing">
+              <Items items={review.insufficient ?? []} tone="missing" empty="Enough was logged to read this week." />
+            </div>
+          </Section>
+          <Section title="Recovery">
+            <div data-testid="review-recovery">
+              <Items items={review.recovery ?? []} tone="recovery" empty="No recovery concerns in the logs this week." />
+            </div>
+          </Section>
+          <Section title="Worth a professional review">
+            <div data-testid="review-professional">
+              <Items items={review.professional ?? []} tone="professional" empty="Nothing new to review with a professional this week." />
             </div>
           </Section>
           <Section title="Keep doing">

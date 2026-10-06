@@ -2,7 +2,7 @@
 
 ## Where data lives
 
-All personal data, including the profile, measurements, workouts, meals, photos, notes, and reviews, is stored in IndexedDB in the browser on the phone. The deployed website is a set of static files that contains no personal data and never receives any. The release gate (`scripts/check-dist.mjs`) fails the build if personal markers or known trackers appear in the output.
+All personal data, including the profile, measurements, workouts, meals, photos, notes, and reviews, is stored in IndexedDB in the browser on the phone. Since 3.0.0 that also covers the profile answers (wrist status after an injury, home space, school sport, sleep, supervision, supplement details, weighing preference, meat and dairy interval, and any large vegetable portion), the athlete's aspirations, targets a professional reviewed, the school sport log, jump tests, and a plan proposal waiting for activation. The deployed website is a set of static files that contains no personal data and never receives any. The release gate (`scripts/check-dist.mjs`) fails the build if personal markers or known trackers appear in the output.
 
 ## Who can open the app
 
@@ -41,7 +41,8 @@ The Content Security Policy allows scripts and styles only from the app itself, 
 - **Plain backups** are readable by anyone who has the file. Store them privately.
 - Every backup includes a SHA-256 checksum, so damage or tampering shows up in the import preview.
 - Before any import, PeakForm saves a local safety copy, and it restores that copy if the import fails.
-- Coach reports leave out photos and private notes unless you switch them on.
+- Coach reports leave out photos and private notes unless you switch them on. They do include the profile answers, aspirations, and reviewed targets, because a parent, coach, or clinician needs them; share the file only with people you trust.
+- **The plan file** (More, Backup) holds the week and the example meals. It is created only when you ask for it.
 
 ## App lock
 
@@ -58,3 +59,5 @@ Notes and imported text are rendered as text, never as HTML. Imports are validat
 ## Repository hygiene
 
 The private setup file is generated into `private/`, which is gitignored. Example backups in `fixtures/` contain only synthetic demo data.
+
+Public documentation (RESEARCH.md, TRAINING_AUDIT.md, NUTRITION_DATA_AUDIT.md, and the guides) uses de-identified examples only: no name, age, measurements, health details, food history, or answers from the phone. App text describes features in general terms, for example "a wrist injury" rather than anyone's injury. Before every release, tracked files are checked against a private list of personal markers kept in `private/`, and the build gate checks the deployed files.

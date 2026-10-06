@@ -1,96 +1,155 @@
 import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { activePlan } from '../db/repo';
-import { Note, useToast } from '../ui/components';
+import { Note, PageHead, Section, useToast } from '../ui/components';
 import { navigate } from '../ui/router';
-import { PROGRAM_SLOTS, defaultPicks } from '../content/program';
-import { applyProgram, dismissPhaseNotice, dismissPlanUpdates, pendingUpdates, phaseNotice, savedPicks } from '../services/planUpdate';
+import { exerciseName } from '../content/library';
+import { SESSION_LABELS } from '../content/plan';
+import { activateProposal, currentProposal, discardProposal, dismissPlanUpdates, pendingUpdates, proposalDiff } from '../services/planUpdate';
 
 /**
- * Offers the program built from the athlete's choices, or the jump program for a plan saved
- * before it existed. On Today it can be put off with "Not now". On Train it stays until it is
- * added, so it can always be found.
+ * Offers the 3.0 week to an app that still runs an older plan. On Today it can be put off with
+ * "Not now". On Train it stays until it is added, so it can always be found.
  */
 export function PlanUpdateCard({ canDismiss = true }: { canDismiss?: boolean }) {
-  const toast = useToast();
-  const [busy, setBusy] = useState(false);
   const offer = useLiveQuery(() => pendingUpdates({ includeDismissed: !canDismiss }), [canDismiss]);
+  const waiting = useLiveQuery(() => currentProposal(), []);
+  if (waiting) {
+    return (
+      <div style={{ marginBottom: 12 }} data-testid="proposal-waiting">
+        <Note tone="accent" title="A plan change is waiting">
+          <p style={{ margin: '0 0 6px' }}>{waiting.title}. Look at what changes before you activate it.</p>
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => navigate('/plan')} data-testid="proposal-open">
+            See the changes
+          </button>
+        </Note>
+      </div>
+    );
+  }
   if (!offer) return null;
-  const add = async () => {
-    setBusy(true);
-    try {
-      await applyProgram(await activePlan(), (await savedPicks()) ?? defaultPicks());
-      toast(offer.dunk ? 'The jump program is in your plan' : 'Your program is saved');
-    } catch {
-      setBusy(false);
-      toast('Could not save the program. Try again.');
-    }
-  };
-  const buttons = (
-    <div className="row wrap" style={{ marginTop: 8 }}>
-      <button type="button" className="btn btn-sm btn-primary" disabled={busy} data-testid="plan-update-apply" onClick={() => void add()}>
-        Add to my plan
-      </button>
-      <button type="button" className="btn btn-sm btn-outline" disabled={busy} data-testid="plan-update-review" onClick={() => navigate(`/program?step=${PROGRAM_SLOTS.length}`)}>
-        See the week first
-      </button>
-      {canDismiss && (
-        <button type="button" className="btn btn-sm btn-ghost" disabled={busy} onClick={() => void dismissPlanUpdates(offer)}>
-          Not now
-        </button>
-      )}
-    </div>
-  );
   return (
     <div style={{ marginBottom: 12 }} data-testid="plan-update">
-      {offer.dunk ? (
-        <Note tone="accent" title="New: the jump program for your dunk goal">
-          <p style={{ margin: '0 0 6px' }}>
-            Monday and Friday start with jump drills: landings, box jumps, hurdle hops, depth jumps later, and the dunk approach with your touch height logged. Training blocks change every few weeks until the end of January, with a jump test at the end of each one.
-          </p>
-          <p style={{ margin: '0 0 6px' }}>
-            Your legs train heavy but mostly stop two reps short of failure, so the jumps are done on fresh legs. Wednesday is the lighter leg day. The upper body stays as it is, and your exercise choices are kept.
-          </p>
-          <p className="small" style={{ margin: 0 }}>
-            Your history is kept, and nothing you added yourself is removed.
-          </p>
-          {buttons}
-        </Note>
-      ) : (
-        <Note tone="accent" title="Your exercise choices are ready">
-          <p style={{ margin: '0 0 6px' }}>
-            The exercises you picked in the questionnaire, one for each muscle head, with three work sets each across the six gym days, and jump drills on Monday and Friday. Small upper body machine and cable exercises go to failure, and a new exercise stays two reps short for its first two sessions.
-          </p>
-          <p className="small" style={{ margin: 0 }}>
-            Your history is kept, and nothing you added yourself is removed. You can change any choice later from Train.
-          </p>
-          {buttons}
-        </Note>
-      )}
+      <Note tone="accent" title="New: a calmer week with more recovery">
+        <p style={{ margin: '0 0 6px' }}>
+          Four gym days for strength, jumps and volleyball footwork at home on Monday and Thursday, a light skill session on Friday, and two days without structured training. No early morning sessions, so there is time to sleep 8 to 10 hours.
+        </p>
+        <p className="small" style={{ margin: '0 0 6px' }}>
+          A few quick questions about your wrist and your space at home come first, so only drills that fit are planned. You see every change before anything is saved, and your history is kept.
+        </p>
+        <div className="row wrap" style={{ marginTop: 8 }}>
+          <button type="button" className="btn btn-sm btn-primary" data-testid="plan-update-start" onClick={() => navigate('/more/athlete?next=v3')}>
+            Answer and see the week
+          </button>
+          {canDismiss && (
+            <button type="button" className="btn btn-sm btn-ghost" onClick={() => void dismissPlanUpdates()}>
+              Not now
+            </button>
+          )}
+        </div>
+      </Note>
     </div>
   );
 }
 
-/** Shown once on Today when a new training block has started and the plan was rebuilt for it. */
-export function PhaseNoticeCard() {
-  const phase = useLiveQuery(() => phaseNotice(), []);
-  if (!phase) return null;
+/** The change summary and the day by day difference, shown before a new plan is activated. */
+export function PlanPreviewScreen() {
+  const toast = useToast();
+  const [busy, setBusy] = useState(false);
+  const data = useLiveQuery(() => Promise.all([currentProposal(), activePlan()]), []);
+  if (!data) return null;
+  const [proposal, active] = data;
+  if (!proposal) {
+    return (
+      <div data-testid="plan-preview">
+        <PageHead title="No plan change waiting" backTo="/train" />
+        <p className="muted">There is nothing to activate. Plan changes appear here after you answer the questions in More, Your profile, or change your exercise choices.</p>
+      </div>
+    );
+  }
+  const diff = proposalDiff(active, proposal);
+  const activate = async () => {
+    setBusy(true);
+    try {
+      await activateProposal();
+      toast('The new plan is active. Your history is kept.');
+      navigate('/train');
+    } catch {
+      setBusy(false);
+      toast('Could not save the plan. Try again.');
+    }
+  };
   return (
-    <div style={{ marginBottom: 12 }} data-testid="phase-notice">
-      <Note tone="accent" title={`New training block: ${phase.name}`}>
-        <p style={{ margin: '0 0 6px' }}>{phase.summary}</p>
-        <p className="small" style={{ margin: 0 }}>
-          Your plan was updated for it as a new version. Your history and exercise choices are kept.
-        </p>
-        <div className="row wrap" style={{ marginTop: 8 }}>
-          <button type="button" className="btn btn-sm btn-primary" onClick={() => void dismissPhaseNotice()}>
-            Got it
-          </button>
-          <button type="button" className="btn btn-sm btn-outline" onClick={() => navigate('/train')}>
-            See this week
-          </button>
-        </div>
-      </Note>
+    <div data-testid="plan-preview">
+      <PageHead title={proposal.title} eyebrow="Plan change, not active yet" backTo="/train" />
+      <p className="muted">{proposal.reason}</p>
+      {proposal.summary.length > 0 && (
+        <Section title="Summary">
+          <div className="panel">
+            <ul className="bullets" data-testid="plan-summary">
+              {proposal.summary.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      )}
+      {proposal.settingsChanges.length > 0 && (
+        <Section title="Schedule changes">
+          <div className="panel">
+            <ul className="bullets small">
+              {proposal.settingsChanges.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            <p className="small muted" style={{ marginTop: 6 }}>Only times still at their old defaults change. Times you set yourself stay.</p>
+          </div>
+        </Section>
+      )}
+      <Section title="What changes, day by day">
+        {diff.length === 0 ? (
+          <p className="muted">The sessions are the same as now.</p>
+        ) : (
+          <div className="stack" data-testid="plan-diff">
+            {diff.map((d) => (
+              <div className="panel" key={d.weekday}>
+                <h3>
+                  {d.dayName}: {d.titleBefore === d.titleAfter ? d.titleAfter : `${d.titleBefore} → ${d.titleAfter}`}
+                </h3>
+                <ul className="diff-list small">
+                  {d.changes.map((c, i) => (
+                    <li key={`${c.exerciseId}-${i}`} className={`diff-${c.kind}`}>
+                      <span className="diff-mark" aria-hidden="true">
+                        {c.kind === 'added' ? '+' : c.kind === 'removed' ? '−' : '~'}
+                      </span>
+                      <span className="sr-only">{c.kind === 'added' ? 'Added' : c.kind === 'removed' ? 'Removed' : 'Changed'}: </span>
+                      <b>{exerciseName(c.exerciseId)}</b> <span className="muted">({SESSION_LABELS[c.session]})</span>
+                      {c.kind === 'changed' ? `: ${c.before} → ${c.after}` : `: ${c.after ?? c.before}`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+      </Section>
+      <Note>Finished sessions keep the prescription they were done against. The old plan stays in the history as an earlier version.</Note>
+      <div className="grid-2" style={{ marginTop: 12 }}>
+        <button type="button" className="btn btn-primary btn-large" disabled={busy} onClick={() => void activate()} data-testid="plan-activate">
+          Activate this plan
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline btn-large"
+          disabled={busy}
+          onClick={async () => {
+            await discardProposal();
+            navigate('/train');
+          }}
+          data-testid="plan-discard"
+        >
+          Not now
+        </button>
+      </div>
     </div>
   );
 }

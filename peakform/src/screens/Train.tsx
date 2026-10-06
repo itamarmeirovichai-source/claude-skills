@@ -13,6 +13,8 @@ import { SESSION_LABELS, type PlanDay, type PlanItem, type SessionKey } from '..
 import { exercise } from '../content/library';
 import { BodyMap } from '../svg/BodyMap';
 import { scheduleNotes, sessionTime } from '../services/training';
+import { sessionInfo } from '../domain/sessionInfo';
+import { contacts } from '../content/phases';
 import type { MuscleId } from '../content/muscles';
 import type { PlanRecord } from '../db/records';
 
@@ -80,8 +82,8 @@ export function TrainScreen() {
                     {i === 0 ? 'Today' : WEEKDAY_NAMES[wd]} <span className="faint small">{formatDateKey(date, { day: 'numeric', month: 'short' })}</span>
                   </span>
                 }
-                sub={d.isRest ? 'Full rest and Sabbath' : `${d.title}. ${sessions.map((s) => SESSION_LABELS[s]).join(', ')}`}
-                end={d.isRest ? undefined : done.length ? `${done.length} of ${sessions.length} done` : sessionTime(settings, wd, 'main')}
+                sub={d.isRest ? d.title : `${d.title}. ${sessions.map((s) => `${SESSION_LABELS[s]} (${sessionInfo(d.items.filter((x) => x.session === s), s).locationLabel})`).join(', ')}`}
+                end={d.isRest ? undefined : done.length ? `${done.length} of ${sessions.length} done` : sessionTime(settings, wd, sessions[0] ?? 'main')}
                 testId={`train-day-${wd}`}
               />
             );
@@ -146,13 +148,31 @@ export function TrainDayScreen({ weekday, date }: { weekday: number; date: strin
           <Section title="Muscles in this workout">
             <BodyMap highlight={dayMuscles(day.items)} caption="Jumps, sprints, swims, rope, and warm ups are shown as activity exposure." />
           </Section>
-          {(['morning', 'main', 'swim'] as SessionKey[]).map((s) => {
+          {(['morning', 'home', 'main', 'swim'] as SessionKey[]).map((s) => {
             const items = day.items.filter((i) => i.session === s);
             if (!items.length) return null;
+            const info = sessionInfo(items, s);
+            const landings = contacts(items);
             const done = sessions.find((x) => x.session === s && x.status === 'done' && x.planWeekday === weekday);
             const running = active && active.date === d && active.session === s && active.planWeekday === weekday ? active : undefined;
             return (
               <Section key={s} title={`${SESSION_LABELS[s]}, ${sessionTime(settings, weekday, s)}`}>
+                <div className="panel small stack" style={{ marginBottom: 8 }} data-testid={`session-info-${s}`}>
+                  <p>
+                    <span className="tag tag-accent" style={{ marginRight: 6 }}>{info.locationLabel}</span>
+                    About {info.minutes} min{landings > 0 ? `, about ${landings} landings` : ''}.
+                  </p>
+                  <p className="muted"><b>Space:</b> {info.space}</p>
+                  {info.equipment.length > 0 && <p className="muted"><b>Equipment:</b> {info.equipment.join(', ')}.</p>}
+                  <details className="disclosure">
+                    <summary className="small">When to stop</summary>
+                    <ul className="bullets">
+                      {info.stopRules.map((r) => (
+                        <li key={r}>{r}</li>
+                      ))}
+                    </ul>
+                  </details>
+                </div>
                 <div className="group">
                   {items.map((it, i) => {
                     const ex = exercise(it.exerciseId);
@@ -218,7 +238,7 @@ export function StartWorkoutRedirect() {
       if (!day || day.isRest) return navigate('/train', { replace: true });
       const done = (await db.sessions.where('date').equals(today).toArray()).filter((s) => s.status === 'done').map((s) => s.session);
       const hour = new Date().getHours();
-      const order: SessionKey[] = hour < 11 ? ['morning', 'main', 'swim'] : ['main', 'swim', 'morning'];
+      const order: SessionKey[] = hour < 11 ? ['morning', 'home', 'main', 'swim'] : ['home', 'main', 'swim', 'morning'];
       const next = order.find((s) => day.items.some((i) => i.session === s) && !done.includes(s));
       if (!next) return navigate(`/train/day/${wd}?date=${today}`, { replace: true });
       navigate(`/train/day/${wd}?date=${today}`, { replace: true });

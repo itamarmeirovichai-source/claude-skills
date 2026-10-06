@@ -3,13 +3,16 @@ import { exposuresFor, saveSuggestion, updateSession } from '../db/repo';
 import type { SetLog, WorkoutSession } from '../db/records';
 import { exercise, prescriptionFor } from '../content/library';
 import type { PlanDay, PlanItem, SessionKey, WorkoutPlan } from '../content/plan';
-import { suggestNext, type WorkSet } from '../domain/progression';
+import { suggestNext, wristGate, type WorkSet } from '../domain/progression';
+import { wristHoldsLoad } from '../content/traits';
+import { getAthlete } from '../db/repo';
 import { fourExposureReview, isReviewDue, type Exposure } from '../domain/fourExposure';
 import { safetyState } from '../domain/safety';
 import { dateKey, minutesOf, type DateKey } from '../domain/dates';
 import { uid } from '../lib/id';
 import type { AppSettings } from '../db/records';
 import { isSabbathTime } from '../domain/sabbath';
+import { DEFAULT_HOME_TIMES } from '../domain/defaults';
 
 export function toWorkSet(s: SetLog): WorkSet {
   return {
@@ -37,6 +40,7 @@ export async function finishSession(session: WorkoutSession, patch: Partial<Work
   const sets = await db.setLogs.where('sessionId').equals(session.id).toArray();
   const today = dateKey();
   const safety = safetyState(today, await db.checkins.toArray(), await db.pain.toArray());
+  const wrist = (await getAthlete()).wrist.status;
   let suggestions = 0;
   let reviews = 0;
   for (const es of exSessions) {
@@ -47,7 +51,7 @@ export async function finishSession(session: WorkoutSession, patch: Partial<Work
     const work = sets.filter((s) => s.exerciseSessionId === es.id && !s.warmup);
     if (!work.length) continue;
     const p = prescriptionFor(item, ex);
-    let sug = suggestNext(p, work.map(toWorkSet), (await db.settings.get('app'))?.equipment);
+    let sug = wristGate(suggestNext(p, work.map(toWorkSet), (await db.settings.get('app'))?.equipment), wristHoldsLoad(es.exerciseId, wrist));
     if (safety.stopProgression && (sug.kind === 'add_load' || sug.kind === 'add_reps')) {
       sug = { ...sug, kind: 'pain_hold', title: 'Progression paused by a safety flag', reason: `${safety.messages[0] ?? 'A safety flag is active.'} Keep the same target for now.`, targets: [] };
     }
@@ -87,6 +91,7 @@ export async function finishSession(session: WorkoutSession, patch: Partial<Work
 
 export function sessionTime(settings: AppSettings, weekday: number, session: SessionKey): string {
   if (session === 'morning') return settings.sessionTimes.morning;
+  if (session === 'home') return settings.sessionTimes.home?.[String(weekday)] ?? DEFAULT_HOME_TIMES[String(weekday)] ?? '16:15';
   if (session === 'swim') return settings.sessionTimes.swim[String(weekday)] ?? '19:30';
   return settings.sessionTimes.main[String(weekday)] ?? '16:30';
 }
@@ -99,10 +104,15 @@ export function scheduleNotes(settings: AppSettings, day: PlanDay, date: DateKey
     const gap = Math.abs(minutesOf(sessionTime(settings, day.weekday, 'swim')) - minutesOf(sessionTime(settings, day.weekday, 'main')));
     if (gap < 180) notes.push(`The swim is set ${Math.floor(gap / 60)} h ${gap % 60} min from the main session. Three hours or more is better when your day allows.`);
   }
-  for (const s of ['morning', 'main', 'swim'] as SessionKey[]) {
+  if (has('home') && has('main') && day.items.some((i) => i.session === 'home' && exercise(i.exerciseId)?.kind === 'jump')) {
+    const home = minutesOf(sessionTime(settings, day.weekday, 'home'));
+    const gym = minutesOf(sessionTime(settings, day.weekday, 'main'));
+    if (home > gym) notes.push('The home jumps are set after the gym session. Jumps go first, on fresh legs: move them earlier in More, Schedule, or keep them short today.');
+  }
+  for (const s of ['morning', 'home', 'main', 'swim'] as SessionKey[]) {
     if (!has(s)) continue;
     const t = sessionTime(settings, day.weekday, s);
-    if (isSabbathTime(date, t, settings.sabbath)) notes.push(`${s === 'main' ? 'The main session' : s === 'swim' ? 'The swim' : 'The morning session'} at ${t} falls inside your Sabbath window. Move it earlier in More, Schedule.`);
+    if (isSabbathTime(date, t, settings.sabbath)) notes.push(`${s === 'main' ? 'The gym session' : s === 'swim' ? 'The swim' : s === 'home' ? 'The home session' : 'The morning session'} at ${t} falls inside your Sabbath window. Move it earlier in More, Schedule.`);
   }
   return notes;
 }
