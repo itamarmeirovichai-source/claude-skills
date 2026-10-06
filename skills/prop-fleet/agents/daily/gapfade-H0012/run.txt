@@ -1,0 +1,33 @@
+ledger N = 196; one-sided alpha = 0.05/196 = 2.551e-04; z = 3.4753
+
+=== D1 SPXUSD 2010-2018 (in-sample): sessions 2090 (2010-11-15..2018-12-31, 8.13 yr), roll-excluded 0, days with 15:59 bar missing 71
+    future-truncation test (H0017, random days): 60 days OK
+  H0012: n 572  trades/yr 70.4  mean R gross -0.0240  net -0.0614  boot p5 net -0.1154 (gross -0.0781)  t net -1.83 (gross -0.72)  win 0.456
+         rule-3 lower bounds at 0.05/196: normal -0.1778  day-bootstrap -0.1763 (196000 draws)  exits {'close': 259, 'target': 159, 'stop': 154}
+         net R by year: 2011:+0.027(66)  2012:-0.005(70)  2013:-0.072(65)  2014:+0.005(78)  2015:-0.223(73)  2016:-0.037(72)  2017:-0.132(70)  2018:-0.051(78)
+  H0017: n 581  trades/yr 71.5  mean R gross -0.0250  net -0.0626  boot p5 net -0.1167 (gross -0.0787)  t net -1.89 (gross -0.76)  win 0.454
+         rule-3 lower bounds at 0.05/196: normal -0.1774  day-bootstrap -0.1759 (196000 draws)  exits {'close': 267, 'target': 159, 'stop': 155}
+         net R by year: 2011:+0.021(68)  2012:-0.005(70)  2013:-0.072(66)  2014:-0.009(79)  2015:-0.221(74)  2016:-0.040(73)  2017:-0.117(72)  2018:-0.055(79)
+
+=== D2 SPY RTH 2019-2025 (primary OOS): sessions 1645 (2019-01-02..2025-07-18, 6.54 yr), roll-excluded 0, days with 15:59 bar missing 3
+    future-truncation test (H0017, random days): 60 days OK
+  H0012: n 455  trades/yr 69.6  mean R gross -0.0950  net -0.1223  boot p5 net -0.1821 (gross -0.1549)  t net -3.35 (gross -2.60)  win 0.413
+         rule-3 lower bounds at 0.05/196: normal -0.2493  day-bootstrap -0.2494 (196000 draws)  exits {'close': 217, 'stop': 131, 'target': 107}
+         net R by year: 2019:-0.168(67)  2020:-0.105(65)  2021:-0.219(68)  2022:-0.174(77)  2023:-0.098(77)  2024:-0.073(65)  2025:+0.083(36)
+  H0017: n 456  trades/yr 69.7  mean R gross -0.0969  net -0.1243  boot p5 net -0.1846 (gross -0.1572)  t net -3.40 (gross -2.66)  win 0.412
+         rule-3 lower bounds at 0.05/196: normal -0.2512  day-bootstrap -0.2491 (196000 draws)  exits {'close': 217, 'stop': 132, 'target': 107}
+         net R by year: 2019:-0.181(68)  2020:-0.105(65)  2021:-0.219(68)  2022:-0.174(77)  2023:-0.098(77)  2024:-0.073(65)  2025:+0.083(36)
+
+=== D3 NQ 2020-2025 ex roll weeks (second OOS): sessions 1349 (2020-09-01..2025-11-21, 5.22 yr), roll-excluded 126, days with 15:59 bar missing 45
+    future-truncation test (H0017, random days): 60 days OK
+  H0012: n 333  trades/yr 63.8  mean R gross +0.0307  net +0.0087  boot p5 net -0.0654 (gross -0.0434)  t net +0.19 (gross +0.67)  win 0.498
+         rule-3 lower bounds at 0.05/196: normal -0.1498  day-bootstrap -0.1493 (196000 draws)  exits {'close': 130, 'target': 111, 'stop': 92}
+         net R by year: 2020:-0.025(9)  2021:+0.054(68)  2022:-0.127(71)  2023:+0.041(67)  2024:-0.060(56)  2025:+0.146(62)
+  H0017: n 334  trades/yr 64.0  mean R gross +0.0305  net +0.0085  boot p5 net -0.0657 (gross -0.0437)  t net +0.19 (gross +0.67)  win 0.497
+         rule-3 lower bounds at 0.05/196: normal -0.1495  day-bootstrap -0.1489 (196000 draws)  exits {'close': 131, 'target': 111, 'stop': 92}
+         net R by year: 2020:-0.025(9)  2021:+0.054(68)  2022:-0.127(71)  2023:+0.041(67)  2024:-0.060(56)  2025:+0.143(63)
+
+=== decision rule (prereg): D2 net lower bound at 0.05/N > 0 AND D3 net mean same sign AND D1 gross mean > 0; the WORSE of H0012/H0017 governs
+  H0012: D2 net LB -0.2494 > 0? False | D3 net +0.0087 same sign as D2 net -0.1223? False | D1 gross -0.0240 > 0? False -> FAIL
+  H0017: D2 net LB -0.2512 > 0? False | D3 net +0.0085 same sign as D2 net -0.1243? False | D1 gross -0.0250 > 0? False -> FAIL
+  governing (worse of the two): FAIL
