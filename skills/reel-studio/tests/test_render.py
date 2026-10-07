@@ -321,3 +321,23 @@ def test_blockout_preview_feeds_reveal(media, tmp_path):
                   "audio": {"loudnorm": False}}, 270, 480)
     o = render(media, "blockout_reveal", spec)
     assert duration(o) == pytest.approx(2.0, abs=0.1)
+
+
+def _mean_db(path, a, b) -> float:
+    import re as _re
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", f"atrim={a}:{b},volumedetect", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    return float(_re.search(r"mean_volume: (-?[\d.]+) dB", r.stderr).group(1))
+
+
+def test_voiceover_track_is_mixed_at_offset(media):
+    vo = media / "media" / "vo_tone.wav"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "sine=f=500:d=1.5", str(vo)], check=True)
+    spec = small({"timeline": [{"clip": {"path": "media/noaudio.mp4", "duration": 4.0}}],
+                  "audio": {"voiceover": {"path": "media/vo_tone.wav", "at": 2.0}, "loudnorm": False}})
+    out = render(media, "voiceover", spec)
+    assert has_audio(out)
+    assert _mean_db(out, 2.2, 3.3) > _mean_db(out, 0.2, 1.5) + 20   # silent before, narration after 2 s
+    with pytest.raises(rs.SpecError):
+        render(media, "vo_missing", small({"timeline": [{"clip": {"path": "media/noaudio.mp4", "duration": 1}}],
+                                            "audio": {"voiceover": "media/nope.wav"}}))

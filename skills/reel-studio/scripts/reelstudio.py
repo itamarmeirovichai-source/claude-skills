@@ -3014,6 +3014,20 @@ def build_audio(audio: dict, ctx: Ctx, runner: Runner, ffmpeg: str, tmp: Path, s
     g.add_input(["-i", str(speech)])
     ov = float(audio.get("original_volume", 1.0))
     sp = g.chain("0:a", f"volume={fnum(ov)},aformat=sample_fmts=fltp:channel_layouts=stereo", "a")
+    vo = audio.get("voiceover")
+    if vo:  # narration joins the speech bus, so the music ducks under it like under dialogue
+        vo = {"path": vo} if isinstance(vo, str) else vo
+        vp = Path(vo["path"]) if Path(vo["path"]).is_absolute() else base / vo["path"]
+        if not vp.exists():
+            raise SpecError(f"voiceover not found: {vp}")
+        vi = g.add_input(["-i", str(vp)])
+        ms = int(round(sec(vo.get("at", 0)) * 1000))
+        vl = g.chain(f"{vi}:a", f"aformat=sample_fmts=fltp:channel_layouts=stereo:sample_rates=48000,"
+                                f"volume={fnum(float(vo.get('volume', 1.0)))},adelay={ms}|{ms},"
+                                f"apad,atrim=duration={fnum(total)}", "a")
+        sp2 = g.label("a")
+        g.add(f"[{sp}][{vl}]amix=inputs=2:duration=first:normalize=0[{sp2}]")
+        sp = sp2
     mix = []
     music = audio.get("music")
     sc = None
