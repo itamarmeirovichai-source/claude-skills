@@ -25,6 +25,12 @@ Before any shot list, design **one big-idea shot**: the single-minded claim made
 | 09/10/12-higgsfield | official guides, visual study of 29 clips, **85 verified API endpoints + prices + templates** |
 | 14-rourke-heath-study | a top AI-ad educator's real workflows: Seedance timecoded single-shot 'build' prompts with in-generation speed ramps, @-scoped refs, Kling start/end chaining + product-lock line, voice pipeline, hook factory, spec-to-prospect sales loop |
 | 13-elevenlabs-mastery | eleven_v4, voices per niche, music_v2_5 composition plans, SFX library, mix levels |
+| 15-concept-engine-and-pretesting | idea generation at volume, 6 twist templates, zero-cost synthetic-panel + Swiss-tournament pre-testing, 3-storyline client page |
+| 16-seamless-flow | continuous "one-run" films: keyframe-anchored Kling chain, no-settle motion prompts, push-through seams, 8 tested ffmpeg seam recipes |
+| 17-hero-stills-mastery | product-fidelity still pipeline, niche prompt blocks, off-centre methods, automatable QC gates + pairwise selection |
+| 18-automation-pipeline | the machine's architecture: stages S0–S11, human checkpoints, JSON artefacts, budget guards, QC gates |
+| 19-great-ads-storytelling | 49 annotated award/Effie films, 14 twist patterns with AI recipes, storyline card + 100-pt rubric |
+| 20-youtube-gapfill | Rourke's sales playbook + workflows, strategist talks, label-fidelity protocol, automation walkthroughs |
 
 ## Hard rules learned the expensive way
 - Kling product-lock sentence on every product move: "nothing in the frame moves except the camera" (or name the one thing that moves).
