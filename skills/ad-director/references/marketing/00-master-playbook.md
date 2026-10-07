@@ -23,9 +23,12 @@ Before any shot list, design **one big-idea shot**: the single-minded claim made
 | 06-anti-ai-realism | top 15 fixes for "looks AI" |
 | 08-post-production | edit, grade, sound recipes |
 | 09/10/12-higgsfield | official guides, visual study of 29 clips, **85 verified API endpoints + prices + templates** |
+| 14-rourke-heath-study | a top AI-ad educator's real workflows: Seedance timecoded single-shot 'build' prompts with in-generation speed ramps, @-scoped refs, Kling start/end chaining + product-lock line, voice pipeline, hook factory, spec-to-prospect sales loop |
 | 13-elevenlabs-mastery | eleven_v4, voices per niche, music_v2_5 composition plans, SFX library, mix levels |
 
 ## Hard rules learned the expensive way
+- Kling product-lock sentence on every product move: "nothing in the frame moves except the camera" (or name the one thing that moves).
+- Design "frame 0" (the scroll-stopping first frame) before the shot list; ≥5 shot types per 20 s.
 - Turn `sound`/`generate_audio` OFF explicitly on Kling/Seedance (defaults ON = +50% cost).
 - Soul Cinema ignores product references → use it for plates/locations/people only; put the exact product in with Flare (`image_urls:[plate, product]`, explicit 9:16), then animate with Kling.
 - Flare/Nano-Banana skew symmetrical-centred: always write off-centre blocking + the anti-gloss suffix.
