@@ -23,3 +23,14 @@ Every entry has a date, an experiment, a finding, the supporting number and a de
   2. Every flagship starts with 3 hero recipes (studio colour world / macro cold proof / action splash) **before** story shots.
   3. Show the user a moving crave clip early. Stills-only animatics confuse the client; label them clearly as a timing test or skip them for clients.
 - **Spend:** F01 total $4.14 of $17.
+
+### 2026-10-07 · F01 AURUM v1 delivered (video)
+- **Model mix:** 3 dialogue shots on Seedance 2.5 reference-to-video, with the ElevenLabs lines as `audio_urls` (standoff 480p 8 s $1.65; anchor and reporter 720p 8 s $3.70 each). Crave and action shots on Kling 3.0 Pro i2v (5 s, sound off, $0.48 each).
+- **Spend:** F01 total $15.09 of $17.
+- **Findings:**
+  - Lip-sync from audio refs looks right on the anchor and reporter; the clean ElevenLabs audio is re-laid in the edit.
+  - One 8 s anchor take covered two lines (the opener and the "Back to you, Gary" button). Combine a character's lines into one ref to save a clip.
+  - The Kling cooler burst rendered the bottle small and gold (reads like a can). Next time pass the bottle as an end frame or a reference.
+  - QC: -14 LUFS. The 5.6 s reporter shot is too long for Reels. The runtime is 34 s; the target was 30.
+- **Edit:** music silence placed by cutting the bed (0–14 s, 19–26.6 s, 3 s silence, then the 19 s+ section again). The tagline captions were removed so they don't duplicate the AURUM title.
+- Spec: `experiments/F01_florida_man/F01_AURUM_v1.json`, plan `plan_2_video.json`.
