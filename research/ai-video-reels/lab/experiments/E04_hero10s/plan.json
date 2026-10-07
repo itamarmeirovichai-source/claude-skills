@@ -1,0 +1,65 @@
+{
+ "_doc": "E04: the reference-level test. One 10 s multi-shot ad (5 shots) in ONE generation, timecoded prompt, product + face + location references. Seedance 2.5 reference-to-video 720p vs Kling 3.0 Pro multi-shot. Built after analysing 10 top reels (REFS-gap-analysis.md).",
+ "jobs": [
+  {
+   "id": "H1_seedance25_r2v_720p",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "tags": {
+    "test": "H1_tidewater_10s",
+    "model": "seedance25_r2v"
+   },
+   "est_usd": 4.62,
+   "args": {
+    "prompt": "Vertical 9:16 cinematic commercial, 10 seconds, five shots in one continuous edit. @Image1 is the exact product: slim turquoise can, white band with the black word TIDEWATER and small text ELECTROLYTE WATER; the label and shape never change. @Image2 is the woman: keep her face, curly hair and white linen shirt identical in every shot. @Image3 is the street location. 0:00-0:02 Extreme wide aerial shot drifting over a sun-baked palm-lined street in Boca Raton at 3 PM, heat shimmer rising off the asphalt, everything bleached by hard white sunlight. 0:02-0:04 Low-angle medium shot on the sidewalk: the woman from @Image2 squints up at the sun, sweat on her temples, and presses the ice-cold turquoise can from @Image1 against her neck. 0:04-0:06 Extreme macro of the can from @Image1: condensation beads roll down past the white TIDEWATER label, the tab pops and a burst of cold mist escapes. 0:06-0:08 Medium shot: she takes a long sip; frost crystals race outward across the hot sidewalk from her feet, palm fronds above whip in a sudden cool breeze. 0:08-0:10 Hero packshot: the can from @Image1 stands on the frosted curb, label facing camera, the cooled street glowing behind it; slow push-in ending on the label. Hard tropical sunlight, saturated teal and coral palette, shot on 35mm, shallow depth of field, realistic skin texture. Audio: cicadas and distant traffic in the heat, a crisp can pop, fizz, then a cool rushing breeze; no music, no dialogue. No on-screen text, no subtitles, no other logos.",
+    "image_urls": [
+     "@file:../../assets/A1_can.png",
+     "@file:../../assets/A4_face.png",
+     "@file:../../assets/A6_street.png"
+    ],
+    "duration": 10,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+   }
+  },
+  {
+   "id": "H1_kling30pro_multishot",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "tags": {
+    "test": "H1_tidewater_10s",
+    "model": "kling30pro_multishot"
+   },
+   "args": {
+    "image_url": "@file:../../assets/A6_street.png",
+    "duration": 10,
+    "multi_shots": true,
+    "multi_prompt": [
+     {
+      "prompt": "Extreme wide aerial shot drifting over a sun-baked palm-lined street in Boca Raton at 3 PM, heat shimmer rising off the asphalt, everything bleached by hard white sunlight. Hard tropical sun, 35mm, realistic. The turquoise TIDEWATER can keeps its exact label.",
+      "duration": 2
+     },
+     {
+      "prompt": "Low-angle medium shot on the sidewalk: a woman with curly dark hair in a white linen shirt squints up at the sun, sweat on her temples, and presses the ice-cold turquoise can  against her neck. Hard tropical sun, 35mm, realistic. The turquoise TIDEWATER can keeps its exact label.",
+      "duration": 2
+     },
+     {
+      "prompt": "Extreme macro of the can : condensation beads roll down past the white TIDEWATER label, the tab pops and a burst of cold mist escapes. Hard tropical sun, 35mm, realistic. The turquoise TIDEWATER can keeps its exact label.",
+      "duration": 2
+     },
+     {
+      "prompt": "Medium shot: she takes a long sip; frost crystals race outward across the hot sidewalk from her feet, palm fronds above whip in a sudden cool breeze. Hard tropical sun, 35mm, realistic. The turquoise TIDEWATER can keeps its exact label.",
+      "duration": 2
+     },
+     {
+      "prompt": "Hero packshot: the can  stands on the frosted curb, label facing camera, the cooled street glowing behind it; slow push-in ending on the label. Hard tropical sun, 35mm, realistic. The turquoise TIDEWATER can keeps its exact label.",
+      "duration": 2
+     }
+    ],
+    "sound": "on",
+    "cfg_scale": 0.6
+   }
+  }
+ ]
+}
