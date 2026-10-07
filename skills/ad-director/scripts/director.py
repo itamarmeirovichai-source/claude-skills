@@ -475,7 +475,7 @@ def evaluate(m: dict, platform: str = "reels", duration: float | None = None) ->
             add("FAIL" if s < 0.2 else "WARN", "black_frames", f"black {s}-{e}s")
     for s, e in m.get("freeze", []):
         if (e is None or e >= d - 0.3) and s >= d - 3.0:
-            add("INFO", "end_card", f"held frame {s}-{e}s (end card / packshot hold)")
+            add("INFO", "end_card", f"held frame {s}s to end (end card / packshot hold)")
         else:
             add("WARN", "frozen", f"frozen picture {s}-{e}s (stalled AI clip or held frame?)")
     if m.get("flicker"):

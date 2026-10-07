@@ -34,6 +34,23 @@ python3 $D bench-summary bench/bench_matrix.csv
 ```
 The ledger defaults to `~/.ad-director/ledger.jsonl`; override it with `--ledger` or `AD_DIRECTOR_LEDGER`. Keep one ledger per studio and back it up, because it is the memory that prevents repeats.
 
+## Generating with the Higgsfield API (`scripts/hfgen.py`)
+Credentials come only from the environment: `HF_KEY="key_id:key_secret"`. Never put them in chat or files. Endpoints and parameters are listed in `references/higgsfield-models.md`.
+```bash
+H=skills/ad-director/scripts/hfgen.py
+python3 $H check                                        # verify the key (free)
+python3 $H batch job/plan_A.json --budget 3 --dry-run   # price the whole plan (free)
+python3 $H batch job/plan_A.json --budget 3 --yes       # upload @file refs, generate, download
+python3 $H batch job/plan_A.json --budget 3 --yes --only F2_ghost_appears --fresh r2   # regenerate one shot
+```
+A plan is JSON: `defaults` + `jobs[{id, model, takes, args}]`. `"@file:frames/F1.png"` values are uploaded automatically.
+- **Budget guard:** every job is priced with `/estimate` first, and the run refuses to start if the total is over `--budget`.
+- **Resumable:** idempotency keys come from job + take + args, so a re-run never pays twice. Use `--fresh` to deliberately generate new takes.
+- **Outputs:** go to `clips/`, together with `manifest.json` and `gen_log.jsonl` (request ids and cost).
+- **After each stage:** Claude looks at the outputs (Read the images, run `reelstudio.py grid` on the videos), applies take QC K1–K8, copies keepers to `frames/` or `clips/pick_*.mp4`, and only then runs the next stage.
+
+Stage order: **A** hero frame (4 variants) → pick → **B** story frames (same character via `image_urls` ref) → pick → **C** video takes from the approved frames → pick → **edit.json** in reel-studio → `director.py qc`.
+
 ## Procedure (follow in order and show the output of each step)
 
 ### 1. Intake (5 min)
