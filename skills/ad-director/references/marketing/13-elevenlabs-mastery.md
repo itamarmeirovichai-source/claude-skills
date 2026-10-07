@@ -91,7 +91,6 @@ Method:
 | 1 | **Jenna – Warm, Soft, Sultry** `qFjcP4hHD9WIdODvuJOJ` (F) | Darkest centroid of the set (1,602 Hz); 1.67 wps; f0 174 Hz; dense −13 LUFS | Intimate and close. Tags move her strongly (§3). |
 | 2 | **Frederick Surrey – Smooth, Velvety** `j9jfwdrw7BRfcR43Qohk` (M, British) | f0 89 Hz; controlled 8 st range | A smooth "maison" baritone without melodrama. |
 | 3 | **Edward – British, Dark, Seductive, Low** `goT3UYdM9bhm0n2lmKQx` (M) | 96 Hz; 22.5 st range (theatrical) | Use for bold noir or oud scents. Too dramatic for soft florals. |
-| Alt | Lily (premade) `pFZP5JQG7iQjIQuC4Bku`; Allison – Velvety `Se2Vw1WbHmGbBbyWTuu4` | Lily: slowest (1.55 wps) but quiet (−19 LUFS) and adds extra pauses. Allison: f0 213 Hz, bright. | — |
 | Custom | **Voice Design** (ttv_v3): *"Native English. Female, early 40s. Studio-quality recording. Low, warm, slightly husky timbre with a soft breathy edge; slow, deliberate, intimate pacing… luxury perfume film."* | Previews came out at f0 142–150 Hz, about 25 Hz lower than any female library voice we tried; 1.57–1.8 wps | Generated IDs are in `g_voice_design/design.json`. |
 
 **Energetic beverage.** Line: *"Crack it open. Feel the cold hit. VOLT. Zero sugar. All charge."* (speed 1.05)
@@ -101,7 +100,6 @@ Method:
 | 1 | **Allison – Energetic, Clear, Bubbly** `xctasy8XvGp2cVO9HL9k` (F) | Loudest (−13.6 LUFS); 1.88 wps; f0 250 Hz | Bright, forward, cuts through a drop. |
 | 2 | **Charlie – Deep, Confident, Energetic** (premade) `IKne3meq5aSn9XLyUdCD` (M, Australian) | Widest intonation of the set (24.6 st) | Reads as punchy. Low centroid (1,377 Hz), so it sits under synths. |
 | 3 | **Christina – Energetic Commercial** `BuaKXS4Sv1Mccaw3flfU` (F) | Classic ad cadence; even 0.5–0.7 s pauses | A safe client-friendly read. |
-| — | Liam (premade) `TX3LPaxmHKxFdv7VOQHJ` | Fastest (1.92 wps) but flat (8.5 st) and quiet (−24 LUFS) | Sounds like a creator, not a brand voice. |
 
 **Calm tech.** Line: *"Your day, quietly organised. Halo listens, learns, and gets out of the way."*
 
@@ -162,23 +160,19 @@ Other tags from the docs: `[laughs]`, `[sighs]`, `[excited]`, `[curious]`, `[sar
 - Loudness: plans come out hot and dynamic (−9.8 LUFS, LRA 23). Normalise the bed to about −20 LUFS before the VO goes in.
 
 **Template A: Fragrance 20 s** (verified: silence → piano at 1.5 s, swell, peak around 13 s, decay to the end)
-```json
-{"chunks":[
- {"text":"[Intro]\n{room tone}","duration_ms":3000,"positive_styles":["luxury fragrance commercial","cinematic neo-classical","72 BPM","D minor","instrumental","felt piano single notes","close-mic'd, intimate","tape warmth","very sparse"],"negative_styles":["vocals","drums","EDM","bright pop"],"context_adherence":"high"},
- {"text":"[Swell]","duration_ms":8000,"positive_styles":["low cello drone enters","slow string swell","breathy pads","growing warmth"],"negative_styles":["vocals","percussion","fast tempo"],"context_adherence":"high"},
- {"text":"[Peak]","duration_ms":5000,"positive_styles":["full lush strings","deep low pulse","emotional peak","wide cinematic reverb"],"negative_styles":["vocals","EDM drop","trap drums"],"context_adherence":"high"},
- {"text":"[Resolve]\n{final chord}","duration_ms":4000,"positive_styles":["single sustained piano and string chord","D major resolution","long natural decay"],"negative_styles":["vocals","new melody","abrupt cut"],"context_adherence":"medium"}]}
-```
+Full JSON: `E05_elevenlabs/c_music/plan_v25_frag.request.json`. Chunks (name ms: styles / negatives):
+- `[Intro]\n{room tone}` 3000: luxury fragrance commercial, cinematic neo-classical, 72 BPM, D minor, instrumental, felt piano single notes, close-mic'd, tape warmth, very sparse / vocals, drums, EDM.
+- `[Swell]` 8000: low cello drone enters, slow string swell, breathy pads / vocals, percussion.
+- `[Peak]` 5000: full lush strings, deep low pulse, wide cinematic reverb / EDM drop, trap drums.
+- `[Resolve]\n{final chord}` 4000, adherence medium: sustained piano and string chord, D major resolution, long natural decay / new melody, abrupt cut.
 
 **Template B: Beverage 22 s.** Hook silence → build → drop → breath → logo hit. Verified boundaries at 3.5 / 15.05 / 18.00 s.
-```json
-{"chunks":[
- {"text":"[Intro]\n{near silence}","duration_ms":3000,"positive_styles":["minimal electronic","premium energy drink commercial","124 BPM","F minor","instrumental","single sub-bass hum only","very quiet","pristine modern production"],"negative_styles":["vocals","drums","melody","loud"],"context_adherence":"high"},
- {"text":"[Build]\n{filtered kick}\n{riser}\n{drop gap}","duration_ms":6000,"positive_styles":["low-pass filtered kick","white-noise riser","tension building fast","ends with a half-beat of silence"],"negative_styles":["vocals","full drop"],"context_adherence":"high"},
- {"text":"[Drop]\n{drop hits on the first beat}","duration_ms":6000,"positive_styles":["drop starts immediately on beat one","punchy kick and clap","distorted synth stabs","maximum energy"],"negative_styles":["vocals","intro","build-up","fade in"],"context_adherence":"high"},
- {"text":"[Break]\n{silence}","duration_ms":3000,"positive_styles":["hard stop","total silence","tape stop"],"negative_styles":["drums","bass","melody","vocals"],"context_adherence":"low"},
- {"text":"[Outro]\n{one huge impact}\n{chord rings out}","duration_ms":4000,"positive_styles":["one massive cinematic impact on the downbeat","loud","F minor stab chord with long reverb tail","brand sonic logo"],"negative_styles":["vocals","silence","fade in","quiet"],"context_adherence":"low"}]}
-```
+Full JSON: `E05_elevenlabs/c_music/plan_v25_bev2.request.json`. Chunks:
+- `[Intro]\n{near silence}` 3000: minimal electronic, premium energy drink commercial, 124 BPM, F minor, instrumental, single sub-bass hum only, very quiet / vocals, drums, melody, loud.
+- `[Build]\n{filtered kick}\n{riser}\n{drop gap}` 6000: low-pass filtered kick, white-noise riser, ends with a half-beat of silence / full drop.
+- `[Drop]\n{drop hits on the first beat}` 6000: punchy kick and clap, distorted synth stabs, maximum energy / intro, build-up, fade in.
+- `[Break]\n{silence}` 3000, adherence **low**: hard stop, total silence, tape stop / drums, bass, melody.
+- `[Outro]\n{one huge impact}\n{chord rings out}` 4000, adherence **low**: one massive cinematic impact on the downbeat, loud, F minor stab chord, long reverb tail / silence, fade in, quiet.
 
 **Template C: Calm tech 20 s** [inf; built from the same rules, not yet generated]
 - Chunk 1, `[Intro]` 3 s: "minimal ambient electronica, 96 BPM, E major, instrumental, soft glassy pluck arpeggio, warm analog pad, airy, clean modern production"; negatives: vocals, drums, distortion.
