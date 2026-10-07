@@ -1,5 +1,5 @@
 {
- "_doc": "E01: model screening. 8 tests x 3 models x 1 take, 5-6 s, same start frame + same intent per test. n=1 is SCREENING only; winners are replicated in E01b. Durations set from real /estimate prices (2026-10-07): Seedance 4s@480p ~$0.82, Kling 4s ~$0.57, Hailuo 6s $0.24.",
+ "_doc": "E01: model screening. 8 tests x 3 models x 1 take, 5-6 s, same start frame + same intent per test. n=1 is SCREENING only; winners are replicated in E01b. Durations set from real /estimate prices (2026-10-07): Seedance 4s@480p ~$0.82, Kling 4s ~$0.57, Hailuo 6s $0.24. Niches: drinks (T01,T02,T08), tech (T03), food (T04), people/UGC (T05), beauty (T06), fashion/FOOH (T07). All brands fictional.",
  "defaults": {
   "takes": 1
  },
@@ -103,8 +103,8 @@
     "model": "seedance25"
    },
    "args": {
-    "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
-    "image_url": "@file:../../assets/A1_can.png",
+    "prompt": "A hand with natural skin enters from the right, picks up the open earbud case with five fingers, lifts one earbud out and holds it toward the camera, then lowers it. The case stays rigid, the embossed word ORBIT remains identical. Static camera, rim light. Audio: a soft magnetic click, no music.",
+    "image_url": "@file:../../assets/A7_earbuds.png",
     "duration": 4,
     "resolution": "480p",
     "generate_audio": true
@@ -119,8 +119,8 @@
     "model": "kling30pro"
    },
    "args": {
-    "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
-    "image_url": "@file:../../assets/A1_can.png",
+    "prompt": "A hand with natural skin enters from the right, picks up the open earbud case with five fingers, lifts one earbud out and holds it toward the camera, then lowers it. The case stays rigid, the embossed word ORBIT remains identical. Static camera, rim light. Audio: a soft magnetic click, no music.",
+    "image_url": "@file:../../assets/A7_earbuds.png",
     "duration": 4,
     "sound": "on"
    }
@@ -134,8 +134,8 @@
     "model": "hailuo23"
    },
    "args": {
-    "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
-    "image_url": "@file:../../assets/A1_can.png",
+    "prompt": "A hand with natural skin enters from the right, picks up the open earbud case with five fingers, lifts one earbud out and holds it toward the camera, then lowers it. The case stays rigid, the embossed word ORBIT remains identical. Static camera, rim light. Audio: a soft magnetic click, no music.",
+    "image_url": "@file:../../assets/A7_earbuds.png",
     "duration": 6
    }
   },
@@ -283,7 +283,7 @@
     "model": "seedance25"
    },
    "args": {
-    "prompt": "A giant turquoise drink can, as tall as the two-story shops, rises out of the middle of the street like it was always there, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep rumble, no music.",
+    "prompt": "A giant coral-and-white running sneaker, as tall as the two-story shops, lands softly in the middle of the street as if stepping down from the sky, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep soft thud, no music.",
     "image_url": "@file:../../assets/A6_street.png",
     "duration": 4,
     "resolution": "480p",
@@ -299,7 +299,7 @@
     "model": "kling30pro"
    },
    "args": {
-    "prompt": "A giant turquoise drink can, as tall as the two-story shops, rises out of the middle of the street like it was always there, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep rumble, no music.",
+    "prompt": "A giant coral-and-white running sneaker, as tall as the two-story shops, lands softly in the middle of the street as if stepping down from the sky, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep soft thud, no music.",
     "image_url": "@file:../../assets/A6_street.png",
     "duration": 4,
     "sound": "on"
@@ -314,7 +314,7 @@
     "model": "hailuo23"
    },
    "args": {
-    "prompt": "A giant turquoise drink can, as tall as the two-story shops, rises out of the middle of the street like it was always there, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep rumble, no music.",
+    "prompt": "A giant coral-and-white running sneaker, as tall as the two-story shops, lands softly in the middle of the street as if stepping down from the sky, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep soft thud, no music.",
     "image_url": "@file:../../assets/A6_street.png",
     "duration": 6
    }

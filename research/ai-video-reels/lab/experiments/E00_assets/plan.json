@@ -7,7 +7,8 @@
   {
    "id": "A1_can",
    "tags": {
-    "asset": "A1_can"
+    "asset": "A1_can",
+    "niche": "drinks"
    },
    "args": {
     "prompt": "Studio packshot of a single slim 12oz aluminum drink can standing upright on a seamless pale-sand backdrop, soft key light from the left, gentle contact shadow. The can is matte turquoise with a white horizontal band; on the band the word \"TIDEWATER\" in bold black condensed sans-serif capitals, centered; below it smaller text \"ELECTROLYTE WATER\". Clean silver top. Photorealistic commercial product photography, 85mm, the whole can visible with space around it. No other objects, no extra text.",
@@ -20,7 +21,8 @@
   {
    "id": "A3_food",
    "tags": {
-    "asset": "A3_food"
+    "asset": "A3_food",
+    "niche": "food"
    },
    "args": {
     "prompt": "A glossy double cheeseburger on a dark walnut table in a warm diner, melted cheddar dripping over the patty, sesame bun, a few fries beside it, steam rising, warm practical light from the right, shallow depth of field, photorealistic food photography, 70mm. No people, no text, no logos.",
@@ -32,7 +34,8 @@
   {
    "id": "A4_face",
    "tags": {
-    "asset": "A4_face"
+    "asset": "A4_face",
+    "niche": "people (synthetic)"
    },
    "args": {
     "prompt": "Head-and-shoulders portrait of a friendly woman in her early 30s with curly dark hair, light freckles, natural skin texture with visible pores, no makeup look, white linen shirt, standing on a sunny Florida porch with palm leaves softly blurred behind her, warm late-afternoon light from the left, looking straight into the lens with a slight smile, 50mm, photorealistic. No text.",
@@ -44,7 +47,8 @@
   {
    "id": "A5_serum",
    "tags": {
-    "asset": "A5_serum"
+    "asset": "A5_serum",
+    "niche": "beauty"
    },
    "args": {
     "prompt": "Extreme macro of a clear glass serum dropper bottle with a black rubber pipette on a wet white marble surface, a single golden drop hanging from the pipette tip, soft diffused top light, tiny highlights, photorealistic cosmetic product photography, 100mm macro. No text, no labels.",
@@ -56,7 +60,8 @@
   {
    "id": "A6_street",
    "tags": {
-    "asset": "A6_street"
+    "asset": "A6_street",
+    "niche": "location (public street)"
    },
    "args": {
     "prompt": "Wide shot of a sunny palm-lined street in Boca Raton, Florida at midday: pastel Mediterranean-style shops, white sidewalks, a few parked cars, clear blue sky, hard shadows, eye-level 24mm, photorealistic. An empty area in the middle of the street. No people close to camera, no text, no logos.",
@@ -64,6 +69,34 @@
     "resolution": "1080p"
    },
    "model": "higgsfield-ai/soul/v2/standard"
+  },
+  {
+   "id": "A2_sneaker",
+   "tags": {
+    "asset": "A2_sneaker",
+    "niche": "fashion"
+   },
+   "model": "marketing-studio/image/flare",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "1k",
+    "quality": "high",
+    "prompt": "Studio product photo of a single original running sneaker design (no existing brand): sculpted white foam midsole, coral knit upper, mint-green heel tab printed with the word \"STRIDEFORM\" in small bold capitals, side view on a seamless pale-grey backdrop, soft key light from the left, gentle shadow. Photorealistic, 85mm. No other logos, no swoosh or stripes, no other text."
+   }
+  },
+  {
+   "id": "A7_earbuds",
+   "tags": {
+    "asset": "A7_earbuds",
+    "niche": "tech"
+   },
+   "model": "marketing-studio/image/flare",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "1k",
+    "quality": "high",
+    "prompt": "Studio product photo of an original pebble-shaped matte black wireless earbud charging case, lid open showing two earbuds, the word \"ORBIT\" embossed small on the front of the case, on a dark slate surface with a thin rim light, photorealistic, 100mm. No other logos, no other text, not resembling any existing brand."
+   }
   }
  ]
 }
