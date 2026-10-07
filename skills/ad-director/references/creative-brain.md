@@ -2,6 +2,8 @@
 
 We are an ad studio. A visual effect is not an idea. **Spectacle without a point is a demo**, and demos don't get shared, commented on or bought from.
 
+**Step 0: pick the TONE first** (aesthetic brand film · ASMR ritual · comedy sketch · UGC). The default for this studio's client is an **aesthetic brand film**: clean, premium, brand recognisable in every shot, no talking heads. For an aesthetic film the "punchline" is a **visual payoff** (the reveal, the cold-proof moment, the logo resolve), not a joke.
+
 Every ad must have a **PUNCHLINE**: a final turn that makes the viewer laugh, gasp or nod, and that **only works because of the product**.
 
 ## 1. The four laws (an ad that breaks one is killed, however pretty it is)
