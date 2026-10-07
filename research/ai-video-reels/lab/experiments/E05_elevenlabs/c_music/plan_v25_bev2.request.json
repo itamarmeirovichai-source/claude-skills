@@ -1,0 +1,90 @@
+{
+ "chunks": [
+  {
+   "text": "[Intro]\n{near silence}",
+   "duration_ms": 3000,
+   "positive_styles": [
+    "minimal electronic",
+    "premium energy drink commercial",
+    "124 BPM",
+    "F minor",
+    "instrumental",
+    "single sub-bass hum only",
+    "very quiet",
+    "pristine modern production"
+   ],
+   "negative_styles": [
+    "vocals",
+    "drums",
+    "melody",
+    "loud"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Build]\n{filtered kick}\n{riser}\n{drop gap}",
+   "duration_ms": 6000,
+   "positive_styles": [
+    "low-pass filtered kick",
+    "white-noise riser",
+    "tension building fast",
+    "ends with a half-beat of silence"
+   ],
+   "negative_styles": [
+    "vocals",
+    "full drop"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Drop]\n{drop hits on the first beat}",
+   "duration_ms": 6000,
+   "positive_styles": [
+    "drop starts immediately on beat one",
+    "punchy kick and clap",
+    "distorted synth stabs",
+    "maximum energy"
+   ],
+   "negative_styles": [
+    "vocals",
+    "intro",
+    "build-up",
+    "fade in"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Break]\n{silence}",
+   "duration_ms": 3000,
+   "positive_styles": [
+    "hard stop",
+    "total silence",
+    "tape stop"
+   ],
+   "negative_styles": [
+    "drums",
+    "bass",
+    "melody",
+    "vocals"
+   ],
+   "context_adherence": "low"
+  },
+  {
+   "text": "[Outro]\n{one huge impact}\n{chord rings out}",
+   "duration_ms": 4000,
+   "positive_styles": [
+    "one massive cinematic impact on the downbeat",
+    "loud",
+    "F minor stab chord with long reverb tail",
+    "brand sonic logo"
+   ],
+   "negative_styles": [
+    "vocals",
+    "silence",
+    "fade in",
+    "quiet"
+   ],
+   "context_adherence": "low"
+  }
+ ]
+}
