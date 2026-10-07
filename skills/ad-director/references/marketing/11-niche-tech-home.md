@@ -4,18 +4,15 @@ Builds on 00 (BIG IDEA, 10 steps), 02 (AI scores), 05 (light vocabulary), 06 (an
 
 ## Frame study (real spots, YouTube storyboards, 2026-10-07)
 Sheets: `research/ai-video-reels/youtube/frames/niches/tech-home/*.jpg` (git-ignored; full downloads were bot-blocked, so these are YouTube `sb0` storyboards at about 1 fps).
-- **AirPods Pro 3** (youtu.be/EMmKs8vMKhU): a white void, black-silhouette dancers, and sound drawn as iridescent glass rings. The earbud floats at 3/4. Each feature gets **one feature line per 1.5 s beat** ("Heart rate sensing during workouts"). "The world's best in-ear ANC" always carries a fine-print footnote. It is all CG; we copy the grammar, not the look.
-- **Nothing Headphone (1)** (youtu.be/7k1DxGDnT_I): real 35 mm, a cold teal-grey grade, and a sterile "test lab" with technicians in clear raincoats. Behind the wearer hang **printed photo backdrops (forest, moon, city)**: the "transported by sound" claim done as a lo-fi practical. Low angles, a hand cupping the earcup, and tiny dot-matrix type on black.
-- **Sonos Ace** (youtu.be/Teztdi5ISmU): NYC brick streets, one pink faux-fur colour world, the hand-to-earcup gesture, a small wordmark bug bottom-right on every frame, and a warm, grainy grade.
-- **B&O × CLOT A1** (youtu.be/S0hw3e9Wbkw): one red world. A macro of the grille perforations, the speaker sunk in red liquid that **ripples with the beat**, and one tiny tracked super: "THE RHYTHM OF A HEARTBEAT".
-- **Our Place Always Pan** (youtu.be/GXnzCDVHwj0): 31 s and about 15 functions at 1–1.5 s each (sauté, steam basket, fry, strain). A sticky sauce wipes clean as the non-stick proof. A dog on the sofa supplies lifestyle. Ends on a top-down tablescape with a serif logo.
-- **Diptyque**: "Light on, time off" (2026) is a real-time film of a 50-hour burn, with a 12-hour YouTube cut (youtu.be/Q3oSA5zeVXc) and DOOH ([marketech-apac](https://marketech-apac.com/diptyque-spotlights-slow-living-with-new-global-campaign-centred-on-its-signature-candle/)). The how-to series (youtu.be/txTDaQPjRCA) uses lilac theatrical arches with lowercase serif italics.
-- **YETI "Don't Get Them a YETI"** (W+K, Nov 2025; youtu.be/1mpZZZkrgAU; [AdsOfTheWorld](https://www.adsoftheworld.com/campaigns/don-t-get-them-a-yeti)): a gift-wrapped cooler falls off a truck and tumbles through mud and air (abuse as proof). **Mixed formats**: fisheye, IR trail-cam, a 5:00 alarm clock, 4:3 phone photos. Weathered faces, a desaturated earth-teal grade, and a twist line at the end.
-- **BarkBox** (youtu.be/DBGbNzikj8g): a **POV from inside the box** looking up at a dog and family, the toy in play, the dog eating at a picnic. Real dogs only. Bark's "Carol of the Squeakers" spot was made *for dogs*, built from squeakers and doorbells to get reactions filmed ([MediaPost](https://www.mediapost.com/publications/article/379724/barks-new-ad-speaks-directly-to-your-dog.html)).
-- **Higgsfield Kling 3.0 community** ([kling-30-community](https://higgsfield.ai/kling-30-community)):
-  - The "camera gripping the animal's tail" cheetah sprint: the gait reads, but the grass smears painterly and the sky is oversaturated.
-  - The sprinter-to-jet clip: human motion is convincing in wides and low-angle profiles.
-  - The "camera rigidly locked to a paper bag, world rushes past" clip is a product snorricam template.
+- **AirPods Pro 3** (youtu.be/EMmKs8vMKhU): white void, silhouette dancers, iridescent glass rings as sound, the earbud floating at 3/4. One feature line per 1.5 s beat. Superlatives carry fine-print footnotes. It is CG: copy the grammar, not the look.
+- **Nothing Headphone (1)** (youtu.be/7k1DxGDnT_I): real 35 mm, a cold teal-grey "test lab", and **printed photo backdrops (forest, moon, city)** behind the wearer, so "transported by sound" is done as a lo-fi practical. Hand cupping the earcup, low angles, dot-matrix type on black.
+- **Sonos Ace** (youtu.be/Teztdi5ISmU): NYC brick, one pink faux-fur colour world, the earcup gesture, a wordmark bug on every frame.
+- **B&O × CLOT A1** (youtu.be/S0hw3e9Wbkw): one red world, a grille-perforation macro, the speaker sunk in red liquid that **ripples with the beat**, one tiny tracked super.
+- **Our Place** (youtu.be/GXnzCDVHwj0): about 15 uses in 31 s (1–1.5 s each), a sticky-sauce wipe-clean proof, a dog on the sofa, a top-down tablescape end card.
+- **Diptyque "Light on, time off"** (2026): a real-time film of the 50 h burn, with a 12 h YouTube cut and DOOH ([marketech-apac](https://marketech-apac.com/diptyque-spotlights-slow-living-with-new-global-campaign-centred-on-its-signature-candle/)). The how-to films use lilac arches and lowercase serif italics (youtu.be/txTDaQPjRCA).
+- **YETI "Don't Get Them a YETI"** (W+K 2025; youtu.be/1mpZZZkrgAU; [AdsOfTheWorld](https://www.adsoftheworld.com/campaigns/don-t-get-them-a-yeti)): a gift-wrapped cooler tumbles off a truck through mud (abuse = proof). **Mixed formats**: fisheye, IR trail-cam, 4:3 snapshots, a 5:00 alarm. Desaturated earth-teal.
+- **BarkBox** (youtu.be/DBGbNzikj8g): a POV from inside the box looking up at the dog and family. Real dogs. Bark's squeaker carol was made *for dogs* to get filmed reactions ([MediaPost](https://www.mediapost.com/publications/article/379724/barks-new-ad-speaks-directly-to-your-dog.html)).
+- **Higgsfield Kling 3.0 community** ([link](https://higgsfield.ai/kling-30-community)): a cheetah "tail-cam" (gait reads; grass smears painterly, sky oversaturated); a sprinter (wides and low profiles convincing); "camera rigidly locked to a paper bag, world rushes past" (a product snorricam template).
 
 ## Shared rules for these five niches
 - **Proof is the purchase driver here, unlike fragrance.** AI footage must never *be* the demonstration. Show proof as (a) a **metaphor/BIG IDEA**, (b) a **spec super with footnote** ("up to 40 h, ANC off, 50% volume"), or (c) a "dramatization" label. Real demo clips are for client work only. FTC: no fake or AI testimonials or reviews (since 2024-10-21).
@@ -345,9 +342,4 @@ Sheets: `research/ai-video-reels/youtube/frames/niches/tech-home/*.jpg` (git-ign
 | Pets | head tilt at a sound | Seedance refs + pet sheet | reaction (labelled) |
 
 ## Sources
-- Apple "Quiet the Noise": [shots.net](https://shots.net/news/view/megaforce-quiet-the-noise-for-apple); [B&T](https://www.bandt.com.au/apple-releases-calming-quiet-the-noise-spot-spruiking-airpods-noise-cancelling/)
-- Sonos Era 300 (72andSunny): [AdsOfTheWorld](https://www.adsoftheworld.com/campaigns/feel-sound-all-around)
-- Our Place content strategy: [NoGood](https://nogood.io/blog/our-place-how-to-create-successful-branded-content/)
-- Pet TikTok creative: [Agrowth](https://agrowth.io/blogs/tiktok-ads/tiktok-ads-for-pet-brands); [OptiMonk on BARK](https://www.optimonk.com/bark-marketing-breakdown)
-- YETI: [Creative Review](https://www.creativereview.co.uk/dont-get-them-a-yeti-says-yeti-ad-campaign/)
-- All other URLs are inline above. YouTube IDs are listed in the frame study.
+Apple: [shots.net](https://shots.net/news/view/megaforce-quiet-the-noise-for-apple). Sonos: [AdsOfTheWorld](https://www.adsoftheworld.com/campaigns/feel-sound-all-around). Our Place: [NoGood](https://nogood.io/blog/our-place-how-to-create-successful-branded-content/). Pets: [Agrowth](https://agrowth.io/blogs/tiktok-ads/tiktok-ads-for-pet-brands). Everything else is inline.
