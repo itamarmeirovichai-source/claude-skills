@@ -52,3 +52,12 @@ Every entry has a date, an experiment, a finding, the supporting number and a de
   2. Avoid talking heads and lip-sync unless asked. If dialogue is needed, use 1080p and check the sync before the edit.
   3. Everything in motion, Celsius-level product stills as the base.
 - **Brain change:** before writing jokes, ask (or infer) the **tone**: aesthetic brand film / ASMR ritual / comedy / UGC. This client's default is the aesthetic brand film.
+
+### 2026-10-07 · User on the AURUM clean film: "better, but still not perfect"
+Self-critique against the new research briefs (marketing/01, 02):
+1. **Monotony:** 7 shots with the same centred bottle and similar framing. No shot-size variety (wide, mid, macro), no scale and no context.
+2. **Inconsistent colour world:** the backgrounds jump between a teal/gold gradient, black marble and dark bokeh. One set and one palette per film.
+3. **No consumer scene or ritual:** no hand, glass, pour or sip. Research shows craft plus a consumer scene raises purchase intent.
+4. **No mechanism or single-minded claim:** "SOURCE 1987" is never paid off. The film never shows *why* this water.
+5. **No CTA and no sonic logo designed as a brand asset.** Pacing is uniform, with no speed ramp and no peak.
+→ Next flagship must pass the 15 gates in `marketing/01-fundamentals.md` §7 before generation.
