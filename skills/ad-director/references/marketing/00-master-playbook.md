@@ -8,6 +8,9 @@ This synthesises 01-fundamentals, 02-niches, 03-platforms and 04-ai-craft, plus 
 - **Everything moves.** Product stills are at Celsius level (colour world, props, cold or sensory proof, mirror surface, hard light).
 - Avoid monotony: vary shot sizes, include a consumer scene (hands or body, no face), keep **one** colour world per film, pay off a mechanism, end on a CTA.
 
+## The BIG IDEA rule (learned on F02)
+Before any shot list, design **one big-idea shot**: the single-minded claim made *literally visible* in one impossible-but-elegant image (VESPER: "Wear the golden hour" → the sun sets into the bottle). It is the hook in 0–3 s and is paid off once more later. A film without it reads like a beautiful catalogue: "good, not enough".
+
 ## The 10-step pipeline
 1. **Niche and product.**
    - Pick a niche where AI excels (02-niches "Top 5": fragrance, leather/luxury goods, coffee, candles, watches/jewelry/sneakers).

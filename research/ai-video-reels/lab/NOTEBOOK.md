@@ -84,3 +84,17 @@ Self-critique against the new research briefs (marketing/01, 02):
   - Supers over busy areas need a soft dark box.
 - **Cost: $6.81** (refs $0.60, stills $2.40, the failed S6 still was not billed, the S6 retake $0.30, motion $3.81). Under the $10 cap.
 - Spec: `experiments/F02_vesper/F02_VESPER_v1.json`.
+
+### 2026-10-07 · F02 VESPER v2: "good but not enough" → add ONE BIG IDEA
+- **Diagnosis of v1:** it was beautiful but a "catalogue". It had no single visual idea that stops the scroll or that people retell.
+- **Fix:** literalise the claim. "Wear the golden hour" became **the sun sets into the bottle**.
+  - Flare start/end key frames: W1 has the sun aligned behind the cap; W2 is blue hour with the bottle glowing.
+  - Kling 3.0 Pro i2v with `last_image_url` timelapse. Excellent: the sun passes through the cap and the city refracts inside the juice. ($0.48)
+  - Payoff shot: a tiny sun swirling inside the perfume, "A sunset, captured."
+- **Finish upgrades:**
+  - Downloaded Google Fonts Cinzel (logo) and Cormorant Garamond (copy) into `~/.cache/reel-studio/fonts` via the fonts.googleapis CSS API with UA "Wget" (returns .ttf).
+  - Global glow/halation 0.35, film grain overlay, vignette.
+  - light_leak transitions only (max 2 transition types).
+  - Notes shots cut to 1.6 s.
+- **Rule for the brain:** every flagship needs a **"big idea shot"**: the claim made literally visible in one impossible-but-elegant image. It opens the film and gets paid off later. Design it FIRST, then the rest.
+- **Cost:** v2 added $1.85, so F02 total is **$8.66** of $10.
