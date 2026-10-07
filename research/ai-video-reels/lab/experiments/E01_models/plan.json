@@ -1,5 +1,5 @@
 {
- "_doc": "E01: model screening. 8 tests x 3 models x 1 take, 5-6 s, same start frame + same intent per test. n=1 is SCREENING only; winners are replicated in E01b.",
+ "_doc": "E01: model screening. 8 tests x 3 models x 1 take, 5-6 s, same start frame + same intent per test. n=1 is SCREENING only; winners are replicated in E01b. Durations set from real /estimate prices (2026-10-07): Seedance 4s@480p ~$0.82, Kling 4s ~$0.57, Hailuo 6s $0.24.",
  "defaults": {
   "takes": 1
  },
@@ -15,7 +15,7 @@
    "args": {
     "prompt": "Static locked camera. The can slowly rotates 90 degrees on its own axis on the backdrop, revealing its side and returning; the label stays sharp, the word TIDEWATER and all printed text remain perfectly identical and legible; the can is rigid and does not bend. Soft key light from the left. No other objects. Audio: quiet studio room tone, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -31,7 +31,7 @@
    "args": {
     "prompt": "Static locked camera. The can slowly rotates 90 degrees on its own axis on the backdrop, revealing its side and returning; the label stays sharp, the word TIDEWATER and all printed text remain perfectly identical and legible; the can is rigid and does not bend. Soft key light from the left. No other objects. Audio: quiet studio room tone, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -60,7 +60,7 @@
    "args": {
     "prompt": "The can's tab opens with a crisp pop, the can tilts and pours clear sparkling water into a tall glass with ice cubes that slides into frame from the right; realistic bubbles and splashes, the liquid level in the glass rises naturally. Slow push-in. Soft key light from the left. Audio: can pop, fizz, ice clinks, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -76,7 +76,7 @@
    "args": {
     "prompt": "The can's tab opens with a crisp pop, the can tilts and pours clear sparkling water into a tall glass with ice cubes that slides into frame from the right; realistic bubbles and splashes, the liquid level in the glass rises naturally. Slow push-in. Soft key light from the left. Audio: can pop, fizz, ice clinks, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -105,7 +105,7 @@
    "args": {
     "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -121,7 +121,7 @@
    "args": {
     "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
     "image_url": "@file:../../assets/A1_can.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -150,7 +150,7 @@
    "args": {
     "prompt": "Melted cheddar slowly drips down the side of the burger patty, steam rises and drifts, a sesame seed rolls off the bun; slow dolly-in ending on a close-up of the cheese drip. Warm practical light from the right. Audio: soft sizzle, diner ambience, no music.",
     "image_url": "@file:../../assets/A3_food.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -166,7 +166,7 @@
    "args": {
     "prompt": "Melted cheddar slowly drips down the side of the burger patty, steam rises and drifts, a sesame seed rolls off the bun; slow dolly-in ending on a close-up of the cheese drip. Warm practical light from the right. Audio: soft sizzle, diner ambience, no music.",
     "image_url": "@file:../../assets/A3_food.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -195,7 +195,7 @@
    "args": {
     "prompt": "The woman looks into the lens, smiles naturally and says one short sentence, blinking normally, a light breeze moving her curls; static camera, medium close-up. Dialogue: \"Honestly, this is my favorite part of the day.\" Warm, relaxed tone. Natural skin texture, no smoothing. Audio: porch ambience, birds, no music.",
     "image_url": "@file:../../assets/A4_face.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -211,7 +211,7 @@
    "args": {
     "prompt": "The woman looks into the lens, smiles naturally and says one short sentence, blinking normally, a light breeze moving her curls; static camera, medium close-up. Dialogue: \"Honestly, this is my favorite part of the day.\" Warm, relaxed tone. Natural skin texture, no smoothing. Audio: porch ambience, birds, no music.",
     "image_url": "@file:../../assets/A4_face.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -240,7 +240,7 @@
    "args": {
     "prompt": "The golden drop falls from the pipette in slow motion, lands on the marble and spreads into a perfect glossy round puddle with a tiny ripple; extreme macro, very slow push-in, soft diffused top light. Audio: a single soft drip, silence, no music.",
     "image_url": "@file:../../assets/A5_serum.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -256,7 +256,7 @@
    "args": {
     "prompt": "The golden drop falls from the pipette in slow motion, lands on the marble and spreads into a perfect glossy round puddle with a tiny ripple; extreme macro, very slow push-in, soft diffused top light. Audio: a single soft drip, silence, no music.",
     "image_url": "@file:../../assets/A5_serum.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -285,7 +285,7 @@
    "args": {
     "prompt": "A giant turquoise drink can, as tall as the two-story shops, rises out of the middle of the street like it was always there, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep rumble, no music.",
     "image_url": "@file:../../assets/A6_street.png",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true
    }
@@ -301,7 +301,7 @@
    "args": {
     "prompt": "A giant turquoise drink can, as tall as the two-story shops, rises out of the middle of the street like it was always there, casting a correct hard shadow onto the asphalt; people on the far sidewalk stop and look up; static wide camera. Audio: street ambience, a deep rumble, no music.",
     "image_url": "@file:../../assets/A6_street.png",
-    "duration": 5,
+    "duration": 4,
     "sound": "on"
    }
   },
@@ -329,7 +329,7 @@
    },
    "args": {
     "prompt": "Vertical 9:16. Fast FPV drone flight low over a palm-lined sunny Florida street, weaving between palm trunks, then rising over a beach and diving down to end on a single turquoise drink can standing in the sand at the waterline. Hard tropical midday sun, saturated colors, photorealistic. Audio: wind rush, waves, no music. No text.",
-    "duration": 5,
+    "duration": 4,
     "resolution": "480p",
     "generate_audio": true,
     "aspect_ratio": "9:16"
@@ -345,7 +345,7 @@
    },
    "args": {
     "prompt": "Vertical 9:16. Fast FPV drone flight low over a palm-lined sunny Florida street, weaving between palm trunks, then rising over a beach and diving down to end on a single turquoise drink can standing in the sand at the waterline. Hard tropical midday sun, saturated colors, photorealistic. Audio: wind rush, waves, no music. No text.",
-    "duration": 5,
+    "duration": 4,
     "sound": "on",
     "aspect_ratio": "9:16"
    }

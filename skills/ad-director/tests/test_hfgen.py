@@ -199,3 +199,21 @@ def test_missing_ref_file_is_caught(api, tmp_path):
     p = write_plan(tmp_path, [{"id": "x", "model": "m/video", "args": {"image_url": "@file:frames/nope.png"}}])
     with pytest.raises(SystemExit, match="missing reference"):
         H.cmd_batch(p, budget=10, dry_run=True, yes=True, concurrency=1, out=None, salt="", only=None)
+
+
+def test_price_from_description_video_and_image():
+    d = ("For 16:9 video without video input, your request costs roughly $0.2056 per second of generated video "
+         "at 480p, $0.4622 at 720p, and $1.1372 at 1080p. Each 1,000 video tokens costs $0.0214 at 480p or 720p "
+         "and $0.0234 at 1080p.")
+    assert H.price_from_description(d, {"resolution": "480p", "duration": 4}) == pytest.approx(0.8224)
+    assert H.price_from_description(d, {"duration": 5}) == pytest.approx(2.311)
+    img = "Per 1M tokens: text input $5, image input $8, image output $30."
+    assert H.price_from_description(img, {"resolution": "1k"}) == 0.12
+    assert H.price_from_description("unknown pricing", {}) is None
+
+
+def test_proxy_mode_sends_no_key(monkeypatch):
+    monkeypatch.delenv("HF_KEY", raising=False)
+    assert H.credentials({"HF_AUTH_VIA_PROXY": "1"}) is None
+    with pytest.raises(SystemExit):
+        H.credentials({})

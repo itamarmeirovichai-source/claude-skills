@@ -15,6 +15,7 @@ Commands
 
 Credentials (environment only, never on the command line):
   HF_KEY="key_id:key_secret"   or   HF_API_KEY_ID + HF_API_KEY_SECRET
+  or HF_AUTH_VIA_PROXY=1 when a network secret injects "Authorization: Key ..." for api.higgsfield.ai
   (also accepted: HF_API_KEY + HF_API_SECRET, or HIGGSFIELD_API_KEY="id:secret")
 
 Model ids are endpoint paths from https://console.higgsfield.ai (for example
@@ -41,6 +42,7 @@ import json
 import mimetypes
 import os
 import random
+import re
 import sys
 import threading
 import time
@@ -68,7 +70,8 @@ def log(*a):
 
 # ───────────────────────── credentials / http ─────────────────────────
 
-def credentials(env: dict | None = None) -> str:
+def credentials(env: dict | None = None, required: bool = True) -> str | None:
+    """Key from the environment, or None when HF_AUTH_VIA_PROXY=1 (a network secret injects the header)."""
     e = os.environ if env is None else env
     if e.get("HF_KEY") and ":" in e["HF_KEY"]:
         return e["HF_KEY"].strip()
@@ -77,6 +80,8 @@ def credentials(env: dict | None = None) -> str:
             return f"{e[a].strip()}:{e[b].strip()}"
     if e.get("HIGGSFIELD_API_KEY") and ":" in e["HIGGSFIELD_API_KEY"]:
         return e["HIGGSFIELD_API_KEY"].strip()
+    if e.get("HF_AUTH_VIA_PROXY") == "1" or not required:
+        return None
     raise SystemExit("No Higgsfield credentials. Set HF_KEY='key_id:key_secret' in the environment settings "
                      "(or HF_API_KEY_ID + HF_API_KEY_SECRET). Never paste keys into chat.")
 
@@ -85,7 +90,9 @@ def _request(method: str, url: str, body: dict | None = None, headers: dict | No
              auth: bool = True, retries: int = 4, timeout: float = 60) -> dict:
     h = {"Accept": "application/json"}
     if auth:
-        h["Authorization"] = "Key " + credentials()
+        cred = credentials()
+        if cred:
+            h["Authorization"] = "Key " + cred
     if body is not None:
         h["Content-Type"] = "application/json"
     h.update(headers or {})
@@ -120,8 +127,33 @@ def _request(method: str, url: str, body: dict | None = None, headers: dict | No
 
 # ───────────────────────── API wrappers ─────────────────────────
 
+IMAGE_TOKEN_FALLBACK_USD = {"1k": 0.12, "2k": 0.30, "4k": 0.80}
+
+
+def price_from_description(desc: str, args: dict) -> float | None:
+    """Conservative USD for models whose /estimate returns text instead of a number.
+    Video: '$X per second ... at 480p, $Y at 720p' x duration (list price, before discount).
+    Token-priced images: fixed conservative fallback by resolution."""
+    per_second = re.split(r"(?i)each [\d,]+ (?:video )?tokens", desc)[0]  # ignore the per-token rates
+    rates = {}
+    for v, res in re.findall(r"\$([\d.]+)(?: per second of generated video)? at (\d{3,4}p)", per_second):
+        rates.setdefault(res, float(v))
+    if rates:
+        res = str(args.get("resolution", "720p"))
+        rate = rates.get(res) or max(rates.values())
+        return round(rate * float(args.get("duration", 5)), 4)
+    if "image output" in desc.lower():
+        return IMAGE_TOKEN_FALLBACK_USD.get(str(args.get("resolution", "2k")).lower(), 0.80) * max(1, int(args.get("batch_size", 1)))
+    return None
+
+
 def estimate(model: str, args: dict) -> dict:
-    return _request("POST", f"{API}/estimate/{model.strip('/')}", args)
+    e = _request("POST", f"{API}/estimate/{model.strip('/')}", args)
+    if e.get("usd") is None and e.get("pricing_description"):
+        usd = price_from_description(e["pricing_description"], args)
+        if usd is not None:
+            e = {**e, "usd": f"{usd}", "est_source": "description"}
+    return e
 
 
 def submit(model: str, args: dict, idem: str) -> dict:
@@ -357,7 +389,8 @@ def main(argv: list[str] | None = None) -> int:
         return json.loads(p.read_text()) if p.exists() else json.loads(x)
 
     if a.cmd == "check":
-        credentials()
+        if credentials() is None:
+            print("no key in env: relying on the agent proxy network secret (HF_AUTH_VIA_PROXY=1)")
         try:
             status("00000000-0000-0000-0000-000000000000")
         except HFError as ex:
