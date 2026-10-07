@@ -53,6 +53,7 @@ Stage order: **A** hero frame (4 variants) → pick → **B** story frames (same
 
 
 ## Quality standards (read before every job)
+- **`references/creative-brain.md` comes FIRST:** the four laws (insight, tension, twist, brand-in-twist), 12 punchline mechanisms, virality mechanics, the pre-generation gates and the full-stack output contract (script → images → video → voice → SFX → music → edit → QC → retro). No ad without a punchline.
 - `references/image-direction.md`: studio-photography method, 16 hero recipes, per-model image prompt formats, image QC rubric (regenerate below 8/10).
 - `references/video-realism.md`: 10 realism rules, model cards from our lab, Seedance 2.5 and Kling multi-shot master formats.
 - `references/ad-storytelling.md`: every portfolio piece is an ad with a brief, a message, a story arc, a VO script and a CTA, plus the edit standard.
