@@ -1,0 +1,59 @@
+{
+ "_doc": "E00: test assets (fictional brand TIDEWATER). 2 variants each, Claude picks the best into ../assets/<id>.png",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 2,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "A1_can",
+   "tags": {
+    "asset": "A1_can"
+   },
+   "args": {
+    "prompt": "Studio packshot of a single slim 12oz aluminum drink can standing upright on a seamless pale-sand backdrop, soft key light from the left, gentle contact shadow. The can is matte turquoise with a white horizontal band; on the band the word \"TIDEWATER\" in bold black condensed sans-serif capitals, centered; below it smaller text \"ELECTROLYTE WATER\". Clean silver top. Photorealistic commercial product photography, 85mm, the whole can visible with space around it. No other objects, no extra text."
+   }
+  },
+  {
+   "id": "A3_food",
+   "tags": {
+    "asset": "A3_food"
+   },
+   "args": {
+    "prompt": "A glossy double cheeseburger on a dark walnut table in a warm diner, melted cheddar dripping over the patty, sesame bun, a few fries beside it, steam rising, warm practical light from the right, shallow depth of field, photorealistic food photography, 70mm. No people, no text, no logos."
+   }
+  },
+  {
+   "id": "A4_face",
+   "tags": {
+    "asset": "A4_face"
+   },
+   "args": {
+    "prompt": "Head-and-shoulders portrait of a friendly woman in her early 30s with curly dark hair, light freckles, natural skin texture with visible pores, no makeup look, white linen shirt, standing on a sunny Florida porch with palm leaves softly blurred behind her, warm late-afternoon light from the left, looking straight into the lens with a slight smile, 50mm, photorealistic. No text."
+   }
+  },
+  {
+   "id": "A5_serum",
+   "tags": {
+    "asset": "A5_serum"
+   },
+   "args": {
+    "prompt": "Extreme macro of a clear glass serum dropper bottle with a black rubber pipette on a wet white marble surface, a single golden drop hanging from the pipette tip, soft diffused top light, tiny highlights, photorealistic cosmetic product photography, 100mm macro. No text, no labels."
+   }
+  },
+  {
+   "id": "A6_street",
+   "tags": {
+    "asset": "A6_street"
+   },
+   "args": {
+    "prompt": "Wide shot of a sunny palm-lined street in Boca Raton, Florida at midday: pastel Mediterranean-style shops, white sidewalks, a few parked cars, clear blue sky, hard shadows, eye-level 24mm, photorealistic. An empty area in the middle of the street. No people close to camera, no text, no logos."
+   }
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+*/clips/
+*/blind/
+assets/*.png
+assets/*.jpg
+experiments/*/clips/
+experiments/*/blind/
+__pycache__/
