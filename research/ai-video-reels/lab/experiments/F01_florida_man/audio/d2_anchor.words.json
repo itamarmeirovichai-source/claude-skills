@@ -1,11 +1,6 @@
 {
  "words": [
   {
-   "start": 0.0,
-   "end": 0.064,
-   "text": "[deadpan]"
-  },
-  {
    "start": 0.072,
    "end": 0.08,
    "text": "A"
@@ -44,16 +39,6 @@
    "start": 1.904,
    "end": 3.36,
    "text": "afternoon..."
-  },
-  {
-   "start": 3.384,
-   "end": 3.456,
-   "text": "[short"
-  },
-  {
-   "start": 3.464,
-   "end": 3.552,
-   "text": "pause]"
   },
   {
    "start": 3.562,

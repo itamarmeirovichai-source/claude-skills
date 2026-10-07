@@ -1,98 +1,73 @@
 {
  "words": [
   {
-   "start": 0.0,
-   "end": 0.012,
-   "text": "[breathless,"
-  },
-  {
-   "start": 0.013,
-   "end": 0.022,
-   "text": "squinting"
-  },
-  {
-   "start": 0.023,
-   "end": 0.025,
-   "text": "in"
-  },
-  {
-   "start": 0.029,
-   "end": 0.044,
-   "text": "the"
-  },
-  {
-   "start": 0.048,
-   "end": 0.084,
-   "text": "heat]"
-  },
-  {
-   "start": 0.091,
-   "end": 0.344,
+   "start": 0.304,
+   "end": 0.491,
    "text": "It's"
   },
   {
-   "start": 0.39,
-   "end": 0.824,
+   "start": 0.537,
+   "end": 0.971,
    "text": "ninety-eight"
   },
   {
-   "start": 0.894,
-   "end": 1.384,
+   "start": 1.031,
+   "end": 1.451,
    "text": "degrees"
   },
   {
-   "start": 1.424,
-   "end": 1.544,
+   "start": 1.491,
+   "end": 1.611,
    "text": "out"
   },
   {
-   "start": 1.624,
-   "end": 2.504,
+   "start": 1.675,
+   "end": 2.411,
    "text": "here..."
   },
   {
-   "start": 2.544,
-   "end": 2.664,
+   "start": 2.451,
+   "end": 2.571,
    "text": "and"
   },
   {
-   "start": 2.712,
-   "end": 3.144,
+   "start": 2.627,
+   "end": 3.131,
    "text": "witnesses"
   },
   {
-   "start": 3.204,
-   "end": 3.384,
+   "start": 3.191,
+   "end": 3.371,
    "text": "say"
   },
   {
-   "start": 3.424,
-   "end": 3.544,
+   "start": 3.411,
+   "end": 3.531,
    "text": "the"
   },
   {
-   "start": 3.59,
-   "end": 3.864,
+   "start": 3.577,
+   "end": 3.851,
    "text": "cooler"
   },
   {
-   "start": 3.953,
-   "end": 5.544,
+   "start": 3.922,
+   "end": 5.371,
    "text": "contains..."
   },
   {
-   "start": 5.614,
-   "end": 5.964,
-   "text": "[pause]"
+   "start": 5.869,
+   "end": 6.011,
+   "text": "imported"
   },
   {
-   "start": 5.978,
-   "end": 6.264,
-   "text": "electrolyte"
+   "start": 6.081,
+   "end": 6.571,
+   "text": "mineral"
   },
   {
-   "start": 6.344,
-   "end": 6.824,
+   "start": 6.638,
+   "end": 7.131,
    "text": "water."
   }
  ]
