@@ -82,3 +82,35 @@ Every ad must have a **PUNCHLINE**: a final turn that makes the viewer laugh, ga
 - **The silence before the punch is the joke's drumroll.** Drop the music.
 - **End on the button:** a tiny extra laugh after the tagline (the gator burps; the anchor slowly sips).
 - **Realism hides in formats:** news footage, CCTV, phone video and nature docs forgive AI imperfections and add believability.
+
+## 7. Upgrades v2 (writers' room → animatic → controlled performance)
+1. **Writers' room, fast and wide:**
+   - 20 premises in 10 minutes across at least 6 mechanisms. Kill 17.
+   - For the 3 survivors: **3 alternative punchlines + 3 alternative buttons + 3 taglines each**, then pick the sharpest combination.
+   - The tagline should *echo the joke* ("Worth wrestling for" beats a generic benefit line).
+2. **Synthetic audience panel** (Claude role-plays honestly, before spending):
+   - Five viewers: a Florida local, a Gen-Z scroller, a busy mom, a cynical marketer, the brand manager.
+   - Each answers four questions: Did you get it at 0:03? Did you laugh or gasp at the twist? What would you comment? Would you send it, and to whom?
+   - Fix anything two or more viewers flag.
+3. **Retention beat map:**
+   - Write one line per second for the whole ad.
+   - Every 3–4 s there must be a **re-hook**: a new image, a sound, a line, a reveal.
+   - Mark the silence-before-the-punch and the button.
+4. **Character bible before video:**
+   - Every recurring person or animal gets a cheap character sheet (Soul v2, batch of 4, ~$0.02). Pick one.
+   - Use that image as the identity reference in every image and video prompt. This prevents face drift across shots.
+5. **Animatic before video (the biggest money saver):**
+   - Generate a still for every shot (cheap), record VO, dialogue, SFX and music with ElevenLabs, and cut a **still animatic** in reel-studio with the real timing.
+   - Watch it and test the punchline. Only then spend on video.
+   - Bad timing costs cents here instead of dollars.
+6. **Controlled performance:**
+   - Generate on-camera dialogue with ElevenLabs first: one consistent voice per character, eleven_v3 tags for acting.
+   - Pass those lines to Seedance 2.5 as `audio_urls` references (they don't count as billable video input), so the lip-sync follows *our* delivery and timing.
+   - Re-lay the clean ElevenLabs audio in the edit.
+7. **Format camera specs** (realism through format):
+   - **News studio:** locked-off, cool key, a slight broadcast sharpening look.
+   - **Field news:** shoulder cam, auto-exposure pumping, a wind-noise feel.
+   - **Phone bystander:** vertical, digital zoom jumps, focus hunting, compression.
+   - **CCTV:** high angle, fisheye, timestamp added in post, 15 fps feel.
+   - **Nature doc:** long lens, shallow DOF, slow pans.
+8. **Kill-your-darlings check:** if a shot doesn't serve the joke or the brand, cut it, however pretty.

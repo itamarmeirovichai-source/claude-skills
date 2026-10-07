@@ -4,8 +4,10 @@
 - **The joke in one sentence:** a local news channel covers a Boca man fighting an alligator over a cooler. It turns out the gator just wanted a TIDEWATER too.
 - **Insight:** in Florida even the alligators can't take the heat, and every Floridian knows "Florida Man" headlines.
 - **Mechanisms:** misdirection reveal + role reversal + format hijack (local news) + local identity.
-- **Tagline (VO):** *"TIDEWATER. If the gators can't take the heat… neither can you."*
-- **Button:** a tiny disclaimer, "Do not share drinks with alligators." Then the anchor slowly sips a TIDEWATER at the desk.
+- **Tagline (VO), after the punch-up pass:** *"TIDEWATER. Ice-cold electrolytes… worth wrestling for."*
+  - Echoes the joke, so the brand is inside the punchline.
+  - Alternatives considered: "If the gators can't take the heat…" and "Florida's most fought-over water".
+- **Button:** a tiny disclaimer, "Do not wrestle alligators. Or share drinks with them." Then a smash cut to the anchor at the desk, who slowly sips a TIDEWATER and says *"[deadpan] Back to you, Gary."*
 - **CTA:** "Ice-cold electrolytes." · **Pinned comment:** "What would YOU wrestle a gator for? 🐊"
 
 ## 2. Gates (creative-brain §4)
@@ -33,6 +35,17 @@
 | 0:24-0:27 | Packshot: the can on wet lake sand, the gator's eyes surfacing behind it | VO: "TIDEWATER. If the gators can't take the heat…" | — | water ripple | lift |
 | 0:27-0:30 | End card: logo + "Ice-cold electrolytes." + tiny "Do not share drinks with alligators." Button: the anchor sips | VO: "…neither can you." | — | can pop + sonic logo | button |
 
+## 3b. Synthetic audience panel (v2)
+| Viewer | Gets it by 0:03? | Twist lands? | Comment | Sends to |
+|---|---|---|---|---|
+| Florida local | ✅ "Florida Man" chyron | ✅ "BOTH PARTIES HYDRATED" | "this is literally Boca" | their group chat |
+| Gen-Z scroller | ✅ man vs gator = instant | ✅ the silence beat + a gator with a can | "the gator has better taste than me 😭" | a best friend |
+| Busy mom | ⚠️ the news format takes a second | ✅ | "my husband would do this" | her husband |
+| Cynical marketer | ✅ | ✅ brand-in-twist, "worth wrestling for" | "ok this is a good ad" | a colleague |
+| Brand manager | ✅ | ✅, but asks for a legal disclaimer | — | — |
+
+Fix: make the hook chyron bigger and add "🐊 Only in Florida" from frame 1, for the mom/scroller read.
+
 ## 4. Production plan and budget (cap $17, Higgsfield only)
 | # | Asset | Model | Takes | Cost |
 |---|---|---|---|---|
@@ -48,7 +61,16 @@
 | | **Reserve** (one retake of the weakest shot, Kling) | | | ≤ $3.18 |
 
 Audio (ElevenLabs, subscription credits): VO (Brian, deadpan), 10 SFX, a 30 s music bed. Editing: reel-studio, at no cost.
-**Run order with stop points:**
+**Run order v2 with stop points:**
+1. Character bible (anchor, reporter, Florida Man): Soul v2 batch of 4, ~$0.06.
+2. Key stills with the character references (N3, N4, P1).
+3. ElevenLabs dialogue for each character + VO + SFX + music (credits).
+4. **A still animatic in reel-studio**, to check the timing and the punchline before any video.
+5. Video V1 and V2 with `audio_urls` = our dialogue, for controlled lip-sync. Then V3.
+6. Final edit and QC.
+7. Retro in the NOTEBOOK.
+
+**Previous order (kept for reference):**
 1. Images: I score them, and only images scoring 8/10 or higher move on.
 2. V1: watch it and run QC. If it fails, use the reserve.
 3. V2.
