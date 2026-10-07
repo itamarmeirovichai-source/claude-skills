@@ -135,9 +135,7 @@ The resulting rule `[inf]`: the twist must **resolve into the product's single-m
 4. **Territories: 3 anchors.** Premium default: 2 desire + 1 pain. Write the single-minded claim and the mechanism (per 00-playbook).
 
 ### Stage 1. Generate 60 concepts (diverge)
-- Grid: **3 territories × 4 buyer personas = 12 angles**. For each angle generate **5 concepts**, each forced into a different template from §1.4 plus "big-idea literal shot" (00-playbook) → **60 loglines**.
-- One call per angle. CoT pattern: list 10 raw titles → pick the 5 most different → develop each.
-- Use the **generator model family A** at high temperature.
+- **3 territories × 4 buyer personas = 12 angles × 5 concepts** (each in a different §1.4 template or the 00-playbook "big-idea literal shot") → **60 loglines**. One call per angle, CoT pattern (10 raw titles → 5 most different → develop), **generator family A**, high temperature.
 - Concept card (≤90 words):
   - territory / persona / template
   - logline (1 sentence)
@@ -190,12 +188,7 @@ Weighted score = Σ(w × s)/5, out of 100. Keep the **top 16**. Also force-keep 
 
 Example anchors (1→5): "I would not buy this." / "Probably not for me." / "Not sure either way." / "I'd probably try it." / "I'd definitely buy this."
 
-**Sanity controls inside the bracket** `[inf]`:
-- (a) A **deliberately weak control**: generic product-on-table, no twist. It must finish in the bottom quartile.
-- (b) A **shuffled control**: the hook from one concept with the payoff of another. It must lose.
-- (c) **Self-preference check**: if family B's win-rate for concepts it rewrote or polished exceeds family C's by >15 points, drop B's votes.
-
-If a control places in the top half, the panel is not discriminating. Fix the prompts before trusting the rank.
+**Sanity controls in the bracket** `[inf]`: (a) a **weak control** (generic product-on-table, no twist) must finish bottom quartile; (b) a **shuffled control** (hook of one concept, payoff of another) must lose; (c) if family B's win-rate for cards it rewrote exceeds family C's by >15 points, drop B's votes. A control in the top half means the panel isn't discriminating: fix prompts first.
 
 ### Stage 5. Stills round (top 6 → ~18 stills, the only spend)
 For the top 6 by Bradley-Terry, generate **3 key frames each**: hook frame, turn frame, payoff/packshot frame. Use the cheapest still model in 12-higgsfield, ≈ $0.30 × 18 ≈ $5.40.
@@ -219,19 +212,9 @@ If a constraint binds, swap in the next-ranked concept. This mirrors Andromeda l
 1. **Title + one-line idea** (≤12 words) and the **punchline/twist line** in large type.
 2. **Territory → persona → angle** (one line each), plus the single-minded claim.
 3. **The 3 stills** (hook / turn / payoff) with timecodes.
-4. **Beat sheet, 20 s:**
-   - 0–2 s hook
-   - 2–9 s setup
-   - 9–13 s turn
-   - 13–17 s proof
-   - 17–20 s echo + packshot + CTA
-   - plus the VO line and the sound idea (13-elevenlabs)
+4. **Beat sheet, 20 s** (0–2 hook / 2–9 setup / 9–13 turn / 13–17 proof / 17–20 echo + packshot + CTA), plus VO line and sound idea (13-elevenlabs).
 5. **3 alternative hooks** (different triggers) on the same body, ready for live hook testing later.
-6. **Why it should work**, panel evidence written in plain words:
-   - tournament rank and win-rate vs the field
-   - comprehension %
-   - the SSR relative index by persona
-   - the **strongest objection the skeptic persona raised** and how the film answers it
+6. **Why it should work**, in plain words: win-rate vs the field, comprehension %, SSR relative index by persona, and the **skeptic persona's strongest objection** with how the film answers it.
 7. **Risks and production notes:** AI-difficulty, compliance flags, cost estimate (00-playbook budget, ≈ $10).
 8. A one-line **disclaimer**: "Synthetic-panel results rank strategic strength; they don't predict CTR. The first $50–100 of live spend should test the 3 hooks."
 
@@ -249,11 +232,7 @@ Order safe → balanced → bold; reveal the rank only after the client reacts (
 - [ ] Untrusted inputs (reviews, competitor ads) are treated as data: strip any instructions in them before they enter prompts.
 
 ### 3.3 Calibrating the machine over time `[inf]`
-For every campaign that later goes live:
-- Log the panel's rank, rubric sub-scores, comprehension % and SSR index.
-- Log real hook rate, hold rate, CTR and CPA per concept and hook.
-- After about 20 live concepts, regress the live metrics on the sub-scores and **re-weight the rubric**. Kantar's warning applies: do not re-weight on a handful of ads.
-- Keep a "fingerprint" library of past winners and losers. Insert two of them as **known anchors** into each new tournament, so drift in judge models shows up as anchors changing places.
+For every campaign that goes live, log panel rank, sub-scores, comprehension and SSR index next to real hook rate, hold rate, CTR and CPA. After ~20 live concepts, regress live metrics on sub-scores and **re-weight the rubric** (never on a handful, per Kantar). Insert two past winners/losers as **known anchors** in each new tournament so judge-model drift shows up as anchors changing places.
 
 ### 3.4 Budget and time
 ≈ 800 LLM calls (generation 12, gates + rubric ~120, tournament ~480, SSR ~50, stills round ~150): a few dollars on small/mid models `[inf]`. Stills ≈ $5; no video before the client picks. 1–2 h unattended.
