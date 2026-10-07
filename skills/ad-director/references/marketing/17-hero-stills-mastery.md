@@ -1,7 +1,7 @@
 # 17 — Hero Stills Mastery: product-exact, non-AI start/end frames
 
 Researched 2026-10-07. Builds on `image-direction.md` (recipes, studio vocabulary, 10-point rubric), 05 (DP light vocabulary), 06 (ban list, imperfection, film chain), 10 (Higgsfield frame study) and 12 (API catalogue, templates A/B). It does not repeat them. Read those first.
-Inferences are marked **[inf]**. YouTube transcripts were **IP-blocked (HTTP 429 / "sign in to confirm you're not a bot")** on this run, so video sources are cited from their published pages and summaries only.
+Inferences are marked **[inf]**. YouTube transcripts were IP-blocked (HTTP 429) on this run; video sources are cited via their published pages.
 
 ## 0. The ten rules (read this if nothing else)
 
@@ -112,7 +112,7 @@ Common to all niches: **one key logic, controlled reflections, the product separ
 - **Block:** `Black seamless far behind; two gridded strip lights behind-left and behind-right drawing razor rim lines along the chamfers; one large reflector giving a soft gradient across the screen glass; screen content dim and plausible; micro-dust on the glass, one fingerprint smudge near a corner; 85mm, low ¾ angle; device on the lower-left third.`
 
 ### Fashion / accessories
-- **Real practice** (from 10/11-fashion, adding): gesture over props. Let "skin, fabric, and light carry the story" [J1].
+- **Real practice:** gesture over props; "skin, fabric, and light carry the story" [J1].
 - **Block:** `Product worn or held mid-gesture, fabric with real creases and lint, stitching sharp; overcast-soft key with a hard sun slash across the background; editorial crop cutting the face at the mouth; 50mm, standing eye height; logo panel facing camera.`
 
 ### Jewelry
