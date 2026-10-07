@@ -11,6 +11,28 @@ This synthesises 01-fundamentals, 02-niches, 03-platforms and 04-ai-craft, plus 
 ## The BIG IDEA rule (learned on F02)
 Before any shot list, design **one big-idea shot**: the single-minded claim made *literally visible* in one impossible-but-elegant image (VESPER: "Wear the golden hour" → the sun sets into the bottle). It is the hook in 0–3 s and is paid off once more later. A film without it reads like a beautiful catalogue: "good, not enough".
 
+
+## Library map (read the relevant file before every brief)
+| File | Use it for |
+|---|---|
+| 01-fundamentals | why people buy, 15 gates |
+| 02-niches / 11-niche-* | niche visual grammar, formats, BIG IDEAs, **ready recipes with our tools** (beauty, food-drink, fashion-luxury, tech-home) |
+| 03-platforms | Reels/TikTok/Shorts numbers |
+| 04/07-ai-craft, workflows | how working AI ad studios produce |
+| 05-real-dp | real-shoot prompt vocabulary |
+| 06-anti-ai-realism | top 15 fixes for "looks AI" |
+| 08-post-production | edit, grade, sound recipes |
+| 09/10/12-higgsfield | official guides, visual study of 29 clips, **85 verified API endpoints + prices + templates** |
+| 13-elevenlabs-mastery | eleven_v4, voices per niche, music_v2_5 composition plans, SFX library, mix levels |
+
+## Hard rules learned the expensive way
+- Turn `sound`/`generate_audio` OFF explicitly on Kling/Seedance (defaults ON = +50% cost).
+- Soul Cinema ignores product references → use it for plates/locations/people only; put the exact product in with Flare (`image_urls:[plate, product]`, explicit 9:16), then animate with Kling.
+- Flare/Nano-Banana skew symmetrical-centred: always write off-centre blocking + the anti-gloss suffix.
+- No AI footage as the product's functional proof; show proof as metaphor/spec line/"dramatization".
+- Generate logos/dials/labels blank or simple; set exact type and glints in post.
+- Music: composition plan with music_v2_5; hard hits only on chunk boundaries (≥3 s chunks), doubled with an SFX hit.
+
 ## The 10-step pipeline
 1. **Niche and product.**
    - Pick a niche where AI excels (02-niches "Top 5": fragrance, leather/luxury goods, coffee, candles, watches/jewelry/sneakers).

@@ -6,7 +6,9 @@
   tts "TEXT" --voice ID --out vo.mp3     voiceover + vo.words.json (word timings for reel-studio captions)
         [--model eleven_v3] [--stability 0.5] [--style 0.3] [--speed 1.0]
   sfx "PROMPT" --seconds 2.5 --out boom.mp3 [--loop] [--influence 0.4]
-  music "PROMPT" --seconds 15 --out bed.mp3 [--instrumental]
+  music "PROMPT" --seconds 15 --out bed.mp3 [--with-vocals] [--model music_v2_5]
+  music --plan plan.json --out bed.mp3   composition plan {"chunks":[{text,duration_ms,positive_styles,negative_styles}]};
+                                         hard hits land on chunk boundaries; chunks >= 3 s; put "instrumental" in styles
 
 Auth: ELEVENLABS_API_KEY in the environment, or ELEVEN_AUTH_VIA_PROXY=1 when a network secret
 injects the `xi-api-key` header for api.elevenlabs.io (the key never reaches this process).
@@ -120,7 +122,7 @@ def tts(text: str, voice: str, out: Path, model: str = "eleven_v3", stability: f
             "duration": words[-1]["end"] if words else None}
 
 
-def sfx(prompt: str, seconds: float | None, out: Path, loop: bool = False, influence: float = 0.4) -> str:
+def sfx(prompt: str, seconds: float | None, out: Path, loop: bool = False, influence: float = 0.3) -> str:
     body = {"text": prompt, "prompt_influence": influence, "loop": loop}
     if seconds:
         body["duration_seconds"] = seconds
@@ -130,8 +132,14 @@ def sfx(prompt: str, seconds: float | None, out: Path, loop: bool = False, influ
     return str(out)
 
 
-def music(prompt: str, seconds: float, out: Path, instrumental: bool = True) -> str:
-    body = {"prompt": prompt, "music_length_ms": int(seconds * 1000), "force_instrumental": instrumental}
+def music(prompt: str | None, seconds: float | None, out: Path, instrumental: bool = True,
+          model: str = "music_v2_5", plan: dict | None = None) -> str:
+    # without model_id the API falls back to music_v1; force_instrumental is rejected (422) together with a plan
+    if plan is not None:
+        body = {"composition_plan": plan, "model_id": model}
+    else:
+        body = {"prompt": prompt, "music_length_ms": int(seconds * 1000), "force_instrumental": instrumental,
+                "model_id": model}
     raw, _ = _call("POST", "/v1/music", body, {"output_format": "mp3_44100_128"}, timeout=600)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(raw)
@@ -149,8 +157,9 @@ def main(argv=None) -> int:
     t.add_argument("--speed", type=float, default=1.0)
     s = sub.add_parser("sfx"); s.add_argument("prompt"); s.add_argument("--seconds", type=float)
     s.add_argument("--out", required=True); s.add_argument("--loop", action="store_true")
-    s.add_argument("--influence", type=float, default=0.4)
-    m = sub.add_parser("music"); m.add_argument("prompt"); m.add_argument("--seconds", type=float, required=True)
+    s.add_argument("--influence", type=float, default=0.3)
+    m = sub.add_parser("music"); m.add_argument("prompt", nargs="?"); m.add_argument("--seconds", type=float)
+    m.add_argument("--plan", default=None); m.add_argument("--model", default="music_v2_5")
     m.add_argument("--out", required=True); m.add_argument("--with-vocals", action="store_true")
     a = ap.parse_args(argv)
     if a.cmd == "check":
@@ -168,7 +177,13 @@ def main(argv=None) -> int:
     elif a.cmd == "sfx":
         print(sfx(a.prompt, a.seconds, Path(a.out), a.loop, a.influence))
     elif a.cmd == "music":
-        print(music(a.prompt, a.seconds, Path(a.out), not a.with_vocals))
+        if a.plan:
+            plan = json.loads(Path(a.plan).read_text(encoding="utf-8"))
+            print(music(None, None, Path(a.out), model=a.model, plan=plan.get("composition_plan", plan)))
+        elif a.prompt and a.seconds:
+            print(music(a.prompt, a.seconds, Path(a.out), not a.with_vocals, a.model))
+        else:
+            ap.error("music needs PROMPT --seconds, or --plan")
     return 0
 
 
