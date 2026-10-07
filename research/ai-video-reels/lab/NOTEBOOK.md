@@ -121,3 +121,18 @@ Self-critique against the new research briefs (marketing/01, 02):
   - lens variety (16 mm wide, macro, 85 mm)
   
   This needs budget beyond F02's $10 cap.
+
+### 2026-10-07 · Deep study round 2: niche playbooks + Higgsfield + ElevenLabs mastery
+- **Six parallel studies, all saved under `skills/ad-director/references/marketing/`:**
+  - 11-niche-{beauty, food-drink, fashion-luxury, tech-home}
+  - 12-higgsfield-mastery: 85 live endpoints, verified prices
+  - 13-elevenlabs-mastery: eleven_v4, music_v2_5 composition plans
+- **Real-ad frames were viewed** via adsoftheworld's video host (17 luxury ads) and YouTube storyboard/thumbnail frames. Full YouTube downloads are bot-blocked from this IP.
+- **`elevenlabs.py` upgraded:**
+  - music now defaults to `music_v2_5`
+  - `--plan` composition plans
+  - SFX `prompt_influence` default changed to 0.3
+- **E06 lookboard:** 16 niches, Soul Cinema, $0.06 total. The film-still realism is excellent, with real light falloff and lived-in sets.
+- **Caveats:**
+  - Several frames are underexposed. Add "exposed for the subject".
+  - The sneaker came out with a swoosh-like mark. **Soul Cinema renders real trademarks unprompted**, so every output needs a logo screen and a "plain unbranded" line.
