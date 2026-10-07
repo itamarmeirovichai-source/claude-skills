@@ -18,7 +18,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T01_label_rotate__kling30pro",
@@ -63,7 +64,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T02_pour__kling30pro",
@@ -108,7 +110,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T03_hand_pickup__kling30pro",
@@ -153,7 +156,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T04_food__kling30pro",
@@ -198,7 +202,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T05_face_talk__kling30pro",
@@ -243,7 +248,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T06_macro__kling30pro",
@@ -288,7 +294,8 @@
     "duration": 5,
     "resolution": "480p",
     "generate_audio": true
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T07_fooh_scale__kling30pro",
@@ -333,7 +340,8 @@
     "resolution": "480p",
     "generate_audio": true,
     "aspect_ratio": "9:16"
-   }
+   },
+   "est_usd": 1.03
   },
   {
    "id": "T08_fpv_t2v__kling30pro",

@@ -76,6 +76,8 @@ def make_server(mock: Mock):
                 return self._json(200, {"public_url": f"{base}/media/{name}.png",
                                         "upload_url": f"{base}/put/{name}",
                                         "upload_headers": {"Content-Type": body["content_type"]}})
+            if self.path.startswith("/estimate/") and "flare" in self.path:
+                return self._json(200, {"type": "description", "pricing_description": "per token"})
             if self.path.startswith("/estimate/"):
                 usd = "0.50" if "video" in self.path else "0.02"
                 return self._json(200, {"credits": "8", "usd": usd})
@@ -199,3 +201,21 @@ def test_missing_ref_file_is_caught(api, tmp_path):
     p = write_plan(tmp_path, [{"id": "x", "model": "m/video", "args": {"image_url": "@file:frames/nope.png"}}])
     with pytest.raises(SystemExit, match="missing reference"):
         H.cmd_batch(p, budget=10, dry_run=True, yes=True, concurrency=1, out=None, salt="", only=None)
+
+
+def test_token_priced_model_uses_plan_est_usd(api, tmp_path):
+    jobs = [{"id": "img", "model": "marketing-studio/image/flare", "takes": 3, "est_usd": 0.25,
+             "args": {"prompt": "can"}}]
+    p = write_plan(tmp_path, jobs)
+    res = H.cmd_batch(p, budget=10, dry_run=True, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert res["estimated_usd"] == pytest.approx(0.75)
+    with pytest.raises(SystemExit, match="over budget"):
+        H.cmd_batch(p, budget=0.5, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert api.submits == 0
+
+
+def test_token_priced_model_without_est_usd_refuses_real_run(api, tmp_path):
+    p = write_plan(tmp_path, [{"id": "img", "model": "marketing-studio/image/flare", "args": {"prompt": "can"}}])
+    with pytest.raises(SystemExit, match="cannot estimate"):
+        H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert api.submits == 0

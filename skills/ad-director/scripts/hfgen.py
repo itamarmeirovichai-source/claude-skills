@@ -28,6 +28,8 @@ Plan file (batch):
      "args": {"prompt": "...", "image_url": "@file:frames/r1.png", "duration": 5}}
   ]
 }
+Token-priced models (e.g. marketing-studio/image/flare) cannot be quoted by /estimate; give the job
+(or defaults) "est_usd": <conservative price per take> so the budget guard still works.
 "@file:<path>" values are uploaded first (path relative to the plan) and replaced by URLs.
 Idempotency keys are derived from (job id, take, args), so re-running a batch after a crash
 returns the same requests instead of paying twice. Use --fresh to force new generations.
@@ -192,7 +194,7 @@ def load_plan(path: Path) -> list[dict]:
     jobs = []
     seen = set()
     for j in plan["jobs"]:
-        job = {"model": d.get("model"), "takes": d.get("takes", 1), **j}
+        job = {"model": d.get("model"), "takes": d.get("takes", 1), "est_usd": d.get("est_usd"), **j}
         job["args"] = {**d.get("args", {}), **j.get("args", {})}
         if not job.get("id") or not job.get("model"):
             raise SystemExit(f"job needs id and model: {j}")
@@ -282,7 +284,12 @@ def cmd_batch(plan_path: Path, budget: float, dry_run: bool, yes: bool, concurre
         a = resolve_refs(j["args"], urls)
         try:
             e = estimate(j["model"], a)
-            usd = float(e.get("usd"))
+            if e.get("usd") is None and e.get("type") == "description" and j.get("est_usd") is not None:
+                # token-priced model: the API cannot quote; use the plan's declared ceiling per take
+                usd = float(j["est_usd"])
+                log(f"  ~ {j['id']}: token-priced, using plan est_usd ${usd:.3f}")
+            else:
+                usd = float(e.get("usd"))
         except (HFError, TypeError, ValueError) as ex:
             if dry_run:
                 usd = None

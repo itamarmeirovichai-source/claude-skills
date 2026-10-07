@@ -1,13 +1,14 @@
 {
- "_doc": "E00: test assets (fictional brand TIDEWATER). 2 variants each, Claude picks the best into ../assets/<id>.png",
+ "_doc": "E00: test assets (fictional brand TIDEWATER). 2 variants each, Claude picks the best into ../assets/<id>.png | run note: token-priced model, est_usd=0.30/take is a declared ceiling; 1 take each (A1 kept from probe).",
  "defaults": {
   "model": "marketing-studio/image/flare",
-  "takes": 2,
+  "takes": 1,
   "args": {
    "aspect_ratio": "9:16",
    "resolution": "2k",
    "quality": "high"
-  }
+  },
+  "est_usd": 0.3
  },
  "jobs": [
   {
