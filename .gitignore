@@ -1,0 +1,4 @@
+# Local secrets (Higgsfield HF_KEY etc.). Never commit.
+.env
+.env.local
+.env.*.local
