@@ -24,7 +24,7 @@ def grab(item):
     try:
         import re, glob, time, os
         tmp = f"/tmp/claude-0/yt_{vid}"
-        subprocess.run(["yt-dlp","--skip-download","--write-subs","--write-auto-subs","--sub-langs","en.*,en","--sub-format","vtt",
+        subprocess.run(["yt-dlp","--extractor-args","youtube:player_client=web_embedded","--ignore-no-formats-error","--skip-download","--write-subs","--write-auto-subs","--sub-langs","en.*,en","--sub-format","vtt",
                         "-o",tmp,f"https://youtu.be/{vid}"],capture_output=True,timeout=120)
         fs = glob.glob(tmp+"*.vtt")
         if not fs: return "fail nosubs"
