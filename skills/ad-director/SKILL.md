@@ -51,6 +51,29 @@ A plan is JSON: `defaults` + `jobs[{id, model, takes, args}]`. `"@file:frames/F1
 
 Stage order: **A** hero frame (4 variants) → pick → **B** story frames (same character via `image_urls` ref) → pick → **C** video takes from the approved frames → pick → **edit.json** in reel-studio → `director.py qc`.
 
+
+## Quality standards (read before every job)
+- **`references/creative-brain.md` comes FIRST:** the four laws (insight, tension, twist, brand-in-twist), 12 punchline mechanisms, virality mechanics, the pre-generation gates and the full-stack output contract (script → images → video → voice → SFX → music → edit → QC → retro). No ad without a punchline.
+- `references/image-direction.md`: studio-photography method, 16 hero recipes, per-model image prompt formats, image QC rubric (regenerate below 8/10).
+- `references/video-realism.md`: 10 realism rules, model cards from our lab, Seedance 2.5 and Kling multi-shot master formats.
+- `references/ad-storytelling.md`: every portfolio piece is an ad with a brief, a message, a story arc, a VO script and a CTA, plus the edit standard.
+- Minimum length for portfolio pieces is 10 s, multi-shot, edited with VO, captions, music and SFX.
+
+## Voice, music and SFX with ElevenLabs (`scripts/elevenlabs.py`)
+```bash
+E=skills/ad-director/scripts/elevenlabs.py   # auth: ELEVENLABS_API_KEY or ELEVEN_AUTH_VIA_PROXY=1 (network secret, header xi-api-key)
+python3 $E check                                           # plan + credits (free)
+python3 $E voices --search "warm female"
+python3 $E tts "[sighs] Three P.M. in Florida..." --voice VOICE_ID --out job/audio/vo.mp3   # + vo.words.json
+python3 $E sfx "crisp aluminum can pop and fizz" --seconds 1.5 --out job/audio/pop.mp3
+python3 $E music "minimal summer electronic, 100 BPM, builds at 8 s" --seconds 15 --out job/audio/bed.mp3
+```
+In reel-studio:
+- `audio.voiceover: {path, at}`: music ducks under the VO.
+- `captions.source: vo.words.json`: word-timed captions.
+- `audio.music.path`: the ElevenLabs music bed.
+- `audio.sfx: [{path, at}]`: the ElevenLabs sound effects.
+
 ## Procedure (follow in order and show the output of each step)
 
 ### 1. Intake (5 min)

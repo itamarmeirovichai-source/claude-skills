@@ -4,12 +4,19 @@ Credentials: HF_KEY="key_id:key_secret", read at runtime from the environment or
 from .env.local (git-ignored). The value is never printed or logged.
 Run: pip install -r requirements.txt && python3 main.py   (a billable generation)
 """
+import os
 import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).resolve().parent / ".env.local", override=False)
+
+# Cloud sessions can hold the key as a network secret: the agent proxy injects
+# "Authorization: Key ..." into requests to api.higgsfield.ai, so the process never sees it.
+# The SDK still insists on HF_KEY being set, so give it a non-secret placeholder in that mode.
+if os.getenv("HF_AUTH_VIA_PROXY") == "1" and not os.getenv("HF_KEY"):
+    os.environ["HF_KEY"] = "proxy:injected"
 
 import higgsfield_client  # noqa: E402  (import after the env is loaded)
 
