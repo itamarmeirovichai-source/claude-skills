@@ -98,3 +98,26 @@ Self-critique against the new research briefs (marketing/01, 02):
   - Notes shots cut to 1.6 s.
 - **Rule for the brain:** every flagship needs a **"big idea shot"**: the claim made literally visible in one impossible-but-elegant image. It opens the film and gets paid off later. Design it FIRST, then the rest.
 - **Cost:** v2 added $1.85, so F02 total is **$8.66** of $10.
+
+### 2026-10-07 · "Looks too AI" → studied 80 YouTube tutorials (17.7 h of transcripts) → VESPER v3
+- **Method:** `youtube/fetch_yt.py` (yt-dlp search plus auto-subs). youtube-transcript-api is IP-blocked here; yt-dlp subtitles work. 80 of 114 videos had transcripts. 4 parallel readers, one per theme.
+- **New references:**
+  - `marketing/05-real-dp-cinematography.md`: how real DPs light glass, plus a real-shoot prompt vocabulary
+  - `06-anti-ai-realism.md`: top 15 fixes for "too AI"
+  - `07-ai-product-ad-workflows.md`: what working AI ad studios do
+  - `08-post-production.md`: edit, grade and sound recipes
+- **v3 changes (free, post-only):**
+  - Film chain (`experiments/F02_vesper/film_chain.txt`), in this order: 24 fps → 30% soft-blur mix → lifted-black curve → mild warm balance → vibrance −0.12 → highlight-only halation at 16% → temporal grain → light unsharp → vignette → luma flicker → gate weave.
+  - Encode with `-tune grain`. Web versions need a bitrate cap (~2.8 Mb/s at 720p), otherwise grain inflates the file.
+  - Sound bed in 6 layers (room tone and city bed, rooftop wind, layered foley, riser + boom), with SFX J-cut ~0.2 s ahead of the picture.
+  - Cuts only; no light-leak transitions.
+- **Lesson:** a teal-shadow split tone on a burgundy world turns everything purple. Keep the split tone inside the brand's palette.
+- **Still AI, and post can't fix it:** the *source generations* are perfectly symmetrical, centred and glossy, with one soft glow light. The real fix is regenerating with the 05/06 vocabulary:
+  - one hard snooted sliver of light that falls off fast
+  - off-centre three-quarter angles
+  - named imperfections (dust, micro-scratches, fingerprints)
+  - a ban list (no HDR, no oversaturation, no CG perfection)
+  - handheld micro-movement and no locked-off camera
+  - lens variety (16 mm wide, macro, 85 mm)
+  
+  This needs budget beyond F02's $10 cap.
