@@ -61,3 +61,26 @@ Self-critique against the new research briefs (marketing/01, 02):
 4. **No mechanism or single-minded claim:** "SOURCE 1987" is never paid off. The film never shows *why* this water.
 5. **No CTA and no sonic logo designed as a brand asset.** Pacing is uniform, with no speed ramp and no peak.
 → Next flagship must pass the 15 gates in `marketing/01-fundamentals.md` §7 before generation.
+
+### 2026-10-07 · F02 VESPER (fragrance) delivered: first flagship built from the marketing master playbook
+- **Why this niche:** fragrance is the #1 niche for AI in `marketing/02-niches.md`. It needs no literal proof, and glass, mist and visualised notes play to AI's strengths. It is a new niche (F01 was a beverage).
+- **Brand kit:**
+  - Colours: oxblood burgundy #4A0E17, black and amber gold #E8C27A.
+  - Type: Liberation Serif with wide tracking.
+  - Sonic logo: a crystal chime. Recurring motif: glass clink and spray.
+  - Claim: "Wear the golden hour."
+  - Mechanism: 3 notes shown on screen.
+  - Entry point: "For the hour after sunset".
+  - CTA: "Discover the sample set", which de-risks a blind buy.
+- **Pipeline that worked:**
+  1. 2 product refs (Flare, text-only) → pick one.
+  2. 8 stills with a **prompt lock + colour-world line + negatives**, all referencing the product image. The bottle stayed identical across every still.
+  3. Kling 3.0 Pro i2v, 5 s, sound off: one move per shot, "only X moves".
+  4. Music with a timestamped structure, ASMR SFX, and a whispered VO line only at the end (Lily voice, eleven_v3 tags).
+- **Failures and fixes:**
+  - The neck/bare-shoulder prompt hit the Flare safety filter. A hand holding the bottle against a blazer passed.
+  - The Kling 90° orbit drained the juice colour and morphed the label after ~2.5 s. Keep orbits under 2.5 s, or limit them to ≤60°.
+  - Kling push-ins grow the product into the title space. For type, cut to the **still** end frame (gentle zoom-out) instead of the moving clip.
+  - Supers over busy areas need a soft dark box.
+- **Cost: $6.81** (refs $0.60, stills $2.40, the failed S6 still was not billed, the S6 retake $0.30, motion $3.81). Under the $10 cap.
+- Spec: `experiments/F02_vesper/F02_VESPER_v1.json`.

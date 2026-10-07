@@ -1,0 +1,23 @@
+{
+ "_doc": "F02 VESPER stage 1: one still per shot (prompt lock + colour world + negatives).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "S6_balcony_hand",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Golden-hour lifestyle close-up on a city rooftop balcony: an elegant woman's hand with a thin gold ring holds the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle, amber-gold perfume, tall faceted smoky-amber cap with a thin gold collar, VESPER engraved in wide-spaced serif capitals on the front) at chest height against her deep-burgundy tailored satin blazer, bottle front facing camera with VESPER legible; her face is out of frame. Behind, soft out-of-focus city skyline and a low warm sun flare. Natural skin texture, relaxed graceful hand. Portra 400 film look, 85mm, f/2.8. Colour world deep burgundy, black and warm amber-gold. No other text."
+   }
+  }
+ ]
+}

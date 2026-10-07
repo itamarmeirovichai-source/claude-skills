@@ -1,0 +1,70 @@
+{
+ "_doc": "F02 VESPER stage 2: motion, Kling 3.0 Pro i2v 5 s, sound off, one camera move per shot.",
+ "defaults": {
+  "model": "kling-video/v3.0/pro/image-to-video",
+  "takes": 1,
+  "args": {
+   "duration": 5,
+   "sound": "off",
+   "cfg_scale": 0.5
+  }
+ },
+ "jobs": [
+  {
+   "id": "M_S1_cap_macro",
+   "args": {
+    "image_url": "@file:clips/S1_cap_macro_t01.png",
+    "prompt": "Very slow push-in on the faceted amber cap; the warm sunset beam slowly sweeps across the facets, refracted golden sparkles glide over the glass, soft bokeh drifts. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S2_mist",
+   "args": {
+    "image_url": "@file:clips/S2_mist_t01.png",
+    "prompt": "Static locked-off camera. The fine golden perfume mist keeps billowing upward from the nozzle in slow motion, glittering micro-droplets drift and fade through the warm backlight beam; only the mist moves. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S3_bergamot",
+   "args": {
+    "image_url": "@file:clips/S3_bergamot_t01.png",
+    "prompt": "120fps slow motion: the bergamot halves drift apart in mid-air, zest oil mist and juice droplets float and sparkle in the warm backlight; the bottle in the background stays still and in soft focus. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S4_fig",
+   "args": {
+    "image_url": "@file:clips/S4_fig_t01.png",
+    "prompt": "Very slow push-in toward the open fig and the bottle; a single drop of nectar slowly slides down the fig's flesh, the warm side light gently brightens across the bottle. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S5_amber_smoke",
+   "args": {
+    "image_url": "@file:clips/S5_amber_smoke_t01.png",
+    "prompt": "Static camera. The ribbon of golden smoke curls and swirls slowly upward through the sunset beam, light flickers softly over the amber resin; only the smoke moves. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S6_balcony_hand",
+   "args": {
+    "image_url": "@file:clips/S6_balcony_hand_t01.png",
+    "prompt": "Gentle handheld drift. The hand holds the bottle still and steady at chest height; the low sun flares softly behind, the city bokeh shimmers, a light breeze moves the blazer fabric slightly. The hand and fingers stay natural and still. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S7_hero_velvet",
+   "args": {
+    "image_url": "@file:clips/S7_hero_velvet_t01.png",
+    "prompt": "Slow 90-degree orbit from slightly left to front of the bottle at velvet height; golden caustics through the amber glass move across the rippled velvet, the sunset beam glints on the cap. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  },
+  {
+   "id": "M_S8_end_hero",
+   "args": {
+    "image_url": "@file:clips/S8_end_hero_t01.png",
+    "prompt": "Very slow push-in; a soft warm light sweep glides across the bottle from left to right, the amber juice glows from within, the reflection on the surface shimmers. The upper part of the frame stays clean and dark. The bottle shape, faceted cap and engraved VESPER lettering stay exactly the same and legible. Smooth, elegant, luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, background shifting."
+   }
+  }
+ ]
+}
