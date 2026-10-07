@@ -1,0 +1,60 @@
+{
+ "_doc": "F03 motion: Kling 3.0 Pro i2v, sound off.",
+ "defaults": {
+  "model": "kling-video/v3.0/pro/image-to-video",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "M1_strike",
+   "args": {
+    "image_url": "@file:clips/S1_strike_t01.png",
+    "prompt": "Handheld close shot with tiny breathing drift. The burning match tip touches the wick, the wick catches, a small natural flame grows and steadies; the hand slowly withdraws to the left out of frame; rain trickles on the window behind. The candle vessel, its shape and the SOL deboss stay exactly the same. Already at full speed, no slow-motion easing. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  },
+  {
+   "id": "M3_bigidea",
+   "args": {
+    "image_url": "@file:clips/S3A_start_t01.png",
+    "prompt": "Camera almost still with a barely noticeable handheld breath. The light changes: the cold blue rainy daylight through the window warms into a golden late-summer dusk, the rain on the glass fades away, warm sunlight spreads across the sideboard, books and linen; the candle stays exactly in place with a steady small flame. The candle vessel, its shape and the SOL deboss stay exactly the same. Already at full speed, no slow-motion easing. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "last_image_url": "@file:clips/S3B_end_t01.png"
+   }
+  },
+  {
+   "id": "M2_pool",
+   "args": {
+    "image_url": "@file:clips/S2_pool_t01.png",
+    "prompt": "Very slow push-in. The small flame flickers gently; the reflection of the sunlit courtyard in the melted wax ripples softly, bougainvillea in the reflection sways in a breeze. The candle vessel, its shape and the SOL deboss stay exactly the same. Already at full speed, no slow-motion easing. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  },
+  {
+   "id": "M4_room",
+   "args": {
+    "image_url": "@file:clips/S4_room_t01.png",
+    "prompt": "Slow lateral slide to the right. The sheer linen curtain lifts and falls in a warm evening breeze, dust motes drift in the long sunbeams, the small candle flame on the sideboard flickers. The candle vessel, its shape and the SOL deboss stay exactly the same. Already at full speed, no slow-motion easing. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  },
+  {
+   "id": "M6_hero",
+   "args": {
+    "image_url": "@file:clips/S6_hero_t01.png",
+    "prompt": "Very slow push-in. Soft leaf shadows sway gently across the plaster wall and travertine, the candle flame flickers softly, warm dusk light. The candle vessel, its shape and the SOL deboss stay exactly the same. Already at full speed, no slow-motion easing. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  }
+ ]
+}

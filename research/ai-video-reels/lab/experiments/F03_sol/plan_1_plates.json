@@ -1,0 +1,33 @@
+{
+ "_doc": "F03 plates (Soul Cinema): locations without product.",
+ "defaults": {
+  "model": "higgsfield-ai/soul/cinema",
+  "takes": 2
+ },
+ "jobs": [
+  {
+   "id": "PL_winter",
+   "args": {
+    "prompt": "A quiet apartment corner on a grey rainy winter afternoon: a scarred dark-oak sideboard under a tall window streaked with rain, cold blue-grey daylight, a folded ivory linen cloth, a small stack of books, dried stems in a ceramic jug at the left edge, the empty right third of the sideboard top clear and in focus. 35mm film still, Kodak Portra 400, natural motivated light falling off into soft shadow, slightly off-centre composition, lived-in real textures, subtle grain, muted true-to-life colour, exposed for the midtones. Plain unbranded objects, no text, no logos, no people.",
+    "aspect_ratio": "9:16",
+    "resolution": "1080p"
+   }
+  },
+  {
+   "id": "PL_room_summer",
+   "args": {
+    "prompt": "The same kind of apartment living room at golden late-summer dusk: warm low sun through a tall open window, sheer linen curtain lifted by a breeze, a dark-oak sideboard, travertine side table, linen sofa, long warm light across the wooden floor, dust motes in the beam. 35mm film still, Kodak Portra 400, natural motivated light falling off into soft shadow, slightly off-centre composition, lived-in real textures, subtle grain, muted true-to-life colour, exposed for the midtones. Plain unbranded objects, no text, no logos, no people.",
+    "aspect_ratio": "9:16",
+    "resolution": "1080p"
+   }
+  },
+  {
+   "id": "PL_travertine",
+   "args": {
+    "prompt": "A travertine stone ledge by an open window at golden late-summer dusk, warm low sun raking across the stone texture, the soft shadow of a window frame and leaves falling across it, blurred terracotta rooftops and a Mediterranean sky beyond. 35mm film still, Kodak Portra 400, natural motivated light falling off into soft shadow, slightly off-centre composition, lived-in real textures, subtle grain, muted true-to-life colour, exposed for the midtones. Plain unbranded objects, no text, no logos, no people.",
+    "aspect_ratio": "9:16",
+    "resolution": "1080p"
+   }
+  }
+ ]
+}

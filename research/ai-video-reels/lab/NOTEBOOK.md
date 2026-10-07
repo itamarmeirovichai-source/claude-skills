@@ -136,3 +136,24 @@ Self-critique against the new research briefs (marketing/01, 02):
 - **Caveats:**
   - Several frames are underexposed. Add "exposed for the subject".
   - The sneaker came out with a swoosh-like mark. **Soul Cinema renders real trademarks unprompted**, so every output needs a logo screen and a "plain unbranded" line.
+
+### 2026-10-07 · F03 SOL (candles): first flagship on the full new playbook. $5.12
+- **Concept:** "Light it. It's summer." The BIG IDEA is a Kling start/end-frame shot: rainy winter window → golden summer dusk as the wick catches. The payoff is the wax pool reflecting a sunlit Mediterranean courtyard.
+- **Pipeline that worked:**
+  1. Flare product ref ×2 ($0.60)
+  2. Soul Cinema location plates ×6 ($0.04)
+  3. Flare composites `image_urls:[plate, product]` ×5 ($1.50)
+  4. Start→end frame derived with Flare `[start, product]` ×2 ($0.60). Framing matched almost perfectly.
+  5. Kling 3.0 Pro i2v sound off ×5 ($2.38)
+  6. ElevenLabs:
+     - music_v2_5 composition plan: silence 0–2.1 s, bloom on the 3.0 s boundary, final at 17.66 s, all as planned
+     - SFX library
+     - eleven_v4 VO (Jenna)
+  7. reel-studio, then the warm film chain
+- **Bug found and fixed in the film chain:** `eq` applied after `format=gbrp` treats RGB planes as YUV, which gives a **pink/magenta cast**. This also tinted VESPER v3 purple. Fixes:
+  - do `eq` in YUV before converting to RGB
+  - set bt709 in/out matrices
+  - tag the encode with `-colorspace bt709`
+
+  Corrected chain: `skills/ad-director/references/film_chain_warm.txt`.
+- **QC:** 24 fps, −14.1 LUFS. The cut detector missed the 3 s match-cut (same room). Shot lengths are long-ish (5 s big-idea shot), acceptable for a luxury tempo.
