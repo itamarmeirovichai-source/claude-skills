@@ -65,3 +65,10 @@ def test_proxy_mode_and_missing_key(monkeypatch):
     monkeypatch.delenv("ELEVEN_AUTH_VIA_PROXY")
     with pytest.raises(SystemExit):
         E._headers(True)
+
+
+def test_audio_tags_are_not_caption_words():
+    text = "[sighs] Hi [short pause] there"
+    al = {"characters": list(text), "character_start_times_seconds": [i * .1 for i in range(len(text))],
+          "character_end_times_seconds": [i * .1 + .1 for i in range(len(text))]}
+    assert [w["text"] for w in E.chars_to_words(al)] == ["Hi", "there"]
