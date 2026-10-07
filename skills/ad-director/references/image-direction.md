@@ -3,6 +3,10 @@
 The start frame decides 80% of the final video. A weak still makes a weak clip, whatever the video model.
 **Rule: no still goes to video unless it scores ≥ 8/10 on the rubric (§6). Below that, rewrite the prompt and regenerate.**
 
+## 0. Proven winner first (F01 AURUM, user-approved): copy this structure
+"Top-tier beverage advertising photograph. The exact [product] from the reference image ([3–4 identity details]) stands centred on a glossy [brand-colour] mirror surface that reflects it perfectly. [Cold/fresh proof: dense condensation beads, droplets running through the logo, puddles and round droplets around the base.] Props: [2–3 real flavour/brand props], slightly out of focus. Backdrop: smooth seamless gradient from [colour A] at the bottom to [colour B] at the top. Hard key light from upper left with crisp specular highlights, soft rim light outlining the product, light glowing through it. 100mm macro, f/8, the product fills 55% of the frame height, centred. Hyper-real, sharp, saturated, luxurious, no other text."
+Companions: **macro cold proof** (one big drop sliding through the logo + vapour, dark brand-colour bokeh) and an **action splash** (the product bursting out of water, ice cubes flying, crown splash). Prompts: `research/ai-video-reels/lab/experiments/F01_florida_man/plan_1d_crave.json`.
+
 ## 1. Why the reference (CELSIUS watermelon) works and our TIDEWATER test did not
 | Element | CELSIUS reference (campaign) | Our A1 can (catalog) |
 |---|---|---|
