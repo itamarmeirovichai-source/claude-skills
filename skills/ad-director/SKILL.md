@@ -3,6 +3,9 @@ name: ad-director
 description: End-to-end AI ad direction for a single product - brief intake, ledger-aware creative dice so concepts never repeat for a client, insight -> concepts -> scored finalists, script, timecoded shot list, per-shot model routing (Seedance / Kling / Veo / Runway / image models), production prompts, take QC, automated render QC (loudness, pacing, black/frozen/flicker, brand-colour fidelity vs packshot, safe-zone sheet) and a 100-point visual rubric. Use when the user hands over a product (photo, link, name) and wants an ad or reel planned, prompted, and quality-checked; pair with reel-studio for the edit.
 ---
 
+> **Read first:** `references/marketing/00-master-playbook.md` (marketing master playbook: client taste, 10-step pipeline, 15 gates; detail in marketing/01–04).
+
+
 # Ad Director
 
 Turns "here is a product" into a finished, quality-checked ad plan:

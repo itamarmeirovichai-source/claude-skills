@@ -2,6 +2,8 @@
 
 We are an ad studio. A visual effect is not an idea. **Spectacle without a point is a demo**, and demos don't get shared, commented on or bought from.
 
+**Step 0: pick the TONE first** (aesthetic brand film · ASMR ritual · comedy sketch · UGC). The default for this studio's client is an **aesthetic brand film**: clean, premium, brand recognisable in every shot, no talking heads. For an aesthetic film the "punchline" is a **visual payoff** (the reveal, the cold-proof moment, the logo resolve), not a joke.
+
 Every ad must have a **PUNCHLINE**: a final turn that makes the viewer laugh, gasp or nod, and that **only works because of the product**.
 
 ## 1. The four laws (an ad that breaks one is killed, however pretty it is)
@@ -9,6 +11,19 @@ Every ad must have a **PUNCHLINE**: a final turn that makes the viewer laugh, ga
 2. **TENSION.** A situation that escalates that truth into conflict, absurdity or stakes in the first 3 seconds.
 3. **TWIST (the punchline).** The last 20–30% reframes everything before it. The viewer re-reads the opening in a new light.
 4. **BRAND IN THE TWIST.** Remove the product and the joke dies. If the twist still works with a competitor's logo, rewrite it.
+5. **DESIRE (the law the F01 animatic broke).** A funny ad that doesn't make you *want the product* is a sketch, not an ad. The joke earns attention; the product shots must earn the purchase.
+   - **Crave shots ≥ 30% of runtime**, shot like the best beverage/beauty stills (see §1b), not "a bottle in a scene".
+   - **The product appears in the first 2 s**, as a gorgeous object, before the story starts. The story then explains why everyone wants it.
+   - **Prove the benefit sensorially:** cold → frost, condensation sliding, ice cracking, a breath of vapour; taste → pour, splash, bubbles, the first sip in slow motion.
+   - **Everything moves.** A still is only for the animatic. In the final ad, every product shot has motion: drips sliding, a light sweep, a rotating bottle, a splash, a push-in.
+   - **Test:** mute the ad and remove the jokes. Do the product shots alone make you thirsty? If not, reshoot them.
+
+## 1b. Crave cinematography (the Celsius-shot standard)
+The reference standard is a top-tier drink still: one hero product, a **colour world** matched to the flavour or brand (backdrop gradient, props and light share 1–2 hues), **real flavour props** in the frame (fruit, ice, botanicals), **cold proof** (dense droplets, puddles, frost), a **glossy reflective surface** that doubles the product, hard key light with crisp specular highlights, and a centred product filling ≥ 40% of the frame height.
+- Every ad gets **3 hero recipes** before story shots: (a) studio colour-world hero, (b) macro cold proof (drop running across the logo), (c) action hero (splash, pour, mid-air spin).
+- **Brand colour world:** pick it from the pack (e.g. AURUM = champagne gold + glacier teal). Every chyron, end card and grade leans into it.
+- Story shots should still glamorise the product: the bottle gets its own light (rim light, glow), even inside a messy scene.
+- **Motion recipes for crave shots** (Kling 3.0 Pro i2v or Seedance): slow push-in + droplets sliding down; 180° turntable with a light sweep; a splash crown frozen into slow motion; ice cubes dropping into frame; the cap twisting off with a vapour puff.
 
 ## 2. Punchline mechanisms (pick one deliberately; never "and then a nice packshot")
 | # | Mechanism | Shape | Example |

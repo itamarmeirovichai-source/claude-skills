@@ -1,0 +1,30 @@
+{
+ "_doc": "F01 stage 2: full video. Dialogue shots = Seedance 2.5 reference-to-video with our ElevenLabs lines as audio_urls (lip-sync to our delivery); crave and action shots = Kling 3.0 Pro i2v (sound off). Clean audio is re-laid in the edit.",
+ "defaults": {"takes": 1},
+ "jobs": [
+  {"id": "V1_standoff", "model": "bytedance/seedance-2.5/reference-to-video",
+   "args": {"image_urls": ["@file:clips/N3_standoff_t02.png", "@file:frames/C3_man.png"], "audio_urls": ["@file:audio/ref_man.wav"],
+    "duration": 8, "resolution": "480p", "aspect_ratio": "9:16", "generate_audio": false,
+    "prompt": "Shaky handheld TV news field footage, vertical. Use image 1 as the scene and image 2 as the man's identity (same face, faded teal fishing cap with sunglasses, sweaty olive T-shirt, cargo shorts). On a muddy Florida lake bank in harsh midday sun, the man plays tug-of-war with a large real alligator over a blue-and-white cooler; the alligator's jaws are clamped on the cooler handle, mud and water splash as both pull. The man shouts his lines in sync with the reference audio: 0-1s 'Let GO!', 2-3s 'It's MINE!', 4-7s 'It's TWELVE DOLLARS a bottle!' while yanking harder. Auto-exposure pumping, slight digital zoom jumps, real reptile anatomy and movement, realistic mud physics, no text."}},
+  {"id": "V2_anchor", "model": "bytedance/seedance-2.5/reference-to-video",
+   "args": {"image_urls": ["@file:frames/C1_anchor.png"], "audio_urls": ["@file:audio/ref_anchor.wav"],
+    "duration": 8, "resolution": "720p", "aspect_ratio": "9:16", "generate_audio": false,
+    "prompt": "Local TV news studio, locked-off camera, vertical. The news anchor from image 1 (same face, grey hair, navy suit, red tie, hands folded on the desk, city-skyline backdrop) delivers the news completely deadpan, lips perfectly synced to the reference audio: 0-4.4s 'A tense standoff in Boca Raton this afternoon... over a cooler.', then he pauses, a tiny raised eyebrow, then 5.6-7.4s 'Back to you, Gary.' with a slow knowing nod. Cool broadcast key light, subtle natural blinks and breathing, realistic skin, no text on screen."}},
+  {"id": "V3_reporter", "model": "bytedance/seedance-2.5/reference-to-video",
+   "args": {"image_urls": ["@file:frames/C2_reporter.png"], "audio_urls": ["@file:audio/ref_reporter.wav"],
+    "duration": 8, "resolution": "720p", "aspect_ratio": "9:16", "generate_audio": false,
+    "prompt": "TV news field report, shoulder-mounted camera with gentle sway, vertical. The reporter from image 1 (same face, dark hair with sunglasses on her head, light-blue shirt with sweat patches, holding a white microphone) stands by a Florida lake under brutal sun, squinting, fanning herself once, and speaks to camera with lips synced to the reference audio: 'It's ninety-eight degrees out here... and witnesses say the cooler contains...' then a beat of disbelief and 'imported mineral water.' Palm trees and heat haze behind her, auto-exposure flicker, realistic sweat and skin, no text."}},
+  {"id": "K5_splash", "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {"image_url": "@file:clips/H3_splash_hero_t01.png", "duration": 5, "sound": "off", "cfg_scale": 0.5,
+    "prompt": "Ultra slow-motion high-speed commercial shot. The AURUM bottle rises out of the water as the crown splash blooms around it, droplets and ice cubes tumble slowly through the golden light, sparkling highlights, gentle slow camera push-in. Smooth, realistic liquid physics, the bottle and its embossed AURUM letters stay exactly the same."}},
+  {"id": "K6_cooler_burst", "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {"image_url": "@file:clips/N3_standoff_t01.png", "duration": 5, "sound": "off", "cfg_scale": 0.5,
+    "prompt": "The tug-of-war snaps: the cooler lid bursts open, a burst of crushed ice and cold vapour explodes upward in slow motion, and one frosted glass bottle with a gold cap spins up out of the cooler into the golden sunlight; the man and the alligator both freeze and stare up at it. Handheld news camera, realistic physics, real reptile anatomy."}},
+  {"id": "K7_bank", "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {"image_url": "@file:clips/N4b_bank_aurum_t01.png", "duration": 5, "sound": "off", "cfg_scale": 0.5,
+    "prompt": "Golden hour. The man tilts the frosted AURUM bottle back and takes a long, satisfied sip, condensation running down the glass, then exhales with relief; the alligator beside him slowly blinks, content, chin on the grass next to its own bottle. Gentle handheld documentary camera, slow push-in, warm sun flares, realistic skin and reptile, bottles keep their exact look."}},
+  {"id": "K8_studio_hero", "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {"image_url": "@file:clips/H1_studio_hero_t01.png", "duration": 5, "sound": "off", "cfg_scale": 0.5,
+    "prompt": "Luxury beverage commercial end shot. Very slow push-in on the ice-cold AURUM bottle on the gold mirror; droplets slide down through the embossed letters, the ice spheres glisten and slowly melt, a soft light sweep glides across the glass and the brushed-gold cap, faint cold vapour. Smooth, no camera shake, the bottle and letters stay exactly the same."}}
+ ]
+}

@@ -14,3 +14,81 @@ Every entry has a date, an experiment, a finding, the supporting number and a de
 - **E01 partial:** Kling 3.0 Pro + Hailuo 2.3 arms, 16/16 completed, $7.44. Seedance arm NOT run (would cross the gate and the cap).
 - Spend: **$8.94 / $45**. Not blinded yet: blinding waits for the Seedance decision so all arms are scored in one blind pass.
 - **Decision needed (Itamar):** run Seedance arm (all 8 = $8.22, or a subset), then blind + score E01.
+
+### 2026-10-07 · F01 AURUM: the DESIRE breakthrough (user: "וואו עכשיו אנחנו מדברים", "wow, now we're talking")
+- **What failed:** the still animatic had a good joke (Florida man vs alligator over a cooler) but **zero product desire**. The bottle appeared at 0:20, inside story scenes. User verdict: "it doesn't make people buy" + "it's just pictures, nothing moves".
+- **What won:** three Celsius-standard crave stills (Flare 2k, $0.30 each) + one 5 s Kling 3.0 Pro i2v motion clip (sound off, $0.47). The user reacted with immediate excitement. Prompts: `experiments/F01_florida_man/plan_1d_crave.json`, `plan_1e_motion.json`.
+- **Why it works (Celsius anatomy, now in creative-brain §1b):**
+  - A brand colour world: AURUM = champagne gold + glacier teal (gradient backdrop).
+  - A glossy mirror surface doubles the product.
+  - Cold proof: dense droplets, one drop running through the logo, vapour.
+  - Real props: ice spheres, lime, mint.
+  - Hard key + rim light with crisp speculars.
+  - The product is centred and fills 50–55% of the frame height.
+- **Motion finding:** Kling Pro i2v from a macro still kept the embossed AURUM logo stable for the full 5 s, with a drop slide, vapour and a light sweep. The "slow push-in + droplets + light sweep" recipe is the safe default for crave shots.
+- **Decision (permanent rules):**
+  1. Law 5 DESIRE in creative-brain: crave shots ≥ 30% of runtime, the product in the first 2 s, every product shot moves.
+  2. Every flagship starts with 3 hero recipes (studio colour world / macro cold proof / action splash) **before** story shots.
+  3. Show the user a moving crave clip early. Stills-only animatics confuse the client; label them clearly as a timing test or skip them for clients.
+- **Spend:** F01 total $4.14 of $17.
+
+### 2026-10-07 · F01 AURUM v1 delivered (video)
+- **Model mix:** 3 dialogue shots on Seedance 2.5 reference-to-video, with the ElevenLabs lines as `audio_urls` (standoff 480p 8 s $1.65; anchor and reporter 720p 8 s $3.70 each). Crave and action shots on Kling 3.0 Pro i2v (5 s, sound off, $0.48 each).
+- **Spend:** F01 total $15.09 of $17.
+- **Findings:**
+  - Lip-sync from audio refs looks right on the anchor and reporter; the clean ElevenLabs audio is re-laid in the edit.
+  - One 8 s anchor take covered two lines (the opener and the "Back to you, Gary" button). Combine a character's lines into one ref to save a clip.
+  - The Kling cooler burst rendered the bottle small and gold (reads like a can). Next time pass the bottle as an end frame or a reference.
+  - QC: -14 LUFS. The 5.6 s reporter shot is too long for Reels. The runtime is 34 s; the target was 30.
+- **Edit:** music silence placed by cutting the bed (0–14 s, 19–26.6 s, 3 s silence, then the 19 s+ section again). The tagline captions were removed so they don't duplicate the AURUM title.
+- Spec: `experiments/F01_florida_man/F01_AURUM_v1.json`, plan `plan_2_video.json`.
+
+### 2026-10-07 · F01 pivot: the user rejected the comedy concept and wants clean aesthetic brand films
+- **User verdict on v1:** "really bad". They did not like the concept. They want something aesthetic and clean, where you recognise the brand. They also said the speech does not match the video's speed: Seedance audio-ref lip-sync drifted, and the 480p and 720p shots clash with the 1080p crave shots.
+- **Delivered instead:** `F01_AURUM_clean.json`, a 20 s brand film with no dialogue, built from 7 crave shots:
+  1. macro drop
+  2. cap twist with vapour
+  3. splash
+  4. ice drop on the mirror
+  5. orbit on marble
+  6. studio push-in
+  7. serif end card: "AURUM / Cold. Pure. Gold."
+  - Sound: ElevenLabs luxury score (92 BPM, with a breath of silence before the logo) plus ASMR SFX (cap twist, ice drop, soft whoosh, logo boom).
+  - Extra spend: 3 Kling shots, $1.43. **F01 total $16.52 of $17.**
+- **Standing preferences of this client (apply by default):**
+  1. Premium and aesthetic beats comedy sketches. Brand recognition first: the logo is legible in most shots, plus a colour world and a serif end card.
+  2. Avoid talking heads and lip-sync unless asked. If dialogue is needed, use 1080p and check the sync before the edit.
+  3. Everything in motion, Celsius-level product stills as the base.
+- **Brain change:** before writing jokes, ask (or infer) the **tone**: aesthetic brand film / ASMR ritual / comedy / UGC. This client's default is the aesthetic brand film.
+
+### 2026-10-07 · User on the AURUM clean film: "better, but still not perfect"
+Self-critique against the new research briefs (marketing/01, 02):
+1. **Monotony:** 7 shots with the same centred bottle and similar framing. No shot-size variety (wide, mid, macro), no scale and no context.
+2. **Inconsistent colour world:** the backgrounds jump between a teal/gold gradient, black marble and dark bokeh. One set and one palette per film.
+3. **No consumer scene or ritual:** no hand, glass, pour or sip. Research shows craft plus a consumer scene raises purchase intent.
+4. **No mechanism or single-minded claim:** "SOURCE 1987" is never paid off. The film never shows *why* this water.
+5. **No CTA and no sonic logo designed as a brand asset.** Pacing is uniform, with no speed ramp and no peak.
+→ Next flagship must pass the 15 gates in `marketing/01-fundamentals.md` §7 before generation.
+
+### 2026-10-07 · F02 VESPER (fragrance) delivered: first flagship built from the marketing master playbook
+- **Why this niche:** fragrance is the #1 niche for AI in `marketing/02-niches.md`. It needs no literal proof, and glass, mist and visualised notes play to AI's strengths. It is a new niche (F01 was a beverage).
+- **Brand kit:**
+  - Colours: oxblood burgundy #4A0E17, black and amber gold #E8C27A.
+  - Type: Liberation Serif with wide tracking.
+  - Sonic logo: a crystal chime. Recurring motif: glass clink and spray.
+  - Claim: "Wear the golden hour."
+  - Mechanism: 3 notes shown on screen.
+  - Entry point: "For the hour after sunset".
+  - CTA: "Discover the sample set", which de-risks a blind buy.
+- **Pipeline that worked:**
+  1. 2 product refs (Flare, text-only) → pick one.
+  2. 8 stills with a **prompt lock + colour-world line + negatives**, all referencing the product image. The bottle stayed identical across every still.
+  3. Kling 3.0 Pro i2v, 5 s, sound off: one move per shot, "only X moves".
+  4. Music with a timestamped structure, ASMR SFX, and a whispered VO line only at the end (Lily voice, eleven_v3 tags).
+- **Failures and fixes:**
+  - The neck/bare-shoulder prompt hit the Flare safety filter. A hand holding the bottle against a blazer passed.
+  - The Kling 90° orbit drained the juice colour and morphed the label after ~2.5 s. Keep orbits under 2.5 s, or limit them to ≤60°.
+  - Kling push-ins grow the product into the title space. For type, cut to the **still** end frame (gentle zoom-out) instead of the moving clip.
+  - Supers over busy areas need a soft dark box.
+- **Cost: $6.81** (refs $0.60, stills $2.40, the failed S6 still was not billed, the S6 retake $0.30, motion $3.81). Under the $10 cap.
+- Spec: `experiments/F02_vesper/F02_VESPER_v1.json`.

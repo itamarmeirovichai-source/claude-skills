@@ -1,0 +1,51 @@
+# Master playbook: from product to an ad that SELLS (read before every brief)
+
+This synthesises 01-fundamentals, 02-niches, 03-platforms and 04-ai-craft, plus the lessons from the lab NOTEBOOK (F01 AURUM).
+
+## The client's taste (proven by feedback)
+- **Aesthetic, clean, premium. The brand is recognisable in every shot.** No comedy sketches unless asked.
+- **No talking heads or lip-sync.** If a voice is used, it is a VO (off-screen), short and elegant.
+- **Everything moves.** Product stills are at Celsius level (colour world, props, cold or sensory proof, mirror surface, hard light).
+- Avoid monotony: vary shot sizes, include a consumer scene (hands or body, no face), keep **one** colour world per film, pay off a mechanism, end on a CTA.
+
+## The 10-step pipeline
+1. **Niche and product.**
+   - Pick a niche where AI excels (02-niches "Top 5": fragrance, leather/luxury goods, coffee, candles, watches/jewelry/sneakers).
+   - Invent a fictional brand.
+2. **Brand bible (asset kit).** Name, signature colour + secondary, typeface (serif for luxury), sonic logo (1–2 s plus a recurring motif), signature device or gesture, end-card layout.
+3. **Strategy card:**
+   - awareness level
+   - job-to-be-done or category entry point (situation)
+   - single-minded claim (≤7 words)
+   - filmable mechanism
+   - top objection plus its visual answer
+   - CTA fitting the tier (e.g. "Discover the sample set")
+4. **Beat map (15–25 s), with a visual change every 1.5–3 s:**
+   - 0–2 s: hook — the sensory moment, brand visible, sonic cue.
+   - Body: mechanism and proof shots, then the consumer scene, then the emotional peak.
+   - Last 2–3 s: hero packshot, logo, tagline, CTA.
+   - Product shown ≥3 times.
+5. **Run the 15 gates** (01-fundamentals §7). Any fail → rewrite before spending.
+6. **Hero stills.** Product reference first, then one still per shot with the prompt lock and the add-no list. Approve all stills (rubric ≥ 8/10).
+7. **Motion.** Kling 3.0 Pro i2v, 5 s, sound off: one camera move per shot, "only X moves", logo legible. Avoid pours, hands touching mechanisms, and faces.
+8. **Sound.**
+   - ElevenLabs score with timestamped structure (ASMR intro, a hit on the reveal, a breath before the logo).
+   - Foley per action, plus the sonic logo.
+   - A short VO line at the end (+71% recognition vs ASMR-only; speech + music gives 2.1× purchase intent).
+9. **Edit.**
+   - Cut on the beat; speed ramps.
+   - One grade; type set in post (serif, wide tracking).
+   - Captions for the VO.
+   - Safe zones (top 14%, bottom 35%, sides 6%).
+   - End card 2–3 s with the CTA.
+   - Cut a 6 s and a 15 s version from the master.
+10. **QC + retro.** Run `director.py qc`, a cold-viewer test ("what is it, why want it, what do I do?"), then a NOTEBOOK retro.
+
+## Budget template (≈ $10 per flagship)
+| Item | Cost |
+|---|---|
+| Product reference stills (2) | $0.60 |
+| Shot stills (8 × Flare 2k) | $2.40 |
+| Motion (8 × Kling Pro 5 s, sound off, $0.476) | $3.81 |
+| Retakes reserve | ~$2.50 |
+| Music, SFX, VO | ElevenLabs credits |

@@ -81,7 +81,14 @@ def chars_to_words(alignment: dict, offset: float = 0.0) -> list[dict]:
     st = alignment.get("character_start_times_seconds") or []
     en = alignment.get("character_end_times_seconds") or []
     words, cur, s0, e0 = [], "", None, None
+    in_tag = False  # eleven_v3 audio tags like [sighs] are spoken directions, not caption words
     for c, a, b in zip(chars, st, en):
+        if c == "[":
+            in_tag = True
+            continue
+        if in_tag:
+            in_tag = c != "]"
+            continue
         if c.isspace():
             if cur:
                 words.append({"start": round(s0 + offset, 3), "end": round(e0 + offset, 3), "text": cur})
