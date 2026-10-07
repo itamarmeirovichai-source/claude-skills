@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.176,
+   "text": "[yelling,"
+  },
+  {
+   "start": 0.18,
+   "end": 0.192,
+   "text": "out"
+  },
+  {
+   "start": 0.197,
+   "end": 0.208,
+   "text": "of"
+  },
+  {
+   "start": 0.21,
+   "end": 0.24,
+   "text": "breath]"
+  },
+  {
+   "start": 0.32,
+   "end": 0.64,
+   "text": "It's"
+  },
+  {
+   "start": 0.92,
+   "end": 2.16,
+   "text": "MINE!"
+  }
+ ]
+}

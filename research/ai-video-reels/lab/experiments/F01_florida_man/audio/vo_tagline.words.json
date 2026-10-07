@@ -1,0 +1,44 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.064,
+   "text": "[deadpan]"
+  },
+  {
+   "start": 0.072,
+   "end": 1.0,
+   "text": "TIDEWATER."
+  },
+  {
+   "start": 1.09,
+   "end": 1.76,
+   "text": "Ice-cold"
+  },
+  {
+   "start": 1.816,
+   "end": 3.04,
+   "text": "electrolytes..."
+  },
+  {
+   "start": 3.07,
+   "end": 3.22,
+   "text": "[beat]"
+  },
+  {
+   "start": 3.23,
+   "end": 3.28,
+   "text": "worth"
+  },
+  {
+   "start": 3.328,
+   "end": 3.76,
+   "text": "wrestling"
+  },
+  {
+   "start": 3.84,
+   "end": 4.16,
+   "text": "for."
+  }
+ ]
+}
