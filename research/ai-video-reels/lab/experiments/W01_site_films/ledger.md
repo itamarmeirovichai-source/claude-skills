@@ -46,3 +46,11 @@ Lesson: in Seedance one-takes an ORBIT around a glass product breaks product fid
 Lessons:
 - Seedance's filter rejects "steps off the edge / falls" with a person on a rooftop, even if the tone is playful. Kling pro accepts a whimsical float (umbrella) or a cabled stunt dive.
 - A one-take can "wipe" through a foreground body (G_pack passes Otto's blazer) and still read as one move.
+
+| Item | Model | $ est | Status |
+|---|---|---|---|
+| OTTO-1 "Tabletop city" keyframes x6 | Flare 2k | 2.06 | PASS |
+| OTTO-1 motion (4x5 s + 1x10 s) | Kling 3.0 pro i2v | 2.86 | PASS |
+| VESPER-2 "23 minutes" keyframes x6 | Flare 2k | 2.02 | PASS |
+| VESPER-2 motion (4x5 s + 1x10 s) | Kling 3.0 pro i2v | 2.86 | PASS |
+| **Round 3 total** | | **~17.45** | **site total ~$63 of $80** |
