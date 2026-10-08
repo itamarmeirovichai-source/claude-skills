@@ -60,3 +60,7 @@ Lessons:
 | **Site total** | | **~$65.6 of $80** | |
 
 Lesson: every keyframe that shows the product in use must name the SAME vessel ("tall straight-sided plain glass, no stem, no ice"); otherwise each keyframe invents its own (flute, can, iced tumbler) and the drink appears to jump at every seam.
+| Lip-sync talking lines x8 (+ test, + 2 retakes for framing/lips) | Wan 3.0 r2v 720p, $0.10/s | ~5.40 | PASS: real lip-sync (mouth lags audio 0.12 s, baked into the clip) |
+| **Site total** | | **~$71 of $80** | |
+
+Lesson: Wan 3.0 reference-to-video with audio_urls is the cheapest real lip-sync ($0.10/s at 720p). Framing drifts between takes, so say "same camera distance as the reference, hands visible at the bottom edge, do not zoom in".
