@@ -165,7 +165,7 @@ const n = films.length;
     :global(html:not(.js)) .ring-track, .hero[data-state='fallback'] .ring-track, .hero:global(.rm) .ring-track {
       position: absolute; inset: auto 0 0 0; width: auto; height: auto; display: flex; gap: 14px; justify-content: center; padding: 0;
     }
-    :global(html:not(.js)) .ring-item, .hero[data-state='fallback'] .ring-item, .hero:global(.rm) .ring-item { position: static; transform: none !important; }
+    :global(html:not(.js)) .ring-item, .hero[data-state='fallback'] .ring-item, .hero:global(.rm) .ring-item { position: static; transform: none !important; opacity: 1 !important; filter: none !important; }
     :global(html:not(.js)) .card, .hero[data-state='fallback'] .card, .hero:global(.rm) .card { translate: none; }
   }
   @media (max-height: 700px) and (max-width: 767px) { .hero-sub { display: none; } }
