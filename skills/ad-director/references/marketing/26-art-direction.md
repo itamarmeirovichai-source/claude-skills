@@ -50,7 +50,7 @@ Art direction is subtraction plus repetition: pick a few elements and repeat the
 **2.1 Palette discipline**
 - **Structure:** dominant ≈60% of the frame area, secondary ≈30%, dark ≈10%, plus **one accent reserved for meaning**. The accent usually marks the product or the payoff and appears nowhere else [inf, 60-30-10 heuristic].
 - **Production designers police the palette.** On *The Day the Earth Stood Still*, one red tomato in a stadium got questioned: "We don't do red!" An earlier film's rule was "no brown!" The spread was fixed only after "ten or fifteen rounds" [A3].
-- **Rare colours carry meaning.** *The Last Jedi* used red "very sparingly ... a very specific application", until the Crait battlefield [A3]. A USC designer works with few colours "so that when a new or more vibrant colour appears, it amplifies a certain emotional beat" [A3]. That is the accent rule.
+- **Rare colours carry meaning.** *The Last Jedi* saved red for Crait [A3]. A USC designer works with few colours "so that when a new or more vibrant colour appears, it amplifies a certain emotional beat" [A3]. That is the accent rule.
 - **Write colours as materials** ("oxblood lacquer, bone-white plaster, smoked oak"). Models render materials better than hex codes. Keep hex for the grade and the end card [inf].
 
 **2.2 Shape language**
@@ -89,7 +89,7 @@ Art direction is subtraction plus repetition: pick a few elements and repeat the
 
 **What it is**
 - A row of small abstract thumbnails, made early. Their purpose is "mostly the emotional tone of each scene", shown in "pure abstract shapes and colour". Romano likens reading one to reading sheet music [A2].
-- **Origin:** Eggleston drew the first for *Toy Story* in chalk pastel on long strips of black paper. Lasseter: colours "intensified with the emotions and turned muted during somber moments". Pixar has made one for every film since [A2].
+- **Origin:** Eggleston's chalk-pastel *Toy Story* strips; colours "intensified with the emotions and turned muted during somber moments" (Lasseter). Pixar has made one per film since [A2].
 - *Toy Story*'s pastels go "bleak and muddy when something sinister occurs"; *Up*'s opening runs "beat by emotional beat" with no dialogue [A2].
 
 **Making one for an ad [inf]:**
@@ -158,13 +158,12 @@ Art direction is subtraction plus repetition: pick a few elements and repeat the
 - **One idea:** the best stills "strip away all the things ... on the periphery and concentrate on that one little image that says more than you would if you showed it in a big wide shot". And: "you shouldn't love a shot ... it should all be part of a whole" [L1].
 
 **Lubezki** [L4][L5][L6]
-- He scouts at different hours, because places "make you feel sad... lonely... joyful".
 - He uses wide lenses even in close-ups, so "you still feel the light changes ... the wind and the cold" [L4].
 - He uses backlight with negative fill. "We want the blacks; we don't like milky images" [L5].
 - "Instead of bringing in lights, we would rewrite the scene and reassemble it outside" [L6]. *For us:* when a prompt fights its light, re-stage (move the subject to the window) rather than adding light words [inf].
 
 **Still-life photographers**
-- **Carl Kleiner** builds one graphic idea in camera. He rigs "in order to only show what I want to show", uses two-centimetre mirrors to place single highlights, and makes "as much as possible in camera". [P1]. *For us:* write one placed highlight instead of generic "studio lighting" [inf].
+- **Carl Kleiner** builds one graphic idea in camera. He rigs "in order to only show what I want to show", uses two-centimetre mirrors to place single highlights, and makes "as much as possible in camera". [P1]. *For us:* one placed highlight beats "studio lighting" [inf].
 - **Jonathan Mauloubier** first works out "what needs to be depicted". He tests light "to reveal the essence of the subjects", and holds that "it is definitely the stage that does it" [P2]. Set first.
 - **Henry Leutwyler:** still life "doesn't run away... so you better know what you're doing". [P3]. Plan fully, don't over-iterate.
 - **Jonathan Knowles** is about "slicing and isolating the subject matter" [P4], which is the logic of the insert.
@@ -210,10 +209,10 @@ Art direction is subtraction plus repetition: pick a few elements and repeat the
 The default look comes from aesthetic scorers "highly biased towards ... blurry backgrounds, overly soft textures, and bright images" [M2]. BFL pitches FLUX.1 Krea as escaping "the oversaturated 'AI look'" [M2]. Counter-moves [inf]:
 - **Commit to a key:** low or high, never "balanced bright".
 - **Compose in depth** [L5]: use bokeh only when the one-idea test needs isolation.
-- **Use asymmetry and cropping:** props cut by the frame edge, and a layout map to place the subject off-centre.
-- **Keep one discord:** AI harmonises every colour, while real art direction keeps one accent.
-- **Delete stock adjectives** ("cinematic, 8K, hyper-realistic, stunning, epic"). Replace each with a physical fact.
-- **Show the artifice deliberately** where the brand allows it (incomplete backdrop, visible rig edge) [A4]. Deliberate construction reads as human authorship.
+- **Asymmetry:** props cut by the frame edge; layout map for off-centre placement.
+- **One discord:** AI harmonises everything; real AD keeps one accent.
+- **Replace stock adjectives** ("cinematic, 8K, stunning") with physical facts.
+- **Show artifice deliberately** where the brand allows (incomplete backdrop) [A4]; it reads as human authorship.
 
 ## 7. The Art Director Protocol (run for every ad)
 
