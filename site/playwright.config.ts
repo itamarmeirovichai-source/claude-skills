@@ -16,7 +16,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['list']],
   use: { baseURL: 'http://localhost:4321', trace: 'off' },
-  webServer: { command: 'npx astro preview --port 4321', url: 'http://localhost:4321', reuseExistingServer: true, timeout: 60_000 },
+  webServer: { command: 'npx astro preview --port 4321 --ignore-lock', url: 'http://localhost:4321', reuseExistingServer: true, timeout: 60_000 },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, launchOptions } },
     { name: 'mobile', use: { ...devices['Pixel 7'], launchOptions } },
