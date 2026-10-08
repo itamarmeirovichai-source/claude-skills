@@ -67,11 +67,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 3. **Generative fill as prop budget.** Firefly Generative Expand "to stretch the image", Insert for balloon, kite and umbrella "to save money on props", and Remove Background "to generate a new one" behind the real subject, all composited into a collage on a cork board.
 4. **"Day N of extremely easy edits" series** (Higgsfield-sponsored). The pendulum effect: one photo, then Higgsfield Create Video, preset **AERIAL PULLBACK**, Kling 2.6, 5 s, audio on, 10 credits. Prompt on screen, verbatim: "the person is standing still. There are no people in the background. Camera movement is a drone shot that pulls upwards." In CapCut: duplicate the clip and reverse the copy.
 5. **Hand-drawn storyboard first** (frame 0:05 of 7567079567425359135), then "Step 1 / Step 2 / Step 3" red tags on screen.
-6. **Southwest Getaways ad:** a fully handmade paper-collage stop-motion with airline tickets, passport stamps and postcards. The brand assets (boarding pass, logo plane) are physical props.
-
 **On-screen prompt** (Gemini in Chrome, 147.7M video): "i'm debating between these locations for a photoshoot. i'm making a tunnel book, so i need strong foreground, mid ground, and backg[round]".
-
-**Typography:** kinetic single words in mixed serif/sans ("so when i was", "BUT", "Conservatory", "window of time"). No word-by-word captions.
 
 **Business model:** brand-commissioned "tutorial ads" in which the tutorial is the ad. Team credits suggest a small studio [inf].
 
@@ -111,8 +107,6 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 2. **Shock-face hook + "WTF ¿Qué acabo de hacer?"** sticker, then "Y me tomó solo 2 minutos". Speed is the claim.
 3. **Local hero product** (Chocoramo, a Colombian snack). Filmora mobile flow: photo of the product, then "video de marketing", then upload a scene, write plain words and let the AI "convert that text into a prompt" (verbatim: "Aquí no hay prompts mágicos, solo escribo con palabras simples lo que quiero").
 4. **AI UGC as "the end of influencers?"** framing (Topview Product Avatar: pick an avatar, upload a product photo).
-5. The real-product review style (macro b-roll with a yellow condensed title "LOGITECH LO VOLVIÓ A HACER", 1 kinetic word per beat) shows the product-film grammar the AI demos imitate.
-
 **Business model:** sponsored reviews and tool affiliates, plus his own brand agency.
 
 ---
@@ -129,8 +123,6 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 3. **ChatGPT as prompt writer, briefed on the motion idea.** Verbatim (Turkish, on screen): "Görseldeki ayakkabıyı Kling AI'de image to video yöntemini kullanarak, profesyonel bir ürün videosu haline getirmek istiyorum. Bana bunun için bu kaya parçaları ve toz duman ile birlikte ayakkabının gökyüzünden dağın tepesine düşerek geldiği bir video için detaylı prompt yazar mısın?" ("I want to turn the shoe in the image into a professional product video with Kling AI image-to-video. Can you write a detailed prompt for a video where the shoe falls from the sky onto the mountain top, with these rock fragments and dust?")
 4. **Localized subjects:** an old Murat 131 car in an Istanbul back street, the Istiklal tram, Ottoman soldiers. The "first in Turkey" launch-night hook ("Şu anda saat gece 11 ve ben kamera karşısına acilen geçtim", "It's 11 pm and I rushed to camera").
 5. **Seedance 2.0 in CapCut desktop:** 5–15 s, "15 seconds costs 270 credits; CapCut Pro gives 1,200 credits a month"; the free first video should be 15 s; "if you give a realistic human photo it usually errors", so use non-human refs or text-to-video. On-screen fragment: "…sharp textures on the rusted metal parts of @image1. Constraints: Flawless hand and joint anatomy for the robot, maintain character identity from the car."
-
-Visible ChatGPT model prompt (handbag): "A gorgeous woman walking confidently through a luxurious hotel lobby, holding a black leather [handbag] … wearing a body-hugging red satin dress with a high slit and black stilettos. … elegant background includes marble floors, golden chandeliers, and soft ambient lighting…"
 
 ---
 
@@ -159,11 +151,8 @@ Visible ChatGPT model prompt (handbag): "A gorgeous woman walking confidently th
 
 **Techniques:**
 - **Named recurring AI characters** ("Bri", "Robin", "Aura Blues" the AI R&B artist). The Veo prompt uses labelled slots, verbatim on screen: "Scene: A content creator walking through a Love Island villa talking directly to the camera Subject: Robin, A 25-year old young, gorgeous black woman wi[th]…" (Google Flow, Frames to Video).
-- **Preset-recreate** in Higgsfield Soul: open a style category ("Y2K", "Hair Clips"), press Recreate to load its prompt, change a couple of descriptors and generate 4.
-- **Brand Aesthetic Board** from ChatGPT ("The Wellness Baddie": vibe and mood, colour palette, typography, visual content style, brand voice), then rendered as one board image. This is a fast brand-bible artifact for small clients.
+- **Preset-recreate** (Higgsfield Soul): open a style category, press Recreate, change two descriptors. **Brand Aesthetic Board** (ChatGPT, "The Wellness Baddie": vibe, palette, typography, visual style, brand voice) rendered as one image, a fast brand bible for small clients.
 - **Format parody prompts:** "Create a video resembling the Hot Ones intro…" in Gemini/Veo; "A realistic camera surveillance video…" (prison visit phone call).
-- Comment-reply videos ("Hey what app did you make these on? Midjourney?") as the hook.
-
 ---
 
 ## 8. AI Video School — consistency engineering for multi-shot ads
@@ -182,7 +171,7 @@ Visible ChatGPT model prompt (handbag): "A gorgeous woman walking confidently th
 
 ## 9. YouTube-native educators (metadata and prior notes only)
 
-**Dan Kieft** (304k YT). His top ad titles: "How To Use Google VEO 3 JSON Prompting To Create $100k AI Ads" (356k, afzbZYC6fCM), "Create Cinematic AI Ads With Nano Banana Pro + Kling AI – Full Guide" (259k, P7pH_1zFKbE), "Create Cinematic AI Ads with Seedance 2.5 – Full guide" (147k, kGku3TTiYO8), "Create AI UGC Ads With Nano Banana That ACTUALLY Look REAL" (128k, YbztbmMtDZM), and "Exactly How AI Influencers Like Aitana Lopez Make Crazy Money" (273k). His techniques are already in our notes (`research/ai-video-reels/round2/notes/T1.md`, `V2.md`): a label close-up as "authority for the exact wording", a style block from a lookbook via Claude, the Ad Multiplier via the Higgsfield MCP, human-written ideas ("make me 10 different ads… generic"), and his `/SD25` skill.
+**Dan Kieft** (304k YT). His top ad titles: "How To Use Google VEO 3 JSON Prompting To Create $100k AI Ads" (356k, afzbZYC6fCM), "Create Cinematic AI Ads With Nano Banana Pro + Kling AI – Full Guide" (259k, P7pH_1zFKbE), "Create Cinematic AI Ads with Seedance 2.5 – Full guide" (147k, kGku3TTiYO8), "Create AI UGC Ads With Nano Banana That ACTUALLY Look REAL" (128k, YbztbmMtDZM), and "Exactly How AI Influencers Like Aitana Lopez Make Crazy Money" (273k). Techniques already in our notes (`research/ai-video-reels/round2/notes/T1.md`, `V2.md`).
 
 **Youri van Hofwegen** (330k YT) leans hard on UGC and money: "How to Make AI UGC Ads in 2026 (Full Course)" (82k, K2yPvRsHT3k), "How to Set Up & Use Higgsfield API in 2026 (Save Money)" (82k), "DO THIS to Make AI UGC Ads with AI Influencers to Get RICH in 2026" (49k), "I Built a Claude Agent that Makes 500 AI UGC Ads per Month" (24k, hgtsG5zfLoY), "Create Realistic AI Ads from One Single Image (Consistent Character + Products)" (25k). [inf] His model is affiliate tools plus agent-scale UGC volume.
 
@@ -190,7 +179,7 @@ Visible ChatGPT model prompt (handbag): "A gorgeous woman walking confidently th
 
 ## 10. Rory Flynn and Dave Clark (web sources only)
 
-**Rory Flynn** (Systematiq AI; X/IG). His "Mad Libs for AI" prompt formula of non-negotiables: **shot type, subject + action, environment, color scheme, camera + lens, film stock, mood, lighting** ("Start simple. Add complexity later"). Verbatim example: "Motorsport photography, Red Bull F1 car, racetrack, warm tones, 35mm, shallow depth of field, sunset backlighting, center framing, motion blur" ([MATG](https://marketingagainstthegrain.com/articles/ai-tools-to-replace-your-10k-creative-agency)). His "asset hacking" method: take brand images, run Midjourney Describe, then have ChatGPT apply "Describe the image like an award winning professional photographer in extreme technical detail. Use this formula to structure the prompt: [Insert Prompt Formula]" ([Foreplay](https://foreplay.co/post/midjourney-facebook-ads)). Then batches of about 10 prompts with delimiters run in parallel, and a brand "visual profile" built from about 20 images as the system prompt. He claims about 1,000 images in about 20 minutes "after three weeks of building the system". Business model: teaching teams and done-for-you creative; "I don't run ads".
+**Rory Flynn** (Systematiq AI; X/IG). His "Mad Libs for AI" prompt formula of non-negotiables: **shot type, subject + action, environment, color scheme, camera + lens, film stock, mood, lighting** ("Start simple. Add complexity later"). Verbatim example: "Motorsport photography, Red Bull F1 car, racetrack, warm tones, 35mm, shallow depth of field, sunset backlighting, center framing, motion blur" ([MATG](https://marketingagainstthegrain.com/articles/ai-tools-to-replace-your-10k-creative-agency)). His "asset hacking" method: take brand images, run Midjourney Describe, then have ChatGPT apply "Describe the image like an award winning professional photographer in extreme technical detail. Use this formula to structure the prompt: [Insert Prompt Formula]" ([Foreplay](https://foreplay.co/post/midjourney-facebook-ads)). Then batches of about 10 prompts run in parallel, with a brand "visual profile" (from about 20 images) as the system prompt. He claims about 1,000 images in 20 minutes; he teaches teams and does not run ads.
 
 **Dave Clark** (CCO of Promise, backed by a16z and North Road; ex-commercial director for Coca-Cola, HP and Intel). The studio platform MUSE logs every prompt, setting and approved version as **chain-of-title for rights and insurance**. For the Adobe MAX 2025 short he used text prompts, then Firefly Boards for shot planning, then Firefly partner models, Substance, Photoshop and Premiere ([nofilmschool](https://nofilmschool.com/dave-clark-interview-adobe-max), [Adobe blog](https://blog.adobe.com/en/publish/2025/10/29/how-shorts-for-generative-ai-film-festival-max-2025-were-made), [etcentric](https://www.etcentric.org/?p=189118)).
 
@@ -246,8 +235,10 @@ Visible ChatGPT model prompt (handbag): "A gorgeous woman walking confidently th
 9. **Portfolio content (no talking head, to keep the 00-playbook ban):** PJ's letterboxed 16:9 film with a static 1-line top title, and a mock-BTS cut-down. Both are faceless and both are proven formats.
 10. **Budget assumption in hfgen cost plans:** plan for about 5% usable takes on comedic multi-character spots (PJ's 300–400 → 15) versus higher yield on single-product shots [inf].
 
-### Caveats
+
 
 - TikTok under-represents PJ Ace, Rory Flynn, Dave Clark and the YouTube educators, whose main channels (X, IG, YouTube) were blocked. Their sections rely on captions, titles and press.
 - Plays on sponsored posts are probably paid-boosted [inf], so they are a weak signal of organic appeal.
 - On-screen prompt fragments are partial where the UI was scrolled. Brackets mark my completions.
+
+**Caveats:** TikTok under-represents PJ Ace, Rory Flynn, Dave Clark and the YouTube educators (their main channels were blocked). Plays on sponsored posts are probably boosted [inf]. Bracketed words in prompt fragments are my completions.

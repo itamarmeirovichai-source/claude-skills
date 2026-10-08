@@ -2,26 +2,7 @@
 
 **Scope.** These are official, free, no-login courses and guides for the AI tools and ad platforms we use. Each entry gives the URL, what it covers, and only the lessons **not already in 00–23**. Verbatim rules and prompts are in code blocks. [inf] marks our inference. No money was spent and no accounts were created. Fetched pages were treated as data.
 
-**Access log.**
-
-| Source | Status |
-|---|---|
-| Higgsfield Academy | Catalogue, syllabi and Prompt Bank are open. Lesson players are behind sign-up. 3 course videos studied via their public YouTube twins. |
-| Kling Quick Start | Open (3.0, 3.0 Omni, T2V/I2V formulas). |
-| Google (Veo / Gemini Omni / Nano Banana / Flow) | Open docs. |
-| Runway Academy | Prompting guide + all 10 "AI for Advertising" lessons (YouTube embeds) studied. Help-center guide: 403. |
-| ElevenLabs | Best-practices doc open. |
-| Krea | Docs open (Seedance Studio, Elements). |
-| Topaz Learn | Open. |
-| ByteDance / BytePlus Seedance guides | Body is JS-rendered; nothing extractable. |
-| Freepik Academy, Leonardo help | 403 / API-only. |
-| Curious Refuge | Paid course; free YouTube lessons queued (see §B5). |
-| Meta Blueprint | Lessons need a Facebook login. The **Creative Strategy study guide PDF (July 2026, 100 pp)** is public and was studied instead. |
-| TikTok Academy | Lessons need registration. The public "Creative best practices for performance ads" help article was studied, plus the Academy syllabus. |
-| Google ABCD | Skillshop needs login. The public **ABCD Playbook PDF** and the Think with Google article were studied. |
-| Pinterest | Open. |
-| Snap | Official page 404; only third-party summaries found ([3P]). |
-| D&AD / Cannes / ad schools | Free YouTube talks (§B5). |
+**Access.** Open and studied: Higgsfield Academy catalogue, syllabi and Prompt Bank (lesson players need sign-up; 3 courses studied via their public YouTube twins); Kling Quick Start; Google Veo/Gemini Omni/Nano Banana/Flow docs; Runway prompting guide + all 10 "AI for Advertising" lessons; ElevenLabs best practices; Krea docs; Topaz Learn; Google ABCD Playbook PDF; Meta's public Creative Strategy study guide PDF (Blueprint lessons need a Facebook login); TikTok's public creative help article (Academy lessons need registration); Pinterest. Not extractable: BytePlus Seedance guides (JS-rendered), Freepik Academy (403), Leonardo (API docs only), Snap (official page 404; [3P] only), Runway help-center guide (403).
 
 ---
 
@@ -52,23 +33,18 @@ Arc right: One continuous arc right — the camera travels along a circular path
 
 Push past: One continuous forward travel on a lane offset about 0.6 meters to the subject's right — the camera approaches at constant speed and constant height, the subject growing in frame, then slides past their shoulder: the subject exits cleanly at the left frame edge while the camera continues WITHOUT stopping toward the reveal beyond, focus racking from the subject to the far point at the moment of the pass. The camera passes BESIDE the subject, never through them, never stopping at them. No pan correction, no zoom, no tilt.
 
-Dolly in: … at a locked constant lens height of [1.5] meters … The field of view never changes — no zoom: the perspective shifts because the camera physically approaches, near objects sweeping out past the frame edges with strong parallax.
 
 Zoom in: Locked tripod, zero rotation, zero travel — the entire move is optical, a focal-length change only: one slow perfectly even continuous zoom in from [84] degrees to [29 or 18] degrees … perspective stays constant and there is no parallax.
 
 Whip pan: The camera holds composition A perfectly static, then executes ONE violent horizontal whip pan to the left — a 0.4-second full-blur smear — landing hard on composition B with a 2-degree overshoot-and-settle, then holds composition B perfectly static.
 
-Crush zoom: … a violent optical crash zoom OUT — about 0.4 seconds, zoom-ring only, with real motion blur and a hard stop — landing on a locked wide [84]-degree frame held perfectly static to the end.
 
-Rack focus: … exactly one plane is sharp at any moment, the other melts into clean bokeh; the subject grows in frame only by physically approaching the lens.
 
 Robot arm: The camera flies one fast, perfectly smooth stabilized motion-control path through four positions — [front eye-level medium close-up] → [side arc at eye level] → [sinking into a low angle with a slight dutch tilt] → [craning up and over into a top-down 3/4 view]. Each glide takes about [1] second with soft ease-in/out and brief readable holds at every position; machined gimbal/crane quality — no shake, no whip pans, no speed ramps, no motion blur.
 
-Bullet time: … the subject hangs suspended mid-action, with droplets, debris and particles locked motionless in mid-air … while the camera alone keeps moving at normal speed, sweeping along a smooth circular arc around the frozen moment.
 
 Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed ramps and no real-time moments — the camera at ground height below knee level … The track never stops: the shot ends mid-motion on a live frame — no cut to black, no fade, no freeze.
 
-Vehicle tracking: … Velocity is synced precisely to the vehicle's own speed — no drifting ahead, no falling behind … the vehicle sits steady and anchored at a constant size in frame while the road surface, markings and roadside scenery rush past in a continuous flow on every parallax layer.
 ```
 - **Zoom vs dolly.** The bank names the physics: zoom = no parallax; dolly = parallax, FOV fixed. [inf] Use it to stop models from substituting a zoom for a push-in on product moves.
 - **"Robot arm" with ~1 s holds** is the motion-control product move we lack. It is cheaper than an orbit and safer for labels. [inf]
@@ -111,10 +87,7 @@ Vehicle tracking: … Velocity is synced precisely to the vehicle's own speed �
   If it's too much for one prompt, split it into two.
   ```
 
-**Course "Build a Brand's Visuals with AI"** (YouTube twin: https://youtu.be/sXgWhKwiUdc). This one is mostly a Marketing Studio demo; those presets are not on our API (12 §2).
-- Keep: "keep your logo memorable, not clever" (Adidas stripes, Nike tick).
-- Keep: give every collection **one hero item** "the moment people see it, they have to know it".
-- Keep: the "Hyper Motion" grammar: an element-by-element product build-up → clean pack shot.
+**Course "Build a Brand's Visuals with AI"** (https://youtu.be/sXgWhKwiUdc) is mostly a Marketing Studio demo (not on our API, 12 §2). Keep: "keep your logo memorable, not clever"; one **hero item** per collection; the "Hyper Motion" grammar (element-by-element build-up → clean pack shot).
 
 ### A2. Kling Quick Start (Kuaishou official)
 **URLs:** https://app.klingai.com/global/quickstart/klingai-video-3-model-user-guide · …/klingai-video-3-omni-model-user-guide · …/text-to-video-prompt-guide · …/image-to-video-guide
@@ -137,23 +110,9 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   ```
   …the gilded afternoon sunlight filters through the shutters onto the perfume bottle… The camera pans slowly in from the scattered rose petals, shifting focus to the faceted cut of the Kling perfume bottle. Voiceover (lazy French female voice, British accent, slow pace): Bathe in the golden hour. The camera orbits the perfume bottle in slow motion, capturing the play of light and shadow on the golden lettering and bottle body…
   ```
-  ```
-  The camera remains fixed on the word "KLING" emblazoned on the baseball bat as the player swings and hits the ball.
-  ```
-- **Timecoded 15 s long take**, Kling-style: "At the 4th second… At the 8th second… At the 12th second… In the final 3 seconds…" plus "a single unbroken shot with no edited transitions".
-- **Elements 3.0.**
-  - A 3–8 s video creates a character element *with its voice*.
-  - Multi-image elements take 2–4 images + ≥3 s of audio.
-  - "If you choose a subject with a pre-bound voice tone, it's not recommended to set the tone again in the prompt."
-- **Price (credits/s).**
-
-  | Mode | 1080p | 720p |
-  |---|---|---|
-  | Native Audio | 12 | 9 |
-  | No audio | 8 | 6 |
-  | Voice control | +2 | +2 |
-
-  This confirms our "sound off" rule (audio = +50%).
+- **Timecoded 15 s long take:** "At the 4th second… At the 8th second… In the final 3 seconds…" + "a single unbroken shot with no edited transitions".
+- **Elements 3.0:** a 3–8 s video creates a character element *with its voice* (or 2–4 images + ≥3 s audio). "If you choose a subject with a pre-bound voice tone, it's not recommended to set the tone again in the prompt."
+- **Price:** native audio 12 vs 8 credits/s at 1080p (9 vs 6 at 720p), confirming our "sound off" rule.
 
 ### A3. Google: Veo / Gemini Omni best practices, Nano Banana guide, Flow help
 **URLs:**
@@ -194,11 +153,7 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   - "Your text prompt should complement, not contradict, your visual inputs."
   - "A consistent look and feel across all your ingredient images helps the model blend them."
   - Speech is less likely if the line "doesn't fit in the 8-second clip".
-  - Gemini system prompt from Google's Flow blog:
-    ```
-    You are the world's most intuitive visual communicator and expert prompt engineer. You possess a deep understanding of cinematic language, narrative structure, emotional resonance, the critical concept of filmic coverage and the specific capabilities of Google's Veo AI model. Your mission is to transform my conceptual ideas into meticulously crafted, narrative-style text-to-video prompts that are visually breathtaking and technically precise for Veo.
-    ```
-
+  
 ### A4. Runway Academy: Prompting Guide + "AI for Advertising" (10 lessons, ~20 min)
 **URLs:** https://academy.runwayml.com/guides/prompting-guide · https://academy.runwayml.com/course/ai-advertising (lessons are YouTube embeds, e.g. https://youtu.be/Cucu3i-v3s0, https://youtu.be/FGrtzZrYnDA).
 **Covers:**
@@ -233,16 +188,11 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   Timestamps: [00:01] X occurs. [00:03] Y occurs. [00:04] Z occurs.
   ```
 
-**Course, new to us:**
-- **Pre-production deck from one session:**
-  1. A B&W hand-drawn storyboard style plus one hero character.
-  2. A previs pass that pairs **each storyboard frame with a real photo used only for colour and mood**. The composition carries over and goes photoreal.
-- **Concept exploration in one call.** Ask for four *different treatments* of one idea (photoreal / watercolour / realistic placement / one wild idea). Branch from the most original one (the "miniature figurines" won).
-- **Manifesto → VO.**
-  1. One-sentence brand ethos + product image → long manifesto.
-  2. Turn it into a VO script and ask for it "less salesy".
-  3. Have the model extract "the sentence it believes is key" as the image prompt.
-- **Placement work is incremental:** one change per generation (glasses, then bottle, then location). Re-prompt "the correct anatomy" for a missing finger instead of starting over.
+**Course, new to us** (lessons are light tool demos):
+- **Previs:** a B&W hand-drawn storyboard frame + **a real photo used only for colour and mood** → photoreal frame with the same composition.
+- **Concept exploration in one call:** four *different treatments* of one idea (photoreal / watercolour / placement / one wild idea); branch from the most original.
+- **Manifesto → VO:** one-sentence ethos → manifesto → VO "less salesy" → have the model extract "the sentence it believes is key" as the image prompt.
+- **Placement is incremental:** one change per generation; re-prompt "the correct anatomy" rather than restart.
 
 ### A5. ElevenLabs: TTS best practices (v4 section)
 **URL:** https://elevenlabs.io/docs/best-practices/prompting/eleven-v3 (13 covers parameters, IPA and tags.) **New:**
@@ -257,14 +207,7 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   4. **Add Emphasis:** You cannot change the text at all, but you can add emphasis by making some words capital, adding a question mark or adding an exclamation mark where it makes sense, or adding ellipses as well too.
   ```
   [inf] Use it as a no-rewrite guard when Claude tags our VO lines.
-- **Narration example** with stacked direction tags:
-  ```
-  [Low, steady voice, restrained urgency] … [Brief pause] … [Softening, reflective] …
-  ```
-- **TTS normalisation prompt** for LLM-written VO:
-  ```
-  Convert the output text into a format suitable for text-to-speech. Ensure that numbers, symbols, and abbreviations are expanded for clarity when read aloud. Expand all abbreviations to their full spoken forms.
-  ```
+- Stacked direction tags work for narration: `[Low, steady voice, restrained urgency] … [Brief pause] … [Softening, reflective]`.
 
 ### A6. Krea docs: Seedance Studio + Elements (the clearest public Seedance guidance found)
 **URLs:** https://www.krea.ai/docs/user-guide/features/seedance-studio · …/elements
@@ -277,33 +220,15 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   - The prompt it produces: `Maria walks slowly into the empty warehouse. Maria: the character shown in @Image1, @Image2 and @Image3. …`
   - Use varied angles, "rather than eight near-identical frames".
   - Put the best images first: they are kept when truncating.
-- **Ref caps.**
-
-  | Model | Image refs | Total refs |
-  |---|---|---|
-  | Seedance 2.5 | 30 | 50 |
-  | Seedance 2 / Fast / Mini | 9 | 12 |
-  | Gemini Omni Flash | 10 | 11 |
-- **3D camera path → video reference.**
-  1. Keyframe a camera through a grey-box scene (1–10 s).
-  2. Render it.
-  3. Attach the render as a video reference.
-
-  [inf] This gives exact orbit radius and timing without words, and it is buildable locally in Blender.
+- **Ref caps (image/total):** Seedance 2.5 30/50 · Seedance 2 9/12 · Gemini Omni Flash 10/11.
+- **3D camera path → video reference:** keyframe a camera through a grey-box scene (1–10 s), render, attach as a video reference. [inf] Exact orbit radius and timing without words; buildable locally in Blender.
 - **Custom Look.** Studio reads a reference frame into *editable notes* (camera, lighting, colour, texture, composition). The image itself is not sent. [inf] This matches our style-header practice.
 
 ### A7. Topaz Labs Learning Center
 **URLs:** https://www.topazlabs.com/learn/how-to-enhance-video-quality-resolution · …/how-to-use-frame-interpolation-in-topaz-video · …/preserving-artistic-continuity-with-higgsfield-ai
 **New:**
-- **Model by footage type.**
-  - **Rhea**: "minimal movement, interviews, product shots, and textures".
-  - **Starlight Precise 2**: faces and skin.
-  - **Astra**: Creative mode for AI video, "allowing certain levels of creative freedom". Not for labels [inf].
-  - Precise mode "prioritiz[es] the original look".
-- **Interpolation.**
-  - Apollo: ≤8×, the default for slow-mo.
-  - Aion: ≤16×, heavier, "can produce slight patterns or artifacts when trying to lock onto high-resolution details like text".
-  - [inf] Keep Aion off label shots.
+- **Model by footage:** **Rhea** for "minimal movement, interviews, product shots, and textures"; Starlight Precise 2 for faces/skin; **Astra** (Creative mode) allows "certain levels of creative freedom", so not for labels [inf]. Precise mode "prioritiz[es] the original look".
+- **Interpolation:** Apollo ≤8× (default slow-mo); Aion ≤16× but "can produce slight patterns or artifacts when trying to lock onto high-resolution details like text" [inf: keep off label shots].
 - **New-angle trick.** Run a short camera-preset orbit of the approved still, extract the best intermediate frame, and use it as the next shot's start frame. This keeps the style continuous.
 
 ---
@@ -348,14 +273,7 @@ Also: "The ABCD principles are not a formula for generating creative ideas". The
   8 Complementary assets — Would performance improve by pairing video with image formats?
   9 Audience relevance — Does the creative reflect the interests and visual expectations of the intended audience?
   ```
-  The worked example fails a Reels shoe ad on each point:
-  - logo at 8 s ("too late");
-  - benefit at 12 s;
-  - captions missing;
-  - text in the Reels UI zone;
-  - CTA "only in the final second… pair it with a visual cue like an arrow or button-style graphic";
-  - only one asset;
-  - a runner too young for the 25–44 target.
+  Its worked example fails a shoe Reel for: logo at 8 s ("too late"), benefit at 12 s, no captions, text in the Reels UI zone, a CTA "only in the final second" (fix: "pair it with a visual cue like an arrow or button-style graphic"), one asset only, and a runner too young for the target.
 - **Brief rule:** use the same terms across media, strategy and creative ("conversions" vs "sales" vs "lower-funnel actions"). Write hypotheses into the brief, e.g. *"Creator-style vertical video with text overlays will outperform polished brand video for our awareness campaign."*
 
 ### B3. TikTok: "Creative best practices for performance ads" + Academy creative path
@@ -373,14 +291,14 @@ Also: "The ABCD principles are not a formula for generating creative ideas". The
   - "Stay clear of abstract images or lifestyle imagery that doesn't show your brand".
   - Layout: visual in the middle, key text overlay on top, details at the bottom.
   - Headline 100 characters, of which the first 40 show.
-- **Snap** [3P only; the official page is 404]:
-  - "wow moment… no later than 2 seconds";
-  - CTA in the first 2 s: +71% swipe-ups (VidMob CPG);
-  - 3–6 s Snap Ads;
-  - higher contrast gives 2× screen time.
+- **Snap** [3P only]: "wow moment… no later than 2 seconds"; CTA in the first 2 s +71% swipe-ups (VidMob CPG); 3–6 s Snap Ads.
 
-### B5. Free talks: Curious Refuge, D&AD, Cannes Lions, ad schools
-_Transcripts in progress; see addendum below._
+### B5. Free talks: Curious Refuge, D&AD, Cannes Lions, ad schools — not yet studied
+Identified but **not transcribed**: the fetcher returned "Only images are available" (YouTube EJS challenge) and the session restarted twice. Queue for the next pass:
+- Curious Refuge "This Is Where Filmmaking Is Headed Next (Full Tutorial)" https://youtu.be/HVeHHAfiR44
+- Monks (Dave Carey) on AI product accuracy, Cannes Lions 2026 https://youtu.be/zwkXQJqUk-I
+- Miami Ad School "Concepting: What Is It Really?" https://youtu.be/2DXs5-2XxVY · "Google's Minimum Viable Brief" https://youtu.be/-KYnb0bKzTE
+- D&AD Awards Insights: writing (https://youtu.be/wh_X6sOBhXQ), craft/editing (https://youtu.be/5b7ZE1KybVQ)
 
 ---
 
