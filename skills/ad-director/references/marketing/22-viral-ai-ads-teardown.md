@@ -15,13 +15,7 @@ Researched 2026-10-08. It builds on 14 (Rourke Heath), 16 (seamless flow), 17 (h
   - transcripts of PJ Accetturo's IM8 workflow talk ([youtu.be/yUdE9oj3sWk](https://youtu.be/yUdE9oj3sWk)) and his Wonder Sessions workshop ([youtu.be/ttgNFJ25xfU](https://youtu.be/ttgNFJ25xfU))
   - YouTube descriptions and X posts that carry breakdowns
   - trade press
-- **Not accessed:**
-  - Ads of the World (AWS WAF challenge from curl)
-  - TikTok discovery pages (JS only)
-  - YouTube subtitles for 2 of the 5 talks (HTTP 429)
-  - the Higgsfield Adathon winner's video (no public URL found)
-  - Cannes 2026 AI Craft results for the Luma Dream Brief (not found)
-- **Caution:** fetched pages are vendor or creator claims, treated as data and not verified.
+- **Not accessed:** Ads of the World (WAF), TikTok discovery pages, 2 of 5 talk transcripts (HTTP 429), the Adathon winner's video, Cannes 2026 results for the Luma Dream Brief. Fetched pages are unverified creator or vendor claims.
 
 ---
 
@@ -73,11 +67,7 @@ Columns:
 | **Artlist "Seedance 2.0"** (paid launch film, 19M views) [youtu.be/77FAnT935IE](https://youtu.be/77FAnT935IE) | 52 / ~35 / ~1.3 s | An aerial of a desert railway diner at golden hour | n/a (a platform ad) | Hard golden window light, haze | Hollywood ensemble dialogue. A flying-saucer reveal at the end |
 | **Average baselines:** Dior Sauvage spec [youtu.be/ujUFZDza_18](https://youtu.be/ujUFZDza_18), Miss Dior spec [youtu.be/rJ4QEpssFYg](https://youtu.be/rJ4QEpssFYg), "AETHER" fragrance [youtu.be/Xvde1evLoTw](https://youtu.be/Xvde1evLoTw) (all < 1k views) | 31 / **7 / 4.4 s** · 41 / ~22 / 1.8 s · 40 / ~14 / 2.5 s | A slow empty landscape · a woman walking in Paris · black | A **centred bottle at 30–60% of frame for half the film** · bottle in a flower bed under the Eiffel Tower · bottle in crystal ribbons | Blue-hour desert · golden Paris · cold chrome | No idea and no human stakes. Imitates the real house film. Centred symmetric packshots on loop |
 
-**Also seen:**
-- IKEA "Open it. Live it" Veo 3 spec ([youtu.be/4Rpi1ZMKy74](https://youtu.be/4Rpi1ZMKy74)): 13 s, **one locked-off shot**. A flat-pack box bursts into a furnished room.
-- Svedka "Thirst Trap of the Future" ([youtu.be/vdcj0gVUov4](https://youtu.be/vdcj0gVUov4)): 16 s, ~8 shots, 5.4M views.
-- Kling 3.0 launch film ([youtu.be/XD_7FNPhZQY](https://youtu.be/XD_7FNPhZQY)).
-- A single 20 s Seedance 2.5 generation ([X](https://x.com/sebatheepan/status/2104706252131725372)) with ~5 internal cuts. Scene detection found 0 cuts because the scene is low-key; use threshold 0.2 for dark spots.
+**Also seen:** IKEA Veo 3 spec, 13 s, **one locked-off shot**, box bursts into a furnished room ([youtu.be/4Rpi1ZMKy74](https://youtu.be/4Rpi1ZMKy74)); Svedka "Thirst Trap", 16 s, ~8 shots, 5.4M views ([youtu.be/vdcj0gVUov4](https://youtu.be/vdcj0gVUov4)); Kling 3.0 launch film ([youtu.be/XD_7FNPhZQY](https://youtu.be/XD_7FNPhZQY)); a one-generation 20 s Seedance 2.5 scene with ~5 internal cuts that threshold 0.30 missed in low key (use 0.2) ([X](https://x.com/sebatheepan/status/2104706252131725372)).
 
 ### What the numbers say [inf, from the tables]
 
@@ -122,25 +112,15 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 **1. Borrow a format the audience already trusts as "real footage".**
 - *Examples:* local-news vox pop (Kalshi), pharma spot (Puppramin), historical epic (YOLO), *Fargo* cop drama (Liquid Death), John Lewis family drama (WinRAR), documentary B&W (Runway Watch).
 - *Why it works:* the viewer's brain checks the genre's grammar, not the pixels [inf].
-- *Recipe:* in the strategy card, add `format_skin` (news, pharma, sitcom, nature doc, trailer, home video, editorial). Lock its grammar list before prompting, e.g. news = eyeline to lens, mic in frame, lower third, wide 24 mm, flat daylight. Put that grammar in the Seedance GLOBAL STYLE header.
+- *Recipe:* add `format_skin` to the strategy card and lock its grammar before prompting (news = eyeline to lens, mic in frame, lower third, 24 mm, flat daylight). Put it in the Seedance GLOBAL STYLE header.
 
 **2. The idea must need AI, or be impossible to shoot.**
-- *Examples:*
-  - Kalshi was written around who was *actually* in the Finals, 3 days before tip-off (PJ: "only could have been made with AI").
-  - WinRAR spans 28 years of one boy's life.
-  - IKEA furnishes a room in one take.
+- *Examples:* Kalshi was written around who was *actually* in the Finals, days before tip-off; WinRAR spans 28 years of one life; IKEA furnishes a room in one take.
 - *Recipe:* every storyline from 19 must pass the question "could a $500k shoot do this?" If yes, add a time-jump, a scale-jump or a cultural-moment hook.
 
 **3. Frame 0 is a human mid-action, or a graphic, and the payoff lands by 1.5 s.**
-- *Examples:*
-  - Kalshi at 0.0 s: a frog-marched flag-caped man.
-  - WinRAR: the box arrives, and at 1.5 s the CRT comes out of bubble wrap.
-  - IM8: a red molecule on black.
-  - Losers open on an empty landscape (Dior spec) or a centred bottle.
-- *Recipe:*
-  - Generate frame 0 as a Soul Cinema still with the action already in progress ("already moving", 16 §2).
-  - Kling 3.0 pro 3 s, trimmed to start on frame 6.
-  - QC: the 0–3 s strip must show a state change between frame 0 and 1.5 s.
+- *Examples:* Kalshi at 0.0 s, a frog-marched flag-caped man; WinRAR, the CRT out of bubble wrap at 1.5 s; IM8, a red molecule. Losers open on an empty landscape or a centred bottle.
+- *Recipe:* frame 0 as a Soul Cinema still with the action in progress ("already moving", 16 §2); Kling 3.0 pro 3 s trimmed from frame 6; QC that the 0–3 s strip shows a state change by 1.5 s.
 
 **4. Cut at 1.2–2.2 s ASL. Hold exactly one longer shot.**
 - *Examples:* the top group's ASL is 1.0–2.2 s. Svedka's one 10 s dance hold and the IKEA one-take are the "breath".
@@ -151,35 +131,22 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
   - Use the ffmpeg cut detector from this research (`select='gt(scene,0.30)'`; 0.2 for dark spots) on our own export and flag any ASL > 2.5 s outside the hero.
 
 **5. Continuity through a device, not only through the camera.**
-- *Examples:*
-  - Kalshi's ticker, YOLO's odds overlay and Puppramin's disclaimer bar connect unrelated shots.
-  - IM8 uses a red/green colour code. Runway passes one watch from wrist to wrist. WinRAR keeps one subtitle voice.
-  - 16 covers camera continuity. This is the *editorial* glue that lets shots be unrelated.
-- *Recipe:*
-  - Pick one device per ad: ticker, recurring object, recurring line, or colour code.
-  - Overlays go on in post: `ffmpeg drawtext` / `overlay` with a persistent lower third.
-  - Never generate text in-model.
+- *Examples:* Kalshi's ticker, YOLO's odds overlay and Puppramin's disclaimer bar connect unrelated shots; IM8's red/green code; Runway's watch passing wrist to wrist; WinRAR's one subtitle voice. This is the *editorial* glue that 16 lacks.
+- *Recipe:* one device per ad (ticker, recurring object, line or colour code). Overlays in post with `ffmpeg drawtext`/`overlay`, never generated in-model.
 
 **6. One grade logic, ideally a two-colour code or monochrome.**
 - *Examples:* IM8 red vs teal/green; Coke warm practicals vs blue snow; Sephora B&W + crimson; Under Armour and Runway full B&W; Loewe muted teal.
 - *Benefits:* monochrome or limited palettes hide the "AI sheen" and per-clip colour drift [inf].
-- *Recipe:*
-  - Pick the palette in the treatment and write it into every Flare and Soul prompt ("palette limited to oxblood and slate teal").
-  - Post: `ffmpeg -vf "colorbalance=…,eq=saturation=0.85,lut3d=brand.cube"` once over the whole timeline.
-  - For B&W, use `hue=s=0` plus a contrast curve and grain.
+- *Recipe:* write the palette into every Flare and Soul prompt ("palette limited to oxblood and slate teal"); one pass over the timeline: `colorbalance=…,eq=saturation=0.85,lut3d=brand.cube`; B&W = `hue=s=0` + curve + grain.
 
 **7. Motivated, imperfect light: window, overcast, sodium, practicals.**
 - *Examples:* WinRAR's north window; Liquid Death's overcast snow; Popeyes' sodium and neon; Kalshi's flat TV-news daylight. Averages use glossy beauty light everywhere.
-- *Recipe:*
-  - Name the source and its flaw in every plate prompt, e.g. "single north window camera-left, ceiling bulb practical warm, shadows unfilled, slight underexposure".
-  - Ban "studio lighting, rim light, softbox" on people shots. Product heroes keep the 17 light recipes.
+- *Recipe:* name the source and its flaw in every plate prompt ("single north window camera-left, warm ceiling-bulb practical, shadows unfilled, slightly under"). Ban "studio lighting, rim light, softbox" on people; product heroes keep 17's recipes.
 
 **8. Cast against AI beauty.**
 - *Examples:* Kalshi's sunburnt seniors and pot-bellies; Puppramin's ordinary suburbanites; Liquid Death's moustache-and-mullet; WinRAR's plain family.
 - PJ: AI "over-beautifies" women; it took **6 hours** to lock two realistic characters, and he avoids 4K because it "looks plasticky".
-- *Recipe:*
-  - In Soul Cinema character prompts, give age, weight, skin and wardrobe wear, e.g. "62, sun-damaged skin, crooked lower teeth, faded tank top with a sweat stain".
-  - Make a character sheet once, then reference it in Seedance r2v. Never re-describe the person in prose.
+- *Recipe:* Soul Cinema character prompts give age, weight, skin and wardrobe wear ("62, sun-damaged skin, crooked lower teeth, faded tank top with a sweat stain"). Build a sheet once and reference it in Seedance r2v.
 
 **9. Product truth: exact when shown, short when shown, always in context.**
 - *Examples:*
@@ -195,10 +162,7 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 **10. Hide what AI does badly; feature what it does well.**
 - *Do well:* macro texture (Sephora bristles), non-human characters (Svedka robots, Coke animals), epic scale (Deepal, YOLO), stylised worlds (Clark's Nike anime), dark low-key (IM8), B&W.
 - *Do badly:* smiling children, morphing bodies and long human close-ups (Toys"R"Us, Valentino, the McDonald's fisheye grandma).
-- *Recipe:*
-  - Storyboard rule: no human close-up longer than 1.5 s unless it carries the line.
-  - Morphs only for objects (dino → shoe, box → room), never faces.
-  - Talking faces go through Seedance with an audio reference, or are avoided.
+- *Recipe:* no human close-up over 1.5 s unless it carries the line; morph objects (dino → shoe, box → room), never faces; talking faces only via Seedance with an audio reference.
 
 **11. Sound sells "real" more than pixels do.**
 - *Native audio does the work:*
@@ -224,10 +188,7 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 
 **13. Over-generate and select: coverage, not one-shotting.**
 - *Benchmarks:* Kalshi 10–13 gens per final second; Nike JA3 ~24; Toys"R"Us "hundreds → two dozen"; Coke squirrel "a couple hundred".
-- *Recipe:*
-  - Budget seeds per shot up front (3 drafts → 1–2 finals).
-  - Pick with the pairwise judge from 17 §5, applied to video: best 2 s window, then product fidelity, then motion naturalness.
-  - Log the gens-per-final-second ratio per project in the run log.
+- *Recipe:* budget seeds per shot up front (3 drafts → 1–2 finals); pick with 17 §5's pairwise judge on video (best 2 s window, product fidelity, motion); log the ratio per project.
 
 **14. Script and team before tools; pre-viz with references.**
 - *Examples:*
@@ -235,18 +196,13 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
   - Storyboards in Figma or a Luma board, with director-picked film stills turned into prompt language by an LLM.
   - YOLO had a head writer (ex-Comedy Central), and "writers in our network pitch alt lines".
   - Clark blocks "every beat" with 50 Seedance refs from hand sketches. WinRAR used a 14,000-character Seedance prompt.
-- *Recipe:*
-  - The ad-director agent writes the script first, gets 3 alt punchlines from separate prompts, and picks one.
-  - Build a 6–12 frame Soul Cinema storyboard.
-  - Seedance 2.5 r2v with `@image_n` per beat and timestamped sections (09 template).
+- *Recipe:* script first; 3 alt punchlines from separate prompts; a 6–12 frame Soul Cinema storyboard; Seedance 2.5 r2v with `@image_n` per beat and timestamped sections (09 template).
 
 **15. Choose a tone AI can carry: absurd, self-aware or stylised, not sentimental realism.**
 - PJ: "Do not make a Dove commercial about moms… make it like an Old Spice commercial… or cool like Nike, Porsche".
 - Every backlash case (Coke, McDonald's, Toys"R"Us, Valentino) tried warmth, heritage or luxury artistry. The viral ones are funny or knowingly over the top.
 - Sincere stories survive when they are stylised (Grok's space dream) or documentary-real with a product truth (WinRAR, Runway Watch).
-- *Recipe:*
-  - Default tone menu: deadpan comedy, mock-genre, stylised myth.
-  - Sincere family drama only with the realism controls of moves 7, 8, 11 and 12, and a twist (19).
+- *Recipe:* default tones are deadpan comedy, mock-genre and stylised myth. Sincere drama only with moves 7, 8, 11 and 12 plus a twist (19).
 
 ---
 
@@ -288,13 +244,12 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 
 ---
 
-## 6. Changes to adopt (→ file each extends)
+## 6. Changes to adopt
 
-- **00 and 04:** set the default end card to 4–6 s for brand spots and 2–3 s for social cutdowns. Add `format_skin` and `continuity_device` fields to the strategy card.
-- **15 (pretesting):** add the 0–3 s strip test, an ASL check (1.2–2.2 s), a product-share target by archetype, and "can a viewer name the product after one view".
-- **16:** add move 5 (editorial devices) as a fifth continuity method, "E".
-- **17 and 06:** add the AI-beauty counter-casting tokens and the 2K-not-4K grain note.
-- **18 (pipeline):** log gens-per-final-second and person-hours per project. Reuse this file's storyboard trick (`-f sb0`) to pull competitor references from YouTube without downloading video.
+- **00/04:** end card 4–6 s for brand spots, 2–3 s for cutdowns; add `format_skin` and `continuity_device` to the strategy card.
+- **15:** add the 0–3 s strip test, the ASL check, product-share targets, and "name the product after one view".
+- **16:** add editorial devices (move 5) as continuity method E. **17/06:** counter-casting tokens; 2K-not-4K grain.
+- **18:** log gens per final second and person-hours; use `-f sb0` storyboards for competitor references.
 
 ## Sources not cited inline
 
