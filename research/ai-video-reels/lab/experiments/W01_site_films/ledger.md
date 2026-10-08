@@ -54,3 +54,9 @@ Lessons:
 | VESPER-2 "23 minutes" keyframes x6 | Flare 2k | 2.02 | PASS |
 | VESPER-2 motion (4x5 s + 1x10 s) | Kling 3.0 pro i2v | 2.86 | PASS |
 | **Round 3 total** | | **~17.45** | **site total ~$63 of $80** |
+| AURUM glass continuity: K4/K7/K8 edits (+1 retry) | Qwen edit 2k | 0.30 | PASS: same tall plain glass in every shot |
+| AURUM re-render C/E/F/G | Kling 3.0 pro i2v | 1.90 | PASS: seams invisible, drink continuous |
+| VESPER re-voice (sun is short, scent lasts) | ElevenLabs credits | 0 | PASS |
+| **Site total** | | **~$65.6 of $80** | |
+
+Lesson: every keyframe that shows the product in use must name the SAME vessel ("tall straight-sided plain glass, no stem, no ice"); otherwise each keyframe invents its own (flute, can, iced tumbler) and the drink appears to jump at every seam.
