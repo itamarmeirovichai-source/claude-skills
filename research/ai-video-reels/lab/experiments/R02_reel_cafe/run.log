@@ -1,8 +1,0 @@
-plan: 1 jobs, 1 takes, 4 local refs
-  ↑ uploading ref/cafe.png
-  ↑ uploading ref/otto.png
-  ↑ uploading ref/vee.png
-  ↑ uploading vo/dialogue_30.wav
-  $ REEL_cafe_30       bytedance/seedance-2.5/reference-to-video        1 takes x $6.168
-estimated total for remaining takes: $6.17  (budget $6.50)
-  ▸ REEL_cafe_30 take 1: queued b78370a6-f9ea-4187-b4cc-1ac8f1a7209a

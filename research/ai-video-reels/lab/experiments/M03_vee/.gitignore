@@ -10,3 +10,4 @@ train/
 test/
 manifest.json
 gen_log.jsonl
+*.log
