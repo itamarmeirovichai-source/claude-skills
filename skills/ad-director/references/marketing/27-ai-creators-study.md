@@ -36,12 +36,12 @@ Researched 2026-10-08. A smaller-scale version of the Rourke study (`14-rourke-h
 
 **Processed:** 7511268853129809183 (Bible influencers, 4.8M), 7613909444975414558 (Red Rising fan trailer, Seedance 2.0, 193k), 7624226546307353886 (AI on the Lot promo, Dreamina CPP, 13k), 7515324663946317087 (the Kalshi NBA Finals ad, 12k), 7538130214031756575 (Lindy ad, 7k), 7515325379071003935 (Kalshi "BTS", 6k).
 
-**Format (frames):** Every post is a **16:9 film letterboxed in a 9:16 frame**, with a fixed 1–2 line white title in the black top bar ("If Bible characters were influencers 😂", "This is the most unhinged AI ad you've ever seen 😂", "Insane Seedance 2.0 film 😂 Prompts in the comments 👇"). There is no talking head, no UI and no captions. The 0–3 s hook is the single most absurd frame of the piece, then a hard cut at about 2 s: a grinning Jesus taking a selfie on the cross, a businessman smashing through a skyscraper window, a skater flipping off the Hollywood sign.
+**Format (frames):** Every post is a **16:9 film letterboxed in 9:16** with a fixed 1–2 line white title in the top bar ("This is the most unhinged AI ad you've ever seen 😂"). No talking head, UI or captions. The hook is the most absurd frame (a grinning Jesus taking a selfie on the cross), hard-cut at about 2 s.
 
 **Signature techniques:**
-1. **"Crazy people in crazy situations" vignette montage.** The Kalshi spot is a rapid montage of 10+ characters in a vox-pop format (an old man in a flag cape at a game, a pool party, a manatee pool), each giving a one-liner about what they bet on, ending on "Kalshi let you legally trade on anything, anywhere in the US". The brand supplied the lines and PJ invented the characters around them (press coverage: Yahoo/AOL, Marktechpost).
-2. **The fake BTS as a second ad.** 7515325379071003935 is an AI-generated "making-of" built from the same assets: an AI film crew on a speedboat ("DAY 1 10:45AM"), lower-third interviews with invented staff ("Matthew MacKay, Florida Fish and Wildlife Commissioner", "Kenneth Bertron, Kalshi CFO"), and deadpan jokes ("Most sets have medics, but we have coroners and priests on standby"; "Nobody knows why we're over budget… Sequoia's gonna kill us"). It is a mockumentary that doubles the ad's lifespan.
-3. **Brand as a prop in every shot** [inf from frames]. AI on the Lot: the conference ticket in a bikini girl's hand, the badge on a pit bull's collar, then a logo end card. Lindy: a "LINDY FEVER SWEEPS THE NATION" news chyron, a Times Square billboard, a parachute.
+1. **"Crazy people in crazy situations" vignette montage.** Kalshi is a rapid vox-pop montage of 10+ characters, each with a one-liner about their bet, ending on "Kalshi let you legally trade on anything, anywhere in the US". The brand supplied the lines; PJ invented the characters (Yahoo/AOL, Marktechpost).
+2. **The fake BTS as a second ad.** 7515325379071003935 is an AI-generated "making-of" built from the same assets: an AI film crew ("DAY 1 10:45AM"), lower-third interviews with invented staff ("Kenneth Bertron, Kalshi CFO") and deadpan lines ("Most sets have medics, but we have coroners and priests on standby"). A mockumentary that doubles the ad's lifespan.
+3. **Brand as a prop in every shot** [inf from frames]. AI on the Lot: the ticket in a hand, the badge on a dog's collar. Lindy: a "LINDY FEVER SWEEPS THE NATION" chyron, a billboard.
 4. **Anachronism selfie-vlog** (Bible influencers): biblical characters vlog in Gen-Z slang ("Day two in the tomb. No Wi-Fi. No snacks. Just kind of waiting for God to respawn me."). This is a format, not a product, and it got 4.8M views.
 
 **Workflow (his caption, verbatim):** "1. Basic Script with ChatGPT (or Gemini/Grok, etc.) 2. Expand to Shot list using my prompt structure 3. Paste into Veo 3 and choose favorites. 4. Edit in Final Cut/Capcut, etc." For Kalshi (press quotes): Gemini pitches ideas, then he asks it to convert every shot into a Veo 3 prompt: "I always tell it to return 5 prompts at a time — any more than that and the quality starts to slip." It took "about 300–400 generations to get 15 usable clips", "one person, 2–3 days", about **$2,000**. The Lindy caption tags Midjourney, Kling and Veo 3.
@@ -79,7 +79,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 
 **Processed:** 7581824072128941344 (Kling O1 v2v, 890k), 7624174222507560224 (floating sneaker, 352k), 7641635356873329952 (PRIME bottle splash, TapNow, 135k), 7587845196348394784 (Coke "Flavorship", CapCut, 19k), 7663083261018557729 (golf → product, Creatify, 16k), 7659734798683917601 (can match-cut, Lovart, 12k).
 
-**Fixed template (hook strips of all 6 posts):** the top half is him reacting ("wait", "okay", hands up) with a big condensed "HOW TO MAKE THIS" title. Below it, an **inset card plays the finished result** for the first 3 s. Then a phone or desktop UI walkthrough with one big kinetic word per beat ("select", "detailed", "duration", "hope"), and the result again at the end.
+**Fixed template (all 6 hook strips):** him reacting up top with a condensed "HOW TO MAKE THIS" title, an **inset card playing the finished result** for 3 s, then a UI walkthrough with one big kinetic word per beat, and the result again at the end.
 
 **Signature techniques:**
 1. **Real → AI → real sandwich.** Film a real clip holding the product, **screenshot the frame where the product is fully in frame**, have Nano Banana Pro turn that screenshot into "the next cinematic shot", connect the screenshot (start) to the generated image (end) in Seedance 2.0, repeat scene by scene, and stitch. His caption: "most AI videos are still missing one thing: humanity. So instead of generating everything from scratch, I filmed a real clip first."
@@ -98,7 +98,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 
 ## 4. Cristian Andrade (crisanvisual) — Spanish-language tech reviewer turned AI-ad demo
 
-**Who:** 217k followers, LatAm, "CEO @CrisanBrands". A mix of real product reviews (Logitech MX line, XPPen, Autodesk) and AI tool demos (Higgsfield Academy, Topview, Filmora).
+**Who:** 217k followers, LatAm, "CEO @CrisanBrands". Real product reviews (Logitech) plus AI tool demos.
 
 **Processed:** 7674257708098391297 (Higgsfield image → editable layers, 358k), 7662901127175736593 (Logitech MX Master 4 review, 139k), 7516961855760289080 (Topview AI UGC, 37k), 7654719297729744145 (Filmora "video de marketing", Chocoramo, 11k), 7626530087046892801 (Oreo spot in 2 minutes, Seedance 2.0 × Higgsfield, 8k).
 
@@ -113,7 +113,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 
 ## 5. Ozan Sihay — Turkish director: real product, AI world, localized proof
 
-**Who:** 190k followers, "Yönetmen/Fotoğrafçı" (director/photographer). He presents to camera in a studio with a mic, Turkish word-pop captions and an "ozansihay" watermark on outputs.
+**Who:** 190k followers, director/photographer; studio talking head, Turkish word-pop captions, watermarked outputs.
 
 **Processed:** 7542897195188636948 (Nano Banana, 370k), 7455335462039735559 ("professional product video with AI", 163k), 7586336107638328594 (best AIs of 2025, 111k), 7610904962817674514 (Seedance 2.0 launch night, 78k), 7463867819470507272 ("turn your REAL product into video with an AI model", 41k).
 
@@ -234,11 +234,5 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 8. **Client deliverables:** a brand aesthetic board (T17) in the brief stage for SMB clients, and a per-job prompt/setting/approval log (T18) as chain-of-title in the job folder.
 9. **Portfolio content (no talking head, to keep the 00-playbook ban):** PJ's letterboxed 16:9 film with a static 1-line top title, and a mock-BTS cut-down. Both are faceless and both are proven formats.
 10. **Budget assumption in hfgen cost plans:** plan for about 5% usable takes on comedic multi-character spots (PJ's 300–400 → 15) versus higher yield on single-product shots [inf].
-
-
-
-- TikTok under-represents PJ Ace, Rory Flynn, Dave Clark and the YouTube educators, whose main channels (X, IG, YouTube) were blocked. Their sections rely on captions, titles and press.
-- Plays on sponsored posts are probably paid-boosted [inf], so they are a weak signal of organic appeal.
-- On-screen prompt fragments are partial where the UI was scrolled. Brackets mark my completions.
 
 **Caveats:** TikTok under-represents PJ Ace, Rory Flynn, Dave Clark and the YouTube educators (their main channels were blocked). Plays on sponsored posts are probably boosted [inf]. Bracketed words in prompt fragments are my completions.

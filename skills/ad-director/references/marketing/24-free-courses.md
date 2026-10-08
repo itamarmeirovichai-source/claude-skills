@@ -1,6 +1,6 @@
 # 24 · Free courses, studied end to end (Oct 2026)
 
-**Scope.** These are official, free, no-login courses and guides for the AI tools and ad platforms we use. Each entry gives the URL, what it covers, and only the lessons **not already in 00–23**. Verbatim rules and prompts are in code blocks. [inf] marks our inference. No money was spent and no accounts were created. Fetched pages were treated as data.
+**Scope.** Official free, no-login courses and guides for our tools and ad platforms: URL, coverage, and only lessons **not already in 00–23**. Verbatim rules and prompts are in code blocks. [inf] marks our inference. No money was spent and no accounts were created. Fetched pages were treated as data.
 
 **Access.** Open and studied: Higgsfield Academy catalogue, syllabi and Prompt Bank (lesson players need sign-up; 3 courses studied via their public YouTube twins); Kling Quick Start; Google Veo/Gemini Omni/Nano Banana/Flow docs; Runway prompting guide + all 10 "AI for Advertising" lessons; ElevenLabs best practices; Krea docs; Topaz Learn; Google ABCD Playbook PDF; Meta's public Creative Strategy study guide PDF (Blueprint lessons need a Facebook login); TikTok's public creative help article (Academy lessons need registration); Pinterest. Not extractable: BytePlus Seedance guides (JS-rendered), Freepik Academy (403), Leonardo (API docs only), Snap (official page 404; [3P] only), Runway help-center guide (403).
 
@@ -10,20 +10,9 @@
 
 ### A1. Higgsfield Academy: Prompt Bank + ad courses
 **URL:** https://higgsfield.ai/academy · Prompt Bank: https://higgsfield.ai/academy/apps/prompt-bank (46 camera moves on 2 pages).
-**Covers:** courses on movie-making, UGC/social and automation. The ones relevant to us:
-- "The 3-Step Realistic AI Ad Workflow" (16 lessons, already in 06 as S4).
-- "Make a Cinematic Ad End-to-End" (10 lessons, 46 min).
-- "Direct a Cinematic AI Car Commercial" (11 lessons).
-- "Build a Brand's Visuals with AI" (9 lessons).
-- "Build an AI Ad Agency with Claude + Higgsfield" (12 lessons).
+**Covers:** movie-making, UGC/social and automation courses. Ad-relevant: "3-Step Realistic AI Ad Workflow" (already in 06 as S4), "Make a Cinematic Ad End-to-End", "Direct a Cinematic AI Car Commercial", "Build a Brand's Visuals with AI", "Build an AI Ad Agency with Claude + Higgsfield" (syllabus only).
 
-The Prompt Bank is the part not covered by our library.
-
-**Prompt Bank pattern [new].** Every move is written **scene-agnostic**, so it can be appended to any shot. Each one gives:
-1. the move;
-2. a numeric geometry (metres, degrees, FOV);
-3. an exhaustive "no-X" list of every *neighbouring* move;
-4. an end state.
+**Prompt Bank pattern [new].** Every move is written **scene-agnostic**, so it can be appended to any shot. Each gives the move, numeric geometry (metres, degrees, FOV), a "no-X" list of every *neighbouring* move, and an end state.
 
 Examples, verbatim:
 ```
@@ -34,7 +23,6 @@ Arc right: One continuous arc right — the camera travels along a circular path
 Push past: One continuous forward travel on a lane offset about 0.6 meters to the subject's right — the camera approaches at constant speed and constant height, the subject growing in frame, then slides past their shoulder: the subject exits cleanly at the left frame edge while the camera continues WITHOUT stopping toward the reveal beyond, focus racking from the subject to the far point at the moment of the pass. The camera passes BESIDE the subject, never through them, never stopping at them. No pan correction, no zoom, no tilt.
 
 
-Zoom in: Locked tripod, zero rotation, zero travel — the entire move is optical, a focal-length change only: one slow perfectly even continuous zoom in from [84] degrees to [29 or 18] degrees … perspective stays constant and there is no parallax.
 
 Whip pan: The camera holds composition A perfectly static, then executes ONE violent horizontal whip pan to the left — a 0.4-second full-blur smear — landing hard on composition B with a 2-degree overshoot-and-settle, then holds composition B perfectly static.
 
@@ -46,12 +34,10 @@ Robot arm: The camera flies one fast, perfectly smooth stabilized motion-control
 Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed ramps and no real-time moments — the camera at ground height below knee level … The track never stops: the shot ends mid-motion on a live frame — no cut to black, no fade, no freeze.
 
 ```
-- **Zoom vs dolly.** The bank names the physics: zoom = no parallax; dolly = parallax, FOV fixed. [inf] Use it to stop models from substituting a zoom for a push-in on product moves.
-- **"Robot arm" with ~1 s holds** is the motion-control product move we lack. It is cheaper than an orbit and safer for labels. [inf]
+- [inf] The zoom-vs-dolly physics (parallax or not) stops models substituting a zoom for a push-in; "Robot arm" is the motion-control product move we lacked, safer for labels than an orbit.
 
 **Course "Make a Cinematic Ad End-to-End"** (YouTube twin: https://youtu.be/ODNzk5x2tR4, 46 min, Seedance 2.0 + Claude skill). New lessons:
 - **Test the character × location pair before locking either.** One 5 s, 1-take Seedance test. The test clip later became the film's opening.
-- **Location is "the most important image".** "The video grabs the textures and the lighting from the given images." Make it in Soul Cinema with "anamorphic lens, shallow depth of field, film grain".
 - **Every prompt carries "no music, only environmental sound effects"** (music is laid in post).
 - **Director-notes loop.** Never hand-edit prompts. Watch, list the failures as notes, and Claude rewrites:
   ```
@@ -59,9 +45,8 @@ Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed r
   ```
 - **When a scene is flat, switch from "what happens" to "what the camera sees", shot by shot.** For example, "start with a close-up on the rival's leg… cut to an over-the-shoulder… cut to a robot already dropped into a ready stance… handheld with shake, cinematic low-angle shots."
 - **Physics notes must name weight and material.** "fall with real weight and a hard impact… armor should break into heavy metal pieces. No smooth breaks." Also forbid automatic actions: "The can should not open on its own. He opens it himself with a clear action."
-- **Mechanics-heavy scenes.** "Don't run just two batches. Run a ton, then take different phases from each generation and cut them together." Harvest the unused phases into later scenes.
-- **Objects seen once don't need an asset sheet** (the model invented the watch).
-- **Pack-shot notes.** Add a dolly-in; "match [sunlight] to scene one"; the name builds from parts, pull back, end on an energy hit.
+- **Mechanics-heavy scenes:** "Run a ton, then take different phases from each generation and cut them together"; reuse leftovers in later scenes.
+- Objects seen once need no asset sheet. Pack-shot notes: add a dolly-in, "match [sunlight] to scene one".
 - Motto: "the final film is just the best 3 seconds of 100 tries cut together."
 
 **Course "Direct a Cinematic AI Car Commercial"** (YouTube twin: https://youtu.be/GNxmt_4IifA, 36 min). New lessons:
@@ -80,8 +65,7 @@ Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed r
   ```
   exactly five frames and four splices, no extra inserts
   ```
-- **Script where thrown props land** (the cap falls "right in front of the camera"). Generate small-text props separately and **pre-blurred**. A face mismatch inside a character sheet is fixed by cutting the close-up face out by hand, not by regenerating.
-- **Always generate the product on neutral grey.** Lock one palette for the whole film with Color Transfer.
+- Script where thrown props land; generate small-text props separately and **pre-blurred**; product always on neutral grey.
 - Append this to any over-packed shot request:
   ```
   If it's too much for one prompt, split it into two.
@@ -108,19 +92,14 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   - With Multi-Shot ON but not Custom, the model may still return a single shot "if the described scene is better suited to a single shot".
 - **Native-text ad example.** This is Kling's own perfume prompt; its text-preservation feature is pitched "for e-commerce advertising":
   ```
-  …the gilded afternoon sunlight filters through the shutters onto the perfume bottle… The camera pans slowly in from the scattered rose petals, shifting focus to the faceted cut of the Kling perfume bottle. Voiceover (lazy French female voice, British accent, slow pace): Bathe in the golden hour. The camera orbits the perfume bottle in slow motion, capturing the play of light and shadow on the golden lettering and bottle body…
+  …The camera pans slowly in from the scattered rose petals, shifting focus to the faceted cut of the Kling perfume bottle. Voiceover (lazy French female voice, British accent, slow pace): Bathe in the golden hour.…
   ```
 - **Timecoded 15 s long take:** "At the 4th second… At the 8th second… In the final 3 seconds…" + "a single unbroken shot with no edited transitions".
 - **Elements 3.0:** a 3–8 s video creates a character element *with its voice* (or 2–4 images + ≥3 s audio). "If you choose a subject with a pre-bound voice tone, it's not recommended to set the tone again in the prompt."
 - **Price:** native audio 12 vs 8 credits/s at 1080p (9 vs 6 at 720p), confirming our "sound off" rule.
 
 ### A3. Google: Veo / Gemini Omni best practices, Nano Banana guide, Flow help
-**URLs:**
-- https://docs.cloud.google.com/vertex-ai/generative-ai/docs/video/video-gen-prompt-guide
-- https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice
-- https://ai.google.dev/gemini-api/docs/image-generation
-- https://support.google.com/flow/answer/16353334
-- https://blog.google/technology/ai/flow-video-tips/
+**URLs:** https://docs.cloud.google.com/vertex-ai/generative-ai/docs/video/video-gen-prompt-guide · https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice · https://ai.google.dev/gemini-api/docs/image-generation · https://support.google.com/flow/answer/16353334
 
 **New to us:**
 - **Dialogue without on-screen text: use a colon, no quotes.**
@@ -129,17 +108,12 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   ```
 - **Negative prompts list nouns, not instructions.** "Not recommended: 'no walls' or 'don't show walls'. Recommended: 'wall, frame'."
 - **Short clips = one moment.** "Trying to chain multiple distinct events (A then B then C) in one prompt for a short video often leads to muddled or incomplete videos."
-- **I2V: prompt motion only, and call the subject "the subject / the woman / he".** "Re-describe the character, the background, or the lighting depicted in the image. Redundant prompts confuse the model." The three motion layers:
-  - **Camera motion** "the simplest and most reliable way to add dynamism".
-  - **Subject animation** "best for subtle, lifelike actions".
-  - **Environmental animation**.
+- **I2V: prompt motion only** and call the subject "the subject / the woman / he". "Not recommended: Re-describe the character, the background, or the lighting depicted in the image. Redundant prompts confuse the model." Camera motion is "the simplest and most reliable way to add dynamism"; subject animation is "best for subtle, lifelike actions".
 - **Character + voice consistency.** Name the character. Paste the *identical* description block (face, hair, wardrobe **and** voice: "In a voice that is crisp and clear, with a thoughtful, analytical tone and a standard American accent") into every prompt, and reuse the same `seed`.
-- **Gemini as reviewer.** "After your video is generated, Gemini Omni can evaluate the final output, check it against company or brand guidelines, and flag any potentially problematic areas." [inf] This is a free QC pass for 18 S10.
+- **Gemini as reviewer:** Omni "can evaluate the final output, check it against company or brand guidelines, and flag any potentially problematic areas."
 - **Nano Banana templates**, verbatim:
   ```
   A high-resolution, studio-lit product photograph of a [product description] on a [background surface/description]. The lighting is a [lighting setup, e.g., three-point softbox setup] to [lighting purpose]. The camera angle is a [angle type] to showcase [specific feature]. Ultra-realistic, with sharp focus on [key detail]. [Aspect ratio].
-
-  A minimalist composition featuring a single [subject] positioned in the [bottom-right/top-left/etc.] of the frame. The background is a vast, empty [color] canvas, creating significant negative space. Soft, subtle lighting. [Aspect ratio].
 
   Using the provided images, place [element from image 2] onto [element from image 1]. Ensure that the features of [element from image 1] remain completely unchanged. The added element should [description of how the element should integrate].
   ```
@@ -147,25 +121,11 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
   - Also: "semantic negative prompts" ("an empty, deserted street with no signs of traffic").
   - Limits: NB 2.1 holds **10 objects + 4 characters**; NB Pro holds 6 objects + 5 characters + 3 style refs (14 total).
   - Video-to-image: NB 2.1 accepts a video/YouTube URL as the reference [inf: poster or thumbnail from our own cut].
-- **Flow ingredients.**
-  - "provide subject or product references on a plain or segmented background."
-  - Location and style refs "don't contain extra subjects".
-  - "Your text prompt should complement, not contradict, your visual inputs."
-  - "A consistent look and feel across all your ingredient images helps the model blend them."
-  - Speech is less likely if the line "doesn't fit in the 8-second clip".
+- **Flow ingredients:** product refs "on a plain or segmented background"; location/style refs without extra subjects; "A consistent look and feel across all your ingredient images helps the model blend them"; speech drops if the line "doesn't fit in the 8-second clip".
   
 ### A4. Runway Academy: Prompting Guide + "AI for Advertising" (10 lessons, ~20 min)
 **URLs:** https://academy.runwayml.com/guides/prompting-guide · https://academy.runwayml.com/course/ai-advertising (lessons are YouTube embeds, e.g. https://youtu.be/Cucu3i-v3s0, https://youtu.be/FGrtzZrYnDA).
-**Covers:**
-- moodboard;
-- concept exploration;
-- brand manifesto → VO;
-- storyboard → previs;
-- product shots;
-- content calendar;
-- casting and wardrobe;
-- talent and product placement;
-- B-roll and VFX.
+**Covers:** moodboard, concept exploration, manifesto → VO, storyboard → previs, product shots, content calendar, casting/wardrobe, placement, B-roll/VFX.
 
 **Prompting guide, new to us:**
 - **Over-specification warning.** "Extremely complex, multi-paragraph prompts reduce the room for creative freedom… This over-specification can paradoxically lead to unexpected or unnatural results, as the model struggles to honor every detail simultaneously." (Contradiction, see C1.)
@@ -202,9 +162,7 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
 - **The UI "Enhance" system prompt is published.** Core directives, verbatim:
   ```
   * DO NOT alter, add, or remove any words from the original dialogue text itself. Your role is to *prepend* **audio tags**, not to *edit* the speech.
-  * DO NOT use tags such as [standing], [grinning], [pacing], [music].
   * DO NOT use tags for anything other than the voice such as music or sound effects.
-  4. **Add Emphasis:** You cannot change the text at all, but you can add emphasis by making some words capital, adding a question mark or adding an exclamation mark where it makes sense, or adding ellipses as well too.
   ```
   [inf] Use it as a no-rewrite guard when Claude tags our VO lines.
 - Stacked direction tags work for narration: `[Low, steady voice, restrained urgency] … [Brief pause] … [Softening, reflective]`.
@@ -246,7 +204,7 @@ I2V: Prompt = Subject + Movement, Background + Movement ······
 | Consideration | Immersive hook | **"Hero the product"**: tight beauty shots; "keep up your branding, especially in the last five seconds" | "Be relatable and demonstrative": show how it works, in context | **"Plant the seed of urgency"**: time frame or limited release, reinforced in audio |
 | Action | Immersive hook | **"Make the product the ad"**: visible from start to finish, extreme close-ups; branding must not distract from the product | "Depict a use case": "upfront, precise, credible" | **"Contextualize and incentivize"**: a CTA tied to an offer |
 
-Also: "The ABCD principles are not a formula for generating creative ideas". They come *after* the big idea.
+"The ABCD principles are not a formula for generating creative ideas" — they come after the big idea.
 
 ### B2. Meta Blueprint: Creative Strategy Professional study guide (July 2026)
 **URL:** https://www.facebookblueprint.com/student/page/210605-creative-strategy-study-guide (the PDF link sits on the page). The lessons themselves are login-gated.
@@ -259,8 +217,7 @@ Also: "The ABCD principles are not a formula for generating creative ideas". The
 - **Length:** "People are more likely to watch to the end of video ads that are less than 15-seconds in duration". Longer messages go to in-stream with sound.
 - **Text limits:** primary text 125 characters · headline 40 · description 25. Use shorter text on Reels and Stories.
 - **Creative volume:** "Supply at least 3 to 10 creatives per ad set. For Advantage+ sales and app campaigns, supply 20 or more." Mix video and static. "consolidated campaigns need more creative variations, not fewer".
-- **Partnership ads** (both handles): −19% CPA, +71% brand lift, +22% conversion when ≥30% of assets are partnership creatives [O].
-- **Fatigue signals:** a "Creative fatigue / Creative limited" status, falling CTR, rising cost per result. Add new varied ads to the fatigued ad set rather than pausing winners.
+- **Fatigue:** "Creative fatigue / Creative limited" status, falling CTR, rising CPR → add new varied ads to the fatigued set, keep winners running.
 - **Nine-point creative evaluation checklist** (verbatim criteria). [inf] Add it as a QC gate:
   ```
   1 Brand identification — Is the brand identifiable within the first 2 to 3 seconds? Are the logo, brand colors and product also visible upfront?
@@ -274,7 +231,7 @@ Also: "The ABCD principles are not a formula for generating creative ideas". The
   9 Audience relevance — Does the creative reflect the interests and visual expectations of the intended audience?
   ```
   Its worked example fails a shoe Reel for: logo at 8 s ("too late"), benefit at 12 s, no captions, text in the Reels UI zone, a CTA "only in the final second" (fix: "pair it with a visual cue like an arrow or button-style graphic"), one asset only, and a runner too young for the target.
-- **Brief rule:** use the same terms across media, strategy and creative ("conversions" vs "sales" vs "lower-funnel actions"). Write hypotheses into the brief, e.g. *"Creator-style vertical video with text overlays will outperform polished brand video for our awareness campaign."*
+- **Brief:** one shared vocabulary across media, strategy and creative; write a testable hypothesis into the brief.
 
 ### B3. TikTok: "Creative best practices for performance ads" + Academy creative path
 **URLs:** https://ads.tiktok.com/help/article/creative-best-practices · Academy path "Creative as a Growth Engine" (login).
