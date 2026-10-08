@@ -13,6 +13,10 @@ import { track } from '../core/analytics';
 let busy = false;
 const queue: HTMLElement[] = [];
 
+const inView = (el: HTMLElement): boolean => {
+  const r = (el.closest('section') ?? el).getBoundingClientRect();
+  return r.top < innerHeight * 0.8 && r.bottom > innerHeight * 0.2;
+};
 const hidden = (): boolean => prefs.get().hosts === 'hidden' || reducedMotion();
 
 async function show(pop: HTMLElement): Promise<void> {
@@ -31,12 +35,16 @@ async function show(pop: HTMLElement): Promise<void> {
       : new Promise((r) => setTimeout(r, 2500));
   const line = pop.dataset['line'] ?? '';
   const spoken = say(line, { caption: (t) => bubble && (bubble.textContent = t), holdMs: 2500 });
-  await Promise.all([playing, spoken]);
-  await new Promise((r) => setTimeout(r, 1400));
+  // Pop-ups stay brief: whatever the clip length, leave after ~3 s plus a short hold for the line.
+  await Promise.race([Promise.all([playing, spoken]), new Promise((r) => setTimeout(r, 3000))]);
+  await new Promise((r) => setTimeout(r, 1200));
+  av?.pause();
   pop.classList.remove('on');
   pop.classList.add('done');
   busy = false;
-  const next = queue.shift();
+  // Skip queued pops whose section has scrolled away: a late pop is noise.
+  let next = queue.shift();
+  while (next && !inView(next)) next = queue.shift();
   if (next) void show(next);
 }
 
