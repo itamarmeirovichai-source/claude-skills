@@ -1,6 +1,6 @@
 # 18. Automation pipeline: product in, QC'd ad out (research + architecture, 2026-10-07)
 
-Status: a research and design note. Nothing here is built yet. `[inf]` marks our own inference, as opposed to something a source states. Vendor claims are labelled as vendor claims.
+Status: a research and design note. **Phase 1 is built (2026-10-08):** `scripts/pipeline.py` (job.json + spend.jsonl, S0–S11, H1–H3, job/stage caps, $2 approval, dry-run first, reconcile hold), the hfgen money guards (schema check, unpriced = refused, price formats, safe defaults) and the ElevenLabs estimate/cap/cache. Still open: G-still/G-take QC, client pages, delivery packager. `[inf]` marks our own inference, as opposed to something a source states. Vendor claims are labelled as vendor claims.
 
 ---
 

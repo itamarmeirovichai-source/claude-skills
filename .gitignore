@@ -2,3 +2,6 @@
 .env
 .env.local
 .env.*.local
+
+# ad-director pipeline job folders (generated media, spend ledgers). Never commit.
+jobs/

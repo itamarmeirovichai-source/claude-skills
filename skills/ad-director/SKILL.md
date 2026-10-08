@@ -48,12 +48,29 @@ python3 $H batch job/plan_A.json --budget 3 --yes --only F2_ghost_appears --fres
 ```
 A plan is JSON: `defaults` + `jobs[{id, model, takes, args}]`. `"@file:frames/F1.png"` values are uploaded automatically.
 - **Budget guard:** every job is priced with `/estimate` first, and the run refuses to start if the total is over `--budget`.
+- **Schema guard:** before any upload, estimate or submit, every job is checked against the endpoint schema in `scripts/hf_schemas.json` (extracted from the public docs; rebuild with `hfgen.py schemas --import llms-full.txt`). Unknown fields are refused, e.g. `end_image_url` on Kling (the real field is `last_image_url`), because `/estimate` silently ignores them. `python3 $H lint MODEL --args '{...}'` checks one request offline.
+- **Unpriced = refused:** a job whose price can't be parsed is never counted as $0. The dry run lists it as UNPRICED and exits 2. Wan per-second prices, token-metered video (Seedance 2.0, Cinema Studio) and Kling multi-shot (summed durations) are parsed.
+- **Safe defaults** unless the job sets them: `sound:"off"`, `generate_audio:false`, `enhance_prompt`/`prompt_extend`/`enable_thinking`/`prompt_optimizer` false, `aspect_ratio:"9:16"` where the field exists.
 - **Resumable:** idempotency keys come from job + take + args, so a re-run never pays twice. Use `--fresh` to deliberately generate new takes.
 - **Outputs:** go to `clips/`, together with `manifest.json` and `gen_log.jsonl` (request ids and cost).
 - **After each stage:** Claude looks at the outputs (Read the images, run `reelstudio.py grid` on the videos), applies take QC K1–K8, copies keepers to `frames/` or `clips/pick_*.mp4`, and only then runs the next stage.
 
 Stage order: **A** hero frame (4 variants) → pick → **B** story frames (same character via `image_urls` ref) → pick → **C** video takes from the approved frames → pick → **edit.json** in reel-studio → `director.py qc`.
 
+
+## Automated job pipeline (`scripts/pipeline.py`)
+A state machine over `jobs/<job_id>/`: `job.json` (stage S0–S11, human checkpoints H1 storyline pick / H2 stills approval / H3 final, approvals, history) plus an append-only `spend.jsonl` (estimated vs billed USD per paid call). Design: `references/marketing/18-automation-pipeline.md`.
+```bash
+P=skills/ad-director/scripts/pipeline.py
+python3 $P new --product "SOL Water" --client Driftline --label-text SOL --packshot sol.png   # intake; cap $10
+python3 $P advance JOB              # runs stages until an agent artefact, a checkpoint or a spend approval is needed
+python3 $P advance JOB --dry-run    # price the next paid step only
+python3 $P approve JOB H1 B --notes "less gold"      # H2/H3: approve | reject
+python3 $P advance JOB --approve    # a human OKs ONE paid step over $2
+python3 $P status JOB ; python3 $P spend JOB [--bill sp-0003 0.41]
+python3 $P budget JOB --stage-cap S6=6               # caps change only by a human
+```
+Guards: job cap (default $10), per-stage caps (S3 $0.10, S5 $2.50, S6 $5, S7 $1), any spend over $2 needs `--approve`, every paid stage dry-runs first, a billed amount >10 % over its estimate puts the job on hold. Paid stages call `hfgen.py` and `elevenlabs.py`; S1/S2/S9/H1 call `director.py` (dice, rank, qc, ledger log). `jobs/` is git-ignored.
 
 ## Quality standards (read before every job)
 - **`references/creative-brain.md` comes FIRST:** the four laws (insight, tension, twist, brand-in-twist), 12 punchline mechanisms, virality mechanics, the pre-generation gates and the full-stack output contract (script → images → video → voice → SFX → music → edit → QC → retro). No ad without a punchline.
@@ -70,7 +87,9 @@ python3 $E voices --search "warm female"
 python3 $E tts "[sighs] Three P.M. in Florida..." --voice VOICE_ID --out job/audio/vo.mp3   # + vo.words.json
 python3 $E sfx "crisp aluminum can pop and fizz" --seconds 1.5 --out job/audio/pop.mp3
 python3 $E music "minimal summer electronic, 100 BPM, builds at 8 s" --seconds 15 --out job/audio/bed.mp3
+python3 $E tts "..." --voice VOICE_ID --out vo.mp3 --estimate   # credits + USD + cache status, no call
 ```
+TTS defaults to `eleven_v4` (style/speed are ignored by v4; use `--model eleven_v3` when you need them). Every call has a credit estimate and a per-call cap (`--max-credits`, default 2000), and a content-hash cache (`--cache-dir`, `--no-cache`): identical requests never pay twice.
 In reel-studio:
 - `audio.voiceover: {path, at}`: music ducks under the VO.
 - `captions.source: vo.words.json`: word-timed captions.

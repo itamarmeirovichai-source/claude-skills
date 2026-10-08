@@ -21,6 +21,9 @@ class Mock:
         self.submits = 0
         self.uploads = {}
         self.auth_seen = []
+        self.estimates = []       # (path, body) of every /estimate call
+        self.bodies = []          # (path, body) of every paid submit
+        self.estimate_override = {}   # endpoint path -> estimate response
 
 
 def make_server(mock: Mock):
@@ -77,8 +80,13 @@ def make_server(mock: Mock):
                                         "upload_url": f"{base}/put/{name}",
                                         "upload_headers": {"Content-Type": body["content_type"]}})
             if self.path.startswith("/estimate/"):
+                mock.estimates.append((self.path, body))
+                ep = self.path[len("/estimate/"):]
+                if ep in mock.estimate_override:
+                    return self._json(200, mock.estimate_override[ep])
                 usd = "0.50" if "video" in self.path else "0.02"
                 return self._json(200, {"credits": "8", "usd": usd})
+            mock.bodies.append((self.path, body))
             key = self.headers.get("Idempotency-Key")
             if key in mock.by_key:
                 rid = mock.by_key[key]
@@ -169,7 +177,7 @@ def test_batch_runs_downloads_and_resumes(api, tmp_path):
 
 
 def test_failed_take_recorded_and_retried_with_same_key(api, tmp_path):
-    jobs = [{"id": "bad", "model": "kling-video/x/text-to-video", "takes": 1, "args": {"prompt": "FAIL"}}]
+    jobs = [{"id": "bad", "model": "kling-video/v2.5-turbo/pro/text-to-video", "takes": 1, "args": {"prompt": "FAIL"}}]
     p = write_plan(tmp_path, jobs)
     res = H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
     assert res["completed"] == 0 and res["failed"] == 1
@@ -217,3 +225,176 @@ def test_proxy_mode_sends_no_key(monkeypatch):
     assert H.credentials({"HF_AUTH_VIA_PROXY": "1"}) is None
     with pytest.raises(SystemExit):
         H.credentials({})
+
+
+# ───────────── money guards: schema check, unpriced jobs, safe defaults, price formats ─────────────
+
+KLING3 = "kling-video/v3.0/pro/image-to-video"
+SEED25 = "bytedance/seedance-2.5/image-to-video"
+QWEN = "alibaba/qwen-image-3/edit"
+
+
+def test_unknown_field_refused_before_any_upload_estimate_or_submit(api, tmp_path):
+    jobs = [{"id": "bridge", "model": KLING3, "takes": 1,
+             "args": {"prompt": "arc", "image_url": "@file:frames/r1.png", "end_image_url": "@file:frames/r1.png"}}]
+    p = write_plan(tmp_path, jobs)
+    with pytest.raises(SystemExit, match=r"end_image_url.*did you mean last_image_url"):
+        H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert api.submits == 0 and not api.uploads and not api.estimates
+
+
+def test_dry_run_reports_schema_problems_and_is_not_ok(api, tmp_path):
+    jobs = [{"id": "bridge", "model": KLING3, "takes": 1,
+             "args": {"prompt": "arc", "image_url": "https://x.y/a.png", "duration": 99}}]
+    res = H.cmd_batch(write_plan(tmp_path, jobs), budget=10, dry_run=True, yes=True, concurrency=1,
+                      out=None, salt="", only=None)
+    assert res["ok"] is False and any("maximum 15" in pr for pr in res["problems"])
+    assert res["unpriced"] == ["bridge"] and res["estimated_usd"] == 0
+    assert api.submits == 0
+
+
+def test_validate_args_types_enums_required_and_nested():
+    assert H.validate_args(KLING3, {"prompt": "x", "image_url": "https://a/b.png", "sound": "off"}) == []
+    errs = H.validate_args(KLING3, {"prompt": "x", "sound": "loud", "cfg_scale": "0.5",
+                                    "multi_prompt": [{"prompt": "a" * 600, "duration": 2}]})
+    joined = " | ".join(errs)
+    assert "image_url: required" in joined and "'loud' not in" in joined
+    assert "cfg_scale: expected number" in joined and "maxLength 512" in joined
+    # Seedance i2v has no aspect_ratio field: a template that adds one would 400
+    assert any("aspect_ratio: unknown" in e for e in H.validate_args(SEED25, {"image_url": "https://a/b.png",
+                                                                               "aspect_ratio": "9:16"}))
+    assert H.validate_args("vendor/made-up-model", {"prompt": "x"})[0].startswith("no known schema")
+
+
+def test_qwen_rule_prompt_extend_off_needs_thinking_off():
+    # prompt_extend false alone 400s upstream ("True was expected"): enable_thinking defaults to true
+    errs = H.validate_args(QWEN, {"prompt": "fix label", "image_urls": ["https://a/b.png"], "prompt_extend": False})
+    assert errs and "prompt_extend" in errs[0]
+    args, inj = H.apply_safe_defaults(QWEN, {"prompt": "fix label", "image_urls": ["https://a/b.png"]})
+    assert args["prompt_extend"] is False and args["enable_thinking"] is False
+    assert H.validate_args(QWEN, args) == []
+
+
+def test_safe_defaults_never_override_explicit_values():
+    a, inj = H.apply_safe_defaults(KLING3, {"prompt": "x", "image_url": "https://a/b.png"})
+    assert a["sound"] == "off" and inj == {"sound": "off"}          # no aspect_ratio field on Kling i2v
+    a, inj = H.apply_safe_defaults(KLING3, {"prompt": "x", "image_url": "https://a/b.png", "sound": "on"})
+    assert a["sound"] == "on" and inj == {}
+    a, inj = H.apply_safe_defaults(SEED25, {"image_url": "https://a/b.png"})
+    assert a == {"image_url": "https://a/b.png", "generate_audio": False}
+    a, _ = H.apply_safe_defaults("bytedance/seedance-2.5/reference-to-video", {"image_urls": ["https://a/b.png"]})
+    assert a["aspect_ratio"] == "9:16" and a["generate_audio"] is False
+    a, _ = H.apply_safe_defaults("marketing-studio/image/flare", {"prompt": "x"})
+    assert a["enhance_prompt"] is False and a["aspect_ratio"] == "9:16"
+
+
+def test_batch_submits_safe_defaults(api, tmp_path):
+    jobs = [{"id": "k", "model": KLING3, "takes": 1, "args": {"prompt": "push", "image_url": "@file:frames/r1.png"}},
+            {"id": "s", "model": SEED25, "takes": 1, "args": {"prompt": "drift", "image_url": "@file:frames/r1.png"}},
+            {"id": "q", "model": QWEN, "takes": 1, "args": {"prompt": "fix", "image_urls": ["@file:frames/r1.png"]}}]
+    H.cmd_batch(write_plan(tmp_path, jobs), budget=10, dry_run=False, yes=True, concurrency=1,
+                out=None, salt="", only=None)
+    sent = {path.strip("/"): body for path, body in api.bodies}
+    assert sent[KLING3]["sound"] == "off"
+    assert sent[SEED25]["generate_audio"] is False and "aspect_ratio" not in sent[SEED25]
+    assert sent[QWEN]["prompt_extend"] is False and sent[QWEN]["enable_thinking"] is False
+    est = {path[len("/estimate/"):]: body for path, body in api.estimates}
+    assert est[KLING3]["sound"] == "off"          # the estimate prices what will actually be sent
+
+
+def test_unpriced_job_is_refused_not_counted_as_zero(api, tmp_path):
+    api.estimate_override[SEED25] = {"type": "description", "pricing_description": "Contact sales for pricing."}
+    jobs = [{"id": "k", "model": KLING3, "takes": 1, "args": {"prompt": "push", "image_url": "https://a/b.png"}},
+            {"id": "s", "model": SEED25, "takes": 2, "args": {"prompt": "drift", "image_url": "https://a/b.png"}}]
+    p = write_plan(tmp_path, jobs)
+    res = H.cmd_batch(p, budget=10, dry_run=True, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert res["ok"] is False and res["unpriced"] == ["s"] and res["estimated_usd"] == pytest.approx(0.5)
+    assert H.main(["batch", str(p), "--budget", "10", "--dry-run"]) == 2
+    with pytest.raises(SystemExit, match="cannot price s"):
+        H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
+    assert api.submits == 0
+
+
+def test_unknown_model_needs_allow_unvalidated(api, tmp_path):
+    jobs = [{"id": "x", "model": "vendor/new-video-model", "takes": 1, "args": {"prompt": "x"}}]
+    p = write_plan(tmp_path, jobs)
+    with pytest.raises(SystemExit, match="no known schema"):
+        H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None)
+    res = H.cmd_batch(p, budget=10, dry_run=False, yes=True, concurrency=1, out=None, salt="", only=None,
+                      allow_unvalidated=True)
+    assert res["completed"] == 1
+
+
+def test_run_command_refuses_unpriced_and_bad_fields(api):
+    api.estimate_override[SEED25] = {"type": "description", "pricing_description": "n/a"}
+    with pytest.raises(SystemExit, match="UNPRICED"):
+        H.main(["run", SEED25, "--args", json.dumps({"image_url": "https://a/b.png"}), "--yes"])
+    with pytest.raises(SystemExit, match="unknown field"):
+        H.main(["run", KLING3, "--args", json.dumps({"image_url": "https://a/b.png", "bogus_param": 1}), "--yes"])
+    assert api.submits == 0
+
+
+def test_multishot_estimate_uses_summed_durations(api):
+    args = {"prompt": "triptych", "image_url": "https://a/b.png", "multi_shots": True,
+            "multi_prompt": [{"prompt": "a", "duration": 3}] * 3}
+    e = H.estimate(KLING3, args)                       # mock /estimate says $0.50 for the 5 s default
+    assert float(e["usd"]) == pytest.approx(0.9) and e["est_source"] == "multishot-summed"
+    assert H.billed_seconds(args) == 9 and H.billed_seconds({"duration": 4}) == 4
+
+
+WAN_DESC = ("Priced per generated second by resolution: 480p $0.05, 720p $0.10, or 1080p $0.20. "
+            "Rates shown are before any applicable customer discount.")
+S20_DESC = ("Token-metered pricing. Billable video tokens = ceil(generated video seconds × output width "
+            "× output height × 24 fps / 1024). Image and audio references do not count as video input. "
+            "Per 1,000 video tokens: 480p/720p/1080p $0.014, 4K $0.008. Rates shown are before any "
+            "applicable customer discount.")
+CS_DESC = ("Token-metered pricing. Billable video tokens = ceil((input video seconds + generated video seconds) "
+           "× output width × output height × 24 fps / 1024). At 480p or 720p, each 1,000 video "
+           "tokens cost $0.0214 without video input or $0.01284 with video input (0.6× the standard rate).")
+
+
+def test_price_formats_wan_and_token_metered():
+    assert H.price_from_description(WAN_DESC, {"duration": 5, "resolution": "480p"}) == pytest.approx(0.25)
+    assert H.price_from_description(WAN_DESC, {"duration": 5}, default_res="1080p") == pytest.approx(1.0)
+    # Seedance 2.0: ceil(5 s x 720x1280 x 24 / 1024) = 108,000 tokens x $0.014/1k
+    assert H.price_from_description(S20_DESC, {"duration": 5, "resolution": "720p"}) == pytest.approx(1.512)
+    assert H.price_from_description(S20_DESC, {"duration": 5, "resolution": "4k"}) == pytest.approx(7.776)
+    assert H.price_from_description(CS_DESC, {"duration": 5, "resolution": "720p"}) == pytest.approx(2.3112)
+    # unknowable input seconds / unsupported resolution -> None (refuse), never $0
+    assert H.price_from_description(CS_DESC, {"duration": 5, "resolution": "720p", "video_urls": ["v"]}) is None
+    assert H.price_from_description(CS_DESC, {"duration": 5, "resolution": "1080p"}) is None
+    # token-priced images: references are billed too
+    img = "Per 1M tokens: text input $5, image input $8, image output $30."
+    assert H.price_from_description(img, {"resolution": "2k", "image_urls": ["a", "b"]}) == pytest.approx(0.34)
+
+
+def test_wan_estimate_uses_schema_default_resolution(api):
+    api.estimate_override["alibaba/wan-3.0/image-to-video"] = {"type": "description", "pricing_description": WAN_DESC}
+    e = H.estimate("alibaba/wan-3.0/image-to-video", {"prompt": "x", "image_url": "https://a/b.png", "duration": 4})
+    assert float(e["usd"]) == pytest.approx(0.8) and e["est_source"] == "description"   # default 1080p
+
+
+def test_extract_schemas_from_docs_bundle():
+    doc = ("# Thing API\nSource: x\n\n**Endpoint ID:** `vendor/thing`\n\n"
+           "<Accordion title=\"Complete JSON schema\">\n  ```json theme={}\n"
+           '  {"type": "object", "title": "T", "required": ["prompt"], "properties": '
+           '{"prompt": {"type": "string", "description": "d"}}, "additionalProperties": false}\n  ```\n</Accordion>\n'
+           "# Other page\nno schema here\n")
+    sch = H.extract_schemas(doc)
+    assert sch == {"vendor/thing": {"type": "object", "required": ["prompt"],
+                                    "properties": {"prompt": {"type": "string"}}}}
+
+
+def test_shipped_schemas_cover_the_router_models():
+    for m in (KLING3, SEED25, QWEN, "marketing-studio/image/flare", "higgsfield-ai/soul/cinema",
+              "kling-video/omni/first-last-frame", "bytedance/seedance-2.5/reference-to-video",
+              "alibaba/wan-3.0/image-to-video", "higgsfield-ai/soul/v2/image-to-image"):
+        assert H.schema_for(m) is not None, m
+    assert "last_image_url" in H.schema_for(KLING3)["properties"]
+
+
+def test_lint_cli(capsys):
+    assert H.main(["lint", KLING3, "--args", json.dumps({"image_url": "https://a/b.png"})]) == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["ok"] and out["defaults_applied"] == {"sound": "off"}
+    assert H.main(["lint", KLING3, "--args", json.dumps({"image_url": "https://a/b.png", "end_image_url": "x"})]) == 2

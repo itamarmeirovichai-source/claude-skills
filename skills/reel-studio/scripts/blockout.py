@@ -9,10 +9,13 @@ Usage:
   python3 blockout.py spec.json out.mp4 [--res 540x960] [--fps 24] [--preview]
 Requires: pip install bpy==4.5.0 (Python 3.11), ffmpeg.
 """
-import json, math, os, subprocess, sys, tempfile
+import argparse, json, math, os, subprocess, sys, tempfile
 
-import bpy
-from mathutils import Vector
+try:  # Blender as a module; --help and argument errors work without it
+    import bpy
+    from mathutils import Vector
+except ImportError:  # pragma: no cover - depends on the environment
+    bpy = Vector = None
 
 PALETTE = {  # semantic colors (Workbench flat shading)
     "architecture": (0.92, 0.92, 0.92), "floor": (0.80, 0.80, 0.82),
@@ -97,6 +100,8 @@ def setup_camera(cam_spec, fps, seconds):
 
 
 def render(spec, out_mp4, res=(540, 960), fps=24, preview=False):
+    if bpy is None:
+        raise SystemExit("blockout.py needs Blender as a module: pip install bpy==4.5.0 (Python 3.11)")
     reset()
     sc = bpy.context.scene
     for o in spec["objects"]:
@@ -127,12 +132,32 @@ def render(spec, out_mp4, res=(540, 960), fps=24, preview=False):
     return out_mp4
 
 
+def parse_res(v: str) -> tuple:
+    try:
+        w, h = (int(x) for x in v.lower().split("x"))
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"--res must look like 540x960, got {v!r}") from None
+    if w <= 0 or h <= 0:
+        raise argparse.ArgumentTypeError("--res width and height must be positive")
+    return (w, h)
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(prog="blockout.py", description=__doc__.splitlines()[0],
+                                 epilog="Requires: pip install bpy==4.5.0 (Python 3.11), ffmpeg.")
+    ap.add_argument("spec", help="blockout JSON spec (objects + camera keys), e.g. examples/blockout/boca_villa.json")
+    ap.add_argument("out", help="output .mp4 guide video")
+    ap.add_argument("--res", type=parse_res, default=(540, 960), help="WxH (default 540x960)")
+    ap.add_argument("--fps", type=int, default=24, help="frames per second (default 24)")
+    ap.add_argument("--preview", action="store_true", help="render a single frame only (fast check)")
+    a = ap.parse_args(argv)
+    if not os.path.exists(a.spec):
+        ap.error(f"spec not found: {a.spec}")
+    with open(a.spec, encoding="utf-8") as f:
+        spec = json.load(f)
+    print(render(spec, a.out, a.res, a.fps, a.preview))
+    return 0
+
+
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    spec = json.load(open(args[0])); out = args[1]
-    res = (540, 960); fps = 24; preview = "--preview" in args
-    if "--res" in args:
-        w, h = args[args.index("--res") + 1].split("x"); res = (int(w), int(h))
-    if "--fps" in args:
-        fps = int(args[args.index("--fps") + 1])
-    print(render(spec, out, res, fps, preview))
+    sys.exit(main())
