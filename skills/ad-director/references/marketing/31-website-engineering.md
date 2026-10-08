@@ -48,9 +48,9 @@ Cloudflare now pushes Workers static assets for new apps (logs, rate limiting, E
 | SEO/OG/sitemap | Built in (`@astrojs/sitemap`) | Built in | Manual |
 | Verdict | **Choose** | Overkill, with runtime and adapter risk | Good, but you rebuild Astro's page and content layer by hand |
 
-Astro 6+ needs Node ≥ 22.12 (local Node is 22.22). One known Astro + GSAP + Lenis portfolio build was written up by Codrops in Feb 2026 (Lenis + GSAP, Swup transitions). The article returned 403 to us, so only the search summary was read.
+Astro 6+ needs Node ≥ 22.12 (local: 22.22). Codrops covered an Astro + GSAP + Lenis portfolio in Feb 2026; the article returned 403, so we read only the search summary.
 
-**Motion alternatives.** Motion (ex-Framer Motion) is lighter for UI transitions but has no ScrollTrigger-grade pinning or Flip [inf]. CSS scroll-driven animations are good progressive enhancement for simple reveals, but cannot choreograph against video time [inf]. Use **GSAP as the one timeline engine**: `gsap.matchMedia()` for breakpoints and reduced motion (`ScrollTrigger.matchMedia` is deprecated) and `ScrollTrigger.refresh()` after layout changes ([ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)). Lenis is driven from the GSAP ticker so there is **one requestAnimationFrame loop**:
+**Motion alternatives:** Motion (ex-Framer Motion) has no ScrollTrigger-grade pinning or Flip, and CSS scroll-driven animations can't sync to video time [inf]. Use **GSAP as the one timeline engine**, with `gsap.matchMedia()` (`ScrollTrigger.matchMedia` is deprecated) and `ScrollTrigger.refresh()` after layout changes ([ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)). Drive Lenis from the GSAP ticker so there is **one RAF loop**:
 
 ```ts
 const lenis = new Lenis();            // respectReducedMotion defaults to true
@@ -59,11 +59,11 @@ gsap.ticker.add((t) => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
 ```
 
-Lenis caveats: no CSS scroll-snap (use `lenis/snap`), Safari is capped at 60 fps, `syncTouch` is off by default and flaky below iOS 16, and wheel smoothing stops over iframes. Leave touch scrolling **native** on phones (keep `syncTouch: false`). Mark modals `data-lenis-prevent`.
+Lenis caveats: no CSS scroll-snap (use `lenis/snap`), a 60 fps cap on Safari, and `syncTouch` is off by default and flaky below iOS 16. Keep touch scrolling native and mark modals `data-lenis-prevent`.
 
-**Ring: CSS 3D is enough.** Radius `tz = round((cardWidth/2) / tan(π/n))` ([Desandro](https://3dtransforms.desandro.com/carousel)). The container gets `perspective`; the ring gets `transform-style: preserve-3d` and one animated `rotateY`. Each card is `rotateY(i·360/n) translateZ(tz)`. Three.js only earns its ~150 kB+ [inf] if you want reflections, depth of field or curved screens. Keep the option open by having the ring module expose `setAngle(rad)` / `onSelect(i)`, so a WebGL renderer can replace it without touching the state machine.
+**Ring: CSS 3D is enough.** Radius `tz = round((cardWidth/2) / tan(π/n))` ([Desandro](https://3dtransforms.desandro.com/carousel)). Use a `preserve-3d` ring with one animated `rotateY`, and cards at `rotateY(i·360/n) translateZ(tz)`. Three.js only earns its weight for reflections, depth of field or curved screens [inf]. The ring exposes `setAngle()`/`onSelect()`, so a WebGL renderer could replace it later.
 
-**One gotcha found:** GSAP Flip "does not accommodate 3D transforms" ([Flip docs](https://gsap.com/docs/v3/Plugins/Flip/)). To enlarge a card from the ring, read its **projected** `getBoundingClientRect()`. Place a flat 2D clone (same poster/video) at that rect, hide the 3D card, then `Flip.fit`/tween the clone to the stage rect (`scale: true` for performance).
+**Gotcha:** Flip "does not accommodate 3D transforms" ([Flip](https://gsap.com/docs/v3/Plugins/Flip/)). To enlarge a card, read its **projected** `getBoundingClientRect()`, put a flat 2D clone there, hide the 3D card, and `Flip.fit` the clone to the stage (`scale: true`).
 
 ---
 
@@ -150,15 +150,15 @@ Every clip in the character set starts and ends on the **same hub pose**. That l
 
 ### 4.5 Autoplay, decoders, playback rules
 
-- **Muted, inline autoplay works everywhere.** It needs `muted playsinline` (+`autoplay` or `play()`). iOS pauses autoplaying video when it leaves the viewport. **Unmuting without a user gesture pauses playback.** Hidden (`display:none`) or detached videos need a gesture to `play()` ([WebKit policy](https://webkit.org/blog/6784/new-video-policies-for-ios/)). Chrome: "Muted autoplay is always allowed"; sound needs a click/tap on the site or an engagement score; "Don't ever assume a video will play" ([Chrome](https://developer.chrome.com/blog/autoplay)).
-- **Sound on select:** inside the **click handler, synchronously**, set `muted = false` and call `play()` on the featured `<video>` and the speech `<audio>`. Do not `await` anything first, or the user activation may lapse [inf]. Always handle the `play()` promise rejection. On rejection, show a "Tap for sound" button.
-- **Risk to test on a device:** `stacked-alpha-video` recommends hiding the inner `<video>` with `display:none`, but WebKit says hidden videos need a gesture to `play()`. The component works in Archibald's demos. Still, test on a real iPhone. If idle autoplay fails, render the inner video `opacity:0; width:1px` instead [inf].
-- **Decoder budget** (no official limit exists. Reports range from ~7 to 32 concurrent iOS players, and paused videos may still hold a decoder): **≤ 3 videos decoding on phones** (character + front 2 cards) and **≤ 5 on desktop** [inf]. One `MediaManager` owns all `<video>`s. It assigns sources to cards near the front and releases the rest with `pause(); removeAttribute('src'); load()`. Show posters for everything else.
-- **Clip switching without flashes:** use two stacked-alpha players (A/B). Load the next clip into the hidden one, start it on `requestVideoFrameCallback` of the current clip's last frames (fallback: `ended` + `timeupdate`), then swap visibility in the same frame [inf].
-- **Lazy rules:** `preload="none"` + poster below the fold. Start network work for ring loops on `requestIdleCallback` after LCP. Respect `navigator.connection.saveData`: posters only, no ring autoplay [inf].
-- **HLS vs progressive:** Progressive MP4 with `+faststart` covers loops and ads up to ~30 s. HLS needs hls.js outside Safari (a big dependency) and is only worth it for long showreels [inf]. **Cloudflare Stream** is paid ($5 per 1,000 minutes stored prepaid, $1 per 1,000 delivered; [pricing](https://developers.cloudflare.com/stream/pricing/)), so it is out under "spend no money". **R2:** 10 GB-month storage, 1M Class A / 10M Class B ops free, **zero egress** ([R2 pricing](https://developers.cloudflare.com/r2/pricing/)). But `r2.dev` URLs are rate-limited and dev-only. Production needs a **custom domain on a Cloudflare zone**, which also enables caching ([public buckets](https://developers.cloudflare.com/r2/buckets/public-buckets/)). Plan: ship media from Pages (total ≤ ~40 MB) until a domain exists, then move `/media/*` to `media.<domain>` on R2 [inf].
-- **Range requests:** Safari probes `Range: bytes=0-1` and refuses video served as a plain 200 (WebKit bug reports). No Cloudflare doc states Pages' behaviour, so the deploy smoke test runs `curl -sI -r 0-1 https://<preview>/media/ad01.loop.h264.mp4` and expects `206` + `Content-Range` [inf].
-- **Caching:** `_headers`: `/media/*` and `/_astro/*` → `Cache-Control: public, max-age=31536000, immutable`. Put a content hash in every media filename ([headers](https://developers.cloudflare.com/pages/configuration/headers/)).
+- **Autoplay:** muted + `playsinline` autoplays everywhere. iOS pauses it off-screen, **pauses playback if unmuted without a gesture**, and needs a gesture to `play()` a `display:none` video ([WebKit](https://webkit.org/blog/6784/new-video-policies-for-ios/)). Chrome: "Muted autoplay is always allowed"; "Don't ever assume a video will play" ([Chrome](https://developer.chrome.com/blog/autoplay)).
+- **Sound on select:** in the click handler, **synchronously** set `muted = false` and `play()` the featured video and speech audio. Never `await` first [inf]. Handle `play()` rejection with a "Tap for sound" button.
+- **Device risk:** `stacked-alpha-video` hides its inner `<video>` with `display:none`, which WebKit's rule above may block. Test on an iPhone. The fallback is `opacity:0; width:1px` [inf].
+- **Decoder budget:** there is no official limit. Reports range from ~7 to 32 iOS players, and paused videos may still hold a decoder ([WebKit 193449](https://bugs.webkit.org/show_bug.cgi?id=193449)). Allow **≤ 3 decoding on phones and ≤ 5 on desktop** [inf]. One `MediaManager` gives sources to cards near the front and releases the rest (`pause(); removeAttribute('src'); load()`).
+- **Seamless clip switching:** use A/B players. Preload the next clip, start it from `requestVideoFrameCallback` near the current clip's end (fallback `ended`), and swap in the same frame [inf].
+- **Lazy:** below-fold media gets `preload="none"` + a poster. Ring loops start on `requestIdleCallback` after LCP. With `saveData`, show posters only [inf].
+- **HLS vs progressive:** faststart MP4 covers anything up to ~30 s. HLS needs hls.js outside Safari, so use it only for long reels [inf]. **Stream** is paid ($5/1,000 min stored, $1/1,000 min delivered; [pricing](https://developers.cloudflare.com/stream/pricing/)), so it is out. **R2:** 10 GB free, **zero egress** ([pricing](https://developers.cloudflare.com/r2/pricing/)). But `r2.dev` is rate-limited and dev-only; production needs a custom domain on a Cloudflare zone, which also enables caching ([public buckets](https://developers.cloudflare.com/r2/buckets/public-buckets/)). Serve media from Pages (≤ ~40 MB) until a domain exists, then move it to `media.<domain>` [inf].
+- **Range:** Safari probes `bytes=0-1` and rejects a plain 200 (WebKit bugs). No doc states Pages' behaviour, so smoke-test with `curl -sI -r 0-1 <preview>/media/x.mp4` and expect `206` [inf].
+- **Caching:** in `_headers`, set `/media/*` and `/_astro/*` to `public, max-age=31536000, immutable`, with hashed filenames ([headers](https://developers.cloudflare.com/pages/configuration/headers/)).
 
 ---
 
