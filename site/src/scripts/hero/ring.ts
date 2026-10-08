@@ -93,7 +93,7 @@ export class Ring {
     const frame = this.ottoFrame.getBoundingClientRect();
     const rx = Math.min(Math.max(frame.width * 0.85, 200), w * 0.3);
     const rz = rx * 0.75;
-    const ry = frame.height * 0.26; // front cards pass low (over the hands), back cards ride up behind the shoulders
+    const ry = frame.height * 0.22; // front cards pass low (over the hands), back cards ride up behind the shoulders
     this.items.forEach((it, i) => {
       const a = this.angle + i * this.step;
       const x = Math.sin(a) * rx;
