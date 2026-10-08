@@ -1,0 +1,17 @@
+{
+ "jobs": [
+  {
+   "id": "G_pack4",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K7h.png",
+    "last_image_url": "@file:ref/K8j.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. He holds the SAME tall straight-sided plain clear glass (no stem, no ice) the whole time; it never changes shape, never becomes a can or a flute. Cinematic, golden hour, real physics, one continuous shot, no cuts. The camera cranes down and pushes in past him toward a wooden apple box beside the airbag; he reaches in and sets the nearly empty tall glass down next to the gold AURUM can, then his hand leaves frame; the camera settles exactly on the packshot of the can and the glass; the AURUM label is sharp and unchanged. No people at the end."
+   }
+  }
+ ]
+}

@@ -28,27 +28,25 @@ Style: Tag,Instrument Serif,110,&H0060B8E6,&H00000000,&H00101010,&H64000000,0,0,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:00:30.00,Super,,0,0,0,,AI-generated film · VXO spec
-Dialogue: 0,0:00:02.40,0:00:05.90,Name,,0,0,0,,VEE
-Dialogue: 0,0:00:02.40,0:00:05.90,Line,,0,0,0,,{\fad(120,120)}The sun's golden hour? Twenty minutes, tops.
-Dialogue: 0,0:00:23.95,0:00:26.20,Name,,0,0,0,,VEE
-Dialogue: 0,0:00:23.95,0:00:26.20,Line,,0,0,0,,{\fad(120,120)}Mine lasts all night.
-Dialogue: 0,0:00:26.50,0:00:30.00,Tag,,0,0,0,,{\fad(300,0)}VESPER
-Dialogue: 0,0:00:27.10,0:00:30.00,Line,,0,0,0,,{\fad(300,0)}Wear the golden hour.
+Dialogue: 0,0:00:01.80,0:00:06.40,Line,,0,0,0,,{\fad(120,120)}The sun's golden hour? Twenty minutes, tops.
+Dialogue: 0,0:00:24.20,0:00:26.80,Line,,0,0,0,,{\fad(120,120)}Mine lasts all night.
+Dialogue: 0,0:00:27.10,0:00:30.00,Tag,,0,0,0,,{\fad(300,0)}VESPER
+Dialogue: 0,0:00:27.60,0:00:30.00,Line,,0,0,0,,{\fad(300,0)}Wear the golden hour.
 ASS
 A=audio
 ffmpeg -v error -y -i final/_video.mp4 -i $A/music.mp3 -i $A/music.mp3 -i $A/sfx_city.mp3 -i $A/sfx_tick.mp3 -i $A/sfx_spray.mp3 -i $A/sfx_rewind.mp3 -i $A/sfx_click.mp3 \
  -i $A/vee_l1b.mp3 -i $A/vee_l2b.mp3 -i $A/vee_tag.mp3 -i $A/sfx_click.mp3 -filter_complex "\
 [1:a]atrim=0:15.6,asetpts=N/SR/TB,afade=t=in:d=0.6,afade=t=out:st=15.0:d=0.6,volume=0.8[m1];\
-[2:a]atrim=17.8:29.9,asetpts=N/SR/TB,afade=t=in:d=1.2,afade=t=out:st=8.6:d=1.4,volume=0.85,adelay=20200:all=1[m2];\
+[2:a]atrim=17.8:27.3,asetpts=N/SR/TB,afade=t=in:d=0.8,afade=t=out:st=8.3:d=1.2,volume=0.85,adelay=20500:all=1[m2];\
 [3:a]afade=t=in:d=0.5,afade=t=out:st=6.5:d=1.5,volume=0.4[city];\
 [4:a]afade=t=in:d=0.5,afade=t=out:st=7.6:d=0.4,volume=0.55,adelay=7000:all=1[tick];\
-[5:a]volume=1.0,adelay=16700:all=1[spray];\
-[6:a]volume=0.8,adelay=19900:all=1[rew];\
+[5:a]volume=1.0,adelay=19200:all=1[spray];\
+[6:a]volume=0.8,adelay=20100:all=1[rew];\
 [7:a]volume=1.0,adelay=0:all=1[click0];\
-[8:a]volume=1.1,adelay=2400:all=1[l1];\
-[9:a]volume=1.1,adelay=23950:all=1[l2];\
-[10:a]volume=1.1,adelay=26700:all=1[tag];\
-[11:a]volume=1.0,adelay=23400:all=1[click1];\
+[8:a]volume=0,adelay=2400:all=1[l1];\
+[9:a]volume=0,adelay=23950:all=1[l2];\
+[10:a]volume=1.1,adelay=27150:all=1[tag];\
+[11:a]volume=1.0,adelay=23900:all=1[click1];\
 [m1][m2][city][tick][spray][rew][click0][l1][l2][tag][click1]amix=inputs=11:duration=longest:normalize=0,atrim=0:30,alimiter=limit=0.9[a]" \
  -map 0:v -map "[a]" -vf "subtitles=final/captions.ass:fontsdir=${FONTS:-.}" \
  -c:v libx264 -crf 18 -preset slow -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 192k -t 30 final/vesper_23_30.mp4

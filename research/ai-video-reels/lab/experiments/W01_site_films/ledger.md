@@ -64,3 +64,9 @@ Lesson: every keyframe that shows the product in use must name the SAME vessel (
 | **Site total** | | **~$71 of $80** | |
 
 Lesson: Wan 3.0 reference-to-video with audio_urls is the cheapest real lip-sync ($0.10/s at 720p). Framing drifts between takes, so say "same camera distance as the reference, hands visible at the bottom edge, do not zoom in".
+| AURUM v3: K5d/K7h/K8j glass edits (+retries) | Qwen edit 2k | 0.45 | PASS |
+| AURUM v3: D real drink, E leap, F land, G set-down (+1 G retake) | Kling 3.0 pro i2v | 2.38 | PASS |
+| AURUM v3 score composed to picture + gulp/clink SFX | ElevenLabs credits | 0 | PASS |
+| **Site total** | | **~$74 of $80** | |
+
+Self-audit lesson (the owner caught these, I should have): place every sound on the MEASURED frame of its action (frame strip at 4-10 fps around each event), never on the plan's timings, and re-measure after every re-render. Never put a voice on a character whose lips are not moving: use text supers or VO only when the mouth is off-screen. Check the action really happens (the level must drop when someone "drinks"). Check a seam lands on full white, not mid-flare.
