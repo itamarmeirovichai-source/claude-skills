@@ -157,3 +157,19 @@ Self-critique against the new research briefs (marketing/01, 02):
 
   Corrected chain: `skills/ad-director/references/film_chain_warm.txt`.
 - **QC:** 24 fps, −14.1 LUFS. The cut detector missed the 3 s match-cut (same room). Shot lengths are long-ish (5 s big-idea shot), acceptable for a luxury tempo.
+
+### 2026-10-08 · T01 paid validation test (21 §4): settle wording, shared-keyframe seams, Qwen repair, Seedance one-take
+- **Spend:** $3.13 estimated / $3.51 cap-accounting of a $4.00 hard cap. Every job was schema-linted against `llms-full.txt` and estimated free first. No reserve used. ElevenLabs: 286 credits.
+- **Findings:**
+  - **T2:** Kling 3.0 Pro + `last_image_url` ignores settle/no-settle wording. The tail-motion ratio was 0.91 with the "settle" wording (A) and 0.50 with "does not slow or settle" (B). In T3, "settles exactly" *accelerated* into the end frame.
+  - **T3:** a shared-keyframe seam is pixel-continuous (luma SSIM 0.972; the seam has the smallest frame difference in the 10 s clip) and the label held in 41/41 sampled frames. The seam still reads as a **~4× speed break**.
+  - **T5:** the Seedance 2.5 i2v 480p one-take (K0→K2, $1.023) has no cut, constant speed and the shape held, but the label is soft. Smoother than the Kling chain, less sharp.
+  - **T4:** Qwen 3 edit fixes the word but re-renders the whole frame (SSIM 0.68 outside the box, 1152×2048 output). Use it as a patch source and composite it back.
+  - **T1:** Flare re-frames from one still keep the deboss and light. Its cost **cannot be reconciled through the API**: no balance endpoint, no cost in `status`.
+  - **E1:** the v4 `[softly]` line: `chars_to_words` strips the tag, and the 12 words match scribe_v2 within 0.12 s.
+  - **E2:** a plan-drafted boundary hit landed 1.02 s late; the silent head is fine (−56 dBFS).
+- **Decision (21 §4 rules):**
+  - T2 failed, so seams get hidden in post: an R3 trim plus an R7 ramp per seam. Remove the no-settle claim from 16 §2.1. Shared keyframes stay only as identity anchors.
+  - T5 won on flow, so Seedance one-takes are allowed for label-free beats only.
+  - Budget Flare at $0.50 until the console bill is checked.
+  - 21's SSIM thresholds (≥0.85 crop, ≥0.95 landing, ≥0.97 outside the box) are miscalibrated for generated frames: a 1–3 px self-shift already scores 0.45–0.88. Use the relative and registered metrics in `experiments/T01_paidtest/results.md`.
