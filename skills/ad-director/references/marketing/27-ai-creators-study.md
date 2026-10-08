@@ -50,7 +50,7 @@ Researched 2026-10-08. A smaller-scale version of the Rourke study (`14-rourke-h
 
 Structure: a prose paragraph (subject, place, light, action, accent, quoted line, a beat after the line), then labelled tails: `Time of Day / Lens / POV / Audio / Background`.
 
-**Business model:** He uses viral spec and IP work (Bible, Red Rising, "Nexus" hybrid feature) as the funnel for Genre.ai brand deals, gets tool-partner access (Dreamina CPP), and publishes breakdowns on X and his newsletter. He does not sell courses on TikTok.
+**Business model:** viral spec and IP work feed Genre.ai brand deals and tool-partner access (Dreamina CPP); breakdowns go to X and his newsletter. No courses.
 
 ---
 
@@ -63,7 +63,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 **Signature techniques:**
 1. **Print the AI frames and animate them physically.** Nano Banana makes the still ("put this woman on a horse in the desert, side view"), Veo 3.1 animates it ("the horse gallops across the scene, and out of frame on the right side", both verbatim from the caption), she **prints the frames on paper, cuts them out with an X-Acto knife and shoots stop-motion on a tripod**. The result is AI motion with handmade texture that nobody reads as "AI slop" [inf].
 2. **"Roommate POV" lo-fi hook.** The 9.4M teaser opens on a shaky phone shot captioned "what is my roommate doing", with Karen surrounded by printouts. The process is the hook; the payoff comes at 0:07.
-3. **Generative fill as prop budget.** Firefly Generative Expand "to stretch the image", Insert for balloon, kite and umbrella "to save money on props", and Remove Background "to generate a new one" behind the real subject, all composited into a collage on a cork board.
+3. **Generative fill as prop budget** (Firefly Expand, Insert, Remove Background) "to save money on props", composited into a cork-board collage.
 4. **"Day N of extremely easy edits" series** (Higgsfield-sponsored). The pendulum effect: one photo, then Higgsfield Create Video, preset **AERIAL PULLBACK**, Kling 2.6, 5 s, audio on, 10 credits. Prompt on screen, verbatim: "the person is standing still. There are no people in the background. Camera movement is a drone shot that pulls upwards." In CapCut: duplicate the clip and reverse the copy.
 5. **Hand-drawn storyboard first** (frame 0:05 of 7567079567425359135), then "Step 1 / Step 2 / Step 3" red tags on screen.
 **On-screen prompt** (Gemini in Chrome, 147.7M video): "i'm debating between these locations for a photoshoot. i'm making a tunnel book, so i need strong foreground, mid ground, and backg[round]".
@@ -85,7 +85,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 2. **Variations → same motion → match-cut** (Lovart): generate several variations "keeping the same person, pose, and composition", animate one with a rotating 3D move, "recreate the exact same motion for every scene", then "combine all generated clips into one fast-paced match-cut sequence while preserving the exact same camera movement throughout."
 3. **Flavor-shift** (Coke can): one packshot gives N flavor variants (pomegranate, lemon) with matching ingredient splash, cut on the beat with kinetic text "THIS EFFECT I CALL THE FLAVOR SHIFT".
 4. **Product-interior fly-through** (sneaker): floating product still → Kling 3.0, 5–10 s, with a prompt to fly "into the shoe through mesh and lace openings, transitioning into a full interior fly-through with hyper-detailed macro textures. Inside, motion alternates between high-speed bursts and controlled slow[-motion]…" (on-screen fragment).
-5. **Text behind the subject** over real footage between AI shots (Creatify golf piece).
+5. **Text behind the subject** on the real footage between AI shots.
 
 **On-screen prompt fragments (verbatim):**
 - Nano Banana Pro, floating shot: "A worn grey running sneaker floating mid-air against a clear blue sky, captured outdoors in a sunny backyard with a swimming pool and palm trees below. The … background keeps the same poolside backyard vibe with slight natural variation. The shoe is positioned significantly higher in the frame, clearly shifted upward from its…"
@@ -105,7 +105,7 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 1. **"Packshot + product + PROMPT" equation card.** On the Oreo post, three white tiles (pack image + cookie image + "PROMPT") sit over the screen recording. The prompt is a **numbered shot list inside one Seedance generation** (15 s, 16:9, 720p). Verbatim fragments: "Create a hyper-realistic commercial for Oreo [using the] uploaded reference [images]: - Image 1: … - Image 2: … Use both uploaded image[s as the] visual source of truth thr[oughout]…" and "7. Show an extreme macro of the cream and cookie texture after the twist. 8. Show a second person reacting naturally with a subtle smile or look of anticipation. 9. Show the Oreo moving toward or dipping into a glass of milk in a realistic, appetizing way, with believable liqu[id]…". The prompt was written in ChatGPT.
 2. **Shock-face hook + "WTF ¿Qué acabo de hacer?"** sticker, then "Y me tomó solo 2 minutos". Speed is the claim.
 3. **Local hero product** (Chocoramo, a Colombian snack). Filmora mobile flow: photo of the product, then "video de marketing", then upload a scene, write plain words and let the AI "convert that text into a prompt" (verbatim: "Aquí no hay prompts mágicos, solo escribo con palabras simples lo que quiero").
-4. **AI UGC as "the end of influencers?"** framing (Topview Product Avatar: pick an avatar, upload a product photo).
+4. **"The end of influencers?"** framing for AI UGC (Topview Product Avatar).
 **Business model:** sponsored reviews and tool affiliates, plus his own brand agency.
 
 ---
@@ -137,8 +137,8 @@ Structure: a prose paragraph (subject, place, light, action, accent, quoted line
 1. **Miniature workers on a giant product** (1.2M). Freepik Image Generator, Nano Banana Pro (250 credits), product as `@img1`, 9:16, 2K. Prompt start, verbatim: "@img1 A whimsical scene of miniature people in colourful hiking gear…". The scene ideas: painters re-painting a Coke can, climbers on an iPhone, a cap, a Stanley cup and a Sony camera. Then Veo 3.1 or WAN 2.5 "so you get audio added". "You can insert literally any product… perfect for advertising."
 2. **Product drop-in to a famous film still** (348k): drag a product tile (camera, Darth Vader helmet, Mountain Dew, a perfume) onto a frame, and the characters "realistically interact with your product as if it was always there". The tool is unnamed in the post [inf: an image-plus-product i2v feature].
 3. **Craft-material style lock.** Verbatim style prompt card: "handcrafted knitted wool texture, every element appears made of soft yarn with visible knitting stitches and fuzzy fibres, rounded edges, tactile surfaces, no hard lines". NB Pro starting frames, then Veo 3.1 or Kling 2.6. His claim: "the hand puppeted movement and imperfect art style is exactly what brands are after right now."
-4. **Brand lookbook recreation:** Grok describes a reference campaign photo, then a Midjourney prompt plus a pre-written self-description and Omni-reference. He switched to a Higgsfield trained character "because none of them look like me", then Veo.
-5. **Mock-news emergency-services Christmas spot** (low-poly 3D look, news-ticker inserts, a tagline card).
+4. **Brand lookbook recreation:** Grok describes a campaign photo, Midjourney renders it, and a Higgsfield-trained self-character replaces him "because none of them look like me"; then Veo.
+5. **Mock-news Christmas spot** (low-poly 3D, news-ticker inserts).
 
 ---
 
