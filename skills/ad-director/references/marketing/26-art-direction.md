@@ -82,8 +82,8 @@ Art direction is subtraction plus repetition: pick a few elements and repeat the
 
 **2.7 Casting and wardrobe**
 - Cast by archetype with only the "bare minimum" backstory [T2].
-- Lock wardrobe to the palette: no off-palette garments, no logos, one texture from §2.3.
-- Give each character one behaviour ("chews the straw"). In AI images, a behaviour sells realism better than an adjective [inf].
+- Wardrobe locked to the palette; no logos.
+- One behaviour per character ("chews the straw") sells realism better than adjectives [inf].
 
 ## 3. Colour script (Pixar method → 8-shot ad)
 
