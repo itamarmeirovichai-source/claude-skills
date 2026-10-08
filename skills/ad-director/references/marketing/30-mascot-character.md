@@ -5,34 +5,28 @@ Our own inferences are marked **[inf]**. **[T]** = tested on this machine today.
 
 ## 0. The ten rules
 
-1. **A mascot is a fluent device, not a logo.** Recurring characters are ~30 % more likely to grow profit and 37 % more likely to grow share (System1/IPA, vendor data [S1]). Only ~4 % of US ads use one [S1], so the slot is open.
+1. **A mascot is a fluent device.** Campaigns with one are ~30 % more likely to grow profit and 37 % share (System1/IPA, vendor data); only ~4 % of US ads use one [S1].
 2. **One exaggerated feature, everything else ordinary.** The weird part is the brand code. Ordinary skin, clothes and posture keep it "human-looking" and stop it reading as a cheap filter [inf, from H1 "Distinctive beats polished in the feed"].
 3. **Pick a feature that hides the mouth, or is not human.** Mouths are where lip-sync breaks (teeth blur, smudged lips [L1][L2]) and human faces are where AI backlash starts (Toys"R"Us smile, McDonald's grandma; 22 §5). A giant moustache or a frog head dodges both [inf].
 4. **Personality before pixels.** Duo is "sassy and fiercely loyal" with a split persona: "unhinged" on social, a "helpful coach" in-app [D1][D2]. Write the want, the flaw and one behaviour (26 §2.7) before generating anything.
 5. **Lock identity in three layers.** (a) a master sheet (turnaround + expressions), (b) a verbatim anchor block in every prompt, (c) a trained ID (Soul ID) and start frames for every video. No single layer holds on its own [inf].
-6. **Never prompt video from text alone.** Every clip starts from an approved still, and loops end on the same still (`last_image_url`).
+6. **No text-only video.** Every clip starts from an approved still; loops end on it (`last_image_url`).
 7. **Generate on a flat key colour, ship with alpha.** WebM VP9 alpha (Chrome/Firefox) + HEVC alpha or stacked alpha (Safari). Tested here in §5.
 8. **One voice ID forever.** Design the voice once, save it, freeze the settings and write a voice bible. The voice survives redesigns; the face may not.
-9. **Disclose.** EU AI Act Art. 50 transparency obligations apply from Aug 2026 [E1]. Lil Miquela's "reveal" drama and Higgsfield's own shock marketing drew backlash [M1][H4]. Say "AI character" in the bio and on the site.
-10. **Rules beat taste.** Freddie "always faces right, and he always winks" [F1]. Write five never-break rules and police them in QC.
+9. **Disclose.** EU AI Act Art. 50 transparency applies from Aug 2026 [E1]; hidden-AI reveals drew backlash [M1][H4]. Say "AI character" in bio and site.
+10. **Rules beat taste.** Freddie "always faces right, and he always winks" [F1]. Police five never-break rules in QC.
 
 ## 1. What makes mascots last
 
 | Case | What worked | What we steal |
 |---|---|---|
-| **Old Spice Man** (W+K, 2010) | Direct-to-camera, absurd one-take escalation, aimed at the real buyer: 60 % of body wash was bought by women [O1]. Red Zone sales +60 % by May 2010 and doubled by July (agency claim) [O2]. Then 186 personalised reply videos in 2.5 days [O1]. | Talk to camera; deadpan absurd; a **reply-video format** the mascot can repeat on social. |
-| **Duolingo Duo** | Acts "more like an influencer than a traditional mascot": trend sounds, feuds, the 2025 "death" stunt [D1][D3]. "Wholesome unhinged" split between social and product [D2]. | Two registers: chaotic on social, helpful on the website. One stable design, a **variable behaviour**. |
-| **Mailchimp Freddie** | Simplified over time (colour and detail removed in the 2018 rebrand); hard usage rules (faces right, winks, not with the logo) [F1][F2]. | A rule sheet. Simplify the silhouette until it reads at 64 px. |
-| **Lil Miquela** (Brud) | Novelty and narrative, then CAA. Later: backlash over the "fake" reveal and appropriated trauma stories; engagement fell, with TikTok inactive since 2022 [M1][M2]. | Don't fake humanity. **Never claim real experiences.** The character is openly AI and openly a director. |
-| **Higgsfield AI Influencer** | A menu-built character studio: Average/Bold/Extreme "unusual features" ("jug ears", "hair horns", "gold grill"), human or non-human (mammals, reptiles, hybrids). Output is a close-up + full-body sheet. Characters move via Genjutsu motion transfer/object swap and Lipsync Studio [H1][H2][H3]. Its own launch marketing drew creator backlash for shock content [H4]. | Use it as the **design sketchpad** ($0.05 per sheet), not the whole pipeline. Weird ≠ offensive. |
+| **Old Spice Man** (W+K, 2010) | Direct-to-camera absurd escalation aimed at the real buyer (60 % of body wash bought by women) [O1]; sales +60 % by May, doubled by July 2010 (agency claim) [O2]; 186 reply videos in 2.5 days [O1]. | Deadpan absurd to camera; a repeatable **reply-video format** for social. |
+| **Duolingo Duo** | Influencer-like: trend sounds, feuds, the 2025 "death" stunt [D1][D3]; "wholesome unhinged": wacky on social, coach in-app [D2]. | Two registers, one stable design. |
+| **Mailchimp Freddie** | Simplified in the 2018 rebrand; hard usage rules [F1][F2]. | A rule sheet; a silhouette that reads at 64 px. |
+| **Lil Miquela** (Brud) | Novelty, then backlash over the "fake" reveal and borrowed trauma stories; engagement faded [M1][M2]. | **Never claim real experiences**; openly AI. |
+| **Higgsfield AI Influencer** | Menu-built studio: Average/Bold/Extreme unusual features ("jug ears", "hair horns", "gold grill"), human or non-human; returns close-up + full body; animated via Genjutsu and Lipsync Studio [H1][H2][H3]. Its shock-led launch marketing drew backlash [H4]. | A **$0.05 sketchpad**, not the pipeline. Weird ≠ offensive. |
 
-**Character components that recur in long-lived mascots [inf, synthesised from the cases]:**
-- **Silhouette.** It must read in black fill at thumbnail size. The weird feature should *be* the silhouette.
-- **A want.** Otto wants every 6-second ad to be cinema. Duo wants your streak.
-- **A flaw** that powers the jokes: vanity, impatience, over-commitment.
-- **One signature gesture**: Freddie's wink, a moustache twirl.
-- **Catchphrases**: 3–5 with a rotation rule. Use one per piece at most. A catchphrase everywhere wears out [inf].
-- **Voice bible**: timbre, pace (wps), vocabulary, banned words, how it says the brand name, and how it laughs.
+**Recurring components [inf]:** a silhouette that reads in black fill (the weird feature *is* the silhouette); a want; a flaw that powers jokes; one signature gesture (Freddie's wink); 3–5 catchphrases, max one per piece; a voice bible (timbre, wps, vocabulary, banned words, brand-name read, laugh).
 
 ## 2. Consistency: the identity stack
 
@@ -40,54 +34,46 @@ Our own inferences are marked **[inf]**. **[T]** = tested on this machine today.
 
 | Job | Endpoint | Price | Notes |
 |---|---|---|---|
-| Concept sheets | `higgsfield/ai-influencer` | **$0.05** per sheet (estimate; `GET /models`: "Human and animal modes") | `input_schema: null` on `/models` and not in the public docs. Run concepts in the web studio, or probe the schema before scripting [T] |
-| Identity training | `POST /v1/custom-references` (Soul ID) | 40 cr ≈ **$2.50** | `model_version` v1/v2/**cinema**, 1–100 images; poll until `completed`; then `custom_reference_id` on Soul Cinema / Soul 2 [H5]. Higgsfield: "20 or more photos", ~3–5 min [H2] |
-| Plates with the character | `higgsfield-ai/soul/cinema` + `custom_reference_id` | $0.022 per batch 4 @1080p | Soul ignores image refs (12 §0), so Soul ID is the **only** way to get the character into Soul's lived-in realism |
-| Sheet / pose edits | `marketing-studio/image/flare` | ≈$0.14 (1k medium) – $0.30 (2k high) | 16 refs; holds identity "when moved into a new scene" (12) |
-| Cheap surgical edits | `alibaba/qwen-image-3/edit` | **$0.040** (estimate today; 12 listed $0.075) | `seed`, `negative_prompt`, set `prompt_extend:false` (17) |
+| Concept sheets | `higgsfield/ai-influencer` | **$0.05** per sheet (estimate; `GET /models`: "Human and animal modes") | `input_schema: null`, not in public docs: use the web studio or probe first [T] |
+| Identity training | `POST /v1/custom-references` (Soul ID) | 40 cr ≈ **$2.50** | `model_version` **cinema**, 1–100 images, poll to `completed` [H5]; "20 or more photos" [H2] |
+| Plates with the character | `higgsfield-ai/soul/cinema` + `custom_reference_id` | $0.022 per batch 4 @1080p | Soul ignores image refs (12), so Soul ID is the only way in |
+| Sheet / pose edits | `marketing-studio/image/flare` | ≈$0.14 (1k medium) – $0.30 (2k high) | 16 refs, holds identity (12) |
+| Cheap surgical edits | `alibaba/qwen-image-3/edit` | **$0.040** (estimate today; 12 listed $0.075) | `prompt_extend:false` (17) |
 | Clip from still | `kling-video/v3.0/std/image-to-video` | 3 s $0.215 · 4 s $0.286 · 5 s $0.357 (sound off) | `last_image_url` for loops; pro $0.476 for hands |
-| Refs + first/last frame | `kling-video/o3/image-reference` | std 5 s $0.357 | `image_urls` (character sheet) + `first_frame_url`/`last_frame_url` |
+| Refs + first/last frame | `kling-video/o3/image-reference` | std 5 s $0.357 | sheet in `image_urls` + first/last frame |
 | Talking, audio-driven | `bytedance/seedance-2.5/reference-to-video` | $0.206/s 480p · $0.462/s 720p | `audio_urls` ≤10, `image_urls` ≤30, no seed |
 | Cheaper talking | `bytedance/seedance-2.0/reference-to-video` | ≈$0.136/s 480p · $0.302/s 720p (12) | refs ≤9 img/3 vid/3 audio |
-| Founder's motion → character | `higgsfield/genjutsu/motion-transfer/v1.0` | **$0.318/0.681/1.632 per input s** | source ≥4 s; 1–8 image refs; keeps the source's original audio [H5] |
-| Same, Kling | `kling-video/v3/motion-control/{std,pro}` | estimate → HTTP 500; priced on a real call | `image_url`, `video_url` 3–30 s, `character_orientation` image(≤10 s)/video(≤30 s), `keep_original_sound` "yes"/"no" [H5][K1] |
+| Founder's motion → character | `higgsfield/genjutsu/motion-transfer/v1.0` | **$0.318/0.681/1.632 per input s** | source ≥4 s, 1–8 refs, keeps source audio [H5] |
+| Same, Kling | `kling-video/v3/motion-control/{std,pro}` | estimate → HTTP 500; priced on a real call | video 3–30 s; `character_orientation` video (≤30 s); `keep_original_sound:"no"` [H5][K1] |
 | Previs | `alibaba/wan-3.0/image-to-video` | $0.05/s 480p | blocking only |
 
-Not on the API: Higgsfield **Lipsync Studio** (Speak 2.0, Kling Lipsync, Sync Lipsync 3, InfiniteTalk, Kling Avatars 2.0) [H3] and **Kling Elements** creation (12 §2). `/models` lists no lipsync slug [T]. These run on the web only.
+Web only (no `/models` slug [T]): **Lipsync Studio** (Speak 2.0, Kling Lipsync, Sync Lipsync 3, InfiniteTalk, Kling Avatars 2.0) [H3] and **Kling Elements** (12 §2).
 
 ### 2.2 Workflow: from concept to locked identity
 
 1. **Concept** (web AI Influencer, or `ai-influencer`):
    - 2 sheets per concept at "Bold". "Extreme" for the one weird feature only.
-   - Keep the base human ordinary: real skin conditions, a scar or asymmetric freckles. Higgsfield says these make a character read as "someone specific" [H2].
+   - Keep the base ordinary: a scar or asymmetric freckles read as "someone specific" [H2].
 2. **Master still.** Pick one. Re-render it at 2k with Flare on plain mid-grey: full body, neutral A-pose, flat even light. This is **image M**, the source of truth.
-3. **Turnaround sheet** (Flare, ref M):
-   - front, ¾ left, profile left, back, ¾ right, in one 5-panel row, same scale, feet on one line.
-   - Flare 2k high, 16:9.
+3. **Turnaround sheet** (Flare 2k, 16:9, ref M): 5 views, same scale, one baseline.
 4. **Expression sheet** (Flare, ref M): a 3×3 grid as in 17 §2:
-   - neutral, smug, delighted, shocked, sceptical, whisper-conspiratorial, shouting "cut!", pointing, deadpan stare.
-   - The weird feature must *act* in each panel: moustache tips droop when sad and spring up when delighted. This makes the feature a performer, not a prop [inf].
-5. **Training set** (20–30 images). Variation must come from angle, expression, light and framing, **not** from wardrobe or the weird feature, or the ID learns drift [inf].
-   - Crop the sheet panels.
-   - Make 12–16 Qwen edits of M: new angle or expression, 3 lighting set-ups, close-up / medium / full.
-   - Optionally add more AI Influencer portraits of the same build.
+   - The weird feature must *act* in each panel (tips droop, spring up): a performer, not a prop [inf].
+5. **Training set** (20–30 images). Vary angle, expression, light, framing; **never** wardrobe or the feature, or the ID learns drift [inf].
+   - Sheet crops + 12–16 Qwen edits of M (angle, expression, 3 lights, close/medium/full).
 6. **Soul ID** `model_version:"cinema"`.
-   - Test with one Soul Cinema batch of 4 in a real location.
-   - Score against M with the 17 §5 judge: same face shape, same feature size ratio, same wardrobe.
-   - Retrain once if < 3/4 pass.
+   - Test one Soul Cinema batch of 4; judge vs M (17 §5): face, feature ratio, wardrobe. Retrain once if < 3/4 pass.
 7. **Asset registry** (in the bible):
-   - M, sheet URLs, Soul ID `id`, the winning seeds, and the ElevenLabs `voice_id`.
-   - Download everything at once: outputs live ≥7 days only (12).
+   - M, sheets, Soul ID `id`, seeds, `voice_id`. Download at once: outputs live ≥7 days (12).
 
 ### 2.3 Prompt anchoring
 
-Put one **CHARACTER LOCK** block, verbatim, first in every image and video prompt, and change only the action line after it. Rules:
+One **CHARACTER LOCK** block, verbatim, first in every prompt; only the action line changes:
 - Use physical nouns plus proportions ("moustache span = 1.6× shoulder width"), not adjectives ("huge").
 - Name wardrobe materials and colours (26 §2.1).
 - List 3–5 things that never change.
 - Add "same person as the reference images; do not restyle" and, for refs, "<<<image_1>>> = identity and wardrobe ONLY, NOT lighting, NOT background" (12 F).
 
-Keep the block ≤60 words: Kling multi-prompts are ≤512 chars, and long locks crowd out the action [inf].
+Keep it ≤60 words; long locks crowd out the action [inf].
 
 ### 2.4 Motion transfer from the founder (no face)
 
@@ -97,17 +83,11 @@ The founder records the performance on a phone: points, reach, wave, peek. Two r
   - The Element library for motion control "only uses facial information" [K2].
 - **Genjutsu motion transfer:** image refs plus the founder's video. It costs 5 s × $0.318 = **$1.59 at 480p** and $3.41 at 720p, and it keeps the source audio.
 
-**Facelessness.** The models want a head in frame, so don't crop above the shoulders [inf, from K1]. Instead:
-- film the founder with face covered (a plain mask or a balaclava), or from behind for reach-away shots;
-- or frame the chin at the top edge, then test 1 clip before batching.
-- The character image supplies the face. The founder's face never reaches the output, and the source file is deleted after use.
+**Facelessness.** The models want a head in frame [K1], so film the founder with the face covered (plain mask/balaclava) or from behind; or crop at the chin and test one clip first [inf]. The character image supplies the face; delete the source after use. (A face-visible private read would carry real mouth motion [Y2], but uploads the founder's face: explicit consent only.)
 
-**When it's worth it.** Gestures with specific timing, i.e. the "reach out of frame" beat and anything synced to UI. For idle, nods and waves, prompting Kling from a start frame is cheaper and good enough [inf].
+**Worth it** only for timed gestures (the reach, UI-synced beats); idles, nods and waves are cheaper prompted from a start frame [inf].
 
-**Phone capture spec [inf]:**
-- 1080p 30 fps, locked on a tripod, plain wall, even light.
-- Wardrobe close to the character's silhouette: vest and sleeves.
-- 6–8 s per move with 1 s of stillness at each end; the stillness becomes loop handles.
+**Phone capture [inf]:** 1080p30 on a tripod, plain wall, even light, a vest like Otto's, 6–8 s per move with 1 s of stillness at each end (loop handles).
 
 ### 2.5 Lip-sync: options, risks, alternatives
 
@@ -115,52 +95,41 @@ The founder records the performance on a phone: points, reach, wave, peek. Two r
 |---|---|---|
 | Seedance 2.5/2.0 r2v with the ElevenLabs file in `audio_urls` | API | The voice may be re-performed or drift; no seed. Practitioners: lines of 5–10 words, a mushy mouth past ~8 s, keep the head still and the camera locked [L3] |
 | Lipsync Studio (Speak 2.0, Kling Lipsync, Sync 3, InfiniteTalk) | Web only | Mouth added "after the fact" [H3]. Typical failures: blurry or frozen teeth, smudged lips when the face is <10 % of frame, tracking loss when a hand or hair crosses the mouth [L1][L2] |
+| Kling motion-control driven by a private founder read | API | The founder's face is uploaded to the vendor. Mouth shapes follow the driver video, not the VO, so align them in the edit [Y2][inf] |
 | Native Seedance/Veo dialogue voice | API/web | Not our ElevenLabs voice. Breaks rule 8 |
 
 **Alternatives that avoid the risk (rank order) [inf]:**
-1. **Mouth hidden by design.** The moustache covers the lips: animate a jaw/cheek bob and moustache flutter on the beats. Generate a "talking" body loop with Kling (gestures, breathing, moustache bounce on emphasis) and lay the ElevenLabs VO over it. Viewers read sync from rhythm, not visemes.
+1. **Mouth hidden by design.** A Kling "talking" body loop (gestures, cheek bob, moustache bounce on beats) under the ElevenLabs VO; viewers read sync from rhythm, not visemes.
 2. **Non-human mouth.** A frog's wide lipless mouth only needs open/close. Lip-sync errors look like character, not glitches.
 3. **Off-screen VO + reaction cuts.** The character listens, reacts and points while the voice runs; this is the Old Spice cadence of action beats.
 4. **Real lip-sync only for social talking-heads**, ≤8 s per generation, face 15–40 % of frame, stitched at cuts. Always QC at 100 % on the teeth.
 
 ### 2.6 How creators keep 20+ clips consistent (transcripts + web)
 
-The common thread across sources: **build assets first, then reference them in every generation.** In Isa does AI's words: "we are going to build three assets first [character, location, style] and once those are locked in, every generation we run is going to reference them directly… the part of the workflow that most people skip" [Y1]. The same video advises:
-- use a clear front-facing or ¾ portrait for training;
-- use multi-shot Seedance generations to cut the number of seams [Y1].
+Common thread: **build assets first, then reference them in every generation**: "build three assets first and once those are locked in, every generation we run is going to reference them directly… the part… most people skip"; train on a clear front or ¾ portrait; use multi-shot Seedance to cut seams [Y1].
 
 Our earlier studies (22 §3.8) say the same: PJ Ace took "6 hours to lock two realistic characters" and builds "a sheet once and reference[s] it in Seedance r2v". Kling 3.0 Elements bind a multi-angle/emotion set so the face stays "recognizable… even when the action involves full head turns" [K2]. The Elements route is web only for us.
 
-YT-NOTES
+Kling motion-control tutorials (fetched today): 3.0's upgrade is "facial consistency and quality", with "real lip sync with incredible facial expressions" carried from the driver [Y2]; build the character still to **match the driver's pose, framing and clothing**, orientation = video (≤30 s) [Y3]; Elements auto-make "three completely new angles" [Y2].
 
-**Our protocol for 15+ clips [inf]:**
-- Same start frame family: every clip starts from an edit of M.
-- Same light: flat, frontal-soft key on the key colour.
-- Same lens: 50 mm-equivalent, chest height.
-- Same 4–5 s duration; trim to the best 2–3 s; one move per clip.
-- Generate all clips in one session.
-- Then run a **contact-sheet QC**: first, middle and last frames of every clip side by side.
+**Our protocol for 15+ clips [inf]:** every start frame is an edit of M; one light, one lens (50 mm, chest height); 4–5 s, one move, trim to the best 2–3 s; one session; then a **contact-sheet QC** (first/middle/last frame of every clip side by side).
 
 ## 3. Web delivery with transparency
 
 ### 3.1 Generate on a key colour
-- Chroma green `#00B140` when the character has no green. Use **blue `#0047BB`** for a frog or green wardrobe.
-- Prompt: "plain flat chroma-green studio backdrop, evenly lit, no floor line, no shadows on the backdrop, subject lit separately, 1 m from the backdrop; no green in wardrobe".
-- Video models reinvent backgrounds, so restate the backdrop in the video prompt and add "background stays perfectly flat and unchanged" [inf].
-- Hair and moustache edges are the hard part. Ask for a **soft rim light** to separate them from the key colour [inf].
-- Spill on skin is common. `despill` handles it [T].
+- Green `#00B140`; **blue `#0047BB`** for a frog or green wardrobe. Restate the backdrop in every video prompt ("background stays perfectly flat and unchanged"): video models reinvent backgrounds [inf].
+- Ask for a **soft rim light** to separate hair/moustache edges from the key; `despill` removes skin spill [T].
 
-### 3.2 Matting options (tested on this box: 4 CPU, no GPU, onnxruntime 1.30, no rembg/torch/OpenCV) [T]
+### 3.2 Matting (tested: 4 CPU, no GPU, onnxruntime 1.30; no rembg/torch/OpenCV installed) [T]
 
 | Method | Speed (CPU, 720×1280) | Use |
 |---|---|---|
 | ffmpeg `chromakey=0x00B140:0.12:0.06,despill=type=green` | ~5 fps including VP9 encode | Default. Tune similarity 0.08–0.15 per clip |
-| **RobustVideoMatting** mobilenetv3 ONNX (15 MB) | **130 ms/frame** → a 5 s 24 fps clip in ~16 s | Fallback for fine hair or moustache edges and for non-key backgrounds. Temporal, so no flicker [inf] |
-| rembg `u2netp` ONNX | 306 ms/frame at 320² | Stills only; per-frame masks flicker in video [inf] |
-| BiRefNet-lite (swin-tiny) ONNX | **20 s/frame** at 1024² | Stills only: the master sheet and posters |
+| **RobustVideoMatting** mobilenetv3 ONNX (15 MB) | **130 ms/frame** → a 5 s 24 fps clip in ~16 s | Hair/moustache edges, non-key backgrounds; temporal, so no flicker [inf] |
+| rembg `u2netp` ONNX | 306 ms/frame at 320² | Stills (flickers on video) [inf] |
+| BiRefNet-lite (swin-tiny) ONNX | **20 s/frame** at 1024² | Stills: sheets, posters |
 
-- Hybrid [inf]: chromakey for the core alpha, RVM alpha `max`-merged on the hair band.
-- `rembg` installs from pip (2.0.85); the models download from its GitHub releases.
+Hybrid [inf]: chromakey core alpha, RVM `max`-merged on the hair band. `rembg` 2.0.85 is pip-installable.
 
 ### 3.3 Encode (all commands tested here [T])
 
@@ -178,13 +147,7 @@ split[m][a];[a]alphaextract[a];[m][a]vstack,format=yuv420p" -c:v libx265 -crf 30
 ffmpeg -i clip_green.mp4 -vf "chromakey=…,despill=type=green,fps=12,scale=360:-2" -c:v libwebp_anim -q:v 70 -loop 0 pop.webp
 ```
 
-**HEVC-with-alpha from this Linux box is not possible.**
-- ffmpeg 6.1 `libx265` accepts `yuva420p`, then **silently writes `yuv420p`** [T].
-- FFmpeg 8.0 added HEVC alpha [W4], but the encoder and Safari playback are unconfirmed.
-- Apple-native files come from macOS (`avconvert`, Compressor, `hevc_videotoolbox -alpha_quality`).
-- Jake Archibald finds videotoolbox output poor and ~2× Compressor's size [W1].
-
-So the default plan is **VP9 WebM + stacked-alpha** (the `<stacked-alpha-video>` web component; stacked AV1 460 kB vs VP9 1.1 MB vs HEVC-alpha 3.4 MB in his test) [W1].
+**No HEVC-alpha from this Linux box:** ffmpeg 6.1 `libx265` accepts `yuva420p` then **silently writes `yuv420p`** [T]. FFmpeg 8.0 added HEVC alpha [W4] (encoder/Safari playback unconfirmed); Apple-native files come from macOS (Compressor, `avconvert`, `hevc_videotoolbox`, the last ~2× Compressor's size [W1]). Default plan: **VP9 WebM + stacked-alpha** (the `<stacked-alpha-video>` web component; stacked AV1 460 kB vs VP9 1.1 MB vs HEVC-alpha 3.4 MB in his test) [W1].
 
 **Markup** (HEVC first when you have it; Safari plays VP9 but not its alpha) [W1][W2]:
 ```html
@@ -194,18 +157,12 @@ So the default plan is **VP9 WebM + stacked-alpha** (the `<stacked-alpha-video>`
 </video>
 ```
 
-**Size targets [inf, from W2/W3 and our encodes].**
-- Idle loop 5 s at 720×1280: ≤1.5 MB VP9.
-- Pop-ups 3–4 s at 360–480 px: ≤300 kB each.
-- Load pop-ups lazily on first interaction.
-- No audio track; the VO plays from a separate `<audio>` element after a click, because autoplay with sound is blocked.
-- Our synthetic test clip came out at 71 kB VP9 / 37 kB stacked HEVC / 14 kB stacked AV1 for 4 s. That clip is far simpler than real footage, so measure real clips.
-- APNG was 13.9 MB, so never use it.
+**Size targets [inf, W2 + our encodes]:** idle 5 s 720×1280 ≤1.5 MB; pop-ups 360–480 px ≤300 kB, lazy-loaded; no audio track (VO via `<audio>` after a click). Our 4 s synthetic test: VP9 71 kB, stacked HEVC 37 kB, stacked AV1 14 kB (far simpler than real footage), APNG 13.9 MB (never).
 
 ### 3.4 Seamless loops
-1. Generate with `image_url` = `last_image_url` = the same keyframe (Kling 3), then drop the final frame so the loop doesn't double it [inf].
-2. If there's a seam, crossfade the tail into the head with `xfade=fade:duration=0.5` (tested: 4 s → 3.5 s loop) [T][W3].
-3. Ping-pong (forward + reversed) only for breathing idles. Reversed gestures look wrong [inf].
+1. `image_url` = `last_image_url` = same keyframe; drop the final frame [inf].
+2. Seam left? Crossfade tail into head, `xfade=fade:duration=0.5` (4 s → 3.5 s loop) [T][W3].
+3. Ping-pong only for breathing idles; reversed gestures look wrong [inf].
 
 The idle clip is the hub. Every pointing and talking clip **starts and ends on the idle keyframe**, so the site can cut between clips on any loop boundary with no pop [inf].
 
@@ -233,20 +190,15 @@ QC GATES: lock matches M (face, feature ratio, wardrobe) · hands 5 fingers · n
 
 ### A. "OTTO" — the weird director (recommended)
 - **Look.** Tall, lean man in his mid-50s. Long pale face, deep-set grey eyes, heavy brows, swept-back salt-and-pepper hair, real skin texture.
-- **Weird feature.** An ENORMOUS charcoal-black waxed handlebar moustache, 1.6× his shoulder width, tips curled up, **fully covering the mouth**. It acts: it droops when he's disappointed, springs up for "CUT!" and points like a second hand.
-- **Wardrobe.** Black ribbed turtleneck; tan waxed-canvas director's vest with many pockets; a silver director's viewfinder on a black lanyard; dark trousers. The accent colour (signal red) appears only on a tiny tally-light pin.
-- **Personality.** A theatrical auteur who treats a 6-second ad like an epic.
-  - Want: cinema in every frame.
-  - Flaw: vanity about his moustache.
-  - Tone: deadpan, generous, exacting. NOT: smug, mean, cringe-hype.
-  - Gesture: frames the viewer with his fingers.
+- **Weird feature.** An ENORMOUS charcoal-black waxed handlebar moustache, 1.6× shoulder width, **fully covering the mouth**. It acts: droops in disappointment, springs up for "CUT!".
+- **Wardrobe.** Black ribbed turtleneck, tan waxed-canvas many-pocket vest, silver viewfinder on a lanyard, dark trousers; signal-red accent only on a tiny tally-light pin.
+- **Personality.** Theatrical auteur who treats a 6-second ad like an epic. Want: cinema in every frame. Flaw: vanity about the moustache. Tone: deadpan, generous, exacting; NOT smug, mean, hype. Gesture: finger-frames the viewer.
 - **Voice.** Low resonant baritone, dry gravel, slow with theatrical pauses, warm underneath.
 - **ElevenLabs Voice Design.** `POST /v1/text-to-voice/design`:
   - `model_id:"eleven_ttv_v3"`, `guidance_scale:5`, `loudness:0.5`, a fixed `seed`.
   - `voice_description`: "Native English speaker, male, mid-fifties. Low, resonant baritone with a dry, slightly gravelly texture. Slow, deliberate pacing with long theatrical pauses before key words; deadpan and wry, warm underneath, like a film director calmly addressing a crew. Studio-quality recording."
   - `text` (100+ chars): "Quiet on set. ... Six seconds. That's all we get. So every frame has to mean something. Again — with feeling. ... Cut. That's the ad."
-  - TTS: v4, stability 0.5, `...` at cuts, ≤1 CAPS word (13 §3).
-  - No "accent" word: it triggers dialect drift [V1].
+  - TTS v4, stability 0.5, `...` at cuts; avoid the word "accent" (dialect drift) [V1].
 - **Catchphrases:** "Again. With feeling." · "Cut. That's the ad." · "Six seconds. Make them feel it." · "Frame it." (finger-frame)
 - **Do:** finger-frame and point; move the moustache on emphasis; speak ≤12 words a line on the site; react to the UI as if it were a set.
 - **Don't:** show his mouth; let the moustache change size or colour; dress him in a beret, cliché accents or a megaphone; mock clients' ads; claim real film credits.
@@ -255,31 +207,22 @@ QC GATES: lock matches M (face, feature ratio, wardrobe) · hands 5 fingers · n
 - **Look.** A woman in her late 30s with a sharp, friendly face, freckles and reading glasses on a chain.
 - **Weird feature.** A **1.2 m sculpted platinum beehive wig** that stores things: pencils, a clapper, a tiny drone that flies out of it.
 - **Wardrobe.** Cobalt boiler suit, white trainers, a headset.
-- **Personality.** A hyper-competent fixer: fast, warm-sarcastic.
-  - Want: ship on time.
-  - Flaw: can't stop multitasking.
+- **Personality.** Hyper-competent fixer, warm-sarcastic. Want: ship on time. Flaw: compulsive multitasking.
 - **Voice.** Bright, quick, crisp mid-range female voice, 2.3 wps, a smile in the voice.
 - **Voice Design:** "Native English speaker, female, late thirties. Bright, crisp mid-range voice, quick confident pacing, playful and warmly sarcastic, clear articulation, like a film producer talking fast on set. Studio-quality recording." `guidance_scale` 5.
 - **Catchphrases:** "Locked. Next." · "It's in the wig." · "We ship Friday."
-- **Do / Don't.**
-  - Do: pull a prop out of the wig every time.
-  - Don't: let the wig change height; use any green or blue (key colour); use lip-sync longer than 8 s. Her mouth is visible, so she has the **highest lip-sync risk**.
+- **Do:** pull a prop from the wig. **Don't:** change wig height; use green/blue; lip-sync >8 s (visible mouth = **highest lip-sync risk**).
 
 ### C. "HOPPER" — frog head, perfect suit
-- **Look.** A human body in a perfectly tailored oatmeal linen suit, a cream shirt and a knit tie. The hands are human.
-- **Weird feature.** A **realistic tree-frog head**: wet olive skin, gold eyes, slow blinks with the nictitating membrane.
-- **Key colour.** Generate on **blue** because of the green skin.
-- **Personality.** A serene, unblinking customer-success rep: polite, precise, faintly eerie, never in a hurry.
-  - Want: calm clients.
-  - Flaw: takes everything literally.
+- **Look.** Human body and hands; tailored oatmeal linen suit, cream shirt, knit tie. Key on **blue**.
+- **Weird feature.** A **realistic tree-frog head**: wet olive skin, gold eyes, slow nictitating blinks.
+- **Personality.** Serene, unblinking client-success rep: polite, precise, faintly eerie. Want: calm clients. Flaw: takes everything literally.
 - **Voice.** Soft, warm, low-mid male voice with precise diction, unhurried at 1.6 wps; one tiny throat-click allowed via SFX, never a "ribbit".
 - **Voice Design:** "Native English speaker, male, forties. Soft, warm, low-mid voice with very precise diction; calm, unhurried, polite and slightly uncanny stillness, like a luxury hotel concierge. Studio-quality recording." `guidance_scale` 4.
 - **Catchphrases:** "Breathe. We've got this." · "Leap when ready." · "Noted."
-- **Do / Don't.**
-  - Do: hold long still stares, then one slow blink.
-  - Don't: make him cartoon-cute; use frog puns more than once per piece; show his tongue. The non-human mouth makes lip-sync errors forgiving (rule 3).
+- **Do:** long still stare, one slow blink. **Don't:** go cartoon-cute; >1 frog pun per piece; show the tongue. Non-human mouth forgives lip-sync errors (rule 3).
 
-**Recommendation.** **Otto.** He is the studio's job made into a person: a director. The moustache is a silhouette at 64 px and removes lip-sync. His deadpan absurdity is the tone 22 §3.15 says AI carries best. Hopper is the safer non-human fallback.
+**Recommendation: Otto.** The studio's job as a person; the moustache is the 64 px silhouette and removes lip-sync; deadpan absurd is the tone AI carries best (22 §3.15). Hopper is the non-human fallback.
 
 ## 6. Generation plan for Otto (15 clips, ≈$15)
 
@@ -308,15 +251,9 @@ QC GATES: lock matches M (face, feature ratio, wardrobe) · hands 5 fingers · n
 
 - 15 keyframes plus retakes: Qwen-3 edit, ref M + one sheet panel, 9:16, [LOCK] + [BACKDROP] + pose line. 30 × $0.04 = **$1.20**.
 - 3 Flare fixes for hands or the feature ratio: **$0.90**.
-- Poses:
-  - K0 idle (hands loosely clasped, weight on one leg).
-  - K1–K3 pointing left / right / down.
-  - K4 conspiratorial lean.
-  - K5 reach start: arm extended toward lens.
-  - K6–K11 pop-up poses (see the clips).
-  - K12 thinking; K13 stepping in from frame-left; K14 approving nod.
+- Poses: K0 idle (hands loosely clasped, weight on one leg); K1–K3 point L/R/down; K4 conspiratorial lean; K5 arm extended to lens; K6–K11 pop-up poses; K12 thinking; K13 step-in; K14 nod.
 
-### Stage C — clips ($7.32 + $2.14 buffer)
+### Stage C — clips ($7.16 + $2.14 buffer)
 
 Every prompt = [LOCK] + [BACKDROP] + an action line. `sound:"off"`, `cfg_scale` 0.5.
 
@@ -332,41 +269,19 @@ Every prompt = [LOCK] + [BACKDROP] + an action line. `sound:"off"`, `cfg_scale` 
 | C16a | Previs for C16 | Wan 3.0 480p 6 s | — | blocking | 0.30 |
 | — | Retake buffer | 6 Kling std retakes | | | 2.14 |
 
-**Totals.** A $3.93 + B $2.10 + C $7.32 + buffer $2.14 = **$15.49 list**. With the 15 % Kling discount (≈$1.20 on Kling lines) it comes to **≈$14.3**.
+**Totals.** A $3.93 + B $2.10 + C $7.16 + buffer $2.14 = **$15.33 list**; with the 15 % Kling discount on this account (≈$1.08) **≈$14.25**.
 
-**Ways to cut cost:**
-- Defer A5 Soul ID to the social phase (−$2.50).
-- Drop C16 to a Kling body loop + VO (−$1.75).
+**Cuts if needed:** defer A5 Soul ID to the social phase (−$2.50); replace C16 with C5 + VO (−$2.11).
 
-**Optional motion transfer for C6** (founder's masked reach, 5 s):
-- Genjutsu 480p: +$1.59.
-- Kling motion-control: priced on a real call.
-
-**Voice (ElevenLabs, subscription credits, not in the $15):**
-- Voice Design (3 previews), then save one.
-- 20 site lines on v4: ≈0.13 cr/char, ~1.5k chars (13).
-- Run `stt-check` on every line.
-
-**Post (free, local).**
-1. Trim to the best window.
-2. `chromakey` + `despill`, with RVM on the moustache edge band if it haloes.
-3. VP9-alpha WebM + stacked HEVC.
-4. Loop seam check (§3.4).
-5. Contact-sheet QC against M.
-6. Name files `otto_C01_idle.webm` …
-
-**Order of work.**
-1. A1 → pick → A2/A3 → **human approval**.
-2. A4/A5.
-3. K0.
-4. **C1 first**: the idle defines the hub frame.
-5. C2–C15 in one `hfgen batch`.
-6. C16 last.
+**Optional:** C6 via founder's masked reach (5 s): Genjutsu 480p +$1.59, or Kling motion-control (priced on a real call).
+**Voice** (ElevenLabs credits, outside the $15): Voice Design → save one; ~20 site lines on v4 (≈0.13 cr/char, 13); `stt-check` each.
+**Post (local, free):** trim → `chromakey`+`despill` (RVM on the moustache band if it haloes) → VP9-alpha WebM + stacked HEVC → seam check → contact-sheet QC vs M.
+**Order:** A1 → pick → A2/A3 → **human approval** → A4/A5 → K0 → **C1 first** (the hub frame) → C2–C15 in one `hfgen batch` → C16 last.
 
 ## Sources
 
 **Brand and mascot**
-- [S1] System1 on fluent devices: https://system1group.com/blog/creating-memorable-characters-in-advertising · https://martechseries.com/analytics/behavioral-marketing/memorable-characters-ads-boost-chances-profit-30-just-4-us-brands-using-says-system1/ · WARC https://www.warc.com/content/article/identifying-and-measuring-the-fluent-device/130035
+- [S1] System1 on fluent devices: https://system1group.com/blog/creating-memorable-characters-in-advertising · https://martechseries.com/analytics/behavioral-marketing/memorable-characters-ads-boost-chances-profit-30-just-4-us-brands-using-says-system1/
 - [O1] Adweek, Old Spice by the numbers: https://www.adweek.com/agencyspy/the-old-spice-campaign-by-the-numbers/
 - [O2] W+K case: https://www.wk.com/work/old-spice-smell-like-a-man-man/
 - [D1] Digiday on Duo: https://digiday.com/marketing/how-duolingo-is-using-its-unhinged-content-with-duo-the-owl-to-make-people-laugh-on-tiktok/
@@ -401,7 +316,11 @@ Every prompt = [LOCK] + [BACKDROP] + an action line. `sound:"off"`, `cfg_scale` 
 
 **YouTube**
 - [Y1] Isa does AI, "How to Make Long AI Videos with Consistent Characters (2026)": https://youtu.be/dOmKYJoRboE
-- YT-SOURCES
+- [Y2] Sebastien Jefferies, "Kling Motion Control 3.0 Full Tutorial": https://youtu.be/Utono2euM24
+- [Y3] Geek Savvy, "How to Create Perfect Kling 3.0 Motion Control Videos?": https://youtu.be/HMDIuf4K7Yk
+- Fetched with 45–120 s spacing.
+- 4 of 7 attempts had no captions; a third success (Snowball AI, https://youtu.be/sqG1zRyKCO0) only repeated "train once, reference always". Failed: https://youtu.be/4yRZ6X4LF-o (Kling Elements), https://youtu.be/7EcAixgmwUo.
+- Transcripts are not committed.
 
 **Our tests**
 - `/estimate` and `GET /models` on 2026-10-08.
