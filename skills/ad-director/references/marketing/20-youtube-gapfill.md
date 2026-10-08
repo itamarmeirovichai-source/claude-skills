@@ -256,3 +256,220 @@ Rourke `H0Ahmz2xuvs`, `W45T919iFxM`, `Z5HLzd97EKw`; Motion workshop cited in 17 
 20. **Headline prompts seeded with past winners + why they worked;** 4 named angles; human picks. → **15** stage 1
 21. **Judge creative by cumulative spend, not hit rate.** → **15** §3.3
 22. **Recon report** (reputation by source + verbatim VOC) as the Stage-0 artefact. → **15** stage 0
+
+---
+
+## 7. Round 2 (2026-10-08)
+
+Same method as §1–4, with the same `fetch_yt.py` settings. Transcripts are saved as `research/ai-video-reels/youtube/transcripts/r2__<id>.txt` (git-ignored). **20 transcripts** were read: 3 of the IDs listed in §5 plus 17 new ones. 16 are written up below; 4 are old, teasers or covered elsewhere and are listed only briefly. YouTube returned HTTP 429 (an IP block) for most of the run, so §7.5 lists what is still missing. As before, **all numbers are the speakers' claims**, `[inf]` marks our own inference, and sponsored or affiliate videos are flagged.
+
+### 7.1 Seedance 2.5: long takes, references, prompt structure
+
+**V1 · `H0Ahmz2xuvs` · Rourke · [Seedance 2.5 tutorial: cinematic AI video from start to finish](https://youtu.be/H0Ahmz2xuvs) · 2026-09-25 · 66 min.** Unedited, with the mistakes left in.
+- **Prompts up to 10,000 characters.** Paste the whole script plus refs into Claude: *"Now create a Seedance 2.5 prompt with this… You have 10,000 characters to get as descriptive as you can with the acting performances and nuances."* The result was 9,963 characters; that platform's limit is 10k.
+- **Don't overfill a take.** A 1-minute script crammed into 30 s "went haywire" (garbled lines). Split it into **2 × 30 s prompts**. If speech speeds up, there is too much dialogue for the duration: add another generation.
+- **A 30 s take holds continuity across its own internal cuts** (character positions, light). Separate 6 s generations drift. It is still a gamble: two people on a bench swapped left and right, so **state positions explicitly**.
+- **Look comes from ShotDeck.** Give Claude a ShotDeck frame plus its data panel (camera body, lens, film stock, hex palette). Claude writes the MJ prompt, then a **fixed camera header for every video prompt** ("35 mm… ARRICAM"). Use the ShotDeck feed as a dummy social feed: which frame cuts through?
+- **Grade transfer for real photos:** own photo + ShotDeck ref → NB Pro *"keep the composition, framing, geometry, architecture the same, adjust to 35 mm grain / cinematic grade"* → use the result as a location ref.
+- **Direction details:**
+  - the **surface** each sound lands on ("lands on the grass", or you get concrete);
+  - an **origin or accent for the second character every time** ("my friend is Australian"), which keeps the voice consistent;
+  - micro-acting (lip bite, eyebrow, shoulders drop);
+  - the duration of each hold ("camera holds for 2 seconds").
+- **Voice reference:** record a pangram (*"That quick beige fox jumped in the air over each thin dog…"*), export it as a **black MP4** and attach it as a video ref: *"use @video1 as reference of man A"*.
+- **Feedback loop:** watch muted and dictate timestamped notes ("at 2 s bite lip earlier; at 5 s wide not close-up; at 7 s no dead pause") → Claude revises → rerun the same prompt, changing only the acting.
+- **Mining:** keep only the parts of each 30 s take that move the story. Premiere *Scene Edit Detection → clip marker at each cut* splits a multi-shot generation automatically.
+- **Post:**
+  - Open on action and pull the first line's audio over the opening frame.
+  - Use 3–4 music changes in the first 15 s.
+  - Apply the same light Lumetri grade to every clip and add captions.
+  - For a Suno track, Claude reads the time-coded prompt and sets the hits ("slow piano 62 BPM C minor").
+- **Do not adopt:** he generated on an unofficial Chinese Seedance build and renamed a trademarked prop to get past filters. That is an IP and ToS risk `[inf]`.
+
+**V2 · `2b3Z4rW5VJc` · Youri van Hofwegen · [STOP wasting credits & master Seedance 2.5](https://youtu.be/2b3Z4rW5VJc) · 2026-08-21 · affiliate.**
+- **Prompt sections:** FIRST FRAME · CHARACTERS (group the extras, e.g. "frozen tableau") · ACTION (the most detail) · **RULES** (world and physics rules; without a "freeze rules" block, the frozen petals and birds moved) · CAMERA · LIGHT & COLOUR · DIALOGUE · AUDIO.
+- **Audio is always generated jointly, so always direct it.**
+- **Dialogue:** put each line where it is spoken in the shot, **and** repeat all lines in order in a DIALOGUE block at the bottom, with delivery and language ("English, short, and shouted").
+- **Sound timing:** say when each sound comes in and goes out; the engine then fades with distance.
+- **Music:** separate MUSIC & LYRICS (BPM, instruments) from SOUND CHARACTER (reverb, crowd, close-mic). Write lyrics in the target language, because translating produces a fake accent.
+- **Video-to-video:** the first line is an instruction (*"Transform the footage into … while keeping the camera and the gestures exactly as I filmed them"*), followed by the replacements: environment, specific objects, figures, audio.
+- **Limits:** 2.5 accepts 30 images + 10 videos + 10 audio refs (2.0 took 9 + 3); 720p max; 4–30 s. Occasionally a character duplicates for a split second; fix it in the edit.
+
+**V3 · `AvB-dfxTMgE` · Teacher's Tech · [The prompting technique that makes Seedance 2.5 work](https://youtu.be/AvB-dfxTMgE) · 2026-08-08 · Higgsfield-sponsored.**
+- **Timeline prompting:** each timestamped beat states subject, action, camera, audio. **"Treat each beat like a budget."** A beat with breach + churn + line + camera drop in 6 s failed; splitting it into two beats fixed it.
+- **Stage every action** ("breaches 30 ft off the port side, crossing behind the boat left to right"): *"the model will not guess your blocking."*
+- **Name the camera move** (push in, tracking, aerial pull back). "Cinematic" says nothing.
+- **Never describe a person by text alone.** "Rugged 40s fisherman" came back with a famous actor's face. Use a photo ref plus a short voice clip, and keep the wardrobe text, because a headshot shows no clothes. *"Reference anything you can show, describe only what you can't."*
+- **Product spot:** @-mention the pack ref wherever it appears, plus *"labels stay sharp and unchanged in every shot"*.
+- **Credits:** draft at a shorter duration, confirm the beats and staging, then **render the full 30 s once**, with bitrate set to HIGH for finals.
+
+**V4 · `YM_2PYIy0FA` · Jack Vs. AI · [How to use Seedance 2.5 for AI filmmaking](https://youtu.be/YM_2PYIy0FA) · 2026-08-07 · Higgsfield promo.**
+- **Workflow:** story paragraph → list of characters, props and locations → sheets → a Claude skill writes a timestamped multi-shot prompt and **@-tags each ref at its first appearance**.
+- **A 30 s fight scene in one generation worked** (weight of hits, prop orientation). The faults were eye-colour drift on the last shot and morphing in heavy motion blur.
+- **The model doesn't foreshadow:** in a chase it cut straight to the cliff edge. Prompt the setups explicitly `[inf]`.
+- **Too many refs** (wall photos, TV video, a Suno song, his own dialogue): run 1 swapped the character variant and dropped the music. **Rerun 2 of the same prompt** got the music and the prop. The voice match was hit-or-miss even on run 3.
+- **"The 30-second trap":** don't generate 30 s just because you can, because retries get expensive. A whole 30 s TV ad in one generation *is* possible. Otherwise break at natural cut points. "You don't need 50 refs: a few sheets, location stills and a few audio refs."
+- **720p cap:** use Topaz for pro delivery.
+
+**V5 · `FJfMTvZvX7w` · Dan Kieft · [Seedance 2.5 transforms iPhone footage](https://youtu.be/FJfMTvZvX7w) · 2026-09-06 · Higgsfield affiliate.**
+- **Video-to-video:** raw clip + new character image + up to 3 prop refs. His Claude skill views screenshots of the raw clip and writes the prompt.
+- **The model fills gaps from the refs** (it added a light bulb, and the actor entered from the wrong side), so prompt everything that must match. Plain backgrounds help.
+- **When recording:** use a tripod, show objects clearly, and **exaggerate the acting** (the model mutes it). Write physical events ("driver brakes, both passengers lunge forward"). One person can play two characters with a split-screen self-overlay.
+- **Credit trick:** pre-edit 6 raw shots into one 30 s sequence and convert it in **one** generation. Redo a single bad shot with raw clip + ref + new direction.
+- **Resolution:** test at 480p, deliver at 720p.
+
+### 7.2 Higgsfield Cinema Studio and Marketing Studio
+
+**V6 · `w3ntgJwdXKE` · Youri van Hofwegen · [How to actually use Higgsfield Cinema Studio](https://youtu.be/w3ntgJwdXKE) · 2026-04-22 · affiliate.**
+- **Character mode menus:** genre, a **budget slider** ($10M–$500M sets polish vs raw), era, archetype, identity, build, hair, details, outfit. He quotes ~1/8 credit per character image vs 4 for NB Pro.
+- **Recurring props** (cars) are made in General mode *before* any video.
+- **Chaining:** the next clip uses the same 5 assets + **the previous clip as a video reference** + a short "what happens next". Mood and light carry over; 5 clips are stitched in CapCut.
+- Speed-ramp presets: slow for tension, fast for urgency.
+
+**V7 · `fmgVm-fxPDM` · Higgsfield (vendor) · [10+ beauty ads in 1 hour](https://youtu.be/fmgVm-fxPDM) · 2026-05-18.**
+- **Chain:** logo (GPT Image 2, 4 versions) → product line with the logo attached → **brand-kit sheet** (palette, type, logo variants, texture, pattern, voice, tagline) → posters and billboard using the kit as a ref → Marketing Studio video.
+- **Presets:** Hyper Motion (product + a Soul Cinema location as the 2nd input), Wildcard (character + product, "slightly uncanny"), TV Spot (character + location + ~5-word prompt; 16:9, 15 s).
+- **Two avatars:** pick one and attach the second as a reference.
+- The vendor claims ~$9 per commercial.
+
+**V8 · `mAq_q4xs_aw` · Diego Galvão · [Product videos with Higgsfield Marketing Studio](https://youtu.be/mAq_q4xs_aw) · 2026-04-16.**
+- **9 formats:** UGC, Tutorial, Unboxing, Hyper Motion, Product Review, TV Spot, Wildcard, UGC and Pro Virtual Try-On. 4–15 s, 4 credits/s, ≈$1.70 per 8 s clip on his plan.
+- **Paste the product URL:** it pulls the name, features, price and all page photos. Add your own photos for **scale** (pouch, box). PDFs are accepted.
+- **A blank prompt often works.** Unboxing failed twice (refunded) until *"Unboxes the headphones ASMR style. No dialogue or music."*
+- **QC small physical details:** a stereo cable was plugged in on one side only.
+
+**V9 · `cquR3FRWnzc` · Creating with Conor · [Marketing Studio is insane for UGC](https://youtu.be/cquR3FRWnzc) · 2026-05-18 · affiliate.**
+- An Amazon link + preset avatar + empty prompt gave a 15 s UGC clip matching the listing. "Without owning the product" raises claims and legal risk `[inf]`.
+- **Hyper Motion with no avatar** suits products the audience already knows.
+- **Custom avatar** from a detailed text prompt (light direction, freckles, chain), saved as "Hugo" for reuse.
+- **Product still in NB Pro** with exact angle, backdrop, light and **contact shadow**: "you're art directing a product shoot".
+- **Same assets × 3 styles:** an Unboxing with **one dialogue line that carries the key selling point**; a Wildcard to *test a cinematic direction before a real shoot*; a Pro Try-On (multi-angle, multi-location in one clip).
+
+### 7.3 Kling, voice, music
+
+**V10 · `b_RghITuQQM` · Dan Kieft · [Master Kling 3.0 in 25 minutes](https://youtu.be/b_RghITuQQM) · 2026-02-24 · OpenArt affiliate.**
+- **Prompt order:** camera → subject → action → environment → (light, texture, audio).
+- **Multi-shot:** up to 6 shots inside 15 s from **one start frame**, with movement carrying across cuts. Multi-shot is not available with start + end frames.
+- **Omni:** up to 7 refs; a 3-angle character ref from one NB prompt; *"image 1 and image 2 are in the location of image 3"*. **More refs mean more glitches.**
+- **Lip-sync drifts after ~10 s:** put dialogue in the first 10 s and action in the last 5. An LLM loaded with the Kling guide can draft prompts, but rewrite them by hand (consistent with R6 in §1.3).
+
+**V11 · `QKBwA8VWMAY` · AiHustleGame · [Kling AI 4.0: cinematic AI commercial](https://youtu.be/QKBwA8VWMAY) · 2026-10-04 · Kling creative partner.**
+- **Spec ad with a twist** (the "intruder" a robot fights is the late boyfriend).
+- **Refs for every recurring object** (headphones, couch, coffee machine, cup, phone) + the apartment + start images for key moments.
+- **Ref declaration**, verbatim: *"reference one is the woman, keep her face and outfit consistent. Reference two is the robot, keep its armor and visor design. Reference three is the apartment, follow this layout. Reference four is the headphones, keep their color and shape."* Then state where each enters, where she looks, what the camera shows first and what the end reveals. *"If I leave those relationships vague, I'm giving up control."*
+- **Editing:** 10 s generations, of which ~1–3 s are used. Review each before the next. Watch the full edit muted before adding sound.
+- **Sound:** two sound worlds (her light music vs door, power-on, impacts, police) plus small sounds (machine finishing, cup set down, phone buzz).
+
+**V12 · `WEyI3KL16Fs` · ElevenLabs (vendor) · [Eleven v4 is here](https://youtu.be/WEyI3KL16Fs) · 2026-09-30.**
+- **v4 is for produced VO and dubbing;** v4 Turbo (~100 ms) is for agents.
+- **Multi-speaker lines are generated in context** (overlap, timing, reactive energy).
+- **Stacked tags are followed far more reliably than in v3.** Rule: **"write the script as prose first, then direct it"**. v4 reads punctuation and sentence length, so add tags only where the text gives no direction.
+- **Instant clone from ~10 s of clean audio.** Speaker identity holds at any length and across regenerations.
+- **Existing Professional Voice Clones must be retrained on v4** (Voice → My Voices → settings → Eleven v4).
+
+**V13 · `vcpM4MRupNE` · ElevenLabs (vendor) · [Music v2](https://youtu.be/vcpM4MRupNE) · 2026-05-29.**
+- Licensed training data, cleared for commercial use.
+- Section-by-section composition, **inpainting any section**, SFX embedded in the track, mid-track genre changes.
+- **Video-to-music** (upload the cut → a fitting bed); edit by instruction ("rework first 40 s…").
+- "Residual roots persist": start with the genre you want.
+
+### 7.4 Production business and strategy
+
+**V14 · `ttgNFJ25xfU` · PJ Accetturo (Genre) · [Full AI film production workshop](https://youtu.be/ttgNFJ25xfU) · Wonder Studios · 2026-05-10 · 76 min.** The subject is a sci-fi trailer, but the process is his agency's.
+- **Team:**
+  - One pod per project: writer, director, several real DPs ("you can teach tools, not taste"), animators and one editor.
+  - ~8 Midjourney artists work on **separate** boards; 2 are picked.
+  - About 1 % of frames are used, and some become anchor images.
+- **Image models:**
+  - MJ for wides and odd worlds; NB Pro at **2K** for ingredients ("4K too smooth, strips grain").
+  - GPT Image 2 is "most intelligent but crunchy and dark".
+  - Compare by batching 20/20/20 across models.
+- **Character sheet:** 3 panes at 16:9, with a **crisp close-up + outfit panes with heads cropped off**. The model takes the face from the close-up and the outfit from the body. Add movement and **voice descriptors**: Seedance has ~30 stock voices, and the descriptors pick one.
+- **Voice lock:** upload a 15 s clip with every prompt ("this is how Adam sounds… make him say the text below"); a black-video version is more consistent. **Lip-sync to uploaded audio holds ~7–8 s, then hallucinates, so write dialogue in 8 s chunks.**
+- **Two-person dialogue scene minimum:** 1 wide with both characters and their blocking + 2 reverse close-ups (OTS). Alternative: the empty room + character sheets.
+- **Blocking trick:** the shortest Seedance generation (3 s) from the wide → screenshot the blocking → upscale in NB Pro → feed it back as the master blocking. Other ways to get location angles: a 360 equirectangular still, or a Seedance "slow 360 turn".
+- **Claude project** holds the style guide and splits every script into **15 s Seedance segments**.
+- **Rendering cost:** iterate ~5× at 720p, finals 2–3× at 1080p. His figures: **~$13–15 per 15 s at 1080p vs ~$3 at 720p**. Upscaling 720p→1080p never matches native. Avoid "fast" modes.
+- **The opening shot is the hardest** (3 days, ~$1k). A hook is something known + something unknown.
+- **Sound:** 90 % comes baked in from Seedance, always with "no music, sound design only"; music is added from stock.
+- **Legal:** approval images in NB Pro (Google indemnification); run a copyright/lookalike check on the final; carry insurance.
+- **Business:**
+  - Cost-plus with a **~30 % margin** ("most AI studios ~30 %"), paid in deposits of 4 × 25 % or 50/50.
+  - Artists cost $50–150/h.
+  - "Ads will get automated", so he is moving to series and IP.
+
+**V15 · `4wM-i1cxtAM` · Dara Denney · [I made 10,000 ads: what works (2026)](https://youtu.be/4wM-i1cxtAM) · 2026-09-28 · Modash-sponsored.**
+- **Diagnosis before formats:** personas (who the ads target vs who writes the reviews) → a 1–2 sentence **diagnosis** of *why*. "Without it you only have testing."
+- **Checks:** awareness mix (usually too little unaware or problem-aware); spend mix (images, video, carousel, partnership); 3–4 messaging pillars **carried through to the landing page**; whether creators match the personas.
+- **Partnership ads should be 30–50 % of spend;** many brands are under 25 %.
+- **Old problem-solution UGC "feels like an ad".** Formats scaling in Sep 2026:
+  - personal-story "yappers";
+  - authority;
+  - educational breakdowns;
+  - **investigative-journalism ads** (a creator investigates competitors and ends at the product), made fully with AI, with a claimed 77 % hook rate;
+  - transformation and comparison (split screen, list of failed attempts).
+
+**V16 · `t_a3rkBbVq8` · AI Foundations · [Claude + Higgsfield: automated marketing system](https://youtu.be/t_a3rkBbVq8) · 2026-07-08 · Higgsfield-sponsored.**
+- **Set up Higgsfield MCP as a Claude connector.** Uploads become Higgsfield assets with media IDs; Higgsfield publishes downloadable Claude skills.
+- **Project layout:** `CLAUDE.md`, `context/` (business overview, a POV doc written via "interview me", stories, voice samples), `templates/`, `.claude/skills/`, and routines.
+- **A template = master prompt with placeholders + the model used + anchor images.** Build templates from past winners (the top 4 thumbnails all had a logo upper-left, so the template got a logo slot).
+- **Iterate in plain language** ("orbs too present… subtle in and out").
+
+**Skipped or brief:**
+- `b-GhMZ_rcJM`: ElevenLabs v3 (Jun 2025), superseded by V12. It is still useful for its stability modes (Creative / Natural / Robust).
+- `i-Y9I33e_WA`: Kling, 2024 (old).
+- `zXlVQ8rMJM0`: Music v2.5 teaser.
+- `iSrjS7jzREk`: video-to-music basics, covered by V13.
+
+### 7.5 Not fetched (HTTP 429 / "IP blocked", 2026-10-08 02:20–05:00 UTC; two retries this session also hit 429)
+
+**Still open from §5:** `W45T919iFxM`, `Z5HLzd97EKw`, `_r7NUcM41Kc`, `yRgPbqywUJ8`, `76KH-GZZ5w4`, `VkSOHGT_AMc`, `YUMg-1ArPvE`, `6eG3T-Esp4E`, `v_VICKllPLE`, `iOwKylW8c5Q`.
+
+**New high-value candidates** (only the descriptions were read):
+- Higgsfield `kFKpcCHkuPI`, 2026-10-07. Chapters include "stop characters switching seats", "fix scenes with blocking maps", "the 4-second product shot" and "widescreen → vertical without cropping the action".
+- Higgsfield `jvkdHdeWICM`: 2.5 vs 2.0, every 2.5 clip a single 30 s generation, with a "catch" for 4K.
+- Lundström `RwhsE-GydKc`: a donut commercial built with a "Shotlist Director" skill, with chapters on a "location flip" and a "music bug fix".
+- PJ Accetturo on Wrapbook `kvDke-9Ifkk`: economics, margins, failed campaigns.
+- Higgsfield `iOwKylW8c5Q`: a 24 h agency build including "a website that actually sells".
+- Joseph Martin `T4NxZguv2dg`: Cinema Studio 4.0 at 1080p.
+- Higgsfield `gVPZU1btFA8`: PROOF/QUEST copy frameworks and Reels as a free lead test.
+- Theoretically Media `4wFBA9-KyzY`: a Seedance 2.5 short film with dialogue.
+
+**Gap: website conversion for a creative studio.** No 2026 transcript on this was fetched in either round. Docs 29, 31 and 33 still rest on web sources. Fetch `iOwKylW8c5Q` first next time.
+
+### 7.6 Adopt now (→ file each extends)
+
+**30 s one-take product films (Seedance 2.5)**
+1. **Prompt skeleton:** fixed camera header (body, lens, grain) → CAST block with @-tags at first appearance → FIRST FRAME → RULES (world and physics) → timestamped beats (subject / action / camera / audio, each staged in space) → DIALOGUE block → AUDIO block (in/out times, surfaces, "no music, sound design only"). → **16** §2.2 (raise the one-take from 12–15 s to 30 s) / **14** §1.3
+2. **Beat budget:** at most one major action per beat; fill ≤ ~70 % of the duration with dialogue `[inf]`; if speech speeds up or lines garble, split into 2 × 30 s. → **16** / **22** §2
+3. **Credit ladder:** draft at a shorter duration or 480p to check beats and staging → full 30 s at 720p once → **rerun the same prompt before rewriting it** → finals at high bitrate (1080p where offered). Budget $40–60 per 30 s (§1.3) and expect 3 runs to be mined. → **18** / **21** §4
+4. **Mine, don't hope:** auto-split each take at its internal cuts (scene-detect) and cut the best parts of 3 runs. Open on action; same light grade and grain on every clip. → **16** §3 / **08**
+5. **Label lock in long takes:** pack ref @-tagged where it appears + *"labels stay sharp and unchanged in every shot"*; still composite the real logo for the end card (§6 item 16). → **17** §2 / **16**
+
+**Character consistency, Soul ID, two-character talking reels**
+
+6. **Never cast by text alone:** every human needs a photo ref, because text-only descriptions drift toward celebrity faces. Keep wardrobe as text because headshots show no clothes. Sheets have a crisp close-up + headless outfit panes. Keep the existing Soul ID / M / anchor-block stack. → **30** §2 / **17**
+7. **Voice lock per character:** a ≥10 s pangram per voice, exported as a **black MP4** and attached as a video ref (*"use @video1 as the voice of man A"*). Repeat each character's origin or accent in every prompt. For mascot VO, retrain any Professional Voice Clone on Eleven v4 and write "prose first, tags only where the text gives no direction". → **30** / **13**
+8. **Two-character reel recipe:**
+   - 1 blocking wide with both characters (a 3 s generation → screenshot → upscale → master blocking) + 2 reverse close-ups.
+   - State left/right positions in every prompt.
+   - Dialogue in 8–10 s chunks (lip-sync drifts after ~8 s in Seedance, ~10 s in Kling).
+   - Cut between speakers to hide drift.
+
+   → **30** / **16** / **14**
+9. **Ref declaration sentence** for every ref ("reference N is X, keep Y"), plus an explicit relationship (who enters where, eyeline, reveal order). Cap refs at a few sheets + location stills + 1–2 audio refs. → **18** prompt builder / **16**
+10. **Chaining fallback:** when one 30 s take fails, chain clips using the same assets + the previous clip as a video ref + "what happens next". → **16** §1
+
+**Pipeline and product**
+
+11. **Brand-kit sheet first** (palette, type, logo variants, texture, voice, tagline) as the ref for every still and poster in a client job. → **26** §2 / **17**
+12. **Product-URL ingestion** into the asset registry (name, features, price, all page photos + an owner photo for scale). Marketing Studio blank-prompt runs serve only as cheap direction tests; QC small physical details. → **18** §4 / **15** §3
+13. **Template = master prompt + model + anchor images**, built from past winners and stored as a skill. Set up `context/` with a POV doc written via "interview me". → **18**
+14. **Iterate by timestamped notes:** muted watch → dictated notes → revised prompt → same-prompt rerun. → **18** QC loop / **21**
+
+**Strategy, pricing, studio**
+
+15. **Diagnosis sentence before concepts** (persona gap, awareness mix, pillars carried to the landing page). Add investigative-journalism and personal-story formats to the concept menu, and drop generic problem-solution UGC. → **15** stage 0–1 / **23** §6
+16. **Pricing:** cost-plus with a ~30 % margin and 50/50 or 4 × 25 % deposits as a cross-check on our rates. Approval stills from an indemnified model, a lookalike/copyright check before delivery, insurance. → **28** §8 / **32** §2 / **34**
+17. **Website (studio):** no new transcript evidence this round. Keep 29/33 as they are, and carry forward one rule from V15 `[inf]`: **the 3–4 messaging pillars in the ads must reappear on the landing page**, so the hero reel's promise and the first screen's headline should match. → **29** §2 / **33** §2
+18. **Do not adopt:** unofficial model builds, renaming trademarked props to pass filters, or "without owning the product" UGC claims. → **21** §1
