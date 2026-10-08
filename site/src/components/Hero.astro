@@ -150,8 +150,8 @@ const n = films.length;
     .hero-copy { grid-row: 1; align-self: start; padding-top: 3vh; max-width: var(--maxw); }
     .hero-copy > * { max-width: min(32vw, 470px); }
     .hero-sub { font-size: 1rem; }
-    .scene { grid-row: auto; position: absolute; inset: 68px 0 64px 38%; justify-content: center; }
-    .otto-frame { height: min(74vh, 700px); max-height: none; min-height: 0; flex: 0 0 auto; }
+    .scene { grid-row: auto; transform-style: preserve-3d; position: absolute; inset: 68px 0 64px 38%; justify-content: center; }
+    .otto-frame { transform: translateZ(0); height: min(74vh, 700px); max-height: none; min-height: 0; flex: 0 0 auto; }
     .ring { position: absolute; inset: 0; pointer-events: none; transform-style: preserve-3d; }
     .ring-track { position: absolute; left: 50%; top: 54%; width: 0; height: 0; padding: 0; overflow: visible; display: block; transform-style: preserve-3d; }
     .ring-item { position: absolute; left: 0; top: 0; transform: none; pointer-events: auto; will-change: transform; }
@@ -175,7 +175,7 @@ const n = films.length;
   .stage[hidden] { display: none; }
   .stage-film { position: relative; height: min(60svh, 560px); aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 80px rgb(0 0 0 / 0.6); pointer-events: auto; transform-origin: 50% 50%; }
   .stage-film video { width: 100%; height: 100%; object-fit: cover; }
-  .stage-film .spec-label { position: absolute; left: 10px; top: 10px; }
+  .stage-film .spec-label { position: absolute; left: 10px; top: 10px; right: 60px; width: fit-content; }
   .stage-x { position: absolute; right: 8px; top: 8px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgb(15 14 13 / 0.6); cursor: pointer; }
   .tap-sound { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ivory); color: #1a1510; font-weight: 600; cursor: pointer; }
   .stage-actions { pointer-events: auto; justify-content: center; }
