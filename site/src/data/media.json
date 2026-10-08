@@ -112,18 +112,17 @@
       "vee_pop_1": {
         "av1": "vee/vee_pop_1.av1.mp4",
         "hevc": "vee/vee_pop_1.hevc.mp4",
-        "duration": 2.5,
+        "duration": 5.04,
         "small": true
       },
       "vee_pop_2": {
         "av1": "vee/vee_pop_2.av1.mp4",
         "hevc": "vee/vee_pop_2.hevc.mp4",
-        "duration": 2.5,
+        "duration": 5.04,
         "small": true
       }
     },
-    "premultiplied": false,
-    "status": "placeholder"
+    "premultiplied": true
   },
   "films": [
     {
