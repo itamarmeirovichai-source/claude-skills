@@ -299,43 +299,43 @@ browser ──(1) GET Turnstile token (explicit render when form scrolls into vi
 
 ```
 site/
-├─ astro.config.ts            # output: 'static', sitemap, build.assets hashing
-├─ wrangler.toml              # pages_build_output_dir="dist"; r2_buckets UPLOADS; analytics_engine EVENTS; services MAILER
+├─ astro.config.ts
+├─ wrangler.toml
 ├─ package.json  .node-version(22)  tsconfig.json  eslint.config.js  .prettierrc
 ├─ lighthouserc.json  playwright.config.ts  vitest.config.ts
 ├─ public/
 │  ├─ _headers  _redirects  robots.txt  og/…
-│  └─ media/                  # encoded output only (hash-named); masters never committed
-├─ media-src/                 # gitignored masters (ProRes 4444, WAV)
+│  └─ media/
+├─ media-src/
 ├─ scripts/
-│  ├─ encode.ts               # masters → renditions (§4.3), ffprobe checks, manifest.json
-│  ├─ voice.ts                # ElevenLabs with-timestamps → .m4a + .vtt (build-time, cost-capped, cached)
-│  └─ check-dist.mjs          # budgets: bytes per route, no audio in loops, no secrets, required files
+│  ├─ encode.ts
+│  ├─ voice.ts
+│  └─ check-dist.mjs
 ├─ src/
 │  ├─ pages/  index.astro  work/[slug].astro  privacy.astro  404.astro
-│  ├─ layouts/Base.astro      # head, SEO, OG, JSON-LD, CSP-safe scripts
-│  ├─ components/             # markup only: Hero.astro Ring.astro Character.astro Stage.astro
-│  │                          # Portfolio.astro BeforeAfter.astro Pricing.astro Faq.astro LeadForm.astro
-│  ├─ content/  ads/*.md  work/*.md  faq/*.md  pricing.json   # + content.config.ts zod schemas
+│  ├─ layouts/Base.astro
+│  ├─ components/
+│  │
+│  ├─ content/  ads/*.md  work/*.md  faq/*.md  pricing.json
 │  ├─ hero/
-│  │  ├─ machine.ts           # pure reducer: State, Event, Effect unions
-│  │  ├─ effects.ts           # runs effects; cancellation; timeouts
-│  │  ├─ ring.ts              # CSS-3D ring: layout math, drag/inertia, keyboard, setAngle()
-│  │  ├─ character.ts         # A/B stacked-alpha players, clip queue, rVFC sync
-│  │  ├─ stage.ts             # flat clone + Flip, <dialog>, focus return
-│  │  ├─ pullup.ts            # continue choreography driven by video time
-│  │  └─ captions.ts          # VTT cue → caption box
+│  │  ├─ machine.ts
+│  │  ├─ effects.ts
+│  │  ├─ ring.ts
+│  │  ├─ character.ts
+│  │  ├─ stage.ts
+│  │  ├─ pullup.ts
+│  │  └─ captions.ts
 │  ├─ media/  manager.ts (decoder budget)  pick-codec.ts (MediaCapabilities)  manifest.ts
 │  ├─ motion/ ticker.ts (gsap.ticker + Lenis)  reduced.ts (matchMedia)  reveal.ts
 │  ├─ lib/    lead-schema.ts  analytics.ts  dom.ts
 │  └─ styles/ tokens.css  base.css  hero.css
 ├─ functions/api/
 │  ├─ lead/start.ts  lead/[id]/photo/[n].ts  lead/[id]/finish.ts
-│  ├─ e.ts                    # analytics beacon
+│  ├─ e.ts
 │  └─ _shared/ turnstile.ts  rate-limit.ts  magic-bytes.ts
 ├─ tests/   machine.test.ts  ring-math.test.ts  vtt.test.ts  lead-schema.test.ts  functions/*.test.ts
 └─ e2e/     hero.spec.ts  a11y.spec.ts  form.spec.ts  visual.spec.ts  reduced-motion.spec.ts
-mailer-worker/                # optional: send_email Worker behind a service binding
+mailer-worker/
 .github/workflows/site-ci.yml
 ```
 
@@ -352,16 +352,16 @@ mailer-worker/                # optional: send_email Worker behind a service bin
 
 | Layer | Tool | Cases |
 |---|---|---|
-| Unit | Vitest | Machine: every state × event (table-driven, includes illegal events and timeouts); ring math (`tz`, nearest-front index, wrap-around); angle → pointing clip; ElevenLabs alignment → VTT (cue length, line breaks, timing monotonic); lead schema (valid/invalid); magic-byte sniffing; Turnstile helper with the test secrets |
-| Functions | Vitest + `wrangler pages dev` / Miniflare | `/api/lead/*` happy path; bad token; duplicate token; oversize body (413); wrong MIME; rate limit; R2 object written; mailer called once |
-| E2E | Playwright, projects: **WebKit iPhone 13**, **Chromium Pixel 7**, Desktop Chrome, Desktop Safari (WebKit installs on GitHub-hosted Ubuntu with `--with-deps`; it could not install in this sandbox [inf]) | Hero loads poster then video (`!paused`, `currentTime` advances); no audio before gesture; select → dialog open, `muted === false`, captions cue shows; keyboard-only path (Tab to ring → arrows → Enter → Esc → focus back on card); Continue → `<main>` heading focused, hero unpinned; decoder budget (≤ 3 `video[src]` playing on mobile projects); `saveData`/codec fallback via `?codec=h264`; form with test sitekey + mocked upload |
+| Unit | Vitest | Machine: every state × event, incl. illegal events and timeouts; ring math and wrap-around; angle → clip; alignment → VTT; lead schema; magic bytes; Turnstile helper with test secrets |
+| Functions | Vitest + `wrangler pages dev` | Happy path, bad/duplicate token, 413, wrong MIME, rate limit, R2 write, one mail |
+| E2E | Playwright: **WebKit iPhone 13**, **Chromium Pixel 7**, desktop Chrome + Safari (WebKit runs on GitHub Ubuntu with `--with-deps`, not in PeakForm's sandbox [inf]) | Poster then video playing (`currentTime` advances); silent until gesture; select → dialog, `muted === false`, a caption cue shows; keyboard path Tab → arrows → Enter → Esc → focus back on card; Continue → `<main>` focused; ≤ 3 playing videos on mobile; `?codec=h264` fallback; form with test sitekey |
 | Reduced motion | `page.emulateMedia({ reducedMotion: 'reduce' })` | No autoplaying video, no ring rotation, Continue instant, Lenis smoothing off |
-| A11y | `@axe-core/playwright` (already used in PeakForm) | Zero serious/critical violations on every route and in the open dialog; carousel roles/labels asserted |
-| Visual | `expect(page).toHaveScreenshot()` with `?still=1` (app hook that seeks all videos to a fixed frame and pauses) + masks on live media; baselines made in CI's Linux image only ([snapshots](https://playwright.dev/docs/test-snapshots)) | Hero, ring at 3 angles, stage open, each section at 375/390/430/1440 widths, light/dark if themed |
+| A11y | `@axe-core/playwright` | No serious/critical violations, dialog open too; carousel roles asserted |
+| Visual | `toHaveScreenshot()` + `?still=1` hook (seek and pause all videos) + masks; baselines from CI Linux only ([docs](https://playwright.dev/docs/test-snapshots)) | Hero, ring at 3 angles, stage, sections at 375/390/430/1440 |
 | Perf | Lighthouse CI (`staticDistDir: dist`, 3 runs, mobile) ([config](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md)) | `largest-contentful-paint ≤ 2500`, `cumulative-layout-shift ≤ 0.05`, `total-blocking-time ≤ 200`, `resource-summary:script:size ≤ 92160`, `resource-summary:font:count ≤ 2`, `resource-summary:third-party:count ≤ 3`; `lighthouse:recommended` for a11y/SEO/best practices |
-| Release gate | `scripts/check-dist.mjs` | Bytes per route, no file > 20 MiB, no secrets/keys, no audio stream in `*.loop.*`, every `<video>` has a poster + `playsinline`, every ad has a `.vtt` |
+| Release gate | `check-dist.mjs` | Bytes per route, no file > 20 MiB, no secrets, no audio in loops, posters + `playsinline` everywhere, a `.vtt` per ad |
 | Field | CF Web Analytics RUM + `hero_ready` | p75 LCP/INP/CLS per device weekly; alert if LCP p75 > 2.5 s [inf] |
-| Device lab (manual, before launch) | Real iPhone (older non-AV1 model + 15 Pro+), a mid Android, iPad, Firefox desktop | Alpha edges (premultiplied?), clip seams, autoplay in Low Power Mode, sound on first tap, Range `206` probe |
+| Device lab (manual) | Old iPhone + 15 Pro+, mid Android, iPad, Firefox | Alpha edges, clip seams, Low Power Mode autoplay, first-tap sound, `206` probe |
 
 ---
 
