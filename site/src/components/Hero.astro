@@ -120,7 +120,7 @@ const n = films.length;
   .otto :global(canvas) { opacity: 0; transition: opacity 0.4s; }
   .otto[data-ready] :global(canvas) { opacity: 1; }
   .otto[data-ready] .poster { opacity: 0; transition: opacity 0.4s; }
-  .ai-tag { position: absolute; left: 6%; bottom: 8px; margin: 0; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .ai-tag { position: absolute; left: 6%; top: calc(6% + 8px); margin: 0; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
   .caption {
     position: absolute; left: 62%; top: 10%; margin: 0; z-index: 4; width: max-content; max-width: min(56vw, 240px);
     background: var(--ivory); color: #1a1510; font: 400 1.05rem/1.25 var(--serif); padding: 8px 12px; border-radius: 12px 12px 12px 2px;
@@ -148,12 +148,12 @@ const n = films.length;
   @media (min-width: 768px) {
     .hero { grid-template-rows: 1fr auto; }
     .hero-copy { grid-row: 1; align-self: start; padding-top: 3vh; max-width: var(--maxw); }
-    .hero-copy > * { max-width: min(36vw, 520px); }
+    .hero-copy > * { max-width: min(32vw, 470px); }
     .hero-sub { font-size: 1rem; }
-    .scene { position: absolute; inset: 68px 0 64px 30%; justify-content: center; }
-    .otto-frame { height: min(74vh, 700px); max-height: none; flex: 0 0 auto; }
+    .scene { grid-row: auto; position: absolute; inset: 68px 0 64px 38%; justify-content: center; }
+    .otto-frame { height: min(74vh, 700px); max-height: none; min-height: 0; flex: 0 0 auto; }
     .ring { position: absolute; inset: 0; pointer-events: none; transform-style: preserve-3d; }
-    .ring-track { position: absolute; left: 50%; top: 58%; width: 0; height: 0; padding: 0; overflow: visible; display: block; transform-style: preserve-3d; }
+    .ring-track { position: absolute; left: 50%; top: 54%; width: 0; height: 0; padding: 0; overflow: visible; display: block; transform-style: preserve-3d; }
     .ring-item { position: absolute; left: 0; top: 0; transform: none; pointer-events: auto; will-change: transform; }
     .ring-item:nth-child(odd) { transform: none; }
     .card { width: clamp(96px, 9.5vw, 150px); translate: -50% -50%; }
@@ -184,7 +184,7 @@ const n = films.length;
   .pulse { animation: pulse 0.9s var(--ease) 1; }
   @keyframes pulse { 40% { transform: scale(1.06); box-shadow: 0 0 0 6px rgb(176 141 87 / 0.25); } }
   @media (min-width: 768px) {
-    .stage { inset: 68px var(--gutter) 64px 30%; justify-items: end; align-content: center; padding-right: 2vw; }
+    .stage { inset: 68px var(--gutter) 64px 38%; justify-items: end; align-content: center; padding-right: 2vw; }
     .stage-film { height: min(72vh, 720px); }
     .stage.docked { justify-items: end; }
     .stage.docked .stage-film { height: min(44vh, 420px); }

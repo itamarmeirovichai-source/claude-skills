@@ -11,12 +11,12 @@
 | Otto UI green keys | Qwen edit x2 (1 failed take) | 0.15 | done |
 | Otto UI clips x8 | Kling 3.0 std x7 + pro x1 | 3.12 | PASS (both points went screen-right: point_L = mirrored) |
 | Vee green keys x4 (2 had a duplicate stopwatch) | Qwen edit | 0.16 | done |
-| Vee pop clips x2 | Kling 3.0 std | 0.71 | running |
+| Vee pop clips x2 | Kling 3.0 std | 0.71 | PASS |
 | **Site subtotal** | | **36.62** | |
 | Vee explore x8 (7 returned) | Soul Cinema 720p | 0.03 | done |
 | Vee master x2 | Flare 2k | 0.64 | done (t01 chosen) |
 | Duo blocking still x2 | Flare 2k | 0.72 | done (t01) |
-| Reel 30 s duo, audio-driven | Seedance 2.5 r2v 480p 30 s | 6.17 | running |
+| Reel 30 s duo, audio-driven | Seedance 2.5 r2v 480p 30 s | 6.17 | PASS (one take, fast pans; lip-sync ~0.3 s lead corrected in mix) |
 | **Vee/reel subtotal** | | **7.56** | |
 
 Audio/voice: ElevenLabs Creator plan credits (music x4, SFX x4, ~25 TTS lines); no extra $.

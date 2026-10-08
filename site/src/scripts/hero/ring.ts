@@ -91,14 +91,14 @@ export class Ring {
     }
     const w = this.hero.clientWidth;
     const frame = this.ottoFrame.getBoundingClientRect();
-    const rx = Math.min(Math.max(frame.width * 0.95, 220), w * 0.34);
+    const rx = Math.min(Math.max(frame.width * 0.85, 200), w * 0.3);
     const rz = rx * 0.75;
-    const ry = frame.height * 0.06;
+    const ry = frame.height * 0.26; // front cards pass low (over the hands), back cards ride up behind the shoulders
     this.items.forEach((it, i) => {
       const a = this.angle + i * this.step;
       const x = Math.sin(a) * rx;
       const z = Math.cos(a) * rz;
-      const y = -Math.cos(a) * ry; // the far side rides a little higher: an orbit, not a flat circle
+      const y = Math.cos(a) * ry; // a tilted orbit, not a flat circle
       const depth = (Math.cos(a) + 1) / 2; // 0 back … 1 front
       it.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px)`;
       it.style.opacity = (0.45 + depth * 0.55).toFixed(2);
