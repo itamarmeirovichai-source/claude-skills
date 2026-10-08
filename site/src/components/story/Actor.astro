@@ -1,0 +1,71 @@
+---
+// A crew member who enters an act from below (Otto) or from the right (Vee): peek → hold → arrive (ref 39 §2.3).
+// Decorative (aria-hidden): the line text is mirrored into the page's polite live region by the crew script.
+import { media, mediaUrl, lineText } from '../../lib/media';
+import { site } from '../../lib/site';
+interface Props {
+  who: 'otto' | 'vee';
+  id: string;
+  /** Peek caption key (voice key or group). */
+  peek?: string;
+  /** Arrival line (voice key or group). */
+  line?: string;
+  /** right | left placement inside the dock. */
+  side?: 'right' | 'left';
+  /** Progress (0–1) through the act at which the actor arrives. */
+  arrive?: number;
+  start?: string;
+  end?: string;
+  /** Only peek (coda): never rises. */
+  peekOnly?: boolean;
+  scale?: number;
+  /** Selector (inside the act) that drives the entrance on phones instead of the act itself. */
+  mobileTrigger?: string;
+}
+const { who, id, peek = '', line = '', side = 'right', arrive = 0.45, start = 'top 70%', end = 'bottom bottom', peekOnly = false, scale = 1, mobileTrigger } = Astro.props;
+const set = who === 'vee' ? media.vee : media.otto;
+const name = who === 'vee' ? site.producer : site.mascot;
+const peekText = peek ? lineText(peek) : '';
+---
+<div class:list={['actor', `actor-${who}`, `side-${side}`]} data-actor={id} data-who={who} data-peek={peek} data-line={line} data-arrive={arrive} data-start={start} data-end={end} data-peek-only={peekOnly ? '' : undefined} data-mtrigger={mobileTrigger} data-state="off" style={`--s:${scale}`} aria-hidden="true">
+  <div class="actor-body">
+    <alpha-video class="actor-av" premultiplied={set.premultiplied ? '' : undefined}>
+      <img class="poster" src={mediaUrl(set.poster)} alt="" width={set.width} height={set.height} loading="lazy" decoding="async" onerror="this.style.visibility='hidden'" />
+    </alpha-video>
+  </div>
+  <p class="bubble" data-bubble>{peekText}</p>
+  <span class="tag">AI · {name}</span>
+</div>
+<style>
+  .actor {
+    position: absolute; bottom: 0; z-index: 4; pointer-events: none;
+    height: calc(var(--actor-h) * var(--s)); aspect-ratio: 9 / 16;
+  }
+  .side-right { right: max(0px, calc(var(--gutter) * 0.25)); }
+  .side-left { left: max(0px, calc(var(--gutter) * 0.25)); }
+  .actor-body { position: absolute; inset: 0; will-change: transform; }
+  .actor-av { position: absolute; inset: 0; display: block; }
+  .actor-av :global(canvas), .actor-av .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  /* The poster is a standing pose: show it only when there is no video to play (poster mode) or once arrived. */
+  .actor-av .poster { opacity: 0; transition: opacity 0.5s var(--ease-lux); }
+  .actor.poster-mode .poster { opacity: 1; }
+  .actor-av[data-ready] .poster { opacity: 0; }
+  .bubble {
+    position: absolute; bottom: calc(100% - 6%); margin: 0; width: max-content; max-width: min(62vw, 250px);
+    padding: 8px 14px; border-radius: 12px; font: 400 1.02rem/1.25 var(--serif); box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+    opacity: 0; translate: 0 8px; transition: opacity 0.35s var(--ease-lux), translate 0.6s var(--ease-lux);
+  }
+  .side-right .bubble { right: 30%; border-bottom-right-radius: 2px; }
+  .side-left .bubble { left: 30%; border-bottom-left-radius: 2px; }
+  .actor-otto .bubble { background: var(--ivory); color: #1a1510; }
+  .actor-vee .bubble { background: var(--vermilion); color: var(--ivory); }
+  .actor.talking .bubble, .actor.captioned .bubble { opacity: 1; translate: 0 0; }
+  /* Peek: the bubble sits low, right above the edge the character is peeking over. */
+  .actor[data-state='peek'] .bubble { bottom: 22%; }
+  .actor[data-state='peek'].actor-vee .bubble { bottom: 46%; right: 8%; }
+  .tag { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center; font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); opacity: 0; transition: opacity 0.4s; }
+  .actor[data-state='arrived'] .tag { opacity: 1; }
+  .arrow { display: inline-block; animation: nudge 0.9s var(--ease) 2; }
+  @keyframes nudge { 50% { transform: translateY(4px); } }
+  :global(html.hosts-hidden) .actor { display: none; }
+</style>

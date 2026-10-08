@@ -1,0 +1,20 @@
+{
+  "$comment": "Private /for/<slug> pages for researched leads (ref 40 §5.1): their frame, the walkthrough, a booking button, and a headline that repeats the DM's words. Pages are noindex and unlinked. Only real leads go here, with frames we actually made; `example: true` entries are fictional and show an 'Example page' banner. frames/walkthrough paths are relative to media.json base (git-ignored media).",
+  "brands": [
+    {
+      "slug": "example-halden-fig",
+      "example": true,
+      "brand": "Halden & Fig",
+      "firstName": "Mara",
+      "product": "Fig & Cedar candle",
+      "category": "Candles",
+      "headline": "Mara, your Fig & Cedar candle, filmed in one unbroken take.",
+      "sub": "I made a first frame of your candle before asking anything of you. If it feels like Halden & Fig, the other four are free.",
+      "frames": [],
+      "walkthrough": null,
+      "walkthroughNote": "A 60-second screen recording where I walk you through the frame.",
+      "offer": "bfcm",
+      "bookingUrl": ""
+    }
+  ]
+}

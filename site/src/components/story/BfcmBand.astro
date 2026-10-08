@@ -1,0 +1,49 @@
+---
+// The dated BFCM offer (ref 40 §1.2): a real date and an honest capacity cap, a bonus instead of a discount.
+// Hidden after the booking date (at build time, and again in the browser for long-lived builds).
+import { bfcm, bfcmOpen, money, callHref } from '../../lib/site';
+const live = bfcmOpen();
+const capLine = bfcm.booked != null
+  ? `${bfcm.booked} of ${bfcm.capacity} booked.`
+  : `I can take ${bfcm.capacity} BFCM films.`;
+---
+{live && (
+  <section class="bfcm" id="bfcm" data-bfcm data-book-by={bfcm.bookBy} aria-labelledby="bfcm-h">
+    <div class="wrap bfcm-grid">
+      <div>
+        <p class="eyebrow">Black Friday · Cyber Monday</p>
+        <h2 id="bfcm-h">{bfcm.name}: your hero ad, <em>final by {bfcm.finalByLabel}.</em></h2>
+        <p class="lede">Two weeks before Black Friday, so you have time to load it and test it. Frames in {bfcm.framesIn}, first cut {bfcm.firstCut}, final files by {bfcm.finalByLabel}.</p>
+      </div>
+      <dl class="terms">
+        <div><dt>Book by</dt><dd>{bfcm.bookByLabel}</dd></div>
+        <div><dt>Final files</dt><dd>{bfcm.finalByLabel}</dd></div>
+        <div><dt>Capacity</dt><dd data-capacity data-confirmed={String(bfcm.capacityConfirmed)}>{capLine} Booking closes {bfcm.bookByLabel} or when they're booked.</dd></div>
+        <div><dt>Bonus</dt><dd>{bfcm.bonus}</dd></div>
+        <div><dt>Price</dt><dd>{money(bfcm.price)}, the Premiere price. 50 % to start, 50 % on approval.</dd></div>
+      </dl>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={callHref()} data-bfcm-cta="call">Book a BFCM film</a>
+        <a class="btn" href="#start" data-bfcm-cta="frames">Start with 5 free frames</a>
+      </div>
+    </div>
+    {/* TODO(founder): confirm the real BFCM capacity in site.json → bfcm.capacity, then set capacityConfirmed: true. */}
+  </section>
+)}
+<script>
+  // A cached build must not keep selling a closed offer.
+  document.querySelectorAll<HTMLElement>('[data-bfcm]').forEach((el) => {
+    const by = Date.parse(`${el.dataset['bookBy']}T23:59:59-12:00`);
+    if (Number.isFinite(by) && Date.now() > by) el.remove();
+  });
+</script>
+<style>
+  .bfcm { position: relative; padding-block: clamp(72px, 12vh, 140px); border-block: 1px solid rgb(176 141 87 / 0.35); background: radial-gradient(60% 120% at 85% 0%, rgb(176 141 87 / 0.12), transparent 60%), var(--ink-0); }
+  .bfcm-grid { display: grid; gap: 36px; }
+  .bfcm h2 { max-width: 18ch; }
+  .terms { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .terms div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .terms dt { font: 600 0.7rem/1.6 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); }
+  .terms dd { margin: 0; color: var(--text-dim); }
+  @media (min-width: 960px) { .bfcm-grid { grid-template-columns: 1.1fr 1fr; column-gap: 72px; align-items: start; } .bfcm-grid .btn-row { grid-column: 1; } }
+</style>

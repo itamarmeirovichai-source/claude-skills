@@ -1,0 +1,37 @@
+---
+// Step 1 of the free-frames form: email + product page URL only (ref 39 §3.4). Step 2 (qualifiers,
+// optional photo) is /frames/thanks. Uses the same lead pipeline as the full form.
+import { site } from '../../lib/site';
+interface Props { id: string; act: string; button?: string }
+const { id, act, button = 'Get my 5 free frames' } = Astro.props;
+---
+<form class="mini-form" data-lead-form data-mini data-act-form={act} action="/frames" method="get" novalidate>
+  <p class="summary" data-summary tabindex="-1" role="alert" hidden></p>
+  <div class="field">
+    <label for={`${id}-email`}>Email</label>
+    <input id={`${id}-email`} name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby={`${id}-email-e`} />
+    <p class="error" id={`${id}-email-e`} data-error="email"></p>
+  </div>
+  <div class="field">
+    <label for={`${id}-website`}>Product page URL</label>
+    <input id={`${id}-website`} name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbrand.com/products/…" required aria-describedby={`${id}-website-e`} />
+    <p class="error" id={`${id}-website-e`} data-error="website"></p>
+  </div>
+  <input type="hidden" name="product" value="" />
+  <input type="hidden" name="intent" value="general" />
+  <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="company_url" tabindex="-1" autocomplete="off" /></label></div>
+  <div data-turnstile></div>
+  <button type="submit" class="btn btn-primary submit">{button} <span aria-hidden="true">→</span></button>
+  <p class="note">Free. No card, no call. 3–5 business days, marked "AI concept".{site.capacityLine && ` ${site.capacityLine}`}</p>
+  <p class="status" data-status role="status" aria-live="polite"></p>
+</form>
+<style>
+  .mini-form { display: grid; gap: 4px; max-width: 520px; }
+  .mini-form .field { margin-bottom: 12px; }
+  .submit { width: 100%; min-height: 56px; font-size: 1rem; margin-top: 4px; }
+  .note { font-size: 0.82rem; color: var(--text-faint); margin: 10px 0 0; }
+  .status { margin: 10px 0 0; color: var(--brass-hi); }
+  .status:empty { display: none; }
+  .summary { background: rgb(216 67 43 / 0.12); border: 1px solid rgb(216 67 43 / 0.5); padding: 12px 14px; border-radius: 10px; font-size: 0.9rem; }
+  @media (min-width: 640px) { .mini-form.inline { grid-template-columns: 1fr 1fr; column-gap: 12px; } }
+</style>

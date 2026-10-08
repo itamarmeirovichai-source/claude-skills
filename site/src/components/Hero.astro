@@ -1,195 +1,177 @@
 ---
-import { media, mediaUrl, ringFilms, SPEC_LABEL } from '../lib/media';
-import { site } from '../lib/site';
+// Act I · The take. H1, offer and CTA are on screen at 0 s; the films orbit Otto in a flat circle.
+import { media, mediaUrl, ringFilms, SPEC_LABEL, lineText } from '../lib/media';
+import { site, bfcm, bfcmOpen } from '../lib/site';
+import Chip from './Chip.astro';
 const films = ringFilms();
 const n = films.length;
+const { $comment: _c, ...headlines } = site.headlines;
+const offerLive = bfcmOpen();
 ---
-<section class="hero" id="hero" data-state="boot" data-count={n} aria-labelledby="hero-h1">
+<section class="hero act" id="hero" data-state="boot" data-count={n} data-act="1" data-chapter="The take" aria-labelledby="hero-h1">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="wrap hero-copy">
-    <h1 id="hero-h1">Product films without the shoot.</h1>
-    <p class="signature">{site.signature}</p>
-    <p class="hero-sub">Premium 30-second ads for brands people have to smell, taste or touch. Every film is a single continuous take. Made with AI, directed by a human. Start with 5 free frames of your product.</p>
-    <div class="btn-row hero-ctas">
-      <a class="btn btn-ox" href="/work" data-pick-film>Pick a film <span aria-hidden="true">▶</span></a>
-      <a class="btn btn-primary" href="/frames">Get 5 free frames <span aria-hidden="true">→</span></a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Scene 1 · The take</p>
+      <h1 id="hero-h1" data-headline>{headlines.default}</h1>
+      <script is:inline define:vars={{ headlines }}>
+        // Message match: the H1 mirrors the ad or email that was clicked (utm_content). Swapped before paint.
+        try {
+          var v = new URLSearchParams(location.search).get('utm_content');
+          var h = v && Object.prototype.hasOwnProperty.call(headlines, v) ? headlines[v] : null;
+          if (h) { var el = document.getElementById('hero-h1'); el.textContent = h; el.dataset.variant = v; }
+        } catch (e) {}
+      </script>
+      <p class="hero-sub">Thirty-second product films for brands people have to smell, taste or touch. Made with AI, directed by a human. Start with 5 free frames.</p>
+      <div class="btn-row hero-ctas" data-inflow-cta>
+        <a class="btn btn-primary" href="#start" data-frames-cta>Get my 5 free frames <span aria-hidden="true">→</span></a>
+        <a class="btn" href="/work" data-pick-film>Watch a film <span aria-hidden="true">▸</span></a>
+      </div>
+      <Chip q="Is it really free?" a="Free means free. No card, no call. You keep the frames." />
+      <p class="micro" data-ai-line tabindex="0">Made with AI, including {site.mascot}. Spec films are for invented brands.</p>
+      {offerLive && <p class="offer-line"><a href="#bfcm"><b>{bfcm.name}</b> · final files by {bfcm.finalByLabel} · booking closes {bfcm.bookByLabel}</a></p>}
     </div>
-    <p class="micro" data-ai-line tabindex="0">Everything here is AI-made, including {site.mascot}.</p>
+
+    <div class="scene" data-scene>
+      <div class="otto-frame" data-otto-frame>
+        <alpha-video id="otto" class="otto" premultiplied={media.otto.premultiplied ? '' : undefined} data-w={media.otto.width} data-h={media.otto.height}>
+          <img class="poster" src={mediaUrl(media.otto.poster)} alt={`${site.mascot}, our AI director: a tall man with an enormous waxed moustache, black turtleneck and charcoal blazer`} width={media.otto.width} height={media.otto.height} fetchpriority="high" decoding="async" onerror="this.style.visibility='hidden'" />
+        </alpha-video>
+        <p class="caption" data-caption aria-hidden="true">{lineText('act_o1')}</p>
+        <p class="ai-tag" aria-hidden="true">AI · {site.mascot}</p>
+      </div>
+
+      <div class="ring" data-ring role="region" aria-roledescription="carousel" aria-label="Spec films circling Otto. Pick one to play it.">
+        <ul class="ring-track" data-track>
+          {films.map((f, i) => (
+            <li class="ring-item" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${n}: ${f.brand}, ${f.duration} s`} data-i={i}>
+              <a class:list={['card', { featured: f.featured }]} href={`/work/${f.slug}`} data-card={i} data-slug={f.slug}>
+                <img src={mediaUrl(f.poster)} alt="" width="360" height="640" loading={i < 4 ? 'eager' : 'lazy'} decoding="async" onerror="this.style.visibility='hidden'" />
+                <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-loop-av1={mediaUrl(f.loop.av1)} data-loop-h264={mediaUrl(f.loop.h264)}></video>
+                <span class="card-meta"><b>{f.cardTitle ?? f.brand}</b><span>{f.cardSub ?? f.category}</span></span>
+                <span class="sr-only">{SPEC_LABEL(f)}. Play {f.title}.</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="stage" data-stage hidden role="region" aria-label="Film player">
+        <div class="stage-film" data-stage-film data-lenis-prevent>
+          <video data-film playsinline preload="none" aria-label="Spec film"></video>
+          <span class="spec-label" data-film-label></span>
+          <button type="button" class="stage-x" data-close aria-label="Close film">✕</button>
+          <button type="button" class="tap-sound" data-tap-sound hidden>Tap for sound</button>
+        </div>
+        <div class="stage-actions btn-row">
+          <button type="button" class="btn" data-pick-another>Pick another</button>
+          <button type="button" class="btn btn-primary" data-continue>Continue <span aria-hidden="true">↓</span></button>
+        </div>
+      </div>
+      <p class="ring-hint" aria-hidden="true">Pick a film · hover to hold</p>
+    </div>
   </div>
 
   <div class="hero-controls wrap" aria-label="Show controls">
     <a class="ctl skip" href="#content" data-skip>Skip the show <span aria-hidden="true">↓</span></a>
-    <span class="ctl-group">
-      <button type="button" class="ctl" data-sound aria-pressed="false">Sound: <b>off</b></button>
-      <button type="button" class="ctl" data-motion aria-pressed="false">Pause motion</button>
-    </span>
-  </div>
-
-  <div class="scene" data-scene>
-    <div class="otto-frame" data-otto-frame>
-      <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-      <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
-      <alpha-video id="otto" class="otto" premultiplied={media.otto.premultiplied ? '' : undefined} data-w={media.otto.width} data-h={media.otto.height}>
-        <img class="poster" src={mediaUrl(media.otto.poster)} alt={`${site.mascot}, our AI director: a tall man with an enormous waxed moustache, black turtleneck and charcoal blazer`} width={media.otto.width} height={media.otto.height} fetchpriority="high" decoding="async" onerror="this.style.visibility='hidden'" />
-      </alpha-video>
-      <p class="caption" data-caption aria-hidden="true"></p>
-      <p class="ai-tag" aria-hidden="true">AI · {site.mascot}</p>
-    </div>
-
-    <div class="ring" data-ring role="region" aria-roledescription="carousel" aria-label="Spec films. Pick one to play it.">
-      <ul class="ring-track" data-track>
-        {films.map((f, i) => (
-          <li class="ring-item" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${n}: ${f.brand}, ${f.duration} s`} data-i={i}>
-            <a class="card" href={`/work/${f.slug}`} data-card={i} data-slug={f.slug}>
-              <img src={mediaUrl(f.poster)} alt="" width="360" height="640" loading={i < 3 ? 'eager' : 'lazy'} decoding="async" onerror="this.style.visibility='hidden'" />
-              <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-loop-av1={mediaUrl(f.loop.av1)} data-loop-h264={mediaUrl(f.loop.h264)}></video>
-              <span class="card-meta"><b>{f.brand}</b><span>{f.category}</span></span>
-              <span class="sr-only">{SPEC_LABEL(f)}. Play {f.title}.</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <div class="stage" data-stage hidden role="region" aria-label="Film player">
-    <div class="stage-film" data-stage-film>
-      <video data-film playsinline preload="none" aria-label="Spec film"></video>
-      <span class="spec-label" data-film-label></span>
-      <button type="button" class="stage-x" data-close aria-label="Close film">✕</button>
-      <button type="button" class="tap-sound" data-tap-sound hidden>Tap for sound</button>
-    </div>
-    <div class="stage-actions btn-row">
-      <button type="button" class="btn" data-pick-another>Pick another</button>
-      <button type="button" class="btn btn-primary" data-continue>Continue <span aria-hidden="true">↓</span></button>
-    </div>
+    <button type="button" class="ctl" data-motion aria-pressed="false">Pause motion</button>
   </div>
 </section>
 
 <style>
-  .hero {
-    position: sticky; top: 0; z-index: 0; height: 100vh; height: 100svh; overflow: hidden;
-    display: grid; grid-template-rows: auto 1fr auto; padding-top: 68px;
-    isolation: isolate;
-  }
+  .hero { position: relative; z-index: 0; isolation: isolate; padding-top: clamp(20px, 4vh, 48px); overflow: clip; }
   .hero-bg {
     position: absolute; inset: 0; z-index: -1;
     background:
-      radial-gradient(60% 55% at 58% 52%, rgb(176 141 87 / 0.22), transparent 70%),
-      radial-gradient(90% 70% at 50% 120%, rgb(110 31 36 / 0.28), transparent 70%),
+      radial-gradient(48% 52% at 70% 50%, rgb(176 141 87 / 0.16), transparent 70%),
+      radial-gradient(90% 60% at 50% 120%, rgb(110 31 36 / 0.22), transparent 70%),
       linear-gradient(#141210, #0f0e0d);
   }
-  .hero-bg::after {
-    content: ''; position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .hero-copy { position: relative; z-index: 6; padding-top: 4px; }
-  .hero-copy h1 { margin-bottom: 0.12em; font-size: clamp(2.3rem, 9.5vw, 5.2rem); max-width: 11ch; }
-  .signature { margin: 0 0 0.5em; }
-  .hero-sub { color: var(--text-dim); max-width: 44ch; font-size: 0.95rem; margin-bottom: 14px; }
-  .hero-ctas .btn { padding: 0.7em 1.05em; font-size: 0.9rem; }
-  .micro { margin: 10px 0 0; font-size: 0.78rem; color: var(--text-faint); width: fit-content; cursor: help; }
+  .hero-grid { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
+  .hero-copy { position: relative; z-index: 6; }
+  .hero-copy h1 { margin-bottom: 0.32em; font-size: clamp(2.6rem, 7vw, 6.1rem); line-height: 1.02; max-width: 12ch; }
+  .hero-sub { color: var(--text-dim); max-width: 44ch; font-size: clamp(1rem, 1.3vw, 1.12rem); margin-bottom: 26px; }
+  .hero-ctas { margin-bottom: 14px; }
+  .micro { margin: 18px 0 0; font-size: 0.78rem; color: var(--text-faint); width: fit-content; cursor: help; }
+  .offer-line { margin: 10px 0 0; font-size: 0.82rem; }
+  .offer-line a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid rgb(176 141 87 / 0.5); padding-bottom: 2px; }
+  .offer-line a:hover { color: var(--text); }
+  .offer-line b { color: var(--brass-hi); font-weight: 600; }
 
-  .hero-controls { position: relative; z-index: 8; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-bottom: max(10px, env(safe-area-inset-bottom)); grid-row: 3; }
-  .ctl-group { display: flex; gap: 6px; }
-  .ctl {
-    min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: rgb(15 14 13 / 0.6);
-    color: var(--text-dim); font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; backdrop-filter: blur(6px);
-  }
-  .ctl:hover { color: var(--text); border-color: var(--brass); }
-  .ctl b { font-weight: 600; color: var(--text); }
-  .ctl[aria-pressed='true'] { border-color: var(--brass); color: var(--text); }
-
-  /* Scene: Otto + ring share one 3D context so cards pass behind him. */
-  .scene {
-    grid-row: 2; position: relative; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-    perspective: 1100px; perspective-origin: 50% 40%;
-  }
-  .otto-frame {
-    position: relative; height: 100%; max-height: 340px; min-height: 150px; aspect-ratio: 9 / 16; flex: 1 1 auto;
-    transform-style: preserve-3d; z-index: 2;
-  }
-  .otto-frame::before { content: ''; position: absolute; inset: 6% 4% 0; border: 1px solid rgb(176 141 87 / 0.35); border-bottom: 0; pointer-events: none; }
-  .tick { position: absolute; width: 14px; height: 14px; border-color: var(--brass); border-style: solid; border-width: 0; opacity: 0.8; }
-  .tick.tl { top: 6%; left: 4%; border-top-width: 1px; border-left-width: 1px; }
-  .tick.tr { top: 6%; right: 4%; border-top-width: 1px; border-right-width: 1px; }
-  .tick.bl { bottom: 0; left: 4%; border-bottom-width: 1px; border-left-width: 1px; }
-  .tick.br { bottom: 0; right: 4%; border-bottom-width: 1px; border-right-width: 1px; }
+  /* Scene: Otto in the middle, the films on a flat circle around him. */
+  .scene { position: relative; width: 100%; height: min(112vw, 470px); margin-inline: auto; }
+  .otto-frame { position: absolute; left: 50%; top: 50%; height: 54%; aspect-ratio: 9 / 16; translate: -50% -52%; z-index: 2; }
   .otto { position: absolute; inset: 0; display: block; }
   .otto :global(canvas), .otto .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-  .otto :global(canvas) { opacity: 0; transition: opacity 0.4s; }
+  .otto :global(canvas) { opacity: 0; transition: opacity 0.6s var(--ease); }
   .otto[data-ready] :global(canvas) { opacity: 1; }
-  .otto[data-ready] .poster { opacity: 0; transition: opacity 0.4s; }
-  .ai-tag { position: absolute; left: 6%; top: calc(6% + 8px); margin: 0; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .otto[data-ready] .poster { opacity: 0; transition: opacity 0.6s var(--ease); }
+  .ai-tag { position: absolute; left: 50%; bottom: -18px; translate: -50% 0; margin: 0; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); white-space: nowrap; }
   .caption {
-    position: absolute; left: 62%; top: 10%; margin: 0; z-index: 4; width: max-content; max-width: min(56vw, 240px);
-    background: var(--ivory); color: #1a1510; font: 400 1.05rem/1.25 var(--serif); padding: 8px 12px; border-radius: 12px 12px 12px 2px;
-    box-shadow: 0 10px 30px rgb(0 0 0 / 0.35); opacity: 0; transform: translateY(6px); transition: opacity 0.25s, transform 0.25s;
+    position: absolute; left: 50%; bottom: 100%; translate: -50% -6px; margin: 0; z-index: 4; width: max-content; max-width: min(64vw, 260px); text-align: center;
+    background: var(--ivory); color: #1a1510; font: 400 1.02rem/1.25 var(--serif); padding: 8px 14px; border-radius: 12px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.35); opacity: 0; transform: translateY(6px); transition: opacity 0.35s var(--ease), transform 0.5s var(--ease);
   }
   .caption.on { opacity: 1; transform: none; }
 
-  /* Ring, mobile first: a swipeable arc row under Otto. */
-  .ring { position: relative; width: 100%; z-index: 3; }
-  .ring-track { list-style: none; margin: 0; padding: 8px var(--gutter) 6px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
-  .ring-track::-webkit-scrollbar { display: none; }
-  .ring-item { flex: 0 0 auto; scroll-snap-align: center; }
-  .ring-item:nth-child(odd) { transform: translateY(6px); }
+  .ring { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .ring-track { list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  .ring-item { position: absolute; left: 0; top: 0; pointer-events: auto; will-change: transform; }
   .card {
-    position: relative; display: block; width: 82px; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden;
-    background: var(--ink-3); border: 1px solid var(--line-strong); box-shadow: 0 12px 28px rgb(0 0 0 / 0.45); text-decoration: none;
+    position: relative; display: block; width: clamp(64px, 17vw, 82px); aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; translate: -50% -50%;
+    background: var(--ink-3); border: 1px solid var(--line-strong); box-shadow: 0 16px 34px rgb(0 0 0 / 0.5); text-decoration: none;
+    transition: border-color 0.2s, scale 0.5s var(--ease), box-shadow 0.5s var(--ease);
   }
   .card img, .card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .card video { opacity: 0; transition: opacity 0.3s; }
+  .card video { opacity: 0; transition: opacity 0.5s; }
   .card video.on { opacity: 1; }
-  .card-meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 7px 6px; background: linear-gradient(transparent, rgb(0 0 0 / 0.75)); display: grid; font-size: 0.6rem; color: var(--text-dim); line-height: 1.2; }
-  .card-meta b { font: 400 0.95rem/1 var(--serif); color: var(--ivory); letter-spacing: 0.04em; }
-  .card:hover, .card:focus-visible { border-color: var(--brass); }
+  .card-meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 7px 6px; background: linear-gradient(transparent, rgb(0 0 0 / 0.75)); display: grid; font-size: 0.58rem; color: var(--text-dim); line-height: 1.2; }
+  .card-meta b { font: 400 0.92rem/1.05 var(--serif); color: var(--ivory); letter-spacing: 0.04em; }
+  .featured .card-meta b { font-size: 0.8rem; }
+  .card.featured { border-color: rgb(176 141 87 / 0.7); }
+  .card:hover, .card:focus-visible { border-color: var(--brass); scale: 1.06; box-shadow: 0 22px 44px rgb(0 0 0 / 0.55); }
+  .ring-hint { position: absolute; left: 0; right: 0; bottom: -4px; margin: 0; text-align: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
 
-  @media (min-width: 768px) {
-    .hero { grid-template-rows: 1fr auto; }
-    .hero-copy { grid-row: 1; align-self: start; padding-top: 3vh; max-width: var(--maxw); }
-    .hero-copy > * { max-width: min(32vw, 470px); }
-    .hero-sub { font-size: 1rem; }
-    .scene { grid-row: auto; transform-style: preserve-3d; position: absolute; inset: 68px 0 64px 38%; justify-content: center; }
-    .otto-frame { transform: translateZ(0); height: min(74vh, 700px); max-height: none; min-height: 0; flex: 0 0 auto; }
-    .ring { position: absolute; inset: 0; pointer-events: none; transform-style: preserve-3d; }
-    .ring-track { position: absolute; left: 50%; top: 54%; width: 0; height: 0; padding: 0; overflow: visible; display: block; transform-style: preserve-3d; }
-    .ring-item { position: absolute; left: 0; top: 0; transform: none; pointer-events: auto; will-change: transform; }
-    .ring-item:nth-child(odd) { transform: none; }
-    .card { width: clamp(96px, 9.5vw, 150px); translate: -50% -50%; }
-    .caption { font-size: 1.2rem; left: 66%; }
-    .hero-controls { grid-row: 2; }
+  .hero-controls { position: relative; z-index: 8; display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding-block: 18px 24px; }
+  .ctl {
+    min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: rgb(15 14 13 / 0.6);
+    color: var(--text-dim); font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
   }
-  /* Without JS (or in fallback), the desktop ring is a static row. */
-  @media (min-width: 768px) {
-    :global(html:not(.js)) .ring-track, .hero[data-state='fallback'] .ring-track, .hero:global(.rm) .ring-track {
-      position: absolute; inset: auto 0 0 0; width: auto; height: auto; display: flex; gap: 14px; justify-content: center; padding: 0;
-    }
-    :global(html:not(.js)) .ring-item, .hero[data-state='fallback'] .ring-item, .hero:global(.rm) .ring-item { position: static; transform: none !important; opacity: 1 !important; filter: none !important; }
-    :global(html:not(.js)) .card, .hero[data-state='fallback'] .card, .hero:global(.rm) .card { translate: none; }
+  .ctl:hover { color: var(--text); border-color: var(--brass); }
+  .ctl[aria-pressed='true'] { border-color: var(--brass); color: var(--text); }
+
+  @media (min-width: 900px) {
+    .hero { position: sticky; top: 64px; min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); display: grid; grid-template-rows: 1fr auto; padding-top: 0; }
+    .hero-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: 24px; }
+    .scene { height: min(calc(100svh - 190px), 760px); }
+    .card { width: clamp(92px, 7.6vw, 124px); }
+    .caption { font-size: 1.15rem; }
   }
-  @media (max-height: 700px) and (max-width: 767px) { .hero-sub { display: none; } }
+
+  /* Without JS, and under reduced motion before layout: cards sit in a quiet row below Otto. */
+  :global(html:not(.js)) .ring-track { position: static; width: auto; height: auto; display: flex; gap: 10px; justify-content: center; position: absolute; left: 0; right: 0; top: auto; bottom: 0; }
+  :global(html:not(.js)) .ring-item { position: static; }
+  :global(html:not(.js)) .card { translate: none; }
 
   /* Stage: the enlarged film. */
-  .stage { position: absolute; z-index: 7; inset: 76px var(--gutter) 64px; display: grid; justify-items: center; align-content: start; gap: 12px; pointer-events: none; }
+  .stage { position: absolute; z-index: 7; inset: 0; display: grid; justify-items: center; align-content: center; gap: 12px; pointer-events: none; }
   .stage[hidden] { display: none; }
-  .stage-film { position: relative; height: min(60svh, 560px); aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 80px rgb(0 0 0 / 0.6); pointer-events: auto; transform-origin: 50% 50%; }
+  .stage-film { position: relative; height: min(88%, 680px); max-height: calc(100% - 64px); aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 40px 90px rgb(0 0 0 / 0.65); pointer-events: auto; transform-origin: 50% 50%; }
   .stage-film video { width: 100%; height: 100%; object-fit: cover; }
   .stage-film .spec-label { position: absolute; left: 10px; top: 10px; right: 60px; width: fit-content; }
   .stage-x { position: absolute; right: 8px; top: 8px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgb(15 14 13 / 0.6); cursor: pointer; }
   .tap-sound { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ivory); color: #1a1510; font-weight: 600; cursor: pointer; }
   .stage-actions { pointer-events: auto; justify-content: center; }
-  .stage.docked { justify-items: end; align-content: center; }
-  .stage.docked .stage-film { height: min(34svh, 300px); }
-  .pulse { animation: pulse 0.9s var(--ease) 1; }
-  @keyframes pulse { 40% { transform: scale(1.06); box-shadow: 0 0 0 6px rgb(176 141 87 / 0.25); } }
-  @media (min-width: 768px) {
-    .stage { inset: 68px var(--gutter) 64px 38%; justify-items: end; align-content: center; padding-right: 2vw; }
-    .stage-film { height: min(72vh, 720px); }
-    .stage.docked { justify-items: end; }
-    .stage.docked .stage-film { height: min(44vh, 420px); }
-    .stage-actions { justify-content: flex-end; width: auto; }
-  }
-  .hero[data-state='playing'] .ring, .hero[data-state='enlarging'] .ring, .hero[data-state='asking'] .ring { opacity: 0.25; transition: opacity 0.4s; }
+  .stage.docked .stage-film { height: min(62%, 420px); }
+  .pulse { animation: pulse 1.1s var(--ease) 1; }
+  @keyframes pulse { 40% { box-shadow: 0 0 0 6px rgb(176 141 87 / 0.25); } }
+  .hero[data-state='playing'] .ring, .hero[data-state='enlarging'] .ring, .hero[data-state='asking'] .ring { opacity: 0.12; transition: opacity 0.6s var(--ease); }
+  .hero[data-state='playing'] .otto-frame, .hero[data-state='enlarging'] .otto-frame { opacity: 0.35; transition: opacity 0.6s var(--ease); }
+  .ring { transition: opacity 0.6s var(--ease); }
+  .otto-frame { transition: opacity 0.6s var(--ease), translate 0.9s var(--ease-lux); }
+  /* Asking: the film docks right, Otto steps out from behind it to talk. */
+  .hero[data-state='asking'] .otto-frame { translate: -100% -52%; opacity: 1; }
+  .hero[data-state='asking'] .stage { justify-items: end; }
+  .hero[data-state='asking'] .caption { left: 0; translate: 0 -6px; max-width: min(44vw, 240px); text-align: left; }
   :global(html.motion-paused) .card video { display: none; }
 </style>

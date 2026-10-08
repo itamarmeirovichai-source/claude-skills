@@ -1,5 +1,5 @@
 {
-  "$comment": "Single media manifest. Paths are relative to `base`. Replace files with the same names. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. `alias` reuses another clip until a dedicated one exists. `pointMap` maps the card's screen side (L/R/C) to the clip whose arm points that way on screen.",
+  "$comment": "Single media manifest. Paths are relative to `base`. Replace files with the same names. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. `alias` reuses another clip until a dedicated one exists. `pointMap` maps the card's screen side (L/R/C) to the clip whose arm points that way on screen. Placeholder keys carry `alias` + `pending` until their clip is delivered; `node scripts/clips-import.mjs <who> <key>` swaps in the real files. Character keys used by the home-page story: otto_peek, otto_rise, otto_talk_a, vee_walk_in, vee_talk_a, vee_talk_b, vee_idle, duo_idle. voiceGroups lists the voice-bank keys per character+group (shuffle bag).",
   "base": "/media/",
   "otto": {
     "poster": "otto/k0.webp",
@@ -101,6 +101,35 @@
         "hevc": "otto/pop_thumb.hevc.mp4",
         "duration": 5.04,
         "small": true
+      },
+      "otto_peek": {
+        "duration": 3.17,
+        "loop": true,
+        "av1": "otto/otto_peek.av1.mp4",
+        "hevc": "otto/otto_peek.hevc.mp4",
+        "av1_hd": "otto/otto_peek_hd.av1.mp4",
+        "hevc_hd": "otto/otto_peek_hd.hevc.mp4"
+      },
+      "otto_rise": {
+        "duration": 5.04,
+        "av1": "otto/otto_rise.av1.mp4",
+        "hevc": "otto/otto_rise.hevc.mp4",
+        "av1_hd": "otto/otto_rise_hd.av1.mp4",
+        "hevc_hd": "otto/otto_rise_hd.hevc.mp4"
+      },
+      "otto_talk_a": {
+        "duration": 5.04,
+        "loop": true,
+        "av1": "otto/otto_talk_a.av1.mp4",
+        "hevc": "otto/otto_talk_a.hevc.mp4",
+        "av1_hd": "otto/otto_talk_a_hd.av1.mp4",
+        "hevc_hd": "otto/otto_talk_a_hd.hevc.mp4"
+      },
+      "duo_idle": {
+        "alias": "char_idle",
+        "pending": "duo_idle: Otto + Vee two-shot idle loop (not delivered yet; Act VIII shows them as two separate actors meanwhile)",
+        "duration": 5.04,
+        "loop": true
       }
     }
   },
@@ -120,11 +149,102 @@
         "hevc": "vee/vee_pop_2.hevc.mp4",
         "duration": 5.04,
         "small": true
+      },
+      "vee_walk_in": {
+        "duration": 5.04,
+        "av1": "vee/vee_walk_in.av1.mp4",
+        "hevc": "vee/vee_walk_in.hevc.mp4",
+        "av1_hd": "vee/vee_walk_in_hd.av1.mp4",
+        "hevc_hd": "vee/vee_walk_in_hd.hevc.mp4"
+      },
+      "vee_talk_a": {
+        "duration": 5.04,
+        "loop": true,
+        "av1": "vee/vee_talk_a.av1.mp4",
+        "hevc": "vee/vee_talk_a.hevc.mp4",
+        "av1_hd": "vee/vee_talk_a_hd.av1.mp4",
+        "hevc_hd": "vee/vee_talk_a_hd.hevc.mp4"
+      },
+      "vee_talk_b": {
+        "duration": 5.04,
+        "loop": true,
+        "av1": "vee/vee_talk_b.av1.mp4",
+        "hevc": "vee/vee_talk_b.hevc.mp4",
+        "av1_hd": "vee/vee_talk_b_hd.av1.mp4",
+        "hevc_hd": "vee/vee_talk_b_hd.hevc.mp4"
+      },
+      "vee_idle": {
+        "alias": "vee_pop_1",
+        "pending": "vee_idle: standing idle loop (until delivered, Vee holds the last frame of her walk-in or talk clip)",
+        "duration": 5.04,
+        "loop": true
       }
     },
     "premultiplied": true
   },
   "films": [
+    {
+      "slug": "aurum-top-shelf",
+      "title": "Top Shelf",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum-top-shelf/poster.webp",
+      "loop": {
+        "av1": "films/aurum-top-shelf/loop.av1.mp4",
+        "h264": "films/aurum-top-shelf/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum-top-shelf/full.av1.mp4",
+        "h264": "films/aurum-top-shelf/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "AURUM · Top Shelf",
+      "cardSub": "Sparkling yuzu · one take · 30 s",
+      "featured": true
+    },
+    {
+      "slug": "tabletop-city",
+      "title": "Tabletop City",
+      "brand": "VXO",
+      "category": "Studio",
+      "duration": 30,
+      "poster": "films/tabletop-city/poster.webp",
+      "loop": {
+        "av1": "films/tabletop-city/loop.av1.mp4",
+        "h264": "films/tabletop-city/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/tabletop-city/full.av1.mp4",
+        "h264": "films/tabletop-city/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "VXO · Tabletop City",
+      "cardSub": "Our own ad · one take",
+      "label": "Studio film · our own ad · 100% AI · 30 s · one take"
+    },
+    {
+      "slug": "vesper-23",
+      "title": "23 Minutes",
+      "brand": "VESPER",
+      "category": "Fragrance",
+      "duration": 30,
+      "poster": "films/vesper-23/poster.webp",
+      "loop": {
+        "av1": "films/vesper-23/loop.av1.mp4",
+        "h264": "films/vesper-23/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/vesper-23/full.av1.mp4",
+        "h264": "films/vesper-23/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "VESPER · 23 Minutes",
+      "cardSub": "Perfume · one take"
+    },
     {
       "slug": "sol",
       "title": "Winter, then summer",
@@ -160,23 +280,6 @@
       "captions": null
     },
     {
-      "slug": "aurum",
-      "title": "Noon on ice",
-      "brand": "AURUM",
-      "category": "Drinks",
-      "duration": 30,
-      "poster": "films/aurum/poster.webp",
-      "loop": {
-        "av1": "films/aurum/loop.av1.mp4",
-        "h264": "films/aurum/loop.h264.mp4"
-      },
-      "full": {
-        "av1": "films/aurum/full.av1.mp4",
-        "h264": "films/aurum/full.h264.mp4"
-      },
-      "captions": null
-    },
-    {
       "slug": "otto",
       "title": "The Director",
       "brand": "Otto",
@@ -193,6 +296,24 @@
       },
       "captions": null,
       "label": "Studio film · our mascot · 100% AI · 30 s · one take"
+    },
+    {
+      "slug": "aurum",
+      "title": "Noon on ice",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum/poster.webp",
+      "loop": {
+        "av1": "films/aurum/loop.av1.mp4",
+        "h264": "films/aurum/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum/full.av1.mp4",
+        "h264": "films/aurum/full.h264.mp4"
+      },
+      "captions": null,
+      "scrub": "films/aurum/scrub.h264.mp4"
     }
   ],
   "voice": {
@@ -280,10 +401,411 @@
       "text": "Deposit starts it. Approval finishes it.",
       "audio": "voice/vee_2.m4a",
       "vtt": "voice/vee_2.vtt"
+    },
+    "act_o1": {
+      "text": "I'm Otto. I don't do cuts.",
+      "audio": "voice/act_o1.m4a",
+      "vtt": "voice/act_o1.vtt"
+    },
+    "act_v1": {
+      "text": "Sound's on. I'm Vee. Producer.",
+      "audio": "voice/act_v1.m4a",
+      "vtt": "voice/act_v1.vtt"
+    },
+    "act_v2": {
+      "text": "Ads expire. Shoots take weeks. Not ours.",
+      "audio": "voice/act_v2.m4a",
+      "vtt": "voice/act_v2.vtt"
+    },
+    "act_o2": {
+      "text": "Same bottle. Better afternoon.",
+      "audio": "voice/act_o2.m4a",
+      "vtt": "voice/act_o2.vtt"
+    },
+    "act_v3": {
+      "text": "Frames by day five. Film by eight.",
+      "audio": "voice/act_v3.m4a",
+      "vtt": "voice/act_v3.vtt"
+    },
+    "act_o3": {
+      "text": "Launching something? The middle one.",
+      "audio": "voice/act_o3.m4a",
+      "vtt": "voice/act_o3.vtt"
+    },
+    "act_v4": {
+      "text": "Start free. Pay when you approve.",
+      "audio": "voice/act_v4.m4a",
+      "vtt": "voice/act_v4.vtt"
+    },
+    "act_v5": {
+      "text": "Two fields. That's it. Go.",
+      "audio": "voice/act_v5.m4a",
+      "vtt": "voice/act_v5.vtt"
+    },
+    "act_o4": {
+      "text": "Send it. I'll find the light.",
+      "audio": "voice/act_o4.m4a",
+      "vtt": "voice/act_o4.vtt"
+    },
+    "act_o6": {
+      "text": "One more take?",
+      "audio": "voice/act_o6.m4a",
+      "vtt": "voice/act_o6.vtt"
+    },
+    "act_v6": {
+      "text": "No.",
+      "audio": "voice/act_v6.m4a",
+      "vtt": "voice/act_v6.vtt"
+    },
+    "peek_o_moment": {
+      "text": "One moment.",
+      "audio": "voice/peek_o_moment.m4a",
+      "vtt": "voice/peek_o_moment.vtt"
+    },
+    "peek_v_hold": {
+      "text": "Hold on, coming in.",
+      "audio": "voice/peek_v_hold.m4a",
+      "vtt": "voice/peek_v_hold.vtt"
+    },
+    "otto_idle_1": {
+      "text": "Pick a film. I'll roll it.",
+      "audio": "voice/otto_idle_1.m4a",
+      "vtt": "voice/otto_idle_1.vtt"
+    },
+    "otto_idle_2": {
+      "text": "Go on. Choose wisely.",
+      "audio": "voice/otto_idle_2.m4a",
+      "vtt": "voice/otto_idle_2.vtt"
+    },
+    "otto_idle_3": {
+      "text": "The ring is waiting.",
+      "audio": "voice/otto_idle_3.m4a",
+      "vtt": "voice/otto_idle_3.vtt"
+    },
+    "otto_idle_4": {
+      "text": "Any film. I made them all.",
+      "audio": "voice/otto_idle_4.m4a",
+      "vtt": "voice/otto_idle_4.vtt"
+    },
+    "otto_idle_5": {
+      "text": "Don't be shy. Pick one.",
+      "audio": "voice/otto_idle_5.m4a",
+      "vtt": "voice/otto_idle_5.vtt"
+    },
+    "otto_pick_1": {
+      "text": "Good eye.",
+      "audio": "voice/otto_pick_1.m4a",
+      "vtt": "voice/otto_pick_1.vtt"
+    },
+    "otto_pick_2": {
+      "text": "Watch the light on this one.",
+      "audio": "voice/otto_pick_2.m4a",
+      "vtt": "voice/otto_pick_2.vtt"
+    },
+    "otto_pick_3": {
+      "text": "We invented that brand.",
+      "audio": "voice/otto_pick_3.m4a",
+      "vtt": "voice/otto_pick_3.vtt"
+    },
+    "otto_pick_4": {
+      "text": "Ah. My favourite.",
+      "audio": "voice/otto_pick_4.m4a",
+      "vtt": "voice/otto_pick_4.vtt"
+    },
+    "otto_pick_5": {
+      "text": "One take. No cuts. Watch.",
+      "audio": "voice/otto_pick_5.m4a",
+      "vtt": "voice/otto_pick_5.vtt"
+    },
+    "otto_pick_6": {
+      "text": "Bold choice. Correct choice.",
+      "audio": "voice/otto_pick_6.m4a",
+      "vtt": "voice/otto_pick_6.vtt"
+    },
+    "otto_pick_7": {
+      "text": "This one took thirty seconds. And taste.",
+      "audio": "voice/otto_pick_7.m4a",
+      "vtt": "voice/otto_pick_7.vtt"
+    },
+    "otto_again_1": {
+      "text": "Greedy. I like it.",
+      "audio": "voice/otto_again_1.m4a",
+      "vtt": "voice/otto_again_1.vtt"
+    },
+    "otto_again_2": {
+      "text": "Another? You have taste.",
+      "audio": "voice/otto_again_2.m4a",
+      "vtt": "voice/otto_again_2.vtt"
+    },
+    "otto_again_3": {
+      "text": "Again. Of course.",
+      "audio": "voice/otto_again_3.m4a",
+      "vtt": "voice/otto_again_3.vtt"
+    },
+    "otto_again_4": {
+      "text": "I knew you'd come back.",
+      "audio": "voice/otto_again_4.m4a",
+      "vtt": "voice/otto_again_4.vtt"
+    },
+    "otto_ask_1": {
+      "text": "Cut. Pick another, or continue?",
+      "audio": "voice/otto_ask_1.m4a",
+      "vtt": "voice/otto_ask_1.vtt"
+    },
+    "otto_ask_2": {
+      "text": "That's a wrap. Another, or onward?",
+      "audio": "voice/otto_ask_2.m4a",
+      "vtt": "voice/otto_ask_2.vtt"
+    },
+    "otto_ask_3": {
+      "text": "Print it. More films, or the rest?",
+      "audio": "voice/otto_ask_3.m4a",
+      "vtt": "voice/otto_ask_3.vtt"
+    },
+    "otto_ask_4": {
+      "text": "Cut. Shall we keep going?",
+      "audio": "voice/otto_ask_4.m4a",
+      "vtt": "voice/otto_ask_4.vtt"
+    },
+    "otto_continue_1": {
+      "text": "Hold still. Bringing up the rest.",
+      "audio": "voice/otto_continue_1.m4a",
+      "vtt": "voice/otto_continue_1.vtt"
+    },
+    "otto_continue_2": {
+      "text": "Allow me.",
+      "audio": "voice/otto_continue_2.m4a",
+      "vtt": "voice/otto_continue_2.vtt"
+    },
+    "otto_continue_3": {
+      "text": "Right this way.",
+      "audio": "voice/otto_continue_3.m4a",
+      "vtt": "voice/otto_continue_3.vtt"
+    },
+    "otto_continue_4": {
+      "text": "Lifting the curtain.",
+      "audio": "voice/otto_continue_4.m4a",
+      "vtt": "voice/otto_continue_4.vtt"
+    },
+    "otto_skip_1": {
+      "text": "Fair. I'll be around.",
+      "audio": "voice/otto_skip_1.m4a",
+      "vtt": "voice/otto_skip_1.vtt"
+    },
+    "otto_skip_2": {
+      "text": "Skipping the show? Bold.",
+      "audio": "voice/otto_skip_2.m4a",
+      "vtt": "voice/otto_skip_2.vtt"
+    },
+    "otto_skip_3": {
+      "text": "Fine. I'll find you later.",
+      "audio": "voice/otto_skip_3.m4a",
+      "vtt": "voice/otto_skip_3.vtt"
+    },
+    "otto_pop_1": {
+      "text": "Five frames. Your product. Free.",
+      "audio": "voice/otto_pop_1.m4a",
+      "vtt": "voice/otto_pop_1.vtt"
+    },
+    "otto_pop_2": {
+      "text": "These brands don't exist. Yours does.",
+      "audio": "voice/otto_pop_2.m4a",
+      "vtt": "voice/otto_pop_2.vtt"
+    },
+    "otto_pop_3": {
+      "text": "Hard questions. Straight answers.",
+      "audio": "voice/otto_pop_3.m4a",
+      "vtt": "voice/otto_pop_3.vtt"
+    },
+    "otto_pop_4": {
+      "text": "Quiet on set. Your turn.",
+      "audio": "voice/otto_pop_4.m4a",
+      "vtt": "voice/otto_pop_4.vtt"
+    },
+    "otto_pop_5": {
+      "text": "I'm right here.",
+      "audio": "voice/otto_pop_5.m4a",
+      "vtt": "voice/otto_pop_5.vtt"
+    },
+    "otto_pop_6": {
+      "text": "Psst. Down here.",
+      "audio": "voice/otto_pop_6.m4a",
+      "vtt": "voice/otto_pop_6.vtt"
+    },
+    "otto_pop_7": {
+      "text": "Don't scroll past me.",
+      "audio": "voice/otto_pop_7.m4a",
+      "vtt": "voice/otto_pop_7.vtt"
+    },
+    "otto_pop_8": {
+      "text": "Still here. Still brilliant.",
+      "audio": "voice/otto_pop_8.m4a",
+      "vtt": "voice/otto_pop_8.vtt"
+    },
+    "otto_success_1": {
+      "text": "Got it. Itamar's on it.",
+      "audio": "voice/otto_success_1.m4a",
+      "vtt": "voice/otto_success_1.vtt"
+    },
+    "otto_success_2": {
+      "text": "Frames incoming. Stay close.",
+      "audio": "voice/otto_success_2.m4a",
+      "vtt": "voice/otto_success_2.vtt"
+    },
+    "otto_success_3": {
+      "text": "Wonderful. We roll soon.",
+      "audio": "voice/otto_success_3.m4a",
+      "vtt": "voice/otto_success_3.vtt"
+    },
+    "vee_pop_1": {
+      "text": "Frames by Thursday. I'm counting.",
+      "audio": "voice/vee_pop_1.m4a",
+      "vtt": "voice/vee_pop_1.vtt"
+    },
+    "vee_pop_2": {
+      "text": "Deposit starts it. Approval finishes it.",
+      "audio": "voice/vee_pop_2.m4a",
+      "vtt": "voice/vee_pop_2.vtt"
+    },
+    "vee_pop_3": {
+      "text": "Thirty seconds. Not a frame more.",
+      "audio": "voice/vee_pop_3.m4a",
+      "vtt": "voice/vee_pop_3.vtt"
+    },
+    "vee_pop_4": {
+      "text": "Seven days. Start to finish.",
+      "audio": "voice/vee_pop_4.m4a",
+      "vtt": "voice/vee_pop_4.vtt"
+    },
+    "vee_pop_5": {
+      "text": "I keep Otto on schedule.",
+      "audio": "voice/vee_pop_5.m4a",
+      "vtt": "voice/vee_pop_5.vtt"
+    },
+    "vee_pop_6": {
+      "text": "No crew. No shoot. No excuses.",
+      "audio": "voice/vee_pop_6.m4a",
+      "vtt": "voice/vee_pop_6.vtt"
+    },
+    "vee_pop_7": {
+      "text": "Your product. Our film. One week.",
+      "audio": "voice/vee_pop_7.m4a",
+      "vtt": "voice/vee_pop_7.vtt"
+    },
+    "vee_pop_8": {
+      "text": "He wants another take. I said no.",
+      "audio": "voice/vee_pop_8.m4a",
+      "vtt": "voice/vee_pop_8.vtt"
+    },
+    "vee_pricing_1": {
+      "text": "Pick the size that fits this quarter.",
+      "audio": "voice/vee_pricing_1.m4a",
+      "vtt": "voice/vee_pricing_1.vtt"
+    },
+    "vee_pricing_2": {
+      "text": "The middle one. Trust me.",
+      "audio": "voice/vee_pricing_2.m4a",
+      "vtt": "voice/vee_pricing_2.vtt"
+    },
+    "vee_pricing_3": {
+      "text": "Clear prices. No surprises.",
+      "audio": "voice/vee_pricing_3.m4a",
+      "vtt": "voice/vee_pricing_3.vtt"
+    },
+    "vee_cta_1": {
+      "text": "Send one photo. I'll handle the rest.",
+      "audio": "voice/vee_cta_1.m4a",
+      "vtt": "voice/vee_cta_1.vtt"
+    },
+    "vee_cta_2": {
+      "text": "Five free frames. Clock starts now.",
+      "audio": "voice/vee_cta_2.m4a",
+      "vtt": "voice/vee_cta_2.vtt"
+    },
+    "vee_cta_3": {
+      "text": "Tap it. I'm already timing you.",
+      "audio": "voice/vee_cta_3.m4a",
+      "vtt": "voice/vee_cta_3.vtt"
     }
   },
   "stills": {
     "ba_before": "stills/ba_before.webp",
     "ba_after": "stills/ba_after.webp"
+  },
+  "voiceGroups": {
+    "otto.idle": [
+      "otto_idle_1",
+      "otto_idle_2",
+      "otto_idle_3",
+      "otto_idle_4",
+      "otto_idle_5"
+    ],
+    "otto.pick": [
+      "otto_pick_1",
+      "otto_pick_2",
+      "otto_pick_3",
+      "otto_pick_4",
+      "otto_pick_5",
+      "otto_pick_6",
+      "otto_pick_7"
+    ],
+    "otto.again": [
+      "otto_again_1",
+      "otto_again_2",
+      "otto_again_3",
+      "otto_again_4"
+    ],
+    "otto.ask": [
+      "otto_ask_1",
+      "otto_ask_2",
+      "otto_ask_3",
+      "otto_ask_4"
+    ],
+    "otto.continue": [
+      "otto_continue_1",
+      "otto_continue_2",
+      "otto_continue_3",
+      "otto_continue_4"
+    ],
+    "otto.skip": [
+      "otto_skip_1",
+      "otto_skip_2",
+      "otto_skip_3"
+    ],
+    "otto.pop": [
+      "otto_pop_1",
+      "otto_pop_2",
+      "otto_pop_3",
+      "otto_pop_4",
+      "otto_pop_5",
+      "otto_pop_6",
+      "otto_pop_7",
+      "otto_pop_8"
+    ],
+    "otto.success": [
+      "otto_success_1",
+      "otto_success_2",
+      "otto_success_3"
+    ],
+    "vee.pop": [
+      "vee_pop_1",
+      "vee_pop_2",
+      "vee_pop_3",
+      "vee_pop_4",
+      "vee_pop_5",
+      "vee_pop_6",
+      "vee_pop_7",
+      "vee_pop_8"
+    ],
+    "vee.pricing": [
+      "vee_pricing_1",
+      "vee_pricing_2",
+      "vee_pricing_3"
+    ],
+    "vee.cta": [
+      "vee_cta_1",
+      "vee_cta_2",
+      "vee_cta_3"
+    ]
   }
 }

@@ -35,6 +35,7 @@ export type Clip =
   | 'char_point_R'
   | 'char_point_C'
   | 'char_talk'
+  | 'otto_talk_a'
   | 'char_reach'
   | 'char_nod'
   | 'char_think'
@@ -60,8 +61,8 @@ export interface Step {
   fx: Effect[];
 }
 
-const PICK_LINES = ['vo_pick_1', 'vo_pick_2', 'vo_pick_3'] as const;
-export const pickLine = (picks: number): string => (picks >= 1 ? 'vo_pick_again' : (PICK_LINES[picks % 3] ?? 'vo_pick_1'));
+// Lines are voice-bank groups (shuffle bag per session), so Otto never repeats himself.
+export const pickLine = (picks: number): string => (picks >= 1 ? 'otto.again' : 'otto.pick');
 
 const point = (film: number, dir: Dir, picks: number, fromStage: boolean): Step => ({
   state: { s: 'pointing', film, picks: picks + 1 },
@@ -81,7 +82,7 @@ const reveal = (picks: number, via: 'skip' | 'scroll'): Step => ({
   fx: [
     { fx: 'nudgeTimer', on: false },
     { fx: 'ring', run: false },
-    ...(via === 'skip' ? [{ fx: 'say', line: 'vo_skip' } as const] : []),
+    ...(via === 'skip' ? [{ fx: 'say', line: 'otto.skip' } as const] : []),
     { fx: 'revealDone', focus: false },
     { fx: 'track', name: via === 'skip' ? 'skip_click' : 'hero_scrolled' },
   ],
@@ -94,7 +95,7 @@ export function reduce(state: State, ev: Event): Step {
       if (ev.e === 'READY')
         return {
           state: { s: 'idle', picks: 0 },
-          fx: [{ fx: 'otto', clips: ['char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'vo_idle', silent: true }, { fx: 'nudgeTimer', on: true }],
+          fx: [{ fx: 'otto', clips: ['char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'act_o1', silent: true }, { fx: 'nudgeTimer', on: true }],
         };
       if (ev.e === 'FAIL') return { state: { s: 'fallback' }, fx: [{ fx: 'track', name: 'hero_fallback' }] };
       if (ev.e === 'LEFT_HERO') return same;
@@ -106,7 +107,7 @@ export function reduce(state: State, ev: Event): Step {
     case 'idle':
       switch (ev.e) {
         case 'NUDGE':
-          return { state, fx: [{ fx: 'otto', clips: ['char_think', 'char_idle'] }, { fx: 'say', line: 'vo_nudge', silent: true }] };
+          return { state, fx: [{ fx: 'otto', clips: ['char_think', 'char_idle'] }, { fx: 'say', line: 'otto.idle', silent: true }] };
         case 'SELECT':
           return point(ev.film, ev.dir, state.picks, false);
         case 'CONTINUE':
@@ -152,12 +153,12 @@ export function reduce(state: State, ev: Event): Step {
           if (state.s === 'asking') return same;
           return {
             state: { s: 'asking', film: state.film, picks: state.picks },
-            fx: [{ fx: 'dock' }, { fx: 'otto', clips: ['char_talk'] }, { fx: 'say', line: 'vo_ask' }, { fx: 'pulseButtons' }],
+            fx: [{ fx: 'dock' }, { fx: 'otto', clips: ['otto_talk_a'] }, { fx: 'say', line: 'otto.ask' }, { fx: 'pulseButtons' }],
           };
         case 'PICK_ANOTHER':
           return {
             state: { s: 'idle', picks: state.picks },
-            fx: [{ fx: 'hush' }, { fx: 'shrink' }, { fx: 'otto', clips: ['char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'vo_idle', silent: true }],
+            fx: [{ fx: 'hush' }, { fx: 'shrink' }, { fx: 'otto', clips: ['char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'otto.idle', silent: true }],
           };
         case 'SELECT':
           return point(ev.film, ev.dir, state.picks, true);
@@ -181,7 +182,7 @@ export function reduce(state: State, ev: Event): Step {
       if (ev.e === 'BACK_TO_TOP')
         return {
           state: { s: 'idle', picks: state.picks },
-          fx: [{ fx: 'otto', clips: ['char_stepin', 'char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'vo_idle', silent: true }, { fx: 'nudgeTimer', on: true }],
+          fx: [{ fx: 'otto', clips: ['char_stepin', 'char_idle'] }, { fx: 'ring', run: true }, { fx: 'say', line: 'otto.idle', silent: true }, { fx: 'nudgeTimer', on: true }],
         };
       if (ev.e === 'SELECT') return point(ev.film, ev.dir, state.picks, false);
       return same;
@@ -197,7 +198,7 @@ function reachFx(): Effect[] {
   return [
     { fx: 'hush' },
     { fx: 'otto', clips: ['char_reach'] },
-    { fx: 'say', line: 'vo_continue' },
+    { fx: 'say', line: 'otto.continue' },
     { fx: 'pullUp' },
     { fx: 'track', name: 'continue_click' },
   ];

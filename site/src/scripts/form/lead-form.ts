@@ -84,7 +84,8 @@ export function mountForm(form: HTMLFormElement): void {
     return {
       email: String(fd.get('email') ?? ''),
       website: String(fd.get('website') ?? ''),
-      product: String(fd.get('product') ?? ''),
+      // Step-1 forms (email + product page URL) name the product by its page; step 2 refines it.
+      product: String(fd.get('product') ?? '') || (form.hasAttribute('data-mini') ? `Product page: ${String(fd.get('website') ?? '').trim()}`.slice(0, 160) : ''),
       look: (fd.get('look') === 'world' ? 'world' : 'studio') as 'studio' | 'world',
       firstName: String(fd.get('firstName') ?? ''),
       intent: (['bestseller', 'launch'].includes(String(fd.get('intent'))) ? fd.get('intent') : 'general') as 'bestseller' | 'launch' | 'general',
@@ -181,6 +182,7 @@ export function mountForm(form: HTMLFormElement): void {
       });
       if (!fin.ok) return fail("That didn't go through. Try again in a moment.");
       track('form_submit', { ok: true });
+      if (form.dataset['actForm']) track('inline_form_submit', { act: form.dataset['actForm'] });
       const next = new URLSearchParams(location.search).get('next') === 'call' ? '&next=call' : '';
       location.assign(`/frames/thanks?id=${encodeURIComponent(id)}&t=${encodeURIComponent(upToken)}${next}`);
     } catch {

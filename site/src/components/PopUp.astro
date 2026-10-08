@@ -1,12 +1,12 @@
 ---
 // A section pop-up (Otto or Vee). Decorative: aria-hidden visual + one real "Hide" button.
-import { media, mediaUrl } from '../lib/media';
+import { media, mediaUrl, lineText } from '../lib/media';
 import { site } from '../lib/site';
 interface Props { id: string; char: 'otto' | 'vee'; clip: string; line: string; side?: 'left' | 'right' }
 const { id, char, clip, line, side = 'right' } = Astro.props;
 const who = char === 'vee' ? media.vee : media.otto;
 const name = char === 'vee' ? site.producer : site.mascot;
-const text = media.voice[line]?.text ?? '';
+const text = lineText(line);
 ---
 <aside class:list={['pop', `pop-${side}`, `pop-${char}`]} data-pop={id} data-char={char} data-clip={clip} data-line={line}>
   <div class="pop-visual" aria-hidden="true">

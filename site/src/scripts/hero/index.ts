@@ -6,7 +6,7 @@ import { Ring } from './ring';
 import { media, mediaUrl, resolveClip, ringFilms, SPEC_LABEL, VIDEO_TYPES } from '../../lib/media';
 import { alphaSrc, pickAlphaCodec, type AlphaCodec } from '../core/codec';
 import { prefs, session, soundOn, motionPaused, reducedMotion, saveData } from '../core/prefs';
-import { say, hush } from '../core/voice';
+import { say, hush, heard } from '../core/voice';
 import { Flip, gsap, scrollToY, stopSmooth } from '../core/motion';
 import { track } from '../core/analytics';
 
@@ -21,18 +21,16 @@ export function mountHero(): void {
   if (!hero) return;
   const main = $<HTMLElement>(document, '#content');
   const otto = $<AlphaVideo>(hero, '#otto');
-  const ottoFrame = $<HTMLElement>(hero, '[data-otto-frame]');
   const captionEl = $<HTMLElement>(hero, '[data-caption]');
   const stage = $<HTMLElement>(hero, '[data-stage]');
   const stageFilm = $<HTMLElement>(hero, '[data-stage-film]');
   const film = $<HTMLVideoElement>(hero, '[data-film]');
   const filmLabel = $<HTMLElement>(hero, '[data-film-label]');
   const tapSound = $<HTMLButtonElement>(hero, '[data-tap-sound]');
-  const soundBtn = $<HTMLButtonElement>(hero, '[data-sound]');
   const motionBtn = $<HTMLButtonElement>(hero, '[data-motion]');
   const continueBtn = $<HTMLButtonElement>(hero, '[data-continue]');
   const anotherBtn = $<HTMLButtonElement>(hero, '[data-pick-another]');
-  const ring = new Ring($<HTMLElement>(hero, '[data-ring]'), hero, ottoFrame);
+  const ring = new Ring($<HTMLElement>(hero, '[data-ring]'), $<HTMLElement>(hero, '[data-scene]'));
   const films = ringFilms();
   const rm = reducedMotion();
   if (rm) hero.classList.add('rm');
@@ -169,12 +167,12 @@ export function mountHero(): void {
     document.body.append(clone);
     stageFilm.style.opacity = '0';
     Flip.fit(clone, stageFilm, {
-      duration: 0.65,
-      ease: 'power3.inOut',
+      duration: 0.95,
+      ease: 'expo.inOut',
       absolute: true,
       onComplete: () => {
         stageFilm.style.opacity = '1';
-        gsap.to(clone, { opacity: 0, duration: 0.2, onComplete: () => clone.remove() });
+        gsap.to(clone, { opacity: 0, duration: 0.35, ease: 'power2.out', onComplete: () => clone.remove() });
         done();
       },
     });
@@ -184,13 +182,13 @@ export function mountHero(): void {
         stageFilm.style.opacity = '1';
         done();
       }
-    }, 1600);
+    }, 2000);
   };
 
   const dock = (): void => {
     const st = Flip.getState(stageFilm);
     stage.classList.add('docked');
-    Flip.from(st, { duration: rm ? 0 : 0.5, ease: 'power2.inOut' });
+    Flip.from(st, { duration: rm ? 0 : 0.8, ease: 'expo.inOut' });
   };
   const shrink = (): void => {
     film.pause();
@@ -198,8 +196,9 @@ export function mountHero(): void {
     if (stage.hidden) return;
     gsap.to(stageFilm, {
       opacity: 0,
-      scale: 0.85,
-      duration: rm ? 0 : 0.3,
+      scale: 0.9,
+      duration: rm ? 0 : 0.35,
+      ease: 'power2.in',
       onComplete: () => {
         stage.hidden = true;
         stage.classList.remove('docked');
@@ -211,7 +210,7 @@ export function mountHero(): void {
   // ---------- pull-up (Continue) ----------
   let pullContact: (() => void) | null = null;
   const pullUp = (): void => {
-    const target = (): number => main.getBoundingClientRect().top + window.scrollY;
+    const target = (): number => main.getBoundingClientRect().top + window.scrollY - 64;
     const meta = resolveClip(media.otto, 'char_reach');
     const contact = meta?.markers?.['contact'] ?? 0.5;
     const dur = meta?.duration ?? 2;
@@ -279,9 +278,14 @@ export function mountHero(): void {
       case 'otto':
         void playOtto(fx.clips);
         break;
-      case 'say':
-        void say(fx.line, { caption, silent: fx.silent ?? false });
+      case 'say': {
+        const asking = state.s === 'asking';
+        void say(fx.line, { caption, silent: fx.silent ?? false }).then(() => {
+          // Talk clips end on the idle pose: let the loop finish, then idle.
+          if (asking && state.s === 'asking') void otto.finishLoop().then(() => void (state.s === 'asking' && playOtto(['char_idle'])));
+        });
         break;
+      }
       case 'hush':
         hush();
         break;
@@ -355,19 +359,13 @@ export function mountHero(): void {
   continueBtn.addEventListener('click', () => dispatch({ e: 'CONTINUE' }));
   $<HTMLButtonElement>(hero, '[data-close]').addEventListener('click', () => dispatch({ e: 'CLOSE' }));
   film.addEventListener('ended', () => dispatch({ e: 'FILM_END' }));
-  tapSound.addEventListener('click', () => {
-    prefs.set({ sound: 'on' });
-    film.muted = false;
-    tapSound.hidden = true;
-    syncSound();
-  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && (state.s === 'playing' || state.s === 'enlarging')) dispatch({ e: 'CLOSE' });
   });
   $<HTMLAnchorElement>(hero, '[data-skip]').addEventListener('click', (e) => {
     e.preventDefault();
     dispatch({ e: 'LEFT_HERO', via: 'skip' });
-    scrollToY(main.getBoundingClientRect().top + window.scrollY);
+    scrollToY(main.getBoundingClientRect().top + window.scrollY - 64);
     main.querySelector<HTMLElement>('h2')?.setAttribute('tabindex', '-1');
     main.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
   });
@@ -379,25 +377,27 @@ export function mountHero(): void {
   );
   const aiLine = hero.querySelector<HTMLElement>('[data-ai-line]');
   const aiHover = (): void => void say('vo_ai', { caption, silent: true });
+  // Sound switched on while the hero is on screen: Otto introduces himself (once, after Vee).
+  document.addEventListener('vxo:crew-intro-done', () => {
+    if (state.s !== 'idle' || heroCovered || window.scrollY > hero.offsetHeight * 0.5 || heard('act_o1')) return;
+    void playOtto(['otto_talk_a']);
+    void say('act_o1', { caption }).then(() => otto.finishLoop().then(() => void (state.s === 'idle' && playOtto(['char_idle']))));
+  });
   aiLine?.addEventListener('pointerenter', aiHover);
   aiLine?.addEventListener('focus', aiHover);
 
-  // Sound + motion toggles (remembered).
+  // Sound lives in the story chrome pill; keep the film in step with it.
   const syncSound = (): void => {
-    const on = prefs.get().sound !== 'off' && session.gesture;
-    soundBtn.setAttribute('aria-pressed', String(on));
-    soundBtn.innerHTML = `Sound: <b>${on ? 'on' : 'off'}</b>`;
+    film.muted = !soundOn();
+    if (!film.muted) tapSound.hidden = true;
   };
-  soundBtn.addEventListener('click', () => {
-    const turningOn = !(prefs.get().sound !== 'off' && session.gesture);
-    prefs.set({ sound: turningOn ? 'on' : 'off' });
-    film.muted = !turningOn;
-    if (!turningOn) hush();
-    else tapSound.hidden = true;
-    syncSound();
+  document.addEventListener('vxo:sound', syncSound);
+  tapSound.addEventListener('click', () => {
+    prefs.set({ sound: 'on' });
+    film.muted = false;
+    tapSound.hidden = true;
+    document.dispatchEvent(new CustomEvent('vxo:sound'));
   });
-  window.addEventListener('pointerdown', () => queueMicrotask(syncSound), { once: true, capture: true });
-  syncSound();
 
   const syncMotion = (): void => {
     const paused = prefs.get().motion === 'paused';

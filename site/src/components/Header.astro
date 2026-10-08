@@ -10,12 +10,13 @@ const nav = [
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
-<header class:list={['site-header', { overlay: home }]}>
+<header class:list={['site-header', { home }]}>
   <div class="wrap bar">
     <a class="logo" href="/" aria-label={`${site.studio} home`}>
       <span class="mark">{site.studio}</span>
       <span class="long">{site.studioLong}</span>
     </a>
+    {home && <span class="h-chapter" data-chapter-text aria-hidden="true">Scene 1 · The take</span>}
     <nav aria-label="Main" class="nav">
       <ul>
         {nav.map((n) => <li><a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a></li>)}
@@ -32,10 +33,11 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   </div>
 </header>
 <style>
-  .site-header { position: relative; z-index: 30; }
-  .site-header.overlay { position: absolute; inset: 0 0 auto 0; }
-  .bar { display: flex; align-items: center; gap: 16px; min-height: 68px; }
-  .logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; margin-right: auto; }
+  .site-header { position: sticky; top: 0; z-index: 30; background: rgb(15 14 13 / 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; gap: 16px; height: var(--header-h); }
+  .h-chapter { font: 600 0.62rem/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  @media (min-width: 1100px) { .h-chapter { display: none; } }
+  .logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; margin-right: auto; flex: 0 0 auto; }
   .mark { font: 400 1.7rem/1 var(--serif); letter-spacing: 0.06em; color: var(--ivory); }
   .long { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); display: none; }
   .nav ul { display: none; list-style: none; gap: 22px; margin: 0; padding: 0; }
@@ -50,6 +52,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   .menu li a { display: block; padding: 12px 14px; text-decoration: none; border-radius: 8px; }
   .menu li a:hover { background: var(--ink-3); }
   @media (min-width: 560px) { .long { display: inline; } }
+  @media (max-width: 559px) { .home .logo { margin-right: 0; } .home .h-chapter { margin-right: auto; } }
   @media (min-width: 900px) {
     .nav ul { display: flex; }
     .cta { display: inline-flex; }

@@ -4,38 +4,106 @@
   "from": 1200,
   "tiers": [
     {
-      "id": "season", "name": "Season", "price": 3500, "unit": "/mo", "note": "3-month minimum", "recommended": false,
+      "id": "season",
+      "name": "Season",
+      "price": 3500,
+      "unit": "/mo",
+      "note": "3-month minimum",
+      "recommended": false,
       "for": "Brands running paid social every week",
-      "deliverables": ["1 new concept a month", "30 s one-take hero film", "8 s loop", "8–12 variants (3 hooks; 6 / 15 / 30 s; 9:16 + 4:5)", "6 stills"],
+      "deliverables": [
+        "1 new concept a month",
+        "30 s one-take hero film",
+        "8 s loop",
+        "8–12 variants (3 hooks; 6 / 15 / 30 s; 9:16 + 4:5)",
+        "6 stills"
+      ],
       "turnaround": "Frames by day 5, films by day 10, a variant drop each week",
       "payment": "Monthly in advance; then 30 days' notice",
-      "perAsset": "≈ $250–330 per asset"
+      "perAsset": "≈ $250–330 per asset",
+      "cta": {
+        "label": "Book a call",
+        "href": "call"
+      }
     },
     {
-      "id": "premiere", "name": "Premiere", "price": 2500, "unit": "", "note": "", "recommended": true, "ribbon": "Recommended for launches",
+      "id": "premiere",
+      "name": "Premiere",
+      "price": 2500,
+      "unit": "",
+      "note": "",
+      "recommended": true,
+      "ribbon": "Recommended for launches",
       "for": "A launch, a drop or a Q4 push",
-      "deliverables": ["5 storyboard frames", "30 s one-take hero film", "8 s loop", "6 variants (3 hooks × 2 lengths)", "9:16 + 4:5 (1:1 on request)", "3 stills", "Captions file"],
+      "deliverables": [
+        "5 storyboard frames",
+        "30 s one-take hero film",
+        "8 s loop",
+        "6 variants (3 hooks × 2 lengths)",
+        "9:16 + 4:5 (1:1 on request)",
+        "3 stills",
+        "Captions file"
+      ],
       "turnaround": "Frames day 2 → first take day 5 → final day 7–8",
       "payment": "50 % to start, 50 % on approval",
-      "perAsset": "≈ $230 per asset"
+      "perAsset": "≈ $230 per asset",
+      "cta": {
+        "label": "Start with free frames",
+        "href": "/frames"
+      }
     },
     {
-      "id": "short", "name": "Short", "price": 1200, "unit": "", "note": "", "recommended": false,
-      "for": "A first test of us",
-      "deliverables": ["5 storyboard frames", "30 s one-take hero film", "3 short versions (6 s, 15 s, a hook swap)", "9:16 + 4:5"],
+      "id": "short",
+      "name": "Short",
+      "price": 1200,
+      "unit": "",
+      "note": "",
+      "recommended": false,
+      "for": "A first test of us (a credited pilot)",
+      "deliverables": [
+        "5 storyboard frames",
+        "30 s one-take hero film",
+        "3 short versions (6 s, 15 s, a hook swap)",
+        "9:16 + 4:5"
+      ],
       "turnaround": "Final in 5 business days",
       "payment": "50 % / 50 %",
-      "perAsset": ""
+      "perAsset": "",
+      "credit": "Short fee credited toward Premiere/Season within 30 days.",
+      "cta": {
+        "label": "Start with free frames",
+        "href": "/frames"
+      }
     }
   ],
   "allPlans": "All plans: 2 revision rounds per film (extra rounds $150). Music licensed for paid social. Perpetual, worldwide licence for your digital ads, organic posts and site; TV, out-of-home and retail quoted separately.",
   "addOns": [
-    { "name": "Rush delivery under 5 days", "price": "+25 %" },
-    { "name": "Extra SKU or scent in the same world", "price": "+$400" },
-    { "name": "30 s voice-over cut, faceless", "price": "+$500" },
-    { "name": "Localised on-screen text", "price": "+$150 per language" }
+    {
+      "name": "Rush delivery under 5 days",
+      "price": "+25 %"
+    },
+    {
+      "name": "Extra SKU or scent in the same world",
+      "price": "+$400"
+    },
+    {
+      "name": "30 s voice-over cut, faceless",
+      "price": "+$500"
+    },
+    {
+      "name": "Localised on-screen text",
+      "price": "+$150 per language"
+    }
   ],
   "context": "A polished product video from a production company typically runs $3–10k. A single UGC video is about $150–200, and you still direct it.",
-  "contextSource": { "label": "DesignRush", "url": "https://www.designrush.com/agency/video-production/trends/cost-of-video-production" },
-  "founding": { "show": true, "total": 5, "left": 5, "line": "First five brands: one extra variant, in exchange for permission to show the work once it's live and a 15-minute debrief." }
+  "contextSource": {
+    "label": "DesignRush",
+    "url": "https://www.designrush.com/agency/video-production/trends/cost-of-video-production"
+  },
+  "founding": {
+    "show": true,
+    "total": 5,
+    "left": 5,
+    "line": "First five brands: one extra variant, in exchange for permission to show the work once it's live and a 15-minute debrief."
+  }
 }

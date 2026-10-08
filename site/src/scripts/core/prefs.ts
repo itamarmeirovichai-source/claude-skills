@@ -46,8 +46,8 @@ if (typeof window !== 'undefined') {
   for (const ev of ['pointerdown', 'keydown'] as const) window.addEventListener(ev, markGesture, { capture: true, passive: true });
 }
 
-/** Sound is on only after a gesture and unless the visitor muted it. */
-export const soundOn = (): boolean => session.gesture && current.sound !== 'off';
+/** Crew voices and film sound only after the visitor chose "Sound on" (and tapped this visit). */
+export const soundOn = (): boolean => session.gesture && current.sound === 'on';
 
 export const reducedMotion = (): boolean => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 export const motionPaused = (): boolean => current.motion === 'paused' || reducedMotion();

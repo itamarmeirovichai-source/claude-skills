@@ -28,10 +28,20 @@
   --maxw: 1200px;
   --radius: 14px;
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  /* Ref 39 §4.3: cinematic reveals expo-out; exits ease-in and shorter. No bounce, no overshoot. */
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.55, 0, 0.75, 0.2);
+  --space-act: clamp(96px, 16vh, 200px);
+  --header-h: 64px;
+  --dock-h: 0px; /* height of the mobile sticky CTA bar when shown */
+  --actor-h: min(30vh, 250px); /* crew height at scale 1 (desktop below) */
   color-scheme: dark;
 }
 @media (min-width: 768px) {
   :root { --gutter: 32px; }
+}
+@media (min-width: 900px) {
+  :root { --actor-h: min(64vh, 580px); }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -62,7 +72,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
 
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 .eyebrow { font: 600 0.72rem/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin: 0 0 1rem; }
-.lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--text-dim); max-width: 46ch; }
+.lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; color: var(--text-dim); max-width: 46ch; }
 .dim { color: var(--text-dim); }
 .small { font-size: 0.85rem; }
 .signature { font-family: var(--serif); font-style: italic; color: var(--brass-hi); font-size: clamp(1.2rem, 2.2vw, 1.6rem); letter-spacing: 0.01em; }
@@ -78,6 +88,8 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
 }
 .btn:hover { border-color: var(--brass); color: var(--text); }
 .btn:active { transform: scale(0.98); }
+.btn:not(.btn-primary):not(.btn-ox) { background-image: linear-gradient(var(--brass), var(--brass)); background-size: 0 1px; background-position: 1.3em calc(100% - 9px); background-repeat: no-repeat; transition: background-size 0.2s var(--ease), border-color 0.2s, color 0.2s, transform 0.2s var(--ease); }
+.btn:not(.btn-primary):not(.btn-ox):hover { background-size: calc(100% - 2.6em) 1px; }
 .btn-primary { background: var(--brass); border-color: var(--brass); color: #1a1510; }
 .btn-primary:hover { background: var(--brass-hi); border-color: var(--brass-hi); color: #1a1510; }
 .btn-ox { background: var(--oxblood); border-color: var(--oxblood); color: var(--ivory); }
@@ -86,7 +98,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
 .btn-ghost { border-color: transparent; padding-inline: 0.6em; min-height: 44px; }
 
 /* Sections */
-.section { padding-block: clamp(72px, 12vw, 140px); position: relative; }
+.section { padding-block: var(--space-act); position: relative; }
 .section + .section { border-top: 1px solid var(--line); }
 .section-head { max-width: 760px; margin-bottom: clamp(32px, 5vw, 56px); position: relative; }
 .grid-3 { display: grid; gap: 16px; grid-template-columns: 1fr; }
@@ -139,3 +151,23 @@ fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; }
 .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brass); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Light-up section (Act VII): the same components, inverted tokens. */
+.lights {
+  --ink-1: #f3ede2; --ink-2: #fbf7ef; --ink-3: #e9e1d2; --ink-0: #fffdf8;
+  --text: #1c1916; --text-dim: #4d463d; --text-faint: #6f675b;
+  --line: rgb(28 25 22 / 0.12); --line-strong: rgb(28 25 22 / 0.24);
+  --brass: #8a6a37; --brass-hi: #6f5226;
+  color-scheme: light; background: var(--ink-1); color: var(--text);
+}
+.lights .btn-primary { color: #fffdf8; }
+.lights .btn-primary:hover { color: #fffdf8; }
+
+/* Static film grain on ink sections (not animated: animated grain costs GPU). */
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.035; mix-blend-mode: overlay; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Anchors land below the sticky header. */
+section[id], [id='start'], [id='bfcm'] { scroll-margin-top: 72px; }

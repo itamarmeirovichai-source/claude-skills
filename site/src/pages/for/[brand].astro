@@ -1,0 +1,106 @@
+---
+// Private landing page per researched lead (ref 40 §5.1): message-matched headline, their frame,
+// the walkthrough video, the offer and one booking button. Never indexed, never linked from the site.
+import Base from '../../layouts/Base.astro';
+import MiniForm from '../../components/story/MiniForm.astro';
+import { mediaUrl } from '../../lib/media';
+import { site, bfcm, bfcmOpen, callHref, money, pricing } from '../../lib/site';
+import data from '../../data/brands.json';
+
+interface Lead {
+  slug: string;
+  example?: boolean;
+  brand: string;
+  firstName?: string;
+  product: string;
+  category?: string;
+  headline: string;
+  sub: string;
+  frames: string[];
+  walkthrough: { mp4: string; poster?: string } | null;
+  walkthroughNote?: string;
+  offer: 'bfcm' | 'frames';
+  bookingUrl?: string;
+}
+
+export function getStaticPaths() {
+  return (data.brands as Lead[]).map((b) => ({ params: { brand: b.slug }, props: { lead: b } }));
+}
+const { lead } = Astro.props as { lead: Lead };
+const book = lead.bookingUrl || callHref();
+const showBfcm = lead.offer === 'bfcm' && bfcmOpen();
+const premiere = pricing.tiers.find((t) => t.id === 'premiere');
+---
+<Base title={`For ${lead.brand}`} description={`A first frame of ${lead.product}, made by ${site.studio}.`} noindex>
+  <main id="content" class="for" tabindex="-1">
+    {lead.example && <p class="example">Example page · {lead.brand} is a fictional brand used to show the template.</p>}
+    <section class="wrap head">
+      <p class="eyebrow">For {lead.brand}{lead.firstName && ` · ${lead.firstName}`}</p>
+      <h1>{lead.headline}</h1>
+      <p class="lede">{lead.sub}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={book} data-for-cta="book">Book 15 minutes <span aria-hidden="true">→</span></a>
+        <a class="btn" href="#frames">Get all 5 frames free</a>
+      </div>
+    </section>
+
+    <section class="wrap media" aria-label="Your frame and walkthrough">
+      <figure class="frame">
+        {lead.frames[0] ? (
+          <img src={mediaUrl(lead.frames[0])} alt={`Frame 1 of 5: ${lead.product} (AI concept by ${site.studio})`} width="1200" height="1500" />
+        ) : (
+          <div class="placeholder" role="img" aria-label="Frame placeholder"><span>Frame 1 of 5 · {lead.product}</span></div>
+        )}
+        <figcaption class="small dim">AI concept made by {site.studio}, unasked, from your public product photos. Not affiliated with {lead.brand}. Yours to keep or delete.</figcaption>
+      </figure>
+      <div class="walk">
+        {lead.walkthrough ? (
+          <video controls playsinline preload="metadata" poster={lead.walkthrough.poster ? mediaUrl(lead.walkthrough.poster) : undefined} src={mediaUrl(lead.walkthrough.mp4)}></video>
+        ) : (
+          <div class="placeholder short"><span>{lead.walkthroughNote ?? 'Walkthrough video'}</span></div>
+        )}
+        <h2 class="h3">What happens next</h2>
+        <ol class="next">
+          <li>You reply or book 15 minutes. No prep needed.</li>
+          <li>The other 4 frames, free, in 3–5 business days.</li>
+          <li>If you like them, a 30-second one-take film{premiere && ` from ${money(premiere.price)}`}. 50 % on approval.</li>
+        </ol>
+      </div>
+    </section>
+
+    {showBfcm && (
+      <section class="wrap offer" aria-label={bfcm.name}>
+        <p class="eyebrow">{bfcm.name}</p>
+        <p class="offer-text">Final files by {bfcm.finalByLabel}, two weeks before Black Friday. Booking closes {bfcm.bookByLabel}. {bfcm.bonus}</p>
+      </section>
+    )}
+
+    <section class="wrap get" id="frames" aria-label="Get the 5 frames">
+      <h2>Want all five?</h2>
+      <MiniForm id="for-form" act="for" />
+    </section>
+    <p class="wrap small dim disclose">Everything here is made with AI, including {site.mascot} and {site.producer}.</p>
+  </main>
+</Base>
+<script>
+  import '../../scripts/pages';
+</script>
+<style>
+  .for { padding-block: clamp(32px, 8vh, 96px); outline: none; }
+  .example { margin: 0 auto 32px; width: fit-content; max-width: calc(100% - 32px); padding: 8px 14px; border: 1px dashed var(--vermilion); border-radius: 999px; font-size: 0.82rem; color: var(--text); }
+  .head h1 { max-width: 18ch; }
+  .media { display: grid; gap: 32px; margin-top: clamp(40px, 8vh, 96px); }
+  @media (min-width: 900px) { .media { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; } }
+  .frame { margin: 0; }
+  .frame img, .placeholder { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; border: 1px solid var(--line); background: var(--ink-2); }
+  .placeholder { display: grid; place-items: center; color: var(--text-faint); font-size: 0.9rem; text-align: center; padding: 16px; }
+  .placeholder.short { aspect-ratio: 16 / 10; }
+  .frame figcaption { margin-top: 10px; }
+  .walk video { width: 100%; border-radius: 16px; background: #000; }
+  .h3 { font-size: 1.6rem; margin-top: 28px; }
+  .next { padding-left: 1.2em; color: var(--text-dim); }
+  .offer { margin-top: 64px; padding-block: 28px; border-block: 1px solid rgb(176 141 87 / 0.35); }
+  .offer-text { max-width: 60ch; color: var(--text-dim); margin: 0; }
+  .get { margin-top: 64px; }
+  .disclose { margin-top: 48px; }
+</style>

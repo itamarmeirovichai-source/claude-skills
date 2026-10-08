@@ -1,60 +1,50 @@
-// The orbit: N (3–6) film cards on a CSS-3D ellipse around Otto (desktop), or a swipeable row (mobile).
-// Cards are billboards (always face the viewer) placed with translate3d, so they pass behind Otto.
+// The orbit: 3–6 film cards on a flat 2D ellipse around Otto. Slow continuous rotation, cards stay upright,
+// hover/focus holds it still. Same on phones (a smaller circle); loops only decode on desktop.
 import { gsap } from 'gsap';
 import type { Dir } from './machine';
 import { isMobile, motionPaused, saveData } from '../core/prefs';
 
-const MAX_DECODERS_DESKTOP = 3;
-const MAX_DECODERS_MOBILE = 3;
+const LOOP_PERIOD_S = 84; // one full orbit: slow enough to read, fast enough to notice
+const MAX_LOOPS_DESKTOP = 4; // + Otto = 5 decoders (ref 39 §1.4)
 
 export class Ring {
   private items: HTMLElement[];
   private cards: HTMLAnchorElement[];
   private videos: HTMLVideoElement[];
-  private angle = 0; // radians; card i sits at angle + i*step
+  private angle = 0; // radians; card i sits at angle + i*step, 0 = top
   private running = false;
-  private hold = false; // hover/focus stops rotation
-  private speed = 0.12; // rad/s
+  private hold = false;
+  private speed = (Math.PI * 2) / LOOP_PERIOD_S;
+  private ease = 1; // 0..1: the orbit eases in/out of a hold instead of stopping dead
   private step: number;
   private last = 0;
   private tween: gsap.core.Tween | null = null;
   private loopsOn = new Set<number>();
-  private io: IntersectionObserver | null = null;
-  private visibleMobile = new Set<number>();
   private loopsEnabled = true;
+  private geo = { rx: 0, ry: 0 };
 
-  constructor(root: HTMLElement, private hero: HTMLElement, private ottoFrame: HTMLElement) {
+  constructor(private root: HTMLElement, private scene: HTMLElement) {
     this.items = [...root.querySelectorAll<HTMLElement>('.ring-item')];
     this.cards = [...root.querySelectorAll<HTMLAnchorElement>('[data-card]')];
     this.videos = this.cards.map((c) => c.querySelector('video') as HTMLVideoElement);
     this.step = (Math.PI * 2) / Math.max(1, this.items.length);
-    root.addEventListener('pointerenter', () => (this.hold = true));
-    root.addEventListener('pointerleave', () => (this.hold = false));
-    root.addEventListener('focusin', () => (this.hold = true));
-    root.addEventListener('focusout', () => (this.hold = false));
+    this.angle = -this.step / 2; // start with no card dead-centre over Otto's hat
+    const on = (): void => void (this.hold = true);
+    const off = (): void => void (this.hold = this.root.contains(document.activeElement));
+    root.addEventListener('pointerover', (e) => (e.target as HTMLElement).closest('.card') && on());
+    root.addEventListener('pointerout', (e) => (e.target as HTMLElement).closest('.card') && (this.hold = false));
+    root.addEventListener('focusin', on);
+    root.addEventListener('focusout', () => queueMicrotask(off));
     root.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
-      const i = this.frontIndex() + (e.key === 'ArrowRight' ? 1 : -1);
       const n = this.items.length;
-      const next = ((i % n) + n) % n;
-      this.rotateTo(next);
+      const cur = this.cards.findIndex((c) => c === document.activeElement);
+      const next = ((((cur < 0 ? 0 : cur) + (e.key === 'ArrowRight' ? 1 : -1)) % n) + n) % n;
       this.cards[next]?.focus({ preventScroll: true });
     });
-    this.io = new IntersectionObserver(
-      (es) => {
-        for (const e of es) {
-          const i = Number((e.target as HTMLElement).dataset['i']);
-          if (e.isIntersecting) this.visibleMobile.add(i);
-          else this.visibleMobile.delete(i);
-        }
-        if (isMobile()) this.assignLoops();
-      },
-      { root: root.querySelector('.ring-track'), threshold: 0.6 },
-    );
-    this.items.forEach((it) => this.io?.observe(it));
     gsap.ticker.add(this.tick);
-    window.addEventListener('resize', () => this.layout());
+    new ResizeObserver(() => this.layout()).observe(scene);
     this.layout();
   }
 
@@ -64,7 +54,6 @@ export class Ring {
 
   run(on: boolean): void {
     this.running = on;
-    this.loopsEnabled = on || !isMobile();
     this.assignLoops();
   }
 
@@ -76,91 +65,59 @@ export class Ring {
   private tick = (time: number): void => {
     const dt = this.last ? Math.min(0.1, time - this.last) : 0;
     this.last = time;
-    if (isMobile()) return;
-    if (this.running && !this.hold && !this.tween && !motionPaused()) {
-      this.angle -= this.speed * dt;
-      this.layout();
+    const moving = this.running && !this.hold && !this.tween && !motionPaused();
+    // Ease the angular speed (≈0.8 s) so a hover settles the ring instead of freezing it.
+    this.ease += ((moving ? 1 : 0) - this.ease) * Math.min(1, dt * 3.2);
+    if (!moving && this.ease < 0.02) this.ease = 0; // settled: fully still
+    if (this.ease > 0.001 && !this.tween && !motionPaused()) {
+      this.angle += this.speed * this.ease * dt;
+      this.place();
     }
   };
 
-  /** Place every card on the ellipse; also refresh which cards may decode a loop. */
+  /** Measure the scene and size the ellipse so cards clear Otto's face. */
   layout(): void {
-    if (isMobile()) {
-      this.items.forEach((it) => (it.style.transform = ''));
-      return;
-    }
-    const w = this.hero.clientWidth;
-    const frame = this.ottoFrame.getBoundingClientRect();
-    const rx = Math.min(Math.max(frame.width * 0.85, 200), w * 0.3);
-    const rz = rx * 0.75;
-    const ry = frame.height * 0.22; // front cards pass low (over the hands), back cards ride up behind the shoulders
+    const w = this.scene.clientWidth;
+    const h = this.scene.clientHeight;
+    const card = this.cards[0]?.getBoundingClientRect();
+    const cw = card?.width || 80;
+    const ch = card?.height || 142;
+    const ry = Math.max(40, h / 2 - ch / 2 - 6);
+    const rx = Math.max(40, Math.min(w / 2 - cw / 2 - 6, ry * 1.35));
+    this.geo = { rx, ry };
+    this.place();
+  }
+
+  private place(): void {
+    const { rx, ry } = this.geo;
     this.items.forEach((it, i) => {
       const a = this.angle + i * this.step;
       const x = Math.sin(a) * rx;
-      const z = Math.cos(a) * rz;
-      const y = Math.cos(a) * ry; // a tilted orbit, not a flat circle
-      const depth = (Math.cos(a) + 1) / 2; // 0 back … 1 front
-      it.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px)`;
-      it.style.opacity = (0.45 + depth * 0.55).toFixed(2);
-      it.style.filter = depth < 0.35 ? `brightness(${(0.5 + depth).toFixed(2)})` : '';
-      it.style.zIndex = String(Math.round(depth * 10));
+      const y = -Math.cos(a) * ry;
+      it.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
     });
-    this.assignLoops();
   }
 
+  /** The card nearest the bottom of the ring (closest to the visitor's hand). */
   frontIndex(): number {
     let best = 0;
-    let bestZ = -Infinity;
+    let bestY = -Infinity;
     this.items.forEach((_, i) => {
-      const z = Math.cos(this.angle + i * this.step);
-      if (z > bestZ) {
-        bestZ = z;
+      const y = -Math.cos(this.angle + i * this.step);
+      if (y > bestY) {
+        bestY = y;
         best = i;
       }
     });
     return best;
   }
 
-  /** Ease card i to the front (desktop) or scroll it into view (mobile). */
-  rotateTo(i: number, duration = 0.6): Promise<void> {
-    if (isMobile()) {
-      this.items[i]?.scrollIntoView({ behavior: motionPaused() ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
-      return Promise.resolve();
-    }
-    const target = -i * this.step;
-    let delta = (target - this.angle) % (Math.PI * 2);
-    if (delta > Math.PI) delta -= Math.PI * 2;
-    if (delta < -Math.PI) delta += Math.PI * 2;
-    this.tween?.kill();
-    const state = { a: this.angle };
-    return new Promise((resolve) => {
-      this.tween = gsap.to(state, {
-        a: this.angle + delta,
-        duration: motionPaused() ? 0 : duration,
-        ease: 'power3.inOut',
-        onUpdate: () => {
-          this.angle = state.a;
-          this.layout();
-        },
-        onComplete: () => {
-          this.tween = null;
-          resolve();
-        },
-      });
-    });
-  }
-
-  /** Where is card i relative to Otto? Left third / right third / centre of the hero. */
+  /** Where is card i relative to Otto? */
   dirOf(i: number): Dir {
-    const card = this.cards[i];
-    if (!card) return 'C';
-    const r = card.getBoundingClientRect();
-    const o = this.ottoFrame.getBoundingClientRect();
-    const cx = r.left + r.width / 2;
-    const ox = o.left + o.width / 2;
-    const third = Math.max(o.width * 0.5, this.hero.clientWidth / 6);
-    if (cx < ox - third) return 'L';
-    if (cx > ox + third) return 'R';
+    const a = this.angle + i * this.step;
+    const x = Math.sin(a);
+    if (x < -0.35) return 'L';
+    if (x > 0.35) return 'R';
     return 'C';
   }
 
@@ -168,19 +125,11 @@ export class Ring {
     return this.cards[i];
   }
 
-  /** Decoder budget: only the front-most (desktop) or visible (mobile) cards play loops. */
+  /** Decoder budget: desktop plays every card loop (≤4); phones show posters (Otto is the one decoder). */
   private assignLoops(): void {
     const allow = new Set<number>();
-    if (this.loopsEnabled && !motionPaused() && !saveData()) {
-      if (isMobile()) {
-        [...this.visibleMobile].slice(0, MAX_DECODERS_MOBILE).forEach((i) => allow.add(i));
-      } else {
-        this.items
-          .map((_, i) => ({ i, z: Math.cos(this.angle + i * this.step) }))
-          .sort((a, b) => b.z - a.z)
-          .slice(0, MAX_DECODERS_DESKTOP)
-          .forEach(({ i }) => allow.add(i));
-      }
+    if (this.loopsEnabled && !motionPaused() && !saveData() && !isMobile()) {
+      this.items.slice(0, MAX_LOOPS_DESKTOP).forEach((_, i) => allow.add(i));
     }
     this.videos.forEach((v, i) => {
       if (allow.has(i) && !this.loopsOn.has(i)) {
@@ -193,8 +142,6 @@ export class Ring {
         this.loopsOn.delete(i);
         v.classList.remove('on');
         v.pause();
-        v.removeAttribute('src');
-        v.load();
       }
     });
   }

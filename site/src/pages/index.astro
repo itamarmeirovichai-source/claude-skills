@@ -1,21 +1,30 @@
 ---
+// The home page as one continuous take: eight acts and a coda (ref 39 §5).
+// Acts: I The take (hero ring) · II The tired ad · III One photo in (pinned demo) · IV Four films ·
+// V The schedule · VI What you risk · BFCM band · VII The price (lights up) · VIII Your product next · Coda.
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import PopUp from '../components/PopUp.astro';
 import FilmTile from '../components/FilmTile.astro';
 import Pricing from '../components/Pricing.astro';
 import Faq from '../components/Faq.astro';
 import LeadForm from '../components/LeadForm.astro';
+import Chip from '../components/Chip.astro';
+import Actor from '../components/story/Actor.astro';
+import Dock from '../components/story/Dock.astro';
+import MiniForm from '../components/story/MiniForm.astro';
+import BfcmBand from '../components/story/BfcmBand.astro';
+import StoryChrome from '../components/story/StoryChrome.astro';
 import { media, mediaUrl } from '../lib/media';
 import { site, pricing, money } from '../lib/site';
 
-const films = media.films.slice(0, 6);
-const brandList = films.filter((f) => f.category !== 'Studio').map((f) => f.brand);
-const brands = brandList.length > 1 ? `${brandList.slice(0, -1).join(', ')} and ${brandList.at(-1)}` : (brandList[0] ?? '');
+const films = media.films.filter((x) => x.category !== 'Studio').slice(0, 4);
+const brandFilm = media.films.find((x) => x.slug === 'tabletop-city');
+const demo = media.films.find((f) => f.slug === 'aurum') ?? media.films[0];
 const offers = pricing.tiers.map((t) => ({ '@type': 'Offer', name: t.name, price: t.price, priceCurrency: 'USD' }));
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'AI product films', provider: { '@type': 'Organization', name: site.studio }, offers }];
+const f = pricing.founding;
 ---
-<Base title={site.studio} description={`Premium 30-second product films, each one continuous take. Made with AI, directed by a human. Start with 5 free frames of your product. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
+<Base title={site.studio} description={`Thirty-second product films, each one unbroken take. Made with AI, directed by a human. Start with 5 free frames of your product. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
   <Fragment slot="head">
     <link rel="preload" as="image" href={mediaUrl(media.otto.poster)} fetchpriority="high" />
   </Fragment>
@@ -24,155 +33,189 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'A
   <main id="content" class="sheet" tabindex="-1">
     <span class="grip" aria-hidden="true"></span>
 
-    <!-- S1 · The offer -->
-    <section class="section offer" id="offer" aria-labelledby="s1">
-      <div class="wrap split">
-        <div data-reveal>
-          <p class="eyebrow">5 free frames</p>
-          <h2 id="s1">See your product in our world before you spend a cent.</h2>
-          <p class="lede">Send one product photo. In 3–5 business days you get 5 cinematic frames, the storyboard of your film. Judge the look on your product, not on our reel.</p>
-          <ul class="ticks">
-            <li>5 frames, 1 concept, built around your product</li>
-            <li>No call needed. No card. No strings.</li>
-            <li>Marked "AI concept". Yours to keep and share inside your team.</li>
-          </ul>
-          <div class="btn-row">
-            <a class="btn btn-primary" href="/frames?for=bestseller">Frames for my bestseller</a>
-            <a class="btn" href="/frames?for=launch">Frames for my next launch</a>
-          </div>
-        </div>
-        <figure class="ba" data-ba data-reveal>
-          <div class="ba-frame">
-            <img class="after" src={mediaUrl(media.stills['ba_after'])} alt="Frame 3 of 5: the same product, lit and placed in a scene (AI concept)" width="1200" height="1500" loading="lazy" decoding="async" />
-            <img class="before" src={mediaUrl(media.stills['ba_before'])} alt="The plain product photo we started from" width="1200" height="1500" loading="lazy" decoding="async" />
-            <span class="ba-tag l">Product photo</span><span class="ba-tag r">Frame · AI concept</span>
-            <span class="ba-line" aria-hidden="true"></span>
-          </div>
-          <label class="sr-only" for="ba-range">Compare the product photo with the frame</label>
-          <input id="ba-range" type="range" min="0" max="100" value="50" />
-          <figcaption class="small dim">Our invented product, before and after. Spec work.</figcaption>
-        </figure>
-      </div>
-      <PopUp id="P1" char="otto" clip="pop_rise" line="vo_p1" side="right" />
-    </section>
-
-    <!-- S2 · The problem -->
-    <section class="section" aria-labelledby="s2">
+    <!-- Act II · The tired ad (problem) — normal scroll, Vee walks in from the right -->
+    <section class="act act-tired grain" id="tired" data-act="2" data-chapter="The tired ad" aria-labelledby="a2">
       <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">The problem</p>
-          <h2 id="s2">Your best ad is getting tired. A new shoot means weeks and a crew.</h2>
-        </div>
-        <div class="grid-3">
-          <article class="card" data-reveal><h3>Ads wear out fast.</h3><p class="dim">The median Meta ad creative lives about 22 days (Benly, Q1 2026).</p></article>
-          <article class="card" data-reveal><h3>Shoots are slow.</h3><p class="dim">Casting, location, crew, edit: by the time it's live, the moment's gone.</p></article>
-          <article class="card" data-reveal><h3>UGC can't get every shot.</h3><p class="dim">A guava splitting in slow motion. A bottle catching the last of the sun.</p></article>
-        </div>
-        <p class="closer" data-reveal>We make the shots that are hard to film, fast enough to keep up with your ads.</p>
-      </div>
-    </section>
-
-    <!-- S3 · The work -->
-    <section class="section" id="work" aria-labelledby="s3">
-      <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">Spec work · invented brands</p>
-          <h2 id="s3">Brands that don't exist. Films that look like they do.</h2>
-          <p class="lede">We invented {brands} to show what we make from nothing but a product and an idea. Every film is a single 30-second take. <span class="signature-inline">One take. No cuts.</span> Your film starts from your real product photo.</p>
-          <PopUp id="P2" char="otto" clip="pop_peek" line="vo_p2" side="right" />
-        </div>
-        <div class="tiles" data-count={films.length}>
-          {films.map((f, i) => <FilmTile film={f} eager={i < 2} />)}
-        </div>
-        <div class="btn-row more">
-          <a class="btn" href="/work">See all films</a>
-          <a class="btn btn-primary" href="/frames">Get my 5 free frames</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- S4 · How it works (Vee #1) -->
-    <section class="section how" id="how" aria-labelledby="s4">
-      <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">How it works</p>
-          <h2 id="s4">From one product photo to a finished film in about a week.</h2>
-          <p class="signature">{site.signature}</p>
-        </div>
-        <ol class="steps">
-          <li data-reveal><span class="num">1</span><h3>Frames <span class="dim">(free, 3–5 days)</span></h3><p class="dim">One photo in, 5 frames out. They fix the light, the palette and the camera path. You tell us what's off.</p></li>
-          <li data-reveal><span class="num">2</span><h3>Film <span class="dim">(7–8 days, two revision rounds)</span></h3><p class="dim">Storyboard day 2, first take day 5, final day 7–8. The hero is one continuous 30-second take: one shot, no cuts.</p></li>
-          <li data-reveal><span class="num">3</span><h3>Variants</h3><p class="dim">Every film ships as the 30 s one-take hero, an 8 s loop and short versions in 9:16 and 4:5, with 3 different openings to test.</p></li>
+        <p class="eyebrow" data-reveal>Scene 2 · The tired ad</p>
+        <h2 id="a2" class="rise" data-reveal><span>Your best ad is getting tired.</span></h2>
+        <ol class="beats">
+          <li class="rise" data-reveal><span>The hook still works. The feed stopped noticing.</span></li>
+          <li class="rise" data-reveal><span>A reshoot means a studio, a crew and three weeks.</span></li>
+          <li class="rise" data-reveal><span>UGC can't film a perfume in slow light.</span></li>
         </ol>
-        <div class="timeline" aria-hidden="true"><span></span></div>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="/frames">Start with step 1 <span aria-hidden="true">→</span></a>
-          <a class="btn" href="#pricing">See the prices</a>
+        <p class="fact" data-reveal>The median Meta ad creative lives about 22 days. <a href="https://benly.ai/benchmarks/q1-2026" rel="noopener" target="_blank">Source: Benly, Q1 2026</a></p>
+        <a class="soft-cta" href="#demo" data-reveal>See what we'd make from one photo <span aria-hidden="true">↓</span></a>
+      </div>
+      <Dock><Actor who="vee" id="vee-tired" peek="peek_v_hold" line="act_v2" arrive={0.55} /></Dock>
+    </section>
+
+    <!-- Act III · One photo in (the wow demo) — pinned; photo → frame → film -->
+    <section class="act act-demo" id="demo" data-act="3" data-chapter="One photo in" aria-labelledby="a3">
+      <div class="pin-stage" data-pin-stage>
+        <div class="wrap demo-grid">
+          <div class="demo-copy">
+            <p class="eyebrow">Scene 3 · One photo in</p>
+            <h2 id="a3">One photo in. A film that looks like a shoot.</h2>
+            <p class="lede">Send one product photo. In 3–5 business days you get 5 frames: the light, the palette and the camera path of your film. Judge us on your product, not our reel.</p>
+          </div>
+          <div class="monitor-wrap" data-monitor-wrap>
+            <figure class="monitor" data-monitor data-step="0">
+              <img class="m-before" src={mediaUrl(media.stills['ba_before'])} alt="The plain product photo we started from: a gold can on grey" width="1200" height="1500" loading="lazy" decoding="async" />
+              <img class="m-after" src={mediaUrl(media.stills['ba_after'])} alt="Frame 3 of 5: the same can on a sunlit terrace with yuzu and ice (AI concept)" width="1200" height="1500" loading="lazy" decoding="async" />
+              {demo?.scrub && <video class="m-film" data-scrub muted playsinline preload="none" aria-hidden="true" tabindex="-1" data-src={mediaUrl(demo.scrub)} poster={mediaUrl(media.stills['ba_after'])}></video>}
+              <span class="spec-label m-label">AURUM · invented brand · AI</span>
+              <span class="m-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </figure>
+            <ol class="m-steps" aria-label="What happens">
+              <li data-mstep="0">Your photo. Any light.</li>
+              <li data-mstep="1">Frame 3 of 5. Free.</li>
+              <li data-mstep="2">The film. One take.</li>
+            </ol>
+            <div class="floor demo-floor"><Actor who="otto" id="otto-demo" peek="otto_pop_6" start="top 64px" end="+=55%" arrive={0.5} scale={0.62} mobileTrigger="[data-monitor-wrap]" /></div>
+          </div>
         </div>
-        <PopUp id="V1" char="vee" clip="vee_pop_1" line="vee_1" side="right" />
+      </div>
+      <div class="wrap after-pin" data-inflow-cta>
+        <div class="after-grid">
+          <div>
+            <h3 class="rise" data-reveal><span>Get 5 free frames of your product.</span></h3>
+            <Chip q="Will it look like my product?" a="We build from your photos. Your label, your shape. If the frames don't feel like your brand, we stop there." />
+          </div>
+          <MiniForm id="demo-form" act="3" />
+        </div>
       </div>
     </section>
 
-    <!-- S5 · Proof without logos (Vee #2 at the risk reversal) -->
-    <section class="section" id="proof" aria-labelledby="s5">
+    <!-- Act IV · Four films (range) — no characters -->
+    <section class="act act-films grain" id="work" data-act="4" data-chapter="Four films" aria-labelledby="a4">
       <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">Proof without logos</p>
-          <h2 id="s5">No client logos yet. Here's what you get instead.</h2>
-          <p class="lede">We're new, and we won't pretend otherwise: no fake logos, no made-up reviews. So we take the risk instead of you.</p>
+        <div class="section-head">
+          <p class="eyebrow" data-reveal>Scene 4 · Spec work · invented brands</p>
+          <h2 id="a4" class="rise" data-reveal><span>Brands that don't exist. Films that look like they do.</span></h2>
+          <p class="lede" data-reveal>We invented these brands to show what we make from a product and an idea. Each is one continuous take, 100 % AI, directed by a human. <span class="signature-inline">{site.signature}</span></p>
+        </div>
+        <div class="tiles" data-tiles>
+          {films.map((film, i) => <div class="tile-cell" data-parallax={i % 2 ? '-1' : '1'}><FilmTile film={film} eager={false} /></div>)}
+        </div>
+        <div class="btn-row more" data-inflow-cta>
+          <a class="btn" href="/work">See all films</a>
+          <a class="btn btn-primary" href="#start">Get my 5 free frames</a>
+        </div>
+        <Chip q="Are these real clients?" a="No. Invented brands, made to show the range. Our first client films will be labelled as such, with their permission." />
+      </div>
+    </section>
+
+    <!-- Act V · The schedule (how it works) — Vee keeps time -->
+    <section class="act act-how" id="how" data-act="5" data-chapter="The schedule" aria-labelledby="a5">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal>Scene 5 · The schedule</p>
+          <h2 id="a5" class="rise" data-reveal><span>From one photo to a finished ad in about a week.</span></h2>
+        </div>
+        <ol class="sheet-steps" data-callsheet>
+          <li data-reveal><span class="num">01</span><h3>Frames</h3><p class="dim">Free, 3–5 business days. Five frames that fix the light, palette and camera path.</p></li>
+          <li data-reveal><span class="num">02</span><h3>Film</h3><p class="dim">Final by day 7–8. One unbroken 30-second take. Two revision rounds.</p></li>
+          <li data-reveal><span class="num">03</span><h3>Variants</h3><p class="dim">Hooks, lengths and 9:16 + 4:5 cuts for paid social.</p></li>
+        </ol>
+        <div class="fill" aria-hidden="true"><i data-fill></i></div>
+        <div class="btn-row" data-inflow-cta>
+          <a class="btn btn-primary" href="#start">Start with step 1 <span aria-hidden="true">→</span> free frames</a>
+        </div>
+        <Chip q="AI disclosure on Meta and TikTok?" a="We label AI and hand you the right settings for each platform. ">
+          <a href="/ai">How we use AI</a>.
+        </Chip>
+      </div>
+      <Dock><Actor who="vee" id="vee-how" peek="vee.pop" line="act_v3" arrive={0.4} scale={0.86} /></Dock>
+    </section>
+
+    <!-- Act VI · What you risk (proof + risk reversal) — no characters -->
+    <section class="act act-risk grain" id="proof" data-act="6" data-chapter="What you risk" aria-labelledby="a6">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal>Scene 6 · Proof without logos</p>
+          <h2 id="a6" class="rise" data-reveal><span>No client logos yet. Here's what you get instead.</span></h2>
         </div>
         <div class="proof">
-          <article class="card" data-reveal><h3>Proof on your product.</h3><p class="dim">The 5 free frames show you the result before you pay.</p></article>
-          <article class="card risk" data-reveal>
-            <h3>Pay the balance only if you approve.</h3>
-            <p class="dim">50 % starts the film. If two revision rounds don't win you over, you owe no balance and you don't receive the final files. The deposit covers the work done.</p>
-            <PopUp id="V2" char="vee" clip="vee_pop_2" line="vee_2" side="right" />
-          </article>
-          <article class="card" data-reveal><h3>On time, or less.</h3><p class="dim">If the first take is late through our fault, the balance drops 10 %.</p></article>
-          <article class="card" data-reveal><h3>See how it's made.</h3><p class="dim">Every film comes with a breakdown: product photo → frames → final. <a href={`/work/${films[0]?.slug ?? ''}`}>Read one</a>.</p></article>
-          <article class="card" data-reveal><h3>Clean and disclosed.</h3><p class="dim">Commercially licensed AI tools, every generated element flagged, every prompt and version logged. No real person's face without written consent.</p></article>
+          <article data-reveal><h3>Your product first.</h3><p class="dim">5 free frames before you pay anything.</p></article>
+          <article data-reveal><h3>Pay half on approval.</h3><p class="dim">50 % to start, 50 % when you approve the film. If two revision rounds don't win you over, you owe no balance.</p></article>
+          <article data-reveal><h3>See how it's made.</h3><p class="dim">Every film comes with a breakdown: product photo → frames → final. <a href={`/work/${demo?.slug ?? ''}`}>Read the AURUM one</a>.</p></article>
         </div>
-        <div class="founder" data-reveal>
-          <p class="quote">"I'm {site.founder}. I direct every film myself.{site.founderLine && ` ${site.founderLine}`}"</p>
-          {/* TODO(founder): add one true line of background to site.json → founderLine. No invented facts. */}
-          <p class="small dim">Founder, {site.studio}</p>
+        <div class="who">
+          <div class="founder" data-reveal>
+            <p class="quote">"Directed by {site.founder}. Every frame is reviewed by a person before you see it."</p>
+            <p class="small dim">Founder, {site.studio}</p>
+          </div>
+          {brandFilm && <div class="brand-film" data-reveal><FilmTile film={brandFilm} /><p class="small dim">Who we are, in one take: our own ad. Muted here, captions in the picture.</p></div>}
         </div>
+        {f.show && f.left > 0 && <p class="founding" data-reveal>{f.line} <b>{f.left} of {f.total} left.</b></p>}
+        <div class="chips">
+          <Chip q="Who owns it?" a="You do, for your digital ads, organic posts and site. TV, out-of-home and retail are quoted separately." />
+          <Chip q="What if I hate it?" a="Second half is due on approval. Two revision rounds. If it still isn't right, you don't pay the balance." />
+        </div>
+        <div class="btn-row" data-inflow-cta><a class="btn btn-primary" href="#start">Get my 5 free frames</a></div>
+        <details class="more-q">
+          <summary>More straight answers</summary>
+          <Faq only={['look-fake', 'need', 'people', 'claims', 'roas', 'free']} />
+        </details>
       </div>
     </section>
 
-    <!-- S6 · Pricing (no characters here) -->
-    <section class="section" id="pricing" aria-labelledby="s6">
-      <div class="wrap"><Pricing /></div>
+    <BfcmBand />
+
+    <!-- Act VII · The price (offer) — the section lights up; Otto rises behind the cards -->
+    <section class="act act-price lights" id="pricing" data-act="7" data-chapter="The price" aria-labelledby="a7">
+      <div class="wrap price-head-wrap">
+        <div class="floor price-floor"><Actor who="otto" id="otto-price" peek="peek_o_moment" line="act_o3" start="top 85%" end="top 25%" arrive={0.55} scale={0.62} /></div>
+      </div>
+      <div class="wrap" data-inflow-cta>
+        <Pricing heading="Three ways to work with us. Prices on the page." id="a7" />
+        <Chip tone="light" q="What if I hate the film?" a="Second half is due on approval. Two revision rounds." />
+      </div>
     </section>
 
-    <!-- S7 · FAQ -->
-    <section class="section" id="faq" aria-labelledby="s7">
+    <!-- Act VIII · Your product next (close) — the form is never pinned -->
+    <section class="act act-close" id="start" data-act="8" data-chapter="Your product next" aria-labelledby="a8">
       <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">Questions</p>
-          <h2 id="s7">Straight answers.</h2>
-          <PopUp id="P5" char="otto" clip="char_think" line="vo_p5" side="right" />
+        <div class="floor duo-floor">
+          <Actor who="otto" id="otto-close" side="left" start="top 85%" end="top 20%" arrive={0.5} scale={0.55} />
+          <Actor who="vee" id="vee-close" side="right" start="top 85%" end="top 20%" arrive={0.5} scale={0.55} />
         </div>
-        <Faq />
+        <div class="close-grid">
+          <div>
+            <p class="eyebrow" data-reveal>Scene 8 · Your product next</p>
+            <h2 id="a8" class="rise" data-reveal><span>Send one photo. We'll send back five frames.</span></h2>
+            <p class="lede" data-reveal>3–5 business days. No call, no card. Marked "AI concept". Yours to keep and share with your team.</p>
+            <p class="signature" data-reveal>{site.signature}</p>
+            <ol class="next" data-reveal>
+              <li><b>Today</b> I study your brand.</li>
+              <li><b>3–5 days</b> Five frames in your inbox.</li>
+              <li><b>Then</b> If you like them, we talk film. If not, tell me what's off.</li>
+            </ol>
+          </div>
+          <div class="form-col" data-inflow-cta data-close-form>
+            <MiniForm id="close-form" act="8" />
+            <details class="full-form">
+              <summary>Prefer to send a photo and details now?</summary>
+              <LeadForm id="home" />
+            </details>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- S8 · Final CTA + form -->
-    <section class="section final" id="start" aria-labelledby="s8">
-      <div class="wrap split">
-        <div data-reveal>
-          <p class="eyebrow">Start here</p>
-          <h2 id="s8">Your product deserves a film. Start with five frames.</h2>
-          <p class="lede">Free, no call, ready in 3–5 business days.</p>
-          <p class="signature">{site.signature}</p>
-        </div>
-        <div class="form-col">
-          <LeadForm id="home" />
-          <PopUp id="P6" char="otto" clip="pop_wave" line="vo_p6" side="left" />
+    <!-- Coda · Otto always wants another take -->
+    <section class="act coda" data-act="9" data-chapter="Coda" aria-label="Coda">
+      <div class="wrap coda-wrap">
+        <p class="coda-line">Everything here is made with AI, including {site.mascot} and {site.producer}.</p>
+        <div class="floor coda-floor">
+          <Actor who="otto" id="otto-coda" peek="act_o6" start="top 95%" end="bottom bottom" peekOnly scale={0.5} />
+          <p class="offscreen-vee" data-offscreen-vee aria-hidden="true">No.</p>
         </div>
       </div>
     </section>
   </main>
+
+  <StoryChrome />
 
   <script>
     import '../scripts/home';
@@ -180,58 +223,135 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'A
 </Base>
 
 <style>
+  :global(body.is-home) { --dock-h: calc(56px + env(safe-area-inset-bottom)); }
+  @media (min-width: 900px) { :global(body.is-home) { --dock-h: 0px; } }
+  :global(body.is-home .site-footer) { padding-bottom: calc(40px + var(--dock-h)); }
+
   .sheet {
-    position: relative; z-index: 5; background: var(--ink-1); border-radius: 28px 28px 0 0;
-    box-shadow: 0 -24px 60px rgb(0 0 0 / 0.55); outline: none;
+    position: relative; z-index: 5; background: var(--ink-1); outline: none;
+    box-shadow: 0 -30px 70px rgb(0 0 0 / 0.55);
   }
-  .sheet::before { content: ''; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--brass), transparent); border-radius: 28px 28px 0 0; }
-  .grip { position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 44px; height: 4px; border-radius: 4px; background: var(--line-strong); }
-  .section { overflow-x: clip; }
-  .split { display: grid; gap: 40px; grid-template-columns: 1fr; align-items: center; }
-  @media (min-width: 960px) { .split { grid-template-columns: 1.05fr 1fr; gap: 64px; } }
-  .ticks { list-style: none; padding: 0; margin: 0 0 24px; }
-  .ticks li { padding: 10px 0 10px 30px; border-bottom: 1px solid var(--line); position: relative; }
-  .ticks li::before { content: ''; position: absolute; left: 4px; top: 18px; width: 12px; height: 6px; border: solid var(--brass); border-width: 0 0 1.5px 1.5px; rotate: -45deg; }
+  @media (min-width: 900px) { .sheet { border-radius: 28px 28px 0 0; } }
+  .sheet::before { content: ''; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--brass), transparent); border-radius: 28px 28px 0 0; z-index: 2; }
+  .grip { position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 44px; height: 4px; border-radius: 4px; background: var(--line-strong); z-index: 2; }
 
-  .ba { margin: 0; }
-  .ba-frame { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); --pos: 50%; }
-  .ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .ba-frame .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
-  .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--ivory); translate: -1px 0; box-shadow: 0 0 12px rgb(0 0 0 / 0.5); }
-  .ba-tag { position: absolute; top: 12px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgb(15 14 13 / 0.7); padding: 6px 8px; border-radius: 6px; }
-  .ba-tag.l { left: 12px; } .ba-tag.r { right: 12px; }
-  .ba input[type='range'] { width: 100%; margin: 14px 0 6px; accent-color: var(--brass); min-height: 32px; }
-  .ba { --pos: 50%; }
+  .act { position: relative; padding-block: var(--space-act); overflow: clip; }
+  .act > .wrap { position: relative; z-index: 1; }
+  .act + .act { border-top: 1px solid var(--line); }
+  .act h2 { max-width: 18ch; }
+  .section-head { max-width: 780px; margin-bottom: clamp(40px, 7vw, 80px); }
 
-  .closer { margin-top: 36px; font: 400 clamp(1.4rem, 3vw, 2.1rem)/1.2 var(--serif); max-width: 30ch; }
-  .tiles { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 760px) { .tiles { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
-  @media (min-width: 1000px) { .tiles[data-count='4'] { grid-template-columns: repeat(4, 1fr); } }
-  .more { margin-top: 32px; }
+  /* Headline reveal: the line rises out of its own mask, then stays put. */
+  .rise { overflow: clip; padding-bottom: 0.08em; }
+  .rise > span { display: inline-block; }
+  :global(html.js) .rise[data-reveal] { opacity: 1; transform: none; }
+  :global(html.js) .rise[data-reveal] > span { transform: translateY(105%); }
+  :global(html.js) .rise[data-reveal].is-in > span { transform: none; transition: transform 1.1s var(--ease-lux); }
+  @media (prefers-reduced-motion: reduce) { :global(html.js) .rise[data-reveal] > span { transform: none; } }
+
+  /* II */
+  .act-tired .wrap { padding-right: clamp(120px, 34vw, 420px); }
+  @media (min-width: 900px) { .act-tired .wrap { padding-right: clamp(240px, 30vw, 440px); } }
+  .beats { list-style: none; margin: clamp(48px, 10vh, 120px) 0 0; padding: 0; display: grid; gap: clamp(64px, 22vh, 220px); }
+  .beats li { font: 400 clamp(1.6rem, 3.6vw, 2.8rem)/1.15 var(--serif); color: var(--text); max-width: 22ch; }
+  .fact { margin-top: clamp(64px, 14vh, 160px); color: var(--text-dim); max-width: 46ch; }
+  .fact a { color: var(--text-faint); font-size: 0.85rem; white-space: nowrap; }
+  .soft-cta { display: inline-flex; margin-top: 28px; min-height: 44px; align-items: center; color: var(--brass-hi); text-decoration: none; border-bottom: 1px solid rgb(176 141 87 / 0.4); }
+
+  /* III */
+  .act-demo { padding-block: 0 var(--space-act); }
+  .pin-stage { position: relative; }
+  .demo-grid { display: grid; gap: 28px; padding-block: clamp(64px, 12vh, 120px) 24px; }
+  .monitor-wrap { position: relative; display: grid; gap: 12px; justify-items: center; background: var(--ink-1); }
+  .monitor { position: relative; margin: 0; width: min(100%, 52svh, 520px); aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); box-shadow: 0 40px 90px rgb(0 0 0 / 0.5); }
+  .monitor img, .monitor video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .m-after { clip-path: inset(0 0 0 100%); }
+  .m-film { opacity: 0; }
+  .m-label { position: absolute; left: 12px; top: 12px; z-index: 2; }
+  .m-ticks i { position: absolute; width: 16px; height: 16px; border: solid rgb(243 237 226 / 0.7); border-width: 0; z-index: 2; }
+  .m-ticks i:nth-child(1) { left: 12px; bottom: 12px; border-left-width: 1px; border-bottom-width: 1px; }
+  .m-ticks i:nth-child(2) { right: 12px; bottom: 12px; border-right-width: 1px; border-bottom-width: 1px; }
+  .m-ticks i:nth-child(3) { right: 12px; top: 12px; border-right-width: 1px; border-top-width: 1px; }
+  .m-ticks i:nth-child(4) { display: none; }
+  .m-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-faint); }
+  .m-steps li { transition: color 0.4s var(--ease); }
+  .m-steps li.on { color: var(--ivory); }
+  .m-steps li.on::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--vermilion); margin-right: 6px; translate: 0 -1px; }
+  .floor.demo-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; pointer-events: none; overflow: clip; }
+  @media (min-width: 900px) {
+    .demo-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: center; min-height: calc(100svh - 64px); padding-block: 40px; }
+    .monitor { width: min(100%, 64svh, 560px); }
+    .floor.demo-floor { right: -12%; }
+  }
+  .after-pin { padding-top: clamp(48px, 8vh, 96px); }
+  .after-grid { display: grid; gap: 28px; }
+  .after-grid h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+  @media (min-width: 900px) { .after-grid { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; } }
+
+  /* Floors: a clipped strip the character rises out of (instead of the viewport edge). */
+  .floor { position: relative; pointer-events: none; }
+  .floor :global(.actor) { pointer-events: none; }
+
+  /* IV */
+  .tiles { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile-cell:nth-child(even) { margin-top: 36px; }
+  @media (min-width: 760px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; } .tile-cell:nth-child(even) { margin-top: 64px; } }
+  .more { margin-top: 48px; margin-bottom: 18px; }
   .signature-inline { font-family: var(--serif); font-style: italic; color: var(--brass-hi); white-space: nowrap; }
 
-  .steps { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 16px; }
-  @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
-  .steps li { position: relative; padding: 22px 22px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); }
-  .num { font: 400 3rem/1 var(--serif); color: var(--brass); display: block; margin-bottom: 8px; }
-  .steps h3 .dim { font-size: 0.75em; }
-  .timeline { height: 2px; background: var(--line); margin: 8px 0 28px; position: relative; overflow: hidden; border-radius: 2px; }
-  .timeline span { position: absolute; inset: 0; background: linear-gradient(90deg, var(--brass), var(--vermilion)); transform-origin: left; transform: scaleX(0.66); }
+  /* V */
+  .act-how .wrap { padding-right: clamp(0px, 20vw, 360px); }
+  @media (max-width: 899px) { .act-how .wrap { padding-right: 34vw; } }
+  .sheet-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+  .sheet-steps li { border-top: 1px solid var(--line); padding-top: 18px; }
+  .num { font: 400 0.9rem/1 var(--sans); letter-spacing: 0.16em; color: var(--brass); display: block; margin-bottom: 12px; }
+  @media (min-width: 900px) { .sheet-steps { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+  .fill { height: 1px; background: var(--line); margin: 28px 0 40px; position: relative; overflow: hidden; }
+  .fill i { position: absolute; inset: 0; background: var(--brass); transform-origin: left; transform: scaleX(0); }
 
-  .proof { display: grid; gap: 16px; grid-template-columns: 1fr; }
-  @media (min-width: 860px) { .proof { grid-template-columns: repeat(2, 1fr); } .proof .risk { grid-row: span 2; } }
-  .risk { position: relative; border-color: rgb(216 67 43 / 0.45); padding-bottom: 210px; }
-  @media (min-width: 860px) { .risk { padding-bottom: 32px; } }
-  .founder { margin-top: 40px; padding: 28px; border-left: 2px solid var(--brass); max-width: 720px; }
-  .quote { font: 400 clamp(1.5rem, 3vw, 2.2rem)/1.2 var(--serif); margin-bottom: 8px; }
+  /* VI */
+  .proof { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .proof article { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .proof h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+  @media (min-width: 900px) { .proof { grid-template-columns: repeat(3, 1fr); column-gap: 40px; } }
+  .who { display: grid; gap: 40px; margin-top: clamp(56px, 10vh, 112px); align-items: center; }
+  @media (min-width: 900px) { .who { grid-template-columns: 1.4fr minmax(0, 300px); gap: 72px; } }
+  .brand-film { max-width: 300px; }
+  .founder { padding-left: 28px; border-left: 1px solid var(--brass); max-width: 720px; }
+  .quote { font: 400 clamp(1.5rem, 3vw, 2.3rem)/1.2 var(--serif); margin-bottom: 8px; }
+  .founding { margin-top: 40px; padding: 16px 18px; border: 1px dashed var(--line-strong); border-radius: 12px; max-width: 70ch; font-size: 0.92rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 28px; }
+  .more-q { margin-top: 56px; }
+  .more-q > summary { cursor: pointer; color: var(--brass-hi); min-height: 44px; display: inline-flex; align-items: center; }
 
-  .form-col { position: relative; }
-  .final { background: radial-gradient(70% 90% at 15% 10%, rgb(110 31 36 / 0.32), transparent 60%), var(--ink-1); }
-  .section-head :global(.pop) { bottom: auto; top: 0; }
-  .offer :global(.pop) { bottom: 24px; }
-  .form-col :global(.pop) { bottom: 80px; }
-  @media (max-width: 767px) {
-    .section-head :global(.pop), .form-col :global(.pop), .offer :global(.pop) { top: auto; bottom: 8px; }
-    .form-col :global(.pop) { display: none; } /* never cover the form on phones */
-  }
+  /* VII */
+  .act-price { border-top: 0; padding-top: clamp(40px, 8vh, 96px); }
+  .price-floor { height: calc(var(--actor-h) * 0.62 + 72px); margin-bottom: -1px; border-bottom: 1px solid var(--line); overflow: clip; }
+  .price-floor :global(.actor) { right: 4%; }
+  .act-price :global(.chip) { margin-top: 18px; }
+
+  /* VIII */
+  .act-close { background: radial-gradient(70% 90% at 15% 10%, rgb(110 31 36 / 0.3), transparent 60%), var(--ink-1); }
+  .duo-floor { height: calc(var(--actor-h) * 0.55 + 72px); overflow: clip; border-bottom: 1px solid var(--line); margin-bottom: clamp(40px, 7vh, 72px); }
+  .duo-floor :global(.side-left) { left: 18%; }
+  .duo-floor :global(.side-right) { right: 18%; }
+  .close-grid { display: grid; gap: 40px; }
+  @media (min-width: 960px) { .close-grid { grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; } }
+  .next { list-style: none; padding: 0; margin: 28px 0 0; color: var(--text-dim); }
+  .next li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .next b { color: var(--brass-hi); font-weight: 600; margin-right: 8px; }
+  .form-col { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 4vw, 36px); }
+  .full-form { margin-top: 18px; }
+  .full-form > summary { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; min-height: 44px; display: flex; align-items: center; }
+  .full-form :global(.lead-form) { border: 0; padding: 12px 0 0; background: none; }
+
+  /* Coda */
+  .coda { padding-block: clamp(72px, 12vh, 140px) 0; }
+  .coda-wrap { text-align: center; }
+  .coda-line { color: var(--text-faint); font-size: 0.9rem; }
+  .coda-floor { height: calc(var(--actor-h) * 0.5 * 0.42); overflow: clip; }
+  .coda-floor :global(.actor) { left: 50%; right: auto; translate: -50% 0; }
+  .offscreen-vee { position: absolute; right: 6%; bottom: 40%; margin: 0; padding: 7px 14px; border-radius: 12px 12px 2px 12px; background: var(--vermilion); color: var(--ivory); font: 400 1.05rem/1.2 var(--serif); opacity: 0; translate: 12px 0; transition: opacity 0.35s var(--ease-lux), translate 0.6s var(--ease-lux); }
+  .offscreen-vee.on { opacity: 1; translate: 0 0; }
+  :global(html.hosts-hidden) .offscreen-vee { display: none; }
 </style>

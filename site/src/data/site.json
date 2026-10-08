@@ -13,5 +13,33 @@
   "bookingUrl": "",
   "turnstileSiteKey": "",
   "capacityLine": "",
-  "signature": "One take. No cuts."
+  "signature": "One take. No cuts.",
+  "headlines": {
+    "$comment": "Act I H1 by utm_content (message match). Keep the layout; max ~4 variants. Unknown values fall back to default.",
+    "default": "Your product, filmed in one unbroken take.",
+    "launch": "Your launch, filmed in one unbroken take.",
+    "fatigue": "A new hero ad. No shoot, no crew.",
+    "frames": "Your 5 free frames start here.",
+    "bfcm": "Your BFCM hero ad, final by Nov 13."
+  },
+  "bfcm": {
+    "$comment": "Dated offer (ref 40 §1.2). Hidden automatically after bookBy. capacity is an estimate: TODO(founder) confirm the real number and keep it true; set booked only to a true count.",
+    "show": true,
+    "name": "BFCM Premiere",
+    "bookBy": "2026-11-02",
+    "bookByLabel": "Mon, Nov 2",
+    "finalBy": "2026-11-13",
+    "finalByLabel": "Fri, Nov 13",
+    "framesIn": "48 h",
+    "firstCut": "day 5",
+    "capacity": 4,
+    "capacityConfirmed": false,
+    "booked": null,
+    "bonus": "A 6 s Cyber Monday cut-down and an end card with your offer text.",
+    "price": 2500
+  },
+  "stickyCta": {
+    "label": "5 free frames",
+    "href": "#start"
+  }
 }

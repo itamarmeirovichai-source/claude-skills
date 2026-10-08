@@ -3,6 +3,8 @@ import raw from '../data/media.json';
 export interface AlphaClip {
   /** Reuse another clip of the same character until a dedicated one exists. */
   alias?: string;
+  /** Placeholder note: the dedicated clip is not delivered yet (the alias stands in). */
+  pending?: string;
   av1?: string;
   hevc?: string;
   av1_hd?: string;
@@ -31,6 +33,14 @@ export interface FilmMedia {
   loop: { av1: string; h264: string };
   full: { av1: string; h264: string };
   captions: string | null;
+  /** Captions are part of the picture (play muted without losing the words). */
+  captionsBurnedIn?: boolean;
+  /** Ring card overrides. */
+  cardTitle?: string;
+  cardSub?: string;
+  featured?: boolean;
+  /** All-intra scroll-scrub clip (no audio), for pinned scenes. */
+  scrub?: string;
   /** Overrides the default spec label (e.g. the studio's own film). */
   label?: string;
 }
@@ -45,6 +55,8 @@ export interface MediaManifest {
   vee: CharacterSet;
   films: FilmMedia[];
   voice: Record<string, VoiceLine>;
+  /** "<char>.<group>" → voice keys; drawn with a per-session shuffle bag. */
+  voiceGroups: Record<string, string[]>;
   stills: Record<string, string>;
 }
 
@@ -59,6 +71,16 @@ export const filmBySlug = (slug: string): FilmMedia | undefined => media.films.f
 
 export const SPEC_LABEL = (f: Pick<FilmMedia, 'duration' | 'label'>): string =>
   f.label ?? `Spec film · invented brand · 100% AI · ${f.duration} s · one take`;
+
+/** True when the key has its own delivered clip (not a placeholder alias). */
+export const hasRealClip = (set: CharacterSet, key: string): boolean => {
+  const c = set.clips[key];
+  return !!c && !c.alias && !!c.av1 && !!c.hevc;
+};
+
+/** Text of a voice key, or the first line of a voice group (for static captions). */
+export const lineText = (keyOrGroup: string): string =>
+  media.voice[keyOrGroup]?.text ?? media.voice[media.voiceGroups[keyOrGroup]?.[0] ?? '']?.text ?? '';
 
 /** Resolve a clip key, following `alias` (max 3 hops). Markers/duration on the alias entry win. */
 export function resolveClip(set: CharacterSet, key: string): (AlphaClip & { av1: string; hevc: string }) | undefined {

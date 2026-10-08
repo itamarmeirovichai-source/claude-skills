@@ -1,14 +1,14 @@
 ---
-import { pricing, money, callHref } from '../lib/site';
-interface Props { headingLevel?: 'h1' | 'h2' }
-const { headingLevel = 'h2' } = Astro.props;
+import { pricing, money, callHref, tierHref } from '../lib/site';
+interface Props { headingLevel?: 'h1' | 'h2'; heading?: string; id?: string }
+const { headingLevel = 'h2', heading = 'Clear prices. Pick the size that fits this quarter.', id } = Astro.props;
 const H = headingLevel;
 const f = pricing.founding;
 ---
 <div class="pricing">
   <div class="section-head" data-reveal>
     <p class="eyebrow">Pricing · from {money(pricing.from)}</p>
-    <H>Clear prices. Pick the size that fits this quarter.</H>
+    <H id={id}>{heading}</H>
     <p class="lede">{pricing.context} <a href={pricing.contextSource.url} rel="noopener" target="_blank">Source: {pricing.contextSource.label}</a>.</p>
   </div>
   <ol class="tiers">
@@ -25,6 +25,8 @@ const f = pricing.founding;
           <dt>Payment</dt><dd>{t.payment}</dd>
           {t.perAsset && <><dt>Per asset</dt><dd>{t.perAsset}</dd></>}
         </dl>
+        {t.credit && <p class="credit">{t.credit}</p>}
+        {t.cta && <a class:list={['btn', 'tier-cta', { 'btn-primary': t.recommended }]} href={tierHref(t.cta.href)} data-pricing-cta={t.id}>{t.cta.label}</a>}
       </li>
     ))}
   </ol>
@@ -47,7 +49,7 @@ const f = pricing.founding;
   .ribbon { position: absolute; top: -13px; left: 24px; margin: 0; background: var(--brass); color: #1a1510; font: 600 0.72rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; }
   h3 { font-size: 1.9rem; margin-bottom: 0.2em; }
   .price { margin: 0; display: flex; align-items: baseline; gap: 4px; }
-  .amt { font: 400 2.8rem/1 var(--serif); color: var(--ivory); }
+  .amt { font: 400 2.8rem/1 var(--serif); color: var(--text); }
   .unit { color: var(--text-dim); }
   .tnote { color: var(--text-faint); font-size: 0.85rem; margin: 4px 0 0; }
   .for { color: var(--brass-hi); font-size: 0.92rem; margin: 14px 0 10px; }
@@ -62,4 +64,6 @@ const f = pricing.founding;
   .addons li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
   .founding { margin-top: 18px; padding: 14px 16px; border: 1px dashed var(--line-strong); border-radius: 12px; max-width: 70ch; font-size: 0.92rem; }
   .cta { margin-top: 26px; }
+  .credit { margin: 14px 0 0; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line-strong); font-size: 0.86rem; color: var(--text); }
+  .tier-cta { width: 100%; margin-top: 18px; }
 </style>

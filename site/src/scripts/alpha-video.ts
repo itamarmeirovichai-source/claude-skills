@@ -12,6 +12,8 @@ export interface PlayOptions {
   /** Expected duration, s (end timeout = duration + 2 s). */
   duration?: number;
   fadeMs?: number;
+  /** Start position, s. */
+  from?: number;
 }
 
 const VERT = `attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}`;
@@ -144,7 +146,7 @@ export class AlphaVideo extends HTMLElement {
     }
     v.loop = !!opts.loop;
     try {
-      v.currentTime = 0;
+      v.currentTime = opts.from ?? 0;
     } catch {
       /* not seekable yet */
     }
@@ -218,6 +220,62 @@ export class AlphaVideo extends HTMLElement {
 
   pause(): void {
     this.vids.forEach((v) => v.pause());
+  }
+
+  /** Let a looping clip run to its end (talk clips end on the idle pose), then resolve. */
+  finishLoop(): Promise<void> {
+    const v = this.vids[this.front];
+    if (!this.has[this.front] || v.paused || !v.loop) return Promise.resolve();
+    v.loop = false;
+    const left = Number.isFinite(v.duration) ? Math.max(0, v.duration - v.currentTime) : 5;
+    return new Promise((resolve) => {
+      const t = window.setTimeout(resolve, left * 1000 + 600);
+      v.addEventListener(
+        'ended',
+        () => {
+          window.clearTimeout(t);
+          resolve();
+        },
+        { once: true },
+      );
+    });
+  }
+
+  /** Show one still frame of a clip (e.g. the first beat of an entrance) without playing it. */
+  showFrame(src: string, t: number): Promise<boolean> {
+    if (!this.ok || !src) return Promise.resolve(false);
+    const token = ++this.gen;
+    this.pending?.resolve('cancelled');
+    this.pending = null;
+    const k = this.front;
+    const v = this.vids[k];
+    v.pause();
+    v.loop = false;
+    if (v.dataset['src'] !== src) {
+      v.src = src;
+      v.dataset['src'] = src;
+    }
+    return new Promise((resolve) => {
+      const timer = window.setTimeout(() => resolve(false), 4000);
+      const seek = (): void => {
+        v.addEventListener(
+          'seeked',
+          () => {
+            window.clearTimeout(timer);
+            if (token !== this.gen) return resolve(false);
+            this.has[k] = true;
+            this.mix = k;
+            this.dataset['ready'] = '';
+            this.kick();
+            resolve(true);
+          },
+          { once: true },
+        );
+        v.currentTime = t;
+      };
+      if (v.readyState >= 1) seek();
+      else v.addEventListener('loadedmetadata', seek, { once: true });
+    });
   }
 
   resume(): void {
