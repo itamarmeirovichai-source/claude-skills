@@ -43,14 +43,14 @@ Sources were reached through web search results only. Every primary site tried (
 | Day | Home | Gym |
 | --- | --- | --- |
 | Sunday | None | Upper A, about 70 minutes |
-| Monday | Movement prep, landings, and jumps, about 30 minutes at the starting level (about 40 at the build level), before the gym | Lower A, about 40 minutes |
+| Monday | Movement prep, landings, jumps, and full approach jumps, about 30 minutes at the starting level (about 45 at the build level), before the gym | Lower A, about 40 minutes |
 | Tuesday | None | None. School sport counts |
 | Wednesday | None | Upper B, about 70 to 75 minutes |
-| Thursday | Movement prep, landings, and jumps, about 30 minutes at the starting level (about 40 at the build level), before the gym | Lower B, about 50 minutes |
+| Thursday | Movement prep, landings, jumps, and full approach jumps, about 30 minutes at the starting level (about 45 at the build level), before the gym | Lower B, about 50 minutes |
 | Friday | Volleyball skills without jumps, about 20 minutes | None |
 | Saturday | Rest and Sabbath | Rest |
 
-Durations are estimates from the plan itself: about 3 seconds a repetition, the prescribed rest after every set (only the last rest of the session is left out), a short switch between sides, about a minute to change exercises at the gym and half a minute at home, and 5 minutes of warm up at the gym. Jump work needs full rest, so most of a home session is rest. Until the home space is described, the home session is only the 7 minute movement prep and a tibialis exercise, about 10 minutes. On Monday and Thursday the home and gym sessions together come to about 70 to 80 minutes at the starting level and about 80 to 90 minutes at the build level; that is the main cost of the build level and a reason to stay at the starting level on busy weeks.
+Durations are estimates from the plan itself: about 3 seconds a repetition, the prescribed rest after every set (only the last rest of the session is left out), a short switch between sides, about a minute to change exercises at the gym and half a minute at home, and 5 minutes of warm up at the gym. Jump work needs full rest, so most of a home session is rest. Until the home space is described, the home session is only the 7 minute movement prep and a tibialis exercise, about 10 minutes. On Monday and Thursday the home and gym sessions together come to about 70 to 80 minutes at the starting level and about 85 to 95 minutes at the build level; that is the main cost of the build level and a reason to stay at the starting level on busy weeks.
 
 Default times: home sessions at 16:15 on Monday and Thursday, about an hour after the 15:20 afternoon meal; gym at 17:00 on those days and 16:30 on Sunday and Wednesday; Friday skills at 13:30. All times are editable. If the home jumps are set after the gym, the day shows a note that jumps go first.
 
@@ -94,7 +94,7 @@ The exercise questionnaire still decides which exercise fills each slot. Slots o
 
 ### Home sessions
 
-Starting level, about 58 landings when the space allows everything:
+Starting level, about 64 landings when the space allows everything:
 
 | Drill | Sets × reps | Rest | Needs | Quiet or no jump fallback |
 | --- | --- | --- | --- | --- |
@@ -105,8 +105,9 @@ Starting level, about 58 landings when the space allows everything:
 | Countermovement jump to stick | 2 × 4 | 90 s | High ceiling, so outdoors or a hall | Spike arm swing, no ball |
 | Standing broad jump | 2 × 3 | 90 s | 5 m of space | Block footwork |
 | Approach footwork, no jump | 3 × 3 | 45 s | 5 m of space | Spike arm swing, no ball |
+| Approach jump and reach (3.0.1) | 2 × 3, full effort | 120 s | A 4 to 6 m run up and open sky or a hall; a marked wall for the touch height, otherwise a volleyball approach jump reaching into the air | Left out: the approach footwork above already covers the rhythm |
 
-The next level adds sets (about 95 landings) and single leg hops. It is offered only through a checklist (four weeks at the starting level, no knee, heel, shin, or back pain for two weeks, good landings, school jumping known, sleep mostly 8 hours) and becomes a plan proposal the athlete activates. It never happens automatically.
+The next level adds sets (about 94 landings, with pogo hops back to two sets to make room for a third set of approach jumps) and single leg hops. It is offered only through a checklist (four weeks at the starting level, no knee, heel, shin, or back pain for two weeks, good landings, school jumping known, sleep mostly 8 hours) and becomes a plan proposal the athlete activates. It never happens automatically.
 
 Friday skills: movement prep, approach footwork, spike arm swing without a ball, and controlled wall spikes at half effort only with a cleared wrist, a solid outdoor wall, and no people or breakable things nearby, otherwise block footwork. No jumps.
 

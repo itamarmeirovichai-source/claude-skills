@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.1, 2026-10-08
+
+Full approach jumps at home.
+
+- The Monday and Thursday home sessions now end with full approach jumps right after the approach footwork: 2 × 3 at the starting level and 3 × 3 at the next level, at full effort with two minutes of rest. They need a run up of 4 to 6 metres and open sky or a hall, so in practice they happen outdoors.
+- With a marked wall (Solid outdoor wall in the profile) the jump is Approach Jump and Reach, and the touch height can be logged in the Reach field. Without a wall it is the Volleyball Approach Jump, reaching for a spot in the air. Without an outdoor area or a hall it is left out.
+- The starting level comes to about 64 landings. At the next level the pogo hops go back to two sets, so it stays at about 94 landings.
+- Installed plans get the approach jumps the next time the plan is updated from the profile, through the usual preview.
+
 ## 3.0.0, 2026-10-06
 
 A calmer week, home and gym sessions, and food without targets. Based on a full review of the training and nutrition assumptions (TRAINING_AUDIT.md, NUTRITION_DATA_AUDIT.md, RESEARCH.md).

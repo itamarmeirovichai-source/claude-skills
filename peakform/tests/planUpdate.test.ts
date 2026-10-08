@@ -125,7 +125,7 @@ describe('plan proposals', () => {
     await saveAthlete('home', ROOMY);
     await saveAthlete('wrist', { status: 'cleared', clearedBy: 'orthopaedic doctor', date: '2026-10-01', limits: '' });
     const roomy = await proposePlan('profile');
-    expect(contacts(roomy.plan.days.find((d) => d.weekday === 1)!.items)).toBe(58);
+    expect(contacts(roomy.plan.days.find((d) => d.weekday === 1)!.items)).toBe(64);
   });
 
   it('changes the jump level only through a proposal the athlete activates', async () => {
@@ -134,7 +134,7 @@ describe('plan proposals', () => {
     await activateProposal();
     expect(await kvGet(KV.jumpLevel)).toBe('intro');
     const p = await proposePlan('jump-level', { level: 'build' });
-    expect(contacts(p.plan.days.find((d) => d.weekday === 4)!.items)).toBe(95);
+    expect(contacts(p.plan.days.find((d) => d.weekday === 4)!.items)).toBe(94);
     expect(await kvGet(KV.jumpLevel)).toBe('intro');
     await activateProposal();
     expect(await kvGet(KV.jumpLevel)).toBe('build');

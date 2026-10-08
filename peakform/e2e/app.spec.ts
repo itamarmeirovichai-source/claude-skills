@@ -194,12 +194,13 @@ test.describe('training', () => {
     const diff = page.getByTestId('plan-diff');
     await expect(diff).toContainText('Thursday');
     await expect(diff).toContainText('Countermovement Jump');
+    await expect(diff).toContainText('Approach Jump and Reach');
     await expect(diff).toContainText('Wall Spike Control');
     await page.getByTestId('plan-activate').click();
     await expect(page.getByTestId('train')).toBeVisible();
     await go(page, '/train/day/4?date=2026-10-01');
     const day = page.getByTestId('train-day');
-    await expect(day.getByTestId('session-info-home')).toContainText('about 58 landings');
+    await expect(day.getByTestId('session-info-home')).toContainText('about 64 landings');
     // The ceiling indoors is too low for full jumps, so they are planned outdoors, with a note in the workout.
     await startSession(page, 'home');
     await exerciseChip(page, 4);

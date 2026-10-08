@@ -179,12 +179,29 @@ describe('home space decides the home drills', () => {
     expect(environments(DEFAULT_HOME)).toHaveLength(1);
   });
 
-  it('plans the full introductory session, about 60 landings, when the space allows it', () => {
+  it('plans the full introductory session, about 65 landings, when the space allows it', () => {
     const it = buildHomeItems('mon', HOME_JUMP_SESSION.intro, ROOMY, 'cleared');
-    expect(it.map((i) => i.exerciseId)).toEqual(['home-movement-prep', 'snap-down-stick', 'pogo-hop', 'lateral-line-hop', 'countermovement-jump', 'broad-jump', 'volleyball-approach-footwork']);
-    expect(contacts(it)).toBe(58);
+    expect(it.map((i) => i.exerciseId)).toEqual(['home-movement-prep', 'snap-down-stick', 'pogo-hop', 'lateral-line-hop', 'countermovement-jump', 'broad-jump', 'volleyball-approach-footwork', 'approach-touch-jump']);
+    expect(contacts(it)).toBe(64);
     expect(it.find((i) => i.exerciseId === 'countermovement-jump')).toMatchObject({ sets: 2, target: { type: 'reps', min: 4, max: 4 }, restSec: 90 });
     expect(it.find((i) => i.exerciseId === 'countermovement-jump')!.notes.join(' ')).toMatch(/Outdoors/);
+  });
+
+  it('ends with full approach jumps after the approach footwork, outdoors, with full rest', () => {
+    const it = buildHomeItems('mon', HOME_JUMP_SESSION.intro, ROOMY, 'cleared');
+    const ids = it.map((i) => i.exerciseId);
+    const jump = it.find((i) => i.exerciseId === 'approach-touch-jump')!;
+    expect(ids.indexOf('approach-touch-jump')).toBe(ids.indexOf('volleyball-approach-footwork') + 1);
+    expect(jump).toMatchObject({ sets: 2, target: { type: 'reps', min: 3, max: 3 }, restSec: 120 });
+    expect(jump.notes.join(' ')).toMatch(/Outdoors/);
+    expect(jump.notes.join(' ')).toMatch(/landings earlier in the session were clean/);
+    // Without a wall to mark, the jump reaches for a spot in the air instead.
+    const noWall = buildHomeItems('mon', HOME_JUMP_SESSION.intro, { ...ROOMY, equipment: ['tape'] }, 'cleared').map((i) => i.exerciseId);
+    expect(noWall).toContain('volleyball-approach-jump');
+    expect(noWall).not.toContain('approach-touch-jump');
+    // Without an outdoor area or a hall, there is no full approach jump at all.
+    const indoors = buildHomeItems('mon', HOME_JUMP_SESSION.intro, { ...ROOMY, outdoor: 'none' }, 'cleared').map((i) => i.exerciseId);
+    expect(indoors.some((id) => id === 'approach-touch-jump' || id === 'volleyball-approach-jump')).toBe(false);
   });
 
   it('plans no jumps in a small flat with a low ceiling, tiles, and noise limits', () => {
@@ -211,7 +228,7 @@ describe('home space decides the home drills', () => {
   });
 
   it('keeps the next level at about 95 landings and the skill session free of jumps', () => {
-    expect(contacts(buildHomeItems('mon', HOME_JUMP_SESSION.build, ROOMY, 'cleared'))).toBe(95);
+    expect(contacts(buildHomeItems('mon', HOME_JUMP_SESSION.build, ROOMY, 'cleared'))).toBe(94);
     expect(contacts(buildHomeItems('fri', HOME_SKILL_SESSION, ROOMY, 'cleared'))).toBe(0);
   });
 });

@@ -32,17 +32,17 @@ The week:
 | Day | Home | Gym |
 | --- | --- | --- |
 | Sunday | | Upper A, about 70 min |
-| Monday | Movement prep, landings, and jumps, about 30 min, first | Lower A, about 40 min |
+| Monday | Movement prep, landings, jumps, and approach jumps, about 30 min, first | Lower A, about 40 min |
 | Tuesday | No structured training. School sport counts | |
 | Wednesday | | Upper B, about 70 to 75 min |
-| Thursday | Movement prep, landings, and jumps, about 30 min, first | Lower B, about 50 min |
+| Thursday | Movement prep, landings, jumps, and approach jumps, about 30 min, first | Lower B, about 50 min |
 | Friday | Volleyball skills without jumps, about 20 min | |
 | Saturday | Full rest | |
 
 - The gym is for strength. Home is for jumps, agility, approach footwork, and skills. Each muscle trains twice a week.
 - Every session shows where it happens, the equipment, the space it needs, about how long it takes, the number of landings for jump work, and **When to stop**.
 - Work sets stop about two reps short of failure: you could still do about two more clean reps. A new exercise stays three reps short for its first two sessions while you learn it. There are no sets to failure and no one repetition maximum tests.
-- **Home jumps** start at the starting level, about 60 landings a session. The build level (about 95) is offered in **Choose your exercises** and changes the plan only through the preview. Do the jumps fresh, before the gym, with full rest. Stop a drill when height, speed, or landing control drops, and stop jumping for the day for pain at the knee, below the kneecap, at the heel, or along the shin.
+- **Home jumps** start at the starting level, about 65 landings a session, and end with full approach jumps when there is a run up outdoors or a hall: a marked wall gives the touch height, which you log in the Reach field. The build level (about 95) is offered in **Choose your exercises** and changes the plan only through the preview. Do the jumps fresh, before the gym, with full rest. Stop a drill when height, speed, or landing control drops, and stop jumping for the day for pain at the knee, below the kneecap, at the heel, or along the shin.
 - If sport had a lot of jumping the day before, keep the home jumps short. Jumping every day is not part of the plan.
 - **Choose your exercises** lets you pick, for each muscle head, from exercises that build it about equally. Saving shows the changes before they apply.
 - Open a day to see each exercise with sets, reps, rest, reps in reserve, and a front and back muscle diagram. Every exercise page shows its wrist load and how it progresses.

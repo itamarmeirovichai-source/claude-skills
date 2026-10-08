@@ -376,7 +376,7 @@ European Journal of Applied Physiology (Moran-Navarro and colleagues). Source da
 Frontiers in Physiology. Source date: 2020. Access: search snippet only.
 
 - Conclusion: Over 6 weeks, training built mostly on countermovement jumps raised jump height about 17 percent, against about 7 percent for training built mostly on drop jumps.
-- Product decision: Countermovement style jumps (box jumps, approach jumps) are the core of the program, and depth jumps are a smaller part from block 2.
+- Product decision: Countermovement style jumps, broad jumps, and full approach jumps are the core of the home jump sessions. Depth jumps are not planned at the starting and next levels (3.0.1).
 - Uncertainty: Adult women. Search snippets only.
 
 ### [Effect of differential training on female volleyball spike-jump technique and performance](https://www.mdpi.com/2076-3417/10/17/5921)
@@ -384,7 +384,7 @@ Frontiers in Physiology. Source date: 2020. Access: search snippet only.
 Applied Sciences (Fuchs and colleagues). Source date: 2020. Access: search snippet only.
 
 - Conclusion: Six weeks of short approach technique sessions raised spike jump height about 12 percent in elite female players.
-- Product decision: Every Friday starts with approach technique and maximal approach jumps, with the touch height logged.
+- Product decision: Since 3.0.1 the Monday and Thursday home sessions end with approach footwork and then full approach jumps, outdoors or in a hall, with the touch height logged when a wall is marked. Friday keeps the approach rhythm without jumps.
 - Uncertainty: Elite adult women. Search snippets only.
 
 ### [Differences between One-Foot and Two-Foot Vertical Jump Performances](https://researchgate.net/profile/Richard-Hinrichs-2/publication/288544133_Differences_between_One-Foot_and_Two-Foot_Vertical_Jump_Performances/links/591b901c4585153b614fa759/Differences-between-One-Foot-and-Two-Foot-Vertical-Jump-Performances.pdf)

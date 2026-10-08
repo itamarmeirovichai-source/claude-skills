@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-10-06. Build 3.0.0.
+Date: 2026-10-08. Build 3.0.1.
 
 Everything below ran in the build environment: Linux, Node 22, Chromium with iPhone emulation. Nothing was tested on a real iPhone, and no clinician, dietitian, or coach reviewed the plan.
 
@@ -10,7 +10,7 @@ Everything below ran in the build environment: Linux, Node 22, Chromium with iPh
 | --- | --- |
 | TypeScript strict (`tsc -b`) | Pass, no errors |
 | ESLint (`eslint .`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 167 of 167 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
+| Unit and integration tests (Vitest) | 168 of 168 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
 | End to end tests (Playwright) | 84 of 84 pass: 48 at 390 px (36 functional flows, layout on eleven screens, and an accessibility scan), plus layout and accessibility at 375, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, offline assets present. One cosmetic warning: a chunk over 500 kB |
 | Exercise content validator | 103 of 103 exercises pass |
@@ -26,7 +26,7 @@ Everything below ran in the build environment: Linux, Node 22, Chromium with iPh
 ## Unit tests (tests/)
 
 - **Week (program.test.ts):** four gym strength days, two days without structured training, no early sessions; no jumps, sprints, or skills in the gym and no gym strength work at home; home jumps on the gym leg days, before the gym, never on consecutive days; no sets to failure (two reps in reserve, three for shoulder care); 12 to 22 work sets and 75 minutes or less per gym session, counting every rest; direct weekly work for each main muscle and none over 20 sets; shoulder care first and big exercises before small ones; chosen exercises land on the right days; every session has a location, equipment, space, duration, and stop rules.
-- **Home space:** unknown answers mean the most limited room; the full introductory session (58 landings) when the space allows; no jumps in a small flat with a low ceiling, tiles, and noise limits; quiet swaps with the reason when only noise stops a drill; no maximal jumps under a standard ceiling indoors; the build level at about 95 landings; the skill session never has jumps.
+- **Home space:** unknown answers mean the most limited room; the full introductory session (64 landings, ending with full approach jumps after the approach footwork, outdoors, with full rest) when the space allows; a reach into the air without a marked wall, and no approach jump without an outdoor area or a hall; no jumps in a small flat with a low ceiling, tiles, and noise limits; quiet swaps with the reason when only noise stops a drill; no maximal jumps under a standard ceiling indoors; the build level at about 95 landings; the skill session never has jumps.
 - **Wrist:** every library exercise rated; heavy wrist work only after clearance and little with symptoms; heavy picks swapped for an equivalent option; no ball contact before clearance; gripping and pressing left out with symptoms; load increases held, reps unaffected.
 - **Plan changes (planUpdate.test.ts, program.test.ts):** the 3.0 week is offered to a 2.1 install and not to a new one; nothing changes until activation; activation creates a new version and finished sessions keep their prescriptions; Not now hides the offer but Train still shows it; home sessions follow the profile; the jump level changes only through a proposal; hand edits go through the same preview; the difference lists added, removed, and changed items day by day; early reminders move only if still at their old defaults.
 - **Food (nutrition.test.ts):** the nutrition check never suggests eating less, whatever the trend; five steady days is not a plateau; too fast loss (above about 0.45 kg a week) or a slide in energy, mood, or sleep means more food and a parent; sparse food logs do not block it; weekly weighing and weighing off both work; smart scale body fat is never read; every example has a household measure, more food options, swaps, storage, and the example label; no meat and dairy in one example; evening milk becomes pareve when too soon after meat (3 hour and 6 hour settings, off, and custom times); dairy logged too soon is noted, not blocked; no food depends on finishing a workout; the sum of the examples is described, not made a target; no supplement in the examples; raw, dry, cooked, and drained conversions with ranges consistent with the energy values; the green bean arithmetic for each state; recipe nutrition from ingredients, including oil; meal preparation scaling.
