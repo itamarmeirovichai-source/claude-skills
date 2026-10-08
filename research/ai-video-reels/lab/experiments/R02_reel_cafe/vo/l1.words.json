@@ -1,0 +1,44 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "How"
+  },
+  {
+   "start": 0.32,
+   "end": 0.48,
+   "text": "much"
+  },
+  {
+   "start": 0.56,
+   "end": 0.64,
+   "text": "did"
+  },
+  {
+   "start": 0.72,
+   "end": 0.88,
+   "text": "your"
+  },
+  {
+   "start": 1.04,
+   "end": 1.2,
+   "text": "last"
+  },
+  {
+   "start": 1.28,
+   "end": 1.68,
+   "text": "product"
+  },
+  {
+   "start": 1.76,
+   "end": 2.0,
+   "text": "shoot"
+  },
+  {
+   "start": 2.08,
+   "end": 2.88,
+   "text": "cost?"
+  }
+ ]
+}

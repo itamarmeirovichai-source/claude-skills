@@ -22,3 +22,12 @@
 Audio/voice: ElevenLabs Creator plan credits (music x4, SFX x4, ~25 TTS lines); no extra $.
 
 Lesson: in Seedance one-takes an ORBIT around a glass product breaks product fidelity (shape morph + duplicated label). Use push/rise/drift moves for label shots.
+
+## Round 2 (user: "train the characters, check thoroughly, then the reel")
+| Item | Model | $ est | Status |
+|---|---|---|---|
+| Vee reference pack x12 (4 retried after HF "temporarily unavailable") | Qwen edit 2k ($0.075) | 0.90 | PASS (w09 dropped: duplicate stopwatch) |
+| Vee Soul ID (cinema, 12 imgs) id e01fe87b-… | /v1/custom-references | 2.50 | QUEUED (same as Otto's since 04:52 — HF-side) |
+| Consistency test x3 (street / office / duo café) | Flare 2k, 8 refs | 1.38 | PASS — identity holds in new scenes |
+| Reel 02 café, audio-driven | Seedance 2.5 r2v 480p 30 s | 6.17 | running |
+| **Vee/reel running total** | | **~18.51 of 20** | |

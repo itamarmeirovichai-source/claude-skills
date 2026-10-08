@@ -1,0 +1,67 @@
+{
+ "jobs": [
+  {
+   "id": "T1_otto_street",
+   "args": {
+    "image_urls": [
+     "@file:ref/o_master.png",
+     "@file:ref/o_34L.png",
+     "@file:ref/o_prof.png",
+     "@file:ref/o_full.png",
+     "@file:ref/v_master.png",
+     "@file:ref/v_34L.png",
+     "@file:ref/v_prof.png",
+     "@file:ref/v_full.png"
+    ],
+    "prompt": "Images 1-4 are the identity references (front, three-quarter, profile, full body) of the same man: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Ignore images 5-8. New scene: he walks toward the camera down a rain-wet New York street at night, neon reflections, three-quarter view, holding his brass viewfinder at his side, amused look. Cinematic film still, 9:16, 35mm grain, real photograph, real skin texture. No text, no logos, not a cartoon, no costume look.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   },
+   "model": "marketing-studio/image/flare",
+   "takes": 1
+  },
+  {
+   "id": "T2_vee_office",
+   "args": {
+    "image_urls": [
+     "@file:ref/o_master.png",
+     "@file:ref/o_34L.png",
+     "@file:ref/o_prof.png",
+     "@file:ref/o_full.png",
+     "@file:ref/v_master.png",
+     "@file:ref/v_34L.png",
+     "@file:ref/v_prof.png",
+     "@file:ref/v_full.png"
+    ],
+    "prompt": "Images 5-8 are the identity references (front, three-quarter, profile, full body) of the same woman: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Ignore images 1-4. New scene: she sits on the edge of a desk in a sunlit minimalist studio office with large windows, checking her silver stopwatch, profile three-quarter to camera, sharp half-smile. Cinematic film still, 9:16, 35mm grain, real photograph, real skin texture. No text, no logos, not a cartoon, no costume look.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   },
+   "model": "marketing-studio/image/flare",
+   "takes": 1
+  },
+  {
+   "id": "T3_duo_cafe",
+   "args": {
+    "image_urls": [
+     "@file:ref/o_master.png",
+     "@file:ref/o_34L.png",
+     "@file:ref/o_prof.png",
+     "@file:ref/o_full.png",
+     "@file:ref/v_master.png",
+     "@file:ref/v_34L.png",
+     "@file:ref/v_prof.png",
+     "@file:ref/v_full.png"
+    ],
+    "prompt": "Images 1-4 are the identity references (front, three-quarter, profile, full body) of the same man: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Images 5-8 are the identity references (front, three-quarter, profile, full body) of the same woman: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. New scene: the man and the woman sit opposite each other at a small marble table in a Paris caf\u00e9 at golden hour, he on the LEFT, she on the RIGHT, two espressos between them, she shows him her stopwatch while he frames her through his viewfinder. Medium shot. Cinematic film still, 9:16, 35mm grain, real photograph, real skin texture. No text, no logos, not a cartoon, no costume look.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   },
+   "model": "marketing-studio/image/flare",
+   "takes": 1
+  }
+ ]
+}
