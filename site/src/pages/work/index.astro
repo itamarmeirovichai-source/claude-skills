@@ -1,0 +1,24 @@
+---
+import Page from '../../layouts/Page.astro';
+import FilmTile from '../../components/FilmTile.astro';
+import { media } from '../../lib/media';
+const cats = ['All', ...new Set(media.films.map((f) => f.category))];
+---
+<Page title="Work" description="Spec films for invented brands. Every film is a single continuous 30-second take, made with AI and directed by a human." eyebrow="Spec work · invented brands" heading="Brands that don't exist. Films that look like they do." lede="Every film here is one 30-second take. One take. No cuts. The brands are invented; your film starts from your real product photo.">
+  <div class="wrap">
+    <div class="filter btn-row" data-filter hidden role="group" aria-label="Filter by category">
+      {cats.map((c, i) => <button type="button" class="btn" data-cat={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>)}
+    </div>
+    <ul class="grid">{media.films.map((f, i) => <li><FilmTile film={f} eager={i < 2} /></li>)}</ul>
+  </div>
+  <div class="wrap cta btn-row"><a class="btn btn-primary" href="/frames">Get my 5 free frames</a><a class="btn" href="/pricing">See the prices</a></div>
+</Page>
+<style>
+  .filter { margin-bottom: 28px; }
+  .filter .btn { min-height: 40px; padding: 0.4em 1em; font-size: 0.85rem; }
+  .filter .btn[aria-pressed='true'] { border-color: var(--brass); color: var(--brass-hi); }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 22px; } }
+  .grid li[hidden] { display: none; }
+  .cta { padding-block: 64px 96px; }
+</style>

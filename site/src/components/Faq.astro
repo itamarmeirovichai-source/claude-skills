@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+interface Props { only?: string[] }
+const { only } = Astro.props;
+const items = (await getCollection('faq')).map((e) => ({ id: e.id, ...e.data })).sort((a, b) => a.order - b.order).filter((q) => !only || only.includes(q.id));
+---
+<div class="faq">
+  {items.map((q, i) => (
+    <details open={i === 0} data-faq={q.id}>
+      <summary><span>{q.q}</span><span class="plus" aria-hidden="true"></span></summary>
+      <p>{q.a}</p>
+    </details>
+  ))}
+</div>
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map((q) => ({ '@type': 'Question', name: q.q, acceptedAnswer: { '@type': 'Answer', text: q.a } })) })} />
+<style>
+  .faq { max-width: 820px; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; min-height: 56px; font: 400 clamp(1.2rem, 2.2vw, 1.5rem)/1.2 var(--serif); }
+  summary::-webkit-details-marker { display: none; }
+  .plus { flex: 0 0 18px; height: 18px; position: relative; }
+  .plus::before, .plus::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--brass); transition: transform 0.25s; }
+  .plus::after { transform: rotate(90deg); }
+  details[open] .plus::after { transform: rotate(0); }
+  details p { color: var(--text-dim); max-width: 68ch; margin: 0 0 22px; }
+</style>

@@ -1,0 +1,290 @@
+{
+  "$comment": "Single media manifest. Paths are relative to `base`. Replace files with the same names. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. `alias` reuses another clip until a dedicated one exists. `pointMap` maps the card's screen side (L/R/C) to the clip whose arm points that way on screen.",
+  "base": "/media/",
+  "otto": {
+    "poster": "otto/k0.webp",
+    "width": 540,
+    "height": 960,
+    "premultiplied": true,
+    "pointMap": {
+      "L": "char_point_R",
+      "R": "char_point_L",
+      "C": "char_point_C"
+    },
+    "clips": {
+      "char_idle": {
+        "av1": "otto/char_idle.av1.mp4",
+        "hevc": "otto/char_idle.hevc.mp4",
+        "av1_hd": "otto/char_idle_hd.av1.mp4",
+        "hevc_hd": "otto/char_idle_hd.hevc.mp4",
+        "duration": 5.04,
+        "loop": true
+      },
+      "char_point_L": {
+        "av1": "otto/char_point_L.av1.mp4",
+        "hevc": "otto/char_point_L.hevc.mp4",
+        "av1_hd": "otto/char_point_L_hd.av1.mp4",
+        "hevc_hd": "otto/char_point_L_hd.hevc.mp4",
+        "duration": 5.04,
+        "markers": {
+          "peak": 1.3
+        }
+      },
+      "char_point_R": {
+        "av1": "otto/char_point_R.av1.mp4",
+        "hevc": "otto/char_point_R.hevc.mp4",
+        "av1_hd": "otto/char_point_R_hd.av1.mp4",
+        "hevc_hd": "otto/char_point_R_hd.hevc.mp4",
+        "duration": 5.04,
+        "markers": {
+          "peak": 1.3
+        }
+      },
+      "char_point_C": {
+        "alias": "char_nod",
+        "duration": 5.04,
+        "markers": {
+          "peak": 0.9
+        }
+      },
+      "char_talk": {
+        "av1": "otto/char_talk.av1.mp4",
+        "hevc": "otto/char_talk.hevc.mp4",
+        "av1_hd": "otto/char_talk_hd.av1.mp4",
+        "hevc_hd": "otto/char_talk_hd.hevc.mp4",
+        "duration": 5.04,
+        "loop": true
+      },
+      "char_reach": {
+        "av1": "otto/char_reach.av1.mp4",
+        "hevc": "otto/char_reach.hevc.mp4",
+        "av1_hd": "otto/char_reach_hd.av1.mp4",
+        "hevc_hd": "otto/char_reach_hd.hevc.mp4",
+        "duration": 5.04,
+        "markers": {
+          "contact": 3.8
+        }
+      },
+      "char_nod": {
+        "av1": "otto/char_nod.av1.mp4",
+        "hevc": "otto/char_nod.hevc.mp4",
+        "av1_hd": "otto/char_nod_hd.av1.mp4",
+        "hevc_hd": "otto/char_nod_hd.hevc.mp4",
+        "duration": 5.04
+      },
+      "char_think": {
+        "alias": "char_idle",
+        "duration": 5.04
+      },
+      "char_stepin": {
+        "alias": "pop_wave",
+        "duration": 5.04
+      },
+      "pop_rise": {
+        "alias": "pop_wave",
+        "duration": 5.04,
+        "small": true
+      },
+      "pop_peek": {
+        "alias": "pop_thumb",
+        "duration": 5.04,
+        "small": true
+      },
+      "pop_wave": {
+        "av1": "otto/pop_wave.av1.mp4",
+        "hevc": "otto/pop_wave.hevc.mp4",
+        "duration": 5.04,
+        "small": true
+      },
+      "pop_thumb": {
+        "av1": "otto/pop_thumb.av1.mp4",
+        "hevc": "otto/pop_thumb.hevc.mp4",
+        "duration": 5.04,
+        "small": true
+      }
+    }
+  },
+  "vee": {
+    "poster": "vee/k0.webp",
+    "width": 360,
+    "height": 640,
+    "clips": {
+      "vee_pop_1": {
+        "av1": "vee/vee_pop_1.av1.mp4",
+        "hevc": "vee/vee_pop_1.hevc.mp4",
+        "duration": 2.5,
+        "small": true
+      },
+      "vee_pop_2": {
+        "av1": "vee/vee_pop_2.av1.mp4",
+        "hevc": "vee/vee_pop_2.hevc.mp4",
+        "duration": 2.5,
+        "small": true
+      }
+    },
+    "premultiplied": false,
+    "status": "placeholder"
+  },
+  "films": [
+    {
+      "slug": "sol",
+      "title": "Winter, then summer",
+      "brand": "SOL",
+      "category": "Home",
+      "duration": 30,
+      "poster": "films/sol/poster.webp",
+      "loop": {
+        "av1": "films/sol/loop.av1.mp4",
+        "h264": "films/sol/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/sol/full.av1.mp4",
+        "h264": "films/sol/full.h264.mp4"
+      },
+      "captions": null
+    },
+    {
+      "slug": "vesper",
+      "title": "After dusk",
+      "brand": "VESPER",
+      "category": "Fragrance",
+      "duration": 30,
+      "poster": "films/vesper/poster.webp",
+      "loop": {
+        "av1": "films/vesper/loop.av1.mp4",
+        "h264": "films/vesper/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/vesper/full.av1.mp4",
+        "h264": "films/vesper/full.h264.mp4"
+      },
+      "captions": null
+    },
+    {
+      "slug": "aurum",
+      "title": "Noon on ice",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum/poster.webp",
+      "loop": {
+        "av1": "films/aurum/loop.av1.mp4",
+        "h264": "films/aurum/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum/full.av1.mp4",
+        "h264": "films/aurum/full.h264.mp4"
+      },
+      "captions": null
+    },
+    {
+      "slug": "otto",
+      "title": "The Director",
+      "brand": "Otto",
+      "category": "Studio",
+      "duration": 30,
+      "poster": "films/otto/poster.webp",
+      "loop": {
+        "av1": "films/otto/loop.av1.mp4",
+        "h264": "films/otto/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/otto/full.av1.mp4",
+        "h264": "films/otto/full.h264.mp4"
+      },
+      "captions": null,
+      "label": "Studio film · our mascot · 100% AI · 30 s · one take"
+    }
+  ],
+  "voice": {
+    "vo_idle": {
+      "text": "Pick a film. I'll roll it.",
+      "audio": "voice/vo_idle.m4a",
+      "vtt": "voice/vo_idle.vtt"
+    },
+    "vo_nudge": {
+      "text": "Go on. Any film.",
+      "audio": "voice/vo_nudge.m4a",
+      "vtt": "voice/vo_nudge.vtt"
+    },
+    "vo_pick_1": {
+      "text": "Good eye.",
+      "audio": "voice/vo_pick_1.m4a",
+      "vtt": "voice/vo_pick_1.vtt"
+    },
+    "vo_pick_2": {
+      "text": "Watch the light on this one.",
+      "audio": "voice/vo_pick_2.m4a",
+      "vtt": "voice/vo_pick_2.vtt"
+    },
+    "vo_pick_3": {
+      "text": "We invented that brand.",
+      "audio": "voice/vo_pick_3.m4a",
+      "vtt": "voice/vo_pick_3.vtt"
+    },
+    "vo_pick_again": {
+      "text": "Greedy. I like it.",
+      "audio": "voice/vo_pick_again.m4a",
+      "vtt": "voice/vo_pick_again.vtt"
+    },
+    "vo_ask": {
+      "text": "Cut. Pick another, or continue?",
+      "audio": "voice/vo_ask.m4a",
+      "vtt": "voice/vo_ask.vtt"
+    },
+    "vo_continue": {
+      "text": "Hold still. Bringing up the rest.",
+      "audio": "voice/vo_continue.m4a",
+      "vtt": "voice/vo_continue.vtt"
+    },
+    "vo_skip": {
+      "text": "Fair. I'll be around.",
+      "audio": "voice/vo_skip.m4a",
+      "vtt": "voice/vo_skip.vtt"
+    },
+    "vo_ai": {
+      "text": "Yes. I'm AI too.",
+      "audio": "voice/vo_ai.m4a",
+      "vtt": "voice/vo_ai.vtt"
+    },
+    "vo_p1": {
+      "text": "Five frames. Your product. Free.",
+      "audio": "voice/vo_p1.m4a",
+      "vtt": "voice/vo_p1.vtt"
+    },
+    "vo_p2": {
+      "text": "These brands don't exist. Yours does.",
+      "audio": "voice/vo_p2.m4a",
+      "vtt": "voice/vo_p2.vtt"
+    },
+    "vo_p5": {
+      "text": "Hard questions. Straight answers.",
+      "audio": "voice/vo_p5.m4a",
+      "vtt": "voice/vo_p5.vtt"
+    },
+    "vo_p6": {
+      "text": "Quiet on set. Your turn.",
+      "audio": "voice/vo_p6.m4a",
+      "vtt": "voice/vo_p6.vtt"
+    },
+    "vo_success": {
+      "text": "Got it. Itamar's on it.",
+      "audio": "voice/vo_success.m4a",
+      "vtt": "voice/vo_success.vtt"
+    },
+    "vee_1": {
+      "text": "Frames by Thursday. I'm counting.",
+      "audio": "voice/vee_1.m4a",
+      "vtt": "voice/vee_1.vtt"
+    },
+    "vee_2": {
+      "text": "Deposit starts it. Approval finishes it.",
+      "audio": "voice/vee_2.m4a",
+      "vtt": "voice/vee_2.vtt"
+    }
+  },
+  "stills": {
+    "ba_before": "stills/ba_before.webp",
+    "ba_after": "stills/ba_after.webp"
+  }
+}

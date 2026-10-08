@@ -1,0 +1,39 @@
+---
+// A section pop-up (Otto or Vee). Decorative: aria-hidden visual + one real "Hide" button.
+import { media, mediaUrl } from '../lib/media';
+import { site } from '../lib/site';
+interface Props { id: string; char: 'otto' | 'vee'; clip: string; line: string; side?: 'left' | 'right' }
+const { id, char, clip, line, side = 'right' } = Astro.props;
+const who = char === 'vee' ? media.vee : media.otto;
+const name = char === 'vee' ? site.producer : site.mascot;
+const text = media.voice[line]?.text ?? '';
+---
+<aside class:list={['pop', `pop-${side}`, `pop-${char}`]} data-pop={id} data-char={char} data-clip={clip} data-line={line}>
+  <div class="pop-visual" aria-hidden="true">
+    <alpha-video class="pop-av" premultiplied={who.premultiplied ? '' : undefined}>
+      <img class="poster" src={mediaUrl(who.poster)} alt="" width="180" height="320" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'" />
+    </alpha-video>
+    <p class="bubble" data-bubble>{text}</p>
+    <span class="who">AI · {name}</span>
+  </div>
+  <button type="button" class="hide" data-hide-hosts aria-label={`Hide ${site.mascot} and ${site.producer} pop-ups`}>✕ Hide {name}</button>
+</aside>
+<style>
+  .pop { position: absolute; z-index: 4; bottom: 0; width: 132px; pointer-events: none; opacity: 0; transition: opacity 0.4s var(--ease), transform 0.5s var(--ease); }
+  .pop-right { right: calc(var(--gutter) * -0.5); transform: translateX(40px); }
+  .pop-left { left: calc(var(--gutter) * -0.5); transform: translateX(-40px); }
+  .pop.on { opacity: 1; transform: none; pointer-events: auto; }
+  .pop-visual { position: relative; aspect-ratio: 9 / 16; }
+  .pop-av { position: absolute; inset: 0; display: block; }
+  .pop-av :global(canvas), .pop-av .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .pop-av[data-ready] .poster { opacity: 0; }
+  .bubble { position: absolute; bottom: 72%; right: 70%; width: max-content; max-width: 210px; margin: 0; padding: 8px 12px; border-radius: 12px 12px 2px 12px; font: 400 1.02rem/1.25 var(--serif); box-shadow: 0 10px 30px rgb(0 0 0 / 0.35); }
+  .pop-left .bubble { right: auto; left: 70%; border-radius: 12px 12px 12px 2px; }
+  .pop-otto .bubble { background: var(--ivory); color: #1a1510; }
+  .pop-vee .bubble { background: var(--vermilion); color: var(--ivory); }
+  .who { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .hide { margin-top: 4px; width: 100%; min-height: 32px; border-radius: 999px; border: 1px solid var(--line); background: rgb(15 14 13 / 0.7); color: var(--text-dim); font-size: 0.7rem; cursor: pointer; }
+  @media (min-width: 768px) { .pop { width: 160px; } }
+  :global(html.hosts-hidden) .pop { display: none; }
+  @media (prefers-reduced-motion: reduce) { .pop { display: none; } }
+</style>

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  home?: boolean;
+  noindex?: boolean;
+  jsonLd?: object[];
+}
+const { title, description, home = false, noindex = false, jsonLd = [] } = Astro.props;
+const fullTitle = title === site.studio ? `${site.studio} · Product films without the shoot` : `${title} · ${site.studio}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.studio,
+  alternateName: site.studioLong,
+  url: site.url,
+  description: 'AI product films for founder-led brands. Every film is one 30-second take. Spec films are for invented brands.',
+  ...(site.email ? { email: site.email } : {}),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#161412" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        var p = JSON.parse(localStorage.getItem('vxo:prefs') || '{}');
+        if (p.motion === 'paused') document.documentElement.classList.add('motion-paused');
+        if (p.hosts === 'hidden') document.documentElement.classList.add('hosts-hidden');
+      } catch (e) {}
+    </script>
+    <slot name="head" />
+    <script type="application/ld+json" set:html={JSON.stringify([org, ...jsonLd])} />
+  </head>
+  <body class:list={[{ 'is-home': home }]}>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <Header home={home} />
+    <slot />
+    <Footer home={home} />
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+      import { initGlobal } from '../scripts/core/global';
+      initGlobal();
+    </script>
+  </body>
+</html>
+<style is:global>
+  .skip-link { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--brass); color: #1a1510; padding: 10px 14px; border-radius: 8px; font-weight: 600; }
+  .skip-link:focus { top: 12px; }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 90; pointer-events: none; }
+</style>

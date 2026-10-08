@@ -1,0 +1,27 @@
+---
+import Page from '../layouts/Page.astro';
+import Pricing from '../components/Pricing.astro';
+import Faq from '../components/Faq.astro';
+import { pricing, money } from '../lib/site';
+---
+<Page title="Pricing" description={`Three clear prices for 30-second one-take product films. From ${money(pricing.from)}.`} eyebrow="Pricing" heading={`Product films without the shoot. From ${money(pricing.from)}.`}>
+  <div class="wrap"><Pricing /></div>
+  <section class="wrap terms">
+    <h2>The terms, in plain English</h2>
+    <div class="prose">
+      <p><strong>See before you buy.</strong> The 5 frames are free. If they don't feel like your brand, we stop and you owe nothing.</p>
+      <p><strong>Approve before you pay the balance</strong> (Premiere and Short). A 50 % deposit starts the film; the 50 % balance is due only when you approve the final film. If two revision rounds still don't get there, you can walk away. You owe no balance and you don't receive the final files. The deposit covers the work done.</p>
+      <p><strong>On-time promise.</strong> If the first take is late through our fault, the balance drops 10 %.</p>
+      <p><strong>Revisions.</strong> Two rounds per film on every plan; extra rounds are $150. A revision tweaks the film; a new concept is a new film.</p>
+      <p><strong>Usage.</strong> On full payment: a perpetual, worldwide licence for your digital ads, organic posts and site. TV, out-of-home and retail screens are quoted separately. We promise not to reuse your film. Purely AI-generated material may not be copyrightable in the US, so exclusivity is our promise, not a legal guarantee.</p>
+      <p><strong>Season.</strong> Monthly in advance, a 3-month minimum, then 30 days' notice. No auto-renew surprises.</p>
+      <p><strong>Results.</strong> We guarantee the work (on time, as scoped, approved by you), not sales or ROAS.</p>
+    </div>
+  </section>
+  <section class="wrap terms"><h2>Questions</h2><Faq only={['all-ai', 'ai-label', 'ownership', 'dont-like', 'roas', 'clients']} /></section>
+  <div class="wrap btn-row cta"><a class="btn btn-primary" href="/frames">Start with free frames</a></div>
+</Page>
+<style>
+  .terms { padding-top: 72px; }
+  .cta { padding-block: 56px 96px; }
+</style>

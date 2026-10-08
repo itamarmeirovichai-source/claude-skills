@@ -1,0 +1,237 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PopUp from '../components/PopUp.astro';
+import FilmTile from '../components/FilmTile.astro';
+import Pricing from '../components/Pricing.astro';
+import Faq from '../components/Faq.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { media, mediaUrl } from '../lib/media';
+import { site, pricing, money } from '../lib/site';
+
+const films = media.films.slice(0, 6);
+const brandList = films.filter((f) => f.category !== 'Studio').map((f) => f.brand);
+const brands = brandList.length > 1 ? `${brandList.slice(0, -1).join(', ')} and ${brandList.at(-1)}` : (brandList[0] ?? '');
+const offers = pricing.tiers.map((t) => ({ '@type': 'Offer', name: t.name, price: t.price, priceCurrency: 'USD' }));
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'AI product films', provider: { '@type': 'Organization', name: site.studio }, offers }];
+---
+<Base title={site.studio} description={`Premium 30-second product films, each one continuous take. Made with AI, directed by a human. Start with 5 free frames of your product. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={mediaUrl(media.otto.poster)} fetchpriority="high" />
+  </Fragment>
+  <Hero />
+
+  <main id="content" class="sheet" tabindex="-1">
+    <span class="grip" aria-hidden="true"></span>
+
+    <!-- S1 · The offer -->
+    <section class="section offer" id="offer" aria-labelledby="s1">
+      <div class="wrap split">
+        <div data-reveal>
+          <p class="eyebrow">5 free frames</p>
+          <h2 id="s1">See your product in our world before you spend a cent.</h2>
+          <p class="lede">Send one product photo. In 3–5 business days you get 5 cinematic frames, the storyboard of your film. Judge the look on your product, not on our reel.</p>
+          <ul class="ticks">
+            <li>5 frames, 1 concept, built around your product</li>
+            <li>No call needed. No card. No strings.</li>
+            <li>Marked "AI concept". Yours to keep and share inside your team.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="/frames?for=bestseller">Frames for my bestseller</a>
+            <a class="btn" href="/frames?for=launch">Frames for my next launch</a>
+          </div>
+        </div>
+        <figure class="ba" data-ba data-reveal>
+          <div class="ba-frame">
+            <img class="after" src={mediaUrl(media.stills['ba_after'])} alt="Frame 3 of 5: the same product, lit and placed in a scene (AI concept)" width="1200" height="1500" loading="lazy" decoding="async" />
+            <img class="before" src={mediaUrl(media.stills['ba_before'])} alt="The plain product photo we started from" width="1200" height="1500" loading="lazy" decoding="async" />
+            <span class="ba-tag l">Product photo</span><span class="ba-tag r">Frame · AI concept</span>
+            <span class="ba-line" aria-hidden="true"></span>
+          </div>
+          <label class="sr-only" for="ba-range">Compare the product photo with the frame</label>
+          <input id="ba-range" type="range" min="0" max="100" value="50" />
+          <figcaption class="small dim">Our invented product, before and after. Spec work.</figcaption>
+        </figure>
+      </div>
+      <PopUp id="P1" char="otto" clip="pop_rise" line="vo_p1" side="right" />
+    </section>
+
+    <!-- S2 · The problem -->
+    <section class="section" aria-labelledby="s2">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 id="s2">Your best ad is getting tired. A new shoot means weeks and a crew.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card" data-reveal><h3>Ads wear out fast.</h3><p class="dim">The median Meta ad creative lives about 22 days (Benly, Q1 2026).</p></article>
+          <article class="card" data-reveal><h3>Shoots are slow.</h3><p class="dim">Casting, location, crew, edit: by the time it's live, the moment's gone.</p></article>
+          <article class="card" data-reveal><h3>UGC can't get every shot.</h3><p class="dim">A guava splitting in slow motion. A bottle catching the last of the sun.</p></article>
+        </div>
+        <p class="closer" data-reveal>We make the shots that are hard to film, fast enough to keep up with your ads.</p>
+      </div>
+    </section>
+
+    <!-- S3 · The work -->
+    <section class="section" id="work" aria-labelledby="s3">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Spec work · invented brands</p>
+          <h2 id="s3">Brands that don't exist. Films that look like they do.</h2>
+          <p class="lede">We invented {brands} to show what we make from nothing but a product and an idea. Every film is a single 30-second take. <span class="signature-inline">One take. No cuts.</span> Your film starts from your real product photo.</p>
+          <PopUp id="P2" char="otto" clip="pop_peek" line="vo_p2" side="right" />
+        </div>
+        <div class="tiles" data-count={films.length}>
+          {films.map((f, i) => <FilmTile film={f} eager={i < 2} />)}
+        </div>
+        <div class="btn-row more">
+          <a class="btn" href="/work">See all films</a>
+          <a class="btn btn-primary" href="/frames">Get my 5 free frames</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- S4 · How it works (Vee #1) -->
+    <section class="section how" id="how" aria-labelledby="s4">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">How it works</p>
+          <h2 id="s4">From one product photo to a finished film in about a week.</h2>
+          <p class="signature">{site.signature}</p>
+        </div>
+        <ol class="steps">
+          <li data-reveal><span class="num">1</span><h3>Frames <span class="dim">(free, 3–5 days)</span></h3><p class="dim">One photo in, 5 frames out. They fix the light, the palette and the camera path. You tell us what's off.</p></li>
+          <li data-reveal><span class="num">2</span><h3>Film <span class="dim">(7–8 days, two revision rounds)</span></h3><p class="dim">Storyboard day 2, first take day 5, final day 7–8. The hero is one continuous 30-second take: one shot, no cuts.</p></li>
+          <li data-reveal><span class="num">3</span><h3>Variants</h3><p class="dim">Every film ships as the 30 s one-take hero, an 8 s loop and short versions in 9:16 and 4:5, with 3 different openings to test.</p></li>
+        </ol>
+        <div class="timeline" aria-hidden="true"><span></span></div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/frames">Start with step 1 <span aria-hidden="true">→</span></a>
+          <a class="btn" href="#pricing">See the prices</a>
+        </div>
+        <PopUp id="V1" char="vee" clip="vee_pop_1" line="vee_1" side="right" />
+      </div>
+    </section>
+
+    <!-- S5 · Proof without logos (Vee #2 at the risk reversal) -->
+    <section class="section" id="proof" aria-labelledby="s5">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Proof without logos</p>
+          <h2 id="s5">No client logos yet. Here's what you get instead.</h2>
+          <p class="lede">We're new, and we won't pretend otherwise: no fake logos, no made-up reviews. So we take the risk instead of you.</p>
+        </div>
+        <div class="proof">
+          <article class="card" data-reveal><h3>Proof on your product.</h3><p class="dim">The 5 free frames show you the result before you pay.</p></article>
+          <article class="card risk" data-reveal>
+            <h3>Pay the balance only if you approve.</h3>
+            <p class="dim">50 % starts the film. If two revision rounds don't win you over, you owe no balance and you don't receive the final files. The deposit covers the work done.</p>
+            <PopUp id="V2" char="vee" clip="vee_pop_2" line="vee_2" side="right" />
+          </article>
+          <article class="card" data-reveal><h3>On time, or less.</h3><p class="dim">If the first take is late through our fault, the balance drops 10 %.</p></article>
+          <article class="card" data-reveal><h3>See how it's made.</h3><p class="dim">Every film comes with a breakdown: product photo → frames → final. <a href={`/work/${films[0]?.slug ?? ''}`}>Read one</a>.</p></article>
+          <article class="card" data-reveal><h3>Clean and disclosed.</h3><p class="dim">Commercially licensed AI tools, every generated element flagged, every prompt and version logged. No real person's face without written consent.</p></article>
+        </div>
+        <div class="founder" data-reveal>
+          <p class="quote">"I'm {site.founder}. I direct every film myself.{site.founderLine && ` ${site.founderLine}`}"</p>
+          {/* TODO(founder): add one true line of background to site.json → founderLine. No invented facts. */}
+          <p class="small dim">Founder, {site.studio}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 · Pricing (no characters here) -->
+    <section class="section" id="pricing" aria-labelledby="s6">
+      <div class="wrap"><Pricing /></div>
+    </section>
+
+    <!-- S7 · FAQ -->
+    <section class="section" id="faq" aria-labelledby="s7">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Questions</p>
+          <h2 id="s7">Straight answers.</h2>
+          <PopUp id="P5" char="otto" clip="char_think" line="vo_p5" side="right" />
+        </div>
+        <Faq />
+      </div>
+    </section>
+
+    <!-- S8 · Final CTA + form -->
+    <section class="section final" id="start" aria-labelledby="s8">
+      <div class="wrap split">
+        <div data-reveal>
+          <p class="eyebrow">Start here</p>
+          <h2 id="s8">Your product deserves a film. Start with five frames.</h2>
+          <p class="lede">Free, no call, ready in 3–5 business days.</p>
+          <p class="signature">{site.signature}</p>
+        </div>
+        <div class="form-col">
+          <LeadForm id="home" />
+          <PopUp id="P6" char="otto" clip="pop_wave" line="vo_p6" side="left" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import '../scripts/home';
+  </script>
+</Base>
+
+<style>
+  .sheet {
+    position: relative; z-index: 5; background: var(--ink-1); border-radius: 28px 28px 0 0;
+    box-shadow: 0 -24px 60px rgb(0 0 0 / 0.55); outline: none;
+  }
+  .sheet::before { content: ''; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--brass), transparent); border-radius: 28px 28px 0 0; }
+  .grip { position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 44px; height: 4px; border-radius: 4px; background: var(--line-strong); }
+  .section { overflow-x: clip; }
+  .split { display: grid; gap: 40px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .split { grid-template-columns: 1.05fr 1fr; gap: 64px; } }
+  .ticks { list-style: none; padding: 0; margin: 0 0 24px; }
+  .ticks li { padding: 10px 0 10px 30px; border-bottom: 1px solid var(--line); position: relative; }
+  .ticks li::before { content: ''; position: absolute; left: 4px; top: 18px; width: 12px; height: 6px; border: solid var(--brass); border-width: 0 0 1.5px 1.5px; rotate: -45deg; }
+
+  .ba { margin: 0; }
+  .ba-frame { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); --pos: 50%; }
+  .ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ba-frame .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--ivory); translate: -1px 0; box-shadow: 0 0 12px rgb(0 0 0 / 0.5); }
+  .ba-tag { position: absolute; top: 12px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgb(15 14 13 / 0.7); padding: 6px 8px; border-radius: 6px; }
+  .ba-tag.l { left: 12px; } .ba-tag.r { right: 12px; }
+  .ba input[type='range'] { width: 100%; margin: 14px 0 6px; accent-color: var(--brass); min-height: 32px; }
+  .ba { --pos: 50%; }
+
+  .closer { margin-top: 36px; font: 400 clamp(1.4rem, 3vw, 2.1rem)/1.2 var(--serif); max-width: 30ch; }
+  .tiles { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 760px) { .tiles { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+  @media (min-width: 1000px) { .tiles[data-count='4'] { grid-template-columns: repeat(4, 1fr); } }
+  .more { margin-top: 32px; }
+  .signature-inline { font-family: var(--serif); font-style: italic; color: var(--brass-hi); white-space: nowrap; }
+
+  .steps { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 16px; }
+  @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .steps li { position: relative; padding: 22px 22px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); }
+  .num { font: 400 3rem/1 var(--serif); color: var(--brass); display: block; margin-bottom: 8px; }
+  .steps h3 .dim { font-size: 0.75em; }
+  .timeline { height: 2px; background: var(--line); margin: 8px 0 28px; position: relative; overflow: hidden; border-radius: 2px; }
+  .timeline span { position: absolute; inset: 0; background: linear-gradient(90deg, var(--brass), var(--vermilion)); transform-origin: left; transform: scaleX(0.66); }
+
+  .proof { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .proof { grid-template-columns: repeat(2, 1fr); } .proof .risk { grid-row: span 2; } }
+  .risk { position: relative; border-color: rgb(216 67 43 / 0.45); padding-bottom: 210px; }
+  @media (min-width: 860px) { .risk { padding-bottom: 32px; } }
+  .founder { margin-top: 40px; padding: 28px; border-left: 2px solid var(--brass); max-width: 720px; }
+  .quote { font: 400 clamp(1.5rem, 3vw, 2.2rem)/1.2 var(--serif); margin-bottom: 8px; }
+
+  .form-col { position: relative; }
+  .final { background: radial-gradient(70% 90% at 15% 10%, rgb(110 31 36 / 0.32), transparent 60%), var(--ink-1); }
+  .section-head :global(.pop) { bottom: auto; top: 0; }
+  .offer :global(.pop) { bottom: 24px; }
+  .form-col :global(.pop) { bottom: 80px; }
+  @media (max-width: 767px) {
+    .section-head :global(.pop), .form-col :global(.pop), .offer :global(.pop) { top: auto; bottom: 8px; }
+    .form-col :global(.pop) { display: none; } /* never cover the form on phones */
+  }
+</style>

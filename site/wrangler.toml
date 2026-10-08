@@ -1,0 +1,23 @@
+# Cloudflare Pages project (separate from PeakForm). Root directory: site/
+name = "studio-site"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-09-01"
+
+# Bindings used by functions/ (all optional; the Functions degrade gracefully without them).
+# Uncomment once the resources exist:
+# [[r2_buckets]]
+# binding = "UPLOADS"            # private bucket for lead photos + lead.json (90-day lifecycle rule)
+# bucket_name = "studio-uploads"
+#
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"         # per-IP-hash submit counter
+# id = "<kv id>"
+#
+# [[analytics_engine_datasets]]
+# binding = "EVENTS"             # cookieless custom events from /api/e
+# dataset = "studio_events"
+#
+# Secrets / vars (set in the Pages dashboard or `wrangler pages secret put`, never in code):
+#   TURNSTILE_SECRET   Turnstile secret key (if unset, Turnstile check is skipped)
+#   LEAD_SIGNING_SECRET  HMAC key for upload tokens (if unset, a per-request random key is used and uploads must happen in the same isolate)
+#   RESEND_API_KEY, MAIL_FROM, NOTIFY_TO   optional email via Resend (founder alert + auto-reply)

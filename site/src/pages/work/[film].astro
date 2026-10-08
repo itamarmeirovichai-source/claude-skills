@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import { media, mediaUrl, SPEC_LABEL, VIDEO_TYPES, type FilmMedia } from '../../lib/media';
+import { site } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('films');
+  return media.films.map((f) => ({ params: { film: f.slug }, props: { film: f, entry: entries.find((e) => e.id === f.slug) } }));
+}
+interface Props { film: FilmMedia; entry: Awaited<ReturnType<typeof getCollection<'films'>>>[number] | undefined }
+const { film, entry } = Astro.props;
+const { Content } = entry ? await render(entry) : { Content: null };
+const idx = media.films.findIndex((f) => f.slug === film.slug);
+const next = media.films[(idx + 1) % media.films.length];
+const video = {
+  '@context': 'https://schema.org', '@type': 'VideoObject', name: `${film.brand}: ${film.title}`,
+  description: entry?.data.idea ?? SPEC_LABEL(film), thumbnailUrl: new URL(mediaUrl(film.poster), site.url).href,
+  contentUrl: new URL(mediaUrl(film.full.h264), site.url).href, duration: `PT${film.duration}S`, uploadDate: '2026-10-08',
+};
+---
+<Page title={`${film.brand}: ${film.title}`} description={entry?.data.idea ?? SPEC_LABEL(film)} eyebrow={SPEC_LABEL(film)} heading={`${film.brand}: ${film.title}`} jsonLd={[video]}>
+  <div class="wrap film">
+    <div class="player">
+      <video controls playsinline preload="metadata" poster={mediaUrl(film.poster)} width="540" height="960">
+        <source src={mediaUrl(film.full.av1)} type={VIDEO_TYPES.av1Audio} />
+        <source src={mediaUrl(film.full.h264)} type={VIDEO_TYPES.h264Audio} />
+        {film.captions && <track kind="captions" src={mediaUrl(film.captions)} srclang="en" label="English" default />}
+      </video>
+      <p class="spec-label">{SPEC_LABEL(film)}</p>
+    </div>
+    <div class="about">
+      <h2 class="h3">The idea</h2>
+      <p class="lede">{entry?.data.idea}</p>
+      <h2 class="h3">How it was made</h2>
+      <div class="prose">{Content && <Content />}</div>
+      <p class="small dim">Delivered as 9:16 and 4:5 versions. {site.signature}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/frames">Get my 5 free frames</a>
+        {next && next.slug !== film.slug && <a class="btn" href={`/work/${next.slug}`}>Next film: {next.brand} →</a>}
+      </div>
+    </div>
+  </div>
+</Page>
+<style>
+  .film { display: grid; gap: 40px; padding-bottom: 96px; }
+  @media (min-width: 900px) { .film { grid-template-columns: minmax(0, 420px) 1fr; gap: 64px; align-items: start; } .player { position: sticky; top: 24px; } }
+  .player video { width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 16px; background: #000; }
+  .player .spec-label { margin-top: 10px; }
+  .h3 { font-size: 1.6rem; }
+</style>

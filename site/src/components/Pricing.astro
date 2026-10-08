@@ -1,0 +1,65 @@
+---
+import { pricing, money, callHref } from '../lib/site';
+interface Props { headingLevel?: 'h1' | 'h2' }
+const { headingLevel = 'h2' } = Astro.props;
+const H = headingLevel;
+const f = pricing.founding;
+---
+<div class="pricing">
+  <div class="section-head" data-reveal>
+    <p class="eyebrow">Pricing · from {money(pricing.from)}</p>
+    <H>Clear prices. Pick the size that fits this quarter.</H>
+    <p class="lede">{pricing.context} <a href={pricing.contextSource.url} rel="noopener" target="_blank">Source: {pricing.contextSource.label}</a>.</p>
+  </div>
+  <ol class="tiers">
+    {pricing.tiers.map((t) => (
+      <li class:list={['tier', { rec: t.recommended }]} data-reveal data-tier={t.id}>
+        {t.ribbon && <p class="ribbon">{t.ribbon}</p>}
+        <h3>{t.name}</h3>
+        <p class="price"><span class="amt">{money(t.price)}</span>{t.unit && <span class="unit">{t.unit}</span>}</p>
+        {t.note && <p class="tnote">{t.note}</p>}
+        <p class="for">{t.for}</p>
+        <ul class="deliv">{t.deliverables.map((d) => <li>{d}</li>)}</ul>
+        <dl>
+          <dt>Timing</dt><dd>{t.turnaround}</dd>
+          <dt>Payment</dt><dd>{t.payment}</dd>
+          {t.perAsset && <><dt>Per asset</dt><dd>{t.perAsset}</dd></>}
+        </dl>
+      </li>
+    ))}
+  </ol>
+  <p class="all" data-reveal>{pricing.allPlans}</p>
+  <details class="addons">
+    <summary>Add-ons</summary>
+    <ul>{pricing.addOns.map((a) => <li><span>{a.name}</span><b>{a.price}</b></li>)}</ul>
+  </details>
+  {f.show && f.left > 0 && <p class="founding">{f.line} <b>{f.left} of {f.total} left.</b></p>}
+  <div class="btn-row cta">
+    <a class="btn btn-primary" href="/frames" data-pricing-cta="frames">Start with free frames</a>
+    <a class="btn" href={callHref()} data-pricing-cta="call">Book a 15-min call</a>
+  </div>
+</div>
+<style>
+  .tiers { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 960px) { .tiers { grid-template-columns: repeat(3, 1fr); gap: 20px; } .tier.rec { transform: translateY(-14px); } .tier.rec.is-in { transform: translateY(-14px); } }
+  .tier { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; position: relative; }
+  .tier.rec { border-color: var(--brass); background: linear-gradient(180deg, rgb(176 141 87 / 0.10), var(--ink-2) 40%); }
+  .ribbon { position: absolute; top: -13px; left: 24px; margin: 0; background: var(--brass); color: #1a1510; font: 600 0.72rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; }
+  h3 { font-size: 1.9rem; margin-bottom: 0.2em; }
+  .price { margin: 0; display: flex; align-items: baseline; gap: 4px; }
+  .amt { font: 400 2.8rem/1 var(--serif); color: var(--ivory); }
+  .unit { color: var(--text-dim); }
+  .tnote { color: var(--text-faint); font-size: 0.85rem; margin: 4px 0 0; }
+  .for { color: var(--brass-hi); font-size: 0.92rem; margin: 14px 0 10px; }
+  .deliv { margin: 0 0 16px; padding-left: 1.1em; color: var(--text); font-size: 0.93rem; }
+  .deliv li { margin-bottom: 4px; }
+  dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 0.85rem; border-top: 1px solid var(--line); padding-top: 14px; }
+  dt { color: var(--text-faint); }
+  dd { margin: 0; color: var(--text-dim); }
+  .all { margin-top: 28px; color: var(--text-dim); max-width: 70ch; }
+  .addons summary { cursor: pointer; color: var(--brass-hi); min-height: 44px; display: flex; align-items: center; }
+  .addons ul { list-style: none; padding: 0; margin: 0; max-width: 520px; }
+  .addons li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+  .founding { margin-top: 18px; padding: 14px 16px; border: 1px dashed var(--line-strong); border-radius: 12px; max-width: 70ch; font-size: 0.92rem; }
+  .cta { margin-top: 26px; }
+</style>

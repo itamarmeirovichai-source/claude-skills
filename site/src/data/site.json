@@ -1,0 +1,17 @@
+{
+  "$comment": "Brand tokens. Empty strings render nothing. Domain is TBD (vxo.studio planned).",
+  "studio": "VXO",
+  "studioLong": "Valéry × Otto",
+  "mascot": "Otto",
+  "producer": "Vee",
+  "domain": "vxo.studio",
+  "url": "https://vxo.studio",
+  "email": "",
+  "address": "",
+  "founder": "Itamar",
+  "founderLine": "",
+  "bookingUrl": "",
+  "turnstileSiteKey": "",
+  "capacityLine": "",
+  "signature": "One take. No cuts."
+}
