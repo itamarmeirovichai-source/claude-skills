@@ -39,6 +39,12 @@ Image 1 is the identity reference: keep this exact man — long pale face, deep-
 2. **Next (≈$2.50, needs approval):** build 20–30 approved images of Otto (turnaround plus an expression sheet, all from the master) and train a Higgsfield Soul ID (`/v1/custom-references`). That gives the strongest identity lock for all future stills and video.
 3. **Video:** every clip starts and ends on an approved Otto still (Kling start/end frames).
 
+
+## Locked voice and identity IDs (2026-10-08)
+- **ElevenLabs voice (permanent, designed for Otto — never use another):** `IbpG1IF3UdxPgaDKhwsd` "VXO Otto (director)". Deep dry baritone (~78 Hz), subtle continental accent, slow deadpan timing. Design record: `research/ai-video-reels/lab/experiments/V01_voices/voices.json`.
+- **Higgsfield Soul ID:** `26eef606-bf04-4db4-ab7a-6bdbe6dfea93` (cinema, 24 images). Status at last check: queued on Higgsfield's side.
+- **Reference pack (used on every Flare/Seedance/Kling call):** master + three-quarter + profile + full body from `M02_otto_soulid/train/`. Verified in new scenes (M04 consistency test: PASS).
+
 ## Storage
 Generated media is not committed to git, by project rule. The master image must live somewhere permanent, outside this container. See the decision log below.
 

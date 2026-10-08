@@ -2,11 +2,11 @@
  "words": [
   {
    "start": 0.0,
-   "end": 0.56,
+   "end": 0.8,
    "text": "Yes."
   },
   {
-   "start": 0.96,
+   "start": 1.04,
    "end": 1.28,
    "text": "I'm"
   },
@@ -16,7 +16,7 @@
    "text": "AI"
   },
   {
-   "start": 2.0,
+   "start": 1.92,
    "end": 2.64,
    "text": "too."
   }

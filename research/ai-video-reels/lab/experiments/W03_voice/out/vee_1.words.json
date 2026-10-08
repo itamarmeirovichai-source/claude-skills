@@ -2,27 +2,27 @@
  "words": [
   {
    "start": 0.0,
-   "end": 0.48,
+   "end": 0.4,
    "text": "Frames"
   },
   {
-   "start": 0.56,
-   "end": 0.72,
+   "start": 0.48,
+   "end": 0.56,
    "text": "by"
   },
   {
-   "start": 0.8,
-   "end": 1.76,
+   "start": 0.64,
+   "end": 1.28,
    "text": "Thursday."
   },
   {
-   "start": 1.8,
-   "end": 2.0,
+   "start": 1.68,
+   "end": 1.76,
    "text": "I'm"
   },
   {
-   "start": 2.16,
-   "end": 2.88,
+   "start": 1.84,
+   "end": 2.56,
    "text": "counting."
   }
  ]

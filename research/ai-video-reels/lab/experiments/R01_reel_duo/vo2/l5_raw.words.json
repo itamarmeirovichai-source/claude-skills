@@ -1,0 +1,59 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "Send"
+  },
+  {
+   "start": 0.32,
+   "end": 0.48,
+   "text": "us"
+  },
+  {
+   "start": 0.56,
+   "end": 0.72,
+   "text": "one"
+  },
+  {
+   "start": 0.8,
+   "end": 1.12,
+   "text": "product"
+  },
+  {
+   "start": 1.2,
+   "end": 1.92,
+   "text": "photo."
+  },
+  {
+   "start": 2.0,
+   "end": 2.16,
+   "text": "We"
+  },
+  {
+   "start": 2.24,
+   "end": 2.32,
+   "text": "send"
+  },
+  {
+   "start": 2.4,
+   "end": 2.64,
+   "text": "back"
+  },
+  {
+   "start": 2.72,
+   "end": 2.96,
+   "text": "five"
+  },
+  {
+   "start": 3.04,
+   "end": 3.76,
+   "text": "frames,"
+  },
+  {
+   "start": 3.92,
+   "end": 4.4,
+   "text": "free."
+  }
+ ]
+}

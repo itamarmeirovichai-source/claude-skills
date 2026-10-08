@@ -2,22 +2,22 @@
  "words": [
   {
    "start": 0.0,
-   "end": 0.48,
+   "end": 0.56,
    "text": "Fair."
   },
   {
-   "start": 0.88,
-   "end": 1.04,
+   "start": 1.04,
+   "end": 1.2,
    "text": "I'll"
   },
   {
-   "start": 1.08,
-   "end": 1.12,
+   "start": 1.28,
+   "end": 1.36,
    "text": "be"
   },
   {
-   "start": 1.2,
-   "end": 1.92,
+   "start": 1.6,
+   "end": 2.08,
    "text": "around."
   }
  ]

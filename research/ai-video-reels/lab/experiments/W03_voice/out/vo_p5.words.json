@@ -2,22 +2,22 @@
  "words": [
   {
    "start": 0.0,
-   "end": 0.32,
+   "end": 0.4,
    "text": "Hard"
   },
   {
-   "start": 0.4,
-   "end": 1.32,
+   "start": 0.48,
+   "end": 1.48,
    "text": "questions."
   },
   {
-   "start": 1.6,
-   "end": 1.92,
+   "start": 1.76,
+   "end": 2.16,
    "text": "Straight"
   },
   {
-   "start": 2.0,
-   "end": 2.8,
+   "start": 2.24,
+   "end": 3.12,
    "text": "answers."
   }
  ]

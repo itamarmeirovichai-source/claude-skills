@@ -1,4 +1,4 @@
-# VEE (Valéry): canonical character bible (DRAFT, 2026-10-08)
+# VEE (Valéry): canonical character bible (LOCKED, 2026-10-08)
 
 Vee is the second half of VXO ("Valéry × Otto"). Otto is the director, the craft. Vee is the producer, the deal. **This file is the single source of truth once a master image is approved.** Until then it is a draft: design and personality are fixed, and the master image is pending.
 
@@ -45,6 +45,14 @@ Image 1 is the identity reference: keep this exact woman — late 30s, angular f
 1. Explore with Soul Cinema (cheap), then render 2 Flare finals and approve one master.
 2. Make 24 Qwen edits of the master (angles, expressions, 3 lights, close/medium/full), QC them, and train a Soul ID (`cinema`).
 3. Every clip starts from an approved Vee still and/or carries the Soul ID.
+
+
+## Locked voice and identity IDs (2026-10-08)
+- **Master image:** `M03_vee/clips/vee_master_t01.png` (APPROVED). Status of this bible: LOCKED.
+- **ElevenLabs voice (permanent, designed for Vee — never use another):** `cLFf1Dc8DlgFwZ62rdPg` "VXO Vee (producer)". Crisp, slightly husky mid-Atlantic, quick and dry. Design record: `V01_voices/voices.json`.
+- **Higgsfield Soul ID:** `e01fe87b-d388-4b8f-89f9-271747b13f8b` (cinema, 12 images). Status at last check: queued on Higgsfield's side.
+- **Reference pack:** master + `pack/` (11 angles/expressions; w09 excluded for a duplicate stopwatch). Verified in new scenes (M04: PASS).
+- **Known drift to watch:** a second stopwatch appearing in her hand. Prompt "exactly ONE stopwatch, clipped to her lapel".
 
 ## Decision log
 - 2026-10-08: design fixed (draft); the master is pending generation.
