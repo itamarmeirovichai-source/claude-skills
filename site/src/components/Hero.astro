@@ -162,11 +162,11 @@ const n = films.length;
   }
   /* Without JS (or in fallback), the desktop ring is a static row. */
   @media (min-width: 768px) {
-    :global(html:not(.js)) .ring-track, .hero[data-state='fallback'] .ring-track {
+    :global(html:not(.js)) .ring-track, .hero[data-state='fallback'] .ring-track, .hero:global(.rm) .ring-track {
       position: static; width: auto; height: auto; display: flex; gap: 14px; justify-content: center; padding-top: 58vh;
     }
-    :global(html:not(.js)) .ring-item, .hero[data-state='fallback'] .ring-item { position: static; transform: none !important; }
-    :global(html:not(.js)) .card, .hero[data-state='fallback'] .card { translate: none; }
+    :global(html:not(.js)) .ring-item, .hero[data-state='fallback'] .ring-item, .hero:global(.rm) .ring-item { position: static; transform: none !important; }
+    :global(html:not(.js)) .card, .hero[data-state='fallback'] .card, .hero:global(.rm) .card { translate: none; }
   }
   @media (max-height: 700px) and (max-width: 767px) { .hero-sub { display: none; } }
 
