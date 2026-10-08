@@ -10,15 +10,15 @@ Research brief, 2026-10-08. It covers how to build the studio site: a centre-scr
 
 | Area | Choice | Why (short) |
 |---|---|---|
-| Framework | **Astro (static output) + vanilla TypeScript modules**, no UI framework runtime | Zero JS by default, islands only where needed ([Astro islands](https://docs.astro.build/en/concepts/islands/)); content collections for portfolio/pricing/FAQ; deploys as plain static files |
-| Motion | **GSAP 3** (core, ScrollTrigger, Flip, SplitText) + **Lenis** | GSAP is now "100% free for all users", plugins included ([GSAP pricing](https://gsap.com/pricing/)); Lenis keeps native scroll, so sticky, anchors and a11y still work ([Lenis](https://github.com/darkroomengineering/lenis)) |
-| Ring | **CSS 3D transforms**, not Three.js/R3F | 6–10 flat cards need no lighting or shaders; native `<video>` decoding beats uploading textures every frame [inf] |
-| Transparent character | **Stacked-alpha video** (AV1 + HEVC) drawn by WebGL (`stacked-alpha-video`, ~2 kB) | Half the size or less of VP9/HEVC alpha, and it avoids native alpha bugs ([Archibald](https://jakearchibald.com/2024/video-with-transparency/)) |
-| Hero logic | **Hand-rolled, typed state machine** (pure reducer + effect layer), shaped like a statechart | ~10 states. Zero dependencies and easy to unit-test. Move to XState v5 if it grows past ~15 states or gains parallel regions [inf] |
-| Hosting | **New Cloudflare Pages project** on the same repo, root `site/`. Media on Pages first, then R2 behind a custom domain | Free; Functions + R2 + Turnstile on one platform. Do **not** reuse `peakform-qtzvm` (§2) |
-| Form backend | Pages Function `/api/lead` + R2 (photos + lead JSON) + Turnstile + email through a service-bound Worker (`send_email`) or Resend | Pages Functions lack a `send_email` binding (§7) |
-| Analytics | Cloudflare Web Analytics (free, cookieless pageviews + RUM) + a first-party event beacon into **Workers Analytics Engine** | No third-party scripts and no consent banner [inf] |
-| Quality | TS strict+, ESLint type-checked, Prettier, Vitest, Playwright (WebKit + Chromium, mobile first), axe, visual snapshots, Lighthouse CI budgets | §9–10 |
+| Framework | **Astro (static) + vanilla TS modules**, no UI runtime | Zero JS by default ([islands](https://docs.astro.build/en/concepts/islands/)); content collections; static output |
+| Motion | **GSAP 3** (ScrollTrigger, Flip, SplitText) + **Lenis** | GSAP is "100% free for all users" ([pricing](https://gsap.com/pricing/)); Lenis keeps native scroll ([Lenis](https://github.com/darkroomengineering/lenis)) |
+| Ring | **CSS 3D**, not Three.js/R3F | Flat cards need no shaders; native video beats per-frame texture uploads [inf] |
+| Character | **Stacked-alpha video** (AV1 + HEVC) via WebGL (`stacked-alpha-video`, ~2 kB) | ≤ half the size of VP9/HEVC alpha, no native alpha bugs ([Archibald](https://jakearchibald.com/2024/video-with-transparency/)) |
+| Hero logic | **Hand-rolled typed state machine** (pure reducer + effects) | ~10 states, no dependency, easy to test; move to XState v5 past ~15 states or parallel regions [inf] |
+| Hosting | **New Cloudflare Pages project**, root `site/`; media on Pages, later R2 + custom domain | Free, one platform. **Not** `peakform-qtzvm` (§2) |
+| Form | Pages Functions + R2 + Turnstile; email via a `send_email` Worker or Resend | Pages has no `send_email` binding (§7) |
+| Analytics | Cloudflare Web Analytics + first-party beacon → **Analytics Engine** | No third parties, no banner [inf] |
+| Quality | Strictest TS, type-aware ESLint, Vitest, Playwright (WebKit+Chromium), axe, snapshots, LHCI | §9–10 |
 
 ---
 
@@ -341,9 +341,9 @@ mailer-worker/                # optional: send_email Worker behind a service bin
 
 ### 9.2 Standards
 
-- **TypeScript:** `astro/tsconfigs/strictest` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `verbatimModuleSyntax`. No `any`. Discriminated unions for machine states/events. `satisfies` for config objects. Function types from `@cloudflare/workers-types` (or `wrangler types`).
-- **Lint/format:** ESLint flat config with `typescript-eslint` `strictTypeChecked` + `stylisticTypeChecked`, `eslint-plugin-astro`, `eslint-plugin-jsx-a11y` rules for Astro, `no-floating-promises` (catches unhandled `play()`). Prettier + `prettier-plugin-astro`. Stylelint optional.
-- **Component boundaries:** `.astro` files own markup and content only. Every behaviour module exports `mount(root: HTMLElement, deps): () => void` and returns its teardown. One orchestrator (`hero/index.ts`) wires machine ↔ effects ↔ modules. Modules never import each other, only receive callbacks [inf]. One ticker, one MediaManager, one analytics sink. Design tokens as CSS custom properties.
+- **TypeScript:** `astro/tsconfigs/strictest` + `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`. No `any`. Discriminated unions, `satisfies`, `wrangler types` for Functions.
+- **Lint/format:** typescript-eslint `strictTypeChecked`, `eslint-plugin-astro`, jsx-a11y rules, `no-floating-promises` (catches unhandled `play()`). Prettier + `prettier-plugin-astro`.
+- **Boundaries:** `.astro` files hold markup only. Each behaviour module exports `mount(root, deps): () => void` (returns its teardown). One orchestrator wires machine ↔ effects ↔ modules, and modules never import each other [inf]. One ticker, one MediaManager, one analytics sink, CSS-variable tokens.
 - **Creative-studio pattern** [inf, common "experience" boilerplates; no fetched case study confirmed it]: one `Experience` owns `resources` (manifest + preloader), `sizes`, `time` (one RAF) and scene modules with `init/resize/update/destroy`. A `?debug` flag mounts lil-gui for timing and easing. Motion tokens live in one file. Prototype the hardest interaction (the pull-up sync) first, in code. Bjarne Christensen (Awwwards Amsterdam) argues for prototyping core functionality early and staying "on the actual platforms" ([talk](https://youtu.be/d1ljyNgjT0g)). Gil Huybrecht's SOTD breakdown hands off type scales and a 12-col/6-col grid, then QAs with the developer ([video](https://youtu.be/3yZ3ifVsh74)).
 
 ---
@@ -367,7 +367,7 @@ mailer-worker/                # optional: send_email Worker behind a service bin
 
 ## 11. Build and deploy steps
 
-1. **Scaffold** (no accounts needed): `npm create astro@latest site -- --template minimal --typescript strictest`, then add `gsap lenis stacked-alpha-video zod` and dev deps (`@astrojs/sitemap`, `typescript-eslint`, `eslint-plugin-astro`, `prettier-plugin-astro`, `@playwright/test`, `@axe-core/playwright`, `vitest`, `@lhci/cli`, `wrangler`). Pin `.node-version` to 22.
+1. **Scaffold:** `npm create astro@latest site -- --template minimal`; add `gsap lenis stacked-alpha-video zod` and the dev tools from §9–10. Pin Node 22.
 2. **Media:** put masters in `site/media-src/` (gitignored) → `npm run encode` → `public/media/*` + `manifest.json` (hashes, sizes, codecs). Commit encoded output while the total is ≤ ~40 MB. After that, `wrangler r2 object put` to the media bucket and set `PUBLIC_MEDIA_BASE`.
 3. **Voice:** `npm run voice` (build-time ElevenLabs with the existing cost cap and cache; see `18-automation-pipeline.md`) → `.m4a` + `.vtt`.
 4. **Local:** `npm run dev`; full stack with Functions: `npm run build && npx wrangler pages dev dist` (secrets in gitignored `.dev.vars`, as PeakForm does). Use the Turnstile test keys.
