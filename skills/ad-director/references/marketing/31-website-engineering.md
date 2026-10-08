@@ -31,9 +31,7 @@ The repo does not mention the name `peakform-qtzvm`. It matches the setup in `pe
 - **Private by design.** A PWA service worker scoped to `/`, a CSP with `form-action 'none'`, and a release gate (`check-dist.mjs`) that **fails the build if `plausible.io`** or other trackers appear.
 - **CI:** `.github/workflows/peakform-ci.yml` (typecheck, lint, Vitest, build, Playwright on Chromium with iPhone viewports).
 
-**Decision: reuse the platform and the pattern, not the project.** A public marketing site cannot sit behind a gate that blocks every path and sends `noindex`. A project has one root directory, and the PWA service worker and CSP would clash [inf]. So create a second free Pages project, say `studio-site`, on the same repo with root `site/`. Use **build watch paths** so each project only rebuilds when its own folder changes [inf: Pages setting; verify in dashboard]. Copy what works: Node 22 pin, strict TS, a `check-dist` release gate, Playwright on phone viewports, a path-filtered CI workflow. Free-plan limits that matter: **25 MiB per file, 20,000 files, 500 builds/month, 1 concurrent build, unlimited previews** ([Pages limits](https://developers.cloudflare.com/pages/platform/limits/)).
-
-Cloudflare now pushes Workers static assets for new apps (logs, rate limiting, Email Workers are Workers-only). Pages still uniquely offers branch deploy controls and custom domains outside Cloudflare zones ([migration guide](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)). Stay on Pages to match the existing workflow and keep the domain option open. Moving later is cheap because the build is plain static files [inf].
+**Decision: reuse the platform and pattern, not the project.** A public site can't sit behind a gate that blocks every path and sends `noindex`, and the PWA service worker and CSP would clash [inf]. Create a second free Pages project (`studio-site`) on the same repo, root `site/`, with **build watch paths** so each project rebuilds only for its own folder [inf: verify the setting]. Copy what works: Node 22 pin, strict TS, a `check-dist` gate, phone-viewport Playwright, a path-filtered workflow. Free limits: **25 MiB/file, 20,000 files, 500 builds/month, 1 concurrent build, unlimited previews** ([limits](https://developers.cloudflare.com/pages/platform/limits/)). Cloudflare is pushing Workers static assets (Email Workers, rate limiting and logs are Workers-only). Pages keeps branch controls and non-Cloudflare custom domains ([guide](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)). Stay on Pages for now; the output is plain static files, so a later move is cheap [inf].
 
 ---
 
@@ -73,30 +71,24 @@ Lenis caveats: no CSS scroll-snap (use `lenis/snap`), a 60 fps cap on Safari, an
 
 | Asset | Primary | Fallback | Notes |
 |---|---|---|---|
-| Character clips (alpha) | **Stacked-alpha AV1 MP4** (colour on top, alpha as luma below) | **Stacked-alpha HEVC MP4** (`hvc1`) for older Apple hardware | Rendered by `<stacked-alpha-video>` (WebGL). The AV1 path covers Chrome, Firefox and Safari on iPhone 15 Pro / M3+. Archibald measured stacked AV1 at 460 kB vs VP9-alpha 1.1 MB vs HEVC-alpha 3.4 MB for the same clip; the alpha half added ~8 kB ([source](https://jakearchibald.com/2024/video-with-transparency/)) |
-| Native alpha (optional) | VP9 `yuva420p` WebM | HEVC-alpha `.mov` (macOS only) | Not primary: Safari lacks VP9 alpha, **Chrome Android gets the alpha channel wrong**, Firefox Android stalls, and HEVC-alpha needs macOS/Compressor (same source) |
-| Ring loops (muted) | AV1 MP4 | H.264 MP4 | `<source>` order AV1 then H.264, with `codecs=` in `type` so the browser skips what it can't play ([MDN video](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video)) |
+| Character (alpha) | **Stacked AV1 MP4** (colour on top, alpha as luma below) | **Stacked HEVC** (`hvc1`), older Apple | WebGL `<stacked-alpha-video>`. AV1 plays in Chrome, Firefox and Safari on iPhone 15 Pro / M3+. Same clip: stacked AV1 460 kB vs VP9-alpha 1.1 MB vs HEVC-alpha 3.4 MB ([Archibald](https://jakearchibald.com/2024/video-with-transparency/)) |
+| Native alpha (optional) | VP9-alpha WebM | HEVC-alpha `.mov` (Mac) | Not primary: no VP9 alpha in Safari, **wrong alpha on Chrome Android**, stalls on Firefox Android (same source) |
+| Ring loops (muted) | AV1 MP4 | H.264 MP4 | `<source>` with `codecs=` in `type` ([MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video)) |
 | Featured ad (sound) | AV1 + Opus/AAC MP4 | H.264 + AAC MP4 | Progressive. Use HLS only for spots > 30 s [inf] |
 | Posters | AVIF | WebP / JPEG via `<picture>` | Hero poster is the LCP candidate. Never lazy-load it |
 
-Pick the codec at runtime with `navigator.mediaCapabilities.decodingInfo({type:'file', video:{contentType, width, height, bitrate, framerate}})`. Prefer AV1 only when `smooth && powerEfficient`. Software AV1 on a mid Android phone drains battery and drops frames [inf].
+Pick codecs at runtime with `navigator.mediaCapabilities.decodingInfo()`. Use AV1 only if `smooth && powerEfficient`, because software AV1 drains phones [inf].
 
-**Level trap:** stacking doubles the height. A 720×1280 master becomes 720×2560, and 2560 px is taller than AV1 level 4.x allows (max height 2176) [inf from AV1 spec tables]. Use **540×960 → 540×1920** stacked for mobile and 720×1280 → 720×2560 (level 5.0) only for desktop.
+**Level trap:** stacking doubles the height, and 720×2560 exceeds AV1 level 4.x's max height of 2176 [inf, AV1 spec]. Use **540×960 → 540×1920** on mobile and 720×2560 (level 5.0) on desktop only.
 
-### 4.2 What encoders exist here (tested 2026-10-08)
+### 4.2 Encoders available here (tested 2026-10-08)
 
-ffmpeg 6.1.1 (Ubuntu): `libsvtav1` (SVT-AV1 1.7.0), `libaom-av1`, `librav1e`, `libx264`, `libx265`, `libvpx-vp9`, `prores_ks`, `libopus`, `aac`, `libwebp`. There is **no `hevc_videotoolbox`** (Linux).
+ffmpeg 6.1.1 (Ubuntu) has `libsvtav1` 1.7.0, `libaom-av1`, `librav1e`, `libx264`, `libx265`, `libvpx-vp9`, `prores_ks`, `libopus`, `aac` and `libwebp`. It has **no `hevc_videotoolbox`**. Tests on a synthetic 720×1280 RGBA clip:
 
-| Test (720×1280, 4 s, 30 fps synthetic RGBA) | Result |
-|---|---|
-| VP9 alpha WebM (`-pix_fmt yuva420p`) | **Works.** Muxer tags `alpha_mode=1`. Decoding with `-c:v libvpx-vp9` returns `rgba` |
-| HEVC alpha via libx265 | **Fails.** "Incompatible pixel format 'yuva420p'… auto-selecting yuv420p"; `alpha=1` is unknown. Native HEVC-alpha must be made on a Mac |
-| AV1 alpha via libsvtav1 | **Fails** (alpha dropped). AV1 has no alpha outside AVIF |
-| Stacked AV1 (svtav1 and libaom) | **Works.** 720×2560, Main profile |
-| Stacked HEVC (`libx265 -tag:v hvc1`) | **Works** → the Safari fallback can be made on Linux |
-| Poster from alpha WebM → WebP | Works when decoding with `-c:v libvpx-vp9` (keeps alpha) |
+- **Works:** VP9 alpha (`yuva420p`; tagged `alpha_mode=1`; decodes back to `rgba`), stacked AV1 (libsvtav1, 720×2560), stacked HEVC (`libx265 -tag:v hvc1`), and a WebP poster with alpha.
+- **Fails:** libx265 alpha ("Incompatible pixel format 'yuva420p'", `alpha=1` unknown) and libsvtav1 alpha (dropped).
 
-So the whole primary pipeline runs on this Linux box. Only the optional native HEVC-alpha `.mov` needs macOS.
+So the primary pipeline runs on Linux. Only a native HEVC-alpha `.mov` needs a Mac.
 
 ### 4.3 Commands (masters: ProRes 4444 or PNG sequence with alpha)
 
@@ -249,9 +241,9 @@ A visible **Pause motion** toggle is required anyway, because looping content lo
 
 ### 6.3 Accessibility
 
-- **Carousel ARIA** ([APG](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/)): the container is `role="region"` + `aria-roledescription="carousel"` + `aria-label="Our ads"`, and the label must not contain the word "carousel". Each slide is `role="group"` + `aria-roledescription="slide"` + `aria-label="3 of 8: Serum launch, 15 s"`. The **rotation control is the first tab stop** in the carousel, and rotation stops on focus and on hover. Alternative: the tabbed variant (tablist, one tab stop, arrow keys). Recommended: tab stop on the front card, Left/Right rotate, Enter/Space select [inf].
-- **Player:** `<dialog>` with `showModal()` gives a focus trap and Esc. Focus the heading or the close button, and return focus to the card on close. Native `controls` stay available, along with captions on every ad with dialogue (`<track kind="captions" srclang="en" default>`).
-- **Speech:** captions are on by default with a toggle. Captions are visual, so mark the caption box `aria-hidden="true"` to stop screen readers reading over the audio. Put a text transcript in a `<details>` beside the character [inf]. Sound only starts after a gesture (WCAG 1.4.2).
+- **Carousel** ([APG](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/)): `role="region"` + `aria-roledescription="carousel"` + a label without the word "carousel". Each slide is `role="group"` + `aria-roledescription="slide"` + `aria-label="3 of 8: Serum launch, 15 s"`. The **rotation control is the first tab stop**, and rotation stops on focus or hover. Keyboard: one tab stop on the front card, Left/Right rotate, Enter/Space select [inf].
+- **Player:** `<dialog>.showModal()` gives a focus trap and Esc. Return focus to the card on close. Keep native `controls`, and give every ad with dialogue a captions `<track>`.
+- **Speech:** captions on by default. Set the caption box `aria-hidden` so screen readers don't read over the audio, and put a transcript in a `<details>` [inf]. Sound only after a gesture (WCAG 1.4.2).
 - Touch targets ≥ 44 px, visible `:focus-visible` rings, contrast ≥ 4.5:1 over video (use a scrim), and no hover-only affordances.
 - **No-JS / failure path:** the server-rendered HTML lists every ad as a link with poster + title, so the page is complete without the hero.
 
