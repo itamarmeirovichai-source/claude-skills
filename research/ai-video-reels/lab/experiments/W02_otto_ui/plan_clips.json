@@ -1,0 +1,108 @@
+{
+ "jobs": [
+  {
+   "id": "C1_idle",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He breathes slowly, shifts his weight once, the moustache tips twitch slightly, one slow blink, a tiny amused raise of one brow; he returns exactly to the start pose."
+   }
+  },
+  {
+   "id": "C2_point_L",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He raises his right arm and points firmly toward the left edge of the frame at shoulder height, glances there with one brow raised, holds for one second, then lowers his arm back to the exact start pose."
+   }
+  },
+  {
+   "id": "C3_point_R",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He raises his left arm and points firmly toward the right edge of the frame at shoulder height, glances there with one brow raised, holds for one second, then lowers his arm back to the exact start pose."
+   }
+  },
+  {
+   "id": "C5_talk",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He speaks expressively under his moustache as if explaining something with dry wit: cheeks and moustache move with the words, small open-palm gestures, small nods; his mouth is never visible; he ends in the exact start pose."
+   }
+  },
+  {
+   "id": "C10_wave",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He lifts one hand to shoulder height and gives a small, dignified wave toward the camera with an amused look, then lowers it back to the exact start pose."
+   }
+  },
+  {
+   "id": "C12_thumb",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He gives the camera a confident thumbs-up with his right hand and a slow knowing wink, then lowers his hand back to the exact start pose."
+   }
+  },
+  {
+   "id": "C15_nod",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He gives one slow approving nod with a slight raise of one brow, as if a take was perfect, then returns to the exact start pose."
+   }
+  },
+  {
+   "id": "C6_reach",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K5.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The man keeps his exact identity: same face, same enormous charcoal handlebar moustache with spiral tips covering his mouth (mouth never visible), same black turtleneck, charcoal blazer, oxblood pocket square and brass viewfinder. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. He unclasps his hands, leans toward the camera and reaches his right hand straight toward the lens until his open palm fills the lower part of the frame, fingers curling as if gripping the bottom edge of the picture, ending exactly on the final pose."
+   }
+  }
+ ]
+}

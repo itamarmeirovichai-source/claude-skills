@@ -1,0 +1,45 @@
+{
+ "jobs": [
+  {
+   "id": "otto_k0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto_master.png",
+     "@file:ref/otto_viewfinder.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 shows how he holds the brass viewfinder. New scene: medium close shot of him standing on the edge of a tall old stone rooftop at dusk in light wind, the city far below out of focus; he raises the small brass director's viewfinder toward his right eye, studying the horizon, one brow raised. His blazer edge lifts slightly in the wind. Cool blue dusk with a last warm rim of sunset on his face. Cinematic film still, anamorphic 2.39 lens character rendered in a 9:16 vertical frame, 35mm film grain, real photograph. No HDR, no oversaturation, no beauty smoothing, no plastic or waxy skin, no rubber moustache, not a cartoon, not a costume, no text or logos."
+   }
+  },
+  {
+   "id": "otto_kend",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto_master.png",
+     "@file:ref/otto_viewfinder.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. New scene: epic wide low-angle hero shot from far below and behind him: he stands small but unmistakable on the edge of the same tall stone rooftop at night, holding the brass viewfinder up to his eye, his silhouette with the huge spiral moustache outlined against an enormous rising full moon; a vast city of warm lights stretches below to the horizon; thin clouds glow silver. Blockbuster poster composition, majestic and quiet. Cinematic film still, anamorphic 2.39 lens character rendered in a 9:16 vertical frame, 35mm film grain, real photograph. No HDR, no oversaturation, no beauty smoothing, no plastic or waxy skin, no rubber moustache, not a cartoon, not a costume, no text or logos."
+   }
+  },
+  {
+   "id": "aurum_ref",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Premium product reference photograph of a slim 355 ml aluminium beverage can, front view, centred, on a plain light-grey seamless background with soft even studio light: brushed warm-gold metallic finish with fine vertical satin texture, a thin black band near the top, and the word AURUM in tall elegant high-contrast serif capitals with wide spacing, centred vertically, in deep black; below it in small black capitals 'SPARKLING YUZU'. Fine cold condensation droplets across the can. Exactly one can, no other objects, no other text."
+   }
+  }
+ ]
+}

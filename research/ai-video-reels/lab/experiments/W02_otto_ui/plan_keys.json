@@ -1,0 +1,36 @@
+{
+ "jobs": [
+  {
+   "id": "K0_idle",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 2,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto_master.png",
+     "@file:ref/otto_waist.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 shows his full waist-up outfit. New photograph: waist-up shot of this same man, centred, facing the camera, standing relaxed, hands loosely clasped in front of his waist, head level, amused knowing look into the lens, a little empty space above his head. Background: a perfectly flat, uniform pure chroma-key green (#00B140) studio backdrop, evenly lit, no shadows on it, no gradient, no floor visible. Soft even frontal key light on him with a subtle neutral rim, no green spill on his skin or clothes. Real photograph, real skin texture, the moustache is real waxed hair with individual strands, crisp edges. No HDR, no beauty smoothing, not a cartoon, no text or logos."
+   }
+  },
+  {
+   "id": "K5_reach",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto_master.png",
+     "@file:ref/otto_waist.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. New photograph: waist-up shot of this same man leaning toward the camera, his right arm extended straight toward the lens, his open right palm large in the lower part of the frame, fingers slightly curled as if about to grab the bottom edge of the picture; his face behind the hand with an amused, determined look. Background: a perfectly flat, uniform pure chroma-key green (#00B140) studio backdrop, evenly lit, no shadows on it, no gradient, no floor visible. Soft even frontal key light on him with a subtle neutral rim, no green spill on his skin or clothes. Real photograph, real skin texture, the moustache is real waxed hair with individual strands, crisp edges. No HDR, no beauty smoothing, not a cartoon, no text or logos."
+   }
+  }
+ ]
+}
