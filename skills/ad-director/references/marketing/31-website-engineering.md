@@ -223,21 +223,13 @@ Rules: the reducer is pure, `(state, event) → {state, effects[]}`, with an exh
 | Fonts | — | ≤ 2 WOFF2, ≤ 80 kB, `font-display: swap` + metric overrides |
 | Bytes before first gesture | — | ≤ 1.5 MB mobile, ≤ 3 MB desktop |
 
-- **LCP:** for `<video>`, LCP uses the earlier of the poster load or first frame ([web.dev LCP](https://web.dev/articles/lcp)). Make the **character poster** a real `<img>` (AVIF, ≤ 40 kB) with `fetchpriority="high"` and a `<link rel="preload">`, never `loading="lazy"`. Cloud Four's talk shows lazy-loaded hero images as a classic cause of a 13.9 s lab LCP ([video](https://youtu.be/PDrQAAdcqrk)). The stacked-alpha canvas fades in over it once the first frame is ready.
-- **INP:** keep the click handler small. It dispatches to the reducer, calls `play()` synchronously, and schedules tweens. Defer heavy work with `requestAnimationFrame`/`scheduler.yield()` where available. Never read layout after writing it in the same frame. Use `content-visibility: auto` for sections below the fold [inf].
+- **LCP:** for `<video>`, LCP is the earlier of poster load and first frame ([LCP](https://web.dev/articles/lcp)). Make the character poster a preloaded `<img>` (AVIF ≤ 40 kB, `fetchpriority="high"`), never lazy. Cloud Four shows a lazy-loaded hero image causing a 13.9 s lab LCP ([video](https://youtu.be/PDrQAAdcqrk)). The alpha canvas fades in over the poster.
+- **INP:** the click handler only dispatches, calls `play()` and schedules tweens. Yield heavy work, and never read layout right after writing it. Use `content-visibility: auto` below the fold [inf].
 - **CLS:** `width`/`height` or `aspect-ratio` on all media and on `stacked-alpha-video`. Animate only `transform`/`opacity`/`clip-path`.
 
 ### 6.2 Reduced motion
 
-Per [web.dev](https://web.dev/articles/prefers-reduced-motion): reduce motion rather than removing everything, and do not autoplay video. Under `prefers-reduced-motion: reduce` (checked with `gsap.matchMedia()` and a live `change` listener):
-
-- The ring becomes a static, scroll-snapping 2D row of posters.
-- The character shows its poster.
-- Speech plays only on request.
-- Continue jumps with a 200 ms fade.
-- Lenis already disables smoothing ([Lenis](https://github.com/darkroomengineering/lenis)).
-
-A visible **Pause motion** toggle is required anyway, because looping content longer than 5 s that starts by itself needs a pause/stop/hide mechanism (WCAG 2.2.2, [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)). Persist the choice in `localStorage`.
+Reduce motion rather than removing it, and skip autoplaying video ([web.dev](https://web.dev/articles/prefers-reduced-motion)). Under `reduce` (via `gsap.matchMedia()`, with a live listener): the ring becomes a static snap row of posters, the character shows a poster, speech plays only on request, Continue is a 200 ms fade, and Lenis drops smoothing by itself. A visible **Pause motion** toggle is needed anyway: auto-started motion longer than 5 s must be pausable (WCAG 2.2.2, [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)). Remember the choice in `localStorage`.
 
 ### 6.3 Accessibility
 
@@ -251,7 +243,7 @@ A visible **Pause motion** toggle is required anyway, because looping content lo
 
 - Static HTML with one `<h1>` in the hero, real text for services, pricing and FAQ. `@astrojs/sitemap`, `robots.txt`, canonical URL.
 - JSON-LD: `Organization`, `Service`/`Offer` for pricing tiers, `FAQPage`, and `VideoObject` for each portfolio ad (`name`, `description`, `thumbnailUrl`, `uploadDate`, `contentUrl`, `duration`). Google mostly indexes video that is the main content of a page, so give each portfolio ad its own `/work/<slug>` page [inf].
-- OG: per-page `og:title`, `og:description`, `og:image` 1200×630 (≤ 300 kB JPEG), `twitter:card=summary_large_image`. Generate the images at build time (e.g. Satori), or design them in the art-direction pass.
+- OG: per-page title, description, `og:image` 1200×630 (≤ 300 kB), `twitter:card=summary_large_image`. Generate them at build time (e.g. Satori).
 
 ---
 
