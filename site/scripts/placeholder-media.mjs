@@ -86,16 +86,6 @@ function film(f) {
   if (fh) ff(['-f', 'lavfi', '-i', card(720, 1280, f.duration, timer(1280, 720)), '-f', 'lavfi', '-i', tone, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '32', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '64k', '-shortest', '-movflags', '+faststart', fh]);
 }
 
-function voice(key, v) {
-  if (v.audio) {
-    const p = need(v.audio);
-    const d = Math.max(0.8, v.text.split(' ').length * 0.32).toFixed(2);
-    if (p) ff(['-f', 'lavfi', '-i', `sine=frequency=330:sample_rate=44100:duration=${d},volume=0.08,afade=t=out:st=${(d - 0.2).toFixed(2)}:d=0.2`, '-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart', p]);
-    const vt = v.vtt && need(v.vtt);
-    if (vt) writeFileSync(vt, `WEBVTT\n\n00:00:00.000 --> 00:00:${String(Number(d).toFixed(3)).padStart(6, '0')}\n${v.text}\n`);
-  }
-}
-
 function still(rel, label, c) {
   const p = need(rel);
   if (p) ff(['-f', 'lavfi', '-i', `color=c=${c}:s=1200x1500:d=1,drawbox=x=480:y=500:w=240:h=520:color=0xEDE3CF:t=fill,${text(label, 300, 64, '0x1A1816')}`, '-frames:v', '1', '-c:v', 'libwebp', '-quality', '70', p]);
@@ -113,7 +103,7 @@ for (const group of ['otto', 'vee']) {
   }
 }
 for (const f of manifest.films) film(f);
-for (const [k, v] of Object.entries(manifest.voice)) voice(k, v);
+// Talking lines get no placeholder: a line without its clip falls back to the idle loop + a plain caption.
 still(manifest.stills.ba_before, 'product photo', '0xD9D6D0');
 still(manifest.stills.ba_after, 'frame 3 of 5', '0x5A3A22');
 console.log(`placeholder media ready in ${out} (${n} alpha clips, ${manifest.films.length} films)`);

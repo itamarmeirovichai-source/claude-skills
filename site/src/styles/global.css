@@ -31,23 +31,21 @@
   /* Ref 39 §4.3: cinematic reveals expo-out; exits ease-in and shorter. No bounce, no overshoot. */
   --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-exit: cubic-bezier(0.55, 0, 0.75, 0.2);
-  --space-act: clamp(96px, 16vh, 200px);
+  /* One spacing rhythm and one type scale for every section. */
+  --space-section: clamp(72px, 11vw, 136px);
+  --space-head: clamp(28px, 4.5vw, 48px);
+  --fs-lede: clamp(1.05rem, 1.4vw, 1.2rem);
+  --fs-lede-lg: clamp(1.25rem, 2.2vw, 1.6rem);
   --header-h: 64px;
-  --dock-h: 0px; /* height of the mobile sticky CTA bar when shown */
-  --actor-h: min(30vh, 250px); /* crew height at scale 1 (desktop below) */
   color-scheme: dark;
 }
 @media (min-width: 768px) {
   :root { --gutter: 32px; }
 }
-@media (min-width: 900px) {
-  :root { --actor-h: min(64vh, 580px); }
-}
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 8px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   background: var(--ink-1);
@@ -64,15 +62,16 @@ button { font: inherit; color: inherit; }
 ::selection { background: var(--oxblood); color: var(--ivory); }
 
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 0.4em; text-wrap: balance; }
-h1 { font-size: clamp(2.4rem, 7.5vw, 5.4rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.6rem); }
+h1 { font-size: clamp(2.5rem, 6.4vw, 4.9rem); }
+h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); }
 h3 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.15; }
 p { margin: 0 0 1em; text-wrap: pretty; }
 em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
 
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 .eyebrow { font: 600 0.72rem/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin: 0 0 1rem; }
-.lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; color: var(--text-dim); max-width: 46ch; }
+.micro { margin: 0; font-size: 0.82rem; color: var(--text-faint); letter-spacing: 0.01em; }
+.lede { font-size: var(--fs-lede); line-height: 1.55; color: var(--text-dim); max-width: 46ch; }
 .dim { color: var(--text-dim); }
 .small { font-size: 0.85rem; }
 .signature { font-family: var(--serif); font-style: italic; color: var(--brass-hi); font-size: clamp(1.2rem, 2.2vw, 1.6rem); letter-spacing: 0.01em; }
@@ -98,7 +97,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
 .btn-ghost { border-color: transparent; padding-inline: 0.6em; min-height: 44px; }
 
 /* Sections */
-.section { padding-block: var(--space-act); position: relative; }
+.section { padding-block: var(--space-section); position: relative; }
 .section + .section { border-top: 1px solid var(--line); }
 .section-head { max-width: 760px; margin-bottom: clamp(32px, 5vw, 56px); position: relative; }
 .grid-3 { display: grid; gap: 16px; grid-template-columns: 1fr; }
@@ -151,17 +150,6 @@ fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; }
 .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brass); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-
-/* Light-up section (Act VII): the same components, inverted tokens. */
-.lights {
-  --ink-1: #f3ede2; --ink-2: #fbf7ef; --ink-3: #e9e1d2; --ink-0: #fffdf8;
-  --text: #1c1916; --text-dim: #4d463d; --text-faint: #6f675b;
-  --line: rgb(28 25 22 / 0.12); --line-strong: rgb(28 25 22 / 0.24);
-  --brass: #8a6a37; --brass-hi: #6f5226;
-  color-scheme: light; background: var(--ink-1); color: var(--text);
-}
-.lights .btn-primary { color: #fffdf8; }
-.lights .btn-primary:hover { color: #fffdf8; }
 
 /* Static film grain on ink sections (not animated: animated grain costs GPU). */
 .grain::after {

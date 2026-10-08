@@ -1,7 +1,7 @@
 ---
 // Step 1 of the free-frames form: email + product page URL only (ref 39 §3.4). Step 2 (qualifiers,
 // optional photo) is /frames/thanks. Uses the same lead pipeline as the full form.
-import { site } from '../../lib/site';
+import { site } from '../lib/site';
 interface Props { id: string; act: string; button?: string }
 const { id, act, button = 'Get my 5 free frames' } = Astro.props;
 ---
@@ -22,7 +22,7 @@ const { id, act, button = 'Get my 5 free frames' } = Astro.props;
   <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="company_url" tabindex="-1" autocomplete="off" /></label></div>
   <div data-turnstile></div>
   <button type="submit" class="btn btn-primary submit">{button} <span aria-hidden="true">→</span></button>
-  <p class="note">Free. No card, no call. 3–5 business days, marked "AI concept".{site.capacityLine && ` ${site.capacityLine}`}</p>
+  <p class="note">Free. No call. 48 h. No card either; frames are marked "AI concept".{site.capacityLine && ` ${site.capacityLine}`}</p>
   <p class="status" data-status role="status" aria-live="polite"></p>
 </form>
 <style>

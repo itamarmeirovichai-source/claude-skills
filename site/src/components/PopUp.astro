@@ -1,14 +1,14 @@
 ---
-// A section pop-up (Otto or Vee). Decorative: aria-hidden visual + one real "Hide" button.
-import { media, mediaUrl, lineText } from '../lib/media';
+// A one-off pop-up (Otto or Vee) with a silent clip and a fixed caption. Decorative: aria-hidden visual + one
+// real "Hide" button. It sits in its own slot (.pop-slot) on the page, never over text.
+import { media, mediaUrl } from '../lib/media';
 import { site } from '../lib/site';
-interface Props { id: string; char: 'otto' | 'vee'; clip: string; line: string; side?: 'left' | 'right' }
-const { id, char, clip, line, side = 'right' } = Astro.props;
+interface Props { id: string; char: 'otto' | 'vee'; clip: string; text: string; side?: 'left' | 'right' }
+const { id, char, clip, text, side = 'right' } = Astro.props;
 const who = char === 'vee' ? media.vee : media.otto;
 const name = char === 'vee' ? site.producer : site.mascot;
-const text = lineText(line);
 ---
-<aside class:list={['pop', `pop-${side}`, `pop-${char}`]} data-pop={id} data-char={char} data-clip={clip} data-line={line}>
+<aside class:list={['pop', `pop-${side}`, `pop-${char}`]} data-pop={id} data-char={char} data-clip={clip}>
   <div class="pop-visual" aria-hidden="true">
     <alpha-video class="pop-av" premultiplied={who.premultiplied ? '' : undefined}>
       <img class="poster" src={mediaUrl(who.poster)} alt="" width="180" height="320" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'" />

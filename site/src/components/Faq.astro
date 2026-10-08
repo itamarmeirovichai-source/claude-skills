@@ -1,12 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-interface Props { only?: string[] }
-const { only } = Astro.props;
-const items = (await getCollection('faq')).map((e) => ({ id: e.id, ...e.data })).sort((a, b) => a.order - b.order).filter((q) => !only || only.includes(q.id));
+interface Props { only?: string[]; openFirst?: boolean }
+const { only, openFirst = true } = Astro.props;
+// With `only`, items keep the order given there; otherwise the `order` field.
+const all = (await getCollection('faq')).map((e) => ({ id: e.id, ...e.data })).sort((a, b) => a.order - b.order);
+const items = only ? only.flatMap((id) => all.filter((q) => q.id === id)) : all;
 ---
 <div class="faq">
   {items.map((q, i) => (
-    <details open={i === 0} data-faq={q.id}>
+    <details open={openFirst && i === 0} data-faq={q.id}>
       <summary><span>{q.q}</span><span class="plus" aria-hidden="true"></span></summary>
       <p>{q.a}</p>
     </details>

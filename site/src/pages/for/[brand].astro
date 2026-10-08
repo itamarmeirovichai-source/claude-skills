@@ -2,7 +2,7 @@
 // Private landing page per researched lead (ref 40 §5.1): message-matched headline, their frame,
 // the walkthrough video, the offer and one booking button. Never indexed, never linked from the site.
 import Base from '../../layouts/Base.astro';
-import MiniForm from '../../components/story/MiniForm.astro';
+import MiniForm from '../../components/MiniForm.astro';
 import { mediaUrl } from '../../lib/media';
 import { site, bfcm, bfcmOpen, callHref, money, pricing } from '../../lib/site';
 import data from '../../data/brands.json';
@@ -62,7 +62,7 @@ const premiere = pricing.tiers.find((t) => t.id === 'premiere');
         <h2 class="h3">What happens next</h2>
         <ol class="next">
           <li>You reply or book 15 minutes. No prep needed.</li>
-          <li>The other 4 frames, free, in 3–5 business days.</li>
+          <li>The other 4 frames, free, within 48 hours.</li>
           <li>If you like them, a 30-second one-take film{premiere && ` from ${money(premiere.price)}`}. 50 % on approval.</li>
         </ol>
       </div>

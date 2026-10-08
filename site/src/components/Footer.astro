@@ -1,14 +1,13 @@
 ---
 import { site, t } from '../lib/site';
 interface Props { home: boolean }
-const { home } = Astro.props;
+const { home: _home } = Astro.props;
 const address = t('{{ADDRESS}}');
 ---
 <footer class="site-footer">
   <div class="wrap">
     <div class="top">
       <p class="brand"><span class="mark">{site.studio}</span> · AI product films{address && <> · <span>{address}</span></>}</p>
-      {home && <span class="btn-row"><button type="button" class="btn btn-ghost" data-hide-hosts>Hide the crew</button><button type="button" class="btn btn-ghost back" data-back-to-show>↑ Back to the show</button></span>}
     </div>
     <p class="disclose">Everything here is made with AI, including {site.mascot} and {site.producer}. Spec films are for invented brands, and they're labelled.</p>
     <nav aria-label="Footer">

@@ -20,5 +20,5 @@ if (filter) {
 
 const thumb = document.querySelector<HTMLElement>('[data-pop="success"]');
 if (thumb) {
-  void import('./core/motion').then(() => import('./sections/popups')).then((m) => m.popNow(thumb));
+  void import('./sections/popups').then((m) => m.popNow(thumb));
 }

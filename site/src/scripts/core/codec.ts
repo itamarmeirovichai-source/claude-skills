@@ -1,4 +1,3 @@
-import type { AlphaClip } from '../../lib/media';
 import { VIDEO_TYPES, mediaUrl } from '../../lib/media';
 
 export type AlphaCodec = 'av1' | 'hevc';
@@ -32,7 +31,23 @@ export function pickAlphaCodec(): Promise<AlphaCodec | null> {
   return picked;
 }
 
-export function alphaSrc(clip: AlphaClip & { av1: string; hevc: string }, codec: AlphaCodec): string {
+interface AlphaSources {
+  av1: string;
+  hevc: string;
+  av1_hd?: string | undefined;
+  hevc_hd?: string | undefined;
+}
+
+/** Talking lines carry audio: AV1 needs Opus-in-MP4 support too, else HEVC (+AAC). */
+export async function pickLineCodec(): Promise<AlphaCodec | null> {
+  const c = await pickAlphaCodec();
+  if (c !== 'av1') return c;
+  const v = document.createElement('video');
+  if (v.canPlayType(VIDEO_TYPES.av1Audio)) return 'av1';
+  return v.canPlayType(VIDEO_TYPES.hevc) ? 'hevc' : 'av1';
+}
+
+export function alphaSrc(clip: AlphaSources, codec: AlphaCodec): string {
   const hd = window.matchMedia('(min-width: 1024px)').matches && window.devicePixelRatio >= 1;
   const rel = codec === 'av1' ? (hd && clip.av1_hd) || clip.av1 : (hd && clip.hevc_hd) || clip.hevc;
   return mediaUrl(rel);

@@ -1,221 +1,168 @@
 ---
-// The home page as one continuous take: eight acts and a coda (ref 39 §5).
-// Acts: I The take (hero ring) · II The tired ad · III One photo in (pinned demo) · IV Four films ·
-// V The schedule · VI What you risk · BFCM band · VII The price (lights up) · VIII Your product next · Coda.
+// The home page has one job: a request for 5 free frames, or a booked film.
+// Hero → the problem → how it works → work → pricing → the offer (form) → FAQ → footer.
+// Characters appear four times, each in its own reserved slot: Otto (hero), Vee (how it works),
+// Otto (pricing), Vee (the offer). Lines and captions: scripts/home/characters.ts.
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import FilmTile from '../components/FilmTile.astro';
 import Pricing from '../components/Pricing.astro';
 import Faq from '../components/Faq.astro';
-import LeadForm from '../components/LeadForm.astro';
-import Chip from '../components/Chip.astro';
-import Actor from '../components/story/Actor.astro';
-import Dock from '../components/story/Dock.astro';
-import MiniForm from '../components/story/MiniForm.astro';
-import BfcmBand from '../components/story/BfcmBand.astro';
-import StoryChrome from '../components/story/StoryChrome.astro';
-import { media, mediaUrl } from '../lib/media';
+import MiniForm from '../components/MiniForm.astro';
+import Presenter from '../components/home/Presenter.astro';
+import { media, mediaUrl, filmBySlug } from '../lib/media';
 import { site, pricing, money } from '../lib/site';
 
-const films = media.films.filter((x) => x.category !== 'Studio').slice(0, 4);
-const brandFilm = media.films.find((x) => x.slug === 'tabletop-city');
-const demo = media.films.find((f) => f.slug === 'aurum') ?? media.films[0];
+const demoFilm = filmBySlug('aurum');
+// Work: the three newest first, then the rest (the AURUM demo film already plays in "How it works").
+const lead = ['aurum-top-shelf', 'tabletop-city', 'vesper-23'];
+const films = [...lead.map((s) => filmBySlug(s)), ...media.films.filter((f) => !lead.includes(f.slug) && f.slug !== demoFilm?.slug)].filter((f) => !!f);
 const offers = pricing.tiers.map((t) => ({ '@type': 'Offer', name: t.name, price: t.price, priceCurrency: 'USD' }));
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'AI product films', provider: { '@type': 'Organization', name: site.studio }, offers }];
-const f = pricing.founding;
+const steps = [
+  { n: '1', title: 'Send one photo.', text: 'Any product shot, any light. Or just the link to your product page.' },
+  { n: '2', title: '5 frames in 48 h, free.', text: 'The light, the palette and the camera path of your film, on your product. No call, no card.' },
+  { n: '3', title: 'We film one 30 s take.', text: `If you love the frames, we make the film: one continuous take, final in about a week. From ${money(pricing.from)}.` },
+];
 ---
-<Base title={site.studio} description={`Thirty-second product films, each one unbroken take. Made with AI, directed by a human. Start with 5 free frames of your product. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
+<Base title={site.studio} description={`Thirty-second product films, each one continuous take. Made with AI, directed by a human. Start with 5 free frames in 48 hours. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
   <Fragment slot="head">
     <link rel="preload" as="image" href={mediaUrl(media.otto.poster)} fetchpriority="high" />
   </Fragment>
-  <Hero />
 
-  <main id="content" class="sheet" tabindex="-1">
-    <span class="grip" aria-hidden="true"></span>
+  <main id="content" tabindex="-1">
+    <Hero />
 
-    <!-- Act II · The tired ad (problem) — normal scroll, Vee walks in from the right -->
-    <section class="act act-tired grain" id="tired" data-act="2" data-chapter="The tired ad" aria-labelledby="a2">
+    <!-- The problem -->
+    <section class="section problem" id="problem" aria-labelledby="problem-h">
+      <div class="wrap narrow">
+        <h2 id="problem-h">Your best ad is getting tired.</h2>
+        <p class="lede">The feed stopped noticing it weeks ago. A reshoot means a studio, a crew, three weeks and a bill to match.</p>
+        <p class="lede">We make the next one from a single photo.</p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section how" id="how" aria-labelledby="how-h">
       <div class="wrap">
-        <p class="eyebrow" data-reveal>Scene 2 · The tired ad</p>
-        <h2 id="a2" class="rise" data-reveal><span>Your best ad is getting tired.</span></h2>
-        <ol class="beats">
-          <li class="rise" data-reveal><span>The hook still works. The feed stopped noticing.</span></li>
-          <li class="rise" data-reveal><span>A reshoot means a studio, a crew and three weeks.</span></li>
-          <li class="rise" data-reveal><span>UGC can't film a perfume in slow light.</span></li>
-        </ol>
-        <p class="fact" data-reveal>The median Meta ad creative lives about 22 days. <a href="https://benly.ai/benchmarks/q1-2026" rel="noopener" target="_blank">Source: Benly, Q1 2026</a></p>
-        <a class="soft-cta" href="#demo" data-reveal>See what we'd make from one photo <span aria-hidden="true">↓</span></a>
-      </div>
-      <Dock><Actor who="vee" id="vee-tired" peek="peek_v_hold" line="act_v2" arrive={0.55} /></Dock>
-    </section>
-
-    <!-- Act III · One photo in (the wow demo) — pinned; photo → frame → film -->
-    <section class="act act-demo" id="demo" data-act="3" data-chapter="One photo in" aria-labelledby="a3">
-      <div class="pin-stage" data-pin-stage>
-        <div class="wrap demo-grid">
-          <div class="demo-copy">
-            <p class="eyebrow">Scene 3 · One photo in</p>
-            <h2 id="a3">One photo in. A film that looks like a shoot.</h2>
-            <p class="lede">Send one product photo. In 3–5 business days you get 5 frames: the light, the palette and the camera path of your film. Judge us on your product, not our reel.</p>
-          </div>
-          <div class="monitor-wrap" data-monitor-wrap>
-            <figure class="monitor" data-monitor data-step="0">
-              <img class="m-before" src={mediaUrl(media.stills['ba_before'])} alt="The plain product photo we started from: a gold can on grey" width="1200" height="1500" loading="lazy" decoding="async" />
-              <img class="m-after" src={mediaUrl(media.stills['ba_after'])} alt="Frame 3 of 5: the same can on a sunlit terrace with yuzu and ice (AI concept)" width="1200" height="1500" loading="lazy" decoding="async" />
-              {demo?.scrub && <video class="m-film" data-scrub muted playsinline preload="none" aria-hidden="true" tabindex="-1" data-src={mediaUrl(demo.scrub)} poster={mediaUrl(media.stills['ba_after'])}></video>}
-              <span class="spec-label m-label">AURUM · invented brand · AI</span>
-              <span class="m-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            </figure>
-            <ol class="m-steps" aria-label="What happens">
-              <li data-mstep="0">Your photo. Any light.</li>
-              <li data-mstep="1">Frame 3 of 5. Free.</li>
-              <li data-mstep="2">The film. One take.</li>
-            </ol>
-            <div class="floor demo-floor"><Actor who="otto" id="otto-demo" peek="otto_pop_6" start="top 64px" end="+=55%" arrive={0.5} scale={0.62} mobileTrigger="[data-monitor-wrap]" /></div>
+        <div class="head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-h">One photo in. A film out.</h2>
+        </div>
+        <div class="how-grid">
+          <Presenter who="vee" slot="how" lines={['v1']} class="how-vee" />
+          <div class="how-demo" data-steps>
+            <div class="steps" role="tablist" aria-label="The three steps">
+              {steps.map((s, i) => (
+                <button type="button" role="tab" class="step" id={`step-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+                  <span class="n" aria-hidden="true">{s.n}</span>
+                  <span class="txt"><b>{s.title}</b><span>{s.text}</span></span>
+                </button>
+              ))}
+            </div>
+            <div class="monitor" data-monitor>
+              <figure role="tabpanel" id="panel-0" aria-labelledby="step-0" class="panel">
+                <img src={mediaUrl(media.stills['ba_before'])} alt="The plain product photo we start from: a gold can on grey" width="1200" height="1500" loading="lazy" decoding="async" />
+                <figcaption class="spec-label">Your photo</figcaption>
+              </figure>
+              <figure role="tabpanel" id="panel-1" aria-labelledby="step-1" class="panel" hidden>
+                <img src={mediaUrl(media.stills['ba_after'])} alt="Frame 3 of 5: the same can on a sunlit terrace with yuzu and ice (AI concept)" width="1200" height="1500" loading="lazy" decoding="async" />
+                <figcaption class="spec-label">Frame 3 of 5 · AI concept</figcaption>
+              </figure>
+              <figure role="tabpanel" id="panel-2" aria-labelledby="step-2" class="panel" hidden>
+                {demoFilm && <video muted loop playsinline preload="none" poster={mediaUrl(demoFilm.poster)} data-step-film data-av1={mediaUrl(demoFilm.loop.av1)} data-h264={mediaUrl(demoFilm.loop.h264)} aria-label={`${demoFilm.brand}, ${demoFilm.title}: a few seconds of the finished film`}></video>}
+                <figcaption class="spec-label">The film · {demoFilm?.brand} · invented brand · AI</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="wrap after-pin" data-inflow-cta>
-        <div class="after-grid">
-          <div>
-            <h3 class="rise" data-reveal><span>Get 5 free frames of your product.</span></h3>
-            <Chip q="Will it look like my product?" a="We build from your photos. Your label, your shape. If the frames don't feel like your brand, we stop there." />
-          </div>
-          <MiniForm id="demo-form" act="3" />
+        <div class="cta-block" data-inflow-cta>
+          <a class="btn btn-primary" href="#start">Get my 5 free frames <span aria-hidden="true">→</span></a>
+          <p class="micro">Free. No call. 48 h.</p>
         </div>
       </div>
     </section>
 
-    <!-- Act IV · Four films (range) — no characters -->
-    <section class="act act-films grain" id="work" data-act="4" data-chapter="Four films" aria-labelledby="a4">
+    <!-- Work -->
+    <section class="section work" id="work" aria-labelledby="work-h">
       <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-reveal>Scene 4 · Spec work · invented brands</p>
-          <h2 id="a4" class="rise" data-reveal><span>Brands that don't exist. Films that look like they do.</span></h2>
-          <p class="lede" data-reveal>We invented these brands to show what we make from a product and an idea. Each is one continuous take, 100 % AI, directed by a human. <span class="signature-inline">{site.signature}</span></p>
+        <div class="head">
+          <p class="eyebrow">Work · spec films for invented brands</p>
+          <h2 id="work-h">Every film is one continuous take.</h2>
+          <p class="lede">We invented these brands to show what we make from a product and an idea. Tap one to watch it.</p>
         </div>
-        <div class="tiles" data-tiles>
-          {films.map((film, i) => <div class="tile-cell" data-parallax={i % 2 ? '-1' : '1'}><FilmTile film={film} eager={false} /></div>)}
-        </div>
-        <div class="btn-row more" data-inflow-cta>
-          <a class="btn" href="/work">See all films</a>
-          <a class="btn btn-primary" href="#start">Get my 5 free frames</a>
-        </div>
-        <Chip q="Are these real clients?" a="No. Invented brands, made to show the range. Our first client films will be labelled as such, with their permission." />
+        <ul class="grid" role="list">
+          {films.map((f) => <li><FilmTile film={f} /></li>)}
+        </ul>
+        <p class="more"><a href="/work">All films and how each was made <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
 
-    <!-- Act V · The schedule (how it works) — Vee keeps time -->
-    <section class="act act-how" id="how" data-act="5" data-chapter="The schedule" aria-labelledby="a5">
+    <!-- Pricing -->
+    <section class="section price" id="pricing" aria-labelledby="pricing-h">
       <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-reveal>Scene 5 · The schedule</p>
-          <h2 id="a5" class="rise" data-reveal><span>From one photo to a finished ad in about a week.</span></h2>
-        </div>
-        <ol class="sheet-steps" data-callsheet>
-          <li data-reveal><span class="num">01</span><h3>Frames</h3><p class="dim">Free, 3–5 business days. Five frames that fix the light, palette and camera path.</p></li>
-          <li data-reveal><span class="num">02</span><h3>Film</h3><p class="dim">Final by day 7–8. One unbroken 30-second take. Two revision rounds.</p></li>
-          <li data-reveal><span class="num">03</span><h3>Variants</h3><p class="dim">Hooks, lengths and 9:16 + 4:5 cuts for paid social.</p></li>
-        </ol>
-        <div class="fill" aria-hidden="true"><i data-fill></i></div>
-        <div class="btn-row" data-inflow-cta>
-          <a class="btn btn-primary" href="#start">Start with step 1 <span aria-hidden="true">→</span> free frames</a>
-        </div>
-        <Chip q="AI disclosure on Meta and TikTok?" a="We label AI and hand you the right settings for each platform. ">
-          <a href="/ai">How we use AI</a>.
-        </Chip>
-      </div>
-      <Dock><Actor who="vee" id="vee-how" peek="vee.pop" line="act_v3" arrive={0.4} scale={0.86} /></Dock>
-    </section>
-
-    <!-- Act VI · What you risk (proof + risk reversal) — no characters -->
-    <section class="act act-risk grain" id="proof" data-act="6" data-chapter="What you risk" aria-labelledby="a6">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-reveal>Scene 6 · Proof without logos</p>
-          <h2 id="a6" class="rise" data-reveal><span>No client logos yet. Here's what you get instead.</span></h2>
-        </div>
-        <div class="proof">
-          <article data-reveal><h3>Your product first.</h3><p class="dim">5 free frames before you pay anything.</p></article>
-          <article data-reveal><h3>Pay half on approval.</h3><p class="dim">50 % to start, 50 % when you approve the film. If two revision rounds don't win you over, you owe no balance.</p></article>
-          <article data-reveal><h3>See how it's made.</h3><p class="dim">Every film comes with a breakdown: product photo → frames → final. <a href={`/work/${demo?.slug ?? ''}`}>Read the AURUM one</a>.</p></article>
-        </div>
-        <div class="who">
-          <div class="founder" data-reveal>
-            <p class="quote">"Directed by {site.founder}. Every frame is reviewed by a person before you see it."</p>
-            <p class="small dim">Founder, {site.studio}</p>
+        <div class="price-head">
+          <div class="head">
+            <p class="eyebrow">Pricing</p>
+            <h2 id="pricing-h">Three ways to work with us. Prices on the page.</h2>
+            <p class="lede">{pricing.context} <a href={pricing.contextSource.url} rel="noopener" target="_blank">Source: {pricing.contextSource.label}</a>.</p>
           </div>
-          {brandFilm && <div class="brand-film" data-reveal><FilmTile film={brandFilm} /><p class="small dim">Who we are, in one take: our own ad. Muted here, captions in the picture.</p></div>}
+          <Presenter who="otto" slot="pricing" lines={['o4']} desk="row" class="price-otto" />
         </div>
-        {f.show && f.left > 0 && <p class="founding" data-reveal>{f.line} <b>{f.left} of {f.total} left.</b></p>}
-        <div class="chips">
-          <Chip q="Who owns it?" a="You do, for your digital ads, organic posts and site. TV, out-of-home and retail are quoted separately." />
-          <Chip q="What if I hate it?" a="Second half is due on approval. Two revision rounds. If it still isn't right, you don't pay the balance." />
-        </div>
-        <div class="btn-row" data-inflow-cta><a class="btn btn-primary" href="#start">Get my 5 free frames</a></div>
-        <details class="more-q">
-          <summary>More straight answers</summary>
-          <Faq only={['look-fake', 'need', 'people', 'claims', 'roas', 'free']} />
-        </details>
+        <Pricing compact />
       </div>
     </section>
 
-    <BfcmBand />
-
-    <!-- Act VII · The price (offer) — the section lights up; Otto rises behind the cards -->
-    <section class="act act-price lights" id="pricing" data-act="7" data-chapter="The price" aria-labelledby="a7">
-      <div class="wrap price-head-wrap">
-        <div class="floor price-floor"><Actor who="otto" id="otto-price" peek="peek_o_moment" line="act_o3" start="top 85%" end="top 25%" arrive={0.55} scale={0.62} /></div>
-      </div>
-      <div class="wrap" data-inflow-cta>
-        <Pricing heading="Three ways to work with us. Prices on the page." id="a7" />
-        <Chip tone="light" q="What if I hate the film?" a="Second half is due on approval. Two revision rounds." />
-      </div>
-    </section>
-
-    <!-- Act VIII · Your product next (close) — the form is never pinned -->
-    <section class="act act-close" id="start" data-act="8" data-chapter="Your product next" aria-labelledby="a8">
-      <div class="wrap">
-        <div class="floor duo-floor">
-          <Actor who="otto" id="otto-close" side="left" start="top 85%" end="top 20%" arrive={0.5} scale={0.55} />
-          <Actor who="vee" id="vee-close" side="right" start="top 85%" end="top 20%" arrive={0.5} scale={0.55} />
+    <!-- The offer -->
+    <section class="section offer" id="start" aria-labelledby="start-h">
+      <div class="wrap offer-grid">
+        <Presenter who="vee" slot="offer" lines={['v4']} class="offer-vee" />
+        <div class="offer-copy">
+          <p class="eyebrow">Start here</p>
+          <h2 id="start-h">5 free frames.</h2>
+          <p class="promise">If you don't love them, you owe nothing and we part friends.</p>
+          <ul class="ticks">
+            <li>Send one photo, or just your product page.</li>
+            <li>5 frames in your inbox in 48 hours, marked "AI concept".</li>
+            <li>No call, no card. Yours to keep and share with your team.</li>
+          </ul>
         </div>
-        <div class="close-grid">
-          <div>
-            <p class="eyebrow" data-reveal>Scene 8 · Your product next</p>
-            <h2 id="a8" class="rise" data-reveal><span>Send one photo. We'll send back five frames.</span></h2>
-            <p class="lede" data-reveal>3–5 business days. No call, no card. Marked "AI concept". Yours to keep and share with your team.</p>
-            <p class="signature" data-reveal>{site.signature}</p>
-            <ol class="next" data-reveal>
-              <li><b>Today</b> I study your brand.</li>
-              <li><b>3–5 days</b> Five frames in your inbox.</li>
-              <li><b>Then</b> If you like them, we talk film. If not, tell me what's off.</li>
-            </ol>
-          </div>
-          <div class="form-col" data-inflow-cta data-close-form>
-            <MiniForm id="close-form" act="8" />
-            <details class="full-form">
-              <summary>Prefer to send a photo and details now?</summary>
-              <LeadForm id="home" />
-            </details>
-          </div>
+        <div class="offer-form" data-inflow-cta>
+          <MiniForm id="start-form" act="offer" />
+          <p class="alt"><a href="/frames">Rather upload a photo and details now? Use the full form</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Coda · Otto always wants another take -->
-    <section class="act coda" data-act="9" data-chapter="Coda" aria-label="Coda">
-      <div class="wrap coda-wrap">
-        <p class="coda-line">Everything here is made with AI, including {site.mascot} and {site.producer}.</p>
-        <div class="floor coda-floor">
-          <Actor who="otto" id="otto-coda" peek="act_o6" start="top 95%" end="bottom bottom" peekOnly scale={0.5} />
-          <p class="offscreen-vee" data-offscreen-vee aria-hidden="true">No.</p>
-        </div>
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq" aria-labelledby="faq-h">
+      <div class="wrap narrow">
+        <h2 id="faq-h">Straight answers</h2>
+        <Faq only={['ai-use', 'turnaround', 'revisions', 'ownership', 'need', 'pricing']} openFirst={false} />
       </div>
     </section>
   </main>
 
-  <StoryChrome />
+  <!-- Phones: one sticky CTA, only when no other CTA or the form is on screen. -->
+  <div class="sticky" data-sticky inert>
+    <a class="btn btn-primary" href={site.stickyCta.href}>{site.stickyCta.label} <span aria-hidden="true">→</span></a>
+  </div>
+
+  <p class="sr-only" data-crew-live aria-live="polite"></p>
+
+  <dialog class="film-dialog" data-film-dialog aria-label="Spec film">
+    <div class="fd-inner">
+      <form method="dialog" class="fd-close"><button class="fd-x" aria-label="Close film">✕</button></form>
+      <div class="fd-frame">
+        <video data-fd-video playsinline controls preload="none"></video>
+        <span class="spec-label" data-fd-label></span>
+      </div>
+      <div class="fd-actions btn-row">
+        <a class="btn btn-primary" href="#start" data-fd-cta>Get my 5 free frames</a>
+        <a class="btn" href="/work" data-fd-more>About this film</a>
+      </div>
+    </div>
+  </dialog>
 
   <script>
     import '../scripts/home';
@@ -223,135 +170,97 @@ const f = pricing.founding;
 </Base>
 
 <style>
-  :global(body.is-home) { --dock-h: calc(56px + env(safe-area-inset-bottom)); }
-  @media (min-width: 900px) { :global(body.is-home) { --dock-h: 0px; } }
-  :global(body.is-home .site-footer) { padding-bottom: calc(40px + var(--dock-h)); }
+  main { outline: none; }
+  .head { max-width: 760px; margin-bottom: var(--space-head); }
+  .narrow > * { max-width: 820px; }
+  .cta-block { display: grid; gap: 10px; justify-items: start; margin-top: var(--space-head); }
 
-  .sheet {
-    position: relative; z-index: 5; background: var(--ink-1); outline: none;
-    box-shadow: 0 -30px 70px rgb(0 0 0 / 0.55);
-  }
-  @media (min-width: 900px) { .sheet { border-radius: 28px 28px 0 0; } }
-  .sheet::before { content: ''; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--brass), transparent); border-radius: 28px 28px 0 0; z-index: 2; }
-  .grip { position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 44px; height: 4px; border-radius: 4px; background: var(--line-strong); z-index: 2; }
-
-  .act { position: relative; padding-block: var(--space-act); overflow: clip; }
-  .act > .wrap { position: relative; z-index: 1; }
-  .act + .act { border-top: 1px solid var(--line); }
-  .act h2 { max-width: 18ch; }
-  .section-head { max-width: 780px; margin-bottom: clamp(40px, 7vw, 80px); }
-
-  /* Headline reveal: the line rises out of its own mask, then stays put. */
-  .rise { overflow: clip; padding-bottom: 0.08em; }
-  .rise > span { display: inline-block; }
-  :global(html.js) .rise[data-reveal] { opacity: 1; transform: none; }
-  :global(html.js) .rise[data-reveal] > span { transform: translateY(105%); }
-  :global(html.js) .rise[data-reveal].is-in > span { transform: none; transition: transform 1.1s var(--ease-lux); }
-  @media (prefers-reduced-motion: reduce) { :global(html.js) .rise[data-reveal] > span { transform: none; } }
-
-  /* II */
-  .act-tired .wrap { padding-right: clamp(120px, 34vw, 420px); }
-  @media (min-width: 900px) { .act-tired .wrap { padding-right: clamp(240px, 30vw, 440px); } }
-  .beats { list-style: none; margin: clamp(48px, 10vh, 120px) 0 0; padding: 0; display: grid; gap: clamp(64px, 22vh, 220px); }
-  .beats li { font: 400 clamp(1.6rem, 3.6vw, 2.8rem)/1.15 var(--serif); color: var(--text); max-width: 22ch; }
-  .fact { margin-top: clamp(64px, 14vh, 160px); color: var(--text-dim); max-width: 46ch; }
-  .fact a { color: var(--text-faint); font-size: 0.85rem; white-space: nowrap; }
-  .soft-cta { display: inline-flex; margin-top: 28px; min-height: 44px; align-items: center; color: var(--brass-hi); text-decoration: none; border-bottom: 1px solid rgb(176 141 87 / 0.4); }
-
-  /* III */
-  .act-demo { padding-block: 0 var(--space-act); }
-  .pin-stage { position: relative; }
-  .demo-grid { display: grid; gap: 28px; padding-block: clamp(64px, 12vh, 120px) 24px; }
-  .monitor-wrap { position: relative; display: grid; gap: 12px; justify-items: center; background: var(--ink-1); }
-  .monitor { position: relative; margin: 0; width: min(100%, 52svh, 520px); aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); box-shadow: 0 40px 90px rgb(0 0 0 / 0.5); }
-  .monitor img, .monitor video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .m-after { clip-path: inset(0 0 0 100%); }
-  .m-film { opacity: 0; }
-  .m-label { position: absolute; left: 12px; top: 12px; z-index: 2; }
-  .m-ticks i { position: absolute; width: 16px; height: 16px; border: solid rgb(243 237 226 / 0.7); border-width: 0; z-index: 2; }
-  .m-ticks i:nth-child(1) { left: 12px; bottom: 12px; border-left-width: 1px; border-bottom-width: 1px; }
-  .m-ticks i:nth-child(2) { right: 12px; bottom: 12px; border-right-width: 1px; border-bottom-width: 1px; }
-  .m-ticks i:nth-child(3) { right: 12px; top: 12px; border-right-width: 1px; border-top-width: 1px; }
-  .m-ticks i:nth-child(4) { display: none; }
-  .m-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-faint); }
-  .m-steps li { transition: color 0.4s var(--ease); }
-  .m-steps li.on { color: var(--ivory); }
-  .m-steps li.on::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--vermilion); margin-right: 6px; translate: 0 -1px; }
-  .floor.demo-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; pointer-events: none; overflow: clip; }
+  /* The problem */
+  .problem { padding-block: calc(var(--space-section) * 0.75); }
+  .problem .lede { font-size: var(--fs-lede-lg); max-width: 34ch; color: var(--text-dim); }
+  .problem .lede:last-child { color: var(--text); margin-bottom: 0; }
   @media (min-width: 900px) {
-    .demo-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: center; min-height: calc(100svh - 64px); padding-block: 40px; }
-    .monitor { width: min(100%, 64svh, 560px); }
-    .floor.demo-floor { right: -12%; }
+    .problem .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; align-items: start; }
+    .problem h2 { grid-row: span 2; margin: 0; }
   }
-  .after-pin { padding-top: clamp(48px, 8vh, 96px); }
-  .after-grid { display: grid; gap: 28px; }
-  .after-grid h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
-  @media (min-width: 900px) { .after-grid { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; } }
 
-  /* Floors: a clipped strip the character rises out of (instead of the viewport edge). */
-  .floor { position: relative; pointer-events: none; }
-  .floor :global(.actor) { pointer-events: none; }
+  /* How it works */
+  .how-grid { display: grid; gap: 32px; }
+  .how-demo { display: grid; gap: 24px; }
+  .steps { display: grid; gap: 8px; }
+  .step {
+    display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; text-align: left; width: 100%;
+    padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: transparent; color: var(--text-dim); cursor: pointer;
+    transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  }
+  .step:hover { border-color: var(--line-strong); }
+  .step[aria-selected='true'] { border-color: var(--brass); background: rgb(176 141 87 / 0.07); color: var(--text); }
+  .n { width: 32px; height: 32px; border-radius: 50%; display: grid; place-content: center; border: 1px solid var(--line-strong); font: 600 0.85rem/1 var(--sans); color: var(--text-dim); }
+  .step[aria-selected='true'] .n { background: var(--brass); border-color: var(--brass); color: #1a1510; }
+  .txt { display: grid; gap: 2px; font-size: 0.92rem; line-height: 1.45; }
+  .txt b { font: 400 1.25rem/1.25 var(--serif); color: var(--text); }
+  .monitor { position: relative; width: min(100%, 440px); aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); justify-self: center; }
+  .panel { position: absolute; inset: 0; margin: 0; }
+  .panel[hidden] { display: none; }
+  .panel img, .panel video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .panel .spec-label { position: absolute; left: 12px; top: 12px; }
 
-  /* IV */
-  .tiles { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tile-cell:nth-child(even) { margin-top: 36px; }
-  @media (min-width: 760px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; } .tile-cell:nth-child(even) { margin-top: 64px; } }
-  .more { margin-top: 48px; margin-bottom: 18px; }
-  .signature-inline { font-family: var(--serif); font-style: italic; color: var(--brass-hi); white-space: nowrap; }
+  /* Work */
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 760px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+  @media (min-width: 1100px) { .grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .more { margin: 28px 0 0; }
+  .more a { color: var(--brass-hi); text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
 
-  /* V */
-  .act-how .wrap { padding-right: clamp(0px, 20vw, 360px); }
-  @media (max-width: 899px) { .act-how .wrap { padding-right: 34vw; } }
-  .sheet-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
-  .sheet-steps li { border-top: 1px solid var(--line); padding-top: 18px; }
-  .num { font: 400 0.9rem/1 var(--sans); letter-spacing: 0.16em; color: var(--brass); display: block; margin-bottom: 12px; }
-  @media (min-width: 900px) { .sheet-steps { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
-  .fill { height: 1px; background: var(--line); margin: 28px 0 40px; position: relative; overflow: hidden; }
-  .fill i { position: absolute; inset: 0; background: var(--brass); transform-origin: left; transform: scaleX(0); }
+  /* Pricing */
+  .price-head { display: grid; gap: 8px; margin-bottom: var(--space-head); }
+  .price-head .head { margin-bottom: 0; }
 
-  /* VI */
-  .proof { display: grid; gap: 0; border-top: 1px solid var(--line); }
-  .proof article { padding: 28px 0; border-bottom: 1px solid var(--line); }
-  .proof h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
-  @media (min-width: 900px) { .proof { grid-template-columns: repeat(3, 1fr); column-gap: 40px; } }
-  .who { display: grid; gap: 40px; margin-top: clamp(56px, 10vh, 112px); align-items: center; }
-  @media (min-width: 900px) { .who { grid-template-columns: 1.4fr minmax(0, 300px); gap: 72px; } }
-  .brand-film { max-width: 300px; }
-  .founder { padding-left: 28px; border-left: 1px solid var(--brass); max-width: 720px; }
-  .quote { font: 400 clamp(1.5rem, 3vw, 2.3rem)/1.2 var(--serif); margin-bottom: 8px; }
-  .founding { margin-top: 40px; padding: 16px 18px; border: 1px dashed var(--line-strong); border-radius: 12px; max-width: 70ch; font-size: 0.92rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 28px; }
-  .more-q { margin-top: 56px; }
-  .more-q > summary { cursor: pointer; color: var(--brass-hi); min-height: 44px; display: inline-flex; align-items: center; }
+  /* The offer */
+  .offer { background: var(--ink-0); }
+  .offer-grid { display: grid; gap: 32px; }
+  .offer-copy h2 { margin-bottom: 0.25em; }
+  .promise { font: 400 var(--fs-lede-lg)/1.35 var(--serif); color: var(--text); max-width: 26ch; }
+  .ticks { list-style: none; margin: 24px 0 0; padding: 0; color: var(--text-dim); display: grid; gap: 10px; }
+  .ticks li { padding-left: 26px; position: relative; }
+  .ticks li::before { content: ''; position: absolute; left: 2px; top: 0.55em; width: 12px; height: 6px; border: solid var(--brass); border-width: 0 0 1.5px 1.5px; rotate: -45deg; }
+  .offer-form { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 4vw, 32px); }
+  .alt { margin: 16px 0 0; font-size: 0.85rem; }
+  .alt a { color: var(--text-dim); }
 
-  /* VII */
-  .act-price { border-top: 0; padding-top: clamp(40px, 8vh, 96px); }
-  .price-floor { height: calc(var(--actor-h) * 0.62 + 72px); margin-bottom: -1px; border-bottom: 1px solid var(--line); overflow: clip; }
-  .price-floor :global(.actor) { right: 4%; }
-  .act-price :global(.chip) { margin-top: 18px; }
+  @media (min-width: 900px) {
+    .how-grid { grid-template-columns: 210px minmax(0, 1fr); gap: 48px; align-items: start; }
+    .how-demo { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: 40px; align-items: center; }
+    .price-head { grid-template-columns: minmax(0, 1fr) minmax(0, 440px); align-items: end; gap: 48px; }
+    .offer-grid { grid-template-columns: 210px minmax(0, 1fr) minmax(0, 420px); gap: 48px; align-items: start; }
+  }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .offer-grid { grid-template-columns: 210px minmax(0, 1fr); }
+    .offer-form { grid-column: 1 / -1; }
+  }
 
-  /* VIII */
-  .act-close { background: radial-gradient(70% 90% at 15% 10%, rgb(110 31 36 / 0.3), transparent 60%), var(--ink-1); }
-  .duo-floor { height: calc(var(--actor-h) * 0.55 + 72px); overflow: clip; border-bottom: 1px solid var(--line); margin-bottom: clamp(40px, 7vh, 72px); }
-  .duo-floor :global(.side-left) { left: 18%; }
-  .duo-floor :global(.side-right) { right: 18%; }
-  .close-grid { display: grid; gap: 40px; }
-  @media (min-width: 960px) { .close-grid { grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; } }
-  .next { list-style: none; padding: 0; margin: 28px 0 0; color: var(--text-dim); }
-  .next li { padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .next b { color: var(--brass-hi); font-weight: 600; margin-right: 8px; }
-  .form-col { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 4vw, 36px); }
-  .full-form { margin-top: 18px; }
-  .full-form > summary { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; min-height: 44px; display: flex; align-items: center; }
-  .full-form :global(.lead-form) { border: 0; padding: 12px 0 0; background: none; }
+  /* Sticky CTA (phones) */
+  .sticky {
+    position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: rgb(15 14 13 / 0.9); border-top: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    translate: 0 110%; transition: translate 0.3s var(--ease);
+  }
+  .sticky :global(.btn) { width: 100%; }
+  .sticky:global(.on) { translate: 0 0; }
+  :global(body.is-home) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+  @media (min-width: 900px) {
+    .sticky { display: none; }
+    :global(body.is-home) { padding-bottom: 0; }
+  }
 
-  /* Coda */
-  .coda { padding-block: clamp(72px, 12vh, 140px) 0; }
-  .coda-wrap { text-align: center; }
-  .coda-line { color: var(--text-faint); font-size: 0.9rem; }
-  .coda-floor { height: calc(var(--actor-h) * 0.5 * 0.42); overflow: clip; }
-  .coda-floor :global(.actor) { left: 50%; right: auto; translate: -50% 0; }
-  .offscreen-vee { position: absolute; right: 6%; bottom: 40%; margin: 0; padding: 7px 14px; border-radius: 12px 12px 2px 12px; background: var(--vermilion); color: var(--ivory); font: 400 1.05rem/1.2 var(--serif); opacity: 0; translate: 12px 0; transition: opacity 0.35s var(--ease-lux), translate 0.6s var(--ease-lux); }
-  .offscreen-vee.on { opacity: 1; translate: 0 0; }
-  :global(html.hosts-hidden) .offscreen-vee { display: none; }
+  /* Film player */
+  .film-dialog { padding: 0; border: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; color: var(--text); }
+  .film-dialog::backdrop { background: rgb(8 7 6 / 0.88); }
+  .fd-inner { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; justify-items: center; gap: 12px; padding: 12px var(--gutter) calc(16px + env(safe-area-inset-bottom)); }
+  .fd-close { justify-self: end; }
+  .fd-x { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgb(15 14 13 / 0.7); cursor: pointer; }
+  .fd-frame { position: relative; height: 100%; max-height: 760px; aspect-ratio: 9 / 16; max-width: 100%; min-height: 0; }
+  .fd-frame video { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; background: #000; }
+  .fd-frame .spec-label { position: absolute; left: 10px; top: 10px; right: 10px; width: fit-content; }
+  .fd-actions { justify-content: center; }
 </style>

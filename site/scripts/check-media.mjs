@@ -10,7 +10,7 @@ for (const g of ['otto', 'vee']) {
   for (const c of Object.values(m[g].clips)) for (const k of ['av1', 'hevc', 'av1_hd', 'hevc_hd']) if (c[k]) files.push(c[k]);
 }
 for (const f of m.films) files.push(f.poster, f.loop.av1, f.loop.h264, f.full.av1, f.full.h264, ...(f.captions ? [f.captions] : []), ...(f.scrub ? [f.scrub] : []));
-for (const v of Object.values(m.voice)) files.push(...[v.audio, v.vtt].filter(Boolean));
+for (const l of Object.values(m.lines)) files.push(...[l.av1, l.hevc, l.av1_hd, l.hevc_hd, l.words].filter(Boolean));
 files.push(...Object.values(m.stills));
 let missing = 0;
 for (const f of files) {

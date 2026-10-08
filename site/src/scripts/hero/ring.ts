@@ -1,8 +1,7 @@
 // The orbit: 3–6 film cards on a flat 2D ellipse around Otto. Slow continuous rotation, cards stay upright,
 // hover/focus holds it still. Same on phones (a smaller circle); loops only decode on desktop.
-import { gsap } from 'gsap';
-import type { Dir } from './machine';
-import { isMobile, motionPaused, saveData } from '../core/prefs';
+// Otto gets the largest size whose box never meets a card anywhere on the orbit (no overlap, ever).
+import { isMobile, motionPaused, reducedMotion, saveData } from '../core/prefs';
 
 const LOOP_PERIOD_S = 84; // one full orbit: slow enough to read, fast enough to notice
 const MAX_LOOPS_DESKTOP = 4; // + Otto = 5 decoders (ref 39 §1.4)
@@ -18,7 +17,7 @@ export class Ring {
   private ease = 1; // 0..1: the orbit eases in/out of a hold instead of stopping dead
   private step: number;
   private last = 0;
-  private tween: gsap.core.Tween | null = null;
+
   private loopsOn = new Set<number>();
   private loopsEnabled = true;
   private geo = { rx: 0, ry: 0 };
@@ -43,9 +42,9 @@ export class Ring {
       const next = ((((cur < 0 ? 0 : cur) + (e.key === 'ArrowRight' ? 1 : -1)) % n) + n) % n;
       this.cards[next]?.focus({ preventScroll: true });
     });
-    gsap.ticker.add(this.tick);
     new ResizeObserver(() => this.layout()).observe(scene);
     this.layout();
+    requestAnimationFrame(this.tick);
   }
 
   get count(): number {
@@ -62,28 +61,50 @@ export class Ring {
     this.assignLoops();
   }
 
-  private tick = (time: number): void => {
+  private tick = (ms: number): void => {
+    requestAnimationFrame(this.tick);
+    const time = ms / 1000;
     const dt = this.last ? Math.min(0.1, time - this.last) : 0;
     this.last = time;
-    const moving = this.running && !this.hold && !this.tween && !motionPaused();
+    if (document.hidden) return;
+    const still = motionPaused() || reducedMotion();
+    const moving = this.running && !this.hold && !still;
     // Ease the angular speed (≈0.8 s) so a hover settles the ring instead of freezing it.
     this.ease += ((moving ? 1 : 0) - this.ease) * Math.min(1, dt * 3.2);
     if (!moving && this.ease < 0.02) this.ease = 0; // settled: fully still
-    if (this.ease > 0.001 && !this.tween && !motionPaused()) {
+    if (this.ease > 0.001 && !still) {
       this.angle += this.speed * this.ease * dt;
       this.place();
     }
   };
 
-  /** Measure the scene and size the ellipse so cards clear Otto's face. */
+  /**
+   * Measure the scene: card centres ride the largest ellipse that keeps every card inside the scene, and Otto
+   * (9:16, centred) gets the largest height whose box, grown by half a card plus a margin, stays inside that
+   * ellipse. A convex box inside the ellipse of card centres means no card can ever touch him.
+   */
   layout(): void {
     const w = this.scene.clientWidth;
     const h = this.scene.clientHeight;
-    const card = this.cards[0]?.getBoundingClientRect();
-    const cw = card?.width || 80;
-    const ch = card?.height || 142;
-    const ry = Math.max(40, h / 2 - ch / 2 - 6);
-    const rx = Math.max(40, Math.min(w / 2 - cw / 2 - 6, ry * 1.35));
+    const card = this.cards[0];
+    const cw = card?.offsetWidth || 64;
+    const ch = card?.offsetHeight || 114;
+    const pad = 6;
+    const rx = Math.max(40, w / 2 - cw / 2 - 1);
+    const ry = Math.max(40, h / 2 - ch / 2 - 1);
+    const fits = (oh: number): boolean => {
+      const x = (oh * 9) / 16 / 2 + cw / 2 + pad;
+      const y = oh / 2 + ch / 2 + pad;
+      return x < rx && y < ry && (x / rx) ** 2 + (y / ry) ** 2 <= 1;
+    };
+    let lo = 0;
+    let hi = h;
+    for (let i = 0; i < 24; i++) {
+      const mid = (lo + hi) / 2;
+      if (fits(mid)) lo = mid;
+      else hi = mid;
+    }
+    this.scene.style.setProperty('--otto-h', `${Math.floor(lo)}px`);
     this.geo = { rx, ry };
     this.place();
   }
@@ -110,15 +131,6 @@ export class Ring {
       }
     });
     return best;
-  }
-
-  /** Where is card i relative to Otto? */
-  dirOf(i: number): Dir {
-    const a = this.angle + i * this.step;
-    const x = Math.sin(a);
-    if (x < -0.35) return 'L';
-    if (x > 0.35) return 'R';
-    return 'C';
   }
 
   card(i: number): HTMLAnchorElement | undefined {

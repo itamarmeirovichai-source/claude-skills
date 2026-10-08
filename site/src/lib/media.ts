@@ -44,19 +44,28 @@ export interface FilmMedia {
   /** Overrides the default spec label (e.g. the studio's own film). */
   label?: string;
 }
-export interface VoiceLine {
+/** One fixed talking line: a single stacked-alpha clip with the line's audio baked into the same file. */
+export interface LineMedia {
+  who: 'otto' | 'vee';
   text: string;
-  audio: string | null;
-  vtt: string | null;
+  /** Set until the keyed clip is delivered: the character idles and the line shows as a plain caption. */
+  pending?: string;
+  av1?: string;
+  hevc?: string;
+  av1_hd?: string;
+  hevc_hd?: string;
+  /** Word timings JSON ({ words: [{ text, start, end }] }, seconds on the clip's own clock). */
+  words?: string | null;
+  audio?: boolean;
+  duration?: number;
 }
+export type LineId = 'o1' | 'o2' | 'o3' | 'o4' | 'v1' | 'v2' | 'v3' | 'v4';
 export interface MediaManifest {
   base: string;
   otto: CharacterSet;
   vee: CharacterSet;
   films: FilmMedia[];
-  voice: Record<string, VoiceLine>;
-  /** "<char>.<group>" → voice keys; drawn with a per-session shuffle bag. */
-  voiceGroups: Record<string, string[]>;
+  lines: Record<LineId, LineMedia>;
   stills: Record<string, string>;
 }
 
@@ -72,15 +81,8 @@ export const filmBySlug = (slug: string): FilmMedia | undefined => media.films.f
 export const SPEC_LABEL = (f: Pick<FilmMedia, 'duration' | 'label'>): string =>
   f.label ?? `Spec film · invented brand · 100% AI · ${f.duration} s · one take`;
 
-/** True when the key has its own delivered clip (not a placeholder alias). */
-export const hasRealClip = (set: CharacterSet, key: string): boolean => {
-  const c = set.clips[key];
-  return !!c && !c.alias && !!c.av1 && !!c.hevc;
-};
-
-/** Text of a voice key, or the first line of a voice group (for static captions). */
-export const lineText = (keyOrGroup: string): string =>
-  media.voice[keyOrGroup]?.text ?? media.voice[media.voiceGroups[keyOrGroup]?.[0] ?? '']?.text ?? '';
+/** A line with its clip delivered (both codecs). */
+export const lineReady = (l: LineMedia | undefined): l is LineMedia & { av1: string; hevc: string } => !!l && !l.pending && !!l.av1 && !!l.hevc;
 
 /** Resolve a clip key, following `alias` (max 3 hops). Markers/duration on the alias entry win. */
 export function resolveClip(set: CharacterSet, key: string): (AlphaClip & { av1: string; hevc: string }) | undefined {

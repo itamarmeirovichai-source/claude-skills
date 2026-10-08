@@ -3,6 +3,7 @@
 # Usage: bash scripts/encode-otto.sh <keyed_dir> [otto|vee]
 #   mobile 540x1920 (AV1 + HEVC), desktop *_hd 720x2560 (AV1 + HEVC); pop_* / vee_pop_* clips 360x1280 only.
 #   Take suffixes (_t01, _v2) are stripped: otto_rise_t01.mp4 -> otto_rise. Then run `node scripts/clips-import.mjs`.
+#   Silent clips only (idle loops, pops). Talking lines keep their audio: use `node scripts/lines-import.mjs`.
 set -euo pipefail
 SRC="$1"; WHO="${2:-otto}"
 OUT="$(cd "$(dirname "$0")/.." && pwd)/public/media/$WHO"

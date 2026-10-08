@@ -1,19 +1,22 @@
 ---
-import { pricing, money, callHref, tierHref } from '../lib/site';
-interface Props { headingLevel?: 'h1' | 'h2'; heading?: string; id?: string }
-const { headingLevel = 'h2', heading = 'Clear prices. Pick the size that fits this quarter.', id } = Astro.props;
+import { pricing, money, callHref, tierHref, bfcm, bfcmOpen } from '../lib/site';
+interface Props { headingLevel?: 'h1' | 'h2'; heading?: string; id?: string; compact?: boolean }
+const { headingLevel = 'h2', heading = 'Clear prices. Pick the size that fits this quarter.', id, compact = false } = Astro.props;
+const offerLive = bfcmOpen();
 const H = headingLevel;
 const f = pricing.founding;
 ---
 <div class="pricing">
+  {!compact && (
   <div class="section-head" data-reveal>
     <p class="eyebrow">Pricing · from {money(pricing.from)}</p>
     <H id={id}>{heading}</H>
     <p class="lede">{pricing.context} <a href={pricing.contextSource.url} rel="noopener" target="_blank">Source: {pricing.contextSource.label}</a>.</p>
   </div>
+  )}
   <ol class="tiers">
     {pricing.tiers.map((t) => (
-      <li class:list={['tier', { rec: t.recommended }]} data-reveal data-tier={t.id}>
+      <li class:list={['tier', { rec: t.recommended }]} data-reveal={compact ? undefined : true} data-tier={t.id}>
         {t.ribbon && <p class="ribbon">{t.ribbon}</p>}
         <h3>{t.name}</h3>
         <p class="price"><span class="amt">{money(t.price)}</span>{t.unit && <span class="unit">{t.unit}</span>}</p>
@@ -26,26 +29,38 @@ const f = pricing.founding;
           {t.perAsset && <><dt>Per asset</dt><dd>{t.perAsset}</dd></>}
         </dl>
         {t.credit && <p class="credit">{t.credit}</p>}
-        {t.cta && <a class:list={['btn', 'tier-cta', { 'btn-primary': t.recommended }]} href={tierHref(t.cta.href)} data-pricing-cta={t.id}>{t.cta.label}</a>}
+        {t.cta && <a class:list={['btn', 'tier-cta', { 'btn-primary': t.recommended }]} href={compact && t.cta.href === '/frames' ? '#start' : tierHref(t.cta.href)} data-pricing-cta={t.id} data-inflow-cta>{t.cta.label}</a>}
+        {t.cta?.href === '/frames' && <p class="micro tier-micro">Free. No call. 48 h.</p>}
       </li>
     ))}
   </ol>
-  <p class="all" data-reveal>{pricing.allPlans}</p>
-  <details class="addons">
+  <p class="all">{pricing.allPlans}</p>
+  {offerLive && (
+    <p class="bfcm" id="bfcm" data-bfcm data-book-by={bfcm.bookBy}>
+      <b>{bfcm.name}</b> · {money(bfcm.price)}, the Premiere price · book by {bfcm.bookByLabel}, final files by {bfcm.finalByLabel}, two weeks before Black Friday. Bonus: {bfcm.bonus}
+      {bfcm.capacityConfirmed && <span data-capacity> I can take {bfcm.capacity} BFCM films.</span>}
+      {' '}<a href={callHref()} data-bfcm-cta="call">Book a BFCM film</a>
+    </p>
+  )}
+  {!compact && <details class="addons">
     <summary>Add-ons</summary>
     <ul>{pricing.addOns.map((a) => <li><span>{a.name}</span><b>{a.price}</b></li>)}</ul>
-  </details>
-  {f.show && f.left > 0 && <p class="founding">{f.line} <b>{f.left} of {f.total} left.</b></p>}
-  <div class="btn-row cta">
-    <a class="btn btn-primary" href="/frames" data-pricing-cta="frames">Start with free frames</a>
-    <a class="btn" href={callHref()} data-pricing-cta="call">Book a 15-min call</a>
-  </div>
+  </details>}
+  {!compact && f.show && <p class="founding">{f.line}</p>}
+  {!compact && (
+    <div class="btn-row cta">
+      <a class="btn btn-primary" href="/frames" data-pricing-cta="frames">Start with free frames</a>
+      <a class="btn" href={callHref()} data-pricing-cta="call">Book a 15-min call</a>
+    </div>
+  )}
 </div>
 <style>
   .tiers { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; align-items: start; }
   @media (min-width: 960px) { .tiers { grid-template-columns: repeat(3, 1fr); gap: 20px; } .tier.rec { transform: translateY(-14px); } .tier.rec.is-in { transform: translateY(-14px); } }
   .tier { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; position: relative; }
-  .tier.rec { border-color: var(--brass); background: linear-gradient(180deg, rgb(176 141 87 / 0.10), var(--ink-2) 40%); }
+  .tier.rec { border-color: var(--brass); background: linear-gradient(180deg, rgb(176 141 87 / 0.12), var(--ink-2) 40%); box-shadow: 0 0 0 1px var(--brass), 0 30px 60px rgb(0 0 0 / 0.35); }
+  /* Phones: the recommended plan first, then the others in the usual order. */
+  @media (max-width: 959px) { .tier.rec { order: -1; margin-top: 12px; } }
   .ribbon { position: absolute; top: -13px; left: 24px; margin: 0; background: var(--brass); color: #1a1510; font: 600 0.72rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; }
   h3 { font-size: 1.9rem; margin-bottom: 0.2em; }
   .price { margin: 0; display: flex; align-items: baseline; gap: 4px; }
@@ -66,4 +81,14 @@ const f = pricing.founding;
   .cta { margin-top: 26px; }
   .credit { margin: 14px 0 0; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line-strong); font-size: 0.86rem; color: var(--text); }
   .tier-cta { width: 100%; margin-top: 18px; }
+  .tier-micro { margin-top: 8px; text-align: center; }
+  .bfcm { margin-top: 18px; padding: 14px 16px; border: 1px solid rgb(176 141 87 / 0.45); border-radius: 12px; max-width: 76ch; font-size: 0.92rem; color: var(--text-dim); }
+  .bfcm b { color: var(--brass-hi); font-weight: 600; }
 </style>
+<script>
+  // A cached build must not keep selling a closed offer.
+  document.querySelectorAll<HTMLElement>('[data-bfcm]').forEach((el) => {
+    const by = Date.parse(`${el.dataset['bookBy']}T23:59:59-12:00`);
+    if (Number.isFinite(by) && Date.now() > by) el.remove();
+  });
+</script>

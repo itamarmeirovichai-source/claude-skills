@@ -1,6 +1,8 @@
 // <alpha-video>: plays stacked-alpha clips (colour on the top half, alpha as luma on the bottom half)
 // into a WebGL canvas. Two A/B <video> players crossfade on the hub pose, so clip switches never pop.
 // The poster <img> child stays visible until the first frame is drawn, and is the fallback on any error.
+// A clip may carry its own audio track (talking lines): it plays audible only when asked (`audible`), and the
+// caller reads `time` (the front clip's clock) to time captions, so picture, sound and words share one clock.
 
 export type PlayResult = 'ended' | 'started' | 'timeout' | 'error' | 'cancelled';
 export interface PlayOptions {
@@ -14,6 +16,10 @@ export interface PlayOptions {
   fadeMs?: number;
   /** Start position, s. */
   from?: number;
+  /** Play the clip's own audio track (only after the visitor chose sound). */
+  audible?: boolean;
+  /** Called once the clip is running and is the front clip (its clock is `time` from here on). */
+  onStart?: () => void;
 }
 
 const VERT = `attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}`;
@@ -145,6 +151,7 @@ export class AlphaVideo extends HTMLElement {
       v.dataset['src'] = src;
     }
     v.loop = !!opts.loop;
+    v.muted = !opts.audible;
     try {
       v.currentTime = opts.from ?? 0;
     } catch {
@@ -180,6 +187,7 @@ export class AlphaVideo extends HTMLElement {
           }
           this.front = k;
           this.dataset['ready'] = '';
+          opts.onStart?.();
           this.pending = {
             token,
             markers: Object.entries(opts.markers ?? {}).sort((a, b) => a[1] - b[1]),
@@ -220,6 +228,41 @@ export class AlphaVideo extends HTMLElement {
 
   pause(): void {
     this.vids.forEach((v) => v.pause());
+  }
+
+  /** Stop whatever plays (a line cut short), keeping the last frame on the canvas. */
+  stop(): void {
+    this.gen++;
+    this.pending?.resolve('cancelled');
+    this.pending = null;
+    this.vids.forEach((v) => {
+      v.pause();
+      v.muted = true;
+    });
+  }
+
+  /** Mute or unmute the clip that is playing now (sound switched mid-line). */
+  setMuted(muted: boolean): void {
+    this.vids[this.front].muted = muted;
+  }
+
+  /**
+   * Call inside a user gesture (the "Sound on" tap): iOS lets a media element play with sound later only
+   * if it has played once from a gesture. Both players get that first play; silent idle clips stay silent.
+   */
+  unlock(): void {
+    const src = this.vids[this.front].dataset['src'];
+    this.vids.forEach((v, i) => {
+      if (!v.dataset['src'] && src) {
+        v.src = src;
+        v.dataset['src'] = src;
+      }
+      if (!v.src) return;
+      const wasPaused = v.paused;
+      const p = v.play();
+      if (i !== this.front || wasPaused) p.then(() => v.pause()).catch(() => undefined);
+      else p.catch(() => undefined);
+    });
   }
 
   /** Let a looping clip run to its end (talk clips end on the idle pose), then resolve. */
