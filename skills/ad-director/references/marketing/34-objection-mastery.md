@@ -45,6 +45,7 @@ It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objectio
 - The disrupt breaks the pattern the prospect expects from a salesperson.
 - Write one ledge per top objection and drill them aloud ([summary](https://pulserevops.com/knowledge/bs0254); secondary, unconfirmed against the book).
 - Don't argue with a reflex. Arguing makes it their primary concern ([Ask Jeb](https://salesgravy.com/?p=17841)).
+- In the same episode ([transcript](https://youtu.be/EppsCQnYWu0)) he warns that leading with "no risk, you don't pay until…" raises the antenna ("does that sound too good to be true?… are you creating objections by using that language"). Save the risk terms for the price conversation. Lead with the problem, and use "narrators" (staff who'll tell you what's really happening) before the decision-maker.
 
 **Josh Braun, detach from the outcome:** the goal is to find out whether a problem exists, not to book the meeting. Pressure leaks into wording and prospects feel it. Mirror "not interested" to learn whether it's relevance, timing or a bad moment; ask one sharp question that shows a gap they haven't noticed ("poke the bear") ([Cognism](https://cognism.com/blog/cold-calling-examples), [Something Inc](https://somethinginc.com/blog/poke-the-bear-vs-ai-volume-outbound-debate/)).
 
@@ -73,7 +74,7 @@ Season $3,500/mo → Premiere $2,500 → Short $1,200 → **Pilot $750** (one 15
 A paid pilot beats a second free round: a small paid "yes" is the classic foot-in-the-door (Freedman & Fraser 1966), and paying clients engage. No study compares paid pilots with free trials for creative services, so this is `[inf]`.
 
 ### 2.2 Risk reversal
-Use `32` §2.3 word for word: frames free → 50 % deposit → balance only on approval of the final cut. Add only one lever: **"If frame 1 doesn't look like your product, I stop and you've lost nothing."** Never "100 % risk-free" and never a ROAS guarantee.
+Use `32` §2.3 word for word: frames free → 50 % deposit → balance only on approval of the final cut. Add only one lever: **"If frame 1 doesn't look like your product, I stop and you've lost nothing."** Never "100 % risk-free" and never a ROAS guarantee. **When:** only once trust or price comes up, never in message 1 (Blount, §1.3). The free frames are the opener; the balance-on-approval terms are the closer `[inf]`.
 
 ### 2.3 Changing the decision-maker
 - From a manager: "Who besides you would want to see the frames before anything's spent?" Then offer to make the frames *for* them to forward, with a 3-line summary they can paste.
