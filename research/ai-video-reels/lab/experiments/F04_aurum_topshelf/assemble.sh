@@ -7,14 +7,14 @@ cd "$(dirname "$0")"
 mkdir -p final
 C=clips; F1=1/24
 ffmpeg -v error -y \
- -i $C/A_push_t01.mp4 -i $C/B_open_t01.mp4 -i $C/C_sip_t01.mp4 \
- -i $C/E_float_k_t01.mp4 -i $C/F_land_t01.mp4 -i $C/G_pack_t01.mp4 -filter_complex "\
-[0:v]setpts=PTS/1.25,trim=0:4,setpts=PTS-STARTPTS,fps=24[a];\
-[1:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS[b];\
-[2:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS[c];\
-[3:v]trim=start=0.0417,setpts=1.2*(PTS-STARTPTS),minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:vsbmc=1,trim=0:6,setpts=PTS-STARTPTS[e];\
-[4:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS[f];\
-[5:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS[g];\
+ -i $C/A_push_t01.mp4 -i $C/B_open_t01.mp4 -i $C/C_sip2_t01.mp4 \
+ -i $C/E_float2_t01.mp4 -i $C/F_land2_t01.mp4 -i $C/G_pack2_t01.mp4 -filter_complex "\
+[0:v]setpts=PTS/1.25,trim=0:4,setpts=PTS-STARTPTS,fps=24,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[a];\
+[1:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[b];\
+[2:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[c];\
+[3:v]trim=start=0.0417,setpts=1.2*(PTS-STARTPTS),minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:vsbmc=1,trim=0:6,setpts=PTS-STARTPTS,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[e];\
+[4:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[f];\
+[5:v]trim=start=0.0417:duration=5,setpts=PTS-STARTPTS,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1[g];\
 [a][b][c][e][f][g]concat=n=6:v=1,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,format=yuv420p[v]" \
  -map "[v]" -an -c:v libx264 -crf 16 -preset slow -t 30 final/_video.mp4
 

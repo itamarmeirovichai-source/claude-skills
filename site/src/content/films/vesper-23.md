@@ -1,12 +1,12 @@
 ---
 order: 2
-idea: "VESPER is a perfume we invented. Vee on a rooftop as golden hour turns to city lights, one bottle beside her the whole time."
+idea: "VESPER is a perfume we invented. The sun's golden hour lasts twenty minutes; Vee sprays VESPER and the sky rewinds. The light is what fades, the scent is what stays."
 status: final
 tools: []
 ---
-<!-- TODO(founder): add the real breakdown (frames → takes → final) for 23 Minutes when published. Keep it true. -->
+<!-- TODO(founder): add the real breakdown (frames → takes → final) for Keep the Light when published. Keep it true. -->
 
-**23 Minutes.** The take holds on Vee while the light changes around her, and ends on the bottle.
+**Keep the Light.** The take holds on Vee while the sun sets, then rewinds after one spray, and ends on the bottle.
 
 - **Frames:** keyframes fix the light at the start, the middle and the end of the hour.
 - **The take:** one continuous shot, 30 seconds. No cuts.
