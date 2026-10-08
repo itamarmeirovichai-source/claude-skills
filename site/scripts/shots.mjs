@@ -30,6 +30,7 @@ if (process.env.EXTRA) {
 await d.goto(base + '/pricing');
 await d.waitForTimeout(800);
 await d.evaluate(() => document.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in')));
+await d.evaluate(() => { const t = document.querySelector('.pricing .lede'); if (t) window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY - 40); });
 await d.waitForTimeout(900);
 await d.screenshot({ path: `${out}/desktop_pricing.png`, fullPage: false });
 await browser.close();
