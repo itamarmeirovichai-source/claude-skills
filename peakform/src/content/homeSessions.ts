@@ -28,7 +28,20 @@ const SOFT = 'Land quietly with the knees over the toes.';
 
 const prep: HomeSlot = { options: ['home-movement-prep'], sets: 1, minutes: 7, restSec: 30, notes: ['Skip the jumps today if anything hurts during the warm up.'] };
 
-/** About 60 foot contacts: the starting level while landings, space, and school jumping are checked. */
+/**
+ * The full approach jump, the most specific jump for the spike (3.0.1). It comes after the approach
+ * footwork, with full rest, and only where there is a run up and open sky or a hall. A marked wall
+ * gives a touch height; without one, the jump reaches for a spot in the air.
+ */
+const approach = (sets: number): HomeSlot => ({
+  options: ['approach-touch-jump', 'volleyball-approach-jump'],
+  sets,
+  reps: 3,
+  restSec: 120,
+  notes: ['Only when the landings earlier in the session were clean.', 'Two easy run ups first, then full effort with full rest.', 'Reach as high as you can and land softly on both feet.', STOP],
+});
+
+/** About 65 foot contacts: the starting level while landings, space, and school jumping are checked. */
 const INTRO: HomeSlot[] = [
   prep,
   { options: ['snap-down-stick', 'block-footwork'], sets: 2, reps: 4, restSec: 60, notes: ['Freeze each landing for 2 seconds.', SOFT] },
@@ -37,23 +50,25 @@ const INTRO: HomeSlot[] = [
   { options: ['countermovement-jump', 'spike-arm-swing-shadow'], sets: 2, reps: 4, restSec: 90, notes: ['About 80 percent effort. Stick each landing.', STOP] },
   { options: ['broad-jump', 'block-footwork'], sets: 2, reps: 3, restSec: 90, notes: ['Stick every landing. Walk back slowly.', STOP] },
   { options: ['volleyball-approach-footwork', 'spike-arm-swing-shadow'], sets: 3, reps: 3, restSec: 45, notes: ['Walk it, then jog it, then three quarter speed, without the jump.'] },
+  approach(2),
 ];
 
 /** About 95 foot contacts. Offered only after a review, never automatically. */
 const BUILD: HomeSlot[] = [
   prep,
   { options: ['snap-down-stick', 'block-footwork'], sets: 2, reps: 4, restSec: 60, notes: ['Freeze each landing for 2 seconds.', SOFT] },
-  { options: ['pogo-hop', 'tibialis-raise'], sets: 3, reps: 10, restSec: 60, notes: ['Small, quick hops from the ankles.', STOP] },
+  { options: ['pogo-hop', 'tibialis-raise'], sets: 2, reps: 10, restSec: 60, notes: ['Small, quick hops from the ankles.', STOP] },
   { options: ['lateral-line-hop', 'shadow-pass-footwork'], sets: 3, reps: 8, restSec: 60, notes: ['Count each landing: 8 is 4 to each side.', STOP] },
   { options: ['countermovement-jump', 'spike-arm-swing-shadow'], sets: 3, reps: 4, restSec: 90, notes: ['Full effort with full rest. Stick each landing.', STOP] },
   { options: ['broad-jump', 'block-footwork'], sets: 3, reps: 3, restSec: 90, notes: ['Stick every landing.', STOP] },
   { options: ['single-leg-hop', 'shadow-pass-footwork'], sets: 2, reps: 3, restSec: 60, per: 'side', notes: ['Low, controlled hops. Stick the last one.', STOP] },
   { options: ['volleyball-approach-footwork', 'spike-arm-swing-shadow'], sets: 3, reps: 3, restSec: 45, notes: ['Finish with a soft small hop only if the plant is clean.'] },
+  approach(3),
 ];
 
 export const HOME_JUMP_SESSION: Record<JumpLevel, HomeSlot[]> = { intro: INTRO, build: BUILD };
 
-export const JUMP_LEVEL_LABEL: Record<JumpLevel, string> = { intro: 'Starting level, about 60 landings', build: 'Next level, about 95 landings' };
+export const JUMP_LEVEL_LABEL: Record<JumpLevel, string> = { intro: 'Starting level, about 65 landings', build: 'Next level, about 95 landings' };
 
 /** The light skill session: rhythm, arm swing, and footwork with no jumps. Ball contact only with a cleared wrist. */
 export const HOME_SKILL_SESSION: HomeSlot[] = [

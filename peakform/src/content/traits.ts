@@ -173,7 +173,7 @@ export type Location = 'gym' | 'home' | 'pool' | 'court';
 
 export const LOCATION_LABEL: Record<Location, string> = { gym: 'Gym', home: 'Home', pool: 'Pool', court: 'Court or practice' };
 
-const COURT_ONLY = new Set<string>(['volleyball-spike', 'block-to-spike-transition', 'lateral-block-jump', 'approach-touch-jump', 'volleyball-approach-jump', 'medicine-ball-spike-throw']);
+const COURT_ONLY = new Set<string>(['volleyball-spike', 'block-to-spike-transition', 'lateral-block-jump', 'medicine-ball-spike-throw']);
 const HOME_KINDS: ActivityKind[] = ['jump', 'sprint', 'skill', 'throw', 'conditioning'];
 
 /** Where an exercise is planned. Strength work is for the gym; jumps, footwork, and skills are for home. */
@@ -227,6 +227,9 @@ export const HOME_NEEDS: Partial<Record<LibraryExerciseId, SpaceNeeds>> = {
   'shuffle-to-sprint': { space: 'large', ceiling: 'standard', impact: 'moderate', noise: 'some', equipment: ['cones'] },
   'ten-metre-sprint': { space: 'large', ceiling: 'standard', impact: 'moderate', noise: 'some', equipment: ['cones'] },
   'wall-spike-control': { space: 'large', ceiling: 'high', impact: 'none', noise: 'loud', ball: true, equipment: ['ball', 'wall'] },
+  // Full approach jumps need a run up of 4 to 6 metres and open sky or a hall: in practice outdoors or on a court.
+  'approach-touch-jump': { space: 'large', ceiling: 'high', impact: 'moderate', noise: 'loud', equipment: ['wall'] },
+  'volleyball-approach-jump': { space: 'large', ceiling: 'high', impact: 'moderate', noise: 'loud' },
 };
 
 export const SPACE_TEXT: Record<SpaceSize, string> = { small: 'about 2 by 2 metres of clear floor', medium: 'about 3 by 3 metres of clear floor', large: '5 metres or more of clear space in one direction' };
