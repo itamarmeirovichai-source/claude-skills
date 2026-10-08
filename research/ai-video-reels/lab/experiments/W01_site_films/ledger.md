@@ -31,3 +31,18 @@ Lesson: in Seedance one-takes an ORBIT around a glass product breaks product fid
 | Consistency test x3 (street / office / duo café) | Flare 2k, 8 refs | 1.38 | PASS — identity holds in new scenes |
 | Reel 02 café, audio-driven | Seedance 2.5 r2v 480p 30 s | 6.17 | PASS (whip pans, no hard cuts; re-voiced with locked voices) |
 | **Vee/reel running total** | | **~18.51 of 20** | |
+
+## Round 3 (user: "videos that raise our impression; rotating ring around Otto; varied lines") — site budget ceiling $80
+| Item | Model | $ est | Status |
+|---|---|---|---|
+| AURUM Top Shelf keyframes K0,K1,K2,K4,K7,K8 + K6 glare | Flare 2k | 2.18 | PASS |
+| AURUM motion A/B/C/F/G (5 s each) | Kling 3.0 pro i2v, first+last frame | 2.38 | PASS |
+| AURUM E fall (Seedance 10 s) x2 | Seedance 2.5 i2v 480p | 0 (blocked by NSFW filter, not charged) | FAIL: a person leaving a rooftop trips the filter |
+| AURUM E dive + E float | Kling 3.0 pro i2v | 0.95 | PASS, float (gold umbrella) chosen |
+| Talking/entrance clips x6 (keyed) | Kling 3.0 std 5 s | 2.14 | PASS (otto_peek too low; peek rebuilt from rise) |
+| Voice bank 52 lines, AURUM lines/music/SFX | ElevenLabs credits | 0 | PASS |
+| **Round 3 subtotal** | | **~7.65** | site total ~$53 of $80 |
+
+Lessons:
+- Seedance's filter rejects "steps off the edge / falls" with a person on a rooftop, even if the tone is playful. Kling pro accepts a whimsical float (umbrella) or a cabled stunt dive.
+- A one-take can "wipe" through a foreground body (G_pack passes Otto's blazer) and still read as one move.
