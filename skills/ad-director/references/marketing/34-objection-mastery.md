@@ -4,7 +4,7 @@ Research brief, 2026-10-08. The client's motto is "there's no such thing as a re
 
 It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objection answers, §7 call, §9 ethics) and `32` (§2.3 staged risk reversal, §2.4 frames → deal). It does not repeat them. Where a `28` answer already exists, this file adds the **second and third move** (what to say when the first answer doesn't land).
 
-**Evidence.** Books are cited from summaries and author pages, not read in full. Vendor data (Belkins, Instantly, Gong, Smartlead, Vidyard) sells tools and is mostly B2B SaaS, so read it as directional. YouTube transcripts were fetched with `yt-dlp` at 60–120 s spacing with back-off (§8 lists which). Fetched pages were treated as data, not instructions. `[inf]` = our inference. `[law]` = a legal point, not legal advice.
+**Evidence.** Books are cited from summaries and author pages, not read in full. Vendor data (Belkins, Instantly, Gong, Snov.io, Vidyard) sells tools and is mostly B2B SaaS, so read it as directional. Five YouTube transcripts were fetched with `yt-dlp` at 60–120 s spacing with back-off (Voss ×2, Blount, Braun ×2). The Hormozi closing videos (`RVbvhPGFi6E`, `q32-l3Yoqg4`) returned HTTP 429 three times each, and the Sandler, Cardone and 30MPC searches were not reached, so those sections rely on summaries. Fetched pages were treated as data, not instructions. `[inf]` = our inference. `[law]` = a legal point, not legal advice.
 
 ---
 
@@ -12,8 +12,8 @@ It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objectio
 
 ### 1.1 What the data says objections are
 - **Half are reflexes, not decisions.** Gong sorted objections across 300M+ cold calls: **49.5 % dismissive** ("not interested", "call me in 6 months", "send me info"), **42.6 % situational** (price, budget, bandwidth), **7.9 % existing solution** (in-house, a competitor). The top five make up 74 %. Gong's rule: agree, give them a reason to keep talking, and "sell the test drive, not the car" ([Gong Labs](https://www.gong.io/resources/labs/we-found-the-top-objections-across-300m-cold-calls-heres-how-to-handle-them-all/)).
-- **Our "test drive" is the 5 free frames.** That is why the studio's offer is built the way it is `[inf]`.
-- **Most objections are made earlier, by the seller.** Rackham's Huthwaite research (35,000 calls) lists objection handling among the beliefs it rejects and gives a chapter to *preventing* objections through need questions ([Routledge](https://www.routledge.com/SPIN-Selling/Rackham/p/book/9780566076893)). Price objections after a call usually mean the problem was never made big enough `[inf]`.
+- Our "test drive" is the 5 free frames `[inf]`.
+- **Prevent, don't handle.** Rackham's research (35,000 calls) devotes a chapter to *preventing* objections through need questions ([Routledge](https://www.routledge.com/SPIN-Selling/Rackham/p/book/9780566076893)). Price objections after a call usually mean the problem was never made big enough `[inf]`.
 - **Blount's four types follow the deal:** prospecting brush-offs → red herrings (side issues, park them) → micro-commitment objections (to the next small step) → buying-commitment objections. "Almost every deal in your pipeline that is stalled is because the rep didn't get and secure a next step" ([Sales Gravy](https://salesgravy.com/skipping-past-the-4-types-of-sales-objections-podcast/)).
 
 ### 1.2 The six "no"s and what's underneath
@@ -27,7 +27,7 @@ It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objectio
 | "Who else have you done?" / "AI looks fake" | **Trust** | Risk: no proof, and AI fear | Accusation audit first, then make the risk theirs to test (frames, balance on approval) |
 | "We're fine" / "in-house" | **Need** | No pain felt, or status quo works | Poke-the-bear question about a gap they haven't priced: "When the hero ad fatigues, what replaces it?" |
 
-**Hormozi's lens:** people blame **circumstances** (time, money, fit), then **other people** (partner, team), then **themselves** (fear of a bad decision), and each layer has to be peeled before they can decide ([The Game recap](https://podup.substack.com/p/peeling-back-the-onion-of-blame)). Recaps list the five surface forms as time, value, fit, authority, avoidance. His stance: "I want you to decide for you, not for me" ([summary](https://podcastsrecapped.substack.com/p/harsh-truths-about-human-nature-alex)). Many "budget" answers are really layer three: "I've been burned by an agency" `[inf]`.
+**Hormozi's lens:** people blame **circumstances** (time, money, fit), then **other people** (partner, team), then **themselves** (fear of a bad decision), and each layer has to be peeled before they can decide ([The Game recap](https://podup.substack.com/p/peeling-back-the-onion-of-blame)). Surface forms: time, value, fit, authority, avoidance. Many "budget" answers are really layer three: "I've been burned by an agency" `[inf]`.
 
 ### 1.3 The diagnosis toolkit, by practitioner
 
@@ -38,7 +38,7 @@ It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objectio
 - **"That's right" vs "you're right".** "That's right" means they feel understood. "You're right" is "a brush off that we use when we want someone to leave us alone" ([Mindtools](https://www.mindtools.com/blog/run-negotiation-like-fbi/)). Summarise their situation until you hear "that's right".
 - **Labels** ("It seems like…") and an **accusation audit** (say the worst they think of you before they do, playfully). Then silence: "wait six seconds". A slightly wrong label is fine, because "people love to correct you" and the correction is the real story ([Black Swan transcript](https://youtu.be/ZG0S-4oNNuI)).
 
-**Sandler, negative reverse:** stay one step *behind* the buyer's enthusiasm, so they pull towards you. "Is it fair to assume this isn't a priority?" makes a bluffing prospect correct you or gives you an honest no ([HubSpot](https://blog.hubspot.com/sales/negative-reverse-selling), [Sandler](https://uk.sandler.com/?p=17270)). Not to be confused with "negative selling" (fear) `[inf]`.
+**Sandler, negative reverse:** stay one step *behind* the buyer's enthusiasm, so they pull towards you. "Is it fair to assume this isn't a priority?" makes a bluffing prospect correct you or gives you an honest no ([HubSpot](https://blog.hubspot.com/sales/negative-reverse-selling), [Sandler](https://uk.sandler.com/?p=17270)).
 
 **Jeb Blount, the Ledge → Disrupt → Ask turnaround** for prospecting objections. His own example: "That's perfect [ledge]… because none of my customers do outsourcing [disrupt]… Wouldn't it make sense for us to take a few minutes to see if this could help you? [ask]" ([Ask Jeb](https://salesgravy.com/?p=17841)).
 - The ledge is a rehearsed, calm first phrase that buys your brain a beat.
@@ -52,26 +52,19 @@ It builds on `28` (§4 two-yes CTA, §5 4-touch sequence, §6 the first objectio
 **Alex Hormozi, CLOSER** (secondary summaries; [11x](https://www.11x.ai/guides/alex-hormozi-sales-training-method)): **C**larify why they're here → **L**abel the problem ("So it sounds like… does that sound right?") → **O**verview past pain (what they tried, how it went) → **S**ell the vacation, not the flight (under 3 minutes) → **E**xplain away concerns → **R**einforce the decision after the yes. Use it as the frame-call skeleton (§2.7).
 
 **Grant Cardone, filtered.**
-- **Keep:**
-  - Most objections are complaints, not real objections. Acknowledge, don't over-justify ([Shortform](https://www.shortform.com/summary/the-closers-survival-guide-pbp18613-b-summary-grant-cardone)).
-  - Agree first. His handout sequence is listen → acknowledge → trial close → isolate the real objection → handle → close ([LightspeedVT handout](https://courseware.lightspeedvt.com/files/5/115A8903D0440D9BDF00C75B9CF661FB/9%2E%2DObjection%2DHandling.pdf)).
-  - Show price early and spend the time justifying it ([NBC](https://www.nbcnews.com/news/amp/wbna45378976)). That fits our "price at ~75 % of the call" only loosely, so we keep "no surprise price" `[inf]`.
-- **Drop:**
-  - Pressure closes.
-  - "Never take no."
-  - Volume-at-all-costs follow-up.
-  - Unsourced statistics such as "80 % of sales need 5+ follow-ups" (traced at best to a 1942 survey of under 40 people, [Usecarly](https://www.usecarly.com/blog/sales-follow-up-statistics/); "nobody can trace that stat", [Prospeo](https://prospeo.io/s/follow-up-statistics)).
+- **Keep:** most objections are complaints, so acknowledge without over-justifying ([Shortform](https://www.shortform.com/summary/the-closers-survival-guide-pbp18613-b-summary-grant-cardone)); then listen → acknowledge → isolate the real objection → handle → close ([LightspeedVT handout](https://courseware.lightspeedvt.com/files/5/115A8903D0440D9BDF00C75B9CF661FB/9%2E%2DObjection%2DHandling.pdf)).
+- **Drop:** pressure closes, "never take no", volume-at-all-costs follow-up, and unsourced statistics such as "80 % of sales need 5+ follow-ups" (at best a 1942 survey of under 40 people, [Usecarly](https://www.usecarly.com/blog/sales-follow-up-statistics/)).
 
 ---
 
 ## 2. Turning each "no" into a next step
 
-**The rule** `[inf]`: every reply, including a no, gets one of four outcomes logged: **sale, referral, future date, learning**. If you can't name which one you got, you haven't finished the conversation.
+**The rule** `[inf]`: every reply, including a no, gets one of four outcomes logged: **sale, referral, future date, learning**.
 
 ### 2.1 The downsell ladder (cut scope, never price for the same scope)
 Season $3,500/mo → Premiere $2,500 → Short $1,200 → **Pilot $750** (one 15 s hero + one 6 s cut, one ratio, one round; 100 % credited to a Premiere booked within 30 days) → **frames only, held for a future date** → **referral**. The $750 floor is from `28` §6. The credit makes the pilot a step up, not a discount `[inf]`.
 
-A paid pilot beats a second free round: a small paid "yes" is the classic foot-in-the-door (Freedman & Fraser 1966), and paying clients engage. No study compares paid pilots with free trials for creative services, so this is `[inf]`.
+A paid pilot beats a second free round: a small paid "yes" is a foot-in-the-door (Freedman & Fraser 1966) `[inf]`.
 
 ### 2.2 Risk reversal
 Use `32` §2.3 word for word: frames free → 50 % deposit → balance only on approval of the final cut. Add only one lever: **"If frame 1 doesn't look like your product, I stop and you've lost nothing."** Never "100 % risk-free" and never a ROAS guarantee. **When:** only once trust or price comes up, never in message 1 (Blount, §1.3). The free frames are the opener; the balance-on-approval terms are the closer `[inf]`.
@@ -79,7 +72,7 @@ Use `32` §2.3 word for word: frames free → 50 % deposit → balance only on a
 ### 2.3 Changing the decision-maker
 - From a manager: "Who besides you would want to see the frames before anything's spent?" Then offer to make the frames *for* them to forward, with a 3-line summary they can paste.
 - From a founder who defers to a partner: "What will [partner] push back on first?" Answer that objection in writing, in advance.
-- Go around nobody. A cc to the founder over a manager's head burns the thread `[inf]`.
+- Never cc the founder over a manager's head `[inf]`.
 
 ### 2.4 Timing plays (real dates only)
 - **Q4 is real this year.** Meta's 2026 holiday notes: Black Friday is **27 November**, "only 28 days until Christmas"; "start ads by mid-October to let Meta learn before the peak" ([Social Media Today](https://socialmediatoday.com/news/meta-shares-holiday-2026-tips-for-small-businesses/826785)). CPMs typically rise 20–35 % on peak days ([Flighted](https://www.flighted.co/blog/black-friday-cyber-monday-meta-ads-strategy-for-dtc-brands)).
@@ -88,7 +81,7 @@ Use `32` §2.3 word for word: frames free → 50 % deposit → balance only on a
 - After 13 Nov, flip it: "Q4 is set. Want frames ready for the January reset, when CPMs drop?" (lower post-holiday CPMs are common vendor advice, unverified) `[inf]`.
 
 ### 2.5 Break-up, re-engagement and referral
-- **Break-up email** (`28` §5 day 14 is ours). Vendor data puts final "close the loop" emails at ~10–14 % replies, above mid-sequence steps ([Optifai via search](https://optif.ai/learn/questions/follow-up-email-response-rate/), [BounceZero](https://bouncezero.io/cold-email-reply-rate-guide-2026)). These are unaudited, but consistent: a clear last message frees people to answer `[inf]`.
+- **Break-up email** (`28` §5 day 14). Vendors put final "close the loop" emails at ~10–14 % replies, above mid-sequence steps ([Optifai](https://optif.ai/learn/questions/follow-up-email-response-rate/), [BounceZero](https://bouncezero.io/cold-email-reply-rate-guide-2026)); unaudited.
 - **30/60/90 re-engagement** (only for prospects who replied, or asked for a date):
   - **Day 30:** new value, no ask. One frame from a *new* spec in their niche, or a note on their new launch.
   - **Day 60:** a fresh idea for a new product of theirs and a two-yes CTA.
@@ -115,9 +108,7 @@ Ghosting is usually priority, not rejection `[inf]`. The sequence: (1) value nud
 
 Format: **R1** = diagnose (label, no-oriented question), **R2** = reframe or a smaller step, **R3** = a graceful exit that still earns a date, referral or learning. E = email, D = IG/LinkedIn DM, C = call. Move to the next R only if the previous one got a reply that isn't a stop; silence follows the §4 cadence instead. Fill [brackets]; keep their words.
 
-**1. Silence after message 1 (E).** Use `28` §5 steps 2–4. Then switch channel once:
-- D: "Hi [name], sent you a film idea for [product] by email last week ([the guava splitting]). Easier to reply here?"
-- After that: stop. Log the learning (line 1 or the idea missed).
+**1. Silence after message 1 (E→D).** `28` §5 steps 2–4, then one DM: "Hi [name], sent you a film idea for [product] by email ([the guava splitting]). Easier to reply here?" Then stop and log the learning.
 
 **2. "Not interested." (E/D)**
 - R1: "Fair, appreciate the straight answer. Was it the idea, or is film just not on the list this year?"
@@ -229,24 +220,9 @@ Format: **R1** = diagnose (label, no-oriented question), **R2** = reframe or a s
 | 14 | Email | Step 4: close the loop with a date |
 | 21 | — | Stop. Log status and learning. 90-day dormant |
 
-**Seven touches across 3 channels in 3 weeks, then silence** `[inf]`: inside the 4–7 touch range from `28`, never more than 4 emails, and nobody gets more than one DM without a reply. Optional for top-10 prospects: a 20–30 s screen recording ("here's frame 1 of [product], here's why it works") sent at step 3 instead of the still. Use an image plus voice, never a face if the brand stays faceless `[inf]`.
+**Seven touches across 3 channels in 3 weeks, then silence** `[inf]`: inside the 4–7 touch range from `28`, never more than 4 emails, and nobody gets more than one DM without a reply. Optional for top-10 prospects: a 20–30 s screen recording ("here's frame 1 of [product], here's why it works") sent at step 3 instead of the still. Image plus voice, no face `[inf]`.
 
-**The visual hook rules.**
-- Build the mock from their public product photo.
-- Watermark it "concept · AI-made".
-- Host it privately (an unlisted link) and never post it.
-- It proves craft and shows you did the work; it's the strongest reason to reply `[inf]`.
-- **Timing:** Tue–Thu, 8–10 am their time (`28` §1).
-- **IG DMs:** may land in message requests. Instagram's spam rules cover "unwanted commercial outreach" and repetitive messages, and limits aren't published ([Metricool](https://metricool.com/is-instagram-dm-automation-safe-rules-limits-and-best-practices/)). Send DMs by hand, under 10 a day `[inf]`.
-
-### 4.3 Funnel levers by stage `[inf]`
-- **Send → reply:** line 1 and the idea (`28` §2).
-- **Reply → frames:** answer within 2 hours, and offer two products.
-- **Frames → call:** book the call at the moment of the yes.
-- **Call → proposal:** §2.7.
-- **Proposal → paid:** same day, one recommendation, a real date.
-
-Measure each stage weekly. Fix the leakiest stage first.
+**The visual hook:** build the mock from their public product photo, watermark it "concept · AI-made", share it by unlisted link, never post it. It proves craft and effort, and it's the strongest reason to reply `[inf]`. Send Tue–Thu, 8–10 am their time (`28` §1). **IG DMs** may land in message requests. Instagram's spam rules cover "unwanted commercial outreach" and repetitive messages, and limits aren't published ([Metricool](https://metricool.com/is-instagram-dm-automation-safe-rules-limits-and-best-practices/)). Send DMs by hand, under 10 a day `[inf]`.
 
 ---
 
@@ -332,14 +308,9 @@ EVERY ROW ENDS WITH: sale · referral · future date · learning.  Never "lost" 
 
 **Statuses:** `QUEUED` → `CONTACTED-1…4` → `REPLIED` → `FRAMES-REQUESTED` → `FRAMES-SENT` → `CALL-BOOKED` → `PROPOSAL-SENT` → `WON` (→ `RETAINER-PITCHED`) · side exits: `NURTURE-DATED` (a date is required), `DORMANT-90`, `CLOSED-LEARNED` (a learning is required), `REFERRED-OUT`, `DNC` (permanent).
 
-**Sheet rules** `[inf]`:
-- Conditional-format any row with a blank next action, or a date in the past, in red.
-- Each Friday, sort by next action date.
-- Count outcome types weekly: the "always win" rate is the share of closed rows with a non-blank outcome. Target 100 %.
+**Sheet rules** `[inf]`: colour red any row with a blank or past next-action date; sort by that date each Friday; "always win" rate = closed rows with a non-blank outcome ÷ closed rows (target 100 %).
 
 ---
-
-**Daily drill (10 min):** read the ledges for #2, #4, #8 and #9 aloud (Blount); label yesterday's "exact words" in writing; clear every red row.
 
 ---
 
@@ -347,7 +318,7 @@ EVERY ROW ENDS WITH: sale · referral · future date · learning.  Never "lost" 
 All sources are linked inline.
 - **Gaps:**
   - Blount's ledge details beyond his own example come from a secondary summary.
-  - Hormozi's CLOSER and "onion" are known only via recaps.
+  - Hormozi's CLOSER and "onion" are known only via recaps; his videos hit 429. Retry `RVbvhPGFi6E` and `q32-l3Yoqg4`, plus Sandler and Cardone talks.
   - No study compares paid pilots with free samples for creative services.
   - Break-up-email and multichannel numbers are vendor data.
   - The "80 % need 5 follow-ups" stat is unsourced: never quote it.
