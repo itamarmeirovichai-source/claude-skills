@@ -11,4 +11,3 @@ test/
 manifest.json
 gen_log.jsonl
 *.mp3
-*.wav
