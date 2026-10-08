@@ -274,7 +274,7 @@ Measure each stage weekly. Fix the leakiest stage first.
    - **Future date:** a specific one, written down.
    - **Learning:** why they said no, logged, so it changes the next email.
 
-   A "no" that teaches you why line 1 missed is a win. A "no" you didn't ask about is the only real loss.
+   Braun puts it as: "You can do everything right, but ultimately you don't decide when or if people buy. So this does not mean you're complacent." A clear "not a fit" found early is "a great outcome… because now I don't have to send 15 cold emails to this person" ([transcript](https://youtu.be/FvYlcze5Zs0)). Attachment shows up as "commission breath", and its cost is "this debilitating feeling of rejection". A "no" that teaches you why line 1 missed is a win. A "no" you didn't ask about is the only real loss.
 
 ---
 
