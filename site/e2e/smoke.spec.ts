@@ -8,14 +8,17 @@ test.describe('home', () => {
     await expect(page.getByText('One take. No cuts.').first()).toBeVisible();
     await expect(page.locator('[data-card]')).toHaveCount(4);
     await expect(page.locator('#hero')).toHaveAttribute('data-state', /idle|fallback/, { timeout: 10_000 });
-    await expect(page.locator('.spec-label').first()).toContainText('one take');
+    await expect(page.locator('.tile .spec-label').first()).toContainText('one take');
   });
 
   test('pick a film → plays → continue reveals main', async ({ page }) => {
     await page.goto('/');
     const hero = page.locator('#hero');
     await expect(hero).toHaveAttribute('data-state', 'idle', { timeout: 10_000 });
-    await page.locator('[data-card="0"]').click();
+    // Focus stops the orbit (as hover does); Enter picks the card.
+    const card = page.locator('[data-card="0"]');
+    await card.focus();
+    await card.press('Enter');
     await expect(hero).toHaveAttribute('data-state', /pointing|enlarging|playing/);
     await expect(hero).toHaveAttribute('data-state', 'playing', { timeout: 15_000 });
     await expect(page.locator('[data-stage]')).toBeVisible();
