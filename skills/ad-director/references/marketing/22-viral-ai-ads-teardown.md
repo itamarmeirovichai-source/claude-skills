@@ -123,12 +123,8 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 - *Recipe:* frame 0 as a Soul Cinema still with the action in progress ("already moving", 16 §2); Kling 3.0 pro 3 s trimmed from frame 6; QC that the 0–3 s strip shows a state change by 1.5 s.
 
 **4. Cut at 1.2–2.2 s ASL. Hold exactly one longer shot.**
-- *Examples:* the top group's ASL is 1.0–2.2 s. Svedka's one 10 s dance hold and the IKEA one-take are the "breath".
-- *Why it matters:* AI flaws accumulate with exposure time. Short shots show the best 1–2 s of each generation [inf].
-- *Recipe:*
-  - Generate 5 s Kling clips; use 1.2–2.2 s from the middle.
-  - Plan one 4–8 s hero (a Seedance one-take or a Kling start = end packshot).
-  - Use the ffmpeg cut detector from this research (`select='gt(scene,0.30)'`; 0.2 for dark spots) on our own export and flag any ASL > 2.5 s outside the hero.
+- *Examples:* top-group ASL is 1.0–2.2 s; Svedka's 10 s dance hold and the IKEA one-take are the single "breath". AI flaws accumulate with exposure time, so short shots show only each generation's best 1–2 s [inf].
+- *Recipe:* use 1.2–2.2 s from the middle of 5 s Kling clips; plan one 4–8 s hero; run `select='gt(scene,0.30)'` (0.2 for dark spots) on our export and flag ASL > 2.5 s outside the hero.
 
 **5. Continuity through a device, not only through the camera.**
 - *Examples:* Kalshi's ticker, YOLO's odds overlay and Puppramin's disclaimer bar connect unrelated shots; IM8's red/green code; Runway's watch passing wrist to wrist; WinRAR's one subtitle voice. This is the *editorial* glue that 16 lacks.
@@ -149,53 +145,27 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 - *Recipe:* Soul Cinema character prompts give age, weight, skin and wardrobe wear ("62, sun-damaged skin, crooked lower teeth, faded tank top with a sweat stain"). Build a sheet once and reference it in Seedance r2v.
 
 **9. Product truth: exact when shown, short when shown, always in context.**
-- *Examples:*
-  - Deepal trained separate car and driver models, so the car never drifts across ~60 shots.
-  - Loewe and Sephora give the product many short macro or in-hand moments.
-  - Coke's extra truck wheels became the headline.
-- *Recipe:*
-  - Every product-visible shot starts and ends on a Flare still made from the product reference (17).
-  - Kling 3.0 pro i2v, 3–5 s, with `last_image_url` = product-exact frame.
-  - Keep product shots ≤ 2 s except the final packshot (4–6 s, Kling start = end, near-static).
-  - Track product screen share. Comedy and brand-device spots: 10–30%. Premium product films: 50–80%.
+- *Examples:* Deepal trained car and driver models, so the car never drifts across ~60 shots; Loewe and Sephora use many short macro or in-hand moments; Coke's extra wheels became the headline.
+- *Recipe:* every product shot starts and ends on a Flare still from the product reference (17), via Kling 3.0 pro i2v with `last_image_url`. Product shots ≤ 2 s except the packshot (4–6 s, start = end). Screen-share targets: comedy/device spots 10–30%, premium product films 50–80%.
 
 **10. Hide what AI does badly; feature what it does well.**
-- *Do well:* macro texture (Sephora bristles), non-human characters (Svedka robots, Coke animals), epic scale (Deepal, YOLO), stylised worlds (Clark's Nike anime), dark low-key (IM8), B&W.
-- *Do badly:* smiling children, morphing bodies and long human close-ups (Toys"R"Us, Valentino, the McDonald's fisheye grandma).
+- *Strengths:* macro texture (Sephora), non-humans (Svedka robots, Coke animals), epic scale (Deepal, YOLO), stylised worlds, low key (IM8), B&W. *Weaknesses:* smiling children, morphing bodies, long human close-ups (Toys"R"Us, Valentino, McDonald's grandma).
 - *Recipe:* no human close-up over 1.5 s unless it carries the line; morph objects (dino → shoe, box → room), never faces; talking faces only via Seedance with an audio reference.
 
 **11. Sound sells "real" more than pixels do.**
-- *Native audio does the work:*
-  - Veo 3 dialogue made Kalshi and Puppramin work.
-  - WinRAR used a Seed Audio voice reference, a solo-instrument library track and added SFX.
-  - PJ: "90% of sound design baked into Seedance… 'no music, sound design only'", then stock music (Artlist), not custom. He calls bad AI audio "tinny thin".
-  - Coke's Secret Level cut used live musicians.
-- *Recipe:*
-  - Generate clips with SFX on and music off, *or* sound off plus ElevenLabs SFX per beat.
-  - Use ElevenLabs VO from one voice ID.
-  - Pick licensed music first and cut to it: Burak built Loewe "starting with a music bed".
-  - Loudness: our measured winners ran −14 to −22 LUFS. Normalise to −14 for social with `loudnorm=I=-14:TP=-1.5`.
+- *Examples:* Veo 3 dialogue carried Kalshi and Puppramin. WinRAR used a Seed Audio voice reference, a solo-instrument library track and added SFX. PJ: "90% of sound design baked into Seedance… 'no music, sound design only'", then stock music; bad AI audio is "tinny thin". Coke's Secret Level cut used live musicians.
+- *Recipe:* clips with SFX on and music off (or ElevenLabs SFX per beat); one ElevenLabs voice ID; licensed music chosen first and cut to (Loewe started "with a music bed"). Measured winners ran −14 to −22 LUFS; deliver `loudnorm=I=-14:TP=-1.5`.
 
 **12. Draft low, finish selectively, keep the grain.**
-- *Examples:*
-  - WinRAR: 480p tests → 720p finals → Topaz to 1080p, but the upscaler destroyed on-screen text, so that shot was regenerated.
-  - PJ: Nano Banana Pro at 2K/medium keeps film grain while 4K "strips it… plasticky". He dislikes Topaz smoothing; "crappy lower bitrate… looks like real footage".
-- *Recipe:*
-  - Seedance at 480p for blocking, 720p for finals.
-  - Kling pro only on approved stills.
-  - Upscale with a faithful model and never across text or labels (mask them back, 17 rule 9).
-  - Finish with `noise=alls=6:allf=t` plus a light `unsharp` instead of a creative upscale.
+- *Examples:* WinRAR went 480p tests → 720p → Topaz 1080p, and the upscaler destroyed on-screen text, so that shot was regenerated. PJ: Nano Banana Pro 2K/medium keeps grain while 4K "strips it… plasticky"; "crappy lower bitrate… looks like real footage".
+- *Recipe:* Seedance 480p blocking, 720p finals; Kling pro only on approved stills; faithful upscale, never across labels (17 rule 9); finish with `noise=alls=6:allf=t` + light `unsharp`.
 
 **13. Over-generate and select: coverage, not one-shotting.**
 - *Benchmarks:* Kalshi 10–13 gens per final second; Nike JA3 ~24; Toys"R"Us "hundreds → two dozen"; Coke squirrel "a couple hundred".
 - *Recipe:* budget seeds per shot up front (3 drafts → 1–2 finals); pick with 17 §5's pairwise judge on video (best 2 s window, product fidelity, motion); log the ratio per project.
 
 **14. Script and team before tools; pre-viz with references.**
-- *Examples:*
-  - Genre.ai splits work across **writer, director, cinematographer(s), animator(s), editor**.
-  - Storyboards in Figma or a Luma board, with director-picked film stills turned into prompt language by an LLM.
-  - YOLO had a head writer (ex-Comedy Central), and "writers in our network pitch alt lines".
-  - Clark blocks "every beat" with 50 Seedance refs from hand sketches. WinRAR used a 14,000-character Seedance prompt.
+- *Examples:* Genre.ai splits **writer, director, cinematographer(s), animator(s), editor**; Figma or Luma boards where an LLM turns director-picked film stills into prompt language; YOLO's ex-Comedy Central head writer plus "writers in our network pitch alt lines"; Clark blocks "every beat" with 50 Seedance refs; WinRAR used a 14,000-character prompt.
 - *Recipe:* script first; 3 alt punchlines from separate prompts; a 6–12 frame Soul Cinema storyboard; Seedance 2.5 r2v with `@image_n` per beat and timestamped sections (09 template).
 
 **15. Choose a tone AI can carry: absurd, self-aware or stylised, not sentimental realism.**
