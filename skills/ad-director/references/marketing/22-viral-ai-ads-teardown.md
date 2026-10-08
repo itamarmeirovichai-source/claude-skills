@@ -71,11 +71,10 @@ Columns:
 
 ### What the numbers say [inf, from the tables]
 
-- **ASL:** viral and premium winners sit at **1.0–2.2 s**. Editorial fashion is the exception at ~3.5 s. Every low-view spec ad either holds 4+ s shots or loops the same centred packshot.
-- **Frame 0:** in the winners it is **a person mid-action or a graphic abstraction**, and it is never a logo or an empty establishing landscape. Even Coke 2025, the slowest of the big ones, opens on a hand *placing the product*.
-- **Product screen time is low in the most viral spots.** Kalshi, Popeyes, McDonald's and Coke 2025 show the product 0–30% of the time, and the brand rides on a **device**: a ticker, odds overlay, disclaimer bar or truck livery.
-- **Premium product films invert this.** Deepal ~85%, Sephora ~70%, Loewe hero in 5 of 8 opening shots. Each product shot there is a short macro or an in-context hero, never a 5 s centred hold.
-- **End cards run 4–9 s** in brand spots (Kalshi YOLO 9 s, IM8 9 s, Liquid Death 8 s, Toys"R"Us 10 s). That is longer than our 1.5–3 s default in 04. Social cutdowns trim it [inf].
+- **ASL** of winners: **1.0–2.2 s** (editorial fashion ~3.5 s). Low-view specs hold 4+ s shots or loop a centred packshot.
+- **Frame 0** of winners: **a person mid-action or a graphic**, never a logo or empty landscape. Even Coke 2025 opens on a hand *placing the product*.
+- **Product time** is low in the most viral spots (0–30%: Kalshi, Popeyes, McDonald's, Coke 2025); the brand rides a **device** (ticker, odds, disclaimer bar, livery). Premium product films invert it (Deepal ~85%, Sephora ~70%) with short macros or in-context heroes, never 5 s centred holds.
+- **End cards run 4–9 s** in brand spots (YOLO, IM8, Liquid Death, Toys"R"Us), longer than 04's 1.5–3 s default [inf].
 
 ---
 
@@ -98,10 +97,7 @@ Columns:
 | Svedka | ComfyUI pipeline; characters, world and choreography kept separately controllable ([Comfy](https://comfy.org/customers/svedka-silverside)) | n/a | < 1 month of production (vendor); ~4 months of rebuild (WSJ via eMarketer) |
 | Runway "The Watch" | "one creative, one afternoon" | n/a | hours |
 
-**Planning numbers for us [inf]:**
-- **Hero product-i2v ads (Kling start/end):** budget **8–15 video gens per final second**. That is 3–5 seeds per shot × ~2 s used out of a 5 s clip, plus retakes.
-- **Long single-take Seedance spots:** budget **1–2 full-length gens per final second at 480p**, then 2–3 finals at 720p.
-- **Labour:** 2–3 person-days for a 30 s social spot. Brand work adds approvals, not generation hours: PJ says big clients "take over a month" because of "the approvals process … the script writing".
+**Planning numbers [inf]:** Kling start/end product ads, **8–15 video gens per final second** (3–5 seeds per shot, ~2 s used of 5 s, retakes). Long Seedance takes, **1–2 full-length 480p gens per final second**, then 2–3 finals at 720p. Labour, 2–3 person-days per 30 s social spot; brand work adds approvals ("take over a month… the approvals process", PJ).
 
 ---
 
@@ -194,23 +190,15 @@ The recipes use our stack: Higgsfield **Flare** (product-exact stills), **Soul C
 
 ## 5. What critics and audiences reacted against
 
-- **Replacing human heart in heritage rituals.** Coke 2024 and 2025 were called "soulless", "creepy" and "dystopian". The "Real Magic" slogan was mocked as ironic. Alex Hirsch: "made from the blood of out-of-work artists" ([the-decoder](https://the-decoder.com/ai-generated-holidays-are-coming-coca-cola-ad-looks-festive-but-feels-artificial-critics-say/)).
-- **Cynical tone plus visible glitches.** McDonald's NL was pulled after 3 days. The Sweetshop's "thousands of takes" defence did not help ([NBC](https://www.nbcnews.com/world/europe/mcdonalds-ai-generated-christmas-advert-social-media-backlash-rcna248590)).
-- **Body horror in luxury.** Valentino was called "disturbing". Disclosure did not stop the backlash.
-- **Credit and labour.** Under Armour reused another director's footage under the "AI" label. Popeyes viewers asked for real actors and musicians.
+- **Replacing heart in heritage rituals:** Coke 2024/2025 "soulless, creepy, dystopian"; "Real Magic" mocked; Alex Hirsch: "made from the blood of out-of-work artists" ([the-decoder](https://the-decoder.com/ai-generated-holidays-are-coming-coca-cola-ad-looks-festive-but-feels-artificial-critics-say/)).
+- **Cynical tone plus glitches:** McDonald's NL pulled after 3 days despite the "thousands of takes" defence ([NBC](https://www.nbcnews.com/world/europe/mcdonalds-ai-generated-christmas-advert-social-media-backlash-rcna248590)). **Body horror in luxury:** Valentino "disturbing", even though disclosed.
+- **Credit and labour:** Under Armour's uncredited footage; Popeyes viewers wanted real actors and musicians.
 - **"AI is not an idea."** Svedka was called "forgettable", "low-budget" and "derivative" of Chris Cunningham's Björk video ([Adweek](https://www.adweek.com/creativity/creatives-react-svedkas-forgettable-super-bowl-ad-proves-ai-isnt-an-idea/)). Meltwater found ~50% of Super Bowl LX AI-ad conversation negative ("uninspired", "low-quality") ([Meltwater](https://www.meltwater.com/en/news/ai-ads-face-skepticism)).
 - **Clarity.** On Kalshi, an analyst needed several viewings to understand what was advertised (MPR/NPR).
-- **Measured attitudes.**
-  - NIQ (2,000+ viewers, EEG on ~150): people intuitively spotted most AI ads and rated them more "annoying, boring, confusing" ([NIQ](https://nielseniq.com/global/en/news-center/2024/niq-research-uncovers-hidden-consumer-attitudes-toward-ai-generated-ads/)).
-  - IAB 2024: only 48% of Gen-Z and millennial consumers feel positive about AI ads (via MPR).
-  - Truescope: 83% "neutral" on Coke. The loud minority is creatives and press [inf].
+- **Measured:** NIQ (2,000+ viewers, EEG ~150) found most AI ads spotted and rated more "annoying, boring, confusing" ([NIQ](https://nielseniq.com/global/en/news-center/2024/niq-research-uncovers-hidden-consumer-attitudes-toward-ai-generated-ads/)); IAB 2024, only 48% of Gen-Z/millennials positive (via MPR); Truescope, 83% "neutral" on Coke, so the loud minority is creatives and press [inf].
 - **What judges reward.** The Higgsfield × Adweek Adathon scored idea, storytelling and effectiveness, craft (camera and sound) and **realism** equally. The winner (AI-R Studio) was self-aware satire about AI itself ([completeaitraining](https://completeaitraining.com/news/ai-r-studio-wins-higgsfields-ai-adathon-competition-at/), [Higgsfield](https://higgsfield.ai/contests/adathon)).
 
-**Rules for us [inf]:**
-1. Never use AI for a brand's sentimental heritage film unless the client accepts the press risk.
-2. Disclose ("Made with AI" in small type, as Liquid Death did) when the concept is comedic. It reads as confidence.
-3. Credit every human contributor.
-4. Make sure a viewer can say the product and benefit after one view (Kalshi's lesson).
+**Rules [inf]:** no AI sentimental-heritage films unless the client accepts the press risk; disclose ("Made with AI", as Liquid Death did) on comedic concepts; credit every human; a viewer must name product and benefit after one view.
 
 ---
 

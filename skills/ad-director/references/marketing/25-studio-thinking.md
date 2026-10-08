@@ -2,7 +2,7 @@
 
 Research brief, 2026-10-08. Read it **before** `15-concept-engine` Stage 1. It covers the thinking that comes *before* volume ideation: diagnosis, the insight, the brief, judging ideas and presenting them. It does not repeat the four laws and gates (`../creative-brain.md`), the awareness levels, CEPs/JTBD and 15 gates (`01`), the hook/persona grids and tournament (`15`), or the twist patterns and storyline card (`19`).
 
-**Evidence levels.** Sources are cited inline. Most agency material comes from interviews, trade press and book summaries rather than internal documents: no top agency publishes its real brief form. One primary transcript was used (Dave Trott, TEDx, fetched with `yt-dlp`). `[inf]` marks our own inference or synthesis. Public TikTok and Instagram creative-director content turned up nothing citable, so none is used.
+**Evidence.** Agency material comes from interviews, trade press and book summaries; no top agency publishes its real brief form. YouTube transcripts were fetched with `yt-dlp` (cited by URL). `[inf]` marks our inference. Public TikTok/Instagram creative-director content yielded nothing citable.
 
 ---
 
@@ -32,18 +32,14 @@ Directors win jobs by call → treatment in 2–7 days (often ghost-written, wit
   - Hegarty found **"Vorsprung durch Technik"** on old publicity at the Audi factory. It made a vague "Euro-car" German, and he thought it "could be very funny." Focus groups disliked it; the client kept it ([Creative Review](https://www.creativereview.co.uk/07-vorsprung-durch-technik/), [Marketing Week](https://www.marketingweek.com/audi-category-conventions/)).
   - Hegarty's rules ([Murrell](https://www.alexmurrell.co.uk/summaries/john-hegarty-hegarty-on-creativity)): "Collaboration can easily turn into consensus"; "Selling is one of the most undervalued skills of any creative career"; make the idea explainable in a short line. Against tissue meetings: picking a direction halfway "inhibits magic" ([Campaign TV](https://youtu.be/7TS76gaiM9Q)).
 - **Droga5 (David Droga): think the process backwards.** First decide what the audience should feel or do at the end, then pick the format: a stunt, a film, a QR code. "There's always deep strategy behind what we do" (Cannes 2025 coverage via [markt-kom](https://www.markt-kom.com/en/?p=236792); [Creative Review](https://www.creativereview.co.uk/how-i-got-here-david-droga/)).
-- **Mother London: no middlemen.** Founded because ideas got "lost in translation" between clients and makers, so creatives talk directly to clients. The agency's ordered "holy trinity" is (1) the best work, (2) have fun, (3) make a living ([shots](https://shots.net/news/view/95946-sitting-with-a-prophetic-agency-at-the-mother-of-all-tables), [Wikipedia](https://en.wikipedia.org/wiki/Mother_(advertising_agency))).
+- **Mother London: no middlemen.** Ideas got "lost in translation" between clients and makers, so creatives talk to clients directly ([shots](https://shots.net/news/view/95946-sitting-with-a-prophetic-agency-at-the-mother-of-all-tables)).
 - **AMV BBDO (David Abbott): words as "the servants of the argument"**, "plain, simple and familiar". Example: The Economist's "I never read The Economist. Management trainee. Aged 42." ([Campaign](https://www.campaignlive.co.uk/article/best-ads-50-years-economist-poster-defined-brand-agency/1519024), [Campaign Brief](https://campaignbrief.com/?p=104992)).
 - **Ogilvy: the Big Ideal.** Cultural tension × the brand's best self, completing "The world would be a better place if…" (Dove: a beauty industry that harms self-image; [Fast Company](https://www.fastcompany.com/2679902/idealism-sells), [Sketchplanations](https://sketchplanations.com/the-big-ideal)).
-- **Anomaly: solve the business problem.** Sometimes the answer isn't an ad (a pop-up store, say), and part of the fee is paid only on results ([Anomaly](https://anomaly.com/philosophy), [ICMR](https://icmrindia.org/casestudies/catalogue/Business%20Strategy/anomaly-not-just-another-ad-agency-case.htm)).
-- **Apple marcom (Tor Myhren, ex-Grey).** Apple works with TBWA\Media Arts Lab plus a large in-house team ([CampaignAsia](https://www.campaignasia.com/article/apple-marketing-vp-simplicity-is-not-simple/452651), [WARC](https://www.warc.com/newsandopinion/news/apples-radical-candour-with-agencies/42287)):
-  - Simplicity as "the brutal art of reduction".
-  - "Radical candour": decisions are made at the table, with no meeting-after-the-meeting.
-  - The AirPods holiday film had muffled sound for its first 40 s, "an idea no algorithm would have greenlit".
-  - Ken Segall (*Insanely Simple*): "small groups of smart people", and the "simple stick" ([Penguin](https://www.penguinrandomhouse.com/books/310710/insanely-simple-by-ken-segall/), [New Statesman](https://newstatesman.com/?p=129738)).
+- **Anomaly: solve the business problem;** sometimes the answer isn't an ad ([Anomaly](https://anomaly.com/philosophy)).
+- **Apple marcom (Tor Myhren; TBWA\Media Arts Lab + in-house).** Simplicity as "the brutal art of reduction"; "radical candour" with decisions made at the table, no meeting-after-the-meeting; an AirPods film muffled for 40 s, "an idea no algorithm would have greenlit" ([CampaignAsia](https://www.campaignasia.com/article/apple-marketing-vp-simplicity-is-not-simple/452651), [WARC](https://www.warc.com/newsandopinion/news/apples-radical-candour-with-agencies/42287)). Segall: "small groups of smart people" ([Penguin](https://www.penguinrandomhouse.com/books/310710/insanely-simple-by-ken-segall/)).
 - **Goodby Silverstein: deprivation research.** Jon Steel's groups went without milk for a week first; the agency filmed its own staff at an emptied fridge. Running out was the insight → "the consequences of going without" → *got milk?* ([MediaVillage](https://www.mediavillage.com/article/historys-moment-in-media-launching-the-got-milk-campaign/amp/), [Mental Floss](https://www.mentalfloss.com/food/got-milk-ad-campaign-turns-25)).
 
-**Common thread** `[inf]`: each shop has a *device for escaping the obvious*: walk in stupid, zag, work backwards, deprivation, the cultural tension. Our agent needs one too, and it is §7 S1.
+**Common thread** `[inf]`: every shop has a *device for escaping the obvious*. Ours is §7 S1.
 
 ## 3. Account planning: how the insight is found
 
@@ -170,7 +166,7 @@ For us `[inf]`: our stills plus an ElevenLabs animatic (creative-brain §7.5) *i
 - **P&G's "huddle":** the agency leaves the room, the client team agrees one view, and one person debriefs. Written feedback follows that is honest, objective, detailed against each objective, constructive, and "marshalled by one decision maker".
 - **Before refining, ask: "Why change anything? Will these small changes make a big difference?"** Rejecting the idea may mean rejecting the strategy, which means a re-brief, not a tweak.
 
-Feedback should **define the problem, not prescribe the fix** ([ANA](https://www.ana.net/magazines/show/id/forward-2025-10-cella-the-art-of-creative-feedback), [Chapter Three](https://www.chapterthree.com/blog/how-to-give-design-feedback-like-a-pro)). The useful part of "it's off" is the *why* ([The Drum](https://www.thedrum.com/news/2023/05/03/how-should-agencies-respond-negative-feedback)).
+Feedback should **define the problem, not prescribe the fix**; the useful part of "it's off" is the *why* ([ANA](https://www.ana.net/magazines/show/id/forward-2025-10-cella-the-art-of-creative-feedback), [The Drum](https://www.thedrum.com/news/2023/05/03/how-should-agencies-respond-negative-feedback)).
 
 ---
 
@@ -270,13 +266,10 @@ Review protocol: judge alone first, write the emotional reaction before any reas
 | Concept engine (`15`) | S1 insight + S3 slots feed Stage 0–1; S4 adds R1–R12 to Stage 2–3 |
 | Storylines (`19`) | Each card gets "Idea vs execution", ladder line, episodes 2–3, treatment page |
 | Animatic (creative-brain §7) | Becomes the client-facing boardomatic in S5 |
-| Client pick → production | S6 classification before any regeneration spend |
+| Client pick → production | S6 classifies notes before any regeneration spend |
 
 ---
 
 ## Sources not cited inline
-- IPA/ISBA/MCCA/PRCA, *Judging Creative Ideas: A best practice guide* (PDF, read in full): [ipa.co.uk](https://ipa.co.uk/knowledge/documents/judging-creative-ideas-best-practice-guide/)
-- Account planning history (Pollitt/BMP, King/JWT 1968): [Wikipedia](https://en.wikipedia.org/wiki/Account_planning), [Campaign](https://www.campaignlive.co.uk/article/jeremy-bullmore-remembers-stephen-king-godfather-strategy/543314)
-- Romaniuk, *Building Distinctive Brand Assets* (OUP): [publisher](https://www.oup.com.au/books/higher-education/business-marketing/9780190337148)
-- Trott on the ICP order and the 4/7/89 recall figures: [The Media Leader](https://uk.themedialeader.com/?p=158476)
-- Note: Hegarty, Segall, Steel and Droga claims come from secondary coverage; their books were not read directly.
+- Account planning history: [Wikipedia](https://en.wikipedia.org/wiki/Account_planning). Trott's ICP talk coverage: [The Media Leader](https://uk.themedialeader.com/?p=158476).
+- Hegarty, Segall, Steel and Droga claims come from secondary coverage; their books were not read.
