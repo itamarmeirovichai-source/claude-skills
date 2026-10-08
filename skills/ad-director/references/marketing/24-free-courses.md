@@ -304,29 +304,29 @@ Identified but **not transcribed**: the fetcher returned "Only images are availa
 
 ## Part C · Synthesis
 
-### C-NEW. Rules new to our library (with the file each extends)
-1. **Camera-move blocks with negative neighbours** (A1). Every move prompt names its geometry *and* forbids the adjacent moves ("no dolly, no truck, no arc, no zoom"). Zoom = no parallax; dolly = parallax. → 12 §5, 16.
-2. **Robot-arm product move** (A1): four positions, ~1 s each, with readable holds. → 11-niche recipes. [inf]
-3. **"Narrower frame, less waste"** (A1 car). Avoid wide traffic, FPV, intersections, overtaking, match cuts and dashboards. Cover with many narrow angles. → 06, 04 §4.
-4. **Clean the plate** (A1). Remove text and distant look-alikes from location stills before video; distant objects become product clones. → 17 QC gate.
-5. **Seedance statics-video as an image editor** for consistent multi-angle sets (A1). → 17.
-6. **Explicit cut count:** "exactly N frames and N−1 splices, no extra inserts" (A1). → 12 templates.
-7. **Test the character × location pair** with one cheap 5 s clip before locking assets (A1). → 18 S6.
-8. **Director-notes loop** (A1): failure list → Claude rewrite. When output is flat, switch from story language to shot-by-shot camera language. → 18 §4.8.
-9. **I2V = motion only**; call the subject "the subject"; never re-describe the still (A3, A4). → 12 templates.
-10. **Strip implied motion from start frames** (motion blur, dust, mid-action poses) before a static or "parked" prompt (A4). → 17.
-11. **Unwanted cut ⇒ lengthen the clip, then "Continuous, seamless shot"** (A4). → 16.
-12. **Veo dialogue with a colon and no quotes**; negative prompts as noun lists (A3). → 04 §2.
-13. **Identical character + voice block + same seed** across clips (A3); Kling bound-voice elements: don't restate the voice (A2). → 13.
-14. **Seedance reference order = first-mention order** (A6). Element guidelines describe identity only, ≤400 chars. → 12 §3.
-15. **Gemini Omni as a post-render brand-guideline reviewer** (A3). → 18 S10. [inf]
-16. **ElevenLabs Enhance prompt as a no-rewrite VO tagger** (A5); voice-quality tags avoid SFX misreads. → 13 §3.
-17. **Topaz model map:** Rhea for product shots; Precise ≠ Creative/Astra; Aion artefacts on text (A7). → 08, 17.
-18. **ABCD per objective** (B1): Action = the product on screen start to finish; Consideration = branding strongest in the last 5 s + urgency in audio; Awareness = brand frequency *and variety*. → 03 rule 12.
-19. **Meta 9-point checklist** + brand in the first 3 s **and** at the end + CTA paired with a visual cue + **no fade-in, title card or long logo animation** (B2). → 18 QC, 01 gates.
-20. **Volume targets:** Meta 3–10 creatives per ad set (20+ on Advantage+); TikTok 3–5 creatives × 3–5 ad groups; refresh by adding to the existing ad set or group (B2, B3). → 03 rules 15–16.
-21. **Text limits:** Meta 125/40/25; Pinterest 100 (40 visible) (B2, B4). → 03.
-22. **Hook vs proposition timing (TikTok):** hook within 6 s, proposition within 3 s (B3). → 03 rule 1.
+### C-NEW. Rules new to our library (→ file to extend)
+1. Camera-move blocks name geometry **and forbid neighbouring moves**; zoom = no parallax, dolly = parallax (A1) → 12 §5, 16.
+2. Robot-arm product move: 4 positions, ~1 s each, readable holds (A1) → 11 recipes [inf].
+3. "The narrower the frame, the less waste": no wide traffic, FPV, intersections, overtaking, match cuts, dashboards (A1) → 06.
+4. Clean the plate: strip text and distant look-alikes before video (A1) → 17 QC.
+5. Seedance statics-video as a consistent multi-angle image editor (A1) → 17.
+6. "exactly N frames and N−1 splices, no extra inserts" (A1) → 12 templates.
+7. One cheap 5 s character × location test before locking assets (A1) → 18 S6.
+8. Director-notes loop; when flat, switch to shot-by-shot camera language (A1) → 18 §4.8.
+9. I2V = motion only, "the subject", never re-describe the still (A3, A4) → 12.
+10. Strip implied motion (blur, dust, mid-action poses) from start frames (A4) → 17.
+11. Unwanted cut ⇒ lengthen, then "Continuous, seamless shot" (A4) → 16.
+12. Veo/Omni dialogue with a colon, no quotes; negatives as noun lists (A3) → 04.
+13. Identical character + voice block + same seed; don't restate a bound Kling voice (A2, A3) → 13.
+14. Seedance reference order = first-mention order; element guidelines = identity only, ≤400 chars (A6) → 12 §3.
+15. Gemini Omni as a post-render brand-guideline reviewer (A3) → 18 S10 [inf].
+16. ElevenLabs "Enhance" prompt as a no-rewrite VO tagger; voice-quality tags avoid SFX misreads (A5) → 13.
+17. Topaz: Rhea for product, Precise ≠ Astra, Aion artefacts on text (A7) → 08, 17.
+18. ABCD by objective: Action = product on screen start to finish; Consideration = branding strongest in last 5 s + urgency in audio; Awareness = brand frequency *and variety* (B1) → 03 r12.
+19. Meta 9-point checklist; brand in first 3 s **and** at the end; CTA + visual cue; no fade-in/title card/long logo animation (B2) → 18 QC, 01.
+20. Volume: Meta 3–10 creatives/ad set (20+ Advantage+); TikTok 3–5 × 3–5 ad groups; refresh inside the existing set/group (B2, B3) → 03 r15–16.
+21. Text limits: Meta 125/40/25; Pinterest 100 (40 visible) (B2, B4) → 03.
+22. TikTok: hook within 6 s, proposition within 3 s (B3) → 03 r1.
 
 ### C-CONTRA. Contradictions with our files
 
@@ -339,5 +339,5 @@ Identified but **not transcribed**: the fetcher returned "Only images are availa
 | C5 | Meta: viewers more likely to finish **<15 s**. | 03: conversion 15–34 s; TikTok top ads 21–34 s. | Deliver the 15 s cut as the Meta default and keep 20–30 s for TikTok and in-stream [inf]. |
 | C6 | Meta first frame: "Lead with brand identification" in the first moments. | 03 rule 1: "never open on a logo sting". | Compatible: brand *cues* (colour, product, pack) in frame 0, no sting or title card. |
 | C7 | Veo: dialogue without quotes (quotes render as text). | Kling guide and 14 Seedance prompts put dialogue in quotes. | Model-specific: Kling/Seedance quotes OK; Veo/Omni colon form. |
-| C8 | Topaz/Krea: generative upscalers (Astra, Creative) for AI video. | 21 C9: no generative upscale in v1; 17: Topaz then mask the label back. | Keep 21. If Topaz is ever added, use Precise/Rhea on product shots only. |
-| C9 | Higgsfield courses: "run a ton" of batches per scene; 15 s Seedance at 1080p, four batches. | 12 budget plan ($10/film), Seedance ≤720p. | Their economics assume a subscription. Our per-call API budget keeps drafts ≤720p, 1 take, then batch only the beat that matters. |
+| C8 | Topaz: generative (Astra/Creative) upscale for AI video. | 21 C9: no generative upscale in v1. | Keep 21; if Topaz is added, Precise/Rhea on product only. |
+| C9 | Higgsfield: "run a ton" of 15 s 1080p batches per scene. | 12: ~$10/film, Seedance ≤720p. | Subscription economics; we batch only the beat that matters [inf]. |
