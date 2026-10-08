@@ -31,7 +31,6 @@ Whip pan: The camera holds composition A perfectly static, then executes ONE vio
 Robot arm: The camera flies one fast, perfectly smooth stabilized motion-control path through four positions — [front eye-level medium close-up] → [side arc at eye level] → [sinking into a low angle with a slight dutch tilt] → [craning up and over into a top-down 3/4 view]. Each glide takes about [1] second with soft ease-in/out and brief readable holds at every position; machined gimbal/crane quality — no shake, no whip pans, no speed ramps, no motion blur.
 
 
-Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed ramps and no real-time moments — the camera at ground height below knee level … The track never stops: the shot ends mid-motion on a live frame — no cut to black, no fade, no freeze.
 
 ```
 - [inf] The zoom-vs-dolly physics (parallax or not) stops models substituting a zoom for a push-in; "Robot arm" is the motion-control product move we lacked, safer for labels than an orbit.
@@ -47,7 +46,7 @@ Low tracking: Extreme slow motion throughout — a ~1000fps look with no speed r
 - **Physics notes must name weight and material.** "fall with real weight and a hard impact… armor should break into heavy metal pieces. No smooth breaks." Also forbid automatic actions: "The can should not open on its own. He opens it himself with a clear action."
 - **Mechanics-heavy scenes:** "Run a ton, then take different phases from each generation and cut them together"; reuse leftovers in later scenes.
 - Objects seen once need no asset sheet. Pack-shot notes: add a dolly-in, "match [sunlight] to scene one".
-- Motto: "the final film is just the best 3 seconds of 100 tries cut together."
+-
 
 **Course "Direct a Cinematic AI Car Commercial"** (YouTube twin: https://youtu.be/GNxmt_4IifA, 36 min). New lessons:
 - **"The narrower the frame, the less waste you will get."** These failed every time:
