@@ -1,0 +1,17 @@
+{
+ "otto": {
+  "idle":   ["Pick a film. I'll roll it.", "Go on. Choose wisely.", "The ring is waiting.", "Any film. I made them all.", "Don't be shy. Pick one."],
+  "pick":   ["Good eye.", "Watch the light on this one.", "We invented that brand.", "Ah. My favourite.", "One take. No cuts. Watch.", "Bold choice. Correct choice.", "This one took thirty seconds. And taste."],
+  "again":  ["Greedy. I like it.", "Another? You have taste.", "Again. Of course.", "I knew you'd come back."],
+  "ask":    ["Cut. Pick another, or continue?", "That's a wrap. Another, or onward?", "Print it. More films, or the rest?", "Cut. Shall we keep going?"],
+  "continue": ["Hold still. Bringing up the rest.", "Allow me.", "Right this way.", "Lifting the curtain."],
+  "skip":   ["Fair. I'll be around.", "Skipping the show? Bold.", "Fine. I'll find you later."],
+  "pop":    ["Five frames. Your product. Free.", "These brands don't exist. Yours does.", "Hard questions. Straight answers.", "Quiet on set. Your turn.", "I'm right here.", "Psst. Down here.", "Don't scroll past me.", "Still here. Still brilliant."],
+  "success":["Got it. Itamar's on it.", "Frames incoming. Stay close.", "Wonderful. We roll soon."]
+ },
+ "vee": {
+  "pop":    ["Frames by Thursday. I'm counting.", "Deposit starts it. Approval finishes it.", "Thirty seconds. Not a frame more.", "Seven days. Start to finish.", "I keep Otto on schedule.", "No crew. No shoot. No excuses.", "Your product. Our film. One week.", "He wants another take. I said no."],
+  "pricing":["Pick the size that fits this quarter.", "The middle one. Trust me.", "Clear prices. No surprises."],
+  "cta":    ["Send one photo. I'll handle the rest.", "Five free frames. Clock starts now.", "Tap it. I'm already timing you."]
+ }
+}

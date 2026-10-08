@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "No"
+  },
+  {
+   "start": 0.32,
+   "end": 0.88,
+   "text": "crew."
+  },
+  {
+   "start": 1.04,
+   "end": 1.2,
+   "text": "No"
+  },
+  {
+   "start": 1.36,
+   "end": 1.76,
+   "text": "shoot."
+  },
+  {
+   "start": 2.16,
+   "end": 2.24,
+   "text": "No"
+  },
+  {
+   "start": 2.32,
+   "end": 3.36,
+   "text": "excuses."
+  }
+ ]
+}

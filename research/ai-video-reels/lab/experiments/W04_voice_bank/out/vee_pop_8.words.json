@@ -1,0 +1,39 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.16,
+   "text": "He"
+  },
+  {
+   "start": 0.24,
+   "end": 0.4,
+   "text": "wants"
+  },
+  {
+   "start": 0.52,
+   "end": 0.64,
+   "text": "another"
+  },
+  {
+   "start": 0.72,
+   "end": 1.2,
+   "text": "take."
+  },
+  {
+   "start": 1.6,
+   "end": 1.76,
+   "text": "I"
+  },
+  {
+   "start": 1.84,
+   "end": 2.0,
+   "text": "said"
+  },
+  {
+   "start": 2.08,
+   "end": 2.64,
+   "text": "no."
+  }
+ ]
+}
