@@ -305,26 +305,16 @@ site/
 ├─ lighthouserc.json  playwright.config.ts  vitest.config.ts
 ├─ public/
 │  ├─ _headers  _redirects  robots.txt  og/…
-│  └─ media/
-├─ media-src/
+│  └─ media/       (hash-named encodes)
+├─ media-src/     (gitignored masters)
 ├─ scripts/
-│  ├─ encode.ts
-│  ├─ voice.ts
-│  └─ check-dist.mjs
+│  ├─ encode.ts  voice.ts  check-dist.mjs
 ├─ src/
 │  ├─ pages/  index.astro  work/[slug].astro  privacy.astro  404.astro
 │  ├─ layouts/Base.astro
-│  ├─ components/
-│  │
+│  ├─ components/  Hero Ring Character Stage Portfolio BeforeAfter Pricing Faq LeadForm (.astro, markup only)
 │  ├─ content/  ads/*.md  work/*.md  faq/*.md  pricing.json
-│  ├─ hero/
-│  │  ├─ machine.ts
-│  │  ├─ effects.ts
-│  │  ├─ ring.ts
-│  │  ├─ character.ts
-│  │  ├─ stage.ts
-│  │  ├─ pullup.ts
-│  │  └─ captions.ts
+│  ├─ hero/   machine.ts effects.ts ring.ts character.ts stage.ts pullup.ts captions.ts
 │  ├─ media/  manager.ts (decoder budget)  pick-codec.ts (MediaCapabilities)  manifest.ts
 │  ├─ motion/ ticker.ts (gsap.ticker + Lenis)  reduced.ts (matchMedia)  reveal.ts
 │  ├─ lib/    lead-schema.ts  analytics.ts  dom.ts
@@ -335,7 +325,7 @@ site/
 │  └─ _shared/ turnstile.ts  rate-limit.ts  magic-bytes.ts
 ├─ tests/   machine.test.ts  ring-math.test.ts  vtt.test.ts  lead-schema.test.ts  functions/*.test.ts
 └─ e2e/     hero.spec.ts  a11y.spec.ts  form.spec.ts  visual.spec.ts  reduced-motion.spec.ts
-mailer-worker/
+mailer-worker/     (optional send_email Worker)
 .github/workflows/site-ci.yml
 ```
 
@@ -381,11 +371,7 @@ mailer-worker/
 
 ## 12. Open risks
 
-1. iOS autoplay of the hidden inner `<video>` in `stacked-alpha-video`: test on a device first (§4.5).
-2. Range/206 behaviour of Pages for MP4: probe on the first preview.
-3. The decoder ceiling on low-end Android is unknown: the MediaManager budget is a guess and needs a device check.
-4. Email needs a domain or a Resend account. Both need the user.
-5. Character art: all clips need one hub pose and a clean (un)premultiplied matte. Check edges on dark and light backgrounds.
+1. iOS autoplay of the hidden inner `<video>` (§4.5). 2. Pages' Range/206 handling. 3. The low-end Android decoder ceiling. 4. Email needs a domain or a Resend account, which the user must set up. 5. Every character clip needs one hub pose and a clean matte.
 
 ## Sources
 
