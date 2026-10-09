@@ -77,3 +77,5 @@ Self-audit lesson (the owner caught these, I should have): place every sound on 
 | F09 AURUM heist: R0 Flare still + Seedance 2.5 r2v 15 s 720p, native audio | Flare + Seedance | 7.28 | PASS: BASE jump + chute open (audio 2.25 s), landing in car (7.0 s), foam 'shot' at police (11.5 s), bag of cans punchline. Real guns swapped for a foam-spraying can (ad policy + model filters) |
 | **Total** | | **~$91 ($80 + $15 approved)** | |
 | F10 'Red Light' storyboard x9 | Soul Cinema 720p | 0.04 | PASS as composition guide (S1/S5 came out rotated, S7 police car beside instead of behind: fix in video prompt) |
+| F10 Red Light test 30 s 480p, 9-shot multi-cut prompt (doc 43 §7.1 pattern), native audio | Seedance 2.5 r2v | 6.17 | PASS with notes: real launch/handbrake turn/follow/red-light stop/handoff/pull-away; audio onsets on actions (0.28 launch, 7.25 turn, silence 16-23, 23.85 pull-away). Issues: Vee shows 2 stopwatches in interior, cruiser stops beside not behind, officer never visibly cracks/sips |
+| **Total** | | **~$97.3** | |
