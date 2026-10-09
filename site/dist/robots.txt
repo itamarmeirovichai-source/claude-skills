@@ -1,0 +1,3 @@
+# Concept proposal, not a public site. Not affiliated with Smash House Burgers.
+User-agent: *
+Disallow: /

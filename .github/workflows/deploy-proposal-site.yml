@@ -1,0 +1,78 @@
+# Deploys the Smash House Burgers concept proposal to Cloudflare Pages.
+#
+# Needs two repository secrets (Settings -> Secrets and variables -> Actions):
+#   CLOUDFLARE_API_TOKEN   a token with the "Cloudflare Pages: Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  the account ID from the Cloudflare dashboard sidebar
+#
+# The site is one static file. It ships noindex via dist/_headers and dist/robots.txt,
+# and the page itself carries a "not affiliated" footer.
+name: Deploy proposal site
+
+on:
+  push:
+    branches: [claude/brave-newton-foxxj0, main]
+    paths: ['site/**', '.github/workflows/deploy-proposal-site.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: pages-proposal
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bundle the site into one file
+        working-directory: site
+        run: node build.cjs
+
+      - name: Fail if the bundle looks wrong
+        working-directory: site
+        run: |
+          test -s dist/index.html
+          grep -q 'data-seq-canvas' dist/index.html
+          grep -q 'noindex' dist/index.html
+          # the burger is the site: refuse to publish a scroll with no frames in it
+          test -f dist/frames/poster.webp
+          test -s dist/frames/labels.desktop.json
+          test "$(ls dist/frames/desktop | wc -l)" -ge 100
+          test "$(ls dist/frames/mobile  | wc -l)" -ge 50
+          echo "bundle ok: $(wc -c < dist/index.html) bytes, $(du -sh dist/frames | cut -f1) of frames"
+
+      # `pages deploy` does not create the project, it only fails with 8000007.
+      # Creating it is idempotent enough: a second run just reports it exists.
+      - name: Ensure the Pages project exists
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create smash-house-proposal --production-branch=main
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site/dist --project-name=smash-house-proposal --branch=main
+
+      - name: Report the live URL
+        run: |
+          URL="${{ steps.deploy.outputs.deployment-url }}"
+          echo "deployment-url: $URL"
+          {
+            echo "## Proposal site is live"
+            echo ""
+            echo "- Deployment: $URL"
+            echo "- Production: https://smash-house-proposal.pages.dev"
+          } >> "$GITHUB_STEP_SUMMARY"
