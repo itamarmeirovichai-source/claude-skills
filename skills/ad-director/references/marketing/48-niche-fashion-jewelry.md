@@ -3,7 +3,7 @@
 Research brief, 2026-10-09. No generation money was spent. Nobody was contacted.
 
 **What this adds.** Doc `11-niche-fashion-luxury.md` already covers the visual grammar of watches, sneakers, leather and eyewear: shot types, light, the style header, the FTC Jewelry Guides basics and the dial-morph workarounds. This doc does not repeat that. It adds:
-- teardowns of 12 real ads, 15 of them downloaded and measured;
+- teardowns of 12 real ads plus 2 reference classics, built from 17 TikToks we downloaded and measured;
 - conversion data for the niche;
 - a realism-pitfall table mapped to doc 43's model rules;
 - policy and legal rules beyond the Jewelry Guides;
