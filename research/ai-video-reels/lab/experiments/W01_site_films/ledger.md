@@ -72,3 +72,5 @@ Lesson: Wan 3.0 reference-to-video with audio_urls is the cheapest real lip-sync
 Self-audit lesson (the owner caught these, I should have): place every sound on the MEASURED frame of its action (frame strip at 4-10 fps around each event), never on the plan's timings, and re-measure after every re-render. Never put a voice on a character whose lips are not moving: use text supers or VO only when the mouth is off-screen. Check the action really happens (the level must drop when someone "drinks"). Check a seam lands on full white, not mid-flare.
 | F07 native-audio test: H0 macro hook still + Seedance 2.5 i2v 10 s 480p with generated sound | Flare + Seedance | 2.41 | PASS: hook + spire reveal + pour + real drink, sound generated with the picture. Fix: soda reads as beer (foam head) |
 | **Site total** | | **~$76.5 of $80** | |
+| F08 'From the top' Dubai-style: D0 Flare still + Seedance 2.5 r2v 15 s 720p, native audio | Flare + Seedance | 7.28 | PASS: snap synced (hand 1.75 s / audio 1.76 s), dive, chase, Otto-already-in-car twist. Approved extra budget: $15 |
+| **Total** | | **~$83.8 ($80 + $15 approved for this film)** | |
