@@ -210,6 +210,28 @@ test.describe('training', () => {
     await expect(page.getByTestId('open-questions')).toHaveCount(0);
   });
 
+  test('knee pain above 2 out of 10 in the morning check in skips that day\'s jumps', async ({ page }) => {
+    await atTime(page, MONDAY);
+    await onboard(page);
+    await setKv(page, { homeSetup: ROOMY_HOME, wristInfo: { status: 'cleared', clearedBy: 'orthopaedic doctor', date: '2026-09-20', limits: '' } });
+    await go(page, '/more/athlete');
+    await page.getByTestId('athlete-build').click();
+    await page.getByTestId('plan-activate').click();
+    await expect(page.getByTestId('train')).toBeVisible();
+    await go(page, '/today');
+    await expect(page.getByTestId('today')).toBeVisible();
+    await expect(page.getByTestId('jump-day-advice')).toHaveCount(0);
+    await go(page, '/checkin');
+    await page.getByTestId('pain-knee').fill('3');
+    await page.getByTestId('checkin-save').click();
+    await go(page, '/today');
+    const note = page.getByTestId('jump-day-advice');
+    await expect(note).toContainText('Skip the jumps today');
+    await expect(note).toContainText('Knee pain 3 out of 10 this morning');
+    await go(page, '/train/day/1?date=2026-09-28');
+    await expect(page.getByTestId('train-day').getByTestId('jump-day-advice')).toContainText('Skip the jumps today');
+  });
+
   test('About checks for a new version on request', async ({ page }) => {
     await onboard(page);
     await page.evaluate(async () => navigator.serviceWorker.ready);

@@ -150,6 +150,8 @@ export function SafetyScreen() {
             <li>Muscle soreness after training usually peaks one to three days later and fades. It is common, and it does not prove that a muscle grew.</li>
             <li>Pain in a joint or a tendon, pain at the heel, below the kneecap, or on the bump below the knee, pain in the wrist, pain at night, swelling, or pain in one exact spot on a bone is different. It pauses the exercises that load that area. Tell a parent and see a clinician if it lasts.</li>
             <li>Pain of 4 out of 10 or more, pain that is getting worse, or pain that changes your technique pauses that exercise. Tell a parent, coach, or clinician. Pain tracking is not a diagnosis.</li>
+            <li>For jumping, the bar is lower: jump only while knee, heel, shin, or Achilles pain stays at 2 out of 10 or less during the session and the next morning. Above that, skip the next jump session. If it has not settled within about two weeks of lighter training, see a doctor.</li>
+            <li>See a doctor soon, without waiting: you cannot fully straighten the knee, a leg hurts at night for more than three nights, a knee is swollen with a fever, or you cannot put weight on a leg.</li>
             <li>Very dark urine with severe muscle pain or weakness after training needs medical help the same day.</li>
             <li>Massage, supplements, or a lighter week never replace having an injury checked.</li>
           </ul>

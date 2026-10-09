@@ -96,6 +96,7 @@ function JumpTestSheet({ open, onClose, tests, reach }: { open: boolean; onClose
   return (
     <Sheet open={open} onClose={onClose} title="Jump test" testId="jump-test-sheet">
       <div className="stack">
+        <p className="small muted">Same time of day, same warm up, same surface and shoes, and not the day after heavy legs or a game. Measure standing reach every time: you are still growing, and the jump height is the reach above it.</p>
         <Stepper label="Standing reach" unit="cm" value={t.standingReachCm} onChange={(v) => setT({ ...t, standingReachCm: v })} min={100} max={300} testId="jt-reach" />
         {[0, 1, 2].map((i) => (
           <Stepper key={`s${i}`} label={`Standing jump and reach, attempt ${i + 1}`} unit="cm" value={t.standingJumpCm[i] ?? null} onChange={(v) => attempt('standingJumpCm', i, v)} min={100} max={400} testId={`jt-s${i}`} />

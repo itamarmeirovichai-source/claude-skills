@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.0, 2026-10-09
+
+Changes from a review of jump training, injury risk, body composition, and recovery in growing teenagers (TRAINING_AUDIT.md, section 3.1.0).
+
+- **Pain rule for jumping.** If the morning check in shows knee, heel, shin, or Achilles pain above 2 out of 10, Today and the Train day say to skip that day's jumps and do the warm up and footwork only. Jumping resumes once pain stays at 2 or less during the session and the next morning. This is the threshold of the one loading protocol built for adolescents.
+- **Short sleep.** After a night under 8 hours, a home jump day suggests one set of each jump drill.
+- **Longer warm up.** The home warm up is about 10 minutes and adds a side plank, single leg balance, and drop and freeze landings, the parts of warm ups that cut injuries in young athletes.
+- **Approach jumps.** A reminder to film one set from the side in slow motion every second week.
+- **Strength.** Lower each rep under control and push with full intent to move fast, still at the planned reps in reserve. In a week with many games, the home jump session is the first thing to cut.
+- **Example meals.** A hummus sandwich at 10:00, a banana with the afternoon meal, and a slice of bread at dinner, about 450 kcal more a day: the examples now come to about 3,050 to 3,400 kcal on school days, closer to what active teenage boys need and still not a target or a limit. The recipe and shopping list follow.
+- **Safety page.** The jump pain bar, and signs that need a doctor without waiting.
+- **Jump tests** remind you to keep the conditions the same and to measure standing reach every time.
+
 ## 3.0.1, 2026-10-08
 
 Full approach jumps at home.

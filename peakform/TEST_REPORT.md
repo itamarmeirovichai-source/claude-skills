@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-10-08. Build 3.0.1.
+Date: 2026-10-09. Build 3.1.0.
 
 Everything below ran in the build environment: Linux, Node 22, Chromium with iPhone emulation. Nothing was tested on a real iPhone, and no clinician, dietitian, or coach reviewed the plan.
 
@@ -10,8 +10,8 @@ Everything below ran in the build environment: Linux, Node 22, Chromium with iPh
 | --- | --- |
 | TypeScript strict (`tsc -b`) | Pass, no errors |
 | ESLint (`eslint .`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 168 of 168 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
-| End to end tests (Playwright) | 84 of 84 pass: 48 at 390 px (36 functional flows, layout on eleven screens, and an accessibility scan), plus layout and accessibility at 375, 393, and 430 px |
+| Unit and integration tests (Vitest) | 171 of 171 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
+| End to end tests (Playwright) | 85 of 85 pass: 49 at 390 px (37 functional flows, layout on eleven screens, and an accessibility scan), plus layout and accessibility at 375, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, offline assets present. One cosmetic warning: a chunk over 500 kB |
 | Exercise content validator | 103 of 103 exercises pass |
 | Tracked files against the private marker list | No matches |
@@ -72,6 +72,7 @@ Everything below ran in the build environment: Linux, Node 22, Chromium with iPh
 34. The app opens offline and makes no third party requests.
 35. Delete all data asks twice.
 36. The app lock engages after inactivity and opens with the PIN.
+37. Knee pain of 3 out of 10 in the morning check in shows "Skip the jumps today" on Today and on the Train day.
 
 Layout and accessibility, at 375, 390, 393, and 430 px: no horizontal overflow and no tap target under 24 px on eleven screens, form fields at 16 px or more, and an axe WCAG 2 A and AA scan of seven main screens with no serious or critical issues.
 
@@ -114,5 +115,5 @@ Defects found and fixed in earlier reviews (1.x to 2.x):
 ## Content checks
 
 - `scripts/validate-exercises.ts`: all 103 exercises have complete fields, known muscle IDs, valid substitutions, visuals, an effort rule on every loaded exercise, and copy free of em dashes, "until failure", "grind it out", forced reps, and hype words.
-- `docs/content-audit.json`: example days come to about 2,600 to 2,900 kcal on school days; they are descriptions, not targets. Gym sessions take about 40 to 75 minutes by the new estimate.
+- `docs/content-audit.json`: example days come to about 3,050 to 3,400 kcal on school days; they are descriptions, not targets. Gym sessions take about 40 to 75 minutes by the new estimate.
 - Food values were checked against USDA data through search snippets and the SR28 data file (NUTRITION_DATA_AUDIT.md).

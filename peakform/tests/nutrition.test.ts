@@ -235,7 +235,8 @@ describe('example meals in grams', () => {
     // No supplement is suggested in the examples: protein comes from food.
     expect(ALL_TEMPLATES.flatMap((t) => t.items).some((i) => i.foodId === 'protein-powder')).toBe(false);
     expect(SCHOOL_LUNCH.items.map((i) => i.grams)).toEqual([100, 66, 135, 300, 30]);
-    expect(AFTERNOON.items.map((i) => [i.foodId, i.grams])).toEqual([['rice-cooked', 200], ['chicken-breast', 120]]);
+    expect(AFTERNOON.items.map((i) => [i.foodId, i.grams])).toEqual([['rice-cooked', 200], ['chicken-breast', 120], ['banana', 118]]);
+    for (const d of DINNERS) expect(d.items.find((i) => i.foodId === 'bread-wholewheat')?.grams).toBe(40);
     for (const d of DINNERS) expect(d.items.find((i) => i.foodId === 'potato')?.grams).toBe(250);
     expect(DINNERS).toHaveLength(6);
     for (const d of DINNERS) expect(d.items.find((i) => i.foodId === 'olive-oil')?.grams).toBe(5);
@@ -289,9 +290,10 @@ describe('example meals in grams', () => {
   });
 
   it('describes the sum of the examples without turning it into a target, and says teens often need more', () => {
+    // Since 3.1.0 the examples sit closer to what active teenage boys need, still below the usual range.
     const t = exampleDayTotals(templatesForDay(1));
-    expect(t.mid.kcal).toBeGreaterThan(2600);
-    expect(t.mid.kcal).toBeLessThan(3200);
+    expect(t.mid.kcal).toBeGreaterThan(3000);
+    expect(t.mid.kcal).toBeLessThan(3500);
     expect(t.mid.protein).toBeGreaterThan(120);
     expect(EXAMPLE_CONTEXT).toMatch(/often need more than these examples/);
   });
@@ -354,8 +356,8 @@ describe('recipes', () => {
     const one = recipeNutrition(r, 1);
     const six = recipeNutrition(r, 6);
     expect(six.mid.kcal).toBeCloseTo(one.mid.kcal * 6, 0);
-    // One box: 120 g chicken (198 kcal) and 200 g rice (260 kcal).
-    expect(Math.round(one.mid.kcal)).toBe(458);
+    // One box: 120 g chicken (198 kcal), 200 g rice (260 kcal), and a banana (105 kcal).
+    expect(Math.round(one.mid.kcal)).toBe(563);
     expect(one).toEqual(templateTotals(AFTERNOON));
   });
 
@@ -374,7 +376,8 @@ describe('meal preparation scaling', () => {
     expect(scaleShopping(SHOPPING_LIST.find((x) => x.id === 'rice')!, 6)).toBe(450);
     expect(scaleShopping(yogurt, 3)).toBe(900);
     const bananas = SHOPPING_LIST.find((s) => s.id === 'bananas')!;
-    expect(scaleShopping(bananas, 4)).toBe(4);
+    // Two a day since 3.1.0: breakfast and the afternoon meal.
+    expect(scaleShopping(bananas, 4)).toBe(8);
     expect(scaleShopping(SHOPPING_LIST.find((s) => s.id === 'spices')!, 12)).toBe(0);
   });
 });

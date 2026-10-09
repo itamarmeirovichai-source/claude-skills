@@ -83,16 +83,18 @@ export const BREAKFAST: MealTemplate = {
 export const SCHOOL_SNACK: MealTemplate = {
   id: 'school-snack',
   slot: 'snack',
-  name: 'Apple and almonds',
+  name: 'Hummus sandwich, apple, and almonds',
   time: '10:00',
   weekdays: SCHOOL_DAYS,
   items: [
+    { foodId: 'bread-wholewheat', grams: 60, household: '2 slices of whole wheat bread' },
+    { foodId: 'hummus', grams: 40, household: 'about 2 tablespoons' },
     { foodId: 'apple', grams: 180, household: '1 medium apple' },
     { foodId: 'almonds', grams: 30, household: 'a handful' },
   ],
-  notes: ['Pareve. Nothing in it needs a fridge.'],
-  prep: ['Pack the apple and a small box of almonds.'],
-  more: ['A banana as well', 'A second handful of nuts'],
+  notes: ['Pareve. Nothing in it needs a fridge for a school morning.'],
+  prep: ['Spread the hummus on the bread and pack it with the apple and a small box of almonds.'],
+  more: ['A banana as well', 'A second sandwich', 'A second handful of nuts'],
   substitutions: ['Any fruit with nuts or seeds', 'Dates and walnuts'],
   storage: ['Keeps all day in a school bag.'],
 };
@@ -130,10 +132,11 @@ export const AFTERNOON: MealTemplate = {
   items: [
     { foodId: 'rice-cooked', grams: 200, household: 'about one and a quarter cups cooked, from 75 g dry', note: 'Cooked weight' },
     { foodId: 'chicken-breast', grams: 120, household: 'a palm sized piece, from about 165 g raw', note: 'Cooked weight' },
+    { foodId: 'banana', grams: 118, household: '1 medium banana' },
   ],
-  notes: ['Meat. On training days, eat it about an hour before the home jumps or the gym.'],
-  prep: ['Reheat a prepared box until steaming hot, or cook fresh.'],
-  more: ['Another 50 to 100 g cooked rice', 'A banana before training'],
+  notes: ['Meat. On training days, eat it about an hour before the home jumps or the gym. The same meal on days off.'],
+  prep: ['Reheat a prepared box until steaming hot, or cook fresh. Add the banana.'],
+  more: ['Another 50 to 100 g cooked rice', 'A slice of bread'],
   substitutions: ['200 g firm tofu and rice, a pareve meal', '140 g tuna in water instead of chicken', 'Potato, sweet potato, couscous, or pasta instead of rice'],
   storage: ['Cool cooked rice quickly, within about an hour, and refrigerate it. Freeze the boxes you will not eat in the next day or two, and reheat once until steaming hot.', FRIDGE],
 };
@@ -152,10 +155,11 @@ function dinner(d: Weekday, name: string, protein: [string, number, string], rec
       { foodId: 'lentils-cooked', grams: 100, household: 'about half a cup cooked', note: 'Cooked weight' },
       { foodId: 'veg-mixed', grams: 300, household: 'half the plate' },
       { foodId: 'olive-oil', grams: 5, household: 'about one teaspoon', note: 'Cooking oil counts. Log what you use.' },
+      { foodId: 'bread-wholewheat', grams: 40, household: '1 slice of whole wheat bread' },
     ],
     notes: [FOOD_BY_ID[protein[0]]?.kosher === 'meat' ? 'Meat.' : 'Fish, pareve.'],
     prep: ['Cook the protein, potatoes, and vegetables. Serve with the lentils.'],
-    more: ['Another 100 g potato or rice', 'More lentils or vegetables', 'Bread with the meal'],
+    more: ['Another 100 g potato or rice', 'More lentils or vegetables', 'A second slice of bread'],
     substitutions: ['Any fish, chicken, turkey, or lean beef', 'Sweet potato or rice instead of potato'],
     storage: ['Refrigerate leftovers within two hours and eat them within three to four days.', FRIDGE],
   };
@@ -208,7 +212,7 @@ export const ALL_TEMPLATES: MealTemplate[] = [BREAKFAST, SCHOOL_SNACK, SCHOOL_LU
  * active teenage boys in general, from the 2023 energy equations, not an estimate for one person.
  */
 export const EXAMPLE_CONTEXT =
-  'Teen athletes often need more than these examples, especially on long training and sport days. For active boys in their mid teens, energy needs commonly run from about 2,800 to well over 4,000 kcal a day, depending on size, growth, and activity. Eat to appetite, use the options for more food, and ask a pediatric sports dietitian for a personal number.';
+  'Teen athletes often need more than these examples, especially on long training and sport days. For active boys in their mid teens, energy needs commonly run from about 3,000 to well over 4,000 kcal a day, depending on size, growth, and activity; tall and heavier boys are often at the upper end. Eat to appetite, use the options for more food, and ask a pediatric sports dietitian for a personal number.';
 
 /** Templates kept for backward compatibility with tests and older imports. */
 export const PREWORKOUT: MealTemplate[] = [AFTERNOON];

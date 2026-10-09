@@ -26,7 +26,8 @@ export interface HomeSlot {
 const STOP = 'Stop the drill as soon as height, speed, or landing control drops, even if reps are left.';
 const SOFT = 'Land quietly with the knees over the toes.';
 
-const prep: HomeSlot = { options: ['home-movement-prep'], sets: 1, minutes: 7, restSec: 30, notes: ['Skip the jumps today if anything hurts during the warm up.'] };
+/** About 10 minutes: a warm up with landing, balance, and trunk control cut injuries in young athletes by about a third to a half (Rössler 2014). */
+const prep: HomeSlot = { options: ['home-movement-prep'], sets: 1, minutes: 10, restSec: 30, notes: ['Skip the jumps today if anything hurts during the warm up.'] };
 
 /**
  * The full approach jump, the most specific jump for the spike (3.0.1). It comes after the approach
@@ -38,7 +39,7 @@ const approach = (sets: number): HomeSlot => ({
   sets,
   reps: 3,
   restSec: 120,
-  notes: ['Only when the landings earlier in the session were clean.', 'Two easy run ups first, then full effort with full rest.', 'Reach as high as you can and land softly on both feet.', STOP],
+  notes: ['Only when the landings earlier in the session were clean.', 'Two easy run ups first, then full effort with full rest.', 'Reach as high as you can and land softly on both feet.', 'Every second week, film one set from the side in slow motion and compare it with the common mistakes on the exercise page: a long, low second to last step, a quick plant, and both arms swinging up.', STOP],
 });
 
 /** About 65 foot contacts: the starting level while landings, space, and school jumping are checked. */

@@ -464,7 +464,7 @@ British Journal of Sports Medicine 48(17):1322 (Bahr and Bahr). Source date: 201
 Scandinavian Journal of Medicine and Science in Sports (Visnes and Bahr). Source date: 2013. Access: search snippet only.
 
 - Conclusion: Over four years, the risk of jumper's knee rose with every extra weekly hour of volleyball training and every extra match set.
-- Product decision: Pain below the kneecap that lasts into the next morning means fewer jumps and telling a parent.
+- Product decision: Since 3.1.0, knee pain above 2 out of 10 the next morning skips the next home jump session, and in a week with many games the home jump session is the first thing to cut. Matches carried the most risk here.
 - Uncertainty: Elite students aged 16 to 18. Search snippets only.
 
 ### [Activity Modification and Knee Strengthening for Osgood-Schlatter Disease: A Prospective Cohort Study](https://vbn.aau.dk/ws/files/330945567/2325967120911106.pdf)
@@ -472,7 +472,7 @@ Scandinavian Journal of Medicine and Science in Sports (Visnes and Bahr). Source
 Orthopaedic Journal of Sports Medicine 8(4) (Rathleff and colleagues). Source date: 2020. Access: search snippet only.
 
 - Conclusion: Managing knee load by pain, with knee strengthening, gave a successful outcome in 80 percent of young athletes with Osgood-Schlatter disease at 12 weeks, though return to full sport took longer.
-- Product decision: Pain at the bump under the knee reduces jumps and is a reason to see a physio, rather than training through it.
+- Product decision: Since 3.1.0 jumping continues only while knee, heel, shin, or Achilles pain stays at 2 out of 10 or less during the session and the next morning, the threshold of this adolescent protocol. Above that, Today and the Train day say to skip the jumps that day, and the safety page lists signs that need a doctor.
 - Uncertainty: Ages 10 to 14, 51 participants. Search snippets only.
 
 ## Calmer week, home and gym, and food without targets (3.0.0)
@@ -644,7 +644,7 @@ USDA Agricultural Research Service. Source date: 2015 (SR28), in FoodData Centra
 Sports Medicine (Rössler and colleagues). Source date: 2014. Access: search snippet only.
 
 - Conclusion: Exercise based programmes with landing, balance, and strength work roughly halved injury rates in young athletes.
-- Product decision: Every home jump session starts with movement preparation and landing practice before any bigger jumps.
+- Product decision: Since 3.1.0 every home jump session starts with a 10 minute warm up that includes landing, balance, and trunk control, before any bigger jumps.
 - Uncertainty: Mixed sports and programmes.
 
 ### [International Olympic Committee consensus statement on youth athletic development](https://bjsm.bmj.com/content/49/13/843)
@@ -746,7 +746,7 @@ American Academy of Sleep Medicine. Source date: 2017 (URL path); based on the 2
 Orthopaedic Journal of Sports Medicine (meeting abstract; Gao, Dwivedi, Milewski, Cruz). Source date: 2019. Access: search snippet only.
 
 - Conclusion: This meta-analysis abstract links chronic short sleep with higher sports injury rates in adolescents. It builds on earlier work by Milewski and colleagues (2014) reporting that adolescent athletes sleeping under 8 hours were about 1.7 times more likely to be injured.
-- Product decision: Sleep feeds the readiness indicator and the weekly review. PeakForm does not change the plan by itself.
+- Product decision: Sleep feeds the readiness indicator and the weekly review. Since 3.1.0, a night under 8 hours before a home jump day shows advice to do one set of each jump drill. PeakForm does not change the plan by itself.
 - Uncertainty: Observational association, not proof that more sleep prevents injury. This is a conference abstract, and the 1.7 figure came from a secondary review snippet.
 
 ### [Sleep extension in athletes: what we know so far - A systematic review](https://pubmed.ncbi.nlm.nih.gov/33352457/)
@@ -1058,7 +1058,7 @@ Growth rises a little as sets get closer to failure, but stopping one or two rep
 10. Is 8 to 10 hours of sleep realistic with the school and practice schedule, and what should the app suggest on weeks when it is not?
 11. Are there any food allergies, intolerances or family food rules the recipes must respect?
 12. Which of the matched YouTube videos should an adult watch first and approve before the athlete uses them as technique references?
-13. Since 3.0.0 PeakForm shows example meals but no calorie target. The examples add up to about 2,600 to 2,900 kcal on school days, likely below the needs of many active teenagers. What personal energy range is right, and should it be recorded in the app as a reviewed target?
+13. Since 3.0.0 PeakForm shows example meals but no calorie target. Since 3.1.0 the examples add up to about 3,050 to 3,400 kcal on school days, still likely below the needs of many active teenagers. What personal energy range is right, and should it be recorded in the app as a reviewed target?
 14. If a wrist injury is recorded, has a doctor cleared it, and are there limits on grip, pressing, push ups, ball contact, or falls?
 15. Is the home space safe for the jump sessions (room, ceiling, floor, neighbours), and should an adult be present for them?
 16. If a supplement such as creatine is recorded, which product and dose, is it third party tested and kosher certified, and should it continue at this age?

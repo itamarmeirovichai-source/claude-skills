@@ -32,10 +32,10 @@ The week:
 | Day | Home | Gym |
 | --- | --- | --- |
 | Sunday | | Upper A, about 70 min |
-| Monday | Movement prep, landings, jumps, and approach jumps, about 30 min, first | Lower A, about 40 min |
+| Monday | Movement prep, landings, jumps, and approach jumps, about 35 min, first | Lower A, about 40 min |
 | Tuesday | No structured training. School sport counts | |
 | Wednesday | | Upper B, about 70 to 75 min |
-| Thursday | Movement prep, landings, jumps, and approach jumps, about 30 min, first | Lower B, about 50 min |
+| Thursday | Movement prep, landings, jumps, and approach jumps, about 35 min, first | Lower B, about 50 min |
 | Friday | Volleyball skills without jumps, about 20 min | |
 | Saturday | Full rest | |
 
@@ -44,6 +44,7 @@ The week:
 - Work sets stop about two reps short of failure: you could still do about two more clean reps. A new exercise stays three reps short for its first two sessions while you learn it. There are no sets to failure and no one repetition maximum tests.
 - **Home jumps** start at the starting level, about 65 landings a session, and end with full approach jumps when there is a run up outdoors or a hall: a marked wall gives the touch height, which you log in the Reach field. The build level (about 95) is offered in **Choose your exercises** and changes the plan only through the preview. Do the jumps fresh, before the gym, with full rest. Stop a drill when height, speed, or landing control drops, and stop jumping for the day for pain at the knee, below the kneecap, at the heel, or along the shin.
 - If sport had a lot of jumping the day before, keep the home jumps short. Jumping every day is not part of the plan.
+- **Pain and sleep on a jump day.** If the morning check in shows knee, heel, shin, or Achilles pain above 2 out of 10, Today and the Train day say to skip that day's jumps: do the warm up and the footwork only. After a night under 8 hours, they suggest one set of each jump drill. Every second week, film a set of approach jumps from the side in slow motion.
 - **Choose your exercises** lets you pick, for each muscle head, from exercises that build it about equally. Saving shows the changes before they apply.
 - Open a day to see each exercise with sets, reps, rest, reps in reserve, and a front and back muscle diagram. Every exercise page shows its wrist load and how it progresses.
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { suggestNext, wristGate, type Prescription, type WorkSet } from '../src/domain/progression';
 import { DEFAULT_ATHLETE, openQuestions, parseAthlete, reviewedEnergy, type AthleteProfile } from '../src/domain/athlete';
-import { heavyJumpingNear, hoursAboveAge, weeklyExposure } from '../src/domain/exposure';
+import { heavyJumpingNear, hoursAboveAge, jumpDayAdvice, weeklyExposure } from '../src/domain/exposure';
 import { comparable, heights, jumpTrend, parseTests, type JumpTest } from '../src/domain/jumpTests';
 import { readiness, safetyState } from '../src/domain/safety';
 import { contextMarkdown } from '../src/domain/report';
@@ -10,7 +10,7 @@ import { baselinePlanRecord } from '../src/domain/defaults';
 import { makeBackup, validateTables, buildPreview, type TableData } from '../src/domain/backup';
 import { db } from '../src/db/db';
 import { KV, addSportLog, ensureInitialized, getAthlete, kvSet, readAllTables, saveAthlete, writeAllTables } from '../src/db/repo';
-import type { SportLog, WorkoutSession } from '../src/db/records';
+import type { PainLog, SleepLog, SportLog, WorkoutSession } from '../src/db/records';
 
 const press: Prescription = { kind: 'strength', sets: 3, repMin: 8, repMax: 12, rir: 2, perSide: false, loadIncrement: 'upper', equipment: 'machine' };
 const sets = (reps: number[]): WorkSet[] => reps.map((r, i) => ({ setIndex: i, side: null, weightKg: 40, reps: r, rir: 2, form: 'good', pain: 'none' }));
@@ -58,6 +58,34 @@ describe('school sport and total load', () => {
     expect(heavyJumpingNear('2026-10-08', [sport('2026-10-07', 90, 'lots')])?.date).toBe('2026-10-07');
     expect(heavyJumpingNear('2026-10-08', [sport('2026-10-06', 90, 'lots')])).toBeNull();
     expect(heavyJumpingNear('2026-10-08', [sport('2026-10-08', 90, 'some')])).toBeNull();
+  });
+});
+
+describe('jump day advice', () => {
+  const pain = (date: string, region: string, score: number, source: PainLog['source'] = 'checkin'): PainLog => ({ id: `p-${date}-${region}-${score}`, createdAt: 0, updatedAt: 0, date, at: 0, region, score, source, exerciseId: null, note: '' });
+  const sleep = (date: string, durationMin: number): SleepLog => ({ id: `s-${date}`, createdAt: 0, updatedAt: 0, date, bedtime: '23:30', wakeTime: '06:30', durationMin, quality: 3 });
+
+  it('skips the jumps when knee, heel, shin, or Achilles pain is above 2 out of 10', () => {
+    const a = jumpDayAdvice('2026-10-12', [pain('2026-10-12', 'knee', 3)], null);
+    expect(a?.level).toBe('skip');
+    expect(a?.text).toMatch(/Knee pain 3 out of 10 this morning/);
+    expect(a?.text).toMatch(/2 out of 10 or less during activity and the next morning/);
+    expect(jumpDayAdvice('2026-10-12', [pain('2026-10-11', 'heel', 4)], null)?.text).toMatch(/Heel pain 4 out of 10 in yesterday's check in/);
+    // Today's check in wins over yesterday's.
+    expect(jumpDayAdvice('2026-10-12', [pain('2026-10-11', 'heel', 4), pain('2026-10-12', 'heel', 1)], null)).toBeNull();
+  });
+
+  it('ignores pain at 2 or less, pain elsewhere, and pain logged during a workout', () => {
+    expect(jumpDayAdvice('2026-10-12', [pain('2026-10-12', 'knee', 2), pain('2026-10-12', 'shoulder', 6), pain('2026-10-12', 'knee', 5, 'workout')], null)).toBeNull();
+  });
+
+  it('makes the jumps lighter after under 8 hours of sleep, and pain wins over sleep', () => {
+    const a = jumpDayAdvice('2026-10-12', [], sleep('2026-10-12', 400));
+    expect(a?.level).toBe('lighter');
+    expect(a?.text).toMatch(/About 6 h 40 min of sleep/);
+    expect(jumpDayAdvice('2026-10-12', [], sleep('2026-10-12', 480))).toBeNull();
+    expect(jumpDayAdvice('2026-10-12', [], sleep('2026-10-11', 300))).toBeNull();
+    expect(jumpDayAdvice('2026-10-12', [pain('2026-10-12', 'achilles', 5)], sleep('2026-10-12', 300))?.level).toBe('skip');
   });
 });
 

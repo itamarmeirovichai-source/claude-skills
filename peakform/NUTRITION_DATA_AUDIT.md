@@ -110,19 +110,21 @@ Example arithmetic: 80 g dry rice × 2.7 = 216 g cooked (range 200 to 240 g). 20
 
 ## 6. The example day, and why it is not a target
 
+Since 3.1.0 the examples include a hummus sandwich with the 10:00 snack, a banana with the afternoon meal, and a slice of bread at dinner, about 450 kcal more a day. A 2026-10-09 review of adolescent energy needs (search snippets of the 2023 National Academies tables) put active boys of a larger build at about 3,500 to 4,000 kcal or more, and growing athletes should avoid large deficits, so the examples were moved closer to that range while staying below it.
+
 Computed with `exampleDayTotals` and a 3 hour meat to dairy interval, one of the possible family settings. The app default is 6 hours (see below). Midpoint kcal (low to high range from the food variability), with protein, carbohydrate, fat, fibre (g) and calcium (mg).
 
 | Day | Meals (kosher category) | kcal | P / C / F | Fibre | Calcium |
 | --- | --- | --- | --- | --- | --- |
-| Sunday | Breakfast (dairy), school snack, school lunch, afternoon chicken and rice (meat), salmon dinner, evening milk (dairy, 5 h 25 min after meat) | 2,862 (2,706 to 3,048) | 209 / 316 / 90 | 53 | 1,672 |
-| Monday | Same, beef dinner (meat), evening pareve snack instead of milk | 2,910 (2,748 to 3,104) | 213 / 331 / 90 | 60 | 1,376 |
-| Tuesday | White fish dinner, evening milk | 2,701 (2,560 to 2,874) | 215 / 316 / 71 | 53 | 1,675 |
-| Wednesday | As Sunday | 2,862 | 209 / 316 / 90 | 53 | 1,672 |
-| Thursday | As Monday | 2,910 | 213 / 331 / 90 | 60 | 1,376 |
-| Friday | Turkey dinner (meat), no evening snack before the Sabbath | 2,606 (2,464 to 2,779) | 214 / 302 / 66 | 53 | 1,306 |
+| Sunday | Breakfast (dairy), school snack, school lunch, afternoon chicken, rice, and banana (meat), salmon dinner, evening milk (dairy, 5 h 25 min after meat) | 3,313 (3,150 to 3,507) | 225 / 392 / 101 | 65 | 1,794 |
+| Monday | Same, beef dinner (meat), evening pareve snack instead of milk | 3,361 (3,192 to 3,562) | 229 / 407 / 101 | 72 | 1,498 |
+| Tuesday | White fish dinner, evening milk | 3,152 (3,002 to 3,333) | 232 / 392 / 81 | 65 | 1,797 |
+| Wednesday | As Sunday | 3,313 | 225 / 392 / 101 | 65 | 1,794 |
+| Thursday | As Monday | 3,361 | 229 / 407 / 101 | 72 | 1,498 |
+| Friday | Turkey dinner (meat), no evening snack before the Sabbath | 3,057 (2,907 to 3,238) | 230 / 378 / 77 | 65 | 1,428 |
 | Saturday | Sabbath plate guide, eaten to appetite | not summed | | | |
 
-With the default 6 hour interval the evening milk becomes the pareve snack every day (Sunday 2,921 kcal, calcium about 1,380 mg). With a 1 hour interval the milk stays on every day.
+With the default 6 hour interval the evening milk becomes the pareve snack every day (Sunday 3,372 kcal, calcium about 1,500 mg). With a 1 hour interval the milk stays on every day.
 
 **Why these sums are not targets.** They are what one reasonable set of portions adds up to. For comparison, the 2023 National Academies energy equations for boys aged 3 to 18 (coefficients confirmed by two search snippets, not read in the report) give, for an illustrative boy aged 15, 175 cm, 65 kg:
 
@@ -132,7 +134,7 @@ With the default 6 hour interval the evening milk becomes the pareve snack every
 
 These are population equations with individual errors of hundreds of kcal, they rise with height and weight, and training days add more. So the app says teen athletes often need more than the examples and points to a pediatric sports dietitian for a personal number. The examples include options for more food at each meal.
 
-Calcium: the recommended intake for ages 14 to 18 is 1,300 mg a day (IOM 2011, via an NIH fact sheet snippet). Every example day reaches it, Friday only just.
+Calcium: the recommended intake for ages 14 to 18 is 1,300 mg a day (IOM 2011, via an NIH fact sheet snippet). Every example day reaches it.
 
 Protein: the example days give more protein than adolescent studies cited by Sports Dietitians Australia found sufficient (about 1.35 to 1.6 g per kg a day, snippet). The app shows no protein target; protein is spread over four or more meals.
 

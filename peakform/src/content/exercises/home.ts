@@ -18,7 +18,7 @@ export const HOME_EXERCISES: ExerciseContent[] = [
     setup: [
       'Clear the floor of bags, cables, and furniture edges, and check nobody is standing close by.',
       'Wear the trainers you will jump in, laces tied.',
-      'Plan about 6 to 8 minutes, starting easy.',
+      'Plan about 10 minutes, starting easy. The landing, balance, and trunk parts are the injury prevention part: keep them even on a short day.',
     ],
     steps: [
       'March in place, 1 minute, lifting the knees to hip height and swinging the arms.',
@@ -27,10 +27,13 @@ export const HOME_EXERCISES: ExerciseContent[] = [
       'Walking or stationary lunges with an overhead reach, 5 on each leg.',
       'Ankle rocks, 10 on each side. Put one foot forward, push the knee over the toes and back without lifting the heel.',
       'Glute bridges, 10 slow reps lying on your back, squeezing the glutes at the top.',
+      'Side plank, 20 seconds on each side, with the body in a straight line from head to feet.',
+      'Single leg balance, 20 seconds on each leg, with a soft knee kept over the middle of the foot.',
+      'Drop and freeze, 5 reps: from standing tall, drop quickly into a quarter squat as if landing, both feet flat, knees over the toes, and hold for 2 seconds.',
       'Small calf bounces in place, 2 sets of 10, getting a little quicker, only if hops are in today\'s plan.',
     ],
     breathing: 'Breathe easily the whole time. You should be able to talk. Breathing picks up a little by the end.',
-    tempo: 'Easy at first and brisk by the end, about 6 to 8 minutes in total. Nothing should feel hard.',
+    tempo: 'Easy at first and brisk by the end, about 10 minutes in total. Nothing should feel hard.',
     rangeOfMotion:
       'Start with small, comfortable ranges and let each swing, lunge, and ankle rock grow a little until you reach your normal full range. Never force a stretch.',
     muscles: {
