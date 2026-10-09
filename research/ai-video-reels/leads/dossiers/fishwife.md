@@ -1,7 +1,7 @@
 # Dossier: Fishwife
 
 Prepared 2026-10-09 · vxo-leads §2b · Status: **NOT SENT — awaiting owner approval**
-Score: **83 / 100 (HOT)**. Breakdown and sources are in `../2026-10-09.md`.
+Score: **57 / 100: DOWNGRADED to WARM on 2026-10-09 after live verification** (was 83 HOT). The holiday products this pitch was built on are **unreleased** (hidden on the site), and over half the live ads are already video. **HOLD: do not send.** Re-check trigger in **Verification** at the end.
 
 Data notes:
 - The Motion page is a snapshot from about June 2026 ("Refreshed 4 months ago"), and its 20 newest ads were still Father's Day creative.
@@ -11,7 +11,9 @@ Data notes:
 
 ---
 
-## 1. Why they are hot (one sentence)
+## 1. Why they are hot (one sentence) — ⚠️ SUPERSEDED, see Verification
+> The sentence below was written from back-end data. The Advent Calendar, Ultimate Gift Pack and Mermaid ornament are tagged `redirect-to-404`, and a visitor to their URLs sees "Page not found". The "15 of 20 stills" figure is also wrong today (~55 % of live ads are video).
+
 On **2026-09-30** they launched the **"12 Days of Fishwife" Advent Calendar ($150)**, an **Ultimate Tinned Fish Gift Pack ($130)** and a Mermaid ornament. Two beauty collabs (Dieux x Fishwife, 9/9 and 9/21; Bag Balm x Fishwife, 9/29) and a 6-pack albacore (9/4) came out alongside them: **11 new products in 60 days**. The founder also gave a long brand interview to Mercury on 2026-10-06. The latest Meta library snapshot was **93 active ads, ~12 new a week, 15 of the 20 newest stills**, and the videos were unboxing and slideshow cuts. An advent calendar has to sell **before 1 December**, so the window is open now and short.
 
 ## 2. The business
@@ -99,25 +101,11 @@ The punchline is *caused* by the product: it's too good to ration, so the 12-day
 **Suggested tier:** Premiere $2,500 (advent plus gift pack). Then Season $3,500/mo for the collab cadence.
 
 ## 6. The angle for the first message
-Lead with the calendar and a joke she'd make herself: deadpan, a little self-aware, product-caused. Mention their real footage as the proof. Don't mention AI cost savings.
+**HOLD. No message today.** The original drafts were removed. Both named the hidden Advent Calendar and the hidden Ultimate Gift Pack, which would tell Becca we read her store's back end.
 
-**DM (Instagram @fishwife; 58 words; NOT SENT):**
-> Hi Becca, the 12 Days of Fishwife Advent Calendar is a genius gift. Film idea: a locked overhead shot opens door 1, door 2, door 3… then hard cut to "Day 4": all twelve tins open and empty. I make AI product films (no shoot). Want 5 free frames for the Advent Calendar, or the Ultimate Gift Pack?
+Doc 63 §4.3 holds a gated version A (calendar) and version B (public products). **Correction to version B (2026-10-09):** its second CTA option, "the gift tins", also points at hidden SKUs. Every gift-tin, gift-set and gift-box product in `products.json` is tagged `redirect-to-404`. If version B is ever used, offer **"the Gold Label Smoked Salmon or the Smoked Salmon Lover’s Trio"** (both public and in stock) instead.
 
-**Email** (to hello@eatfishwife.com, the public address on the site and FAQ; NOT SENT):
-> **Subject:** "Pace yourself": a 15 s idea for the Advent Calendar
->
-> Hi Becca,
->
-> Loved your Mercury interview on world-building. The 12 Days of Fishwife Advent Calendar feels like that idea in a box.
->
-> A 15 s film idea: a locked overhead shot opens door 1, door 2, door 3, each tin plated a little nicer. Then a hard cut to "Day 4": all twelve doors torn open, an empty tin tower, one fork. Then a hand slides in a second calendar. Your real tins and toast shots stay in as the proof. We build the rest.
->
-> I make AI product films (no shoot). Happy to make 5 free concept frames from your tin photos.
->
-> Want them for the Advent Calendar, or for the Ultimate Tinned Fish Gift Pack?
->
-> [Owner name] · VXO · {BUSINESS_ADDRESS}
+The "Pace Yourself" advent film stays in this file as the ready concept for the day the calendar goes public.
 
 ## Sources
 - https://www.eatfishwife.com/products.json?limit=250 (pulled 2026-10-09; handles `12-days-of-fishwife-advent-calendar`, `the-ultimate-tinned-fish-gift-pack-1`, `mermaid-ornament` created and published 2026-09-30)
@@ -125,3 +113,26 @@ Lead with the calendar and a joke she'd make herself: deadpan, a little self-awa
 - https://mercury.com/blog/becca-millstein-fishwife-founder-interview (2026-10-06)
 - https://www.fooddive.com/news/fishwife-success-tinned-fish/726922/ (2024-09-20; revenue history)
 - https://s28.q4cdn.com/367108596/files/doc_news/Sweetgreen-and-Fishwife-Bring-Tinned-Fish-to-the-Menu-for-the-First-Time-with-Summer-Nioise-2026.pdf
+
+## Verification (2026-10-09, live public data)
+
+**Method.** Public Meta Ad Library in headless Chromium (Playwright), no login. Own Page **"Fishwife" = `facebook.com/eatfishwife`, Page ID 104702978130714**. The page-scoped view failed 4 times in a row ("No ads match"), then loaded on retry; a keyword search for "Fishwife" independently showed 13 own-Page cards, all active. Page URL: `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&media_type=all&search_type=page&view_all_page_id=104702978130714`. Product pages were rendered in a real browser.
+
+| Check | June snapshot / dossier | Live 2026-10-09 | Verdict |
+|---|---|---|---|
+| Running ads now (US, active) | 93 | **~130** | ✅ Active |
+| Video share | 5 of 20 newest (25 %) | `media_type=video` ~72 of ~130 (**~55 %**); 7 of 13 own cards in the keyword sample are video | ❌ Not a static-heavy library any more |
+| What they're running | Father's Day | "New to tinned fish? Start here." (Starter Pack, from 10/6, with partner Foodie Authority), "Fishwife Mussels Are Back", catalogue ads | No holiday or advent ads yet |
+| **12 Days of Fishwife Advent Calendar ($150)** | "launched 9/30" | Tagged `redirect-to-404`; the page renders **"Page not found"** in a browser; not on the homepage; no ads | ❌ **Unreleased.** Must not be mentioned |
+| Ultimate Tinned Fish Gift Pack ($130) | "launched 9/30" | `redirect-to-404` and `available: false` | ❌ Unreleased |
+| Mermaid ornament, 6-pack albacore, 2026 tuna belly 3-pack, Claire Dufornier gift tin | "new" | All tagged `redirect-to-404` | ❌ Hidden |
+| "11 new products in 60 days" | 11 | **8 of 11 are hidden** (including an influencer sample pack and an in-store coupon). Public: the two Dieux x Fishwife beauty items (9/9, 9/21) and the Bag Balm tin (9/29, **sold out**) | ❌ Momentum overstated |
+| Mercury founder interview | 2026-10-06 | Confirmed (`datePublished` 2026-10-06). "5,000 grocery locations, from Costco…", "world-building", in-house designer Danny Miller: all confirmed in the text | ✅ (Danny Miller's name is public, via Mercury) |
+| Contact email `hello@eatfishwife.com` | — | On the homepage (6×) and the FAQ (36×) | ✅ |
+| Announcement bar | — | "Free Shipping On Orders $75+ · Refer a friend for 20% off!" (no holiday) | — |
+
+**Re-score:** Ads 22 · Need 6 (was 15: ~55 % video) · Momentum 8 (was 15: only a beauty collab and press are public) · Seasonal 6 (was 10: the gifting window is real, but the gifting product isn't public) · Budget 5 (was 8: 5,000+ doors, Costco and Aldi put them above the band [inf]) · Founder 10 · Hiring 0 = **57, WARM.**
+
+**Re-check trigger (the "very hot" moment we should catch):** the day the Advent Calendar goes public. Look for the `redirect-to-404` tag dropping off `12-days-of-fishwife-advent-calendar` in `products.json`, the homepage or nav showing it, or an advent ad appearing on Page 104702978130714. On that day Momentum returns to 15 and Seasonal to 10 (→ ~68). Re-read the video share then. It only becomes HOT if the advent ads go out as stills.
+
+**Red team of this dossier (what was wrong):** the core "why hot" (built on hidden SKUs), the 11-products momentum (8 hidden), "15 of 20 stills" (now ~55 % video), and "film live by Nov 1" (the product isn't public). Everything about Becca, the business size and the Mercury interview held up.

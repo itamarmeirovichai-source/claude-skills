@@ -1,14 +1,14 @@
 # Dossier: The Foggy Dog
 
 Prepared 2026-10-09 · vxo-leads §2b · Status: **NOT SENT — awaiting owner approval**
-Score: **88 / 100 (HOT)**. Breakdown and sources are in `../2026-10-09.md`.
+Score: **85 / 100 (HOT), re-scored after live verification** (was 88: the Art Director post is gone, so −3 hiring; ad volume up, video share re-measured). See **Verification** at the end and `../2026-10-09.md`.
 
-Data notes. Motion's public page says "Refreshed 4 months ago", so its ad counts are a snapshot from about June 2026. The Meta Ad Library returned HTTP 403 to our fetcher, and TikTok returned nothing through yt-dlp. **Before sending, the owner should open the Meta Ad Library (US, active, "The Foggy Dog") by hand and check that ads are still running.** Shopify data was pulled live on 2026-10-09.
+Data notes. **Superseded by the Verification section (live Meta Ad Library, 2026-10-09):** the brand IS running ads now (~220 active). The Motion figures below (104 active) are a June snapshot, kept only for comparison. Shopify data was pulled live on 2026-10-09.
 
 ---
 
 ## 1. Why they are hot (one sentence)
-On 2026-09-29 they published a holiday line of **58 new SKUs created in September** (Gingerbread Man and Candy Cane embroidered collars, velvet walk sets, holiday toy sets, Hanukkah charms), on top of a new "Active" harness line in August. Their Meta library had **104 active ads, ~13 new a week, 18 of the 20 newest were stills** (collages and headline cards, with one slideshow video). Holiday gifting closes in ~10 weeks, and BFCM is ~7 weeks out.
+On 2026-09-29 they published a holiday line of **33 new holiday SKUs** (58 SKUs were created in September in total; the other 24 are Active harness walk sets plus one charm) (Gingerbread Man and Candy Cane embroidered collars, velvet walk sets, holiday toy sets, Hanukkah charms), on top of a new "Active" harness line in August. Their live Meta library (2026-10-09) has **~220 active ads; 27 of the top 30 are stills** (dynamic-creative and catalogue cards), and holiday ads went live on 9/30. Holiday gifting closes in ~10 weeks, and BFCM is ~7 weeks out.
 
 ## 2. The business
 - **What they sell:** design-led dog accessories: beds, collars, bow tie and "lady bow" collars, harness and leash "walk sets", poop-bag holders, toys and collar charms. Patterns come from independent artists, and there are **12–14 seasonal collections a year** (Rose Shattuck, Women in eCommerce 2024 honoree Q&A).
@@ -19,8 +19,8 @@ On 2026-09-29 they published a holiday line of **58 new SKUs created in Septembe
   - Collar charm sets: $22–31.
   - The median price across the catalogue is $49.
 - **Size and channels [inf]:**
-  - DTC on Shopify, plus **800–1,000+ brick-and-mortar retailers**, including Anthropologie and Nordstrom (About page and Betterteam careers page).
-  - Founded in 2016 in San Francisco. Most products are made in the USA by family-owned partners (About page).
+  - DTC on Shopify, plus **800+ retailers**, including Anthropologie and Nordstrom (About page, re-checked 2026-10-09; the "1,000+" figure came from the removed Art Director post).
+  - San Francisco office (About page). "Founded 2016" is [unverified] (not on the About page). About page: "almost all of our products - including all bandanas, leashes, waste bag holders, and beds" are handcrafted in the USA by family-owned partners.
   - Revenue is private. AOV, door count and ad volume suggest roughly the $5–20M band [inf].
 - **Where they advertise:** Meta, with a large library (104 active on the Motion snapshot) and a Motion summary of "seasonal prints ... framing these as trend-driven style upgrades". They also sell wholesale through Faire and carry an Anthropologie listing (Christmas cookie toy set).
 - **Current creative:**
@@ -29,7 +29,7 @@ On 2026-09-29 they published a holiday line of **58 new SKUs created in Septembe
   - Seasonal collections replace each other every ~4 weeks, so every creative has a built-in expiry date.
 
 ## 3. The person
-- **Who decides:** **Rose Shattuck**, founder and CEO (Stanford GSB; she signs the About page "Rose and Utah", after her goldendoodle). They are also hiring an **Art Director** in SF (Betterteam page, undated), so creative is being staffed right now. That person may become a co-decider.
+- **Who decides:** **Rose Shattuck**, founder and CEO (Stanford GSB; she signs the About page "Rose and Utah", after her goldendoodle). ~~They are also hiring an Art Director~~ **Corrected 2026-10-09:** the Betterteam page no longer lists an Art Director. Open roles are a Quality & Compliance consultant, a Senior Manager of Product Development and a Merchandising Coordinator. No creative hire is visible, so Rose (and whoever runs paid social) decides.
 - **Her public voice:**
   - "I realized I couldn't be the only dog mom who wanted beautiful, modern, quality products." (About page)
   - Her view of competition: launching a store is easy now, so the problem is standing out, which takes "a relentless focus on their customer and a differentiated product that drives repeat purchase". (Women in eCommerce 2024)
@@ -47,9 +47,9 @@ On 2026-09-29 they published a holiday line of **58 new SKUs created in Septembe
   - The calendar forces a new creative every month (12–14 collections a year): the ideal Season-plan client.
   - Their stills-heavy library needs motion.
   - VXO's 6–10 stills per film also feed their long-running product-shot ads.
-- **Budget proxy:** $49–125 items, 1,000 doors, 100+ live ads. They can afford a $2,500 Premiere [inf].
+- **Budget proxy:** $49–148 items, 800+ doors, ~220 live ads (2026-10-09). They can afford a $2,500 Premiere [inf].
 - **Red flags:**
-  - (a) An art director hire suggests they may want in-house control. Pitch VXO as the *motion* layer for the art director, not a replacement.
+  - (a) ~~An art director hire~~ (post removed by 2026-10-09). They still have in-house design taste; pitch VXO as the *motion* layer, not a replacement.
   - (b) AI dogs are the hardest realism problem in the niche. We use one animal per shot, ≤5 s, Kling i2v from a **real photo of their own dog** (doc 52 §3), and generate no chewing.
   - (c) "Made in USA": only show it if the specific SKU qualifies (FTC "Made in USA" rule). Ask at intake.
   - (d) No known legal issues or bad news found in this run.
@@ -67,7 +67,7 @@ Logic: the holiday collar makes the dog the star of the family Christmas card. T
 | 5.0–7.5 | Insert, macro on a slider | **Real proof slot:** the client's own footage or real-photo i2v of the embroidered Gingerbread bow tie, buckle and stitching. No generated embroidery. |
 | 7.5–10.0 | Same viewfinder POV | Zoom again. Only the dog remains, from a real photo of Utah or a customer dog (with permission), ≤5 s, one animal. Head tilt only, no walking. |
 | 10.0–12.5 | Locked-off on the fridge door | Punchline: the printed card is on the fridge. It's the dog alone in the bow tie, with a human elbow just visible at the edge. A deadpan beat. |
-| 12.5–15.0 | Product end card | The Gingerbread bow tie plus the Tartan Flannel walk set on a white sweep. **VO (2 lines, locked voice, no lips on screen):** "Dress the one who's actually in the photo. The Foggy Dog holiday collection." Logo card plus a swappable offer slot. |
+| 12.5–15.0 | Product end card | The Gingerbread bow tie plus the Evergreen Candy Canes embroidered walk set (6/6 sizes in stock on 2026-10-09; the Tartan sets had only 3/6) on a white sweep. **VO (2 lines, locked voice, no lips on screen):** "Dress the one who's actually in the photo. The Foggy Dog holiday collection." Logo card plus a swappable offer slot. |
 
 - **Camera:** every position is a tripod, handheld, slider or fridge-door lock-off. The camera never passes through glass or walls.
 - **Continuity:** ONE bow tie throughout, and ONE dog.
@@ -83,36 +83,47 @@ Logic: the holiday collar makes the dog the star of the family Christmas card. T
 **Re-buy path:**
 - **12–14 seasonal collections a year:** lock the "Card Photo" skeleton (or a "walk" skeleton) and re-shoot it per collection. This is the Season plan ($3,500/mo).
 - Artist collabs (Gray Malin, Draper James, Olivia Herrick) each need a reveal film.
-- Retail sell-in clips for 1,000 doors (wholesale buyers watch video too [inf]).
+- Retail sell-in clips for 800+ doors (wholesale buyers watch video too [inf]).
 - Valentine's (Jan), spring and summer prints.
 
 **Suggested tier:** Premiere $2,500 now (holiday). Pitch Season ($3,500/mo) at the first reply, because their own calendar is monthly.
 
 ## 6. The angle for the first message
-Compliment a specific holiday SKU, then offer one visual, gently funny idea that makes the dog the hero, with the free frames built from **her own dog's photo**. Don't mention AI dogs or realism in message 1. Answer it with the frames.
+Compliment nothing; lead with the joke. Make the dog the hero, with the free stills built from **her own dog's photo** (Utah). Don't mention AI dogs or realism in message 1. Answer that with the stills.
 
-**DM (Instagram @thefoggydog; 59 words; NOT SENT):**
-> Hi Rose, the Gingerbread Man bow tie is the best holiday piece I've seen this year. Film idea: a family Christmas-card shoot where the photographer crops every human out until only the dog in the bow tie remains. I make AI product films (no shoot). Want 5 free frames for the bow tie, or the Tartan Flannel walk set?
+**The drafts to use are in `skills/ad-director/references/marketing/63-outreach-that-gets-replies.md` §4.1** (NOT SENT, awaiting the owner's "send #1"). The original drafts were removed here because they broke doc 63 §3: a superlative ("the best holiday piece"), no sender name, 59 words.
 
-**Email** (to woof@thefoggydog.com, the public address in the site footer and on /pages/contact-us; NOT SENT):
-> **Subject:** A holiday-card film for the Gingerbread bow tie
->
-> Hi Rose,
->
-> The new holiday line is lovely. The Gingerbread Man embroidered bow tie is the piece I keep coming back to.
->
-> One idea for it: a family Christmas-card shoot where the photographer keeps zooming in until every human is cropped out and only the dog in the bow tie is left. That's the card that ends up on the fridge. 15 seconds, made for paid social, with your real product close-ups kept as the proof shots.
->
-> I make AI product films (no shoot). I'd happily build 5 free concept frames, and one of them can use a photo of Utah.
->
-> Want them for the Gingerbread bow tie, or for the Tartan Flannel walk set?
->
-> [Owner name] · VXO · {BUSINESS_ADDRESS}
+One correction to the doc 63 §4.1 email: its second option is "the Tartan Plaid walk set". Both Tartan Plaid Flannel walk sets had only **3 of 6 sizes in stock** on 2026-10-09. Swap it for **the Evergreen Candy Canes walk set** (6/6 in stock, same holiday drop), or re-check stock on the send day.
 
 ## Sources
 - https://www.thefoggydog.com/products.json?limit=250 (pulled 2026-10-09; holiday SKUs created 2026-09-23/25, published 2026-09-29)
 - https://motionapp.com/library/the-foggy-dog (104 active, ~13 new/wk, 20 newest = 2 video / 18 image; "Refreshed 4 months ago")
 - https://www.thefoggydog.com/pages/about-us · https://www.thefoggydog.com/pages/contact-us
-- https://thefoggydog.betterteam.com/ (Art Director opening; "over 1,000 brick and mortar retailers")
+- https://thefoggydog.betterteam.com/ (re-checked 2026-10-09: no Art Director opening any more; the earlier "over 1,000 retailers" line is gone)
 - https://womeninecomm.yotpo.com/honorees/rose-shattuck/ (12–14 seasonal collections a year)
 - https://www.anthropologie.com/anthrohome/shop/the-foggy-dog-christmas-cookie-dog-toys-set-of-4
+
+## Verification (2026-10-09, live public data)
+
+**Method.** The public Meta Ad Library loads in headless Chromium (Playwright, `/opt/pw-browsers/chromium-1194`), through the agent proxy, with no login. A plain `curl` still gets 403; the page renders anyway because the data arrives by JS. Page-scoped URL: `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&media_type=all&search_type=page&view_all_page_id=525487920847043` (swap `media_type=video` for the video count). The counts flicker (one load in four returns "No ads match"), so every count below was confirmed on a second load. The ad cards (start date, format, copy) come from the page's own GraphQL responses; only the first ~30 cards load without scrolling, in Meta's default order.
+
+| Check | June snapshot (Motion) | Live 2026-10-09 | Verdict |
+|---|---|---|---|
+| Running ads now (US, active, own Page "The Foggy Dog", ID 525487920847043) | 104 | **~220** | ✅ More than doubled |
+| Video share | 2 of 20 newest | **3 of the top 30 cards** are video (10 %). The `media_type=video` filter says ~72 of ~220 (33 %), but it counts any dynamic ad holding one video asset | ✅ Still static-led |
+| Fresh creative | ~13 new/wk | 19 of the top 30 started in the last 30 days; holiday ads live since **9/30** ("Our NEW Holiday Collection…", "For the dogs who refuse to be underdressed this holiday season") | ✅ |
+| Already-AI flag (`contains_digital_created_media`) | — | 0 of 30 | No AI creative yet |
+| Holiday launch | "58 holiday SKUs" | **33 holiday SKUs** created 9/23–25 and published 9/29, plus 24 Active walk sets (created 9/8–9, published 9/18). All named SKUs are public, with none tagged hidden | ⚠️ Count corrected |
+| Site announcement bar | — | "Our most-anticipated launch of the year is here! SHOP HOLIDAY" plus a Halloween last-chance banner | ✅ Public |
+| Gingerbread Man Embroidered Bow Tie Collar | $52 | Live, all sizes in stock, page 200 | ✅ |
+| Tartan Plaid Flannel walk sets (the second CTA option) | — | Only 3/6 sizes in stock | ⚠️ Swap to Evergreen Candy Canes |
+| Contact email `woof@thefoggydog.com` | — | Found on the homepage and on /pages/contact-us (brand's own site) | ✅ |
+| Art Director hire | "hiring" | **Not listed any more** (Betterteam, rendered in a browser) | ❌ −3 points |
+| Retail doors | "800–1,000+" | About page: "over 800 retailers" | ⚠️ Corrected |
+| "Founded 2016" | — | Not on the About page | [unverified] |
+
+**A fit signal found in the live library:** on 9/10 they launched an ad reading "They're part of the family, so of course they belong in the photo." The "Card Photo" film is the funny version of a message they already pay to run. That's a strong reason to believe Rose will get the joke, and the film should be pitched as extending that line, not as a new idea.
+
+**Re-score:** Ads 27 (was 25) · Need 16 (was 18; the video filter suggests more video than the cards show) · Momentum 15 · Seasonal 10 · Budget 7 · Founder 10 · Hiring 0 (was 3) = **85, HOT. Still #1.**
+
+**Red team of this dossier (what was wrong):** the holiday SKU count (58 → 33), the Art Director hire (gone), 1,000+ doors (800+), "Founded 2016" (unsourced). None of these was in the message drafts, so no draft carried a wrong fact.

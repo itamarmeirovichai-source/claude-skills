@@ -1,18 +1,18 @@
 # Dossier: AUrate New York
 
 Prepared 2026-10-09 · vxo-leads §2b · Status: **NOT SENT — awaiting owner approval**
-Score: **73 / 100 (HOT, ranked 4th; lowest confidence of today's four)**. Breakdown and sources are in `../2026-10-09.md`.
+Score: **78 / 100 (HOT), re-scored after live verification** (was 73). Live ads are up to ~47 and still ~90 % static. But it remains the **lowest-confidence send**: the only contacts are generic inboxes, and the hero line is on a 40 %-off "Final Sale". See **Verification** at the end.
 
 Data notes:
 - Motion data is a snapshot from about June 2026.
-- The Meta Ad Library returned 403.
+- **Superseded by the Verification section:** the live Meta Ad Library (headless Chromium, 2026-10-09) shows ~47 active ads, not 21.
 - No 2025–2026 founder interview was found in this run, so the founder's voice is thin.
-- **The owner must check the Meta Ad Library by hand before sending.**
+- Ad activity is now verified live.
 
 ---
 
 ## 1. Why they are hot (one sentence)
-On **2026-09-30** they loaded a big **lab-grown diamond tennis line**: 6–9 ct tennis necklaces at $3,839–4,919 and tennis bracelets, part of **80 new SKUs created in the last 60 days**. Yet the Meta library snapshot was **21 active ads, 20 of 20 newest = still images**, almost all "25% off" offer banners. Fine-jewellery gifting peaks Black Friday through Christmas, 7–11 weeks away.
+On **2026-09-30** they created a big **lab-grown diamond tennis line** (published **10/5**): 4–9 ct tennis necklaces at **$3,449–5,459** (corrected; 9 ct Three-Prong from $4,919) and 3–6 ct tennis bracelets at $1,979–3,563, part of **80 new SKUs created in the last 60 days**. Yet the live Meta library (2026-10-09) is **~47 active ads, ~4 with video**, and the top 30 cards are all offer statics: September's "25% off" Tennis Sale, then from 10/6 "Our biggest diamond sale of the year… 40% off". Fine-jewellery gifting peaks Black Friday through Christmas, 7–11 weeks away.
 
 ## 2. The business
 - **What they sell:** fine jewellery in recycled gold, with lab-grown diamonds and gems. Price-anchored messaging such as "10 carats under $500" and "22 carats under $1k" (Motion summary).
@@ -26,7 +26,7 @@ On **2026-09-30** they loaded a big **lab-grown diamond tennis line**: 6–9 ct 
 - **Where they advertise:** Meta; a 21-ad snapshot, ~4 new a week.
 - **Current creative:**
   - **What works:** price-anchored offers.
-  - **What's weak:** 100% stills, the same "25% off" banner format repeated across rings, bracelets and necklaces, no motion and no story.
+  - **What's weak:** ~90 % stills (2 of the top 30 cards are video), the same offer-banner format (25 % off in September, 40 % off since 10/6) repeated across rings, bracelets and necklaces, no motion and no story.
   - The tennis line is a *sparkle* product, and stills can't show sparkle.
 
 ## 3. The person
@@ -80,28 +80,38 @@ A giant product with a real hand for scale (the Jacquemus format, LESSONS). The 
 **Suggested tier:** Premiere $2,500.
 
 ## 6. The angle for the first message
-Compliment the new lab-grown tennis line and offer one striking pun-made-literal visual. Ask which piece. Keep it short; the founders may not read IG DMs, so the email to hello@ is the main channel.
+Lead with the one striking pun-made-literal visual and ask which piece. The email to hello@ is the main channel; the founders may not read IG DMs.
 
-**DM (Instagram @auratenewyork; 59 words; NOT SENT):**
-> Hi Sophie and Bouchra, the new 9 ct lab-grown tennis necklace is a holiday hero. Film idea: a rooftop tennis court in Manhattan where the net is your tennis necklace, a serve clips it and it rings like a bell. I make AI product films (no shoot). Want 5 free frames for the tennis necklace, or the tennis bracelet?
+**The drafts to use are in `skills/ad-director/references/marketing/63-outreach-that-gets-replies.md` §4.4** (NOT SENT, awaiting the owner's "send #3"). The original drafts were removed here because they broke doc 63 §3 ("a holiday hero" filler, no sender name, 59 words).
 
-**Email** (to hello@auratenewyork.com, the public address on auratenewyork.com; NOT SENT):
-> **Subject:** A tennis-court film for the new lab-grown tennis line
->
-> Hi Sophie and Bouchra,
->
-> The new lab-grown tennis necklaces (the 9 ct especially) deserve more than a banner.
->
-> A 15 s idea: a rooftop court in Manhattan at dusk, and the net is a giant AUrate tennis necklace. A serve clips it, it rings like a bell, the ball rolls along the stones and drops over. "Let." Then the real piece, close up, with the lab-grown line on screen. Hands only, no AI models, and the stone count is taken from your product photo.
->
-> I make AI product films (no shoot). I'd build 5 free concept frames for you.
->
-> Want them for the tennis necklace, or the tennis bracelet?
->
-> [Owner name] · VXO · {BUSINESS_ADDRESS}
+Verification check on the §4.4 drafts:
+- The 9ct Three-Prong necklace is public (page 200, all sizes in stock).
+- It's tagged **"Final Sale"** and "Diamond Days 2026", and sits under a site-wide **"40% OFF! Limited edition diamonds. Shop before they're gone."** banner. A pitch that lands mid-sale may get "it's a limited run, it'll be gone before a film is ready". Keep the bracelet as the alternative, and be ready to move the concept to a core (non-limited) tennis piece.
+- Both founders are named. Sophie Kahn's co-founder role is confirmed by Glossy and Entreprenista profiles. Neither founder's *current* (2026) role could be verified, so the doc 63 email's "or whoever runs paid social, could you pass this on?" fallback is essential.
 
 ## Sources
 - https://auratenewyork.com/products.json?limit=250 (pulled 2026-10-09; lab-grown tennis necklaces created 2026-09-30)
 - https://motionapp.com/library/aurate-new-york (21 active, ~4 new/wk, 20 newest = 0 video / 20 image; "Refreshed 4 months ago")
 - https://www.cbinsights.com/company/aurate/financials · https://www.preqin.com/data/profile/asset/aurate-new-york/238002
 - https://www.forbesmiddleeast.com/lists/40-women-behind-middle-eastern-brands-2021/bouchra-ezzahraoui-darwazah/
+
+## Verification (2026-10-09, live public data)
+
+**Method.** Public Meta Ad Library in headless Chromium (Playwright), no login. Own Page **"AUrate New York" = `facebook.com/auratenewyork`, Page ID 674270965989061** (a keyword search for "AUrate New York" returns mostly other advertisers; search "auratenewyork" instead). Page URL: `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&media_type=all&search_type=page&view_all_page_id=674270965989061`.
+
+| Check | June snapshot / dossier | Live 2026-10-09 | Verdict |
+|---|---|---|---|
+| Running ads now (US, active) | 21 | **~47** | ✅ More than doubled |
+| Video share | 0 of 20 | `media_type=video` **~4 of ~47** (9 %); **2 of the top 30 cards** are video | ✅ Still near-zero video |
+| Freshness | ~4 new/wk | All top 30 cards started 9/10–10/6 | ✅ Actively refreshing (offers) |
+| Current offer | "25% off" | **40 % off "biggest diamond sale of the year"** (ads from 10/6, plus the site banner "40% OFF! Limited edition diamonds. Shop before they're gone.") | ⚠️ Deep discounting |
+| Already-AI flag | — | 0 of 30 | — |
+| Tennis line prices | necklaces $3,839–4,919 | Necklaces **$3,449–5,459**; bracelets $1,979–3,563; created 9/30, **published 10/5**; tagged "Final Sale", "Diamond Days 2026" | ⚠️ Corrected |
+| Hidden SKUs among the 80 new | — | **0 hidden** | ✅ |
+| Contact email `hello@auratenewyork.com` | "site" | Present only in the site's schema.org data (`"email"`); the visible footer link is **`care@auratenewyork.com`** (customer care) | ⚠️ It exists on the brand's own site, but it's not a published business inbox. hello@ is the better pick of the two |
+| Founders | Sophie Kahn, Bouchra Ezzahraoui | Co-founders confirmed by Glossy, Entreprenista and WSO profiles (older); 2026 roles not verified | [unverified current] |
+| Funding $24.95M / Series B 2023 | CB Insights | Not re-checked (paywalled) | [unchanged] |
+
+**Re-score:** Ads 22 (was 15) · Need 20 · Momentum 15 · Seasonal 10 · Budget 7 (was 9: VC-backed, possibly above the band, and a 40 %-off sale on fine jewellery) · Founder 4 · Hiring 0 = **78, HOT.** It's ranked 3rd on reachability, not on score: the inbox is generic and the founders' current roles are unverified.
+
+**Red team of this dossier (what was wrong):** the necklace price range ($3,839–4,919 → $3,449–5,459); "loaded 9/30" (created 9/30, published 10/5); "21 active, 25 % off" (now ~47, 40 % off); "hello@ (site)" (true, but it lives only in page metadata; the footer shows care@).
