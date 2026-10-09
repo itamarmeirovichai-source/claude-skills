@@ -52,3 +52,14 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 - Ship 6–10 stills with every film (furniture ads are 70% images; plain product shots score highest in home). The winning ad length in beauty, food and fashion is often 8–15 s, so always deliver a short cut.
 - Ad lifespans set the plan: outdoor and fashion ads die in ~20 days → sell the monthly Season plan; pets and furniture last 40–74 days → sell a Premiere one-off.
 - Proven formats: the product surviving an ordeal (Stanley); a giant product with a real hand for scale (Jacquemus); product-as-food (The Ordinary); the fridge-door POV with the product's own fate as the joke.
+
+## From niche research 53–54 (2026-10-09) [self]
+- The real competitor is the brand's own $400 in-house AI team (DSC). Sell what they get wrong: physics-checked, QC-measured, claims-checked. Say it on the site and in DMs.
+- Sell MODULES, not only films: a 3–5 s AI hook head (plus a 2–4 s mechanism insert) grafted onto the client's existing winning UGC body. Test hooked vs original, same body. Paid winners in tools/oral care run 43–78 s, so a 15 s film is often the wrong unit.
+- A splice must not be audible: ride the hook down to the UGC's loudness at the seam (step ≤ 3 dB), then master the whole to −14 LUFS / ≤ −1 dBTP.
+- A clock, timer, dB or "minutes" on screen is a claim. Only the client's tested number, with its source in the job file.
+- Hair, skin and teeth results are the hardest AI renders and the biggest legal trap: tell those stories through objects (the tool, the cord, the cross-section) and keep the proof slot for real footage.
+- "Inside the machine" cutaways (airflow x-ray, a hair cut under the skin) are cheap, AI-safe and have no realism expectation. Build a 6-insert mechanism library per niche.
+- A winning gag becomes a franchise: lock the skeleton, re-shoot per drop. This is the strongest Season-plan argument.
+- Volume is the founder-led bottleneck (3–7 creatives/week vs 37–688 for leaders). Check it per lead on Motion's public library page and pitch "+12–20 creatives a month".
+- New buyer: TikTok Shop affiliate managers. A 15 s "how it should look" seed film plus a shot list that hundreds of affiliates copy.

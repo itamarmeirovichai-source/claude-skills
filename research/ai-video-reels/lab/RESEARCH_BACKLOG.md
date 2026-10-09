@@ -24,6 +24,10 @@ Rule: whenever you check an item, add 2 new ones, including one "nobody asked, b
 - [ ] (nobody asked) Accessibility captions and sound-off design, since 70%+ of viewers watch muted.
 - [ ] (nobody asked) Legal: model-release and IP language for client contracts on AI films.
 
+- [ ] Hook-module pricing and test design: how to sell 3 s hook transplants (packs, hook-rate reporting, re-buy every 3–4 weeks).
+- [ ] (nobody asked) Affiliate seed films for TikTok Shop: how affiliate managers brief creators and what they would pay for a reference film.
+
 ## Done
 - [x] 2026-10-09: viral AI reel teardowns (42), model mastery (43), action and comedy craft (44), what sells (45), sound and QC tools (46).
 - [x] 2026-10-09: niche docs 47–52 (beauty, fashion, food, wellness, gadgets/home, pets/kids/outdoor). Running now.
+- [x] 2026-10-09: deep niche docs 53 (men's grooming, oral care) and 54 (hair tools, nails).
