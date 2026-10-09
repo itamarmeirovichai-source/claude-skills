@@ -1,0 +1,16 @@
+<section style="background:var(--cream-2)"><div class="wrap narrow">
+  <span class="pill b rv">{{ section.settings.pill }}</span>
+  <h2 class="rv" style="margin:18px 0 38px">{{ section.settings.headline }}</h2>
+  {% for block in section.blocks %}
+    <details class="rv"><summary>{{ block.settings.q }}</summary><p>{{ block.settings.a }}</p></details>
+  {% endfor %}
+</div></section>
+{% schema %}
+{"name":"FAQ","settings":[
+ {"type":"text","id":"pill","label":"Pill","default":"Questions"},
+ {"type":"text","id":"headline","label":"Headline","default":"Answered straight."}],
+ "blocks":[{"type":"qa","name":"Question","settings":[
+ {"type":"text","id":"q","label":"Question","default":"Will it break?"},
+ {"type":"textarea","id":"a","label":"Answer","default":"This is solid steel. If it does break inside thirty days we replace it."}]}],
+ "presets":[{"name":"FAQ","blocks":[{"type":"qa"},{"type":"qa"},{"type":"qa"}]}]}
+{% endschema %}

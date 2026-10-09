@@ -1,0 +1,62 @@
+{
+  "_comment": "Candidate products for the October 2026 re-decision. Every goods/freight/duty figure here is an ESTIMATE from research, not a supplier quote, and duty is the weakest number in the whole model because the HTS classification is unresolved. Replace a row's numbers the moment a real quote lands. See 06-research-october.md part 7 and sheets/post-deminimis-scenarios.csv.",
+
+  "_shared": {
+    "_note": "Costs that do not depend on which product is chosen.",
+    "payment_fee_pct": 2.9,
+    "payment_fee_fixed": 0.30,
+    "platform_fee_pct": 2.0,
+    "support_cost_per_order": 0.40,
+    "app_cost_per_order": 0.70
+  },
+
+  "_cpc_scenarios": [0.57, 0.80, 1.00],
+
+  "candidates": [
+    {
+      "name": "Gua sha set, single @ $42",
+      "aov": 42.00,
+      "goods": 11.00,
+      "freight": 2.80,
+      "duty": 2.50,
+      "refund_rate_pct": 4.0,
+      "note": "The current plan. Kitsch sells a steel gua sha at $12.99 on Amazon and $27 in Target, so the durability angle is category-standard copy, not a differentiator."
+    },
+    {
+      "name": "Gua sha set, 2-pack @ $69",
+      "aov": 69.00,
+      "goods": 20.00,
+      "freight": 3.80,
+      "duty": 4.50,
+      "refund_rate_pct": 4.0,
+      "note": "Same product, bundled. The $0 change that most improves the odds: shipping amortises across units, so CM% holds while break-even CAC nearly doubles."
+    },
+    {
+      "name": "Pickleball paddle + attach @ $95",
+      "aov": 95.00,
+      "goods": 24.00,
+      "freight": 3.00,
+      "duty": 6.00,
+      "refund_rate_pct": 5.0,
+      "note": "Best economics found. 24.3M US players in 2025, +22.8% YoY; core crush and delamination are a live, newsworthy complaint. BUT: a differentiated paddle needs MOQ 300 at $12.50-28.50 = $3,750-8,550, which this capital cannot reach, and the buyer is the most spec-literate in the set."
+    },
+    {
+      "name": "Hard-water shower filter + refill @ $84",
+      "aov": 83.60,
+      "goods": 12.00,
+      "freight": 4.00,
+      "duty": 3.50,
+      "refund_rate_pct": 5.0,
+      "note": "Best fit for the existing audience research. Search +1,033%; Jolie did ~$50M in 2024 from one SKU at $148-169. The only candidate with a built-in consumable, so it has LTV rather than one-and-done. Goods cost is an estimate, not a quote."
+    },
+    {
+      "name": "Silk pillowcase set @ $79",
+      "aov": 79.00,
+      "goods": 12.00,
+      "freight": 2.00,
+      "duty": 4.00,
+      "refund_rate_pct": 6.0,
+      "note": "Blissy did $7.65M in September 2024 alone at an ~$88 AOV, which proves the price point works on Meta. But the premium is pure brand, and brand is what $2,000 cannot buy."
+    }
+  ]
+}

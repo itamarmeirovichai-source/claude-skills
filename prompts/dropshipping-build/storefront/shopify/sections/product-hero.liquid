@@ -1,0 +1,111 @@
+{%- assign p = section.settings.product | default: product -%}
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap hero-g">
+    <div class="rv" data-stg>
+      <span class="pill b">{{ section.settings.pill }}</span>
+      <h1>{{ section.settings.headline }}</h1>
+      <p class="lede">{{ section.settings.lede }}</p>
+      <div class="trust">
+        <span class="pill o">✦ {{ section.settings.t1 }}</span>
+        <span class="pill o">✦ {{ section.settings.t2 }}</span>
+        <span class="pill o">✦ {{ section.settings.t3 }}</span>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="card">
+        <div class="stage">
+          {%- if p.images.size > 0 -%}
+            {%- for img in p.images limit: 4 -%}
+              <div class="shot{% if forloop.first %} on{% endif %}" data-s="{{ forloop.index0 }}">
+                {{ img | image_url: width: 900 | image_tag:
+                   loading: forloop.first | default: 'lazy',
+                   alt: img.alt | default: p.title }}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <div class="shot on" data-s="0" style="display:grid;place-items:center;color:var(--ink-2);font-size:14px;text-align:center;padding:14%">
+              Add product images in <b>Products → {{ p.title | default: 'your product' }}</b>
+            </div>
+          {%- endif -%}
+          <div class="sheen"></div>
+        </div>
+        {%- if p.images.size > 1 -%}
+          <div class="thumbs" role="tablist" aria-label="Views">
+            {%- for img in p.images limit: 4 -%}
+              <div class="thumb" role="tab" tabindex="0"
+                   aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                   data-g="{{ forloop.index0 }}">
+                {{ img | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="buy"><div class="wrap buy-g">
+  <div class="rv">
+    <span class="pill c">{{ p.title | default: 'The Steel Set' }}</span>
+    <h2 style="margin-top:16px">{{ section.settings.buy_head }}</h2>
+    <p style="color:var(--ink-2);margin:14px 0 0;max-width:38ch">{{ section.settings.buy_sub }}</p>
+    <div class="price-row">
+      <span class="price tnum">{{ p.price | money_without_trailing_zeros }}</span>
+      {%- if p.compare_at_price > p.price -%}
+        <span class="was tnum">{{ p.compare_at_price | money_without_trailing_zeros }}</span>
+        <span class="pill s">Save {{ p.compare_at_price | minus: p.price | times: 100.0 | divided_by: p.compare_at_price | round }}%</span>
+      {%- endif -%}
+    </div>
+    <ul class="spec">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'spec' -%}
+          <li>
+            <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4 8.3l2.7 2.7L12 5.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>{{ block.settings.text }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <div class="rv" data-stg>
+    {%- form 'product', p, id: 'buy-form' -%}
+      <div class="tiers" role="radiogroup" aria-label="Quantity">
+        {%- for v in p.variants -%}
+          <div class="tier" role="radio" tabindex="0"
+               aria-checked="{% if forloop.index == 2 or p.variants.size == 1 %}true{% else %}false{% endif %}"
+               data-id="{{ v.id }}" data-p="{{ v.price | divided_by: 100.0 }}">
+            {%- if forloop.index == 2 -%}<span class="flag">Most chosen</span>{%- endif -%}
+            <span><span class="t-n">{{ v.title }}</span></span>
+            <span class="t-p tnum">{{ v.price | money }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+      <input type="hidden" name="id" id="variant-id"
+             value="{% if p.variants[1] %}{{ p.variants[1].id }}{% else %}{{ p.selected_or_first_available_variant.id }}{% endif %}">
+      <button class="atc" id="atc" type="submit" {% unless p.available %}disabled{% endunless %}>
+        {%- if p.available -%}Add to cart — <span class="tnum" id="ap"></span>{%- else -%}Sold out{%- endif -%}
+      </button>
+    {%- endform -%}
+    <p class="eta">Ships free ✦ Arrives <b id="eta">in 6–12 days</b></p>
+  </div>
+</div></div>
+
+{% schema %}
+{"name":"Product hero","settings":[
+ {"type":"product","id":"product","label":"Product"},
+ {"type":"text","id":"pill","label":"Pill","default":"Solid 304 stainless"},
+ {"type":"textarea","id":"headline","label":"Headline","default":"Stone breaks. Stone absorbs. Steel does neither."},
+ {"type":"textarea","id":"lede","label":"Lede","default":"A three-piece facial massage set made from the material the job actually calls for."},
+ {"type":"text","id":"t1","label":"Trust 1","default":"Free shipping"},
+ {"type":"text","id":"t2","label":"Trust 2","default":"30-day replacement"},
+ {"type":"text","id":"t3","label":"Trust 3","default":"6–12 day delivery"},
+ {"type":"text","id":"buy_head","label":"Buy headline","default":"Three pieces. One material."},
+ {"type":"textarea","id":"buy_sub","label":"Buy sub","default":"Contour tool, dual roller, two vacuum cups."}],
+ "blocks":[{"type":"spec","name":"Spec line","settings":[
+ {"type":"text","id":"text","label":"Text","default":"Solid 304 stainless — not plated, not coated"}]}],
+ "presets":[{"name":"Product hero","blocks":[{"type":"spec"},{"type":"spec"},{"type":"spec"},{"type":"spec"}]}]}
+{% endschema %}

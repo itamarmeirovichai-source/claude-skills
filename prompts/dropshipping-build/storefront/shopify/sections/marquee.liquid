@@ -1,0 +1,16 @@
+<div class="tick"><div class="tick-t">
+  {% for i in (1..2) %}
+    {% for block in section.blocks %}<span>{{ block.settings.text }} ✦</span>{% endfor %}
+  {% endfor %}
+</div></div>
+{% schema %}
+{"name":"Marquee","blocks":[{"type":"item","name":"Item","settings":[
+ {"type":"text","id":"text","label":"Text","default":"Non-porous"}]}],
+ "presets":[{"name":"Marquee","blocks":[
+ {"type":"item","settings":{"text":"Non-porous"}},
+ {"type":"item","settings":{"text":"Sealed bearing"}},
+ {"type":"item","settings":{"text":"Still cold after 20 minutes"}},
+ {"type":"item","settings":{"text":"Won't snap"}},
+ {"type":"item","settings":{"text":"Free shipping"}},
+ {"type":"item","settings":{"text":"30-day replacement"}}]}]}
+{% endschema %}

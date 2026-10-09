@@ -1,0 +1,35 @@
+Unit Economics — Gua Sha Set,,,
+,,,
+INPUTS,Value,Unit,Notes
+Selling price,42.00,USD,Edit this
+Product cost,8.50,USD,From supplier — verify
+Packaging,1.00,USD,Box + case
+Shipping to customer,4.50,USD,AliExpress Choice
+Payment fee %,2.9,%,Shopify Payments
+Payment fee fixed,0.30,USD,
+Refund rate,3.0,%,Category benchmark ~11% — 3% is optimistic
+Support cost per order,0.40,USD,
+App cost per order,0.70,USD,High at low volume
+,,,
+CALCULATED,Formula,Result,
+Landed COGS,=B4+B5+B6,14.00,
+Payment fee,=B4*0+B2*B7/100+B8,1.52,
+Refund reserve,=B2*B9/100,1.26,
+Total variable non-ad,=C14+C15+C16+B10+B11,17.88,
+CONTRIBUTION,=B2-C17,24.12,
+CM %,=C18/B2,57.4%,
+BREAK-EVEN ROAS,=1/C19,1.74,<< the number that governs you
+BREAK-EVEN CAC,=C18,24.12,
+,,,
+SENSITIVITY — profit per order at various CAC,,,
+CAC 15,=C18-15,9.12,
+CAC 18,=C18-18,6.12,
+CAC 22,=C18-22,2.12,
+CAC 24.12,=C18-24.12,0.00,Break-even
+CAC 28,=C18-28,-3.88,Loss
+,,,
+QUANTITY BREAK SCENARIOS,AOV,Contribution,Break-even ROAS
+1 set,42.00,24.12,1.74
+2 sets (15% off),71.40,40.30,1.77
+3 sets (25% off),94.50,51.00,1.85
+Realistic mix,52.00,30.00,1.73

@@ -1,0 +1,12 @@
+Order Tracker,,,,,,,
+,,,,,,,
+Order #,Date,Customer,Product,Supplier order placed,Tracking #,Status,Notes
+,,,,,,,
+STATUS VALUES,,,,,,,
+PLACED / SHIPPED / DELIVERED / ISSUE / REFUNDED,,,,,,,
+,,,,,,,
+RULES,,,,,,,
+Place supplier order same day,,,,,,,
+Any dispute = refund immediately no discussion,,,,,,,
+Arrived damaged = replace no return needed,,,,,,,
+Past day 14 = refund or replace customer chooses,,,,,,,

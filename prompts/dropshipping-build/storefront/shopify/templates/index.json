@@ -1,0 +1,11 @@
+{"sections":{
+ "hero":{"type":"product-hero"},
+ "marquee":{"type":"marquee"},
+ "material":{"type":"material"},
+ "stats":{"type":"stats"},
+ "drop":{"type":"drop-test"},
+ "routine":{"type":"routine"},
+ "honest":{"type":"honest"},
+ "reviews":{"type":"reviews"},
+ "faq":{"type":"faq"}},
+ "order":["hero","marquee","material","stats","drop","routine","honest","reviews","faq"]}
