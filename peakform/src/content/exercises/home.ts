@@ -113,9 +113,9 @@ export const HOME_EXERCISES: ExerciseContent[] = [
     kind: 'jump',
     purpose:
       'Low, quick hops side to side over a line on the floor. They train quick, controlled ankles and steady knees when you move sideways, as you do when you block or cover in volleyball, with small landings that fit under a normal ceiling.',
-    equipment: ['A line of tape on the floor, or a rope laid flat', 'About 1.5 by 1.5 metres of clear floor', 'Supportive trainers'],
+    equipment: ['A line on the floor: tape, a rope laid flat, a floor seam, or two socks about a metre apart', 'About 1.5 by 1.5 metres of clear floor', 'Supportive trainers'],
     setup: [
-      'Lay a strip of tape or a rope flat on a floor that is not slippery.',
+      'Mark a line on a floor that is not slippery: a strip of tape, a rope laid flat, a seam between floor tiles, or two socks about a metre apart.',
       'Stand beside the line with your feet about hip width apart.',
       'Bend the knees slightly and keep your weight on the balls of the feet.',
     ],

@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.1, 2026-10-09
+
+- Lateral Line Hop no longer needs tape: any line on the floor works, such as a rope, a seam between tiles, or two socks about a metre apart. Home jump sessions now keep the side hops whenever the space, floor, and noise allow them, instead of swapping them for Shadow Passing Footwork, which trains passing footwork rather than the jump. The swap still happens when noise limits or the floor rule out hops.
+
 ## 3.1.0, 2026-10-09
 
 Changes from a review of jump training, injury risk, body composition, and recovery in growing teenagers (TRAINING_AUDIT.md, section 3.1.0).
