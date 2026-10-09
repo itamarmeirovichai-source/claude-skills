@@ -17,6 +17,7 @@ import { dayTotals, exampleDayTotals } from '../domain/nutrition';
 import { templatesForDay } from '../content/meals';
 import { openQuestions, reviewedEnergy } from '../domain/athlete';
 import { heavyJumpingNear } from '../domain/exposure';
+import { JumpDayNote } from '../ui/JumpDayNote';
 import { formatClock, remainingMs } from '../domain/timer';
 import { summarizeSets } from '../ui/format';
 import { PlanUpdateCard } from './PlanUpdate';
@@ -138,6 +139,7 @@ export function TodayScreen() {
           </Note>
         </div>
       )}
+      {homeJumps && !safety.urgent && <JumpDayNote date={today} />}
       {heavySport && !safety.urgent && (
         <div style={{ marginBottom: 12 }} data-testid="sport-jumping-note">
           <Note tone="warn" title="Lots of jumping at sport">

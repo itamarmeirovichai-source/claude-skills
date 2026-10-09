@@ -43,14 +43,14 @@ Sources were reached through web search results only. Every primary site tried (
 | Day | Home | Gym |
 | --- | --- | --- |
 | Sunday | None | Upper A, about 70 minutes |
-| Monday | Movement prep, landings, jumps, and full approach jumps, about 30 minutes at the starting level (about 45 at the build level), before the gym | Lower A, about 40 minutes |
+| Monday | Movement prep, landings, jumps, and full approach jumps, about 35 minutes at the starting level (about 45 at the build level), before the gym | Lower A, about 40 minutes |
 | Tuesday | None | None. School sport counts |
 | Wednesday | None | Upper B, about 70 to 75 minutes |
-| Thursday | Movement prep, landings, jumps, and full approach jumps, about 30 minutes at the starting level (about 45 at the build level), before the gym | Lower B, about 50 minutes |
+| Thursday | Movement prep, landings, jumps, and full approach jumps, about 35 minutes at the starting level (about 45 at the build level), before the gym | Lower B, about 50 minutes |
 | Friday | Volleyball skills without jumps, about 20 minutes | None |
 | Saturday | Rest and Sabbath | Rest |
 
-Durations are estimates from the plan itself: about 3 seconds a repetition, the prescribed rest after every set (only the last rest of the session is left out), a short switch between sides, about a minute to change exercises at the gym and half a minute at home, and 5 minutes of warm up at the gym. Jump work needs full rest, so most of a home session is rest. Until the home space is described, the home session is only the 7 minute movement prep and a tibialis exercise, about 10 minutes. On Monday and Thursday the home and gym sessions together come to about 70 to 80 minutes at the starting level and about 85 to 95 minutes at the build level; that is the main cost of the build level and a reason to stay at the starting level on busy weeks.
+Durations are estimates from the plan itself: about 3 seconds a repetition, the prescribed rest after every set (only the last rest of the session is left out), a short switch between sides, about a minute to change exercises at the gym and half a minute at home, and 5 minutes of warm up at the gym. Jump work needs full rest, so most of a home session is rest. Until the home space is described, the home session is only the 10 minute movement prep and a tibialis exercise, about 15 minutes. On Monday and Thursday the home and gym sessions together come to about 75 to 85 minutes at the starting level and about 85 to 95 minutes at the build level; that is the main cost of the build level and a reason to stay at the starting level on busy weeks.
 
 Default times: home sessions at 16:15 on Monday and Thursday, about an hour after the 15:20 afternoon meal; gym at 17:00 on those days and 16:30 on Sunday and Wednesday; Friday skills at 13:30. All times are editable. If the home jumps are set after the gym, the day shows a note that jumps go first.
 
@@ -98,7 +98,7 @@ Starting level, about 64 landings when the space allows everything:
 
 | Drill | Sets × reps | Rest | Needs | Quiet or no jump fallback |
 | --- | --- | --- | --- | --- |
-| Home movement prep | 7 minutes | n/a | 2 × 2 m, any ceiling, no impact | n/a |
+| Home movement prep, with landing, balance, and trunk control (10 minutes since 3.1.0) | 10 minutes | n/a | 2 × 2 m, any ceiling, no impact | n/a |
 | Snap down and stick | 2 × 4 | 60 s | 2 × 2 m, standard ceiling, safe floor | Block footwork |
 | Pogo hop | 2 × 10 | 60 s | 2 × 2 m, standard ceiling, safe floor, some noise | Tibialis raise, 2 × 15 |
 | Lateral line hop | 2 × 8 | 60 s | 1.5 × 1.5 m, tape line | Shadow pass footwork |
@@ -135,3 +135,19 @@ Flexible stages counted from the plan start, in `src/content/phases.ts`: techniq
 - The home space is unknown until it is entered, so a fresh plan uses quiet drills without jumps.
 - Weekly set numbers are lower than the previous plan for the arms and shoulders. Whether to add sets is a question for the review after the first stage, with a coach if possible.
 - No study can say how much one person will gain. Adolescent plyometric meta-analyses average about 2 to 3 cm in countermovement jump, with wide variation.
+
+## 3.1.0: changes from the jump and body composition review
+
+A second review (2026-10-09, search snippets and abstracts only, no full texts) asked how a growing teenage volleyball and basketball player can raise jump height over four months. It found that the plan's structure already fits the evidence: around the growth spurt, strength training responds strongly and plyometrics only modestly, two jump sessions a week are enough, sessions of 16 or more beat shorter programmes, and no study supports daily jumps or training to failure. In that review, the realistic best case for approach touch height over four months was roughly 8 to 15 cm, an estimate built from training, technique, and growth together. Changes:
+
+| Change | Evidence | Population |
+| --- | --- | --- |
+| Jump only while knee, heel, shin, or Achilles pain stays at 2 out of 10 or less during the session and the next morning; above that, Today and the Train day say to skip the jumps that day | Rathleff 2020, the one loading protocol built for adolescents (Osgood-Schlatter) | Ages 10 to 14, no control group |
+| A night under 8 hours before a home jump day: advice to do one set of each jump drill | Milewski 2014; sleep and injury meta-analysis | Adolescents, observational |
+| Home warm up 10 minutes, adding side plank, single leg balance, and drop and freeze landings | Rössler 2014 (injuries about halved), adolescent team sport meta-analysis (IRR 0.65) | Youth athletes |
+| In a week with many games, cut the home jump session first | Visnes and Bahr 2013 (risk per extra match set), Bahr 2014 jump counts | Elite youth volleyball, 16 to 18 |
+| Push the lifting phase with full intent to move fast, still at the planned reps in reserve | Velocity and power training research, mostly adult | Adults, extrapolated |
+| Film one set of approach jumps from the side every second week | Approach technique and arm swing hold the cheapest centimetres; no technique training trial in cm was found | Adults and youth, inference |
+| Safety page: signs that need a doctor without waiting (a knee that will not straighten, night pain, fever with a swollen knee, not bearing weight) | Clinical patient information | General |
+
+Not changed: four gym days, two home jump days with 72 hours between them, the jump volume, and the approach jumps. Heavy, slow or isometric knee and calf work for the tendons was suggested by adult evidence; the gym already includes the leg press, leg extension, and calf raises with controlled lowering, so no exercise was added.

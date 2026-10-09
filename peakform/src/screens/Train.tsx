@@ -17,6 +17,7 @@ import { sessionInfo } from '../domain/sessionInfo';
 import { contacts } from '../content/phases';
 import type { MuscleId } from '../content/muscles';
 import type { PlanRecord } from '../db/records';
+import { JumpDayNote } from '../ui/JumpDayNote';
 
 export function targetText(it: PlanItem): string {
   const t = it.target;
@@ -157,6 +158,7 @@ export function TrainDayScreen({ weekday, date }: { weekday: number; date: strin
             const running = active && active.date === d && active.session === s && active.planWeekday === weekday ? active : undefined;
             return (
               <Section key={s} title={`${SESSION_LABELS[s]}, ${sessionTime(settings, weekday, s)}`}>
+                {s === 'home' && d === today && landings > 0 && <JumpDayNote date={d} />}
                 <div className="panel small stack" style={{ marginBottom: 8 }} data-testid={`session-info-${s}`}>
                   <p>
                     <span className="tag tag-accent" style={{ marginRight: 6 }}>{info.locationLabel}</span>

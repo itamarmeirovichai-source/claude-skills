@@ -1,6 +1,6 @@
 # PeakForm build status
 
-Last updated: 2026-10-08. Version 3.0.1 (full approach jumps at home).
+Last updated: 2026-10-09. Version 3.1.0 (pain and sleep rules for jump days, longer warm up, example meals closer to needs).
 
 ## State
 
@@ -28,9 +28,9 @@ Built and tested in the build environment (TEST_REPORT.md). Deployment happens w
 ## Completed
 
 - Content: 103 exercises, including four new home drills, each with a wrist load rating and, for home drills, space needs. Foods with states and sources, raw and dry entries, yields, example meals, recipes computed from ingredients, meal preparation, and the Sabbath plate guide.
-- Engines: plan proposals and differences, home space matching, wrist gate, exposure from school sport, jump tests, kosher timing, recipe math, the nutrition check, the weekly review with professional review reasons, and the plan export, with unit tests (168).
+- Engines: plan proposals and differences, home space matching, wrist gate, exposure from school sport, jump tests, kosher timing, recipe math, the nutrition check, the weekly review with professional review reasons, and the plan export, with unit tests (171).
 - Screens: Your profile, Goals and reviews, School sport, Jump tests, the plan preview, and session information on Train.
-- End to end tests (84): 48 at 390 px, plus layout and accessibility at 375, 393, and 430 px.
+- End to end tests (85): 49 at 390 px, plus layout and accessibility at 375, 393, and 430 px.
 - Documentation: TRAINING_AUDIT.md, NUTRITION_DATA_AUDIT.md, RESEARCH.md (3.0 section and 18 new sources), CHANGELOG.md, TEST_REPORT.md, USER_GUIDE.md, PRIVACY_AND_SECURITY.md.
 
 ## Known limits

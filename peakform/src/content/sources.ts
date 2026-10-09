@@ -702,7 +702,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'This meta-analysis abstract links chronic short sleep with higher sports injury rates in adolescents. It builds on earlier work by Milewski and colleagues (2014) reporting that adolescent athletes sleeping under 8 hours were about 1.7 times more likely to be injured.',
     productDecision:
-      'Sleep feeds the readiness indicator and the weekly review. PeakForm does not change the plan by itself.',
+      'Sleep feeds the readiness indicator and the weekly review. Since 3.1.0, a night under 8 hours before a home jump day shows advice to do one set of each jump drill. PeakForm does not change the plan by itself.',
     uncertainty:
       'Observational association, not proof that more sleep prevents injury. This is a conference abstract, and the 1.7 figure came from a secondary review snippet.',
     access: 'search-snippet',
@@ -1451,7 +1451,7 @@ export const SOURCES: SourceReference[] = [
     reviewedOn: '2026-10-02',
     topic: 'youth-training',
     conclusion: "Over four years, the risk of jumper's knee rose with every extra weekly hour of volleyball training and every extra match set.",
-    productDecision: 'Pain below the kneecap that lasts into the next morning means fewer jumps and telling a parent.',
+    productDecision: 'Since 3.1.0, knee pain above 2 out of 10 the next morning skips the next home jump session, and in a week with many games the home jump session is the first thing to cut. Matches carried the most risk here.',
     uncertainty: 'Elite students aged 16 to 18. Search snippets only.',
     access: 'search-snippet',
   },
@@ -1464,7 +1464,7 @@ export const SOURCES: SourceReference[] = [
     reviewedOn: '2026-10-02',
     topic: 'youth-training',
     conclusion: 'Managing knee load by pain, with knee strengthening, gave a successful outcome in 80 percent of young athletes with Osgood-Schlatter disease at 12 weeks, though return to full sport took longer.',
-    productDecision: 'Pain at the bump under the knee reduces jumps and is a reason to see a physio, rather than training through it.',
+    productDecision: 'Since 3.1.0 jumping continues only while knee, heel, shin, or Achilles pain stays at 2 out of 10 or less during the session and the next morning, the threshold of this adolescent protocol. Above that, Today and the Train day say to skip the jumps that day, and the safety page lists signs that need a doctor.',
     uncertainty: 'Ages 10 to 14, 51 participants. Search snippets only.',
     access: 'search-snippet',
   },
@@ -1745,7 +1745,7 @@ export const SOURCES: SourceReference[] = [
     conclusion:
       'Exercise based programmes with landing, balance, and strength work roughly halved injury rates in young athletes.',
     productDecision:
-      'Every home jump session starts with movement preparation and landing practice before any bigger jumps.',
+      'Since 3.1.0 every home jump session starts with a 10 minute warm up that includes landing, balance, and trunk control, before any bigger jumps.',
     uncertainty:
       'Mixed sports and programmes.',
     access: 'search-snippet',
