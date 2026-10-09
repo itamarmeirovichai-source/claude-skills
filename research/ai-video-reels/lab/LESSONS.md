@@ -82,3 +82,6 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 - Kickstarter requires a working prototype, bans photorealistic renders of unbuilt products and requires an AI-use disclosure. In crowdfunding films, the product's performance comes only from the client's real prototype footage.
 - In app ads, 35 of 55 speak in the first second: put a written or spoken line on frame 0 as well as motion.
 - Health, sleep and focus apps convert best in mid-January: approach them in October–November.
+
+## From the outreach clean-up (2026-10-09) [self]
+- 2026-10-09 · [self] (WEAKNESSES #16, owner decision 14) · The Foggy Dog pitch read as "AI instead of your content person", but she has an in-house content hire (Finn & Gray handed over to one) · RULE: never pitch an AI film as replacing a brand's own creative staff. Position VXO as the scenario layer they can't shoot (a staged scene, a crowd, weather, a set) built around their real product and real photos, and offer the stills and the shot list to their content lead. Never write "replace", "instead of a shoot" or "cheaper than a team".

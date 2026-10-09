@@ -61,26 +61,25 @@ Their Meta library is huge and still mostly static: **~670 active ads live on 20
   - (d) The Shark Tank outcome was "no deal". Never imply a deal.
 
 ## 5. The buying path
-**The ONE film that would make them buy now: "Same Ritual" (15 s, 9:16 + 4:5) for Dry January.**
-The punchline is *caused* by the product: the 5 pm ritual stays exactly the same, so Saturday morning is yours. Their own line becomes the VO.
+**The ONE film that would make them buy now: "Calendar" (15 s, 9:16 + 4:5) for Dry January.** *(Replaced 2026-10-09, owner decision 10. The old "Same Ritual" film used a coupe, ice plus a record at Friday 5 pm, a candle, and a Saturday 7 am "fresh morning" payoff under "None of the regret": a cocktail-glass alcohol cue, cocktail-hour framing, and an implied no-hangover claim. All of it is gone.)*
+The punchline is *caused* by the product: Dry January ends, and the hand still reaches for a Moment can. It sells the ritual and the taste, never an effect.
 
 | t (s) | Shot (real rig) | Action / sound |
 |---|---|---|
-| 0.0–1.0 | Locked-off on a kitchen counter, 50 mm, tripod | **Frame 0 in motion plus sound-first:** a laptop lid slams shut in the background (thud). Super: "Friday, 5:00 pm." |
-| 1.0–2.5 | Fridge-door POV (camera hard-mounted inside the door) | The door swings open and a hand takes ONE can of Moment (the real can photo, Kling i2v, label crisp). |
-| 2.5–4.0 | Same counter lock-off | Four pieces of fractured clear ice drop into ONE coupe (named vessel). The can's tab cracks once and stays up, with a 0.3 s vapour puff. |
-| 4.0–6.0 | Macro, slider | **Proof slot / real insert:** the client's own 3 s pour, phone 4K at 60 fps. The level visibly rises, with uneven bubbles. |
-| 6.0–8.0 | Same counter lock-off | A record needle drops (sound-first), a candle is lit, and a garnish matching the can's real flavour (hibiscus or cherry) goes in. **No sip on camera**; the coupe is lifted out of frame. |
-| 8.0–10.5 | **Same lock-off, same counter** | **Turn:** a hard cut to super "Saturday, 7:00 am." Morning light. The coupe is washed and drying upside-down on the rack. |
-| 10.5–12.5 | Same lock-off | Punchline: a hand drops keys and the Moment midi tote on the counter, then grabs them back. The door closes off-screen, and the counter is empty and bright. |
-| 12.5–15.0 | End card | **VO (their own line, 2 lines, locked voice, no lips):** "All of the ritual. None of the regret." Logo, the can line-up, and a swappable offer slot ("Dry January bundle"). |
+| 0.0–1.0 | Locked-off on a kitchen counter, 50 mm, tripod. A paper wall calendar reads "JANUARY 1" | **Frame 0 in motion plus sound-first:** a hand cracks ONE Moment can (the real can photo, Kling i2v, label crisp). The tab cracks once and stays up. Super: "Dry January. Day 1." |
+| 1.0–3.0 | Same lock-off | The can pours into ONE plain, straight-sided clear tumbler (named vessel; no stem, no coupe, no garnish pick). |
+| 3.0–5.0 | Macro, slider | **Proof slot / real insert:** the client's own 3 s pour, phone 4K at 60 fps. The level visibly rises, with uneven bubbles. |
+| 5.0–10.0 | Same lock-off, 6–8 hard cuts | A calendar page tears off per cut (paper rip on each measured frame); a different real flavour can each day; the rinsed empty cans line up by the sink. Daylight changes per cut. **No sip on camera**; the tumbler leaves frame full and comes back empty. |
+| 10.0–12.5 | Same lock-off | **Turn and punchline:** the page tears to "FEBRUARY 1". Beat. The hand reaches into frame for a can anyway. Super: "February 1." |
+| 12.5–15.0 | End card | **VO (2 lines, locked voice, no lips):** "All of the ritual." plus the logo. Second line agreed at intake from her label, never an effect. The can line-up and a swappable offer slot ("Dry January bundle"). |
 
-- **Physics and continuity:** ONE coupe and ONE can; the ice only shrinks; the level only rises with a pour and only falls off-screen.
-- **Camera:** every position is a tripod, a fridge-door hard mount or a slider.
+- **Physics and continuity:** ONE tumbler and ONE can per day; the level only rises with a pour and only falls off-screen; the can count by the sink only grows.
+- **Camera:** every position is a tripod or a slider.
 - **Meta-safe pre-flight (doc 57 §5.5):**
   - no alcohol bottles or brands anywhere in frame (check the background shelves);
+  - no coupe, wine, flute, martini or cocktail glass; no bar tools, no ice bucket, no record player or candle "cocktail hour" set;
   - no sip;
-  - no effect claims;
+  - no morning-after shot and no effect claims ("hangover", "calm", "mood", "sleep", "focus", "regret") in supers, VO or picture;
   - "0 % alcohol" only as their label states.
 
 **The proof they need:**
@@ -94,16 +93,16 @@ The punchline is *caused* by the product: the 5 pm ritual stays exactly the same
 - Dry January → Valentine's date night → Mother's Day → summer → Sober October → holidays.
 - A new flavour or collab (Loftie, Barbie) every month.
 - Statics fatigue within ~23 days.
-- This becomes the **Season plan** ($3,500/mo) for a locked "Same Ritual" franchise re-shot per occasion (5 pm, date night, Sunday reset).
+- This becomes the **Season plan** ($3,500/mo) for a locked "Calendar" franchise re-shot per occasion (Valentine's, Mother's Day, Sober October), with the same rules: her can or a plain tumbler, no cocktail-hour set, no effect claims.
 
 **Suggested tier:** Premiere $2,500 for Dry January. Then Season.
 
 ## 6. The angle for the first message
-Give one visual idea that dramatises the ritual **without a claim**, and get the stills ready for a Dry January date. Don't quote their line back (it's their homepage line, so it only proves we saw the homepage).
+Give one visual idea that dramatises the ritual **without a claim**, and get the stills ready for a Dry January date. Don't quote their line back (it's their homepage line, so it only proves we saw the homepage). No coupe, no cocktail-hour framing, no morning-after shot, and no hangover, calm or health wording in any message (owner decision 10, 2026-10-09).
 
 **The drafts to use are in `skills/ad-director/references/marketing/63-outreach-that-gets-replies.md` §4.2** (NOT SENT, awaiting the owner's "send #2"). The original drafts were removed here because they broke doc 63 §3 (no sender name, 59 words, and "none of the regret" over a Saturday-morning shot implies a no-hangover benefit).
 
-Verification check on the §4.2 drafts: both CTA options are public. Pink Moment (`/products/pinkmoment`, page 200, in stock) and the sparkling line (several live "Sparkling" collections) both pass. Nothing in the drafts uses back-end data.
+Verification check on the §4.2 drafts (re-done 2026-10-09 after the rewrite) [m]: the CTA options are now **the sparkling collection** (`/products/moodboostsparklingcollection`, $59, 18/24/36 packs all available, linked from the homepage "Shop Now" and in `/collections/limitededition`) and **strawberry rose (12 Pack)** (`/products/strawberry-rose-adaptogen-drink-12-pack`, $40, available, in the homepage flavour slider). Pink Moment was dropped as a CTA: it's in stock, but it's an October pack ("for the month when the color carries a little more weight") and isn't linked from the navigation. Cherry hibiscus is not used as a CTA, because its own page says it "channels the complexity of red wine". The `dry-january-2026` set is last season's (created 2025-12-17, not in the navigation); don't name it unless she relaunches it. Nothing in the drafts uses back-end data.
 
 ## Sources
 - https://drinkmoment.com/products.json?limit=250 (pulled 2026-10-09; `sober-tober-collection` 2026-09-15/16, `pinkmoment` 2026-09-21, `moment-x-loftie-holiday-puzzle-copy` 2026-10-08)
@@ -133,4 +132,6 @@ Verification check on the §4.2 drafts: both CTA options are public. Pink Moment
 
 **Re-score:** Ads 22 (was 28: very active, but the video share isn't low) · Need 10 (was 18) · Momentum 13 · Seasonal 10 · Budget 6 (was 8: ~670 live ads suggests spend near or above the $20M band) · Founder 8 · Hiring 0 = **69 base**. Doc 57 add-on: +8 Dry January window, +8 static-heavy (≥ 20 ads and ~30 % video on the filter count), +5 SKU velocity, −5 claims in current hooks = +16 → **85, HOT** (was 98). **Now tied with The Foggy Dog; send second**, because the claims gap is a real deal risk.
 
-**Red team of this dossier (what was wrong):** "239 active / 15 % video / ~24 new a week" (now ~670 / ~30 % / top cards are old); "videos are few" (13 of the top 30 are video); the claims flag was understated (the live copy says "no hangover"). The film concept and the doc 63 drafts survive. The VO line "None of the regret" must **not** be used over the Saturday-morning shot (implied hangover claim); keep it to "All of the ritual." plus the logo, or agree a line at intake.
+**Rewrite 2026-10-09 (owner decision 10, WEAKNESSES #11):** the "Same Ritual" film and every draft carrying "coupe", the Friday 5 pm ice-and-record set or the Saturday-morning payoff were replaced by "Calendar" (above) and the new doc 63 §4.2/§5.2 drafts.
+
+**Red team of this dossier (what was wrong):** "239 active / 15 % video / ~24 new a week" (now ~670 / ~30 % / top cards are old); "videos are few" (13 of the top 30 are video); the claims flag was understated (the live copy says "no hangover"). ~~The film concept and the doc 63 drafts survive.~~ **Superseded the same day:** the concept itself carried the implied hangover claim (the Saturday-morning payoff) and the alcohol cues (coupe, cocktail-hour set), so it was replaced, not patched (see the rewrite note above). "None of the regret" is never used; the VO keeps "All of the ritual." plus the logo, or a line agreed at intake.

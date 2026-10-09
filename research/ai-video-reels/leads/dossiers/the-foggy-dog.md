@@ -29,7 +29,7 @@ On 2026-09-29 they published a holiday line of **33 new holiday SKUs** (58 SKUs 
   - Seasonal collections replace each other every ~4 weeks, so every creative has a built-in expiry date.
 
 ## 3. The person
-- **Who decides:** **Rose Shattuck**, founder and CEO (Stanford GSB; she signs the About page "Rose and Utah", after her goldendoodle). ~~They are also hiring an Art Director~~ **Corrected 2026-10-09:** the Betterteam page no longer lists an Art Director. Open roles are a Quality & Compliance consultant, a Senior Manager of Product Development and a Merchandising Coordinator. No creative hire is visible, so Rose (and whoever runs paid social) decides.
+- **Who decides:** **Rose Shattuck**, founder and CEO (Stanford GSB; she signs the About page "Rose and Utah", after her goldendoodle). ~~They are also hiring an Art Director~~ **Corrected 2026-10-09:** the Betterteam page no longer lists an Art Director. Open roles are a Quality & Compliance consultant, a Senior Manager of Product Development and a Merchandising Coordinator. **Corrected again 2026-10-09 (WEAKNESSES #16): she DOES have in-house content.** Finn & Gray's public case study says they made Foggy's photos, social content and monthly stop-motion pieces until a planned full-time in-house hire took over, and handed over to that person ([finnandgray.com](https://finnandgray.com/?p=1561), undated [c]). A Social Media Manager listing was reported by the weakness audit; Betterteam returned 403 to our fetcher today, so that listing is [unverified]. Rose decides; her content lead (whoever that hire is) is the person who will read, judge and use our stills.
 - **Her public voice:**
   - "I realized I couldn't be the only dog mom who wanted beautiful, modern, quality products." (About page)
   - Her view of competition: launching a store is easy now, so the problem is standing out, which takes "a relentless focus on their customer and a differentiated product that drives repeat purchase". (Women in eCommerce 2024)
@@ -49,7 +49,7 @@ On 2026-09-29 they published a holiday line of **33 new holiday SKUs** (58 SKUs 
   - VXO's 6–10 stills per film also feed their long-running product-shot ads.
 - **Budget proxy:** $49–148 items, 800+ doors, ~220 live ads (2026-10-09). They can afford a $2,500 Premiere [inf].
 - **Red flags:**
-  - (a) ~~An art director hire~~ (post removed by 2026-10-09). They still have in-house design taste; pitch VXO as the *motion* layer, not a replacement.
+  - (a) ~~An art director hire~~ (post removed by 2026-10-09). **She has an in-house content lead** (Finn & Gray handover, §3). A pitch that reads as "AI instead of your content person" gets forwarded to that person and dies. **Positioning (owner decision 14, approved 2026-10-09):** VXO is the *scenario layer her content lead can't shoot* (a staged family card shoot, a crowd, weather, a set), built around her real collar and a real photo of Utah. The free stills and the shot list go to her content lead to reuse. Never say "replace", "instead of a shoot" or "cheaper than a team" (LESSONS 2026-10-09).
   - (b) AI dogs are the hardest realism problem in the niche. We use one animal per shot, ≤5 s, Kling i2v from a **real photo of their own dog** (doc 52 §3), and generate no chewing.
   - (c) "Made in USA": only show it if the specific SKU qualifies (FTC "Made in USA" rule). Ask at intake.
   - (d) No known legal issues or bad news found in this run.
@@ -76,6 +76,7 @@ Logic: the holiday collar makes the dog the star of the family Christmas card. T
 - **AI disclosure** where the platform requires it.
 
 **The proof they need:**
+- Addressed to her content lead as much as to Rose: the stills come with a **shot list** her team can reuse in their own photo and stop-motion work.
 - 5 free frames made from their own product photos, with the **embroidery and print matching the swatch** (ΔE ≤ 3). One frame uses *their* dog (Utah) from a real photo.
 - One 5 s motion sample of a dog from a real photo (the most persuasive asset for a pet founder, doc 52 §5.3).
 - The variant plan: hero, a 6 s cut, 3 hook swaps, 6–10 stills.
@@ -89,17 +90,18 @@ Logic: the holiday collar makes the dog the star of the family Christmas card. T
 **Suggested tier:** Premiere $2,500 now (holiday). Pitch Season ($3,500/mo) at the first reply, because their own calendar is monthly.
 
 ## 6. The angle for the first message
-Compliment nothing; lead with the joke. Make the dog the hero, with the free stills built from **her own dog's photo** (Utah). Don't mention AI dogs or realism in message 1. Answer that with the stills.
+Compliment nothing; lead with the joke. Make the dog the hero, with the free stills built from **her own dog's photo** (Utah). Don't mention AI dogs or realism in message 1. Answer that with the stills. **Position VXO as the scenario layer her content lead can't shoot, never as a replacement:** the DM's two-yes CTA is "5 free stills and a shot list, for you or your content lead?", and the email names her real collar and Utah's real photo as what the AI is built around.
 
 **The drafts to use are in `skills/ad-director/references/marketing/63-outreach-that-gets-replies.md` §4.1** (NOT SENT, awaiting the owner's "send #1"). The original drafts were removed here because they broke doc 63 §3: a superlative ("the best holiday piece"), no sender name, 59 words.
 
-One correction to the doc 63 §4.1 email: its second option is "the Tartan Plaid walk set". Both Tartan Plaid Flannel walk sets had only **3 of 6 sizes in stock** on 2026-10-09. Swap it for **the Evergreen Candy Canes walk set** (6/6 in stock, same holiday drop), or re-check stock on the send day.
+~~One correction to the doc 63 §4.1 email: its second option is "the Tartan Plaid walk set".~~ **Done 2026-10-09:** doc 63 §4.1 and §5.1 now use only in-stock items, re-checked live today [m]: the **Gingerbread Man Embroidered Bow Tie Collar** ($52, 8/8 variants available) and the **Evergreen Candy Canes Embroidered Collar Walk Set** ($102, 6/6 available), both published 9/29 and both in `/collections/holiday-shop`, which the homepage links. The Tartan Plaid Flannel walk sets are still 3/6 and appear in no draft. Re-check stock on the send day.
 
 ## Sources
 - https://www.thefoggydog.com/products.json?limit=250 (pulled 2026-10-09; holiday SKUs created 2026-09-23/25, published 2026-09-29)
 - https://motionapp.com/library/the-foggy-dog (104 active, ~13 new/wk, 20 newest = 2 video / 18 image; "Refreshed 4 months ago")
 - https://www.thefoggydog.com/pages/about-us · https://www.thefoggydog.com/pages/contact-us
 - https://thefoggydog.betterteam.com/ (re-checked 2026-10-09: no Art Director opening any more; the earlier "over 1,000 retailers" line is gone)
+- https://finnandgray.com/?p=1561 (Finn & Gray case study: photos, social, monthly stop-motion, then handover to a full-time in-house hire; undated)
 - https://womeninecomm.yotpo.com/honorees/rose-shattuck/ (12–14 seasonal collections a year)
 - https://www.anthropologie.com/anthrohome/shop/the-foggy-dog-christmas-cookie-dog-toys-set-of-4
 
@@ -119,6 +121,8 @@ One correction to the doc 63 §4.1 email: its second option is "the Tartan Plaid
 | Tartan Plaid Flannel walk sets (the second CTA option) | — | Only 3/6 sizes in stock | ⚠️ Swap to Evergreen Candy Canes |
 | Contact email `woof@thefoggydog.com` | — | Found on the homepage and on /pages/contact-us (brand's own site) | ✅ |
 | Art Director hire | "hiring" | **Not listed any more** (Betterteam, rendered in a browser) | ❌ −3 points |
+| In-house content person | "no creative hire visible" | Finn & Gray case study: handed over to a full-time in-house hire (undated). Social Media Manager listing [unverified]: Betterteam 403 on 2026-10-09 | ⚠️ Pitch to her content lead, not around them |
+| CTA stock (re-check 2026-10-09, afternoon) | — | Gingerbread bow tie collar 8/8; Evergreen Candy Canes collar walk set 6/6; Tartan walk sets 3/6 | ✅ Drafts use only the first two |
 | Retail doors | "800–1,000+" | About page: "over 800 retailers" | ⚠️ Corrected |
 | "Founded 2016" | — | Not on the About page | [unverified] |
 
@@ -126,4 +130,4 @@ One correction to the doc 63 §4.1 email: its second option is "the Tartan Plaid
 
 **Re-score:** Ads 27 (was 25) · Need 16 (was 18; the video filter suggests more video than the cards show) · Momentum 15 · Seasonal 10 · Budget 7 · Founder 10 · Hiring 0 (was 3) = **85, HOT. Still #1.**
 
-**Red team of this dossier (what was wrong):** the holiday SKU count (58 → 33), the Art Director hire (gone), 1,000+ doors (800+), "Founded 2016" (unsourced). None of these was in the message drafts, so no draft carried a wrong fact.
+**Red team of this dossier (what was wrong):** the holiday SKU count (58 → 33), the Art Director hire (gone), 1,000+ doors (800+), "Founded 2016" (unsourced), and "no creative hire is visible" (she has an in-house content hire, per Finn & Gray). The first four were never in the message drafts. The last one shaped the tone of the old DM (VXO as the whole creative answer); the 2026-10-09 rewrite in doc 63 §4.1 fixes it.

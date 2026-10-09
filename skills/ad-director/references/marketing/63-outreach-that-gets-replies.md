@@ -100,53 +100,57 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 - Utah, her own dog and the brand's co-signer, is in the email but **not the DM**. Utah is the single most persuasive personal hook we have.
 - Product name: the SKU is "Gingerbread Man Embroidered **Bow Tie Collar**" (created 9/23, live [m]). The plain "Dog Bow Tie" has existed since June, so name it exactly.
 - Unsigned. Who is this?
+- **It reads as a threat to her own staff (WEAKNESSES #16).** Finn & Gray's public case study says they shot Foggy's photos and monthly stop-motion pieces until a full-time in-house hire took over [c, undated]. Someone on her team owns content. A message that implies "replace your content person with AI" gets forwarded to exactly that person, who has every reason to kill it.
 
-**New DM (to Rose's own public business account if the owner finds one, otherwise @thefoggydog; 55 words):**
-> Hi Rose, Itamar from VXO here. Film idea for the Gingerbread Man bow tie collar: a family Christmas-card shoot where the photographer keeps zooming in until every human is cropped out and only the dog is left. That's the card on the fridge. Want 5 free stills of it, starring Utah or a model pup?
+**Positioning (owner decision 14, approved 2026-10-09):** VXO is the **scenario layer her content lead can't shoot**: a staged family card shoot, a crowd, a snowstorm, built around her real collar and a real photo of Utah. We don't replace photos, stop-motion or social. The stills and the shot list go to her content lead to reuse. Never write "instead of", "replace", "no shoot needed" or "cheaper than a team".
 
-*Why the CTA works:* both options are free and equally easy, and "Utah" shows we know whose brand this is. The AI line moves to the email and the first reply, so the one-shot DM spends its words on the joke.
+**New DM (to Rose's own public business account if the owner finds one, otherwise @thefoggydog; 54 words; rewritten 2026-10-09 for decision 14):**
+> Hi Rose, Itamar from VXO. Film idea for the Gingerbread Man bow tie collar: a Christmas-card shoot where the photographer zooms in until every human is cropped out and only Utah is left. Cut to the card on the fridge. Want 5 free stills and a shot list, for you or your content lead?
+
+*Why the CTA works:* both options are free and equally easy, and the second one hands the work to her own team instead of competing with it. "Utah" in the idea shows we know whose brand this is. The AI line moves to the email and the first reply, so the one-shot DM spends its words on the joke.
 
 **New email (woof@thefoggydog.com, day 1):**
 > **Subject:** Utah's holiday card
 >
 > Hi Rose (or whoever reads woof@, could you pass this to Rose?),
 >
-> I sent you an idea on Instagram yesterday. Here it is properly. A 15 s film for the Gingerbread Man bow tie collar: a family Christmas-card shoot, and the photographer keeps zooming in until every human is cropped out and only the dog in the bow tie is left. Cut to the card on the fridge.
+> Following up my Instagram note: a 15 s film for the Gingerbread Man bow tie collar. A Christmas-card shoot where the photographer zooms in until every human is cropped out and only the dog is left. Cut to the card on the fridge.
 >
-> I build the world with AI. The dog comes from a real photo, and your embroidery stays your real product shot, never redrawn.
+> A shoot day can't stage that, so I build it with AI around your real collar and a real photo of Utah.
 >
-> Want 5 free stills of it, with Utah as the star, or on the Tartan Plaid walk set instead?
+> Want 5 free stills plus a shot list your content lead can reuse, on the collar or the Evergreen Candy Canes walk set?
 >
 > {footer §4.0}
 
-(79 words in the body.)
+(88 words in the body.) **CTA stock, checked live 2026-10-09 [m]:** Gingerbread Man Embroidered Bow Tie Collar $52, 8/8 variants available; Evergreen Candy Canes Embroidered Collar Walk Set $102, 6/6 available; both published 9/29 and listed in `/collections/holiday-shop`, which the homepage links. The Tartan Plaid walk sets (3/6 sizes) are out of every Foggy draft. Re-check on the send day.
 
 ### 4.2 Moment: Aisha Chottani
 
 **How Aisha reads the old DM:**
+- **The old drafts carried the alcohol and claims cues she fears most (WEAKNESSES #11, owner decision 10, approved 2026-10-09):** a "coupe" (a cocktail glass), ice plus a record going on at Friday 5 pm (cocktail hour), and a Saturday 7 am "fresh morning" payoff (an implied no-hangover benefit, which is the picture making the claim). All three are gone. The new idea uses her real can or a plain tumbler, no bar ritual, no morning-after, and no calm, mood, sleep or health outcome. If she later insists on "no hangover" or "calm" on screen, we walk away.
 - Quoting "all of the ritual, none of the regret" back to her: it's her own homepage line [m], so praising it proves we saw her homepage, nothing more.
 - The idea is strong and calendar-true (Dry January is her Super Bowl; doc 57).
-- **Risk she will spot:** "Saturday 7 am, already heading out" plus "none of the regret" implies a no-hangover benefit. Doc 57 and LESSONS ban "hangover-free" language, and "the picture is the claim". As a comparison to alcohol it's literally true (0 % alcohol), but keep the supers and VO on the ritual, never the morning after. The Saturday shot shows a fresh, ordinary morning, not a "recovered" one.
+- ~~**Risk she will spot:** "Saturday 7 am, already heading out" implies a no-hangover benefit.~~ **Superseded 2026-10-09:** the Friday/Saturday concept is dropped entirely, because no Saturday shot can avoid reading as "recovered". Doc 57 and LESSONS ban "hangover-free" language, and "the picture is the claim". The replacement ("Calendar") sells the ritual itself: the punchline is that she keeps reaching for the can after January ends.
 - She runs ~24 new creatives a week (June snapshot), so she has a creative machine. Her real objection will be "we have a team". The message should name the gap we fill (motion around the real pour), **without quoting stale ad counts**.
-- "Sparkling Collection, or Pink Moment": both are live [m]. Good.
+- ~~"Sparkling Collection, or Pink Moment"~~ **CTA swapped 2026-10-09 [m]:** Pink Moment is in stock but is an October pack ("for the month when the color carries a little more weight") and isn't in the site navigation, so it's wrong for a Dry January film. New options: **the sparkling collection** (`/products/moodboostsparklingcollection`, $59, 18/24/36 packs all available, linked from the homepage "Shop Now") and **strawberry rose (12 Pack)** ($40, available, in the homepage flavour slider). Avoid cherry hibiscus as a CTA: its own page says it "channels the complexity of red wine" (an alcohol cue). Re-check on the send day.
 
-**New DM (@drinkmoment, or Aisha's own public account; 55 words):**
-> Hi Aisha, Itamar from VXO. A Dry January film idea: one locked camera on a kitchen counter. Friday 5 pm, ice, the can cracks, a record goes on. Hard cut to Saturday 7 am, same counter, the coupe drying on the rack. Want 5 free stills of it, for Pink Moment or the sparkling line?
+**New DM (@drinkmoment, or Aisha's own public account; 55 words; rewritten 2026-10-09 for decision 10):**
+> Hi Aisha, Itamar from VXO. Dry January film: a locked camera on a counter under a paper calendar. Jan 1, a can cracks open. Hard cuts, a page and a flavour a day. Then February: the page flips and the hand still reaches for a can. Want 5 free stills, sparkling collection or strawberry rose?
 
 **New email (hi@drinkmoment.com, day 1):**
-> **Subject:** Same counter, Saturday
+> **Subject:** Then February
 >
 > Hi Aisha (team, could you pass this to Aisha?),
 >
-> A Dry January idea I sent on Instagram: one locked camera on a kitchen counter. Friday 5 pm: ice, the can cracks, a record goes on. Hard cut to Saturday 7 am on the same counter: the coupe drying, keys gone. Same ritual, different weekend.
+> A Dry January idea I sent on Instagram: one locked camera on a kitchen counter under a paper calendar. Jan 1, a can cracks and pours into a plain tumbler. Hard cuts, a page and a flavour a day. Then the page flips to February, and the hand reaches for a can anyway.
 >
-> I build it with AI, but your real pour stays in as the proof shot, and every frame is checked so Meta doesn't read it as an alcohol ad.
+> I build it with AI, but your real cans stay real, there's no sip on screen, and every frame is checked for alcohol cues.
 >
-> Want 5 free stills of it, for Pink Moment or for the sparkling line?
+> Want 5 free stills, on the sparkling collection or strawberry rose?
 >
 > {footer §4.0}
 
-(84 words in the body.)
+(88 words in the body.) **Copy rules for every Moment message:** no coupe, wine, flute or cocktail glass (her can, or a plain straight-sided tumbler); no ice-and-record, candle or "5 pm" cocktail-hour framing; no morning-after shot; no "hangover", "calm", "mood", "sleep", "focus", "regret" or "good for you", in words or in pictures.
 
 ### 4.3 Fishwife: Becca Millstein (HOLD until the product check passes)
 
@@ -224,15 +228,15 @@ Instagram allows no follow-up DM until the request is accepted (§1), so every f
 After FU3: silence. Log "no reply" and set one check-in at their next real launch (doc 34 §2.4). Never "just checking in", guilt, fake deadlines or "should I close your file?".
 
 ### 5.1 The Foggy Dog
-- **FU1:** "One more for the holiday line, Rose: the dog walks the family, the Tartan Plaid walk set leading, the humans being pulled behind. Should the stills follow this one, or the card-photo idea?"
-- **FU2 (with one still):** "Made one still so you can judge the look: the card on the fridge, your real bow tie collar. AI concept, just for you. Want the other 4, with Utah or a model pup?"
-- **FU2-text (no spend):** "If it helps, the 5 stills come from your own product photos. The embroidery isn't redrawn, and nothing gets posted. Should I start with the bow tie collar, or the walk set?"
+- **FU1:** "One more for the holiday line, Rose: the dog walks the family, the Evergreen Candy Canes walk set leading, the humans being pulled behind. Should the stills follow this one, or the card-photo idea?"
+- **FU2 (with one still):** "Made one still so you can judge the look: the card on the fridge, your real bow tie collar. AI concept, just for you. Want the other 4 and the shot list, for you or your content lead?"
+- **FU2-text (no spend):** "If it helps, the 5 stills come from your own product photos, plus a shot list your team can reuse. The embroidery isn't redrawn, and nothing gets posted. Should I start with the bow tie collar, or the walk set?"
 - **FU3:** "Holiday ads need to be live by mid-November to catch the card season. Should I send the stills this week, or check back for the Valentine's collection?"
 
 ### 5.2 Moment
-- **FU1:** "A second Dry January idea, Aisha: a fridge-door camera. Every time the door opens in January, there's one fewer can and one more coupe on the rack. Stills for this one, or the counter idea?"
-- **FU2 (with one still):** "One still from the counter idea, built on your real Pink Moment can: Friday 5 pm. AI concept, just for you, and no alcohol cues in frame. Want the other 4 for Pink Moment, or the sparkling line?"
-- **FU2-text:** "The 5 stills use your real can photos. I check every frame for alcohol cues before you see it. Should I start with Pink Moment, or the sparkling line?"
+- **FU1:** "A second Dry January idea, Aisha: a fridge-door camera. Every time the door opens in January there's one fewer can, until someone tapes their name to the last one. Stills for this one, or the calendar idea?"
+- **FU2 (with one still):** "One still from the calendar idea, built on your real strawberry rose can: Jan 1, the tab just cracked. AI concept, for you only, no alcohol cues in frame. Want the other 4, on strawberry rose or the sparkling collection?"
+- **FU2-text:** "The 5 stills use your real can photos. I check every frame for alcohol cues before you see it. Should I start with the sparkling collection, or strawberry rose?"
 - **FU3:** "A Dry January film has to be approved by early December to run on Jan 1. Should I send the stills this month, or check back for Valentine's?"
 
 ### 5.3 Fishwife (only after the §4.3 gate)
@@ -260,7 +264,8 @@ Shape: acknowledge in one line, answer in one or two, then give a two-yes next s
 > Understood. We can cut scope, not quality. The Short is $1,200: one film, no variants. What were you hoping to spend on this? (If they name a number below $1,200: offer a smaller scope, never a discount on the same scope. Doc 34 §2.1.)
 
 **"We do AI in-house" / "our team already uses AI"** (LESSONS: the real competitor is their own AI team.)
-> Makes sense. Most brands your size have someone prompting now. What we add is what in-house AI usually skips: one concept with a punchline your product causes, physics checked shot by shot, sound mastered to platform loudness, and every claim checked against your label. Easiest test: let us make the 5 stills, put them next to your team's, and if theirs are better you've lost nothing. Should I aim them at [A], or at [B]?
+> Makes sense. Most brands your size have someone prompting now. What we add is what in-house AI usually skips: one concept with a punchline your product causes, physics checked shot by shot, sound mastered to platform loudness, and every claim checked against your label. We don't replace your team; we build the scenes they can't shoot, around your real product, and hand them the stills and the shot list to reuse. Easiest test: the 5 stills are free, and your team decides if they earn a place. Should I aim them at [A], or at [B]?
+(LESSONS 2026-10-09: never pitch an AI film as replacing a brand's own creative staff.)
 
 **"AI looks fake" / "our customers hate AI"**
 > You're right, and the numbers back you: most people say they trust ads they suspect are AI less. That's why we build the world and the joke with AI, but your product shots and any proof stay real, and there are no AI people. And it's why you see stills first: if your [can / collar / necklace] doesn't look exactly like itself, we stop there. Is it the product looking fake you're worried about, or customers knowing it's AI?
@@ -331,4 +336,5 @@ Variant codes: `DM-v63`, `EM-v63`, `FU1`, `FU2-img`, `FU2-txt`, `FU3`.
 - Email data: [Instantly 2026](https://instantly.ai/cold-email-benchmark-report-2026) · [Lemlist 2026 benchmarks](https://lemlist.com/blog/cold-email-benchmarks/) · [Hunter State of Cold Email](https://hunter.io/the-state-of-cold-email) · [Hunter word count](https://hunter.io/blog/cold-email-word-count) · [Lavender benchmark](https://www.lavender.ai/blog/the-cold-email-benchmark-report) · [Something Inc on Lavender data](https://somethinginc.com/blog/cold-email-sounds-like-ai-lavender-data/) · [Reply.io images](https://reply.io/images-gifs-in-cold-emails) · [Reply.io attachments](https://reply.io/emojis-attachments-impact-cold-email/) · [Lemlist images](https://www.lemlist.com/blog/images-in-cold-emails) · [Woodpecker](https://woodpecker.co/blog/cold-email-benchmarks/) · [Prospeo](https://prospeo.io/s/cold-email-benchmarks) · [Modern Inbound](https://moderninbound.com/blog/cold-email-for-ecommerce-agencies)
 - AI attitudes: [AAAA / Harris Poll](https://www.aaaa.org/blog/consumers-are-sick-and-tired-of-hearing-about-ai-all-the-time/) · [YouGov Australia](https://yougov.com/articles/54818-45-of-australians-say-ai-generated-ads-would-make-them-trust-a-brand-less) · [Advanced Television / DoubleVerify](https://www.advanced-television.com/2026/08/06/study-ai-slop-poses-growing-risk-to-brand-trust/)
 - Law: [FTC CAN-SPAM guide](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business) · [FTC 2025 penalty amounts](https://search.ftc.gov/news-events/news/press-releases/2025/02/ftc-publishes-inflation-adjusted-civil-penalty-amounts-2025)
+- Foggy in-house content (§4.1): [Finn & Gray case study, The Foggy Dog](https://finnandgray.com/?p=1561) (photos, social and monthly stop-motion until a full-time in-house hire; undated). CTA stock re-checked 2026-10-09 via `products.json`, `/products/<handle>.js`, `/collections/holiday-shop/products.json` (Foggy) and the homepage and collection JSON (Moment) [m].
 - Lead facts checked this run [m]: `drinkmoment.com` homepage ("all of the ritual / none of the regret"), `products.json` and `/products/<handle>.js` for Moment, The Foggy Dog, AUrate and Fishwife (tags, availability, creation dates); DNS for `vxo.studio` via dns.google (NXDOMAIN); `site/src` text. Fishwife at Aldi: [IntraFish](https://www.intrafish.com/markets/fishwife-continues-retail-growth-with-discounted-offerings-at-aldi/2-1-2032646).
