@@ -9,6 +9,8 @@ const films = defineCollection({
     idea: z.string(),
     status: z.enum(['final', 'placeholder']),
     tools: z.array(z.string()).default([]),
+    /** Making-of stills (paths relative to media.json base), shown above the write-up. */
+    makingOf: z.array(z.object({ src: z.string(), alt: z.string(), caption: z.string(), w: z.number(), h: z.number() })).default([]),
   }),
 });
 

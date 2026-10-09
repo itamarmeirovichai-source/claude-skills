@@ -9,6 +9,10 @@ compatibility_date = "2026-09-01"
 # binding = "UPLOADS"            # private bucket for lead photos + lead.json (90-day lifecycle rule)
 # bucket_name = "studio-uploads"
 #
+# [[r2_buckets]]
+# binding = "MEDIA"              # private bucket with the site media under media/... (Git-connected builds only;
+# bucket_name = "studio-media"   # functions/media/[[path]].ts serves it; scripts/upload-media-r2.sh fills it)
+#
 # [[kv_namespaces]]
 # binding = "RATE_LIMIT"         # per-IP-hash submit counter
 # id = "<kv id>"

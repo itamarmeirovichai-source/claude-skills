@@ -2,6 +2,8 @@
 // Functions still validate and answer, they just don't store, verify or email.
 export interface Env {
   UPLOADS?: R2Bucket;
+  /** Private bucket holding the site media (keys `media/...`), for Git-connected builds where public/media isn't in the repo. */
+  MEDIA?: R2Bucket;
   RATE_LIMIT?: KVNamespace;
   EVENTS?: AnalyticsEngineDataset;
   TURNSTILE_SECRET?: string;

@@ -12,6 +12,7 @@ const featured = films.find((f) => f.featured) ?? films[0];
 <section class="hero" id="hero" data-state="boot" aria-labelledby="hero-h1">
   <div class="wrap hero-grid">
     <div class="hero-copy">
+      <p class="eyebrow sig">{site.signature}</p>
       <h1 id="hero-h1" data-headline>{headlines.default}</h1>
       <script is:inline define:vars={{ headlines }}>
         // Message match: the H1 mirrors the ad or email that was clicked (utm_content). Swapped before paint.
@@ -21,7 +22,7 @@ const featured = films.find((f) => f.featured) ?? films[0];
           if (h) { var el = document.getElementById('hero-h1'); el.textContent = h; el.dataset.variant = v; }
         } catch (e) {}
       </script>
-      <p class="hero-sub">Thirty-second product films, each one continuous take. Made with AI, directed by a human. Films from {money(pricing.from)}.</p>
+      <p class="hero-sub">{site.heroSub} Films from {money(pricing.from)}.</p>
       <div class="cta-block" data-inflow-cta data-hero-cta>
         <div class="btn-row">
           <a class="btn btn-primary" href="#start" data-frames-cta>Get my 5 free frames <span aria-hidden="true">→</span></a>
@@ -70,7 +71,8 @@ const featured = films.find((f) => f.featured) ?? films[0];
 <style>
   .hero { position: relative; padding-block: clamp(32px, 6vh, 72px) clamp(48px, 8vh, 96px); background: radial-gradient(52% 48% at 72% 46%, rgb(176 141 87 / 0.1), transparent 70%); }
   .hero-grid { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); }
-  .hero-copy h1 { margin-bottom: 0.3em; max-width: 13ch; }
+  .hero-copy h1 { margin-bottom: 0.3em; max-width: 17ch; font-size: clamp(2.2rem, 4.4vw, 3.9rem); }
+  .sig { margin-bottom: 14px; }
   .hero-sub { color: var(--text-dim); max-width: 40ch; font-size: var(--fs-lede); margin-bottom: 28px; }
   .cta-block { display: grid; gap: 10px; }
   .offer-line { margin: 24px 0 0; font-size: 0.85rem; }

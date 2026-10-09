@@ -33,8 +33,18 @@ const video = {
       <h2 class="h3">The idea</h2>
       <p class="lede">{entry?.data.idea}</p>
       <h2 class="h3">How it was made</h2>
+      {entry && entry.data.makingOf.length > 0 && (
+        <div class="making">
+          {entry.data.makingOf.map((m) => (
+            <figure>
+              <img src={mediaUrl(m.src)} alt={m.alt} width={m.w} height={m.h} loading="lazy" decoding="async" />
+              <figcaption class="small dim">{m.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
       <div class="prose">{Content && <Content />}</div>
-      <p class="small dim">Delivered as 9:16 and 4:5 versions. {site.signature}</p>
+      <p class="small dim">Delivered as 9:16 and 4:5 versions.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="/frames">Get my 5 free frames</a>
         {next && next.slug !== film.slug && <a class="btn" href={`/work/${next.slug}`}>Next film: {next.brand} →</a>}
@@ -48,4 +58,9 @@ const video = {
   .player video { width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 16px; background: #000; }
   .player .spec-label { margin-top: 10px; }
   .h3 { font-size: 1.6rem; }
+  .making { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 24px; align-items: start; }
+  .making figure { margin: 0; }
+  .making img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--ink-3); }
+  .making figcaption { margin-top: 6px; line-height: 1.4; }
+  .prose :global(h3) { font-size: 1.25rem; margin-top: 1.4em; }
 </style>

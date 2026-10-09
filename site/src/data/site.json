@@ -1,5 +1,5 @@
 {
-  "$comment": "Brand tokens. Empty strings render nothing. Domain is TBD (vxo.studio planned).",
+  "$comment": "Brand tokens. Empty strings render nothing. Domain is TBD (vxo.studio planned). TODO(owner): set `email` to YOUR real reply address (e.g. the inbox you will read daily). Until it is set, the mailto fallback under every form cannot render and check-dist prints a warning. Do not invent one.",
   "studio": "VXO",
   "studioLong": "Valéry × Otto",
   "mascot": "Otto",
@@ -13,12 +13,13 @@
   "bookingUrl": "",
   "turnstileSiteKey": "",
   "capacityLine": "",
-  "signature": "One take. No cuts.",
+  "signature": "Hook first. Punchline last.",
   "headlines": {
-    "$comment": "Act I H1 by utm_content (message match). Keep the layout; max ~4 variants. Unknown values fall back to default.",
-    "default": "Your product, filmed in one unbroken take.",
-    "launch": "Your launch, filmed in one unbroken take.",
-    "fatigue": "A new hero ad. No shoot, no crew.",
+    "$comment": "Act I H1 by utm_content (message match). Outbound links (DMs/emails) should carry utm_content=product (or fatigue/launch) so the visitor lands on a product-first line. Unknown values fall back to default.",
+    "default": "A new product ad, with a punchline only your product can land.",
+    "product": "Your product, as the punchline of an ad people watch to the end.",
+    "launch": "Your launch, as an ad people watch to the end.",
+    "fatigue": "Your best ad is tired. Here's the next one, without a shoot.",
     "frames": "Your 5 free frames start here.",
     "bfcm": "Your BFCM hero ad, final by Nov 13."
   },
@@ -41,5 +42,6 @@
   "stickyCta": {
     "label": "5 free frames",
     "href": "#start"
-  }
+  },
+  "heroSub": "15–30 s films made with AI and directed by a person: something moving in the first second, a twist your product causes, and sound mastered for the feed."
 }

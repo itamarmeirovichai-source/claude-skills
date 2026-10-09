@@ -2,7 +2,7 @@ import raw from '../data/site.json';
 import pricingRaw from '../data/pricing.json';
 
 export const site = raw;
-export type Tier = (typeof pricingRaw.tiers)[number] & { ribbon?: string; credit?: string; cta?: { label: string; href: string } };
+export type Tier = (typeof pricingRaw.tiers)[number] & { ribbon?: string; credit?: string; assets?: string; cta?: { label: string; href: string } };
 export const pricing = pricingRaw as typeof pricingRaw & { tiers: Tier[] };
 
 /** Replace {{TOKENS}} with site.json values; an empty token renders nothing. */

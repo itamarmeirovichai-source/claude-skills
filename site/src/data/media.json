@@ -1,5 +1,5 @@
 {
-  "$comment": "Single media manifest. Paths are relative to `base`. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. otto/vee.clips hold the silent idle loops (and the /frames/thanks pop). `lines` are the 8 fixed talking lines: one clip per line with its own audio track baked in (AV1+Opus, HEVC+AAC) and <id>.words.json word timings, so lips, sound and captions share one clock. A line with `pending` has no clip yet: the character stays on the idle loop and the line shows as a plain caption. `node scripts/lines-import.mjs <keyed_dir>` encodes delivered clips and fills the entries.",
+  "$comment": "Single media manifest. Paths are relative to `base`. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. otto/vee.clips hold the silent idle loops (and the /frames/thanks pop). `lines` are the 8 fixed talking lines: one clip per line with its own audio track baked in (AV1+Opus, HEVC+AAC) and <id>.words.json word timings, so lips, sound and captions share one clock. A line with `pending` has no clip yet: the character stays on the idle loop and the line shows as a plain caption. `node scripts/lines-import.mjs <keyed_dir>` encodes delivered clips and fills the entries. Film order = ring order: films without `ring: false` orbit Otto on the first screen (product-first posters lead; at most 2 character faces; Red Light is the featured film). `ring: false` films (VESPER Keep the Light, SOL, Otto) show on /work and in the home Work grid only.",
   "base": "/media/",
   "otto": {
     "poster": "otto/k0.webp",
@@ -41,14 +41,14 @@
   "lines": {
     "o1": {
       "who": "otto",
-      "text": "Pick a film. Any film. Every one is a single take.",
+      "text": "Pick a film. Any film.",
       "av1": "lines/o1.av1.mp4",
       "hevc": "lines/o1.hevc.mp4",
       "av1_hd": "lines/o1_hd.av1.mp4",
       "hevc_hd": "lines/o1_hd.hevc.mp4",
       "words": "lines/o1.words.json",
       "audio": true,
-      "duration": 6.01
+      "duration": 2.96
     },
     "o2": {
       "who": "otto",
@@ -130,83 +130,45 @@
   },
   "films": [
     {
-      "slug": "aurum-top-shelf",
-      "title": "Top Shelf",
+      "slug": "red-light",
+      "title": "Red Light",
       "brand": "AURUM",
       "category": "Drinks",
       "duration": 30,
-      "poster": "films/aurum-top-shelf/poster.webp",
+      "shots": 9,
+      "poster": "films/red-light/poster.webp",
       "loop": {
-        "av1": "films/aurum-top-shelf/loop.av1.mp4",
-        "h264": "films/aurum-top-shelf/loop.h264.mp4"
+        "av1": "films/red-light/loop.av1.mp4",
+        "h264": "films/red-light/loop.h264.mp4"
       },
       "full": {
-        "av1": "films/aurum-top-shelf/full.av1.mp4",
-        "h264": "films/aurum-top-shelf/full.h264.mp4"
+        "av1": "films/red-light/full.av1.mp4",
+        "h264": "films/red-light/full.h264.mp4"
       },
       "captions": null,
       "captionsBurnedIn": true,
-      "cardTitle": "AURUM · Top Shelf",
-      "cardSub": "Sparkling yuzu · one take · 30 s",
-      "featured": true
+      "cardTitle": "AURUM · Red Light",
+      "cardSub": "Sparkling yuzu · 9 shots · 30 s",
+      "featured": true,
+      "label": "Spec film · invented brand · 100% AI · 30 s · 9 shots"
     },
     {
-      "slug": "tabletop-city",
-      "title": "Tabletop City",
-      "brand": "VXO",
-      "category": "Studio",
+      "slug": "aurum",
+      "title": "Noon on ice",
+      "brand": "AURUM",
+      "category": "Drinks",
       "duration": 30,
-      "poster": "films/tabletop-city/poster.webp",
+      "poster": "films/aurum/poster.webp",
       "loop": {
-        "av1": "films/tabletop-city/loop.av1.mp4",
-        "h264": "films/tabletop-city/loop.h264.mp4"
+        "av1": "films/aurum/loop.av1.mp4",
+        "h264": "films/aurum/loop.h264.mp4"
       },
       "full": {
-        "av1": "films/tabletop-city/full.av1.mp4",
-        "h264": "films/tabletop-city/full.h264.mp4"
+        "av1": "films/aurum/full.av1.mp4",
+        "h264": "films/aurum/full.h264.mp4"
       },
       "captions": null,
-      "captionsBurnedIn": true,
-      "cardTitle": "VXO · Tabletop City",
-      "cardSub": "Our own ad · one take",
-      "label": "Studio film · our own ad · 100% AI · 30 s · one take"
-    },
-    {
-      "slug": "vesper-23",
-      "title": "Keep the Light",
-      "brand": "VESPER",
-      "category": "Fragrance",
-      "duration": 30,
-      "poster": "films/vesper-23/poster.webp",
-      "loop": {
-        "av1": "films/vesper-23/loop.av1.mp4",
-        "h264": "films/vesper-23/loop.h264.mp4"
-      },
-      "full": {
-        "av1": "films/vesper-23/full.av1.mp4",
-        "h264": "films/vesper-23/full.h264.mp4"
-      },
-      "captions": null,
-      "captionsBurnedIn": true,
-      "cardTitle": "VESPER · Keep the Light",
-      "cardSub": "Perfume · one take"
-    },
-    {
-      "slug": "sol",
-      "title": "Winter, then summer",
-      "brand": "SOL",
-      "category": "Home",
-      "duration": 30,
-      "poster": "films/sol/poster.webp",
-      "loop": {
-        "av1": "films/sol/loop.av1.mp4",
-        "h264": "films/sol/loop.h264.mp4"
-      },
-      "full": {
-        "av1": "films/sol/full.av1.mp4",
-        "h264": "films/sol/full.h264.mp4"
-      },
-      "captions": null
+      "scrub": "films/aurum/scrub.h264.mp4"
     },
     {
       "slug": "vesper",
@@ -226,6 +188,47 @@
       "captions": null
     },
     {
+      "slug": "aurum-top-shelf",
+      "title": "Top Shelf",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum-top-shelf/poster.webp",
+      "loop": {
+        "av1": "films/aurum-top-shelf/loop.av1.mp4",
+        "h264": "films/aurum-top-shelf/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum-top-shelf/full.av1.mp4",
+        "h264": "films/aurum-top-shelf/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "AURUM · Top Shelf",
+      "cardSub": "Sparkling yuzu · 30 s"
+    },
+    {
+      "slug": "tabletop-city",
+      "title": "Tabletop City",
+      "brand": "VXO",
+      "category": "Studio",
+      "duration": 30,
+      "poster": "films/tabletop-city/poster.webp",
+      "loop": {
+        "av1": "films/tabletop-city/loop.av1.mp4",
+        "h264": "films/tabletop-city/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/tabletop-city/full.av1.mp4",
+        "h264": "films/tabletop-city/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "VXO · Tabletop City",
+      "cardSub": "Our own ad",
+      "label": "Studio film · our own ad · 100% AI · 30 s"
+    },
+    {
       "slug": "otto",
       "title": "The Director",
       "brand": "Otto",
@@ -241,25 +244,47 @@
         "h264": "films/otto/full.h264.mp4"
       },
       "captions": null,
-      "label": "Studio film · our mascot · 100% AI · 30 s · one take"
+      "label": "Studio film · our mascot · 100% AI · 30 s",
+      "ring": false
     },
     {
-      "slug": "aurum",
-      "title": "Noon on ice",
-      "brand": "AURUM",
-      "category": "Drinks",
+      "slug": "vesper-23",
+      "title": "Keep the Light",
+      "brand": "VESPER",
+      "category": "Fragrance",
       "duration": 30,
-      "poster": "films/aurum/poster.webp",
+      "poster": "films/vesper-23/poster.webp",
       "loop": {
-        "av1": "films/aurum/loop.av1.mp4",
-        "h264": "films/aurum/loop.h264.mp4"
+        "av1": "films/vesper-23/loop.av1.mp4",
+        "h264": "films/vesper-23/loop.h264.mp4"
       },
       "full": {
-        "av1": "films/aurum/full.av1.mp4",
-        "h264": "films/aurum/full.h264.mp4"
+        "av1": "films/vesper-23/full.av1.mp4",
+        "h264": "films/vesper-23/full.h264.mp4"
       },
       "captions": null,
-      "scrub": "films/aurum/scrub.h264.mp4"
+      "captionsBurnedIn": true,
+      "cardTitle": "VESPER · Keep the Light",
+      "cardSub": "Perfume",
+      "ring": false
+    },
+    {
+      "slug": "sol",
+      "title": "Winter, then summer",
+      "brand": "SOL",
+      "category": "Home",
+      "duration": 30,
+      "poster": "films/sol/poster.webp",
+      "loop": {
+        "av1": "films/sol/loop.av1.mp4",
+        "h264": "films/sol/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/sol/full.av1.mp4",
+        "h264": "films/sol/full.h264.mp4"
+      },
+      "captions": null,
+      "ring": false
     }
   ],
   "stills": {

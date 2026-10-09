@@ -41,6 +41,10 @@ export interface FilmMedia {
   featured?: boolean;
   /** All-intra scroll-scrub clip (no audio), for pinned scenes. */
   scrub?: string;
+  /** false keeps the film off the hero ring (first screen). */
+  ring?: boolean;
+  /** Number of shots (hard cuts + 1), shown on the label when set. */
+  shots?: number;
   /** Overrides the default spec label (e.g. the studio's own film). */
   label?: string;
 }
@@ -73,13 +77,13 @@ export const media = raw as unknown as MediaManifest;
 
 export const mediaUrl = (rel: string | null | undefined): string => (rel ? media.base + rel : '');
 
-/** The ring holds 3–6 films (whatever media.json lists, capped at 6); extra entries stay on /work only. */
-export const ringFilms = (): FilmMedia[] => media.films.slice(0, 6);
+/** The ring holds 3–6 films (media.json order, `ring: false` skipped, capped at 6); the rest stay on /work and the Work grid. */
+export const ringFilms = (): FilmMedia[] => media.films.filter((f) => f.ring !== false).slice(0, 6);
 
 export const filmBySlug = (slug: string): FilmMedia | undefined => media.films.find((f) => f.slug === slug);
 
-export const SPEC_LABEL = (f: Pick<FilmMedia, 'duration' | 'label'>): string =>
-  f.label ?? `Spec film · invented brand · 100% AI · ${f.duration} s · one take`;
+export const SPEC_LABEL = (f: Pick<FilmMedia, 'duration' | 'label' | 'shots'>): string =>
+  f.label ?? `Spec film · invented brand · 100% AI · ${f.duration} s${f.shots ? ` · ${f.shots} shots` : ''}`;
 
 /** A line with its clip delivered (both codecs). */
 export const lineReady = (l: LineMedia | undefined): l is LineMedia & { av1: string; hevc: string } => !!l && !l.pending && !!l.av1 && !!l.hevc;

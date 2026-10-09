@@ -12,21 +12,21 @@ const centre = (page: Page, sel: string) =>
   });
 
 test.describe('home · structure and offer', () => {
-  test('sections in order: hero, problem, how, work, pricing, offer, faq', async ({ page }) => {
+  test('sections in order: hero, qc, problem, how, work, pricing, offer, faq', async ({ page }) => {
     await page.goto('/');
     const ids = await page.locator('main > section').evaluateAll((els) => els.map((e) => e.id));
-    expect(ids).toEqual(['hero', 'problem', 'how', 'work', 'pricing', 'start', 'faq']);
+    expect(ids).toEqual(['hero', 'qc', 'problem', 'how', 'work', 'pricing', 'start', 'faq']);
   });
 
   test('hero: one headline, one primary CTA, one secondary link, microcopy, disclosure, the ring', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1, name: 'Your product, filmed in one unbroken take.' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'A new product ad, with a punchline only your product can land.' })).toBeVisible();
     await expect(page.locator('#hero .btn-primary')).toHaveCount(1);
     await expect(page.locator('[data-frames-cta]')).toHaveText(/Get my 5 free frames/);
     await expect(page.locator('[data-watch-film]')).toHaveText(/Watch a film/);
     await expect(page.locator('#hero .micro')).toHaveText('Free. No call. 48 h.');
     await expect(page.locator('#hero .disclose')).toHaveText('Made with AI, including Otto and Vee. Spec films are for invented brands.');
-    await expect(page.locator('[data-card]')).toHaveCount(6);
+    await expect(page.locator('[data-card]')).toHaveCount(5);
     await expect(page.locator('[data-card="0"]')).toContainText('AURUM');
     await ready(page);
     await expect(page.locator('.site-footer')).toContainText('Everything here is made with AI, including Otto and Vee.');
@@ -34,9 +34,11 @@ test.describe('home · structure and offer', () => {
 
   test('message match: utm_content swaps the H1', async ({ page }) => {
     await page.goto('/?utm_content=fatigue');
-    await expect(page.locator('#hero-h1')).toHaveText('A new hero ad. No shoot, no crew.');
+    await expect(page.locator('#hero-h1')).toHaveText("Your best ad is tired. Here's the next one, without a shoot.");
+    await page.goto('/?utm_content=product');
+    await expect(page.locator('#hero-h1')).toHaveText('Your product, as the punchline of an ad people watch to the end.');
     await page.goto('/?utm_content=unknown');
-    await expect(page.locator('#hero-h1')).toHaveText('Your product, filmed in one unbroken take.');
+    await expect(page.locator('#hero-h1')).toHaveText('A new product ad, with a punchline only your product can land.');
   });
 
   test('the price shows by the third screen', async ({ page }) => {
@@ -79,9 +81,10 @@ test.describe('home · structure and offer', () => {
     await expect(form.locator('input:not([type="hidden"]):not([tabindex="-1"])')).toHaveCount(2);
   });
 
-  test('faq: six short answers', async ({ page }) => {
+  test('faq: seven short answers, "Do you have clients?" first', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#faq details')).toHaveCount(6);
+    await expect(page.locator('#faq details')).toHaveCount(7);
+    await expect(page.locator('#faq details').first()).toContainText('Do you have clients?');
   });
 
   test('no horizontal scroll', async ({ page }) => {
@@ -129,12 +132,13 @@ test.describe('home · ring and player', () => {
 
   test('a work tile opens the same player', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#work .tile')).toHaveCount(6);
+    await expect(page.locator('#work .tile')).toHaveCount(7);
     await expect(page.locator('#work .tile').first()).toContainText('AURUM');
     await centre(page, '#work .tile');
     await page.locator('#work .tile').nth(2).click();
     await expect(page.locator('[data-film-dialog]')).toBeVisible();
-    await expect(page.locator('[data-fd-label]')).toContainText('one take');
+    await expect(page.locator('[data-fd-label]')).toContainText('100% AI');
+    await expect(page.locator('[data-fd-label]')).not.toContainText('one take');
   });
 });
 
@@ -206,7 +210,7 @@ test.describe('home · characters and lines', () => {
         return !v.muted && /lines\/o1/.test(v.currentSrc) && (v.webkitAudioDecodedByteCount ?? 1) > 0;
       }), { timeout: 8_000 })
       .toBe(true);
-    await expect(page.locator('#hero [data-say]')).toContainText('Every one is a single take.', { timeout: 10_000 });
+    await expect(page.locator('#hero [data-say]')).toContainText('Pick a film. Any film.', { timeout: 10_000 });
   });
 });
 

@@ -4,7 +4,7 @@ import FilmTile from '../../components/FilmTile.astro';
 import { media } from '../../lib/media';
 const cats = ['All', ...new Set(media.films.map((f) => f.category))];
 ---
-<Page title="Work" description="Spec films for invented brands. Every film is a single continuous 30-second take, made with AI and directed by a human." eyebrow="Spec work · invented brands" heading="Brands that don't exist. Films that look like they do." lede="Every film here is one 30-second take. One take. No cuts. The brands are invented; your film starts from your real product photo.">
+<Page title="Work" description="Spec ads for invented brands, each with a hook, a turn and a punchline. Made with AI and directed by a human." eyebrow="Spec work · invented brands" heading="Spec ads for brands we invented. Each one has a turn and a punchline." lede="We invented these brands so we could show the work without using anyone's product. Your film starts from your real product photo. Red Light is the one to watch first.">
   <div class="wrap">
     <div class="filter btn-row" data-filter hidden role="group" aria-label="Filter by category">
       {cats.map((c, i) => <button type="button" class="btn" data-cat={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>)}

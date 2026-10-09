@@ -1,5 +1,6 @@
 ---
 import { site } from '../lib/site';
+import MailFallback from './MailFallback.astro';
 interface Props { id?: string }
 const { id = 'lead' } = Astro.props;
 ---
@@ -53,6 +54,7 @@ const { id = 'lead' } = Astro.props;
   {site.capacityLine && <p class="note">{site.capacityLine}</p>}
   <p class="note">We use your photos only to make your frames. We don't post them or share them outside the studio. <a href="/privacy">Privacy</a></p>
   <p class="status" data-status role="status" aria-live="polite"></p>
+  <MailFallback lead="Rather email the photo? Send it to" />
   <noscript><p class="note">This form needs JavaScript to upload photos.{site.email ? <> You can also email <a href={`mailto:${site.email}`}>{site.email}</a>.</> : null}</p></noscript>
 </form>
 <style>

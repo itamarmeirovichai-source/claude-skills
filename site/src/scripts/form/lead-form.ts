@@ -181,10 +181,13 @@ export function mountForm(form: HTMLFormElement): void {
         body: JSON.stringify({ id, token: upToken, lead, uploaded }),
       });
       if (!fin.ok) return fail("That didn't go through. Try again in a moment.");
-      track('form_submit', { ok: true });
+      // Until R2 or Resend is bound, the API answers ok but keeps nothing: tell the visitor on the thanks page.
+      const res = (await fin.json().catch(() => ({}))) as { stored?: boolean; alerted?: boolean };
+      const unsent = res.stored === false && res.alerted === false ? '&unsent=1' : '';
+      track('form_submit', { ok: true, delivered: !unsent });
       if (form.dataset['actForm']) track('inline_form_submit', { act: form.dataset['actForm'] });
       const next = new URLSearchParams(location.search).get('next') === 'call' ? '&next=call' : '';
-      location.assign(`/frames/thanks?id=${encodeURIComponent(id)}&t=${encodeURIComponent(upToken)}${next}`);
+      location.assign(`/frames/thanks?id=${encodeURIComponent(id)}&t=${encodeURIComponent(upToken)}${next}${unsent}`);
     } catch {
       fail("We couldn't reach the studio. Check your connection and try again.");
     }

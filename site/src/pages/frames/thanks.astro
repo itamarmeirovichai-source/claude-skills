@@ -1,9 +1,19 @@
 ---
 import Page from '../../layouts/Page.astro';
 import PopUp from '../../components/PopUp.astro';
+import MailFallback from '../../components/MailFallback.astro';
+import { site } from '../../lib/site';
 ---
 <Page title="Frames on the way" description="Your frames are on the way." heading="Got it. Your frames are on the way." noindex>
   <div class="wrap thanks">
+    <p class="unsent" data-unsent hidden>
+      Our form isn't connected to the studio inbox yet, so your request may not have reached me.{' '}
+      {site.email ? <>Please email your product page or photo to <a href={`mailto:${site.email}?subject=${encodeURIComponent('5 free frames')}`}>{site.email}</a> and I'll take it from there.</> : <>Please send it again in a day or two.</>}
+    </p>
+    <script is:inline>
+      // finish.ts reports stored:false + alerted:false when neither R2 nor Resend is bound; lead-form.ts adds &unsent=1.
+      try { if (new URLSearchParams(location.search).get('unsent') === '1') document.querySelector('[data-unsent]').hidden = false; } catch (e) {}
+    </script>
     <div>
       <h2 class="h3">What happens next</h2>
       <ol class="next">
@@ -33,6 +43,7 @@ import PopUp from '../../components/PopUp.astro';
       </fieldset>
       <button class="btn btn-primary" type="submit">Send answers</button>
       <p class="status" data-status role="status" aria-live="polite"></p>
+      <MailFallback lead="Anything else? Email me:" />
     </form>
   </div>
 </Page>
@@ -40,6 +51,8 @@ import PopUp from '../../components/PopUp.astro';
   .thanks { display: grid; gap: 40px; padding-bottom: 96px; }
   @media (min-width: 960px) { .thanks { grid-template-columns: 0.8fr 1.2fr; gap: 64px; } }
   .h3 { font-size: 1.6rem; }
+  .unsent { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-radius: 12px; border: 1px solid rgb(216 67 43 / 0.5); background: rgb(216 67 43 / 0.1); }
+  .unsent[hidden] { display: none; }
   .next { padding-left: 1.2em; color: var(--text-dim); }
   .next li { margin-bottom: 8px; }
   .pop-slot { position: relative; height: 300px; }

@@ -11,16 +11,18 @@
       "note": "3-month minimum",
       "recommended": false,
       "for": "Brands running paid social every week",
+      "assets": "16–20 finished assets a month",
       "deliverables": [
-        "1 new concept a month",
-        "30 s one-take hero film",
-        "8 s loop",
+        "A new film every month, and a fresh hook drop every week",
+        "15–30 s hero film",
         "8–12 variants (3 hooks; 6 / 15 / 30 s; 9:16 + 4:5)",
-        "6 stills"
+        "8 s loop",
+        "6 stills",
+        "A QC sheet with every film"
       ],
       "turnaround": "Frames by day 5, films by day 10, a variant drop each week",
       "payment": "Monthly in advance; then 30 days' notice",
-      "perAsset": "≈ $250–330 per asset",
+      "perAsset": "≈ $175–220 per asset",
       "cta": {
         "label": "Book a call",
         "href": "call"
@@ -35,14 +37,15 @@
       "recommended": true,
       "ribbon": "Recommended for launches",
       "for": "A launch, a drop or a Q4 push",
+      "assets": "11 finished assets",
       "deliverables": [
-        "5 storyboard frames",
-        "30 s one-take hero film",
-        "8 s loop",
+        "5 storyboard frames, then a 480p test take you approve",
+        "15–30 s hero film",
         "6 variants (3 hooks × 2 lengths)",
-        "9:16 + 4:5 (1:1 on request)",
+        "8 s loop",
         "3 stills",
-        "Captions file"
+        "9:16 + 4:5 (1:1 on request), captions file",
+        "A QC sheet with every film"
       ],
       "turnaround": "Frames day 2 → first take day 5 → final day 7–8",
       "payment": "50 % to start, 50 % on approval",
@@ -60,11 +63,13 @@
       "note": "",
       "recommended": false,
       "for": "A first test of us (a credited pilot)",
+      "assets": "4 finished assets",
       "deliverables": [
         "5 storyboard frames",
-        "30 s one-take hero film",
+        "15–30 s hero film",
         "3 short versions (6 s, 15 s, a hook swap)",
-        "9:16 + 4:5"
+        "9:16 + 4:5",
+        "A QC sheet with every film"
       ],
       "turnaround": "Final in 5 business days",
       "payment": "50 % / 50 %",
@@ -95,15 +100,23 @@
       "price": "+$150 per language"
     }
   ],
-  "context": "A polished product video from a production company typically runs $3–10k. A single UGC video is about $150–200, and you still direct it.",
-  "contextSource": {
-    "label": "DesignRush",
-    "url": "https://www.designrush.com/agency/video-production/trends/cost-of-video-production"
-  },
+  "context": "A 30-second spot from a production company typically runs $3–10k and weeks of work (DesignRush). AI-native studios quote $1k–10k for a spot with a few variants (Panda Studios, 2026). Premiere is $2,500 for the film, 6 variants, a loop and stills, with the price on the page.",
   "founding": {
     "show": true,
     "total": 5,
     "left": 5,
-    "line": "First five brands: one extra variant, in exchange for permission to show the work once it's live and a 15-minute debrief."
-  }
+    "line": "First five brands: one extra variant, in exchange for permission to show the work once it's live and a 15-minute debrief.",
+    "$comment": "Keep `left` a TRUE count. The line below is the CURRENT owner-approved offer; doc 65 §4.2 proposes a new trade (extra hook variant + QC sheet for 30-day Ads Manager numbers) that the owner has NOT approved yet. Do not change the trade without the owner."
+  },
+  "contextSources": [
+    {
+      "label": "DesignRush",
+      "url": "https://www.designrush.com/agency/video-production/trends/cost-of-video-production"
+    },
+    {
+      "label": "Panda Studios",
+      "url": "https://panda-studios.com/ai-commercial-cost-2026"
+    }
+  ],
+  "onTime": "First take late through our fault? The balance drops 10 %."
 }

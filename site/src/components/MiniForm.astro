@@ -2,6 +2,7 @@
 // Step 1 of the free-frames form: email + product page URL only (ref 39 §3.4). Step 2 (qualifiers,
 // optional photo) is /frames/thanks. Uses the same lead pipeline as the full form.
 import { site } from '../lib/site';
+import MailFallback from './MailFallback.astro';
 interface Props { id: string; act: string; button?: string }
 const { id, act, button = 'Get my 5 free frames' } = Astro.props;
 ---
@@ -24,6 +25,7 @@ const { id, act, button = 'Get my 5 free frames' } = Astro.props;
   <button type="submit" class="btn btn-primary submit">{button} <span aria-hidden="true">→</span></button>
   <p class="note">Free. No call. 48 h. No card either; frames are marked "AI concept".{site.capacityLine && ` ${site.capacityLine}`}</p>
   <p class="status" data-status role="status" aria-live="polite"></p>
+  <MailFallback />
 </form>
 <style>
   .mini-form { display: grid; gap: 4px; max-width: 520px; }

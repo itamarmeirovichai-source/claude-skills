@@ -14,24 +14,46 @@ import { media, mediaUrl, filmBySlug } from '../lib/media';
 import { site, pricing, money } from '../lib/site';
 
 const demoFilm = filmBySlug('aurum');
-// Work: the three newest first, then the rest (the AURUM demo film already plays in "How it works").
-const lead = ['aurum-top-shelf', 'tabletop-city', 'vesper-23'];
+// Work: Red Light (the film with a chase, a turn and a product-caused punchline) first, then the films with a turn,
+// then the rest (the AURUM demo film already plays in "How it works").
+const lead = ['red-light', 'aurum-top-shelf', 'vesper-23', 'tabletop-city'];
 const films = [...lead.map((s) => filmBySlug(s)), ...media.films.filter((f) => !lead.includes(f.slug) && f.slug !== demoFilm?.slug)].filter((f) => !!f);
 const offers = pricing.tiers.map((t) => ({ '@type': 'Offer', name: t.name, price: t.price, priceCurrency: 'USD' }));
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'AI product films', provider: { '@type': 'Organization', name: site.studio }, offers }];
 const steps = [
   { n: '1', title: 'Send one photo.', text: 'Any product shot, any light. Or just the link to your product page.' },
-  { n: '2', title: '5 frames in 48 h, free.', text: 'The light, the palette and the camera path of your film, on your product. No call, no card.' },
-  { n: '3', title: 'We film one 30 s take.', text: `If you love the frames, we make the film: one continuous take, final in about a week. From ${money(pricing.from)}.` },
+  { n: '2', title: '5 frames in 48 h, free.', text: 'On your product, plus the hook for second one and the punchline in a sentence. No call, no card.' },
+  { n: '3', title: 'A test take you approve.', text: `The storyboard, then a 480p test take checked against your frames. The final film: 15–30 s, 9:16 + 4:5, short cuts and stills, with a QC sheet and a list of every AI element. From ${money(pricing.from)}.` },
+];
+const checks = [
+  { k: 'Hook', v: 'Motion or a line in the first frame. No slow reveal.' },
+  { k: 'Sound', v: '−14 LUFS, true peak ≤ −1 dBTP, measured on the file you get.' },
+  { k: 'Sync', v: 'Every hit on the frame of its action, checked on a frame strip.' },
+  { k: 'Claims', v: 'Only your tested numbers on screen. AI never plays the result: your real footage goes in a proof slot.' },
 ];
 ---
-<Base title={site.studio} description={`Thirty-second product films, each one continuous take. Made with AI, directed by a human. Start with 5 free frames in 48 hours. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
+<Base title={site.studio} description={`15–30 s product ads with a hook in the first second and a punchline your product causes. Made with AI, directed by a person. Start with 5 free frames in 48 hours. From ${money(pricing.from)}.`} home jsonLd={jsonLd}>
   <Fragment slot="head">
     <link rel="preload" as="image" href={mediaUrl(media.otto.poster)} fetchpriority="high" />
   </Fragment>
 
   <main id="content" tabindex="-1">
     <Hero />
+
+    <!-- The QC promise: what every film passes before the client sees it (ref 65 P1-1). -->
+    <section class="section qc" id="qc" aria-labelledby="qc-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Before you see a film</p>
+          <h2 id="qc-h">What every film passes before you see it.</h2>
+          <p class="lede">Most AI ads skip these. That's the difference between an AI clip and an ad you can run.</p>
+        </div>
+        <dl class="qc-grid">
+          {checks.map((c) => <div class="qc-item"><dt>{c.k}</dt><dd>{c.v}</dd></div>)}
+        </dl>
+        <p class="more"><a href="/work/red-light#qc-sheet">See Red Light's QC sheet <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
 
     <!-- The problem -->
     <section class="section problem" id="problem" aria-labelledby="problem-h">
@@ -88,8 +110,8 @@ const steps = [
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">Work · spec films for invented brands</p>
-          <h2 id="work-h">Every film is one continuous take.</h2>
-          <p class="lede">We invented these brands to show what we make from a product and an idea. Tap one to watch it.</p>
+          <h2 id="work-h">Spec ads for brands we invented. Each one has a turn and a punchline.</h2>
+          <p class="lede">We invented these brands so we could show the work without using anyone's product. Your film starts from your real product photo. Tap one to watch it.</p>
         </div>
         <ul class="grid" role="list">
           {films.map((f) => <li><FilmTile film={f} /></li>)}
@@ -105,7 +127,7 @@ const steps = [
           <div class="head">
             <p class="eyebrow">Pricing</p>
             <h2 id="pricing-h">Three ways to work with us. Prices on the page.</h2>
-            <p class="lede">{pricing.context} <a href={pricing.contextSource.url} rel="noopener" target="_blank">Source: {pricing.contextSource.label}</a>.</p>
+            <p class="lede">{pricing.context} <span class="src">Sources: {pricing.contextSources.map((c, i) => <>{i > 0 && ', '}<a href={c.url} rel="noopener" target="_blank">{c.label}</a></>)}.</span></p>
           </div>
           <Presenter who="otto" slot="pricing" lines={['o4']} desk="row" class="price-otto" />
         </div>
@@ -120,11 +142,12 @@ const steps = [
         <div class="offer-copy">
           <p class="eyebrow">Start here</p>
           <h2 id="start-h">5 free frames.</h2>
-          <p class="promise">If you don't love them, you owe nothing and we part friends.</p>
+          <p class="promise">Your product in 48 hours, plus the hook for second one, the punchline in a sentence and a 60-second walkthrough from the director.</p>
           <ul class="ticks">
             <li>Send one photo, or just your product page.</li>
-            <li>5 frames in your inbox in 48 hours, marked "AI concept".</li>
-            <li>No call, no card. Yours to keep and share with your team.</li>
+            <li>Frames marked "AI concept". No call, no card. Yours to keep.</li>
+            <li>If you don't love them, you owe nothing and we part friends.</li>
+            <li>If you book a film: first take late through our fault? The balance drops 10 %.</li>
           </ul>
         </div>
         <div class="offer-form" data-inflow-cta>
@@ -138,7 +161,7 @@ const steps = [
     <section class="section faq-section" id="faq" aria-labelledby="faq-h">
       <div class="wrap narrow">
         <h2 id="faq-h">Straight answers</h2>
-        <Faq only={['ai-use', 'turnaround', 'revisions', 'ownership', 'need', 'pricing']} openFirst={false} />
+        <Faq only={['clients', 'ai-use', 'turnaround', 'revisions', 'ownership', 'need', 'pricing']} openFirst={false} />
       </div>
     </section>
   </main>
@@ -174,6 +197,15 @@ const steps = [
   .head { max-width: 760px; margin-bottom: var(--space-head); }
   .narrow > * { max-width: 820px; }
   .cta-block { display: grid; gap: 10px; justify-items: start; margin-top: var(--space-head); }
+
+  /* QC promise */
+  .qc { padding-block: calc(var(--space-section) * 0.6); border-top: 1px solid var(--line); }
+  .qc-grid { margin: 0; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 700px) { .qc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .qc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .qc-item { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--ink-2); }
+  .qc-item dt { font: 400 1.35rem/1.2 var(--serif); color: var(--brass-hi); margin-bottom: 6px; }
+  .qc-item dd { margin: 0; color: var(--text-dim); font-size: 0.93rem; line-height: 1.45; }
 
   /* The problem */
   .problem { padding-block: calc(var(--space-section) * 0.75); }
@@ -215,12 +247,13 @@ const steps = [
   /* Pricing */
   .price-head { display: grid; gap: 8px; margin-bottom: var(--space-head); }
   .price-head .head { margin-bottom: 0; }
+  .src { color: var(--text-faint); font-size: 0.85em; }
 
   /* The offer */
   .offer { background: var(--ink-0); }
   .offer-grid { display: grid; gap: 32px; }
   .offer-copy h2 { margin-bottom: 0.25em; }
-  .promise { font: 400 var(--fs-lede-lg)/1.35 var(--serif); color: var(--text); max-width: 26ch; }
+  .promise { font: 400 var(--fs-lede-lg)/1.35 var(--serif); color: var(--text); max-width: 34ch; }
   .ticks { list-style: none; margin: 24px 0 0; padding: 0; color: var(--text-dim); display: grid; gap: 10px; }
   .ticks li { padding-left: 26px; position: relative; }
   .ticks li::before { content: ''; position: absolute; left: 2px; top: 0.55em; width: 12px; height: 6px; border: solid var(--brass); border-width: 0 0 1.5px 1.5px; rotate: -45deg; }
