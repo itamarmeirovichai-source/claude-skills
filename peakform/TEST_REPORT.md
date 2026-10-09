@@ -1,6 +1,6 @@
 # PeakForm test report
 
-Date: 2026-10-09. Build 3.1.0.
+Date: 2026-10-09. Build 3.1.1.
 
 Everything below ran in the build environment: Linux, Node 22, Chromium with iPhone emulation. Nothing was tested on a real iPhone, and no clinician, dietitian, or coach reviewed the plan.
 
@@ -10,7 +10,7 @@ Everything below ran in the build environment: Linux, Node 22, Chromium with iPh
 | --- | --- |
 | TypeScript strict (`tsc -b`) | Pass, no errors |
 | ESLint (`eslint .`) | Pass, no errors or warnings |
-| Unit and integration tests (Vitest) | 171 of 171 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
+| Unit and integration tests (Vitest) | 172 of 172 pass, run with the time zone set to Asia/Jerusalem, America/Los_Angeles, and Pacific/Kiritimati |
 | End to end tests (Playwright) | 85 of 85 pass: 49 at 390 px (37 functional flows, layout on eleven screens, and an accessibility scan), plus layout and accessibility at 375, 393, and 430 px |
 | Production build and release gate | Pass: no personal markers, no trackers, offline assets present. One cosmetic warning: a chunk over 500 kB |
 | Exercise content validator | 103 of 103 exercises pass |

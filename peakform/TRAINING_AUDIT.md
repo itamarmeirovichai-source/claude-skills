@@ -101,7 +101,7 @@ Starting level, about 64 landings when the space allows everything:
 | Home movement prep, with landing, balance, and trunk control (10 minutes since 3.1.0) | 10 minutes | n/a | 2 × 2 m, any ceiling, no impact | n/a |
 | Snap down and stick | 2 × 4 | 60 s | 2 × 2 m, standard ceiling, safe floor | Block footwork |
 | Pogo hop | 2 × 10 | 60 s | 2 × 2 m, standard ceiling, safe floor, some noise | Tibialis raise, 2 × 15 |
-| Lateral line hop | 2 × 8 | 60 s | 1.5 × 1.5 m, tape line | Shadow pass footwork |
+| Lateral line hop | 2 × 8 | 60 s | 1.5 × 1.5 m and any line on the floor (tape, rope, a floor seam, or two socks; no equipment needed since 3.1.1) | Shadow pass footwork, only when noise limits or the floor rule out hops |
 | Countermovement jump to stick | 2 × 4 | 90 s | High ceiling, so outdoors or a hall | Spike arm swing, no ball |
 | Standing broad jump | 2 × 3 | 90 s | 5 m of space | Block footwork |
 | Approach footwork, no jump | 3 × 3 | 45 s | 5 m of space | Spike arm swing, no ball |

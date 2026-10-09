@@ -220,6 +220,12 @@ describe('home space decides the home drills', () => {
     expect(it.find((i) => i.exerciseId === 'tibialis-raise')!.notes[0]).toMatch(/Planned instead of Pogo Hop, because it is too loud/);
   });
 
+  it('plans the side hops without tape, since any line on the floor works', () => {
+    const noTape = buildHomeItems('mon', HOME_JUMP_SESSION.intro, { ...ROOMY, equipment: [] }, 'cleared').map((i) => i.exerciseId);
+    expect(noTape).toContain('lateral-line-hop');
+    expect(noTape).not.toContain('shadow-pass-footwork');
+  });
+
   it('keeps maximal jumps away from a standard ceiling indoors', () => {
     const indoorOnly: HomeSetup = { ...ROOMY, outdoor: 'none' };
     const it = buildHomeItems('mon', HOME_JUMP_SESSION.intro, indoorOnly, 'cleared').map((i) => i.exerciseId);

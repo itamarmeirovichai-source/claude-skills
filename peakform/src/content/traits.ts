@@ -216,7 +216,8 @@ export const HOME_NEEDS: Partial<Record<LibraryExerciseId, SpaceNeeds>> = {
   'spike-arm-swing-shadow': { space: 'small', ceiling: 'standard', impact: 'none', noise: 'quiet' },
   'pogo-hop': { space: 'small', ceiling: 'standard', impact: 'low', noise: 'some' },
   'snap-down-stick': { space: 'small', ceiling: 'standard', impact: 'low', noise: 'some' },
-  'lateral-line-hop': { space: 'small', ceiling: 'standard', impact: 'low', noise: 'some', equipment: ['tape'] },
+  // Any line works: tape, a rope, a floor seam, or two socks a metre apart, so no equipment is required (3.1.1).
+  'lateral-line-hop': { space: 'small', ceiling: 'standard', impact: 'low', noise: 'some' },
   'easy-jump-rope': { space: 'medium', ceiling: 'standard', impact: 'low', noise: 'some', equipment: ['rope'] },
   'countermovement-jump': { space: 'small', ceiling: 'high', impact: 'moderate', noise: 'loud' },
   'broad-jump': { space: 'large', ceiling: 'standard', impact: 'moderate', noise: 'loud' },
