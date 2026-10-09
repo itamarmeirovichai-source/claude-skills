@@ -59,14 +59,55 @@ A lead is never messaged from a score alone. For each candidate, write a dossier
 
 **Filter hard.** Only leads whose dossier shows a clear reason to buy NOW go to the owner. Rank them, and send the owner only the very hottest (best 1–3 per day, never more than 5).
 
-## 3. The first message (DM or email), personal, under 60 words
-Structure, matching the proven examples in `HOT_NEW_30.md`:
-1. One specific compliment on THEIR ad, line or product (shows real attention).
-2. One concrete film idea for ONE product, in one sentence, visual and with a twist.
-3. "I make AI product films (no shoot)."
-4. A yes/yes question: "Want 5 free frames for {product A}, or for {product B}?"
+## 3. The first message (DM or email): rules from doc 63
+Full research, red-teamed examples and objection replies: `skills/ad-director/references/marketing/63-outreach-that-gets-replies.md`. It supersedes the old template here, doc 28 §5, doc 34 §4.2 and the DTC templates in `launch/outreach.md`.
 
-Don't add links in the first message, and don't use "if you're not interested" exits. The portfolio link goes in the first reply.
+**Instagram facts that shape everything:** a non-follower gets **one text-only message** until the recipient accepts. It lands in Requests, and a brand account's DMs are read by a social or CX person. So the DM must stand alone, carries no image or link, and **every follow-up goes by email**.
+
+**Channel order:**
+1. The founder's own public business account (IG or LinkedIn), sent by the owner by hand.
+2. The brand IG DM, written so it can be forwarded.
+3. The public brand inbox, with the founder's name in the first words.
+
+Sequence: DM on day 0, email on day 1. Never guess an email address, use a form or pitch in a comment.
+
+**Every first message:**
+1. Names the sender in line 1 ("Itamar from VXO").
+2. Makes ONE observation a customer could see. **Never** use back-end data: no `products.json` dates, no hidden or unreleased SKUs (tags such as `redirect-to-404`, `hidden`, `draft`, or `available: false`), no Motion or Ad Library counts, no job posts.
+3. Gives the film idea in 1–2 visual sentences, with a turn the product causes. The idea earns the reply, not praise.
+4. Says "AI" once, after the idea, next to what stays real (the real product shot or proof, no AI people).
+5. Makes the offer in their words: "5 free stills of it, on your real [product]". No call, no cost.
+6. Ends on a two-yes CTA, both options free and equally easy.
+7. Uses no superlatives ("best", "genius", "hero"), no "I came across", no exclamation marks, no em-dash chains.
+8. Length: a DM is 35–55 words; an email body is 50–90 words, with a 1–4-word subject naming their thing.
+9. Has no link, image or price in touch 1.
+10. Email only: carries the footer (real name, VXO, a **real postal address**, and `This is a one-to-one business pitch. Reply "stop" and I won't email again.`). **No email is sent while the address is a placeholder.**
+11. Is different from every other draft that day (no shared sentences).
+
+**Before the owner's "send":** run the doc 63 §7.1 checklist:
+- the Ad Library is checked by hand;
+- the product is public;
+- no stale or back-end data appears in the message;
+- the sender profile is real;
+- the send slot is Tue–Thu, 8–10 am in their time zone;
+- the send is logged the same day.
+
+Limits: about 10 new DMs and 15 new emails a day, by hand, spaced out.
+
+## 3b. Follow-ups: 3 touches, email only, each one owner-approved
+Reply in the same email thread (never a fake "Re:"). Each touch is its own approval ("send #N-FU1"). **Stop at the first reply of any kind**, and honour any "stop" or "no" the same day (CAN-SPAM: within 10 business days at most). Every follow-up keeps the footer.
+
+| Touch | Day | Words | New reason to reply | Spend |
+|---|---|---|---|---|
+| FU1 | +4 | ≤ 45 | A second film idea for the same product, ending in a two-yes ("this one, or the first?") | 0 |
+| FU2 | +9 | ≤ 40 | One still from their public product photo, attached as a single JPG and marked "AI concept, just for you" | ~$0.05–0.30, **only with the owner's approval** (frames-only mode); otherwise send FU2-text (how the stills protect their product) |
+| FU3 | +16 | ≤ 35 | A real date on their calendar, plus a two-yes on timing ("this week, or check back for [next season]?") | 0 |
+
+Rules:
+- Never send "just checking in", guilt or fake deadlines.
+- Never post or share a frame made before they say yes.
+- After FU3, log "no reply" and set one check-in at their next real launch.
+- When they reply, use the doc 63 §6 objection replies (price, in-house AI, "AI looks fake", "send examples", "who else have you worked with", "not now"), then docs 28 §6–8 and 34 for the call and the close.
 
 ## 4. Output every run
 Write `research/ai-video-reels/leads/YYYY-MM-DD.md` containing:
