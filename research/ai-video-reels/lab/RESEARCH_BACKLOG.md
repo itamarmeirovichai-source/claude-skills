@@ -1,5 +1,16 @@
 # Research backlog (the daily routine works it top-down)
 
+## Next up (from `lab/WEAKNESSES.md`, 2026-10-09). Work these BEFORE anything below
+Each one unblocks a sale or an owner decision listed in WEAKNESSES.md §3. Zero spend; never send anything.
+
+- [ ] **Send-day live re-check kit.** Add a `products.json` hidden-SKU check (`redirect-to-404`, `exclude`, `available:false`, empty body) next to `scripts/research/ad_library.py`. Run both on Foggy, Moment and AUrate the morning of each send. Propose making them mandatory in `vxo-leads` §1 (W#10, W#9).
+- [ ] **Red Light re-cut edit decision list** from existing scratchpad media ($0, never commit media): a 1.5 s can flash-forward, a fix for the 2.9 s freeze, a can packshot + offer end card, 15 s and 4:5 cuts, `qc_report.py` before/after. Ready for owner decision 7 (W#5, W#13, W#24).
+- [ ] **Fidelity-proof shot plan:** which real product (collar / tennis bracelet / can), the phone-photo spec, the 3-panel before/after layout, checks (embroidery, stone count, label letter by letter, ΔE ≤ 3). Ready for decision 8 (W#6, W#17).
+- [ ] **Off-holiday redrafts** of the Foggy, Moment and AUrate DMs/emails: a Dec 1–20 refresh, January drops, Dry January; Moment without "coupe" or cocktail-hour cues; Foggy pitched as a tool for her in-house content lead (Finn & Gray handover). Drafts only, for decisions 10, 13 and 14 (W#11, W#14, W#16).
+- [ ] **Verify top 3 first:** the Instagram one-message rule as of Oct 2026, the AI-disclosure rules for commercial ads (Meta, TikTok, YouTube), and 10 live competitor AI-studio price pages (see Verify below; W#18, W#19, W#25).
+- [ ] **Next 30 sends ready:** re-check HOT_NEW_30 live with `ad_library.py` and the hidden-SKU check, starting with Leaf Shave, The GLD Shop and Baked by Melissa, so 10 a day are ready after the first sends (W#1, W#31).
+- [ ] **Outcome tracker + one spend ledger design** (see the queue item below), ready for decision 19 (W#28).
+
 Rules:
 - `vxo-daily` Step 2 takes the top 3 unchecked items of **Verify**; Step 3 takes the top unchecked item of **Research**.
 - Whenever you check a Research item, add up to 2 new ones, at most one "nobody asked, but it would make us better". Every topic must help find leads, close them, or make the films better. **No pivots** (LESSONS, 2026-10-09).
