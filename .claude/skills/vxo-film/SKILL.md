@@ -26,6 +26,24 @@ The ladder:
 
 Log every spend in `research/ai-video-reels/lab/experiments/W01_site_films/ledger.md`.
 
+## Step 0: Client research after approval/payment (owner rule, 2026-10-09)
+Before any concept, extend the lead's dossier (`research/ai-video-reels/leads/dossiers/<brand>.md`) into a client brief. Check that everything is in order:
+- the business is real and active;
+- the product, claims and labels are what we think;
+- there are no legal or claims landmines.
+
+Then understand the business and the person in depth:
+- the product page, reviews (what customers love and complain about, in their own words), competitors' ads;
+- their past ads and which ones they kept running;
+- brand voice, colours and fonts;
+- the founder's taste from their posts;
+- what success means to THEM (sales, launch buzz, retail pitch).
+
+End with:
+- what they need from this film;
+- what would make them come back (next film, Season plan, seasonal calendar, new SKUs);
+- how we'll show results (deliverables, cut-downs, a test plan) so they buy again.
+
 ## Step 1: Intake (from the owner)
 Collect:
 - the brand, product name, product photo(s) and product page URL;

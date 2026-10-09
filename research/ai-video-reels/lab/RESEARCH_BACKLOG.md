@@ -10,6 +10,8 @@ Rule: whenever you check an item, add 2 new ones, including one "nobody asked, b
 - [ ] Music for ads: licensing-safe AI music, beat-matching cuts, when silence sells.
 - [ ] Upscaling and finishing: the best way to take a 480p take to 1080p (Topaz-style, available APIs, ffmpeg chains). Measure the quality.
 - [ ] Hands and product interaction: why AI hands fail with cans, bottles and jars, and prompt fixes with examples.
+- [ ] Re-purchase and retention for creative services: what makes DTC brands rebook monthly (ad fatigue cycles, seasonal calendars, reporting results), and how to design a Season plan that renews.
+- [ ] Lead dossier sources: how to read a brand fast (Ad Library longevity, review mining, founder interviews, Shopify launch dates, job posts) in 20 minutes per lead.
 - [ ] Cold DM/email reply rates for creative services to DTC founders in 2025–2026: what lifts replies.
 - [ ] Pricing psychology for creative services: anchors, packages, guarantees, pilot credits.
 - [ ] Case studies: AI ad studios that grew fast in 2025–2026, how they got their first 20 clients.

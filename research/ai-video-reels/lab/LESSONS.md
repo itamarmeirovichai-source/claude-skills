@@ -40,3 +40,6 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 - The fixed +125 ms lip offset was wrong. RULE: measure each talking clip separately with `lipsync_check.py` and bake its own offset. Otto's moustache can't be verified (SyncNet confidence < 1), so treat his lines as voiceover.
 - Frozen frames hide in one-takes when a clip that ends on a held pose is slowed down. RULE: run `qc_report.py` and fix any freeze longer than 6 frames.
 - Hard hits more than 2 frames off in native audio need re-placing; keep the ambience.
+
+## Funnel (owner, 2026-10-09)
+- "Part of finding leads is researching them: understanding how to make them buy, and buy again." RULE: no message without a dossier (why hot, the business, the person, fit/red flags, the buying path, the re-buy path). Filter to only the very hottest. After approval/payment, research the business and the person again in depth before any concept (`vxo-film` Step 0).

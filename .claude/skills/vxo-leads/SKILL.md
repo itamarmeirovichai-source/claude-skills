@@ -39,6 +39,26 @@ HOT = 70 or above. Only HOT leads reach the owner, five at most per day, best fi
 - Trade press: BevNET, Food Dive, Glossy, Modern Retail and similar.
 - Existing lists: `research/ai-video-reels/prospects/HOT_NEW_30.md`, `HEAT_50.md`, `us-*.md`. Never re-pitch a brand that is already listed unless its status is updated.
 
+## 2b. Deep lead research: a dossier BEFORE any message (owner rule, 2026-10-09)
+A lead is never messaged from a score alone. For each candidate, write a dossier in `research/ai-video-reels/leads/dossiers/<brand>.md`:
+1. **Why they are hot, in one sentence with evidence:** for example "launched X on 9/28, running 14 static ads, zero video, BFCM in 6 weeks".
+2. **The business:**
+   - what they sell, their hero product and price;
+   - estimated size, channels (DTC/Amazon/retail) and where they advertise;
+   - their current creative: what works, what's weak, how long their winning ads have run.
+3. **The person:**
+   - who decides (founder or marketing lead);
+   - their public voice from interviews, posts and podcasts;
+   - what they care about (taste, speed, ROAS, brand) and what they'd fear in an AI studio.
+4. **Fit and red flags:** budget proxy, founder-led, any legal or claims risk, recent bad news, already working with an agency.
+5. **The buying path:**
+   - Which ONE film would make them buy now?
+   - Which proof do they need (frames, a sample in their niche, a price anchor)?
+   - What would make them buy AGAIN (a monthly "Season" cadence, seasonal drops, new SKUs, ad fatigue every ~4 weeks)?
+6. **The angle for the first message.**
+
+**Filter hard.** Only leads whose dossier shows a clear reason to buy NOW go to the owner. Rank them, and send the owner only the very hottest (best 1–3 per day, never more than 5).
+
 ## 3. The first message (DM or email), personal, under 60 words
 Structure, matching the proven examples in `HOT_NEW_30.md`:
 1. One specific compliment on THEIR ad, line or product (shows real attention).
