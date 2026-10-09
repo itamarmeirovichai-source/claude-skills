@@ -74,3 +74,5 @@ Self-audit lesson (the owner caught these, I should have): place every sound on 
 | **Site total** | | **~$76.5 of $80** | |
 | F08 'From the top' Dubai-style: D0 Flare still + Seedance 2.5 r2v 15 s 720p, native audio | Flare + Seedance | 7.28 | PASS: snap synced (hand 1.75 s / audio 1.76 s), dive, chase, Otto-already-in-car twist. Approved extra budget: $15 |
 | **Total** | | **~$83.8 ($80 + $15 approved for this film)** | |
+| F09 AURUM heist: R0 Flare still + Seedance 2.5 r2v 15 s 720p, native audio | Flare + Seedance | 7.28 | PASS: BASE jump + chute open (audio 2.25 s), landing in car (7.0 s), foam 'shot' at police (11.5 s), bag of cans punchline. Real guns swapped for a foam-spraying can (ad policy + model filters) |
+| **Total** | | **~$91 ($80 + $15 approved)** | |
