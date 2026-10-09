@@ -39,7 +39,7 @@ Score = base score out of 100 (vxo-leads §1: Ads 30 · Need 20 · Momentum 15 �
 | Q-12 | Hawkins New York | 81 | Pleat and Colorstory lamps published 9/24–9/28; 2 of 24 ads video, 19 running 60+ days, newest ad 9/11 | "The Last Piece": a dim January room fills with pieces; the Pleat lamp clicks on and every colour finally shows | IG @hawkinsnewyork ⚠ handle → email | press@hawkinsnewyork.com (contact); founders Paul Denoly, Nick Blaine (roles unverified) |
 | Q-13 | Legendary Foods | 76 | Mini Protein Donuts and Chocolate Caramel Protein Pastry live; 17 active ads, **0 video**; pastry ad from 10/6 | "Cheat Detector": a ceiling detector shrieks at a donut until the hand turns the box to the label | IG @legendaryfoods → email | customercare@eatlegendary.com (support inbox, the only one listed); founders Ron Penna, Michael Veni |
 | Q-14 | Equator Coffees | 76 | Office Coffee Subscription 5 lb (9/30) and Ecuador La Marquesa (10/5) live; 19 of 30 ads stills | "The Bag Lands": Monday 9:01, a 5 lb bag lands and the whole meeting moves next to the coffee | IG @equatorcoffees → email | info@equatorcoffees.com (contact + FAQ); co-founders Helen Russell, Brooke McDonnell |
-| Q-15 | Saranoni | 75 | New XXL 80x100 size of the Double Ruched throw (Flax, Midnight, Chocolate Blend in stock); 22 of the top 30 ads running 60+ days | "Tug": four feet fight over a small throw; the XXL covers the sofa, both people and the dog, with blanket to spare | IG @saranoni ⚠ handle → email | service@saranoni.com (contact-us); founder/CEO Emily Peterson |
+| Q-15 | Saranoni | 75 | New XXL 80x100 size of the Double Ruched throw (Flax, Midnight, Chocolate Blend in stock); 22 of the top 30 ads running 60+ days (16 of 30 are already video, so the pitch is fresh scenes) | "Tug": four feet fight over a small throw; the XXL covers the sofa, both people and the dog, with blanket to spare | IG @saranoni ⚠ handle → email | service@saranoni.com (contact-us); founder/CEO Emily Peterson |
 | Q-16 | STONE AND STRAND | 71 | Unflippable tennis necklace (yellow gold and lab-created, both in stock) sold only in stills; charms published 10/8 | "Face Forward": everyday moves, diamonds still facing out; at 2 am she flips her pillow, the only thing that flipped | IG @stoneandstrand → email | atyourservice@stoneandstrand.com (FAQ); founder Nadine McCarthy Kahane |
 | Q-17 | THATCH | 70 | Wood Anywhere shells (coconut, driftwood) and bag clips (9/30) live; charm ad from 10/1; 3 of ~16 ads video | "Anywhere (Almost)": the shell charm hops across a trip, is left on a plane seat-back, and a hand comes back for it | IG @thatch.jewelry → email | amy@shopthatch.com (co-founder Amy Olson Goin, listed on their own wholesale page) |
 | Q-18 | Vosges Haut-Chocolat | 81 | 15-SKU Snowbound holiday collection published 10/6 (Perfect Gift and Little Gift live); 22 of 30 ads stills. **Ranked low: owned by La Montagne Holdings, buyer unknown** | "Snowbound": snowed in with the purple box, a hand switches off the porch light so the plough drives past | IG @vosgeshautchocolat → email | vosges@vosgeschocolate.com (/pages/contact); decision-maker unknown |
@@ -69,7 +69,7 @@ Score = base score out of 100 (vxo-leads §1: Ads 30 · Need 20 · Momentum 15 �
 - Every message: sender in line 1, no link, no image, no price, no ad counts, no back-end dates, "AI" at most once next to what stays real, and a two-yes CTA.
 
 ### 2.3 Ad Library re-read (live, `ad_library.py`)
-See the note under this heading in the final section (§6); it is filled in from the run log.
+All 24 candidates were re-read on 2026-10-09 (~22:45–23:40 UTC). Every active count was confirmed by two loads, and **every one matches its dossier** (within 0–3 ads). Nothing moved a lead in or out. The table is in §6.
 
 ## 3. Proposed send schedule (only after the site is live)
 
@@ -532,4 +532,33 @@ Rule for this lead: pitch full-price pieces only; never mention the vault sale.
 6. Optional: approve FU2 stills at ~$0.05–0.30 per lead (decision 23); otherwise FU2 goes as text.
 
 ## 6. Ad Library re-read log (§2.3)
-_Pending: filled in below from the `ad_library.py` run of 2026-10-09 (~22:45 UTC)._
+`skills/ad-director/scripts/research/ad_library.py` (headless Chromium, no login, TLS on), US, active ads only. Reads were made on 2026-10-09 between ~22:45 and 23:40 UTC. "Cards" means the top ~30 ads Meta serves logged-out. These numbers are for the owner's eyes only; **never quote them in a message** (vxo-leads §3 rule 2).
+
+| Brand | Page ID | Active (2 loads) | Video in top cards | Started ≤30 d | Running 60+ d | Newest ad |
+|---|---|---|---|---|---|---|
+| LAKE Pajamas | 580593302066560 | 221 / 221 | 7 of 30 | 25 | 2 | 10/7 |
+| Printfresh | 820964621376913 | 336 / 336 | 6 of 30 | 11 | 7 | 10/3 |
+| Dandelion Chocolate | 140616852679676 | 172 / 172 | 4 of 30 | 12 | 15 | 10/2 |
+| The Foggy Dog | 525487920847043 | 218 / 218 | 3 of 30 | 19 | 7 | 9/30 |
+| Little Beast | 180260625992020 | 62 / 62 | 2 of 30 | 9 | 15 | 10/6 |
+| Sunday Citizen | 2139297479421765 | 306 / 306 | 9 of 30 | 30 | 0 | 10/2 |
+| Dana Rebecca Designs | 73365908785 | 204 / 204 | 8 of 30 | 14 | 9 | 10/7 |
+| Brackish | 407300519293595 | 60 / 60 | 1 of 30 | 30 | 0 | 10/8 |
+| Cuddle Clones | 159786040742961 | 174 / 174 | 12 of 30 | 18 | 4 | 10/3 |
+| Kinn | 685144648358926 | 95 / 95 | 7 of 30 | 6 | 15 | 10/2 |
+| KREWE | 228756107262307 | 42 / 42 | 5 of 30 | 29 | 0 | 10/8 |
+| Hawkins New York | 160526444129950 | 93 / 93 | 2 of 24 | 5 | 19 | 9/11 |
+| Legendary Foods | 435452713326784 | 17 / 17 | 0 of 17 | 7 | 0 | 10/7 |
+| Equator Coffees | 81536025996 | 65 / 65 | 11 of 30 | 14 | 0 | 9/28 |
+| Saranoni | 123297247721711 | 229 / 229 | 16 of 30 | 3 | 22 | 9/24 |
+| STONE AND STRAND | 233311846777917 | 19 / 19 | 4 of 19 | 17 | 1 | 10/9 |
+| THATCH | 138037436402977 | 16 / 16 | 3 of 16 | 16 | 0 | 10/7 |
+| Vosges Haut-Chocolat | 176194234264 | 73 / 73 | 8 of 30 | 8 | 6 | 10/6 |
+| Alexis Bittar | 133108280093101 | 27 / 27 | 6 of 27 | 27 | 0 | 10/9 |
+| *Dropped:* AUrate | 674270965989061 | 54 / 54 | 2 of 30 | 30 | 0 | 10/9 |
+| *Dropped:* Moment | 100242278417483 | 673 / 673 | 13 of 30 | 1 | 28 | 9/17 |
+| *Dropped:* APOTHEKE | 283479515026443 | 134 / 134 | 19 of 30 | 14 | 5 | 10/7 |
+| *Dropped:* Priority Bicycles | 646112635459099 | 54 / 54 | 14 of 30 | 3 | 20 | 9/28 |
+| *Dropped:* Stoney Clover Lane | 107600707601 | 34 / 34 | 3 of 30 | 19 | 7 | 10/2 |
+
+Note for Saranoni: 16 of its top 30 ads are already video, so its heat comes from staleness (22 ads running 60+ days), not from a video gap. Pitch fresh scenes, never "you need video". It stays in the queue, ranked 15th.
