@@ -3,3 +3,8 @@ __pycache__/
 qc/
 bench/
 jobs/
+!scripts/qc/
+# default output folders of scripts/qc tools (reports with frame strips: never commit)
+*_qc/
+*_lipsync/
+*_continuity/

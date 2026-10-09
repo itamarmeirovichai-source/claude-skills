@@ -35,6 +35,11 @@ python3 $D qc final.mp4 --packshot packshot.png --duration 15 [--one-take] --out
 python3 $D bench --out bench/ --models seedance25,kling30pro,veo31   # model test matrix
 python3 $D bench-summary bench/bench_matrix.csv
 ```
+**Deep QC (`scripts/qc/`, no paid calls):** fill `scripts/qc/preflight.md` before any generation; after rendering run
+`qc_report.py` (cuts, frame strip, onsets vs motion in ms, LUFS/true peak, flash/frozen frames), `lipsync_check.py`
+(SyncNet audio-to-mouth offset + confidence, per clip) and `continuity_check.py` (face identity, prop/vessel and product
+drift, seams). Thresholds and the proof on our past films: `references/marketing/46-sound-and-qc.md`.
+
 The ledger defaults to `~/.ad-director/ledger.jsonl`; override it with `--ledger` or `AD_DIRECTOR_LEDGER`. Keep one ledger per studio and back it up, because it is the memory that prevents repeats.
 
 ## Generating with the Higgsfield API (`scripts/hfgen.py`)
