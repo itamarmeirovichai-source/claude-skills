@@ -76,3 +76,9 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 - Eco/cleaning audiences are the most anti-AI audience we've found: no AI people, real product, real proof, AI only for the world and the joke.
 - Local businesses (hotels, restaurants, gyms): the room, the dish and the view must be real. AI is for what doesn't exist yet (off-plan towers, pre-opening hotels, gyms in pre-sale), from the architect's approved renders, labelled as a visualisation. No AI "residents" in real-estate ads (US Fair Housing law). Med-spas: no faces, skin or results, ever.
 - Stop-motion (bags, luggage) and "inside the machine" cutaways are the easiest looks for AI and need no realism. Use them for mechanism inserts.
+
+## From niche research 62 (apps, SaaS, crowdfunding, 2026-10-09) [self]
+- AI never draws a readable app screen or device UI. Show the client's real interface as a floating card or a clean floating phone added in post (the Pocket/Monogram style). Apple app previews may use only real screen captures; Meta bans fake notifications and buttons.
+- Kickstarter requires a working prototype, bans photorealistic renders of unbuilt products and requires an AI-use disclosure. In crowdfunding films, the product's performance comes only from the client's real prototype footage.
+- In app ads, 35 of 55 speak in the first second: put a written or spoken line on frame 0 as well as motion.
+- Health, sleep and focus apps convert best in mid-January: approach them in October–November.
