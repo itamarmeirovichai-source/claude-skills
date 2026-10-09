@@ -43,3 +43,12 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 
 ## Funnel (owner, 2026-10-09)
 - "Part of finding leads is researching them: understanding how to make them buy, and buy again." RULE: no message without a dossier (why hot, the business, the person, fit/red flags, the buying path, the re-buy path). Filter to only the very hottest. After approval/payment, research the business and the person again in depth before any concept (`vxo-film` Step 0).
+
+## From niche research 47–52 (2026-10-09) [self]
+- AI never plays the "result" or the proof (a face after skincare, a dog loving food, a test survived). Every client film keeps a short PROOF SLOT for the client's real footage or certificate. The FTC bans AI or invented testimonials.
+- The picture is the claim (Dyson v. Dreame, NAD 2026): a "dramatization" label doesn't cure an AI scene that overstates the product. Keep every visual within the product's real specs (IP rating, battery, dB, SPF wording).
+- Generated people are the biggest backlash risk in fashion and beauty. Build the world and the stunt with AI; show hands or backs, or licensed real people. Never generate babies. One animal per shot, 5 s or less, from a real photo (Kling).
+- Physics traps: vacuum-insulated tumblers never sweat; dial text, stone counts and logos come from a real-photo still (Kling i2v); dimensions within ±3% and colour checked against a swatch.
+- Ship 6–10 stills with every film (furniture ads are 70% images; plain product shots score highest in home). The winning ad length in beauty, food and fashion is often 8–15 s, so always deliver a short cut.
+- Ad lifespans set the plan: outdoor and fashion ads die in ~20 days → sell the monthly Season plan; pets and furniture last 40–74 days → sell a Premiere one-off.
+- Proven formats: the product surviving an ordeal (Stanley); a giant product with a real hand for scale (Jacquemus); product-as-food (The Ordinary); the fridge-door POV with the product's own fate as the joke.
