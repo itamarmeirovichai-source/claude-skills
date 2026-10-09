@@ -79,3 +79,11 @@ Self-audit lesson (the owner caught these, I should have): place every sound on 
 | F10 'Red Light' storyboard x9 | Soul Cinema 720p | 0.04 | PASS as composition guide (S1/S5 came out rotated, S7 police car beside instead of behind: fix in video prompt) |
 | F10 Red Light test 30 s 480p, 9-shot multi-cut prompt (doc 43 §7.1 pattern), native audio | Seedance 2.5 r2v | 6.17 | PASS with notes: real launch/handbrake turn/follow/red-light stop/handoff/pull-away; audio onsets on actions (0.28 launch, 7.25 turn, silence 16-23, 23.85 pull-away). Issues: Vee shows 2 stopwatches in interior, cruiser stops beside not behind, officer never visibly cracks/sips |
 | **Total** | | **~$97.3** | |
+| Foggy Dog fidelity proof, S3 7.5 s viewfinder dog close-up (req 4500f922) | Flare 2k high, refs = brand packshot + brand lifestyle photo (public CDN) | 0.34 | PASS: 7/7 gingerbread men, twill dE 3.1 (borderline), thread 7.7 L too light, men re-arranged |
+| Foggy S4 10.0 s fridge-door punchline (req a0ed04c8) | Flare 2k high | 0.34 | PASS with note: card shows dog alone in the bow tie; the "elbow" reads as a cushion; twill dE 6.4 (photo-of-a-print, darker) |
+| Foggy S5 12.5 s end card, bow tie + Evergreen walk set (req 3fc283ce) | Flare 2k high, refs = 2 packshots | 0.34 | PASS: 7/7 men, twill dE 2.0; walk-set collar 5/5 canes, buckle, D-ring, webbing dE 3.9 |
+| Foggy S1 0.0 s hook take 1 (req 644cca41) | Flare 1k high | 0.16 | FAIL: one seated adult has no head, another's face is replaced by hair; embroidery glittery at 1k |
+| Foggy S2 1.2 s OTS photographer (req fdce1ba9) | Flare 1k high | 0.16 | PASS as sketch: no faces, no camera logo; zoom-ring twist not shown; embroidery glittery at 1k, twill dE 4.1 |
+| Foggy S1 hook take 2 (req 3968622e), the one allowed redo | Flare 2k high | 0.34 | FAIL at 9:16 (headless people, room visible above the necks); usable as a $0 4:5 crop cut at the shoulders: 7/7 men, twill dE 2.1 |
+| **Foggy fidelity-proof subtotal (cap $2.00)** | | **1.68 est** | 6 calls, 1 redo. Costs are hfgen's conservative estimates (Flare is token-billed); actual billed may be lower |
+| **Total** | | **~$99.0** | |
