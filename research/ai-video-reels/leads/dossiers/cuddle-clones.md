@@ -100,3 +100,5 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 
 **Score:** Ads 27 · Need 14 · Momentum 15 · Seasonal 10 · Budget 8 · Founder/reach 7 · Hiring 0 = **81, HOT**.
 **Red team:** video share is higher than our ideal (40 % of top cards), so the "creative need" case rests on the pajama/paper line having no story film; the memorial side is emotionally sensitive and stays out of every pitch; the founder's current role is unconfirmed.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

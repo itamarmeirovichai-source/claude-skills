@@ -78,6 +78,7 @@ Sequence: DM on day 0, email on day 1. Never guess an email address, use a form 
 4. Says "AI" once, after the idea, next to what stays real (the real product shot or proof, no AI people).
 5. Makes the offer in their words: "5 free stills of it, on your real [product]". No call, no cost.
 6. Ends on a two-yes CTA, both options free and equally easy.
+   - Every product the message names (both CTA options included) must pass `python3 skills/ad-director/scripts/research/products_check.py <domain> "<title words>"` with no HIDDEN, FINAL, MARKDOWN, OOS or PAGE!=200 flag, on the day it is drafted **and again on the send morning** (2026-10-10: a queued CTA, Little Beast's Miami Vice onesie, went on sale overnight). A brand-wide standing promo that was already there when the lead was scored (e.g. Cuddle Clones' pajama offer) is noted in the dossier, not a blocker.
 7. Uses no superlatives ("best", "genius", "hero"), no "I came across", no exclamation marks, no em-dash chains.
 8. Length: a DM is 35–55 words; an email body is 50–90 words, with a 1–4-word subject naming their thing.
 9. Has no link, image or price in touch 1.

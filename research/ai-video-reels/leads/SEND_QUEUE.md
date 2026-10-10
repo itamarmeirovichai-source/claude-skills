@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -194,16 +194,16 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @littlebeast.co, written to be forwarded to Jisu:**
-> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, Miami Vice", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or Miami Vice?
+> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
 
 **Email (day 1) to hello@littlebeast.co** · Subject: **Morning, PBJ**
 > Hi Jisu (or whoever reads hello@, could you pass this to Jisu?),
 >
-> Following my Instagram note: a 15 s film for the striped onesies. A lobby at 7:58 am. The doorman greets each dog by outfit, "Morning, PBJ", "Morning, Miami Vice", then asks the owner who he's visiting.
+> Following my Instagram note: a 15 s film for the striped onesies. A lobby at 7:58 am. The doorman greets each dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting.
 >
 > I'd build the lobby with AI. Your real onesies and a real photo of one of your dogs stay real, and no faces are generated.
 >
-> Want 5 free stills, on the PBJ onesie or the Miami Vice fleece?
+> Want 5 free stills, on the PBJ or the OG onesie?
 >
 > {OWNER_NAME} · VXO · AI product films
 > {BUSINESS_ADDRESS}
@@ -562,3 +562,21 @@ Rule for this lead: pitch full-price pieces only; never mention the vault sale.
 | *Dropped:* Stoney Clover Lane | 107600707601 | 34 / 34 | 3 of 30 | 19 | 7 | 10/2 |
 
 Note for Saranoni: 16 of its top 30 ads are already video, so its heat comes from staleness (22 ads running 60+ days), not from a video gap. Pitch fresh scenes, never "you need video". It stays in the queue, ranked 15th.
+
+## 7. Re-check of Tuesday's 10 (Q-1..Q-10), 2026-10-10 ~04:50–05:40 UTC
+Tools: `skills/ad-director/scripts/research/products_check.py` (new today: public `/products.json` + the product page itself; flags HIDDEN / FINAL / MARKDOWN / OOS / PAGE!=200) and `ad_library.py page` (2 loads each). Nothing sent; $0.
+
+| # | Products the messages name | Live today | Ad Library (active · video filter share · video cards of 30 · 60+ d) | Verdict |
+|---|---|---|---|---|
+| Q-1 LAKE | Tour set in Oat Heather; "a CloudPima set" | Tour Pullover Jogger set Oat Heather 5/5, $268 full price, page 200; CloudPima is their fabric line, many pima sets 7/7 full price | 221 · 32 % · 7 · 2 | ✅ holds |
+| Q-2 Printfresh | Holiday Hens pet bandana; "Hens or Bagheera" | Bandana 2/2 $28 full price; Hens and Winter Holly Bagheera apparel full price (only the multi-item bundles carry a compare-at, as bundles do) | 336 · 36 % · 6 · 7 | ✅ holds |
+| Q-3 Dandelion | 70 % three-bar gift set; Maya Mountain | Gift set 1/1 $42; Maya Mountain 70 % 1/1 $13; both full price | 172 · 15 % · 4 · 15 | ✅ holds |
+| Q-4 Foggy Dog | Gingerbread Man bow tie collar; Evergreen Candy Canes walk set | Collar 8/8 at $52 with a $58 compare-at shown (tag `bow-promo`); walk set 6/6 at $102 (compare-at $124, set pricing). Both prices are the same as on 10/09, so this is a standing promo, not a change. The messages name no price | 218 · 33 % · 3 · 7 | ⚠ holds; owner may prefer "the holiday collars" if he wants zero promo items |
+| Q-5 Little Beast | PBJ onesie; **Miami Vice fleece** | PBJ 7/7 $48 full price. **Miami Vice Fleece Onesie now $37.50 (compare-at $50), was $50 on 10/09** | 62 · 11 % · 2 · 15 | 🔧 **fixed:** "Miami Vice" → the OG striped onesie (7/7, $48, full price) in the DM, email, FU1–FU2 and the storyboard |
+| Q-6 Sunday Citizen | Ciel Love Seat; "a Snug bed blanket" | Ciel 2/2 $1,800 full price; Snug Bed Blanket 16/24, Snug Casablanca Bed Blanket 5/6, full price | 312 (was 306) · 36 % · 9 · 0 | ✅ holds |
+| Q-7 Dana Rebecca | Ava Bea Interval bracelet; October birthstone studs | Bracelet 3/3 $2,795; 4 October birthstone stud listings 1/1, full price ($495–895) | 204 · 64 % filter / 27 % cards · 8 · 9 | ✅ holds |
+| Q-8 Brackish | Edisto or Rice slim bow tie | Both 1/1 $225 full price | 60 · 2 % · 1 · 0 | ✅ holds |
+| Q-9 Cuddle Clones | pet-face pajamas; wrapping paper | Pajamas show $33.75 vs $103 compare-at (the brand-wide pajama offer already noted in the dossier on 10/09); main "Custom Pet Face Wrapping Paper" 3/3 $29 full price | 174 · 33 % · 12 · 4 | ⚠ holds (no price named); standing promo |
+| Q-10 Kinn | Pegasus and Swan pendants | Pegasus Dream and Swan Dream pendants 8/8, $1,040 full price | 95 · 20 % · 7 · 15 | ✅ holds |
+
+Run both tools again on Tue 13 Oct, 7–8 am ET, before the first DM.

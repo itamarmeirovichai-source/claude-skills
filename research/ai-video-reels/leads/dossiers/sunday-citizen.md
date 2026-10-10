@@ -68,3 +68,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-3.
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** never say "72 hours" or "no tools" as our claim in a message; the message names only the new sofa. If the founders have left, the email still reaches the marketing team through hello@.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

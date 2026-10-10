@@ -75,3 +75,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #1 for the DM, ema
 | Hiring for creative | Not checked this run (0 points) | — |
 
 **Self red-team:** the 202-ad count includes many DCO variants of a few creatives, so "volume" overstates unique ideas; that strengthens the creative-need read but don't quote any count to her. The "school pickup" lines are hers; the film quotes only "the one you never take off", which is visible in a live ad.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

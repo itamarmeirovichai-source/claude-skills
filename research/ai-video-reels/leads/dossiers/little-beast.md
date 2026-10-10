@@ -8,7 +8,7 @@ A NYC, founder-run dog-apparel label running ~62 active US Meta ads where 28 of 
 
 ## 2. The business
 - **What they sell:** dog clothing (striped onesies and shirts $46–48, fleece onesies and shirts $48–50, hoodies $55, raincoats, puffers), collars and leashes ($65–85), and dog carriers ($149–237). Nav also shows a "Coming Soon" collection (not used in any message: unreleased).
-- **Hero products (live 2026-10-09):** PBJ / OG / Earth striped onesies $48 (created 9/9, published 9/24, 7/7 sizes in stock), Miami Vice Fleece Onesie $50 (7/8), The Little Beast Hoodie $55, The Little Beast Carrier (Jackpot / Ocean Breeze 20 % off since 10/6).
+- **Hero products (live 2026-10-09):** PBJ / OG / Earth striped onesies $48 (created 9/9, published 9/24, 7/7 sizes in stock), Miami Vice Fleece Onesie $50 (7/8; **marked down to $37.50 on 2026-10-10, so no longer named in any draft**), The Little Beast Hoodie $55, The Little Beast Carrier (Jackpot / Ocean Breeze 20 % off since 10/6).
 - **Size and channels [inf]:** DTC on Shopify (174 products), wholesale page, collabs with Sandy Liang (Nov 2023) and Dusen Dusen (Nov 2024). "5 % of every order" to causes (homepage). Revenue private; 62 live ads at $46–237 suggests the $2–10M band [inf].
 - **Where they advertise:** Meta (FB/IG). Creative is graphic: bold all-caps headline cards over product photos, dynamic product ads. 2 video cards in the top 30.
 - **What works:** a strong, funny brand voice in four words ("NO MORE NAKED DOGS", "STRIPES 4 PEACE", "humans have hoodies. now your dog has one too."). **What's weak:** the joke lives only in the headline; nothing moves, no dog *does* anything, no second-1 hook. 15 of the top 30 cards have run 60+ days (June restock cards still serving).
@@ -32,7 +32,7 @@ Logic: in a NYC building the dogs are better known than their owners, because of
 |---|---|---|
 | 0.0–1.2 | Low handheld at dog height, lobby | **Frame 0 in motion:** elevator doors already sliding open (ding on the measured frame), dog paws step out in the PBJ striped onesie. Super: "7:58 am". |
 | 1.2–3.0 | Over the doorman's shoulder (back of cap only), tripod | Doorman, off-screen voice: "Morning, PBJ." The dog trots past (real-photo i2v, ≤5 s, one dog). |
-| 3.0–5.5 | Same lock-off | Second dog in the Miami Vice fleece onesie: "Morning, Miami Vice." Third: the Earth stripe: "Morning, Earth." |
+| 3.0–5.5 | Same lock-off | Second dog in the OG striped onesie: "Morning, OG." Third: the Earth stripe: "Morning, Earth." |
 | 5.5–8.0 | Insert, macro on a slider | **Proof slot:** the client's real product photo or footage of the stripe knit and label. No generated knit. |
 | 8.0–11.5 | Same over-shoulder lock-off | The owner walks in, plain grey coat, seen chest-down. Doorman: "Sorry, who are you visiting?" Beat. |
 | 11.5–15.0 | End card | Striped onesie trio on a flat lay. **VO (2 lines, locked voice, no lips):** "They'll remember the dog. Little Beast." Logo + swappable offer slot. |
@@ -50,28 +50,28 @@ Lead with the doorman joke and their own outfit names. Timing: **January**, the 
 Sender is `{OWNER_NAME}`. No link, image or price in touch 1. Email footer uses `{BUSINESS_ADDRESS}`; **no email may be sent while it is a placeholder** (vxo-leads §3 rule 10).
 
 **DM (day 0) — @littlebeast.co, written to be forwarded to Jisu:**
-> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, Miami Vice", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or Miami Vice?
+> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
 
 **Email (day 1) — hello@littlebeast.co** · Subject: **Morning, PBJ**
 > Hi Jisu (or whoever reads hello@, could you pass this to Jisu?),
 >
-> Following my Instagram note: a 15 s film for the striped onesies. A lobby at 7:58 am. The doorman greets each dog by outfit, "Morning, PBJ", "Morning, Miami Vice", then asks the owner who he's visiting.
+> Following my Instagram note: a 15 s film for the striped onesies. A lobby at 7:58 am. The doorman greets each dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting.
 >
 > I'd build the lobby with AI. Your real onesies and a real photo of one of your dogs stay real, and no faces are generated.
 >
-> Want 5 free stills, on the PBJ onesie or the Miami Vice fleece?
+> Want 5 free stills, on the PBJ or the OG onesie?
 >
 > {OWNER_NAME} · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
 **FU1 (day +4, same thread):**
-> A second idea, Jisu: a crosswalk in January, every human in black coats, one dog in the Miami Vice fleece crossing first. The whole block follows the dog. Stills for this one, or the doorman?
+> A second idea, Jisu: a crosswalk in January, every human in black coats, one dog in the Earth onesie crossing first. The whole block follows the dog. Stills for this one, or the doorman?
 
 **FU2 (day +9) — with one still only if the owner approves ~$0.05–0.30; otherwise FU2-text:**
-> One still from the doorman idea, on your real PBJ onesie: the elevator opening at 7:58. AI concept, just for you. Want the other 4, PBJ or Miami Vice?
+> One still from the doorman idea, on your real PBJ onesie: the elevator opening at 7:58. AI concept, just for you. Want the other 4, PBJ or OG?
 
-> *FU2-text:* The 5 stills start from your own product photos, so the stripe spacing and colours stay yours, and nothing is posted. Should I start with PBJ, or the Miami Vice fleece?
+> *FU2-text:* The 5 stills start from your own product photos, so the stripe spacing and colours stay yours, and nothing is posted. Should I start with PBJ, or the OG onesie?
 
 **FU3 (day +16):**
 > A January cold-weather film needs approval by mid-December to run on the first. Stills this week, or check back for spring stripes?
@@ -96,9 +96,12 @@ Sender is `{OWNER_NAME}`. No link, image or price in touch 1. Email footer uses 
 | Launches ≤60 days (public) | OG / PBJ / Earth striped shirts and onesies created 9/9, published 9/24; pages render | ✅ |
 | Hidden / unreleased | "Coming Soon" collection in nav; not used anywhere | ⚠️ Never mention |
 | CTA stock | PBJ Onesie 7/7 sizes; Miami Vice Fleece Onesie 7/8 | ✅ Re-check on send day |
+| CTA re-check 2026-10-10 (`products_check.py`) | PBJ, OG and Earth onesies 7/7 at $48 full price, page 200. **Miami Vice Fleece Onesie now $37.50 (compare-at $50): swapped for the OG onesie in every draft and follow-up** | ✅ fixed |
 | Claims scan (30 cards) | No health, fear, "toxic" or rival claims; copy is jokes and drops | ✅ |
 | Public business contact on own site | hello@littlebeast.co (/pages/contact-us, /pages/faq); press@, wholesale@ also listed | ✅ |
 | Founder identity (public) | Jisu Kim, co-founder (Design Milk 2024); "Jisu and Lys" (About page) | ✅ (Lys: first name only) |
 
 **Score:** Ads 28 (62 live, 7 % video) · Need 19 · Momentum 13 (6 new public SKUs, FW drop) · Seasonal 9 (cold-weather + holiday, January) · Budget 7 · Founder/reach 8 · Hiring 0 = **84, HOT**.
 **Red team:** the founder's public profile and personal IG are not confirmed (owner checks by hand); the "Coming Soon" items may be the real FW hero, but they are unreleased, so we pitch the live stripes. Revenue band is inferred.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

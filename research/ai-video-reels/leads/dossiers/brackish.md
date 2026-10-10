@@ -68,3 +68,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #2.
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** "Saks and Neiman" is from older press; don't mention it. The Slim ties were *created* in March; only the publish date (10/1) is a launch, and only "new Slim Collection" (visible on site and in ads) may appear in a message.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

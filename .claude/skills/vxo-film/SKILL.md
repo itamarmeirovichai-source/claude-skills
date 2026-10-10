@@ -131,6 +131,7 @@ Product rules for every video prompt (doc 64; on 2026-10-09 only 5 of 19 films s
   No thin italics over sky or cream.
 - **Loudness is a hard gate.** On 2026-10-09, 11 of 19 films missed it and 2 clipped above 0 dBTP. If the encoded file reads > −1.0 dBTP, re-master (`loudnorm` two-pass, plus `alimiter=limit=0.8`) and measure again. Never deliver on a "close enough".
 - End card: a **packshot of the product itself** plus the logo plus a swappable offer/CTA line. The product appears at least twice in the film.
+- **Evergreen twin (2026-10-10, Ad Library long-runner read):** every seasonal film also ships an evergreen version: no holiday words in supers, VO or end card, and the offer line on its own layer. In the 5 queued brands we read, the only videos still running after 60+ days were evergreen product videos (Kinn "14k gold jewelry, stacked" at 148–149 days, Cuddle Clones' bobblehead video at 185 days); holiday creative is replaced within weeks. The evergreen twin is what earns the repeat booking.
 - Upscale only after the picture lock. Re-check the label at a 100 % crop after the upscale, because generative upscalers invent letters.
 
 ## Step 8: QC, mandatory before anyone sees it (doc 46)

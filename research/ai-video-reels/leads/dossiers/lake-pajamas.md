@@ -67,3 +67,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-1.
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** "84 new products" and ad counts are back-end/research data and never appear in a message. Only "the new Tour set" (visible on site and in ads) may be mentioned. The video share is low but the DCO units may include short clips; quote both numbers internally, never externally.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

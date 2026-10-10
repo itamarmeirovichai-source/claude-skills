@@ -85,3 +85,7 @@ Format: `date · what the owner said (translated) · root cause · RULE`
 
 ## From the outreach clean-up (2026-10-09) [self]
 - 2026-10-09 · [self] (WEAKNESSES #16, owner decision 14) · The Foggy Dog pitch read as "AI instead of your content person", but she has an in-house content hire (Finn & Gray handed over to one) · RULE: never pitch an AI film as replacing a brand's own creative staff. Position VXO as the scenario layer they can't shoot (a staged scene, a crowd, weather, a set) built around their real product and real photos, and offer the stills and the shot list to their content lead. Never write "replace", "instead of a shoot" or "cheaper than a team".
+
+## From the daily routine (2026-10-10) [self]
+- 2026-10-10 · [self] Ad Library long-runner read (150 cards, 5 queued brands) · 36 ads ran 60+ days: 27 were catalogue image cards, and every long-running video was an evergreen product video, never a seasonal one · RULE: every seasonal film ships an evergreen twin (no holiday words, offer on its own layer), and every film ships 4:5 and 1:1 stills that can drop into the brand's catalogue (DCO) ads.
+- 2026-10-10 · [self] a queued CTA product (Little Beast Miami Vice onesie) went from full price to a markdown overnight · RULE: run `products_check.py` on every product a message names on the send morning; a markdown, Final Sale, hidden tag or stock-out swaps the product before the message goes.

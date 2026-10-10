@@ -67,3 +67,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-2.
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** the licensed prints are the most visible risk; the DM names only Holiday Hens. "Selling fast" scarcity is theirs, not ours; never repeat it.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

@@ -65,3 +65,5 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #4.
 | Founder | Jennie Yoon (own About page; interview; live ad tells her story) | ✅ |
 
 **Self red-team:** "95 ads" includes long-running DCO; the strongest real signal is 15 cards running 60+ days on near-identical stills. Never mention counts or the MTO status in a message.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

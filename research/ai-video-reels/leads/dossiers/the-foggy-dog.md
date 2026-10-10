@@ -131,3 +131,5 @@ Compliment nothing; lead with the joke. Make the dog the hero, with the free sti
 **Re-score:** Ads 27 (was 25) · Need 16 (was 18; the video filter suggests more video than the cards show) · Momentum 15 · Seasonal 10 · Budget 7 · Founder 10 · Hiring 0 (was 3) = **85, HOT. Still #1.**
 
 **Red team of this dossier (what was wrong):** the holiday SKU count (58 → 33), the Art Director hire (gone), 1,000+ doors (800+), "Founded 2016" (unsourced), and "no creative hire is visible" (she has an in-house content hire, per Finn & Gray). The first four were never in the message drafts. The last one shaped the tone of the old DM (VXO as the whole creative answer); the 2026-10-09 rewrite in doc 63 §4.1 fixes it.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

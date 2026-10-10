@@ -99,3 +99,5 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 
 **Score:** Ads 29 · Need 19 · Momentum 12 · Seasonal 10 (Valentine's prep; holiday live) · Budget 9 · Founder/reach 9 · Hiring 0 = **88, HOT**.
 **Red team:** "creative need" is about format, not volume: they already produce a lot of good copy, so the pitch must show a film idea they couldn't write into a still; their minimalist brand will reject anything glossy.
+
+- **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
