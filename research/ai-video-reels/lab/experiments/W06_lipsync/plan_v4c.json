@@ -1,0 +1,23 @@
+{
+ "jobs": [
+  {
+   "id": "v4c",
+   "model": "alibaba/wan-3.0/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/V.png"
+    ],
+    "audio_urls": [
+     "@file:audio/v4.wav"
+    ],
+    "duration": 5,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "prompt": "Plain flat uniform chroma-green background, locked-off camera, no camera movement, no cuts, MEDIUM-WIDE shot framed EXACTLY like the reference image: same camera distance, same size of the woman in frame, clasped hands visible at the bottom edge; do NOT zoom in. The woman from the reference image speaks the audio line directly to camera with precise, clearly visible lip-sync from the very first word to the last (lips open and close on every syllable): her lips, jaw and cheeks move exactly with every syllable; small natural head movements, one brief hand gesture, composed half-smile between phrases. She keeps her exact identity: platinum buzz cut, round red-tinted spectacles, ivory double-breasted suit, red scarf, exactly ONE silver stopwatch clipped to her lapel.",
+    "seed": 7
+   }
+  }
+ ]
+}

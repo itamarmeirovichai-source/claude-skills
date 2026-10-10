@@ -1,0 +1,39 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "This"
+  },
+  {
+   "start": 0.32,
+   "end": 0.56,
+   "text": "one"
+  },
+  {
+   "start": 0.64,
+   "end": 0.88,
+   "text": "took"
+  },
+  {
+   "start": 1.04,
+   "end": 1.28,
+   "text": "thirty"
+  },
+  {
+   "start": 1.44,
+   "end": 2.36,
+   "text": "seconds."
+  },
+  {
+   "start": 2.64,
+   "end": 2.88,
+   "text": "And"
+  },
+  {
+   "start": 3.04,
+   "end": 3.92,
+   "text": "taste."
+  }
+ ]
+}

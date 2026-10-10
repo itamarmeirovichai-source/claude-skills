@@ -1,0 +1,184 @@
+{
+ "jobs": [
+  {
+   "id": "v01_front_close",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Tight close-up of her face from forehead to chin, facing the camera straight on, composed half-smile. Seamless warm stone-beige backdrop, soft octabox key at 45 degrees, subtle cool silver rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v02_34L_close",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Tight close-up, head turned three-quarters to her left, eyes back to the lens, one brow slightly raised. Plain seamless mid-grey backdrop, soft even window daylight from camera-right. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v03_34R_close",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Tight close-up, head turned three-quarters to her right, eyes looking slightly off-camera, thinking. Seamless deep charcoal backdrop with a soft warm glow, soft key from camera-left, subtle rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v04_profileL",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Head-and-shoulders, strict side profile facing left of frame, the round spectacles in silhouette, calm. Seamless warm stone-beige backdrop, soft octabox key at 45 degrees, subtle cool silver rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v05_profileR",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Head-and-shoulders, strict side profile facing right of frame, chin level. Plain seamless mid-grey backdrop, soft even window daylight from camera-right. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v06_grin",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Head-and-shoulders, facing camera, a sharp genuine grin showing teeth, as if the numbers are good. Seamless deep charcoal backdrop with a soft warm glow, soft key from camera-left, subtle rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v07_deadpan",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Head-and-shoulders, facing camera, deadpan unimpressed look over the top of her spectacles. Seamless warm stone-beige backdrop, soft octabox key at 45 degrees, subtle cool silver rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "v08_low",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Head-and-shoulders from a slightly low camera angle, confident, looking down into the lens. Seamless deep charcoal backdrop with a soft warm glow, soft key from camera-left, subtle rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "w09_stopwatch",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "3:4",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Waist-up, she holds the silver stopwatch (unclipped, still on its chain) up beside her face, thumb on the button, knowing look. Plain seamless mid-grey backdrop, soft even window daylight from camera-right. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "w10_arms",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "3:4",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Waist-up, facing camera, arms folded, composed half-smile. Seamless warm stone-beige backdrop, soft octabox key at 45 degrees, subtle cool silver rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "w11_point",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "3:4",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Waist-up, she points decisively toward camera-left with her right hand, glancing there. Seamless deep charcoal backdrop with a soft warm glow, soft key from camera-left, subtle rim. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  },
+  {
+   "id": "f12_full",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "2:3",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on the left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames. Same oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, silver stopwatch on a short chain clipped to her lapel. Composed half-smile, direct quick eyes. Create a new photograph of this same woman. Full-body, standing facing the camera in the oversized ivory suit with wide trousers and white loafers, hands in pockets, whole body in frame. Plain seamless mid-grey backdrop, soft even window daylight from camera-right. Real photograph, real unretouched skin with pores, fine lines and her freckles, natural matte skin, 35mm film grain, editorial portrait. Exactly one silver stopwatch, clipped to her lapel. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no text."
+   }
+  }
+ ]
+}

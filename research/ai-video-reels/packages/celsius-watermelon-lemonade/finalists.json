@@ -1,0 +1,5 @@
+[
+  {"title": "Forecast: Today in CELSIUS", "drivers": {"hook": 5, "curiosity": 4, "emotion": 4, "novelty": 5, "rewatch": 4, "identity": 5, "utility": 3, "comment_bait": 5, "product_desire": 3, "offer_clarity": 3, "brand_early": 5, "trust": 3, "ai_backlash": 2}},
+  {"title": "Eau de Pastèque (perfume parody)", "drivers": {"hook": 4, "curiosity": 3, "emotion": 4, "novelty": 4, "rewatch": 3, "identity": 3, "utility": 1, "comment_bait": 4, "product_desire": 5, "offer_clarity": 3, "brand_early": 4, "trust": 3, "ai_backlash": 1}},
+  {"title": "Sunrise, Opened", "drivers": {"hook": 4, "curiosity": 3, "emotion": 4, "novelty": 3, "rewatch": 4, "identity": 4, "utility": 1, "comment_bait": 2, "product_desire": 4, "offer_clarity": 3, "brand_early": 3, "trust": 3, "ai_backlash": 2}}
+]

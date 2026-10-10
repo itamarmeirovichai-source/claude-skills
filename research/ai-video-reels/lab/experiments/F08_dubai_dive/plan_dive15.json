@@ -1,0 +1,21 @@
+{
+ "jobs": [
+  {
+   "id": "DIVE15",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/D0.png",
+     "@file:ref/otto.png",
+     "@file:ref/vee.png"
+    ],
+    "duration": 15,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true,
+    "prompt": "One continuous take, a single unbroken camera move, no cuts, photoreal, 9:16. @Image1 is the exact first frame. @Image2 is the man: enormous waxed handlebar moustache with spiral tips that always covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. @Image3 is the woman: platinum buzz cut, round red-tinted spectacles, ivory double-breasted suit, red silk scarf, exactly one silver stopwatch clipped to her lapel.\n[0-1.5 s] The man at the top of the glass tower looks straight into the lens and snaps his fingers \u2014 a sharp, loud finger snap.\n[1.5-7 s] On the snap the camera tips forward over the edge and dives straight down the mirrored glass facade of the tower in one accelerating move, golden reflections streaking past, wind roaring, the avenue rushing up.\n[7-9 s] Just above the street the camera pulls out of the dive and swoops level along the avenue at car height.\n[9-13 s] It catches up with a gleaming gold vintage convertible grand tourer (no badges) cruising down the avenue: the woman is driving, one hand on the wheel; the engine roars. The camera arcs past her to the passenger seat, where the same moustached man is already sitting, calm and deadpan, raising a tall plain glass of sparkling gold soda.\n[13-15 s] The woman clicks her silver stopwatch once and glances at the camera with a dry half-smile; the car drives on into the sunset.\nSound: realistic synchronized sound only \u2014 finger snap, rushing wind, dive whoosh, city traffic, engine roar, stopwatch click. No music, no speech. No text, no logos."
+   }
+  }
+ ]
+}

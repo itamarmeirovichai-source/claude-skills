@@ -1,0 +1,19 @@
+{
+ "jobs": [
+  {
+   "id": "H0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, real photograph, golden hour, fine grain. Image 1 is the identity reference: keep this exact man \u2014 long pale face, heavy dark brows, swept-back dark hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big upturned Dali spirals that completely covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. Image 2 is the exact product: the slim brushed-gold AURUM can with the thin black band and AURUM lettering, sharp and unchanged. EXTREME MACRO close-up filling the frame: his thumbnail lifting the ring-pull of the cold gold AURUM can at the exact instant it cracks open \u2014 a fine burst of cold vapour and tiny sparkling droplets spraying out of the opening, condensation beads on the brushed gold, the AURUM lettering partly visible, warm sunset rim light; in the soft blurred background only a hint of the edge of his blazer and an enormous drop to a hazy golden city far below. No text besides AURUM."
+   }
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "_doc": "E04 stage 1: campaign-grade stills (image-direction.md). 3 variants each; Claude scores with the image rubric and regenerates (max 3 rounds) before stage 2.",
+ "jobs": [
+  {
+   "id": "K1_border_hero",
+   "model": "marketing-studio/image/flare",
+   "takes": 3,
+   "tags": {
+    "test": "K1",
+    "model": "ms_flare"
+   },
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "A sun-scorched Florida sidewalk slab split diagonally: the left half is cracked, bleached concrete with shimmering heat haze, the right half is glassy turquoise ice with frost feathers spreading toward the left. Standing exactly on the border: a slim 12 oz aluminum can, matte turquoise with a crisp white band reading \"TIDEWATER\" in bold black condensed capitals and \"ELECTROLYTE WATER\" in small caps beneath; dense condensation beads and two rolling drops on the can, a thin frost ring at its base. A small puddle of meltwater mirrors the can. Hard late-afternoon sun from the upper left throws long palm-frond gobo shadows across the hot side and sparkles on the ice; cool cyan rim light on the right edge of the can. 90mm, low angle 15 degrees, f/5.6, a blurred palm frond crossing the top-left foreground. Dominant palette: bleached coral to turquoise, accent lime. Vertical 9:16, can on the right third, empty sky gradient in the top 20%. Photorealistic high-end beverage advertising photography, real textures, no extra text or logos, label perfectly legible."
+   }
+  },
+  {
+   "id": "K2_heat_woman",
+   "model": "higgsfield-ai/soul/v2/standard",
+   "takes": 2,
+   "tags": {
+    "test": "K2",
+    "model": "soul_v2"
+   },
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "1080p",
+    "batch_size": 4,
+    "prompt": "Candid street photo, Boca Raton sidewalk at 3 PM, a woman in her early 30s with curly dark hair and a white linen shirt squints up into harsh sun, sweat on her temples and collarbone, pressing a cold turquoise drink can against her neck, palm shadows across her face, heat haze over the asphalt behind her, shot on Portra 400, 50mm, natural skin texture with pores, slightly overexposed highlights, real and unposed."
+   }
+  },
+  {
+   "id": "K3_macro_can",
+   "model": "marketing-studio/image/flare",
+   "takes": 2,
+   "tags": {
+    "test": "K3",
+    "model": "ms_flare"
+   },
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Extreme macro of the top third of a slim matte turquoise aluminum can with a white band reading \"TIDEWATER\" in bold black condensed capitals, covered in dense condensation beads of varied sizes, one large drop mid-roll leaving a trail, the pull tab glinting, a wisp of cold vapor curling from the lid; hard sunlight from the top left creating sharp specular highlights in every bead, warm blurred street bokeh behind. 100mm macro, f/4. Photorealistic beverage advertising, label legible, no extra text."
+   }
+  }
+ ]
+}

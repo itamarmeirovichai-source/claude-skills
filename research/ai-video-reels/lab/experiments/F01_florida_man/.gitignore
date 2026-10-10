@@ -1,0 +1,8 @@
+clips/
+frames/*.png
+audio/*.mp3
+*.jpg
+out/
+qc/
+audio/*.wav
+audio/sfx/

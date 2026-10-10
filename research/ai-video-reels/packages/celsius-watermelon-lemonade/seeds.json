@@ -1,0 +1,52 @@
+[
+  {
+    "mechanism": "ai_impossible_camera",
+    "format": "interview_doc",
+    "hook": "direct_question",
+    "emotion": "relief",
+    "structure": "loop_structure",
+    "look": "vhs_90s",
+    "sonic": "deadpan_vo",
+    "constraint": "Tell it from the product's point of view."
+  },
+  {
+    "mechanism": "uncommon_use",
+    "format": "mock_luxury",
+    "hook": "anomaly",
+    "emotion": "humor",
+    "structure": "problem_solution",
+    "look": "miami_bright",
+    "sonic": "silence_break",
+    "constraint": "One continuous shot. No cuts."
+  },
+  {
+    "mechanism": "insight_enemy",
+    "format": "cooking_show",
+    "hook": "countdown",
+    "emotion": "nostalgia",
+    "structure": "transformation",
+    "look": "pastel_wes",
+    "sonic": "foley_only",
+    "constraint": "Shoot it as if it were a 1950s ad, but the product is modern."
+  },
+  {
+    "mechanism": "metaphor_transformation",
+    "format": "one_take",
+    "hook": "confession",
+    "emotion": "belonging",
+    "structure": "ritual",
+    "look": "neon_night",
+    "sonic": "orchestral",
+    "constraint": "The punchline is a sound, not a picture."
+  },
+  {
+    "mechanism": "metaphor_fusion",
+    "format": "loop",
+    "hook": "scale_shock",
+    "emotion": "pride",
+    "structure": "contrast",
+    "look": "golden_hour_film",
+    "sonic": "dialogue",
+    "constraint": "The first 3 seconds have no product and no logo - only the problem."
+  }
+]

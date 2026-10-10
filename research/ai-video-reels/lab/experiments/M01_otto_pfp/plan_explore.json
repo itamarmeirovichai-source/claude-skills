@@ -1,0 +1,112 @@
+{
+ "defaults": {
+  "model": "higgsfield-ai/soul/cinema",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "v1_oxblood_frontal",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, he looks straight into the lens with deadpan gravity. Plain deep charcoal studio backdrop with a soft oxblood-red glow behind his head. Hard warm key from upper camera-left falling off fast, faint cool rim on the moustache tips. 85mm, f/2.8, eye level. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5050
+   }
+  },
+  {
+   "id": "v2_brass_frontal",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, he looks straight into the lens, chin slightly raised, dignified. Plain near-black backdrop with a single warm brass-gold pool of light behind his shoulders. Hard tungsten key from camera-right, fast falloff, deep shadow on one cheek. 85mm, f/2.8, eye level. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5051
+   }
+  },
+  {
+   "id": "v3_oxblood_threequarter",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, head turned three-quarters to camera-left, eyes back to the lens. Dark oxblood painted wall, matte, with subtle mottled texture. Single hard key from camera-left, Rembrandt triangle on the far cheek. 85mm f/2, shallow depth of field. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5052
+   }
+  },
+  {
+   "id": "v4_oxblood_rimlit",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, facing the lens, one heavy brow slightly raised. Black backdrop; a deep oxblood rim light from behind outlines his hair and the curled moustache tips; low warm key from the front-left. Moody, theatrical, 70mm, f/2.8. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5053
+   }
+  },
+  {
+   "id": "v5_brass_fingerframe",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame; he holds both hands up near his chin forming a small rectangular finger-frame beside the moustache, looking through it at the viewer, deadpan. Dark charcoal backdrop with a warm brass accent glow. Hard key from camera-left, five fingers on each hand. 85mm f/2.8. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5054
+   }
+  },
+  {
+   "id": "v6_oxblood_velvet",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, looking straight at the lens with calm authority. Behind him a deep oxblood velvet curtain falling into black, fine pile texture visible. Hard directional key from upper left, quick falloff, small catchlights in the grey eyes. 85mm, f/2.8. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5055
+   }
+  },
+  {
+   "id": "v7_brass_lowkey",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Close head-and-shoulders portrait, centred, square frame, moustache filling the lower middle of the frame, eyes level with the lens. Near-black backdrop, a single brass-coloured practical bulb blurred far behind his right shoulder. Low-key chiaroscuro, hard key camera-right. 100mm, f/2.8. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5056
+   }
+  },
+  {
+   "id": "v8_oxblood_flash",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Head-and-shoulders portrait, centred, square frame, deadpan stare into the lens. Seamless dark oxblood paper backdrop. Direct on-camera flash slightly above the lens, crisp shadow behind him on the paper, editorial magazine portrait feel. 50mm, f/5.6. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes, heavy dark brows, swept-back salt-and-pepper hair, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black waxed handlebar moustache far wider than his shoulders, tips curled upward, completely covering his mouth; black ribbed turtleneck, tan waxed-canvas many-pocket vest, a small silver director's viewfinder on a black lanyard at his chest. Unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no beauty smoothing, not a cartoon, not a costume-party look; natural fine film grain, gentle vignette.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 5057
+   }
+  }
+ ]
+}

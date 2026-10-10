@@ -1,0 +1,354 @@
+{
+ "export": "instagram",
+ "output": "out/F02_VESPER_v3_pre.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/M_W_sunset_into_bottle_t01.mp4",
+    "in": 0,
+    "out": 5.0,
+    "mute": true,
+    "speed": 1.15
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M_W_sun_inside_t01.mp4",
+    "in": 1.2,
+    "out": 3.2,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "A sunset, captured.",
+     "x": 540,
+     "y": 1150,
+     "size": 66,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "spacing": 8,
+     "stroke": 0,
+     "shadow": 2,
+     "box": true,
+     "box_color": "#1A050899",
+     "pad": 16,
+     "anim": "fade",
+     "start": 0.3
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S2_mist_t01.mp4",
+    "in": 0.0,
+    "out": 1.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M_S3_bergamot_t01.mp4",
+    "in": 0.3,
+    "out": 1.7,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "Bergamot",
+     "x": 540,
+     "y": 1150,
+     "size": 66,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "spacing": 8,
+     "stroke": 0,
+     "shadow": 2,
+     "box": true,
+     "box_color": "#1A050899",
+     "pad": 16,
+     "anim": "fade",
+     "start": 0.2
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S4_fig_t01.mp4",
+    "in": 1.0,
+    "out": 2.4,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "Black fig",
+     "x": 540,
+     "y": 1150,
+     "size": 66,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "spacing": 8,
+     "stroke": 0,
+     "shadow": 2,
+     "box": true,
+     "box_color": "#1A050899",
+     "pad": 16,
+     "anim": "fade",
+     "start": 0.2
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S5_amber_smoke_t01.mp4",
+    "in": 1.0,
+    "out": 2.4,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "Smoked amber",
+     "x": 540,
+     "y": 1150,
+     "size": 66,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "spacing": 8,
+     "stroke": 0,
+     "shadow": 2,
+     "box": true,
+     "box_color": "#1A050899",
+     "pad": 16,
+     "anim": "fade",
+     "start": 0.2
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S6_balcony_hand_t01.mp4",
+    "in": 1.0,
+    "out": 3.6,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "For the hour after sunset.",
+     "x": 540,
+     "y": 1150,
+     "size": 66,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "spacing": 8,
+     "stroke": 0,
+     "shadow": 2,
+     "box": true,
+     "box_color": "#1A050899",
+     "pad": 16,
+     "anim": "fade",
+     "start": 0.3
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S1_cap_macro_t01.mp4",
+    "in": 1.2,
+    "out": 3.0,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/S8_end_hero_t01.png",
+    "duration": 3.3,
+    "effects": [
+     {
+      "type": "ken_burns",
+      "from": 1.06,
+      "to": 1.0
+     }
+    ]
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "VESPER",
+     "x": 540,
+     "y": 380,
+     "size": 130,
+     "font": "Cinzel",
+     "weight": 400,
+     "color": "#E8C27A",
+     "spacing": 30,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.3
+    },
+    {
+     "type": "text",
+     "text": "Wear the golden hour.",
+     "x": 540,
+     "y": 500,
+     "size": 58,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 1.2
+    }
+   ]
+  },
+  {
+   "clip": {
+    "color": "#2A070D",
+    "duration": 2.8
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.35
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "VESPER",
+     "position": "center",
+     "size": 150,
+     "font": "Cinzel",
+     "weight": 400,
+     "color": "#E8C27A",
+     "spacing": 34,
+     "stroke": 0,
+     "shadow": 0
+    },
+    {
+     "type": "text",
+     "text": "Discover the sample set",
+     "x": 540,
+     "y": 1090,
+     "size": 54,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#F2E6D6",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.2
+    },
+    {
+     "type": "text",
+     "text": "Fictional brand \u00b7 AI-generated",
+     "x": 540,
+     "y": 1200,
+     "size": 22,
+     "color": "#B08A8F",
+     "stroke": 0,
+     "shadow": 0
+    }
+   ]
+  }
+ ],
+ "effects": [],
+ "audio": {
+  "original_volume": 0.0,
+  "voiceover": {
+   "path": "audio/vo.mp3",
+   "at": 17.4,
+   "volume": 1.0
+  },
+  "music": {
+   "path": "audio/music.mp3",
+   "volume": 0.75,
+   "fade_out": 1.0
+  },
+  "sfx": [
+   {
+    "path": "audio/sfx/bed.mp3",
+    "at": 0.0,
+    "volume": 0.32
+   },
+   {
+    "path": "audio/sfx/rooftop.mp3",
+    "at": 0.0,
+    "volume": 0.55
+   },
+   {
+    "path": "audio/sfx/logo.mp3",
+    "at": 0.1,
+    "volume": 0.35
+   },
+   {
+    "path": "audio/sfx/glass_swell.mp3",
+    "at": 3.7,
+    "volume": 0.6
+   },
+   {
+    "path": "audio/sfx/whoosh2.mp3",
+    "at": 6.1,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/spray.mp3",
+    "at": 6.3,
+    "volume": 0.85
+   },
+   {
+    "path": "audio/sfx/mist_rain.mp3",
+    "at": 6.35,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/citrus.mp3",
+    "at": 7.65,
+    "volume": 0.8
+   },
+   {
+    "path": "audio/sfx/whoosh2.mp3",
+    "at": 9.05,
+    "volume": 0.35
+   },
+   {
+    "path": "audio/sfx/smoke.mp3",
+    "at": 10.45,
+    "volume": 0.6
+   },
+   {
+    "path": "audio/sfx/silk_city.mp3",
+    "at": 11.8,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/riser_boom.mp3",
+    "at": 13.4,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/cap.mp3",
+    "at": 14.45,
+    "volume": 0.75
+   },
+   {
+    "path": "audio/sfx/logo.mp3",
+    "at": 19.15,
+    "volume": 0.9
+   }
+  ],
+  "loudnorm": -14
+ }
+}

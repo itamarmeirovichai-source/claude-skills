@@ -1,0 +1,46 @@
+{
+  "_about": "DEMO 2 - VELLUM Barrier Serum (FICTIONAL brand). Angle: texture proof (no skin, no results). Hook: 'This is what lightweight looks like.' 14s, 9:16.",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "export": "instagram",
+  "output": "out/demo2_vellum.mp4",
+  "timeline": [
+    {
+      "clip": {"path": "media/demo2/s1_hook_drop.mp4", "in": 0.25, "out": 2.75, "velocity": "hero"},
+      "overlays": [{"type": "title", "text": "This is what “lightweight”\\Nactually looks like.", "position": "upper", "anim": "fade", "size": 76, "start": 0.1}]
+    },
+    {
+      "clip": {"path": "media/demo2/s2_feather.mp4", "in": 0.25, "out": 3.25},
+      "transition": {"type": "fade", "dur": 0.4},
+      "overlays": [{"type": "text", "text": "The feather doesn't even notice.", "position": "upper", "anim": "fade", "size": 60, "start": 0.8}]
+    },
+    {
+      "clip": {"path": "media/demo2/s3_absorb_silk.mp4", "in": 0.25, "out": 3.25},
+      "transition": {"type": "fade", "dur": 0.4},
+      "overlays": [{"type": "text", "text": "Sinks in. Leaves nothing behind.", "position": "upper", "anim": "fade", "size": 60, "start": 0.5}]
+    },
+    {
+      "clip": {"path": "media/demo2/s4_hero_bottle.mp4", "in": 0.25, "out": 3.25, "effects": [{"type": "glow", "threshold": 0.8, "strength": 0.35, "tint": "white"}]},
+      "transition": {"type": "fade", "dur": 0.4},
+      "overlays": [{"type": "image", "path": "media/demo2/logo.png", "y": 330, "width": 380, "fade": 0.4}]
+    },
+    {
+      "clip": {"path": "media/demo2/packshot_real.png", "duration": 2.8},
+      "transition": {"type": "fade", "dur": 0.4},
+      "overlays": [
+        {"type": "image", "path": "media/demo2/logo.png", "y": 520, "width": 480, "fade": 0.3},
+        {"type": "text", "text": "Barrier Serum · 30 ml", "position": "center", "size": 54},
+        {"type": "cta", "text": "Feel the difference →", "position": "cta", "box": true, "anim": "fade", "start": 0.4}
+      ]
+    }
+  ],
+  "overlays": [
+    {"type": "text", "text": "AI-generated demo · fictional brand", "position": "bottom", "size": 30, "start": 0, "end": 14, "box": true}
+  ],
+  "effects": [{"type": "film_grain", "mode": "overlay", "opacity": 0.2}],
+  "audio": {
+    "music": {"path": "media/music.wav", "volume": 0.35, "fade_in": 0.5, "fade_out": 1.2},
+    "sfx": [{"type": "pop", "at": 2.2, "volume": 0.6}],
+    "sfx_on_cuts": "none",
+    "loudnorm": -14
+  }
+}

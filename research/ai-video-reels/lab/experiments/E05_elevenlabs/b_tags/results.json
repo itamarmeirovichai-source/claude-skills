@@ -1,0 +1,376 @@
+{
+ "01_plain": {
+  "dur": 3.44,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 3.44,
+  "pauses": [
+   [
+    1.09,
+    0.61
+   ]
+  ],
+  "LUFS": -13.1,
+  "LRA": 1.5,
+  "TP": -0.9,
+  "voiced": 0.74,
+  "f0_med": 186.0,
+  "f0_range_st": 7.5,
+  "centroid_hz": 1616,
+  "wps": 2.03,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "Noir Vesper. The scent of after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "18"
+ },
+ "02_whispers": {
+  "dur": 3.92,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 3.92,
+  "pauses": [
+   [
+    1.34,
+    0.66
+   ]
+  ],
+  "LUFS": -18.8,
+  "LRA": 0.7,
+  "TP": -4.3,
+  "voiced": 0.53,
+  "f0_med": 164.9,
+  "f0_range_st": 5.3,
+  "centroid_hz": 2233,
+  "wps": 1.79,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[whispers] Noir Vesper. The scent of after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "23"
+ },
+ "03_softly": {
+  "dur": 4.0,
+  "lead_sil": 0.14,
+  "tail_sil": 0.0,
+  "speech_dur": 3.86,
+  "pauses": [
+   [
+    1.57,
+    0.6
+   ]
+  ],
+  "LUFS": -15.6,
+  "LRA": 1.5,
+  "TP": -2.8,
+  "voiced": 0.62,
+  "f0_med": 168.4,
+  "f0_range_st": 5.6,
+  "centroid_hz": 1961,
+  "wps": 1.81,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[softly] Noir Vesper. The scent of after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "22"
+ },
+ "04_ellipses": {
+  "dur": 5.28,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 5.28,
+  "pauses": [
+   [
+    1.08,
+    1.21
+   ],
+   [
+    3.2,
+    1.02
+   ]
+  ],
+  "LUFS": -14.7,
+  "LRA": 6.0,
+  "TP": -0.6,
+  "voiced": 0.6,
+  "f0_med": 183.9,
+  "f0_range_st": 6.1,
+  "centroid_hz": 1695,
+  "wps": 1.33,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "Noir Vesper... the scent of... after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "20"
+ },
+ "05_caps": {
+  "dur": 3.76,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 3.76,
+  "pauses": [
+   [
+    1.16,
+    0.53
+   ]
+  ],
+  "LUFS": -13.4,
+  "LRA": 3.2,
+  "TP": -0.9,
+  "voiced": 0.7,
+  "f0_med": 183.9,
+  "f0_range_st": 8.0,
+  "centroid_hz": 1673,
+  "wps": 1.86,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "Noir Vesper. The scent of AFTER midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "18"
+ },
+ "06_combo": {
+  "dur": 4.0,
+  "lead_sil": 0.12,
+  "tail_sil": 0.0,
+  "speech_dur": 3.88,
+  "pauses": [
+   [
+    1.44,
+    0.57
+   ]
+  ],
+  "LUFS": -15.9,
+  "LRA": 1.8,
+  "TP": -1.8,
+  "voiced": 0.58,
+  "f0_med": 179.8,
+  "f0_range_st": 7.2,
+  "centroid_hz": 2016,
+  "wps": 1.8,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[softly] Noir Vesper... [whispers] the scent of after MIDNIGHT.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "28"
+ },
+ "07_descriptive": {
+  "dur": 4.56,
+  "lead_sil": 0.14,
+  "tail_sil": 0.0,
+  "speech_dur": 4.42,
+  "pauses": [
+   [
+    1.68,
+    0.81
+   ]
+  ],
+  "LUFS": -14.9,
+  "LRA": 1.8,
+  "TP": -2.4,
+  "voiced": 0.59,
+  "f0_med": 164.9,
+  "f0_range_st": 5.5,
+  "centroid_hz": 1959,
+  "wps": 1.58,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[breathy, intimate, slow] Noir Vesper... the scent of after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "30"
+ },
+ "08_combo_creative0": {
+  "dur": 4.56,
+  "lead_sil": 0.15,
+  "tail_sil": 0.0,
+  "speech_dur": 4.41,
+  "pauses": [
+   [
+    1.4,
+    1.12
+   ]
+  ],
+  "LUFS": -15.0,
+  "LRA": 3.2,
+  "TP": -1.6,
+  "voiced": 0.55,
+  "f0_med": 188.2,
+  "f0_range_st": 13.6,
+  "centroid_hz": 2189,
+  "wps": 1.59,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[softly] Noir Vesper... [whispers] the scent of after MIDNIGHT.",
+  "model": "eleven_v3",
+  "stability": 0.0,
+  "cost": "28"
+ },
+ "09_combo_robust1": {
+  "dur": 3.92,
+  "lead_sil": 0.15,
+  "tail_sil": 0.0,
+  "speech_dur": 3.77,
+  "pauses": [
+   [
+    1.43,
+    0.58
+   ]
+  ],
+  "LUFS": -16.4,
+  "LRA": 1.9,
+  "TP": -2.4,
+  "voiced": 0.64,
+  "f0_med": 179.8,
+  "f0_range_st": 7.0,
+  "centroid_hz": 2011,
+  "wps": 1.86,
+  "stt": "Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "text": "[softly] Noir Vesper... [whispers] the scent of after MIDNIGHT.",
+  "model": "eleven_v3",
+  "stability": 1.0,
+  "cost": "28"
+ },
+ "10_exhale": {
+  "dur": 6.0,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.0,
+  "pauses": [
+   [
+    0.49,
+    1.0
+   ],
+   [
+    2.58,
+    1.6
+   ]
+  ],
+  "LUFS": -14.5,
+  "LRA": 1.9,
+  "TP": -1.4,
+  "voiced": 0.62,
+  "f0_med": 186.0,
+  "f0_range_st": 7.8,
+  "centroid_hz": 1823,
+  "wps": 1.17,
+  "stt": "[sighs] Noir Vesper, the scent of after midnight",
+  "wer": 0.14,
+  "text": "[exhales] Noir Vesper. [pause] The scent of after midnight.",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "cost": "26"
+ },
+ "11_v4_whispers": {
+  "dur": 4.0,
+  "lead_sil": 0.19,
+  "tail_sil": 0.0,
+  "speech_dur": 3.81,
+  "pauses": [
+   [
+    1.28,
+    0.57
+   ],
+   [
+    3.47,
+    0.14
+   ],
+   [
+    3.68,
+    0.32
+   ]
+  ],
+  "LUFS": -26.1,
+  "LRA": 1.1,
+  "TP": -5.1,
+  "voiced": 0.31,
+  "f0_med": 290.9,
+  "f0_range_st": 11.4,
+  "centroid_hz": 2685,
+  "wps": 1.84,
+  "stt": "Noir Vesper: The Scent of After Midnight",
+  "wer": 0.0,
+  "text": "[whispers] Noir Vesper. The scent of after midnight.",
+  "model": "eleven_v4",
+  "stability": 0.5,
+  "cost": "6"
+ },
+ "12_v4_combo": {
+  "dur": 3.92,
+  "lead_sil": 0.26,
+  "tail_sil": 0.0,
+  "speech_dur": 3.66,
+  "pauses": [
+   [
+    1.2,
+    0.77
+   ],
+   [
+    3.24,
+    0.13
+   ],
+   [
+    3.52,
+    0.17
+   ],
+   [
+    3.74,
+    0.18
+   ]
+  ],
+  "LUFS": -27.9,
+  "LRA": 1.4,
+  "TP": -4.5,
+  "voiced": 0.13,
+  "f0_med": 290.9,
+  "f0_range_st": 12.9,
+  "centroid_hz": 2886,
+  "wps": 1.91,
+  "stt": "Noir Vesper the scent of after midnight",
+  "wer": 0.0,
+  "text": "[softly] Noir Vesper... [whispers] the scent of after MIDNIGHT.",
+  "model": "eleven_v4",
+  "stability": 0.5,
+  "cost": "8"
+ },
+ "13_v4_descriptive": {
+  "dur": 4.16,
+  "lead_sil": 0.22,
+  "tail_sil": 0.0,
+  "speech_dur": 3.94,
+  "pauses": [
+   [
+    1.36,
+    0.58
+   ],
+   [
+    2.63,
+    0.14
+   ],
+   [
+    3.84,
+    0.18
+   ]
+  ],
+  "LUFS": -25.6,
+  "LRA": 2.6,
+  "TP": -7.3,
+  "voiced": 0.66,
+  "f0_med": 200.0,
+  "f0_range_st": 8.0,
+  "centroid_hz": 2501,
+  "wps": 1.78,
+  "stt": "Noir Vesper the scent of after midnight",
+  "wer": 0.0,
+  "text": "[low, breathy, intimate voice, slow] Noir Vesper... the scent of after midnight.",
+  "model": "eleven_v4",
+  "stability": 0.5,
+  "cost": "10"
+ }
+}
