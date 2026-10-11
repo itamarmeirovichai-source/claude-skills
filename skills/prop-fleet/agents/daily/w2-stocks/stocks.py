@@ -91,7 +91,9 @@ def weekly(W: pd.DataFrame) -> pd.DataFrame:
     cal = W.index
     wk = pd.Series(cal.to_period("W-FRI"), index=cal)
     last = wk != wk.shift(-1)
-    last.iloc[-1] = True
+    # final row is a week-end only if it is a Friday (calendar known in advance;
+    # keeps truncated runs identical to the full run)
+    last.iloc[-1] = cal[-1].weekday() == 4
     return W.where(last, np.nan).ffill().fillna(0.0)
 
 
