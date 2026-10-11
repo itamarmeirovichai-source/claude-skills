@@ -1,0 +1,12 @@
+id,date,owner,hypothesis,count,rules_fixed_before_test,data,result_mean_R,result_p5_R,passed_gate,notes
+E1-01,2026-10-11,E1-head,"REV5-D: 5-day reversal, rank weights dollar-neutral gross 1, daily rebalance, close-to-close. Full spec agents/prereg/E1_rules.md",1,yes,"PIT S&P500 (fja05680) + Yahoo daily; universes A (covered members) and B (A ∩ FTMO 46 USD stock CFDs); IS 1999-2014, OOS 2015-2026",,,,
+E1-02,2026-10-11,E1-head,REV5-W: as E1-01 but weekly rebalance (last trading day of week),1,yes,same as E1-01,,,,
+E1-03,2026-10-11,E1-head,"RREV5-W: residual (beta-60d to SPY) 5-day reversal, weekly",1,yes,same as E1-01,,,,
+E1-04,2026-10-11,E1-head,"REV5-LH: long-only lowest-half 5-day losers, weekly, beta-hedged with US500 CFD short",1,yes,same as E1-01,,,,
+E1-05,2026-10-11,E1-head,"PEAD-SUE: Nasdaq calendar EPS surprise sign, enter close d0+1, hold 20d, equal weight active events, net beta hedged US500",1,yes,same as E1-01 + api.nasdaq.com earnings calendar 2008+; IS 2008-2014,,,,
+E1-06,2026-10-11,E1-head,"PEAD-EAR: as E1-05, sign of 2-day abnormal announcement return (d0,d0+1)",1,yes,same as E1-05,,,,
+E1-07,2026-10-11,E1-head,"GAPVOL: no-dates proxy, event = volume > 3x 60d median and |abnormal r| > 3%, enter close t with sign, hold 20d, beta hedged",1,yes,same as E1-01,,,,
+E1-08,2026-10-11,E1-head,"TOW-W: rank(21d overnight) - rank(21d intraday), weekly, close-to-close (Lou-Polk-Skouras tug of war)",1,yes,same as E1-01,,,,
+E1-09,2026-10-11,E1-head,"OVN-ONLY: rank of 21d overnight return, held close->next open only, daily",1,yes,same as E1-01,,,,
+E1-10,2026-10-11,E1-head,"INTRA-TOW: minus rank of 21d overnight return, held open->close only (no swap), daily",1,yes,same as E1-01,,,,
+E1-11,2026-10-11,E1-head,"STACK: E1-03 + E1-06 + E1-08 at equal IS vol, netted positions, gross 1",1,yes,same as E1-05,,,,
