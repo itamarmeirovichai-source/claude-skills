@@ -64,6 +64,7 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-5.
 | Hidden/unpublished check | "The Autumn Edit" (9/8) and University Minky (8/27) unavailable: excluded. Double Ruched XL PDP returns 200 | ✅ |
 | Claims scan | Comfort/family copy; "soothing" appears once on a toddler blanket ad (not our product). No fear, "toxic", health or rival-harm claims | ✅ with note |
 | Public business contact | service@saranoni.com (contact-us page) | ⚠️ Customer service |
+| Instagram handle (2026-10-11) | **@saranoniblanket** (saranoni.com links instagram.com/saranoniblanket three times). The earlier @saranoni was a guess | ✅ fixed in SEND_QUEUE |
 | Founder identity | Emily Peterson, founder and CEO (About page; USU) | ✅ |
 | Hiring | Not checked (0) | — |
 

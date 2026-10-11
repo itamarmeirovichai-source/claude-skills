@@ -76,7 +76,13 @@ def assess(domain, p):
     variants = p.get("variants", [])
     avail = [v for v in variants if v.get("available")]
     flags = []
-    if any(w in t for t in tags for w in HIDDEN_WORDS):
+    # Strong words (redirect/hidden/404...) always flag. "exclude-*" words are weaker: Rebuy
+    # (upsell app) tags like "rebuy-exclude-product" only steer upsell widgets, and a product the
+    # brand itself tags "searchable" is public, so neither flags on an exclude-* word (2026-10-11).
+    strong = [w for w in HIDDEN_WORDS if not w.startswith("exclude")]
+    weak = [w for w in HIDDEN_WORDS if w.startswith("exclude")]
+    if any(w in t for t in tags for w in strong) or (
+            "searchable" not in tags and any(w in t for t in tags if "rebuy" not in t for w in weak)):
         flags.append("HIDDEN")
     if any(w in t for t in tags + [title.lower()] for w in FINAL_WORDS):
         flags.append("FINAL")

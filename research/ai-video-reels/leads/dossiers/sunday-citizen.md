@@ -64,9 +64,11 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-3.
 | Hidden/unpublished check | 1 excluded; Ciel sofa, Snug Lite Bomber and pillow PDPs return 200 with titles | ✅ |
 | Claims scan | Comfort/review copy. Mild "naturally cooling, hypoallergenic" product language (not fear, not rival-harm, not a health outcome); we won't film it | ✅ with note |
 | Public business contact | hello@sundaycitizen.co (contact-us and FAQ pages) | ⚠️ Generic |
+| Instagram handle (2026-10-11) | **@sunday.citizen** (the homepage links instagram.com/sunday.citizen/; profile "sunday citizen", verified badge, ~108K followers). The earlier @sundaycitizen was wrong | ✅ fixed in SEND_QUEUE |
 | Founder identity | Mike Abadi and Michelle Familier (Mann Report 2022; CB Insights) | ✅ (2026 roles unverified) |
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** never say "72 hours" or "no tools" as our claim in a message; the message names only the new sofa. If the founders have left, the email still reaches the marketing team through hello@.
 
+- **Re-verified live 2026-10-11** (`products_check.py`): Ciel Love Seat 2/2 $1,800, Snug Bed Blanket 16/24, Snug Casablanca 5/6, all full price. New public signal: a UK launch post on 10/10 ("now in the UK").
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.

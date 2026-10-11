@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15).** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -14,7 +14,7 @@ Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sourc
 5. הטבלה ממוינת לפי חום. למעלה LAKE, Printfresh, Dandelion ו-Foggy Dog. הכי למטה Vosges ו-Alexis Bittar, כי ההחלטה שם לא אצל המייסד.
 6. לכל ליד יש DM ואימייל מוכנים להדבקה. צריך להחליף את `{OWNER_NAME}` בשם שלך ואת `{BUSINESS_ADDRESS}` בכתובת דואר אמיתית. **אסור לשלוח אף אימייל עם הכתובת הזמנית** (CAN-SPAM).
 7. לוח זמנים מוצע: ג' 13.10 נשלחים 10 DMs, ד' 14.10 עוד 9 DMs ו-10 אימיילים, ה' 15.10 עוד 9 אימיילים. הכל בין 8 ל-10 בבוקר לפי השעון של הנמען. **בתנאי שהאתר חי עד שני 12.10.** אם לא, כל הלוח זז שבוע.
-8. מה רק אתה יכול לעשות: להעלות את האתר לדומיין אמיתי, למלא שם וכתובת דואר, לוודא ידנית 6 שמות משתמש באינסטגרם שלא אומתו (מסומנים ⚠), ולאשר כל הודעה בנפרד ("send #Q-N DM" / "send #Q-N email").
+8. מה רק אתה יכול לעשות: להעלות את האתר לדומיין אמיתי, למלא שם וכתובת דואר, לוודא ידנית את שם המשתמש של Alexis Bittar (5 מתוך 6 אומתו מהאתרים ב-11.10; Sunday Citizen ו-Saranoni תוקנו), ולאשר כל הודעה בנפרד ("send #Q-N DM" / "send #Q-N email").
 9. ביום השליחה: להריץ שוב את בדיקת המוצר ואת ספריית המודעות לכל ליד, ולרשום כל שליחה ב-`SEND_LOG.md`.
 
 </div>
@@ -25,21 +25,21 @@ Score = base score out of 100 (vxo-leads §1: Ads 30 · Need 20 · Momentum 15 �
 
 | # | Brand | Score | Why now (customer-visible, live 2026-10-09) | Film in one line | Channel (DM day 0 → email day 1) | Contact |
 |---|---|---|---|---|---|---|
-| Q-1 | LAKE Pajamas | 89 | New Tour/Route travel sets and maternity sets (Tour set in Oat Heather live, 5/5 sizes); gifting ads live; 7 of the top 30 ads are video | "Never Changed": alarm slapped off by a Tour-set sleeve, one outfit all day, she gets into bed without changing | IG @lakepajamas ⚠ handle → email | info@lakepajamas.com (FAQ); founders Cassandra Cannon, Anne Read Lattimore |
-| Q-2 | Printfresh | 89 | Holiday Hens range incl. a pet bandana (live, 2/2); Winter Holly Bagheera home sets published 10/7–10/8; ~336 active ads, 6 of 30 video | "Matching": family on a sofa in different prints, the dog jumps up in the Holiday Hens bandana, the only exact match | IG @printfresh ⚠ handle → email | hello@printfresh.com (contact/about); founder Amy Voloshin |
+| Q-1 | LAKE Pajamas | 89 | New Tour/Route travel sets and maternity sets (Tour set in Oat Heather live, 5/5 sizes); gifting ads live; 7 of the top 30 ads are video | "Never Changed": alarm slapped off by a Tour-set sleeve, one outfit all day, she gets into bed without changing | IG @lakepajamas ✅ handle (linked from lakepajamas.com, 2026-10-11) → email | info@lakepajamas.com (FAQ); founders Cassandra Cannon, Anne Read Lattimore |
+| Q-2 | Printfresh | 89 | Holiday Hens range incl. a pet bandana (live, 2/2); Winter Holly Bagheera home sets published 10/7–10/8; ~336 active ads, 6 of 30 video | "Matching": family on a sofa in different prints, the dog jumps up in the Holiday Hens bandana, the only exact match | IG @printfresh ✅ handle (linked from printfresh.com, 2026-10-11; founder @amyvoloshin, bio "Founder @printfresh", also linked from the site) → email | hello@printfresh.com (contact/about); founder Amy Voloshin |
 | Q-3 | Dandelion Chocolate | 88 | Japanese Tea Bonbon Collection (10/1) and Raven Collection (9/21) live; 26 of the top 30 ads are stills | "Two Ingredients": every hand that slides in vanilla or milk powder gets slid back out; end on their two-ingredient wrapper | IG @dandelionchocolate → email | info@dandelionchocolate.com (/pages/contact); co-founder and CEO Todd Masonis |
 | Q-4 | The Foggy Dog | 85 | Holiday shop live: Gingerbread Man bow tie collar 8/8, Evergreen Candy Canes walk set 6/6; a fidelity-proof still set is being made for this brand | "Utah's holiday card": the photographer zooms in until every human is cropped out and only the dog is left | IG @thefoggydog (or Rose's own business account) → email | woof@thefoggydog.com (homepage + contact); founder Rose Shattuck |
 | Q-5 | Little Beast | 84 | PBJ and Earth striped onesies published 9/24 (7/7 sizes); "FW 2026" ad from 10/1; 28 of 30 ads are stills | "Morning, PBJ": a doorman greets every dog by outfit, then asks the owner who he's visiting | IG @littlebeast.co → email | hello@littlebeast.co (/pages/contact-us); co-founder Jisu Kim |
-| Q-6 | Sunday Citizen | 84 | Ciel Love Seat Sofa ($1,800, ships compressed) live 2/2; all top 30 ads started in the last 30 days, 9 of 30 video | "Fourth Floor": movers stuck with a sofa in a walk-up while her box rides the elevator and becomes the Ciel | IG @sundaycitizen ⚠ handle → email | hello@sundaycitizen.co (contact-us + FAQ); co-founders Mike Abadi, Michelle Familier (2022 press) |
+| Q-6 | Sunday Citizen | 84 | Ciel Love Seat Sofa ($1,800, ships compressed) live 2/2; all top 30 ads started in the last 30 days, 9 of 30 video | "Fourth Floor": movers stuck with a sofa in a walk-up while her box rides the elevator and becomes the Ciel | IG **@sunday.citizen** ✅ (corrected 2026-10-11: the site links @sunday.citizen; @sundaycitizen was wrong) → email | hello@sundaycitizen.co (contact-us + FAQ); co-founders Mike Abadi, Michelle Familier (2022 press) |
 | Q-7 | Dana Rebecca Designs | 81 | October birthstone studs published 10/7; Ava Bea Interval bracelet in stock 3/3; ~202 active ads, 8 of 30 video | "The Dish": a JEWELRY dish fills night after night with everything except the bracelet, which never comes off | IG @danarebecca → email | info@danarebeccadesigns.com (contact, customer service); founder Dana Rebecca Gordon |
 | Q-8 | Brackish | 81 | Slim Collection published 10/1 (Edisto, Rice, Slate live); 1 of the top 30 ads is video, which can't show feather iridescence | "The Lineup": seven groomsmen in seven feather ties, the groom's collar is bare, his tie is in the bouquet | IG @brackish → email | info@brackish.com (homepage); founders Ben Ross, Jeff Plotner |
 | Q-9 | Cuddle Clones | 81 | Holiday pet-face pajamas (adult and kids, 10/7) and pet-face wrapping paper (10/9) live; 18 of 30 ads are stills | "Main Character": every gift wrapped in the dog's face, matching pajamas, the real dog sits between them like the star | IG @cuddleclones → email | info@cuddleclones.com (contact + FAQ); founder Jennifer Williams (2026 title unverified) |
 | Q-10 | Kinn | 81 | Dare to Dream collection published 9/25 (Pegasus and Swan pendants 8/8); ~95 ads, 7 of 30 video, 15 running 60+ days | "Night Light": the Pegasus pendant on a lamp chain throws a pegasus on the ceiling; the partner hangs car keys, the ceiling shows keys | IG @kinnstudio → email | hello@kinnstudio.com (contact); founder Jennie Yoon |
 | Q-11 | KREWE | 81 | MUSE (9/8, after NYFW) live at full price; Carnival opens Jan 6, Mardi Gras Feb 9, 2027; 4 of 30 ads video | "Throw": a masked float rider throws beads nobody wants and keeps the last pair of MUSE for himself | IG @krewe → email | krewe@krewe.com (homepage); founder Stirling Barrett |
-| Q-12 | Hawkins New York | 81 | Pleat and Colorstory lamps published 9/24–9/28; 2 of 24 ads video, 19 running 60+ days, newest ad 9/11 | "The Last Piece": a dim January room fills with pieces; the Pleat lamp clicks on and every colour finally shows | IG @hawkinsnewyork ⚠ handle → email | press@hawkinsnewyork.com (contact); founders Paul Denoly, Nick Blaine (roles unverified) |
+| Q-12 | Hawkins New York | 81 | Pleat and Colorstory lamps published 9/24–9/28; 2 of 24 ads video, 19 running 60+ days, newest ad 9/11 | "The Last Piece": a dim January room fills with pieces; the Pleat lamp clicks on and every colour finally shows | IG @hawkinsnewyork ✅ handle (linked from hawkinsnewyork.com, 2026-10-11) → email | press@hawkinsnewyork.com (contact); founders Paul Denoly, Nick Blaine (roles unverified) |
 | Q-13 | Legendary Foods | 76 | Mini Protein Donuts and Chocolate Caramel Protein Pastry live; 17 active ads, **0 video**; pastry ad from 10/6 | "Cheat Detector": a ceiling detector shrieks at a donut until the hand turns the box to the label | IG @legendaryfoods → email | customercare@eatlegendary.com (support inbox, the only one listed); founders Ron Penna, Michael Veni |
 | Q-14 | Equator Coffees | 76 | Office Coffee Subscription 5 lb (9/30) and Ecuador La Marquesa (10/5) live; 19 of 30 ads stills | "The Bag Lands": Monday 9:01, a 5 lb bag lands and the whole meeting moves next to the coffee | IG @equatorcoffees → email | info@equatorcoffees.com (contact + FAQ); co-founders Helen Russell, Brooke McDonnell |
-| Q-15 | Saranoni | 75 | New XXL 80x100 size of the Double Ruched throw (Flax, Midnight, Chocolate Blend in stock); 22 of the top 30 ads running 60+ days (16 of 30 are already video, so the pitch is fresh scenes) | "Tug": four feet fight over a small throw; the XXL covers the sofa, both people and the dog, with blanket to spare | IG @saranoni ⚠ handle → email | service@saranoni.com (contact-us); founder/CEO Emily Peterson |
+| Q-15 | Saranoni | 75 | New XXL 80x100 size of the Double Ruched throw (Flax, Midnight, Chocolate Blend in stock); 22 of the top 30 ads running 60+ days (16 of 30 are already video, so the pitch is fresh scenes) | "Tug": four feet fight over a small throw; the XXL covers the sofa, both people and the dog, with blanket to spare | IG **@saranoniblanket** ✅ (corrected 2026-10-11: saranoni.com links @saranoniblanket; @saranoni was a guess) → email | service@saranoni.com (contact-us); founder/CEO Emily Peterson |
 | Q-16 | STONE AND STRAND | 71 | Unflippable tennis necklace (yellow gold and lab-created, both in stock) sold only in stills; charms published 10/8 | "Face Forward": everyday moves, diamonds still facing out; at 2 am she flips her pillow, the only thing that flipped | IG @stoneandstrand → email | atyourservice@stoneandstrand.com (FAQ); founder Nadine McCarthy Kahane |
 | Q-17 | THATCH | 70 | Wood Anywhere shells (coconut, driftwood) and bag clips (9/30) live; charm ad from 10/1; 3 of ~16 ads video | "Anywhere (Almost)": the shell charm hops across a trip, is left on a plane seat-back, and a hand comes back for it | IG @thatch.jewelry → email | amy@shopthatch.com (co-founder Amy Olson Goin, listed on their own wholesale page) |
 | Q-18 | Vosges Haut-Chocolat | 81 | 15-SKU Snowbound holiday collection published 10/6 (Perfect Gift and Little Gift live); 22 of 30 ads stills. **Ranked low: owned by La Montagne Holdings, buyer unknown** | "Snowbound": snowed in with the purple box, a hand switches off the porch light so the plough drives past | IG @vosgeshautchocolat → email | vosges@vosgeschocolate.com (/pages/contact); decision-maker unknown |
@@ -105,7 +105,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 ### Q-1 · LAKE Pajamas · Cassandra Cannon and Anne Read Lattimore
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @lakepajamas (⚠ confirm handle) or a founder's own business account:**
+**DM (day 0) to @lakepajamas (handle verified 2026-10-11 from lakepajamas.com) or a founder's own business account:**
 > Hi Cassandra and Anne Read, Itamar from VXO. Film idea for the new Tour set: an alarm, then one outfit all day, hotel hall, airport gate, dinner booth. That night she gets straight into bed without changing. AI builds the trip; the set comes from your photos. Want 5 free stills, Tour set or CloudPima?
 
 **Email (day 1) to info@lakepajamas.com** · Subject: **The Tour set, all day**
@@ -126,7 +126,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 ### Q-2 · Printfresh · Amy Voloshin
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @printfresh (⚠ confirm handle) or Amy's own business account:**
+**DM (day 0) to @printfresh (verified 2026-10-11) or Amy's own account @amyvoloshin (bio: "Founder @printfresh"; linked from printfresh.com; the owner decides):**
 > Hi Amy, Itamar from VXO. Idea for Holiday Hens: a locked sofa shot as the family sits down, each in a different print. Then the dog jumps up in the Holiday Hens bandana, the only one matching you. AI builds the room; your prints stay as painted. Want 5 free stills, Hens or Bagheera?
 
 **Email (day 1) to hello@printfresh.com** · Subject: **The dog matches**
@@ -214,7 +214,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 ### Q-6 · Sunday Citizen · Mike Abadi and Michelle Familier
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @sundaycitizen (⚠ confirm handle):**
+**DM (day 0) to @sunday.citizen (corrected 2026-10-11 from the brand's own site link):**
 > Hi Mike and Michelle, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
 
 **Email (day 1) to hello@sundaycitizen.co** · Subject: **The stuck sofa**
@@ -348,7 +348,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 ### Q-12 · Hawkins New York · Paul Denoly and Nick Blaine
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @hawkinsnewyork (⚠ confirm handle):**
+**DM (day 0) to @hawkinsnewyork (verified 2026-10-11 from hawkinsnewyork.com):**
 > Hi Paul and Nick, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
 
 **Email (day 1) to press@hawkinsnewyork.com** · Subject: **The Pleat lamp, switched on**
@@ -413,7 +413,7 @@ Rule for this lead: on screen only the label's printed numbers with units; no "g
 ### Q-15 · Saranoni · Emily Peterson
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @saranoni (⚠ confirm handle):**
+**DM (day 0) to @saranoniblanket (corrected 2026-10-11 from saranoni.com; @saranoni was wrong):**
 > Hi Emily, Itamar from VXO. Idea for the XXL Double Ruched: four feet fighting over a small throw. Then hands unfold the XXL across the whole sofa. The dog climbs in and there's still blanket to the floor. AI builds the room; your faux fur stays real. Want 5 free stills, Flax or Midnight?
 
 **Email (day 1) to service@saranoni.com** · Subject: **The blanket tug-of-war**
@@ -526,7 +526,7 @@ Rule for this lead: pitch full-price pieces only; never mention the vault sale.
 ## 5. What the owner must do or approve
 1. **Site live** on a real domain (decision 2) before the first send. If it isn't live by Mon 12 Oct, the schedule moves one week.
 2. **Fill `{OWNER_NAME}`** and a **real postal `{BUSINESS_ADDRESS}`** (decision 3). Until then DMs may go, but no email.
-3. **Confirm the 6 ⚠ handles** by hand (LAKE, Printfresh, Sunday Citizen, Hawkins, Saranoni, Alexis Bittar) and look for each founder's own business account first.
+3. **Handles:** 5 of the 6 ⚠ handles were checked against the brands' own site links on 2026-10-11 (LAKE, Printfresh, Hawkins verified; Sunday Citizen → @sunday.citizen and Saranoni → @saranoniblanket corrected). Only **Alexis Bittar** still needs a manual check (no IG link on the site). Look for each founder's own business account first.
 4. **Approve each touch separately:** "send #Q-N DM", then "send #Q-N email". Report each send so it is logged in `SEND_LOG.md`.
 5. **Decide on the held-back leads:** Moment (doc 63 §4.2 copy is ready; base 69 and claim-heavy) and AUrate (every tennis piece is Final Sale today).
 6. Optional: approve FU2 stills at ~$0.05–0.30 per lead (decision 23); otherwise FU2 goes as text.
@@ -580,3 +580,23 @@ Tools: `skills/ad-director/scripts/research/products_check.py` (new today: publi
 | Q-10 Kinn | Pegasus and Swan pendants | Pegasus Dream and Swan Dream pendants 8/8, $1,040 full price | 95 · 20 % · 7 · 15 | ✅ holds |
 
 Run both tools again on Tue 13 Oct, 7–8 am ET, before the first DM.
+
+## 8. Re-check of Tuesday's 10 (Q-1..Q-10), 2026-10-11 (Sun)
+Tool: `products_check.py` (public `/products.json` + the product page). Ad Library probe on The Foggy Dog: 218 active, 33 % filter / 3 of 30 cards (unchanged). Instagram handles were checked against the links on each brand's own homepage, then read logged-out (public profile only; nothing followed, liked or commented). Nothing sent; $0.
+
+| # | Products the messages name | Live 2026-10-11 | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set in Oat Heather; CloudPima | Tour Pullover Jogger Pants Set in Oat Heather 5/5 $268 full price (the feed title is "...Jogger **Pants** Set"); Oat Heather pima sets 7/7 full price | ✅ holds |
+| Q-2 Printfresh | Holiday Hens pet bandana; Hens or Bagheera | Holiday Hens Pet Bandana 2/2 $28; Hens and Winter Holly Bagheera apparel full price (only multi-item bundles carry a compare-at) | ✅ holds |
+| Q-3 Dandelion | 70 % three-bar gift set; Maya Mountain | Gift set 1/1 $42; Maya Mountain 70 % 1/1 $13 | ✅ holds |
+| Q-4 Foggy Dog | Gingerbread Man bow tie collar; Evergreen Candy Canes walk set | Collar 8/8 $52 (compare-at $58, same standing promo as 10/09–10/10). Walk set 6/6 $102 (compare-at $124). The walk set gained a `rebuy-exclude-product` tag on 10/10, which made the tool print HIDDEN: a **false positive** (Rebuy is an upsell app; the product is also tagged `searchable`, `best-seller`, `new-arrival`, page 200). Tool fixed today | ⚠ holds (standing promo, no price named) |
+| Q-5 Little Beast | PBJ and OG onesies | Both 7/7 $48 full price (Miami Vice still $37.50, not named) | ✅ holds |
+| Q-6 Sunday Citizen | Ciel Love Seat; Snug bed blanket | Ciel 2/2 $1,800; Snug Bed Blanket 16/24; Snug Casablanca 5/6 | ✅ holds. **Handle corrected to @sunday.citizen** |
+| Q-7 Dana Rebecca | Ava Bea Interval bracelet; October birthstone studs | Bracelet 3/3 $2,795; October studs 1/1 full price ($495–895) | ✅ holds |
+| Q-8 Brackish | Edisto or Rice slim bow tie | Both 1/1 $225 | ✅ holds. Note: a Maroon Collection drops Thu 15 Oct 8 pm (their IG, 10/10) |
+| Q-9 Cuddle Clones | pet-face pajamas; wrapping paper | Pajamas: adults $33.75 / kids $29.25 vs compare-at $103 / $89 (standing offer); main Custom Pet Face Wrapping Paper 3/3 $29 full price (the 1/2/3-pet SKUs still `redirect`) | ⚠ holds (no price named) |
+| Q-10 Kinn | Pegasus and Swan pendants | Both 8/8 $1,040 full price | ✅ holds. Note: Kinn teases a limited-run launch "a place for the things that become a part of us" on **Mon 12 Oct 9 am PT** (their IG, 10/10). Re-read Kinn on Mon evening; if the new product fits the lamp/night-light idea better, the owner may swap the CTA |
+
+**Instagram handles (from the brands' own homepage links, 2026-10-11):** LAKE @lakepajamas ✅ · Printfresh @printfresh ✅ (founder @amyvoloshin also linked; bio "Founder @printfresh") · Dandelion @dandelionchocolate ✅ (contact page) · Foggy @thefoggydog ✅ · Little Beast @littlebeast.co ✅ · Sunday Citizen **@sunday.citizen** (fixed) · Dana Rebecca @danarebecca ✅ · Brackish @brackish ✅ · Cuddle Clones @cuddleclones (no link on the site; the public profile is "Cuddle Clones", 583K followers, posts their own products) · Kinn @kinnstudio ✅. Wave B: Hawkins @hawkinsnewyork ✅, Saranoni **@saranoniblanket** (fixed), Alexis Bittar still ⚠.
+
+Warm-up comments for Sun/Mon (by hand, no pitch, no link): `WARMUP_2026-10-11.md`.
