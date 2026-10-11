@@ -1,0 +1,8 @@
+E1-01 A: truncation 20/20  perturbation 20/20
+E1-01 B: truncation 20/20  perturbation 20/20
+E1-02 A: truncation 20/20  perturbation 20/20
+E1-02 B: truncation 20/20  perturbation 20/20
+E1-03 A: truncation 20/20  perturbation 20/20
+E1-03 B: truncation 20/20  perturbation 20/20
+E1-04 A: truncation 20/20  perturbation 20/20
+E1-04 B: truncation 20/20  perturbation 20/20
