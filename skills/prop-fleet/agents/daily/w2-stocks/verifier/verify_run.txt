@@ -1,0 +1,102 @@
+coverage: re-derived vs data.py covered agreement 1.00000
+FTMO syms matched to membership tickers: ['AAPL', 'AMD', 'AMZN', 'AVGO', 'BA', 'BAC', 'BRK.B', 'CSCO', 'CVX', 'DIS', 'FDX', 'GE', 'GM', 'GME', 'GOOG', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'LMT', 'MCD', 'META', 'MSFT', 'NFLX', 'NKE', 'NVDA', 'PFE', 'PLTR', 'QCOM', 'RTX', 'SBUX', 'T', 'TSLA', 'V', 'WMT', 'XOM'] (37)
+mean eligible/day A 344.5  B 28.0; B OOS mean 33.2
+invalid-open stock-days among eligible A with valid r: 1 (of 2404602)
+E1-01 U=A worse lag=1 | boot p5 (worse,1x) -4.78 bp
+   lag0 1x  OOS Sh -1.16  mean -3.45bp  t -4.20 (iid -3.98 NW -4.20)  turn/yr 142.4 IS_Sh -0.39 | gross OOS Sh +0.50 +1.47bp, gross IS Sh +1.28
+   lag0 2x  OOS Sh -2.81  mean -8.36bp  t -10.24 (iid -9.62 NW -10.24)  turn/yr 142.4
+   lag1 1x  OOS Sh -1.21  mean -3.50bp  t -4.14 (iid -4.14 NW -3.84)  turn/yr 142.3 IS_Sh -0.36 | gross OOS Sh +0.49 +1.42bp, gross IS Sh +1.37
+   lag1 2x  OOS Sh -2.90  mean -8.41bp  t -9.94 (iid -9.94 NW -9.27)  turn/yr 142.3
+E1-01 U=B worse lag=1 | boot p5 (worse,1x) -6.19 bp
+   lag0 1x  OOS Sh -1.20  mean -4.36bp  t -4.42 (iid -4.11 NW -4.42)  turn/yr 145.1 IS_Sh -0.46 | gross OOS Sh +0.00 +0.01bp, gross IS Sh +0.64
+   lag0 2x  OOS Sh -2.40  mean -8.73bp  t -8.90 (iid -8.21 NW -8.90)  turn/yr 145.1
+   lag1 1x  OOS Sh -1.30  mean -4.62bp  t -4.61 (iid -4.45 NW -4.61)  turn/yr 145.0 IS_Sh -0.03 | gross OOS Sh -0.07 -0.25bp, gross IS Sh +1.09
+   lag1 2x  OOS Sh -2.52  mean -9.00bp  t -9.00 (iid -8.63 NW -9.00)  turn/yr 145.0
+E1-02 U=A worse lag=1 | boot p5 (worse,1x) -4.50 bp
+   lag0 1x  OOS Sh -1.01  mean -2.91bp  t -3.47 (iid -3.47 NW -3.25)  turn/yr 67.9 IS_Sh -0.31 | gross OOS Sh +0.35 +1.00bp, gross IS Sh +1.06
+   lag0 2x  OOS Sh -2.35  mean -6.82bp  t -8.04 (iid -8.04 NW -7.64)  turn/yr 67.9
+   lag1 1x  OOS Sh -1.21  mean -3.32bp  t -4.32 (iid -4.13 NW -4.32)  turn/yr 67.9 IS_Sh -0.61 | gross OOS Sh +0.21 +0.59bp, gross IS Sh +0.82
+   lag1 2x  OOS Sh -2.62  mean -7.23bp  t -9.43 (iid -8.97 NW -9.43)  turn/yr 67.9
+E1-02 U=B worse lag=1 | boot p5 (worse,1x) -5.94 bp
+   lag0 1x  OOS Sh -1.20  mean -4.22bp  t -4.15 (iid -4.12 NW -4.15)  turn/yr 67.7 IS_Sh -0.33 | gross OOS Sh -0.17 -0.58bp, gross IS Sh +0.61
+   lag0 2x  OOS Sh -2.23  mean -7.86bp  t -7.75 (iid -7.63 NW -7.75)  turn/yr 67.7
+   lag1 1x  OOS Sh -1.26  mean -4.35bp  t -4.33 (iid -4.33 NW -4.30)  turn/yr 67.7 IS_Sh -0.64 | gross OOS Sh -0.21 -0.71bp, gross IS Sh +0.34
+   lag1 2x  OOS Sh -2.32  mean -7.99bp  t -7.94 (iid -7.94 NW -7.92)  turn/yr 67.7
+E1-03 U=A worse lag=1 | boot p5 (worse,1x) -4.13 bp
+   lag0 1x  OOS Sh -1.14  mean -2.94bp  t -3.90 (iid -3.90 NW -3.77)  turn/yr 68.0 IS_Sh -0.46 | gross OOS Sh +0.38 +0.97bp, gross IS Sh +1.20
+   lag0 2x  OOS Sh -2.62  mean -6.85bp  t -8.98 (iid -8.98 NW -8.80)  turn/yr 68.0
+   lag1 1x  OOS Sh -1.22  mean -2.95bp  t -4.31 (iid -4.19 NW -4.31)  turn/yr 68.0 IS_Sh -0.91 | gross OOS Sh +0.40 +0.96bp, gross IS Sh +0.82
+   lag1 2x  OOS Sh -2.83  mean -6.86bp  t -10.04 (iid -9.69 NW -10.04)  turn/yr 68.0
+E1-03 U=B worse lag=0 | boot p5 (worse,1x) -6.01 bp
+   lag0 1x  OOS Sh -1.39  mean -4.54bp  t -4.85 (iid -4.76 NW -4.85)  turn/yr 67.5 IS_Sh -0.05 | gross OOS Sh -0.28 -0.90bp, gross IS Sh +0.95
+   lag0 2x  OOS Sh -2.49  mean -8.18bp  t -8.76 (iid -8.52 NW -8.76)  turn/yr 67.5
+   lag1 1x  OOS Sh -1.38  mean -4.45bp  t -4.74 (iid -4.73 NW -4.74)  turn/yr 67.5 IS_Sh -0.44 | gross OOS Sh -0.25 -0.82bp, gross IS Sh +0.59
+   lag1 2x  OOS Sh -2.51  mean -8.09bp  t -8.63 (iid -8.59 NW -8.63)  turn/yr 67.5
+E1-04 U=A worse lag=1 | boot p5 (worse,1x) -5.64 bp
+   lag0 1x  OOS Sh -0.83  mean -3.19bp  t -2.84 (iid -2.84 NW -2.69)  turn/yr 67.7 IS_Sh +0.30 | gross OOS Sh +0.24 +0.93bp, gross IS Sh +1.41
+   lag0 2x  OOS Sh -1.93  mean -7.46bp  t -6.61 (iid -6.61 NW -6.32)  turn/yr 67.7
+   lag1 1x  OOS Sh -1.02  mean -3.91bp  t -3.50 (iid -3.50 NW -3.49)  turn/yr 67.7 IS_Sh +0.11 | gross OOS Sh +0.05 +0.20bp, gross IS Sh +1.22
+   lag1 2x  OOS Sh -2.14  mean -8.19bp  t -7.32 (iid -7.31 NW -7.32)  turn/yr 67.7
+E1-04 U=B worse lag=1 | boot p5 (worse,1x) -3.72 bp
+   lag0 1x  OOS Sh -0.44  mean -1.70bp  t -1.59 (iid -1.51 NW -1.59)  turn/yr 68.0 IS_Sh +0.16 | gross OOS Sh +0.55 +2.14bp, gross IS Sh +0.96
+   lag0 2x  OOS Sh -1.47  mean -5.72bp  t -5.35 (iid -5.04 NW -5.35)  turn/yr 68.0
+   lag1 1x  OOS Sh -0.52  mean -1.98bp  t -1.86 (iid -1.79 NW -1.86)  turn/yr 68.0 IS_Sh -0.02 | gross OOS Sh +0.49 +1.86bp, gross IS Sh +0.79
+   lag1 2x  OOS Sh -1.59  mean -5.99bp  t -5.66 (iid -5.43 NW -5.66)  turn/yr 68.0
+E1-07 U=A worse lag=1 | boot p5 (worse,1x) -6.58 bp
+   lag0 1x  OOS Sh -1.27  mean -5.15bp  t -4.97 (iid -4.33 NW -4.97)  turn/yr 37.7 IS_Sh -1.08 | gross OOS Sh -0.37 -1.51bp, gross IS Sh -0.32
+   lag0 2x  OOS Sh -2.16  mean -8.79bp  t -8.47 (iid -7.39 NW -8.47)  turn/yr 37.7
+   lag1 1x  OOS Sh -1.37  mean -5.00bp  t -5.39 (iid -4.69 NW -5.39)  turn/yr 37.7 IS_Sh -1.06 | gross OOS Sh -0.37 -1.36bp, gross IS Sh -0.26
+   lag1 2x  OOS Sh -2.36  mean -8.65bp  t -9.30 (iid -8.10 NW -9.30)  turn/yr 37.7
+E1-07 U=B worse lag=1 | boot p5 (worse,1x) -3.66 bp
+   lag0 1x  OOS Sh -0.06  mean -0.34bp  t -0.21 (iid -0.19 NW -0.21)  turn/yr 43.2 IS_Sh -0.36 | gross OOS Sh +0.59 +3.59bp, gross IS Sh +0.09
+   lag0 2x  OOS Sh -0.71  mean -4.31bp  t -2.65 (iid -2.45 NW -2.65)  turn/yr 43.2
+   lag1 1x  OOS Sh -0.22  mean -1.32bp  t -0.81 (iid -0.75 NW -0.81)  turn/yr 43.2 IS_Sh -0.41 | gross OOS Sh +0.44 +2.61bp, gross IS Sh +0.05
+   lag1 2x  OOS Sh -0.88  mean -5.30bp  t -3.23 (iid -3.03 NW -3.23)  turn/yr 43.2
+E1-08 U=A worse lag=1 | boot p5 (worse,1x) -4.23 bp
+   lag0 1x  OOS Sh -1.71  mean -3.16bp  t -6.25 (iid -5.86 NW -6.25)  turn/yr 31.5 IS_Sh -1.36 | gross OOS Sh +0.14 +0.26bp, gross IS Sh +0.50
+   lag0 2x  OOS Sh -3.52  mean -6.58bp  t -13.01 (iid -12.06 NW -13.01)  turn/yr 31.5
+   lag1 1x  OOS Sh -1.80  mean -3.36bp  t -6.63 (iid -6.17 NW -6.63)  turn/yr 31.5 IS_Sh -1.60 | gross OOS Sh +0.03 +0.06bp, gross IS Sh +0.31
+   lag1 2x  OOS Sh -3.62  mean -6.78bp  t -13.37 (iid -12.39 NW -13.37)  turn/yr 31.5
+E1-08 U=B worse lag=1 | boot p5 (worse,1x) -5.58 bp
+   lag0 1x  OOS Sh -1.44  mean -3.97bp  t -4.95 (iid -4.94 NW -4.95)  turn/yr 32.0 IS_Sh -0.97 | gross OOS Sh -0.24 -0.67bp, gross IS Sh +0.13
+   lag0 2x  OOS Sh -2.63  mean -7.27bp  t -9.06 (iid -9.02 NW -9.06)  turn/yr 32.0
+   lag1 1x  OOS Sh -1.54  mean -4.23bp  t -5.28 (iid -5.28 NW -5.16)  turn/yr 32.0 IS_Sh -1.03 | gross OOS Sh -0.34 -0.93bp, gross IS Sh +0.08
+   lag1 2x  OOS Sh -2.74  mean -7.52bp  t -9.39 (iid -9.39 NW -9.19)  turn/yr 32.0
+E1-09 U=A worse lag=1 | boot p5 (worse,1x) -13.64 bp
+   lag0 1x  OOS Sh -8.62  mean -13.08bp  t -34.04 (iid -29.51 NW -34.04)  turn/yr 504.0 IS_Sh -10.42 | gross OOS Sh +0.47 +0.71bp, gross IS Sh +3.86
+   lag0 2x  OOS Sh -17.58  mean -26.88bp  t -69.84 (iid -60.20 NW -69.84)  turn/yr 504.0
+   lag1 1x  OOS Sh -8.66  mean -13.07bp  t -35.26 (iid -29.66 NW -35.26)  turn/yr 504.0 IS_Sh -10.95 | gross OOS Sh +0.48 +0.72bp, gross IS Sh +3.69
+   lag1 2x  OOS Sh -17.67  mean -26.87bp  t -72.38 (iid -60.50 NW -72.38)  turn/yr 504.0
+E1-09 U=B worse lag=1 | boot p5 (worse,1x) -11.10 bp
+   lag0 1x  OOS Sh -4.89  mean -9.92bp  t -17.73 (iid -16.75 NW -17.73)  turn/yr 504.0 IS_Sh -4.24 | gross OOS Sh +0.93 +1.88bp, gross IS Sh +1.93
+   lag0 2x  OOS Sh -10.67  mean -21.71bp  t -38.81 (iid -36.55 NW -38.81)  turn/yr 504.0
+   lag1 1x  OOS Sh -5.13  mean -10.24bp  t -18.63 (iid -17.55 NW -18.63)  turn/yr 504.0 IS_Sh -4.52 | gross OOS Sh +0.78 +1.55bp, gross IS Sh +1.66
+   lag1 2x  OOS Sh -10.99  mean -22.03bp  t -40.05 (iid -37.64 NW -40.05)  turn/yr 504.0
+E1-10 U=A worse lag=0 | boot p5 (worse,1x) -10.67 bp
+   lag0 1x  OOS Sh -5.42  mean -9.91bp  t -20.69 (iid -18.57 NW -20.69)  turn/yr 504.0 IS_Sh -4.41 | gross OOS Sh +0.49 +0.89bp, gross IS Sh +2.38
+   lag0 2x  OOS Sh -11.33  mean -20.71bp  t -43.24 (iid -38.81 NW -43.24)  turn/yr 504.0
+   lag1 1x  OOS Sh -5.36  mean -9.67bp  t -20.80 (iid -18.34 NW -20.80)  turn/yr 504.0 IS_Sh -4.31 | gross OOS Sh +0.63 +1.13bp, gross IS Sh +2.50
+   lag1 2x  OOS Sh -11.34  mean -20.47bp  t -44.02 (iid -38.83 NW -44.02)  turn/yr 504.0
+E1-10 U=B worse lag=1 | boot p5 (worse,1x) -8.55 bp
+   lag0 1x  OOS Sh -2.98  mean -7.30bp  t -11.04 (iid -10.21 NW -11.04)  turn/yr 504.0 IS_Sh -1.89 | gross OOS Sh +0.61 +1.50bp, gross IS Sh +1.18
+   lag0 2x  OOS Sh -6.58  mean -16.10bp  t -24.36 (iid -22.52 NW -24.36)  turn/yr 504.0
+   lag1 1x  OOS Sh -3.03  mean -7.43bp  t -11.31 (iid -10.39 NW -11.31)  turn/yr 504.0 IS_Sh -1.78 | gross OOS Sh +0.56 +1.37bp, gross IS Sh +1.33
+   lag1 2x  OOS Sh -6.63  mean -16.23bp  t -24.70 (iid -22.69 NW -24.70)  turn/yr 504.0
+
+SUMMARY (worse lag by OOS 1x Sharpe): vid U lag | OOS Sh/t 1x | OOS Sh/t 2x | IS Sh 1x | p5 bp | turn/yr
+E1-01 A L1 | -1.21 / -4.14 | -2.90 / -9.94 | -0.36 | -4.78 | 142
+E1-01 B L1 | -1.30 / -4.61 | -2.52 / -9.00 | -0.03 | -6.19 | 145
+E1-02 A L1 | -1.21 / -4.32 | -2.62 / -9.43 | -0.61 | -4.50 | 68
+E1-02 B L1 | -1.26 / -4.33 | -2.32 / -7.94 | -0.64 | -5.94 | 68
+E1-03 A L1 | -1.22 / -4.31 | -2.83 / -10.04 | -0.91 | -4.13 | 68
+E1-03 B L0 | -1.39 / -4.85 | -2.49 / -8.76 | -0.05 | -6.01 | 68
+E1-04 A L1 | -1.02 / -3.50 | -2.14 / -7.32 | +0.11 | -5.64 | 68
+E1-04 B L1 | -0.52 / -1.86 | -1.59 / -5.66 | -0.02 | -3.72 | 68
+E1-07 A L1 | -1.37 / -5.39 | -2.36 / -9.30 | -1.06 | -6.58 | 38
+E1-07 B L1 | -0.22 / -0.81 | -0.88 / -3.23 | -0.41 | -3.66 | 43
+E1-08 A L1 | -1.80 / -6.63 | -3.62 / -13.37 | -1.60 | -4.23 | 32
+E1-08 B L1 | -1.54 / -5.28 | -2.74 / -9.39 | -1.03 | -5.58 | 32
+E1-09 A L1 | -8.66 / -35.26 | -17.67 / -72.38 | -10.95 | -13.64 | 504
+E1-09 B L1 | -5.13 / -18.63 | -10.99 / -40.05 | -4.52 | -11.10 | 504
+E1-10 A L0 | -5.42 / -20.69 | -11.33 / -43.24 | -4.41 | -10.67 | 504
+E1-10 B L1 | -3.03 / -11.31 | -6.63 / -24.70 | -1.78 | -8.55 | 504
