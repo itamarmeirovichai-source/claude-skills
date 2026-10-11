@@ -169,8 +169,9 @@ def monthly_rates(cal: pd.DatetimeIndex) -> pd.DataFrame:
 
 
 def on_cal(s: pd.Series, cal: pd.DatetimeIndex) -> pd.Series:
-    """Carry a price series onto the calendar; NaN before its first real price,
-    and not carried past its own last real price."""
+    """Carry a price series onto the calendar; NaN before its first real price.
+    (It is carried forward after its last price; every series ends after the
+    FRED calendar does, so this has no effect.)"""
     s = s.sort_index()
     x = s.reindex(cal.union(s.index)).ffill().reindex(cal)
     x[cal < s.index[0]] = np.nan
