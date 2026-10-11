@@ -1,0 +1,39 @@
+loading ...
+IS sessions 2090  dropped pre-2013-03-20 FOMC days 18
+SPY sessions 1645 2019-01-02..2025-07-18
+NQ  sessions 1349 2020-09-01..2025-11-21  |00:00 adj|>1bp on 40 days
+sessions without a 09:30 bar: {'SPX': 21, 'SPY': 0, 'NQ': 0}
+
+OOS span 2019-01-02..2025-11-21 (6.89 y); IS span 8.13 y. bp net of costs.
+id      IS n  IS mean | SPY n  SPY mn |  NQ n   NQ mn | OOS n    mean      t      p5  blk p5 |   t 2x  mean2x |  t dly  mn dly | tr/yr | gate
+---------------------------------------------------------------------------------------------------------------------------------------------
+E2-01     47     5.20 |    51  -13.29 |    42  -25.14 |    54  -18.39  -1.25  -42.91     nan |  -1.34  -19.57 |  -1.20  -17.61 |   7.8 | fail
+E2-02     47    -6.84 |    51   -5.74 |    42  -12.41 |    54   -9.52  -0.63  -34.19     nan |  -0.71  -10.71 |  -0.69  -10.42 |   7.8 | fail
+E2-03     45     6.31 |    51  -13.83 |    42  -21.32 |    54  -17.32  -1.21  -40.98     nan |  -1.30  -18.50 |  -1.38  -19.34 |   7.8 | fail
+E2-04     47   -10.87 |    51   10.13 |    42   24.16 |    54   16.02   1.09   -7.84     nan |   1.01   14.83 |   1.04   15.24 |   7.8 | fail
+E2-05     47    -0.35 |    51    1.78 |    42    5.09 |    54    2.18   0.45   -5.71     nan |   0.20    1.00 |   0.87    4.07 |   7.8 | fail
+E2-06    189    -1.55 |   155   -4.70 |   122    1.82 |   161   -3.70  -0.46  -17.32     nan |  -0.62   -4.93 |  -0.47   -3.80 |  23.4 | fail
+E2-07    189    -5.09 |   155    1.51 |   122   -2.80 |   161    1.25   0.16  -11.67     nan |   0.00    0.03 |   0.17    1.35 |  23.4 | fail
+E2-08    470     0.41 |   421   -2.50 |   335   -8.92 |   438   -5.62  -1.28  -13.03     nan |  -1.55   -6.83 |  -1.23   -5.38 |  63.6 | fail
+E2-09    468    -4.09 |   420   -3.43 |   333   -4.03 |   437   -4.10  -2.27   -7.04     nan |  -2.93   -5.31 |  -2.31   -3.92 |  63.5 | fail
+E2-10   1571    -1.12 |  1221   -0.46 |  1013    2.57 |  1330    1.59   0.69   -2.10     nan |   0.17    0.39 |   0.76    1.76 | 193.2 | fail
+E2-11    201     6.36 |   230   -4.53 |   179  -12.72 |   269   -7.28  -1.14  -17.83     nan |  -1.31   -8.43 |  -1.06   -6.73 |  39.1 | fail
+E2-12    473     0.27 |   421   -5.63 |   335  -10.77 |   438   -8.98  -1.37  -20.08  -17.32 |  -1.67  -10.93 |  -1.29   -8.44 |  63.6 | fail
+
+Columns: p5 = iid bootstrap p5 of pooled mean (10k, default_rng(0)); blk p5 = 5-day circular block
+bootstrap (E2-12 only; lower of the two used in gate). t dly / mn dly = entry delayed one bar (look-ahead a).
+Gate here = t>=3.5603, p5>0, SPY mean>0, NQ mean>0, look-ahead (a); truncation test not re-run (by construction).
+
+Per-leg t at 1x (SPY / NQ) and IS t:
+  E2-01: IS t   0.65  SPY t  -0.96  NQ t  -1.21  IS tr/yr   5.8
+  E2-02: IS t  -0.75  SPY t  -0.40  NQ t  -0.57  IS tr/yr   5.8
+  E2-03: IS t   0.75  SPY t  -0.95  NQ t  -0.97  IS tr/yr   5.5
+  E2-04: IS t  -1.35  SPY t   0.73  NQ t   1.16  IS tr/yr   5.8
+  E2-05: IS t  -0.07  SPY t   0.42  NQ t   0.70  IS tr/yr   5.8
+  E2-06: IS t  -0.31  SPY t  -0.64  NQ t   0.16  IS tr/yr  23.3
+  E2-07: IS t  -1.01  SPY t   0.20  NQ t  -0.25  IS tr/yr  23.3
+  E2-08: IS t   0.14  SPY t  -0.59  NQ t  -1.58  IS tr/yr  57.8
+  E2-09: IS t  -3.77  SPY t  -1.77  NQ t  -1.99  IS tr/yr  57.6
+  E2-10: IS t  -0.71  SPY t  -0.20  NQ t   0.84  IS tr/yr 193.3
+  E2-11: IS t   1.24  SPY t  -0.64  NQ t  -1.44  IS tr/yr  24.7
+  E2-12: IS t   0.06  SPY t  -0.91  NQ t  -1.25  IS tr/yr  58.2
