@@ -1,0 +1,134 @@
+name: Render the burger frames
+
+# The proposal site plays a photoreal Blender render as its scroll sequence.
+# Rendering it takes about two CPU-hours, so it is sharded across runners here
+# rather than waiting on one machine. Frames are committed, so the site deploy
+# stays a plain static publish.
+
+# The API cannot dispatch this workflow from the build environment (the token
+# gets 403 on /dispatches), so touching .github/render.trigger starts a render.
+on:
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: Cycles samples per frame
+        default: "64"
+      quality:
+        description: WebP quality
+        default: "74"
+  push:
+    paths: ['.github/render.trigger']
+
+env:
+  SAMPLES: ${{ inputs.samples || '64' }}
+  QUALITY: ${{ inputs.quality || '74' }}
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { variant: desktop, start: 0,  count: 18, poster: "yes" }
+          - { variant: desktop, start: 18, count: 18 }
+          - { variant: desktop, start: 36, count: 18 }
+          - { variant: desktop, start: 54, count: 18 }
+          - { variant: desktop, start: 72, count: 18 }
+          - { variant: desktop, start: 90, count: 18 }
+          - { variant: mobile,  start: 0,  count: 18 }
+          - { variant: mobile,  start: 18, count: 18 }
+          - { variant: mobile,  start: 36, count: 18 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Blender as a Python module
+        run: pip install "bpy==5.0.1"
+      - name: Render ${{ matrix.variant }} ${{ matrix.start }}+${{ matrix.count }}
+        working-directory: research/run4-blender-handoff/scripts/photoreal
+        run: |
+          python3 pr_render.py \
+            --variant ${{ matrix.variant }} \
+            --start ${{ matrix.start }} \
+            --count ${{ matrix.count }} \
+            --samples "$SAMPLES" \
+            --quality "$QUALITY" \
+            --out "$GITHUB_WORKSPACE/frames_out" \
+            --labels "$GITHUB_WORKSPACE/frames_out/labels.${{ matrix.variant }}.${{ matrix.start }}.json" \
+            ${{ matrix.poster == 'yes' && '--poster "$GITHUB_WORKSPACE/frames_out/poster.webp"' || '' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frames-${{ matrix.variant }}-${{ matrix.start }}
+          path: frames_out
+          retention-days: 3
+
+  collect:
+    needs: render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: frames-*
+          merge-multiple: true
+          path: frames_out
+      - name: Merge the label shards into one track per variant
+        run: |
+          python3 - <<'PY'
+          import json, glob, os
+          for variant in ("desktop", "mobile"):
+              merged, meta = {}, None
+              for f in sorted(glob.glob("frames_out/labels.%s.*.json" % variant)):
+                  d = json.load(open(f))
+                  meta = meta or d
+                  merged.update(d["anchors"])
+              if not merged:
+                  continue
+              out = {"variant": variant, "frames": meta["frames"],
+                     "res": meta["res"], "anchors": dict(sorted(merged.items()))}
+              os.makedirs("site/frames", exist_ok=True)
+              json.dump(out, open("site/frames/labels.%s.json" % variant, "w"), indent=1)
+              print(variant, len(merged), "anchors")
+          PY
+      - name: Stage the frames
+        run: |
+          rm -rf site/frames/desktop site/frames/mobile
+          mkdir -p site/frames
+          for v in desktop mobile; do
+            if [ -d "frames_out/$v" ]; then cp -r "frames_out/$v" "site/frames/$v"; fi
+          done
+          [ -f frames_out/poster.webp ] && cp frames_out/poster.webp site/frames/poster.webp
+          echo "desktop: $(ls site/frames/desktop | wc -l) frames"
+          echo "mobile:  $(ls site/frames/mobile  | wc -l) frames"
+          du -sh site/frames
+      - name: Fail if a frame is missing
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          bad = []
+          for v, n in (("desktop", 108), ("mobile", 54)):
+              for i in range(1, n + 1):
+                  p = "site/frames/%s/smash_%04d.webp" % (v, i)
+                  if not os.path.exists(p) or os.path.getsize(p) < 2000:
+                      bad.append(p)
+          if bad:
+              print("missing or truncated:", bad[:10], "...", len(bad), "total")
+              sys.exit(1)
+          print("all frames present")
+          PY
+      - name: Commit the frames
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -f site/frames
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "Render the photoreal burger sequence"
+          git push origin HEAD:${{ github.ref_name }}

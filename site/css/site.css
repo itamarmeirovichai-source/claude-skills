@@ -1,0 +1,323 @@
+/* Smash House Burgers — concept proposal. Brand kit used exactly; tints/shades only. */
+:root{
+  --smash-red:#E51144; --deep-red:#C20F3A; --deeper-red:#BA0C36;
+  --near-black:#13110C; --yellow:#FEEB13; --blue:#0083B0; --blue-deep:#007198;
+  --white:#FFFFFF; --brown:#401C10;
+  --black-90:#1B1812; --black-80:#26221A; --black-60:#4A443A;
+  --paper:#F4EFE6;
+
+  --font-display:"Londrina Solid","Haettenschweiler","Arial Narrow",Impact,sans-serif;
+  --font-body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --step-0:clamp(1rem,.95rem + .25vw,1.125rem);
+  --step-1:clamp(1.2rem,1.1rem + .5vw,1.5rem);
+  --step-2:clamp(1.5rem,1.3rem + 1vw,2.1rem);
+  --h2:clamp(2.6rem,9vw,6.5rem);
+  --display:clamp(4rem,17vw,15rem);
+
+  --page-pad:clamp(20px,5vw,72px);
+  --max:1360px;
+  --dur:.36s; --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+/* no overflow-x here: clip/hidden on the root breaks position:sticky for the
+   pinned sequence. The real overflow fix is scaling a span, not a block. */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--near-black);color:var(--white);
+  font-family:var(--font-body);font-size:var(--step-0);line-height:1.55;
+  overflow-x:hidden;
+}
+body::after{ /* grain — the cheapest way off the default-template look */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.045;
+  background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
+  background-size:3px 3px;mix-blend-mode:overlay;
+}
+::selection{background:var(--smash-red);color:var(--white)}
+img{max-width:100%;display:block}
+a{color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;top:-100px;left:16px;z-index:100;background:var(--yellow);color:var(--near-black);
+  padding:12px 18px;border-radius:8px;font-weight:600;text-decoration:none;transition:top .2s}
+.skip:focus{top:16px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--page-pad)}
+
+/* ---------- preloader ---------- */
+#preloader{position:fixed;inset:0;z-index:90;background:var(--near-black);display:grid;place-items:center;
+  transition:opacity .45s ease,visibility .45s}
+#preloader.done{opacity:0;visibility:hidden}
+.pre-wrap{text-align:center;width:min(320px,70vw)}
+.pre-patty{height:74px;display:grid;place-items:center}
+.pre-patty span{display:block;width:74px;height:74px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#7a4426,#2f1a10 70%);
+  transform-origin:50% 100%;transition:transform .2s linear}
+.pre-word{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.14em;margin:18px 0 12px;color:var(--white)}
+.pre-bar{height:3px;background:var(--black-80);border-radius:99px;overflow:hidden}
+.pre-bar i{display:block;height:100%;width:0%;background:var(--smash-red);transition:width .18s linear}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;inset-inline:0;top:0;z-index:50;display:flex;align-items:center;gap:16px;
+  padding:14px var(--page-pad);
+  background:linear-gradient(to bottom,rgba(19,17,12,.92),rgba(19,17,12,0));
+  transition:transform .35s var(--ease);
+}
+.site-header.hidden{transform:translateY(-105%)}
+/* the real logo loads from their CDN in the visitor's browser; if it is unavailable
+   the typographic lockup stays. Neither state ever shows a broken image. */
+.brand-logo,.foot-logo{display:none;width:auto}
+.brand-logo{height:clamp(30px,3.4vw,42px)}
+.foot-logo{height:clamp(56px,9vw,110px);margin:0 0 24px}
+.brand.has-logo .brand-mark{display:none}
+.brand.has-logo .brand-logo{display:block}
+.griddle.has-logo [data-foot-brand]{display:none}
+.griddle.has-logo .foot-logo{display:block}
+.kong-arm{position:absolute;z-index:4;display:none;pointer-events:none;
+  width:min(46vw,560px);height:auto;transform-origin:100% 50%;
+  filter:drop-shadow(-18px 22px 30px rgba(0,0,0,.6))}
+.brand{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:.06em;
+  text-decoration:none;line-height:1;display:flex;gap:.3em;margin-inline-end:auto}
+.brand-smash{color:var(--smash-red)}
+.brand-house{color:var(--white)}
+.status-pill{display:none;align-items:center;gap:8px;margin:0;font-size:.78rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--white);
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  padding:7px 14px;border-radius:99px;backdrop-filter:blur(6px)}
+@media (min-width:800px){.status-pill{display:inline-flex}}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--black-60);flex:none}
+[data-status="open"] .dot{background:#39D98A;box-shadow:0 0 12px #39D98A}
+[data-status="closed"] .dot,[data-status="shabbat"] .dot{background:var(--smash-red)}
+
+.btn-order{
+  position:relative;overflow:hidden;font-family:var(--font-display);letter-spacing:.08em;
+  font-size:clamp(.95rem,1.6vw,1.15rem);text-decoration:none;color:var(--white);
+  background:var(--smash-red);padding:11px 22px;border-radius:99px;flex:none;
+  transition:transform .18s var(--ease),background .18s;
+}
+.btn-order:hover{background:var(--deep-red)}
+.btn-order:active{transform:scale(.95)}
+.btn-order-label{display:block;position:relative;height:1.15em;overflow:hidden}
+.btn-order-label span{display:block;transition:transform .34s var(--ease)}
+.btn-order:hover .btn-order-label span{transform:translateY(-100%)}
+
+.btn{display:inline-block;text-decoration:none;font-weight:600;letter-spacing:.02em;
+  padding:14px 28px;border-radius:99px;transition:transform .18s var(--ease),background .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--smash-red);color:var(--white)}
+.btn-primary:hover{background:var(--deep-red)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.28);color:var(--white)}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;
+  padding:120px var(--page-pad) 80px;overflow:hidden}
+.hero-haze{position:absolute;inset:auto 0 0 0;width:100%;height:46%;pointer-events:none;opacity:.85}
+.hero::before{content:"";position:absolute;inset:auto 0 0 0;height:40%;
+  background:linear-gradient(to top,rgba(229,17,68,.16),transparent)}
+.hero-inner{position:relative;max-width:var(--max);margin-inline:auto;width:100%}
+.eyebrow{margin:0 0 min(3vw,22px);font-size:clamp(.7rem,1.5vw,.92rem);font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--yellow)}
+.hero-title{
+  font-family:var(--font-display);font-size:var(--display);line-height:.82;margin:0;
+  letter-spacing:-.01em;text-transform:uppercase;will-change:transform;
+}
+.hero-title .ln{display:block;overflow:hidden}
+.hero-title .ch{display:inline-block;transform:translateY(110%) rotate(6deg);opacity:0}
+.hero-title .ch.in{transform:none;opacity:1;
+  transition:transform .8s cubic-bezier(.2,.9,.25,1.1),opacity .5s ease}
+.hero-status{margin:min(4vw,30px) 0 0;font-size:var(--step-1);font-weight:500;color:var(--white)}
+.hero-status b{color:var(--yellow);font-weight:700}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:min(4vw,32px)}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);margin:0;
+  font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);
+  display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-hint i{display:block;width:1px;height:36px;background:linear-gradient(var(--yellow),transparent);
+  animation:drop 1.8s var(--ease) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}
+  51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- the signature sequence ---------- */
+.seq{position:relative;height:620vh}
+@media (max-width:800px){.seq{height:420vh}}
+.seq-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--near-black)}
+.seq-stage>canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;
+  will-change:transform}
+/* If the frame sequence cannot load, the stage still has to show the burger:
+   the poster is the same render, one still, sitting behind the canvas. */
+.seq-stage::after{content:"";position:absolute;inset:0;z-index:0;opacity:0;
+  background:url(frames/poster.webp) center/contain no-repeat;transition:opacity .4s}
+[data-noframes] .seq-stage::after{opacity:1}
+.seq-labels{position:absolute;inset:0;pointer-events:none;z-index:3}
+.seq-labels span{
+  position:absolute;top:0;left:0;white-space:nowrap;opacity:0;
+  font-family:var(--font-display);font-size:clamp(.72rem,1.35vw,1.05rem);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--white);
+  padding-inline-start:44px;transform-origin:0 50%;
+}
+.seq-labels span::before{content:"";position:absolute;inset-inline-start:0;top:50%;
+  width:34px;height:1px;background:var(--yellow)}
+.seq-labels span::after{content:"";position:absolute;inset-inline-start:0;top:50%;
+  width:5px;height:5px;margin-top:-2px;margin-inline-start:-2px;border-radius:50%;background:var(--yellow)}
+.seq-copy{position:absolute;z-index:3;left:var(--page-pad);bottom:clamp(28px,7vh,72px);max-width:min(30ch,60vw)}
+.seq-beat{margin:0 0 6px;font-family:var(--font-display);font-size:clamp(1.6rem,4.2vw,3rem);
+  line-height:.95;letter-spacing:.02em;color:var(--smash-red)}
+.seq-line{margin:0;font-size:clamp(.85rem,1.5vw,1.05rem);color:rgba(255,255,255,.82)}
+.seq-flash{position:absolute;z-index:6;inset:0;background:var(--smash-red);opacity:0;pointer-events:none;mix-blend-mode:screen}
+/* the shutter: hidden until the slice beat, or it covers the whole stage from frame one */
+.seq-split{position:absolute;z-index:5;inset-inline:0;height:50.4%;background:var(--near-black);
+  pointer-events:none;opacity:0}
+.seq-split-top{top:0;align-items:end}
+.seq-split-bottom{bottom:0;align-items:start}
+.seq-progress{position:absolute;z-index:7;left:var(--page-pad);right:var(--page-pad);bottom:14px;height:2px;
+  background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.seq-progress i{display:block;height:100%;width:0;background:var(--yellow)}
+
+/* ---------- sections ---------- */
+.kicker{margin:0 0 10px;font-size:.74rem;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--yellow)}
+.h2{font-family:var(--font-display);font-size:var(--h2);line-height:.85;margin:0 0 18px;
+  text-transform:uppercase;letter-spacing:-.005em}
+.lede{max-width:48ch;color:rgba(255,255,255,.78);margin:0 0 34px;font-size:var(--step-1);line-height:1.5}
+.note{margin:26px 0 0;font-size:.85rem;color:rgba(255,255,255,.55)}
+.tc{color:var(--yellow);font-weight:600}
+
+.menu{padding:clamp(80px,12vh,160px) 0;background:
+  radial-gradient(120% 60% at 50% 0%,rgba(229,17,68,.1),transparent 60%),var(--near-black)}
+.rail{position:relative;display:grid;gap:14px;padding-top:26px;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.rail::before{content:"";position:absolute;top:8px;inset-inline:0;height:4px;border-radius:4px;
+  background:linear-gradient(var(--black-60),#1c1a16);box-shadow:0 2px 6px rgba(0,0,0,.6)}
+.ticket{
+  position:relative;background:var(--paper);color:#1a1712;border-radius:3px;
+  padding:26px 20px 20px;text-align:start;border:0;font:inherit;cursor:pointer;
+  transform-origin:50% -22px;transition:transform .5s var(--ease),box-shadow .3s;
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
+}
+.ticket::before{content:"";position:absolute;top:-20px;left:50%;width:2px;height:22px;
+  background:var(--black-60);transform:translateX(-50%)}
+.ticket::after{content:"";position:absolute;inset-inline:0;bottom:0;height:10px;
+  background:repeating-linear-gradient(90deg,var(--paper) 0 9px,transparent 9px 18px);
+  filter:drop-shadow(0 -1px 0 rgba(0,0,0,.12))}
+.ticket:hover,.ticket:focus-visible{transform:rotate(var(--tilt,0deg)) translateY(8px);
+  box-shadow:0 22px 44px rgba(0,0,0,.55)}
+.ticket h3{margin:0 0 6px;font-family:var(--font-display);font-size:1.5rem;line-height:1;
+  letter-spacing:.02em;text-transform:uppercase}
+.ticket p{margin:0 0 14px;font-size:.86rem;line-height:1.45;color:#4a443a}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.tags li{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;border-radius:99px;background:#e5ded1;color:#5a5246}
+.tags li.beef{background:var(--smash-red);color:#fff}
+.tags li.plant{background:var(--blue-deep);color:#fff}
+.tags li.kids{background:var(--yellow);color:#2a2612}
+
+/* ---------- smash press ---------- */
+.smash{padding:clamp(80px,12vh,160px) 0;background:linear-gradient(180deg,var(--near-black),#0d0b07)}
+.smash-wrap{display:grid;gap:clamp(32px,6vw,72px);align-items:center}
+@media (min-width:900px){.smash-wrap{grid-template-columns:1fr 1fr}}
+.smash-verdict{min-height:2.4em;margin:0;font-family:var(--font-display);font-size:1.6rem;
+  letter-spacing:.06em;color:var(--yellow)}
+/* the stamp scales an inline span, not the block: scaling a full-width block
+   stretches the scrollable area and gives the page a horizontal scrollbar */
+.smash-verdict span{display:inline-block;transform-origin:left center;
+  opacity:0;transform:scale(2.2);
+  transition:opacity .12s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.smash-verdict span.show{opacity:1;transform:scale(1)}
+.griddle-pad{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;
+  background:linear-gradient(160deg,#221d17,#0b0906);border:1px solid rgba(255,255,255,.07)}
+.griddle-pad canvas{position:absolute;inset:0;width:100%;height:100%}
+.smash-hit{position:absolute;inset:0;background:none;border:0;cursor:pointer;touch-action:none}
+.smash-ring{position:absolute;left:50%;top:50%;width:min(46%,220px);aspect-ratio:1;
+  transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none}
+.smash-ring circle{fill:none;stroke-width:3;stroke-linecap:round}
+.ring-bg{stroke:rgba(255,255,255,.12)}
+.ring-perfect{stroke:var(--yellow);stroke-opacity:.5;stroke-dasharray:54.3 339;stroke-dashoffset:-210}
+.ring-fg{stroke:var(--smash-red);stroke-dasharray:339;stroke-dashoffset:339;transition:stroke .15s}
+
+/* ---------- boca ---------- */
+.boca{padding:clamp(80px,12vh,160px) 0;background:#0d0b07}
+.boca-wrap{display:grid;gap:clamp(36px,6vw,72px);align-items:center}
+@media (min-width:900px){.boca-wrap{grid-template-columns:1.05fr 1fr}}
+.neon{
+  position:relative;aspect-ratio:5/3;border-radius:16px;display:grid;place-content:center;gap:6px;
+  text-align:center;background:radial-gradient(90% 90% at 50% 45%,#1a1611,#08070500);
+  border:1px solid rgba(255,255,255,.06);font-family:var(--font-display);line-height:1;
+}
+.neon span{display:block;color:#3a2a2c;letter-spacing:.1em;transition:color .2s}
+.neon-line-1{font-size:clamp(1.6rem,5vw,3rem)}
+.neon-line-2{font-size:clamp(2.4rem,8vw,5rem);letter-spacing:.06em}
+.neon.lit .neon-line-1{color:#ff5f80;text-shadow:0 0 6px var(--smash-red),0 0 22px var(--smash-red),0 0 60px rgba(229,17,68,.7)}
+.neon.lit .neon-line-2{color:#fff;text-shadow:0 0 6px #fff,0 0 20px var(--smash-red),0 0 54px var(--smash-red)}
+.neon.shabbat .neon-line-2{font-size:clamp(1.2rem,3.6vw,2.1rem);color:#ffe98a;
+  text-shadow:0 0 6px var(--yellow),0 0 24px rgba(254,235,19,.6)}
+address{font-style:normal;color:rgba(255,255,255,.8);margin:0 0 26px;line-height:1.8}
+address a{color:var(--yellow);text-decoration-thickness:1px;text-underline-offset:3px}
+.hours{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:.92rem}
+.hours td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.78)}
+.hours td:last-child{text-align:end;font-variant-numeric:tabular-nums}
+.hours tr.today td{color:var(--yellow);font-weight:600}
+.hours tr.closed td:last-child{color:var(--smash-red)}
+.shabbat-note{margin:0 0 26px;font-size:.9rem;color:rgba(255,255,255,.62);
+  border-inline-start:2px solid var(--smash-red);padding-inline-start:14px}
+.boca-cta{display:flex;flex-wrap:wrap;gap:14px}
+
+/* ---------- footer ---------- */
+.griddle{position:relative;background:#0a0806;padding:clamp(60px,9vh,120px) 0 34px;overflow:hidden}
+.griddle>canvas{position:absolute;inset:0;width:100%;height:100%}
+.griddle-wrap{position:relative}
+.foot-brand{font-family:var(--font-display);font-size:clamp(2.6rem,10vw,7rem);line-height:.85;
+  margin:0 0 24px;color:var(--smash-red)}
+.foot-brand span{color:var(--white);display:block}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 26px;list-style:none;padding:0;margin:0 0 26px}
+.foot-links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;
+  border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.foot-links a:hover{color:var(--yellow);border-color:var(--yellow)}
+.foot-kosher{margin:0 0 18px;font-size:.72rem;font-weight:700;letter-spacing:.2em;color:var(--blue)}
+.foot-tag{margin:0;font-size:.72rem;color:rgba(255,255,255,.4);max-width:60ch}
+
+/* ---------- cursor ---------- */
+.cursor{position:fixed;top:0;left:0;z-index:80;pointer-events:none;opacity:0;
+  width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--yellow);
+  mix-blend-mode:difference;transition:width .2s,height .2s,margin .2s,border-radius .2s,opacity .2s}
+.cursor span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);
+  font-size:.78rem;letter-spacing:.1em;color:var(--near-black);opacity:0;transition:opacity .15s}
+.cursor.wide{width:78px;height:78px;margin:-39px 0 0 -39px}
+.cursor.wide span{opacity:1}
+@media (hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important}
+  .hero-title .ch{transform:none;opacity:1}
+  .seq{height:300vh}
+}
+
+/* reveal behind the page split + the match cut into the order button */
+.seq-reveal{position:absolute;z-index:2;inset:0;display:grid;place-content:center;text-align:center;
+  opacity:0;pointer-events:none;background:var(--near-black)}
+.reveal-kicker{margin:0 0 10px;font-size:.74rem;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--yellow)}
+.reveal-title{margin:0;font-family:var(--font-display);font-size:clamp(3rem,13vw,10rem);
+  line-height:.85;color:var(--white)}
+.match-disc{position:fixed;z-index:55;border-radius:50%;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at 38% 34%,#f2607f,var(--smash-red) 55%,var(--deeper-red));
+  box-shadow:0 10px 40px rgba(229,17,68,.45)}
+
+/* the cut line the page splits along — without it, black parting from black reads as nothing */
+.seq-split-top::after,.seq-split-bottom::before{
+  content:"";position:absolute;inset-inline:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--smash-red) 12%,var(--yellow) 50%,var(--smash-red) 88%,transparent);
+  box-shadow:0 0 18px rgba(229,17,68,.85),0 0 46px rgba(229,17,68,.45);
+}
+.seq-split-top::after{bottom:0}
+.seq-split-bottom::before{top:0}
+
+/* WCAG 2.2 AA target size: every link and button gets at least a 24px tap area.
+   Inline links grow with padding rather than font size, so nothing reflows. */
+.brand{padding-block:6px}
+.foot-links a{display:inline-block;padding-block:6px}
+address a{display:inline-block;padding-block:4px}
+.seq-copy a,.note a,.lede a{display:inline-block;padding-block:3px}
