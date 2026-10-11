@@ -87,3 +87,12 @@ Self-audit lesson (the owner caught these, I should have): place every sound on 
 | Foggy S1 hook take 2 (req 3968622e), the one allowed redo | Flare 2k high | 0.34 | FAIL at 9:16 (headless people, room visible above the necks); usable as a $0 4:5 crop cut at the shoulders: 7/7 men, twill dE 2.1 |
 | **Foggy fidelity-proof subtotal (cap $2.00)** | | **1.68 est** | 6 calls, 1 redo. Costs are hfgen's conservative estimates (Flare is token-billed); actual billed may be lower |
 | **Total** | | **~$99.0** | |
+| F11 'Card Photo' (Hollow & Hound, invented) packshot P0 | Flare 2k high, text-only | 0.34 | PASS: 2 gold trees + 4 ivory snowflakes, plain knot; becomes @Image1 |
+| F11 S5 dog hero 7.8 s (corgi identity ref) | Flare 2k high, ref = packshot | 0.34 | PASS: motif exact, clean anatomy; becomes @Image2 |
+| F11 S1 hook, S6 punchline take 1 | Qwen Image 3 edit 2k x2 | 0.15 | S1 PASS after $0 crop (model ignored the close-up); S6 t1 FAIL (magnet inside the print) |
+| F11 S2 + S4 attempts that failed with 'model temporarily unavailable' (x2, re-polled once via idempotency) | Qwen edit | 0.00 | Not completed; assumed not billed (flag if the invoice shows them: +0.15) |
+| F11 S3 zoom-ring insert x2 (t1 + re-roll) | Soul Cinema 720p | 0.008 | t2 PASS as sketch |
+| F11 S6 re-roll, S2 retry, S4 retry | Qwen edit 2k x3 | 0.225 | S6b PASS; S4 PASS; S2 FAIL (photographer's head in frame, family on sofa back) |
+| F11 S2 redo (the one allowed redo) | Qwen edit 2k | 0.075 | PASS after $0 top crop (chins at top edge removed); faint garbled lens markings |
+| **F11 storyboard subtotal (cap $1.50)** | | **1.14 est** | 12 calls (2 unavailable, not billed). Flare logged at the ledger's 0.34 (hfgen said 0.32). No video generated |
+| **Total** | | **~$100.1** | |
