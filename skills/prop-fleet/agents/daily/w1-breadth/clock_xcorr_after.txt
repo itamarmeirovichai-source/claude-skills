@@ -1,0 +1,8 @@
+SPXUSD vs SPX500_USD: best shift (min) counts {0: 96}
+   months with shift != 0: {}
+JPXJPY vs JP225_USD: best shift (min) counts {0.0: 85}
+   months with shift != 0: {'2011-01': (None, -1), '2011-02': (None, -1), '2011-04': (None, -1), '2011-05': (None, -1), '2011-06': (None, -1), '2011-07': (None, -1), '2011-10': (None, -1), '2011-11': 
+GRXEUR vs FR40_EUR: best shift (min) counts {0: 96}
+   months with shift != 0: {}
+ETXEUR vs FR40_EUR: best shift (min) counts {0: 96}
+   months with shift != 0: {}
