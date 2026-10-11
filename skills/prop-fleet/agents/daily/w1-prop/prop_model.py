@@ -264,17 +264,26 @@ class _Account:
         self.peak = np.full(shape, start, np.float32)      # trailing anchor
         self.day0 = np.full(shape, start, np.float32)      # day-start equity
         self.halted = np.zeros(shape, bool)                # soft DLL hit today
+        # floor jumps to start + lock_on_payout*start after the first payout
+        self.paylock = np.zeros(shape, bool)
+        lp = F.get("lock_on_payout")
+        self.paylock_at = None if lp is None else start + lp * start
 
     def reset(self, mask):
         for a in (self.bal, self.peak, self.day0):
             a[mask] = self.start
         self.halted[mask] = False
+        self.paylock[mask] = False
 
     def floor(self):
         if self.F["dd_type"] == "static":
-            return np.float32(self.start - self.dd)
-        f = self.peak - self.dd
-        return f if self.lock is None else np.minimum(f, self.lock)
+            f = np.float32(self.start - self.dd)
+        else:
+            f = self.peak - self.dd
+            f = f if self.lock is None else np.minimum(f, self.lock)
+        if self.paylock_at is not None:
+            f = np.where(self.paylock, np.maximum(f, self.paylock_at), f)
+        return f
 
     def step(self, inc, live):
         """One intraday sub-step. Returns mask of accounts breached now."""
@@ -409,13 +418,13 @@ def funded_sim(F, S, sigmas=SIGMAS, n=3000, seed=12, tdist=True, sub=SUB,
                 if keep_paths:
                     yearly[:, :, d] += trader
                 npay += ok; since[ok] = 0; qual[ok] = 0
-                if G.get("dd_type") != "static" and G.get("relock_after_payout"):
-                    acc.peak[ok] = acc.bal[ok]
+                acc.paylock |= ok
                 if maxp:
                     closed = ok & (npay >= maxp)
                     live &= ~closed
     r = dict(life=life.mean(1), pay=paid.mean(1), n_pay=npay.mean(1),
-             p_any=(npay > 0).mean(1), breach=breach.mean(1),
+             p_any=(npay > 0).mean(1),
+             p_refund=(npay >= G.get("refund_after", 1)).mean(1), breach=breach.mean(1),
              survive=live.mean(1))
     if keep_paths:
         r["paths"] = dict(life=life, paid=paid, yearly=yearly)
@@ -434,7 +443,7 @@ def economics(F, S, n=3000, tdist=True, sub=SUB, sigmas=SIGMAS, seed=11):
     f_eval = (E["fee_fail"] * (1 - E["p_pass"]) / np.clip(E["p_pass"], 1e-6, 1)
               + E["fee_pass"])[:, None]
     act = F.get("activation", 0.0) + F.get("funded_fixed", 0.0)
-    refund = F.get("refund", 0.0) * Fd["p_any"][None, :]
+    refund = F.get("refund", 0.0) * Fd["p_refund"][None, :]
     fixed_yr = F.get("fixed_year", 0.0)            # per-slot data/API fees
     L = t_eval + Fd["life"][None, :]
     fees = f_eval + act + fixed_yr * L / TD
@@ -496,7 +505,8 @@ def slot_years(F, S, sig_e, sig_f, years=3, n=2000, seed=21, tdist=True, sub=SUB
             ev = np.nonzero(fy[j])[0]
             for k_, day in enumerate(ev):
                 if t + day < T:
-                    out[p, (t + day) // TD] += fy[j, day] + (refund if k_ == 0 else 0)
+                    rf = refund if k_ == F.get("refund_after", 1) - 1 else 0
+                    out[p, (t + day) // TD] += fy[j, day] + rf
             t += max(int(fl[j]), 1)
         out[p] -= fixed_day * TD
     return out

@@ -85,3 +85,18 @@ def test_original_apex_model_still_runs():
     d = simulate(plan="50K", slots=1, avg_R=0.3, years=1, n=20)
     assert d["net_year"].shape == (20, 1)
     assert "50K-2026" in PLANS
+
+
+def test_lock_on_payout_raises_static_floor():
+    from prop_model import _Account
+    F = dict(BASE, lock_on_payout=0.0)
+    a = _Account(F, (1,), 100_000.)
+    assert float(np.asarray(a.floor()).ravel()[0]) == 90_000.
+    a.paylock[:] = True
+    assert float(np.asarray(a.floor()).ravel()[0]) == 100_000.
+
+
+def test_refund_after_nth_payout():
+    G = dict(BASE, refund_after=4, funded=dict(split=0.8, first_wait=1, cycle=1, max_payouts=3))
+    f = funded_sim(G, 1000, SIG, n=50, horizon=20)
+    assert f["p_refund"][0] == 0.0 and f["p_any"][0] == 1.0
