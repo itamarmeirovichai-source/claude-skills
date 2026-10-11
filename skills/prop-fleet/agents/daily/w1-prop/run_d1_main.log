@@ -1,0 +1,368 @@
+done Bulenox Master 50K
+done Topstep XFA 50K
+done Tradeify Select 50K
+done Lucid Flex 50K
+done Apex EOD PA 50K
+done MFFU Rapid EOD 50K
+done HyroTrader 2-Step 100K
+done Breakout 1-Step 100K
+done CFT 2-Phase 100K
+done Alpha Swing 2-Step 100K
+done E8 Pro Forex 100K
+done Blue Guardian 2-Step 100K
+done FTMO Swing 2-Step 100K
+done The5ers High Stakes 100K
+done FundedNext Stellar 2-Step 25K
+done FTUK Flex 100K
+
+## Topstep XFA 50K  slots=5  auto=conditional  hold=False
+   not modeled: ProjectX API only, no VPS (own computer); Live Funded move ends API use; eval best-day 50-55% consistency; optional $1,000 DLL not chosen
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.28      110    22       673           277     1,003       0.21      1,384
+    0.80  0.12  0.12  0.40       80    26     1,000         1,386     1,012       1.03      6,931
+    1.00  0.12  0.12  0.44       74    27     1,108         1,772     1,010       1.32      8,861
+    1.17  0.12  0.12  0.47       69    27     1,203         2,137     1,010       1.59     10,684
+    1.20  0.12  0.12  0.47       68    28     1,222         2,207     1,010       1.64     11,035
+    1.50  0.12  0.12  0.53       61    29     1,401         2,909     1,006       2.17     14,544
+    2.00  0.12  0.12  0.60       53    33     1,814         4,351       982       3.32     21,756
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.31       14    10     1,174         9,117     3,343       2.05     45,584
+    0.80  0.40  0.40  0.36       12    15     1,999        16,008     2,761       4.35     80,039
+    1.00  0.40  0.40  0.37       12    16     2,312        18,135     2,590       5.25     90,675
+    1.17  0.40  0.40  0.38       11    18     2,642        20,050     2,431       6.19    100,249
+    1.20  0.40  0.40  0.38       11    19     2,706        20,384     2,402       6.37    101,921
+    1.50  0.40  0.40  0.40       11    24     3,643        24,521     2,041       9.01    122,603
+    2.00  0.40  0.40  0.44       10    36     6,031        31,242     1,486      15.77    156,209
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 1,432  ROS_after 1.06
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 2,131 p50 1,608 p10 -220; fleet x5: mean 10,655 p10 -1,099
+
+## Bulenox Master 50K  slots=5  auto=yes  hold=False
+   not modeled: 40% payout consistency; Rithmic only, +$100/month third-party API; DLL removed once drawdown locks (kept here, conservative)
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.01  0.06      301   755         0          -933       933      -1.00     -4,664
+    0.80  0.12  0.08  0.09      205   212     3,228           503     1,449       0.26      2,513
+    1.00  0.12  0.08  0.11      184   243     4,239         1,194     1,310       0.68      5,971
+    1.17  0.12  0.08  0.12      167   269     5,185         1,799     1,197       1.13      8,993
+    1.20  0.12  0.08  0.12      164   272     5,333         1,902     1,181       1.21      9,510
+    1.50  0.12  0.12  0.14      141   132     5,142         3,191     1,550       1.54     15,956
+    2.00  0.12  0.12  0.17      117   171     8,090         5,800     1,296       3.36     28,998
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.35       16    13     1,398         6,255     5,883       0.80     31,273
+    0.80  0.40  0.40  0.40       14    16     2,185        13,050     5,098       1.92     65,251
+    1.00  0.40  0.40  0.42       14    17     2,490        15,377     4,867       2.37     76,884
+    1.17  0.40  0.40  0.43       13    18     2,736        17,251     4,708       2.75     86,253
+    1.20  0.40  0.40  0.43       13    18     2,757        17,404     4,686       2.79     87,020
+    1.50  0.40  0.40  0.45       13    20     3,256        20,848     4,397       3.56    104,240
+    2.00  0.40  0.40  0.49       12    23     4,357        27,420     3,892       5.28    137,101
+   min S for ROS_after>=20%: capped 0.77 | uncapped 0.30 | capped Gaussian-EOD 0.72
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 578  ROS_after 0.30
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 1,554 p50 1,120 p10 -2,152; fleet x5: mean 7,769 p10 -10,758
+
+## Lucid Flex 50K  slots=5  auto=yes  hold=False
+   not modeled: eval 50% consistency; after 5 payouts live review (treated as closure); no hedging across accounts
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.27      111    25       707           313     1,000       0.24      1,567
+    0.80  0.12  0.12  0.39       80    27       992         1,458       873       1.25      7,291
+    1.00  0.12  0.12  0.43       74    28     1,073         1,816       842       1.62      9,079
+    1.17  0.12  0.12  0.46       69    28     1,135         2,123       819       1.94     10,614
+    1.20  0.12  0.12  0.47       68    28     1,152         2,189       816       2.01     10,944
+    1.50  0.12  0.12  0.52       61    29     1,309         2,857       779       2.75     14,287
+    2.00  0.12  0.12  0.60       53    31     1,606         4,072       729       4.19     20,359
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.31       14     8       924         5,120     5,470       0.70     25,601
+    0.80  0.40  0.40  0.35       12    10     1,259         9,618     4,674       1.54     48,090
+    1.00  0.40  0.40  0.37       12    11     1,362        10,892     4,498       1.82     54,460
+    1.17  0.40  0.40  0.38       11    11     1,455        12,031     4,320       2.09     60,154
+    1.20  0.40  0.40  0.38       11    11     1,470        12,188     4,293       2.13     60,938
+    1.50  0.40  0.40  0.40       11    12     1,636        14,098     4,036       2.62     70,492
+    2.00  0.40  0.40  0.43       10    13     1,921        17,141     3,634       3.54     85,704
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 1,492  ROS_after 1.28
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 2,003 p50 1,775 p10 31; fleet x5: mean 10,014 p10 156
+
+## Tradeify Select 50K  slots=5  auto=conditional  hold=False
+   not modeled: bot must be used at Tradeify only; eval 40% consistency; >50% of profit from trades held >10 s
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.27      111    30       940           592     1,086       0.41      2,961
+    0.80  0.12  0.12  0.39       80    36     1,409         2,159       916       1.77     10,795
+    1.00  0.12  0.12  0.43       74    37     1,541         2,636       876       2.26     13,178
+    1.17  0.12  0.12  0.46       69    38     1,672         3,100       842       2.76     15,498
+    1.20  0.12  0.12  0.47       68    38     1,699         3,186       838       2.85     15,931
+    1.50  0.12  0.12  0.52       61    40     1,942         4,038       787       3.85     20,191
+    2.00  0.12  0.12  0.60       53    44     2,456         5,649       714       5.93     28,244
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.31       14     9     1,141         6,696     6,013       0.84     33,480
+    0.80  0.40  0.40  0.35       12    12     1,799        13,938     4,865       2.15     69,689
+    1.00  0.40  0.40  0.37       12    13     2,005        15,922     4,608       2.59     79,610
+    1.17  0.40  0.40  0.38       12    14     2,230        17,897     4,331       3.10     89,486
+    1.20  0.40  0.40  0.38       12    14     2,261        18,146     4,295       3.17     90,730
+    1.50  0.40  0.40  0.40       11    16     2,771        21,943     3,826       4.30    109,716
+    2.00  0.40  0.40  0.43       10    22     4,149        29,506     2,973       7.44    147,531
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 2,199  ROS_after 1.81
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 2,852 p50 2,528 p10 334; fleet x5: mean 14,261 p10 1,670
+
+## MFFU Rapid EOD 50K  slots=3  auto=conditional  hold=False
+   not modeled: eval 30% consistency; flat around tier-1 news; auto Live at $10k/day; unattended-bot wording conflicts (third party)
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.27      111    41       820           534       826       0.49      1,603
+    0.80  0.12  0.12  0.39       80    52     1,522         2,257       658       2.57      6,772
+    1.00  0.12  0.12  0.43       74    56     1,816         2,918       611       3.58      8,754
+    1.17  0.12  0.12  0.46       69    59     2,064         3,492       576       4.55     10,477
+    1.20  0.12  0.12  0.47       68    59     2,102         3,579       571       4.70     10,736
+    1.50  0.12  0.12  0.52       61    66     2,656         4,755       514       6.94     14,266
+    2.00  0.12  0.12  0.60       53    80     3,897         6,966       428      12.21     20,897
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.31       14     6     1,134         8,867     5,652       1.18     26,600
+    0.80  0.40  0.40  0.35       13     6     1,458        14,340     5,069       2.12     43,019
+    1.00  0.40  0.40  0.37       12     7     1,554        15,939     4,948       2.42     47,817
+    1.17  0.40  0.40  0.38       12     7     1,660        17,670     4,817       2.75     53,011
+    1.20  0.40  0.40  0.38       12     7     1,673        17,855     4,795       2.79     53,564
+    1.50  0.40  0.40  0.40       11     7     1,843        20,616     4,609       3.36     61,849
+    2.00  0.40  0.40  0.43       11     8     2,134        25,216     4,297       4.40     75,648
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 2,316  ROS_after 2.66
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 3,233 p50 2,818 p10 40; fleet x3: mean 9,698 p10 119
+
+## Apex EOD PA 50K  slots=20  auto=no  hold=False
+   not modeled: automation BANNED on PA; 50% payout consistency; tiered DLL
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.01  0.06      279   751         0          -495       495      -1.00     -9,890
+    0.80  0.12  0.05  0.09      192   343     2,588           560       659       0.64     11,196
+    1.00  0.12  0.05  0.11      173   373     3,291           933       587       1.19     18,652
+    1.17  0.12  0.05  0.12      158   398     3,978         1,275       529       1.81     25,502
+    1.20  0.12  0.05  0.12      155   401     4,085         1,334       520       1.92     26,684
+    1.50  0.12  0.12  0.14      134    66     2,541         1,934     1,269       1.14     38,685
+    2.00  0.12  0.12  0.17      111    72     3,278         3,323     1,178       2.12     66,455
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.40  0.31       14    11     1,020         4,912     5,259       0.70     98,232
+    0.80  0.40  0.40  0.35       13    13     1,474         9,655     4,622       1.57    193,100
+    1.00  0.40  0.40  0.37       13    14     1,643        11,216     4,433       1.90    224,314
+    1.17  0.40  0.40  0.38       12    15     1,791        12,512     4,292       2.19    250,235
+    1.20  0.40  0.40  0.38       12    15     1,834        12,852     4,257       2.26    257,033
+    1.50  0.40  0.40  0.40       12    16     2,140        15,426     3,992       2.90    308,514
+    2.00  0.40  0.40  0.43       11    18     2,617        19,079     3,613       3.96    381,589
+   min S for ROS_after>=20%: capped 0.60 | uncapped 0.30 | capped Gaussian-EOD 0.58
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 592  ROS_after 0.68
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 1,349 p50 1,462 p10 -1,023; fleet x20: mean 26,970 p10 -20,461
+
+## HyroTrader 2-Step 100K  slots=2  auto=yes  hold=True
+   not modeled: eval best day <=40% of target; 3% max loss per trade; margin <=25%, notional <=2x; own strategy only
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.30      780   202     7,886         1,660       504       2.47      3,320
+    0.80  0.12  0.12  0.66      342   303    16,141         6,179       356      13.00     12,359
+    1.00  0.12  0.12  0.73      295   332    19,165         7,611       331      17.27     15,223
+    1.17  0.12  0.12  0.78      263   353    21,888         8,876       313      21.30     17,753
+    1.20  0.12  0.12  0.79      258   356    22,309         9,098       310      21.98     18,197
+    1.50  0.12  0.12  0.86      216   391    27,771        11,478       289      29.79     22,955
+    2.00  0.12  0.12  0.93      166   426    36,309        15,413       274      42.22     30,826
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.20  0.21       83    58     5,651         5,961     5,029       0.89     11,922
+    0.80  0.40  0.20  0.29       64    63     7,735        12,284     4,101       2.25     24,568
+    1.00  0.40  0.20  0.31       59    65     8,361        14,165     3,905       2.72     28,330
+    1.17  0.40  0.20  0.33       56    65     8,715        15,520     3,800       3.06     31,041
+    1.20  0.40  0.20  0.33       56    65     8,779        15,789     3,782       3.13     31,578
+    1.50  0.40  0.20  0.36       51    65     9,565        18,401     3,576       3.86     36,802
+    2.00  0.40  0.20  0.41       45    63    10,603        22,560     3,399       4.98     45,119
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 6,304  ROS_after 13.37
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 9,202 p50 8,657 p10 1,638; fleet x2: mean 18,405 p10 3,276
+
+## Breakout 1-Step 100K  slots=2  auto=unknown  hold=True
+   not modeled: bots not addressed by firm; bans off-the-shelf strategies; leverage caps
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.08  0.34      319   160     4,536         1,140     1,248       0.69      2,280
+    0.80  0.12  0.08  0.59      184   229     8,620         4,430       821       4.05      8,860
+    1.00  0.12  0.08  0.64      164   245     9,919         5,343       764       5.25     10,686
+    1.17  0.12  0.08  0.69      151   258    11,178         6,181       720       6.44     12,362
+    1.20  0.12  0.08  0.69      147   259    11,347         6,330       715       6.64     12,659
+    1.50  0.12  0.08  0.75      127   284    13,828         7,828       650       9.03     15,656
+    2.00  0.12  0.08  0.83      103   301    17,555        10,349       600      12.94     20,699
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.15  0.08  0.33      198   162     4,467         1,433     1,689       0.64      2,866
+    0.80  0.25  0.08  0.30       57   229     8,497         5,155     2,333       1.66     10,311
+    1.00  0.25  0.10  0.32       54   116     6,671         6,240     3,694       1.27     12,479
+    1.17  0.25  0.10  0.34       51   119     7,227         7,244     3,489       1.56     14,488
+    1.20  0.25  0.10  0.34       51   120     7,379         7,453     3,448       1.62     14,905
+    1.50  0.25  0.10  0.37       47   122     8,192         9,013     3,223       2.10     18,025
+    2.00  0.25  0.10  0.43       41   120     9,344        11,686     2,935       2.99     23,372
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 4,528  ROS_after 4.18
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 6,206 p50 5,946 p10 1,420; fleet x2: mean 12,413 p10 2,840
+
+## CFT 2-Phase 100K  slots=3  auto=yes  hold=True
+   not modeled: $10k max profit per day/trade; fee unverified
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.34      600   166     5,839         1,291       631       1.54      3,873
+    0.80  0.12  0.10  0.67      286   311    11,712         4,530       413       8.23     13,591
+    1.00  0.12  0.10  0.74      249   317    13,185         5,479       397      10.34     16,436
+    1.17  0.12  0.10  0.79      226   314    14,273         6,275       390      12.08     18,826
+    1.20  0.12  0.10  0.80      221   313    14,483         6,438       388      12.44     19,315
+    1.50  0.12  0.10  0.86      186   298    15,825         7,852       398      14.80     23,557
+    2.00  0.12  0.10  0.93      145   254    16,902        10,234       447      17.17     30,702
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.25  0.25       67    36     4,153         3,598     6,604       0.41     10,794
+    0.80  0.40  0.30  0.33       51    25     5,029         9,921     6,634       1.12     29,762
+    1.00  0.40  0.30  0.35       48    25     5,239        11,483     6,522       1.32     34,448
+    1.17  0.40  0.30  0.36       46    25     5,442        12,890     6,454       1.50     38,669
+    1.20  0.40  0.30  0.36       46    25     5,469        13,068     6,454       1.52     39,205
+    1.50  0.40  0.30  0.40       42    24     5,806        15,630     6,304       1.86     46,890
+    2.00  0.40  0.40  0.45       37    15     5,791        20,958     7,077       2.22     62,875
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 4,622  ROS_after 8.42
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 6,488 p50 6,240 p10 1,395; fleet x3: mean 19,464 p10 4,184
+
+## Alpha Swing 2-Step 100K  slots=4  auto=no  hold=True
+   not modeled: autonomous EAs BANNED; 2% floating loss per asset; 40% best-day rule; one asset per funded account
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.30      780   218     7,978         1,537       478       2.41      6,149
+    0.80  0.12  0.12  0.66      342   328    16,986         6,063       331      13.76     24,253
+    1.00  0.12  0.12  0.73      295   361    20,334         7,507       304      18.51     30,027
+    1.17  0.12  0.12  0.78      263   385    23,279         8,759       286      22.97     35,035
+    1.20  0.12  0.12  0.79      258   389    23,840         9,009       284      23.82     36,038
+    1.50  0.12  0.12  0.86      216   425    29,452        11,316       264      32.18     45,263
+    2.00  0.12  0.12  0.93      166   471    39,633        15,427       245      47.16     61,709
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.15  0.21       83   126     7,031         5,200     3,284       1.19     20,802
+    0.80  0.40  0.20  0.29       63    66     7,890        11,532     3,893       2.22     46,128
+    1.00  0.40  0.20  0.31       58    68     8,690        13,621     3,683       2.77     54,485
+    1.17  0.40  0.20  0.33       55    68     9,124        15,109     3,588       3.16     60,434
+    1.20  0.40  0.20  0.33       55    68     9,228        15,390     3,561       3.24     61,559
+    1.50  0.40  0.20  0.36       50    68     9,943        17,780     3,375       3.95     71,119
+    2.00  0.40  0.20  0.41       44    69    11,617        22,699     3,123       5.45     90,797
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 6,211  ROS_after 14.25
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 9,106 p50 8,801 p10 1,357; fleet x4: mean 36,424 p10 5,429
+
+## E8 Pro Forex 100K  slots=5  auto=yes  hold=True
+   not modeled: only 2%/day of profit counts; E8 Pro Crypto is a second $500K market (another 5 slots, rules partly unverified); refund policy unknown
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.10  0.08  0.45      357    85     1,599           191       722       0.20        954
+    0.80  0.12  0.08  0.63      150    73     2,170         1,436     1,023       1.05      7,181
+    1.00  0.12  0.10  0.67      134    49     2,180         1,839     1,159       1.19      9,196
+    1.17  0.12  0.08  0.71      122    66     2,425         2,174     1,075       1.52     10,869
+    1.20  0.12  0.08  0.71      120    65     2,430         2,217     1,079       1.54     11,087
+    1.50  0.12  0.08  0.77      103    61     2,688         2,996     1,140       1.97     14,979
+    2.00  0.12  0.08  0.83       83    56     3,101         4,377     1,243       2.64     21,883
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.10  0.10  0.45      359    57     1,546           165       772       0.16        826
+    0.80  0.12  0.10  0.64      143    50     2,056         1,515     1,166       0.97      7,575
+    1.00  0.15  0.10  0.53       94    48     2,184         1,962     1,903       0.77      9,812
+    1.17  0.15  0.10  0.56       87    47     2,287         2,380     1,920       0.93     11,902
+    1.20  0.15  0.10  0.56       86    47     2,303         2,447     1,925       0.95     12,236
+    1.50  0.15  0.08  0.61       76    60     2,656         3,190     1,739       1.38     15,948
+    2.00  0.20  0.08  0.49       42    55     3,096         5,041     3,010       1.26     25,203
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 1,461  ROS_after 1.07
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 2,052 p50 1,659 p10 -125; fleet x5: mean 10,258 p10 -624
+
+## Blue Guardian 2-Step 100K  slots=4  auto=yes  hold=True
+   not modeled: Guardian Shield -2% open P&L modeled as a hard 2% daily loss on funded (first trigger really cuts split to 50%, second breaches); min days need >=0.5% profit each; no trades +-5 min of high-impact news
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.05  0.30      507   399     3,800           804       318       1.89      3,218
+    0.80  0.12  0.05  0.60      253   397     6,638         2,458       225       8.19      9,832
+    1.00  0.12  0.05  0.65      224   373     7,129         2,904       225       9.69     11,618
+    1.17  0.12  0.05  0.70      201   342     7,333         3,303       229      10.84     13,213
+    1.20  0.12  0.05  0.71      198   339     7,395         3,381       229      11.10     13,525
+    1.50  0.12  0.05  0.78      169   297     7,744         4,100       240      12.83     16,399
+    2.00  0.12  0.05  0.87      132   232     7,876         5,363       275      14.62     21,451
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.25  0.08  0.26      126   119     2,695         1,530     1,381       0.83      6,121
+    0.80  0.30  0.08  0.31       69   102     3,474         3,680     1,647       1.68     14,721
+    1.00  0.30  0.08  0.34       64    95     3,597         4,323     1,634       1.98     17,290
+    1.17  0.30  0.08  0.36       61    89     3,640         4,732     1,629       2.18     18,927
+    1.20  0.30  0.08  0.36       60    88     3,641         4,807     1,631       2.21     19,229
+    1.50  0.40  0.08  0.28       38    78     3,738         5,773     2,652       1.63     23,092
+    2.00  0.40  0.10  0.32       34    40     3,150         7,283     3,695       1.48     29,130
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 2,498  ROS_after 8.28
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 3,592 p50 3,501 p10 1,122; fleet x4: mean 14,369 p10 4,489
+
+## FTMO Swing 2-Step 100K  slots=4  auto=yes  hold=True
+   not modeled: fee EUR 439 promo ~ $510; scaling (+25% per 4 months) ignored; gambling clause; server limits 200 orders/2000 positions a day
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.30      780   186     6,849         1,470       437       2.52      5,879
+    0.80  0.12  0.12  0.66      342   225    11,569         5,011       345      10.90     20,046
+    1.00  0.12  0.12  0.73      295   230    12,840         6,060       336      13.53     24,241
+    1.17  0.12  0.12  0.78      263   233    13,986         7,020       330      15.94     28,080
+    1.20  0.12  0.10  0.79      258   406    19,092         7,194       244      22.10     28,775
+    1.50  0.12  0.12  0.86      216   235    16,144         8,970       331      20.30     35,880
+    2.00  0.12  0.10  0.93      166   401    26,754        11,858       243      36.53     47,433
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.20  0.21       83    54     4,700         5,024     4,433       0.85     20,096
+    0.80  0.40  0.20  0.29       63    55     6,192        10,393     3,755       2.08     41,571
+    1.00  0.40  0.25  0.31       59    34     5,602        12,017     4,474       2.01     48,066
+    1.17  0.40  0.30  0.33       56    22     5,295        13,418     5,005       2.01     53,673
+    1.20  0.40  0.30  0.33       55    22     5,302        13,599     4,996       2.04     54,394
+    1.50  0.40  0.30  0.36       51    22     5,601        16,090     4,892       2.47     64,360
+    2.00  0.40  0.30  0.41       45    21     6,121        20,299     4,744       3.21     81,197
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 5,115  ROS_after 11.18
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 7,343 p50 7,054 p10 1,518; fleet x4: mean 29,370 p10 6,072
+
+## The5ers High Stakes 100K  slots=1  auto=yes  hold=True
+   not modeled: one High Stakes account per person; scaling to $500K and split to 100% ignored (conservative); 8% vs 10% drawdown conflict (8% used); min days must be profitable >=0.5%; no orders +-2 min of high-impact news
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.08  0.28      570   282     5,952         1,365       478       2.14      1,365
+    0.80  0.12  0.10  0.58      277   223     9,504         4,550       396       8.63      4,550
+    1.00  0.12  0.10  0.64      243   235    10,907         5,529       376      11.02      5,529
+    1.17  0.12  0.10  0.69      220   246    12,188         6,399       357      13.44      6,399
+    1.20  0.12  0.10  0.70      216   246    12,402         6,581       354      13.93      6,581
+    1.50  0.12  0.10  0.78      183   244    13,843         8,012       346      17.34      8,012
+    2.00  0.12  0.10  0.87      143   230    15,715        10,481       355      22.17     10,481
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.30  0.12  0.20      105   115     4,851         3,264     2,577       0.95      3,264
+    0.80  0.40  0.12  0.21       52   131     7,439         7,651     2,985       1.92      7,651
+    1.00  0.40  0.12  0.22       49   134     8,102         8,772     2,791       2.36      8,772
+    1.17  0.40  0.12  0.24       46   136     8,679         9,785     2,641       2.78      9,785
+    1.20  0.40  0.12  0.24       46   135     8,727         9,922     2,642       2.82      9,922
+    1.50  0.40  0.12  0.26       42   132     9,555        11,730     2,508       3.51     11,730
+    2.00  0.40  0.12  0.30       37   126    10,696        14,681     2,344       4.70     14,681
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 4,631  ROS_after 8.80
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 6,555 p50 6,452 p10 1,344; fleet x1: mean 6,555 p10 1,344
+
+## FundedNext Stellar 2-Step 25K  slots=1  auto=conditional  hold=True
+   not modeled: EAs banned on >=$50K; EA add-on price unknown (+25% assumed); no identical trades across accounts, no copying -> 1 slot per strategy; 3% max open risk; news-window profits count 40%
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.12  0.34      600   182     1,644           296       234       0.95        296
+    0.80  0.12  0.12  0.67      286   224     2,869         1,235       183       5.06      1,235
+    1.00  0.12  0.10  0.74      249   388     4,118         1,497       134       8.39      1,497
+    1.17  0.12  0.10  0.79      226   393     4,559         1,727       129      10.07      1,727
+    1.20  0.12  0.10  0.80      221   395     4,627         1,766       128      10.37      1,766
+    1.50  0.12  0.12  0.86      186   226     3,878         2,199       177       9.31      2,199
+    2.00  0.12  0.10  0.93      145   380     6,347         2,916       129      17.01      2,916
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.30  0.12  0.30      109   179     1,589           661       727       0.68        661
+    0.80  0.40  0.12  0.33       52   223     2,812         1,879       698       2.02      1,879
+    1.00  0.40  0.12  0.35       49   227     3,128         2,204       655       2.52      2,204
+    1.17  0.40  0.15  0.36       46   110     2,231         2,497     1,108       1.69      2,497
+    1.20  0.40  0.15  0.37       46   110     2,261         2,544     1,100       1.73      2,544
+    1.50  0.40  0.30  0.40       43    23     1,422         3,021     2,398       0.94      3,021
+    2.00  0.40  0.40  0.45       37    15     1,439         4,295     2,666       1.21      4,295
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 1,264  ROS_after 5.19
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 1,906 p50 1,837 p10 365; fleet x1: mean 1,906 p10 365
+
+## FTUK Flex 100K  slots=1  auto=unknown  hold=True
+   not modeled: 'risk-management EAs' wording vs 'EAs/Bots allowed' (unverified); -2% Account Protector modeled as hard 2% daily loss; each account a different strategy, no copying -> 1 slot; consistency score on payouts; split 60% at L1
+   [capped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.12  0.08  0.45       71    77     1,948         2,130     1,174       1.36      2,130
+    0.80  0.12  0.08  0.58       53    79     2,606         3,651     1,308       2.09      3,651
+    1.00  0.12  0.08  0.61       50    78     2,779         4,101     1,346       2.28      4,101
+    1.17  0.12  0.08  0.64       47    78     2,911         4,489     1,384       2.43      4,489
+    1.20  0.12  0.08  0.64       47    78     2,926         4,541     1,391       2.45      4,541
+    1.50  0.12  0.08  0.67       43    75     3,110         5,164     1,460       2.65      5,164
+    2.00  0.12  0.08  0.73       37    69     3,357         6,337     1,622       2.93      6,337
+   [uncapped]   S  sig_e sig_f  pass  evalDays  life  pay/acct  net$/slot-yr  fees$/yr  ROS_after  fleet$/yr
+    0.00  0.40  0.20  0.29        7     7     1,024         5,691    12,475       0.34      5,691
+    0.80  0.40  0.20  0.32        6     7     1,189         8,971    12,830       0.52      8,971
+    1.00  0.40  0.20  0.33        6     7     1,227         9,814    12,998       0.57      9,814
+    1.17  0.40  0.20  0.34        6     7     1,257        10,473    13,087       0.60     10,473
+    1.20  0.40  0.20  0.34        6     7     1,268        10,658    13,062       0.61     10,658
+    1.50  0.40  0.20  0.36        6     7     1,334        12,111    13,267       0.68     12,111
+    2.00  0.40  0.30  0.38        6     4     1,245        14,912    18,880       0.59     14,912
+   min S for ROS_after>=20%: capped 0.30 | uncapped 0.30 | capped Gaussian-EOD 0.30
+   S=0.82 (1.17 x 0.7) capped: net/slot-yr 3,702  ROS_after 2.12
+   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean 4,439 p50 4,409 p10 2,088; fleet x1: mean 4,439 p10 2,088
