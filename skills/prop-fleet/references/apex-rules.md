@@ -49,6 +49,13 @@ agree on this split:
 | Copying across own accounts | permitted when each order is placed **manually** in one account and up to 20 PAs mirror it exactly |
 | Hedging opposite directions across accounts | prohibited |
 
+**D5 note, 11 Oct 2026 (`references/w1-firms.md`).** No source reachable from here supports
+"Evaluation: permitted". PickMyTrade quotes the compliance page's ban on "AI, autobots,
+algorithms, fully automated systems" as applying to every account type, and CrossTrade
+advises against automating evaluations too. Treat evaluation automation as ⚠ likely
+prohibited. The Take Profit Trader row below ("10 funded, only 5 copy-traded") conflicts
+with CrossTrade's limit of 5 PRO accounts, and Take Profit Trader bans bots on every stage.
+
 If this holds, the plan as written — a bot trading ten funded accounts
 unattended — is contractually barred regardless of edge. The lawful shape is
 **bot as signal, human as executor, copier as multiplier**: the program alerts,
