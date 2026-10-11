@@ -48,7 +48,7 @@ The joke first, their new mini donuts named exactly, and the label as the hero. 
 Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BUSINESS_ADDRESS}` is a placeholder.**
 
 **DM (day 0) — @legendaryfoods, written to be forwarded to Ron:**
-> Hi Ron, {OWNER_NAME} from VXO. Film idea for the mini protein donuts: a kitchen cheat detector shrieks as a hand grabs one. The hand turns the box to the label. Silence. AI builds the kitchen; your real box stays real. 5 free stills, no call, no cost: maple glazed or cookies & cream?
+> Hi Ron, Itamar from VXO. Film idea for the mini protein donuts: a kitchen cheat detector shrieks as a hand grabs one. The hand turns the box to the label. Silence. AI builds the kitchen; your real box stays real. 5 free stills, no call, no cost: maple glazed or cookies & cream?
 
 **Email (day 1) — customercare@eatlegendary.com** · Subject: **The cheat detector**
 > Hi Ron (team, could you forward this to Ron Penna? It's not a support ticket),
@@ -59,7 +59,7 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 >
 > Want 5 free stills, on maple glazed or cookies & cream?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

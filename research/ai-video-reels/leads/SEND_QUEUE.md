@@ -95,7 +95,7 @@ The follow-ups are drafted in the batch files (`batch-2026-10-10-{a,b,c}.md`, pe
 
 Email footer for every email (both placeholders must be real before any email; **no email is legal while `{BUSINESS_ADDRESS}` is a placeholder**):
 ```
-{OWNER_NAME} · VXO · AI product films
+Itamar Meirovich · VXO · AI product films
 {BUSINESS_ADDRESS}
 This is a one-to-one business pitch. Reply "stop" and I won't email again.
 ```
@@ -106,7 +106,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @lakepajamas (⚠ confirm handle) or a founder's own business account:**
-> Hi Cassandra and Anne Read, {OWNER_NAME} from VXO. Film idea for the new Tour set: an alarm, then one outfit all day, hotel hall, airport gate, dinner booth. That night she gets straight into bed without changing. AI builds the trip; the set comes from your photos. Want 5 free stills, Tour set or CloudPima?
+> Hi Cassandra and Anne Read, Itamar from VXO. Film idea for the new Tour set: an alarm, then one outfit all day, hotel hall, airport gate, dinner booth. That night she gets straight into bed without changing. AI builds the trip; the set comes from your photos. Want 5 free stills, Tour set or CloudPima?
 
 **Email (day 1) to info@lakepajamas.com** · Subject: **The Tour set, all day**
 > Hi Cassandra and Anne Read (or whoever reads info@, could you pass this on?),
@@ -117,7 +117,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 >
 > Want 5 free stills of it, on the Tour set or a CloudPima set?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -127,7 +127,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @printfresh (⚠ confirm handle) or Amy's own business account:**
-> Hi Amy, {OWNER_NAME} from VXO. Idea for Holiday Hens: a locked sofa shot as the family sits down, each in a different print. Then the dog jumps up in the Holiday Hens bandana, the only one matching you. AI builds the room; your prints stay as painted. Want 5 free stills, Hens or Bagheera?
+> Hi Amy, Itamar from VXO. Idea for Holiday Hens: a locked sofa shot as the family sits down, each in a different print. Then the dog jumps up in the Holiday Hens bandana, the only one matching you. AI builds the room; your prints stay as painted. Want 5 free stills, Hens or Bagheera?
 
 **Email (day 1) to hello@printfresh.com** · Subject: **The dog matches**
 > Hi Amy,
@@ -138,7 +138,7 @@ This is a one-to-one business pitch. Reply "stop" and I won't email again.
 >
 > Want 5 free stills of it, with Holiday Hens or Bagheera?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -150,7 +150,7 @@ Rule for this lead: never show or name the licensed prints (Gilmore Girls, Grate
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @dandelionchocolate, written to be forwarded to Todd:**
-> Hi Todd, {OWNER_NAME} from VXO. Film idea for the bars: cocoa beans and sugar on a counter, and every time a hand slides in vanilla or milk powder, another hand slides it back out. AI builds the kitchen; your real bars stay real. 5 free stills, gift set or Maya Mountain?
+> Hi Todd, Itamar from VXO. Film idea for the bars: cocoa beans and sugar on a counter, and every time a hand slides in vanilla or milk powder, another hand slides it back out. AI builds the kitchen; your real bars stay real. 5 free stills, gift set or Maya Mountain?
 
 **Email (day 1) to info@dandelionchocolate.com** · Subject: **Two ingredients**
 > Hi Todd (team, could you pass this to Todd Masonis?),
@@ -161,7 +161,7 @@ Rule for this lead: never show or name the licensed prints (Gilmore Girls, Grate
 >
 > Want 5 free stills, on the 70 % three-bar gift set or Maya Mountain?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -171,7 +171,7 @@ Rule for this lead: never show or name the licensed prints (Gilmore Girls, Grate
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to Rose's own business account if the owner finds one, otherwise @thefoggydog:**
-> Hi Rose, {OWNER_NAME} from VXO. Film idea for the Gingerbread Man bow tie collar: a Christmas-card shoot where the photographer zooms in until every human is cropped out and only Utah is left. Cut to the card on the fridge. Want 5 free stills and a shot list, for you or your content lead?
+> Hi Rose, Itamar from VXO. Film idea for the Gingerbread Man bow tie collar: a Christmas-card shoot where the photographer zooms in until every human is cropped out and only Utah is left. Cut to the card on the fridge. Want 5 free stills and a shot list, for you or your content lead?
 
 **Email (day 1) to woof@thefoggydog.com** · Subject: **Utah's holiday card**
 > Hi Rose (or whoever reads woof@, could you pass this to Rose?),
@@ -182,7 +182,7 @@ Rule for this lead: never show or name the licensed prints (Gilmore Girls, Grate
 >
 > Want 5 free stills plus a shot list your content lead can reuse, on the collar or the Evergreen Candy Canes walk set?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -194,7 +194,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @littlebeast.co, written to be forwarded to Jisu:**
-> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
+> Hi Jisu, Itamar from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
 
 **Email (day 1) to hello@littlebeast.co** · Subject: **Morning, PBJ**
 > Hi Jisu (or whoever reads hello@, could you pass this to Jisu?),
@@ -205,7 +205,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 >
 > Want 5 free stills, on the PBJ or the OG onesie?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -215,7 +215,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @sundaycitizen (⚠ confirm handle):**
-> Hi Mike and Michelle, {OWNER_NAME} from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
+> Hi Mike and Michelle, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
 
 **Email (day 1) to hello@sundaycitizen.co** · Subject: **The stuck sofa**
 > Hi Mike and Michelle (or whoever reads hello@, could you pass this on?),
@@ -226,7 +226,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 >
 > Want 5 free stills of it, on the Ciel or a Snug bed blanket?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -238,7 +238,7 @@ Rule for this lead: the expansion is shown in two states only, never as instant 
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @danarebecca, or Dana's own business account:**
-> Hi Dana, {OWNER_NAME} from VXO. Film idea for the Ava Bea bracelet: a nightstand dish marked JEWELRY fills night after night with keys, hair ties, receipts. Never the bracelet. Last shot, your wrist switches off the lamp. AI builds the room; your bracelet stays real. Want 5 free stills, Ava Bea or the birthstone studs?
+> Hi Dana, Itamar from VXO. Film idea for the Ava Bea bracelet: a nightstand dish marked JEWELRY fills night after night with keys, hair ties, receipts. Never the bracelet. Last shot, your wrist switches off the lamp. AI builds the room; your bracelet stays real. Want 5 free stills, Ava Bea or the birthstone studs?
 
 **Email (day 1) to info@danarebeccadesigns.com** · Subject: **The jewelry dish**
 > Hi Dana (or whoever reads info@, could you pass this to Dana?),
@@ -249,7 +249,7 @@ Rule for this lead: the expansion is shown in two states only, never as instant 
 >
 > Want 5 free stills of it, on the Ava Bea Interval bracelet or the October birthstone studs?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -261,7 +261,7 @@ Use neither jen@ (wholesale) nor margo@ (outside PR).
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @brackish:**
-> Hi Ben and Jeff, {OWNER_NAME} from VXO. Idea for the Slim bow ties: a dolly along seven groomsmen, seven feathers, then the groom with a bare collar. Cut to the bride's bouquet, his tie tucked in the flowers. AI sets the wedding; every feather comes from your photos. Want 5 free stills, Edisto or Rice?
+> Hi Ben and Jeff, Itamar from VXO. Idea for the Slim bow ties: a dolly along seven groomsmen, seven feathers, then the groom with a bare collar. Cut to the bride's bouquet, his tie tucked in the flowers. AI sets the wedding; every feather comes from your photos. Want 5 free stills, Edisto or Rice?
 
 **Email (day 1) to info@brackish.com** · Subject: **The missing bow tie**
 > Hi Ben and Jeff (or whoever reads info@, could you pass this on?),
@@ -272,7 +272,7 @@ Use neither jen@ (wholesale) nor margo@ (outside PR).
 >
 > Want 5 free stills, with the Edisto or the Rice?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -282,7 +282,7 @@ Use neither jen@ (wholesale) nor margo@ (outside PR).
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @cuddleclones, written to be forwarded to Jennifer:**
-> Hi Jennifer, {OWNER_NAME} from VXO. Film idea for the pet-face pajamas: Christmas morning, every gift is wrapped in the dog's face, the family pulls on matching pajamas, and the dog sits between them like the main character. Built with AI; your real prints stay real. 5 free stills, pajamas or wrapping paper?
+> Hi Jennifer, Itamar from VXO. Film idea for the pet-face pajamas: Christmas morning, every gift is wrapped in the dog's face, the family pulls on matching pajamas, and the dog sits between them like the main character. Built with AI; your real prints stay real. 5 free stills, pajamas or wrapping paper?
 
 **Email (day 1) to info@cuddleclones.com** · Subject: **Main character**
 > Hi Jennifer (team, could you pass this to Jennifer Williams?),
@@ -293,7 +293,7 @@ Use neither jen@ (wholesale) nor margo@ (outside PR).
 >
 > Want 5 free stills, on the pajamas or the wrapping paper?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -305,7 +305,7 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @kinnstudio, or Jennie's own business account:**
-> Hi Jennie, {OWNER_NAME} from VXO. Idea for the Pegasus Dream pendant: hung on a bedside lamp, it throws a pegasus across the ceiling all night. Next morning she wears it out. That night her partner hangs car keys there instead. AI builds the room; the pendant stays real. Want 5 free stills, Pegasus or Swan?
+> Hi Jennie, Itamar from VXO. Idea for the Pegasus Dream pendant: hung on a bedside lamp, it throws a pegasus across the ceiling all night. Next morning she wears it out. That night her partner hangs car keys there instead. AI builds the room; the pendant stays real. Want 5 free stills, Pegasus or Swan?
 
 **Email (day 1) to hello@kinnstudio.com** · Subject: **A pegasus on the ceiling**
 > Hi Jennie (or whoever reads hello@, could you pass this to Jennie?),
@@ -316,7 +316,7 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 >
 > Want 5 free stills, on the Pegasus or the Swan?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -326,7 +326,7 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @krewe, or Stirling's own business account:**
-> Hi Stirling, {OWNER_NAME} from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE or St. Louis?
+> Hi Stirling, Itamar from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE or St. Louis?
 
 **Email (day 1) to krewe@krewe.com** · Subject: **Some things you don't throw**
 > Hi Stirling (team, could you pass this to Stirling?),
@@ -337,7 +337,7 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 >
 > Want 5 free stills, on MUSE or the St. Louis?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -349,7 +349,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @hawkinsnewyork (⚠ confirm handle):**
-> Hi Paul and Nick, {OWNER_NAME} from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
+> Hi Paul and Nick, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
 
 **Email (day 1) to press@hawkinsnewyork.com** · Subject: **The Pleat lamp, switched on**
 > Hi Paul and Nick (or whoever reads press@, could you pass this to whoever runs paid creative?),
@@ -360,7 +360,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 >
 > Want 5 free stills, with the Pleat or the Colorstory lamp?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -370,7 +370,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @legendaryfoods, written to be forwarded to Ron:**
-> Hi Ron, {OWNER_NAME} from VXO. Film idea for the mini protein donuts: a kitchen cheat detector shrieks as a hand grabs one. The hand turns the box to the label. Silence. AI builds the kitchen; your real box stays real. 5 free stills, no call, no cost: maple glazed or cookies & cream?
+> Hi Ron, Itamar from VXO. Film idea for the mini protein donuts: a kitchen cheat detector shrieks as a hand grabs one. The hand turns the box to the label. Silence. AI builds the kitchen; your real box stays real. 5 free stills, no call, no cost: maple glazed or cookies & cream?
 
 **Email (day 1) to customercare@eatlegendary.com** · Subject: **The cheat detector**
 > Hi Ron (team, could you forward this to Ron Penna? It's not a support ticket),
@@ -381,7 +381,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 >
 > Want 5 free stills, on maple glazed or cookies & cream?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -393,7 +393,7 @@ Rule for this lead: on screen only the label's printed numbers with units; no "g
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @equatorcoffees, written to be forwarded to Helen and Brooke:**
-> Hi Helen and Brooke, {OWNER_NAME} from VXO. Film idea for the office subscription: Monday 9:01, a 5 lb bag lands on the break-room counter, the conference room empties, and the meeting moves next to the coffee. AI builds the office; your real bag stays real. 5 free stills, office bag or La Marquesa?
+> Hi Helen and Brooke, Itamar from VXO. Film idea for the office subscription: Monday 9:01, a 5 lb bag lands on the break-room counter, the conference room empties, and the meeting moves next to the coffee. AI builds the office; your real bag stays real. 5 free stills, office bag or La Marquesa?
 
 **Email (day 1) to info@equatorcoffees.com** · Subject: **Meeting moved**
 > Hi Helen and Brooke (team, could you pass this on to them?),
@@ -404,7 +404,7 @@ Rule for this lead: on screen only the label's printed numbers with units; no "g
 >
 > Want 5 free stills, on the office bag or the Ecuador La Marquesa?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -414,7 +414,7 @@ Rule for this lead: on screen only the label's printed numbers with units; no "g
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @saranoni (⚠ confirm handle):**
-> Hi Emily, {OWNER_NAME} from VXO. Idea for the XXL Double Ruched: four feet fighting over a small throw. Then hands unfold the XXL across the whole sofa. The dog climbs in and there's still blanket to the floor. AI builds the room; your faux fur stays real. Want 5 free stills, Flax or Midnight?
+> Hi Emily, Itamar from VXO. Idea for the XXL Double Ruched: four feet fighting over a small throw. Then hands unfold the XXL across the whole sofa. The dog climbs in and there's still blanket to the floor. AI builds the room; your faux fur stays real. Want 5 free stills, Flax or Midnight?
 
 **Email (day 1) to service@saranoni.com** · Subject: **The blanket tug-of-war**
 > Hi Emily (or whoever reads service@, could you pass this to Emily?),
@@ -425,7 +425,7 @@ Rule for this lead: on screen only the label's printed numbers with units; no "g
 >
 > Want 5 free stills of it, in Flax or Midnight?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -437,7 +437,7 @@ Rules for this lead: adults and one dog only, never a baby; no licensed universi
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @stoneandstrand, or Nadine's own business account:**
-> Hi Nadine, {OWNER_NAME} from VXO. Idea for the Unflippable: a subway sprint, a big hug, a sweater pulled overhead, and the diamonds face out after every cut. At 2 am she flips her pillow, the only thing that flipped. AI sets the city; the necklace stays real. Want 5 free stills, yellow gold or LAB-created?
+> Hi Nadine, Itamar from VXO. Idea for the Unflippable: a subway sprint, a big hug, a sweater pulled overhead, and the diamonds face out after every cut. At 2 am she flips her pillow, the only thing that flipped. AI sets the city; the necklace stays real. Want 5 free stills, yellow gold or LAB-created?
 
 **Email (day 1) to atyourservice@stoneandstrand.com** · Subject: **The only thing that flipped**
 > Hi Nadine (team, could you pass this to Nadine?),
@@ -448,7 +448,7 @@ Rules for this lead: adults and one dog only, never a baby; no licensed universi
 >
 > Want 5 free stills, on the yellow gold or the LAB-created version?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -460,7 +460,7 @@ Rule for this lead: their ads compare against "most necklaces"; our film never s
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @thatch.jewelry:**
-> Hi Amy and Laura, {OWNER_NAME} from VXO. Idea for the Wood Anywhere charms: one coconut shell hops from tote to necklace to hotel key, then gets left on a plane seat-back, and a hand comes back for it. AI builds the trip; the charm stays real. Want 5 free stills, coconut or driftwood?
+> Hi Amy and Laura, Itamar from VXO. Idea for the Wood Anywhere charms: one coconut shell hops from tote to necklace to hotel key, then gets left on a plane seat-back, and a hand comes back for it. AI builds the trip; the charm stays real. Want 5 free stills, coconut or driftwood?
 
 **Email (day 1) to amy@shopthatch.com** · Subject: **Anywhere, almost**
 > Hi Amy (and Laura),
@@ -471,7 +471,7 @@ Rule for this lead: their ads compare against "most necklaces"; our film never s
 >
 > Want 5 free stills, on the coconut or driftwood shell?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -481,7 +481,7 @@ Rule for this lead: their ads compare against "most necklaces"; our film never s
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @vosgeshautchocolat, written to be forwarded to whoever runs creative:**
-> Hi Vosges team, {OWNER_NAME} from VXO. Film idea for Snowbound: a cabin snowed in, the purple box open, and when the plough's lights come up the road, a hand switches off the porch light so it drives past. AI builds the cabin; your real truffles stay real. 5 free stills, Perfect or Little Gift?
+> Hi Vosges team, Itamar from VXO. Film idea for Snowbound: a cabin snowed in, the purple box open, and when the plough's lights come up the road, a hand switches off the porch light so it drives past. AI builds the cabin; your real truffles stay real. 5 free stills, Perfect or Little Gift?
 
 **Email (day 1) to vosges@vosgeschocolate.com** · Subject: **Stay snowbound**
 > Hi Vosges team (could you pass this to whoever leads creative?),
@@ -492,7 +492,7 @@ Rule for this lead: their ads compare against "most necklaces"; our film never s
 >
 > Want 5 free stills, on the Snowbound Perfect Gift or the Little Gift?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
@@ -504,7 +504,7 @@ Rule for this lead: no glasses, bottles, "toast" or eggnog cues in frame.
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @alexisbittar (⚠ confirm handle):**
-> Hi Alexis, {OWNER_NAME} from VXO. Idea for the Twisted Gold Side Handle clutch: a guard ropes it off on a gallery plinth labelled "Untitled (Clutch), 2026". Visitors lean in. A hand lifts it and walks out. AI builds an invented gallery; the clutch stays real. Want 5 free stills, the clutch or a Lucite piece?
+> Hi Alexis, Itamar from VXO. Idea for the Twisted Gold Side Handle clutch: a guard ropes it off on a gallery plinth labelled "Untitled (Clutch), 2026". Visitors lean in. A hand lifts it and walks out. AI builds an invented gallery; the clutch stays real. Want 5 free stills, the clutch or a Lucite piece?
 
 **Email (day 1) to press@alexisbittar.com** · Subject: **Untitled (Clutch), 2026**
 > Hi Alexis (Press/Marketing team, could you pass this to Alexis?),
@@ -515,7 +515,7 @@ Rule for this lead: no glasses, bottles, "toast" or eggnog cues in frame.
 >
 > Want 5 free stills, on the clutch or a Lucite piece?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

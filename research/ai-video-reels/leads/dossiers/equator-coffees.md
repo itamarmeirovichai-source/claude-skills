@@ -47,7 +47,7 @@ The office joke on their newest product by name. Timing: **January back-to-offic
 Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BUSINESS_ADDRESS}` is a placeholder.**
 
 **DM (day 0) — @equatorcoffees, written to be forwarded to Helen and Brooke:**
-> Hi Helen and Brooke, {OWNER_NAME} from VXO. Film idea for the office subscription: Monday 9:01, a 5 lb bag lands on the break-room counter, the conference room empties, and the meeting moves next to the coffee. AI builds the office; your real bag stays real. 5 free stills, office bag or La Marquesa?
+> Hi Helen and Brooke, Itamar from VXO. Film idea for the office subscription: Monday 9:01, a 5 lb bag lands on the break-room counter, the conference room empties, and the meeting moves next to the coffee. AI builds the office; your real bag stays real. 5 free stills, office bag or La Marquesa?
 
 **Email (day 1) — info@equatorcoffees.com** · Subject: **Meeting moved**
 > Hi Helen and Brooke (team, could you pass this on to them?),
@@ -58,7 +58,7 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 >
 > Want 5 free stills, on the office bag or the Ecuador La Marquesa?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

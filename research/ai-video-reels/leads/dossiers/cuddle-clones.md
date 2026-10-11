@@ -49,7 +49,7 @@ The joke and the two newest public products by name. Timing: a **Dec 1–20 refr
 Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BUSINESS_ADDRESS}` is a placeholder.**
 
 **DM (day 0) — @cuddleclones, written to be forwarded to Jennifer:**
-> Hi Jennifer, {OWNER_NAME} from VXO. Film idea for the pet-face pajamas: Christmas morning, every gift is wrapped in the dog's face, the family pulls on matching pajamas, and the dog sits between them like the main character. Built with AI; your real prints stay real. 5 free stills, pajamas or wrapping paper?
+> Hi Jennifer, Itamar from VXO. Film idea for the pet-face pajamas: Christmas morning, every gift is wrapped in the dog's face, the family pulls on matching pajamas, and the dog sits between them like the main character. Built with AI; your real prints stay real. 5 free stills, pajamas or wrapping paper?
 
 **Email (day 1) — info@cuddleclones.com** · Subject: **Main character**
 > Hi Jennifer (team, could you pass this to Jennifer Williams?),
@@ -60,7 +60,7 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 >
 > Want 5 free stills, on the pajamas or the wrapping paper?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

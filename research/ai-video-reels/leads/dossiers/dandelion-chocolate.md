@@ -48,7 +48,7 @@ The joke, their own two-ingredient line, and Valentine's prep (holiday ads are a
 Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BUSINESS_ADDRESS}` is a placeholder.**
 
 **DM (day 0) — @dandelionchocolate, written to be forwarded to Todd:**
-> Hi Todd, {OWNER_NAME} from VXO. Film idea for the bars: cocoa beans and sugar on a counter, and every time a hand slides in vanilla or milk powder, another hand slides it back out. AI builds the kitchen; your real bars stay real. 5 free stills, gift set or Maya Mountain?
+> Hi Todd, Itamar from VXO. Film idea for the bars: cocoa beans and sugar on a counter, and every time a hand slides in vanilla or milk powder, another hand slides it back out. AI builds the kitchen; your real bars stay real. 5 free stills, gift set or Maya Mountain?
 
 **Email (day 1) — info@dandelionchocolate.com** · Subject: **Two ingredients**
 > Hi Todd (team, could you pass this to Todd Masonis?),
@@ -59,7 +59,7 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 >
 > Want 5 free stills, on the 70 % three-bar gift set or Maya Mountain?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

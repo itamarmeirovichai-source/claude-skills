@@ -50,7 +50,7 @@ Lead with the doorman joke and their own outfit names. Timing: **January**, the 
 Sender is `{OWNER_NAME}`. No link, image or price in touch 1. Email footer uses `{BUSINESS_ADDRESS}`; **no email may be sent while it is a placeholder** (vxo-leads §3 rule 10).
 
 **DM (day 0) — @littlebeast.co, written to be forwarded to Jisu:**
-> Hi Jisu, {OWNER_NAME} from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
+> Hi Jisu, Itamar from VXO. Film idea for the striped onesies: a New York doorman greets every dog by outfit, "Morning, PBJ", "Morning, OG", then asks the owner who he's visiting. Built with AI around your real onesies. Want 5 free stills, no call, no cost: PBJ or OG?
 
 **Email (day 1) — hello@littlebeast.co** · Subject: **Morning, PBJ**
 > Hi Jisu (or whoever reads hello@, could you pass this to Jisu?),
@@ -61,7 +61,7 @@ Sender is `{OWNER_NAME}`. No link, image or price in touch 1. Email footer uses 
 >
 > Want 5 free stills, on the PBJ or the OG onesie?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 

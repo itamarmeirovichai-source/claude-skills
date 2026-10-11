@@ -45,7 +45,7 @@ Lead with the plough joke on their own collection name. Address the team and ask
 Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BUSINESS_ADDRESS}` is a placeholder.**
 
 **DM (day 0) — @vosgeshautchocolat, written to be forwarded to whoever runs creative:**
-> Hi Vosges team, {OWNER_NAME} from VXO. Film idea for Snowbound: a cabin snowed in, the purple box open, and when the plough's lights come up the road, a hand switches off the porch light so it drives past. AI builds the cabin; your real truffles stay real. 5 free stills, Perfect or Little Gift?
+> Hi Vosges team, Itamar from VXO. Film idea for Snowbound: a cabin snowed in, the purple box open, and when the plough's lights come up the road, a hand switches off the porch light so it drives past. AI builds the cabin; your real truffles stay real. 5 free stills, Perfect or Little Gift?
 
 **Email (day 1) — vosges@vosgeschocolate.com** · Subject: **Stay snowbound**
 > Hi Vosges team (could you pass this to whoever leads creative?),
@@ -56,7 +56,7 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 >
 > Want 5 free stills, on the Snowbound Perfect Gift or the Little Gift?
 >
-> {OWNER_NAME} · VXO · AI product films
+> Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
 > This is a one-to-one business pitch. Reply "stop" and I won't email again.
 
