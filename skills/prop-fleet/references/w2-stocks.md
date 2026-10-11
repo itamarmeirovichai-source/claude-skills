@@ -131,7 +131,7 @@ The bar is t ≥ 3.5603 **and** p5 > 0, on both universes. Over 11.8 years that 
 **Limits.** No variant breaks FTMO's limits of 200 orders at a time or 2,000 positions a day on universe B; at most 72 orders a day. Universe A's books (up to 996 orders a day) cannot be traded at FTMO anyway, because the names are not offered.
 
 **Look-ahead tests:**
-- Truncation and perturbation results for every variant and universe are in `lookahead_part1.txt` and `lookahead_part2.txt`. LOOKAHEAD_SUMMARY
+- Truncation and perturbation results for every variant and universe are in `lookahead_part1.txt` and `lookahead_part2.txt`. **All 22 variant×universe cases pass 20/20 on both truncation and perturbation.**
 - The first run failed E1-02 truncation at 4/20. The cause was the test harness: `weekly()` treated the final row of a truncated series as a week-end. This was fixed in 1367612 by marking it a week-end only if it is a Friday. Full-sample results were unchanged.
 - The perturbation test perturbs returns and the market, not volume or eligibility.
 
