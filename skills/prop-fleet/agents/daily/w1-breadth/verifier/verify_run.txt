@@ -1,0 +1,64 @@
+== Eligibility (sec 3) ==
+EUR_USD     IS valid= 2073 sigma_IS=   49.9bp  RT cost=  1.0bp ratio=0.020  all valid= 3979  ELIGIBLE
+GBP_USD     IS valid= 2073 sigma_IS=   50.4bp  RT cost=  1.4bp ratio=0.028  all valid= 3979  ELIGIBLE
+USD_CAD     IS valid= 2073 sigma_IS=   52.4bp  RT cost=  1.6bp ratio=0.031  all valid= 3979  ELIGIBLE
+AUD_USD     IS valid= 2073 sigma_IS=   58.2bp  RT cost=  1.4bp ratio=0.024  all valid= 3977  ELIGIBLE
+EUR_JPY     IS valid= 2074 sigma_IS=   59.4bp  RT cost=  1.6bp ratio=0.027  all valid= 3980  ELIGIBLE
+AUD_JPY     IS valid= 2074 sigma_IS=   75.2bp  RT cost=  1.8bp ratio=0.024  all valid= 3980  ELIGIBLE
+SPX500_USD  IS valid= 1996 sigma_IS=  112.3bp  RT cost=  2.0bp ratio=0.018  all valid= 3828  ELIGIBLE
+NAS100_USD  IS valid= 1996 sigma_IS=  123.0bp  RT cost=  2.0bp ratio=0.016  all valid= 3827  ELIGIBLE
+US2000_USD  IS valid= 1992 sigma_IS=  153.9bp  RT cost=  3.0bp ratio=0.019  all valid= 3821  ELIGIBLE
+UK100_GBP   IS valid= 1993 sigma_IS=   94.2bp  RT cost=  2.0bp ratio=0.021  all valid= 3837  ELIGIBLE
+FR40_EUR    IS valid= 2033 sigma_IS=  121.3bp  RT cost=  2.0bp ratio=0.016  all valid= 3895  ELIGIBLE
+NL25_EUR    IS valid= 1253 sigma_IS=  136.8bp  RT cost=  3.0bp ratio=0.022  all valid= 3114  ELIGIBLE
+JP225_USD   IS valid=  359 sigma_IS=   89.0bp  RT cost=  3.0bp ratio=0.034  all valid= 2248  ELIGIBLE
+AU200_AUD   IS valid= 1783 sigma_IS=   78.6bp  RT cost=  2.4bp ratio=0.031  all valid= 3485  ELIGIBLE
+GRXEUR      IS valid=  540 sigma_IS=  128.6bp  RT cost=  1.6bp ratio=0.012  all valid= 2048  ELIGIBLE
+ETXEUR      IS valid=  543 sigma_IS=  135.6bp  RT cost=  3.0bp ratio=0.022  all valid= 2063  ELIGIBLE
+XAU_USD     IS valid= 1739 sigma_IS=   96.2bp  RT cost=  2.0bp ratio=0.021  all valid= 3592  ELIGIBLE
+WTICO_USD   IS valid= 1657 sigma_IS=  187.2bp  RT cost=  5.0bp ratio=0.027  all valid= 3496  ELIGIBLE
+NATGAS_USD  IS valid= 1650 sigma_IS=  264.2bp  RT cost= 16.0bp ratio=0.061  all valid= 3486  ELIGIBLE
+CORN_USD    IS valid=   97 sigma_IS=   85.9bp  RT cost= 20.0bp ratio=0.233  all valid= 1914  dropped
+SOYBN_USD   IS valid=  150 sigma_IS=   89.7bp  RT cost= 12.0bp ratio=0.134  all valid= 1979  dropped
+WHEAT_USD   IS valid=   97 sigma_IS=  109.0bp  RT cost= 20.0bp ratio=0.183  all valid= 1926  dropped
+SUGAR_USD   IS valid= 1219 sigma_IS=  184.6bp  RT cost= 20.0bp ratio=0.108  all valid= 2766  dropped
+eligible: ['EUR_USD', 'GBP_USD', 'USD_CAD', 'AUD_USD', 'EUR_JPY', 'AUD_JPY', 'SPX500_USD', 'NAS100_USD', 'US2000_USD', 'UK100_GBP', 'FR40_EUR', 'NL25_EUR', 'JP225_USD', 'AU200_AUD', 'GRXEUR', 'ETXEUR', 'XAU_USD', 'WTICO_USD', 'NATGAS_USD']
+H: ['GRXEUR', 'ETXEUR', 'GBP_USD', 'AU200_AUD', 'NATGAS_USD', 'JP225_USD']
+D: ['EUR_USD', 'USD_CAD', 'AUD_USD', 'EUR_JPY', 'AUD_JPY', 'SPX500_USD', 'NAS100_USD', 'US2000_USD', 'UK100_GBP', 'FR40_EUR', 'NL25_EUR', 'XAU_USD', 'WTICO_USD']
+
+== Results (x100 = percent per day) ==
+variant OOS net mean   iid t    NW t  Sharpe     n  cost2 mean cost2 t*  H OOS net  D IS gross
+D4-01       -0.03663  -16.05  -15.05   -5.83  1908    -0.07508   -32.44   -0.03758     0.01660
+D4-02       -0.03744   -4.81   -4.83   -1.75  1908    -0.07592    -9.73   -0.04212     0.01703
+D4-03       -0.11123  -13.83  -13.16   -5.03  1908    -0.24960   -29.47   -0.10715     0.03405
+D4-04       -0.02490   -4.28   -4.56   -1.56  1908    -0.06316   -11.51   -0.01779     0.01492
+D4-05       -0.05255  -13.57  -12.99   -4.93  1908    -0.11594   -29.12   -0.05116     0.02065
+(cost2 t* = min(iid, NW) t at cost x2)
+
+== trade counts OOS per market ==
+EUR_USD     [1904, 1904, 1906, 1902]
+USD_CAD     [1901, 1901, 1906, 1906]
+AUD_USD     [1901, 1901, 1904, 1903]
+EUR_JPY     [1904, 1904, 1906, 1903]
+AUD_JPY     [1902, 1902, 1906, 1904]
+SPX500_USD  [1810, 1812, 1832, 1813]
+NAS100_USD  [1827, 1827, 1831, 1807]
+US2000_USD  [1828, 1828, 1829, 1796]
+UK100_GBP   [1260, 1260, 1270, 1254]
+FR40_EUR    [1851, 1853, 1862, 1852]
+NL25_EUR    [1854, 1855, 1861, 1851]
+XAU_USD     [1853, 1853, 1853, 1802]
+WTICO_USD   [1839, 1839, 1839, 1828]
+GRXEUR      [1499, 1499, 1508, 1501]
+ETXEUR      [1487, 1487, 1520, 1516]
+GBP_USD     [1902, 1902, 1906, 1901]
+AU200_AUD   [1677, 1679, 1702, 1662]
+NATGAS_USD  [1802, 1807, 1836, 1788]
+JP225_USD   [1886, 1889, 1889, 1837]
+
+== Spot checks (bar times UTC = bar OPEN time; M(T) = close of bar opening <= T-1) ==
+EUR_USD D4-01 2015-03-10 side=-1 entry 2015-03-10T15:30 @ 1.07286  exit mark M(2015-03-10T16:00) @ 1.0707  gross=20.13bp net=19.13bp sig=0.00552 u=0.3467%
+SPX500_USD D4-02 2016-06-24 side=-1 entry 2016-06-24T14:00 @ 2063.6  exit mark M(2016-06-24T20:00) @ 2035.4  gross=136.65bp net=134.65bp sig=0.00490 u=2.7471%
+FR40_EUR D4-04 2014-10-15 side=-1 entry 2014-10-15T08:00 @ 4068.2  exit 2014-10-15T15:30 @ 3939.4  gross=316.60bp net=314.60bp sig=0.00905 u=3.4779% close ORH=4097.1 ORL=4072.4
+XAU_USD D4-03 2013-04-15 segments(side,entry t,entry px,exit t,exit px)=[(1, '2013-04-15T12:50', 1422.659, '2013-04-15T13:20', 1412.369), (-1, '2013-04-15T13:20', 1412.369, 'M(2013-04-15T17:30)', 1361.34)] sides=4 gross=288.97bp net=284.97bp
+UK100_GBP D4-04 2018-02-05 side=-1 entry 2018-02-05T11:03 @ 7344.5  exit 2018-02-05T16:30 @ 7328.3  gross=22.06bp net=20.06bp sig=0.00453 u=0.4431% close ORH=7381.3 ORL=7345.0
