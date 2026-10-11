@@ -297,8 +297,8 @@ class _Account:
             if self.F.get("dll_hard", True):
                 dead |= hit
             else:                                   # soft: flat for the day
-                self.bal = np.where(hit & ~self.halted,
-                                    self.day0 - self.dll, self.bal).astype(np.float32)
+                # the overshoot past the limit is a real loss (gap through
+                # the stop); clamping it back would give free drift
                 self.halted |= hit
         return dead
 
