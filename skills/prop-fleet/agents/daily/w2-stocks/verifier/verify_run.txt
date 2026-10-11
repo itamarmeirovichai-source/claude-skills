@@ -82,6 +82,43 @@ E1-10 U=B worse lag=1 | boot p5 (worse,1x) -8.55 bp
    lag0 2x  OOS Sh -6.58  mean -16.10bp  t -24.36 (iid -22.52 NW -24.36)  turn/yr 504.0
    lag1 1x  OOS Sh -3.03  mean -7.43bp  t -11.31 (iid -10.39 NW -11.31)  turn/yr 504.0 IS_Sh -1.78 | gross OOS Sh +0.56 +1.37bp, gross IS Sh +1.33
    lag1 2x  OOS Sh -6.63  mean -16.23bp  t -24.70 (iid -22.69 NW -24.70)  turn/yr 504.0
+earnings: 4899 day-files 2008-01-01..2026-10-09; 45833 member-ticker events; surprise valid&nonzero 41318
+E1-05 U=A worse lag=1 | boot p5 (worse,1x) -4.59 bp
+   lag0 1x  OOS Sh -1.78  mean -3.56bp  t -6.14 (iid -6.09 NW -6.14)  turn/yr 55.3 IS_Sh -1.53 | gross OOS Sh +0.15 +0.31bp, gross IS Sh +0.11
+   lag0 2x  OOS Sh -3.73  mean -7.53bp  t -12.95 (iid -12.78 NW -12.95)  turn/yr 55.3
+   lag1 1x  OOS Sh -1.80  mean -3.57bp  t -6.28 (iid -6.17 NW -6.28)  turn/yr 55.3 IS_Sh -1.62 | gross OOS Sh +0.15 +0.30bp, gross IS Sh +0.07
+   lag1 2x  OOS Sh -3.77  mean -7.54bp  t -13.21 (iid -12.92 NW -13.21)  turn/yr 55.3
+E1-05 U=B worse lag=0 | boot p5 (worse,1x) -5.07 bp
+   lag0 1x  OOS Sh -0.63  mean -2.93bp  t -2.16 (iid -2.16 NW -2.11)  turn/yr 51.8 IS_Sh -0.76 | gross OOS Sh +0.17 +0.79bp, gross IS Sh -0.18
+   lag0 2x  OOS Sh -1.45  mean -6.77bp  t -4.97 (iid -4.97 NW -4.85)  turn/yr 51.8
+   lag1 1x  OOS Sh -0.47  mean -2.04bp  t -1.64 (iid -1.60 NW -1.64)  turn/yr 51.8 IS_Sh -0.53 | gross OOS Sh +0.39 +1.68bp, gross IS Sh +0.13
+   lag1 2x  OOS Sh -1.35  mean -5.89bp  t -4.72 (iid -4.61 NW -4.72)  turn/yr 51.8
+E1-06 U=A worse lag=0 | boot p5 (worse,1x) -5.26 bp
+   lag0 1x  OOS Sh -3.00  mean -4.60bp  t -10.93 (iid -10.26 NW -10.93)  turn/yr 55.5 IS_Sh -2.21 | gross OOS Sh -0.43 -0.65bp, gross IS Sh -0.10
+   lag0 2x  OOS Sh -5.52  mean -8.57bp  t -20.23 (iid -18.90 NW -20.23)  turn/yr 55.5
+   lag1 1x  OOS Sh -2.94  mean -4.48bp  t -10.51 (iid -10.07 NW -10.51)  turn/yr 55.5 IS_Sh -2.14 | gross OOS Sh -0.35 -0.54bp, gross IS Sh -0.01
+   lag1 2x  OOS Sh -5.49  mean -8.45bp  t -19.65 (iid -18.79 NW -19.65)  turn/yr 55.5
+E1-06 U=B worse lag=1 | boot p5 (worse,1x) -5.66 bp
+   lag0 1x  OOS Sh -0.67  mean -2.84bp  t -2.43 (iid -2.29 NW -2.43)  turn/yr 52.2 IS_Sh -0.59 | gross OOS Sh +0.32 +1.37bp, gross IS Sh +0.20
+   lag0 2x  OOS Sh -1.67  mean -7.09bp  t -6.06 (iid -5.71 NW -6.06)  turn/yr 52.2
+   lag1 1x  OOS Sh -0.81  mean -3.46bp  t -2.79 (iid -2.79 NW -2.75)  turn/yr 52.2 IS_Sh -0.60 | gross OOS Sh +0.18 +0.75bp, gross IS Sh +0.20
+   lag1 2x  OOS Sh -1.81  mean -7.71bp  t -6.19 (iid -6.19 NW -6.11)  turn/yr 52.2
+STACK A: E1-03 IS gross vol 0.0593
+STACK A: E1-06 IS gross vol 0.0472
+STACK A: E1-08 IS gross vol 0.0458
+E1-11 U=A worse lag=1 | boot p5 (worse,1x) -4.42 bp
+   lag0 1x  OOS Sh -2.29  mean -3.66bp  t -7.97 (iid -7.84 NW -7.97)  turn/yr 59.4 IS_Sh -1.60 | gross OOS Sh +0.15 +0.24bp, gross IS Sh +0.75
+   lag0 2x  OOS Sh -4.65  mean -7.57bp  t -16.46 (iid -15.92 NW -16.46)  turn/yr 59.4
+   lag1 1x  OOS Sh -2.35  mean -3.65bp  t -8.07 (iid -8.05 NW -8.07)  turn/yr 59.4 IS_Sh -2.06 | gross OOS Sh +0.16 +0.25bp, gross IS Sh +0.37
+   lag1 2x  OOS Sh -4.83  mean -7.55bp  t -16.71 (iid -16.53 NW -16.71)  turn/yr 59.4
+STACK B: E1-03 IS gross vol 0.0919
+STACK B: E1-06 IS gross vol 0.1354
+STACK B: E1-08 IS gross vol 0.0755
+E1-11 U=B worse lag=1 | boot p5 (worse,1x) -6.03 bp
+   lag0 1x  OOS Sh -1.52  mean -4.27bp  t -5.41 (iid -5.20 NW -5.41)  turn/yr 59.6 IS_Sh -0.68 | gross OOS Sh -0.17 -0.47bp, gross IS Sh +0.63
+   lag0 2x  OOS Sh -2.86  mean -8.10bp  t -10.25 (iid -9.79 NW -10.25)  turn/yr 59.6
+   lag1 1x  OOS Sh -1.64  mean -4.61bp  t -5.60 (iid -5.60 NW -5.46)  turn/yr 59.6 IS_Sh -1.05 | gross OOS Sh -0.28 -0.80bp, gross IS Sh +0.28
+   lag1 2x  OOS Sh -2.99  mean -8.43bp  t -10.22 (iid -10.22 NW -9.99)  turn/yr 59.6
 
 SUMMARY (worse lag by OOS 1x Sharpe): vid U lag | OOS Sh/t 1x | OOS Sh/t 2x | IS Sh 1x | p5 bp | turn/yr
 E1-01 A L1 | -1.21 / -4.14 | -2.90 / -9.94 | -0.36 | -4.78 | 142
@@ -92,6 +129,10 @@ E1-03 A L1 | -1.22 / -4.31 | -2.83 / -10.04 | -0.91 | -4.13 | 68
 E1-03 B L0 | -1.39 / -4.85 | -2.49 / -8.76 | -0.05 | -6.01 | 68
 E1-04 A L1 | -1.02 / -3.50 | -2.14 / -7.32 | +0.11 | -5.64 | 68
 E1-04 B L1 | -0.52 / -1.86 | -1.59 / -5.66 | -0.02 | -3.72 | 68
+E1-05 A L1 | -1.80 / -6.28 | -3.77 / -13.21 | -1.62 | -4.59 | 55
+E1-05 B L0 | -0.63 / -2.16 | -1.45 / -4.97 | -0.76 | -5.07 | 52
+E1-06 A L0 | -3.00 / -10.93 | -5.52 / -20.23 | -2.21 | -5.26 | 56
+E1-06 B L1 | -0.81 / -2.79 | -1.81 / -6.19 | -0.60 | -5.66 | 52
 E1-07 A L1 | -1.37 / -5.39 | -2.36 / -9.30 | -1.06 | -6.58 | 38
 E1-07 B L1 | -0.22 / -0.81 | -0.88 / -3.23 | -0.41 | -3.66 | 43
 E1-08 A L1 | -1.80 / -6.63 | -3.62 / -13.37 | -1.60 | -4.23 | 32
@@ -100,3 +141,5 @@ E1-09 A L1 | -8.66 / -35.26 | -17.67 / -72.38 | -10.95 | -13.64 | 504
 E1-09 B L1 | -5.13 / -18.63 | -10.99 / -40.05 | -4.52 | -11.10 | 504
 E1-10 A L0 | -5.42 / -20.69 | -11.33 / -43.24 | -4.41 | -10.67 | 504
 E1-10 B L1 | -3.03 / -11.31 | -6.63 / -24.70 | -1.78 | -8.55 | 504
+E1-11 A L1 | -2.35 / -8.07 | -4.83 / -16.71 | -2.06 | -4.42 | 59
+E1-11 B L1 | -1.64 / -5.60 | -2.99 / -10.22 | -1.05 | -6.03 | 60
