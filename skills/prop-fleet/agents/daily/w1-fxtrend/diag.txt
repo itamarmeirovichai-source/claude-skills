@@ -1,0 +1,23 @@
+D2-08 OOS, lag1 1x cost, 10% vol
+  net Sharpe -0.10; before any cost 0.31; trading cost only (no swap markup) 0.19
+  net Sharpe without 2015-01-15 (SNB) -0.10; that day -0.47%
+  t needed at 13.6y for the bar: Sharpe >= 0.96
+
+prop EV at 10% vol vs the strategy's OOS mean (same bootstrap paths)
+  actual OOS               pass 0.204 blow 0.727 funded 2y survival 0.095 E[net/attempt] $550
+  mean set to -2 bp/day    pass 0.106 blow 0.849 funded 2y survival 0.039 E[net/attempt] $-183
+  mean set to +0 bp/day    pass 0.238 blow 0.684 funded 2y survival 0.121 E[net/attempt] $894
+  mean set to +2 bp/day    pass 0.450 blow 0.463 funded 2y survival 0.272 E[net/attempt] $3,866
+  mean set to +4 bp/day    pass 0.673 blow 0.280 funded 2y survival 0.453 E[net/attempt] $9,545
+
+D2-06 OOS, lag1 1x cost, 10% vol
+  net Sharpe -0.08; before any cost 0.44; trading cost only (no swap markup) 0.33
+  net Sharpe without 2015-01-15 (SNB) -0.08; that day -0.18%
+  t needed at 13.6y for the bar: Sharpe >= 0.96
+
+prop EV at 10% vol vs the strategy's OOS mean (same bootstrap paths)
+  actual OOS               pass 0.207 blow 0.691 funded 2y survival 0.141 E[net/attempt] $621
+  mean set to -2 bp/day    pass 0.090 blow 0.839 funded 2y survival 0.060 E[net/attempt] $-238
+  mean set to +0 bp/day    pass 0.239 blow 0.656 funded 2y survival 0.162 E[net/attempt] $943
+  mean set to +2 bp/day    pass 0.475 blow 0.438 funded 2y survival 0.311 E[net/attempt] $4,310
+  mean set to +4 bp/day    pass 0.698 blow 0.264 funded 2y survival 0.464 E[net/attempt] $10,317

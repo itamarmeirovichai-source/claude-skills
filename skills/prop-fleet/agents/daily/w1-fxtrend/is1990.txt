@@ -1,0 +1,9 @@
+D2-01 TREND multi-horizon          IS(1990-2012) net Sharpe 0.71
+D2-02 TREND 12m                    IS(1990-2012) net Sharpe 0.54
+D2-03 TREND fast                   IS(1990-2012) net Sharpe 0.58
+D2-04 CARRY XS                     IS(1990-2012) net Sharpe 0.45
+D2-05 CARRY TS                     IS(1990-2012) net Sharpe 0.61
+D2-06 STACK                        IS(1990-2012) net Sharpe 0.86
+D2-07 STACK+BONDS                  IS(1990-2012) net Sharpe 0.81
+D2-08 STACK trend-filtered carry   IS(1990-2012) net Sharpe 0.87
+D2-09 TREND EWMAC                  IS(1990-2012) net Sharpe 0.54

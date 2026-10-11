@@ -24,7 +24,7 @@ from trend_backtest import stats                              # noqa: E402
 
 TD = 252
 Z_BAR = 3.5504
-IS_END, OOS_START = "2012-12-31", "2013-01-01"
+IS_START, IS_END, OOS_START = "1990-01-02", "2012-12-31", "2013-01-01"
 VOL_WIN, VOL_MIN, ENTRY_DAYS = 60, 40, 260
 SLEEVE_VOL, SLEEVE_WIN, SLEEVE_MIN, K_CAP = 0.10, 126, 60, 4.0
 BUFFER = 0.10
@@ -80,10 +80,10 @@ def ewmac_raw(R: pd.DataFrame) -> list:
 
 
 def ewmac_scalars(raws: list, ok: pd.DataFrame) -> list:
-    """Fixed in-sample (<= IS_END) scalars: 10 / mean |raw|, pooled over assets."""
+    """Fixed in-sample (IS_START..IS_END) scalars: 10 / mean |raw|, pooled over assets."""
     out = []
     for r in raws:
-        x = r.where(ok).loc[:IS_END].abs().stack()
+        x = r.where(ok).loc[IS_START:IS_END].abs().stack()
         out.append(10.0 / float(x.mean()))
     return out
 
@@ -414,7 +414,7 @@ def main() -> int:
     d = D.panel(include_bonds=True)
     R = d["R"]
     print(f"D2 run. calendar {R.index[0].date()} -> {R.index[-1].date()}, "
-          f"{R.shape[1]} instruments; IS <= {IS_END}, OOS >= {OOS_START}")
+          f"{R.shape[1]} instruments; IS {IS_START}..{IS_END}, OOS >= {OOS_START}")
     core = [c for c in R if d["meta"].loc[c, "cls"] != "BOND"]
     raws = ewmac_raw(R[core])
     scalars = ewmac_scalars(raws, eligible(R[core]))
@@ -429,7 +429,7 @@ def main() -> int:
                 df, H = run(vid, d, scalars, lag, cm)
                 df = active(df)
                 runs[(vid, lag, cm)] = df
-                is_ = df.loc[:IS_END]
+                is_ = df.loc[IS_START:IS_END]
                 oos = df.loc[OOS_START:]
                 out[(lag, cm)] = dict(IS=summary(is_["net"], 0),
                                       OOS=summary(oos["net"], nb if cm == 1.0 or lag == 1 else 0))
@@ -486,7 +486,7 @@ def main() -> int:
     for cls in ("FX", "IDX", "CMD", "BOND"):
         dfc, _ = run("CLS-" + cls, d, scalars)
         dfc = active(dfc)
-        for lab, x in (("IS", dfc.loc[:IS_END, "net"]), ("OOS", dfc.loc[OOS_START:, "net"])):
+        for lab, x in (("IS", dfc.loc[IS_START:IS_END, "net"]), ("OOS", dfc.loc[OOS_START:, "net"])):
             if len(x) > 200:
                 s = summary(x, 0)
                 print(f"  {cls:4s} {lab:3s}: Sharpe {s['sharpe']:5.2f} t {s['t']:5.2f} CAGR {s['cagr']*100:6.2f}%")
@@ -501,7 +501,7 @@ def main() -> int:
     # prop simulation
     print(f"\n=== prop simulation, {head}: FTMO-type swing 10% static max loss / 5% daily,"
           f" 4% and 91% breach buffers; {npaths} bootstrap paths per vol")
-    is_df = runs[(head, 1, 1.0)].loc[:IS_END]
+    is_df = runs[(head, 1, 1.0)].loc[IS_START:IS_END]
     g_is = prop_grid(is_df, npaths)
     vstar = float(g_is.loc[g_is["exp_net"].idxmax(), "vol"])
     print("  IS grid (chooses the vol):")
