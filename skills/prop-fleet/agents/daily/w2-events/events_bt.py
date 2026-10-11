@@ -166,9 +166,14 @@ def exit_trade(day: Day, side, em, ep, black, cost):
     return side * (xp - ep) / ep * 1e4 - 2 * cost / ep * 1e4
 
 
-def exit_e205(day: Day, fomc_t, cost, ep, em):
-    T = fomc_t[day.d]
-    k = int(np.searchsorted(day.mn, T - 3, side="right")) - 1
+def exit_e205(day: Day, fomc_t, cost, ep, em, black):
+    """E2-05 exits at c[T-3]; an earlier Tier-1 event in the hold (ISM 10:00 on the same day)
+    caps it at that event's T-3 (fixed after the verifier's independent re-run disagreed)."""
+    cap = fomc_t[day.d] - 3
+    for t in black.get(day.d, []):
+        if em < t - 2:
+            cap = min(cap, t - 3)
+    k = int(np.searchsorted(day.mn, cap, side="right")) - 1
     if k < 0 or day.mn[k] < em:
         return None
     return (day.c[k] - ep) / ep * 1e4 - 2 * cost / ep * 1e4
@@ -200,7 +205,7 @@ def run_market(name, days, cal, cmult=1.0, delay=0, is_leg=False):
         for v in VARIANTS[:11]:
             for side, em, ep, _ in decide(v, day, kinds, ft, delay, med[i]):
                 if v == "E2-05":
-                    r = exit_e205(day, ft, cost, ep, em)
+                    r = exit_e205(day, ft, cost, ep, em, black)
                 else:
                     r = exit_trade(day, side, em, ep, black, cost)
                 if r is not None:
