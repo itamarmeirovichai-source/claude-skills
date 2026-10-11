@@ -77,7 +77,7 @@ FIRMS = {
         unmodeled="automation BANNED on PA; 50% payout consistency; tiered DLL"),
     # ------------------------------------------------------------- crypto
     "HyroTrader 2-Step 100K": dict(
-        start=FX, fee=599., refund=599., targets=[0.10, 0.05], min_days=[5, 5],
+        start=FX, fee=579., refund=579., targets=[0.10, 0.05], min_days=[5, 5],
         time_limit=None, dd_type="static", dd=0.10, dll=0.05,
         funded=dict(split=0.8, cycle=5, payout_min=125.),
         slots=2, auto="yes", hold=True,
@@ -90,11 +90,11 @@ FIRMS = {
         slots=2, auto="unknown", hold=True,
         unmodeled="bots not addressed by firm; bans off-the-shelf strategies; leverage caps"),
     "CFT 2-Phase 100K": dict(
-        start=FX, fee=660., targets=[0.08, 0.05], min_days=[0, 0],
+        start=FX, fee=598., targets=[0.08, 0.05], min_days=[0, 0],
         time_limit=None, dd_type="static", dd=0.10, dll=0.05,
         funded=dict(split=0.8, first_wait=5, cycle=15),
         slots=3, auto="yes", hold=True,
-        unmodeled="$10k max profit per day/trade; fee unverified"),
+        unmodeled="$10k max profit per day/trade; fee: firm pages show $520 and $598 (higher used)"),
     # -------------------------------------------------------------- forex
     "Alpha Swing 2-Step 100K": dict(
         start=FX, fee=577., targets=[0.10, 0.05], min_days=[3, 3],
