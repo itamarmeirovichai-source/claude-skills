@@ -42,7 +42,12 @@ def run_firm(name):
     y = slot_years(F, 1.17, e["sig_e"], e["sig_f"], years=3, n=2000)
     per = y[:, 1:].mean(1)
     out["slot_117"] = dict(mean=float(per.mean()), p10=float(np.percentile(per, 10)),
-                           p50=float(np.median(per)))
+                           p50=float(np.median(per)), y1_mean=float(y[:, 0].mean()),
+                           y1_p10=float(np.percentile(y[:, 0], 10)),
+                           y1_loss=float((y[:, 0] < 0).mean()))
+    # D1-06: vol cap 8% and 15% at S = 0.6 and 1.17
+    out["cap_sens"] = {f"{c:.2f}": {f"{S}": row(economics(F, S, n=N, sigmas=SIGMAS[SIGMAS <= c + 1e-9]))
+                                    for S in (0.6, 1.17)} for c in (0.08, 0.15)}
     print("done", name, flush=True)
     return out
 
@@ -66,6 +71,8 @@ def fmt(res):
         h = r["haircut_117"]
         L.append(f"   S=0.82 (1.17 x 0.7) capped: net/slot-yr {h['net_yr']:,.0f}  "
                  f"ROS_after {h['ros_after']:.2f}")
+        for c, d in r.get("cap_sens", {}).items():
+            L.append(f"   cap {c}: " + " | ".join(f"S={S} net/slot-yr {v['net_yr']:,.0f}" for S, v in d.items()))
         s = r["slot_117"]
         L.append(f"   S=1.17 capped slot-yr (sequential sim, yrs 2-3): mean {s['mean']:,.0f} "
                  f"p50 {s['p50']:,.0f} p10 {s['p10']:,.0f}; fleet x{r['slots']}: mean "

@@ -412,6 +412,10 @@ def funded_sim(F, S, sigmas=SIGMAS, n=3000, seed=12, tdist=True, sub=SUB,
             if ok.any():
                 w = np.where(ok, avail, 0).astype(np.float32)
                 acc.bal -= w
+                # the next day's loss limit is measured from the post-payout
+                # balance (red-team finding, 2026-10-11: without this a payout
+                # larger than the daily limit breached the account next day)
+                acc.day0 -= w
                 full = np.clip(full_until - gross, 0, None)
                 trader = np.minimum(w, full) + split * np.maximum(w - full, 0)
                 gross += w; paid += trader

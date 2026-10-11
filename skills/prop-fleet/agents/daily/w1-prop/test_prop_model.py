@@ -100,3 +100,10 @@ def test_refund_after_nth_payout():
     G = dict(BASE, refund_after=4, funded=dict(split=0.8, first_wait=1, cycle=1, max_payouts=3))
     f = funded_sim(G, 1000, SIG, n=50, horizon=20)
     assert f["p_refund"][0] == 0.0 and f["p_any"][0] == 1.0
+
+
+def test_payout_resets_daily_loss_base():
+    # 5% DLL; a payout of ~40% of start must not breach the next day
+    G = dict(BASE, funded=dict(split=0.8, first_wait=10, cycle=10, max_payouts=2))
+    f = funded_sim(G, 1000, SIG, n=50, horizon=25)
+    assert f["breach"][0] == 0.0 and f["n_pay"][0] == 2
