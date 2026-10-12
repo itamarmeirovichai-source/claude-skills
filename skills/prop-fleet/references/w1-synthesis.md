@@ -61,3 +61,11 @@ routes are:
 - **(b)** a test of whether higher-volatility sizing is contractually and statistically safe at
   the safe-list firms (wave 3, free);
 - **(c)** paid multi-asset intraday data, which needs Itamar's decision.
+
+## Update 12 Oct (waves 2 and 3)
+
+- **E1 failed.** Stock CFDs on FTMO lose: leverage is 1:1 and FTMO charges swap on both sides.
+- **E2 failed.** Macro-event intraday trading peaks at t 1.09.
+- **F1 failed.** The ensemble of near-misses reaches only Sharpe 0.41 at FTMO costs.
+- **F2 (stressed): the Sharpe needed for $20k per $100K at FTMO** is about 2.4 at 12% volatility, about 1.9 at 15% and about 1.5 at 20%. The Sharpe-0 lottery does not survive. Volatility of 15–20% is defensible under the contracts; 30% or more is not.
+- **The gap between what we have and what we need is still large.** The best real out-of-sample Sharpe we have measured since 2013 is about 0.4–0.8. The target needs at least 1.5.
