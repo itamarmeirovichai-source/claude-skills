@@ -1,0 +1,64 @@
+1m vs 5m S2 check: {'n': 680, 'corr': 0.9804629523094249, 'mean_m1_bp': 0.1494492565300562, 'mean_m5_bp': -0.10107771609545751}
+
+=== F1-01  gate=FAIL  (bar t 3.5745)
+  stack      n  1223 mean   +1.65 bp/d  t iid +0.74 NW +0.80 t +0.74  p5   -1.98 (iid -1.98 blk -1.55)  Sharpe(365) +0.41  vol 0.148  maxDD -0.200  worst -0.0674  CAGR +0.050
+             years: 2023 +0.80  2024 +7.94  2025 -4.26  2026 +2.94
+  stack_x2   n  1223 mean   -1.39 bp/d  t iid -0.63 NW -0.68 t -0.68  p5   -5.05 (iid -5.05 blk -4.53)  Sharpe(365) -0.34  vol 0.149  maxDD -0.272  worst -0.0680  CAGR -0.060
+             years: 2023 -3.06  2024 +4.80  2025 -6.65  2026 +0.66
+  s1         n  1223 mean   +2.16 bp/d  t iid +0.60 NW +0.57 t +0.57  p5   -3.74 (iid -3.72 blk -3.74)  Sharpe(365) +0.33  vol 0.239  maxDD -0.253  worst -0.0855  CAGR +0.051
+             years: 2023 -1.23  2024 +9.33  2025 -1.63  2026 +2.09
+  s2         n   784 mean   +0.16 bp/d  t iid +0.05 NW +0.07 t +0.05  p5   -5.34 (iid -5.34 blk -3.99)  Sharpe(365) +0.03  vol 0.177  maxDD -0.280  worst -0.0859  CAGR -0.010
+             years: 2023 +4.07  2024 +5.79  2025 -10.61  2026 +3.51
+  s1_scaled  n  1223 mean   +1.08 bp/d  t iid +0.69 NW +0.66 t +0.66  p5   -1.52 (iid -1.49 blk -1.52)  Sharpe(365) +0.38  vol 0.105  maxDD -0.114  worst -0.0376  CAGR +0.035
+             years: 2023 -0.43  2024 +4.28  2025 -0.66  2026 +1.22
+  s2_scaled  n  1223 mean   +0.57 bp/d  t iid +0.36 NW +0.48 t +0.36  p5   -2.03 (iid -2.03 blk -1.22)  Sharpe(365) +0.20  vol 0.104  maxDD -0.168  worst -0.0652  CAGR +0.015
+             years: 2023 +1.23  2024 +3.65  2025 -3.60  2026 +1.72
+  corr r1,r2 all days +0.001  on sessions +0.001; k1 0.42 k2 0.71; margin-cap days 0, max margin 0.55; crypto notional mean 0.18 max 0.52
+  S1 unit book: gross +6.77 bp/d, trading cost 1.17, swap 3.44, mean gross notional 0.419, turnover 0.102/d
+
+=== F1-02  gate=FAIL  (bar t 3.5745)
+  stack      n  1223 mean   +1.73 bp/d  t iid +0.77 NW +0.83 t +0.77  p5   -1.95 (iid -1.95 blk -1.47)  Sharpe(365) +0.42  vol 0.149  maxDD -0.169  worst -0.0652  CAGR +0.053
+             years: 2023 +1.41  2024 +4.96  2025 -2.10  2026 +4.30
+  stack_x2   n  1223 mean   -1.44 bp/d  t iid -0.65 NW -0.70 t -0.70  p5   -5.15 (iid -5.15 blk -4.63)  Sharpe(365) -0.35  vol 0.149  maxDD -0.318  worst -0.0659  CAGR -0.062
+             years: 2023 -2.51  2024 +1.80  2025 -4.92  2026 +2.28
+  s1         n  1223 mean   +2.86 bp/d  t iid +0.81 NW +0.80 t +0.80  p5   -3.04 (iid -2.97 blk -3.04)  Sharpe(365) +0.45  vol 0.234  maxDD -0.254  worst -0.0701  CAGR +0.080
+             years: 2023 +1.57  2024 +3.71  2025 +2.47  2026 +5.23
+  s2         n   784 mean   +0.16 bp/d  t iid +0.05 NW +0.07 t +0.05  p5   -5.34 (iid -5.34 blk -3.99)  Sharpe(365) +0.03  vol 0.177  maxDD -0.280  worst -0.0859  CAGR -0.010
+             years: 2023 +4.07  2024 +5.79  2025 -10.61  2026 +3.51
+  s1_scaled  n  1223 mean   +1.16 bp/d  t iid +0.72 NW +0.70 t +0.70  p5   -1.52 (iid -1.50 blk -1.52)  Sharpe(365) +0.39  vol 0.108  maxDD -0.131  worst -0.0355  CAGR +0.037
+             years: 2023 +0.18  2024 +1.31  2025 +1.50  2026 +2.57
+  s2_scaled  n  1223 mean   +0.57 bp/d  t iid +0.36 NW +0.48 t +0.36  p5   -2.03 (iid -2.03 blk -1.22)  Sharpe(365) +0.20  vol 0.104  maxDD -0.168  worst -0.0652  CAGR +0.015
+             years: 2023 +1.23  2024 +3.65  2025 -3.60  2026 +1.72
+  corr r1,r2 all days -0.008  on sessions -0.009; k1 0.44 k2 0.71; margin-cap days 0, max margin 0.93; crypto notional mean 0.19 max 0.88
+  S1 unit book: gross +7.47 bp/d, trading cost 1.10, swap 3.52, mean gross notional 0.428, turnover 0.095/d
+
+=== F1-03  gate=FAIL  (bar t 3.5745)
+  stack      n  1223 mean   +3.65 bp/d  t iid +1.65 NW +1.77 t +1.65  p5   +0.01 (iid +0.01 blk +0.43)  Sharpe(365) +0.90  vol 0.148  maxDD -0.145  worst -0.0670  CAGR +0.130
+             years: 2023 +3.41  2024 +9.76  2025 -2.54  2026 +4.57
+  stack_x2   n  1223 mean   +2.81 bp/d  t iid +1.27 NW +1.37 t +1.27  p5   -0.83 (iid -0.83 blk -0.41)  Sharpe(365) +0.69  vol 0.148  maxDD -0.166  worst -0.0672  CAGR +0.096
+             years: 2023 +2.37  2024 +8.83  2025 -3.17  2026 +3.93
+  s1         n  1223 mean   +5.60 bp/d  t iid +1.56 NW +1.49 t +1.49  p5   -0.30 (iid -0.27 blk -0.30)  Sharpe(365) +0.85  vol 0.239  maxDD -0.187  worst -0.0846  CAGR +0.192
+             years: 2023 +3.22  2024 +12.23  2025 +1.55  2026 +4.99
+  s2         n   784 mean   +1.35 bp/d  t iid +0.41 NW +0.55 t +0.41  p5   -4.13 (iid -4.13 blk -2.82)  Sharpe(365) +0.28  vol 0.176  maxDD -0.262  worst -0.0856  CAGR +0.034
+             years: 2023 +5.66  2024 +6.92  2025 -9.61  2026 +4.28
+  s1_scaled  n  1223 mean   +2.55 bp/d  t iid +1.62 NW +1.54 t +1.54  p5   -0.07 (iid -0.02 blk -0.07)  Sharpe(365) +0.89  vol 0.105  maxDD -0.088  worst -0.0372  CAGR +0.092
+             years: 2023 +1.53  2024 +5.48  2025 +0.67  2026 +2.47
+  s2_scaled  n  1223 mean   +1.10 bp/d  t iid +0.71 NW +0.95 t +0.71  p5   -1.49 (iid -1.49 blk -0.69)  Sharpe(365) +0.39  vol 0.104  maxDD -0.153  worst -0.0650  CAGR +0.035
+             years: 2023 +1.88  2024 +4.28  2025 -3.21  2026 +2.10
+  corr r1,r2 all days +0.002  on sessions +0.002; k1 0.42 k2 0.71; margin-cap days 0, max margin 0.55; crypto notional mean 0.18 max 0.52
+
+correlation (NQ session days, W):
+           S1     S2  stack    BTC  NQ_rth
+S1      1.000  0.001  0.636 -0.072  -0.091
+S2      0.001  1.000  0.755 -0.024   0.003
+stack   0.636  0.755  1.000 -0.064  -0.076
+BTC    -0.072 -0.024 -0.064  1.000   0.298
+NQ_rth -0.091  0.003 -0.076  0.298   1.000
+
+correlation (all calendar days, W; S2/NQ = 0 off-session):
+           S1     S2  stack    BTC  NQ_rth
+S1      1.000  0.001  0.705 -0.120  -0.077
+S2      0.001  1.000  0.693 -0.021   0.002
+stack   0.705  0.693  1.000 -0.100  -0.071
+BTC    -0.120 -0.021 -0.100  1.000   0.275
+NQ_rth -0.077  0.002 -0.071  0.275   1.000
