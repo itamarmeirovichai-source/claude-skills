@@ -78,3 +78,9 @@ routes are:
 
   Sharpe and volatility decide everything. The jump breaches the 5% daily limit.
 - **H0023, turn of the month on the S&P 500: FAIL.** Out-of-sample t is 1.56 and Sharpe 0.38. Buy-and-hold scaled to the same exposure did better (Sharpe 0.76): the effect has been gone since 2010.
+
+## Wave 4 (12 Oct)
+
+- **G1, volatility risk premium: STOP at the gate.** None of the safe-list firms offers a VIX or volatility product. The futures firms allow CME products only, VX trades on CFE, and every futures firm forces you flat each day. No variant was counted.
+- **G2, buy-the-dip across 10 FTMO index CFDs: FAIL.** The best out-of-sample result is Sharpe 0.24 and t 0.90. Every variant has a negative alpha against matched buy-and-hold (Sharpe 0.72). FTMO's long swap takes about half of what is left. Scaled to 15–20% volatility, the book breaks the 5% daily limit 16–43 times.
+- **What this means.** The free directions with a real published prior are now used up for a fully automatic bot on safe-list firms. What is left needs either a new data class (paid multi-asset 1m futures) or a firm structure outside the safe list.
