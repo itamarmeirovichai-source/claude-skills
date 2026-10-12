@@ -1,0 +1,8 @@
+F1-01 stack    Sharpe +0.41 (model 0.41) cap 12%: net $3,902/slot-yr  sig_e 0.12 sig_f 0.12  pass 0.50  fees $335/yr
+F1-01 stack    Sharpe +0.41 (model 0.41) cap 20%: net $8,025/slot-yr  sig_e 0.20 sig_f 0.20  pass 0.43  fees $960/yr
+F1-01 stack_x2 Sharpe -0.34 (model 0.00) cap 12%: net $1,919/slot-yr  sig_e 0.12 sig_f 0.12  pass 0.32  fees $424/yr
+F1-01 stack_x2 Sharpe -0.34 (model 0.00) cap 20%: net $5,017/slot-yr  sig_e 0.20 sig_f 0.20  pass 0.34  fees $1,097/yr
+F1-02 stack    Sharpe +0.42 (model 0.42) cap 12%: net $4,004/slot-yr  sig_e 0.12 sig_f 0.12  pass 0.50  fees $332/yr
+F1-02 stack    Sharpe +0.42 (model 0.42) cap 20%: net $8,159/slot-yr  sig_e 0.20 sig_f 0.20  pass 0.44  fees $944/yr
+F1-02 stack_x2 Sharpe -0.35 (model 0.00) cap 12%: net $1,919/slot-yr  sig_e 0.12 sig_f 0.12  pass 0.32  fees $424/yr
+F1-02 stack_x2 Sharpe -0.35 (model 0.00) cap 20%: net $5,017/slot-yr  sig_e 0.20 sig_f 0.20  pass 0.34  fees $1,097/yr
