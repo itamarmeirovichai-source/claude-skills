@@ -69,3 +69,12 @@ routes are:
 - **F1 failed.** The ensemble of near-misses reaches only Sharpe 0.41 at FTMO costs.
 - **F2 (stressed): the Sharpe needed for $20k per $100K at FTMO** is about 2.4 at 12% volatility, about 1.9 at 15% and about 1.5 at 20%. The Sharpe-0 lottery does not survive. Volatility of 15–20% is defensible under the contracts; 30% or more is not.
 - **The gap between what we have and what we need is still large.** The best real out-of-sample Sharpe we have measured since 2013 is about 0.4–0.8. The target needs at least 1.5.
+
+## Update 12 Oct, director's own checks after wave 3
+
+- **Skew does not rescue the prop structure.** Script: `agents/daily/w3-volrisk/skew_check.py`. It is a simplified FTMO 2-step model with 4,000 paths. At the same mean and volatility:
+  - negative skew (steady gains, one −6% day a year) pays **less** than symmetric returns: at S=0 and 12% volatility, $641 against $1,043 a year;
+  - positive skew pays about the same.
+
+  Sharpe and volatility decide everything. The jump breaches the 5% daily limit.
+- **H0023, turn of the month on the S&P 500: FAIL.** Out-of-sample t is 1.56 and Sharpe 0.38. Buy-and-hold scaled to the same exposure did better (Sharpe 0.76): the effect has been gone since 2010.
