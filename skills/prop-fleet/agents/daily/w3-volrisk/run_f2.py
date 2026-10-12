@@ -84,7 +84,7 @@ def main(ids):
         res = p.map(job, jobs, chunksize=1)
     for r in res:
         old.setdefault(r["sid"], {}).setdefault(r["firm"], {})[f"{r['S']:.2f}"] = r
-    OUT.write_text(json.dumps(old, indent=1))
+    OUT.write_text(json.dumps(old, separators=(",", ":")))
     # sequential runs reuse the sigma pair picked by their source scenario
     sj = []
     for sid in ids:
@@ -102,7 +102,7 @@ def main(ids):
         for r in res:
             old.setdefault(r["sid"], {}).setdefault(r["firm"], {})[
                 f"{r['S']:.2f}@{r['cap']:.2f}"] = r
-        OUT.write_text(json.dumps(old, indent=1))
+        OUT.write_text(json.dumps(old, separators=(",", ":")))
 
 
 if __name__ == "__main__":
