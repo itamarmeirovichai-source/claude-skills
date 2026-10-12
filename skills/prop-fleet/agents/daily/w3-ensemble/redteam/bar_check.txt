@@ -1,0 +1,10 @@
+5m vs 1m resampled bars on overlap: n=56412
+  o: median |diff| 0.000 pt, share exact 0.956
+  h: median |diff| 0.000 pt, share exact 0.956
+  l: median |diff| 0.000 pt, share exact 0.956
+  c: median |diff| 0.000 pt, share exact 0.956
+  vol ratio median 1.000
+  if 5m were close-labelled: open share exact 0.008
+  ('2023-03-01', '2023-03-10'): open share exact 1.000 n 624
+  ('2023-07-10', '2023-07-14'): open share exact 1.000 n 390
+  ('2025-11-03', '2025-11-07'): open share exact 1.000 n 390

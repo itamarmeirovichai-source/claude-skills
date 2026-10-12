@@ -1,0 +1,58 @@
+=== 0. reproduction of F1-01 from cached pieces
+F1-01 stack (head: +1.65, t 0.74)                          mean  +1.65 bp/d  t +0.74 (iid +0.74 NW +0.80)  p5  -1.98  Sh +0.41
+   max |r - head daily_F1-01.r| = 4.983508494760258e-09
+
+=== 1. timing / look-ahead diagnostics
+   k recomputed independently == head k: True
+   k one month staler                                      mean  +0.94 bp/d  t +0.43 (iid +0.43 NW +0.46)  p5  -2.64  Sh +0.24
+   k LOOK-AHEAD (through current month end, invalid)       mean  +1.27 bp/d  t +0.62 (iid +0.62 NW +0.66)  p5  -2.10  Sh +0.34
+   margin max 0.552; with US100 assumed on every calendar day: 0.555; cap days 0
+   corr(S1 day t+-1, S2 session t) = -0.018
+   corr(S1 day t+0, S2 session t) = +0.001
+   corr(S1 day t+1, S2 session t) = -0.038
+   splice: 1m sessions end 2025-11-21, 5m sessions start 2023-01-03; stack S2 days after splice 104
+   stack on 2023-01-01..2025-11-21 (1m only)               mean  +1.83 bp/d  t +0.75 (iid +0.75 NW +0.83)  p5  -2.18  Sh +0.44
+   stack on 2023-01-01..2025-11-21 (spliced; same)         mean  +1.83 bp/d  t +0.75 (iid +0.75 NW +0.83)  p5  -2.18  Sh +0.44
+   stack on 2025-11-22..2026-05-07 (5m part only)          mean  +0.49 bp/d  t +0.08 (iid +0.09 NW +0.08)  p5  -8.39  Sh +0.14
+   stack with S2 from 5m for all of W (data check, headline k) mean  +1.54 bp/d  t +0.71 (iid +0.71 NW +0.74)  p5  -2.03  Sh +0.39
+   stack mean weekdays +0.35 bp, weekends +4.89 bp
+
+=== 2. cost sensitivity (F1-01 positions and the headline k held fixed)
+   S1 unit book in W: gross +6.77 bp/d, turnover 0.102/d (BTC/ETH 0.016, alts 0.086), gross notional 0.419, BTC/ETH notional 0.080; mean k1 0.42
+   S2 units/session (1m, W) 5.87; 0.75 pt/unit = 2.50 bp/session; mean k2 0.71
+   headline FTMO (11.5 bp/side, swap 30%/365, US100 0.75)  mean  +1.65 bp/d  t +0.74 (iid +0.74 NW +0.80)  p5  -1.98  Sh +0.41
+   swap 30%/360 (MT5 interest-mode year)                   mean  +1.63 bp/d  t +0.73 (iid +0.73 NW +0.79)  p5  -2.00  Sh +0.40
+   swap 15%/yr (half)                                      mean  +2.38 bp/d  t +1.07 (iid +1.07 NW +1.15)  p5  -1.25  Sh +0.59
+   swap 0                                                  mean  +3.12 bp/d  t +1.40 (iid +1.40 NW +1.50)  p5  -0.53  Sh +0.77
+   half-spread 0 (commission only, 6.5 bp/side)            mean  +1.87 bp/d  t +0.84 (iid +0.84 NW +0.91)  p5  -1.77  Sh +0.46
+   half-spread 2.5 bp                                      mean  +1.76 bp/d  t +0.79 (iid +0.79 NW +0.85)  p5  -1.88  Sh +0.43
+   half-spread 10 bp                                       mean  +1.43 bp/d  t +0.65 (iid +0.65 NW +0.70)  p5  -2.20  Sh +0.35
+   half-spread BTC/ETH 3 bp, alts 15 bp                    mean  +1.30 bp/d  t +0.59 (iid +0.59 NW +0.63)  p5  -2.33  Sh +0.32
+   half-spread BTC/ETH 3 bp, alts 25 bp                    mean  +0.93 bp/d  t +0.42 (iid +0.42 NW +0.45)  p5  -2.70  Sh +0.23
+   US100 0.25 pt/side (0.5 pt round trip)                  mean  +2.36 bp/d  t +1.07 (iid +1.07 NW +1.15)  p5  -1.27  Sh +0.58
+   US100 0.375 pt/side (H0022 futures)                     mean  +2.19 bp/d  t +0.99 (iid +0.99 NW +1.06)  p5  -1.44  Sh +0.54
+   US100 0.5 pt/side                                       mean  +2.01 bp/d  t +0.91 (iid +0.91 NW +0.98)  p5  -1.63  Sh +0.50
+   US100 1.0 pt/side                                       mean  +1.29 bp/d  t +0.58 (iid +0.58 NW +0.63)  p5  -2.35  Sh +0.32
+   most favourable plausible: swap 0, 6.5 bp/side, US100 0.25 mean  +4.05 bp/d  t +1.83 (iid +1.83 NW +1.95)  p5  +0.41  Sh +1.00
+   ZERO cost everywhere (gross)                            mean  +4.69 bp/d  t +2.12 (iid +2.12 NW +2.25)  p5  +1.06  Sh +1.16
+   swap timing (30%/360 per night, 11.5 bp/side, US100 0.75):
+     x3 on Wed, weekends charged (9 nights/wk)             mean  +1.20 bp/d  t +0.54 (iid +0.54 NW +0.59)  p5  -2.44  Sh +0.30
+     x3 on Fri, weekends NOT charged (FX-style, 7/wk)      mean  +1.64 bp/d  t +0.74 (iid +0.74 NW +0.80)  p5  -1.99  Sh +0.40
+   ZERO cost with k re-estimated on gross series           mean  +4.71 bp/d  t +2.12 (iid +2.12 NW +2.26)  p5  +1.06  Sh +1.16
+
+=== 4. ex-post fixed weight diagnostic (NOT a variant): stack = a*k1*r1 + (1-a)*k2*r2 rescaled x2
+   best a = 0.64: t +0.78, mean +1.79, Sharpe +0.42
+   a = 0.0                                                 mean  +1.13 bp/d  t +0.36 (iid +0.36 NW +0.48)  p5  -4.07  Sh +0.20
+   a = 0.5                                                 mean  +1.65 bp/d  t +0.74 (iid +0.74 NW +0.80)  p5  -1.98  Sh +0.41
+   a = 1.0                                                 mean  +2.17 bp/d  t +0.66 (iid +0.69 NW +0.66)  p5  -3.04  Sh +0.38
+   raw sleeves, best constant mix a*r1+(1-a)*r2: a=0.85 t +0.58
+   ex-post best weight at F1-03 costs (venue): t +1.76 at a=0.64
+   ex-post best weight at zero cost: t +2.20 at a=0.61
+
+=== 5. statistics checks
+   iid t +0.7438; NW10 t (independent) +0.8019; head +0.7438/+0.8019
+   statsmodels not available (ModuleNotFoundError)
+   analytic iid p5 = mean - 1.645 se = -2.00 bp (head iid boot -1.98)
+   s2 standalone Sharpe: head sqrt365 +0.034 vs sqrt(sessions/yr 234) +0.027
+   realised vol on calendar days: k1*r1 0.105, k2*r2 0.104 (target 0.10 each)
+   mean needed for t=3.5745 at the stack's sd: +7.92 bp/d (= Sharpe 1.95); observed +1.65
