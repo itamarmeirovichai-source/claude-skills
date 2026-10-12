@@ -67,3 +67,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #4.
 **Self red-team:** "95 ads" includes long-running DCO; the strongest real signal is 15 cards running 60+ days on near-identical stills. Never mention counts or the MTO status in a message.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **Re-verified live 2026-10-12** (~04:55 UTC, before the 9 am PT go-live): Pegasus and Swan Dream pendant necklaces 8/8, $1,040, page 200; Ad Library 95 active, 7 of 30 cards video, 13 running 60+ d. **The 12 Oct launch is The Keepsake Jewelry Box** ($420, brown velvet, two levels, `Final Sale`, `hide` before launch, "Limited quantities available") [m feed + page; the match to the IG teaser line is inf]. Q-10 stays on the Pegasus pendant (SEND_QUEUE §9). After a "yes", the box is a candidate second film.

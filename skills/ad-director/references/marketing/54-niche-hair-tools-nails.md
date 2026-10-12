@@ -410,7 +410,7 @@ Cut rate = (detected cuts + 1) ÷ duration. Scene detection at 0.3 **misses jump
 | D13 | Conversion and repeat (nails) | Static: ≈7 % online conversion, **57 % of purchases repeat** [c] | [Glossy](https://www.glossy.co/beauty/how-static-nails-hopes-to-carve-out-a-niche-in-the-9-billion-nail-market) | [c] dated |
 | D14 | TikTok Shop | Haircare +118 % YoY; Wavytalk $15M/quarter; tools declined over BFCM 2025 | §1.1 | [v] |
 | D15 | Category funnel (all H&B) | Best CTR (2.36 %) but ROAS 1.82 vs 2.17 cross-industry | Billo via doc 47 §2 | [v] |
-| D16 | AI trust | 52 % of women "not OK" with AI models; 31 % trust less on noticing AI | Doc 47 §2 | [v] |
+| D16 | AI trust | 52 % of women "not OK" with AI models; 32 % trust a brand less for AI-generated marketing content, 61 % neutral (Klaviyo 2026 AI Consumer Trends, verified 2026-10-12) | Doc 47 §2 | [c] |
 | D17 | Before/after policy | Meta exempts "cosmetics, hair extensions… hair products" from the side-by-side ban if no negative self-perception; hair *loss* products are treated more strictly | [Meta Health & Wellness](https://transparency.meta.com/policies/ad-standards/restricted-goods-services/health-wellness); [AuditSocials](https://www.auditsocials.com/blog/hair-loss-ads-2026-platform-line-meta-tiktok-google-pinterest-finasteride-minoxidil-prescription-policy) [v] | P + [v] |
 
 ### 3.1 What this means, by sub-niche [inf]

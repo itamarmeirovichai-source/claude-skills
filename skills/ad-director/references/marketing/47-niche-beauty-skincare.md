@@ -92,7 +92,7 @@ Account medians (views, last ~100–120 posts) [m]: CeraVe 20.3K · The Ordinary
 | TikTok Shop conversion | Beauty converts 4.2–6.8 %; DTC beauty median CPA $12.80 on TikTok | [Webtonic](https://www.webtonic.io/blog/beauty-skincare-tiktok-ads-statistics) | [v] [unverified] |
 | Creator vs brand on TikTok | Rare Beauty: 98 % of TikTok ad conversions from creator content; 16 % longer watch time | [Dash Social](https://www.dashsocial.com/case-study/rare-beauty-tiktok-marketing-case-study) | [v] |
 | AI trust | 52 % of women and 41 % of men "not OK" with AI-generated models | Attest 2025 via [eMarketer](https://www.emarketer.com/content/many-us-adults-avoid-distrust-brands-that-use-ai-ads) | [v] |
-| AI trust | When consumers notice AI content, 31 % trust the brand less vs 7 % more | Klaviyo/Datalily Dec 2025 (search summary) | [v] [unverified] |
+| AI trust | 32 % say AI-generated marketing content makes them trust a brand less; 61 % are neutral (eMarketer's write-up of the same Dec 2025 survey: 31 % less vs 7 % more, n = 8,000 in 8 countries) | Klaviyo "2026 AI Consumer Trends Report", klaviyo.com/solutions/ai/consumer-trust-in-ai (read 2026-10-12); emarketer.com "Visible AI in marketing is four times more likely to cost brands trust" | [c] (verified 2026-10-12; the vendor's own survey) |
 | Video on PDP | Video watchers convert +125 % median; Dr. Dennis Gross on-site video 8.2 % conversion | Whatmore / Videowise via Webtonic | [v] |
 | Paid-scaled lengths | 4–26 s, median 11 s; 4 of 9 under 8 s | This study, 9 ads | [m], small n |
 
@@ -186,7 +186,7 @@ From the FDA labeling rule (2011 final rule, as summarised by [AAD](https://www.
 At these prices VXO is a **test budget, not a campaign budget**. The Short ($1,200) sits inside one launch's ad-creative line; the Season ($3,500/mo) competes with a UGC retainer (5 creators × 2–3 briefs per cycle per Billo) [inf].
 
 ### 5.2 What they fear (in their order of pain) [inf, grounded in §2–4]
-1. **"It will look AI and the comments will say so."** The Guess backlash; 52 % of women object to AI models; 31 % trust less on noticing AI.
+1. **"It will look AI and the comments will say so."** The Guess backlash; 52 % of women object to AI models; 32 % trust a brand less for AI-generated marketing content, and 61 % are neutral (Klaviyo 2026 report [c]).
 2. **"It won't convert."** Beauty already has the best CTR and a below-average ROAS; they've seen pretty films die post-click.
 3. **"Wrong shade or wrong label."** One off-colour swatch generates returns and angry comments.
 4. **Claims trouble:** FDA, NAD, TikTok rejection, retailer pushback.

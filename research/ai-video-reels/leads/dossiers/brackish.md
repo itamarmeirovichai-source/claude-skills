@@ -70,3 +70,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #2.
 **Self red-team:** "Saks and Neiman" is from older press; don't mention it. The Slim ties were *created* in March; only the publish date (10/1) is a launch, and only "new Slim Collection" (visible on site and in ads) may appear in a message.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **2026-10-12 founder check:** the brand's own "We Are Brackish" post (brackish.com/blogs/news/we-are-brackish) names Ben Ross as the maker of the first feather bow tie and Jeff Plotner as the groomsman who turned it into the business. It says "nearly fourteen years ago", which puts it at about 2026 since they started in 2012 [m]. Current titles: still only Plotner as "CEO" in the undated Palmetto Bluff piece. "Hi Ben and Jeff" holds.

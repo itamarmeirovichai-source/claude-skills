@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15).** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -78,7 +78,7 @@ Limits: ≤10 new DMs and ≤10 new emails a day, spaced 15 min apart, 8–10 am
 
 | Day | Touch | Leads, in order (recipient time [ET]) |
 |---|---|---|
-| **Tue 13 Oct** | DM ×10 | Q-1 LAKE 8:05 ET? [8:05] · Q-2 Printfresh 8:20 ET [8:20] · Q-5 Little Beast 8:35 ET [8:35] · Q-8 Brackish 8:50 ET [8:50] · Q-9 Cuddle Clones 9:05 ET [9:05] · Q-7 Dana Rebecca 8:20 CT [9:20] · Q-3 Dandelion 8:05 PT [11:05] · Q-4 Foggy Dog 8:20 PT [11:20] · Q-6 Sunday Citizen 8:35 PT? [11:35] · Q-10 Kinn 8:50 PT? [11:50] |
+| **Tue 13 Oct** | DM ×10 | Q-1 LAKE 8:05 ET? [8:05] · Q-2 Printfresh 8:20 ET [8:20] · Q-5 Little Beast 8:35 ET [8:35] · Q-8 Brackish 8:50 ET [8:50] · Q-9 Cuddle Clones 9:05 ET [9:05] · Q-7 Dana Rebecca 8:20 CT [9:20] · Q-6 Sunday Citizen 9:35 ET [9:35] (moved 2026-10-12: Miami HQ, was 8:35 PT?) · Q-3 Dandelion 8:05 PT [11:05] · Q-4 Foggy Dog 8:20 PT [11:20] · Q-10 Kinn 8:50 PT [11:50] (LA, verified) · LAKE confirmed ET (founded Savannah, GA; East Coast stores, About page 2026-10-12) |
 | **Wed 14 Oct** | email ×10 (wave A) | the same 10, same local times, in the same order |
 | **Wed 14 Oct** | DM ×9 (wave B) | Q-12 Hawkins 9:15 ET [9:15] · Q-16 STONE AND STRAND 9:30 ET [9:30] · Q-19 Alexis Bittar 9:45 ET [9:45] · Q-11 KREWE 8:55 CT [9:55] · Q-18 Vosges 9:10 CT [10:10] · Q-15 Saranoni 8:25 MT [10:25] · Q-13 Legendary 8:40 PT? [11:40] · Q-14 Equator 8:55 PT [11:55] · Q-17 THATCH 9:10 PT? [12:10] |
 | **Thu 15 Oct** | email ×9 (wave B) | the same 9, same local times |
@@ -600,3 +600,28 @@ Tool: `products_check.py` (public `/products.json` + the product page). Ad Libra
 **Instagram handles (from the brands' own homepage links, 2026-10-11):** LAKE @lakepajamas ✅ · Printfresh @printfresh ✅ (founder @amyvoloshin also linked; bio "Founder @printfresh") · Dandelion @dandelionchocolate ✅ (contact page) · Foggy @thefoggydog ✅ · Little Beast @littlebeast.co ✅ · Sunday Citizen **@sunday.citizen** (fixed) · Dana Rebecca @danarebecca ✅ · Brackish @brackish ✅ · Cuddle Clones @cuddleclones (no link on the site; the public profile is "Cuddle Clones", 583K followers, posts their own products) · Kinn @kinnstudio ✅. Wave B: Hawkins @hawkinsnewyork ✅, Saranoni **@saranoniblanket** (fixed), Alexis Bittar still ⚠.
 
 Warm-up comments for Sun/Mon (by hand, no pitch, no link): `WARMUP_2026-10-11.md`.
+
+## 9. Re-check of Tuesday's 10 (Q-1..Q-10), 2026-10-12 (Mon, ~04:50–05:30 UTC)
+Tools: `products_check.py` (fixed today: an exact `hide` / `pre-launch` tag now flags HIDDEN) and `ad_library.py page` on Foggy (probe) and Kinn. Nothing sent; $0. Pack for the owner's phone: `SEND_PACK_2026-10-13.md`.
+
+| # | Live 2026-10-12 | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour Pullover Jogger Pants Set, Oat Heather 5/5 $268; Oat Heather pima sets 7/7, full price | ✅ holds |
+| Q-2 Printfresh | "Holiday Hens - Pet Bandana - Pale Blue" 2/2 $28 (compare-at = price) and Winter Holly Bagheera pet bandana 2/2 $28. The tool's title query "holiday hens pet bandana" returned 0 only because the title has dashes; checked by handle, page 200. Hens apparel full price (PJ sets 11/11 $168) | ✅ holds |
+| Q-3 Dandelion | 70 % Three-Bar Gift Set 1/1 $42; Maya Mountain 70 % 1/1 $13. (The 85 % gift set is OOS, not named) | ✅ holds |
+| Q-4 Foggy Dog | Gingerbread Man bow tie collar 8/8 $52 (compare-at $58, the standing promo since 10/09); walk set 6/6 $102 / $124 | ⚠ holds (no price named) |
+| Q-5 Little Beast | PBJ Onesie and OG Onesie 7/7 $48 full price | ✅ holds |
+| Q-6 Sunday Citizen | Ciel Love Seat 2/2 $1,800; Snug Bed Blanket 16/24; Snug Casablanca Bed Blanket 5/6 | ✅ holds. **Time fixed: 9:35 ET** (Miami HQ; 8:35 PT was 11:35 their time) |
+| Q-7 Dana Rebecca | Ava Bea Interval bracelet 3/3 $2,795; October birthstone studs 1/1 full price | ✅ holds |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | ✅ holds |
+| Q-9 Cuddle Clones | Custom Pet Face Wrapping Paper 3/3 $29; pajamas at the standing offer (kids $29.25 vs $89) | ⚠ holds (no price named) |
+| Q-10 Kinn | Pegasus and Swan Dream pendant necklaces 8/8 $1,040; Ad Library 95 active, 7 of 30 cards video (filter read 0, a partial load), 8 started ≤30 d, 13 running 60+ d | ✅ holds; **no switch** (below) |
+
+**Kinn's 12 Oct launch: read, and Q-10 does NOT switch.** The launch product is **The Keepsake Jewelry Box** [m, public feed + product page, read 2026-10-12 ~04:55 UTC, i.e. Sun 21:55 PT, before the 9 am PT go-live]. The IG teaser read "A place for the things that become a part of us… limited run"; the product copy opens "A place for everything worth keeping" [inf: same product]. Brown velvet, two levels, gold-embossed monogram, 19.75 × 6.5 × 3.5 in, $420, 1 variant. Tags: `Final Sale`, `hide`, `new arrivals`, `no discount`, `RTS`. Copy: "This item is final sale… Limited quantities available." Why we keep the Pegasus "Night Light" DM:
+1. LESSONS 2026-10-10: a Final Sale tag swaps a product **out** of a message, never in. A limited run may also sell out before Tue 8:50 PT, and the DM would then point at a dead page.
+2. It was still hidden (`hide`) at read time, and we never name unreleased products.
+3. A box is not the hero. The Dream pendants ($1,040, 8/8) are, and "Night Light" has a product-caused punchline, while a storage box has no physics gag that only it can cause.
+4. The owner's Sunday warm-up comment (if he left it) already reacts to the teaser line, so the DM doesn't need to mention it.
+If Kinn replies "yes", the box can be a **second film** in the Season path ("a place for the things that become a part of us": a pendant, a signet and a coin pendant settling into its trays over the years). Raise it only after a yes.
+
+**Tool fix:** `products_check.py` didn't flag the box as HIDDEN, because the `hide` tag isn't a substring of any listed word. Exact tags `hide` / `hide-product` / `hidden-product` / `pre-launch` now flag HIDDEN (matched whole, so "rawhide" doesn't). Retested: Kinn box → HIDDEN, FINAL; Dandelion `hidden` → HIDDEN; Pegasus → OK.

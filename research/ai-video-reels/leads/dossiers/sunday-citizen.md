@@ -72,3 +72,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-3.
 
 - **Re-verified live 2026-10-11** (`products_check.py`): Ciel Love Seat 2/2 $1,800, Snug Bed Blanket 16/24, Snug Casablanca 5/6, all full price. New public signal: a UK launch post on 10/10 ("now in the UK").
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **2026-10-12:** the send time moved to **9:35 ET** (Miami HQ; the queue had 8:35 PT?). The brand's own About page is written in the first person by "a luxury hotelier" who made the blanket for their hotel, and it names no one [m]. Two searches found no 2026 source for Mike Abadi or Michelle Familier, so the 2022 roles stand **[unverified 2026]**. The DM goes to the brand handle and the email already asks "could you pass this on", so nothing changes.

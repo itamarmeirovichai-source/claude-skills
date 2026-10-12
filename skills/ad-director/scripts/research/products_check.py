@@ -16,7 +16,8 @@ Each query is a case-insensitive substring of the product title (or an exact han
 Exit code 0 = every query has at least one clean match; 1 = something needs a human look.
 
 Flags reported (any one makes the product unfit to name in a message):
-  HIDDEN    tag contains redirect / hidden / 404 / unlisted / exclude-search / exclude-product
+  HIDDEN    tag contains redirect / hidden / 404 / unlisted / exclude-search / exclude-product,
+            or a tag is exactly hide / pre-launch
   FINAL     tag or title says final sale / final farewell / last chance / archive
   MARKDOWN  compare_at_price above price on any available variant (a sale, not full price)
   OOS       no variant available
@@ -33,6 +34,7 @@ import urllib.request
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
 HIDDEN_WORDS = ("redirect", "hidden", "404", "unlisted", "do-not-show", "noindex",
                 "exclude-search", "exclude_search", "search-exclude", "exclude-product")
+EXACT_HIDE_TAGS = ("hide", "hide-product", "hide_product", "hidden-product", "pre-launch", "prelaunch")
 # App tags such as exclude_rebuy / exclude-set only steer upsell widgets; they are listed, not flagged.
 INFO_WORDS = ("exclude",)
 FINAL_WORDS = ("final sale", "final-sale", "finalsale", "final farewell", "final-farewell",
@@ -81,7 +83,9 @@ def assess(domain, p):
     # brand itself tags "searchable" is public, so neither flags on an exclude-* word (2026-10-11).
     strong = [w for w in HIDDEN_WORDS if not w.startswith("exclude")]
     weak = [w for w in HIDDEN_WORDS if w.startswith("exclude")]
-    if any(w in t for t in tags for w in strong) or (
+    # Exact short tags ("hide", "hidden-product") are matched whole: "hide" as a substring would hit
+    # "rawhide" or "hideaway" (added 2026-10-12: Kinn's pre-launch box was tagged "hide" and slipped).
+    if any(t in EXACT_HIDE_TAGS for t in tags) or any(w in t for t in tags for w in strong) or (
             "searchable" not in tags and any(w in t for t in tags if "rebuy" not in t for w in weak)):
         flags.append("HIDDEN")
     if any(w in t for t in tags + [title.lower()] for w in FINAL_WORDS):
@@ -105,7 +109,8 @@ def assess(domain, p):
         "price": prices[0] if prices else None, "price_max": prices[-1] if prices else None,
         "compare_at": max((float(v["compare_at_price"]) for v in marked), default=None),
         "page": status, "flags": flags,
-        "flag_tags": [t for t in tags if any(w in t for w in HIDDEN_WORDS + FINAL_WORDS + INFO_WORDS)],
+        "flag_tags": [t for t in tags if t in EXACT_HIDE_TAGS or
+                      any(w in t for w in HIDDEN_WORDS + FINAL_WORDS + INFO_WORDS)],
     }
 
 

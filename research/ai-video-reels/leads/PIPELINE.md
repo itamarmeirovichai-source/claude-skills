@@ -9,17 +9,17 @@ Scores re-verified live on 2026-10-09 (Meta Ad Library in headless Chromium, Sho
 - AUrate New York · 78 (was 73) · 2026-10-09 · found, verified · send #3 (doc 63 §4.4). Generic inbox only (hello@ is in page metadata, care@ is in the footer); the hero piece is "Final Sale" in a 40 %-off event
 - Fishwife · 57 (was 83) · 2026-10-09 · **hold (WARM)** · the Advent Calendar, Gift Pack and ornament are unreleased (`redirect-to-404`, "Page not found") and ~55 % of live ads are video. Re-check when the calendar goes public (trigger in `dossiers/fishwife.md`); never mention the hidden products before then
 
-### Send queue, lead-desk edit 2026-10-09 (Q-1..Q-10 re-verified live 2026-10-10 and 2026-10-11, SEND_QUEUE §7–§8; warm-up comments in `WARMUP_2026-10-11.md`; next re-check Tue 13 Oct 7–8 am ET) (`SEND_QUEUE.md`; nothing sent; every touch needs the owner's "send #Q-N", and only after the site is live)
-- LAKE Pajamas · 89 · 2026-10-09 · queued · Q-1: DM Tue 13 Oct ~8:05 ET?, email Wed 14 (@lakepajamas verified 10/11)
+### Send queue, lead-desk edit 2026-10-09 (Q-1..Q-10 re-verified live 2026-10-10, 10-11 and 10-12, SEND_QUEUE §7–§9; phone pack `SEND_PACK_2026-10-13.md` (send only on the owner's approval); warm-up comments in `WARMUP_2026-10-11.md`; next re-check Tue 13 Oct 7–8 am ET) (`SEND_QUEUE.md`; nothing sent; every touch needs the owner's "send #Q-N", and only after the site is live)
+- LAKE Pajamas · 89 · 2026-10-09 · queued · Q-1: DM Tue 13 Oct 8:05 ET (Savannah GA, verified 10/12), email Wed 14 (@lakepajamas verified 10/11)
 - Printfresh · 89 · 2026-10-09 · queued · Q-2: DM Tue 13 Oct 8:20 ET, email Wed 14 (@printfresh verified 10/11, founder @amyvoloshin; never the licensed prints)
 - Dandelion Chocolate · 88 · 2026-10-09 · queued · Q-3: DM Tue 13 Oct 8:05 PT, email Wed 14
 - The Foggy Dog · 85 · 2026-10-09 · queued · Q-4: DM Tue 13 Oct 8:20 PT, email Wed 14 (doc 63 §4.1 copy; supersedes "send #1" above)
 - Little Beast · 84 · 2026-10-09 · queued · Q-5: DM Tue 13 Oct 8:35 ET, email Wed 14 (2026-10-10: Miami Vice onesie went on sale, CTA swapped to the OG onesie)
-- Sunday Citizen · 84 · 2026-10-09 · queued · Q-6: DM Tue 13 Oct 8:35 PT?, email Wed 14 (handle corrected 10/11 to @sunday.citizen)
+- Sunday Citizen · 84 · 2026-10-09 · queued · Q-6: DM Tue 13 Oct 9:35 ET (fixed 10/12: Miami HQ, was 8:35 PT?), email Wed 14 (handle corrected 10/11 to @sunday.citizen)
 - Dana Rebecca Designs · 81 · 2026-10-09 · queued · Q-7: DM Tue 13 Oct 8:20 CT, email Wed 14 (Taylor Elaine collar is "Final Farewell": never offer it)
 - Brackish · 81 · 2026-10-09 · queued · Q-8: DM Tue 13 Oct 8:50 ET, email Wed 14
 - Cuddle Clones · 81 · 2026-10-09 · queued · Q-9: DM Tue 13 Oct 9:05 ET, email Wed 14 (no memorial products)
-- Kinn · 81 · 2026-10-09 · queued · Q-10: DM Tue 13 Oct 8:50 PT?, email Wed 14 (Kinn launches a new limited-run product Mon 12 Oct 9 am PT: re-read before the DM)
+- Kinn · 81 · 2026-10-09 · queued · Q-10: DM Tue 13 Oct 8:50 PT, email Wed 14 (launch read 10/12: The Keepsake Jewelry Box, Final Sale + limited run + `hide` before go-live, so the DM stays on the Pegasus pendant; SEND_QUEUE §9)
 - KREWE · 81 · 2026-10-09 · queued · Q-11: DM Wed 14 Oct 8:55 CT, email Thu 15 (sunglasses only; never the sale or blue light)
 - Hawkins New York · 81 · 2026-10-09 · queued · Q-12: DM Wed 14 Oct 9:15 ET, email Thu 15 (@hawkinsnewyork verified 10/11)
 - Legendary Foods · 76 · 2026-10-09 · queued · Q-13: DM Wed 14 Oct 8:40 PT?, email Thu 15 (support inbox only)

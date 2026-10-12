@@ -102,3 +102,4 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 **Red team:** video share is higher than our ideal (40 % of top cards), so the "creative need" case rests on the pajama/paper line having no story film; the memorial side is emotionally sensitive and stays out of every pitch; the founder's current role is unconfirmed.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **2026-10-12 founder check:** the brand's own About page (live) still tells "our founder… her Great Dane" story, and its blog names **Jennifer Williams** as the founder with co-founder Adam Greene [m, cuddleclones.com/pages/about-us and /blogs/all/jennifer-meets-an-unexpected-kindred-spirit]. No 2025–26 source gives her current title, so it stays [unverified]. "Hi Jennifer" holds; the email already asks the team to pass it on.
