@@ -43,6 +43,20 @@ Stress switches (all optional):
               first trigger sets the split to cut_split for the rest of that
               account's life, trigger number `breach_on` breaches.
 
+Added after the model red team (post-hoc rows F2-12.., all off by default):
+
+  daily_t     the DAY's move is exactly Student-t(df) (a per-day variance
+              mixture v = (df-2)/chi2(df)) and the intraday path is Brownian
+              given v. Without it each day is a sum of `sub` t shocks, which
+              is close to Gaussian when sub is large (red-team finding 4).
+  payout_ref_fix  after a payout, the day's loss reference is recomputed from
+              the post-payout balance/equity under dll_ref (finding 6).
+  open_stop   bot stop on the funded account: when equity - closed balance
+              <= -open_stop * start, the bot closes everything for the day
+              (set below a shield so the shield is not reached by diffusion).
+  cost_S      Sharpe lost to trading costs of a variant (e.g. realising all
+              open P&L every day): the drift uses S - cost_S.
+
 All money is in $, time in trading days (252 a year).
 """
 import sys
@@ -54,7 +68,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "w1-prop"))
 from prop_model import HORIZON, SIGMAS, SUB, TAX, TD, _Account  # noqa: E402
 
 BASE_STRESS = dict(df=5, sub=SUB, gap_frac=0.0, weekend_var=0.0, garch=None,
-                   kill=None, dll_ref="equity", real_rate=None, shield=None)
+                   kill=None, dll_ref="equity", real_rate=None, shield=None,
+                   daily_t=False, payout_ref_fix=False, open_stop=None, cost_S=0.0)
 
 
 def cfg(stress=None):
@@ -82,13 +97,23 @@ class Market:
         self.gaps = g > 0 or w > 0
         self.k = 5.0 / (5.0 + w) if self.gaps else 1.0
 
+    def _z(self):
+        if self.C["daily_t"]:
+            return self.rng.standard_normal(self.shape, dtype=np.float32)
+        return _t(self.rng, self.shape, self.C["df"], self.tdist)
+
     def day(self, d):
         C, sub = self.C, self.C["sub"]
         vol = self.sd if self.h is None else self.sd * np.sqrt(self.h)
+        mix = None
+        if C["daily_t"]:
+            df = C["df"]
+            mix = np.sqrt((df - 2) / self.rng.chisquare(df, self.shape)).astype(np.float32)
+            vol = vol * mix
         incs = []
         if self.gaps:
             jv = self.k * (C["gap_frac"] + (C["weekend_var"] if d % 5 == 0 else 0.0))
-            jump = vol * np.float32(np.sqrt(jv)) * _t(self.rng, self.shape, C["df"], self.tdist) \
+            jump = vol * np.float32(np.sqrt(jv)) * self._z() \
                 if jv > 0 else np.zeros(self.shape, np.float32)
             dv = self.k * (1.0 - C["gap_frac"])
         else:
@@ -96,7 +121,8 @@ class Market:
         # written exactly as D1 (same dtype promotion) so stress=None matches it
         dsd = vol / np.sqrt(sub) if dv == 1.0 else vol * np.sqrt(dv) / np.sqrt(sub)
         for _ in range(sub):
-            incs.append(self.mu / sub + dsd * _t(self.rng, self.shape, C["df"], self.tdist))
+            incs.append(self.mu / sub + dsd * (self._z() if mix is not None else
+                                               _t(self.rng, self.shape, C["df"], self.tdist)))
         if jump is not None:
             incs[0] = incs[0] + jump        # the open: gap lands before any check
         if self.h is not None:
@@ -116,6 +142,7 @@ class Account(_Account):
         self.shield_hits = np.zeros(shape, int)
         sh = C["shield"]
         self.shield = sh if (sh and F.get("_funded")) else None
+        self.open_stop = C["open_stop"] if F.get("_funded") else None
 
     def reset(self, mask):
         super().reset(mask)
@@ -150,6 +177,10 @@ class Account(_Account):
             self.shield_hits += trig
             dead |= trig & (self.shield_hits >= self.shield["breach_on"])
             self._flatten(trig)
+        if self.open_stop is not None:          # after the shield: a jump past both
+            os_ = live & ~dead & ~self.halted & \
+                (self.bal - self.closed <= -self.open_stop * self.start)
+            self._flatten(os_)
         return dead
 
     def end_day(self):
@@ -165,16 +196,19 @@ class Account(_Account):
             self.closed[:] = self.bal
         else:
             self.closed += np.float32(C["real_rate"]) * (self.bal - self.closed)
-        ref = C["dll_ref"]
-        if ref == "equity":
-            self.day0[:] = self.bal
-        elif ref == "balance":
-            self.day0[:] = self.closed
-        elif ref == "max":
-            self.day0[:] = np.maximum(self.bal, self.closed)
-        else:
-            raise ValueError(ref)
+        self.day0[:] = self.ref()
         self.halted[:] = False
+
+    def ref(self):
+        """Daily-loss reference under dll_ref from the current bal/closed."""
+        ref = self.C["dll_ref"]
+        if ref == "equity":
+            return self.bal
+        if ref == "balance":
+            return self.closed
+        if ref == "max":
+            return np.maximum(self.bal, self.closed)
+        raise ValueError(ref)
 
 
 def eval_sim(F, S, sigmas=SIGMAS, n=3000, seed=11, tdist=True, stress=None):
@@ -188,7 +222,7 @@ def eval_sim(F, S, sigmas=SIGMAS, n=3000, seed=11, tdist=True, stress=None):
     k = len(sigmas); shape = (k, n)
     rng = np.random.default_rng(seed)
     sd = (sigmas / np.sqrt(TD)).astype(np.float32)[:, None] * st
-    mu = (S * sigmas / TD).astype(np.float32)[:, None] * st
+    mu = ((S - C["cost_S"]) * sigmas / TD).astype(np.float32)[:, None] * st
     mkt = Market(C, mu, sd, shape, rng, tdist)
     acc = Account(F, shape, st, C)
     live = np.ones(shape, bool); passed = np.zeros(shape, bool)
@@ -238,7 +272,7 @@ def funded_sim(F, S, sigmas=SIGMAS, n=3000, seed=12, tdist=True, horizon=HORIZON
     st = G["start"]; k = len(sigmas); shape = (k, n)
     rng = np.random.default_rng(seed)
     sd = (sigmas / np.sqrt(TD)).astype(np.float32)[:, None] * st
-    mu = (S * sigmas / TD).astype(np.float32)[:, None] * st
+    mu = ((S - C["cost_S"]) * sigmas / TD).astype(np.float32)[:, None] * st
     mkt = Market(C, mu, sd, shape, rng, tdist)
     acc = Account(G, shape, st, C)
     live = np.ones(shape, bool); life = np.zeros(shape, int)
@@ -280,6 +314,8 @@ def funded_sim(F, S, sigmas=SIGMAS, n=3000, seed=12, tdist=True, horizon=HORIZON
                 acc.bal -= w
                 acc.closed -= w
                 acc.day0 -= w
+                if C["payout_ref_fix"]:
+                    acc.day0 = np.where(ok, acc.ref(), acc.day0).astype(np.float32)
                 sp = split if cut is None else np.where(acc.shield_hits > 0, cut, split)
                 full = np.clip(full_until - gross, 0, None)
                 trader = np.minimum(w, full) + sp * np.maximum(w - full, 0)

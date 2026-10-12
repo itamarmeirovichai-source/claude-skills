@@ -174,3 +174,50 @@ def test_day_profit_cap_cuts_excess():
     b = _acc(dict(BASE, day_cap=3_000.))
     b.step(np.array([-5_000.], np.float32), np.array([True])); b.end_day()
     assert float(b.bal[0]) == 95_000.                      # losses are not capped
+
+
+# ------------------------------------------- post-hoc switches (F2-12..)
+def test_daily_t_keeps_fat_daily_tails_at_any_substep_count():
+    def kurt(x):
+        x = x.ravel(); return ((x - x.mean()) ** 4).mean() / x.var() ** 2
+    old = _days(dict(df=5, sub=24), days=2000, n=300)
+    new = _days(dict(df=5, sub=24, daily_t=True), days=2000, n=300)
+    assert abs(new.var() - 1) < 0.05
+    assert kurt(old) < 3.5                                 # 24 t5 shocks: ~Gaussian
+    assert kurt(new) > 6                                   # a t5 day: kurtosis 9
+
+
+def test_payout_ref_fix_uses_post_payout_balance():
+    G = dict(BASE, funded=dict(split=1.0, first_wait=1, cycle=1, max_payouts=1))
+    st = dict(dll_ref="balance", real_rate=0.0, payout_ref_fix=True)
+    C = M.cfg(st)
+    a = M.Account(dict(G, _funded=True), (1,), 100_000., C)
+    a.step(np.array([6_000.], np.float32), np.array([True])); a.end_day()
+    assert float(a.day0[0]) == 100_000.                    # nothing realised yet
+    f = M.funded_sim(G, 1000, SIG, n=20, horizon=3, stress=st)
+    assert f["n_pay"][0] == 1 and f["breach"][0] == 0
+
+
+def test_open_stop_flattens_before_the_shield():
+    G = dict(BASE, _funded=True, dll=0.10)
+    a = _acc(G, shield=SHIELD, real_rate=0.0, open_stop=0.016)
+    d = a.step(np.array([-1_700.], np.float32), np.array([True]))
+    assert not d[0] and a.halted[0] and a.shield_hits[0] == 0
+    b = _acc(G, shield=SHIELD, real_rate=0.0, open_stop=0.016)   # a jump past both
+    b.step(np.array([-2_500.], np.float32), np.array([True]))
+    assert b.shield_hits[0] == 1
+
+
+def test_cost_s_lowers_drift():
+    a = M.funded_sim(BASE, 2.0, np.array([0.2]), n=300, horizon=60)
+    b = M.funded_sim(BASE, 2.0, np.array([0.2]), n=300, horizon=60, stress=dict(cost_S=2.0))
+    assert b["pay"][0] < a["pay"][0]
+
+
+def test_new_switches_off_still_match_d1():
+    F = FIRMS["CFT 2-Phase 100K"]
+    sig = np.array([0.15])
+    a = D1.economics(F, 1.5, n=100, sigmas=sig)
+    b = M.economics(F, 1.5, n=100, sigmas=sig,
+                    stress=dict(daily_t=False, payout_ref_fix=False, cost_S=0.0))
+    assert a["net_yr"] == b["net_yr"]

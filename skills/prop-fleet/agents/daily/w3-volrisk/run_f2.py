@@ -27,8 +27,9 @@ def job(args):
     sc = SCEN[sid]
     F = firm_params(firm, sc)
     st = scen_stress(firm, sc)
-    E = M.eval_sim(F, S, M.SIGMAS, N, 11, stress=st)
-    Fd = M.funded_sim(F, S, M.SIGMAS, N, 12, stress=st)
+    sd = sc.get("seed", 11)
+    E = M.eval_sim(F, S, M.SIGMAS, N, sd, stress=st)
+    Fd = M.funded_sim(F, S, M.SIGMAS, N, sd + 1, stress=st)
     e = M.economics(F, S, sigmas=M.SIGMAS, E=E, Fd=Fd)
     sig = M.SIGMAS
     caps = {}
@@ -74,7 +75,7 @@ def main(ids):
         for firm in FIRM_NAMES:
             if sc.get("only") and sc["only"] not in firm:
                 continue
-            for S in (S_GRID if sc.get("sgrid") else S_MAIN):
+            for S in sc.get("S_list") or (S_GRID if sc.get("sgrid") else S_MAIN):
                 jobs.append((sid, firm, S))
     # heavy jobs first
     jobs.sort(key=lambda j: -scen_stress(j[1], SCEN[j[0]]).get("sub", 4))

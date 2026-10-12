@@ -19,6 +19,8 @@ GAPS = dict(gap_frac=0.25, weekend_var=1.0, kill=0.8)
 GARCH = dict(garch=(0.10, 0.88, 16.0))
 DLLEQ = dict(dll_ref="max", real_rate=0.10, sub=24)
 ALL = dict(df=3, **GAPS, **GARCH, **DLLEQ)
+# post-hoc corrections of ALL (red-team findings 4, 5, 6)
+FIX = dict(ALL, daily_t=True, garch=(0.10, 0.88, 100.0), payout_ref_fix=True)
 
 # Rules as read on the firms' own pages (clauses-*.md). `stress` keys here
 # override the scenario's for firm-exact scenarios only.
@@ -51,7 +53,17 @@ SCEN = {
     "F2-09": dict(stress=dict(ALL), exact=True, sgrid=True),   # DECIDES
     "F2-10": dict(seq_of="F2-07", seq_S=S_MAIN, seq_caps=[0.12, 0.20, 0.40]),
     "F2-11": dict(seq_of="F2-09", seq_S=S_MAIN, seq_caps=[0.12, 0.20, 0.40]),
+    # ---- POST-HOC, added after the model red team (redteam-model.md) and
+    # pre-registered as F2-12..F2-15 before being run
+    "F2-12": dict(stress=dict(FIX), exact=True, sgrid=True, bg_stop=0.016),
+    "F2-13": dict(stress=dict(FIX, real_rate=1.0, cost_S=0.47), exact=True, sgrid=True,
+                  bg_stop=0.016),
+    "F2-14a": dict(seq_of="F2-12", seq_S=S_MAIN, seq_caps=[0.12, 0.20, 0.40]),
+    "F2-14b": dict(seq_of="F2-13", seq_S=S_MAIN, seq_caps=[0.12, 0.20, 0.40]),
 }
+for _i, _sd in enumerate((101, 202, 303, 404)):
+    SCEN[f"F2-15s{_i + 1}"] = dict(stress=dict(FIX), exact=True, bg_stop=0.016,
+                                   S_list=[1.0], seed=_sd)
 
 
 def firm_params(firm, sc):
@@ -72,4 +84,6 @@ def scen_stress(firm, sc):
             st[k] = v
         if st.get("dll_ref") != "equity" and "real_rate" not in st:
             st["real_rate"] = 0.10           # closed balance lags equity
+        if sc.get("bg_stop") and "Blue Guardian" in firm:
+            st["open_stop"] = sc["bg_stop"]  # bot stop below the Guardian Shield
     return st
