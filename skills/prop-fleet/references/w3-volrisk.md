@@ -328,4 +328,4 @@ All in `agents/daily/w3-volrisk/`:
 - `results.json`, `make_report.py` → `tables.md`: every table.
 - `clauses-*.md`: quotes.
 - `redteam-model.md`: red team.
-- `verify.md`: independent re-run.
+- `verify.md`: independent re-run. Every check passed: 20 of 20 cells bit for bit; D1 synthesis numbers within 3%; the Sharpe needed for $20k moved by 0.007 on a fresh seed.
