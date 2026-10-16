@@ -69,3 +69,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-1.
 **Self red-team:** "84 new products" and ad counts are back-end/research data and never appear in a message. Only "the new Tour set" (visible on site and in ads) may be mentioned. The video share is low but the DCO units may include short clips; quote both numbers internally, never externally.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **Re-verified live 2026-10-16** (SEND_QUEUE §10): Tour Pullover Jogger Pants Set in Oat Heather 5/5 $268, badge "New Arrival" (published 1 Oct). Meta Ad Library **101 active (was 221 on 10-09)**, 34 % video filter, 6 of 30 cards video, 25 started ≤30 d, newest 10/15. Score 89 → 86. DM holds; "new" is gated on the badge on the send morning.

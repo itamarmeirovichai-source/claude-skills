@@ -71,3 +71,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #2.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
 - **2026-10-12 founder check:** the brand's own "We Are Brackish" post (brackish.com/blogs/news/we-are-brackish) names Ben Ross as the maker of the first feather bow tie and Jeff Plotner as the groomsman who turned it into the business. It says "nearly fourteen years ago", which puts it at about 2026 since they started in 2012 [m]. Current titles: still only Plotner as "CEO" in the undated Palmetto Bluff piece. "Hi Ben and Jeff" holds.
+- **Re-verified live 2026-10-16:** Edisto and Rice Slim $225 in stock. The Maroon collection went live 15 Oct (12 products, full price). Ad Library 67 active, 2 % video filter, 1 of 30 cards video, newest ad 10/15. Holds at 81.

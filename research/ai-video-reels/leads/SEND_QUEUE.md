@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -211,14 +211,14 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 
 ---
 
-### Q-6 · Sunday Citizen · Mike Abadi and Michelle Familier
+### Q-6 · Sunday Citizen · founders unconfirmed (2022 press: Mike Abadi, Michelle Familier; a Jan 2026 search result names a Co-CEO, Fiona Kuzian [unverified]); greeting made name-free 2026-10-16
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @sunday.citizen (corrected 2026-10-11 from the brand's own site link):**
-> Hi Mike and Michelle, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
+> Hi Sunday Citizen team, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
 
 **Email (day 1) to hello@sundaycitizen.co** · Subject: **The stuck sofa**
-> Hi Mike and Michelle (or whoever reads hello@, could you pass this on?),
+> Hi there (whoever reads hello@, could you pass this on to the founders?),
 >
 > A 15 s idea for the Ciel Love Seat, following my Instagram note: a mover shouts "pivot" in a walk-up stairwell, two of them wedging a full sofa round a turn. A single Sunday Citizen box slides past into the elevator. Upstairs it's cut open; later, it's the Ciel. She sits with a coffee while the movers are still stuck outside.
 >
@@ -625,3 +625,22 @@ Tools: `products_check.py` (fixed today: an exact `hide` / `pre-launch` tag now 
 If Kinn replies "yes", the box can be a **second film** in the Season path ("a place for the things that become a part of us": a pendant, a signet and a coin pendant settling into its trays over the years). Raise it only after a yes.
 
 **Tool fix:** `products_check.py` didn't flag the box as HIDDEN, because the `hide` tag isn't a substring of any listed word. Exact tags `hide` / `hide-product` / `hidden-product` / `pre-launch` now flag HIDDEN (matched whole, so "rawhide" doesn't). Retested: Kinn box → HIDDEN, FINAL; Dandelion `hidden` → HIDDEN; Pegasus → OK.
+
+## 10. Re-check of Tuesday's 10 (Q-1..Q-10), 2026-10-16 (Fri, ~14:30–15:40 UTC; covers the missed 13–15 Oct runs)
+Nothing was sent on 13 Oct: the owner did not approve, the site is not live and there is no postal address. By the 12 Oct rule, **every send moves one week: DMs Tue 20 Oct**. Emails stay blocked until `{BUSINESS_ADDRESS}` is real. Tools: `products_check.py` (fixed today: word-order matching and a "+N more" line) and `ad_library.py page` on all ten (2 loads each; Sunday Citizen got 1). Nothing sent; $0.
+
+| # | Products the DM names, live 2026-10-16 | Ad Library (active, 10-09 → 10-16 · video filter · video cards of 30 · started ≤30 d · 60+ d · newest) | Score | Verdict |
+|---|---|---|---|---|
+| Q-1 LAKE | Tour Pullover Jogger Pants Set, Oat Heather 5/5 $268, badge "New Arrival", published 1 Oct | **221 → 101** · 34 % · 6 · 25 · 1 · 10/15 | 89 → **86** (fewer live ads; still fresh) | ✅ holds. "the new Tour set" is true while the "New Arrival" badge is on: check it on the 20th |
+| Q-2 Printfresh | Holiday Hens pet bandana 2/2 $28; Bagheera full price, plus new Bagheera satin pieces in the 13 Oct launch | 336 → 316 · 32 % · 8 · 16 · 6 · 10/08 | 89 | ✅ holds |
+| Q-3 Dandelion | 70 % Three-Bar Gift Set 1/1 $42; Maya Mountain 70 % 1/1 $13 | 172 → 187 · 11 % · 4 · 13 · 15 · 10/01 | 88 | ✅ holds. New: holiday collections (13 Oct) and the Hojicha Tokyo Gâteau (14 Oct) |
+| Q-4 Foggy Dog | Gingerbread Man bow tie collar 8/8 $52 (was $58: the standing promo since 10/09) | **218 → 168** · 33 % · 6 · 18 · 4 · 10/07 | 85 → **84** | ⚠ holds (no price named). The live About page signs off "Rose and Utah" [m] |
+| Q-5 Little Beast | PBJ and OG onesies 7/7 $48 full price | 62 → 61 · 15 % · 3 · 8 · 14 · 10/06 | 84 | ✅ holds. The About page names "Jisu and Lys" [m] |
+| Q-6 Sunday Citizen | Ciel Love Seat 2/2 $1,800; Snug Bed Blanket 16/24; Snug Casablanca 5/6 | 306 → **398** (1 load, unconfirmed) · 36 % · 8 · 19 · 0 · 10/02 | 84 | 🔧 **greeting fixed** to "Hi Sunday Citizen team" (founders unconfirmed for 2026) |
+| Q-7 Dana Rebecca | Ava Bea Interval bracelet 3/3 $2,795; October birthstone studs 1/1 full price | 204 → 205 · 64 % · 9 · 20 · 5 · 10/09 | 81 | ✅ holds ("birthstone studs" is still true in October). The About page has "Dana (Rebecca) Gordon" [m]; HQ Chicago (CT) [m] |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | 60 → 67 · 2 % · 1 · 23 · 0 · 10/15 | 81 | ✅ holds. The Maroon collection is live (15 Oct); the DM doesn't need it |
+| Q-9 Cuddle Clones | Custom Pet Face Wrapping Paper 3/3 $29; pajamas now $59.25 vs $89 (was $33.75 vs $103 on 10-12) | **174 → 148** · 34 % · 12 · 12 · 5 · 10/03 | 81 | ⚠ holds (no price named; the promo depth changed, noted) |
+| Q-10 Kinn | Pegasus and Swan Dream pendant necklaces 8/8 $1,040 | 95 → 79 · 20 % · **10** · 13 · 12 · 10/13 | 81 → **80** (more video now) | ✅ holds. **The $420 Keepsake box is gone from the public feed**, which confirms the 10-12 no-switch call |
+
+Nothing cooled enough to drop or hold: every brand is still advertising, and each has ads that started in the last 30 days. The send order stays by time zone. Wave B (Q-11..Q-19) was not re-checked today, so it is not in the 20 Oct pack. It goes Wed 21 only after its own re-check.
+

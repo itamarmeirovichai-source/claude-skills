@@ -222,7 +222,7 @@ Cut rate = shots ÷ duration. Hook = what is on screen and in the audio in secon
 | # | Finding | Number | Source | Status |
 |---|---|---|---|---|
 | D1 | Category conversion and basket | Conv. rate **2.5–3.0 %**, **AOV $200–300** (cookware & kitchen essentials, Aug 2026) | [Grips](https://gripsintelligence.com/insights/industries/home-garden/cookware-and-kitchen-essentials) | [v] site-wide, not paid-only |
-| D2 | Meta Home & Garden ROAS 2025 | **2.18** (all-industry median 1.86–1.93; CPA $38.17) | [Triple Whale](https://triplewhale.com/blog/facebook-ads-benchmarks) | [v] [unverified] page partly blocked |
+| D2 | Meta Home & Garden median ROAS, Aug 2025–Jul 2026 | **2.25** (all-industry 1.88; Home & Garden CPA $47.93, AOV $110.41) | [Triple Whale, read in headless Chromium 2026-10-16](https://www.triplewhale.com/blog/facebook-ads-benchmarks) (Aug 17 2026 update; 40,000+ brands; Aug 2025–Jul 2026) | [v] 2026-10-16 (was 2.18, an older window) |
 | D3 | Implied target CPA | At AOV $250 and ROAS 2, CPA ≈ **$125**; at ROAS 3, ≈ $83 | Arithmetic from D1–D2 | [inf] |
 | D4 | Creative lifespan | **Kitchen 49 d**, appliances **17 d**, home & living median 25 d; appliances are 63 % video | [Benly Home & Living](https://benly.ai/benchmarks/q1-2026/home-living), doc 51 N6 | [v] |
 | D5 | Ad volume | HexClad 510 active / ~68 new per week; Our Place 535 / ~26; Caraway 183 / ~58; Owala 218 / ~12; H&B 35 / ~14 | Motion library pages | [v] ~Jun 2026 snapshot |

@@ -77,3 +77,4 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #1 for the DM, ema
 **Self red-team:** the 202-ad count includes many DCO variants of a few creatives, so "volume" overstates unique ideas; that strengthens the creative-need read but don't quote any count to her. The "school pickup" lines are hers; the film quotes only "the one you never take off", which is visible in a live ad.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **Re-verified live 2026-10-16:** Ava Bea Interval bracelet 3/3 $2,795; October birthstone studs full price. "Dana's Story" page: "My name is Dana (Rebecca) Gordon" [m]; the careers page puts HQ in Chicago (CT) [m]. New Arrivals on 14 Oct (Sadie Pearl, Alexa Jordyn); 3 "Final Farewell" pieces on 15 Oct. Ad Library 205 active, 64 % video filter, 9 of 30 cards video. Holds at 81.

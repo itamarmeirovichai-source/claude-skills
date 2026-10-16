@@ -88,7 +88,7 @@ How to use it:
 | 60 | `60-niche-ebikes-auto-accessories.md` | E-bikes, scooters, car accessories, outdoor power. | 28 |
 | 61 | `61-niche-local-premium-services.md` | Local premium businesses (hotels, restaurants, developers, med-spas, gyms). | 36 |
 | 62 | `62-niche-apps-saas-launches.md` | Apps, SaaS and crowdfunded hardware launches. | 53 |
-| 63 | `63-outreach-that-gets-replies.md` | Single source for first touch, follow-ups, first objections; the honest "why no client yet" list. | 0 |
+| 63 | `63-outreach-that-gets-replies.md` | Single source for first touch, follow-ups, first objections; the honest "why no client yet" list. §7.4 (2026-10-16): markdown regimes of the queued brands and which product a message may name. | 0 |
 | 64 | `64-quality-gap-audit.md` | Our 19 films measured against what sells (format, cuts, loudness). | 0 |
 | 65 | `65-offer-proof-and-site.md` | Offer, proof, pricing and site change list for owner approval. | 0 |
 

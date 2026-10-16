@@ -105,3 +105,4 @@ Sender is `{OWNER_NAME}`. No link, image or price in touch 1. Email footer uses 
 **Red team:** the founder's public profile and personal IG are not confirmed (owner checks by hand); the "Coming Soon" items may be the real FW hero, but they are unreleased, so we pitch the live stripes. Revenue band is inferred.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **Re-verified live 2026-10-16:** PBJ and OG onesies 7/7 $48 full price. The live About page: "With Jisu and Lys' background in art…" [m]. Ad Library 61 active, 15 % video filter, 3 of 30 cards video. Holds at 84.

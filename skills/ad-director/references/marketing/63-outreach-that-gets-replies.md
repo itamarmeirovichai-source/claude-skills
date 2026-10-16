@@ -311,6 +311,28 @@ At most ~10 new DMs and ~15 new emails a day, by hand, spaced out, never identic
 
 Variant codes: `DM-v63`, `EM-v63`, `FU1`, `FU2-img`, `FU2-txt`, `FU3`.
 
+### 7.4 Markdown regimes of the queued brands (measured 2026-10-16) [m]
+Read from each brand's public `/products.json` on Fri 16 Oct, five weeks before Black Friday. "Marked" = at least one in-stock variant with a compare-at above its price; "final" = a Final Sale / Final Farewell / Last Chance tag or title; "new" = published since 16 Sep.
+
+| Brand | Products | Marked | Median depth | Final | New (30 d) | New and marked | Regime |
+|---|---|---|---|---|---|---|---|
+| LAKE Pajamas | 379 | 0 % | — | 33 | 95 | 0 | full-price house |
+| Printfresh | 2,248 | 4.6 % | 50 % (old bundles) | 0 | 598 | 36 (bundles only) | full-price house; launches weekly (a "10.13.26 Launch" of 83 products) |
+| Dandelion Chocolate | 202 | 0 % | — | 0 | 10 | 0 | full-price house |
+| Brackish | 460 | 0 % | — | 0 | 36 | 0 | full-price house; Maroon collection live 15 Oct |
+| Kinn | 1,132 | 3.7 % | 12 % | 277 | 46 | 0 | full-price house; Final Sale only on limited/archive pieces |
+| The Foggy Dog | 915 | 26.8 % | 11 % | 0 | 224 | 80 | standing promo (shallow "bow-promo" compare-at) |
+| Cuddle Clones | 659 | 77.5 % | 25 % | 0 | 302 | 275 | standing promo (compare-at is the list price); depth moved 67 % → 33 % on the pajamas between 12 and 16 Oct |
+| Sunday Citizen | 408 | 33.8 % | 20 % | 40 | 18 | 1 | clearance (old lines "Last Chance"; new launches full price) |
+| Little Beast | 180 | 18.9 % | 21 % | 17 | 17 | 5 | clearance (Final Sale on collabs and returns) |
+| Dana Rebecca Designs | 1,019 | 6.4 % | 20 % | 65 | 42 | 22 | clearance of retired lines ("Final Farewell", 3 new on 15 Oct) next to weekly full-price "New Arrivals" |
+
+What it means for the films [inf]:
+- **Full-price houses** spend on new collections, and none has started holiday markdowns. Pitch their newest full-price line. This is also where a Season plan (one film per drop) fits best, since they drop weekly (Printfresh, Dana Rebecca) or monthly (Brackish, LAKE).
+- **Standing-promo brands** always show a "sale" price, so a MARKDOWN flag tells us nothing. Track the promo price itself. A change in depth is the signal (Cuddle Clones got shallower, which reads as a list-price reset before the holiday push, not clearance [inf]). Messages name no price.
+- **Clearance brands** are retiring old lines. Pitch only what was published in the last ~60 days at full price (Sunday Citizen's Ciel love seat, 24 Sep). Never a Last Chance or Final Farewell piece.
+- None of the ten had a sitewide Black Friday sale yet on 16 Oct. Re-measure on Tue 20 Oct and on Mon 2 Nov. The first brand to go sitewide moves its follow-up angle to an evergreen, offer-free film (LESSONS 2026-10-10: the evergreen twin).
+
 ---
 
 ## 8. What only the owner can do (blocking first)

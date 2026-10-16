@@ -12,7 +12,8 @@ Usage
   python3 products_check.py thefoggydog.com "gingerbread man" "evergreen candy canes"
   python3 products_check.py danarebeccadesigns.com "ava bea interval" --json out.json
 
-Each query is a case-insensitive substring of the product title (or an exact handle).
+Each query matches when every one of its words is in the product title, in any order, ignoring
+case and punctuation (or it is an exact handle). Truncated match lists say how many were cut.
 Exit code 0 = every query has at least one clean match; 1 = something needs a human look.
 
 Flags reported (any one makes the product unfit to name in a message):
@@ -57,6 +58,11 @@ def feed(domain, max_pages=20):
         out.extend(items)
         time.sleep(0.5)
     return out
+
+
+def norm(s):
+    """Lower-case, punctuation and dashes to spaces, single-spaced."""
+    return " ".join("".join(c if c.isalnum() else " " for c in s.lower()).split())
 
 
 def page_status(domain, handle):
@@ -127,12 +133,20 @@ def main():
     print(f"{a.domain}: {len(products)} public products in feed")
     for q in a.queries:
         ql = q.lower()
-        hits = [p for p in products if p["handle"] == ql or ql in p.get("title", "").lower()][: a.limit]
+        # Every word of the query must appear in the title, in any order and ignoring dashes/punctuation
+        # (2026-10-16: "oat heather tour" missed "Tour ... in Oat Heather", and on 10-12 "holiday hens
+        # pet bandana" missed "Holiday Hens - Pet Bandana"). An exact handle still matches.
+        words = norm(ql).split()
+        matched = [p for p in products if p["handle"] == ql or all(w in norm(p.get("title", "")).split()
+                                                                       or w in norm(p.get("title", "")) for w in words)]
+        hits = matched[: a.limit]
         rows = [assess(a.domain, p) for p in hits]
         clean = [r for r in rows if not set(r["flags"]) - {"PARTIAL"}]
         ok &= bool(clean)
         result["queries"][q] = rows
-        print(f"  [{q}] {len(hits)} match(es), {len(clean)} clean")
+        more = f" (+{len(matched) - len(hits)} more not shown: raise --limit or use the exact handle)" \
+            if len(matched) > len(hits) else ""
+        print(f"  [{q}] {len(hits)} match(es), {len(clean)} clean{more}")
         for r in rows:
             fl = ",".join(r["flags"]) or "OK"
             ca = f" (was {r['compare_at']})" if r["compare_at"] else ""

@@ -101,3 +101,4 @@ Sender `{OWNER_NAME}`. No link, image or price in touch 1. **No email while `{BU
 **Red team:** "creative need" is about format, not volume: they already produce a lot of good copy, so the pitch must show a film idea they couldn't write into a still; their minimalist brand will reject anything glossy.
 
 - **Re-verified live 2026-10-10** (`products_check.py` + `ad_library.py`, 2 loads): named products public, in stock, page 200; counts in `SEND_QUEUE.md` §7.
+- **Re-verified live 2026-10-16:** 70 % Three-Bar Gift Set $42 and Maya Mountain 70 % $13 in stock. New: holiday collections (13 Oct) and the Hojicha Tokyo Gâteau (14 Oct). Ad Library 187 active, 11 % video filter, 4 of 30 cards video. Holds at 88.
