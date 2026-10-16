@@ -1,0 +1,85 @@
+G2 independent verifier (verify.py) -- rules: prereg/G2_rules.md only
+Data: /tmp/claude-0/-home-user-claude-skills/30443a87-f3bb-5b95-bc24-7667382c76d6/scratchpad/yahoo ; last date 2026-10-12
+OOS = 2013-01-01..end; IS = first signal date..2012-12-31. lag0 = close fill, lag1 = next-open fill.
+t = min(iid, NW10); p5 = moving-block bootstrap (10, 10000, seed 0) 5th pct of daily mean (bp/day);
+alpha t: OLS on equal-risk B&H basket, NW10; MDD/worst on the raw (unscaled) book and at the 15%%-vol scale k fixed on IS close book.
+
+var    fill cx        S      t  t_iid   t_nw     p5bp alpha_t   beta    mbS    resS   MDDraw    MDD15 worst15  tr/yr   expo
+G2-01  cls  1x   -0.019  -0.07  -0.07  -0.06   -0.685   -2.02  0.292   0.72  -0.615   -20.30%  -72.58% -21.50%  126.5  0.163
+G2-01  cls  2x   -0.347  -1.31  -1.31  -1.19   -1.147   -3.43  0.294   0.72  -1.045   -24.10%  -80.82% -21.54%  126.5  0.163
+G2-01  opn  1x    0.036   0.13   0.13   0.13   -0.584   -1.81  0.285   0.72  -0.529   -18.09%  -68.41% -21.87%  126.5  0.165
+G2-01  opn  2x   -0.296  -1.12  -1.12  -1.05   -1.040   -3.27  0.285   0.72  -0.954   -20.88%  -74.83% -21.92%  126.5  0.165
+G2-02  cls  1x    0.125   0.47   0.47   0.47   -0.375   -1.39  0.241   0.72  -0.392   -12.79%  -58.60% -17.11%  128.6  0.156
+G2-02  cls  2x   -0.240  -0.91  -0.91  -0.89   -0.810   -3.03  0.242   0.72  -0.855   -17.05%  -70.64% -17.14%  128.6  0.156
+G2-02  opn  1x    0.122   0.46   0.46   0.48   -0.356   -1.52  0.242   0.72  -0.400   -11.76%  -55.58% -17.44%  128.6  0.157
+G2-02  opn  2x   -0.247  -0.96  -0.93  -0.96   -0.795   -3.30  0.242   0.72  -0.866   -15.76%  -67.34% -17.48%  128.6  0.157
+G2-03  cls  1x   -0.406  -1.53  -1.53  -1.45   -1.364   -2.08  0.150  -0.72  -0.636   -27.56%  -80.48% -18.43%  293.0 -0.082
+G2-03  cls  2x   -0.793  -2.99  -2.99  -2.82   -1.971   -3.40  0.151  -0.72  -1.042   -39.58%  -91.60% -18.47%  293.0 -0.082
+G2-03  opn  1x   -0.319  -1.20  -1.20  -1.16   -1.212   -1.72  0.135  -0.72  -0.521   -20.15%  -69.50% -18.76%  293.0 -0.079
+G2-03  opn  2x   -0.707  -2.67  -2.67  -2.55   -1.818   -3.04  0.135  -0.72  -0.922   -33.61%  -87.20% -18.80%  293.0 -0.079
+G2-04  cls  1x   -0.289  -1.09  -1.09  -1.07   -1.023   -1.46  0.086  -0.72  -0.427   -19.20%  -68.86% -14.31%  294.8 -0.080
+G2-04  cls  2x   -0.705  -2.66  -2.66  -2.60   -1.600   -2.91  0.087  -0.72  -0.852   -32.16%  -87.65% -14.34%  294.8 -0.080
+G2-04  opn  1x   -0.315  -1.22  -1.19  -1.22   -1.029   -1.58  0.079  -0.72  -0.440   -16.54%  -65.57% -14.60%  294.8 -0.078
+G2-04  opn  2x   -0.731  -2.85  -2.76  -2.85   -1.609   -3.11  0.079  -0.72  -0.863   -31.78%  -87.36% -14.62%  294.8 -0.078
+G2-05  cls  1x    0.069   0.23   0.26   0.23   -0.402   -1.17  0.164   0.72  -0.377   -12.47%  -71.33% -16.77%   81.0  0.105
+G2-05  cls  2x   -0.278  -1.05  -1.05  -0.92   -0.719   -2.43  0.165   0.72  -0.792   -13.89%  -77.14% -16.87%   81.0  0.105
+G2-05  opn  1x    0.107   0.39   0.40   0.39   -0.326   -1.10  0.159   0.72  -0.327   -11.42%  -68.20% -16.92%   81.0  0.106
+G2-05  opn  2x   -0.248  -0.94  -0.94  -0.89   -0.642   -2.49  0.159   0.72  -0.746   -13.20%  -74.00% -17.02%   81.0  0.106
+G2-06  cls  1x    0.330   1.23   1.24   1.23   -0.093   -0.20  0.136   0.72  -0.058    -7.37%  -54.18% -14.36%   85.3  0.102
+G2-06  cls  2x   -0.069  -0.26  -0.26  -0.25   -0.400   -1.82  0.136   0.72  -0.532    -8.96%  -63.89% -14.45%   85.3  0.102
+G2-06  opn  1x    0.238   0.90   0.90   0.94   -0.151   -0.63  0.136   0.72  -0.171    -6.89%  -51.98% -14.05%   85.3  0.102
+G2-06  opn  2x   -0.168  -0.66  -0.64  -0.66   -0.459   -2.39  0.136   0.72  -0.651    -8.53%  -61.99% -14.13%   85.3  0.102
+G2-07  cls  1x   -0.001  -0.00  -0.00  -0.00   -0.483   -1.02  0.132   0.72  -0.317   -11.93%  -65.82% -15.01%  111.9  0.062
+G2-07  cls  2x   -0.350  -1.32  -1.32  -1.19   -0.824   -2.23  0.132   0.72  -0.702   -15.22%  -77.34% -15.10%  111.9  0.062
+G2-07  opn  1x    0.032   0.12   0.12   0.12   -0.412   -0.92  0.126   0.72  -0.271   -10.35%  -60.78% -15.15%  111.9  0.063
+G2-07  opn  2x   -0.324  -1.22  -1.22  -1.17   -0.754   -2.21  0.126   0.72  -0.657   -12.74%  -70.86% -15.24%  111.9  0.063
+
+In-sample net Sharpe (1x cost):
+  G2-01  IS S close 0.344  open 0.457 | worse-by-OOS-t fill = close -> IS S 0.344 | min IS S 0.344
+  G2-02  IS S close 0.539  open 0.542 | worse-by-OOS-t fill = open -> IS S 0.542 | min IS S 0.539
+  G2-03  IS S close -0.067  open 0.203 | worse-by-OOS-t fill = close -> IS S -0.067 | min IS S -0.067
+  G2-04  IS S close 0.087  open 0.174 | worse-by-OOS-t fill = open -> IS S 0.174 | min IS S 0.087
+  G2-05  IS S close 0.371  open 0.478 | worse-by-OOS-t fill = close -> IS S 0.371 | min IS S 0.371
+  G2-06  IS S close 0.548  open 0.609 | worse-by-OOS-t fill = open -> IS S 0.609 | min IS S 0.548
+  G2-07  IS S close 0.277  open 0.433 | worse-by-OOS-t fill = close -> IS S 0.277 | min IS S 0.277
+Headline (highest IS net Sharpe of the worse fill, worse = lower IS Sharpe): G2-06 (IS S 0.548)
+
+Gate (decisive = fill with lower OOS net t at 1x cost; bar 3.5914; look-ahead see below):
+  G2-01  fill=close t=-0.07 S=-0.019 p5=-0.685bp alpha_t=-2.02 -> FAIL
+  G2-02  fill=open  t=0.46 S=0.122 p5=-0.356bp alpha_t=-1.52 -> FAIL
+  G2-03  fill=close t=-1.53 S=-0.406 p5=-1.364bp alpha_t=-2.08 -> FAIL
+  G2-04  fill=open  t=-1.22 S=-0.315 p5=-1.029bp alpha_t=-1.58 -> FAIL
+  G2-05  fill=close t=0.23 S=0.069 p5=-0.402bp alpha_t=-1.17 -> FAIL
+  G2-06  fill=open  t=0.90 S=0.238 p5=-0.151bp alpha_t=-0.63 -> FAIL
+  G2-07  fill=close t=-0.00 S=-0.001 p5=-0.483bp alpha_t=-1.02 -> FAIL
+
+Look-ahead (decision series, 20 cut dates seed 1, every market; fills only use the fill-day bar):
+  G2-01 truncation 20/20 perturbation 20/20
+  G2-02 truncation 20/20 perturbation 20/20
+  G2-03 truncation 20/20 perturbation 20/20
+  G2-04 truncation 20/20 perturbation 20/20
+  G2-05 truncation 20/20 perturbation 20/20
+  G2-06 truncation 20/20 perturbation 20/20
+  G2-07 truncation 20/20 perturbation 20/20
+
+Ambiguities and choices:
+ 1. Notional "fixed at entry": held as a constant fraction of equity w (daily P&L = w * market return), not fixed units.
+ 2. sigma = sample std (ddof=1) of the last 60 close-to-close returns incl. day t; warm-up: decisions from index 199 (200 closes) and not before 1990-01-02.
+ 3. RSI(2): seed avg gain/loss = mean of first two changes, then Wilder alpha 1/2; RSI=100 when avg loss is 0.
+ 4. Exit: day counter starts at the entry close; exit at the close of the first later day with C>SMA5 (short: C<SMA5) or at the 5th trading day after entry. No entry on an exit close. If both long and short rules fire (impossible here) long wins.
+ 5. Next-open fill: decision at close t filled at open t+1 if valid (open != C_t and != C_{t+1}, finite), else at close t+1; overnight leg earns old position, intraday leg the new one; same lag for exits. Cost charged on |change| at the fill.
+ 6. Swap: rate/365 per calendar night between a held close and the market's next trading date; booked on the next trading date with that night's return. Positive short swap credited.
+ 7. Book is the sum over markets on the union of dates; all union dates in the period count (zero-return days included). IS starts at max(1990-01-02, first market's 200th close).
+ 8. Basket weights from sigma_t (60 returns) from 1990-01-02, no 200-day warm-up; gross; earns t->t+1.
+ 9. Exposure E = mean over days of (sum signed held notional)/(sum basket notional); next-open uses the post-fill position. Matched-benchmark Sharpe = sign(E) x basket Sharpe (scaling does not change Sharpe).
+10. "Worse version" for the IS headline is ambiguous (the worse version is defined by OOS t): headline uses the lower IS Sharpe of the two fills; the line above also shows the IS Sharpe of the OOS-worse fill.
+11. Bootstrap: ceil(n/10) blocks with uniform starts in [0, n-10], last block truncated to n; numpy default_rng(0).
+12. Look-ahead tests run on the decision series (positions decided at closes); the perturbation replaces closes after d with a random walk. Cut dates drawn on the union calendar from 1992 on.
+13. Gate decisive fill chosen at 1x cost (cost x2 reported, not gated).
+
+Comparison with ../run.txt (read only after the numbers above were produced; run.txt was partial, gate lines G2-01..04 only):
+ OOS 1x, all 14 variant x fill rows: |dt| <= 0.01, |dSharpe| <= 0.004, |d alpha t| <= 0.04, p5 within 0.006 bp, beta within 0.004,
+ raw MDD within 0.3pp; IS Sharpe within 0.008; cost x2 t within 0.02. Headline G2-06 in both. No discrepancy > 0.2 t or 0.05 Sharpe.
+ Small, explained differences: trades/yr here is ~3.2% higher (here per calendar year of the union calendar; run.txt
+ apparently per 252 union days, which run ~260/yr); exposure ~0.004 higher (denominator/averaging-day choice).
+ Gate: all 7 FAIL in both (best decisive t = 0.90 for G2-06, far below 3.5914; every alpha t < 0; every p5 < 0).

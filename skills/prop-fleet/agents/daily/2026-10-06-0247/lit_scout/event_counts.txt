@@ -1,0 +1,21 @@
+ES 1m RTH rows 1806807, sessions 4711, 2008-01-02..2026-04-10
+
+C1 |prior close -> 14:44| >= 2%: 288 of 4557 sessions (6.3%)
+   by year: {2008: 52, 2009: 48, 2010: 19, 2011: 20, 2012: 4, 2013: 1, 2014: 1, 2015: 5, 2016: 9, 2017: 0, 2018: 9, 2019: 6, 2020: 48, 2021: 6, 2022: 37, 2023: 1, 2024: 7, 2025: 13, 2026: 2}
+   up 126 / down 162
+
+C2 rule-based 10:00 release days: ISM-M 220, ISM-S 220, CB 220, union 660 over 4711 sessions
+   union per year mean 35.3
+   median |09:30->09:59| ES pt: event 3.75  other 3.75
+   median |10:00->10:29| ES pt: event 3.75  other 3.00
+   2008-2014 median |pre| event 2.62 other 2.50 ; |post| event 2.75 other 2.00
+   2015-2019 median |pre| event 3.38 other 3.25 ; |post| event 2.75 other 2.25
+   2020-2026 median |pre| event 7.00 other 7.50 ; |post| event 7.50 other 6.50
+
+C3 drift-burst proxy h_mu=5 h_var=25 bars, |T|>4.5: 19 episodes over 4711 sessions (1.0/yr)
+   positive 1 negative 18
+   by year: {2008: 1, 2010: 1, 2011: 1, 2015: 1, 2017: 1, 2019: 1, 2020: 4, 2021: 1, 2023: 1, 2024: 4, 2025: 2, 2026: 1}
+
+C3 drift-burst proxy h_mu=15 h_var=75 bars, |T|>4.5: 88 episodes over 4711 sessions (4.7/yr)
+   positive 19 negative 69
+   by year: {2008: 4, 2009: 4, 2010: 5, 2011: 2, 2012: 2, 2013: 2, 2014: 3, 2015: 2, 2016: 4, 2017: 3, 2018: 5, 2019: 7, 2020: 8, 2021: 7, 2022: 4, 2023: 5, 2024: 9, 2025: 10, 2026: 2}

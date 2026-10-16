@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/user/claude-skills/skills/prop-fleet/agents/daily/vwap30-H0022
+plugins: anyio-4.15.1
+collecting ... collected 12 items
+
+test_vwap30.py::test_slot_mapping_and_decision_hm PASSED                 [  8%]
+test_vwap30.py::test_vwap_is_cumulative_typical_price_weighted PASSED    [ 16%]
+test_vwap30.py::test_signals_between_decision_bars_are_ignored PASSED    [ 25%]
+test_vwap30.py::test_short_decision_and_hold_until_next_decision PASSED  [ 33%]
+test_vwap30.py::test_missing_decision_bar_uses_last_bar_of_half_hour PASSED [ 41%]
+test_vwap30.py::test_half_hour_with_no_bars_is_skipped PASSED            [ 50%]
+test_vwap30.py::test_equal_at_decision_keeps_position_and_flat_before_first PASSED [ 58%]
+test_vwap30.py::test_last_half_hour_no_decisions_and_flat_at_close PASSED [ 66%]
+test_vwap30.py::test_decision_on_session_last_bar_is_not_acted PASSED    [ 75%]
+test_vwap30.py::test_cost_counts_flip_as_two_units_and_pct_cost PASSED   [ 83%]
+test_vwap30.py::test_random_sessions_match_stream_and_truncation PASSED  [ 91%]
+test_vwap30.py::test_no_position_day_scores_zero_units PASSED            [100%]
+
+============================== 12 passed in 0.48s ==============================

@@ -1,0 +1,218 @@
+Tue Oct  6 00:08:10 UTC 2026
+checks: copy == scripts/apex_model.py (50K-2026) and == 2026-10-05 fleet_model on all 4 plans: OK
+
+All $ are net after 25% tax, mean of years 2-4, n=600 paths seed 11, 2:1 win/loss, $80 funded / $200 eval risk per trade, perfectly correlated copies, 1 new account per firm per month.
+
+################ 1. The asked 20-account fleet (Bulenox5 + Topstep5 + Lucid5 + Tradeify5)
+
+=== FLEET-20  +0.10R  3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     27,288     1,608     19,232    11,647      2.2
+Topstep 50K XFA         5     17,522     5,060      9,283     3,007     27.1
+LucidFlex 50K           5     19,826     2,557     12,945     8,495     13.6
+Tradeify Select Flex    5     24,565     1,560     17,252    11,493     14.2
+FLEET                  20                          58,712    35,896   = 5.9% of $1,000K nominal (p90 82,798)
+
+=== FLEET-20  +0.25R  3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     67,628     1,209     49,814    41,899      0.2
+Topstep 50K XFA         5     59,625     2,258     43,025    32,308      9.2
+LucidFlex 50K           5     44,687     2,329     31,769    26,885      4.8
+Tradeify Select Flex    5     61,905       681     45,918    37,343      6.0
+FLEET                  20                         170,526   138,808   = 17.1% of $1,000K nominal (p90 201,287)
+
+=== FLEET-20  +0.40R  3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5    107,504     1,200     79,727    71,881      0.0
+Topstep 50K XFA         5    106,343       604     79,304    70,860      1.3
+LucidFlex 50K           5     72,028     2,615     52,060    46,347      1.5
+Tradeify Select Flex    5    105,915       154     79,320    70,830      1.4
+FLEET                  20                         290,412   260,174   = 29.0% of $1,000K nominal (p90 321,835)
+
+=== FLEET-20  +0.10R  1 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      7,479     1,442      4,376      -877      1.5
+Topstep 50K XFA         5      3,952     4,239       -634    -2,793     16.0
+LucidFlex 50K           5      6,730     1,083      4,182     1,596      5.7
+Tradeify Select Flex    5      9,739       495      6,909     2,872      5.0
+FLEET                  20                          14,834     1,264   = 1.5% of $1,000K nominal (p90 28,303)
+
+=== FLEET-20  +0.25R  1 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     23,003     1,208     16,343    11,533      0.2
+Topstep 50K XFA         5     11,393     4,223      5,281       979     13.7
+LucidFlex 50K           5     13,911     1,080      9,622     6,913      2.2
+Tradeify Select Flex    5     22,222       131     16,568    11,863      1.4
+FLEET                  20                          47,815    32,325   = 4.8% of $1,000K nominal (p90 62,755)
+
+=== FLEET-20  +0.40R  1 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     37,015     1,200     26,861    22,246      0.0
+Topstep 50K XFA         5     24,902     3,380     16,132     9,085     10.7
+LucidFlex 50K           5     21,861     1,365     15,372    12,730      0.8
+Tradeify Select Flex    5     35,768        31     26,803    22,146      0.3
+FLEET                  20                          85,169    66,977   = 8.5% of $1,000K nominal (p90 102,267)
+
+=== FLEET-20  +0.10R  0.3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5        391     1,480     -1,162    -1,783      0.9
+Topstep 50K XFA         5      1,151     2,874     -1,824    -3,217      4.5
+LucidFlex 50K           5      1,885       273      1,162      -467      1.8
+Tradeify Select Flex    5      2,412       152      1,663      -289      1.7
+FLEET                  20                            -161    -5,483   = -0.0% of $1,000K nominal (p90 5,768)
+
+=== FLEET-20  +0.25R  0.3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      3,341     1,304      1,342    -1,397      0.2
+Topstep 50K XFA         5      3,412     2,543        366    -2,115      3.8
+LucidFlex 50K           5      4,420       283      3,094     1,757      0.7
+Tradeify Select Flex    5      6,282        28      4,687     2,133      0.5
+FLEET                  20                           9,489       787   = 0.9% of $1,000K nominal (p90 19,154)
+
+=== FLEET-20  +0.40R  0.3 trade/day  (B: R after costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      8,586     1,237      5,452     1,993      0.0
+Topstep 50K XFA         5      7,418     1,942      4,008       -22      3.0
+LucidFlex 50K           5      6,919       404      4,886     3,080      0.2
+Tradeify Select Flex    5     10,585         5      7,935     5,332      0.1
+FLEET                  20                          22,280    10,897   = 2.2% of $1,000K nominal (p90 33,377)
+
+=== FLEET-20  +0.10R  3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     12,973     2,659      7,458      -365      7.0
+Topstep 50K XFA         5      8,857     5,799      1,941    -2,206     35.1
+LucidFlex 50K           5     12,327     3,283      6,685     2,325     20.8
+Tradeify Select Flex    5     14,747     2,301      9,294     4,337     21.1
+FLEET                  20                          25,378     5,353   = 2.5% of $1,000K nominal (p90 46,163)
+
+=== FLEET-20  +0.25R  3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     54,135     1,245     39,667    31,871      0.5
+Topstep 50K XFA         5     40,801     3,752     27,785    17,173     16.7
+LucidFlex 50K           5     34,990     2,368     24,466    19,430      7.3
+Tradeify Select Flex    5     47,041     1,028     34,509    27,137      9.1
+FLEET                  20                         126,427    96,611   = 12.6% of $1,000K nominal (p90 155,763)
+
+=== FLEET-20  +0.40R  3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     94,324     1,201     69,843    61,790      0.1
+Topstep 50K XFA         5     90,315     1,141     66,880    57,188      3.7
+LucidFlex 50K           5     61,077     2,556     43,890    38,523      2.4
+Tradeify Select Flex    5     90,133       385     67,311    57,817      3.3
+FLEET                  20                         247,924   215,882   = 24.8% of $1,000K nominal (p90 281,059)
+
+=== FLEET-20  +0.10R  1 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      3,107     1,858        594    -2,677      3.4
+Topstep 50K XFA         5      2,523     4,220     -1,862    -3,619     16.9
+LucidFlex 50K           5      4,448     1,265      2,250      -582      8.1
+Tradeify Select Flex    5      6,153       776      3,959       441      7.6
+FLEET                  20                           4,942    -5,887   = 0.5% of $1,000K nominal (p90 17,232)
+
+=== FLEET-20  +0.25R  1 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     17,823     1,240     12,420     7,244      0.5
+Topstep 50K XFA         5      8,053     4,369      2,569      -981     14.3
+LucidFlex 50K           5     11,272     1,017      7,685     5,038      2.9
+Tradeify Select Flex    5     17,730       223     13,128     8,563      2.3
+FLEET                  20                          35,802    20,726   = 3.6% of $1,000K nominal (p90 51,091)
+
+=== FLEET-20  +0.40R  1 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5     32,544     1,200     23,508    18,895      0.1
+Topstep 50K XFA         5     19,231     3,879     11,487     5,614     12.1
+LucidFlex 50K           5     19,111     1,238     13,405    10,796      1.1
+Tradeify Select Flex    5     31,291        59     23,424    18,833      0.6
+FLEET                  20                          71,823    54,438   = 7.2% of $1,000K nominal (p90 88,746)
+
+=== FLEET-20  +0.10R  0.3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5        120     1,612     -1,514    -2,075      1.6
+Topstep 50K XFA         5        716     3,016     -2,349    -3,500      4.8
+LucidFlex 50K           5      1,139       357        508      -891      2.6
+Tradeify Select Flex    5      1,484       255        863      -642      2.6
+FLEET                  20                          -2,492    -6,919   = -0.2% of $1,000K nominal (p90 2,223)
+
+=== FLEET-20  +0.25R  0.3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      2,004     1,354        245    -1,457      0.4
+Topstep 50K XFA         5      2,402     2,753       -644    -2,554      4.0
+LucidFlex 50K           5      3,525       263      2,430       687      1.0
+Tradeify Select Flex    5      4,891        56      3,618     1,169      0.8
+FLEET                  20                           5,649    -2,035   = 0.6% of $1,000K nominal (p90 13,979)
+
+=== FLEET-20  +0.40R  0.3 trade/day  (A: R before costs) ===
+firm                    n   gross/yr   fees/yr     net/yr       p10 blown/yr
+Bulenox 50K Master      5      6,739     1,257      4,017       484      0.1
+Topstep 50K XFA         5      5,695     2,274      2,405    -1,058      3.4
+LucidFlex 50K           5      6,077       358      4,287     2,720      0.3
+Tradeify Select Flex    5      9,171        10      6,870     4,214      0.2
+FLEET                  20                          17,579     6,851   = 1.8% of $1,000K nominal (p90 28,190)
+
+=== summary FLEET-20 (net/yr; % of $1,000K nominal) ===
+  B (R after costs)       3/day | +0.10R    58,712 (  5.9%) | +0.25R   170,526 ( 17.1%) | +0.40R   290,412 ( 29.0%)
+  B (R after costs)       1/day | +0.10R    14,834 (  1.5%) | +0.25R    47,815 (  4.8%) | +0.40R    85,169 (  8.5%)
+  B (R after costs)     0.3/day | +0.10R      -161 ( -0.0%) | +0.25R     9,489 (  0.9%) | +0.40R    22,280 (  2.2%)
+  A (R before costs)      3/day | +0.10R    25,378 (  2.5%) | +0.25R   126,427 ( 12.6%) | +0.40R   247,924 ( 24.8%)
+  A (R before costs)      1/day | +0.10R     4,942 (  0.5%) | +0.25R    35,802 (  3.6%) | +0.40R    71,823 (  7.2%)
+  A (R before costs)    0.3/day | +0.10R    -2,492 ( -0.2%) | +0.25R     5,649 (  0.6%) | +0.40R    17,579 (  1.8%)
+
+=== check vs 2026-10-05 economist_run.txt (view A, 3/day): expected 25,378 / 126,427 / 247,924 ===
+  today: 25,378 / 126,427 / 247,924
+
+=== Monte Carlo error: FLEET-20 view B, seed 12 vs seed 11 ===
+     3/day | +0.10R s11    58,712 s12    58,651 | +0.25R s11   170,526 s12   170,014 | +0.40R s11   290,412 s12   290,724
+     1/day | +0.10R s11    14,834 s12    15,068 | +0.25R s11    47,815 s12    48,656 | +0.40R s11    85,169 s12    85,884
+   0.3/day | +0.10R s11      -161 s12      -106 | +0.25R s11     9,489 s12     9,312 | +0.40R s11    22,280 s12    22,222
+
+################ 2. P1 planning fleet (Bulenox5 + Topstep5), view B
+  P1    3/day | +0.10R    28,515 (  5.7%, p10   15,984) | +0.25R    92,838 ( 18.6%, p10   74,414) | +0.40R   159,032 ( 31.8%, p10  142,363)
+  P1    1/day | +0.10R     3,743 (  0.7%, p10   -3,112) | +0.25R    21,625 (  4.3%, p10   13,483) | +0.40R    42,993 (  8.6%, p10   32,292)
+  P1  0.3/day | +0.10R    -2,986 ( -0.6%, p10   -4,918) | +0.25R     1,708 (  0.3%, p10   -3,319) | +0.40R     9,460 (  1.9%, p10    2,253)
+  P1 0.12/day | +0.10R    -3,915 ( -0.8%, p10   -5,028) | +0.25R    -2,723 ( -0.5%, p10   -4,393) | +0.40R      -754 ( -0.2%, p10   -3,693)
+
+=== R per trade (after costs) needed for 20% of nominal, grid 0.02 up to +1.50R ===
+  FLEET-20    3/day: R +0.30 (net 211,462)
+  FLEET-20    1/day: R +0.84 (net 200,771)
+  FLEET-20  0.3/day: none up to +1.50R
+  FLEET-20 0.12/day: none up to +1.50R
+  P1          3/day: R +0.28 (net 106,643)
+  P1          1/day: R +0.78 (net 102,894)
+  P1        0.3/day: none up to +1.50R
+  P1       0.12/day: none up to +1.50R
+
+################ 3. Exit band: Bulenox Master leaves after k payouts (slot re-buys); Topstep call-up after the k-th payout of any XFA closes all 5 for good. View B.
+  FLEET-20 3/day
+    exit none | +0.10R    58,712 (  5.9%) | +0.25R   170,526 ( 17.1%) | +0.40R   290,412 ( 29.0%)
+    exit    1 | +0.10R    31,512 (  3.2%) | +0.25R    84,515 (  8.5%) | +0.40R   143,282 ( 14.3%)
+    exit    2 | +0.10R    35,903 (  3.6%) | +0.25R    94,402 (  9.4%) | +0.40R   159,086 ( 15.9%)
+    exit    3 | +0.10R    39,047 (  3.9%) | +0.25R   100,924 ( 10.1%) | +0.40R   169,393 ( 16.9%)
+    exit    4 | +0.10R    41,894 (  4.2%) | +0.25R   105,785 ( 10.6%) | +0.40R   177,940 ( 17.8%)
+    exit    5 | +0.10R    44,572 (  4.5%) | +0.25R   109,317 ( 10.9%) | +0.40R   183,551 ( 18.4%)
+    exit    6 | +0.10R    47,166 (  4.7%) | +0.25R   111,974 ( 11.2%) | +0.40R   187,879 ( 18.8%)
+  FLEET-20 1/day
+    exit none | +0.10R    14,834 (  1.5%) | +0.25R    47,815 (  4.8%) | +0.40R    85,169 (  8.5%)
+    exit    1 | +0.10R    10,405 (  1.0%) | +0.25R    27,582 (  2.8%) | +0.40R    45,262 (  4.5%)
+    exit    2 | +0.10R    11,639 (  1.2%) | +0.25R    30,618 (  3.1%) | +0.40R    49,854 (  5.0%)
+    exit    3 | +0.10R    12,398 (  1.2%) | +0.25R    32,817 (  3.3%) | +0.40R    52,975 (  5.3%)
+    exit    4 | +0.10R    13,021 (  1.3%) | +0.25R    34,655 (  3.5%) | +0.40R    55,433 (  5.5%)
+    exit    5 | +0.10R    13,587 (  1.4%) | +0.25R    36,267 (  3.6%) | +0.40R    57,470 (  5.7%)
+    exit    6 | +0.10R    13,980 (  1.4%) | +0.25R    37,748 (  3.8%) | +0.40R    59,368 (  5.9%)
+  P1 3/day
+    exit none | +0.10R    28,515 (  5.7%) | +0.25R    92,838 ( 18.6%) | +0.40R   159,032 ( 31.8%)
+    exit    1 | +0.10R     1,315 (  0.3%) | +0.25R     6,828 (  1.4%) | +0.40R    11,902 (  2.4%)
+    exit    2 | +0.10R     5,706 (  1.1%) | +0.25R    16,715 (  3.3%) | +0.40R    27,707 (  5.5%)
+    exit    3 | +0.10R     8,850 (  1.8%) | +0.25R    23,236 (  4.6%) | +0.40R    38,013 (  7.6%)
+    exit    4 | +0.10R    11,697 (  2.3%) | +0.25R    28,098 (  5.6%) | +0.40R    46,560 (  9.3%)
+    exit    5 | +0.10R    14,375 (  2.9%) | +0.25R    31,630 (  6.3%) | +0.40R    52,171 ( 10.4%)
+    exit    6 | +0.10R    16,968 (  3.4%) | +0.25R    34,287 (  6.9%) | +0.40R    56,499 ( 11.3%)
+  P1 1/day
+    exit none | +0.10R     3,743 (  0.7%) | +0.25R    21,625 (  4.3%) | +0.40R    42,993 (  8.6%)
+    exit    1 | +0.10R      -686 ( -0.1%) | +0.25R     1,392 (  0.3%) | +0.40R     3,087 (  0.6%)
+    exit    2 | +0.10R       548 (  0.1%) | +0.25R     4,428 (  0.9%) | +0.40R     7,679 (  1.5%)
+    exit    3 | +0.10R     1,307 (  0.3%) | +0.25R     6,627 (  1.3%) | +0.40R    10,800 (  2.2%)
+    exit    4 | +0.10R     1,930 (  0.4%) | +0.25R     8,465 (  1.7%) | +0.40R    13,257 (  2.7%)
+    exit    5 | +0.10R     2,496 (  0.5%) | +0.25R    10,077 (  2.0%) | +0.40R    15,294 (  3.1%)
+    exit    6 | +0.10R     2,889 (  0.6%) | +0.25R    11,558 (  2.3%) | +0.40R    17,193 (  3.4%)
+  R needed for 20%, P1, exit after 3:
+    P1 exit3 3/day: R +1.38 (net 100,340)

@@ -1,0 +1,4 @@
+url: https://help.cryptofundtrader.com/
+http: 000
+error: curl: (56) CONNECT tunnel failed, response 502
+hits: 0

@@ -1,0 +1,16 @@
+=== extras
+   S2 incl. roll weeks (FTMO cost) stack, headline k       mean  +1.05 bp/d  t +0.46 (iid +0.46 NW +0.50)  p5  -2.64  Sh +0.25
+   S2 sessions in W: ex-roll 784 mean +0.16; incl roll 860 mean -0.80; roll-week sessions only mean -10.68 (n 76)
+   S1 unit book weekdays: gross +3.53 net -1.14 bp/d (n 874)
+   S1 unit book weekends: gross +14.88 net +10.42 bp/d (n 349)
+   S2 alone in W at 0.000 pt/side: mean +2.54 bp/session t +0.78
+   S2 alone in W at 0.100 pt/side: mean +2.22 bp/session t +0.68
+   S2 alone in W at 0.200 pt/side: mean +1.91 bp/session t +0.58
+   S2 alone in W at 0.300 pt/side: mean +1.59 bp/session t +0.48
+   S2 alone in W at 0.375 pt/side: mean +1.35 bp/session t +0.41
+   S2 alone in W at 0.500 pt/side: mean +0.96 bp/session t +0.29
+   S2 alone in W at 0.750 pt/side: mean +0.16 bp/session t +0.05
+   stack without 2023: mean +2.01 t +0.74
+   stack without 2024: mean -1.04 t -0.39
+   stack without 2025: mean +4.16 t +1.66
+   stack without 2026: mean +1.50 t +0.63

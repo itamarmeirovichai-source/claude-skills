@@ -1,0 +1,38 @@
+Engineer library probe, 2026-10-05. Commands run in the scratchpad (not committed):
+  uv venv -p 3.12 venv312; uv pip install project-x-py==4.4.0 async-rithmic==1.6.6
+    -> UNSATISFIABLE: async-rithmic 1.6.6 needs websockets>=11.0,<15.0; project-x-py 4.4.0 needs
+       pysignalr>=1.3.0, which needs websockets>=15.0.1,<16 (1.3.0) or >=16.0,<17 (>=1.3.1).
+       => the two adapters cannot share one Python environment (separate processes/venvs).
+  uv venv -p 3.12 venvpx;   uv pip install project-x-py==4.4.0  -> pysignalr 1.3.2, websockets 16.1.1
+  uv venv -p 3.12 venvrith; uv pip install async-rithmic==1.6.6 -> protobuf 7.36.2, websockets 14.2
+
+PyPI JSON (pypi.org/pypi/<pkg>/json), 2026-10-05:
+  project-x-py 4.4.0  requires_python >=3.12  MIT  last 3 releases 4.3.2 2026-09-26, 4.3.3 2026-09-29, 4.4.0 2026-10-04
+  async-rithmic 1.6.6 requires_python >=3.10  MIT  last 3 releases 1.6.4 2026-07-31, 1.6.5 2026-08-03, 1.6.6 2026-08-21
+  tradovate 0.0.1 (dearvn/tradovate), ib_async 2.1.0, ib-insync 0.9.86
+  Local interpreters: python3 = 3.11.15 (repo tests), /usr/bin/python3.12 and 3.13 present.
+
+Introspected signatures (inspect.signature):
+  project_x_py OrderManager.place_bracket_order(contract_id: str, side: int, size: int, entry_price: float|None,
+      stop_loss_price: float, take_profit_price: float, entry_type='limit', account_id: int|None) -> BracketOrderResponse
+  also place_market_order, place_limit_order, place_stop_order, cancel_order, close_position, cancel_all_orders;
+  ProjectX.list_accounts, search_open_positions, get_instrument, authenticate.
+  project_x_py/types/trading.py: OrderSide BUY=0, SELL=1.
+  async_rithmic RithmicClient.__init__(user, password, system_name, app_name, app_version, url, manual_or_auto=MANUAL)
+  OrderPlacement {UNSPECIFIED:0, MANUAL:1, AUTO:2}; TransactionType {BUY:1, SELL:2};
+  OrderType {LIMIT:1, MARKET:2, STOP_LIMIT:3, STOP_MARKET:4, MIT:5, LIT:6}
+  OrderPlant.submit_order(order_id, symbol, exchange, qty, transaction_type, order_type, **kwargs);
+    stop_ticks / target_ticks kwargs -> template 330 bracket (TARGET_AND_STOP_STATIC), LIMIT requires price=.
+  OrderPlant also: list_accounts, list_orders, cancel_order, cancel_all_orders, exit_position, modify_order,
+    get_account_rms, get_product_rms, get_fill_history, replay_executions.
+
+async_rithmic docs/connection.rst (GitHub raw): test example system_name="Rithmic Test",
+  url="rituz00100.rithmic.com:443  # Example: test gateway only"; "To obtain the list of production URLs,
+  you must first pass the conformance test ... contact Rithmic".
+
+Tick grid: all 11,580 numeric fields in columns 2-5 parsed from 3 ES/NQ 1m samples under agents/daily
+  (firstrate ES RTH 3,120; topstepx ES 5,400; hindsight NQ 3,060) are multiples of 0.25.
+
+Blocked (curl: "CONNECT tunnel failed, response 403"): www.rithmic.com, api.topstepx.com,
+  gateway.docs.projectx.com, api.tradovate.com, async-rithmic.readthedocs.io, project-x-py.readthedocs.io.
+gh api repos/rundef/async_rithmic/contents: 403 (repo not attached to session); GitHub raw worked.

@@ -1,0 +1,25 @@
+# cd skills/prop-fleet/scripts && python3 -m pytest -q   (Python 3.11.15, 2026-10-05)
+# result: 470 passed in 128.11s, 0 failed, 0 errors, 22 test files
+# per-file PASSED counts (pytest -rA):
+     24 test_apex_model.py
+     22 test_dashboard.py
+     10 test_detect.py
+      7 test_diagnose_edge.py
+     22 test_doctor.py
+     19 test_drift_diagnostic.py
+      7 test_fix_analysis_id.py
+     33 test_futures_bars.py
+     24 test_futures_era_check.py
+     25 test_gate.py
+     20 test_integrity.py
+     29 test_lag_refine.py
+     30 test_paper_check.py
+     19 test_pipeline.py
+      9 test_plan_choice.py
+     21 test_proxy_fix.py
+     84 test_replay.py
+      5 test_sizing_grid.py
+     12 test_stack_backtest.py
+      5 test_tjr_backtest.py
+     23 test_trend_backtest.py
+     20 test_watch_gate.py

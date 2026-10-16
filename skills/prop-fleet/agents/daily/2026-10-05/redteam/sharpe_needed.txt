@@ -1,0 +1,15 @@
+annual Sharpe at 2:1 for R per trade x trades/day (250 days)
+  +0.10R  1/day  1.09  3/day  1.89
+  +0.25R  1/day  2.67  3/day  4.63
+  +0.32R  1/day  3.40  3/day  5.88
+  +0.36R  1/day  3.81  3/day  6.60
+  +0.50R  1/day  5.27  3/day  9.13
+  +0.90R  1/day  9.84  3/day 17.05
+
+first R (grid 0.02) at which subset net/yr >= 20% of 50K x accounts; economist plans of 2026-10-05
+  Bulenox5                   3/day: R +0.32  SR  5.88  net 53,745 (p10 45,754) = 21.5% of $250K nominal; fees/yr 1,205
+  Bulenox5                   1/day: R +0.80  SR  8.61  net 50,166 (p10 45,215) = 20.1% of $250K nominal; fees/yr 1,200
+  Bulenox5+Lucid5 (Tier A)   3/day: R +0.36  SR  6.60  net 100,381 (p10 86,703) = 20.1% of $500K nominal; fees/yr 3,679
+  Bulenox5+Lucid5 (Tier A)   1/day: R +1.00  SR 11.18  net 100,751 (p10 93,548) = 20.2% of $500K nominal; fees/yr 3,999
+  Bulenox5+Topstep5          3/day: R +0.34  SR  6.24  net 109,080 (p10 90,007) = 21.8% of $500K nominal; fees/yr 3,179
+  Bulenox5+Topstep5          1/day: R +0.82  SR  8.85  net 101,828 (p10 91,151) = 20.4% of $500K nominal; fees/yr 1,957

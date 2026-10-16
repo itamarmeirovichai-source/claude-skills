@@ -1,0 +1,153 @@
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-01-04 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-01-07 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-01-11 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-01-20 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-01-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-02-04 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-02-10 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-02-18 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-03-30 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-04-08 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-04-18 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-06-01 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-07-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-07-31 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-11-11 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-11-14 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-11-28 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2023-12-29 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-04-17 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-05-04 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-05-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-08-06 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-08-20 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-08-24 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-10-03 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-10-09 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-10-16 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-10-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-10-29 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2024-12-21 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-01-18 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-01-22 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-02-07 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-03-01 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-03-13 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-03-28 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-05-17 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-05-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-07-08 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-08-20 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-09-01 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-09-25 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-10-16 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-10-25 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-11-07 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2025-12-17 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2026-01-20 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2026-02-27 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2026-04-25 identical
+/home/user/claude-skills/skills/prop-fleet/agents/daily/w3-ensemble/ensemble.py:130: RuntimeWarning: divide by zero encountered in scalar divide
+  k1 = min(TARGET / (a.std() * np.sqrt(365)), K1_CAP) if len(a) == LOOK else np.nan
+2026-05-07 identical
+truncation test: 50 cuts, 0 with differences -> PASS

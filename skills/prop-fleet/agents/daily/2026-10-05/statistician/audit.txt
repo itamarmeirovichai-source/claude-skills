@@ -1,0 +1,28 @@
+== 1. ledger N
+rows 12  N = 173  non-integer/<1 counts: []  duplicate ids: []
+rows with a mean but no p5: []
+rows with neither mean nor p5: ['H0001', 'H0003', 'H0005', 'H0007', 'H0008', 'H0009', 'H0011']
+multi-component stacks printed in stack-run.txt: 8 ['tsmom + xsmom', 'xsmom + value', 'tsmom + value', 'tsmom + xsmom + value', '6040 + trend', '6040 + overnight', 'trend + overnight', '6040 + trend + overnight']
+replay.py grids: {'RR_GRID': (1.0, 1.5, 2.0, 2.5, 3.0), 'TRAIL_GRID': (0.5, 0.75, 1.0, 1.5, 2.0)}
+diagnose_edge.candidates drop_bucket calls: 4 (one of them inside a 3-value loop)
+
+== 2. one-sided Bonferroni z
+N=173: alpha 2.89e-04  z 3.442  expected bootstrap draws below that quantile with 5000 draws: 1.45
+N=176: alpha 2.84e-04  z 3.446  expected bootstrap draws below that quantile with 5000 draws: 1.42
+N=178: alpha 2.81e-04  z 3.449  expected bootstrap draws below that quantile with 5000 draws: 1.40
+N=193: alpha 2.59e-04  z 3.471  expected bootstrap draws below that quantile with 5000 draws: 1.30
+
+== 3. IBS builder run: session filter
+signals 583; previous valid session > 4 calendar days back: 49 (8.4%); > 30 days: 2; max 52 days
+ATR14 window span in calendar days: median 21, p95 83, max 129
+weekdays with a 09:31 bar and >=14 prior valid sessions: 1981; of them 'valid' by the trade-day filter: 1230
+
+== 4. look-ahead perturbation, variant A only (k=0.5, both sides)
+ex-ante eligible (all)                   n  907  net mean -0.0893R  boot p5 -0.1461  gross -0.0262R  stop rate 0.336
+  of which builder-valid                 n  583  net mean -0.0097R  boot p5 -0.0871  gross +0.0483R  stop rate 0.381
+  of which dropped by trade-day filter   n  324  net mean -0.2324R  boot p5 -0.3028  gross -0.1602R  stop rate 0.256
+
+== 5. builder variant A: normal vs bootstrap lower bound at 0.05/176
+n 583  mean -0.0097  normal LB -0.1770  bootstrap LB (200000 draws) -0.1703  draws below it 57
+
+perturbation set span 2011-03-11..2018-12-28  trades/yr 116.3

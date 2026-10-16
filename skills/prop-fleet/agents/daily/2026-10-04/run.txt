@@ -1,0 +1,14 @@
+bars 2,117,667  2010-11-14 18:00:00 .. 2018-12-31 16:13:00
+eligible days 1720
+A_base_0.20pct {'n': 1720, 'per_year': 211.7, 'mean_R': np.float64(-0.1418), 'p5_R': np.float64(-0.1818), 'p95_R': np.float64(-0.1021), 'gross_mean_R': np.float64(0.0233), 'gross_p5_R': np.float64(-0.0168), 'sharpe': np.float64(-2.07), 'stop_rate': np.float64(0.243), 'med_risk_pts': np.float64(3.98)}
+   2010-14 {'n': 828, 'mean_R': np.float64(-0.1318), 'p5_R': np.float64(-0.1916), 'gross_mean_R': np.float64(0.0698)}
+   2015-18 {'n': 892, 'mean_R': np.float64(-0.1512), 'p5_R': np.float64(-0.2028), 'gross_mean_R': np.float64(-0.0199)}
+   by year {2010: -0.445, 2011: -0.171, 2012: -0.179, 2013: 0.003, 2014: -0.141, 2015: -0.127, 2016: -0.204, 2017: -0.161, 2018: -0.115}
+B_agree12_0.20pct {'n': 825, 'per_year': 101.6, 'mean_R': np.float64(-0.1605), 'p5_R': np.float64(-0.2193), 'p95_R': np.float64(-0.1001), 'gross_mean_R': np.float64(0.0026), 'gross_p5_R': np.float64(-0.0559), 'sharpe': np.float64(-1.58), 'stop_rate': np.float64(0.258), 'med_risk_pts': np.float64(4.01)}
+   2010-14 {'n': 379, 'mean_R': np.float64(-0.1964), 'p5_R': np.float64(-0.2873), 'gross_mean_R': np.float64(0.004)}
+   2015-18 {'n': 446, 'mean_R': np.float64(-0.13), 'p5_R': np.float64(-0.2042), 'gross_mean_R': np.float64(0.0015)}
+   by year {2010: -0.815, 2011: -0.296, 2012: -0.163, 2013: 0.006, 2014: -0.271, 2015: -0.089, 2016: -0.246, 2017: -0.146, 2018: -0.037}
+C_base_0.40pct {'n': 1720, 'per_year': 211.7, 'mean_R': np.float64(-0.0689), 'p5_R': np.float64(-0.0913), 'p95_R': np.float64(-0.0469), 'gross_mean_R': np.float64(0.0136), 'gross_p5_R': np.float64(-0.0087), 'sharpe': np.float64(-1.8), 'stop_rate': np.float64(0.072), 'med_risk_pts': np.float64(7.96)}
+   2010-14 {'n': 828, 'mean_R': np.float64(-0.0582), 'p5_R': np.float64(-0.0921), 'gross_mean_R': np.float64(0.0426)}
+   2015-18 {'n': 892, 'mean_R': np.float64(-0.0789), 'p5_R': np.float64(-0.1082), 'gross_mean_R': np.float64(-0.0133)}
+   by year {2010: -0.21, 2011: -0.078, 2012: -0.091, 2013: 0.007, 2014: -0.053, 2015: -0.058, 2016: -0.108, 2017: -0.082, 2018: -0.068}

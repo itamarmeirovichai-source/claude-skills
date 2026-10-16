@@ -1,0 +1,30 @@
+== ES FirstRate vs ES TopstepX (ET), overlapping RTH minutes
+rows joined 22347 first 2026-01-20 10:58:00 last 2026-04-10 15:59:00
+close exact-match frac 0.9680
+days 58 days with median diff 0: 57
+non-zero median-diff days:
+ timestamp
+2026-03-13    49.75
+volume ratio FirstRate/TopstepX median 1.000
+
+== ES vs SPY, shared RTH minutes
+rows 639306 first 2019-01-02 09:30:00 last 2025-07-18 15:59:00
+1m log-return corr (intraday only): 0.9841
+sessions 1645
+daily open->close corr 0.9929 ; mean |diff| 0.00015
+overnight gap (09:30 open vs prior 15:59 close) corr 0.9881
+gap diff ES-SPY: median -0.00011, p95 |diff| 0.00054
+sessions with |ES gap - SPY gap| > 0.5%: 12
+timestamp
+2020-03-16    0.0386
+2022-12-14    0.0080
+2023-03-14    0.0087
+2023-06-14    0.0100
+2023-09-14    0.0105
+2023-12-14    0.0105
+2024-03-14    0.0118
+2024-06-14    0.0114
+2024-09-16    0.0107
+2024-12-16    0.0116
+2025-03-14    0.0087
+2025-06-13    0.0083

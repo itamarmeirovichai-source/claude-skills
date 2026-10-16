@@ -1,0 +1,64 @@
+ledger N = 200; one-sided alpha = 0.05/200 = 2.500e-04; bar z = 3.4808
+
+=== NQ 1m 2020-09..2025-11 ex roll weeks (DECISIVE): sessions 1349 (2020-09-01..2025-11-21, 5.22 yr), roll-excluded 126, used 1223
+    bars 469740  bars/session 384.1  sessions not starting 09:30 0  sessions whose last bar is not 15:59 41  zero-volume bars 0  bars with undefined VWAP 0  bars with close == VWAP 5
+    decisions 14481 (11.84/session)  using fallback bar (decision bar missing) 10  skipped (no bar in the half hour) 195  decision with close == VWAP 0  decision on the session's last bar (not acted) 41
+    future-truncation test (a): 250 random sessions, 95730 truncation points (every bar), positions identical
+    future-truncation test (b): streaming bar-by-bar loop reproduces every bar's position and units in all 1223 sessions; max |P&L diff| 0.00e+00 price units
+  all: days 1223  units/day 5.90  mean bp/day gross +6.483  net +5.043  (cost 1.440)  t net +1.68 (gross +2.18)
+      boot p5 net +0.043 (gross +1.505)  win 0.519  Sharpe net +0.76  max DD 2883.8 bp  worst day -856.0 bp (2025-04-07)  days with no position 0
+      year     n  units/day   gross bp    net bp   t net    win   Sharpe
+      2020    75       6.03    +18.143   +16.243   +1.45  0.533   +2.66
+      2021   234       5.94     +9.251    +7.700   +1.69  0.517   +1.75
+      2022   234       5.89    +11.128    +9.386   +0.95  0.517   +0.98
+      2023   233       5.98     +7.248    +5.658   +1.06  0.528   +1.10
+      2024   235       5.71     +8.044    +6.916   +1.37  0.532   +1.42
+      2025   212       5.92     -8.395    -9.402   -1.11  0.495   -1.21
+  cost x2: days 1223  units/day 5.90  mean bp/day gross +6.483  net +3.602  (cost 2.881)  t net +1.20 (gross +2.18)
+      boot p5 net -1.410 (gross +1.505)  win 0.515  Sharpe net +0.54  max DD 3132.1 bp  worst day -859.0 bp (2025-04-07)  days with no position 0
+    post-publication subsample (dates >= 2023-11-01):
+  2023-11+: days 483  units/day 5.87  mean bp/day gross +0.320  net -0.786  (cost 1.106)  t net -0.17 (gross +0.07)
+      boot p5 net -8.212 (gross -7.079)  win 0.507  Sharpe net -0.13  max DD 2883.8 bp  worst day -856.0 bp (2025-04-07)  days with no position 0
+  2023-11+ cost x2: days 483  units/day 5.87  mean bp/day gross +0.320  net -1.892  (cost 2.211)  t net -0.42 (gross +0.07)
+      boot p5 net -9.355 (gross -7.079)  win 0.507  Sharpe net -0.30  max DD 3132.1 bp  worst day -859.0 bp (2025-04-07)  days with no position 0
+    avg first entry price 16216.3 pts; cost/unit 0.375 pt = 0.244 bp; avg gross +8.75 pts/day, avg cost 2.21 pts/day
+
+=== SPXUSD 1m 2010-11..2018-12, session TWAP (UNSEEN): sessions 2090 (2010-11-15..2018-12-31, 8.13 yr), roll-excluded 0, used 2090
+    bars 749655  bars/session 358.7  sessions not starting 09:30 21  sessions whose last bar is not 15:59 71  zero-volume bars 0  bars with undefined VWAP 0  bars with close == VWAP 387
+    decisions 24698 (11.82/session)  using fallback bar (decision bar missing) 1562  skipped (no bar in the half hour) 382  decision with close == VWAP 2  decision on the session's last bar (not acted) 69
+    future-truncation test (a): 250 random sessions, 89047 truncation points (every bar), positions identical
+    future-truncation test (b): streaming bar-by-bar loop reproduces every bar's position and units in all 2090 sessions; max |P&L diff| 2.22e-16 price units
+  all: days 2090  units/day 6.44  mean bp/day gross +5.406  net +2.187  (cost 3.218)  t net +1.57 (gross +3.94)
+      boot p5 net -0.092 (gross +3.164)  win 0.492  Sharpe net +0.55  max DD 3310.6 bp  worst day -378.4 bp (2011-08-05)  days with no position 1
+      year     n  units/day   gross bp    net bp   t net    win   Sharpe
+      2010    34       5.82     +5.398    +2.485   +0.34  0.676   +0.92
+      2011   258       6.06    +14.554   +11.522   +2.07  0.574   +2.04
+      2012   256       6.25     +7.980    +4.856   +1.36  0.492   +1.35
+      2013   258       6.50     +0.685    -2.563   -0.86  0.481   -0.85
+      2014   258       6.28     +4.788    +1.649   +0.53  0.481   +0.52
+      2015   258       6.65     +4.290    +0.964   +0.23  0.450   +0.22
+      2016   258       6.58     -1.660    -4.950   -1.38  0.434   -1.37
+      2017   252       6.71     -1.388    -4.745   -2.05  0.448   -2.05
+      2018   258       6.55    +13.860   +10.586   +2.02  0.550   +1.99
+  cost x2: days 2090  units/day 6.44  mean bp/day gross +5.406  net -1.031  (cost 6.437)  t net -0.73 (gross +3.94)
+      boot p5 net -3.352 (gross +3.164)  win 0.468  Sharpe net -0.25  max DD 6910.2 bp  worst day -381.4 bp (2011-08-05)  days with no position 1
+
+=== SPY 1m RTH 2019-01..2025-07: sessions 1645 (2019-01-02..2025-07-18, 6.54 yr), roll-excluded 0, used 1645
+    bars 640753  bars/session 389.5  sessions not starting 09:30 0  sessions whose last bar is not 15:59 3  zero-volume bars 0  bars with undefined VWAP 0  bars with close == VWAP 11
+    decisions 19740 (12.00/session)  using fallback bar (decision bar missing) 19  skipped (no bar in the half hour) 0  decision with close == VWAP 0  decision on the session's last bar (not acted) 0
+    future-truncation test (a): 250 random sessions, 97425 truncation points (every bar), positions identical
+    future-truncation test (b): streaming bar-by-bar loop reproduces every bar's position and units in all 1645 sessions; max |P&L diff| 5.68e-14 price units
+  all: days 1645  units/day 6.34  mean bp/day gross +2.415  net -0.753  (cost 3.168)  t net -0.36 (gross +1.17)
+      boot p5 net -4.213 (gross -1.008)  win 0.492  Sharpe net -0.14  max DD 2353.7 bp  worst day -774.5 bp (2025-04-07)  days with no position 0
+      year     n  units/day   gross bp    net bp   t net    win   Sharpe
+      2019   252       6.33     -1.738    -4.905   -1.58  0.433   -1.58
+      2020   253       6.50     +2.792    -0.456   -0.06  0.506   -0.06
+      2021   252       6.28     +6.756    +3.618   +0.97  0.520   +0.97
+      2022   251       6.33     +0.365    -2.797   -0.37  0.482   -0.37
+      2023   250       6.39     +4.024    +0.829   +0.21  0.492   +0.21
+      2024   252       6.27     +7.815    +4.680   +1.43  0.528   +1.43
+      2025   135       6.19     -7.893   -10.990   -1.12  0.481   -1.53
+  cost x2: days 1645  units/day 6.34  mean bp/day gross +2.415  net -3.921  (cost 6.336)  t net -1.86 (gross +1.17)
+      boot p5 net -7.417 (gross -1.008)  win 0.478  Sharpe net -0.73  max DD 6865.3 bp  worst day -780.6 bp (2025-04-07)  days with no position 0
+
+=== decision rule (prereg): NQ net mean > 0 with one-sided t >= 3.4808: net +5.043 bp, t +1.68 -> False | SPXUSD-TWAP net mean > 0: +2.187 bp -> True | SPY net mean > 0: -0.753 bp -> False => FAIL

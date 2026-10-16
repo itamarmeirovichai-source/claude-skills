@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+
+rootdir: skills/prop-fleet/agents/daily/vwap-H0021
+plugins: anyio-4.15.1
+collecting ... collected 8 items
+
+test_vwap.py::test_vwap_is_cumulative_typical_price_weighted PASSED      [ 12%]
+test_vwap.py::test_vwap_resets_each_session_and_undefined_without_volume PASSED [ 25%]
+test_vwap.py::test_signal_acts_at_next_open_and_equal_keeps_position PASSED [ 37%]
+test_vwap.py::test_equal_close_holds_previous_signal PASSED              [ 50%]
+test_vwap.py::test_flat_at_last_bar_close_and_last_signal_ignored PASSED [ 62%]
+test_vwap.py::test_cost_counts_flip_as_two_units_and_pct_cost PASSED     [ 75%]
+test_vwap.py::test_multi_session_no_carry_and_matches_stream PASSED      [ 87%]
+test_vwap.py::test_no_position_day_scores_zero_units PASSED              [100%]
+
+============================== 8 passed in 0.41s ===============================

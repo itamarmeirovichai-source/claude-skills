@@ -1,0 +1,9 @@
+exposure (share of days held): 0.191
+IS 1990-2009 gross: days 5042 mean +1.370 bp/day  t +1.93  p5 +0.216 bp  Sharpe +0.43  ret/yr +3.45%  maxDD -20.98%  worst -8.93%
+IS 1990-2009 net: days 5042 mean +1.133 bp/day  t +1.60  p5 -0.022 bp  Sharpe +0.36  ret/yr +2.86%  maxDD -21.64%  worst -8.94%
+OOS 2010-2026 gross: days 4208 mean +1.341 bp/day  t +1.89  p5 +0.153 bp  Sharpe +0.46  ret/yr +3.38%  maxDD -14.75%  worst -4.84%
+OOS 2010-2026 net (DECISIVE): days 4208 mean +1.104 bp/day  t +1.56  p5 -0.083 bp  Sharpe +0.38  ret/yr +2.78%  maxDD -15.06%  worst -4.85%
+OOS 2010-2026 net cost x2: days 4208 mean +0.866 bp/day  t +1.22  p5 -0.320 bp  Sharpe +0.30  ret/yr +2.18%  maxDD -15.36%  worst -4.86%
+OOS buy&hold x exposure (benchmark): days 4208 mean +0.990 bp/day  t +3.11  p5 +0.471 bp  Sharpe +0.76  ret/yr +2.50%  maxDD -7.29%  worst -2.29%
+per year net bp/day: {2010: 5.55, 2011: -0.72, 2012: 2.96, 2013: 1.44, 2014: -0.75, 2015: -1.15, 2016: -0.87, 2017: 1.42, 2018: -0.67, 2019: 1.06, 2020: 5.85, 2021: 0.45, 2022: -1.17, 2023: 2.38, 2024: -2.1, 2025: 0.37, 2026: 6.01}
+VERDICT: FAIL (t 1.56 vs 3.5632, p5 -0.083 bp)

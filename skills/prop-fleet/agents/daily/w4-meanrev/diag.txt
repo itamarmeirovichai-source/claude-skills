@@ -1,0 +1,58 @@
+
+== long-only rsi, close fill, gross per trade (% of notional), no filter ==
+US500   IS  trades  315  mean +0.475%  hit 0.69  days 3.30  t +3.88
+US500   OOS trades  161  mean +0.445%  hit 0.76  days 3.09  t +2.57
+US100   IS  trades  323  mean +0.824%  hit 0.68  days 3.29  t +4.20
+US100   OOS trades  153  mean +0.529%  hit 0.73  days 3.28  t +3.07
+US30    IS  trades  274  mean +0.408%  hit 0.70  days 3.24  t +3.09
+US30    OOS trades  171  mean +0.251%  hit 0.74  days 3.15  t +1.36
+GER40   IS  trades  296  mean +0.381%  hit 0.67  days 3.45  t +2.07
+GER40   OOS trades  173  mean +0.144%  hit 0.65  days 3.29  t +0.70
+UK100   IS  trades  310  mean +0.384%  hit 0.69  days 3.24  t +3.13
+UK100   OOS trades  178  mean -0.053%  hit 0.65  days 3.41  t -0.33
+JP225   IS  trades  338  mean +0.100%  hit 0.58  days 3.47  t +0.64
+JP225   OOS trades  172  mean +0.483%  hit 0.69  days 3.08  t +2.14
+FRA40   IS  trades  316  mean +0.633%  hit 0.69  days 3.25  t +4.15
+FRA40   OOS trades  181  mean -0.050%  hit 0.65  days 3.23  t -0.25
+AUS200  IS  trades  246  mean +0.029%  hit 0.60  days 3.46  t +0.23
+AUS200  OOS trades  181  mean +0.212%  hit 0.70  days 3.31  t +1.39
+EU50    IS  trades   79  mean +1.107%  hit 0.76  days 3.13  t +2.73
+EU50    OOS trades  173  mean +0.060%  hit 0.65  days 3.31  t +0.29
+HK50    IS  trades  353  mean +0.092%  hit 0.61  days 3.48  t +0.50
+HK50    OOS trades  201  mean -0.086%  hit 0.61  days 3.48  t -0.47
+
+== long-only down3, close fill, gross per trade (% of notional), no filter ==
+US500   IS  trades  324  mean +0.499%  hit 0.73  days 2.95  t +4.31
+US500   OOS trades  166  mean +0.357%  hit 0.77  days 2.86  t +2.32
+US100   IS  trades  318  mean +0.820%  hit 0.72  days 3.07  t +4.41
+US100   OOS trades  158  mean +0.601%  hit 0.77  days 2.84  t +3.81
+US30    IS  trades  265  mean +0.252%  hit 0.69  days 3.12  t +1.79
+US30    OOS trades  165  mean +0.265%  hit 0.70  days 3.05  t +1.68
+GER40   IS  trades  311  mean +0.427%  hit 0.68  days 3.15  t +2.51
+GER40   OOS trades  169  mean +0.125%  hit 0.70  days 3.00  t +0.63
+UK100   IS  trades  350  mean +0.503%  hit 0.73  days 2.91  t +4.44
+UK100   OOS trades  187  mean -0.099%  hit 0.64  days 3.21  t -0.67
+JP225   IS  trades  349  mean +0.152%  hit 0.64  days 3.21  t +1.02
+JP225   OOS trades  169  mean +0.387%  hit 0.69  days 3.03  t +1.88
+FRA40   IS  trades  329  mean +0.600%  hit 0.70  days 2.99  t +4.09
+FRA40   OOS trades  193  mean +0.074%  hit 0.68  days 3.11  t +0.44
+AUS200  IS  trades  262  mean +0.167%  hit 0.63  days 3.16  t +1.39
+AUS200  OOS trades  184  mean +0.331%  hit 0.73  days 3.02  t +3.05
+EU50    IS  trades   80  mean +0.993%  hit 0.75  days 2.95  t +2.54
+EU50    OOS trades  180  mean +0.113%  hit 0.67  days 3.08  t +0.64
+HK50    IS  trades  330  mean +0.096%  hit 0.62  days 3.28  t +0.51
+HK50    OOS trades  200  mean -0.048%  hit 0.60  days 3.35  t -0.27
+
+G2-01 worst book days:
+ 2020-03-12   -0.0403
+2015-08-24   -0.0244
+2011-08-08   -0.0227
+2025-04-04   -0.0222
+2020-02-27   -0.0216
+Name: net, dtype: float64 
+ 2020-03-12    0.437
+2015-08-24    0.604
+2011-08-08    0.374
+2025-04-04    0.380
+2020-02-27    0.702
+Name: absexpo, dtype: float64

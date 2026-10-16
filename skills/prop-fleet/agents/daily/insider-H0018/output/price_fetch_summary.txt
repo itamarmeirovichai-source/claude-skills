@@ -1,0 +1,2 @@
+tickers with prices 4289 | no price history 7235 of 11524
+recovered 850 | tickers with prices 5139 | no price history 6385

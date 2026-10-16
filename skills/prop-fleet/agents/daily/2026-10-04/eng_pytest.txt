@@ -1,0 +1,25 @@
+# eng 2026-10-04: python3 -m pytest -q (run from scripts/)
+470 passed in 122.63s, 0 failed, 0 errors
+# per-file collected tests (pytest --co):
+     24 scripts/test_apex_model.py
+     22 scripts/test_dashboard.py
+     10 scripts/test_detect.py
+      7 scripts/test_diagnose_edge.py
+     22 scripts/test_doctor.py
+     19 scripts/test_drift_diagnostic.py
+      7 scripts/test_fix_analysis_id.py
+     33 scripts/test_futures_bars.py
+     24 scripts/test_futures_era_check.py
+     25 scripts/test_gate.py
+     20 scripts/test_integrity.py
+     29 scripts/test_lag_refine.py
+     30 scripts/test_paper_check.py
+     19 scripts/test_pipeline.py
+      9 scripts/test_plan_choice.py
+     21 scripts/test_proxy_fix.py
+     84 scripts/test_replay.py
+      5 scripts/test_sizing_grid.py
+     12 scripts/test_stack_backtest.py
+      5 scripts/test_tjr_backtest.py
+     23 scripts/test_trend_backtest.py
+     20 scripts/test_watch_gate.py

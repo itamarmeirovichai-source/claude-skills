@@ -1,0 +1,244 @@
+D4 w1-breadth — pre-registered run (agents/prereg/D4-spec.md). Bar z = 3.5504.
+
+Eligibility (spec §3: >=250 IS sessions and round-trip cost <= 0.10 x sigma_IS):
+            n_IS  sigma_IS_bp  rt_cost_bp  cost/sigma  eligible
+market                                                         
+EUR_USD     2073       49.914         1.0       0.020      True
+GBP_USD     2073       50.427         1.4       0.028      True
+USD_CAD     2073       52.418         1.6       0.031      True
+AUD_USD     2073       58.234         1.4       0.024      True
+EUR_JPY     2074       59.428         1.6       0.027      True
+AUD_JPY     2074       75.210         1.8       0.024      True
+SPX500_USD  1996      112.300         2.0       0.018      True
+NAS100_USD  1996      122.966         2.0       0.016      True
+US2000_USD  1992      153.886         3.0       0.019      True
+UK100_GBP   1993       94.243         2.0       0.021      True
+FR40_EUR    2033      121.298         2.0       0.016      True
+NL25_EUR    1253      136.811         3.0       0.022      True
+JP225_USD    359       89.033         3.0       0.034      True
+AU200_AUD   1783       78.600         2.4       0.031      True
+GRXEUR       540      128.584         1.6       0.012      True
+ETXEUR       543      135.606         3.0       0.022      True
+XAU_USD     1739       96.154         2.0       0.021      True
+WTICO_USD   1657      187.185         5.0       0.027      True
+NATGAS_USD  1650      264.230        16.0       0.061      True
+CORN_USD      97       85.881        20.0       0.233     False
+SOYBN_USD    150       89.690        12.0       0.134     False
+WHEAT_USD     97      109.003        20.0       0.183     False
+SUGAR_USD   1219      184.603        20.0       0.108     False
+
+Basket K = 19: ['EUR_USD', 'GBP_USD', 'USD_CAD', 'AUD_USD', 'EUR_JPY', 'AUD_JPY', 'SPX500_USD', 'NAS100_USD', 'US2000_USD', 'UK100_GBP', 'FR40_EUR', 'NL25_EUR', 'JP225_USD', 'AU200_AUD', 'GRXEUR', 'ETXEUR', 'XAU_USD', 'WTICO_USD', 'NATGAS_USD']
+Held-out H (6): ['GRXEUR', 'ETXEUR', np.str_('GBP_USD'), np.str_('AU200_AUD'), np.str_('NATGAS_USD'), np.str_('JP225_USD')]
+Design   D (13): ['EUR_USD', 'USD_CAD', 'AUD_USD', 'EUR_JPY', 'AUD_JPY', 'SPX500_USD', 'NAS100_USD', 'US2000_USD', 'UK100_GBP', 'FR40_EUR', 'NL25_EUR', 'XAU_USD', 'WTICO_USD']
+
+Units: basket daily mean in % of a market's 1% target session vol, i.e. x100 = bp of
+capital per day if every market is sized to 1% session vol and the basket averages them.
+
+===== D4-01 =====
+  OOS    gross n  1908  mean +0.002  t +0.80  t_NW +0.77  p5 iid -0.002 blk -0.003  Sharpe +0.29  maxDD@10%vol 26.4%
+  OOS    net   n  1908  mean -0.037  t -16.05  t_NW -15.05  p5 iid -0.040 blk -0.041  Sharpe -5.83  maxDD@10%vol 459.7%
+  OOS    net2  n  1908  mean -0.075  t -32.44  t_NW -28.96  p5 iid -0.079 blk -0.081  Sharpe -11.79  maxDD@10%vol 904.6%
+  OOS_D  gross n  1908  mean +0.000  t +0.04  t_NW +0.03  p5 iid -0.004 blk -0.005  Sharpe +0.01  maxDD@10%vol 39.9%
+  OOS_D  net   n  1908  mean -0.036  t -13.62  t_NW -12.38  p5 iid -0.041 blk -0.042  Sharpe -4.95  maxDD@10%vol 396.8%
+  OOS_D  net2  n  1908  mean -0.072  t -27.00  t_NW -23.67  p5 iid -0.077 blk -0.079  Sharpe -9.81  maxDD@10%vol 759.5%
+  OOS_H  gross n  1908  mean +0.006  t +1.93  t_NW +1.92  p5 iid +0.001 blk +0.000  Sharpe +0.70  maxDD@10%vol 13.6%
+  OOS_H  net   n  1908  mean -0.038  t -12.98  t_NW -12.76  p5 iid -0.042 blk -0.043  Sharpe -4.72  maxDD@10%vol 362.8%
+  OOS_H  net2  n  1908  mean -0.081  t -27.56  t_NW -25.95  p5 iid -0.086 blk -0.087  Sharpe -10.01  maxDD@10%vol 760.7%
+  IS_D   gross n  2077  mean +0.017  t +6.81  t_NW +6.47  p5 iid +0.013 blk +0.012  Sharpe +2.37  maxDD@10%vol 11.8%
+  IS_D   net   n  2077  mean -0.007  t -2.81  t_NW -2.64  p5 iid -0.011 blk -0.012  Sharpe -0.98  maxDD@10%vol 82.8%
+  IS_D   net2  n  2077  mean -0.030  t -12.34  t_NW -11.31  p5 iid -0.034 blk -0.036  Sharpe -4.30  maxDD@10%vol 355.9%
+  gate: G1 t>=3.5504 False (min t -16.05)  G2 p5>0 False (min p5 -0.041)  G3 H net>0 False  G4 IS_D gross>0 True
+  worse of cost x1/x2 (OOS net): mean -0.075 t -32.44 Sharpe -11.79
+  per year net (<=2012 = IS design markets; >=2013 = OOS all basket):
+           n  mean%     t  Sharpe
+   2005  260  -0.01 -1.68   -1.66
+   2006  259  -0.02 -3.89   -3.84
+   2007  259  -0.00 -0.08   -0.08
+   2008  260   0.03  3.04    3.00
+   2009  259  -0.02 -2.39   -2.36
+   2010  260  -0.01 -1.11   -1.10
+   2011  260  -0.00 -0.51   -0.50
+   2012  260  -0.03 -4.10   -4.04
+   2013  259  -0.03 -5.30   -5.23
+   2014  259  -0.05 -8.61   -8.49
+   2015  259  -0.03 -5.19   -5.12
+   2016  259  -0.03 -5.77   -5.69
+   2017  259  -0.04 -8.42   -8.30
+   2018  259  -0.04 -5.02   -4.95
+   2019  259  -0.05 -9.74   -9.61
+   2020   95  -0.00 -0.15   -0.25
+
+===== D4-02 =====
+  OOS    gross n  1908  mean +0.001  t +0.13  t_NW +0.14  p5 iid -0.012 blk -0.013  Sharpe +0.05  maxDD@10%vol 37.8%
+  OOS    net   n  1908  mean -0.037  t -4.81  t_NW -4.83  p5 iid -0.050 blk -0.052  Sharpe -1.75  maxDD@10%vol 140.8%
+  OOS    net2  n  1908  mean -0.076  t -9.73  t_NW -9.67  p5 iid -0.089 blk -0.091  Sharpe -3.54  maxDD@10%vol 273.6%
+  OOS_D  gross n  1908  mean +0.001  t +0.11  t_NW +0.11  p5 iid -0.014 blk -0.015  Sharpe +0.04  maxDD@10%vol 37.5%
+  OOS_D  net   n  1908  mean -0.035  t -3.91  t_NW -3.86  p5 iid -0.050 blk -0.052  Sharpe -1.42  maxDD@10%vol 120.7%
+  OOS_D  net2  n  1908  mean -0.072  t -7.91  t_NW -7.77  p5 iid -0.086 blk -0.088  Sharpe -2.88  maxDD@10%vol 227.7%
+  OOS_H  gross n  1908  mean +0.001  t +0.11  t_NW +0.11  p5 iid -0.016 blk -0.016  Sharpe +0.04  maxDD@10%vol 30.8%
+  OOS_H  net   n  1908  mean -0.042  t -4.17  t_NW -4.23  p5 iid -0.059 blk -0.060  Sharpe -1.52  maxDD@10%vol 125.5%
+  OOS_H  net2  n  1908  mean -0.085  t -8.44  t_NW -8.49  p5 iid -0.102 blk -0.104  Sharpe -3.07  maxDD@10%vol 238.7%
+  IS_D   gross n  2077  mean +0.017  t +1.96  t_NW +2.05  p5 iid +0.003 blk +0.003  Sharpe +0.68  maxDD@10%vol 23.5%
+  IS_D   net   n  2077  mean -0.006  t -0.74  t_NW -0.78  p5 iid -0.021 blk -0.021  Sharpe -0.26  maxDD@10%vol 38.6%
+  IS_D   net2  n  2077  mean -0.030  t -3.43  t_NW -3.59  p5 iid -0.044 blk -0.045  Sharpe -1.20  maxDD@10%vol 100.1%
+  gate: G1 t>=3.5504 False (min t -4.83)  G2 p5>0 False (min p5 -0.052)  G3 H net>0 False  G4 IS_D gross>0 True
+  worse of cost x1/x2 (OOS net): mean -0.076 t -9.73 Sharpe -3.54
+  per year net (<=2012 = IS design markets; >=2013 = OOS all basket):
+           n  mean%     t  Sharpe
+   2005  260   0.01  0.80    0.79
+   2006  259  -0.02 -1.05   -1.04
+   2007  259  -0.00 -0.09   -0.08
+   2008  260   0.02  0.78    0.77
+   2009  259  -0.04 -1.83   -1.81
+   2010  260  -0.04 -1.38   -1.36
+   2011  260   0.02  0.89    0.88
+   2012  260  -0.01 -0.44   -0.43
+   2013  259  -0.02 -1.10   -1.09
+   2014  259  -0.05 -2.31   -2.28
+   2015  259   0.01  0.60    0.59
+   2016  259  -0.05 -2.23   -2.20
+   2017  259  -0.07 -3.97   -3.91
+   2018  259  -0.04 -1.72   -1.70
+   2019  259  -0.06 -3.43   -3.38
+   2020   95   0.01  0.22    0.36
+
+===== D4-03 =====
+  OOS    gross n  1908  mean +0.027  t +3.53  t_NW +3.42  p5 iid +0.015 blk +0.014  Sharpe +1.28  maxDD@10%vol 15.1%
+  OOS    net   n  1908  mean -0.111  t -13.83  t_NW -13.16  p5 iid -0.124 blk -0.126  Sharpe -5.03  maxDD@10%vol 386.9%
+  OOS    net2  n  1908  mean -0.250  t -29.47  t_NW -26.93  p5 iid -0.263 blk -0.268  Sharpe -10.71  maxDD@10%vol 811.3%
+  OOS_D  gross n  1908  mean +0.022  t +2.49  t_NW +2.41  p5 iid +0.008 blk +0.008  Sharpe +0.90  maxDD@10%vol 16.6%
+  OOS_D  net   n  1908  mean -0.113  t -12.10  t_NW -11.64  p5 iid -0.128 blk -0.129  Sharpe -4.40  maxDD@10%vol 336.9%
+  OOS_D  net2  n  1908  mean -0.248  t -25.31  t_NW -23.68  p5 iid -0.264 blk -0.267  Sharpe -9.20  maxDD@10%vol 696.7%
+  OOS_H  gross n  1908  mean +0.038  t +3.97  t_NW +4.11  p5 iid +0.022 blk +0.021  Sharpe +1.44  maxDD@10%vol 18.2%
+  OOS_H  net   n  1908  mean -0.107  t -10.69  t_NW -10.75  p5 iid -0.124 blk -0.127  Sharpe -3.88  maxDD@10%vol 304.4%
+  OOS_H  net2  n  1908  mean -0.252  t -23.66  t_NW -22.61  p5 iid -0.270 blk -0.277  Sharpe -8.60  maxDD@10%vol 654.8%
+  IS_D   gross n  2077  mean +0.034  t +4.05  t_NW +4.41  p5 iid +0.020 blk +0.022  Sharpe +1.41  maxDD@10%vol 7.4%
+  IS_D   net   n  2077  mean -0.054  t -6.24  t_NW -6.67  p5 iid -0.068 blk -0.067  Sharpe -2.17  maxDD@10%vol 179.1%
+  IS_D   net2  n  2077  mean -0.142  t -15.81  t_NW -16.28  p5 iid -0.157 blk -0.158  Sharpe -5.51  maxDD@10%vol 453.8%
+  gate: G1 t>=3.5504 False (min t -13.83)  G2 p5>0 False (min p5 -0.126)  G3 H net>0 False  G4 IS_D gross>0 True
+  worse of cost x1/x2 (OOS net): mean -0.250 t -29.47 Sharpe -10.71
+  per year net (<=2012 = IS design markets; >=2013 = OOS all basket):
+           n  mean%     t  Sharpe
+   2005  260  -0.09 -5.21   -5.13
+   2006  259  -0.08 -4.37   -4.31
+   2007  259  -0.09 -3.87   -3.81
+   2008  260  -0.04 -1.16   -1.14
+   2009  259  -0.03 -1.54   -1.52
+   2010  260  -0.02 -0.61   -0.60
+   2011  260  -0.04 -1.13   -1.12
+   2012  260  -0.05 -2.30   -2.26
+   2013  259  -0.09 -4.88   -4.81
+   2014  259  -0.12 -5.16   -5.09
+   2015  259  -0.03 -1.42   -1.40
+   2016  259  -0.11 -4.85   -4.79
+   2017  259  -0.17 -9.27   -9.14
+   2018  259  -0.14 -5.76   -5.68
+   2019  259  -0.15 -7.82   -7.71
+   2020   95  -0.03 -0.69   -1.12
+
+===== D4-04 =====
+  OOS    gross n  1908  mean +0.013  t +2.30  t_NW +2.45  p5 iid +0.004 blk +0.005  Sharpe +0.84  maxDD@10%vol 11.7%
+  OOS    net   n  1908  mean -0.025  t -4.28  t_NW -4.56  p5 iid -0.034 blk -0.034  Sharpe -1.56  maxDD@10%vol 119.2%
+  OOS    net2  n  1908  mean -0.063  t -10.86  t_NW -11.51  p5 iid -0.073 blk -0.072  Sharpe -3.95  maxDD@10%vol 299.6%
+  OOS_D  gross n  1908  mean +0.008  t +1.17  t_NW +1.21  p5 iid -0.003 blk -0.003  Sharpe +0.43  maxDD@10%vol 21.4%
+  OOS_D  net   n  1908  mean -0.028  t -4.15  t_NW -4.31  p5 iid -0.039 blk -0.039  Sharpe -1.51  maxDD@10%vol 115.3%
+  OOS_D  net2  n  1908  mean -0.064  t -9.48  t_NW -9.80  p5 iid -0.075 blk -0.076  Sharpe -3.44  maxDD@10%vol 261.3%
+  OOS_H  gross n  1908  mean +0.025  t +3.37  t_NW +3.48  p5 iid +0.013 blk +0.014  Sharpe +1.22  maxDD@10%vol 16.0%
+  OOS_H  net   n  1908  mean -0.018  t -2.39  t_NW -2.46  p5 iid -0.030 blk -0.030  Sharpe -0.87  maxDD@10%vol 79.3%
+  OOS_H  net2  n  1908  mean -0.061  t -8.13  t_NW -8.31  p5 iid -0.073 blk -0.073  Sharpe -2.95  maxDD@10%vol 235.0%
+  IS_D   gross n  2077  mean +0.015  t +2.33  t_NW +2.65  p5 iid +0.004 blk +0.007  Sharpe +0.81  maxDD@10%vol 11.6%
+  IS_D   net   n  2077  mean -0.008  t -1.33  t_NW -1.50  p5 iid -0.019 blk -0.017  Sharpe -0.46  maxDD@10%vol 42.5%
+  IS_D   net2  n  2077  mean -0.032  t -4.98  t_NW -5.58  p5 iid -0.042 blk -0.041  Sharpe -1.73  maxDD@10%vol 144.0%
+  gate: G1 t>=3.5504 False (min t -4.56)  G2 p5>0 False (min p5 -0.034)  G3 H net>0 False  G4 IS_D gross>0 True
+  worse of cost x1/x2 (OOS net): mean -0.063 t -10.86 Sharpe -3.95
+  per year net (<=2012 = IS design markets; >=2013 = OOS all basket):
+           n  mean%     t  Sharpe
+   2005  260  -0.01 -1.18   -1.16
+   2006  259  -0.01 -0.50   -0.49
+   2007  259  -0.01 -0.44   -0.43
+   2008  260   0.01  0.57    0.57
+   2009  259  -0.01 -0.46   -0.45
+   2010  260  -0.00 -0.09   -0.09
+   2011  260  -0.02 -1.11   -1.09
+   2012  260  -0.02 -1.06   -1.05
+   2013  259  -0.03 -1.79   -1.77
+   2014  259  -0.01 -0.55   -0.54
+   2015  259  -0.01 -0.96   -0.95
+   2016  259  -0.03 -1.81   -1.79
+   2017  259  -0.05 -3.62   -3.57
+   2018  259  -0.01 -0.45   -0.44
+   2019  259  -0.02 -1.79   -1.77
+   2020   95  -0.06 -1.74   -2.84
+
+===== D4-05 =====
+  OOS    gross n  1908  mean +0.011  t +2.86  t_NW +2.80  p5 iid +0.005 blk +0.004  Sharpe +1.04  maxDD@10%vol 24.5%
+  OOS    net   n  1908  mean -0.053  t -13.57  t_NW -12.99  p5 iid -0.059 blk -0.060  Sharpe -4.93  maxDD@10%vol 378.4%
+  OOS    net2  n  1908  mean -0.116  t -29.13  t_NW -26.60  p5 iid -0.122 blk -0.125  Sharpe -10.59  maxDD@10%vol 802.1%
+  OOS_D  gross n  1908  mean +0.008  t +1.78  t_NW +1.75  p5 iid +0.001 blk +0.000  Sharpe +0.65  maxDD@10%vol 24.3%
+  OOS_D  net   n  1908  mean -0.053  t -11.87  t_NW -11.51  p5 iid -0.060 blk -0.062  Sharpe -4.32  maxDD@10%vol 328.7%
+  OOS_D  net2  n  1908  mean -0.114  t -24.89  t_NW -23.33  p5 iid -0.122 blk -0.124  Sharpe -9.05  maxDD@10%vol 685.2%
+  OOS_H  gross n  1908  mean +0.017  t +3.67  t_NW +3.78  p5 iid +0.009 blk +0.009  Sharpe +1.33  maxDD@10%vol 17.8%
+  OOS_H  net   n  1908  mean -0.051  t -10.56  t_NW -10.60  p5 iid -0.059 blk -0.060  Sharpe -3.84  maxDD@10%vol 301.2%
+  OOS_H  net2  n  1908  mean -0.120  t -23.96  t_NW -22.83  p5 iid -0.128 blk -0.131  Sharpe -8.71  maxDD@10%vol 663.2%
+  IS_D   gross n  2077  mean +0.021  t +4.77  t_NW +5.25  p5 iid +0.014 blk +0.014  Sharpe +1.66  maxDD@10%vol 10.3%
+  IS_D   net   n  2077  mean -0.019  t -4.32  t_NW -4.70  p5 iid -0.026 blk -0.026  Sharpe -1.51  maxDD@10%vol 125.3%
+  IS_D   net2  n  2077  mean -0.059  t -13.13  t_NW -13.81  p5 iid -0.066 blk -0.067  Sharpe -4.57  maxDD@10%vol 377.1%
+  gate: G1 t>=3.5504 False (min t -13.57)  G2 p5>0 False (min p5 -0.060)  G3 H net>0 False  G4 IS_D gross>0 True
+  worse of cost x1/x2 (OOS net): mean -0.116 t -29.13 Sharpe -10.59
+  per year net (<=2012 = IS design markets; >=2013 = OOS all basket):
+           n  mean%     t  Sharpe
+   2005  260  -0.02 -2.97   -2.92
+   2006  259  -0.03 -3.44   -3.39
+   2007  259  -0.03 -2.22   -2.19
+   2008  260   0.01  0.46    0.46
+   2009  259  -0.03 -2.19   -2.16
+   2010  260  -0.02 -1.16   -1.14
+   2011  260  -0.01 -0.64   -0.63
+   2012  260  -0.03 -2.14   -2.10
+   2013  259  -0.04 -4.33   -4.27
+   2014  259  -0.05 -4.98   -4.92
+   2015  259  -0.02 -1.51   -1.49
+   2016  259  -0.06 -5.61   -5.53
+   2017  259  -0.09 -9.58   -9.45
+   2018  259  -0.05 -4.49   -4.43
+   2019  259  -0.07 -7.70   -7.59
+   2020   95  -0.02 -0.99   -1.61
+
+===== per-market OOS (2013..) net Sharpe of u (equal-vol), sides/session =====
+           set  D4-01 Sh  D4-01 sides  D4-02 Sh  D4-02 sides  D4-03 Sh  D4-03 sides  D4-04 Sh  D4-04 sides
+market                                                                                                    
+EUR_USD      D     -2.22         2.00     -1.19         2.00     -1.57         8.06      0.05         2.00
+GBP_USD      H     -1.36         2.00     -0.42         2.00     -1.10         7.84      0.33         1.99
+USD_CAD      D     -2.56         1.99     -1.32         1.99     -4.22         8.57     -2.14         2.00
+AUD_USD      D     -3.66         2.00     -1.81         2.00     -2.19         7.92     -0.62         2.00
+EUR_JPY      D     -1.83         2.00     -0.73         2.00     -2.19         8.04     -0.51         2.00
+AUD_JPY      D     -2.66         2.00     -1.38         2.00     -2.71         8.06     -0.46         2.00
+SPX500_USD   D     -1.20         1.98      0.03         1.98     -1.01         6.63     -1.01         1.98
+NAS100_USD   D     -0.65         2.00      0.11         2.00     -0.33         6.60     -1.13         1.97
+US2000_USD   D     -1.16         2.00      0.13         2.00     -1.24         6.48     -0.62         1.96
+UK100_GBP    D     -1.00         1.98      0.16         1.98     -1.49         8.05     -0.18         1.97
+FR40_EUR     D     -1.41         1.99     -0.42         1.99     -1.43         8.13     -0.27         1.99
+NL25_EUR     D     -2.86         1.99     -0.65         1.99     -1.85         7.90     -0.38         1.99
+JP225_USD    H     -1.85         2.00     -0.62         2.00     -0.89         6.25     -0.09         1.94
+AU200_AUD    H     -3.30         1.97     -0.98         1.97     -1.38         5.94     -0.03         1.95
+GRXEUR       H     -0.36         1.99     -0.09         1.99     -0.74         8.28      0.31         1.99
+ETXEUR       H     -1.73         1.96     -0.67         1.96     -2.05         7.88     -0.68         1.99
+XAU_USD      D     -1.41         2.00     -0.26         2.00     -1.07         5.69     -0.36         1.94
+WTICO_USD    D     -0.70         2.00      0.17         2.00     -0.97         6.08     -0.33         1.99
+NATGAS_USD   H     -4.14         1.96     -1.46         1.97     -4.46         6.03     -2.28         1.95
+
+===== correlation of per-market OOS net daily P&L =====
+  D4-01: mean pairwise rho +0.062  max +0.827  effective N = K/(1+(K-1)rho) = 9.0 of 19
+  D4-02: mean pairwise rho +0.077  max +0.761  effective N = K/(1+(K-1)rho) = 7.9 of 19
+  D4-03: mean pairwise rho +0.077  max +0.744  effective N = K/(1+(K-1)rho) = 8.0 of 19
+  D4-04: mean pairwise rho +0.072  max +0.763  effective N = K/(1+(K-1)rho) = 8.3 of 19
+
+===== look-ahead: truncation test (300 random market-sessions, every bar) =====
+  488,992 cut points x variants checked, mismatches 0; sigma-from-past mismatches 0
+
+===== GATE SUMMARY (bar 3.5504) =====
+  D4-01: OOS net mean -0.037 t -16.05 t_NW -15.05 p5 -0.041 Sharpe -5.83 maxDD 459.7% | x2: mean -0.075 t -32.44 | G1 False G2 False G3 False G4 True G5 True -> FAIL
+  D4-02: OOS net mean -0.037 t -4.81 t_NW -4.83 p5 -0.052 Sharpe -1.75 maxDD 140.8% | x2: mean -0.076 t -9.73 | G1 False G2 False G3 False G4 True G5 True -> FAIL
+  D4-03: OOS net mean -0.111 t -13.83 t_NW -13.16 p5 -0.126 Sharpe -5.03 maxDD 386.9% | x2: mean -0.250 t -29.47 | G1 False G2 False G3 False G4 True G5 True -> FAIL
+  D4-04: OOS net mean -0.025 t -4.28 t_NW -4.56 p5 -0.034 Sharpe -1.56 maxDD 119.2% | x2: mean -0.063 t -10.86 | G1 False G2 False G3 False G4 True G5 True -> FAIL
+  D4-05: OOS net mean -0.053 t -13.57 t_NW -12.99 p5 -0.060 Sharpe -4.93 maxDD 378.4% | x2: mean -0.116 t -29.13 | G1 False G2 False G3 False G4 True G5 True -> FAIL

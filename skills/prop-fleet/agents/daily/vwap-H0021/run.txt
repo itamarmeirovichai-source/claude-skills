@@ -1,0 +1,42 @@
+ledger N = 199; one-sided alpha = 0.05/199 = 2.513e-04; bar z = 3.4794
+
+=== NQ 1m 2020-09..2025-11 ex roll weeks (DECISIVE): sessions 1349 (2020-09-01..2025-11-21, 5.22 yr), roll-excluded 126, used 1223
+    bars 469740  bars/session 384.1  sessions not starting 09:30 0  sessions whose last bar is not 15:59 41  zero-volume bars 0  bars with undefined VWAP 0  bars with close == VWAP 5
+    future-truncation test (a): 250 random sessions, 95730 truncation points (every bar), positions identical
+    future-truncation test (b): streaming bar-by-bar loop reproduces every bar's position and units in all 1223 sessions; max |P&L diff| 0.00e+00 price units
+  all: days 1223  units/day 32.64  mean bp/day gross +12.374  net +4.397  (cost 7.977)  t net +1.38 (gross +4.00)
+      boot p5 net -0.856 (gross +7.310)  win 0.517  Sharpe net +0.62  max DD 2054.7 bp  worst day -470.4 bp (2022-07-06)  days with no position 0
+      year     n  units/day   gross bp    net bp   t net    win   Sharpe
+      2020    75      34.85    +13.217    +2.202   +0.17  0.547   +0.31
+      2021   234      31.62    +17.446    +9.198   +1.67  0.517   +1.73
+      2022   234      31.68    +20.527   +11.164   +1.05  0.568   +1.09
+      2023   233      35.15     +4.025    -5.325   -0.84  0.446   -0.88
+      2024   235      31.95    +11.830    +5.538   +0.96  0.519   +0.99
+      2025   212      32.05     +7.261    +1.827   +0.24  0.524   +0.27
+  cost x2: days 1223  units/day 32.64  mean bp/day gross +12.374  net -3.580  (cost 15.955)  t net -1.08 (gross +4.00)
+      boot p5 net -9.001 (gross +7.310)  win 0.495  Sharpe net -0.49  max DD 6134.7 bp  worst day -499.6 bp (2022-07-06)  days with no position 0
+    post-publication subsample (dates >= 2023-11-01):
+  2023-11+: days 483  units/day 32.61  mean bp/day gross +8.122  net +1.975  (cost 6.147)  t net +0.45 (gross +1.88)
+      boot p5 net -5.289 (gross +1.039)  win 0.507  Sharpe net +0.32  max DD 1638.0 bp  worst day -378.5 bp (2025-04-07)  days with no position 0
+  2023-11+ cost x2: days 483  units/day 32.61  mean bp/day gross +8.122  net -4.172  (cost 12.294)  t net -0.92 (gross +1.88)
+      boot p5 net -11.657 (gross +1.039)  win 0.480  Sharpe net -0.66  max DD 2561.5 bp  worst day -389.1 bp (2025-04-07)  days with no position 0
+    avg first entry price 16216.2 pts; cost/unit 0.375 pt = 0.244 bp; avg gross +18.83 pts/day, avg cost 12.24 pts/day
+
+=== SPY 1m RTH 2019-01..2025-07: sessions 1645 (2019-01-02..2025-07-18, 6.54 yr), roll-excluded 0, used 1645
+    bars 640753  bars/session 389.5  sessions not starting 09:30 0  sessions whose last bar is not 15:59 3  zero-volume bars 0  bars with undefined VWAP 0  bars with close == VWAP 11
+    future-truncation test (a): 250 random sessions, 97425 truncation points (every bar), positions identical
+    future-truncation test (b): streaming bar-by-bar loop reproduces every bar's position and units in all 1645 sessions; max |P&L diff| 5.68e-14 price units
+  all: days 1645  units/day 35.19  mean bp/day gross +5.591  net -12.001  (cost 17.593)  t net -5.30 (gross +2.66)
+      boot p5 net -15.818 (gross +2.045)  win 0.432  Sharpe net -2.07  max DD 19787.5 bp  worst day -774.5 bp (2025-04-07)  days with no position 0
+      year     n  units/day   gross bp    net bp   t net    win   Sharpe
+      2019   252      36.74     -1.294   -19.660   -5.06  0.377   -5.06
+      2020   253      35.30    +11.792    -5.854   -0.83  0.462   -0.83
+      2021   252      34.29     +8.276    -8.866   -2.04  0.476   -2.04
+      2022   251      34.03    +10.608    -6.398   -0.83  0.482   -0.83
+      2023   250      36.24     +2.346   -15.774   -3.32  0.400   -3.34
+      2024   252      35.42     +4.634   -13.073   -2.80  0.381   -2.80
+      2025   135      33.59     +0.284   -16.509   -1.58  0.452   -2.16
+  cost x2: days 1645  units/day 35.19  mean bp/day gross +5.591  net -29.594  (cost 35.185)  t net -12.12 (gross +2.66)
+      boot p5 net -33.700 (gross +2.045)  win 0.370  Sharpe net -4.74  max DD 48684.5 bp  worst day -807.2 bp (2025-04-07)  days with no position 0
+
+=== decision rule (prereg): NQ net mean > 0 with one-sided t >= 3.4794: net +4.397 bp, t +1.38 -> False | SPY net mean > 0: -12.001 bp -> False => FAIL

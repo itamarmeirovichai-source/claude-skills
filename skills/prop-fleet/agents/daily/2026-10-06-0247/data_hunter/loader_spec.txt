@@ -1,0 +1,44 @@
+Loader spec for the engineer (data hunter, 2026-10-06). Board task "Engineer 5: build the tested data loader".
+Every rule below cites the measurement that motivates it (files in this folder or 2026-10-05/data_hunter/).
+
+OUTPUT FRAME (one per instrument, 1-minute bars)
+  index      ts_ny : tz-aware America/New_York, bar OPEN time (09:30 bar = 09:30:00-09:30:59)
+  columns    open high low close volume (float64/float64.../int64)
+             session_date (NY calendar date of the RTH session the bar belongs to)
+             is_rth        09:30 <= time <= 15:59 NY, weekday
+             src           short source id (e.g. "db_eric", "firstrate", "ibkr", "poly_openclaw", "mario")
+             adjusted      False for raw prices; True for back-adjusted (Ascensao SPY is dividend back-adjusted)
+             roll_flag     True from the start of the 5th RTH session before the continuous series changes
+                           instrument_id, through the roll; see ROLL below. False for ETFs.
+             expiry_gap    True on a quarterly-expiry Friday that has no RTH bars in a .c.0 series
+             rth_complete  per session_date: 390 RTH bars (210 on NYSE half-days) AND the 09:30 and 15:59 bars exist
+INPUT RULES
+  1. Timezones. Databento files (ts_event) are UTC; FirstRate files are NY-naive (localize, ambiguous/nonexistent
+     handled by DST rules, never by shifting); IBKR/mario/noiiiise carry NY offsets; Polygon/openclaw is epoch-ms UTC.
+     Convert everything to ts_ny. Test: 09:30 NY bar of 2019-01-02 and 2026-09-25 exists in both ES sources.
+  2. Holidays. Use the NYSE calendar for ETFs, the CME equity-index calendar for ES/NQ. Drop CME-only sessions
+     (FirstRate has 44 such sessions; 2026-10-05 note). NYSE closures seen in the data: 2018-12-05, 2025-01-09.
+  3. Expiry Fridays (.c.0 = calendar roll). ES.c.0 / NQ.c.0 have NO RTH bars on quarterly expiry Fridays
+     (e.g. 2019-03-15 ... 2026-06-18): the expiring contract stops at 09:30 NY and the series switches to the next
+     contract only on the following Sunday. 30 such days in NQ 2019-01..2026-09-11 and 30 in ES 2019-01..2026-09-25 (ES does have RTH bars on 2023-06-16; NQ does not)
+     (eric_profile.txt). Mark expiry_gap; do not forward-fill.
+  4. ROLL. In the last ~6 RTH sessions before the .c.0 roll, RTH volume falls to 0.09-0.32x of the prior-month median
+     (xcheck.txt), i.e. the series sits in the illiquid expiring contract. Prices there differ from FirstRate / hindsight
+     (which roll earlier) by 2-75 points. Any strategy test must either drop roll_flag days or splice to the next
+     contract; the choice must be fixed in the prereg, not after results.
+  5. Adjustment. Never mix adjusted and unadjusted ETF files in one test. Ascensao SPY (2019-01..2025-07-18) is
+     dividend back-adjusted (ratio to raw drifts 0.9936->1.0000, 2026-10-05 second_sources.txt). Raw SPY: noiiiise
+     2021-2024, IBKR 2024-10..2025-11, openclaw/Polygon 2024-03-28..2026-08-07 (ratio to IBKR median 1.000000).
+  6. RTH completeness. SPXUSD (HistData) is NOT rth_complete on most 2012-13 days (only 32-34% of weekdays have
+     >=370 bars). mario QQQ has ~20 sessions/year with <380 bars and 42 zero-volume bars (2018-19).
+     Eligibility must be computed ex ante (board rule): never use the trade day's own bar count or 15:59 bar to
+     decide whether to trade that day; rth_complete is for data QA and post-hoc exclusion reporting only.
+  7. Integrity checks the loader must run and fail loudly on: duplicate ts, high<max(open,close), low>min(open,close),
+     ES/NQ prices off the 0.25 tick grid, sha256 mismatch against the pinned fetch scripts.
+  8. Licence flag: src in {db_eric, db_warrenn, firstrate} -> licence="third-party copy of paid data" (board decision 8).
+TESTS (minimum)
+  - DST: 2020-03-09 and 2020-11-02 09:30 NY bars map to 13:30Z and 14:30Z.
+  - ES db_eric == db_warrenn on all 1,757,339 overlapping rows (measured today: open/high/low/close/volume/instrument_id
+    all 1.0 equal).
+  - expiry_gap set on 2019-03-15 for ES and NQ; roll_flag set on 2019-03-11..2019-03-15.
+  - Future-truncation: deleting bars after minute m of day d changes no field of day d at or before m.

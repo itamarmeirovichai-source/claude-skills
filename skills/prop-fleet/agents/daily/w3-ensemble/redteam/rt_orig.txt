@@ -1,0 +1,7 @@
+D3-11 rebuilt via ensemble.vol_managed: OOS mean +7.32 bp/d t_iid +2.15 t_nw +2.10 p5 +1.73 Sharpe +1.11  (report: +7.32, 2.15/2.10)
+max |diff| vs run.py D3-11 daily net: 0.0
+D3-11 on FTMO-listed coins, D3 costs, OOS: mean +6.95 t +1.94
+  window W 2023-01-01..2026-05-07: full universe +6.57 (t +1.76); FTMO coins +5.60 (t +1.49)
+H0022 rebuilt: n 1223 2020-09-01..2025-11-21 mean +5.043 bp t +1.68  (report +5.043, t +1.68)
+  H0022 0.375pt 2023-01-01..2025-11-21: mean +1.40 t +0.38 n 680
+  H0022 0.375pt 2020-09-01..2022-12-31: mean +9.61 t +1.94 n 543

@@ -1,0 +1,19 @@
+bars 2,117,667  2010-11-14 18:00:00 .. 2018-12-31 16:13:00
+valid sessions 1244  signal days (IBS<=0.2 or >=0.8) 583
+A_both_0.5atr {'n': 583, 'per_year': 74.7, 'mean_R': np.float64(-0.0097), 'p5_R': np.float64(-0.0871), 'p95_R': np.float64(0.0715), 'gross_mean_R': np.float64(0.0483), 'gross_p5_R': np.float64(-0.029), 'lb_bonf': np.float64(-0.177), 'z': 3.446, 'sharpe': np.float64(-0.07), 'stop_rate': np.float64(0.381), 'med_risk_pts': np.float64(9.77), 'cost_R_median': np.float64(0.0614)}
+   2010-14 {'n': 228, 'mean_R': np.float64(0.0591), 'p5_R': np.float64(-0.0672), 'gross_mean_R': np.float64(0.1217)}
+   2015-18 {'n': 355, 'mean_R': np.float64(-0.0539), 'p5_R': np.float64(-0.1516), 'gross_mean_R': np.float64(0.0012)}
+   long: n=257 net -0.0852 gross -0.0259
+   short: n=326 net +0.0498 gross +0.1069
+   by year net {2011: -0.082, 2012: -0.018, 2013: 0.2, 2014: 0.192, 2015: -0.106, 2016: -0.029, 2017: 0.112, 2018: -0.097}
+B_long_0.5atr {'n': 257, 'per_year': 33.0, 'mean_R': np.float64(-0.0852), 'p5_R': np.float64(-0.2152), 'p95_R': np.float64(0.0491), 'gross_mean_R': np.float64(-0.0259), 'gross_p5_R': np.float64(-0.1561), 'lb_bonf': np.float64(-0.3583), 'z': 3.446, 'sharpe': np.float64(-0.38), 'stop_rate': np.float64(0.486), 'med_risk_pts': np.float64(9.42), 'cost_R_median': np.float64(0.0637)}
+   2010-14 {'n': 113, 'mean_R': np.float64(-0.1457), 'p5_R': np.float64(-0.3183), 'gross_mean_R': np.float64(-0.0815)}
+   2015-18 {'n': 144, 'mean_R': np.float64(-0.0377), 'p5_R': np.float64(-0.2243), 'gross_mean_R': np.float64(0.0177)}
+   long: n=257 net -0.0852 gross -0.0259
+   by year net {2011: -0.237, 2012: -0.112, 2013: 0.105, 2014: -0.211, 2015: -0.174, 2016: 0.156, 2017: -0.175, 2018: 0.002}
+C_both_1.0atr {'n': 583, 'per_year': 74.7, 'mean_R': np.float64(0.0061), 'p5_R': np.float64(-0.0392), 'p95_R': np.float64(0.0521), 'gross_mean_R': np.float64(0.0352), 'gross_p5_R': np.float64(-0.0101), 'lb_bonf': np.float64(-0.0885), 'z': 3.446, 'sharpe': np.float64(0.08), 'stop_rate': np.float64(0.111), 'med_risk_pts': np.float64(19.54), 'cost_R_median': np.float64(0.0307)}
+   2010-14 {'n': 228, 'mean_R': np.float64(0.0443), 'p5_R': np.float64(-0.0254), 'gross_mean_R': np.float64(0.0756)}
+   2015-18 {'n': 355, 'mean_R': np.float64(-0.0184), 'p5_R': np.float64(-0.0756), 'gross_mean_R': np.float64(0.0092)}
+   long: n=257 net -0.0117 gross +0.0179
+   short: n=326 net +0.0202 gross +0.0488
+   by year net {2011: -0.038, 2012: 0.012, 2013: 0.143, 2014: 0.103, 2015: 0.002, 2016: -0.003, 2017: 0.076, 2018: -0.099}

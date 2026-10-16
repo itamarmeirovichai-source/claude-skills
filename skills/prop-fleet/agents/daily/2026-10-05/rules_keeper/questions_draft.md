@@ -1,0 +1,10 @@
+# Draft automation questions, one per firm. NOT SENT. Only Itamar may send them.
+
+Context for every firm: one self-built program, written and owned only by the account holder, places every order with no human at the screen during the session. It runs on the holder's own computer unless the firm says a VPS is fine.
+
+- **MyFundedFutures:** Your Fair Play page allows "automated trading strategies tailored to [the trader's] own specific settings". On a Rapid EOD 50K Sim-Funded account, and later on Rapid Live, may this program trade with no person watching the screen during the session? May it run on a VPS? May the same program also trade my accounts at other firms?
+- **Bulenox:** Your FAQ allows user-built bots and says that third-party algorithms need management approval. Does a program I wrote myself, connected to Rithmic through its API (with the $100/month fee), need that approval? May it run unattended on Master and Funded accounts, on a VPS, and on my accounts at other firms too?
+- **Tradeify:** Your guidelines say a bot may not be used at other firms. If I own the program alone, but the same program also trades my own accounts at another prop firm, is that a breach on Select Flex Sim-Funded accounts? Because the Tradovate API is only for Live accounts, which connection do you approve for an automated program on Sim-Funded accounts: Rithmic API, or a NinjaTrader strategy?
+- **Lucid:** Your support page permits automated systems. May a self-built program trade unattended on LucidFlex funded accounts, and later on LucidLive? May it run on a VPS? May it connect through the Rithmic API, or only through a listed platform?
+- **Topstep:** Help-center pages say automation through the ProjectX API is allowed on Express Funded accounts but is not available on Live Funded. When an XFA moves to Live, is there any approved route for automation? Is running the program unattended on my own home computer (not a VPS) compliant?
+- **Apex:** No question. Its compliance page bans automation on all account types (rule 1 rules it out).

@@ -1,0 +1,5 @@
+es_1m_rth /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/d5f/intraday/es_1m_rth.parquet ES 1m RTH 09:30-15:59 ET naive, 2008-01-02..2026-04-10, FirstRate continuous UNadjusted
+es_5m /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/d5f/intraday/es_5m.parquet ES 5m 24h ET naive, 2008-01-02..2026-04-09, FirstRate continuous UNadjusted
+es_1m_databento /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/d5f/intraday/es_1m_databento.parquet ES 1m 24h UTC, 2021-04-30..2026-04-29 23:59, Databento GLBX.MDP3 ES.c.0 calendar roll
+spy_1m_ibkr /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/d5f/intraday/spy_1m_ibkr.csv SPY 1m RTH, NY offset, 2024-10-31..2025-11-07, IBKR TRADES, unadjusted
+qqq_1m_ibkr /tmp/claude-0/-home-user-claude-skills/83e06ccf-6299-5e6f-ac94-4ff79d8a5049/scratchpad/d5f/intraday/qqq_1m_ibkr.csv QQQ 1m RTH, NY offset, 2024-10-31..2025-11-07, IBKR TRADES

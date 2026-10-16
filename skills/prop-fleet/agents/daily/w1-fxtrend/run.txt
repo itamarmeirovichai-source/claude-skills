@@ -1,0 +1,194 @@
+D2 run. calendar 1987-01-02 -> 2026-10-02, 32 instruments; IS 1990-01-02..2012-12-31, OOS >= 2013-01-01
+EWMAC in-sample forecast scalars: [6.43, 4.498, 3.101, 2.075]
+data sha256[:12]: {'fred/DCOILBRENTEU.csv': 'ed1eaa6fd4a9', 'fred/DCOILWTICO.csv': '0440ec6862dc', 'fred/DEXCAUS.csv': 'd218f8173a6f', 'fred/DEXGEUS.csv': 'f3b3a882b79e', 'fred/DEXJPUS.csv': '2bd05703ca65', 'fred/DEXNOUS.csv': '2901fec8bddf', 'fred/DEXSDUS.csv': '157be51abb79', 'fred/DEXSZUS.csv': '286fc1c488d5', 'fred/DEXUSAL.csv': 'f3812df78273', 'fred/DEXUSEU.csv': '81324d84a877', 'fred/DEXUSNZ.csv': '49a06beab71d', 'fred/DEXUSUK.csv': '53a5910df5fd', 'fred/DGS10.csv': '624f2a18b0c5', 'fred/DGS2.csv': '6e90d49c63ea', 'fred/DGS30.csv': '8f2efb4b3299', 'fred/DTB3.csv': '5ea29eadd254', 'fred/ECBESTRVOLWGTTRMDMNRT.csv': 'ddb3aafa954a', 'fred/GOLDAMGBD228NLBM.csv': 'f3b3a882b79e', 'fred/INTDSRJPM193N.csv': '38a66473d6f7', 'fred/IR3TIB01AUM156N.csv': 'cc5a480e77a9', 'fred/IR3TIB01CAM156N.csv': '5d352ee34617', 'fred/IR3TIB01CHM156N.csv': 'aec78fa05b52', 'fred/IR3TIB01DEM156N.csv': '1192ef97d72e', 'fred/IR3TIB01EZM156N.csv': 'bda18d6a61bc', 'fred/IR3TIB01GBM156N.csv': '40c23cc654a1', 'fred/IR3TIB01JPM156N.csv': 'cf59cf5ebc46', 'fred/IR3TIB01NOM156N.csv': '27c9fe3bf7dd', 'fred/IR3TIB01NZM156N.csv': 'e763584a4cb2', 'fred/IR3TIB01SEM156N.csv': '3540ddb279d0', 'fred/IR3TIB01USM156N.csv': '3d2f2d7785d9', 'fred/IRSTCB01CHM156N.csv': 'f3b3a882b79e', 'fred/IRSTCI01CHM156N.csv': 'c35c8e157d63', 'fred/IRSTCI01DEM156N.csv': 'a12602be1710', 'fred/IRSTCI01EZM156N.csv': '6ebba558ba76', 'fred/IRSTCI01GBM156N.csv': 'ced594a3e340', 'fred/IRSTCI01JPM156N.csv': '41c22221dfb4', 'fred/IRSTCI01USM156N.csv': '3fce766ced34', 'fred/IUDSOIA.csv': 'c866951b0c55', 'fred/NASDAQ100.csv': 'cc6f098b2ad7', 'fred/SP500.csv': '1e46a3007dc7', 'fred/TB3MS.csv': '631bc444a8c5', 'yahoo/AXJO.json': '58859b3812f7', 'yahoo/CLF.json': 'cfc2a4e35413', 'yahoo/DJI.json': 'a77a6cf543f8', 'yahoo/FCHI.json': '7332bbc6ad89', 'yahoo/FTSE.json': 'ac27cf8702d1', 'yahoo/GCF.json': '6e27c0226f64', 'yahoo/GDAXI.json': 'a1673c21ea09', 'yahoo/GLD.json': '73be6fab27db', 'yahoo/GSPC.json': '58f0f24b633c', 'yahoo/HSI.json': '9c21a3aa4a24', 'yahoo/IEF.json': '1143c3020109', 'yahoo/N225.json': '922c4b63cb87', 'yahoo/NDX.json': '7ac70a1db645', 'yahoo/SIF.json': 'fddcf807aba2', 'yahoo/SLV.json': 'df74e1c31411', 'yahoo/STOXX50E.json': '00b5177e8f92', 'yahoo/TLT.json': '3c277e460eb1', 'yahoo/USO.json': 'b45f5cf92cd0'}
+
+=== D2-01 TREND multi-horizon
+  lag1 cost1x IS : Sharpe  0.71  CAGR   7.19%  vol 10.51%  maxDD  -17.7%  worst day -6.56%  mean  2.98bp/d  t  3.15 (iid 3.42, NW 3.15)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.05  CAGR  -1.06%  vol 10.42%  maxDD  -44.8%  worst day -4.40%  mean -0.21bp/d  t -0.19 (iid -0.19, NW -0.18)  p5  -1.99bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.35  CAGR   3.17%  vol 10.51%  maxDD  -22.6%  worst day -6.60%  mean  1.46bp/d  t  1.55 (iid 1.68, NW 1.55)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.49  CAGR  -5.49%  vol 10.43%  maxDD  -64.9%  worst day -4.42%  mean -2.02bp/d  t -1.81 (iid -1.81, NW -1.77)  p5  -3.81bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.59  CAGR   5.83%  vol 10.63%  maxDD  -20.3%  worst day -6.48%  mean  2.47bp/d  t  2.62 (iid 2.81, NW 2.62)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.09  CAGR  -1.52%  vol 10.66%  maxDD  -49.8%  worst day -4.47%  mean -0.38bp/d  t -0.33 (iid -0.33, NW -0.33)  p5  -2.24bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.23  CAGR   1.86%  vol 10.63%  maxDD  -29.9%  worst day -6.50%  mean  0.95bp/d  t  1.01 (iid 1.08, NW 1.01)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.52  CAGR  -5.92%  vol 10.66%  maxDD  -68.3%  worst day -4.49%  mean -2.20bp/d  t -1.92 (iid -1.92, NW -1.88)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 4.05%/yr, trading cost 1.40%/yr, swap markup 3.18%/yr, mean gross leverage 1.82x, max margin use at 10% vol 30.5%
+
+=== D2-02 TREND 12m
+  lag1 cost1x IS : Sharpe  0.54  CAGR   5.19%  vol 10.36%  maxDD  -31.0%  worst day -4.10%  mean  2.22bp/d  t  2.37 (iid 2.59, NW 2.37)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe  0.16  CAGR   1.11%  vol 10.43%  maxDD  -43.1%  worst day -3.53%  mean  0.65bp/d  t  0.54 (iid 0.58, NW 0.54)  p5  -1.31bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.16  CAGR   1.16%  vol 10.36%  maxDD  -35.2%  worst day -4.12%  mean  0.67bp/d  t  0.71 (iid 0.78, NW 0.71)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.27  CAGR  -3.28%  vol 10.43%  maxDD  -62.4%  worst day -3.57%  mean -1.11bp/d  t -0.99 (iid -0.99, NW -0.92)  p5  -3.07bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.49  CAGR   4.60%  vol 10.38%  maxDD  -28.9%  worst day -4.09%  mean  2.00bp/d  t  2.15 (iid 2.33, NW 2.15)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe  0.25  CAGR   2.11%  vol 10.61%  maxDD  -40.9%  worst day -3.53%  mean  1.05bp/d  t  0.88 (iid 0.92, NW 0.88)  p5  -0.89bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.11  CAGR   0.59%  vol 10.37%  maxDD  -37.7%  worst day -4.10%  mean  0.45bp/d  t  0.48 (iid 0.52, NW 0.48)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.17  CAGR  -2.32%  vol 10.61%  maxDD  -58.3%  worst day -3.56%  mean -0.71bp/d  t -0.62 (iid -0.62, NW -0.59)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 6.08%/yr, trading cost 0.63%/yr, swap markup 3.80%/yr, mean gross leverage 2.21x, max margin use at 10% vol 29.7%
+
+=== D2-03 TREND fast
+  lag1 cost1x IS : Sharpe  0.58  CAGR   5.77%  vol 10.61%  maxDD  -18.3%  worst day -5.37%  mean  2.45bp/d  t  2.62 (iid 2.79, NW 2.62)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.38  CAGR  -4.48%  vol 10.62%  maxDD  -56.5%  worst day -4.04%  mean -1.59bp/d  t -1.40 (iid -1.40, NW -1.39)  p5  -3.37bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.20  CAGR   1.54%  vol 10.62%  maxDD  -27.6%  worst day -5.40%  mean  0.83bp/d  t  0.89 (iid 0.94, NW 0.89)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.85  CAGR  -9.13%  vol 10.63%  maxDD  -76.2%  worst day -4.06%  mean -3.57bp/d  t -3.13 (iid -3.13, NW -3.11)  p5  -5.36bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.38  CAGR   3.61%  vol 10.74%  maxDD  -21.5%  worst day -5.23%  mean  1.64bp/d  t  1.76 (iid 1.84, NW 1.76)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.50  CAGR  -5.78%  vol 10.76%  maxDD  -64.6%  worst day -4.10%  mean -2.13bp/d  t -1.85 (iid -1.85, NW -1.79)  p5  -4.07bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.00  CAGR  -0.54%  vol 10.73%  maxDD  -41.5%  worst day -5.25%  mean  0.02bp/d  t  0.02 (iid 0.02, NW 0.02)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.96  CAGR -10.36%  vol 10.76%  maxDD  -80.7%  worst day -4.11%  mean -4.11bp/d  t -3.56 (iid -3.56, NW -3.45)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 0.97%/yr, trading cost 1.78%/yr, swap markup 3.21%/yr, mean gross leverage 1.85x, max margin use at 10% vol 32.0%
+
+=== D2-04 CARRY XS
+  lag1 cost1x IS : Sharpe  0.45  CAGR   4.15%  vol 10.28%  maxDD  -36.6%  worst day -5.07%  mean  1.82bp/d  t  2.06 (iid 2.14, NW 2.06)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.15  CAGR  -1.93%  vol  9.96%  maxDD  -44.1%  worst day -6.86%  mean -0.58bp/d  t -0.54 (iid -0.54, NW -0.53)  p5  -2.28bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.16  CAGR   1.11%  vol 10.28%  maxDD  -42.3%  worst day -5.09%  mean  0.65bp/d  t  0.73 (iid 0.76, NW 0.73)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.47  CAGR  -5.09%  vol  9.95%  maxDD  -59.5%  worst day -6.89%  mean -1.87bp/d  t -1.75 (iid -1.75, NW -1.72)  p5  -3.58bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.44  CAGR   4.11%  vol 10.31%  maxDD  -36.3%  worst day -5.07%  mean  1.81bp/d  t  2.04 (iid 2.12, NW 2.04)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.17  CAGR  -2.22%  vol 10.00%  maxDD  -46.1%  worst day -6.85%  mean -0.69bp/d  t -0.64 (iid -0.64, NW -0.62)  p5  -2.43bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.15  CAGR   1.07%  vol 10.31%  maxDD  -41.8%  worst day -5.08%  mean  0.63bp/d  t  0.71 (iid 0.74, NW 0.71)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.50  CAGR  -5.37%  vol 10.00%  maxDD  -60.9%  worst day -6.86%  mean -1.99bp/d  t -1.85 (iid -1.85, NW -1.79)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 1.82%/yr, trading cost 0.07%/yr, swap markup 3.20%/yr, mean gross leverage 3.17x, max margin use at 10% vol 14.9%
+
+=== D2-05 CARRY TS
+  lag1 cost1x IS : Sharpe  0.61  CAGR   5.96%  vol 10.36%  maxDD  -48.8%  worst day -3.70%  mean  2.51bp/d  t  2.84 (iid 2.92, NW 2.84)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.18  CAGR  -2.38%  vol 10.32%  maxDD  -54.8%  worst day -4.93%  mean -0.74bp/d  t -0.67 (iid -0.67, NW -0.66)  p5  -2.75bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.36  CAGR   3.21%  vol 10.35%  maxDD  -54.7%  worst day -3.72%  mean  1.46bp/d  t  1.66 (iid 1.71, NW 1.66)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.43  CAGR  -4.86%  vol 10.31%  maxDD  -60.7%  worst day -4.94%  mean -1.76bp/d  t -1.59 (iid -1.59, NW -1.57)  p5  -3.78bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.61  CAGR   5.93%  vol 10.39%  maxDD  -48.0%  worst day -3.70%  mean  2.50bp/d  t  2.83 (iid 2.91, NW 2.83)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.21  CAGR  -2.64%  vol 10.36%  maxDD  -55.6%  worst day -4.92%  mean -0.85bp/d  t -0.76 (iid -0.76, NW -0.75)  p5  -2.86bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.35  CAGR   3.18%  vol 10.38%  maxDD  -53.6%  worst day -3.71%  mean  1.46bp/d  t  1.65 (iid 1.69, NW 1.65)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.45  CAGR  -5.11%  vol 10.36%  maxDD  -61.4%  worst day -4.93%  mean -1.87bp/d  t -1.68 (iid -1.68, NW -1.66)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 0.69%/yr, trading cost 0.07%/yr, swap markup 2.50%/yr, mean gross leverage 2.48x, max margin use at 10% vol 16.2%
+
+=== D2-06 STACK
+  lag1 cost1x IS : Sharpe  0.86  CAGR   8.83%  vol 10.54%  maxDD  -22.5%  worst day -5.83%  mean  3.58bp/d  t  3.95 (iid 4.10, NW 3.95)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.08  CAGR  -1.40%  vol 10.35%  maxDD  -40.5%  worst day -4.87%  mean -0.35bp/d  t -0.31 (iid -0.31, NW -0.31)  p5  -2.02bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.44  CAGR   4.21%  vol 10.54%  maxDD  -26.2%  worst day -5.87%  mean  1.86bp/d  t  2.06 (iid 2.13, NW 2.06)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.60  CAGR  -6.57%  vol 10.35%  maxDD  -69.2%  worst day -4.92%  mean -2.48bp/d  t -2.26 (iid -2.23, NW -2.26)  p5  -4.15bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.76  CAGR   7.79%  vol 10.67%  maxDD  -24.8%  worst day -6.23%  mean  3.20bp/d  t  3.53 (iid 3.62, NW 3.53)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.17  CAGR  -2.31%  vol 10.63%  maxDD  -48.4%  worst day -5.21%  mean -0.70bp/d  t -0.62 (iid -0.62, NW -0.62)  p5  -2.46bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.35  CAGR   3.22%  vol 10.67%  maxDD  -28.4%  worst day -6.30%  mean  1.48bp/d  t  1.64 (iid 1.68, NW 1.64)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.67  CAGR  -7.43%  vol 10.63%  maxDD  -73.2%  worst day -5.25%  mean -2.84bp/d  t -2.49 (iid -2.49, NW -2.48)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 4.51%/yr, trading cost 1.05%/yr, swap markup 4.34%/yr, mean gross leverage 3.33x, max margin use at 10% vol 31.0%
+
+=== D2-07 STACK+BONDS
+  lag1 cost1x IS : Sharpe  0.81  CAGR   8.28%  vol 10.49%  maxDD  -19.0%  worst day -5.87%  mean  3.37bp/d  t  3.78 (iid 3.88, NW 3.78)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe  0.03  CAGR  -0.24%  vol 10.41%  maxDD  -29.7%  worst day -5.35%  mean  0.12bp/d  t  0.11 (iid 0.11, NW 0.11)  p5  -1.57bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.39  CAGR   3.62%  vol 10.49%  maxDD  -29.7%  worst day -5.91%  mean  1.63bp/d  t  1.83 (iid 1.88, NW 1.83)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.49  CAGR  -5.52%  vol 10.41%  maxDD  -63.5%  worst day -5.41%  mean -2.04bp/d  t -1.90 (iid -1.82, NW -1.90)  p5  -3.70bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.72  CAGR   7.33%  vol 10.64%  maxDD  -21.0%  worst day -5.83%  mean  3.03bp/d  t  3.38 (iid 3.44, NW 3.38)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.03  CAGR  -0.85%  vol 10.66%  maxDD  -35.3%  worst day -6.03%  mean -0.11bp/d  t -0.10 (iid -0.10, NW -0.10)  p5  -1.84bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.31  CAGR   2.72%  vol 10.63%  maxDD  -28.1%  worst day -5.85%  mean  1.29bp/d  t  1.44 (iid 1.46, NW 1.44)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.54  CAGR  -6.09%  vol 10.66%  maxDD  -66.4%  worst day -6.08%  mean -2.27bp/d  t -2.07 (iid -1.98, NW -2.07)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 5.73%/yr, trading cost 1.19%/yr, swap markup 4.25%/yr, mean gross leverage 3.48x, max margin use at 10% vol 41.1%
+
+=== D2-08 STACK trend-filtered carry
+  lag1 cost1x IS : Sharpe  0.87  CAGR   9.22%  vol 10.80%  maxDD  -17.4%  worst day -4.99%  mean  3.73bp/d  t  4.03 (iid 4.17, NW 4.03)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe -0.10  CAGR  -1.61%  vol 10.61%  maxDD  -39.5%  worst day -4.41%  mean -0.42bp/d  t -0.37 (iid -0.37, NW -0.37)  p5  -2.19bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.55  CAGR   5.55%  vol 10.79%  maxDD  -20.8%  worst day -5.02%  mean  2.37bp/d  t  2.57 (iid 2.66, NW 2.57)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.51  CAGR  -5.81%  vol 10.62%  maxDD  -61.9%  worst day -4.43%  mean -2.15bp/d  t -1.90 (iid -1.89, NW -1.90)  p5  -3.94bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.75  CAGR   7.90%  vol 10.89%  maxDD  -19.8%  worst day -4.92%  mean  3.26bp/d  t  3.52 (iid 3.61, NW 3.52)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe -0.17  CAGR  -2.48%  vol 10.94%  maxDD  -49.3%  worst day -4.99%  mean -0.76bp/d  t -0.66 (iid -0.65, NW -0.66)  p5  -2.56bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.44  CAGR   4.28%  vol 10.88%  maxDD  -23.1%  worst day -4.93%  mean  1.90bp/d  t  2.06 (iid 2.10, NW 2.06)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.57  CAGR  -6.63%  vol 10.94%  maxDD  -67.6%  worst day -5.04%  mean -2.48bp/d  t -2.15 (iid -2.11, NW -2.15)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 3.29%/yr, trading cost 1.28%/yr, swap markup 3.07%/yr, mean gross leverage 2.12x, max margin use at 10% vol 37.5%
+
+=== D2-09 TREND EWMAC
+  lag1 cost1x IS : Sharpe  0.54  CAGR   5.44%  vol 10.79%  maxDD  -18.7%  worst day -6.36%  mean  2.33bp/d  t  2.50 (iid 2.61, NW 2.50)  p5    nanbp  yrs 23.0
+  lag1 cost1x OOS: Sharpe  0.02  CAGR  -0.33%  vol 10.85%  maxDD  -42.6%  worst day -4.51%  mean  0.10bp/d  t  0.09 (iid 0.09, NW 0.09)  p5  -1.80bp  yrs 13.6
+  lag1 cost2x IS : Sharpe  0.28  CAGR   2.50%  vol 10.79%  maxDD  -22.7%  worst day -6.40%  mean  1.21bp/d  t  1.30 (iid 1.35, NW 1.30)  p5    nanbp  yrs 23.0
+  lag1 cost2x OOS: Sharpe -0.29  CAGR  -3.71%  vol 10.85%  maxDD  -59.3%  worst day -4.54%  mean -1.27bp/d  t -1.09 (iid -1.09, NW -1.08)  p5  -3.14bp  yrs 13.6
+  lag2 cost1x IS : Sharpe  0.53  CAGR   5.33%  vol 10.87%  maxDD  -19.1%  worst day -6.31%  mean  2.29bp/d  t  2.44 (iid 2.55, NW 2.44)  p5    nanbp  yrs 23.0
+  lag2 cost1x OOS: Sharpe  0.00  CAGR  -0.58%  vol 11.06%  maxDD  -45.9%  worst day -4.63%  mean  0.01bp/d  t  0.01 (iid 0.01, NW 0.01)  p5  -1.91bp  yrs 13.6
+  lag2 cost2x IS : Sharpe  0.27  CAGR   2.39%  vol 10.86%  maxDD  -23.3%  worst day -6.33%  mean  1.17bp/d  t  1.25 (iid 1.30, NW 1.25)  p5    nanbp  yrs 23.0
+  lag2 cost2x OOS: Sharpe -0.31  CAGR  -3.95%  vol 11.06%  maxDD  -61.7%  worst day -4.66%  mean -1.36bp/d  t -1.14 (iid -1.14, NW -1.13)  p5    nanbp  yrs 13.6
+  OOS lag1 1x: gross 3.71%/yr, trading cost 0.46%/yr, swap markup 2.99%/yr, mean gross leverage 1.69x, max margin use at 10% vol 34.7%
+
+=== GATE (OOS, worse of lag1/lag2, 1x cost; 2x shown)
+  D2-01 TREND multi-horizon          IS Sharpe  0.71 | OOS Sharpe -0.09 t -0.33 p5  -2.24bp | 2x: Sharpe -0.52 t -1.92 | t>=3.5504 & p5>0: fail
+  D2-02 TREND 12m                    IS Sharpe  0.54 | OOS Sharpe  0.16 t  0.54 p5  -1.31bp | 2x: Sharpe -0.27 t -0.99 | t>=3.5504 & p5>0: fail
+  D2-03 TREND fast                   IS Sharpe  0.58 | OOS Sharpe -0.50 t -1.85 p5  -4.07bp | 2x: Sharpe -0.96 t -3.56 | t>=3.5504 & p5>0: fail
+  D2-04 CARRY XS                     IS Sharpe  0.45 | OOS Sharpe -0.17 t -0.64 p5  -2.43bp | 2x: Sharpe -0.50 t -1.85 | t>=3.5504 & p5>0: fail
+  D2-05 CARRY TS                     IS Sharpe  0.61 | OOS Sharpe -0.21 t -0.76 p5  -2.86bp | 2x: Sharpe -0.45 t -1.68 | t>=3.5504 & p5>0: fail
+  D2-06 STACK                        IS Sharpe  0.86 | OOS Sharpe -0.17 t -0.62 p5  -2.46bp | 2x: Sharpe -0.67 t -2.49 | t>=3.5504 & p5>0: fail
+  D2-07 STACK+BONDS                  IS Sharpe  0.81 | OOS Sharpe -0.03 t -0.10 p5  -1.84bp | 2x: Sharpe -0.54 t -2.07 | t>=3.5504 & p5>0: fail
+  D2-08 STACK trend-filtered carry   IS Sharpe  0.87 | OOS Sharpe -0.17 t -0.66 p5  -2.56bp | 2x: Sharpe -0.57 t -2.15 | t>=3.5504 & p5>0: fail
+  D2-09 TREND EWMAC                  IS Sharpe  0.54 | OOS Sharpe  0.00 t  0.01 p5  -1.91bp | 2x: Sharpe -0.31 t -1.14 | t>=3.5504 & p5>0: fail
+
+HEADLINE (highest IS net Sharpe, lag1 1x): D2-08 STACK trend-filtered carry
+
+=== future-truncation and future-perturbation tests (20 random cut days each)
+  D2-01: truncation identical 20/20, perturbation identical 20/20
+  D2-02: truncation identical 20/20, perturbation identical 20/20
+  D2-03: truncation identical 20/20, perturbation identical 20/20
+  D2-04: truncation identical 20/20, perturbation identical 20/20
+  D2-05: truncation identical 20/20, perturbation identical 20/20
+  D2-06: truncation identical 20/20, perturbation identical 20/20
+  D2-07: truncation identical 20/20, perturbation identical 20/20
+  D2-08: truncation identical 20/20, perturbation identical 20/20
+  D2-09: truncation identical 20/20, perturbation identical 20/20
+
+=== D2-08 by period (lag1, 1x)
+  1990-1999: Sharpe  1.01 CAGR  10.66% maxDD  -17.4%
+  2000-2007: Sharpe  1.02 CAGR  10.98% maxDD  -12.6%
+  2008-2012: Sharpe  0.38 CAGR   3.69% maxDD  -15.5%
+  2013-2017: Sharpe -0.20 CAGR  -2.69% maxDD  -27.8%
+  2018-2021: Sharpe  0.02 CAGR  -0.33% maxDD  -19.1%
+  2022-2026: Sharpe -0.10 CAGR  -1.54% maxDD  -30.1%
+  OOS calendar years: 2013: +11.0%, 2014: -1.7%, 2015: -3.8%, 2016: -12.6%, 2017: -4.9%, 2018: -3.1%, 2019: -1.4%, 2020: +6.1%, 2021: -2.7%, 2022: +6.5%, 2023: -12.8%, 2024: -4.6%, 2025: +4.3%, 2026: +0.6%
+
+=== trend by class (diagnostic, not counted, lag1 1x)
+  FX   IS : Sharpe  0.48 t  2.29 CAGR   4.61%
+  FX   OOS: Sharpe -0.12 t -0.47 CAGR  -2.01%
+  IDX  IS : Sharpe  0.44 t  1.95 CAGR   4.24%
+  IDX  OOS: Sharpe -0.05 t -0.20 CAGR  -1.14%
+  CMD  IS : Sharpe  0.66 t  1.77 CAGR   7.36%
+  CMD  OOS: Sharpe  0.02 t  0.08 CAGR  -0.37%
+  BOND IS : Sharpe  0.25 t  1.15 CAGR   2.14%
+  BOND OOS: Sharpe  0.02 t  0.06 CAGR  -0.42%
+
+=== correlations of sleeves, OOS daily net (lag1 1x)
+       D2-01  D2-04  D2-05  D2-09
+D2-01   1.00  -0.01  -0.06   0.93
+D2-04  -0.01   1.00   0.52   0.04
+D2-05  -0.06   0.52   1.00  -0.05
+D2-09   0.93   0.04  -0.05   1.00
+  corr(headline, US500 financed return) OOS: -0.0
+
+=== prop simulation, D2-08: FTMO-type swing 10% static max loss / 5% daily, 4% and 91% breach buffers; 10000 bootstrap paths per vol
+  IS grid (chooses the vol):
+ vol  p_pass  p_blow_eval  p_abandon  med_days_pass  funded_survival  exp_payout_if_funded  exp_net  exp_net_per_fee
+0.04   0.370        0.010      0.619          514.0            0.982              7920.097 2334.396            3.891
+0.06   0.600        0.079      0.321          391.0            0.864             11349.787 6215.547           10.359
+0.08   0.680        0.181      0.139          295.0            0.664             14308.214 9128.155           15.214
+0.10   0.657        0.294      0.049          216.0            0.421             15822.059 9799.840           16.333
+0.12   0.588        0.399      0.013          161.0            0.203             15189.715 8337.628           13.896
+0.14   0.483        0.514      0.003          119.0            0.061             12677.544 5519.451            9.199
+0.16   0.406        0.593      0.000           96.0            0.014              9507.144 3261.802            5.436
+0.18   0.387        0.613      0.000           76.0            0.005              8626.861 2739.458            4.566
+0.20   0.327        0.673      0.000           58.0            0.000              6635.592 1567.184            2.612
+0.22   0.305        0.695      0.000           48.0            0.000              5804.023 1169.647            1.949
+0.24   0.303        0.697      0.000           42.0            0.000              5876.615 1181.202            1.969
+0.26   0.284        0.716      0.000           37.0            0.000              4753.559  752.387            1.254
+0.28   0.276        0.724      0.000           33.0            0.000              4245.344  570.866            0.951
+0.30   0.246        0.754      0.000           30.0            0.000              3638.745  295.859            0.493
+  vol chosen on IS: 0.10
+  OOS lag1 cost1x at IS-chosen vol 0.10: pass 0.204 blow 0.727 abandon 0.069 median days 233 funded 2y survival 0.095 E[payout|funded] $5,623 E[net/attempt] $550 (+0.92x fee) | OOS-optimal (reference only) vol 0.10 E[net] $550
+  OOS grid lag1 1x:
+ vol  p_pass  p_blow_eval  p_abandon  med_days_pass  funded_survival  exp_payout_if_funded  exp_net  exp_net_per_fee
+0.04   0.026        0.134      0.840          541.5            0.801              2860.017 -526.784           -0.878
+0.06   0.109        0.393      0.498          420.0            0.478              4414.632 -117.039           -0.195
+0.08   0.181        0.599      0.220          327.0            0.259              5522.168  397.304            0.662
+0.10   0.204        0.727      0.069          233.0            0.095              5622.538  549.809            0.916
+0.12   0.210        0.774      0.016          164.0            0.030              5479.633  549.627            0.916
+0.14   0.194        0.804      0.003          119.0            0.007              4765.850  322.192            0.537
+0.16   0.215        0.784      0.001           97.0            0.002              5094.735  494.349            0.824
+0.18   0.217        0.783      0.000           79.0            0.001              5227.038  535.313            0.892
+0.20   0.215        0.785      0.000           65.0            0.000              4668.989  401.965            0.670
+0.22   0.187        0.813      0.000           52.0            0.000              3650.572   81.562            0.136
+0.24   0.185        0.815      0.000           43.0            0.000              3557.883   57.853            0.096
+0.26   0.164        0.836      0.000           38.0            0.000              2596.195 -173.445           -0.289
+0.28   0.157        0.843      0.000           35.0            0.000              2500.642 -206.649           -0.344
+0.30   0.146        0.854      0.000           30.0            0.000              2286.632 -266.838           -0.445
+  OOS at vol 0.10 (no prop rules): Sharpe -0.10  CAGR  -1.61%  vol 10.61%  maxDD  -39.5%  worst day -4.41%  mean -0.42bp/d  t -0.37 (iid -0.37, NW -0.37)  p5    nanbp  yrs 13.6
+  margin use at vol 0.10: median 10.3% max 37.5% of equity
+  OOS lag1 cost2x at IS-chosen vol 0.10: pass 0.100 blow 0.857 abandon 0.043 median days 209 funded 2y survival 0.039 E[payout|funded] $3,764 E[net/attempt] $-224 (-0.37x fee) | OOS-optimal (reference only) vol 0.18 E[net] $-58
+  OOS lag2 cost1x at IS-chosen vol 0.10: pass 0.170 blow 0.776 abandon 0.053 median days 220 funded 2y survival 0.073 E[payout|funded] $5,276 E[net/attempt] $299 (+0.50x fee) | OOS-optimal (reference only) vol 0.10 E[net] $299
+  OOS lag2 cost2x at IS-chosen vol 0.10: pass 0.086 blow 0.883 abandon 0.031 median days 201 funded 2y survival 0.023 E[payout|funded] $3,452 E[net/attempt] $-304 (-0.51x fee) | OOS-optimal (reference only) vol 0.18 E[net] $-226

@@ -1,0 +1,46 @@
+ledger N = 198; one-sided alpha = 0.05/198 = 2.525e-04; bar z = 3.4781
+
+=== NQ 1m 2020-2025 ex roll weeks (DECISIVE): sessions 1349 (2020-09-01..2025-11-21, 5.22 yr), roll-excluded 126, missing a 09:30-09:34 bar 0, missing 09:35 bar 0
+    future-truncation test (every non-excluded day, bars after 09:35 removed): 1223 days identical
+  all: trades 1219  trades/yr 233.5  mean R gross +0.1101  net -0.0052  t net -0.08 (gross +1.63)  boot p5 net -0.1147 (gross +0.0003)  win 0.236
+      avg R size 41.626 pts (26.9 bp of entry)  avg cost 0.1154 R  long share 0.503  exits {'stop': 922, 'close': 277, 'target': 20}  entry already beyond stop: 0
+      year     n    gross R    net R    win   avg R pts
+      2020    75   -0.2972   -0.3955  0.173     36.383
+      2021   233   +0.2162   +0.0900  0.266     34.480
+      2022   234   +0.1632   +0.0844  0.244     51.938
+      2023   230   +0.0208   -0.1018  0.209     33.246
+      2024   235   +0.0697   -0.0625  0.226     39.112
+      2025   212   +0.2208   +0.0975  0.259     51.831
+    post-publication subsample (trade dates >= 2023-05-01, 2.56 yr):
+  2023-05+: trades 601  trades/yr 234.8  mean R gross +0.1451  net +0.0150  t net +0.15 (gross +1.44)  boot p5 net -0.1445 (gross -0.0143)  win 0.240
+      avg R size 42.067 pts (21.9 bp of entry)  avg cost 0.1301 R  long share 0.524  exits {'stop': 453, 'close': 135, 'target': 13}  entry already beyond stop: 0
+
+=== SPY 1m RTH 2019-01..2025-07: sessions 1645 (2019-01-02..2025-07-18, 6.54 yr), roll-excluded 0, missing a 09:30-09:34 bar 1, missing 09:35 bar 2
+    future-truncation test (every non-excluded day, bars after 09:35 removed): 1645 days identical
+  all: trades 1628  trades/yr 248.9  mean R gross +0.0959  net -0.0865  t net -1.33 (gross +1.48)  boot p5 net -0.1921 (gross -0.0094)  win 0.193
+      avg R size 0.676 pts (17.4 bp of entry)  avg cost 0.1824 R  long share 0.500  exits {'stop': 1300, 'close': 273, 'target': 55}  entry already beyond stop: 0
+      year     n    gross R    net R    win   avg R pts
+      2019   246   +0.2338   -0.0026  0.224      0.320
+      2020   248   -0.0925   -0.2300  0.149      0.708
+      2021   249   +0.2150   -0.0008  0.245      0.570
+      2022   251   +0.2242   +0.1113  0.215      1.030
+      2023   248   +0.1445   -0.0369  0.173      0.594
+      2024   251   -0.1387   -0.3601  0.151      0.659
+      2025   135   +0.0795   -0.0841  0.200      0.991
+
+=== SPXUSD 1m 2010-2018: sessions 2090 (2010-11-15..2018-12-31, 8.13 yr), roll-excluded 0, missing a 09:30-09:34 bar 56, missing 09:35 bar 36
+    future-truncation test (every non-excluded day, bars after 09:35 removed): 2090 days identical
+  all: trades 1921  trades/yr 236.4  mean R gross +0.0810  net -0.1516  t net -2.57 (gross +1.38)  boot p5 net -0.2474 (gross -0.0148)  win 0.194
+      avg R size 2.483 pts (13.1 bp of entry)  avg cost 0.2326 R  long share 0.504  exits {'stop': 1527, 'close': 332, 'target': 62}  entry already beyond stop: 0
+      year     n    gross R    net R    win   avg R pts
+      2010    28   +0.0649   -0.1717  0.214      1.473
+      2011   242   +0.0392   -0.1528  0.186      2.223
+      2012   226   -0.0272   -0.2508  0.168      1.764
+      2013   222   +0.0778   -0.1653  0.185      1.818
+      2014   230   +0.2898   +0.0591  0.222      2.276
+      2015   246   +0.1387   -0.0475  0.203      3.190
+      2016   247   +0.0769   -0.1422  0.190      2.592
+      2017   232   -0.1051   -0.4467  0.203      1.938
+      2018   248   +0.1522   -0.0773  0.194      3.997
+
+=== decision rule (prereg): NQ net mean R > 0 with one-sided t >= 3.4781: net -0.0052, t -0.08 -> False | SPY net mean R > 0: -0.0865 -> False | SPXUSD gross mean R > 0: +0.0810 -> True => FAIL
