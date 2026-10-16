@@ -84,3 +84,15 @@ routes are:
 - **G1, volatility risk premium: STOP at the gate.** None of the safe-list firms offers a VIX or volatility product. The futures firms allow CME products only, VX trades on CFE, and every futures firm forces you flat each day. No variant was counted.
 - **G2, buy-the-dip across 10 FTMO index CFDs: FAIL.** The best out-of-sample result is Sharpe 0.24 and t 0.90. Every variant has a negative alpha against matched buy-and-hold (Sharpe 0.72). FTMO's long swap takes about half of what is left. Scaled to 15–20% volatility, the book breaks the 5% daily limit 16–43 times.
 - **What this means.** The free directions with a real published prior are now used up for a fully automatic bot on safe-list firms. What is left needs either a new data class (paid multi-asset 1m futures) or a firm structure outside the safe list.
+
+## 16 Oct: director checks
+
+- **Barrier-aware sizing makes things worse.** Script: `agents/daily/w3-volrisk/barrier_check.py`. It sets risk in proportion to the cushion above the max-loss floor, CPPI-style, and compares that with the best constant volatility on the same simplified FTMO model:
+
+  | Sharpe | Best constant volatility | Barrier-aware sizing |
+  |---|---|---|
+  | 1.0 | $11.7k | $6.0k |
+  | 1.5 | $17.8k | $11.7k |
+
+  Sizing tricks do not lower the Sharpe needed.
+- **The "paid data" route may cost $0.** Databento gives new accounts $125 of historical-data credit. A card is required, but it is charged only beyond the credit, and the credit expires after 6 months. Its cost endpoint is free, so the exact download cost of 1-minute bars for about 20 CME futures can be checked before spending anything. Itamar's own IBKR account is a second free source: futures 1-minute history, but expired contracts are available only about 2 years back, which is too short for a real out-of-sample test.
