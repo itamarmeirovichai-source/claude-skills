@@ -49,7 +49,7 @@ Collect:
 - the brand, product name, product photo(s) and product page URL;
 - the price;
 - who buys it;
-- what the brand already runs (Meta Ad Library);
+- what the brand already runs (Meta Ad Library), and in particular its **long-running format** (ads live 60+ days, `ad_library.py page <id> --json`). Start the concept from that format and add our story and punchline on top. In Ipsos's May 2026 test, the best fully-AI ads were the product-driven ones that reused a brand's long-running format, and fully-AI ads that invented a story from nothing scored 14 % below human ones (doc 45 D37b, LESSONS 2026-10-17);
 - the placement (Reels/TikTok/site) and the tier.
 
 Fill in `skills/ad-director/scripts/qc/preflight.md` as you go.

@@ -15,7 +15,7 @@ Rules used here: every number has a source URL; if a figure is contested, that i
 5. **The four parts of a hook must say the same thing.** Kallaway: a hook = spoken + visual + text + audio, and performance comes from "max alignment" between them. Viewers go **visual → audio → back to the visual** to check, so the **key visual** comes first.
 6. **Motion *onset* grabs the eye. Constant motion does not.** Abrams & Christ (2003): objects that have just started moving capture attention, while steady motion does not. Looming motion (something coming toward the camera) also captures attention (Franconeri & Simons 2003). In a one-take, every re-hook should be a *new* motion start, not just more motion.
 7. **A face looking at the product sends the viewer's eyes to the product.** In eye-tracking, an averted gaze toward the product got more attention on the product and better brand memory than a direct gaze. Purchase intent was also higher (Palcu et al., 2017). Otto should look at the product, not the lens, except for deliberate 4th-wall beats.
-8. **Hook-rate benchmarks** (3 s views ÷ impressions). Motion's glossary calls **20–40%** solid. A 2026 cross-industry Meta average was **~25%**, and Motion-relayed 2026 medians were ~28% on Meta and ~33% on TikTok. All are directional. Your own account is the baseline.
+8. **Hook-rate benchmarks** (3 s views ÷ impressions). Motion's glossary calls **20–40%** solid. A 2026 cross-industry Meta average was **~25%**, and the "Motion-relayed" medians (~28% Meta, ~33% TikTok) are NOT in Motion's own 2026 report [refuted 2026-10-17, doc 45 D17]. Motion's own bands: <25% needs work, 25–35% solid, >35% strong [c]. All are directional. Your own account is the baseline.
 9. **Google ABCD** (Attention, Branding, Connection, Direction): ads built on it were associated with **+30% short-term sales likelihood** and **+17% long-term brand contribution** (Google/Kantar). It is a correlation model, not a guarantee.
 10. **Purchase happens on the page.** The median ecommerce landing page converts at **4.2%** (Unbounce 2024). The average Shopify store converts at **~1.4%**, and the top 20% at **>3.2%** (Littledata, via secondary sources). The film's last frame must match the first screen of the landing page (same product, same colour, same offer).
 
@@ -55,9 +55,9 @@ Definitions vary, so always state which one you use.
 
 | Metric | Value | Source |
 |---|---|---|
-| Meta hook-rate median 2026 / top 10% | ~28% / ~45% | Motion data relayed by https://novoads.ai/blog/video-ad-benchmarks-2026 |
-| TikTok hook-rate median / top 10% | ~33% / ~55% | same |
-| YouTube hook-rate median / top 10% | ~22% / ~38% | same |
+| ~~Meta hook-rate median 2026 / top 10%~~ | ~~~28% / ~45%~~ [refuted 2026-10-17: not in Motion's own 2026 report; use Motion's bands <25 / 25–35 / >35 %, doc 45 D17] | relayed by https://novoads.ai/blog/video-ad-benchmarks-2026 |
+| TikTok hook-rate median / top 10% | ~33% / ~55% `[unverified]` (same relay; never quote) | same |
+| YouTube hook-rate median / top 10% | ~22% / ~38% `[unverified]` (same relay; never quote) | same |
 | Meta cross-industry hook-rate average H1 2026 (88,329 ads) | 25.44% | https://taylorsicard.com/blog/meta-ads-creative-benchmarks-2026 |
 | "Good" Meta hook / hold | ≥30% / ~25% | same family of practitioner posts |
 | Average hold (15 s / 3 s) | 40–50%, >60% strong | Billo, relayed at https://billo.app/?p=50854 |

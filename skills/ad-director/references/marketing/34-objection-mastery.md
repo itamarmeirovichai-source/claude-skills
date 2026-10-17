@@ -144,6 +144,7 @@ Format: **R1** = diagnose (label, no-oriented question), **R2** = reframe or a s
 **8. "AI looks fake / our customers hate AI." (E/C)**
 - R1 (accusation audit): "You're right to worry. Most AI ads look waxy. Is it the product looking fake you're worried about, or customers knowing it's AI?"
 - R2 (fake look): "That's exactly what the frames test. If your bottle doesn't look like your bottle, we stop there." (customers knowing): "Fair. Meta may label it; I'll flag every generated shot. Many product-only films don't read as AI at all, but you decide from the frames."
+- R2b ("do AI ads even perform?", added 2026-10-17 from doc 45 D37b, Ipsos May 2026 `[c]`): "Honest answer: ads made entirely by AI score lower. Ipsos tested 10 against human-made versions this May and they came out 14 % weaker short-term, mostly because the AI skipped the story. So the story here is written by a person, with a punchline your product causes. AI only builds the world around your real product." Never say AI ads perform "as well as" human ones; D37 is vendor talk and is not quoted.
 - R3: "Then it's not the moment, and I'd rather you be sure. Can I send one frame in the spring to see if the bar's moved?"
 
 **9. "Who have you worked with?" / no proof. (E/C)**

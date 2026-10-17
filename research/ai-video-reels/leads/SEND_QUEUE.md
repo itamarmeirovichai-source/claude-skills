@@ -36,7 +36,7 @@ Score = base score out of 100 (vxo-leads §1: Ads 30 · Need 20 · Momentum 15 �
 | Q-9 | Cuddle Clones | 81 | Holiday pet-face pajamas (adult and kids, 10/7) and pet-face wrapping paper (10/9) live; 18 of 30 ads are stills | "Main Character": every gift wrapped in the dog's face, matching pajamas, the real dog sits between them like the star | IG @cuddleclones → email | info@cuddleclones.com (contact + FAQ); founder Jennifer Williams (2026 title unverified) |
 | Q-10 | Kinn | 81 | Dare to Dream collection published 9/25 (Pegasus and Swan pendants 8/8); ~95 ads, 7 of 30 video, 15 running 60+ days | "Night Light": the Pegasus pendant on a lamp chain throws a pegasus on the ceiling; the partner hangs car keys, the ceiling shows keys | IG @kinnstudio → email | hello@kinnstudio.com (contact); founder Jennie Yoon |
 | Q-11 | KREWE | 81 | MUSE (9/8, after NYFW) live at full price; Carnival opens Jan 6, Mardi Gras Feb 9, 2027; 4 of 30 ads video | "Throw": a masked float rider throws beads nobody wants and keeps the last pair of MUSE for himself | IG @krewe → email | krewe@krewe.com (homepage); founder Stirling Barrett |
-| Q-12 | Hawkins New York | 81 | Pleat and Colorstory lamps published 9/24–9/28; 2 of 24 ads video, 19 running 60+ days, newest ad 9/11 | "The Last Piece": a dim January room fills with pieces; the Pleat lamp clicks on and every colour finally shows | IG @hawkinsnewyork ✅ handle (linked from hawkinsnewyork.com, 2026-10-11) → email | press@hawkinsnewyork.com (contact); founders Paul Denoly, Nick Blaine (roles unverified) |
+| Q-12 | Hawkins New York ⏸ HOLD (cooling, 10-17, §11) | 81 | Pleat and Colorstory lamps published 9/24–9/28; 2 of 24 ads video, 19 running 60+ days, newest ad 9/11 | "The Last Piece": a dim January room fills with pieces; the Pleat lamp clicks on and every colour finally shows | IG @hawkinsnewyork ✅ handle (linked from hawkinsnewyork.com, 2026-10-11) → email | press@hawkinsnewyork.com (contact); founders Paul Denoly, Nick Blaine (roles unverified) |
 | Q-13 | Legendary Foods | 76 | Mini Protein Donuts and Chocolate Caramel Protein Pastry live; 17 active ads, **0 video**; pastry ad from 10/6 | "Cheat Detector": a ceiling detector shrieks at a donut until the hand turns the box to the label | IG @legendaryfoods → email | customercare@eatlegendary.com (support inbox, the only one listed); founders Ron Penna, Michael Veni |
 | Q-14 | Equator Coffees | 76 | Office Coffee Subscription 5 lb (9/30) and Ecuador La Marquesa (10/5) live; 19 of 30 ads stills | "The Bag Lands": Monday 9:01, a 5 lb bag lands and the whole meeting moves next to the coffee | IG @equatorcoffees → email | info@equatorcoffees.com (contact + FAQ); co-founders Helen Russell, Brooke McDonnell |
 | Q-15 | Saranoni | 75 | New XXL 80x100 size of the Double Ruched throw (Flax, Midnight, Chocolate Blend in stock); 22 of the top 30 ads running 60+ days (16 of 30 are already video, so the pitch is fresh scenes) | "Tug": four feet fight over a small throw; the XXL covers the sofa, both people and the dog, with blanket to spare | IG **@saranoniblanket** ✅ (corrected 2026-10-11: saranoni.com links @saranoniblanket; @saranoni was a guess) → email | service@saranoni.com (contact-us); founder/CEO Emily Peterson |
@@ -322,14 +322,14 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 
 ---
 
-### Q-11 · KREWE · Stirling Barrett
+### Q-11 · KREWE · Stirling Barrett (founder per older press; no 2026 source on krewe.com, so the greeting is name-free since 2026-10-17)
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @krewe, or Stirling's own business account:**
-> Hi Stirling, Itamar from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE or St. Louis?
+**DM (day 0) to @krewe:**
+> Hi KREWE team, Itamar from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE or St. Louis?
 
 **Email (day 1) to krewe@krewe.com** · Subject: **Some things you don't throw**
-> Hi Stirling (team, could you pass this to Stirling?),
+> Hi KREWE team (could you pass this to whoever leads creative?),
 >
 > A Carnival idea for MUSE, following my Instagram note: on the parade route, a masked rider throws beads, and every hand stays up for something else. In his bag, one last pair of MUSE. He weighs the throw, then puts them on himself.
 >
@@ -345,14 +345,14 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 
 ---
 
-### Q-12 · Hawkins New York · Paul Denoly and Nick Blaine
-**AWAITING OWNER APPROVAL — do not send until site is live**
+### Q-12 · Hawkins New York · Paul Denoly and Nick Blaine (2013 press; no 2026 source on hawkinsnewyork.com, so the greeting is name-free since 2026-10-17)
+**⏸ HOLD (cooling) since 2026-10-17: no Meta ad started in 36 days (§11). Not in wave B until a new ad appears.**
 
 **DM (day 0) to @hawkinsnewyork (verified 2026-10-11 from hawkinsnewyork.com):**
-> Hi Paul and Nick, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
+> Hi Hawkins team, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
 
 **Email (day 1) to press@hawkinsnewyork.com** · Subject: **The Pleat lamp, switched on**
-> Hi Paul and Nick (or whoever reads press@, could you pass this to whoever runs paid creative?),
+> Hi Hawkins team (could you pass this to whoever runs paid creative?),
 >
 > A 15 s idea for the new Pleat lamp, following my Instagram note: one locked shot of a living room in January light. Holiday clutter leaves; Hawkins pieces arrive one by one, and the room stays dim. Last, a hand sets down the Pleat and clicks it on, and every colour placed before finally shows.
 >
@@ -643,4 +643,24 @@ Nothing was sent on 13 Oct: the owner did not approve, the site is not live and 
 | Q-10 Kinn | Pegasus and Swan Dream pendant necklaces 8/8 $1,040 | 95 → 79 · 20 % · **10** · 13 · 12 · 10/13 | 81 → **80** (more video now) | ✅ holds. **The $420 Keepsake box is gone from the public feed**, which confirms the 10-12 no-switch call |
 
 Nothing cooled enough to drop or hold: every brand is still advertising, and each has ads that started in the last 30 days. The send order stays by time zone. Wave B (Q-11..Q-19) was not re-checked today, so it is not in the 20 Oct pack. It goes Wed 21 only after its own re-check.
+
+## 11. Light delta check, 2026-10-17 (Sat, ~04:50–06:40 UTC)
+Yesterday was a full live re-verify, so today is a delta check only: is every product the 20 Oct DMs name still in stock at full price, and did any active ad count move more than 30 %? Tools: `products_check.py` on the 10 brands, `ad_library.py page` on all 19 queued Pages (2 agreeing loads each; Saranoni 1). Nothing sent; $0.
+
+**Wave A (Q-1..Q-10): no fact changed, so `SEND_PACK_2026-10-20.md` stays as it is.**
+
+| # | Named products, 10-17 | Active 10-16 → 10-17 | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 5/5 $268, tags still `badge: New Arrival` + `full price` | 101 → 103 | ✅ ("new" still true) |
+| Q-2 Printfresh | Holiday Hens bandana 2/2 $28; Bagheera eco-satin sets and robe full price | 316 → 320 | ✅ (new 14 Oct "HolidayBundles" wine gift bags in Bagheera are marked $18 vs $24: never offer those as "Bagheera") |
+| Q-3 Dandelion | Gift set 1/1 $42; Maya Mountain 1/1 $13 | 187 → 171 (−9 %) | ✅ (newest ad 10/01: watch) |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 vs $58 (standing promo) | 168 → 168 | ⚠ holds (no price named) |
+| Q-5 Little Beast | PBJ and OG 7/7 $48 | 61 → 61 | ✅ |
+| Q-6 Sunday Citizen | Ciel 2/2 $1,800; Snug Bed Blanket 16/24 full price | 398 (unconfirmed) → **413 confirmed** | ✅ (newest ad 10/02: watch) |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; October studs full price | 205 → 207 | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | 67 → 69 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pajamas $59.25 vs $89 (unchanged since 10-16) | 148 → 148 | ⚠ holds (no price named; newest ad 10/03: watch) |
+| Q-10 Kinn | Pegasus and Swan 8/8 $1,040 | 79 → 79 | ✅ |
+
+**Wave B (Q-11..Q-19), counts only (10-09 → 10-17); products are re-checked on Wed 21:** KREWE 42 → 42 (video cards 5 → 12 of 30); **Hawkins 93 → 81, 0 ads started in 30 days, newest 9/11 → HOLD (cooling)**; Legendary 17 → 18; Equator 65 → 64; Saranoni 229 → 224 (1 load; its About page also advertised a 14 Oct warehouse sale "up to 70 %", so check its named products for markdowns on the 21st); STONE AND STRAND 19 → 21; THATCH 16 → 21; Vosges 73 → **36** (−51 %, but 19 of 30 started ≤30 d: rotation, keep); Alexis Bittar 27 → **79** (+193 %). Wave B greetings were re-sourced today: Q-11 KREWE and Q-12 Hawkins are now name-free (no 2026 source); the other seven are confirmed on the brands' own pages (RESEARCH_BACKLOG, Verify).
 

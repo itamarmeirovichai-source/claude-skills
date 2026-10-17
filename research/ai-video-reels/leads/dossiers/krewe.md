@@ -68,6 +68,7 @@ See `research/ai-video-reels/leads/batch-2026-10-10-b.md` row #3.
 | Claims scan (PDP) | Eyeglasses lens add-on: "filter out harmful blue light" | ⚠️ −10; out of scope for our film |
 | Public contact | krewe@krewe.com (homepage); sales@ for wholesale (don't use) | ⚠️ Generic |
 | Founder | Stirling Barrett, founder/CEO (several profiles, mostly older) | ✅ (2026 role unverified) |
+| Greeting source, 2026-10-17 [m] | krewe.com About page (rendered) and journal name no person; product feed has no founder copy; 1 web search found only pre-2026 press | 🔧 DM and email greeting made name-free ("Hi KREWE team"), LESSONS 2026-10-16 rule |
 | Mardi Gras 2027 date | Easter 2027 = Mar 28 → Ash Wednesday Feb 10 → Mardi Gras **Feb 9, 2027**; Carnival opens Jan 6 | ✅ computed |
 
 **Self red-team:** the sale started 10/8; a brand at 70 % off may say "no budget". Our answer is the January timing (after the sale) and a Short tier fallback.

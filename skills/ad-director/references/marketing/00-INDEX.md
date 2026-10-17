@@ -59,7 +59,7 @@ How to use it:
 | 31 | `31-website-engineering.md` | Site engineering (alpha video, 3D ring, Astro/GSAP). | 0 |
 | 32 | `32-studio-positioning.md` | Positioning, offer, voice, 30-day GTM. Uses the old placeholder name "Still Life Club" and "no talking heads"; the studio is VXO and lip-sync is in scope (LESSONS). | 0 |
 | 33 | `33-website-master-plan.md` | Site master plan (synthesis of 29–32). Same old name placeholder. | 0 |
-| 34 | `34-objection-mastery.md` | Turning no, silence and "not now" into a next step. §4.2 cadence superseded by 63. | 0 |
+| 34 | `34-objection-mastery.md` | Turning no, silence and "not now" into a next step. §4.2 cadence superseded by 63. §3 #8 R2b (2026-10-17): the honest "do AI ads perform?" answer (Ipsos). | 0 |
 | 35 | `35-punchline-mastery.md` | The product-caused turn; 12 tricks for twists without cuts. | 0 |
 | 36 | `36-emotion-virality.md` | Emotion/virality evidence and the pre-spend scorecard. | 0 |
 | 37 | `37-ai-action-execution.md` | Executing beats (open, pour, drink, jump) with AI video. | 0 |
@@ -70,7 +70,7 @@ How to use it:
 | 42 | `42-viral-ai-reel-teardowns.md` | Why good viral AI reels look real; the teardown method. | 0 |
 | 43 | `43-model-mastery.md` | How Seedance 2.5, Kling 3.0, Wan 3.0, Cinema Studio 4.0 behave; parameters and prices. | 12 |
 | 44 | `44-action-and-comedy-craft.md` | Physically real action and real punchlines (rigs, physics, comedy timing). | 0 |
-| 45 | `45-what-sells-data.md` | Data on what earns views and purchases; ad policy table; competitor prices. Benchmarks largely relayed (Triple Whale page 403). | 20 |
+| 45 | `45-what-sells-data.md` | Data on what earns views and purchases; ad policy table; competitor prices. Benchmarks largely relayed. D21/D22 Triple Whale read 2026-10-16; D17 hook-rate medians refuted and D37b Ipsos AI-vs-human test added 2026-10-17. | 20 |
 | 46 | `46-sound-and-qc.md` | Sound sync, lip-sync, loudness and the QC tools. | 0 |
 | 47 | `47-niche-beauty-skincare.md` | Beauty/skincare deep-dive: brands, ads, claims law. | 4 |
 | 48 | `48-niche-fashion-jewelry.md` | Fashion, sneakers, watches, jewelry deep-dive. | 5 |
@@ -88,7 +88,7 @@ How to use it:
 | 60 | `60-niche-ebikes-auto-accessories.md` | E-bikes, scooters, car accessories, outdoor power. | 28 |
 | 61 | `61-niche-local-premium-services.md` | Local premium businesses (hotels, restaurants, developers, med-spas, gyms). | 36 |
 | 62 | `62-niche-apps-saas-launches.md` | Apps, SaaS and crowdfunded hardware launches. | 53 |
-| 63 | `63-outreach-that-gets-replies.md` | Single source for first touch, follow-ups, first objections; the honest "why no client yet" list. §7.4 (2026-10-16): markdown regimes of the queued brands and which product a message may name. | 0 |
+| 63 | `63-outreach-that-gets-replies.md` | Single source for first touch, follow-ups, first objections; the honest "why no client yet" list. §7.4 (2026-10-16): markdown regimes of the queued brands and which product a message may name. §7.5 (2026-10-17): ad-count moves vs fresh flow as the heat signal (hold rule). | 0 |
 | 64 | `64-quality-gap-audit.md` | Our 19 films measured against what sells (format, cuts, loudness). | 0 |
 | 65 | `65-offer-proof-and-site.md` | Offer, proof, pricing and site change list for owner approval. | 0 |
 

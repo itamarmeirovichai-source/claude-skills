@@ -31,6 +31,11 @@ description: VXO funnel stage 1–3. Find the hottest US DTC product brands for 
 
 HOT = 70 or above. Only HOT leads reach the owner, five at most per day, best first.
 
+**Heat check: fresh flow, not the count (2026-10-17, doc 63 §7.5).** A falling active-ad count is not a cooling signal by itself: LAKE (−53 %) and Vosges (−51 %) were rotating into new ads that week, while Hawkins (−13 %) had started nothing in 36 days. From `ad_library.py page`, read `newest_start` and `started_last_30d`:
+- **Hold (cooling):** newest ad older than 21 days AND `started_last_30d` ≤ 2. This holds a queued lead whatever its score; one new ad lifts the hold.
+- **Rotation (keep, warm):** count down >30 % but newest ad ≤ 7 days old or `started_last_30d` ≥ 10. Often DCO consolidation: fewer ad IDs, same spend [inf].
+- **Watch:** newest ad 14–21 days old. Re-read on the send morning.
+
 ## 2. Where to look
 - Meta Ad Library: categories beverage, fragrance, candles, skincare, jewelry, coffee, snacks, home, pet.
 - Shopify stores with recent launches.

@@ -64,6 +64,7 @@ See `research/ai-video-reels/leads/batch-2026-10-10-c.md` row c-4.
 | Claims scan | Style/collection copy only. No fear, "toxic", health or rival-harm claims | ✅ |
 | Public business contact | press@hawkinsnewyork.com (contact page); care@, trade@, wholesale@ also listed | ✅ |
 | Founder identity | Paul Denoly and Nick Blaine (Remodelista; Sight Unseen; Wikipedia) | ⚠️ 2026 roles unverified |
+| Greeting source, 2026-10-17 [m] | hawkinsnewyork.com About/Our Story pages (rendered) and product feed name no founder; 1 web search found nothing | 🔧 DM and email greeting made name-free ("Hi Hawkins team") |
 | Hiring | Not checked (0) | — |
 
 **Self red-team:** never say their ads are "old" or "stale" in a message (back-end); the DM only names the new lamp. Founder sources are older press; the email to press@ asks to pass it to whoever runs paid creative.

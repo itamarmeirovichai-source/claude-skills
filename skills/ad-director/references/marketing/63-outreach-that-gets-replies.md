@@ -333,6 +333,37 @@ What it means for the films [inf]:
 - **Clearance brands** are retiring old lines. Pitch only what was published in the last ~60 days at full price (Sunday Citizen's Ciel love seat, 24 Sep). Never a Last Chance or Final Farewell piece.
 - None of the ten had a sitewide Black Friday sale yet on 16 Oct. Re-measure on Tue 20 Oct and on Mon 2 Nov. The first brand to go sitewide moves its follow-up angle to an evergreen, offer-free film (LESSONS 2026-10-10: the evergreen twin).
 
+
+### 7.5 Ad-count moves as a heat signal (measured 2026-10-09 → 2026-10-17) [m]
+Question: when a queued brand's active Meta ad count falls, is it cutting spend (cooler) or rotating creative before the holiday push (hotter)? All 19 queued Pages were read with `ad_library.py page` (US, active, 2 agreeing loads each; Saranoni 1 load) on 10-09 and again on Sat 17 Oct. "Fresh flow" = how many of the top ~30 cards started in the last 30 days, and how old the newest ad is.
+
+| Brand | Active 10-09 → 10-17 | Change | Top cards started ≤30 d (10-09 → 10-17) | Newest ad (age on 10-17) | Formats in top cards, 10-17 | Read |
+|---|---|---|---|---|---|---|
+| LAKE Pajamas | 221 → 103 | **−53 %** | 25 → 25 | 10/16 (1 d) | DCO 27, DPA 2, video 1 | **rotation**: old ad IDs retired, new ones still going up daily |
+| Vosges Haut-Chocolat | 73 → 36 | **−51 %** | 8 → 19 | 10/16 (1 d) | DCO 28 | **rotation into holiday**: fewer, newer, almost all DCO |
+| The Foggy Dog | 218 → 168 | −23 % | 19 → 18 | 10/07 (10 d) | DCO 19, DPA 7, video 4 | steady flow, pruning |
+| Kinn | 95 → 79 | −17 % | 6 → 13 | 10/13 (4 d) | DCO 21, video 8 | rotation |
+| Cuddle Clones | 174 → 148 | −15 % | 18 → 12 | 10/03 (14 d) | DCO 26 | slowing; watch |
+| **Hawkins New York** | 93 → 81 | −13 % | 5 → **0** | **9/11 (36 d)** | DPA 11, carousel 7, DCO 4 | **cooling**: nothing new in 5 weeks |
+| Printfresh | 336 → 320 | −5 % | 11 → 16 | 10/08 (9 d) | image 14, video 8, DCO 8 | steady |
+| Dandelion, Little Beast, Dana Rebecca, KREWE, Legendary, Equator, Saranoni (1 load) | flat (±2 %) | — | 13 / 8 / 20 / 29 / 6 / 9 / 3 | 10/01, 10/06, 10/09, 10/16, 10/13, 10/13, 10/07 | — | steady; Saranoni stays "stale winners" (21 of 30 running 60+ d) |
+| Brackish | 60 → 69 | +15 % | 30 → 23 | 10/15 (2 d) | image 21 | Maroon launch |
+| THATCH | 16 → 21 | +31 % | 16 → 21 | 10/16 (1 d) | DCO 18 | ramping |
+| Sunday Citizen | 306 → 413 | +35 % | 30 → 19 | 10/02 (15 d) | DCO 14, DPA 10 | ramping, but no new ad in 2 weeks |
+| STONE AND STRAND | 19 → 21 | +11 % | 17 → 18 | 10/16 (1 d) | DCO 7, image 7, video 6 | steady |
+| Alexis Bittar | 27 → 79 | **+193 %** | 27 → 20 | 10/16 (1 d) | DCO 14, DPA 9 | **ramping hard** (FW26 + handbags) |
+
+What it shows:
+- [m] The two biggest drops of the week (LAKE −53 %, Vosges −51 %) belong to brands with the **freshest** flow: newest ad 1 day old, 19–25 of the top 30 started this month. The one brand with no fresh flow at all (Hawkins: zero ads started in 30 days, newest 36 days old) fell only 13 %. **The size of a drop does not tell cooling from rotation; the fresh flow does.**
+- [m] The brands that shrank hardest now run almost only DCO cards (LAKE 27 of 30, Vosges 28 of 30). [inf] They are folding many single ads into a few dynamic ones (the "consolidate under Andromeda" advice agencies give for 2026 [v]), which cuts the count without cutting spend. A falling count on a DCO-heavy page reads as consolidation first.
+- [inf] A brand rotating creative five weeks before Black Friday is **buying creative right now**: that is the warmest moment to land a film idea, not a reason to wait.
+
+The rule (in `vxo-leads` §1):
+- **Hold (cooling):** no ad started in the last 21 days AND at most 2 of the top cards started in the last 30 days, whatever the count does. Re-check weekly; one new ad lifts the hold.
+- **Rotation (keep, note as warm):** active count down more than 30 % in a week, but the newest ad is ≤ 7 days old or ≥ 10 of the top cards started in the last 30 days.
+- **Watch:** newest ad 14–21 days old (Cuddle Clones, Sunday Citizen, Dandelion on 10-17). Re-read on the send morning.
+- Never quote any of these counts in a message (rule 2 above).
+
 ---
 
 ## 8. What only the owner can do (blocking first)
