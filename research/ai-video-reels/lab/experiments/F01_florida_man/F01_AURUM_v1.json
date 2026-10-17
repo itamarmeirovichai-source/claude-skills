@@ -1,0 +1,286 @@
+{
+ "export": "instagram",
+ "output": "out/F01_AURUM_v1.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/M2_macro_cold_motion_t01.mp4",
+    "in": 0.5,
+    "out": 2.3,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/V1_standoff_t01.mp4",
+    "in": 0,
+    "out": 2.2,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "chip",
+     "text": "BREAKING",
+     "x": 90,
+     "y": 1040,
+     "box_color": "#D0021B",
+     "size": 40
+    },
+    {
+     "type": "chip",
+     "text": "FLORIDA MAN IN STANDOFF WITH ALLIGATOR",
+     "x": 90,
+     "y": 1100,
+     "box_color": "#000000D0",
+     "size": 34
+    },
+    {
+     "type": "title",
+     "text": "ONLY IN FLORIDA",
+     "position": "top",
+     "size": 60
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/V2_anchor_t01.mp4",
+    "in": 0,
+    "out": 4.6,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "chip",
+     "text": "SUN COAST 9  ·  LIVE",
+     "x": 90,
+     "y": 1100,
+     "box_color": "#D0021B",
+     "size": 34
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/V1_standoff_t01.mp4",
+    "in": 2.4,
+    "out": 7.6,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "chip",
+     "text": "BREAKING  ·  BOCA RATON",
+     "x": 90,
+     "y": 1100,
+     "box_color": "#D0021B",
+     "size": 34
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/V3_reporter_t01.mp4",
+    "in": 0,
+    "out": 5.6,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "chip",
+     "text": "98°F  ·  LIVE FROM THE LAKE",
+     "x": 90,
+     "y": 1100,
+     "box_color": "#D0021B",
+     "size": 34
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/K5_splash_t01.mp4",
+    "in": 0.5,
+    "out": 2.7,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K6_cooler_burst_t01.mp4",
+    "in": 1.5,
+    "out": 4.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K7_bank_t01.mp4",
+    "in": 0.5,
+    "out": 3.7,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "chip",
+     "text": "UPDATE: STANDOFF ENDS.",
+     "x": 90,
+     "y": 1040,
+     "box_color": "#D0021B",
+     "size": 36
+    },
+    {
+     "type": "chip",
+     "text": "BOTH PARTIES HYDRATED.",
+     "x": 90,
+     "y": 1100,
+     "box_color": "#000000D0",
+     "size": 36
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/K8_studio_hero_t01.mp4",
+    "in": 0,
+    "out": 3.6,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "AURUM",
+     "position": "top",
+     "size": 110,
+     "anim": "fade",
+     "color": "#F3D79A"
+    },
+    {
+     "type": "text",
+     "text": "Worth wrestling for.",
+     "position": "upper",
+     "size": 56,
+     "start": 0.4
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/V2_anchor_t01.mp4",
+    "in": 5.3,
+    "out": 8.04,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "Do not wrestle alligators. Or share drinks with them.",
+     "position": "lower",
+     "size": 28,
+     "start": 0.6
+    },
+    {
+     "type": "chip",
+     "text": "AI-generated",
+     "x": 800,
+     "y": 200,
+     "size": 22
+    }
+   ]
+  }
+ ],
+ "captions": {
+  "source": "audio/v2_captions.words.json",
+  "style": "highlight_word"
+ },
+ "audio": {
+  "original_volume": 0.0,
+  "voiceover": {
+   "path": "audio/v2_dialogue.wav",
+   "at": 0
+  },
+  "music": {
+   "path": "audio/v2_music.wav",
+   "volume": 0.3,
+   "fade_in": 0.05,
+   "fade_out": 0.8
+  },
+  "sfx": [
+   {
+    "path": "audio/sfx/sting.mp3",
+    "at": 0.0,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/cicadas.mp3",
+    "at": 1.8,
+    "volume": 0.3
+   },
+   {
+    "path": "audio/sfx/hiss.mp3",
+    "at": 2.3,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/clink.mp3",
+    "at": 0.2,
+    "volume": 0.9
+   },
+   {
+    "path": "audio/sfx/hiss.mp3",
+    "at": 9.2,
+    "volume": 0.6
+   },
+   {
+    "path": "audio/sfx/cicadas.mp3",
+    "at": 13.8,
+    "volume": 0.25
+   },
+   {
+    "path": "audio/sfx/ripple.mp3",
+    "at": 19.5,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/clink.mp3",
+    "at": 20.6,
+    "volume": 0.8
+   },
+   {
+    "path": "audio/sfx/scratch.mp3",
+    "at": 21.5,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/cooler_burst.mp3",
+    "at": 21.9,
+    "volume": 1.0
+   },
+   {
+    "path": "audio/sfx/gulp.mp3",
+    "at": 25.2,
+    "volume": 0.9
+   },
+   {
+    "path": "audio/sfx/ripple.mp3",
+    "at": 28.0,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/clink.mp3",
+    "at": 28.3,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/logo.mp3",
+    "at": 30.4,
+    "volume": 0.8
+   },
+   {
+    "path": "audio/sfx/burp.mp3",
+    "at": 33.7,
+    "volume": 0.9
+   }
+  ],
+  "loudnorm": -14
+ }
+}

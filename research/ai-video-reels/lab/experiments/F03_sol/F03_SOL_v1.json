@@ -1,0 +1,159 @@
+{
+ "export": "instagram",
+ "output": "out/F03_SOL_pre.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/M1_strike_t01.mp4",
+    "in": 0.3,
+    "out": 3.3,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M3_bigidea_t01.mp4",
+    "in": 0.0,
+    "out": 5.0,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M2_pool_t01.mp4",
+    "in": 1.0,
+    "out": 3.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M4_room_t01.mp4",
+    "in": 0.5,
+    "out": 3.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M6_hero_t01.mp4",
+    "in": 0.0,
+    "out": 5.0,
+    "mute": true,
+    "speed": 0.9
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "SOL",
+     "x": 540,
+     "y": 430,
+     "size": 150,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#3A2A1E",
+     "spacing": 40,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 1.4
+    },
+    {
+     "type": "text",
+     "text": "Light it. It's summer.",
+     "x": 540,
+     "y": 560,
+     "size": 62,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#3A2A1E",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 2.0
+    },
+    {
+     "type": "text",
+     "text": "Discover the summer collection",
+     "x": 540,
+     "y": 660,
+     "size": 40,
+     "font": "Cormorant Garamond",
+     "weight": 500,
+     "color": "#5A4636",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 3.0
+    },
+    {
+     "type": "text",
+     "text": "Fictional brand \u00b7 AI-generated",
+     "x": 540,
+     "y": 300,
+     "size": 22,
+     "color": "#7A6656",
+     "stroke": 0,
+     "shadow": 0,
+     "start": 3.0
+    }
+   ]
+  }
+ ],
+ "audio": {
+  "original_volume": 0.0,
+  "voiceover": {
+   "path": "audio/vo.mp3",
+   "at": 15.4,
+   "volume": 1.0
+  },
+  "music": {
+   "path": "audio/music.mp3",
+   "volume": 0.8,
+   "fade_out": 0.6
+  },
+  "sfx": [
+   {
+    "path": "audio/sfx/rain.mp3",
+    "at": 0.0,
+    "volume": 0.55
+   },
+   {
+    "path": "audio/sfx/match.mp3",
+    "at": 0.2,
+    "volume": 0.9
+   },
+   {
+    "path": "audio/sfx/crackle.mp3",
+    "at": 1.4,
+    "volume": 0.45
+   },
+   {
+    "path": "audio/sfx/bloom.mp3",
+    "at": 3.1,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/summer.mp3",
+    "at": 5.0,
+    "volume": 0.45
+   },
+   {
+    "path": "audio/sfx/crackle.mp3",
+    "at": 8.0,
+    "volume": 0.35
+   },
+   {
+    "path": "audio/sfx/curtain.mp3",
+    "at": 10.4,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/summer.mp3",
+    "at": 12.0,
+    "volume": 0.3
+   }
+  ],
+  "loudnorm": -14
+ }
+}

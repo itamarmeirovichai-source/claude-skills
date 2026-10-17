@@ -1,0 +1,69 @@
+{
+ "jobs": [
+  {
+   "id": "A_out",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/T0.png",
+    "last_image_url": "@file:ref/T1.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The moustached man keeps his exact identity: enormous charcoal waxed handlebar moustache with spiral tips covering his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. The gold AURUM can keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. The camera pulls smoothly backward out of the circular brass viewfinder, revealing the man holding it to his eye on the golden rooftop beside the AURUM can on its plinth; a helicopter drifts across the sky."
+   }
+  },
+  {
+   "id": "B_sun",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/T1.png",
+    "last_image_url": "@file:ref/T2.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The moustached man keeps his exact identity: enormous charcoal waxed handlebar moustache with spiral tips covering his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. The gold AURUM can keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. He lowers the viewfinder, deadpan, raises two pinched fingers and drags the sun through the sky from right to left; the sun obediently glides across the skyline, the light on the can shifts to a perfect backlight; the helicopter turns away."
+   }
+  },
+  {
+   "id": "C_reveal",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/T2.png",
+    "last_image_url": "@file:ref/T3.png",
+    "duration": 10,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The moustached man keeps his exact identity: enormous charcoal waxed handlebar moustache with spiral tips covering his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. The gold AURUM can keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. Continuous slow crane move: the camera pulls back and rises higher and higher, and the rooftop, the man and the skyline turn out to be a detailed tabletop miniature diorama on a walnut desk in a dim film studio; the sun is revealed to be a brass desk lamp; a coffee cup and pencils show the real scale. Smooth constant speed, no cuts."
+   }
+  },
+  {
+   "id": "D_click",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/T3.png",
+    "last_image_url": "@file:ref/T4.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The moustached man keeps his exact identity: enormous charcoal waxed handlebar moustache with spiral tips covering his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. The gold AURUM can keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. The camera drifts slowly right along the desk; a woman's hand in an ivory sleeve enters from above holding a silver stopwatch and clicks it once over the diorama; the portrait monitor beside the miniature lights up playing a golden product film of the AURUM can."
+   }
+  },
+  {
+   "id": "E_tiny",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/T4.png",
+    "last_image_url": "@file:ref/T5.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The moustached man keeps his exact identity: enormous charcoal waxed handlebar moustache with spiral tips covering his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. The gold AURUM can keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. The camera pushes slowly in and down to the miniature roof: the tiny moustached man figure comes alive, lifts his tiny brass viewfinder to the camera and raises one eyebrow; warm desk-lamp light, shallow depth of field."
+   }
+  }
+ ]
+}

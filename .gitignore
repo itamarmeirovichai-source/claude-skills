@@ -1,0 +1,7 @@
+# Local secrets (Higgsfield HF_KEY etc.). Never commit.
+.env
+.env.local
+.env.*.local
+
+# ad-director pipeline job folders (generated media, spend ledgers). Never commit.
+jobs/

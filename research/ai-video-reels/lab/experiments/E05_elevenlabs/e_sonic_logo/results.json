@@ -1,0 +1,60 @@
+{
+ "sfx_fragrance_crystal": {
+  "text": "Luxury fragrance sonic logo: one crystal glass chime struck once, then a warm low felt-piano note underneath, soft shimmering reverb tail, elegant, no voice, no drums",
+  "dur": 2.0,
+  "onset": 0.0,
+  "onsets": [],
+  "notes_at_onsets": [],
+  "decay_to_-40dB_s": 1.2,
+  "LUFS": -7.6,
+  "LRA": 0.0,
+  "TP": -0.1,
+  "centroid_hz": 3586
+ },
+ "sfx_beverage_snap": {
+  "text": "Energy drink sonic logo: sharp can-tab snap, quick rising synth swoosh, landing on one punchy sub-bass hit with a short fizz tail, no voice",
+  "dur": 2.0,
+  "onset": 0.22,
+  "onsets": [
+   0.36
+  ],
+  "notes_at_onsets": [
+   "G#4"
+  ],
+  "decay_to_-40dB_s": 1.36,
+  "LUFS": -9.8,
+  "LRA": 0.0,
+  "TP": 0.0,
+  "centroid_hz": 2449
+ },
+ "sfx_tech_3note": {
+  "text": "Tech brand sonic logo: three-note ascending glass marimba motif, E then G sharp then B, clean and modern, last note sustains, no voice, no drums",
+  "dur": 2.0,
+  "onset": 0.0,
+  "onsets": [],
+  "notes_at_onsets": [],
+  "decay_to_-40dB_s": 1.14,
+  "LUFS": -7.0,
+  "LRA": 0.0,
+  "TP": -0.3,
+  "centroid_hz": 806
+ },
+ "music_tech_3note": {
+  "text": "Sonic logo, 3 seconds: three-note ascending glass marimba motif E, G sharp, B, then a soft warm synth pad chord in E major rings out. Clean, modern tech brand. Instrumental, no drums.",
+  "dur": 3.03,
+  "onset": 0.02,
+  "onsets": [
+   0.04,
+   0.4
+  ],
+  "notes_at_onsets": [
+   "G#4",
+   "E5"
+  ],
+  "decay_to_-40dB_s": 1.9,
+  "LUFS": -15.1,
+  "LRA": 20.0,
+  "TP": -2.8,
+  "centroid_hz": 834
+ }
+}

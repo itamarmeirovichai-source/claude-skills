@@ -1,0 +1,8 @@
+{"_doc":"F02 v2 motion: sunset-into-bottle (start/end frames) + sun inside the juice.",
+ "defaults":{"model":"kling-video/v3.0/pro/image-to-video","takes":1,"args":{"duration":5,"sound":"off","cfg_scale":0.5}},
+ "jobs":[
+  {"id":"M_W_sunset_into_bottle","args":{"image_url":"@file:clips/W1_sunset_start_t01.png","last_image_url":"@file:clips/W2_sunset_end_t01.png",
+   "prompt":"Locked-off camera, smooth timelapse. The sun sinks slowly straight down behind the bottle's cap and disappears into the bottle; as the sky fades from gold to deep blue hour and the city lights switch on, the amber perfume inside the bottle grows brighter and glows like molten gold, as if it captured the sun. The bottle never moves; its shape, faceted cap and engraved VESPER lettering stay exactly the same. Elegant luxury fragrance commercial. Negative: morphing, warping, text distortion, extra objects, camera movement."}},
+  {"id":"M_W_sun_inside","args":{"image_url":"@file:clips/W3_sun_inside_t01.png",
+   "prompt":"Slow push-in. Inside the amber perfume the tiny golden sun pulses softly and the shimmering gold particles swirl slowly around it in a spiral, like a galaxy; light ripples through the liquid. The bottle glass, cap and engraved VESPER letters stay exactly the same and still. Elegant, smooth. Negative: morphing, text distortion, extra objects."}}
+ ]}

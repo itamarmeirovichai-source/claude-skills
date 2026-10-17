@@ -1,0 +1,15 @@
+{
+  "_doc": "Stage C: animate the approved frames. Seedance for performance + native audio, Kling Pro where start+end frames lock the action.",
+  "defaults": {"takes": 3},
+  "jobs": [
+    {"id": "S1_stare_growl", "model": "bytedance/seedance-2.5/image-to-video",
+     "args": {"image_url": "@file:frames/F1.png", "end_image_url": "@file:frames/F2.png", "duration": 5, "resolution": "720p", "generate_audio": true,
+              "prompt": "Static ceiling security camera, no camera movement. The golden retriever stares down the dark hallway, ears rising, then lowers its head and lets out a low rumbling growl; at the far end a faint glow slowly forms into a translucent ghost beagle. Black-and-white infrared night vision, sensor noise, slight flicker of the IR light. Audio: low dog growl, faint electrical hum of the camera, silent house. No music. Avoid generating any text or subtitles."}},
+    {"id": "S2_ghost_wags", "model": "kling-video/v3.0/pro/image-to-video",
+     "args": {"image_url": "@file:frames/F2.png", "last_image_url": "@file:frames/F3.png", "duration": 5, "cfg_scale": 0.6, "sound": "on",
+              "prompt": "Static security camera. The translucent ghost beagle wags its tail and trots slowly toward the golden retriever, who tilts its head, sniffs the air, then wags back; both turn to look up at the treat jar on the side table. Ghost body stays semi-transparent and softly glowing. Black-and-white infrared night vision, fisheye, sensor noise. Sounds: soft paws on wood floor, curious whine."}},
+    {"id": "S3_treat_party", "model": "bytedance/seedance-2.5/image-to-video",
+     "args": {"image_url": "@file:frames/F4.png", "duration": 4, "resolution": "720p", "generate_audio": true,
+              "prompt": "Static ceiling security camera. The golden retriever and the translucent ghost beagle lie side by side chewing dog treats next to the tipped jar; the ghost's tail wags, a treat it holds is semi-transparent too; the retriever rests its head on its paws contentedly. Black-and-white infrared night vision, sensor noise. Audio: crunchy chewing, a happy sigh, quiet house. No music. Avoid generating any text or subtitles."}}
+  ]
+}

@@ -1,0 +1,62 @@
+---
+import Page from '../../layouts/Page.astro';
+import PopUp from '../../components/PopUp.astro';
+import MailFallback from '../../components/MailFallback.astro';
+import { site } from '../../lib/site';
+---
+<Page title="Frames on the way" description="Your frames are on the way." heading="Got it. Your frames are on the way." noindex>
+  <div class="wrap thanks">
+    <p class="unsent" data-unsent hidden>
+      Our form isn't connected to the studio inbox yet, so your request may not have reached me.{' '}
+      {site.email ? <>Please email your product page or photo to <a href={`mailto:${site.email}?subject=${encodeURIComponent('5 free frames')}`}>{site.email}</a> and I'll take it from there.</> : <>Please send it again in a day or two.</>}
+    </p>
+    <script is:inline>
+      // finish.ts reports stored:false + alerted:false when neither R2 nor Resend is bound; lead-form.ts adds &unsent=1.
+      try { if (new URLSearchParams(location.search).get('unsent') === '1') document.querySelector('[data-unsent]').hidden = false; } catch (e) {}
+    </script>
+    <div>
+      <h2 class="h3">What happens next</h2>
+      <ol class="next">
+        <li>I study your brand today.</li>
+        <li>Frames land in your inbox within 48 hours.</li>
+        <li>If you like them, we talk film. If not, tell me what's off.</li>
+      </ol>
+      <div class="pop-slot"><PopUp id="success" char="otto" clip="pop_thumb" text="Got it. Frames incoming." side="left" /></div>
+    </div>
+    <form class="qualify" data-qualify-form novalidate>
+      <h2 class="h3">Help me aim the frames <span class="dim">(30 seconds, optional)</span></h2>
+      <fieldset class="field"><legend>Where will the ad run?</legend>
+        <div class="opts">{[['meta', 'Meta'], ['tiktok', 'TikTok'], ['youtube', 'YouTube'], ['website', 'Website'], ['not-sure', 'Not sure']].map(([v, l]) => <label class="check"><input type="checkbox" name="runs" value={v} /> {l}</label>)}</div>
+      </fieldset>
+      <fieldset class="field"><legend>What would make this a win in the next 90 days?</legend>
+        <div class="opts">{[['launch', 'New launch'], ['tired-winner', 'Fresh ads for a tired winner'], ['new-look', 'Test a new look'], ['exploring', 'Just exploring']].map(([v, l]) => <label class="check"><input type="radio" name="win" value={v} /> {l}</label>)}</div>
+      </fieldset>
+      <div class="field"><label for="hardest">What's the hardest shot to get right now?</label><textarea id="hardest" name="hardest" maxlength="400"></textarea></div>
+      <div class="field"><label for="spend">Roughly what do you spend on ads a month?</label>
+        <select id="spend" name="spend"><option value="">Choose…</option><option value="<5k">Under $5k</option><option value="5-20k">$5–20k</option><option value="20-50k">$20–50k</option><option value="50k+">$50k+</option><option value="n/a">Prefer not to say</option></select>
+      </div>
+      <fieldset class="field"><legend>When the frames are ready, should I email them, or walk you through them on a 15-minute call?</legend>
+        <div class="choice-row">
+          <label class="choice"><input type="radio" name="next" value="email" /><span><b>Email them</b></span></label>
+          <label class="choice"><input type="radio" name="next" value="call" /><span><b>Walk me through on a call</b></span></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Send answers</button>
+      <p class="status" data-status role="status" aria-live="polite"></p>
+      <MailFallback lead="Anything else? Email me:" />
+    </form>
+  </div>
+</Page>
+<style>
+  .thanks { display: grid; gap: 40px; padding-bottom: 96px; }
+  @media (min-width: 960px) { .thanks { grid-template-columns: 0.8fr 1.2fr; gap: 64px; } }
+  .h3 { font-size: 1.6rem; }
+  .unsent { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-radius: 12px; border: 1px solid rgb(216 67 43 / 0.5); background: rgb(216 67 43 / 0.1); }
+  .unsent[hidden] { display: none; }
+  .next { padding-left: 1.2em; color: var(--text-dim); }
+  .next li { margin-bottom: 8px; }
+  .pop-slot { position: relative; height: 300px; }
+  .qualify { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 4vw, 36px); }
+  .opts { display: grid; gap: 10px; }
+  .status { color: var(--brass-hi); }
+</style>

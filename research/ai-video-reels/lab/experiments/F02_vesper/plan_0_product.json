@@ -1,0 +1,7 @@
+{
+ "_doc": "F02 VESPER stage 0: product reference (fictional fragrance).",
+ "defaults": {"model": "marketing-studio/image/flare", "takes": 2, "args": {"aspect_ratio": "9:16", "resolution": "2k", "quality": "high"}},
+ "jobs": [
+  {"id": "P0_vesper_ref", "args": {"prompt": "Premium studio product photograph of a luxury perfume bottle, front view, centred: a heavy rectangular 50 ml bottle of thick crystal-clear glass with softly bevelled edges and a very thick glass base, filled with warm amber-gold perfume; a tall faceted cap of smoky dark-amber glass that catches the light like a gemstone; the word VESPER engraved in thin, elegant, high-contrast serif capitals with wide letter spacing, centred horizontally on the front of the glass, and below it in tiny serif capitals 'EAU DE PARFUM'. The bottle stands on deep oxblood-burgundy velvet; backdrop a smooth gradient from deep burgundy (#4A0E17) to black. Hard warm key light from the upper left like a low sunset beam, crisp specular highlights on the glass edges, the amber juice glowing from within, a soft golden caustic light pattern on the velvet. 85mm, f/8, tack sharp, commercial retouching, hyper-real. Exactly one bottle, no other objects, no props, no hands, no other text."}}
+ ]
+}

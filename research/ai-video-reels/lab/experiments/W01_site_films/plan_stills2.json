@@ -1,0 +1,32 @@
+{
+ "jobs": [
+  {
+   "id": "aurum_k0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/aurum_ref.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the exact product: keep this exact gold AURUM can, same shape, finish, black band and AURUM lettering, unchanged and sharp. Extreme macro photograph filling the frame with the can's brushed gold surface covered in cold condensation droplets, the tall serif letter A of AURUM just visible and sharp, a single droplet running down; behind the can, out of focus, crushed ice and a halved bright yellow yuzu with sparkling juice; hard warm morning sunlight raking from the right, crisp specular highlights. Real commercial photograph, 35mm film grain, no extra text."
+   }
+  },
+  {
+   "id": "aurum_kend",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/aurum_ref.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the exact product: keep this exact gold AURUM can, same shape, finish, black band and AURUM lettering, unchanged and sharp. Hero packshot: the can stands upright, centred, on a wet pale travertine ledge beside a halved yuzu and a few ice cubes, fine condensation on the can; behind it a sunlit Mediterranean terrace with a sliver of turquoise sea and white wall, softly out of focus; hard warm late-morning sun from the right, crisp shadows, glints on water droplets. Premium beverage commercial, real photograph, 35mm film grain, no extra text."
+   }
+  }
+ ]
+}

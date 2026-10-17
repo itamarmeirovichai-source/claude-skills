@@ -1,0 +1,206 @@
+---
+name: ad-director
+description: End-to-end AI ad direction for a single product - brief intake, ledger-aware creative dice so concepts never repeat for a client, insight -> concepts -> scored finalists, script, timecoded shot list, per-shot model routing (Seedance / Kling / Veo / Runway / image models), production prompts, take QC, automated render QC (loudness, pacing, black/frozen/flicker, brand-colour fidelity vs packshot, safe-zone sheet) and a 100-point visual rubric. Use when the user hands over a product (photo, link, name) and wants an ad or reel planned, prompted, and quality-checked; pair with reel-studio for the edit.
+---
+
+> **Read first:** `references/marketing/00-master-playbook.md` (marketing master playbook: client taste, 10-step pipeline, 15 gates; detail in marketing/01–04).
+
+
+# Ad Director
+
+Turns "here is a product" into a finished, quality-checked ad plan:
+**brief → fresh concept seeds → 3 scored concepts → script → shot list with a model per shot → prompts → takes → edit (reel-studio) → QC.**
+
+The creative method (insight mining, 6 mechanisms, scoring gates, psychology checklist) lives in
+`research/ai-video-reels/chapters/17-creative-director-system.md`. This skill packages it as a procedure with tools, adding three things:
+- **Anti-repetition:** concept dice plus a ledger, so no client gets the same idea twice and the studio does not drift into one style.
+- **A model router:** for each shot, which model is used and why.
+- **A QC gate:** at the take level, the render level and the visual level.
+
+## When to use
+- The user sends a product (photo, URL, name, packshot) and asks for an ad, reel, concept, script or prompts.
+- The user asks "which model should I use for this shot?" or "is this video good enough to send?"
+- The user wants to benchmark video models on their own products.
+
+## Tools
+```bash
+D=skills/ad-director/scripts/director.py
+python3 $D new jobs/driftline-heat --product "Driftline Citrus" --client "Driftline"   # job folder
+python3 $D dice --client "Driftline" -n 5               # 5 fresh, mutually different seeds
+python3 $D dice --client "Driftline" --lock format=asmr_macro -n 3   # explore inside one format
+python3 $D log --client "Driftline" --title "Heat Index" --seed-json '<seed JSON>' --result "chosen"
+python3 $D history --client "Driftline"
+python3 $D rank finalists.json --goal conversion     # predicted likes/shares/saves/comments/clicks/purchases
+python3 $D qc final.mp4 --packshot packshot.png --duration 15 [--one-take] --out qc/
+python3 $D bench --out bench/ --models seedance25,kling30pro,veo31   # model test matrix
+python3 $D bench-summary bench/bench_matrix.csv
+```
+**Deep QC (`scripts/qc/`, no paid calls):** fill `scripts/qc/preflight.md` before any generation; after rendering run
+`qc_report.py` (cuts, frame strip, onsets vs motion in ms, LUFS/true peak, flash/frozen frames), `lipsync_check.py`
+(SyncNet audio-to-mouth offset + confidence, per clip) and `continuity_check.py` (face identity, prop/vessel and product
+drift, seams). Thresholds and the proof on our past films: `references/marketing/46-sound-and-qc.md`.
+
+The ledger defaults to `~/.ad-director/ledger.jsonl`; override it with `--ledger` or `AD_DIRECTOR_LEDGER`. Keep one ledger per studio and back it up, because it is the memory that prevents repeats.
+
+## Generating with the Higgsfield API (`scripts/hfgen.py`)
+Credentials come only from the environment: `HF_KEY="key_id:key_secret"`. Never put them in chat or files. Endpoints and parameters are listed in `references/higgsfield-models.md`.
+```bash
+H=skills/ad-director/scripts/hfgen.py
+python3 $H check                                        # verify the key (free)
+python3 $H batch job/plan_A.json --budget 3 --dry-run   # price the whole plan (free)
+python3 $H batch job/plan_A.json --budget 3 --yes       # upload @file refs, generate, download
+python3 $H batch job/plan_A.json --budget 3 --yes --only F2_ghost_appears --fresh r2   # regenerate one shot
+```
+A plan is JSON: `defaults` + `jobs[{id, model, takes, args}]`. `"@file:frames/F1.png"` values are uploaded automatically.
+- **Budget guard:** every job is priced with `/estimate` first, and the run refuses to start if the total is over `--budget`.
+- **Schema guard:** before any upload, estimate or submit, every job is checked against the endpoint schema in `scripts/hf_schemas.json` (extracted from the public docs; rebuild with `hfgen.py schemas --import llms-full.txt`). Unknown fields are refused, e.g. `end_image_url` on Kling (the real field is `last_image_url`), because `/estimate` silently ignores them. `python3 $H lint MODEL --args '{...}'` checks one request offline.
+- **Unpriced = refused:** a job whose price can't be parsed is never counted as $0. The dry run lists it as UNPRICED and exits 2. Wan per-second prices, token-metered video (Seedance 2.0, Cinema Studio) and Kling multi-shot (summed durations) are parsed.
+- **Safe defaults** unless the job sets them: `sound:"off"`, `generate_audio:false`, `enhance_prompt`/`prompt_extend`/`enable_thinking`/`prompt_optimizer` false, `aspect_ratio:"9:16"` where the field exists.
+- **Resumable:** idempotency keys come from job + take + args, so a re-run never pays twice. Use `--fresh` to deliberately generate new takes.
+- **Outputs:** go to `clips/`, together with `manifest.json` and `gen_log.jsonl` (request ids and cost).
+- **After each stage:** Claude looks at the outputs (Read the images, run `reelstudio.py grid` on the videos), applies take QC K1–K8, copies keepers to `frames/` or `clips/pick_*.mp4`, and only then runs the next stage.
+
+Stage order: **A** hero frame (4 variants) → pick → **B** story frames (same character via `image_urls` ref) → pick → **C** video takes from the approved frames → pick → **edit.json** in reel-studio → `director.py qc`.
+
+
+## Automated job pipeline (`scripts/pipeline.py`)
+A state machine over `jobs/<job_id>/`: `job.json` (stage S0–S11, human checkpoints H1 storyline pick / H2 stills approval / H3 final, approvals, history) plus an append-only `spend.jsonl` (estimated vs billed USD per paid call). Design: `references/marketing/18-automation-pipeline.md`.
+```bash
+P=skills/ad-director/scripts/pipeline.py
+python3 $P new --product "SOL Water" --client Driftline --label-text SOL --packshot sol.png   # intake; cap $10
+python3 $P advance JOB              # runs stages until an agent artefact, a checkpoint or a spend approval is needed
+python3 $P advance JOB --dry-run    # price the next paid step only
+python3 $P approve JOB H1 B --notes "less gold"      # H2/H3: approve | reject
+python3 $P advance JOB --approve    # a human OKs ONE paid step over $2
+python3 $P status JOB ; python3 $P spend JOB [--bill sp-0003 0.41]
+python3 $P budget JOB --stage-cap S6=6               # caps change only by a human
+```
+Guards: job cap (default $10), per-stage caps (S3 $0.10, S5 $2.50, S6 $5, S7 $1), any spend over $2 needs `--approve`, every paid stage dry-runs first, a billed amount >10 % over its estimate puts the job on hold. Paid stages call `hfgen.py` and `elevenlabs.py`; S1/S2/S9/H1 call `director.py` (dice, rank, qc, ledger log). `jobs/` is git-ignored.
+
+## Quality standards (read before every job)
+- **`references/creative-brain.md` comes FIRST:** the four laws (insight, tension, twist, brand-in-twist), 12 punchline mechanisms, virality mechanics, the pre-generation gates and the full-stack output contract (script → images → video → voice → SFX → music → edit → QC → retro). No ad without a punchline.
+- `references/image-direction.md`: studio-photography method, 16 hero recipes, per-model image prompt formats, image QC rubric (regenerate below 8/10).
+- `references/video-realism.md`: 10 realism rules, model cards from our lab, Seedance 2.5 and Kling multi-shot master formats.
+- `references/ad-storytelling.md`: every portfolio piece is an ad with a brief, a message, a story arc, a VO script and a CTA, plus the edit standard.
+- Minimum length for portfolio pieces is 10 s, multi-shot, edited with VO, captions, music and SFX.
+
+## Voice, music and SFX with ElevenLabs (`scripts/elevenlabs.py`)
+```bash
+E=skills/ad-director/scripts/elevenlabs.py   # auth: ELEVENLABS_API_KEY or ELEVEN_AUTH_VIA_PROXY=1 (network secret, header xi-api-key)
+python3 $E check                                           # plan + credits (free)
+python3 $E voices --search "warm female"
+python3 $E tts "[sighs] Three P.M. in Florida..." --voice VOICE_ID --out job/audio/vo.mp3   # + vo.words.json
+python3 $E sfx "crisp aluminum can pop and fizz" --seconds 1.5 --out job/audio/pop.mp3
+python3 $E music "minimal summer electronic, 100 BPM, builds at 8 s" --seconds 15 --out job/audio/bed.mp3
+python3 $E tts "..." --voice VOICE_ID --out vo.mp3 --estimate   # credits + USD + cache status, no call
+```
+TTS defaults to `eleven_v4` (style/speed are ignored by v4; use `--model eleven_v3` when you need them). Every call has a credit estimate and a per-call cap (`--max-credits`, default 2000), and a content-hash cache (`--cache-dir`, `--no-cache`): identical requests never pay twice.
+In reel-studio:
+- `audio.voiceover: {path, at}`: music ducks under the VO.
+- `captions.source: vo.words.json`: word-timed captions.
+- `audio.music.path`: the ElevenLabs music bed.
+- `audio.sfx: [{path, at}]`: the ElevenLabs sound effects.
+
+## Procedure (follow in order and show the output of each step)
+
+### 1. Intake (5 min)
+Run `new` and fill `01-brief.md`. Look at the product photo: describe the shape, colours (hex if possible), label text exactly as written, material, and size. Collect:
+- 3 facts the client can substantiate.
+- The distinctive brand assets.
+- The audience's own words.
+- One action you want them to take.
+- Where the ad runs (state matters for legal).
+
+When an input is missing, make an assumption and mark it `[ASSUMED]`. Ask at most 2 questions.
+
+### 2. Insight + clichés (chapter 17 §2, steps 1–3)
+- Write 12 candidate insights and pick 1.
+- List the 5 category clichés. They are banned unless twisted.
+
+### 3. Roll seeds, then think (the anti-repetition step)
+Run `dice --client <client> -n 5`. Each seed combines:
+- mechanism × format × hook × emotion × structure × look × sonic
+- plus one creative **constraint**
+
+Seeds are *provocations, not orders*. For each seed, write the best idea it provokes for this product and insight. You may swap one dimension when it clearly fights the product; say so if you do. Also write 2 "free" ideas that ignore the dice. The aim is a range of 7 ideas that look nothing alike.
+- Kill test: if two ideas share a key visual, replace one.
+- AI-cliché ban (unless twisted): floating product with particles, a splash crown, a slow orbit on black, logo morph, "cinematic" drone over a city.
+
+### 4. Score and pick (chapter 17 §2 step 7 table)
+- Score each idea on originality, brand linkage, emotion, AI-feasibility, cost and legal.
+- Gates: legal ≤2, AI-feasibility ≤2 (with no hybrid fix) or brand ≤2 → killed.
+- Pick 3 finalists from at least 2 mechanisms. One of them must be "safe-but-sharp" (legal 5, cost ≥4).
+- Present all 3 to the user with a recommendation. After the choice, `log` it (also log rejected finalists with `--result rejected` when the client saw them).
+
+### 4b. Upgrade round: make each of the 3 finalists better, then filter by predicted engagement
+The first score only picks the 3 finalists. Next, each finalist gets a **second creative pass**. Run every lens below on every finalist, write the upgraded version, and keep only changes that do not break the idea:
+1. **Crazier.** Run `dice --client X --lock mechanism=<its mechanism> -n 3`. Steal one dimension that makes the idea bolder (a stranger format, a harsher constraint). Push it to "too much", then pull back 20%.
+2. **Hook.** Write 5 alternative first seconds (anomaly / payoff-first / sound-led / text-tension / scale-shock) and keep the strongest. The product or its effect should be visible by 1.5 s.
+3. **Shares.** Add an identity trigger: "this is so me / tag the friend who…", a local in-joke (Boca, Florida heat, an Israeli-American moment), or an "I need to show someone" moment.
+4. **Saves.** Add a reason to come back: a micro-tip, a recipe, a hidden detail, a list, or a "part 1 of a series".
+5. **Comments.** Add one harmless debate or a spot-the-detail ("which one would you pick?", a deliberate Easter egg). No rage bait about people.
+6. **Clicks and purchases.** Make the product *desirable on screen* (demo, sensory close-up), brand by 3 s, one clear offer and CTA, and one trust element (a real product shot, real filmed plate, or hybrid).
+7. **Rewatch.** Make it a loop, add a fast detail, or let the payoff reframe the opening.
+
+Then score every upgraded finalist 0–5 on the drivers below and run `director.py rank concepts.json --goal <awareness|engagement|conversion|balanced>`.
+
+Drivers:
+- **Positive:** hook, curiosity, emotion, novelty, rewatch, identity, utility, comment_bait, product_desire, offer_clarity, brand_early, trust.
+- **Negative:** ai_backlash (it discounts every metric).
+
+The tool predicts retention, likes, shares, saves, comments, clicks and purchases (0–100), a goal-weighted total, and the **weakest metric**. For the winner, run one more fix aimed at its weakest metric. Present the winner plus the runner-up as the A/B pair.
+- Score drivers like a sceptical media buyer, not like the creator of the idea.
+- The ranking is *relative*: it orders our options; it does not forecast numbers. Real data decides. Before full production, run 5 hook variants at about $10 each and compare 3-second view rate and CTR. Then log the real results in the ledger (`--result`).
+
+### 5. Script (`03-script.md`)
+- Beats: Hook / Setup / Turn / Proof / Payoff+brand / CTA.
+- VO at about 2.5 words per second, or no VO.
+- Supers are added in post.
+- Write 5 hook variants for testing.
+- Default length: a 15 s master, with 6 s and 30 s cutdowns planned at script time.
+
+### 6. Shot list + model routing (`04-shots.csv`)
+For every shot:
+- size/angle/lens, light, **one** camera move with an end state, method (T2V / I2V / KF / V2V / LIVE / POST), **model + backup**, risk A–D and mitigation, and a takes budget.
+- Route with `references/model-router.md`.
+
+Production rules:
+- **Start-frame first** for every product shot. Generate the still with an image model, check the label against the packshot, then animate (I2V).
+- **Cut on contact.** Never show a hand gripping the label for more than about 1 s.
+- **Composite the real packshot** on the end card and on any frame where the label must be readable (chapter 16).
+- Humans in beauty, health or food get "natural skin texture, visible pores, no smoothing".
+- One location per shot, and at most one broken physics law per ad.
+
+### 7. Prompts (`05-prompts.md`)
+- Use the grammar card for the routed model from `references/model-router.md`.
+- Every product shot carries a PRODUCT LOCK line: exact label text, colours, shape, "label stays sharp and unchanged; no extra text".
+- Keep negatives to 6 or fewer, and in plain words.
+- Never write "stunning / epic / 8K / masterpiece". Use verbs and physical light.
+
+### 8. Takes + take QC
+- Generate within budget and apply rubric layer 1 (K1–K8) to every take.
+- Log keeper ratios per model in the bench CSV. This gives you real data on which model wins for which shot.
+
+### 9. Edit with reel-studio
+- Use beat-synced cuts, supers inside the safe zones, real-packshot end card, sonic logo, -14 LUFS.
+- Export the master plus the 6 s cutdown plus 5 hook variants.
+
+### 10. QC gate
+- Run `director.py qc`.
+- Then **look**: Read `qc/qc_sheet.jpg` and `qc/product_compare.jpg`, and score the 100-point rubric (`references/qc-rubric.md`) into `06-qc.md`.
+- Ship only with no FAIL and ≥80.
+- When under 80, list the 3 fixes with the biggest point gains, do them, and re-run.
+
+## Benchmarking models (do this whenever a model updates)
+1. Run `bench` to get a matrix of 12 standard ad tests × models × 2 takes. The tests are: label rotation, pour, hand pick-up, macro texture, food bite, lip-sync, FOOH scale, fast camera, multi-shot consistency, text in scene, V2V blockout, stylised world.
+2. Use **the same start frame and the same prompt intent** per test (adapted to each model's grammar).
+3. Score each take 1–5 on adherence, product fidelity, artifacts, motion/physics and aesthetic, and record cost and takes-to-keeper.
+4. Run `bench-summary` and update the router table with the winners. Data beats opinions. Re-run every quarter, or when a major model version ships.
+
+## Legal lines (never skip)
+- No fake testimonials or AI "customers" giving reviews (FTC 16 CFR 465).
+- No AI before/after images for medical or beauty results.
+- Disclose AI where the platform requires it.
+- Real people need written consent for face and voice.
+- Category rules are in chapter 17 §8 (alcohol, med-spa FL, real estate FL).
+- Never use a real brand in a public spec ad without permission. Use fictional brands for demos.
