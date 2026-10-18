@@ -123,7 +123,7 @@ Product rules for every video prompt (doc 64; on 2026-10-09 only 5 of 19 films s
 - Loudness: `loudnorm=I=-14:TP=-2`, then measure the ENCODED file: −14 ±1 LUFS and true peak ≤ −1.0 dBTP (doc 46).
 - Deliver 9:16, plus 4:5 and a 6–8 s cut-down when the tier includes them.
 - Supers (doc 64 §3.5):
-  - inside y 240–1,260 and x 120–840 of 1,080×1,920;
+  - inside y 270–1,248 and x 120–840 of 1,080×1,920. The top line moved down from 240 on 2026-10-18 to match Meta's Reels safe zone (keep 14 % top, 35 % bottom and 6 % sides clear; doc 45 D50);
   - font ≥ 60 px, sans or heavy serif, with a 3–4 px dark stroke or a 40 % scrim;
   - ≤ 7 words, on screen for at least (words ÷ 3) + 1 s;
   - one message-bearing super by 1.0 s.
@@ -132,6 +132,15 @@ Product rules for every video prompt (doc 64; on 2026-10-09 only 5 of 19 films s
 - **Loudness is a hard gate.** On 2026-10-09, 11 of 19 films missed it and 2 clipped above 0 dBTP. If the encoded file reads > −1.0 dBTP, re-master (`loudnorm` two-pass, plus `alimiter=limit=0.8`) and measure again. Never deliver on a "close enough".
 - End card: a **packshot of the product itself** plus the logo plus a swappable offer/CTA line. The product appears at least twice in the film.
 - **Evergreen twin (2026-10-10, Ad Library long-runner read):** every seasonal film also ships an evergreen version: no holiday words in supers, VO or end card, and the offer line on its own layer. In the 5 queued brands we read, the only videos still running after 60+ days were evergreen product videos (Kinn "14k gold jewelry, stacked" at 148–149 days, Cuddle Clones' bobblehead video at 185 days); holiday creative is replaced within weeks. The evergreen twin is what earns the repeat booking.
+- **Ratio-set pack (2026-10-18, doc 45 D50).** Most of our leads' top ads carry the Ad Library tag `DCO` (LAKE 27 of its top 30, Little Beast 29, Cuddle Clones 27, Dandelion 21). We opened 60 cards at LAKE and Dandelion [m]. Those "DCO" ads are not 10-way creative mixes: each holds **2–3 versions of ONE creative, one per placement**:
+  - Dandelion's stills come in pairs, 9:16 (1080×1920) + 1:1 (1080×1080).
+  - LAKE's videos come as 9:16 + 4:5, at 7.8, 10 and 30 s.
+
+  Hook and message tests run as **separate ads** (LAKE runs the same "Shop New Holiday" card 4 times). Meta's own pages explain the setup. Sales campaigns lost dynamic creative in June 2024. Its replacement is the flexible format: up to 10 images/videos per ad, text options grouped per media, and Meta picks the format per placement. So every film ships as a set that drops into either setup:
+  - **Every film:** a 9:16 master (1080×1920; Meta recommends 1440×2560) plus a 4:5 version (Meta's feed recommendation, 1440×1800), re-framed rather than letterboxed. Same cut, same sound, same end card.
+  - **Every still:** 9:16 + 1:1 (+ 4:5), taken from the film's own frames.
+  - **Premiere/Season add:** 3 hook variants (only the first 1–3 s swapped; the body and end card identical), each as its own ratio set, so the brand can run them as separate ads the way it already does. Add the 6–8 s cut-down and a text sheet: 5 primary texts (the first 125 characters stand alone), 5 headlines ≤ 27 characters (the FB feed video limit; 40 on IG feed), claims-checked like the picture.
+  - **Hand-over note:** our films carry synced, mastered sound. Ask the client to switch off Advantage+ "Add music" and the video-effects/touch-up enhancements for these assets, because Meta can add songs and change playback speed.
 - Upscale only after the picture lock. Re-check the label at a 100 % crop after the upscale, because generative upscalers invent letters.
 
 ## Step 8: QC, mandatory before anyone sees it (doc 46)

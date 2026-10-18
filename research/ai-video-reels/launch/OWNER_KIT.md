@@ -222,6 +222,8 @@ If a gate slips, **shift every day below by the same number of days.** If more t
 
 ## 4. Send-day checklist (per lead, before the owner presses send)
 
+> **For Tue 20 Oct:** the minute-by-minute plan (Hebrew: order, handles, which pack block to copy, the SEND_LOG row, what to do with replies) is `research/ai-video-reels/leads/SEND_DAY_CHECKLIST_2026-10-20.md`. It doesn't replace the gates below. Each new send day gets its own dated checklist, built from the current pack.
+
 Tick every line. One "no" means don't send that lead today.
 
 **Account and site**

@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -215,7 +215,9 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
 **DM (day 0) to @sunday.citizen (corrected 2026-10-11 from the brand's own site link):**
-> Hi Sunday Citizen team, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, Ciel or a Snug blanket?
+> Hi Sunday Citizen team, Itamar from VXO. Idea for the Ciel love seat: movers jam a sofa in a walk-up stairwell. Your box rides the elevator past them and, upstairs, opens into the sofa. She sits; they're still stuck. AI builds the building; your sofa stays real. 5 free stills, love seat or lounge chair?
+
+(CTA changed 2026-10-18: the Snug Bed Blanket went 20 % off in a "48 Hours Only" cozy sale, so both options are now full-price Ciel pieces; §12.)
 
 **Email (day 1) to hello@sundaycitizen.co** · Subject: **The stuck sofa**
 > Hi there (whoever reads hello@, could you pass this on to the founders?),
@@ -224,7 +226,7 @@ The first reply to a "yes" can link the fidelity-proof stills once the site carr
 >
 > AI builds the building and the movers; the sofa comes from your product photos.
 >
-> Want 5 free stills of it, on the Ciel or a Snug bed blanket?
+> Want 5 free stills of it, on the Ciel love seat or the Ciel lounge chair?
 >
 > Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
@@ -664,3 +666,23 @@ Yesterday was a full live re-verify, so today is a delta check only: is every pr
 
 **Wave B (Q-11..Q-19), counts only (10-09 → 10-17); products are re-checked on Wed 21:** KREWE 42 → 42 (video cards 5 → 12 of 30); **Hawkins 93 → 81, 0 ads started in 30 days, newest 9/11 → HOLD (cooling)**; Legendary 17 → 18; Equator 65 → 64; Saranoni 229 → 224 (1 load; its About page also advertised a 14 Oct warehouse sale "up to 70 %", so check its named products for markdowns on the 21st); STONE AND STRAND 19 → 21; THATCH 16 → 21; Vosges 73 → **36** (−51 %, but 19 of 30 started ≤30 d: rotation, keep); Alexis Bittar 27 → **79** (+193 %). Wave B greetings were re-sourced today: Q-11 KREWE and Q-12 Hawkins are now name-free (no 2026 source); the other seven are confirmed on the brands' own pages (RESEARCH_BACKLOG, Verify).
 
+
+## 12. Light delta check, 2026-10-18 (Sun, ~04:50–06:30 UTC)
+Delta check only. Is every product the 20 Oct DMs name still in stock at full price? Does any wave-A brand trip the hold rule (no ad started in 21 days and ≤ 2 of the top cards started in 30 days; LESSONS 2026-10-17)? Tools: `products_check.py` on the 10 brands, Shopify product JSON for tags, and `ad_library.py page` with **one Page per call** (10 calls, ~3–5 min each; Brackish re-read once after a 0-count flicker). Nothing sent; $0.
+
+**One fact changed: Q-6 Sunday Citizen.** The Snug Bed Blanket the CTA offered is now marked down ($128–158.40 vs $160–198; tags `nightpromo`, `LB20%OFF`; homepage banner "48 Hours Only: 20% OFF Cozy Items"). By the 10-10 rule, the CTA moved to two full-price Ciel pieces: **"5 free stills, love seat or lounge chair?"** (Ciel Love Seat 2/2 $1,800; Ciel Lounge Chair 7/8 $800). DM and email updated in §4 and in `SEND_PACK_2026-10-20.md`.
+
+| # | Named products, 10-18 | Active 10-17 → 10-18 · newest · started ≤30 d (of top 30) | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 5/5 $268, tags `badge: New Arrival` + `full price` | 103 → 103 · 10/16 · 25 | ✅ ("new" still true) |
+| Q-2 Printfresh | Holiday Hens bandana 2/2 $28; Bagheera Jackie sets $198, robe $248 full price (gift bags and kids' bundles marked down: never offer them) | 320 → 309 · 10/08 · 16 | ✅ |
+| Q-3 Dandelion | Gift set 1/1 $42; Maya Mountain 1/1 $13 | 171 → 155 (confirmed) · **10/13** · 14 | ✅ (no longer on the watch list: new ads 10/13) |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 vs $58 (standing promo) | 168 → 196 · 10/07 · 14 | ⚠ holds (no price named) |
+| Q-5 Little Beast | PBJ and OG 7/7 $48 | 61 → 61 · 10/06 · 7 | ✅ |
+| Q-6 Sunday Citizen | Ciel 2/2 $1,800; Ciel Lounge Chair 7/8 $800; **Snug Bed Blanket on sale** | 413 → 413 · 10/02 (16 d) · 19 | 🔧 **CTA changed** (see above). Not a hold: 19 of the top cards started ≤30 d |
+| Q-7 Dana Rebecca | Ava Bea 3/3 $2,795; October birthstone studs full price | 207 → 207 · 10/09 · 22 | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | 69 → 69 (confirmed on the 2nd read) · 10/15 · 23 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pajamas $59.25 vs $89 (unchanged) | 148 → 146 · **10/15** · 13 | ⚠ holds (no price named; off the watch list) |
+| Q-10 Kinn | Pegasus and Swan 8/8 $1,040 | 79 → 86 · 10/13 · 16 | ✅ |
+
+**Hold rule:** no wave-A brand trips it. The oldest "newest ad" is Sunday Citizen's (10/02, 16 days), but 19 of its top cards started in the last 30 days. Wave B was not re-read today; it gets its own check before Wed 21.

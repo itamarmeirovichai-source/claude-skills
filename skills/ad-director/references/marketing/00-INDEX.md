@@ -68,9 +68,9 @@ How to use it:
 | 40 | `40-growth-levers.md` | Levers outside the ad: offer, distribution, outbound, proof, partners. | 0 |
 | 41 | `41-action-realism.md` | Action/chase realism checklist (read before any action prompt). | 0 |
 | 42 | `42-viral-ai-reel-teardowns.md` | Why good viral AI reels look real; the teardown method. | 0 |
-| 43 | `43-model-mastery.md` | How Seedance 2.5, Kling 3.0, Wan 3.0, Cinema Studio 4.0 behave; parameters and prices. | 12 |
+| 43 | `43-model-mastery.md` | How Seedance 2.5, Kling 3.0, Wan 3.0, Cinema Studio 4.0 behave; parameters and prices. 2026-10-18: Seedance 2.5 tiers (480/720/1080, no 4K) from ByteDance's own pricing; Kling multi-shot + end frame is undocumented, so the end card is rendered as a separate clip. | 10 |
 | 44 | `44-action-and-comedy-craft.md` | Physically real action and real punchlines (rigs, physics, comedy timing). | 0 |
-| 45 | `45-what-sells-data.md` | Data on what earns views and purchases; ad policy table; competitor prices. Benchmarks largely relayed. D21/D22 Triple Whale read 2026-10-16; D17 hook-rate medians refuted and D37b Ipsos AI-vs-human test added 2026-10-17. | 20 |
+| 45 | `45-what-sells-data.md` | Data on what earns views and purchases; ad policy table; competitor prices. Benchmarks largely relayed. D21/D22 Triple Whale read 2026-10-16; D17 hook-rate medians refuted and D37b Ipsos AI-vs-human test added 2026-10-17; D50 flexible-ad format, Meta ad specs and the leads' multi-asset ads added 2026-10-18. | 20 |
 | 46 | `46-sound-and-qc.md` | Sound sync, lip-sync, loudness and the QC tools. | 0 |
 | 47 | `47-niche-beauty-skincare.md` | Beauty/skincare deep-dive: brands, ads, claims law. | 4 |
 | 48 | `48-niche-fashion-jewelry.md` | Fashion, sneakers, watches, jewelry deep-dive. | 5 |
@@ -80,7 +80,7 @@ How to use it:
 | 52 | `52-niche-pets-kids-outdoor.md` | Pets, baby/kids, outdoor and travel gear. | 9 |
 | 53 | `53-niche-mens-grooming-oral-care.md` | Men's grooming, shaving, fragrance, oral care. Founder/revenue columns mostly unverified. | 34 |
 | 54 | `54-niche-hair-tools-nails.md` | Hair tools, haircare, nails. | 25 |
-| 55 | `55-niche-sleep-mattress-bedding.md` | Sleep: mattresses, bedding, pillows, sleep aids. Highest unverified count. | 54 |
+| 55 | `55-niche-sleep-mattress-bedding.md` | Sleep: mattresses, bedding, pillows, sleep aids. Highest unverified count. N6 Meta health category checked on Meta's own pages 2026-10-18 (the 30–40 % figure is vendor-only). | 53 |
 | 56 | `56-niche-kitchen-cookware-appliances.md` | Cookware, knives, small appliances, drinkware. | 16 |
 | 57 | `57-niche-na-spirits-functional-drinks.md` | NA spirits, mocktails, energy and functional drinks; alcohol-cue policy. | 18 |
 | 58 | `58-niche-eyewear-bags-accessories.md` | Eyewear, bags, wallets, luggage, leather. | 14 |
@@ -89,7 +89,7 @@ How to use it:
 | 61 | `61-niche-local-premium-services.md` | Local premium businesses (hotels, restaurants, developers, med-spas, gyms). | 36 |
 | 62 | `62-niche-apps-saas-launches.md` | Apps, SaaS and crowdfunded hardware launches. | 53 |
 | 63 | `63-outreach-that-gets-replies.md` | Single source for first touch, follow-ups, first objections; the honest "why no client yet" list. §7.4 (2026-10-16): markdown regimes of the queued brands and which product a message may name. §7.5 (2026-10-17): ad-count moves vs fresh flow as the heat signal (hold rule). | 0 |
-| 64 | `64-quality-gap-audit.md` | Our 19 films measured against what sells (format, cuts, loudness). | 0 |
+| 64 | `64-quality-gap-audit.md` | Our 19 films measured against what sells (format, cuts, loudness). Safe zone moved to y 270–1,248 on 2026-10-18 (Meta Reels spec). | 0 |
 | 65 | `65-offer-proof-and-site.md` | Offer, proof, pricing and site change list for owner approval. | 0 |
 
 Totals: 69 docs. Docs 41–62 carry **380 `[unverified]` tags** (plus 258 `[inf]` inferences across 41–65). The decision-critical ones are queued at the top of `research/ai-video-reels/lab/RESEARCH_BACKLOG.md`.

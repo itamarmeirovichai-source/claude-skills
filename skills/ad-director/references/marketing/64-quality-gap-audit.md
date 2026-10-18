@@ -148,7 +148,7 @@ The cinematic action can still be the body of the film. Red Light's taxi burnout
 
 ### 3.5 Text legibility
 
-- Keep supers inside **y 240–1,260 and x 120–840** of 1,080×1,920. That is the strictest TikTok/Reels envelope, including the right action rail.
+- Keep supers inside **y 270–1,248 and x 120–840** of 1,080×1,920. That is the strictest TikTok/Reels envelope, including the right action rail. The top line was 240 until 2026-10-18, when Meta's own Reels spec said to keep 14 % at the top (269 px) and 35 % at the bottom (672 px) clear (doc 45 D50).
 - Font ≥ 60 px (48–55 px is the floor quoted in 2026 guides).
 - Sans or heavy serif, not thin italics.
 - A 3–4 px dark stroke or a 40 % scrim behind the text, contrast ≥ 4.5 : 1.
@@ -197,8 +197,8 @@ Run the commands, read the numbers, look at the sheets. One FAIL means no delive
 One-liners:
 ```bash
 F=final.mp4
-# A: first-3-seconds sheet with the safe-zone box (y 240-1260, x 120-840 at 1080x1920)
-ffmpeg -v error -i $F -vf "select='eq(n,0)+eq(n,12)+eq(n,24)+eq(n,36)+eq(n,48)+eq(n,72)',drawbox=x=120:y=240:w=720:h=1020:color=red@0.8:t=6,scale=270:-2,tile=6x1" -vsync 0 -frames:v 1 first3s.jpg
+# A: first-3-seconds sheet with the safe-zone box (y 270-1248, x 120-840 at 1080x1920)
+ffmpeg -v error -i $F -vf "select='eq(n,0)+eq(n,12)+eq(n,24)+eq(n,36)+eq(n,48)+eq(n,72)',drawbox=x=120:y=270:w=720:h=978:color=red@0.8:t=6,scale=270:-2,tile=6x1" -vsync 0 -frames:v 1 first3s.jpg
 # D: real detail (>= 0.99 means 480p detail)
 ffmpeg -t 6 -i $F -filter_complex "[0:v]split[a][b];[b]scale=480:-2:flags=area[c];[c][a]scale2ref=flags=bicubic[c2][a2];[a2][c2]ssim" -f null - 2>&1 | grep -o "All:[0-9.]*"
 # E: loudness and true peak of the encoded file
