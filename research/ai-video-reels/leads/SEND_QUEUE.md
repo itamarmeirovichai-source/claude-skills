@@ -686,3 +686,25 @@ Delta check only. Is every product the 20 Oct DMs name still in stock at full pr
 | Q-10 Kinn | Pegasus and Swan 8/8 $1,040 | 79 → 86 · 10/13 · 16 | ✅ |
 
 **Hold rule:** no wave-A brand trips it. The oldest "newest ad" is Sunday Citizen's (10/02, 16 days), but 19 of its top cards started in the last 30 days. Wave B was not re-read today; it gets its own check before Wed 21.
+
+## 13. Eve-of-send delta check, 2026-10-19 (Mon, ~04:40–05:15 UTC)
+Delta check only, the evening before the planned send. Is every product the 20 Oct DMs name still in stock at full price (and is any of them a flash-sale candidate)? Is the "new" wording still true? Does any wave-A brand trip the hold rule? Tools: `products_check.py` on the 10 brands, the product JSON (tags, compare-at), a homepage banner scan, and `ad_library.py page` with **one Page per call** (10 calls, ~2 min each). Nothing sent; $0.
+
+**No fact in the pack changed, so the ten DM texts stay word for word.** Two things to watch on the morning (no text change today):
+- **Sunday Citizen** now runs a wider sale (homepage: "UP TO 20% OFF" bedding bundles, "UP TO 40% OFF" sale, a gift with $350+). Both Ciel pieces are still full price (love seat 2/2 $1,800, tag `_badge_new`; lounge chair 7/8 $800, no compare-at). The Snug Bed Blanket is still $128 vs $198, so the 18 Oct CTA swap stands.
+- **Cuddle Clones** homepage now says "25% off all pajamas". The feed price of the pet-face pajamas is unchanged ($59.25 vs $89, same as 10-16), so by the `vxo-leads` §3 rule this is not a re-check trigger, and the DM names no price.
+
+| # | Named products, 10-19 | Active 10-18 → 10-19 · newest · started ≤30 d (of top 30) | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 5/5 $268, tags `badge: New Arrival` + `full price` (updated 19 Oct 00:52 ET) | 103 → 103 · 10/16 · 25 | ✅ ("new" still true) |
+| Q-2 Printfresh | Holiday Hens bandana 2/2 $28 (compare-at = price; tags `10.01.26Launch`, `new`, **`SHOWPROMOPDP`**); Bagheera Jackie sets $198, robe $248, Rittenhouse $228 full price (gift bags and kids' bundle marked down: never offer) | 309 → 309 · 10/08 · 14 | ✅ (`SHOWPROMOPDP` = flash-sale candidate: look at the price on the morning) |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 70 % 1/1 $13 (85 % sets still sold out, not named) | 155 → 155 · 10/13 · 14 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 vs $58 (tag `bow-promo`; standing promo since 10/09) | 196 → 196 · 10/07 · 12 | ⚠ holds (no price named) |
+| Q-5 Little Beast | PBJ and OG 7/7 $48, no compare-at | 61 → 61 · 10/06 · 7 | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; Ciel lounge chair 7/8 $800 | 413 → 415 · 10/02 (17 d) · 19 | ✅ (wider sale on other lines; see above) |
+| Q-7 Dana Rebecca | Ava Bea 3/3 $2,795; October birthstone studs (8-prong $495, star $550, floral $895) 1/1 full price | 207 → 207 · 10/09 · 22 | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 (`active-stock`, `fall2026`) | 69 → 69 (1 read) · 10/15 · 23 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29–49; pajamas $59.25 vs $89 (unchanged) | 146 → 146 · 10/15 · 13 | ⚠ holds (no price named) |
+| Q-10 Kinn | Pegasus and Swan 8/8 $1,040 (tags `new arrivals`, **`eligible for discount`**) | 86 → 79 · 10/13 · 16 | ✅ (`eligible for discount` = flash-sale candidate: look at the price on the morning) |
+
+**Hold rule:** no wave-A brand trips it today. Closest to the 21-day line: Sunday Citizen (newest ad 10/02, reaches 21 days on Fri 23 Oct; 19 top cards started ≤30 d, so still warm), Little Beast (10/06, 21 days on Tue 27 Oct; only 7 top cards ≤30 d), Foggy (10/07, 21 days on Wed 28 Oct). This matters only if the wave rolls past this week (see the pack's fallback section).

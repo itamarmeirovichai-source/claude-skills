@@ -29,7 +29,7 @@ What I fixed (zero spend): this doc, with red-teamed and rewritten messages for 
 
 | Question | Finding | Source | What we do |
 |---|---|---|---|
-| Baseline reply rate (email) | Average 3.43 %, top quartile 5.5 %+, top decile 10.7 %+ (2025 campaigns). Hunter: 4.5 % average | [Instantly 2026](https://instantly.ai/cold-email-benchmark-report-2026) [v]; [Hunter](https://hunter.io/outreach-calculator) [v] | Plan for 5–10 % on hand-researched founders; anything under 3 % after 30 sends means the channel or offer is wrong, not the adjectives |
+| Baseline reply rate (email) | Average 3.43 %, top quartile 5.5 %+, top decile 10.7 %+ (2025 campaigns). Hunter: 4.5 % average | [Instantly 2026](https://instantly.ai/cold-email-benchmark-report-2026) [v, re-read on Instantly's own page 2026-10-19: 3.43 % / 5.5 %+ / 10.7 %+ confirmed; data 1 Jan–18 Dec 2025; **58 % of replies come from step 1, 42 % from follow-ups**]; [Hunter](https://hunter.io/outreach-calculator) [v] | Plan for 5–10 % on hand-researched founders; anything under 3 % after 30 sends means the channel or offer is wrong, not the adjectives |
 | Small lists | Campaigns of 21–50 recipients average 6.2 %, 500+ average 2.4 % (Hunter). Under 50: 5.8 % vs 2.1 % at 1,000+ (Woodpecker) | via [Instantly/Lemlist summaries](https://lemlist.com/blog/cold-email-benchmarks/) [v]; [Woodpecker](https://woodpecker.co/blog/cold-email-benchmarks/) [v] | Our 1:1 model is on the right side of this |
 | Replies ≠ yeses | In one dataset 14 % of replies were positive, 30 % negative, 45 % auto-replies | [Prospeo summary](https://prospeo.io/s/cold-email-benchmarks) [v] | Count **positive** replies (frames requested). That's the KPI |
 | Personalisation depth | Two custom attributes: 5.6 % vs 3.6 % replies (31M emails). Real personalisation vs a merge-tag template: +50–250 % | [Hunter, State of Cold Email](https://hunter.io/the-state-of-cold-email) [v]; Lavender via [Something Inc](https://somethinginc.com/blog/cold-email-sounds-like-ai-lavender-data/) [v] | One observation **with a point of view** about something the customer can see. Not three scraped facts |
@@ -39,7 +39,7 @@ What I fixed (zero spend): this doc, with red-teamed and rewritten messages for 
 | Cold DM reply rate | 3–12 % "typical" for cold DMs (vendor calculator); 50 %+ claims are all for warm, engaged contacts | [DM Champ](https://dmchamp.com/tools/cold-dm-outreach-roi/) [v] | Treat DM and email as about equal. Use **both** for the top leads: DM on day 0, email on day 1 |
 | Founder inbox load | An 8-figure DTC founder gets "30–100 cold pitches a day"; "we help ecommerce brands grow" is the sentence they've heard 200 times | [Modern Inbound](https://moderninbound.com/blog/cold-email-for-ecommerce-agencies) [v] | Never describe VXO first. Lead with their product and our idea |
 | Follow-ups | 4–7 step sequences, 3–4 days apart, perform best; a reply-style step 2 beats a formal one | Instantly 2026 via [Lemlist](https://lemlist.com/blog/cold-email-benchmarks/) [v] | 1 first touch + 3 follow-ups over ~16 days (§5), each with a **new** reason to reply |
-| Day | Wednesday best, then Tuesday and Thursday; Monday is overloaded and Friday is weekend mode | Instantly 2026 via Lemlist [v] | Send Tue–Thu, 8–10 am in the founder's time zone. Today (Fri 9 Oct) is a bad send day; Mon 12 Oct is Columbus/Indigenous Peoples' Day. **First sends: Tue 13 Oct** |
+| Day | Wednesday best, then Tuesday and Thursday; Monday is overloaded and Friday is weekend mode. **Re-read 2026-10-19 on the primary pages:** Instantly's own report (data 1 Jan–18 Dec 2025, "billions" of interactions) says "Wednesday is highest" and its 21 Sep 2026 blog says "Tuesday and Wednesday saw peak reply rates", with no per-day numbers [v]. Smartlead's 2026-H1 benchmark (850M+ emails) calls best day "mostly a myth": reply rate 0.82–0.91 % across days, Wednesday slightly ahead (110 contacts per reply vs Saturday 122) [v]. Both are email data; for IG DMs it is [inf] | [Instantly report](https://instantly.ai/cold-email-benchmark-report-2026), [Instantly blog](https://instantly.ai/blog/best-time-to-send-cold-email/), [Smartlead](https://www.smartlead.ai/benchmarks) [v] | Send Tue–Thu, 8–10 am in the founder's time zone. The day effect is small (Smartlead: ≤0.09 pt), so a ready wave that misses its day rolls to the **next** Tue–Thu slot, never a week later to chase "Wednesday" (2026-10-19). Today (Fri 9 Oct) is a bad send day; Mon 12 Oct is Columbus/Indigenous Peoples' Day. **First sends: Tue 13 Oct** |
 | AI attitudes | 73 % less likely to trust a suspected-AI ad, 63 % less likely to buy (US-led global, 2026); 49 % of UK consumers feel negatively about brands with uncanny AI ads | [AAAA](https://www.aaaa.org/blog/consumers-are-sick-and-tired-of-hearing-about-ai-all-the-time/) [v]; [Advanced Television/DoubleVerify](https://www.advanced-television.com/2026/08/06/study-ai-slop-poses-growing-risk-to-brand-trust/) [v] | Say "AI" once, after the idea, paired with what stays real (the product shot, the proof slot, no AI people) |
 | CAN-SPAM | Covers B2B email. Needs a truthful header and subject, ad identification, a valid postal address and a working opt-out honoured within 10 business days. Up to **$53,088 per email**; the FTC kept the 2025 level for 2026 | [FTC guide](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business) [law]; [FTC 2025 amounts](https://search.ftc.gov/news-events/news/press-releases/2025/02/ftc-publishes-inflation-adjusted-civil-penalty-amounts-2025) [law] | No email goes out until the owner fills in a real postal address (a PO box or a registered-agent address is fine). The footer is in §4 |
 
@@ -365,6 +365,39 @@ The rule (in `vxo-leads` §1):
 - Never quote any of these counts in a message (rule 2 above).
 
 ---
+
+### 7.6 Story share in the wave-A brands' video ads (measured 2026-10-19) [m, frame-read, not model-read]
+**Question.** Ipsos (May 2026, doc 45 D37b) found fully-AI ads chose a story 30 % of the time vs 49 % for ads overall, and story drove effectiveness. How many of our leads' own video ads tell a story, and does that change which pitch each brand gets?
+
+**Method.** One Ad Library Page per call (logged-out top ~30 cards; Printfresh returned no cards twice, and Brackish runs 1 video card in 30, so 8 brands were read). Every distinct video creative was downloaded to the scratchpad (never committed), cut into a 16-frame contact sheet and read by eye. Ratio versions of one creative count once (LAKE "The Ornament" 30 s + 10 s cut = 1). 24 creatives, 4–69 s. Classes:
+- **S, scripted story:** characters, a situation and a turn.
+- **T, testimonial story:** a real person's personal arc.
+- **P, premise hook over a demo:** a gag or problem line, then the product shown.
+- **D, pure demo:** process, try-on, unboxing, haul, loop, review card, catalogue or narrated explainer.
+
+| Brand | S | T | P | D | What the long-runners (≥60 d) are |
+|---|---|---|---|---|---|
+| LAKE | 1 ("Chapter 1: The Ornament", a cinematic road trip) | | | 1 (creator gift unboxing) | none ≥60 d in the sample |
+| Kinn | 1 ("Family Legacy": kids "approve" the collection in a boardroom, 158 d) | | | 2 (wrist POV on a crosswalk, 158 d; wrist stack) | 1 S + 1 D |
+| Cuddle Clones | | 2 (memorial plush: a mother and a toddler, 86 d; "Wait, is that real?" creator) | 1 (PJ mirror selfie, then cut to the dog) | 2 (bobblehead airbrush process + money-back line, 194 d; unboxing reactions) | 1 D + 1 T |
+| Dana Rebecca | | 1 (staff vox pop, "What was your first DRD piece?") | 1 (UGC one-liner: "Thank god my name isn't Jessica") | 1 (review-quote card) | none |
+| Sunday Citizen | | | 1 (text-message hook "Sorry, I can't, I'm busy", then a chair review) | 2 (comforter review demo; "Why is everyone obsessed?" 3 steps: **box → unbox → expands**) | none |
+| Little Beast | | | | 3 (haul try-on, 173 d; dog-in-bag loops, 102 d and 47 d) | 2 D |
+| Dandelion | | | | 2 (Tokyo Gateau process "POV", 151 d; Advent explainer) | 1 D |
+| The Foggy Dog | | | 1 ("a dog bed they'll choose over your couch") | 2 (bed set-up; animated jacket catalogue) | none |
+| **Total (24)** | **2 (8 %)** | **3 (13 %)** | **4 (17 %)** | **15 (63 %)** | **7 long-runners: 5 D, 1 S, 1 T** |
+
+**What it says.**
+- [m] Only **5 of 24 (21 %)** carry a story arc, and **9 of 24 (38 %)** use any narrative device. Our leads run mostly demos, and 5 of their 7 sampled long-runners are pure demos (the oldest is Cuddle Clones' 194-day airbrush-process video).
+- [m] Only 2 brands run scripted fiction, and both are long-runners or a series: LAKE's "Chapter 1" film and Kinn's 158-day "Family Legacy". The 3 testimonial stories all rest on real people, which an AI film may never play (FTC rule, LESSONS 2026-10-09: proof slot).
+- [inf] Against Ipsos's 49 % for ads overall, these brands under-use story. So story is the gap we fill, but the pitch must ride on the format that already earns their money (Ipsos: the best fully-AI ads reused the brand's long-running format).
+
+**Rule: pitch type per brand.** Applied in `vxo-leads` §3 step 3 and `vxo-film` Step 1.
+- **Story house** (runs scripted fiction: LAKE, Kinn): a story pitch is native.
+- **Testimonial house** (Cuddle Clones, Dana Rebecca): pitch a scripted gag, never a fake testimonial. Keep a proof slot for their real customer clip.
+- **Demo house** (Sunday Citizen, Little Beast, Dandelion, Foggy): **the punchline has to be their own demo.** The product doing its job is the payoff of our story. Sunday Citizen's own long-running demo is "box → unbox → expands", and Q-6's stairwell gag ends on exactly that, so the pitch rides their proven format.
+
+**Check of the ten queued DMs:** all ten already fit their house. Q-1 and Q-10 are stories. Q-7 and Q-9 are scripted scenes with no testimonial. Q-3, Q-4, Q-5 and Q-6 end on the product doing its job. No DM changes.
 
 ## 8. What only the owner can do (blocking first)
 
