@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -708,3 +708,28 @@ Delta check only, the evening before the planned send. Is every product the 20 O
 | Q-10 Kinn | Pegasus and Swan 8/8 $1,040 (tags `new arrivals`, **`eligible for discount`**) | 86 → 79 · 10/13 · 16 | ✅ (`eligible for discount` = flash-sale candidate: look at the price on the morning) |
 
 **Hold rule:** no wave-A brand trips it today. Closest to the 21-day line: Sunday Citizen (newest ad 10/02, reaches 21 days on Fri 23 Oct; 19 top cards started ≤30 d, so still warm), Little Beast (10/06, 21 days on Tue 27 Oct; only 7 top cards ≤30 d), Foggy (10/07, 21 days on Wed 28 Oct). This matters only if the wave rolls past this week (see the pack's fallback section).
+
+## 14. Send-day morning check, 2026-10-20 (Tue, ~04:50–05:15 UTC = 07:50–08:15 Israel; the checklist's 14:00–15:00 check, run early so the pack is ready if the owner approves late today)
+Full send-morning check of every named product, price and time word in `SEND_PACK_2026-10-20.md`. Tools: `products_check.py` on the 10 brands, the product JSON (tags, compare-at, `updated_at` 20 Oct 00:52 ET), a homepage banner scan, and `ad_library.py page` with **one Page per call** (10 calls). Nothing sent; $0. **Status: the owner has not approved (no reply since 10-12), so by the pack's fallback the wave rolls to Wed 21 Oct, same Israel times, if there is no approval by 14:00 Israel today.**
+
+**No fact in the pack changed, so the ten DM texts stay word for word, for the 20th and for a roll to the 21st.** Sale-tag watch, as asked on 10-19:
+- **Sunday Citizen:** the sale moved but still skips Ciel. Homepage now shows "40% Off Snug Comforters", "Cloud Nine … SHOP WITH 20% OFF", bundles up to 25 % off, an Outlet link "up to 80% off", and free gifts at $260+/$350+. **Ciel love seat 2/2 $1,800 and lounge chair 7/8 $800 carry no compare-at** (love seat tag `_badge_new`). The Snug Bed Blanket's 48-hour markdown has **ended** ($160–198, no compare-at), but it keeps its promo tags (`nightpromo`, `LB20%OFF`, `snug-promo`, `Flashsalemarch26`), so the 18 Oct CTA stays on the two Ciel pieces (LESSONS 2026-10-18).
+- **Kinn:** Pegasus and Swan Dream pendant necklaces 8/8 $1,040, no compare-at; tag `eligible for discount` unchanged; no sale banner on the homepage. ✅
+- **Printfresh:** Holiday Hens bandana 2/2 $28, compare-at = price (no markdown); `SHOWPROMOPDP` unchanged. Homepage offers a tiered gift with purchase from $350, not a discount. Bagheera Jackie sets $198, robe $248, Rittenhouse $228 full price (wine gift bags and the kids' bundle still marked down: never offer). ✅
+
+| # | Named products, 10-20 | Active 10-19 → 10-20 · newest · started ≤30 d (of top 30) | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 5/5 $268; tags `badge: New Arrival`, `full price` | 103 → 103 · 10/16 · 24 | ✅ ("new" still true) |
+| Q-2 Printfresh | as above | 309 → **200** (confirmed) · 10/08 · 16 | ✅ The −35 % is a count drop, not a hold: 16 top cards started ≤30 d (LESSONS 2026-10-17) |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 70 % 1/1 $13 | 155 → 154 · 10/13 · 15 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 vs $58 (`bow-promo`, unchanged) | 196 → 168 (1 read) · 10/07 · 14 | ⚠ holds (no price named) |
+| Q-5 Little Beast | PBJ and OG 7/7 $48, no compare-at | 61 → 51 · 10/06 · 7 | ✅ (14 days since the newest ad; 21 on Tue 27) |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; lounge chair 7/8 $800 | 415 → 426 · **10/13** · 18 | ✅ A new ad started 10/13, so the 23 Oct hold-line watch is off |
+| Q-7 Dana Rebecca | Ava Bea 3/3 $2,795; October birthstone studs ($495 8-prong, $550 star, $895 floral) 1/1 full price | 207 → 269 (1 read) · 10/09 · 21 | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | 69 → 69 · 10/16 · 24 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pajamas $59.25 vs $89 (homepage "25% off all pajamas", unchanged) | 146 → 166 · 10/15 · 14 | ⚠ holds (no price named) |
+| Q-10 Kinn | as above | 79 → 79 (1 read) · **10/17** · 17 | ✅ |
+
+**Hold rule:** no wave-A brand trips it. **Roll to Wed 21:** every line holds as written. The only date-bound words are "the new Tour set" (badge on today) and "the birthstone studs" (October, fine until the month ends); re-check both on the 21st morning (pack header note). Holiday markdown re-measure (backlog): still no sitewide Black Friday sale at any of the 10; standing promos at Foggy and Cuddle Clones; Sunday Citizen's bedding sale widened; Printfresh moved to a gift with purchase.
+
+**Wave B house read (doc 63 §7.6b, same morning, for Thu 22):** no wave-B text changed. Notes for the wave-B pack: Q-17 THATCH's film must end on the charm worn in close-up (editorial-wear house); Q-19 Alexis Bittar is a founder house (film = a cold open for his own videos); Q-15 Saranoni keeps a slot for their UGC parent clip; KREWE (Q-11) and Vosges (Q-18) served no Ad Library cards on 2 calls each, so their house is read on the Thu 22 morning before either DM goes.
