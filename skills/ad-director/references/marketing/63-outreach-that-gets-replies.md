@@ -411,6 +411,8 @@ Same method as §7.6: one Ad Library Page per call (logged-out top cards), every
 | THATCH | 17 · 4 (2nd call) | 3 D/editorial: model in sun wearing the shell pendant (18 d); "FALL '26" earring close-up (18 d); "The earrings that keep selling out" ear close-up (10 d) | **Demo (editorial wear) house** |
 | Alexis Bittar | 30 · 10 | 3 founder to camera: "I AM ALEXIS BITTAR" origin story with workshop and street B-roll (**69 d**); "THE TINY" studs explained by Alexis (24 d); "The Molten Bezel Front Back" explained by Alexis (6 d) | **Founder house** (the founder's own voice is the format) |
 | KREWE · Vosges | 0 · 0 (2 calls each) | not read | unknown: read before their DMs go |
+| KREWE (read 2026-10-21) | 30 · 9 | 4 silent product loops, all ≤4.2 s: aviator folding on sand ("For Those Who Travel Light"), St. Louis colour cycle ("Our signature frame … New Colors"), a "SALE · up to 70 % off" frame flipbook (6 of 11 video cards started 10/19–20: "Black Friday is coming early") | **Demo house** (≤4 s product loops; a sale starts Sun 25 Oct) |
+| Vosges (read 2026-10-21) | 30 · 11 | 15 s illustrated "Grand Cacao Lodge" (snow on glass, a lodge at night, a bison in a sweater sipping cocoa, the Advent Calendar opening); two 11 s silent cinemagraphs of the 2026 Advent Calendar (one with a customer-review super) | **World house** (an illustrated season world; Q-18's snowed-in cabin sits next to it) |
 
 **What it says.**
 - [m] Wave B splits differently from wave A: of 11 videos, **6 pure or editorial demos, 1 premise demo, 3 founder pieces, 2 UGC testimonials, 1 cause story, and 0 scripted fiction**. No wave-B brand is a story house.
@@ -430,8 +432,35 @@ Same method as §7.6: one Ad Library Page per call (logged-out top cards), every
 | Q-15 Saranoni | testimonial | fits; a scripted gag, no fake testimonial. In the frames, keep a slot for their UGC parent clip |
 | Q-16 STONE AND STRAND | demo | best fit in the queue |
 | Q-17 THATCH | editorial demo | fits, but the film must **end on the charm worn in close-up**, their own shot, not on the plane seat |
-| Q-19 Alexis Bittar | founder | fits as a product gag. Pitch the film as a cold open for his own videos in the email and the frames, never as a replacement for his voice |
-| Q-11 KREWE · Q-18 Vosges | unread | read 3+ videos on the wave-B re-check morning (Thu 22), before either DM goes |
+| Q-19 Alexis Bittar | founder | fits as a product gag. Pitch the film as a 2–4 s insert (plus an optional ≤2 s open) for his own videos (§7.6c, 2026-10-21), never as a replacement for his voice |
+| Q-11 KREWE · Q-18 Vosges | unread → read 2026-10-21 | KREWE: demo house, fits (the gag ends on the frames worn; their own loops can close the film); a sale starts Sun 25, so re-check MUSE if the DM slips past it. Vosges: world house, fits (a snowed-in cabin next to their snowed-in lodge) |
+
+### 7.6c Founder and to-camera openers (measured 2026-10-21) [m, frame-read at 2 fps over 0–6 s, not model-read]
+Question (backlog, "founder-house cold opens"): how long is the open before a founder speaks, and does any founder ad open on a staged scene? Method: one Ad Library Page per call (logged-out top cards, video filter), every read video downloaded to the scratchpad (never committed), a 0–6 s strip at 2 fps plus a 12-frame overview. 11 videos from 4 Pages: Alexis Bittar (3), Jones Road Beauty (3), Mid-Day Squares (3), Bobbie (2). Tower 28 served only creator UGC; SPANX served 0 cards on 2 calls (rate limit, not worked around).
+
+| Ad (age) | Who talks | First 0–6 s | Product on screen |
+|---|---|---|---|
+| Alexis Bittar "I AM ALEXIS BITTAR" (**70 d**, 30 s) | founder | face at 0.0 s, already speaking; red super builds by 0.5 s; archive photos as picture-in-picture from ~4 s | bangle cutaway mid-film |
+| Alexis Bittar "THE TINY" (25 d, 36 s) | founder | face at 0.0 s, hands miming the size | studs cutaway at ~4.5 s with a yellow title |
+| Alexis Bittar "Molten Bezel Front Back" (7 d, 42 s) | founder | face at 0.0 s holding the stud | macro of the stud in his fingers at ~1 s |
+| Jones Road "My Skin, But Glowier" (**92 d**, 82 s) | creator | face + Miracle Balm tin in hand at 0.0 s, lid off by 1 s | at 0 s |
+| Jones Road "Coverage That Doesn't Cake" (**84 d**, 56 s) | creator | product pot + brush filling the frame at 0.0 s, super "Your skin doesn't suck, you just need to change your makeup", face at ~2.5 s | at 0 s |
+| Jones Road "Meet The Bobbi Kit 6.0" (14 d, 50 s) | **founder** (Bobbi Brown) | **~5 s cold open**: swatches "Decades in the making" (0–1.5 s) → 3 model faces → embossed kit "The Bobbi Kit 6.0" → Bobbi on her sofa at ~5 s | in the open |
+| Mid-Day Squares "Crunchy Peanut" (**316 d**, 61 s) | founders' family as a cast | a **staged retro-TV skit** ("We just launched", a presenter in a white suit inside a 1970s TV), product held up at ~1.5 s | at ~1.5 s |
+| Mid-Day Squares PB&J (**239 d**, 94 s) | presenter in a store | **~1.5 s shelf B-roll** (the PB&J boxes), then face "It is selling like hotcakes" | at 0 s (shelf) |
+| Mid-Day Squares "Hunger Crusher" (**316 d**, 43 s) | presenter on a sofa | face + square in hand at 0.0 s, two display boxes in the foreground | at 0 s |
+| Bobbie (49 d, 124 s) | a pediatrician (expert) | face at 0.0 s, super "What's the safest infant formula?", a stethoscope twirl as the motion | ~later |
+| Bobbie (48 d, 31 s) | creator | face at 0.0 s, super "Hot take: feeding your baby should not be this stressful"; the tin enters at ~4 s | ~4 s |
+
+**What it says.**
+- [m] **Face first is the norm for long-runners.** Of the 6 to-camera videos running 60+ days, 4 open on the speaker's face at frame 0 (2 with the product already in hand), 1 opens on the product filling the frame with the face at ~2.5 s, and 1 opens on 1.5 s of shelf B-roll. **None opens on a staged cold open longer than 2 s.**
+- [m] **The only ~5 s cold open was a 14-day launch ad** (Jones Road's Bobbi Kit), and its open is product and models, not a scene.
+- [m] **Founders do appear in staged comedy.** Mid-Day Squares' 316-day long-runner is a scripted retro-TV skit cast with the founders' family. So a founder house can take a story, as long as the people are the brand's own real people on real footage.
+- [m] In the founder pieces, the product cutaway lands at **1–4.5 s** (Bittar), often with a big title super. That cutaway is the slot an AI insert fits without touching the founder's voice.
+- [inf] Our old rule ("≤6 s cold open before the founder") put our film where these brands put the face. The better default is a **2–4 s product insert** at the moment the founder names the product, plus an optional **≤2 s wordless open** (one product action). A 5 s open is pitched only around a launch.
+
+**Rule changes** (`vxo-film` Step 1, `vxo-leads` §3 step 3, LESSONS [self]): founder house = insert first, ≤2 s open optional, never script, voice or imitate the founder; world house (Vosges) = a story next to their world, never their characters or art.
+**DMs:** no text changed. Q-19's DM never says "cold open"; on a reply, offer the stills and a 2–4 s insert for Alexis's own videos (the email's "film idea" stands).
 
 ## 8. What only the owner can do (blocking first)
 

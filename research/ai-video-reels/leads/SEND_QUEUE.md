@@ -80,7 +80,7 @@ Limits: ≤10 new DMs and ≤10 new emails a day, spaced 15 min apart, 8–10 am
 |---|---|---|
 | **Tue 13 Oct** | DM ×10 | Q-1 LAKE 8:05 ET? [8:05] · Q-2 Printfresh 8:20 ET [8:20] · Q-5 Little Beast 8:35 ET [8:35] · Q-8 Brackish 8:50 ET [8:50] · Q-9 Cuddle Clones 9:05 ET [9:05] · Q-7 Dana Rebecca 8:20 CT [9:20] · Q-6 Sunday Citizen 9:35 ET [9:35] (moved 2026-10-12: Miami HQ, was 8:35 PT?) · Q-3 Dandelion 8:05 PT [11:05] · Q-4 Foggy Dog 8:20 PT [11:20] · Q-10 Kinn 8:50 PT [11:50] (LA, verified) · LAKE confirmed ET (founded Savannah, GA; East Coast stores, About page 2026-10-12) |
 | **Wed 14 Oct** | email ×10 (wave A) | the same 10, same local times, in the same order |
-| **Wed 14 Oct** | DM ×9 (wave B) | Q-12 Hawkins 9:15 ET [9:15] · Q-16 STONE AND STRAND 9:30 ET [9:30] · Q-19 Alexis Bittar 9:45 ET [9:45] · Q-11 KREWE 8:55 CT [9:55] · Q-18 Vosges 9:10 CT [10:10] · Q-15 Saranoni 8:25 MT [10:25] · Q-13 Legendary 8:40 PT? [11:40] · Q-14 Equator 8:55 PT [11:55] · Q-17 THATCH 9:10 PT? [12:10] |
+| **Wed 14 Oct** | DM ×9 (wave B) | Q-12 Hawkins 9:15 ET [9:15] · Q-16 STONE AND STRAND 9:30 ET [9:30] · Q-19 Alexis Bittar 9:45 ET [9:45] · Q-11 KREWE 8:55 CT [9:55] · Q-18 Vosges 9:10 CT [10:10] · Q-15 Saranoni 8:25 MT [10:25] · Q-13 Legendary 8:40 PT (verified 10-21, Santa Monica) [11:40] · Q-14 Equator 8:55 PT [11:55] · Q-17 THATCH 9:10 PT (verified 10-21, San Diego) [12:10] |
 | **Thu 15 Oct** | email ×9 (wave B) | the same 9, same local times |
 | Tue 20 Oct | FU1, wave A | email only, same thread, each one approved separately; skip any lead that replied |
 | Wed 21 Oct | FU1, wave B | as above |
@@ -505,7 +505,7 @@ Rule for this lead: no glasses, bottles, "toast" or eggnog cues in frame.
 ### Q-19 · Alexis Bittar · Alexis Bittar
 **AWAITING OWNER APPROVAL — do not send until site is live**
 
-**DM (day 0) to @alexisbittar (⚠ confirm handle):**
+**DM (day 0) to @alexisbittar (verified 2026-10-21: the brand's own contact-us page links instagram.com/alexisbittar):**
 > Hi Alexis, Itamar from VXO. Idea for the Twisted Gold Side Handle clutch: a guard ropes it off on a gallery plinth labelled "Untitled (Clutch), 2026". Visitors lean in. A hand lifts it and walks out. AI builds an invented gallery; the clutch stays real. Want 5 free stills, the clutch or a Lucite piece?
 
 **Email (day 1) to press@alexisbittar.com** · Subject: **Untitled (Clutch), 2026**
@@ -733,3 +733,50 @@ Full send-morning check of every named product, price and time word in `SEND_PAC
 **Hold rule:** no wave-A brand trips it. **Roll to Wed 21:** every line holds as written. The only date-bound words are "the new Tour set" (badge on today) and "the birthstone studs" (October, fine until the month ends); re-check both on the 21st morning (pack header note). Holiday markdown re-measure (backlog): still no sitewide Black Friday sale at any of the 10; standing promos at Foggy and Cuddle Clones; Sunday Citizen's bedding sale widened; Printfresh moved to a gift with purchase.
 
 **Wave B house read (doc 63 §7.6b, same morning, for Thu 22):** no wave-B text changed. Notes for the wave-B pack: Q-17 THATCH's film must end on the charm worn in close-up (editorial-wear house); Q-19 Alexis Bittar is a founder house (film = a cold open for his own videos); Q-15 Saranoni keeps a slot for their UGC parent clip; KREWE (Q-11) and Vosges (Q-18) served no Ad Library cards on 2 calls each, so their house is read on the Thu 22 morning before either DM goes.
+
+## 15. Roll-morning check for Wed 21 Oct (wave A) + wave-B pre-check for Thu 22 (2026-10-21, ~04:45–06:30 UTC = 07:45–09:30 Israel)
+The 5-item re-check from the pack's "If sent on Wed 21.10" note, plus the wave-B pre-check. Tools: `products_check.py` (18 brands), product JSON (tags, compare-at, `updated_at` 21 Oct ~00:55 ET), homepage banner scan, `ad_library.py page` **one Page per call** with 30–45 s spacing (12 reads, all confirmed 2/2), and a scratchpad card dump for video URLs. Nothing sent; $0. **Status: still no owner approval (no reply since 10-12). Gate: 14:00 Israel today; without it nothing goes today.**
+
+**Wave A: no fact changed, so all ten DM texts stay word for word for a 21.10 send.** The 5 items:
+1. **LAKE "new":** Tour set Oat Heather 5/5 $268, tags still `badge: New Arrival` + `full price`. "the new Tour set" stays. ✅
+2. **Sunday Citizen Ciel:** love seat 2/2 $1,800 and lounge chair 7/8 $800, no compare-at (love seat `_badge_new`). The homepage sale is unchanged from 10-20 (40 % off Snug comforters, bundles up to 20–25 %, free gifts); it still skips Ciel. ✅
+3. **Printfresh bandana:** 2/2 $28, compare-at = price, `SHOWPROMOPDP` unchanged; homepage still a gift with purchase from $350, not a discount. **Kinn Pegasus/Swan:** 8/8 $1,040, no compare-at, `eligible for discount` unchanged, no banner. ✅
+4. **Single-variant items:** Brackish Edisto and Rice Slim 1/1 $225; Dandelion 70 % gift set 1/1 $42 and Maya Mountain 1/1 $13. All in stock. ✅
+5. **Other named products:** Little Beast PBJ and OG 7/7 $48; Dana Rebecca Ava Bea 3/3 $2,795 and the October studs ($495 / $550 / $895) 1/1 full price; Cuddle Clones wrapping paper 3/3 $29 (pajamas still on the standing "25% off all pajamas" offer; no price named); Foggy Gingerbread collar 8/8 $52 vs $58 (same `bow-promo`). ✅ / ⚠ holds
+
+| # | Active 10-20 → 10-21 · newest · started ≤30 d (of top 30) · video cards | Hold rule |
+|---|---|---|
+| Q-1 LAKE | 103 → 118 · 10/16 · 24 · 5 | no |
+| Q-2 Printfresh | 200 → 195 · 10/08 · 16 · 9 | no |
+| Q-3 Dandelion | 154 → 180 · 10/13 · 17 · 5 | no |
+| Q-4 Foggy (probe) | 168 → 168 · — · 14 · 7 | no |
+| Q-5 Little Beast | 51 → 49 · 10/06 · 8 · 3 | no (15 d; 21 d on Tue 27) |
+| Q-6 Sunday Citizen | 426 → 442 · 10/13 · 18 · 8 | no |
+| Q-7 Dana Rebecca | 269 → 290 · 10/09 · 21 · 11 | no |
+| Q-8 Brackish | 69 → 69 · 10/16 · 24 · 1 | no |
+| Q-9 Cuddle Clones | 166 → 164 · 10/15 · 15 · 10 | no |
+| Q-10 Kinn | 79 → 79 · 10/17 · 17 · 8 | no |
+
+**Wave B pre-check for Thu 22: no DM text changed. One schedule fix.**
+
+| # | Named products, 10-21 | Ad Library 10-21 | Verdict |
+|---|---|---|---|
+| Q-11 KREWE | MUSE (Sauvage 18K, Bronze Metallic 12K) 1/1 $335; St. Louis Classics 1/1 $335–395, no compare-at | **35 active** (42 on 10-17) · newest 10/20 · 27 of 30 started ≤30 d · 9 video cards. **House read (first time; 0 cards on 10-20): demo house.** 4 videos frame-read, all ≤4.2 s silent product loops: an aviator folding on a sand backdrop ("For Those Who Travel Light", "Carry-on approved"), a St. Louis colour cycle ("Our signature frame … New Colors"), and a frame flipbook "SALE · Our biggest sale of the year · Shop up to 70 % off" | ⚠ **holds for Thu 22, but a sale starts Sun 25.** 6 of 11 video cards (started 10/19–10/20) read "Black Friday is coming early. Up to 70% off bestselling styles", and the site's cart drawer says "SALE PRICES DROP SUNDAY 10AM ET". MUSE is full price today and the DM never mentions the sale. If wave B slips past Sun 25, re-check MUSE and St. Louis compare-at first; if either is marked down, swap the CTA or hold Q-11 |
+| Q-13 Legendary | Maple Glazed and Cookies & Cream Mini Protein Donuts 2/2 $4.99 (Maple was 1 of 2 sizes on 10-09; now both) | not re-read today | ✅ TZ now verified PT (Santa Monica) |
+| Q-14 Equator | Office Coffee Subscription 12/12 $96 vs $120 (and $112 vs $140); La Marquesa 12/12 $20 (2 lb $90.75 vs $106.67) | not re-read today | ✅ holds. `products_check` flags MARKDOWN, but it is structural: the subscription price vs one-off (same $96 as the 10-09 dossier) and "Save 15 % per oz" volume tiers. No sale, no price named |
+| Q-15 Saranoni | Double Ruched XL product, **XXL 80x100 Flax and Midnight** available at $289, no compare-at | not re-read today | ✅ |
+| Q-16 STONE AND STRAND | Unflippable yellow gold and LAB-created versions 1/1 or 2/2, full price | not re-read today | ✅ |
+| Q-17 THATCH | Wood Anywhere Shell Coconut 21/21 and Driftwood 20/20 $115; bag clips $45/$50 | not re-read today | ✅ TZ now verified PT (San Diego) |
+| Q-18 Vosges | Snowbound Perfect Gift 1/1 $95, Little Gift 1/1 $32 | **37 active** (36 on 10-17) · newest 10/19 · 23 of 30 ≤30 d · 11 video cards. **House read (first time): story/world house.** 3 videos frame-read: an illustrated "Grand Cacao Lodge" (15 s: snow on glass, a lodge at night, a bison in a sweater sipping cocoa, the Advent Calendar opening on a table, "Settle in. Share the ritual."), plus two 11 s silent cinemagraphs of the 2026 Advent Calendar ("A warm welcome to the Grand Cacao Lodge"; a review super "the single most STUNNING Advent Calendar…") | ✅ holds, and fits better than we knew: their own season world is a snowed-in lodge, and the DM is a snowed-in cabin. In the frames, keep our cabin our own (never their bison or lodge art) |
+| Q-19 Alexis Bittar | Twisted Gold Side Handle Clutch, 6 colours 1/1 $675 (two tagged `meta:excluded`, a catalogue-feed tag, not a hide) | card dump (2nd call): 16 video cards; still a founder house (3 of 3 founder pieces open on his face at 0.0 s, doc 63 §7.6c) | ✅ handle verified @alexisbittar from the brand's own contact page |
+
+**Schedule fix for the wave-B pack (send times only, no text):** in §3, Q-19 (9:45 ET = 16:45 Israel) and Q-11 (8:55 CT = 16:55 Israel) are **10 minutes apart**, below the 15-minute rule. Proposed Thu 22 order in Israel time (IDT; ET −7, CT −8, MT −9, PT −10): Q-16 16:30 (9:30 ET) · Q-19 16:45 (9:45 ET) · **Q-11 17:00 (9:00 CT)** · **Q-18 17:15 (9:15 CT)** · **Q-15 17:30 (8:30 MT)** · Q-13 18:40 (8:40 PT) · Q-14 18:55 (8:55 PT) · Q-17 19:10 (9:10 PT). All still 8–10 am in the recipient's time.
+
+**If there is no approval today:** wave A rolls to Thu 22 (same Israel times, same texts, after a light morning re-check), and wave B then moves to the next free Tue–Thu slot (never two waves on one day). After Thu 22 the next slot is **Tue 27**, which needs a **new dated pack** (not built today). What it would need:
+- **Times one hour earlier** in Israel (Israel on winter time from Sun 25; US summer time until 1 Nov): wave A 14:05 · 14:20 · 14:35 · 14:50 · 15:05 · 15:20 (8:20 CT) · 15:35 · 17:05 · 17:20 · 17:50.
+- **Q-7 Dana Rebecca:** swap "the birthstone studs" (October, and a reply lands in November).
+- **Q-5 Little Beast:** hits the 21-day line on Tue 27 (newest ad 10/06); run the hold rule first.
+- **Q-4 Foggy:** newest-ad date to re-read (21 days on Wed 28 if still 10/07).
+- **Q-1 LAKE:** "new" badge; **Q-6 Sunday Citizen:** Ciel compare-at (sale still running).
+- **Q-11 KREWE** (if wave B also rolls): the Sun 25 sale; MUSE compare-at decides the CTA.
+- Full re-check (SEND_QUEUE format) and log lines dated `2026-10-27`.
