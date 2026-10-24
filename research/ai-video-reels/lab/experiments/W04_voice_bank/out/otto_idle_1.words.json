@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "Pick"
+  },
+  {
+   "start": 0.293,
+   "end": 0.347,
+   "text": "a"
+  },
+  {
+   "start": 0.4,
+   "end": 1.2,
+   "text": "film."
+  },
+  {
+   "start": 1.28,
+   "end": 1.44,
+   "text": "I'll"
+  },
+  {
+   "start": 1.52,
+   "end": 1.76,
+   "text": "roll"
+  },
+  {
+   "start": 1.88,
+   "end": 2.32,
+   "text": "it."
+  }
+ ]
+}

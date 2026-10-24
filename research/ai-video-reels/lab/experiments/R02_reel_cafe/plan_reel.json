@@ -1,0 +1,24 @@
+{
+ "jobs": [
+  {
+   "id": "REEL_cafe_30",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/cafe.png",
+     "@file:ref/otto.png",
+     "@file:ref/vee.png"
+    ],
+    "audio_urls": [
+     "@file:vo/dialogue_30.wav"
+    ],
+    "duration": 30,
+    "resolution": "480p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true,
+    "prompt": "One continuous 30-second take: a single unbroken camera move, no cuts, no jump cuts, no scene changes. Smooth gimbal, no shake. Cinematic 35mm film look, soft grain, warm golden-hour light.\nCAST: @Image1 is the opening composition and set: a Paris caf\u00e9 terrace at golden hour, a small round marble table with two espressos. @Image2 is the MAN (Otto): long pale face, heavy dark brows, swept-back hair with silver temples, an enormous charcoal-black handlebar moustache with spiral tips that completely covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. He always sits on the LEFT. His mouth is never visible; when he speaks, only his moustache and cheeks move. @Image3 is the WOMAN (Vee): platinum buzz cut, round vermilion-tinted spectacles, olive skin with freckles, oversized ivory double-breasted suit, vermilion scarf, one silver stopwatch on a chain. She always sits on the RIGHT. They keep their exact faces, wardrobe and seats for the whole shot.\n@Audio1 is the exact dialogue track: the woman's confident British voice and the man's deep dry British voice. Lip-sync the woman's lines to her mouth; the man's lines move only his moustache.\nFIRST FRAME: exactly @Image1.\nRULES: real physics; one camera path; no new people in focus; gentle caf\u00e9 life blurred in the background.\n[0-3 s] The camera is already moving: a slow push toward the table. The woman turns to the lens and asks: \"How much did your last product shoot cost?\"\n[3-6 s] The man lowers his viewfinder and says, deadpan: \"Don't answer. It'll ruin your coffee.\" He sips his espresso.\n[6-13 s] Without cutting, the camera drifts slightly right toward her as she says to camera, crisp: \"We make thirty-second product films with AI. One take. No crew. No studio.\"\n[13-18 s] The camera drifts back left toward him; he raises one brow and frames the lens with his viewfinder: \"Just your product, and a little madness.\"\n[18-23 s] The camera settles centred on both; she holds up her stopwatch: \"Send us one photo. We send back five frames, free.\"\n[23-26 s] He nods once: \"Then we roll.\"\n[26-30 s] She clicks the stopwatch, looks into the lens: \"Link in bio.\" The camera holds on both of them, sunlight glinting on the espresso cups.\nAUDIO: their dialogue only, soft caf\u00e9 ambience; no music.\nNo text overlays, no subtitles, no logos, not a cartoon."
+   }
+  }
+ ]
+}

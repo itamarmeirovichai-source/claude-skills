@@ -1,0 +1,55 @@
+{
+ "jobs": [
+  {
+   "id": "K5",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit this image only: he has just finished a long drink. He lowers the glass to chest height; it is the same tall straight-sided plain clear glass (no stem, no ice), now only ONE-THIRD full of pale gold sparkling soda. His waxed moustache tips spring up a notch, one eyebrow raised, delighted, eyes amused; he stands at the very edge of the spire, weight on his front foot, ready to leap. Keep everything else exactly the same: the man, clothes, the AURUM can on the ledge, the sunset city, framing.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, umbrella, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes, person in packshot",
+    "image_urls": [
+     "@file:ref/K4g.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4343
+   }
+  },
+  {
+   "id": "K7h",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit this image only: the glass in his raised hand is the same tall straight-sided plain clear glass (no stem, no ice), now only ONE-THIRD full of pale gold sparkling soda. Keep everything else exactly the same.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, umbrella, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes, person in packshot",
+    "image_urls": [
+     "@file:ref/K7g.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4343
+   }
+  },
+  {
+   "id": "K8i",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit this image only: the glass beside the can is the same tall straight-sided plain clear glass (no stem, no ice), now only ONE-THIRD full of pale gold sparkling soda, a few condensation drops on it. Keep everything else exactly the same: AURUM can, label, brass viewfinder, box, lights, haze. No people.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, umbrella, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes, person in packshot",
+    "image_urls": [
+     "@file:ref/K8h.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4343
+   }
+  }
+ ]
+}

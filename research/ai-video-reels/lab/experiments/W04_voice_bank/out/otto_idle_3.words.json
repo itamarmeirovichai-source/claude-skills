@@ -1,0 +1,24 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "The"
+  },
+  {
+   "start": 0.32,
+   "end": 0.72,
+   "text": "ring"
+  },
+  {
+   "start": 0.88,
+   "end": 1.04,
+   "text": "is"
+  },
+  {
+   "start": 1.12,
+   "end": 2.0,
+   "text": "waiting."
+  }
+ ]
+}

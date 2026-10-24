@@ -1,0 +1,69 @@
+---
+import { site } from '../lib/site';
+import MailFallback from './MailFallback.astro';
+interface Props { id?: string }
+const { id = 'lead' } = Astro.props;
+---
+<form class="lead-form" data-lead-form action="/frames" method="get" novalidate aria-describedby={`${id}-note`}>
+  <p class="summary" data-summary tabindex="-1" role="alert" hidden></p>
+  <div class="field">
+    <label for={`${id}-email`}>Work email</label>
+    <p class="help" id={`${id}-email-h`}>Where we send your frames.</p>
+    <input id={`${id}-email`} name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby={`${id}-email-h ${id}-email-e`} />
+    <p class="error" id={`${id}-email-e`} data-error="email"></p>
+  </div>
+  <div class="field">
+    <label for={`${id}-website`}>Your website</label>
+    <p class="help" id={`${id}-website-h`}>We'll study your brand look here.</p>
+    <input id={`${id}-website`} name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbrand.com" required aria-describedby={`${id}-website-h ${id}-website-e`} />
+    <p class="error" id={`${id}-website-e`} data-error="website"></p>
+  </div>
+  <div class="field">
+    <label for={`${id}-product`}>Which product?</label>
+    <p class="help" id={`${id}-product-h`}>Name one. We'll build all 5 frames around it.</p>
+    <input id={`${id}-product`} name="product" type="text" required maxlength="160" aria-describedby={`${id}-product-h ${id}-product-e`} />
+    <p class="error" id={`${id}-product-e`} data-error="product"></p>
+  </div>
+  <div class="field">
+    <label for={`${id}-photos`}>Product photo (optional)</label>
+    <p class="help" id={`${id}-photos-h`}>A clean shot on a plain background works best. No photo? We'll use the ones on your site. Up to 3, JPG, PNG, HEIC or WebP, 20 MB each.</p>
+    <input id={`${id}-photos`} name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" multiple aria-describedby={`${id}-photos-h ${id}-photos-e`} />
+    <p class="help" data-file-list></p>
+    <p class="error" id={`${id}-photos-e`} data-error="photos"></p>
+  </div>
+  <fieldset class="field">
+    <legend>Which look?</legend>
+    <div class="choice-row">
+      <label class="choice"><input type="radio" name="look" value="studio" checked /><span><b>Clean studio</b>All about the product</span></label>
+      <label class="choice"><input type="radio" name="look" value="world" /><span><b>In a world, with a story</b>The product in its moment</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for={`${id}-first`}>First name (optional)</label>
+    <input id={`${id}-first`} name="firstName" type="text" autocomplete="given-name" maxlength="80" />
+  </div>
+  <div class="field">
+    <label class="check"><input type="checkbox" name="consent" /> <span>You may use my photos to make my frames. (Needed only if you attach a photo.)</span></label>
+    <p class="error" data-error="consent"></p>
+  </div>
+  <input type="hidden" name="intent" value="general" />
+  <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="company_url" tabindex="-1" autocomplete="off" /></label></div>
+  <div data-turnstile></div>
+  <button type="submit" class="btn btn-primary submit">Get my 5 free frames</button>
+  <p class="note" id={`${id}-note`}>Free. No card, no call. You'll get them by email in 48 hours, marked "AI concept".</p>
+  {site.capacityLine && <p class="note">{site.capacityLine}</p>}
+  <p class="note">We use your photos only to make your frames. We don't post them or share them outside the studio. <a href="/privacy">Privacy</a></p>
+  <p class="status" data-status role="status" aria-live="polite"></p>
+  <MailFallback lead="Rather email the photo? Send it to" />
+  <noscript><p class="note">This form needs JavaScript to upload photos.{site.email ? <> You can also email <a href={`mailto:${site.email}`}>{site.email}</a>.</> : null}</p></noscript>
+</form>
+<style>
+  .lead-form { background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 4vw, 36px); }
+  .submit { width: 100%; min-height: 56px; font-size: 1.02rem; margin-top: 4px; }
+  .note { font-size: 0.82rem; color: var(--text-faint); margin: 12px 0 0; }
+  .status { margin: 12px 0 0; color: var(--brass-hi); }
+  .status:empty { display: none; }
+  .summary { background: rgb(216 67 43 / 0.12); border: 1px solid rgb(216 67 43 / 0.5); padding: 12px 14px; border-radius: 10px; font-size: 0.9rem; }
+  input[type='file'] { font-size: 0.9rem; color: var(--text-dim); max-width: 100%; }
+  input[type='file']::file-selector-button { min-height: 44px; margin-right: 12px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--ink-3); color: var(--text); cursor: pointer; }
+</style>

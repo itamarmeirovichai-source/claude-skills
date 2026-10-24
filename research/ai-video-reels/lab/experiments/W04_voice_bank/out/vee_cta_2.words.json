@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.32,
+   "text": "Five"
+  },
+  {
+   "start": 0.48,
+   "end": 0.64,
+   "text": "free"
+  },
+  {
+   "start": 0.8,
+   "end": 1.44,
+   "text": "frames."
+  },
+  {
+   "start": 1.6,
+   "end": 1.84,
+   "text": "Clock"
+  },
+  {
+   "start": 1.92,
+   "end": 2.32,
+   "text": "starts"
+  },
+  {
+   "start": 2.64,
+   "end": 3.2,
+   "text": "now."
+  }
+ ]
+}

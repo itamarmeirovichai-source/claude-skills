@@ -1,0 +1,18 @@
+{
+ "jobs": [
+  {
+   "id": "D0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, real photograph, golden hour, fine 35mm grain. Image 1 is the identity reference: keep this exact man \u2014 long pale face, heavy dark brows, swept-back dark hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big upturned Dali spirals that completely covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. Eyes amused, never wide, mouth never visible. Medium close-up from slightly below: he stands at the very top of a sleek mirrored-glass supertall skyscraper at sunset, on its small rooftop crown edge, looking straight into the lens with a dry knowing look, his right hand raised beside his face mid finger-snap; behind and below him a vast modern city, a wide straight avenue far below glowing with traffic; warm low sun from camera left, wind lifting his blazer. No text, no logos."
+   }
+  }
+ ]
+}

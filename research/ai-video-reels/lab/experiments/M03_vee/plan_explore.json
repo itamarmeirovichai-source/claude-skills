@@ -1,0 +1,100 @@
+{
+ "jobs": [
+  {
+   "id": "vx0",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1000,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx1",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1137,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx2",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1274,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx3",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1411,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx4",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1548,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx5",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1685,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx6",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1822,
+    "batch_size": 1
+   }
+  },
+  {
+   "id": "vx7",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Editorial studio portrait photograph, chest-up, of an original fictional woman in her late 30s: angular face with high cheekbones, warm olive skin with real texture and a faint cluster of freckles on her left cheekbone, strong straight dark eyebrows, dark brown eyes, a platinum-white close-cropped buzz cut, perfectly round oversized vermilion-red tinted spectacles in thin gold wire frames. She wears an oversized ivory double-breasted suit with wide lapels, a vermilion silk scarf knotted at the neck, and a small vintage silver stopwatch on a short silver chain clipped to her lapel. Composed half-smile with one corner of her mouth raised, direct quick eyes, the look of a film producer who already knows the answer. Seamless warm stone-beige paper backdrop, soft octabox key light at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores, 35mm film grain, magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no HDR, no text.",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "seed": 1959,
+    "batch_size": 1
+   }
+  }
+ ]
+}

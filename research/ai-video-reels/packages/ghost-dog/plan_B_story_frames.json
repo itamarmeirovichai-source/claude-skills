@@ -1,0 +1,10 @@
+{
+  "_doc": "Stage B: story frames that keep the same dog + hallway via the approved F1 reference. 3 variants each.",
+  "defaults": {"model": "marketing-studio/image/flare", "takes": 3,
+               "args": {"aspect_ratio": "9:16", "resolution": "2k", "quality": "high", "image_urls": ["@file:frames/F1.png"]}},
+  "jobs": [
+    {"id": "F2_ghost_appears", "args": {"prompt": "Same security camera, same hallway and the exact same golden retriever from the reference image. At the dark far end of the hallway a translucent, softly glowing ghost of an old beagle has appeared, standing calmly, tail mid-wag, edges dissolving into faint light, the hallway wall visible through its body. The golden retriever is frozen, ears up. Black-and-white infrared night vision, fisheye, sensor noise. No text."}},
+    {"id": "F3_both_look_jar", "args": {"prompt": "Same security camera, same hallway, same golden retriever and the same translucent glowing ghost beagle, now standing side by side facing the small side table, both looking up at the glass treat jar on it. Black-and-white infrared night vision, fisheye, sensor noise, the ghost slightly glowing. No text, no labels."}},
+    {"id": "F4_sharing", "args": {"prompt": "Same security camera, same hallway. The golden retriever and the translucent glowing ghost beagle lie side by side on the hallway floor next to a tipped-over glass jar and a few scattered bone-shaped dog treats, both happily chewing, the ghost's tail wagging, peaceful. Black-and-white infrared night vision, fisheye, sensor noise. No text, no labels."}}
+  ]
+}

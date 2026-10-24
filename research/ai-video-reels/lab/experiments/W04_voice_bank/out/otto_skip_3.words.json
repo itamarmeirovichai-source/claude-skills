@@ -1,0 +1,29 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.8,
+   "text": "Fine."
+  },
+  {
+   "start": 0.88,
+   "end": 1.04,
+   "text": "I'll"
+  },
+  {
+   "start": 1.12,
+   "end": 1.28,
+   "text": "find"
+  },
+  {
+   "start": 1.36,
+   "end": 1.44,
+   "text": "you"
+  },
+  {
+   "start": 1.64,
+   "end": 2.08,
+   "text": "later."
+  }
+ ]
+}

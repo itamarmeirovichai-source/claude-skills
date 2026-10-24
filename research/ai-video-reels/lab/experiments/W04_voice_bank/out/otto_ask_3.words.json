@@ -1,0 +1,39 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.32,
+   "text": "Print"
+  },
+  {
+   "start": 0.44,
+   "end": 0.64,
+   "text": "it."
+  },
+  {
+   "start": 1.12,
+   "end": 1.36,
+   "text": "More"
+  },
+  {
+   "start": 1.44,
+   "end": 2.24,
+   "text": "films,"
+  },
+  {
+   "start": 2.32,
+   "end": 2.4,
+   "text": "or"
+  },
+  {
+   "start": 2.44,
+   "end": 2.48,
+   "text": "the"
+  },
+  {
+   "start": 2.56,
+   "end": 3.36,
+   "text": "rest?"
+  }
+ ]
+}

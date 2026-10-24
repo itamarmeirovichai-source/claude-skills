@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "Your"
+  },
+  {
+   "start": 0.32,
+   "end": 0.88,
+   "text": "product."
+  },
+  {
+   "start": 1.28,
+   "end": 1.44,
+   "text": "Our"
+  },
+  {
+   "start": 1.52,
+   "end": 2.16,
+   "text": "film."
+  },
+  {
+   "start": 2.4,
+   "end": 2.56,
+   "text": "One"
+  },
+  {
+   "start": 2.64,
+   "end": 3.28,
+   "text": "week."
+  }
+ ]
+}

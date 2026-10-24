@@ -1,0 +1,19 @@
+{
+ "jobs": [
+  {
+   "id": "R0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic action-movie film still, real photograph, late golden hour, fine 35mm grain. Image 1 is the identity reference: keep this exact man \u2014 long pale face, heavy dark brows, swept-back dark hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big upturned Dali spirals that completely covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square. Eyes amused, never wide, mouth never visible. Image 2 is the product: the gold AURUM can. Medium-wide shot: he stands on the flat rooftop edge of a grand old stone bank building in a city, calm and deadpan, a slim gold parachute pack strapped on his back over the blazer, a bulging black duffel bag over his shoulder with the gold tops of several AURUM cans peeking out of the open zip; red alarm light flashing on the rooftop door behind him; far below, a wide city street with traffic and distant police lights. He looks straight into the lens. No text besides AURUM."
+   }
+  }
+ ]
+}

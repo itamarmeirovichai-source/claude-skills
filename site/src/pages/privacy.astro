@@ -1,0 +1,24 @@
+---
+import Page from '../layouts/Page.astro';
+import { site, t } from '../lib/site';
+---
+<Page title="Privacy" description={`How ${site.studio} handles your data.`} heading="Privacy" eyebrow="Plain English">
+  <div class="wrap prose legal">
+    <p class="draft">Draft, pending attorney review before launch.</p>
+    <h2>What we collect</h2>
+    <p>When you ask for frames: your email, website, product name, optional first name, optional product photos, your look choice and any optional answers on the next page. We also record the campaign tags in the link you followed (UTM parameters), never a personal tracking ID.</p>
+    <h2>Why</h2>
+    <p>Only to make your frames, reply to you and, if you go ahead, make your film.</p>
+    <h2>Where it lives</h2>
+    <p>Form data and photos are stored in a private Cloudflare R2 bucket. Email notifications may be sent through Resend. Spam protection may use Cloudflare Turnstile. Photos are deleted after 90 days unless we're working together.</p>
+    <h2>Analytics</h2>
+    <p>Cookieless: Cloudflare Web Analytics and anonymous page events (for example "a film was played"). No advertising cookies, no cross-site tracking, no stored IP addresses.</p>
+    {/* TODO(founder): confirm each tool's data/training terms before stating anything stronger here. */}
+    <h2>AI tools</h2>
+    <p>Your photos may be processed by the AI tools we use to make frames, under their commercial terms.</p>
+    <h2>Your choices</h2>
+    <p>Ask us to see, correct or delete your data at any time{site.email ? <> at <a href={`mailto:${site.email}`}>{site.email}</a></> : ' by replying to any email from us'}.</p>
+    {t('{{ADDRESS}}') && <p>{site.studio}, {t('{{ADDRESS}}')}</p>}
+  </div>
+</Page>
+<style>.legal { padding-bottom: 96px; }</style>

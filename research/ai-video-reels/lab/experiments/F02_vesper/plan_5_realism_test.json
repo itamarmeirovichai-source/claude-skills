@@ -1,0 +1,75 @@
+{
+ "_doc": "F02 v4 realism test: real-shoot vocabulary from 80 YouTube tutorials + Higgsfield guides.",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "R1_vanity",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Evening, a lived-in bedroom vanity of worn dark walnut: the exact VESPER perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber cap with thin gold collar, VESPER engraved in thin wide-spaced serif capitals) is the source of truth for the product; it stands among a gold ring, a folded burgundy silk scarf and an open book, a blurred brass lamp edge in the left foreground; venetian-blind shadows fall across the wood. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement."
+   }
+  },
+  {
+   "id": "R2_cap_macro",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Extreme macro of the faceted smoky-amber cap and the top of the engraved VESPER lettering of the exact VESPER perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber cap with thin gold collar, VESPER engraved in thin wide-spaced serif capitals) is the source of truth for the product; a thin sliver of hard tungsten light skims across the facets revealing dust, a fingerprint smudge and micro-scratches; very shallow depth of field, the rest falls to black. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement."
+   }
+  },
+  {
+   "id": "R3_hand",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "A woman's hand (fingers in soft focus at the frame edge, natural skin texture, short unpolished nails) lifts the exact VESPER perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber cap with thin gold collar, VESPER engraved in thin wide-spaced serif capitals) is the source of truth for the product off a cold grey marble vanity top, motion just beginning; the bottle is sharp, the hand slightly soft. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement."
+   }
+  },
+  {
+   "id": "R4_window",
+   "args": {
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Golden hour on a hotel room windowsill: the exact VESPER perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber cap with thin gold collar, VESPER engraved in thin wide-spaced serif capitals) is the source of truth for the product stands on the painted sill, the city soft and out of focus beyond the glass, a few real raindrops on the window in the foreground catching the low sun; warm practical light, slight lens flare from the sun in frame. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement."
+   }
+  },
+  {
+   "id": "SC_R1_vanity",
+   "model": "higgsfield-ai/soul/cinema",
+   "args": {
+    "prompt": "Evening, a lived-in bedroom vanity of worn dark walnut: a luxury perfume bottle: heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals on the front; it stands among a gold ring, a folded burgundy silk scarf and an open book, a blurred brass lamp edge in the left foreground; venetian-blind shadows fall across the wood. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "1080p"
+   }
+  },
+  {
+   "id": "SC_R4_window",
+   "model": "higgsfield-ai/soul/cinema",
+   "args": {
+    "prompt": "Golden hour on a hotel room windowsill: a luxury perfume bottle: heavy rectangular thick clear-glass bottle with bevelled edges, amber-gold juice, tall faceted smoky-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals on the front stands on the painted sill, the city soft and out of focus beyond the glass, a few real raindrops on the window in the foreground catching the low sun; warm practical light, slight lens flare from the sun in frame. Shot on ARRI Alexa 35, 50mm Cooke S4 prime at T2.8, Kodak Vision3 500T film grain, subtle halation. Single hard 3200K tungsten key through a narrow snoot from camera-left, raking across the glass and falling off fast into deep shadow; faint cool 5600K window spill from behind. Off-centre composition, product on the right third, three-quarter angle. Real-world imperfections: faint fingerprints and a few dust specks on the glass, a tiny scuff on the cap collar. No HDR, no oversaturation, no digital sharpening, no CG gloss, no perfect symmetry, no beauty grade. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "1080p"
+   }
+  }
+ ]
+}
