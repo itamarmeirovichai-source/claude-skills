@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-10-24 by `SEND_DAY_CHECKLIST_2026-10-27.md`** (20, 21 and 22 Oct passed unsent; do not use this file).
+
 # יום שליחה · שלישי 20.10.2026 · צ'קליסט לבעלים (עמוד אחד)
 
 <div dir="rtl">

@@ -334,6 +334,22 @@ What it means for the films [inf]:
 - None of the ten had a sitewide Black Friday sale yet on 16 Oct. Re-measure on Tue 20 Oct and on Mon 2 Nov. The first brand to go sitewide moves its follow-up angle to an evergreen, offer-free film (LESSONS 2026-10-10: the evergreen twin).
 
 
+### 7.4b Sale calendar before a roll: where a sale shows up first (measured 2026-10-24) [m]
+Three sources read the same morning for the 19 queued Pages: the newest Meta ad copy (top ~30 cards, `ad_library.py`, one Page per call), the sale collections linked from each homepage (`products_check.py --sale-scan`), and the named products' compare-at prices.
+
+| Signal | Brands (of 19) | What it told us that the prices did not |
+|---|---|---|
+| **Dated sitewide event in ad copy** | 2: KREWE ("Black Friday is coming early. Up to 70% off bestselling styles", 17 of 30 cards, all started 10/20–10/22; homepage "prices drop Sunday 10am ET"); Hawkins ("Shop Our October Sale … sitewide … limited time", "up to 70 % off", both ads started 10/21) | **When.** Every named product was still full price |
+| **Standing / first-order offers in ad copy** | 6: Cuddle Clones ("Now 25% Off" pajamas, 5 cards), Vosges (new-customer 10 % / $50 off the Advent Calendar), Alexis Bittar and Saranoni (15 % off a first order), Little Beast (carriers 20 % off "for a limited time"), Sunday Citizen (older "Up To 25% OFF" / "Final Call Up To 80% OFF") | Nothing new for our CTAs: none names our products |
+| **No sale words in any top card** | 11: LAKE, Printfresh, Dandelion, Dana Rebecca, Brackish, Kinn, Foggy, Equator, STONE AND STRAND, THATCH, Legendary | — |
+| **Homepage-linked sale collections** | 10 of 18 checked: KREWE `pre-shop-all-sale-he26` (213), Hawkins `october-sale` (201) + `sale-1` (88), Sunday Citizen `flash-sale` (85) + `outlet` (37), STONE AND STRAND `sale` (91), THATCH `all-sale` (79), Printfresh `womens-apparel-sale` (72), Foggy `sale` (70), Saranoni `sale` (49), Little Beast `sales-galore` (39), Alexis Bittar six `sale-*` lists (44 in all, `sale-lucite` 23) | **What.** KREWE's pre-shop list held six St. Louis frames (our second CTA) and no MUSE, two days before the drop. Alexis Bittar's `sale-lucite` covered the category our CTA named generically. Sunday Citizen's new 48-hour flash list (85) appeared with **no ad at all** |
+
+What it means [inf]:
+- **Ads tell you when, sale collections tell you what.** An announced event without a pre-shop list means "re-check after the drop"; a pre-shop list lets the CTA be fixed before the drop (Q-11 moved to two MUSE colourways on 24 Oct).
+- **Flash sales don't advertise.** 1 of 2 live markdown events on 24 Oct (Sunday Citizen) was invisible in the ads and visible only in a homepage collection, so the ad read alone is not enough.
+- **A sale event is not a cold signal.** Hawkins' first new ads in 40 days (9/11 → 10/21) are sale ads, and by the §7.5 rule they lift its hold. Pitch only products outside the sale lists, and expect a busy inbox that week.
+- Rule: `vxo-leads` §1 (run `--sale-scan` Oct–Dec), `vxo-daily` Step 1, LESSONS 2026-10-24.
+
 ### 7.5 Ad-count moves as a heat signal (measured 2026-10-09 → 2026-10-17) [m]
 Question: when a queued brand's active Meta ad count falls, is it cutting spend (cooler) or rotating creative before the holiday push (hotter)? All 19 queued Pages were read with `ad_library.py page` (US, active, 2 agreeing loads each; Saranoni 1 load) on 10-09 and again on Sat 17 Oct. "Fresh flow" = how many of the top ~30 cards started in the last 30 days, and how old the newest ad is.
 

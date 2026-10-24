@@ -24,9 +24,15 @@ Flags reported (any one makes the product unfit to name in a message):
   OOS       no variant available
   PARTIAL   some variants unavailable (fine to name, but say which ones are in stock)
   PAGE!=200 the public product page does not load as itself (redirect or error)
+  SALE-LIST (with --sale-scan) the product sits in a sale collection linked from the homepage
+            (pre-shop / flash-sale / outlet / black-friday ...), even if its price has not dropped
+            yet. Added 2026-10-24: KREWE's "pre-shop-all-sale-he26" listed 213 products, six St. Louis
+            frames among them, two days before "SALE PRICES DROP SUNDAY 10AM ET". A product on the
+            list is treated like a markdown: don't name it in a message that goes after the drop.
 """
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.error
@@ -57,6 +63,35 @@ def feed(domain, max_pages=20):
             break
         out.extend(items)
         time.sleep(0.5)
+    return out
+
+
+SALE_WORDS = ("sale", "pre-shop", "preshop", "flash", "outlet", "clearance", "black-friday", "bfcm",
+              "cyber", "doorbuster", "warehouse", "promo", "deal", "markdown", "last-chance")
+
+
+def sale_lists(domain):
+    """Sale collections linked from the homepage → {collection handle: set(product handles)}."""
+    try:
+        _, _, body = get(f"https://{domain}/")
+    except Exception as e:
+        return {"_error": str(e)}
+    handles = sorted({h for h in re.findall(r'/collections/([a-z0-9][a-z0-9_-]*)', body.decode("utf-8", "ignore"))
+                      if any(w in h for w in SALE_WORDS)})
+    out = {}
+    for h in handles[:12]:
+        items = []
+        for page in range(1, 9):
+            try:
+                _, _, b = get(f"https://{domain}/collections/{h}/products.json?limit=250&page={page}")
+                got = json.loads(b).get("products", [])
+            except Exception:
+                break
+            if not got:
+                break
+            items.extend(got)
+            time.sleep(0.5)
+        out[h] = {p["handle"] for p in items}
     return out
 
 
@@ -126,11 +161,19 @@ def main():
     ap.add_argument("queries", nargs="+")
     ap.add_argument("--json")
     ap.add_argument("--limit", type=int, default=6, help="max matches shown per query")
+    ap.add_argument("--sale-scan", action="store_true",
+                    help="also list the homepage's sale collections and flag named products found in them")
     a = ap.parse_args()
     products = feed(a.domain)
+    sales = sale_lists(a.domain) if a.sale_scan else {}
     result, ok = {"domain": a.domain, "feed_size": len(products), "checked_utc":
                   time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()), "queries": {}}, True
     print(f"{a.domain}: {len(products)} public products in feed")
+    if a.sale_scan:
+        result["sale_lists"] = {c: (sorted(hs) if isinstance(hs, set) else hs) for c, hs in sales.items()}
+        print("  sale collections linked from the homepage: " + (", ".join(
+            f"{c} ({len(hs)})" for c, hs in sales.items() if c != "_error") or "none") +
+            (f"  [homepage error: {sales['_error']}]" if "_error" in sales else ""))
     for q in a.queries:
         ql = q.lower()
         # Every word of the query must appear in the title, in any order and ignoring dashes/punctuation
@@ -141,6 +184,11 @@ def main():
                                                                        or w in norm(p.get("title", "")) for w in words)]
         hits = matched[: a.limit]
         rows = [assess(a.domain, p) for p in hits]
+        for r in rows:
+            inlists = [c for c, hs in sales.items() if c != "_error" and r["handle"] in hs]
+            if inlists:
+                r["flags"].append("SALE-LIST")
+                r["sale_lists"] = inlists
         clean = [r for r in rows if not set(r["flags"]) - {"PARTIAL"}]
         ok &= bool(clean)
         result["queries"][q] = rows
@@ -155,6 +203,8 @@ def main():
                 print(f"      out: {', '.join(map(str, r['unavailable']))}")
             if r["flag_tags"]:
                 print(f"      tags: {', '.join(r['flag_tags'])}")
+            if r.get("sale_lists"):
+                print(f"      in sale collection(s): {', '.join(r['sale_lists'])}")
     if a.json:
         with open(a.json, "w") as f:
             json.dump(result, f, indent=1)

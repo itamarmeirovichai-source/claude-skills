@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Status 2026-10-24 (§16): nothing sent; Wed 21 and Thu 22 passed without approval. Wave A: next slot Tue 27.10 (`SEND_PACK_2026-10-27.md`, Israel times one hour earlier). Wave B: Wed 28.10 (§16 times). Q-7, Q-11 and Q-19 CTAs changed.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -72,6 +72,8 @@ Score = base score out of 100 (vxo-leads §1: Ads 30 · Need 20 · Momentum 15 �
 All 24 candidates were re-read on 2026-10-09 (~22:45–23:40 UTC). Every active count was confirmed by two loads, and **every one matches its dossier** (within 0–3 ads). Nothing moved a lead in or out. The table is in §6.
 
 ## 3. Proposed send schedule (only after the site is live)
+
+**Current slots (2026-10-24, §16):** wave A **Tue 27 Oct** at 14:05–17:50 Israel (`SEND_PACK_2026-10-27.md`); wave B **Wed 28 Oct**, recipient times Q-16 9:00 ET · Q-19 9:15 ET · Q-11 8:30 CT (= 9:30 ET) · Q-18 9:15 CT · Q-15 8:30 MT · Q-13 8:40 PT · Q-14 8:55 PT · Q-17 9:10 PT = **15:00 · 15:15 · 15:30 · 16:15 · 16:30 · 17:40 · 17:55 · 18:10 Israel** (Israel on winter time from Sun 25, US on summer time until Sun 1 Nov: ET +6, CT +7, MT +8, PT +9). The 13–15 Oct table below is history.
 
 **Precondition:** the site is live on its real domain by **Mon 12 Oct**, `{OWNER_NAME}` and a real `{BUSINESS_ADDRESS}` are filled in, and each send has the owner's own "send #Q-N DM" / "send #Q-N email". If the site is not live by Mon 12 Oct, move the whole table one week (Tue 20 / Wed 21 / Thu 22 Oct).
 Limits: ≤10 new DMs and ≤10 new emails a day, spaced 15 min apart, 8–10 am in the recipient's time. Times below are the **recipient's local time**; the owner's clock (ET) is in brackets. Time zones marked "?" are inferred, so confirm them on the send day.
@@ -238,9 +240,10 @@ Rule for this lead: the expansion is shown in two states only, never as instant 
 
 ### Q-7 · Dana Rebecca Designs · Dana Rebecca Gordon
 **AWAITING OWNER APPROVAL — do not send until site is live**
+_CTA changed 2026-10-24 (§16): "the birthstone studs" were the October studs (month-bound; no November studs published). Now "the birthstone charm" (DRD Birthstone Charm, all 12 months, 24/24, $495–695, full price)._
 
 **DM (day 0) to @danarebecca, or Dana's own business account:**
-> Hi Dana, Itamar from VXO. Film idea for the Ava Bea bracelet: a nightstand dish marked JEWELRY fills night after night with keys, hair ties, receipts. Never the bracelet. Last shot, your wrist switches off the lamp. AI builds the room; your bracelet stays real. Want 5 free stills, Ava Bea or the birthstone studs?
+> Hi Dana, Itamar from VXO. Film idea for the Ava Bea bracelet: a nightstand dish marked JEWELRY fills night after night with keys, hair ties, receipts. Never the bracelet. Last shot, your wrist switches off the lamp. AI builds the room; your bracelet stays real. Want 5 free stills, Ava Bea or the birthstone charm?
 
 **Email (day 1) to info@danarebeccadesigns.com** · Subject: **The jewelry dish**
 > Hi Dana (or whoever reads info@, could you pass this to Dana?),
@@ -249,7 +252,7 @@ Rule for this lead: the expansion is shown in two states only, never as instant 
 >
 > I'd build the room with AI. The bracelet comes from your product photos, stone count checked.
 >
-> Want 5 free stills of it, on the Ava Bea Interval bracelet or the October birthstone studs?
+> Want 5 free stills of it, on the Ava Bea Interval bracelet or the birthstone charm?
 >
 > Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
@@ -326,9 +329,10 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 
 ### Q-11 · KREWE · Stirling Barrett (founder per older press; no 2026 source on krewe.com, so the greeting is name-free since 2026-10-17)
 **AWAITING OWNER APPROVAL — do not send until site is live**
+_CTA changed 2026-10-24 (§16): KREWE's "Black Friday is coming early, up to 70 % off" sale drops prices Sun 25 Oct, 10 am ET. Its pre-shop collection (`pre-shop-all-sale-he26`, 213 products) holds six St. Louis frames but no MUSE, so the CTA is now two MUSE colourways (Sauvage, Bronze Metallic; $335, `limited edition`). On the send morning: if MUSE shows a compare-at or joins a sale collection, **hold Q-11** until the sale ends (the whole film is MUSE). Send time moved to 8:30 CT (= 9:30 ET): krewe.com/pages/about names a New Orleans flagship AND an NYC headquarters, so the slot must sit inside 8–10 am in both._
 
 **DM (day 0) to @krewe:**
-> Hi KREWE team, Itamar from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE or St. Louis?
+> Hi KREWE team, Itamar from VXO. A Carnival film for MUSE: a masked float rider throws beads that every hand ignores. He finds the last pair of MUSE, weighs the throw, and puts them on himself. AI builds the parade; the frames are your real ones. Want 5 free stills, MUSE in Sauvage or Bronze?
 
 **Email (day 1) to krewe@krewe.com** · Subject: **Some things you don't throw**
 > Hi KREWE team (could you pass this to whoever leads creative?),
@@ -337,7 +341,7 @@ Rules for this lead: the memorial products never appear, and no licensed wrappin
 >
 > It would run Twelfth Night to Mardi Gras. I'd build the street and float with AI; the frames come from your product photos, acetate and hardware matched, no faces generated.
 >
-> Want 5 free stills, on MUSE or the St. Louis?
+> Want 5 free stills, on MUSE in Sauvage or in Bronze Metallic?
 >
 > Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
@@ -349,6 +353,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 
 ### Q-12 · Hawkins New York · Paul Denoly and Nick Blaine (2013 press; no 2026 source on hawkinsnewyork.com, so the greeting is name-free since 2026-10-17)
 **⏸ HOLD (cooling) since 2026-10-17: no Meta ad started in 36 days (§11). Not in wave B until a new ad appears.**
+**Hold lifted 2026-10-24 (§16): two ads started 10/21 (sitewide "October Sale"). Optional in wave B, Wed 28 9:45 ET, only on its own approval. Products full price, outside the sale lists.**
 
 **DM (day 0) to @hawkinsnewyork (verified 2026-10-11 from hawkinsnewyork.com):**
 > Hi Hawkins team, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
@@ -504,9 +509,10 @@ Rule for this lead: no glasses, bottles, "toast" or eggnog cues in frame.
 
 ### Q-19 · Alexis Bittar · Alexis Bittar
 **AWAITING OWNER APPROVAL — do not send until site is live**
+_CTA changed 2026-10-24 (§16): "a Lucite piece" pointed at a category in their `sale-lucite` collection (23 pieces). Both options now come from the hero's own collection (LESSONS 2026-10-18): the clutch in Black or Chocolate, $675, full price, no feed-exclusion tag._
 
 **DM (day 0) to @alexisbittar (verified 2026-10-21: the brand's own contact-us page links instagram.com/alexisbittar):**
-> Hi Alexis, Itamar from VXO. Idea for the Twisted Gold Side Handle clutch: a guard ropes it off on a gallery plinth labelled "Untitled (Clutch), 2026". Visitors lean in. A hand lifts it and walks out. AI builds an invented gallery; the clutch stays real. Want 5 free stills, the clutch or a Lucite piece?
+> Hi Alexis, Itamar from VXO. Idea for the Twisted Gold Side Handle clutch: a guard ropes it off on a gallery plinth labelled "Untitled (Clutch), 2026". Visitors lean in. A hand lifts it and walks out. AI builds an invented gallery; the clutch stays real. Want 5 free stills, the clutch in Black or Chocolate?
 
 **Email (day 1) to press@alexisbittar.com** · Subject: **Untitled (Clutch), 2026**
 > Hi Alexis (Press/Marketing team, could you pass this to Alexis?),
@@ -515,7 +521,7 @@ Rule for this lead: no glasses, bottles, "toast" or eggnog cues in frame.
 >
 > The gallery is invented with AI, no real museum or art. The clutch comes from your photos, hardware matched.
 >
-> Want 5 free stills, on the clutch or a Lucite piece?
+> Want 5 free stills, on the clutch in Black or in Chocolate?
 >
 > Itamar Meirovich · VXO · AI product films
 > {BUSINESS_ADDRESS}
@@ -780,3 +786,39 @@ The 5-item re-check from the pack's "If sent on Wed 21.10" note, plus the wave-B
 - **Q-1 LAKE:** "new" badge; **Q-6 Sunday Citizen:** Ciel compare-at (sale still running).
 - **Q-11 KREWE** (if wave B also rolls): the Sun 25 sale; MUSE compare-at decides the CTA.
 - Full re-check (SEND_QUEUE format) and log lines dated `2026-10-27`.
+
+## 16. Full re-check for Tue 27 (wave A) and Wed 28 (wave B) (2026-10-24, Sat, ~04:50–06:50 UTC; covers the missed 22–23 Oct runs)
+Tools: `products_check.py` on every named product, now with **`--sale-scan`** (new 24 Oct: lists the sale collections linked from each homepage and flags `SALE-LIST`), product JSON tags/compare-at, homepage banner scan, the brands' own About/contact pages, and `ad_library.py` **one Page per call with 40–60 s spacing** (19 Pages, 2 agreeing count reads each except Dana Rebecca 1, plus the top ~30 cards with start dates and ad copy). Nothing sent, nothing posted; $0. **Status: no owner approval (no reply since 10-12). Wed 21 and Thu 22 passed unsent; the 10-20 pack is superseded by `SEND_PACK_2026-10-27.md`.**
+
+**Wave A (Tue 27; times 14:05–17:50 Israel, one hour earlier than the 10-20 pack): one text changed (Q-7).**
+
+| # | Named products, 24 Oct | Ad Library 24 Oct: active · newest · started since 9/27 (of top 30) · video cards | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 5/5 $268, `badge: New Arrival` + `full price`; no sale collection | 131 · 10/22 · 25 · 4 | ✅ "new" holds; re-check badge Tue |
+| Q-2 Printfresh | Holiday Hens bandana 2/2 $28, compare-at = price; not in `womens-apparel-sale` (72) | 373 · 10/08 · 14 · 8 | ✅ |
+| Q-5 Little Beast | PBJ and OG 7/7 $48; not in `sales-galore` (39) | 51 · **10/06** · **3** · 4. Newest ad = "Ocean Breeze and Jackpot carriers 20 % off for a limited time" | ⚠ **no hold, borderline**: 21 days without a new ad on Tue 27, but 3 cards started since 9/27 (line: ≤2). On Wed 28 the 9/28 card leaves the window → hold from then unless a new ad starts |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225; no sale collection | 70 · 10/16 · 22 · 1 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pajamas still "25 % off" ($59.25 vs $89, 5 promo cards "Now 25% Off") | 163 · 10/19 · 17 · 11 | ✅ (no price named) |
+| Q-7 Dana Rebecca | Ava Bea 3/3 $2,795; **October studs swapped** → DRD Birthstone Charm 24/24 $495–695 (all 12 months), compare-at = price, no sale collection | 303 (1 read) · 10/09 · 22 · 13 | ✏️ **CTA changed:** "Ava Bea or the birthstone charm?" (no November studs are published; month-bound rule) |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800, lounge chair 7/8 $800, no compare-at; **not** in `flash-sale` (85, new "48 Hours Only, 20 % off selected styles") or `outlet` (37). Snug Bed Blanket IS in `flash-sale` | 452 · 10/13 · 3 · 9 | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 70 % 1/1 $13 | 198 · 10/13 · 13 · 5 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 vs $58 (`bow-promo`, unchanged); not in `sale` (70) | 195 · **10/15** (Holiday Collection video) · 13 · 8 | ✅ newest ad 12 days old on Tue 27 |
+| Q-10 Kinn | Pegasus and Swan pendant necklaces 8/8 $1,040, no compare-at | 79 · 10/17 · 15 · 10 | ✅ |
+
+**Wave B (Wed 28; times in §3): two CTAs changed (Q-11, Q-19), one send time moved (Q-11), Hawkins' hold lifted.**
+
+| # | Named products, 24 Oct | Ad Library 24 Oct | Verdict |
+|---|---|---|---|
+| Q-11 KREWE | MUSE Sauvage 18K and Bronze Metallic 12K 1/1 $335, no compare-at, tagged `limited edition`; St. Louis 1/1 $335–395 full price **but six St. Louis frames sit in `pre-shop-all-sale-he26` (213 products)**; homepage: "SALE PRE-SHOP IS LIVE … SALE PRICES DROP SUNDAY 10AM ET" | 42 · 10/22 · 30 · 15. **17 of 30 cards** read "Black Friday is coming early. Up to 70% off bestselling styles" / "Don't miss our biggest (and last) sale of the year" | ✏️ **CTA → "MUSE in Sauvage or Bronze?"** (MUSE is not in the pre-shop list). **Send-morning gate:** if MUSE shows a compare-at or a SALE-LIST flag, hold Q-11 until the sale ends. **Time → 8:30 CT (= 9:30 ET):** krewe.com/pages/about names a New Orleans flagship and an NYC HQ |
+| Q-12 Hawkins (hold) | Pleat lamp Peach/Bone 1/1 $450, Colorstory 1/1 $360, full price; not in `october-sale` (201) or `sale-1` (88) | 109 · **10/21** · 2 · 0 of 21. Both new ads: "Shop Our October Sale … sitewide sale … limited time", "up to 70 % off" dinnerware/textiles | **Hold lifted by rule** (an ad started within 21 days). Optional 9th DM at 9:45 ET = 15:45 Israel, needs the owner's own "send #Q-12"; stills house (0 video), so the 5 stills are the pitch. DM text unchanged |
+| Q-13 Legendary | Maple Glazed and Cookies & Cream Mini Donuts 2/2 $4.99 | 18 · 10/13 · 6 · 1 | ✅ |
+| Q-14 Equator | Office subscription 12/12 $96 (compare-at $140 = one-off/tier pricing, structural); La Marquesa 12/12 $20 | 60 · 10/19 · 10 · 0 | ✅ TZ verified: About page, Jordan Street roastery, San Rafael CA (PT) |
+| Q-15 Saranoni | XXL 80x100 Flax and Midnight $289, no compare-at; not in `sale` (49). The 14 Oct warehouse sale was a one-day event ("October 14, 2026 10 AM – 6 PM", About page); no banner now | 168 · 10/12 · 7 · 21 | ✅ TZ verified: contact page, Logan, UT 84321 (MT) |
+| Q-16 STONE AND STRAND | Unflippable yellow gold and LAB-created 1/1–2/2, full price; not in `sale` (91) | 11 · 10/22 · 11 · 4 (gifting ads) | ✅ TZ verified: About page "based in New York City" (ET) |
+| Q-17 THATCH | Wood Anywhere Coconut 21/21, Driftwood 20/20 $115; not in `all-sale` (79) | 25 · 10/23 · 25 · 4 | ✅ |
+| Q-18 Vosges | Snowbound Perfect Gift 1/1 $95, Little Gift 1/1 $32 | 37 · 10/19 · 25 · 11. New-customer codes on the Advent Calendar only (10 % / $50 off) | ✅ TZ verified: contact page, Chicago, IL 60618 (CT) |
+| Q-19 Alexis Bittar | Twisted Gold Side Handle Clutch Black and Chocolate 1/1 $675, no tags; **`sale-lucite` (23) and five other `sale-*` collections** on the homepage | 61 · 10/22 (Demi Fine launch) · 13 · 8 | ✏️ **CTA → "the clutch in Black or Chocolate?"** ("a Lucite piece" pointed at a category with its own sale list) |
+
+**Wave B times, Wed 28 (Israel winter time; ET +6, CT +7, MT +8, PT +9, checked with tzdata):** Q-16 15:00 (9:00 ET) · Q-19 15:15 (9:15 ET) · Q-11 15:30 (8:30 CT / 9:30 ET) · [Q-12 15:45 (9:45 ET), only on its own approval] · Q-18 16:15 (9:15 CT) · Q-15 16:30 (8:30 MT) · Q-13 17:40 (8:40 PT) · Q-14 17:55 (8:55 PT) · Q-17 18:10 (9:10 PT). All gaps ≥ 15 min in Israel time; all 8–10 am local.
+
+**Send-morning (Tue 27 / Wed 28) must-checks:** LAKE badge; Little Beast hold (Wed onward it trips unless a new ad starts); KREWE MUSE compare-at + SALE-LIST after the Sun 25 drop; Sunday Citizen's weekly 48-hour flash list must still skip Ciel; Hawkins only with its own approval. If wave A misses Tue 27, it rolls to **Thu 29** (Wed is wave B). After Thu 29, the next slot is Tue 3 Nov, when US standard time moves every Israel time one hour **later** again (new pack).
