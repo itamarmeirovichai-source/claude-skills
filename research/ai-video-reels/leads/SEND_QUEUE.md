@@ -73,7 +73,7 @@ All 24 candidates were re-read on 2026-10-09 (~22:45–23:40 UTC). Every active 
 
 ## 3. Proposed send schedule (only after the site is live)
 
-**Current slots (2026-10-24, §16):** wave A **Tue 27 Oct** at 14:05–17:50 Israel (`SEND_PACK_2026-10-27.md`); wave B **Wed 28 Oct**, recipient times Q-16 9:00 ET · Q-19 9:15 ET · Q-11 8:30 CT (= 9:30 ET) · Q-18 9:15 CT · Q-15 8:30 MT · Q-13 8:40 PT · Q-14 8:55 PT · Q-17 9:10 PT = **15:00 · 15:15 · 15:30 · 16:15 · 16:30 · 17:40 · 17:55 · 18:10 Israel** (Israel on winter time from Sun 25, US on summer time until Sun 1 Nov: ET +6, CT +7, MT +8, PT +9). The 13–15 Oct table below is history.
+**2026-10-25 (§17): Q-12 Hawkins is back on hold (sitewide 20 % off at checkout), so the optional 15:45 slot is gone; the other wave-B times are unchanged.** **Current slots (2026-10-24, §16):** wave A **Tue 27 Oct** at 14:05–17:50 Israel (`SEND_PACK_2026-10-27.md`); wave B **Wed 28 Oct**, recipient times Q-16 9:00 ET · Q-19 9:15 ET · Q-11 8:30 CT (= 9:30 ET) · Q-18 9:15 CT · Q-15 8:30 MT · Q-13 8:40 PT · Q-14 8:55 PT · Q-17 9:10 PT = **15:00 · 15:15 · 15:30 · 16:15 · 16:30 · 17:40 · 17:55 · 18:10 Israel** (Israel on winter time from Sun 25, US on summer time until Sun 1 Nov: ET +6, CT +7, MT +8, PT +9). The 13–15 Oct table below is history.
 
 **Precondition:** the site is live on its real domain by **Mon 12 Oct**, `{OWNER_NAME}` and a real `{BUSINESS_ADDRESS}` are filled in, and each send has the owner's own "send #Q-N DM" / "send #Q-N email". If the site is not live by Mon 12 Oct, move the whole table one week (Tue 20 / Wed 21 / Thu 22 Oct).
 Limits: ≤10 new DMs and ≤10 new emails a day, spaced 15 min apart, 8–10 am in the recipient's time. Times below are the **recipient's local time**; the owner's clock (ET) is in brackets. Time zones marked "?" are inferred, so confirm them on the send day.
@@ -354,6 +354,7 @@ Rules for this lead: sunglasses only; never mention blue-light lenses or the sal
 ### Q-12 · Hawkins New York · Paul Denoly and Nick Blaine (2013 press; no 2026 source on hawkinsnewyork.com, so the greeting is name-free since 2026-10-17)
 **⏸ HOLD (cooling) since 2026-10-17: no Meta ad started in 36 days (§11). Not in wave B until a new ad appears.**
 **Hold lifted 2026-10-24 (§16): two ads started 10/21 (sitewide "October Sale"). Optional in wave B, Wed 28 9:45 ET, only on its own approval. Products full price, outside the sale lists.**
+**⏸ BACK ON HOLD 2026-10-25 (§17): the October Sale is "20% OFF EVERYTHING. NO CODE NEEDED", applied at checkout, so both lamps are discounted although the feed lists them at full price (the 10-24 "full price" verdict missed it). Not in wave B on Wed 28. Re-check Mon 2 Nov: lift when the banner is gone and the lamps list at full price.**
 
 **DM (day 0) to @hawkinsnewyork (verified 2026-10-11 from hawkinsnewyork.com):**
 > Hi Hawkins team, Itamar from VXO. Idea for the Pleat lamp: one locked shot of a dim January room. Pieces arrive. Last, a hand sets down the Pleat and clicks it on, and the room finally shows its colour. AI builds the room; your pieces stay real. Want 5 free stills, Pleat or Colorstory?
@@ -822,3 +823,33 @@ Tools: `products_check.py` on every named product, now with **`--sale-scan`** (n
 **Wave B times, Wed 28 (Israel winter time; ET +6, CT +7, MT +8, PT +9, checked with tzdata):** Q-16 15:00 (9:00 ET) · Q-19 15:15 (9:15 ET) · Q-11 15:30 (8:30 CT / 9:30 ET) · [Q-12 15:45 (9:45 ET), only on its own approval] · Q-18 16:15 (9:15 CT) · Q-15 16:30 (8:30 MT) · Q-13 17:40 (8:40 PT) · Q-14 17:55 (8:55 PT) · Q-17 18:10 (9:10 PT). All gaps ≥ 15 min in Israel time; all 8–10 am local.
 
 **Send-morning (Tue 27 / Wed 28) must-checks:** LAKE badge; Little Beast hold (Wed onward it trips unless a new ad starts); KREWE MUSE compare-at + SALE-LIST after the Sun 25 drop; Sunday Citizen's weekly 48-hour flash list must still skip Ciel; Hawkins only with its own approval. If wave A misses Tue 27, it rolls to **Thu 29** (Wed is wave B). After Thu 29, the next slot is Tue 3 Nov, when US standard time moves every Israel time one hour **later** again (new pack).
+
+## 17. Light check, Sun 25 Oct (~05:50–07:40 UTC = 08:50–10:40 Israel, winter time from today)
+Tools: `products_check.py --sale-scan` on every product the Tue 27 and Wed 28 messages name (19 brands; by exact handle as well as by title), MUSE product JSON and KREWE's full feed tags, rendered homepages for KREWE, Hawkins and Sunday Citizen, and `ad_library.py` cards for 6 Pages (Foggy probe 195 = 195, then Cuddle Clones, Hawkins, Saranoni, Sunday Citizen, KREWE; one Page per call, 45 s apart). Nothing sent, nothing posted; $0. **Status unchanged: no owner approval (no reply since 10-12).**
+
+| # | 25 Oct read | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather **4/5** (XS out), $268, `badge: New Arrival` + `full price` | ✅ "new" holds; the pack's check line now says 4/5 |
+| Q-2 Printfresh | Hens bandana 2/2 $28; Bagheera bandana Ruby 2/2 $28; not in `womens-apparel-sale` (72) | ✅ |
+| Q-5 Little Beast | PBJ and OG 7/7 $48; not in `sales-galore` (39) | ✅ products; hold check stays for Tue morning (no Ad Library read today) |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29. Pajamas read "$29.25 (was 89)" = 67 % off, **refuted**: per variant 20–25 % off (the standing promo; ads "Now 25% Off" started 10/15–10/19). No homepage sale collection or sitewide banner | ✅ unchanged (checker fixed) |
+| Q-7 Dana Rebecca | Ava Bea 3/3 $2,795; Birthstone Charm 24/24 $495 | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800, lounge chair 7/8 $800; outside `flash-sale` (85) and `outlet` (37); homepage "48 Hours Only, 20% OFF Selected Styles" | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52, 10 % off (standing `bow-promo`); not in `sale` (70) | ✅ |
+| Q-10 Kinn | Pegasus and Swan pendant necklaces 8/8 $1,040 | ✅ |
+| **Q-11 KREWE** | MUSE Sauvage and Bronze 1/1 $335, no compare-at, **outside the pre-shop list (214) and without the `hesale2026` tag (231 of 449 products)**. Read 8 h before "prices drop Sunday 10am ET". Ads: 23 active (42 on 10-24), newest 10/22 | ✅ **no hold.** Wed 28 morning: re-check MUSE compare-at, SALE-LIST and SALE-TAG (prices move after this read) |
+| **Q-12 Hawkins** | Lamps list at $450 / $360, but the homepage and the `october-sale` page say "20% OFF EVERYTHING. NO CODE NEEDED … discount applied at checkout" | ⏸ **back on hold** (no optional DM on Wed 28); re-check Mon 2 Nov |
+| Q-13 Legendary | Maple Glazed, Cookies & Cream 2/2 $4.99 | ✅ |
+| Q-14 Equator | Office subscription 20 % off (structural, subscription vs one-off); La Marquesa 5–15 % off per variant (volume tiers) | ✅ unchanged |
+| Q-15 Saranoni | XXL 80x100 Flax and Midnight $289 (16/16 variants), no compare-at; tag `Doorbusters 2022` is old; not in `sale` (49) | ✅ |
+| Q-16 STONE AND STRAND | Unflippable yellow gold and LAB-created 1/1–2/2, full price; not in `sale` (90) | ✅ |
+| Q-17 THATCH | Wood Anywhere Coconut 21/21, Driftwood 20/20 $115; not in `all-sale` (79) | ✅ |
+| Q-18 Vosges | Snowbound Perfect Gift 1/1 $95, Little Gift 1/1 $32 (domain is vosgeschocolate.com) | ✅ |
+| Q-19 Alexis Bittar | Clutch Black and Chocolate 1/1 $675; six `sale-*` lists, clutch in none | ✅ |
+
+**Texts changed: none.** One pack check line updated (LAKE 4/5). Wave B times unchanged except that Hawkins' optional 15:45 slot is gone: Q-16 15:00 · Q-19 15:15 · Q-11 15:30 · Q-18 16:15 · Q-15 16:30 · Q-13 17:40 · Q-14 17:55 · Q-17 18:10 Israel.
+**Tool fixes (`products_check.py`):** MARKDOWN now prints the per-variant "% off" range; new **SALE-TAG** (an event tag such as `hesale2026`; past-year tags and app tags like `script-sale-allowed` ignored) and **SITEWIDE** (with `--sale-scan`: a homepage banner for a sitewide or checkout discount).
+**Tue 27 morning must-checks (unchanged):** LAKE badge; Little Beast hold (3 cards since 9/27 on 10-24; trips Wed 28 unless a new ad); Sunday Citizen's flash list vs Ciel; now also any SITEWIDE banner at the ten brands (none today).
+

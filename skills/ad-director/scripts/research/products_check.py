@@ -20,14 +20,22 @@ Flags reported (any one makes the product unfit to name in a message):
   HIDDEN    tag contains redirect / hidden / 404 / unlisted / exclude-search / exclude-product,
             or a tag is exactly hide / pre-launch
   FINAL     tag or title says final sale / final farewell / last chance / archive
-  MARKDOWN  compare_at_price above price on any available variant (a sale, not full price)
+  MARKDOWN  compare_at_price above price on any available variant (a sale, not full price);
+            printed as the per-variant "% off" range (2026-10-25: min price vs max compare-at
+            made a standing 25 % promo read as 67 % off)
   OOS       no variant available
   PARTIAL   some variants unavailable (fine to name, but say which ones are in stock)
   PAGE!=200 the public product page does not load as itself (redirect or error)
+  SALE-TAG  a tag names a sale event (hesale2026, black-friday, bfcm, doorbuster...), "wholesale"
+            excluded. Added 2026-10-25: KREWE tagged its sale picks `hesale2026` before the drop. Tags naming a
+            past year ("Doorbusters 2022") are listed under tags but not flagged.
   SALE-LIST (with --sale-scan) the product sits in a sale collection linked from the homepage
             (pre-shop / flash-sale / outlet / black-friday ...), even if its price has not dropped
             yet. Added 2026-10-24: KREWE's "pre-shop-all-sale-he26" listed 213 products, six St. Louis
-            frames among them, two days before "SALE PRICES DROP SUNDAY 10AM ET". A product on the
+            frames among them, two days before "SALE PRICES DROP SUNDAY 10AM ET".
+  SITEWIDE  (with --sale-scan) the homepage announces a sitewide / checkout discount ("20% off
+            everything, no code needed"), so every product is discounted at checkout even though the
+            feed shows full price. Added 2026-10-25 (Hawkins October Sale). A product on the
             list is treated like a markdown: don't name it in a message that goes after the drop.
 """
 import argparse
@@ -44,6 +52,19 @@ HIDDEN_WORDS = ("redirect", "hidden", "404", "unlisted", "do-not-show", "noindex
 EXACT_HIDE_TAGS = ("hide", "hide-product", "hide_product", "hidden-product", "pre-launch", "prelaunch")
 # App tags such as exclude_rebuy / exclude-set only steer upsell widgets; they are listed, not flagged.
 INFO_WORDS = ("exclude",)
+# A tag naming a sale event (KREWE "hesale2026" on 231 of 449 products, 2026-10-25, before the
+# prices dropped) marks a product picked for the next sale. "wholesale" is not a sale tag.
+# App permission tags ("script-sale-allowed" at Foggy, "no-sale", "sale-excluded") are not events.
+SALE_TAG_RE = re.compile(r"(?<!whole)(?<!no[-_ ])sale(?!s?[-_ ]?(?:channel|rep|allowed|eligible|exclu))"
+                         r"|black[-_ ]?friday|bfcm|cyber|doorbuster", re.I)
+
+
+def _old_event(tag: str) -> bool:
+    """True when a tag names a past year ("Doorbusters 2022"): listed, not flagged."""
+    years = [int(y) for y in re.findall(r"20\d\d", tag)]
+    return bool(years) and max(years) < time.gmtime().tm_year
+
+
 FINAL_WORDS = ("final sale", "final-sale", "finalsale", "final farewell", "final-farewell",
                "last chance", "archive", "discontinued")
 
@@ -70,6 +91,11 @@ SALE_WORDS = ("sale", "pre-shop", "preshop", "flash", "outlet", "clearance", "bl
               "cyber", "doorbuster", "warehouse", "promo", "deal", "markdown", "last-chance")
 
 
+# "applied at checkout" alone is too broad (KREWE's returns page: "return credit ... applied at checkout").
+SITEWIDE_RE = re.compile(r"off everything|everything \d+ ?% off|sitewide|site-wide|no code needed"
+                         r"|(?:discount|saving|\d+ ?%)[^.]{0,60}applied at checkout", re.I)
+
+
 def sale_lists(domain):
     """Sale collections linked from the homepage → {collection handle: set(product handles)}."""
     try:
@@ -79,6 +105,13 @@ def sale_lists(domain):
     handles = sorted({h for h in re.findall(r'/collections/([a-z0-9][a-z0-9_-]*)', body.decode("utf-8", "ignore"))
                       if any(w in h for w in SALE_WORDS)})
     out = {}
+    # Sitewide checkout discounts never show in products.json (added 2026-10-25: Hawkins' homepage read
+    # "OCTOBER SALE: 20% OFF EVERYTHING. NO CODE NEEDED ... Discount applied at checkout" while every
+    # lamp we name still listed at full price). Keep the banner text; main() flags every row SITEWIDE.
+    text = re.sub(r"<[^>]+>", "\n", re.sub(r"(?s)<(script|style)\b.*?</\1>", "", body.decode("utf-8", "ignore")))
+    banner = sorted({ln.strip() for ln in text.splitlines() if 8 < len(ln.strip()) < 160 and SITEWIDE_RE.search(ln)})
+    if banner:
+        out["_sitewide"] = banner[:4]
     for h in handles[:12]:
         items = []
         for page in range(1, 9):
@@ -131,6 +164,8 @@ def assess(domain, p):
         flags.append("HIDDEN")
     if any(w in t for t in tags + [title.lower()] for w in FINAL_WORDS):
         flags.append("FINAL")
+    if any(SALE_TAG_RE.search(t) and not _old_event(t) for t in tags):
+        flags.append("SALE-TAG")
     marked = [v for v in avail if v.get("compare_at_price") and
               float(v["compare_at_price"]) > float(v.get("price") or 0)]
     if marked:
@@ -149,9 +184,14 @@ def assess(domain, p):
         "unavailable": [v.get("title") for v in variants if not v.get("available")][:12],
         "price": prices[0] if prices else None, "price_max": prices[-1] if prices else None,
         "compare_at": max((float(v["compare_at_price"]) for v in marked), default=None),
+        # Per-variant discount (added 2026-10-25): "$29.25 (was 89.0)" mixed the cheapest variant's
+        # price with the dearest variant's compare-at and read a standing 25 % promo as 67 % off
+        # (Cuddle Clones pajamas). Report the real range, variant by variant.
+        "off_pct": sorted({round(100 * (1 - float(v["price"]) / float(v["compare_at_price"])))
+                           for v in marked}) or None,
         "page": status, "flags": flags,
         "flag_tags": [t for t in tags if t in EXACT_HIDE_TAGS or
-                      any(w in t for w in HIDDEN_WORDS + FINAL_WORDS + INFO_WORDS)],
+                      any(w in t for w in HIDDEN_WORDS + FINAL_WORDS + INFO_WORDS) or SALE_TAG_RE.search(t)],
     }
 
 
@@ -172,8 +212,10 @@ def main():
     if a.sale_scan:
         result["sale_lists"] = {c: (sorted(hs) if isinstance(hs, set) else hs) for c, hs in sales.items()}
         print("  sale collections linked from the homepage: " + (", ".join(
-            f"{c} ({len(hs)})" for c, hs in sales.items() if c != "_error") or "none") +
+            f"{c} ({len(hs)})" for c, hs in sales.items() if not c.startswith("_")) or "none") +
             (f"  [homepage error: {sales['_error']}]" if "_error" in sales else ""))
+    if sales.get("_sitewide"):
+        print("  SITEWIDE offer on the homepage: " + " | ".join(sales["_sitewide"]))
     for q in a.queries:
         ql = q.lower()
         # Every word of the query must appear in the title, in any order and ignoring dashes/punctuation
@@ -185,7 +227,9 @@ def main():
         hits = matched[: a.limit]
         rows = [assess(a.domain, p) for p in hits]
         for r in rows:
-            inlists = [c for c, hs in sales.items() if c != "_error" and r["handle"] in hs]
+            inlists = [c for c, hs in sales.items() if not c.startswith("_") and r["handle"] in hs]
+            if sales.get("_sitewide"):
+                r["flags"].append("SITEWIDE")
             if inlists:
                 r["flags"].append("SALE-LIST")
                 r["sale_lists"] = inlists
@@ -197,7 +241,8 @@ def main():
         print(f"  [{q}] {len(hits)} match(es), {len(clean)} clean{more}")
         for r in rows:
             fl = ",".join(r["flags"]) or "OK"
-            ca = f" (was {r['compare_at']})" if r["compare_at"] else ""
+            pct = r.get("off_pct")
+            ca = (f" ({pct[0]}% off)" if len(pct) == 1 else f" ({pct[0]}-{pct[-1]}% off per variant)") if pct else ""
             print(f"    {fl:<22} {r['available']:>6}  ${r['price']}{ca}  {r['title']}  /products/{r['handle']}  page={r['page']}")
             if r["unavailable"] and "PARTIAL" in r["flags"]:
                 print(f"      out: {', '.join(map(str, r['unavailable']))}")

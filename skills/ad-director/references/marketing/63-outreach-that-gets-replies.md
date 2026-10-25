@@ -329,7 +329,7 @@ Read from each brand's public `/products.json` on Fri 16 Oct, five weeks before 
 
 What it means for the films [inf]:
 - **Full-price houses** spend on new collections, and none has started holiday markdowns. Pitch their newest full-price line. This is also where a Season plan (one film per drop) fits best, since they drop weekly (Printfresh, Dana Rebecca) or monthly (Brackish, LAKE).
-- **Standing-promo brands** always show a "sale" price, so a MARKDOWN flag tells us nothing. Track the promo price itself. A change in depth is the signal (Cuddle Clones got shallower, which reads as a list-price reset before the holiday push, not clearance [inf]). Messages name no price.
+- **Standing-promo brands** always show a "sale" price, so a MARKDOWN flag tells us nothing. Track the promo depth per variant. A change in depth is the signal. (~~Cuddle Clones got shallower~~ [refuted 2026-10-25]: the 10-16 reading compared the cheapest variant's price with the dearest variant's compare-at; per variant the pajamas were 20–25 % off on both dates, and the checker now prints the per-variant range.) Messages name no price.
 - **Clearance brands** are retiring old lines. Pitch only what was published in the last ~60 days at full price (Sunday Citizen's Ciel love seat, 24 Sep). Never a Last Chance or Final Farewell piece.
 - None of the ten had a sitewide Black Friday sale yet on 16 Oct. Re-measure on Tue 20 Oct and on Mon 2 Nov. The first brand to go sitewide moves its follow-up angle to an evergreen, offer-free film (LESSONS 2026-10-10: the evergreen twin).
 
@@ -349,6 +349,24 @@ What it means [inf]:
 - **Flash sales don't advertise.** 1 of 2 live markdown events on 24 Oct (Sunday Citizen) was invisible in the ads and visible only in a homepage collection, so the ad read alone is not enough.
 - **A sale event is not a cold signal.** Hawkins' first new ads in 40 days (9/11 → 10/21) are sale ads, and by the §7.5 rule they lift its hold. Pitch only products outside the sale lists, and expect a busy inbox that week.
 - Rule: `vxo-leads` §1 (run `--sale-scan` Oct–Dec), `vxo-daily` Step 1, LESSONS 2026-10-24.
+
+### 7.4c Sale-end watch, baseline (measured 2026-10-25, Sun ~06:00–07:30 UTC) [m]
+Question: for brands running dated sales, when does the sale list empty, and does new full-price creative start the week after? That week is the cleanest moment to pitch a full-price film. Today is the baseline: 6 Pages read (one per call, 45 s apart; top ~30 cards with start dates and copy) plus the homepages, product tags and checkout banners.
+
+| Brand | Sale state, 25 Oct | Ads: active · newest · started since 9/25 · of those, promo copy | What it shows |
+|---|---|---|---|
+| **KREWE** | Pre-shop list 214 (was 213); **231 of 449 products tagged `hesale2026`**, MUSE untagged and outside the list, $335; prices drop today 10 am ET | 23 (was 42 on 10-24) · 10/22 · 23 · 5 ("biggest (and last) sale of the year"); the rest Round Top pop-up (Oct 16–31) and catalogue cards | The sale is tagged in the feed before the price moves. The active count halved the day before the drop |
+| **Hawkins** | Homepage: "OCTOBER SALE: 20% OFF EVERYTHING. NO CODE NEEDED"; `october-sale` page: "Save 20% sitewide (including on our already-marked-down SALE section). Discount applied at checkout." Lamps list at $450 / $360 | 109 · 10/21 · 2 · 2 | A checkout-only discount is invisible in `products.json`. Its only new creative in 40 days is the sale |
+| **Sunday Citizen** | Second 48-hour flash sale in a week ("48 Hours Only, 20% OFF Selected Styles", `flash-sale` 85); Ciel outside | 452 · 10/13 · 3 · 1 (10/01 "Up To 25% OFF") | Neither flash sale (10-18, 10-24) got an ad |
+| **Saranoni** | One-day warehouse sale on 14 Oct, over | 168 · 10/12 · 7 · 1 (first order 15 % off) | No ad for the event, and no new ad in the 11 days after it |
+| **Cuddle Clones** | Standing pajama promo, 20–25 % off per variant; no sale collection on the homepage | 163 · 10/19 · 17 · 4 ("Now 25% Off") | The promo is part of the creative, not an event |
+| **The Foggy Dog** (control) | Standing `bow-promo` 10 % off on our collar; `sale` (70) | 195 · 10/15 · 13 · 0 | A price promo that never appears in an ad |
+
+What it means [inf]:
+- **Three kinds of sale, three places to look.** A dated sitewide event shows in ad copy (KREWE, Hawkins). A flash or one-day event shows only on the site (Sunday Citizen, Saranoni). A checkout discount shows only in the homepage banner (Hawkins). `products_check.py --sale-scan` now reads all three on the site side: SALE-LIST, SALE-TAG and SITEWIDE.
+- **During a sitewide event, the brand's new creative is the sale** (Hawkins 2 of 2, KREWE all 23 cards started in the 4 days before the drop). A full-price film pitch lands better in the week after the event ends than during it [inf, to be measured].
+- **Next reads:** Hawkins after 31 Oct (does `october-sale` empty, does a full-price ad start by 7 Nov?); KREWE when the `hesale2026` list stops selling (the ads call it the "last sale of the year"); Sunday Citizen on each new flash list. Log them here.
+- Changed: `products_check.py` (per-variant % off, SALE-TAG, SITEWIDE), `vxo-leads` §1, LESSONS 2026-10-25, Hawkins Q-12 back on hold for Wed 28.
 
 ### 7.5 Ad-count moves as a heat signal (measured 2026-10-09 → 2026-10-17) [m]
 Question: when a queued brand's active Meta ad count falls, is it cutting spend (cooler) or rotating creative before the holiday push (hotter)? All 19 queued Pages were read with `ad_library.py page` (US, active, 2 agreeing loads each; Saranoni 1 load) on 10-09 and again on Sat 17 Oct. "Fresh flow" = how many of the top ~30 cards started in the last 30 days, and how old the newest ad is.
