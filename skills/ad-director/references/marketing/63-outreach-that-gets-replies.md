@@ -491,10 +491,28 @@ Question (backlog, "founder-house cold opens"): how long is the open before a fo
 - [m] **The only ~5 s cold open was a 14-day launch ad** (Jones Road's Bobbi Kit), and its open is product and models, not a scene.
 - [m] **Founders do appear in staged comedy.** Mid-Day Squares' 316-day long-runner is a scripted retro-TV skit cast with the founders' family. So a founder house can take a story, as long as the people are the brand's own real people on real footage.
 - [m] In the founder pieces, the product cutaway lands at **1–4.5 s** (Bittar), often with a big title super. That cutaway is the slot an AI insert fits without touching the founder's voice.
-- [inf] Our old rule ("≤6 s cold open before the founder") put our film where these brands put the face. The better default is a **2–4 s product insert** at the moment the founder names the product, plus an optional **≤2 s wordless open** (one product action). A 5 s open is pitched only around a launch.
+- [inf] Our old rule ("≤6 s cold open before the founder") put our film where these brands put the face. The better default is a **2–4 s product insert** (corrected 2026-10-26, §7.6d: **3–5 s** in founder product explainers) at the moment the founder names the product, plus an optional **≤2 s wordless open** (one product action). A 5 s open is pitched only around a launch.
 
 **Rule changes** (`vxo-film` Step 1, `vxo-leads` §3 step 3, LESSONS [self]): founder house = insert first, ≤2 s open optional, never script, voice or imitate the founder; world house (Vosges) = a story next to their world, never their characters or art.
 **DMs:** no text changed. Q-19's DM never says "cold open"; on a reply, offer the stills and a 2–4 s insert for Alexis's own videos (the email's "film idea" stands).
+
+### 7.6d Founder insert spec: the cutaways, measured end to end (2026-10-26) [m, frame-read at 1 fps + ffmpeg scene cuts (threshold 0.25) + silencedetect/ebur128, not model-read]
+Question (backlog, "founder insert spec"): what do the founder's own cutaways look like, so a VXO insert cuts straight in? Method: one Ad Library call (Page 133108280093101, logged-out top 30 cards, 26 Oct ~06:20 UTC); the 3 founder videos downloaded to the scratchpad (never committed). The other 3 video cards were a creator split-screen try-on (67 s), an editorial model film (16 s) and a 15 s cut of it, which are not founder pieces.
+
+| Ad (started · age) | Ratio · length | Founder on camera | Cutaways (start–end s · length · what) | Supers | End |
+|---|---|---|---|---|---|
+| "I AM ALEXIS BITTAR" (8/11 · 76 d) | 1:1 · 30.2 s | ~19 s | archive collage PiP ~4–6 (≈2 s); bangles 9.5–10.2 (0.7); photo grid 11.6–13.6 (2.0); workshop hands carving 15.1–17.9 (2.9); Plaza street + film still 23.2–26.2 (four shots of 0.5–0.8) | red bold caps "I AM ALEXIS BITTAR" 0–3 s, over his face | logo on black 29.2–30.2 (silent 0.9 s) |
+| "THE TINY" (9/25 · 31 d) | 9:16 · 35.8 s | ~16 s | title card 4.6–8.2 (3.6, studs on a mirror surface); fingertip macro 10.3–12.1 (1.8); ear on a model 12.1–15.5 (3.4); packshot with finger 22.0–25.5 (3.5); ear 25.5–28.8 (3.3) | yellow heavy sans "THE TINY", top third, on the title card only | macro + logo overlay 31.9–34.9 (3.0) |
+| "Molten Bezel Front Back" (10/13 · 13 d) | 1:1 · 41.9 s | ~16 s | title over a warm hand macro 1.1–6.1 (5.0); hand macro 12.1–18.8 (6.8); 25.5–30.8 (5.3); 32.5–35.9 (3.4) | yellow serif caps "THE MOLTEN BEZEL FRONT BACK", top third, on the first insert only | logo on black 38.6–41.9 (3.3) |
+
+**What it says.**
+- [m] **Cutaways are half the runtime.** Before the end card the founder is on camera for ~16–19 s of 29–39 s; the rest is 4–7 cutaways. Product explainers (TINY, Molten Bezel) use **3.4–6.8 s product inserts** (median ≈ 3.5 s and 5.2 s); the origin story uses **0.5–2.9 s** archive/B-roll flashes.
+- [m] **Inserts carry no sound of their own.** His VO and the bed run under every cutaway: no silence ≥ 0.4 s at −40 dB except the 0.9 s logo tail in the 76-day ad. Integrated loudness −14.1 / −14.2 / −14.4 LUFS.
+- [m] **Only one super per film**, on the first insert, in the top third (yellow serif or heavy sans; red caps over the face in the origin story). The other inserts are clean.
+- [m] Every product insert is a **real macro in a real hand or on a surface**, warm low-key light, no face. 2 of 3 are 1:1, 1 is 9:16, all 30 fps. End = their own logo on black (1–3 s), never a packshot card.
+- [inf] So our "2–4 s insert" (§7.6c) was a little short for his product explainers: 3–5 s fits his rhythm. The slot AI can honestly fill is the **story cutaway** (the archive/street flashes) and the **title clip**; the macro product inserts are where fidelity matters most, so they come from his real photos (`vxo-film` fidelity rules) or are left to his own crew.
+
+**Changed:** `vxo-film` Step 7 "Founder insert set" (3 product inserts of 3–5 s, 1 title clip of 3.5–5 s with empty top third, 1–2 story cutaways of 0.7–3 s, no audio, no end card, 1:1 + 9:16); §7.6c's "2–4 s" now reads "3–5 s" for product inserts in founder explainers; LESSONS [self]. **Q-19's DM text is unchanged** (it names no format); on a reply, the offer is the stills plus this insert set.
 
 ## 8. What only the owner can do (blocking first)
 

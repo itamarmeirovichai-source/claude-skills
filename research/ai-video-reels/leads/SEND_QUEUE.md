@@ -853,3 +853,28 @@ Tools: `products_check.py --sale-scan` on every product the Tue 27 and Wed 28 me
 **Tool fixes (`products_check.py`):** MARKDOWN now prints the per-variant "% off" range; new **SALE-TAG** (an event tag such as `hesale2026`; past-year tags and app tags like `script-sale-allowed` ignored) and **SITEWIDE** (with `--sale-scan`: a homepage banner for a sitewide or checkout discount).
 **Tue 27 morning must-checks (unchanged):** LAKE badge; Little Beast hold (3 cards since 9/27 on 10-24; trips Wed 28 unless a new ad); Sunday Citizen's flash list vs Ciel; now also any SITEWIDE banner at the ten brands (none today).
 
+
+## 18. Eve-of-send check, Mon 26 Oct (~05:50–06:30 UTC = 07:50–08:30 Israel)
+Tools: `products_check.py --sale-scan` on every product the Tue 27 messages name plus KREWE MUSE; product JSON for the LAKE set and both MUSE colourways; homepage text for Hawkins, KREWE and Sunday Citizen; `ad_library.py` one Page per call, ≥45 s apart (Foggy probe, Little Beast, KREWE, Hawkins, Alexis Bittar), with the per-card start dates and ad copy. Nothing sent, nothing posted; $0. **Status unchanged: no owner approval (no reply since 10-12).**
+
+**Wave A (Tue 27): no fact changed, no text changed, no hold.**
+
+| # | 26 Oct read | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 4/5 (XS out) $268, tags `badge: New Arrival` + `full price`, published 1 Oct; no homepage sale list, no SITEWIDE. "CloudPima" is their fabric line (no product titled so); full-price pima sets in stock | ✅ "new" holds |
+| Q-2 Printfresh | Hens bandana 2/2 $28; Winter Holly Bagheera bandana Ruby 2/2 $28; `womens-apparel-sale` (72) holds neither | ✅ |
+| Q-5 Little Beast | PBJ and OG 7/7 $48; not in `sales-galore` (39). Ad Library: 51 active (2 agreeing reads), newest **10/06**, card starts 10/06 · 10/01 · 9/28 → **3** in the window | ✅ **no hold on Tue 27.** Corrected: by calendar days the 9/28 card leaves the window on **Thu 29** (not Wed 28), so Q-5 holds on the Thu 29 fallback; `ad_library.py` now counts calendar days |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pet-face pajamas 22–25 % off per variant (standing promo); no sale list, no SITEWIDE | ✅ |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; Birthstone Charm 24/24 $495 | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800, lounge chair 7/8 $800; the 48-hour flash banner is gone; homepage now "THE FALL EDIT Up to 25% OFF" + free gifts at $260+/$350+; neither Ciel piece is in `fall-edit` (14), `the-fall-edit` (30), `sale` (37), `flash-sale` (85) or `outlet` (37). A gift with purchase is not a markdown | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 (10 % off, standing `bow-promo`); not in `sale` (70). Ad Library 195 active, **newest 10/15** (12 days on Tue), 13 cards since 9/26 | ✅ no hold |
+| Q-10 Kinn | Pegasus and Swan pendant necklaces 8/8 $1,040, no compare-at | ✅ |
+
+**Wave B (Wed 28): one timing change proposed (Q-11).**
+- **Q-11 KREWE.** MUSE Sauvage and Bronze 1/1 $335, no compare-at, no `hesale2026` tag, in none of the 12 homepage sale lists (`all-sale-he26` 131, `best-of-sale-he26` 60, `final-few-sale-he26` 45 …) now that the sale is live. Not marked down → the hold gate is **not** tripped. **But** 14 of the top 30 cards started 10/25 and read "Sale is LIVE … Four days only, **ends Wednesday, October 28**", so the Wed 28 slot is the sale's last morning. A KREWE MUSE ad started 10/21 ("Introducing MUSE, a limited-edition silhouette debuting on the runway this New York Fashion Week") backs the MUSE CTA. **Proposed (LESSONS 2026-10-26):** move Q-11 to **Thu 29, 15:30 Israel (8:30 CT / 9:30 ET)** if wave A went on Tue 27; if wave A rolls to Thu 29, Q-11 goes into the Tue 3 Nov pack. Re-check MUSE and the sale end that morning. The owner may keep Wed 28 (no rule is broken there).
+- Wave B times on Wed 28 without Q-11: Q-16 15:00 · Q-19 15:15 · Q-18 16:15 · Q-15 16:30 · Q-13 17:40 · Q-14 17:55 · Q-17 18:10 Israel (gaps ≥ 15 min).
+- **Q-12 Hawkins stays on hold.** The homepage and `october-sale` still say "20% OFF EVERYTHING · NO CODE NEEDED"; no end date on the site, the sale page or the 5 sale ads (all "limited time", started 10/21). Re-check Mon 2 Nov.
+
+**Tue 27 morning must-checks (unchanged):** LAKE badge; Little Beast (3 cards; no hold unless a card drops out of the top 30); SITEWIDE at the ten; Sunday Citizen's lists vs Ciel.

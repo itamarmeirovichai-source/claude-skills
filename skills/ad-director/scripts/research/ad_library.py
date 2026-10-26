@@ -149,11 +149,16 @@ def summarize_cards(ads: list[dict], now: float | None = None) -> dict:
     for a in ads:
         f = (a.get("snapshot") or {}).get("display_format") or "?"
         fmts[f] = fmts.get(f, 0) + 1
+    # Ages in whole CALENDAR days (UTC dates; Meta stamps starts at 07:00 UTC = midnight PT), not in
+    # elapsed 24 h blocks. 2026-10-26: with elapsed time, a 9/28 card counted as "≤30 d" at 06:00 UTC on
+    # Thu 29 but not at 10:30 UTC the same day, so the Little Beast hold depended on the clock.
+    # Rule now: a card started on or after (today − 30 days) counts.
+    today = datetime.fromtimestamp(now, timezone.utc).date()
     days = []
     for a in ads:
         sd = a.get("start_date")
         if isinstance(sd, (int, float)) and sd > 0:
-            days.append(int((now - sd) // 86400))
+            days.append((today - datetime.fromtimestamp(sd, timezone.utc).date()).days)
     starts = sorted((a.get("start_date") for a in ads if isinstance(a.get("start_date"), (int, float))), reverse=True)
     vid = kinds.count("video")
     return {
