@@ -139,6 +139,55 @@ def classify(ad: dict) -> str:
     return "other"
 
 
+# Sale end-date reader (2026-10-27, backlog; LESSONS 2026-10-26). KREWE's newest cards said "Four days
+# only, ends Wednesday, October 28" and our wave-B DM was set for that very morning. These patterns pull
+# dated / deadline phrases out of the ad copy so the send-day check prints them next to the counts.
+_MON = r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?"
+_DAY = r"(?:mon|tues?|wed(?:nes)?|thu(?:rs)?|fri|sat(?:ur)?|sun)(?:day)?"
+SALE_DATE_RE = re.compile(
+    r"(?:\b(?:ends?|ending|through|thru|until|till|til|by)\s+(?:"
+    rf"(?:{_DAY}),?\s+{_MON}\s+\d{{1,2}}(?:st|nd|rd|th)?"          # ends Wednesday, October 28
+    rf"|{_MON}\s+\d{{1,2}}(?:st|nd|rd|th)?"                         # through Nov 2
+    r"|\d{1,2}/\d{1,2}(?:/\d{2,4})?"                                # thru 11/2
+    rf"|(?:{_DAY})\b"                                                 # ends Sunday
+    r"|(?:today|tonight|tomorrow|midnight)\b))"
+    r"|\b(?:\d+|one|two|three|four|five|six|seven)\s+(?:days?|hours?)\s+only\b"  # 48 hours only
+    r"|\blast\s+(?:day|chance|call)\b"
+    r"|\bfinal\s+(?:day|hours)\b",
+    re.I)
+
+
+def _ad_text(ad: dict) -> str:
+    s = ad.get("snapshot") or {}
+    parts = []
+    for src in [s] + list(s.get("cards") or []):
+        b = src.get("body")
+        parts.append(b.get("text") or "" if isinstance(b, dict) else b or "")
+        for k in ("title", "caption", "link_description"):
+            if isinstance(src.get(k), str):
+                parts.append(src[k])
+    return " \n ".join(p for p in parts if p)
+
+
+def sale_dates(ads: list[dict], max_age_days: int = 21, now: float | None = None) -> list[dict]:
+    """Dated / deadline phrases in the copy of cards started in the last `max_age_days` calendar days,
+    most-cited first: [{"phrase", "cards", "newest_start"}]. A phrase is the brand's own claim [c]."""
+    today = datetime.fromtimestamp(now or time.time(), timezone.utc).date()
+    hits: dict[str, dict] = {}
+    for a in ads:
+        sd = a.get("start_date")
+        if not isinstance(sd, (int, float)) or sd <= 0:
+            continue
+        d = datetime.fromtimestamp(sd, timezone.utc).date()
+        if (today - d).days > max_age_days:
+            continue
+        for m in {re.sub(r"\s+", " ", x.group(0)).strip().lower() for x in SALE_DATE_RE.finditer(_ad_text(a))}:
+            h = hits.setdefault(m, {"phrase": m, "cards": 0, "newest_start": d.isoformat()})
+            h["cards"] += 1
+            h["newest_start"] = max(h["newest_start"], d.isoformat())
+    return sorted(hits.values(), key=lambda h: (-h["cards"], h["phrase"]))
+
+
 def summarize_cards(ads: list[dict], now: float | None = None) -> dict:
     now = now or time.time()
     n = len(ads)
@@ -173,6 +222,7 @@ def summarize_cards(ads: list[dict], now: float | None = None) -> dict:
         "newest_start": datetime.fromtimestamp(starts[0], timezone.utc).date().isoformat() if starts else None,
         "ai_flagged": sum(1 for a in ads if a.get("contains_digital_created_media")),
         "platforms": sorted({p for a in ads for p in (a.get("publisher_platform") or [])}),
+        "sale_dates": sale_dates(ads, now=now),
     }
 
 
@@ -390,6 +440,13 @@ def to_markdown(rows: list[dict]) -> str:
         conf = "yes" if r["active_confirmed"] and r["filters_confirmed"] else "partial" if r["active_confirmed"] else "NO"
         lines.append(f"| {r['label']} | {r['page_id']} | {r['active_ads']} | {vfs} | {cvs} | {r.get('cards_read', 0)} | "
                      f"{r.get('started_last_30d', '—')} | {r.get('running_60d_plus', '—')} | {r.get('ai_flagged', '—')} | {conf} |")
+    for r in rows:
+        sd = r.get("sale_dates")
+        if sd:
+            lines.append(f"- {r['label']}: sale dates in copy (cards started ≤21 d): "
+                         + "; ".join(f'"{h["phrase"]}" ×{h["cards"]} (newest {h["newest_start"]})' for h in sd[:5]))
+        elif "cards_read" in r:
+            lines.append(f"- {r['label']}: no dated sale phrase in copy of cards started ≤21 d")
     lines.append("")
     lines.append("Source: public Meta Ad Library, US, active, read with skills/ad-director/scripts/research/ad_library.py "
                  f"on {datetime.now(timezone.utc).date().isoformat()}. Video filter counts any ad with one video asset "
@@ -462,6 +519,12 @@ def selftest() -> int:
     assert len(ads) == 3, ads
     assert s["card_video"] == 1 and s["card_image"] == 2 and s["started_last_30d"] == 2 and s["running_60d_plus"] == 1, s
     assert s["ai_flagged"] == 1 and parse_connections(html)[0]["count"] == 218
+    sale = ad(3, False, 2)
+    sale["snapshot"]["body"] = {"text": "Sale is LIVE. Four days only, ends Wednesday, October 28. 48 hours only!"}
+    old = ad(4, False, 40)
+    old["snapshot"]["body"] = {"text": "Ends Sunday"}
+    sd = sale_dates([sale, old], now=now)
+    assert {h["phrase"] for h in sd} == {"four days only", "ends wednesday, october 28", "48 hours only"}, sd
     assert text_count("~220 results") == (220, True) and text_count("No ads match") == (0, False)
     print("selftest OK")
     return 0

@@ -878,3 +878,25 @@ Tools: `products_check.py --sale-scan` on every product the Tue 27 messages name
 - **Q-12 Hawkins stays on hold.** The homepage and `october-sale` still say "20% OFF EVERYTHING · NO CODE NEEDED"; no end date on the site, the sale page or the 5 sale ads (all "limited time", started 10/21). Re-check Mon 2 Nov.
 
 **Tue 27 morning must-checks (unchanged):** LAKE badge; Little Beast (3 cards; no hold unless a card drops out of the top 30); SITEWIDE at the ten; Sunday Citizen's lists vs Ciel.
+
+## 19. Send-morning check, Tue 27 Oct (~05:40–06:10 UTC = 07:40–08:10 Israel; light run)
+Tools: `products_check.py --sale-scan` on every product the Tue 27 pack names; LAKE product JSON (tags); `ad_library.py` for Little Beast (hold line) and KREWE (Q-11; first live use of the new sale-date line). Nothing sent, nothing posted; $0. **Status: no owner approval yet (no reply since 10-12, 15 days). Gate 13:00 Israel today.**
+
+**Wave A (Tue 27): no fact changed, no text changed, no hold.**
+
+| # | 27 Oct read | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 4/5 (XS out) $268; tags still `badge: New Arrival` + `full price`; no homepage sale list, no SITEWIDE | ✅ "new" holds |
+| Q-2 Printfresh | Hens bandana 2/2 $28; Winter Holly Bagheera Ruby 2/2 $28; `womens-apparel-sale` (72) holds neither. The checker now flags the *Blush* Bagheera pet bandana SALE-TAG for a `BFCM24` tag: a 2024 legacy tag, compare-at = price ($28/$28), not the product the check names | ✅ (watch: if Printfresh's BFCM drop marks Bagheera down, the "Bagheera" option needs a re-check) |
+| Q-5 Little Beast | PBJ and OG 7/7 $48; `sales-galore` now 37 (was 39), neither inside. Ad Library 50 active, **3** cards started ≤30 d (calendar days) | ✅ no hold Tue. Thu 29: hold unless a new ad starts (unchanged) |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225; no sale list | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pet-face pajamas 22–25 % off per variant (standing promo); no sale list, no SITEWIDE | ✅ |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; Birthstone Charm 24/24 $495; no sale list | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; lounge chair 7/8 $800; the homepage no longer links `flash-sale`, only `outlet` (34), which holds neither | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 (10 % off, standing `bow-promo`); not in `sale` (70) | ✅ (newest ad 10/15 per 10-26; not re-read today) |
+| Q-10 Kinn | Pegasus and Swan pendant necklaces 8/8 $1,040; no sale list | ✅ |
+
+**Wave B / KREWE.** Ad Library 54 active (confirmed); the new sale-date line reads **"ends wednesday, october 28" ×9, "four days only" ×9 (newest 10/25)**: the sale still ends Wed 28. MUSE not re-scanned today (10-26: full price, untagged). Q-11 stays off Wed 28 (owner's call pending).
+
+**Roll status (if no approval by 13:00 Israel today):** nothing goes today. Wave A → **Thu 29 Oct**, same Israel times, **without Q-5 Little Beast** (hold, unless a new ad starts by then), after a light check that morning. Wave B stays on **Wed 28** (15:00–18:10 Israel, after its own morning check; Q-11 off that day, Q-12 Hawkins on hold). KREWE Q-11: if wave A goes today, Thu 29 15:30 Israel; if wave A rolls to Thu 29, Q-11 goes into the Tue 3 Nov pack. Tue 3 Nov needs a new dated pack (US standard time from Sun 1 Nov: Israel times one hour later again); **not built yet**, by plan.
