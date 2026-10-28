@@ -900,3 +900,42 @@ Tools: `products_check.py --sale-scan` on every product the Tue 27 pack names; L
 **Wave B / KREWE.** Ad Library 54 active (confirmed); the new sale-date line reads **"ends wednesday, october 28" ×9, "four days only" ×9 (newest 10/25)**: the sale still ends Wed 28. MUSE not re-scanned today (10-26: full price, untagged). Q-11 stays off Wed 28 (owner's call pending).
 
 **Roll status (if no approval by 13:00 Israel today):** nothing goes today. Wave A → **Thu 29 Oct**, same Israel times, **without Q-5 Little Beast** (hold, unless a new ad starts by then), after a light check that morning. Wave B stays on **Wed 28** (15:00–18:10 Israel, after its own morning check; Q-11 off that day, Q-12 Hawkins on hold). KREWE Q-11: if wave A goes today, Thu 29 15:30 Israel; if wave A rolls to Thu 29, Q-11 goes into the Tue 3 Nov pack. Tue 3 Nov needs a new dated pack (US standard time from Sun 1 Nov: Israel times one hour later again); **not built yet**, by plan.
+
+## 20. Wave-B send-morning check, Wed 28 Oct + wave-A roll pre-check for Thu 29 (~05:30–06:20 UTC = 07:30–08:20 Israel; light run)
+Tools: `products_check.py --sale-scan` on every product the wave-B DMs name (plus KREWE MUSE and the Hawkins Pleat lamps) and on the 9 wave-A products for Thu 29 (Little Beast excluded: on hold Thu 29); product JSON for the Saranoni XXL variants, Equator compare-at and the LAKE tags; homepage text for Hawkins and KREWE; `ad_library.py brand` for KREWE and Hawkins (2 calls, ≥45 s apart). Nothing sent, nothing posted; $0. **Status: no owner approval (no reply since 10-12, 16 days). Wave A did not go on Tue 27 → rolled to Thu 29.**
+
+**Wave B (Wed 28; 7 DMs, Q-11 and Q-12 out): no fact changed, no text changed, no hold.**
+
+| # | 28 Oct read | Verdict |
+|---|---|---|
+| Q-16 STONE AND STRAND | Unflippable Tennis Necklace yellow gold 2/2 $6,390; LAB-created (yellow gold) 1/1 $7,630; no compare-at; homepage `sale` (89, was 91) holds neither | ✅ |
+| Q-19 Alexis Bittar | Twisted Gold Side Handle Clutch Black and Chocolate 1/1 $675, no tags; six `sale-*` lists on the homepage (incl. `sale-lucite` 23, `shop-all-sale` 44); neither clutch inside | ✅ |
+| Q-18 Vosges | Snowbound Perfect Gift 1/1 $95; Little Gift 1/1 $32; no homepage sale list | ✅ |
+| Q-15 Saranoni | XXL 80x100 Flax and Midnight available, $289, no compare-at (variants of `ruched-minky-extra-large-throw-blanket`, 16/16); `Doorbusters 2022` tag is legacy; not in `sale` (48) | ✅ |
+| Q-13 Legendary | Maple Glazed and Cookies & Cream Mini Protein Donuts 2/2 $4.99; no sale list | ✅ |
+| Q-14 Equator | Office Coffee Subscription 12/12 $96 (checker: "20 % off" = the subscription price vs one-off $120 on every variant, structural as on 10-24); La Marquesa 12/12 $20 (6 oz compare-at = price; 12 oz / 2 lb "Save 5–15 % per oz" size tiers, structural); no sale list | ✅ (DM names no price) |
+| Q-17 THATCH | Wood Anywhere Shell Coconut 21/21 and Driftwood 20/20 $115; not in `all-sale` (79) | ✅ |
+
+No SITEWIDE flag at any of the 7. Times unchanged (Israel): Q-16 15:00 · Q-19 15:15 · Q-18 16:15 · Q-15 16:30 · Q-13 17:40 · Q-14 17:55 · Q-17 18:10.
+
+**Out today, as planned.**
+- **Q-11 KREWE:** Ad Library 63 active (confirmed), 30 of 30 top cards started ≤30 d; sale-date line: "ends wednesday, october 28" ×8, "four days only" ×8 (newest 10/25). No extension in copy. Homepage: "BLACK FRIDAY CAME EARLY · UP TO 70 % OFF", 9 live `*-sale-he26` lists. MUSE Sauvage and Bronze 1/1 $335, full price, in no list. → Tue 3 Nov pack, re-check that the sale really ended.
+- **Q-12 Hawkins (hold):** **fact changed, plan unchanged.** The homepage "20% OFF EVERYTHING · NO CODE NEEDED" banner is gone (announcement bar now "FREE GROUND SHIPPING FOR ORDERS $199+"); `october-sale` (223) still exists but is no longer linked from the homepage; Pleat Peach/Bone 1/1 $450 full price. Ad Library 109 active, **0 of 17** top cards started ≤30 d (the 10/21 October-sale cards are no longer among them), no dated phrase. So the SITEWIDE reason has likely lapsed, but the cooling signal is back. Hold stays; re-check Mon 2 Nov as planned (any DM still needs the owner's own "send #Q-12").
+
+**Wave A roll, Thu 29 (9 DMs, Q-5 Little Beast on hold): no fact changed, no text changed.**
+
+| # | 28 Oct read | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 4/5 (XS out) $268; tags still `badge: New Arrival` + `full price`; no sale list | ✅ "new" holds |
+| Q-2 Printfresh | Hens bandana 2/2 $28; Winter Holly Bagheera Ruby 2/2 $28; `womens-apparel-sale` (72) holds neither | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225 | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pet-face pajamas 21–25 % off per variant (standing promo); no sale list | ✅ |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; Birthstone Charm 24/24 $495 | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; lounge chair 7/8 $800; homepage links only `outlet` (34), neither inside | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 (10 % off, standing `bow-promo`); not in `sale` (70) | ✅ |
+| Q-10 Kinn | Pegasus and Swan Dream Pendant Necklaces 8/8 $1,040; no sale list | ✅ |
+
+No SITEWIDE at any of the 9. Thu 29 Israel times as in `SEND_PACK_2026-10-27.md` (14:05 → 17:50), block 3 (Q-5) skipped. Thu 29 morning: a last quick sale-scan (Thu is the last slot before US DST ends), and the Little Beast hold stays unless a new ad started.
+
+**Roll status (28 Oct):** wave B today 15:00–18:10 Israel, only on the owner's approval (suggested gate 14:00 Israel, one hour before the first DM, like wave A). Wave A Thu 29, same Israel times, without Q-5, gate 13:00 Israel. If neither goes, the next slot is **Tue 3 Nov**, which needs a new dated pack (US standard time from Sun 1 Nov: Israel times one hour later); **not built**, by plan. The every-other-day proposal is still waiting for the owner; the schedule is unchanged.
