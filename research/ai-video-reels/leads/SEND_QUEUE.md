@@ -939,3 +939,40 @@ No SITEWIDE flag at any of the 7. Times unchanged (Israel): Q-16 15:00 · Q-19 1
 No SITEWIDE at any of the 9. Thu 29 Israel times as in `SEND_PACK_2026-10-27.md` (14:05 → 17:50), block 3 (Q-5) skipped. Thu 29 morning: a last quick sale-scan (Thu is the last slot before US DST ends), and the Little Beast hold stays unless a new ad started.
 
 **Roll status (28 Oct):** wave B today 15:00–18:10 Israel, only on the owner's approval (suggested gate 14:00 Israel, one hour before the first DM, like wave A). Wave A Thu 29, same Israel times, without Q-5, gate 13:00 Israel. If neither goes, the next slot is **Tue 3 Nov**, which needs a new dated pack (US standard time from Sun 1 Nov: Israel times one hour later); **not built**, by plan. The every-other-day proposal is still waiting for the owner; the schedule is unchanged.
+
+## 21. Wave-A send-morning check, Thu 29 Oct (~05:50–06:05 UTC = 07:50–08:05 Israel; light run) + roll status for Tue 3 / Wed 4 Nov
+Tools: `products_check.py --sale-scan` on the 9 wave-A products (plus Little Beast PBJ/OG, to confirm the hold); LAKE product JSON (tags); `ad_library.py` for Little Beast only (2 calls, ≥45 s apart: `brand`, then `page --json` for the newest start date). Nothing sent, nothing posted; $0. **Status: no owner approval (no reply since 10-12, 17 days). Gate for today: 13:00 Israel.**
+
+**Wave A (Thu 29; 9 DMs, Q-5 out): no fact changed, no text changed, no new hold.**
+
+| # | 29 Oct read | Verdict |
+|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 4/5 (XS out) $268; tags still `badge: New Arrival` + `full price`; no sale list | ✅ "new" holds |
+| Q-2 Printfresh | Hens bandana 2/2 $28; Winter Holly Bagheera pet bandana Ruby 2/2 $28, clean; `womens-apparel-sale` (72) holds neither. New since 10-28: several Winter Holly Bagheera *bundles* (PJ set, placemats, robe) show 10–12 % off per variant; the bandana is not a bundle and stays full price | ✅ (watch for the 3 Nov pack: if the Bagheera bandana itself drops, the "Bagheera" option needs a swap) |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225; no sale list | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pet-face pajamas 22–25 % off per variant (standing promo); no sale list | ✅ |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; Birthstone Charm 24/24 $495; no sale list | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; lounge chair 7/8 $800 (Light Gray out); homepage links only `outlet` (38, was 34), neither inside | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13 | ✅ |
+| Q-4 Foggy | Gingerbread collar 8/8 $52 (10 % off, standing `bow-promo`); homepage `sale` now 81 (was 70), collar not inside | ✅ |
+| Q-10 Kinn | Pegasus and Swan Dream Pendant Necklaces 8/8 $1,040; no sale list | ✅ |
+
+No SITEWIDE at any of the 9. Times as in `SEND_PACK_2026-10-27.md` (14:05 → 17:50 Israel), block 3 skipped.
+
+**Q-5 Little Beast: hold stays, but the reason changed.** Ad Library 53 active (confirmed, 2 agreeing reads); **a new ad started 10/26** (newest start; 3 cards ≤30 d), so the cooling hold alone would have lifted by the pack's rule. But **PBJ and OG Onesies are now on sale: $40 (17 % off, was $48), tagged `sale`, inside `sales-galore` (80, was 37)**. The pack says "if either is on sale, skip this DM". Q-5 stays out today; no dated sale phrase in its ad copy (cards ≤21 d).
+
+**Roll status (29 Oct):** if no approval by 13:00 Israel, nothing goes today. **Wave A → Tue 3 Nov, wave B → Wed 4 Nov.** Never two waves on one day. The every-other-day proposal is still with the owner; the schedule is unchanged. Both packs are **not built** today, by plan: build them Sun 1 or Mon 2 Nov so the facts are fresh (LESSONS 2026-10-16: a pack expires with its date).
+
+**What the 3 Nov / 4 Nov packs need (build list, not built):**
+1. **Times (US standard time from Sun 1 Nov; tzdata-checked 29 Oct): every Israel time is one hour later than on 27–29 Oct.** ET = Israel −7 h, CT = −8 h, MT = −9 h, PT = −10 h. Recipients' local times unchanged.
+   - Wave A, Tue 3 Nov: Q-1 15:05 · Q-2 15:20 · (Q-5 15:35 only if back in) · Q-8 15:50 · Q-9 16:05 · Q-7 16:20 · Q-6 16:35 · Q-3 18:05 · Q-4 18:20 · Q-10 18:50. Gate: 14:00 Israel.
+   - **Q-11 KREWE joins wave A.** Its 8:30 CT slot = 16:30 Israel, which sits 10 min after Q-7 and 5 min before Q-6 (rule: ≥15 min). Proposed: **9:50 CT = 16:50 Israel** (15 min after Q-6, 75 min before Q-3). Decide when the pack is built.
+   - Wave B, Wed 4 Nov: Q-16 16:00 · Q-19 16:15 · Q-18 17:15 · Q-15 17:30 · Q-13 18:40 · Q-14 18:55 · Q-17 19:10. Gate: 15:00 Israel.
+2. **Full live re-check on the build day (Sun 1 / Mon 2)** of every named product (`--sale-scan`: stock, per-variant % off, SALE-LIST, SALE-TAG, SITEWIDE), then a light send-morning re-scan on Tue 3 and Wed 4.
+3. **Time words against 3–4 Nov:** LAKE "the new Tour set" (badge, published 1 Oct; drop "new" if the badge goes); Cuddle Clones "Christmas morning" and Foggy "Christmas-card shoot" still fine; Dana Rebecca's charm is evergreen.
+4. **KREWE (Q-11):** confirm the "Black Friday came early" sale really ended Wed 28 (homepage banner, `*-sale-he26` lists, newest ad copy's sale-date line); MUSE Sauvage/Bronze full price and in no list. If a new dated sale runs over 3 Nov, move Q-11 again (LESSONS 2026-10-26).
+5. **Little Beast (Q-5):** PBJ/OG back at $48 and out of `sales-galore`? If not, Q-5 stays out (or a full-price CTA swap, checked by handle). The 10/26 ad means cooling is not the blocker now.
+6. **Hawkins (Q-12):** re-check Mon 2 Nov (new ads ≤30 d, SITEWIDE banner, `october-sale` link). Hold stays unless a new ad started and no sitewide discount runs; any DM still needs the owner's own "send #Q-12".
+7. **Printfresh:** the Bagheera pet bandana itself (not the bundles) must stay full price; decision (c) @printfresh / @amyvoloshin still open.
+8. **Wave B specifics:** Equator's 20 % is the subscription structure (not a sale); Saranoni XXL is a variant (read by product JSON, not title); Alexis Bittar clutches outside the six `sale-*` lists; STONE AND STRAND outside `sale`.
+9. **Ad Library for the build day:** sale-date line for every brand read; newest start for Foggy, Little Beast, Hawkins, KREWE (≥45 s apart).
