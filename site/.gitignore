@@ -1,0 +1,11 @@
+# Generated / heavy. Media is produced outside git and dropped in with the same names.
+public/media/
+node_modules/
+dist/
+.astro/
+test-results/
+playwright-report/
+.wrangler/
+.dev.vars
+.env
+.env.*

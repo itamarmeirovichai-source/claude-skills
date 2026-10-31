@@ -1,0 +1,30 @@
+{
+ "desc": "Native English. Female, early 40s. Studio-quality recording. Low, warm, slightly husky timbre with a soft breathy edge; slow, deliberate, intimate pacing, like a late-night confession for a luxury perfume film. Neutral transatlantic delivery.",
+ "text": "Some things are never said... only remembered. Noir Vesper. The scent of after midnight, worn close to the skin, and kept like a secret.",
+ "previews": [
+  {
+   "generated_voice_id": "AnPXYZhKqFQ143WvTClj",
+   "media_type": "audio/mpeg",
+   "duration_secs": 14.60525,
+   "language": "en",
+   "detected_labels": null,
+   "previews": null
+  },
+  {
+   "generated_voice_id": "l7XOm9Cqv23Hb7AOW1nf",
+   "media_type": "audio/mpeg",
+   "duration_secs": 13.32525,
+   "language": "en",
+   "detected_labels": null,
+   "previews": null
+  },
+  {
+   "generated_voice_id": "raByvkQGRjYodD7wd00I",
+   "media_type": "audio/mpeg",
+   "duration_secs": 15.3105625,
+   "language": "en",
+   "detected_labels": null,
+   "previews": null
+  }
+ ]
+}

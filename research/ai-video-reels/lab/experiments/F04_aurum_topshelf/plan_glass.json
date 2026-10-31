@@ -1,0 +1,58 @@
+{
+ "jobs": [
+  {
+   "id": "K4g",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit Image 1 only: replace the champagne flute in his hand with the exact same tall straight-sided clear drinking glass shown in Image 2 (plain, thin rim, no stem, no ice), two-thirds full of pale gold sparkling soda with fine rising bubbles, held the same way with its rim tucked under his huge moustache as if sipping (mouth hidden). Keep everything else in Image 1 exactly unchanged: the man, his pose, expression, clothes, the AURUM can on the ledge, the sunset city, the framing.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes",
+    "image_urls": [
+     "@file:ref/K4.png",
+     "@file:ref/K2.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4242
+   }
+  },
+  {
+   "id": "K7g",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit Image 1 only: replace the gold can in his raised hand with the exact same tall straight-sided clear drinking glass shown in Image 2 (plain, thin rim, no stem, no ice), two-thirds full of pale gold sparkling soda with fine rising bubbles, held the same way at shoulder height. Keep everything else in Image 1 exactly unchanged: the man, the airbag, the woman producer with one stopwatch, the painted backdrop, lights, framing.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes",
+    "image_urls": [
+     "@file:ref/K7.png",
+     "@file:ref/K2.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4242
+   }
+  },
+  {
+   "id": "K8g",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit Image 1 only: replace the glass with ice beside the can with the exact same tall straight-sided clear drinking glass shown in Image 2 (plain, thin rim, no stem, no ice), two-thirds full of pale gold sparkling soda with fine rising bubbles, standing on the wooden apple box beside the AURUM can, a few condensation drops on it. Keep everything else in Image 1 exactly unchanged: the AURUM can and label, the brass viewfinder, the box, lights, haze, framing.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes",
+    "image_urls": [
+     "@file:ref/K8.png",
+     "@file:ref/K2.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4242
+   }
+  }
+ ]
+}
