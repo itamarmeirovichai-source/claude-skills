@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-11-02:** expired unsent; use `SEND_DAY_CHECKLIST_2026-11-03.md` (covers Tue 3 and Wed 4 Nov).
+
 # יום שליחה · שלישי 27.10.2026 · צ'קליסט לבעלים (עמוד אחד)
 
 <div dir="rtl">
