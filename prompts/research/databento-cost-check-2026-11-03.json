@@ -1,0 +1,1089 @@
+{
+ "dataset": "GLBX.MDP3",
+ "datasets_count": 30,
+ "has_glbx": true,
+ "range": {
+  "start": "2010-06-06T00:00:00.000000000Z",
+  "end": "2026-11-02T19:20:32.920536000Z",
+  "schema": {
+   "mbo": {
+    "start": "2017-05-21T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "mbp-1": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "mbp-10": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "tbbo": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "trades": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "bbo-1s": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "bbo-1m": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "ohlcv-1s": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "ohlcv-1m": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "ohlcv-1h": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "ohlcv-1d": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "definition": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "statistics": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "status": {
+    "start": "2010-06-06T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "cmbp-1": {
+    "start": "2017-05-21T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "cbbo-1s": {
+    "start": "2017-05-21T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   },
+   "cbbo-1m": {
+    "start": "2017-05-21T00:00:00.000000000Z",
+    "end": "2026-11-02T19:20:32.920536000Z"
+   }
+  }
+ },
+ "schemas": [
+  "mbo",
+  "mbp-1",
+  "mbp-10",
+  "tbbo",
+  "trades",
+  "bbo-1s",
+  "bbo-1m",
+  "ohlcv-1s",
+  "ohlcv-1m",
+  "ohlcv-1h",
+  "ohlcv-1d",
+  "definition",
+  "statistics",
+  "status",
+  "cmbp-1",
+  "cbbo-1s",
+  "cbbo-1m"
+ ],
+ "unit_prices": [
+  {
+   "mode": "historical",
+   "unit_prices": {
+    "mbo": 1.8,
+    "mbp-1": 1.8,
+    "mbp-10": 0.5,
+    "tbbo": 28.0,
+    "trades": 28.0,
+    "bbo-1s": 18.0,
+    "bbo-1m": 18.0,
+    "ohlcv-1s": 70.0,
+    "ohlcv-1m": 70.0,
+    "ohlcv-1h": 190.0,
+    "ohlcv-1d": 190.0,
+    "definition": 1.7,
+    "statistics": 1.0,
+    "status": 4.0,
+    "cmbp-1": 1.8,
+    "cbbo-1s": 18.0,
+    "cbbo-1m": 18.0
+   }
+  },
+  {
+   "mode": "historical-streaming",
+   "unit_prices": {
+    "mbo": 1.8,
+    "mbp-1": 1.8,
+    "mbp-10": 0.5,
+    "tbbo": 28.0,
+    "trades": 28.0,
+    "bbo-1s": 18.0,
+    "bbo-1m": 18.0,
+    "ohlcv-1s": 70.0,
+    "ohlcv-1m": 70.0,
+    "ohlcv-1h": 190.0,
+    "ohlcv-1d": 190.0,
+    "definition": 1.7,
+    "statistics": 1.0,
+    "status": 4.0,
+    "cmbp-1": 1.8,
+    "cbbo-1s": 18.0,
+    "cbbo-1m": 18.0
+   }
+  },
+  {
+   "mode": "live",
+   "unit_prices": {
+    "mbo": 2.16,
+    "mbp-1": 2.16,
+    "mbp-10": 0.6,
+    "tbbo": 33.6,
+    "trades": 33.6,
+    "bbo-1s": 21.6,
+    "bbo-1m": 21.6,
+    "ohlcv-1s": 84.0,
+    "ohlcv-1m": 84.0,
+    "ohlcv-1h": 228.0,
+    "ohlcv-1d": 228.0,
+    "definition": 2.04,
+    "statistics": 1.2,
+    "status": 4.0,
+    "cmbp-1": 2.16,
+    "cbbo-1s": 21.6,
+    "cbbo-1m": 21.6
+   }
+  }
+ ],
+ "start": "2010-06-06",
+ "end": "2026-11-02",
+ "per_symbol": [
+  {
+   "symbol": "ES.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.938172712922,
+   "records": 5735253,
+   "bytes": 321174168,
+   "secs": 2.5
+  },
+  {
+   "symbol": "NQ.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.300052091479,
+   "records": 5560463,
+   "bytes": 311385928,
+   "secs": 2.7
+  },
+  {
+   "symbol": "RTY.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 11.248990669847,
+   "records": 3081253,
+   "bytes": 172550168,
+   "secs": 2.8
+  },
+  {
+   "symbol": "YM.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.164615288377,
+   "records": 5523365,
+   "bytes": 309308440,
+   "secs": 2.2
+  },
+  {
+   "symbol": "GC.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.768064409494,
+   "records": 5688658,
+   "bytes": 318564848,
+   "secs": 3.5
+  },
+  {
+   "symbol": "SI.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 19.196715652943,
+   "records": 5258244,
+   "bytes": 294461664,
+   "secs": 2.2
+  },
+  {
+   "symbol": "HG.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 19.395555630326,
+   "records": 5312709,
+   "bytes": 297511704,
+   "secs": 14.8
+  },
+  {
+   "symbol": "CL.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.706063136458,
+   "records": 5671675,
+   "bytes": 317613800,
+   "secs": 2.0
+  },
+  {
+   "symbol": "NG.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 17.290126308799,
+   "records": 4736003,
+   "bytes": 265216168,
+   "secs": 7.4
+  },
+  {
+   "symbol": "RB.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 13.752559944987,
+   "records": 3767015,
+   "bytes": 210952840,
+   "secs": 1.8
+  },
+  {
+   "symbol": "HO.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 14.411274641752,
+   "records": 3947446,
+   "bytes": 221056976,
+   "secs": 2.5
+  },
+  {
+   "symbol": "ZB.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 17.821027040482,
+   "records": 4881424,
+   "bytes": 273359744,
+   "secs": 2.5
+  },
+  {
+   "symbol": "ZN.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 19.220993369818,
+   "records": 5264894,
+   "bytes": 294834064,
+   "secs": 2.3
+  },
+  {
+   "symbol": "ZF.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 17.944321334362,
+   "records": 4915196,
+   "bytes": 275250976,
+   "secs": 3.1
+  },
+  {
+   "symbol": "ZT.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 13.780707493424,
+   "records": 3774725,
+   "bytes": 211384600,
+   "secs": 2.3
+  },
+  {
+   "symbol": "UB.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 15.891017913818,
+   "records": 4352768,
+   "bytes": 243755008,
+   "secs": 2.5
+  },
+  {
+   "symbol": "6E.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.587722957134,
+   "records": 5639260,
+   "bytes": 315798560,
+   "secs": 2.6
+  },
+  {
+   "symbol": "6J.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.405891984701,
+   "records": 5589454,
+   "bytes": 313009424,
+   "secs": 1.9
+  },
+  {
+   "symbol": "6B.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 19.206864833832,
+   "records": 5261024,
+   "bytes": 294617344,
+   "secs": 2.6
+  },
+  {
+   "symbol": "6A.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 20.137562975287,
+   "records": 5515955,
+   "bytes": 308893480,
+   "secs": 2.0
+  },
+  {
+   "symbol": "6C.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 18.711070045829,
+   "records": 5125219,
+   "bytes": 287012264,
+   "secs": 3.9
+  },
+  {
+   "symbol": "6S.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 16.704124286771,
+   "records": 4575489,
+   "bytes": 256227384,
+   "secs": 1.9
+  },
+  {
+   "symbol": "ZC.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 12.042335346341,
+   "records": 3298561,
+   "bytes": 184719416,
+   "secs": 2.8
+  },
+  {
+   "symbol": "ZS.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 13.411686196923,
+   "records": 3673645,
+   "bytes": 205724120,
+   "secs": 2.0
+  },
+  {
+   "symbol": "ZW.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 11.666125655174,
+   "records": 3195512,
+   "bytes": 178948672,
+   "secs": 2.1
+  },
+  {
+   "symbol": "ZL.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 12.490355968475,
+   "records": 3421280,
+   "bytes": 191591680,
+   "secs": 2.0
+  },
+  {
+   "symbol": "ZM.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 11.245785281062,
+   "records": 3080375,
+   "bytes": 172501000,
+   "secs": 5.5
+  },
+  {
+   "symbol": "LE.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 5.033526420593,
+   "records": 1378752,
+   "bytes": 77210112,
+   "secs": 2.1
+  },
+  {
+   "symbol": "HE.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 4.989775419235,
+   "records": 1366768,
+   "bytes": 76539008,
+   "secs": 2.2
+  },
+  {
+   "symbol": "PL.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 15.144881531596,
+   "records": 4148391,
+   "bytes": 232309896,
+   "secs": 2.6
+  },
+  {
+   "symbol": "BTC.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 6.968500614166,
+   "records": 1908768,
+   "bytes": 106891008,
+   "secs": 2.3
+  },
+  {
+   "symbol": "MES.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 9.64041121304,
+   "records": 2640641,
+   "bytes": 147875896,
+   "secs": 3.0
+  },
+  {
+   "symbol": "MNQ.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 9.646179452538,
+   "records": 2642221,
+   "bytes": 147964376,
+   "secs": 3.2
+  },
+  {
+   "symbol": "M2K.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 9.141038656235,
+   "records": 2503856,
+   "bytes": 140215936,
+   "secs": 1.5
+  },
+  {
+   "symbol": "MGC.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 13.395421952009,
+   "records": 3669190,
+   "bytes": 205474640,
+   "secs": 2.0
+  },
+  {
+   "symbol": "MCL.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 6.591597273946,
+   "records": 1805529,
+   "bytes": 101109624,
+   "secs": 12.6
+  },
+  {
+   "symbol": "MBT.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 5.085958987474,
+   "records": 1393114,
+   "bytes": 78014384,
+   "secs": 3.4
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 1.8
+  },
+  {
+   "symbol": "NQ.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 2.1
+  },
+  {
+   "symbol": "RTY.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.028756707907,
+   "records": 2902,
+   "bytes": 162512,
+   "secs": 2.5
+  },
+  {
+   "symbol": "YM.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050487741828,
+   "records": 5095,
+   "bytes": 285320,
+   "secs": 3.4
+  },
+  {
+   "symbol": "GC.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050458014011,
+   "records": 5092,
+   "bytes": 285152,
+   "secs": 4.0
+  },
+  {
+   "symbol": "SI.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050458014011,
+   "records": 5092,
+   "bytes": 285152,
+   "secs": 2.0
+  },
+  {
+   "symbol": "HG.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050458014011,
+   "records": 5092,
+   "bytes": 285152,
+   "secs": 2.1
+  },
+  {
+   "symbol": "CL.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050477832556,
+   "records": 5094,
+   "bytes": 285264,
+   "secs": 1.7
+  },
+  {
+   "symbol": "NG.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050467923284,
+   "records": 5093,
+   "bytes": 285208,
+   "secs": 1.7
+  },
+  {
+   "symbol": "RB.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050477832556,
+   "records": 5094,
+   "bytes": 285264,
+   "secs": 2.6
+  },
+  {
+   "symbol": "HO.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050477832556,
+   "records": 5094,
+   "bytes": 285264,
+   "secs": 13.3
+  },
+  {
+   "symbol": "ZB.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050487741828,
+   "records": 5095,
+   "bytes": 285320,
+   "secs": 1.7
+  },
+  {
+   "symbol": "ZN.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050487741828,
+   "records": 5095,
+   "bytes": 285320,
+   "secs": 1.4
+  },
+  {
+   "symbol": "ZF.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050487741828,
+   "records": 5095,
+   "bytes": 285320,
+   "secs": 3.4
+  },
+  {
+   "symbol": "ZT.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050487741828,
+   "records": 5095,
+   "bytes": 285320,
+   "secs": 1.9
+  },
+  {
+   "symbol": "UB.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050031915307,
+   "records": 5049,
+   "bytes": 282744,
+   "secs": 3.1
+  },
+  {
+   "symbol": "6E.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 2.1
+  },
+  {
+   "symbol": "6J.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 10.1
+  },
+  {
+   "symbol": "6B.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 1.9
+  },
+  {
+   "symbol": "6A.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 1.5
+  },
+  {
+   "symbol": "6C.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050438195467,
+   "records": 5090,
+   "bytes": 285040,
+   "secs": 2.1
+  },
+  {
+   "symbol": "6S.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050358921289,
+   "records": 5082,
+   "bytes": 284592,
+   "secs": 4.6
+  },
+  {
+   "symbol": "ZC.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.041985586286,
+   "records": 4237,
+   "bytes": 237272,
+   "secs": 2.9
+  },
+  {
+   "symbol": "ZS.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.041985586286,
+   "records": 4237,
+   "bytes": 237272,
+   "secs": 1.5
+  },
+  {
+   "symbol": "ZW.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.041985586286,
+   "records": 4237,
+   "bytes": 237272,
+   "secs": 3.5
+  },
+  {
+   "symbol": "ZL.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.041985586286,
+   "records": 4237,
+   "bytes": 237272,
+   "secs": 3.7
+  },
+  {
+   "symbol": "ZM.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.041985586286,
+   "records": 4237,
+   "bytes": 237272,
+   "secs": 1.4
+  },
+  {
+   "symbol": "LE.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.040895566344,
+   "records": 4127,
+   "bytes": 231112,
+   "secs": 3.7
+  },
+  {
+   "symbol": "HE.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.040895566344,
+   "records": 4127,
+   "bytes": 231112,
+   "secs": 1.9
+  },
+  {
+   "symbol": "PL.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.050467923284,
+   "records": 5093,
+   "bytes": 285208,
+   "secs": 2.0
+  },
+  {
+   "symbol": "BTC.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.027607232332,
+   "records": 2786,
+   "bytes": 156016,
+   "secs": 1.6
+  },
+  {
+   "symbol": "MES.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.023148059845,
+   "records": 2336,
+   "bytes": 130816,
+   "secs": 1.9
+  },
+  {
+   "symbol": "MNQ.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.023148059845,
+   "records": 2336,
+   "bytes": 130816,
+   "secs": 1.9
+  },
+  {
+   "symbol": "M2K.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.023148059845,
+   "records": 2336,
+   "bytes": 130816,
+   "secs": 3.5
+  },
+  {
+   "symbol": "MGC.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.049387812614,
+   "records": 4984,
+   "bytes": 279104,
+   "secs": 2.0
+  },
+  {
+   "symbol": "MCL.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.016380026937,
+   "records": 1653,
+   "bytes": 92568,
+   "secs": 4.2
+  },
+  {
+   "symbol": "MBT.v.0",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.017212405801,
+   "records": 1737,
+   "bytes": 97272,
+   "secs": 2.5
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.968740358949,
+   "records": 97761,
+   "bytes": 5474616,
+   "secs": 2.5
+  },
+  {
+   "symbol": "NQ.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.968343988061,
+   "records": 97721,
+   "bytes": 5472376,
+   "secs": 1.8
+  },
+  {
+   "symbol": "GC.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.970474481583,
+   "records": 97936,
+   "bytes": 5484416,
+   "secs": 2.3
+  },
+  {
+   "symbol": "CL.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.970028564334,
+   "records": 97891,
+   "bytes": 5481896,
+   "secs": 1.9
+  },
+  {
+   "symbol": "ZN.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.959901288152,
+   "records": 96869,
+   "bytes": 5424664,
+   "secs": 6.5
+  },
+  {
+   "symbol": "6E.v.0",
+   "schema": "ohlcv-1h",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.958454534411,
+   "records": 96723,
+   "bytes": 5416488,
+   "secs": 2.0
+  }
+ ],
+ "extra": [
+  {
+   "symbol": "ES.v.0",
+   "schema": "ohlcv-1s",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 41.260611414909,
+   "records": 11301848,
+   "bytes": 632903488,
+   "secs": 3.9
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "trades",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 154.191946148872,
+   "records": 123186266,
+   "bytes": 5912940768,
+   "secs": 1.9
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "tbbo",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 256.986576914787,
+   "records": 123186266,
+   "bytes": 9854901280,
+   "secs": 3.0
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "mbp-1",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 252.87917111814,
+   "records": 1885603767,
+   "bytes": 150848301360,
+   "secs": 1.7
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "mbp-10",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 427.409069500864,
+   "records": 2494168445,
+   "bytes": 917853987760,
+   "secs": 2.8
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "statistics",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 0.013417825103,
+   "records": 180091,
+   "bytes": 14407280,
+   "secs": 6.2
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "definition",
+   "start": "2025-01-01",
+   "end": "2026-01-01",
+   "cost_usd": 0.000260159373,
+   "records": 316,
+   "bytes": 164320,
+   "secs": 3.0
+  },
+  {
+   "symbol": "ES.FUT",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.300330221653,
+   "records": 30308,
+   "bytes": 1697248,
+   "secs": 1.1
+  },
+  {
+   "symbol": "CL.FUT",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 7.749407589436,
+   "records": 782036,
+   "bytes": 43794016,
+   "secs": 1.3
+  },
+  {
+   "symbol": "ZN.FUT",
+   "schema": "ohlcv-1d",
+   "start": "2010-06-06",
+   "end": "2026-11-02",
+   "cost_usd": 0.172926709056,
+   "records": 17451,
+   "bytes": 977256,
+   "secs": 2.3
+  },
+  {
+   "symbol": "ES.v.0",
+   "schema": "ohlcv-1m",
+   "start": "2025-06-02",
+   "end": "2025-06-03",
+   "cost_usd": 0.0050380826,
+   "records": 1380,
+   "bytes": 77280,
+   "secs": 1.5
+  }
+ ],
+ "totals": {
+  "ohlcv-1m_core31": 491.58,
+  "ohlcv-1m_micro6": 53.5,
+  "ohlcv-1m_all37": 545.08,
+  "ohlcv-1d_all37": 1.61,
+  "ohlcv-1m_top8_ES_NQ_GC_CL_ZN_6E_ZB_RTY": 151.59
+ }
+}
