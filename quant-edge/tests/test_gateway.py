@@ -20,10 +20,17 @@ def _env(tmp_path: Path):
         w.writerow({c: "" for c in REG_COLS} | {
             "id": "Q-0001", "source": "program", "status": "registered", "count": "1", "sign": "long",
             "data": "es_1m_rth", "split": "IS=2010-06-06..2014-12-31;OOS=2015-01-01..2024-12-31;HOLDOUT=2025-01-01.."})
+        w.writerow({c: "" for c in REG_COLS} | {
+            "id": "Q-0002", "source": "program", "status": "registered", "count": "1", "sign": "long",
+            "data": "es_1m_rth,es_1m_firstrate[xcheck]", "split": "IS=2010-06-06..2014-12-31;OOS=2015-01-01..2024-12-31;HOLDOUT=2025-01-01.."})
+        w.writerow({c: "" for c in REG_COLS} | {
+            "id": "Q-0003", "source": "program", "status": "registered", "count": "1", "sign": "long",
+            "data": "es_1m_firstrate", "split": "IS=2010-06-06..2014-12-31;OOS=2015-01-01..2024-12-31;HOLDOUT=2025-01-01.."})
     man = tmp_path / "manifest.csv"
     with open(man, "w", newline="") as f:
         w = csv.writer(f); w.writerow(["dataset_id", "path", "source", "licence_status", "resolution", "tz", "start", "end", "sha256", "rows", "notes"])
         w.writerow(["es_1m_rth", "es.csv", "test", "ok", "1m", "UTC", "2010-01-01", "2026-01-01", "x", "5", ""])
+        w.writerow(["es_1m_firstrate", "es.csv", "third-party copy", "hold", "1m", "UTC", "2010-01-01", "2026-01-01", "x", "5", ""])
     data_root = tmp_path / "data"; data_root.mkdir()
     # planted rows: one before IS, inside IS, inside OOS, inside hold-out (the leak), far future
     pd.DataFrame({"ts": ["2010-01-04T14:30:00Z", "2012-06-01T14:30:00Z", "2014-12-31T20:59:00Z", "2015-01-02T14:30:00Z",
@@ -97,3 +104,17 @@ def test_bad_window_name(tmp_path):
     env = _env(tmp_path)
     with pytest.raises(ValueError):
         gateway.load("Q-0001", "insample", **env)
+
+
+def test_licence_held_dataset_is_crosscheck_only(tmp_path):
+    env = _env(tmp_path)
+    with pytest.raises(gateway.LicenceHoldError):          # listed without [xcheck]: refused in every window
+        gateway.load("Q-0003", "is", **env)
+    with pytest.raises(gateway.LicenceHoldError):          # OOS read of a held dataset: refused and logged
+        gateway.load("Q-0002", "oos", dataset="es_1m_firstrate", **env)
+    assert "oos-REFUSED-licence" in env["log_path"].read_text()
+    df = gateway.load("Q-0002", "crosscheck", dataset="es_1m_firstrate", **env)
+    assert df["close"].tolist() == [4, 5, 6]               # OOS dates, logged as crosscheck
+    assert "Q-0002,crosscheck," in env["log_path"].read_text()
+    ok = gateway.load("Q-0002", "oos", **env)              # the default dataset (ok licence) still works
+    assert ok["close"].tolist() == [4, 5, 6]

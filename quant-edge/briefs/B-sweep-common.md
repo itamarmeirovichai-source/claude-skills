@@ -11,6 +11,7 @@ Read them first (grep by lane keywords if long) and do not re-list their entries
 ### C-<lane>-<nn> <short name>
 - mechanism: who is forced to trade predictably, when, and why the effect should survive publication and our costs
 - evidence: peer-reviewed | working paper | blog with code | forum | own idea — citation (authors, year, URL, fetch date); the post-2015 out-of-sample number if any
+- evidence window: the markets × dates the cited evidence displays (e.g. "ES 2010-2024"); a registered OOS overlapping it makes the row "derivative", decided on untouched markets or dates
 - instruments: exact roots / CFD symbols
 - holding period and expected trades per year
 - data needed: dataset, resolution, years; cost inside the Databento plan ($0 if free; the plan ceiling is $94 total; 1m RTH ≈ $6–7 per root, 1h ≈ $1, 1d ≈ $0.05)

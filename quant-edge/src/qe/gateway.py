@@ -3,6 +3,8 @@
 - Refuses any id without a registry row (non-negotiable 3).
 - Slices to the row's in-sample window unless window is "oos" or "holdout".
 - "holdout" is refused unless quant-edge/HOLDOUT_UNLOCK exists AND lists the id (Hold-out rule).
+- A licence-held dataset (manifest licence_status other than ok/free/licensed) is readable only with window="crosscheck"
+  (the OOS dates, logged as crosscheck) and only when the row lists it as `<dataset_id>[xcheck]`; it can never be a headline.
 - Every call appends (ts_utc, id, window, script, commit) to quant-edge/registry_reads.log.
 - Datasets come from quant-edge/data/manifest.csv -> files under DATA_ROOT (parquet or csv, a `ts` column in UTC).
 """
@@ -18,7 +20,7 @@ import pandas as pd
 
 from . import paths, registry
 
-WINDOWS = ("is", "oos", "holdout")
+WINDOWS = ("is", "oos", "holdout", "crosscheck")
 
 
 class HoldoutLockedError(PermissionError):
@@ -27,6 +29,10 @@ class HoldoutLockedError(PermissionError):
 
 class DatasetNotInManifestError(FileNotFoundError):
     pass
+
+
+class LicenceHoldError(PermissionError):
+    """A licence-held dataset (third-party copy of vendor data) may feed cross-checks only, never a gated result."""
 
 
 def _git_commit() -> str:
@@ -92,21 +98,28 @@ def load(id_: str, window: str = "is", *, dataset: Optional[str] = None,
     row = registry.get(id_, registry_path)
     if row.source != "program":
         raise registry.UnregisteredHypothesisError(f"{id_} is an inherited row; register a new program row")
-    if window not in row.windows:
+    if (window if window != "crosscheck" else "oos") not in row.windows:
         raise ValueError(f"{id_}: registry row has no {window.upper()} window in its split field: {row.raw.get('split')!r}")
     if window == "holdout" and not _holdout_unlocked_for(id_, unlock_path):
         _append_read(id_, "holdout-REFUSED", log_path)
         raise HoldoutLockedError(f"{id_}: hold-out is locked (quant-edge/HOLDOUT_UNLOCK missing or does not list {id_})")
-    ds_id = dataset or (row.datasets[0] if row.datasets else None)
-    if ds_id is None or ds_id not in row.datasets:
+    names = {d.replace("[xcheck]", ""): d.endswith("[xcheck]") for d in row.datasets}
+    ds_id = dataset or (next(iter(names)) if names else None)
+    if ds_id is None or ds_id not in names:
         raise ValueError(f"{id_}: dataset {ds_id!r} is not named in the registry row's data field {row.datasets}")
     man = _manifest(manifest_path)
     if ds_id not in man:
         raise DatasetNotInManifestError(f"dataset {ds_id!r} is not in {manifest_path or paths.MANIFEST_CSV}")
+    held = (man[ds_id].get("licence_status") or "").strip().lower() not in ("ok", "free", "licensed")
+    if held and window != "crosscheck":
+        _append_read(id_, f"{window}-REFUSED-licence", log_path)
+        raise LicenceHoldError(f"{id_}: dataset {ds_id} is licence-held ({man[ds_id].get('licence_status')}); only window='crosscheck' on a row that lists it as {ds_id}[xcheck]")
+    if window == "crosscheck" and not names[ds_id]:
+        raise LicenceHoldError(f"{id_}: a crosscheck read needs the row to list the dataset as {ds_id}[xcheck]")
     root = Path(data_root or paths.DATA_ROOT)
     _append_read(id_, window, log_path)
     df = _read_file(root / man[ds_id]["path"])
-    w = row.windows[window]
+    w = row.windows["oos"] if window == "crosscheck" else row.windows[window]
     start = pd.Timestamp(w.start, tz="UTC")
     mask = df["ts"] >= start
     if w.end:

@@ -28,6 +28,24 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
   `source=program` and a `registered_commit` once committed.
 - D-007 (2026-11-03) Blocked hosts are reported, never routed around: Dukascopy datafeed (connection reset),
   SSRN (403), lucidtrading.com (403). Yahoo and CFTC answer only with a browser User-Agent (allowed, not a bypass).
+- D-008 (2026-11-03, pre-mortem mode 4) The hold-out pass criterion is restated in the one-sided tolerance form
+  (PARAMETERS.md, "Hold-out pass criterion"); the written form passes a no-decay true edge 48% of the time. Reported to Itamar
+  in the next daily report as a change to the master prompt's standard.
+- D-009 (2026-11-03, mode 3) "Derivative" extends to published evidence; candidate briefs carry an evidence-window field.
+- D-010 (2026-11-03, modes 1, 10) No P&L is computed before step 2.2 is green: `load()` is the only door, licence-held datasets
+  are crosscheck-only (`LicenceHoldError`), `tests/test_no_direct_reads.py` fails on any direct read, and the Referee rejects a
+  result file whose reads are not in `registry_reads.log`.
+- D-011 (2026-11-03, mode 8) The Day-0 power line was criterion 4 alone; the joint figure (0.32 / 0.63 / 0.72 at true Sharpe 1.5
+  over 5 / 8 / 10 years, costs one third of gross) is printed in PARAMETERS.md and in every result file; the correction goes to Itamar
+  in the next report. The 2× cost criterion means only edges with gross ≥ about 3× round-trip cost can be certified.
+- D-012 (2026-11-03, modes 2, 9) Critical path written in PARAMETERS.md (6 Nov Databento trigger, 28 Nov Gate 5 for S1, 5 Dec
+  hold-out, 19 Dec memo); P1 only after Gates 4+5 and the hold-out read; memo template written before any result
+  (`reports/memo-template.md`) with its "not tested: data not bought" and "weaker stated standard" tables.
+- D-013 (2026-11-03, mode 2) Two calibration replications: CAL-D on the free daily pipeline (inherited 54-futures TSMOM, expected
+  Sharpe ≈ 1.17 on 1984–2016, H0007 as the reference) registered Day 1; CAL-I (noise-area model on ES 1m, expected 0.9–1.25 on
+  2016–2024) registered when Databento bars exist. If Databento is unconfirmed on 6 Nov, CAL-I runs on the licence-held FirstRate
+  ES copy through window="crosscheck", labelled "pipeline calibration on licence-held data, never a gated result", after Itamar's ruling.
+- D-014 (2026-11-03, mode 6) The firm letters go to Itamar as ONE decision request this week ("send now"), not "before any purchase".
 
 ## Steps
 
@@ -41,7 +59,15 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [x] 0.6 `.gitignore` and pre-commit hook (`tools/pre-commit.sh` → `.git/hooks/pre-commit`; detect-secrets
       baseline `quant-edge/.secrets.baseline`).
 - [x] 0.7 Draft PR "quant-edge program" opened: https://github.com/itamarmeirovichai-source/claude-skills/pull/27 (commit 4a56ac1).
-- [~] 0.8 Red Team pre-mortem commissioned 14:40 UTC (Agent, background) → `daily/2026-11-03/redteam-premortem.md`; answers in this log when it returns.
+- [x] 0.8 Red Team pre-mortem returned 15:00 UTC → `daily/2026-11-03/redteam-premortem.md` (12 modes). Answers:
+      mode 1 → D-010 (gateway committed with 10 tests + direct-read scanner); mode 2 → D-013 + critical path; mode 3 → D-009;
+      mode 4 → D-008; mode 5 → accepted risk with `tools/inflight_check.sh` and the 30-minute write rule in every brief;
+      mode 6 → D-014; mode 7 → memo template §5 + Economist re-run pending; mode 8 → D-011 (`tools/joint_power.py`);
+      mode 9 → D-012; mode 10 → D-010 (`LicenceHoldError`) + licence ruling in this week's decision request; mode 11 → Gate 2
+      before Gate 3 (already in process) + "session-edge and roll-week share" table added to the standard result tables;
+      mode 12 → Rules Keeper Day-1 fetch brief + a preliminary path-wise breach count at Gate 3 for information.
+      Accepted risks signed as the Red Team listed them (agent deaths with the write rule; target unreachable → honest N1;
+      bar fixed at 430; no Alpaca key; blocked hosts; Phase 6 on IBKR paper at most P1; credit expiry; Monte Carlo noise).
 - [~] 0.9 Economist F2-12 re-run commissioned 14:40 UTC (Agent, background) → `economics/required-sharpe-2026-11.md`.
 - [~] 0.10 Scribe briefs commissioned 14:40 UTC (Agent, background) → `briefs/inherited-*.md`.
 - [ ] 0.11 Gate 0: everything above exists in the repository (commit hash recorded here).
@@ -55,7 +81,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ### Phase 2 — data (Days 1–6, in parallel)
 - [ ] 2.1 Free-Data Hunter: reachability + licence register → `data/licences.md`.
-- [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 9 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 26 tests pass.
+- [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 10 tests (incl. licence-hold crosscheck-only) + `tests/test_no_direct_reads.py`; `tools/register.py` (Gate-1 validation: fields, split ≥ 5 OOS years unless post-change, sign/count, family cap 5, 2× cost stated, results empty, stamp commit) with 4 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 32 tests pass.
 - [ ] 2.2b loaders for real datasets behind the gateway (parquet under DATA_ROOT), `tools/render_manifest.py`, synthetic backtest calibration test (driftless walk, 2R target / 1R stop ≈ 0).
 - [ ] 2.3 Calendar and Clock Keeper: session templates, DST, rolls, firm trading-day boundaries.
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
@@ -89,13 +115,13 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) to Itamar, 2026-11-03
-- next action: while agents run, build the `load(id, window)` gateway, the gate statistics module and the Steward module with tests (Phase 2.2 groundwork); then answer the pre-mortem.
+- next action: wait for the Economist, Scribe, Rules Keeper and the sweep workflow; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
 
 ## Agents in flight
 
 | name | brief file | output file | start (UTC) | status |
 |---|---|---|---|---|
-| Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:40 | running |
+| Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:40 | done 15:00 |
 | Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:40 | running |
 | Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:40 | running |
 | Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 15:05 | running |
@@ -103,4 +129,4 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ## Session log (append-only)
 
-- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched. 15:05 core modules (gateway, stats, steward) written, 26 tests pass; Rules Keeper letters agent launched.
+- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched. 15:05 core modules (gateway, stats, steward) written, 26 tests pass; Rules Keeper letters agent launched. 15:10 pre-mortem answered (D-008..D-014); joint power measured; hold-out criterion restated; register.py written.
