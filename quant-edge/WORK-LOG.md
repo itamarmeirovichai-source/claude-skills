@@ -69,7 +69,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
       Accepted risks signed as the Red Team listed them (agent deaths with the write rule; target unreachable → honest N1;
       bar fixed at 430; no Alpaca key; blocked hosts; Phase 6 on IBKR paper at most P1; credit expiry; Monte Carlo noise).
 - [~] 0.9 Economist F2-12 re-run commissioned 14:40 UTC (Agent, background) → `economics/required-sharpe-2026-11.md`.
-- [~] 0.10 Scribe briefs commissioned 14:40 UTC (Agent, background) → `briefs/inherited-*.md`.
+- [x] 0.10 Scribe briefs returned 14:56 UTC → `briefs/inherited-{closed-families,method-lessons,data-in-hand,firms,economics,code-reusable,open-directions}.md` (≈ 600 words each). Not found by the Scribe: F2-12..15 figures in a readable report (Economist re-run is the authority), TradeDay flat-by time and FTMO funded-stage agreement (Rules Keeper matrix brief), sha256 pins for the old Binance/Yahoo/SEC pulls (none recorded).
 - [ ] 0.11 Gate 0: everything above exists in the repository (commit hash recorded here).
 
 ### Phase 1 — the sweep (Days 1–4, 2026-11-04 → 2026-11-07)
@@ -80,10 +80,10 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [ ] 1.5 First batch (≤ 20 variants + CAL) registered; Gate 1 per row (commit before code).
 
 ### Phase 2 — data (Days 1–6, in parallel)
-- [ ] 2.1 Free-Data Hunter: reachability + licence register → `data/licences.md`.
+- [~] 2.1 Department C data run launched 14:57 UTC (Head of Data agent, compute slot 2; brief `briefs/C-data-run.md`): free data under DATA_ROOT with manifest rows, QA reports, licence register.
 - [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 10 tests (incl. licence-hold crosscheck-only) + `tests/test_no_direct_reads.py`; `tools/register.py` (Gate-1 validation: fields, split ≥ 5 OOS years unless post-change, sign/count, family cap 5, 2× cost stated, results empty, stamp commit) with 4 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 32 tests pass.
 - [ ] 2.2b loaders for real datasets behind the gateway (parquet under DATA_ROOT), `tools/render_manifest.py`, synthetic backtest calibration test (driftless walk, 2R target / 1R stop ≈ 0).
-- [ ] 2.3 Calendar and Clock Keeper: session templates, DST, rolls, firm trading-day boundaries.
+- [~] 2.3 Calendar and Clock Keeper: inside the data run (`src/qe/calendars.py`, `sessions.py`).
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
 - [ ] 2.5 Databento plan file inside the ceiling, each purchase with requesting row ids.
 - [ ] 2.6 Gate 2.
@@ -115,7 +115,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) to Itamar, 2026-11-03
-- next action: on the Scribe's return launch the Department C data run (compute slot 2); on the letters' return send the one decision request; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
+- next action: on the letters' return send the one decision request (letters this week + licence ruling); on the Economist's return refresh the board's required-Sharpe table; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
 
 ## Agents in flight
 
@@ -123,8 +123,9 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 |---|---|---|---|---|
 | Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:31 | done 14:50 |
 | Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | running |
-| Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | running |
+| Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | done 14:56 |
 | Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | running |
+| Dept C data run | briefs/C-data-run.md | src/qe/ingest/*, src/qe/calendars.py, data/manifest.csv, data/qa/*.md | 2026-11-03 14:57 | running |
 | Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | running |
 | Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | running |
 
