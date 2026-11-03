@@ -115,7 +115,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) to Itamar, 2026-11-03
-- next action: wait for the Economist, Scribe, Rules Keeper and the sweep workflow; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
+- next action: on the Scribe's return launch the Department C data run (compute slot 2); on the letters' return send the one decision request; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
 
 ## Agents in flight
 
@@ -125,6 +125,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 | Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | running |
 | Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | running |
 | Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | running |
+| Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | running |
 | Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | running |
 
 ## Session log (append-only)
