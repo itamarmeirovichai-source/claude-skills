@@ -49,13 +49,14 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 ### Phase 1 — the sweep (Days 1–4, 2026-11-04 → 2026-11-07)
 - [~] 1.1 Department B sweep run launched 14:45 UTC as Workflow run `wf_2a3bbcb1-b48` (script `~/.claude/projects/-home-user-claude-skills/c1c15771-3f18-56a1-8828-ab24630be4a0/workflows/scripts/quant-edge-sweep-b-wf_2a3bbcb1-b48.js`; resume with scriptPath + resumeFromRunId) → `research/sweep/*.md`, `research/candidates.md`, `research/prescreen-2026-11-03.md` (≥ 100 mechanisms, ≥ 30% original). Brief: `briefs/B-sweep-common.md`.
 - [ ] 1.2 Department E pre-screen (closed-family overlap, look-ahead by construction, economics screen).
-- [ ] 1.3 Firm letters → `letters/<firm>.md` (FTMO, MyFundedFutures, Lucid, Topstep, TradeDay, Bulenox).
+- [~] 1.3 Firm letters commissioned 15:05 UTC (Rules Keeper agent) → `letters/<firm>.md` + `letters/README.md` (Hebrew) + `economics/firm-pages-fetched-2026-11-03.md`.
 - [ ] 1.4 CAL calibration replication registered (noise-area model on ES, expected Sharpe 0.9–1.25, 2016–2024).
 - [ ] 1.5 First batch (≤ 20 variants + CAL) registered; Gate 1 per row (commit before code).
 
 ### Phase 2 — data (Days 1–6, in parallel)
 - [ ] 2.1 Free-Data Hunter: reachability + licence register → `data/licences.md`.
-- [ ] 2.2 `load(id, window)` gateway + `registry_reads.log` + tests (planted leak, hold-out refusal, synthetic calibration).
+- [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 9 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 26 tests pass.
+- [ ] 2.2b loaders for real datasets behind the gateway (parquet under DATA_ROOT), `tools/render_manifest.py`, synthetic backtest calibration test (driftless walk, 2R target / 1R stop ≈ 0).
 - [ ] 2.3 Calendar and Clock Keeper: session templates, DST, rolls, firm trading-day boundaries.
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
 - [ ] 2.5 Databento plan file inside the ceiling, each purchase with requesting row ids.
@@ -97,8 +98,9 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 | Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:40 | running |
 | Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:40 | running |
 | Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:40 | running |
+| Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 15:05 | running |
 | Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:45 | running |
 
 ## Session log (append-only)
 
-- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched.
+- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched. 15:05 core modules (gateway, stats, steward) written, 26 tests pass; Rules Keeper letters agent launched.
