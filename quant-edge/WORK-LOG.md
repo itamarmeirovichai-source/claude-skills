@@ -121,12 +121,12 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 | name | brief file | output file | start (UTC) | status |
 |---|---|---|---|---|
-| Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:40 | done 15:00 |
-| Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:40 | running |
-| Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:40 | running |
-| Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 15:05 | running |
-| Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:45 | running |
+| Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:31 | done 14:50 |
+| Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | running |
+| Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | running |
+| Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | running |
+| Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | running |
 
 ## Session log (append-only)
 
-- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched. 15:05 core modules (gateway, stats, steward) written, 26 tests pass; Rules Keeper letters agent launched. 15:10 pre-mortem answered (D-008..D-014); joint power measured; hold-out criterion restated; register.py written.
+- 2026-11-03 (UTC, from `date -u`; earlier entries were estimates) 14:18 session start (Day 0). 14:22 Day-0 message sent. 14:25 skeleton written. 14:28 commit 4a56ac1 pushed; PR #27 opened. 14:31 Red Team, Economist, Scribe launched. 14:34 sweep workflow wf_2a3bbcb1-b48 launched. 14:43 Rules Keeper letters launched. 14:46 core modules (gateway, stats, steward) committed, 26 tests. 14:50 pre-mortem returned; 14:58 answered (D-008..D-014), joint power measured, hold-out criterion restated, register.py; 32 tests. 14:55 Day-1 briefs written (C data run, G IBKR, F matrix, D engine, E referee).
