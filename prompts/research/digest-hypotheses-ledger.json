@@ -1,0 +1,554 @@
+{
+ "summary": "Repo digest 1/3 (hypothesis registry) of the MeiroX Prop Fleet research org. PF = /tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet. All facts below are tagged [verified-repo] (primary files read in full); no web pages were fetched, so firm/paper claims are the repo's own, cited to its files. HEADLINE: 105 ledger rows (H0001-H0023, D1-D4, E1-E2, F1-F2, G2; G1 has 0 rows), count-column sum N = 280 (not 304: the wave-4 bar 3.5914 used N = 274 ledger + 30 budget, and G1 spent 0 of its 15). Nothing has ever passed the gate; all passed_gate values are 'no', 'n/a' (21 economics rows D1/F2) or blank (3 count-0 common-rule rows). Thirteen families are closed or dead: (1) bot SMC/TJR + its 100-hypothesis and replay grids (gross edge ~0: TJR +0.007R gross, -0.203R net; bot replay +0.101R inside a [-0.197,+0.398] day-clustered interval); (2) single-index S&P/SPY/NQ intraday rules: last-half-hour momentum (H0006, net -0.142R), gamma-conditioned LHH (H0019, +7.69 bp/trade t 1.47), IBS reversal (H0013/14, look-ahead flattered; ex-ante -0.089R), gap fade (H0012/17, SPY net -0.122R t -3.35), 5-min ORB (H0020, NQ net -0.005R, gross t 1.63), 1-min VWAP (H0021, NQ gross +12.4 bp/day t 4.00 but net +4.4 t 1.38 at 33 units/day), 30-min VWAP (H0022, net +5.04 bp/day t 1.68, flat since 2023-11); (3) macro-event intraday ES/NQ, 12 variants, best t +1.09 (E2-04 FOMC fade, 7.8 trades/yr, opposite sign in-sample); (4) intraday breadth across 19 FX/index/commodity CFDs, all net negative, best gross t 3.53, effective N ~8 of 19; (5) daily multi-asset trend/carry: 54-futures TSMOM Sharpe 1.17 (1984-2016, p5 0.82) but 0.46 in 2010-16 and incompatible with daily-flat futures firms; ETF trend OOS 2016-26 Sharpe 0.6-0.9 vs 60/40 0.92; FX/CFD trend+carry 2013-26 best OOS Sharpe 0.16 (gross <=0.58; swap markup 3-4%/yr kills); (6) crypto (Binance, OOS 2023-26): best t 2.26 long/flat TSMOM Sharpe 1.17 = beta (BTC B&H 1.16); vol-managed TSMOM D3-11 t 2.15 Sharpe 1.11; XS momentum, funding carry, cash-and-carry, hour-of-day all dead/cost traps; (7) stock CFDs on FTMO: all 11 variants negative net (1:1 leverage, two-sided swap ~7.5%/yr); (8) ensemble of near-misses on one FTMO Swing account: Sharpe 0.41, t 0.74, worst day -6.74% breaches 5% DLL; (9) turn-of-month S&P: t 1.56, Sharpe 0.38 vs B&H 0.76; (10) RSI(2)/3-down buy-the-dip on 10 FTMO index CFDs: best Sharpe 0.24 t 0.90, alpha t negative vs B&H Sharpe 0.72, 16-43 DLL breaches at 15-20% vol; (11) VRP stopped at gate (no safe-list firm offers VIX; futures firms CME-only and flat daily); (12) opportunistic insider purchases: OOS -0.50%/mo vs SPY t -1.66; (13) economics (not edges): FTMO Swing 100K needs net Sharpe 2.42 @12% vol, 1.92 @15%, 1.46 @20% for $20k/slot-yr after F2-09 stresses; S=0 'lottery' pays ~$1.2k/yr at 12% with 84% P(year-1 loss); skew and barrier/CPPI sizing make it worse. GATE: ORG.md rules 1-4 (pre-registered in ledger before first backtest; OOS net bootstrap p5 > 0; one-sided Bonferroni 0.05/N with N = sum of count; per-firm economics with R/trade AND trades/day) plus wave rules: t = min(iid, Newey-West lag-10) >= z(0.05/N_wave); p5 = min(10k iid, 10k block-20) > 0; truncation + perturbation look-ahead tests; realistic costs with 2x reported; worse of execution-lag variants decides; headline picked by in-sample Sharpe; wave 4 added alpha-t vs matched beta benchmark. Current ledger N = 280 gives z = 3.5699 and needs >= 280,000 day-clustered bootstrap draws; a new program with budget B must use z(0.05/(280+B)) (300 -> 3.5879, 350 -> 3.6279, 400 -> 3.6623). Untested/needs-paid-data directions the org itself listed: paid multi-asset 1m futures (Databento $125 credit route), futures-curve carry, real value measures, 02:00-03:00 ET European-open overnight window (needs 1m), 2007-2019 1m to separate 'pause' from 'edge gone' for Beat the Market, S&P 30-min ORB (pre-registered, never run), crypto funding carry per-8h on a funding-centric venue, trend with hard-DD overlay vs firm rules, low-turnover TWAP breadth variant, US-only index mean reversion on post-2026 data, crypto weekend effect (post-hoc), FTMO VIX CFD if ever listed, hypotheses.py Z01-Z05 (other instruments, other timeframes, second uncorrelated strategy, ML). Key method lessons: trade-day filters that read the trade day's own bar count/15:59 bar leak the future (IBS flattered by 0.22R; H0012 line 18 -> H0017 companion); HistData 1m files are NY local time WITH DST (not fixed EST); Oanda is UTC; NQ .c.0 rolls at 00:00 ET and Databento .c.0 has no RTH bars on expiry Fridays, with illiquid last ~6 sessions before roll; Ascensao SPY is dividend back-adjusted; index opens before 2010 and Yahoo opens in some years are stale; Binance keeps stale rows after delisting; funding intervals changed to 4h/1h in 2023; bars stamped at open (15:55 5m bar closes after a 15:58 flatten); .values on tz-aware series silently drops tz; resample('ME') month-end mislabel; full-sample vol scaling understates DD by a third; max-minus-min over groups is a selection; 5,000-draw bootstraps cannot resolve 0.05/N quantiles; days-with-a-trade (about 14/month) not 21 trading days; one-sided 0.05/N bound needs ~3x the sample of a two-sided 95% bound. Cost conventions used: ES/SPX 0.6 pt RT (TJR/H0006/H0013) or 2 bp RT (H0012/19/20); NQ 0.375 pt per unit (H0021/22) or per side (E2); ES 0.30 pt/side, SPY $0.03/share/side (E2); D4 per-side bp table (FX 0.5-0.9, indices 0.8-1.5, gold 1.0, WTI 2.5, natgas 8); D2 0.75-5 bp/side + swap markup 1%/yr FX/bonds, 2.5%/yr indices/commodities; D3 perp 7 bp/side, spot 9.5 bp/side + actual funding; E1 0.4 bp commission + 2-3 bp half-spread + FTMO swap long -8.40%/yr short -6.64%/yr; F1 FTMO crypto 11.5 bp/side + swap -30%/yr both sides, US100.cash 0.75 pt/unit; G2 FTMO index swap long -8.3% (US) to -4.9% (JP225)/yr, 1-4 bp/side spread; H0023 1.0 bp RT + 2.5%/yr swap; insider 20 bp RT; MES $1.30/contract RT + 0.25 pt stop slippage. Notable inconsistencies: ledger_gate.ledger_n now raises on the three count-0 rows; result_mean_R/result_p5_R units differ by row (R, bp/trade, bp/day, %-of-basket, and OOS t for G2); the headline required-Sharpe numbers cite F2-09 although F2-12 was registered to replace it; wave-4 text says ledger 274 while the pre-G2 sum is 273; a Databento NQ 5m copy was used in gated F1 despite the board's licence hold.",
+ "facts": [
+  {
+   "fact": "[verified-repo] Ledger header columns, in order: id, date, owner, hypothesis, count, rules_fixed_before_test, data, result_mean_R, result_p5_R, passed_gate, notes. 105 data rows; ids H0001-H0023 (H0023 added 2026-10-12), D2-01..09, D3-00..11, D4-01..05, D1-01..06, E2-00..12, E1-01..11, F1-00..03, F2-01..15, G2-01..07. No G1 rows (agents/prereg/G1.csv is header only). Sum of count column = 280. passed_gate values present: 'no', 'n/a' (D1, F2 economics rows), '' (count-0 rows D3-00, E2-00, F1-00). rules_fixed_before_test = 'no' on H0006, H0010, H0013, H0014, H0015, H0016 only.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+   "where": "whole file; parsed with csv.DictReader"
+  },
+  {
+   "fact": "[verified-repo] Per-id count contributions: H0001 1, H0002 1, H0003 100, H0004 7, H0005 1, H0006 3, H0007 6, H0008 16, H0009 10, H0010 1, H0011 26, H0012 1, H0013 3, H0014 1, H0015 2, H0016 15, H0017 1, H0018 1, H0019 1, H0020 1, H0021 1, H0022 1 (= 200 as of 11 Oct), D2 9, D3 11 (+1 count-0 row), D4 5, D1 6, E2 12 (+1 count-0), E1 11, F1 3 (+1 count-0), F2 15, H0023 1, G2 7. Total 280.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+   "where": "count column"
+  },
+  {
+   "fact": "[verified-repo] GATE (ORG.md, 'The gate — the one rule the referee enforces'): a strategy may be called an edge only if (1) its rules were written in ledger.csv BEFORE its first backtest; (2) out-of-sample, after realistic costs, the bootstrap 5th percentile of mean R per trade is above zero; (3) it survives a one-sided Bonferroni correction alpha = 0.05/N, N = sum of the ledger count column (every hypothesis and variant ever tested, by anyone, any day); (4) per firm, at its R/trade and trades/day, it passes that firm's evaluation more often than it blows it and reaches the 20% goal in the fleet model; always report R per trade AND trades per day. Day-2 additions: only a hypothesis pre-registered in ledger.csv the evening before may be run; a hypothesis whose day filter can see the trade day itself must also be run with an ex-ante filter and the worse result decides.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ORG.md",
+   "where": "sections 'The gate' and 'Procedure rules added by the organization'"
+  },
+  {
+   "fact": "[verified-repo] Wave-level gate rules (waves 1-4): pre-register exact rules as rows in agents/prereg/<dept>.csv with the ledger's columns and ids <DEPT>-01.., commit and push BEFORE running anything (commit order is the proof); count every variant; budget 15 variants per department per wave; the bar is fixed for the whole wave as N = ledger-at-wave-start + wave budget: wave 1 N=200+60=260 -> z 3.5504; wave 2 N=270 (225 ledger rows + D1 + 2x15, 'rounded up') -> 3.5603; wave 3 N=254+30=285 -> 3.5745; wave 4 N=274+30=304 -> 3.5914. Pass only if OOS net mean has t >= bar AND OOS bootstrap p5 > 0 AND look-ahead and truncation tests pass; realistic costs (spread+commission+swap; taker+spread for crypto) repeated at 2x with the worse reported next to the main result (2x is reported, not gated); 'out of sample' = a period or set of markets never used to choose rules, written in the prereg; never route around network blocks; never commit data > 1 MB; never buy/sign up/contact a firm; every number traces to code run or a cited page. Wave 4 added: every result also reported against a matching beta benchmark so beta never counts as edge.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/wave-2026-10-11.md",
+   "where": "Shared rules; 'The bar' paragraphs of waves 1-4"
+  },
+  {
+   "fact": "[verified-repo] Statistic conventions used by the departments: t = min(iid t, Newey-West t with 10 lags) (D4 used 5 lags); bootstrap p5 = min(10,000 iid, 10,000 block bootstrap) with seed 0; block = circular/stationary block 20 days for D2/D3/E1/F1, moving block 10 days for G2, 5-day block for E2-12; D1/D4/E2 event tests use iid 10k. Pre-wave rows (H0012-H0022) used the live ledger N with a day-clustered bootstrap of >= 50/alpha draws (ledger_gate.py) and the lower of the normal and bootstrap bounds.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/D2_rules.md",
+   "where": "section 6 Gate; also D3.csv D3-00, D4-spec.md section 7, E1_rules.md section 6, E2_rules.md section 5, F1.csv F1-00, G2_rules.md sections 7-9"
+  },
+  {
+   "fact": "[verified-repo] Gate rule-3 helper ledger_gate.py: ledger_n() sums count with every cell required to match ^[1-9]\\d*$; alpha_z(n) = 0.05/n and z = NormalDist().inv_cdf(1-alpha); one_sided_lb() is a day-clustered bootstrap (resample whole days) with draws = ceil(50/alpha), drawn in chunks; passes_rule3 = lower bound > 0. Board 2026-10-05 forbids gate.py bootstrap_ci (two-sided 95% iid) and tjr_backtest.boot_mean (5,000 draws, about 1.4 draws below the 0.05/N quantile) for rule 3.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/eng_head/ledger_gate.py",
+   "where": "whole file; board.md 'Gate rule 3 in code'"
+  },
+  {
+   "fact": "[verified-repo] finalize.py is the only writer of board.md and H#### ledger rows: it assigns the next H id, rejects rows whose column count does not match the header, writes daily/<date>/record.json and report_he.md, and prints N = sum(int(count or 1)). Department rows (D*/E*/F*/G*) were appended by merging department branches (claude/w1-prop, w1-fxtrend, w1-crypto, w1-breadth, w2-stocks, w2-events, w3-ensemble, w3-volrisk, w4-vrp, w4-meanrev).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/finalize.py",
+   "where": "docstring and main()"
+  },
+  {
+   "fact": "[verified-repo] Pre-registration proof commits recorded in the reports: D2 77a78e7 (2026-10-11 21:54:59Z), D3 53539f1 (before any data download), D4 e614c5a, E1 b09d049 (2026-10-11 23:01:21Z), E2 d489ea8, F1 d2a5938 (2026-10-12 00:21:28Z), G2 6107458 (2026-10-12 03:26:30Z), H0023 126fe39 ('pre-register turn-of-the-month S&P sleeve before running'). Pre-wave hypotheses were registered as ledger rows with 'PRE-REGISTERED' prefix (H0012, H0017-H0022) or as sha256-stamped text files (prereg_gapfade_draft.txt; prereg_ibs_intraday.sha256; prereg_orb30.sha256 1e99c775 stamped 2026-10-05T23:58:55Z).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-fxtrend.md",
+   "where": "intro paragraphs of w1-fxtrend.md, w1-crypto.md, w1-breadth.md, w2-stocks.md, w2-events.md, w3-ensemble.md, w4-meanrev.md; git log of ledger.csv"
+  },
+  {
+   "fact": "[verified-repo] Result-recording convention: results are appended to the notes column as 'RESULT <date> (result fields = <unit>) ...'; result_mean_R / result_p5_R hold the decisive OOS net mean and decisive p5 in the unit the row names. Units differ by row: R per trade (H0004-H0017, H0020), bp per trade (H0019), bp/day of notional (H0021, H0022, H0023), bp/day at 10% vol (D2), bp of capital/day (D3, F1), % of basket per day at 1% session vol (D4), bp per event day (E2), bp/day of a gross-1 book (E1); G2 rows store the OOS t in result_mean_R and p5 in bp/day.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+   "where": "notes column of each row"
+  },
+  {
+   "fact": "[verified-repo] Every department ran (a) an independent verifier sub-agent that re-implemented the rules from the written spec alone without reading the head's code (D2 within 0.05 Sharpe; D3 every t within 0.2; D4/E2 exact to printed digit; E1 t within 0.02; F1 within 0.04 bp/day; G2 t within 0.01), and (b) a red team whose default stance is 'refuted' and whose job in failed waves was to try to refute the NEGATIVE verdict (cost, sign, lag, swap, data errors).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md",
+   "where": "each references/w*-*.md 'Verification' section"
+  },
+  {
+   "fact": "[verified-repo] FAMILY A1 (closed): the bot's own ICT/SMC strategy. H0001 'bot SMC strategy decade backtest' on ES 10y: DSR 0.005. H0002 bot replay of 131 recorded live setups against real 5-minute ES bars: mean +0.101R; its 'p5' field (-0.197) is a day-clustered t(27) 95% bound, not a bootstrap p5; clustered interval [-0.197, +0.398], SE 0.1450R at 28 day-clusters. H0003: 100 registered parameter hypotheses (scripts/hypotheses.py, categories execution/microstructure, trade management, setup quality, regime, fleet, firm mechanics, methodology; only 54 have a test function) -> 0 survive Bonferroni; dashboard needs 0.34R per finding on 111 trades vs 0.101R measured. H0016: replay RR_GRID 5 targets (1.0,1.5,2.0,2.5,3.0), TRAIL_GRID 4 non-base triggers, diagnose_edge 6 drop filters on the same 131 setups -> best in hindsight +0.106R.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+   "where": "rows H0001-H0003, H0016; references/numbers.md 'How long until the lower bound decides'; scripts/hypotheses.py docstring"
+  },
+  {
+   "fact": "[verified-repo] FAMILY A2 (closed): TJR public model, independent implementation (H0004, H0010). Rules: Asia range 20:00-00:00 ET sweep, 03:00-11:00 window, 5-min market-structure shift past last confirmed swing, limit at FVG edge, stop a tick past the sweep extreme, 2R target, one trade/day, cancel at 11:00, flat 15:55, cost 0.6 pt RT. Data SPXUSD 1m 24h 2010-11..2018-12 (2.1M bars, HistData via FutureSharks, NY clock). Base: n=860, win 32.0%, net -0.203R, 90% [-0.28,-0.13], Sharpe -1.49; gross +0.007R [-0.07,+0.09], mean cost 0.21R/trade at a 3.2-pt median stop; win rate equals random 2R entry (33.3%). All 7 variants (mid-FVG entry -0.248R; Asia-other-side target -0.129R; K=1 -0.161R; K=3 -0.128R; daily-trend filter -0.205R; 3R target -0.229R) lose; base loses every year. H0010 post-hoc slice stop >= 4 pt: n=266 +0.057R, 90% [-0.09,+0.20], halves +0.004/+0.079 = noise; no script reproduces it. Reason: zero gross edge; costs on tight stops.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/tjr.md",
+   "where": "whole file; ledger rows H0004, H0010; audit_run.txt tjr_repro.py section"
+  },
+  {
+   "fact": "[verified-repo] FAMILY A3 (dead, not re-run): Zarattini-Aziz-Barbon 'Beat the Market' intraday momentum (noise-area band + VWAP trail, half-hourly). H0005 (count 1) + H0011 (count 26: frozen 27-variant grid + quarterly walk-forward from codecat-ops/zarattini-2024-momentum-spy, MIT, 48 tests, DSR; repo now 404). SPY 1m Alpaca 2020-2026: Sharpe 1.11, alpha +16.7%/yr (t 2.85), 2020-24 Sharpe 1.4-2.0 each year; SPY 2025 -4.9% Sharpe -0.27; 2026 to July -12.9% Sharpe -1.91; ES 1m IB Gateway 5/2024-7/2026 Sharpe -0.07, CAGR -2.1%, DD -22.7%; ES-SPY daily corr 0.97; walk-forward destroys value (0.57 vs 0.92 fixed). Their conclusion: 'NO to the Apex phase for now'. Distinguishing a pause from a vanished edge needs 2007-2019 1m data (paid).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/second-opinion-audit.md",
+   "where": "section 4; ledger rows H0005, H0011"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B1 (closed 2026-10-04): last-half-hour intraday momentum (Gao, Han, Li & Zhou 2018). H0006, SPXUSD 1m 2010-11..2018-12 in-sample only, signal sign(r1 = 09:59 close / prior 15:59 close - 1), entry 15:30 open, stop 0.20% (A) / 0.40% (C), B = trade only if sign(r12 14:59->15:29) agrees, exit 15:59 close, cost 0.6 pt RT. A: n=1720, 211.7 trades/yr, net -0.1418R, p5 -0.1818, gross +0.0233R, Sharpe -2.07, stop rate 24.3%, median risk 3.98 pt; B: n=825, 101.6/yr, net -0.1605R, p5 -0.2193, gross +0.0026R; C: net -0.0689R, p5 -0.0913, gross +0.0136R. Rules sat in hypothesis.py docstring, not ledger (rules_fixed=no). Referee 9/9 veto. Reason: gross edge ~0.02R, cost 0.6 pt on ~4 pt stops.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-04/run.txt",
+   "where": "whole file; agents/daily/2026-10-04/hypothesis.py docstring; ledger row H0006"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B2 (closed 2026-10-06): gamma-conditioned last-half-hour momentum (Baltussen, Da, Lammers & Martens JFE 2021), H0019. Trade only when previous day's SqueezeMetrics GEX < 0; side = sign(prior 15:59 close -> today 15:29 close); enter 15:30 open, exit 15:59 close; no stop/target; 2 bp RT; unit bp/trade. D1 SPXUSD 2011-05..2018-12 GEX<0: n=123, 16.0/yr, gross +3.70, net +1.70 bp, t +0.32; D2 SPY 2019-01..2025-07 GEX<0: n=202, 30.9/yr, gross +9.69, net +7.69 bp, t +1.47, p5 -1.01, win 54%; controls GEX>=0 net -0.67 (D1) and -2.05 (D2, t -2.92). Bar z 3.4767 (N=197). 2020 (31 trades, +40 bp) carries the mean; 2022 half the trades. Stage 2 (5 bp cost, trailing 20th-pct threshold, NQ) never run. GEX data: Fluxus-Trade-Lab/fluxus-dashboard@c1eb927 DIX.csv 3,879 rows 2011-05-02..2026-10-02, 8.9% GEX<0; publication time median 17:52 ET after close (41 of 42 observed updates after 16:00).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gamma-H0019.md",
+   "where": "whole file; dix_pubtime.txt"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B3 (closed 2026-10-05): intraday IBS (internal bar strength) reversal on S&P (Pagonidis NAAIM 2013 idea, intraday part only). H0013 builder run on SPXUSD 1m 2010-11..2018-12 in-sample: prev-session IBS <= 0.20 long / >= 0.80 short, entry 09:31 open, stop k x ATR14 (A k=0.5 both sides; B long-only; C k=1.0), no target, exit 15:59 close, 0.6 pt RT. A: n=583, 74.7/yr, net -0.0097R, p5 -0.0871, gross +0.0483R, median risk 9.77 pt, median cost 0.061R; shorts +0.0498 net vs longs -0.0852; B: -0.0852 / p5 -0.2152; C: +0.0061 / p5 -0.0392. H0014 statistician ex-ante perturbation (eligibility = weekday + 09:31 bar + >=14 prior valid sessions instead of the trade day's own >=370 bars and 15:59 bar): n=907, 116.3/yr, net -0.0893R, p5 -0.1461, gross -0.0262R; the 324 days the look-ahead filter dropped averaged -0.2324R. Unregistered test (process breach); referee 9/9 and 3/3 veto. Family closed; no post-hoc short-only split allowed.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/statistician/audit.txt",
+   "where": "sections 3-5; builder/run.txt; builder/prereg_ibs_intraday.txt; ledger rows H0013, H0014"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B4 (closed 2026-10-06): S&P overnight-gap fade (Grant, Wolf & Yu 2005), H0012 as written + H0017 ex-ante companion. Trade if |gap| > 1.0 x stdev of last 20 gaps, side against gap, entry 09:31 open, target prior 15:59 close (gap fill), 1R = max(|entry-P0|, 0.15% of entry), stop 1R, exit 15:59, 2 bp RT, one trade/day. D1 SPXUSD 2010-18 (IS): n=572, 70.4/yr, gross -0.0240R, net -0.0614R, p5 -0.1154, t -1.83; D2 SPY 2019-01-02..2025-07-18 (primary OOS): n=455, 69.6/yr, gross -0.0950R, net -0.1223R, p5 -0.1821, t -3.35, win 41.3%, rule-3 LB(0.05/196) -0.2494; D3 NQ 2020-09..2025-11 ex roll weeks: n=333, 63.8/yr, net +0.0087R, t +0.19. H0017 differs by 1-9 trades (D2 net -0.1243R, t -3.40). Fixed decision rule failed on all 3 conditions; no other k, stop or target may be tried. Bar z 3.4753 (N=196; board had said 195 -> 3.474).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gapfade-H0012.md",
+   "where": "whole file; agents/daily/2026-10-04/prereg_gapfade_draft.txt"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B5 (closed 2026-10-06): 5-minute opening-range breakout (Zarattini & Aziz 2023, SSRN 4416622), H0020. First 5-min bar 09:30-09:34 direction, entry 09:35 open, stop = bar low/high, target 10R, exit stop/target/15:59, one trade/day, 2 bp of entry RT in R. NQ 1m 2020-09-01..2025-11-21 ex roll (decisive): n=1,219, 233.5/yr, gross +0.1101R (t +1.63), net -0.0052R, t -0.08, p5 -0.1147, win 23.6%, avg R 41.6 pts (26.9 bp), avg cost 0.115R, exits stop/close/target 922/277/20; post-publication 2023-05+: n=601 net +0.0150R t +0.15; SPY 2019-25: n=1,628 gross +0.0959 net -0.0865R t -1.33; SPXUSD 2010-18: gross +0.0810 net -0.1516R. Gross t 1.38-1.63 everywhere; the 2 bp cost = 0.12-0.23R because R is only 13-27 bp of price. Bar 3.4781 (N=198). Future-truncation test passed on every day; 8 unit tests.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/orb-H0020.md",
+   "where": "whole file"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B6 (closed 2026-10-06): 1-minute intraday VWAP trend (Zarattini & Aziz 2023, SSRN 4631351), H0021. Session VWAP from 09:30 with typical price x volume; at every bar close 09:30-15:58 desired position +1 if close > VWAP, -1 if <; fill next bar open; flat at 15:59; no stops/targets/filters; cost per unit traded NQ 0.375 pt (1 tick + ~$4.50 RT commission / 2), SPY 0.5 bp. NQ 1m ex roll: 1,223 days, 32.64 units/day, gross +12.374 bp/day (t +4.00), cost 7.977 bp/day, net +4.397 bp/day, t +1.38, p5 -0.856, Sharpe +0.62, maxDD 2,055 bp, worst day -470 bp (2022-07-06); 2023 net -5.3 bp/day; post-publication 2023-11+ (483 days) gross +8.12 net +1.98 t +0.45; cost x2 net -3.58 (t -1.08). SPY: 35.19 units/day, gross +5.59 (t 2.66), cost 17.59, net -12.00 bp/day (t -5.30), Sharpe -2.07. Bar 3.4794 (N=199). Streaming check and 250-session truncation test passed. Reason: real-looking gross on NQ, costs eat two thirds.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap-H0021.md",
+   "where": "whole file"
+  },
+  {
+   "fact": "[verified-repo] FAMILY B7 (closed 2026-10-06; 'last index-intraday lead before changing data class'): 30-minute-cadence VWAP trend, H0022. Same as H0021 but desired position evaluated only at closes of the 09:59,10:29,...,15:29 bars (12 decisions). NQ 1m ex roll (seen sample): 1,223 days, 5.90 units/day, gross +6.483 bp/day (t +2.18), cost 1.440, net +5.043 bp/day, t +1.68 vs bar 3.4808 (N=200), p5 +0.043, win 0.519, Sharpe +0.76, maxDD 2,884 bp, worst day -856 bp (2025-04-07); by year net 2020 +16.2, 2021 +7.7, 2022 +9.4, 2023 +5.7, 2024 +6.9, 2025 -9.4 bp/day; 2023-11+ gross +0.32 net -0.79 t -0.17; cost x2 net +3.60 t +1.20. Unseen SPXUSD 2010-18 with session TWAP (no volume), 0.5 bp/unit: 2,090 days, 6.44 units/day, gross +5.41 (t +3.94), net +2.19 bp/day, t +1.57, p5 -0.09, Sharpe 0.55, 4 of 9 years negative, cost x2 net -1.03. SPY: 6.34 units/day, gross +2.42 (t 1.17), cost 3.17, net -0.75 bp/day (t -0.36). 12 unit tests incl. missing-decision-bar fallback.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap30-H0022.md",
+   "where": "whole file"
+  },
+  {
+   "fact": "[verified-repo] Pre-registered but NEVER RUN (no ledger row, no result): S&P 30-minute opening-range breakout (prereg_orb30.txt, sha256 1e99c775, stamped 2026-10-05T23:58:55Z): eligibility at 10:00 (>=25 of the 30 bars 09:30-09:59), trigger = first 1m close beyond OR high/low in 10:00-11:59, entry next bar open (<=12:00), stop opposite OR edge, exit stop or last bar <=15:59, cost 0.6 pt RT; variants A no target, B 2R target, C narrow-OR filter (W < median of prior 20); planned N 198; decisive only via a later ES 1m RTH 2019-2026 row if D1 net p5 > 0. Feasibility (no outcomes read): 2,032 eligible weekdays, median OR width 5.75 pt (0.309% of price), cost 0.6 pt = 0.104R at median W, 35.6% of days have W >= 15 ES-equivalent pt. The director ran the lean-chain H0018-H0022 instead; the 5-min version was deliberately excluded by the board screening rule (stops >= 15 ES pt) yet H0020 later tested it on NQ at 2 bp.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/builder/prereg_orb30.txt",
+   "where": "whole file; builder/feasibility.txt; agents/daily/2026-10-06-0247/hypothesis.py docstring (refuses to run without a ledger row)"
+  },
+  {
+   "fact": "[verified-repo] FAMILY C (closed, wave 2): scheduled macro events intraday on ES/NQ (E2-01..12, 12 of 15 budget). IS SPXUSD 1m 2010-11..2018-12 (FOMC days before 2013-03-20 dropped: statement minute unconfirmed); OOS SPY 1m RTH 2019-01-02..2025-07-18 (Polygon pinned) + NQ 1m 2020-08-31..2025-11-21, pooled per event day. MyFundedFutures Tier-1 blackout [T-2,T+2] min applied (FOMC statement 14:00 from 2013-03-20, minutes, ISM 10:00). Costs/side: ES/SPX 0.30 pt (1 tick + $2.50), SPY $0.030/share, NQ 0.375 pt. Results OOS net bp/event day, t, n, trades/yr: E2-01 FOMC cont N=15 -18.39 t -1.25 n54 7.8/yr (IS +5.20); E2-02 N=5 -9.52 t -0.63; E2-03 N=30 -17.32 t -1.21; E2-04 FOMC fade N=15 +16.02 t +1.09 p5 -7.84 (IS -10.87 opposite sign; SPY +10.13, NQ +24.16); E2-05 pre-FOMC drift intraday +2.18 t +0.45; E2-06 CPI/NFP gap continuation -3.70 t -0.46 n161 23.4/yr; E2-07 gap fade +1.25 t +0.16; E2-08 event-day momentum 10:03->close -5.62 t -1.28 n438 63.6/yr; E2-09 event-day last half hour -4.10 t -2.27 (negative in both samples); E2-10 non-event control +1.59 t +0.69 n1330; E2-11 vol-filtered -7.28 t -1.14; E2-12 book -8.98 t -1.37. Best gross OOS t +1.21 (the control). Bar 3.5603. Calendar defects found by red team move t by <= 0.24. Reason: gross edges ~0, not costs (~1.2 bp/trade). $20k/yr at 7.8 FOMC trades would need ~$2,600 net/trade.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-events.md",
+   "where": "whole file; agents/prereg/E2_rules.md; agents/prereg/E2.csv"
+  },
+  {
+   "fact": "[verified-repo] FAMILY D (closed, wave 1): intraday breadth across 19 markets (D4-01..05, 5 of 15 budget), Oanda M1 mid 2005-01..2020-05 (FutureSharks@7ba1d404) + HistData DAX/ESTX50 2010-11..2018-12; IS 2005-2012, OOS 2013-01..2020-05 (1,908 days); 6 held-out markets (GRXEUR ETXEUR GBP_USD AU200_AUD NATGAS_USD JP225_USD) never computed in-sample; eligibility: RT cost <= 10% of IS session vol (19 of 23 pass; corn, soybeans, wheat, sugar dropped); equal-vol sizing 1%/sigma60; local cash sessions, flat at close, no swap. OOS basket mean (% at 1% vol) gross t / net t / net Sharpe: D4-01 Gao LHH +0.80 / -16.05 / -5.83 (IS design gross t +6.81, gross Sharpe 2.37 -> OOS 0.29); D4-02 open move->close +0.13 / -4.83 / -1.75; D4-03 TWAP trend 30-min +3.53 (gross Sharpe +1.28) / -13.83 / -5.03, ~7.4 sides/session; D4-04 30-min ORB +2.30 / -4.56 / -1.56; D4-05 blend +2.86 / -13.57 / -4.93. G1-G3 fail, G4-G5 pass for all. Mean pairwise market correlation +0.06..+0.08 (max 0.83 within EU / within US indices); effective N 7.9-9.0 of 19. HistData files found to follow NY local time WITH DST, fixed before any return was computed. 'Fifth intraday family closed, after H0006, H0020, H0021, H0022.'",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-breadth.md",
+   "where": "whole file; agents/prereg/D4-spec.md (markets, sessions, cost/side table, gate G1-G5)"
+  },
+  {
+   "fact": "[verified-repo] FAMILY E1 (legacy, counted H0007): time-series momentum on 54 futures (Moskowitz-Ooi-Pedersen 2012 replication, data/futures.csv from rkohli3/TSMOM, 1984-01..2016-10, excess returns). Sign of trailing 12-month return, position 1/60-day vol, monthly rebalance, 10 bp per unit turnover. Long/short: Sharpe 1.17, bootstrap p5 0.82, P(Sharpe<=0) 0.0%, 32.5 years, maxDD -6.9% at 3% vol, 62% positive months; long-only Sharpe 0.80 (p5 0.48). Lookback windows 3/6/9/12/18m Sharpe 0.72/0.69/0.96/1.17/0.65 (12m chosen by the paper on overlapping 1985-2009). Classes: bonds 0.83, commodities 0.81, equity indices 0.51, currencies 0.48. Periods: 1984-99 1.55, 2000-09 1.18, 2010-16 0.46. 20%/yr needs 6.7x leverage, -39.6% maxDD, -20.6% worst year. Apex 21-trading-day evaluation: at $300 daily vol 5% pass / 8% blown / 87% expire; at $500 23% / 24% / 53%. Verdict: real edge but structurally incompatible with daily-flat futures prop accounts; forward estimate Sharpe 0.6-0.8.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following.md",
+   "where": "whole file (Hebrew); ledger H0007; data/README.md"
+  },
+  {
+   "fact": "[verified-repo] FAMILY E2 (legacy, counted H0008 = 16 variants): TSMOM on 9 investable asset-class ETF series (data/asset_classes.csv from mwilczynska/financial_datasets; observed data only from 1991-10-29; modelled 1970-91 history excluded because the commodity interpolation produced a fake +122% year). 1991-2026: total-return signal L/S Sharpe 1.05 (p5 0.76), long-only 1.31 (p5 1.00), long-only <=100% exposure 1.31 (p5 1.06) earning +4.5%/yr at -5.6% DD with 51% of the book in SHY; excess-return signal (paper definition) L/S 0.66 (p5 0.39), long-only 1.06, <=100% 1.04 (p5 0.80, +5.2%/yr, -9.4% DD); 60/40 B&H +9.1%/yr Sharpe 0.85. True OOS 11/2016-9/2026: L/S Sharpe 0.61 (p5 0.08), long-only 0.86 (p5 0.39), <=100% 0.88; 60/40 0.92 (+10.1%/yr); S&P 0.90. 10% vol needs 2-3x margin at 5.1% for 10-13%/yr; 20%/yr not reachable. Window sensitivity 3/6/9/12/18m: 0.74/1.03/1.13/1.05/1.12 (total) and 0.45/0.44/0.63/0.66/0.43 (excess).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following-etf.md",
+   "where": "whole file (Hebrew); ledger H0008"
+  },
+  {
+   "fact": "[verified-repo] FAMILY E3 (legacy, H0009 + H0015): stacking components at 10% vol. 54 futures 1990-2016: tsmom (past-vol scaled) Sharpe 1.29 (p5 0.92); cross-sectional 12-1 momentum 0.44 (p5 0.16; commodities 0.63, others ~0.1); value (5-year reversal proxy) -0.42 (p5 -0.78; bonds -0.93); correlations tsmom-xsmom 0.54, tsmom-value -0.22, xsmom-value -0.33; stacks: tsmom+xsmom 1.13, tsmom+value 1.08, all three 1.00, xsmom+value -0.04 (p5 -0.41). Investable 2010-2026 (index opens real only from 2010): S&P close-to-open overnight Sharpe 0.84 gross, 0.65 at 0.5 bp/side, 0.47 at 1 bp, 0.10 at 2 bp; corr 0.56 with 60/40; by period 2010-14 -0.17, 2015-19 1.17, 2020-22 0.41, 2023-26 1.21; stacks 60/40 alone 0.90, +trend 0.89, +overnight 0.85, all three 0.86 (at 20% vol -54% DD, CAGR 18.7%); trend+overnight 0.72 (p5 0.36). Apex 21-day eval table: SR 1 at $500/day vol pass 23% / blown 40%; SR 3 41%/23%; SR 5 62%/11%. Conclusion: no third uncorrelated component buildable from free data; realistic ceiling Sharpe ~1.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/stack.md",
+   "where": "whole file (Hebrew); ledger H0009, H0015; references/stack-run.txt lines 20 and 60"
+  },
+  {
+   "fact": "[verified-repo] FAMILY E4 (closed, wave 1): forex/CFD multi-asset daily trend and carry at FTMO-type costs (D2-01..09, 9 of 15). Universe 32: 9 USD FX majors + 8 triangulated crosses (FRED H.10 noon fixes), 10 index CFDs (Yahoo), gold/silver/oil via GLD/SLV/USO, US10Y/US30Y proxies (D2-07 only); financed returns with OECD 3m rates lagged one month; costs 0.75-5 bp/side + swap markup 1%/yr (FX, bonds) or 2.5%/yr (indices, commodities) on gross notional; sleeve vol-targeted 10% (126d), 10% no-trade buffer; worse of lag1/lag2 decides; IS 1990-2012 (chooses headline + EWMAC scalar only), OOS 2013-01-01..2026-10-02 (13.6 y). OOS Sharpe / t / p5 bp/day (1x): D2-01 multi-horizon TSMOM -0.09 / -0.33 / -2.24 (IS 0.71); D2-02 12m TSMOM +0.16 / +0.54 / -1.31 (IS 0.54) = best; D2-03 fast -0.50 / -1.85; D2-04 FX carry XS -0.17 / -0.64 (IS 0.45); D2-05 carry TS -0.21 / -0.76; D2-06 stack -0.17 / -0.62 (IS 0.86); D2-07 +bonds -0.03 / -0.10 (IS 0.81); D2-08 trend-filtered carry (headline, IS 0.87) -0.17 / -0.66 / -2.56, CAGR -1.6%, maxDD -39.5%; D2-09 EWMAC 0.00 / 0.01. Gross OOS Sharpe 0.07-0.58 vs ~0.96 needed. Sleeves OOS: FX trend -0.12, index trend -0.05, commodity trend 0.02, bond trend 0.02, FX carry -0.17. Headline by period: 1990s 1.01, 2000-07 1.02, 2008-12 0.38, 2013-17 -0.20, 2018-21 0.02, 2022-26 -0.10. FTMO-type sim at IS-chosen 10% vol OOS: pass 20%, blown 73%, 2-yr survival 9.5%, E[net] +$550/attempt vs +$894 at zero mean (fee option, not edge; disappears at 2x cost).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-fxtrend.md",
+   "where": "whole file; agents/prereg/D2_rules.md; agents/prereg/D2.csv"
+  },
+  {
+   "fact": "[verified-repo] FAMILY F (closed, wave 1): crypto (D3-01..11, 11 of 15), data.binance.vision only (api.binance.com/fapi HTTP 451, bybit 403; not routed around): spot 1h klines 2018-07..2026-09, USDT-M perp 1d + funding; 57-name candidate list fixed in advance incl. collapsed coins (LUNA, FTT, WAVES...; verifier counts 55); monthly top-25 by 30d quote volume with >=180d history; costs perp 7 bp/side (5 taker + 2), spot 9.5 bp/side, actual funding prints; IS 2019-2022 (only for D3-09 hours and a scale factor), OOS 2023-01-01..2026-09-30 (1,369 days); t = min(iid, NW10), p5 = min(iid, block 20). OOS net bp of capital/day, t iid/NW, Sharpe(sqrt365): D3-01 TSMOM 20/60/120 L/S +4.70, 1.33/1.36, 0.69; D3-02 TSMOM long/flat +5.61, 2.26/2.03, 1.17, CAGR 20.9%, maxDD -18.1% (best; mostly beta: BTC B&H Sharpe 1.16, alpha t 2.03 vs EW universe, drop 20 best days -> ~0); D3-03 BTC+ETH only +7.21, 1.37/1.40, 0.71, maxDD -41%; D3-04 1h EMA24/168 trend +3.03, 0.66, cost x2 -> 0; D3-05 XS momentum 28d +0.61, 0.15 (IS t 2.97 Sharpe 1.49 -> died); D3-06 XS 7d -1.64; D3-07 funding carry +2.19, 0.70 (+3.73 t 1.20 after per-8h fix); D3-08 cash-and-carry -0.20 (IS Sharpe 4.70 from 2021 funding boom; needs spot, not perp-only prop); D3-09 BTC hour-of-day -54.3, t -20.8 (gross +1.66 vs cost 56 bp/day, 8 units/day); D3-10 vol-managed combo +6.06, 1.96/2.20, 1.01 (+6.93 t 2.22 with fixes); D3-11 vol-managed TSMOM +7.32, 2.15/2.10, p5 +1.73, Sharpe 1.11, CAGR 26.9%, maxDD -16.7%. Bar needs Sharpe ~1.8 over 1,369 days. Prop fit: at the scale for 20%/yr, 5%/10% static limits breached in 37-56% of rolling 1-yr windows, 83-96% with trailing.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-crypto.md",
+   "where": "whole file; agents/prereg/D3.csv (D3-00 common rules)"
+  },
+  {
+   "fact": "[verified-repo] FAMILY G (closed, wave 2): cross-sectional stock anomalies on FTMO stock CFDs (E1-01..11, 11 of 15). Universe A = point-in-time S&P 500 (fja05680) with Yahoo prices (432 of 1,214 ever-members have no Yahoo history; coverage 45% 1999, 74% 2015, 98% 2026); universe B = A intersect FTMO's 46 USD stock CFDs (~33 eligible names/day); IS 1999-04 (2008-04 for PEAD) to 2014, OOS 2015-01-02..2026-10-02 (11.8 y); worse of lag 0/lag 1; costs 0.4 bp commission + half-spread 2 bp (B) / 3 bp (A) / 0.5 bp US500 + FTMO swap long -8.40%/yr short -6.64%/yr every night (US500 long -8.37% short +0.42%); Swing leverage 1:1. OOS net Sharpe (A/B) and t: E1-01 5-day reversal daily -1.23/-1.33, t -4.22/-4.73 (0-cost t 1.51/-0.33); E1-02 weekly -1.23/-1.29; E1-03 residual reversal -1.22/-1.39; E1-04 long losers beta-hedged (headline, IS Sharpe +0.08) -1.03/-0.54, t -3.52/-1.91, -9.8%/yr, maxDD -71%; E1-05 PEAD SUE -1.80/-0.63; E1-06 PEAD EAR -3.00/-0.81; E1-07 gap-on-volume -1.25/-0.33; E1-08 Lou-Polk-Skouras tug of war -1.80/-1.54; E1-09 overnight-only -8.62/-5.13 (best 0-cost t 2.66 on B); E1-10 intraday-only -5.42/-3.03; E1-11 stack -2.32/-1.64. Gross edges decayed: reversal IS Sharpe 1.36 -> OOS 0.53; overnight persistence 3.86 -> 0.47. Swap on a gross-1 neutral book ~7.5%/yr (~3 bp/day) exceeds every gross OOS return; without swap best t 1.40. Bar 3.5603 needs ~1.04 Sharpe.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-stocks.md",
+   "where": "whole file; agents/prereg/E1_rules.md"
+  },
+  {
+   "fact": "[verified-repo] FAMILY H (closed, wave 3): equal-risk ensemble of near-misses on one FTMO Swing 2-Step 100K (F1-01..03, 3 of 5). S1 = D3-11 crypto vol-managed TSMOM restricted to the 28 D3 coins FTMO lists (FTMO costs: 0.065% commission/side + 5 bp assumed half-spread = 11.5 bp/side; swap -30%/yr on both long and short; leverage 1:1); S2 = H0022 30-min VWAP on NQ as proxy for US100.cash (commission 0, spread assumed 1.5 pt RT = 0.75 pt/unit; flat before 17:00 NY rollover). Third sleeve rule (OOS t >= 1.5, same-sign IS, FTMO-runnable): none qualified (D2 best 0.54, E1 all negative, E2 best 1.09 opposite-sign IS). Window W 2023-01-01..2026-05-07 (1,223 calendar days; NQ 1m to 2025-11-21 then pinned Databento NQ.c.0 5m splice, 1m/5m corr 0.98). Monthly equal-risk k = 0.10/sigma(120 obs), caps k1<=3, k2<=5; mean k1 0.42, k2 0.71; margin never bound. F1-01: +1.65 bp/day, t 0.74 iid / 0.80 NW, p5 -1.98 iid / -1.55 block, Sharpe(365) 0.41, vol 14.8%, maxDD -20.0%, worst day -6.74% (2025-04-07), cost x2 -1.39 bp/day Sharpe -0.34; by year 2023 +0.80, 2024 +7.94, 2025 -4.26, 2026 +2.94; without 2024 negative (-1.04). Sleeves: S1 +2.16 bp/day (gross +6.77, trading 1.17, swap 3.44), S2 +0.16 bp/session t 0.05 (zero cost +2.54, t 0.78); corr(S1,S2) +0.001. F1-02 BTC/ETH sleeve: t 0.77 Sharpe 0.42. F1-03 venue-cost diagnostic (Binance perp + futures costs): +3.65 bp/day t 1.65/1.77 Sharpe 0.90. Zero cost everywhere + ex-post best weight: t 2.20. Bar 3.5745 = Sharpe ~1.95 (each of two uncorrelated sleeves would need ~1.4). FTMO $/slot-yr at S 0.41: $3.9k (12% cap) / $8.0k (20%) vs zero-edge $1.9k / $5.0k.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w3-ensemble.md",
+   "where": "whole file; agents/prereg/F1.csv F1-00; agents/daily/w3-ensemble/redteam/findings.md"
+  },
+  {
+   "fact": "[verified-repo] FAMILY I (closed 2026-10-12): turn-of-the-month on the S&P 500 (McConnell & Xu 2008) as an FTMO Swing US500 CFD sleeve, H0023. Long from close of trading day -2 to close of day +3 of next month; data/spx_open_close.csv closes 1990-2026; cost 1.0 bp RT + FTMO index swap 2.5%/yr on 5 nights; IS 1990-2009 reported (net t 1.60), decisive OOS 2010-01-01..2026-09-25: net +1.10 bp/day, t +1.56 vs bar 3.5632 (N=273), p5 -0.083, Sharpe 0.38, cost x2 t 1.22; buy-and-hold scaled to the same 19% exposure Sharpe 0.76. FAIL; the TOM effect adds nothing since 2010. (Board day 2 had earlier closed TOM, the overnight sleeve and FOMC even weeks as ineligible for futures firms because they hold overnight.)",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+   "where": "row H0023; references/w1-synthesis.md 'Update 12 Oct, director's own checks'; board.md Decisions 4"
+  },
+  {
+   "fact": "[verified-repo] FAMILY J (closed, wave 4): daily short-term mean reversion across 10 FTMO index CFDs (G2-01..07, 7 counted; brief capped at 8). Yahoo daily ^GSPC ^NDX ^DJI ^GDAXI ^FTSE ^N225 ^FCHI ^AXJO ^STOXX50E ^HSI 1989/1990-2026; IS to 2012-12-31, OOS 2013-01-01..2026-10-12 (13.8 y); entry RSI(2)<10 (Connors) or 3 down closes, exit first close > SMA5 or after 5 days; L/S versions short on RSI(2)>90 / 3 up closes; 200-day filter versions; equal-risk sizing (0.10/sqrt252)/sigma60/10 fixed at entry, pooled book; worse of close fill and next-open fill (stale Yahoo opens fall back to the close); FTMO swap per calendar night (long -8.3% US, -6.5% EU, -4.9% JP225, -7.7% AUS200, -6.7% HK50; short ~0), spread 1-4 bp/side assumed, commission 0, Swing leverage 1:15 (HK50 1:9). OOS worse-fill net Sharpe / t / alpha t vs equal-risk basket: G2-01 -0.02 / -0.07 / -2.05; G2-02 +0.12 / +0.46 / -1.52; G2-03 -0.40 / -1.52 / -2.10; G2-04 -0.31 / -1.22 / -1.59; G2-05 +0.07 / +0.23 / -1.19; G2-06 (headline, IS Sharpe 0.544) +0.24 / +0.90 / -0.63, p5 -0.15, 83 trades/yr, exposure 0.10, zero-cost t 2.42 (close fill 2.73); G2-07 -0.00 / -0.00 / -1.04. Basket B&H Sharpe 0.72. G2-06 totals: gross +17.4%, swap -7.9%, spread -3.1%, net +6.4% of book. Scaled to 15%/20% vol: 19/35 days below -5% (G2-06), worst day -13.9%/-18.6%, maxDD -52%/-63%; 2018 and 2020 do the damage. $/slot-yr at S 0.24: $3.0k (15% cap) / $4.8k (20%) mostly lottery value. Post-hoc US-only (US500/US100/US30) zero-cost t 2.79, information only.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w4-meanrev.md",
+   "where": "whole file; agents/prereg/G2_rules.md"
+  },
+  {
+   "fact": "[verified-repo] FAMILY K (stopped at gate, wave 4; 0 variants counted): volatility risk premium / VIX term-structure carry (Simon & Campasano 2014 rule). symbol_gate.py found no VIX/VX/VXM/VXX/SVXY/UVXY product at any safe-list firm: FTMO CFD 166 symbols (28 forex, 15 exotics, 9 metals, 25 cash CFDs, 30 crypto, 59 single stocks, no ETFs); FTMO Futures 30 CME products, flattened 4:10 pm ET; Topstep every CME Group product, flat 3:10 PM CT; MyFundedFutures, Lucid (34 CME-group symbols), TradeDay CME-group only; Blue Guardian (grade C) and CFT (grade D) have no public symbol list (help.cryptofundtrader.com blocked by proxy, not routed around). VX/VXM trade on CFE, not CME, and daily flattening cannot collect roll yield. Possible future re-check: FTMO adding a VIX CFD (one-line API test); a VIX<VIX3M-timed US500 proxy is mostly equity beta and was not proposed.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w4-vrp.md",
+   "where": "whole file; agents/daily/w4-vrp/symbol_gate.py; evidence/*.txt"
+  },
+  {
+   "fact": "[verified-repo] FAMILY L (closed 2026-10-06, stopped at stage 2): opportunistic insider purchases (Cohen, Malloy & Pomorski 2012), H0018 at Itamar's request. SEC Form 4 open-market purchases (code P) by officers/directors 2006Q1-2026Q1 (81 quarterly zips; 440,544 purchase rows 2009+, 10.9% routine); routine = same insider traded in the same calendar month in each of 3 prior years; month-end equal-weight basket of stocks with >=1 opportunistic purchase that month, hold 1 month; 20 bp RT; exclude < $5; Yahoo prices (Stooq blocked). IS holding months 2009-02..2017-01 (96 m): mean excess vs SPY +0.19%/mo, t 0.92, Sharpe 1.17; OOS 2017-02..2026-04 (111 m): -0.50%/mo, t -1.66, Sharpe 0.48, maxDD -33.9%, 217 stocks/month, turnover 0.82; at 50 bp RT OOS -0.74% t -2.48. 55% of signal tickers (6,385 of 11,524) have no Yahoo history (survivorship; 40.6% of IS purchase dollars missing, 8.7% OOS). Stage 3 robustness and stage 4 paper spec not run.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/insider-H0018.md",
+   "where": "whole file"
+  },
+  {
+   "fact": "[verified-repo] ECONOMICS rows (not edge tests; passed_gate n/a). D1-01..06 (wave 1): per-firm renewal-reward Monte Carlo (prop_model.py extends scripts/apex_model.py; Student-t(5) daily returns, 4 intraday sub-steps, Sharpe S net of costs, vol grid 1-40%, n=4000 paths seed 11, 16 programs from rules.csv). Uncapped optimizer always picks 25-40% vol (a lottery on the fee). D1-04 (decides, vol cap 12%): at S=1.17 net $/slot-yr FTMO Swing 100K $9,398 (4 slots), Blue Guardian $7,352 (4), CFT $9,644 (3), HyroTrader $9,453 (2), The5ers $9,448 (1), E8 $2,682 (5); top-3 fleet $95.9k/yr (p10 $20.6k, year-1 $40.0k, fees $5.2k up front); min Sharpe for >=20% ROS after tax <= 0.30 for all programs except Bulenox 0.76 and Apex 0.59 (both 30-day clock). D1-05: at S=0, 14 of 16 programs already clear 20% ROS (forex/crypto 25-332%, futures 21-49%) -> '20% on fees is not an edge test'. D1-06 vol cap 8/12/15% top-3 fleet at S=1.17: $60.3k / $95.9k / $119.5k. Red-team bug fixed: daily-loss base not reset after payout (raised FTMO/CFT/The5ers 34-53%, BG 122%). Itamar then redefined the goal (11 Oct) as 20% of funded account size: $20,000/yr net per $100k.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-prop.md",
+   "where": "sections 2-4; agents/prereg/D1.csv; wave-2026-10-11.md 'Itamar's decision, 11 Oct'"
+  },
+  {
+   "fact": "[verified-repo] F2-01..15 (wave 3 volatility/contract stress, FTMO Swing 2-Step 100K, Blue Guardian 2-Step 100K, CFT 2-Phase 100K; stress_model.py reproduces D1 bit for bit): required net Sharpe for $20k pre-tax per slot-year (linear interpolation on S grid 0..3.5): FTMO F2-01 baseline 2.42 @12%, 1.88 @15%, 1.42 @20%, 0.96 @30%, 0.69 uncapped; FTMO F2-09 (t3 tails + gaps/kill switch + GARCH clustering + 24 equity checks/day with 10%/day balance lag + firm-exact rules) 2.42 / 1.92 / 1.46 / 0.94 / 0.69; Blue Guardian F2-09 3.10 / 2.76 / 2.46 / 1.98 / 1.75 (4% DLL + Guardian Shield); CFT F2-09 2.52 / 2.06 / 1.70 / 1.47 / 1.42 ($10k/day profit cap binds above 20%). Net $/slot-yr FTMO F2-09: S=0 $1.2k/1.7k/2.9k/6.0k/9.1k at 12/15/20/30/40%; S=1.0 $7.5k/9.9k/13.6k/21.2k/26.6k; S=1.5 $11.7k/15.2k/20.6k/31.4k/39.5k; S=2.0 $16.1k/20.9k/28.2k/42.3k/53.6k. Calendar chain F2-10 FTMO S=0 12%: year-1 mean -$0.2k, p10 -$1.5k, P(loss) 84%; uncapped S=0 year-1 p10 -$8.7k. Contracts: no firm sets a numeric vol limit; FTMO calls overleveraging gambling (blog cites 1% risk norm); BG treats >80% margin use as gambling; CFT bans 'all-in' and requires SL and <=2% risk/trade after suspension; 15-20% vol judged defensible, 30%+ not. F2-12..15 were post-hoc corrections registered after the model red team (t3 day with Brownian intraday path, GARCH cap 100, post-payout DLL reference, BG bot guard at -1.6%, daily-realisation variant costing 0.47 Sharpe, extra seeds); F2-12 was registered to REPLACE F2-09 as the decision row.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/tables.md",
+   "where": "'Sharpe needed for $20k per slot-year', 'F2-09 ALL combined', 'F2-10' tables; references/w3-volrisk.md; agents/prereg/F2.csv; agents/daily/w3-volrisk/redteam-model.md"
+  },
+  {
+   "fact": "[verified-repo] Synthesis table (D1 model, FTMO Swing 2-Step 100K, n=1500, pre-tax $/slot-yr): Sharpe 0: $1.8k (12% cap) / $5.0k (20%) / $11.1k (no cap, picks 30-40% vol); 1.0: $8.1k / $13.9k / $25.0k; 1.17: $9.4k / $16.1k / $28.1k; 1.5: $12.1k / $20.6k / $34.3k; 2.0: $16.5k / $28.0k / $43.1k; 2.5: $20.9k / $35.9k / $53.7k. Reading: target needs ~2.5 at 12% vol, ~1.5 at 20%; the uncapped row is the prop 'lottery' (pass rates 21-34%, firms may refuse, model unvalidated at high vol). Best real OOS Sharpe measured since 2013 is ~0.4-0.8; target needs >= 1.5.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md",
+   "where": "'What the target needs' and 'Honest bottom line'"
+  },
+  {
+   "fact": "[verified-repo] Director checks 12-16 Oct: (1) skew_check.py (simplified FTMO 2-step, 4,000 paths): negative skew (steady gains, one -6% day/yr) pays LESS than symmetric at S=0, 12% vol ($641 vs $1,043/yr); positive skew about the same; Sharpe and vol decide. (2) barrier_check.py: CPPI-style barrier-aware sizing pays less than the best constant vol: S=1.0 $6.0k vs $11.7k; S=1.5 $11.7k vs $17.8k. 'Sizing tricks do not lower the Sharpe needed.' (3) Databento gives new accounts $125 historical-data credit (card required, charged only beyond credit, expires after 6 months; cost endpoint free) -> exact cost of 1m bars for ~20 CME futures can be checked before spending; IBKR 1m futures history goes back only ~2 years for expired contracts (too short for OOS).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md",
+   "where": "'Update 12 Oct, director's own checks' and '16 Oct: director checks'"
+  },
+  {
+   "fact": "[verified-repo] Apex-era (Sep-early Oct 2026) economics in R units: at 1:2 reward/risk, 4% of drawdown risk, 25% tax, 20 x 50K, 20%/yr requires +0.250R/trade at 3 trades/day (+0.340R at 47% business-income tax, +0.379R at 53%, +0.441R at 60%; +0.182R at 8% of DD which triples account burn). Planning fleet P1 Bulenox 5 + Topstep Express 5 ($500K nominal, 'view B' = R net of costs): 20% needs +0.28R at 3 trades/day or +0.78R at 1/day; if firm exits after 3 payouts bite: +0.52R at 3/day and never at 1/day up to +1.50R. Annual Sharpe implied at 2:1: +0.10R 1/day 1.09, 3/day 1.89; +0.25R 2.67 / 4.63; +0.32R 3.40 / 5.88; +0.36R 3.81 / 6.60; +0.50R 5.27 / 9.13. Red team: in before-cost R, annual Sharpe 5.9-11.2 needed. Board screening rule for new intraday hypotheses: plausible gross >= 0.15R at stops >= 15 ES pt (0.6 pt RT = 0.04R), or several trades/day with positive net; always state R/trade, trades/day, and before/after costs.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/prop_head/structure_run.txt",
+   "where": "section 'R needed for 20% of nominal'; redteam/sharpe_needed.txt; references/numbers.md 'What the goal costs, in R'; board.md Decisions 5"
+  },
+  {
+   "fact": "[verified-repo] Detection horizons: measured bot edge +0.101R with SE 0.1450R at 28 day-clusters; days-with-a-trade to a positive two-sided-95% lower bound: +0.101R 222 (15.5 months at ~14 clusters/month), +0.20R 59 (4.1), +0.25R 39 (2.7), +0.30R 28 (2.0), +0.50R 12 (0.8). At the gate's one-sided z(0.05/195) the same anchor needs 697 / 178 / 114 / 79 / 29 days (2.4-3.1x longer).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/statistician/audit_run.txt",
+   "where": "'horizon_at_gate.py' block; references/numbers.md 'How long until the lower bound decides'"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSON (look-ahead, day filters): any eligibility rule that reads the trade day's own full session (bar count >= 370, existence of the 15:59 bar) leaks the future. IBS variant A was flattered by 0.22R (dropped days averaged -0.2324R). H0012's prereg line 18 ('all of 09:30, 09:31, 15:59 bars exist') had the same form, so H0017 was registered as the ex-ante companion. The reusable harness test_future_truncation.py: deleting every bar of day d after the entry minute must not change eligibility, side, entry time, entry price or stop; it catches the H0012-line-18 negative control. TJR's day filter (>=300 bars 18:00-11:00) was checked and had 0 look-ahead drops; H0006's requirement of the trade day's 15:59 bar dropped only 1 day (0.1%).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/statistician/test_future_truncation.py",
+   "where": "docstring; audit_run.txt tjr_filter_check / h0006_filter_check; board.md 'Look-ahead pattern'"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSON (clock conventions): HistData 1-minute files (SPXUSD, GRXEUR DAX, ETXEUR ESTX50, JPXJPY) follow New York local time WITH daylight saving, not the fixed EST (UTC-5) HistData documents; against UTC Oanda the best shift is 0 in US winter and -60 min in US summer; fixed before any D4 return. Oanda v20 candles are UTC. H0019-H0022 loaders already used a NY clock. SPXUSD session reopen is at 18:00 NY in both winter and summer (clock_check). Bars are labelled by their OPEN time everywhere (09:30 bar = 09:30:00-09:30:59). Databento ts_event is UTC; FirstRate is NY-naive; Polygon epoch-ms UTC. DST test: 2020-03-09 and 2020-11-02 09:30 NY map to 13:30Z and 14:30Z.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/loader_spec.txt",
+   "where": "INPUT RULES 1; references/w1-breadth.md 'Data checks'; audit_run.txt clock_check.py"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSON (futures rolls and sessions): NQ 1m (hindsight-finance) front-month contract switches sit at the 00:00 ET bar, never inside RTH; H0012/H0020/H0021/H0022/F1 excluded roll weeks (Mon-Fri of the week with the 3rd Friday of Mar/Jun/Sep/Dec plus the following Monday; 126 of 1,349 NQ sessions); E2 instead subtracted the 00:00-bar jump from overnight gaps. Databento ES.c.0/NQ.c.0 (calendar roll) have NO RTH bars on quarterly expiry Fridays (30 such days 2019-2026) and sit in the illiquid expiring contract for the last ~6 sessions (RTH volume 0.09-0.32x prior-month median; prices differ from FirstRate/hindsight by 2-75 points). FirstRate ES RTH rolls 1-3 days before Databento and has 44 CME-only holiday sessions to drop; outside roll weeks it matches Databento on 1,191 of 1,257 days. The roll choice must be fixed in the prereg, never after results. ES-SPY 1m return correlation 0.9841; ES-SPY daily open->close corr 0.9929; 12 sessions with |ES gap - SPY gap| > 0.5%, all roll dates except 2020-03-16.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/loader_spec.txt",
+   "where": "INPUT RULES 2-4; xcheck.txt; 2026-10-05/data_hunter/es_crosscheck.txt; references/gapfade-H0012.md implementation choice 3"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSON (adjustment and stale prices): Ascensao SPY 1m (2019-01..2025-07-18) is dividend back-adjusted (ratio to raw IBKR drifts 0.9936 -> 1.0000); never mix adjusted and unadjusted files. S&P index opens before 2010 are not real (open = previous close on 77% of 1990s days, 64% in 2000s, 6% in 2010s), so overnight tests start 2010-01-01. Yahoo index opens are stale in some market-years (^AXJO 2012-2019, ^FTSE 1999-2006, ^GSPC pre-1997); G2 treats such opens as invalid and fills at the close. SPXUSD 1m misses RTH minutes: only 32-34% of 2012-13 weekdays have >= 370 bars (71 of 2,090 sessions lack a 15:59 bar). data.binance.vision keeps publishing zero-volume perp klines and 0.0001 funding prints after a perp is delisted (FTM, MATIC, FTT, WAVES); since 2023 extreme-funding coins moved to 4h/1h funding intervals, so ranking per print understates them.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/loader_spec.txt",
+   "where": "INPUT RULES 5-6; data/README.md spx_open_close; agents/prereg/G2_rules.md section 1; references/w1-crypto.md red-team findings"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSONS (engine traps found in the bot replay, SKILL.md): bars are stamped at their start, so a 15:58 cutoff still admits the 15:55 5m bar that closes at 16:00 after the bot's 15:58 flatten -> last usable bar starts 15:50; crediting a target hit on the fill bar from its high is look-ahead (count only when the bar's CLOSE is beyond target; moved expectancy by 0.1R at 1R target); a bar containing both stop and target is counted as the stop and the opposite convention is also printed; gaps that clear level and stop together are counted and re-shown at -1R; risk denominator is the planned level-to-stop distance, not the fill; `.values` on a tz-aware pandas series converts to UTC and drops the tz (silent 4-hour shift); the clustered CI must be a cluster-robust SE around the trade mean, not the mean of daily means; limits resting into the evening session fill where the setup means nothing; sessions must be trading sessions not calendar days; trailing stops must be evaluated at the bot's 300-second scan, not at bar extremes; `resample('ME')` labels a weekend month-end later than the last trading day so ffill missed the signal by a day; a max-minus-min across k groups is itself a selection and grows with k at zero effect (dashboard null test requires zero survivors across 4 seeds).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/SKILL.md",
+   "where": "'Replaying the valid setups' and 'Scripts' sections (test_trend_backtest, test_dashboard, replay.py entries)"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSONS (statistics): a 5,000-draw bootstrap puts ~1.4 draws below the 0.05/N quantile and cannot resolve it (need >= 50/alpha draws, i.e. >= 195,000 at N=195, 280,000 at N=280); H0003's 100 hypotheses over 111 trades would return ~5 'significant' results from pure noise; convert horizons with days-with-a-trade (~14 per calendar month) not 21 trading days; the independence assumption cost little on the replay (cluster-robust SE 0.145R vs 0.138R iid, variance inflation 1.11) but clustering by trading day is still mandatory; the first stack in what-the-giants-do.md was scaled by full-sample volatility and understated drawdown by a third (now past-vol only; tests bend the future and demand the past not move); perturbation/truncation tests cut the panel after it is built and cannot catch loader errors (D2 red team hand-checked rate lag, Yahoo dates, quote directions, cross construction, swap on gross notional, cost timing); the D2 portfolio scaler saw 16:00 US index closes while FX returns ran noon-to-noon (~4 h look-ahead in sizing, tiny, flattering).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/board.md",
+   "where": "'Gate rule 3 in code', 'Look-ahead pattern'; SKILL.md 'The gate'; references/w1-fxtrend.md section 7 (D); references/what-the-giants-do.md section 3"
+  },
+  {
+   "fact": "[verified-repo] METHOD LESSONS (design): headline variant chosen by in-sample Sharpe BEFORE reading OOS (D2, E1, G2); a run must refuse to execute without a ledger row (2026-10-06 ORB30 script asserts --ledger-id with rules_fixed_before_test=yes citing the prereg sha); gapfade.py asserts N=196 on import (so later scripts copy loaders rather than import it); every 'bug fix' allowed only if written in the report with before/after numbers (D4 spec section 8); any rule not in the prereg is fixed in the script header before the first number and listed as 'implementation choices'; verifier ambiguity lists are recorded (E1 12, F1 16, G2 13 items); cost x2 always reported; the FTMO-type 'fee option' at zero edge (+$894/attempt at 10% vol, break-even at mean ~ -1.5 bp/day) must never be read as strategy edge; a strategy must beat a matched beta benchmark (alpha t) and be checked against the firm's 5% daily loss and 10% static max loss at the vol the target needs.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/D4-spec.md",
+   "where": "section 8; references/w1-fxtrend.md section 4 and 7 (C); agents/prereg/G2_rules.md sections 6, 9; references/orb-H0020.md 'Loaders'"
+  },
+  {
+   "fact": "[verified-repo] COST ASSUMPTIONS actually used, per instrument (carry into any new prompt): ES/SPX index 0.6 pt round trip (tjr_backtest.COST_PTS; TJR, H0006, H0013, ORB30 prereg) or 2 bp of entry RT (H0012, H0019, H0020); ES 0.30 pt per side = 1 tick + $2.50 commission (E2); NQ 0.375 pt per unit traded = 1 tick + ~$4.50 RT commission / 2 (H0021, H0022) or per side (E2); SPY 0.5 bp per unit (H0021/22) or $0.030/share per side (E2); FTMO US100.cash 1.5 pt RT = 0.75 pt/unit, commission 0 (F1); MES $1.30/contract round turn + 0.25 pt slippage on stopped exits (apex_model); D4 CFD per side: EUR_USD 0.5 bp, GBP_USD 0.7, USD_CAD 0.8, AUD_USD 0.7, EUR_JPY 0.8, AUD_JPY 0.9, SPX500 1.0, NAS100 1.0, US2000 1.5, UK100 1.0, FR40 1.0, NL25 1.5, JP225 1.5, AU200 1.2, DAX 0.8, ESTX50 1.5, XAU 1.0, WTI 2.5, NATGAS 8.0, corn/wheat/sugar 10, soybeans 6; D2 daily: FX majors 0.75 bp/side, crosses 1.5, USDSEK/NOK 3.0, index CFDs 1.5, gold 2.0, silver 5.0, oil 4.0, bond proxies 2.0, plus swap markup 1%/yr (FX, bonds) or 2.5%/yr (indices, commodities) on gross notional both sides; D3 crypto: perp 5 bp taker + 2 bp spread = 7 bp/side, spot 7.5 + 2 = 9.5 bp/side, actual funding prints (0.0001/8h before history); E1 FTMO stocks: 0.004% commission/side + assumed half-spread 2 bp (B) / 3 bp (A) / 0.5 bp US500, +2 bp on 09:35 open legs, swap long -8.40%/yr short -6.64%/yr (US500 long -8.37%, short +0.42%); F1 FTMO crypto: 0.065%/side + 5 bp half-spread = 11.5 bp/side, swap -30%/yr both sides, leverage 1:1; G2 FTMO indices: spread 1.0 bp/side US500/US100/US30/GER40/UK100, 1.5 JP225, 2.0 FRA40, 2.5 AUS200, 3.0 EU50, 4.0 HK50; swap long -8.28/-8.29/-8.25/-6.50/-8.22/-4.88/-6.50/-7.74/-6.50/-6.70 %/yr, short +0.42/+0.42/+0.42/-0.07/+0.38/-1.63/-0.07/-0.84/-0.07/+0.07; H0023: 1.0 bp RT + 2.5%/yr swap; H0018: 20 bp RT (50 bp sensitivity). FTMO publishes no spreads (all spread figures are assumptions).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/G2_rules.md",
+   "where": "section 0 table; D4-spec.md section 2; D2_rules.md section 3; D3.csv D3-00; E1_rules.md section 4; F1.csv F1-00; E2_rules.md section 3; references/numbers.md header"
+  },
+  {
+   "fact": "[verified-repo] DATA INVENTORY used (all free, pinned by sha256 in fetch scripts, never committed if > 1 MB): SPXUSD 1m 24h HistData via FutureSharks/financial-data 2010-11-15..2018-12-31 (2.1M bars, 2,090 RTH sessions, no volume); SPY 1m RTH Ascensao/Intraday-momentum-strategy@5a9e9569 (Git LFS, Polygon, dividend back-adjusted) 2019-01-02..2025-07-18 (1,645 sessions); NQ 1m front-month hindsight-finance/Silver-Bullet-AM-Session@9f00a853 nq_1m.parquet 2020-09-01 (file says 2020-08-31)..2025-11-21 (1,349 sessions; gap 2020-05-15..08-30 unfilled); ES 1m RTH 2008-01-02..2026-04-10 FirstRate via jimmuell@48993b9 (sha256 093596df..., third-party copy of paid data, licence hold); Databento ES.c.0 1m 2021-04-30..2026-04-29 (1,757,339 rows; 'eric' and 'warrenn' copies identical) and NQ.c.0 1m/5m to 2026-05-07/2026-09-11; IBKR SPY/QQQ 1m 2024-10-31..2025-11-07 unadjusted; Polygon SPY (openclaw) 2024-03-28..2026-08-07; mario QQQ 1m 2019+; SqueezeMetrics DIX/GEX daily 2011-05-02..2026-10-02; Oanda M1 mid 2005-01..2020-05-13 (23 markets incl. bond CFDs not used); HistData DAX/ESTX50 2010-11..2018-12; Binance spot 1h 2018-07..2026-09 + UM perp 1d + funding; FRED H.10 FX, OECD 3m rates, DGS10/DGS30; Yahoo daily indices, GLD/SLV/USO, 1,214 S&P ever-members; SEC Form 4 2006Q1-2026Q1; Nasdaq earnings calendar 2008+ (231,682 rows); federalreserve.gov FOMC + ALFRED release dates (bls.gov 403); data/futures.csv 55 futures daily 1984-01-03..2016-10-31; data/asset_classes.csv 9 classes 1970-2026 (observed from 1991-10-29); data/spx_open_close.csv 1990-2026. Blocked hosts at various times: Yahoo/Stooq/FRED (29 Sep), api.binance.com, fapi.binance.com (451), bybit (403), bls.gov (403), breakoutprop.com, propfirmmatch.com, help.cryptofundtrader.com, YouTube, Reddit.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/board.md",
+   "where": "'Data (new today...)' block; data/README.md; references/gapfade-H0012.md Data; references/orb-H0020.md Data; w1-breadth.md, w1-crypto.md, w2-stocks.md, w2-events.md data sections; loader_spec.txt"
+  },
+  {
+   "fact": "[verified-repo] UNTESTED / 'needs paid data' directions the org itself listed: (1) paid multi-asset intraday 1m futures data, route (c) in the synthesis, now the Databento $125-credit plan; (2) carry on futures curves (needs Databento/CSI, 'hundreds of dollars'), value on the papers' real measures (real yields, PPP, B/M), and the 02:00-03:00 ET European-open overnight window (Boyarchenko, Larsen & Whelan 2023) needing IBKR 1m bars, each expected to add 0.1-0.2 Sharpe to a stack at best (stack.md section 4); (3) 2007-2019 1-minute data to tell a Beat-the-Market 'pause' from a vanished edge (second-opinion-audit); (4) S&P 30-min ORB (prereg_orb30, never run); (5) crypto funding carry with the per-8h fix on a venue where funding is the main return, and crypto trend with a hard drawdown overlay tested against the firms' actual rules (w1-crypto next steps); (6) a lower-turnover TWAP/VWAP breadth variant (D4 had 10 budget left; expected net small, even zero cost fails); (7) US-only (US500/US100/US30) index mean reversion, found post hoc (zero-cost t 2.79), re-testable only on fresh post-2026 data; (8) crypto weekend effect in the F1 sleeve (+10.4 bp/day weekends vs -1.1 weekdays), found after looking, needs its own prereg + fresh data; (9) FTMO adding a VIX/volatility CFD (re-run symbol_gate.py); (10) hypotheses.py Z01-Z05 'not tested here': the strategy's own grading/FVG/BOS/kill zones (forbidden retune), other instruments (gold, oil, FX), other timeframes, a second uncorrelated strategy, ML on 111 setups ('no'); (11) D2-07 bonds as a 4th class was the best trend variant after D2-02/09 and 2022 was a bond-shorting year the core universe missed (red-team side note, not pursued); (12) Beat-the-Market monitoring in frozen form with manual execution if the edge returns; (13) lit-scout counted but untested event families on ES 2008-2026: large-move days (|prior close -> 14:44| >= 2% on 288 of 4,557 sessions, 126 up / 162 down), rule-based 10:00 release days (ISM/CB, ~35/yr, no excess range vs other days), drift-burst episodes (19-88 over 4,711 sessions, mostly negative); (14) 'push-response' arXiv 2511.06177 watch-only; EOD reversal and half-hour periodicity (cross-sectional) ruled out for futures fleets.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/stack.md",
+   "where": "section 4 point 4; w1-synthesis.md 'Honest bottom line' and 'Wave 4'; second-opinion-audit.md sections 4-5; w1-crypto.md 'What this means'; w1-breadth.md 'What it means'; w4-meanrev.md 'Notes for the director'; w3-ensemble redteam/findings.md; w4-vrp.md 'What could change the verdict'; scripts/hypotheses.py Z block; lit_scout/event_counts.txt; board.md Decisions 4"
+  },
+  {
+   "fact": "[verified-repo] Prop-structure facts recorded alongside the hypothesis work (repo's own citations; not re-fetched here): safe list after D5 = FTMO, MyFundedFutures, Lucid, Topstep, TradeDay (~20-25 futures accounts + one FTMO strategy capped at $400k); only forex/CFD/crypto firms (FTMO, Blue Guardian, CFT) allow overnight; every futures firm forces flat daily (Topstep 3:10 PM CT, Bulenox 3:59 PM CT, MFFU/FTMO Futures 4:10 PM ET, Tradeify/Lucid 4:45 PM ET); Apex bans automation on all account types; FTMO Swing 2-Step 100K: 10%/5% targets, 5% daily loss from midnight balance checked on equity, 10% static max loss, min 4 days/phase, no time limit, 80-90% split, first payout day 14 then bi-weekly, fee EUR 439-540 refunded with first payout, $400k per trader/strategy, 200 open orders / 2,000 positions a day, EAs allowed; Blue Guardian: 4% daily loss, Guardian Shield (open P&L <= -2% closes all; first trigger cuts split to 50%, second breaches); CFT: fee $660 never refunded, $10k/day profit cap per user. Five static-DD $100K structures tie within noise at $9.2-9.6k/slot-yr at S=1.17.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-prop.md",
+   "where": "section 1 table; w1-synthesis.md 'Firms'; board.md 'Firms'; agents/prereg/F2.csv F2-07"
+  },
+  {
+   "fact": "[verified-repo] Two different 'gates' exist in the skill and must not be confused: (a) the research gate (ORG.md rules 1-4 + wave rules, Bonferroni on the ledger N) decides whether anything is an edge; (b) the fleet-expansion ladder in scripts/gate.py (SKILL.md 'The gate') decides how many funded accounts live evidence permits: stage 1 = 1 account after a clean simulated run; stage 2 = 3 accounts after 100 trades with CI lower bound > 0; stage 3 = 10 after 250 trades with lower bound > +0.10R; stage 4 = 20 after 500 trades with lower bound > +0.20R and a profitable quarter; 20,000-draw iid bootstrap, 95% two-sided; the ladder runs both ways. Sizing: evaluation 10% of drawdown, funded 4%; never partial payouts; one new account per month.",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/SKILL.md",
+   "where": "'The gate' section and stage table; scripts/gate.py LADDER"
+  },
+  {
+   "fact": "[verified-repo] Bars and sample needed in Sharpe terms (t = Sharpe x sqrt(years) for daily series): D2 13.6 y OOS needs ~0.96; E1 11.8 y ~1.04; G2 13.8 y ~0.97; H0023 2010-26 ~0.87; D3 1,369 calendar days (sqrt365) ~1.83; F1 1,223 days ~1.95; H0022 NQ 1,223 sessions ~1.58; an Apex 21-trading-day evaluation structurally wants intraday Sharpe 3-5. Measured OOS net Sharpes: 0.76 (H0022 NQ), 1.11-1.17 (crypto TSMOM, beta), 0.16 (FX/CFD), 0.41 (F1), 0.38 (TOM), 0.24 (G2), negative (E1, D4, E2 mostly).",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-fxtrend.md",
+   "where": "section 2 'The bar'; w2-stocks.md section 4; w4-meanrev.md section 2; w1-crypto.md point 1; w3-ensemble.md 'Units and the bar'; stack.md section 3"
+  }
+ ],
+ "files_to_read_first": [
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/wave-2026-10-11.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ORG.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/board.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/eng_head/ledger_gate.py",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/finalize.py",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/D4-spec.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/D2_rules.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/E1_rules.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/E2_rules.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/G2_rules.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/F1.csv",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/prereg/D3.csv",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap30-H0022.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-crypto.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-fxtrend.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-breadth.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-events.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-stocks.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w3-ensemble.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w4-meanrev.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w4-vrp.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/tables.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/redteam-model.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-prop.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gapfade-H0012.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/orb-H0020.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap-H0021.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gamma-H0019.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/insider-H0018.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/tjr.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following-etf.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/stack.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/second-opinion-audit.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/numbers.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/loader_spec.txt",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/builder/prereg_orb30.txt",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/statistician/audit.txt",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/statistician/audit_run.txt",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/prop_head/structure_run.txt",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/scripts/hypotheses.py",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/data/README.md",
+  "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/SKILL.md"
+ ],
+ "gaps_or_inconsistencies": [
+  "N mismatch: the ledger count column sums to 280, but the last published bar (3.5914) was computed for N=304 (ledger + 30 budget) and G1 used 0 of its 15. A new program must recompute N = 280 + its own budget, not reuse 304. The wave-4 text also says 'N = 274 in the ledger' while the pre-G2 ledger sum is 273 (H0023's own bar used N=273 -> 3.5632); a one-row discrepancy of unknown origin.",
+  "The gate helper agents/daily/2026-10-05/eng_head/ledger_gate.py (ledger_n requires count to match ^[1-9]\\d*$) now raises ValueError on the current ledger because of the three count-0 'common rules' rows D3-00, E2-00, F1-00. finalize.py instead computes N as sum(int(count or 1)), which turns an empty count into 1. The two implementations disagree on edge cases; neither was ported into scripts/gate.py as the board asked (board 'Engineer 1' task).",
+  "result_mean_R / result_p5_R are not one unit: R per trade (H0004-H0017, H0020), bp per trade (H0019), bp/day (H0021-23, D2, D3, E1, F1), % of basket per day at 1% vol (D4), bp per event day (E2), and G2 stores the OOS t-statistic in result_mean_R. Any automated reader of the ledger must parse the 'result fields =' phrase in notes.",
+  "Seven legacy rows have no R or p5 at all (H0001, H0003, H0005, H0007, H0008, H0009, H0011); H0002's p5 (-0.197) is a day-clustered t(27) 95% bound, not a bootstrap p5; H0010 is not reproducible by any script; H0003 counts 100 hypotheses although only 54 have a test function (over-count, conservative, kept deliberately).",
+  "The headline 'Sharpe needed 2.4 @12%, 1.9 @15%, 1.5 @20%' in w1-synthesis.md and w3-volrisk.md cites F2-09, but F2.csv registered F2-12 to REPLACE F2-09 as the decision row after the model red team found that F2-09's 24 t3 sub-steps make daily returns nearly Gaussian, the GARCH cap breaks E[h]=1 (effective Sharpe ~1.12 S), the forced 10%/day closed-balance lag costs FTMO/CFT 35-50% of funded pay at 20% vol, and CFT's cap and BG's Shield are modelled pessimistically; agents/daily/w3-volrisk/tables.md shows only F2-01 and F2-09 required-Sharpe tables, so the F2-12..15 numbers are not in the readable report (only in results.json). The F2 session also 'stopped mid-run' and was finished in the director session. make_report.py does not apply prereg rule (a) or the F2-11 lottery verdict.",
+  "Board decision 8 (2026-10-05) put FirstRate and Databento third-party copies under a licence hold ('no gated result depends on them until Itamar rules'), yet F1-00/F1-01 (a gated test) used a pinned Databento NQ.c.0 5m file for the 2025-11-24..2026-05-07 splice, and the event_counts lit-scout used the FirstRate ES 1m 2008-2026 file.",
+  "Pre-wave rows used the live ledger N for their bar while wave rows used a budget-inflated fixed N; H0012/H0017 were planned at N=195 (z 3.474) but run at N=196 (z 3.4753) because H0018 was added in between; gapfade.py hard-asserts N=196 on import, which is why later scripts copy the loaders.",
+  "D3's 'fixed 57 candidates' list contains 55 names (verifier); the D3 IS period 2019-2020 is mostly a spot backtest because few coins had listed perps; D3's survivorship diagnostic (72 extra coins) changed means by ~0.4 bp/day without changing verdicts.",
+  "The board (day 2) closed turn-of-month, the overnight sleeve and FOMC even weeks as 'ineligible' for daily-flat futures firms, and screened out the 5-min ORB (stop < 15 ES pt); after the frame changed to FTMO Swing both TOM (H0023) and the 5-min ORB (H0020 on NQ at 2 bp) were nonetheless tested. The S&P 30-min ORB prereg (prereg_orb30.txt) was never run and has no ledger row, so it is pre-registered-but-open, not closed.",
+  "E2 OOS leg B is described as 'NQ 1m 2020-09..2025-11' in the ledger but 2020-08-31 in E2_rules.md (the file starts 2020-08-31 with the first RTH session 2020-09-01).",
+  "D2's first run measured in-sample from 1988 and fitted EWMAC scalars on pre-1990 data; fixed before the report (headline moved D2-06 -> D2-08); the sleeve vol scaler uses data through day t while the rules say t-1 (effect <= 0.016 Sharpe); these were disclosed but mean the published D2 OOS results sit on a corrected run (run.txt).",
+  "w1-synthesis's wave table lists crypto's best as 'vol-managed TSMOM t 2.15' (D3-11) while the single best OOS t was D3-02 long/flat TSMOM at 2.26 (iid; 2.03 Newey-West) — both are mostly beta.",
+  "SKILL.md still describes the original Apex-style futures fleet (50K trailing-drawdown accounts, 6 payouts, $13,000 life cap, 21-day evaluation clock, stage ladder) and an IBKR-executed bot; it was never rewritten for the FTMO Swing / $20k-per-$100k frame adopted on 11-12 Oct, so a new prompt must not inherit its Apex numbers (e.g. 50K drawdown $2,500 vs $2,000 on post-March-2026 plans per second-opinion-audit).",
+  "No web page was fetched in this digest; all firm, paper and data-source statements are the repository's own claims with its own citations (several marked 'firm snippet' or 'cited from memory' inside the repo, e.g. the IBS paper and what-the-giants-do.md fund figures)."
+ ],
+ "numbers": [
+  {
+   "name": "Ledger N (sum of count column) today",
+   "value": "280 (105 rows; H-series 201 incl. H0023, D1 6, D2 9, D3 11, D4 5, E1 11, E2 12, F1 3, F2 15, G2 7, G1 0)",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv"
+  },
+  {
+   "name": "One-sided Bonferroni z at N=280 (alpha 1.786e-4) and minimum day-clustered bootstrap draws (50/alpha)",
+   "value": "z = 3.5699; >= 280,000 draws",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/eng_head/ledger_gate.py"
+  },
+  {
+   "name": "z bars for prospective N (new program budget B added to 280)",
+   "value": "N 295: 3.5835; 300: 3.5879; 310: 3.5965; 320: 3.6047; 325: 3.6087; 340: 3.6204; 350: 3.6279; 400: 3.6623; 500: 3.7190; 1000: 3.8906",
+   "file": "computed from NormalDist().inv_cdf(1-0.05/N), same formula as ledger_gate.alpha_z"
+  },
+  {
+   "name": "Historical bars used",
+   "value": "N 173 -> 3.442 (day 1); 176 -> 3.446 (IBS); 195 -> 3.474 (board day 2); 196 -> 3.4753 (H0012/17/18); 197 -> 3.4767 (H0019); 198 -> 3.4781 (H0020); 199 -> 3.4794 (H0021); 200 -> 3.4808 (H0022); 260 -> 3.5504 (wave 1); 270 -> 3.5603 (wave 2); 273 -> 3.5632 (H0023); 285 -> 3.5745 (wave 3); 304 -> 3.5914 (wave 4)",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/wave-2026-10-11.md"
+  },
+  {
+   "name": "Target restated 11 Oct",
+   "value": "$20,000/yr net to Itamar per $100,000 funded account (20% of nominal), after split, fees and resets, averaged over a fleet including failed accounts",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/wave-2026-10-11.md"
+  },
+  {
+   "name": "Net Sharpe needed for $20k/slot-yr, FTMO Swing 2-Step 100K (F2-09 stressed / F2-01 baseline)",
+   "value": "12% vol 2.42 / 2.42; 15% 1.92 / 1.88; 20% 1.46 / 1.42; 30% 0.94 / 0.96; uncapped 0.69 / 0.69",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/tables.md"
+  },
+  {
+   "name": "Net Sharpe needed for $20k/slot-yr, Blue Guardian and CFT (F2-09)",
+   "value": "Blue Guardian 3.10 @12%, 2.76 @15%, 2.46 @20%, 1.98 @30%, 1.75 uncapped; CFT 2.52, 2.06, 1.70, 1.47, 1.42",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/tables.md"
+  },
+  {
+   "name": "FTMO $/slot-yr pre-tax by Sharpe (synthesis table, D1 model n=1500) at 12% / 20% / no cap",
+   "value": "S0 $1.8k/$5.0k/$11.1k; S1.0 $8.1k/$13.9k/$25.0k; S1.17 $9.4k/$16.1k/$28.1k; S1.5 $12.1k/$20.6k/$34.3k; S2.0 $16.5k/$28.0k/$43.1k; S2.5 $20.9k/$35.9k/$53.7k",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md"
+  },
+  {
+   "name": "Zero-edge 'lottery' under full stress (F2-09/F2-10, FTMO)",
+   "value": "12% cap $1.2k/yr; year-1 mean -$0.2k, p10 -$1.5k, P(year-1 loss) 84%; uncapped S=0 year-1 p10 -$8.7k; 'not a business'",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/w3-volrisk/tables.md"
+  },
+  {
+   "name": "Skew and barrier-sizing checks (simplified FTMO model)",
+   "value": "S=0 12% vol: negative skew $641/yr vs symmetric $1,043; barrier-aware (CPPI) vs best constant vol: S1.0 $6.0k vs $11.7k, S1.5 $11.7k vs $17.8k",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md"
+  },
+  {
+   "name": "D1-04 fleet at S=1.17, vol cap 12%",
+   "value": "FTMO $9,398/slot-yr (4 slots), Blue Guardian $7,352 (4), CFT $9,644 (3), HyroTrader $9,453 (2), The5ers $9,448 (1), E8 $2,682 (5); top-3 fleet $95.9k/yr, p10 $20.6k, year-1 $40.0k, fees $5.2k up front; cap 8%/15%: $60.3k/$119.5k; S=0 top-3 $19.7k; S=0.82 $68.8k",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-prop.md"
+  },
+  {
+   "name": "Apex-era R thresholds for 20%/yr",
+   "value": "+0.250R/trade at 3 trades/day, 4% of DD, 25% tax (0.340R at 47%, 0.379R at 53%, 0.441R at 60%; 0.182R at 8% of DD); P1 Bulenox5+Topstep5: +0.28R at 3/day or +0.78R at 1/day (view B); exit-after-3-payouts: +0.52R at 3/day, none at 1/day up to 1.5R; measured bot edge +0.101R, clustered interval [-0.197, +0.398], SE 0.145R at 28 clusters",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/prop_head/structure_run.txt"
+  },
+  {
+   "name": "Annual Sharpe implied by R/trade at 2:1 (250 days)",
+   "value": "+0.10R: 1.09 (1/day), 1.89 (3/day); +0.25R: 2.67 / 4.63; +0.32R: 3.40 / 5.88; +0.36R: 3.81 / 6.60; +0.50R: 5.27 / 9.13; +0.90R: 9.84 / 17.05",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/redteam/sharpe_needed.txt"
+  },
+  {
+   "name": "21-trading-day evaluation as volatility lottery (target $3,000, DD $2,000)",
+   "value": "SR 1.0: $300/day vol pass 4% blown 12%; $500 pass 23% blown 40%. SR 3.0: $300 11%/4%; $500 41%/24%. SR 5.0 $500: 62%/11%",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-04/redteam/sharpe_horizon.txt"
+  },
+  {
+   "name": "Detection horizon in days-with-a-trade (SE anchor 0.145R, 28 clusters)",
+   "value": "two-sided 95%: +0.101R 222 d (15.5 mo), +0.20R 59, +0.25R 39 (2.7 mo), +0.30R 28, +0.50R 12; at gate z(0.05/195): 697, 178, 114, 79, 29",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/statistician/audit_run.txt"
+  },
+  {
+   "name": "H0004 TJR base (SPXUSD 1m 2010-18)",
+   "value": "n 860; win 32.0%; net -0.203R, 90% [-0.28,-0.13]; gross +0.007R [-0.07,+0.09]; cost 0.21R/trade; median stop 3.2 pt; Sharpe -1.49; all 7 variants negative",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/tjr.md"
+  },
+  {
+   "name": "H0005/H0011 Beat the Market external replication",
+   "value": "SPY 2020-26 Sharpe 1.11 (alpha +16.7%/yr t 2.85); SPY 2025 -4.9% Sharpe -0.27; SPY 2026 to Jul -12.9% Sharpe -1.91; ES 5/2024-7/2026 Sharpe -0.07, CAGR -2.1%, DD -22.7%; ES-SPY corr 0.97; walk-forward 0.57 vs fixed 0.92",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/second-opinion-audit.md"
+  },
+  {
+   "name": "H0006 last-half-hour momentum (SPXUSD 2010-18, 0.6 pt RT)",
+   "value": "A n 1720, 211.7/yr, net -0.1418R, p5 -0.1818, gross +0.0233R, median risk 3.98 pt; B n 825, 101.6/yr, -0.1605R; C -0.0689R, gross +0.0136R",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-04/run.txt"
+  },
+  {
+   "name": "H0013/H0014 IBS reversal",
+   "value": "builder A n 583, 74.7/yr, net -0.0097R, p5 -0.0871, gross +0.0483R; ex-ante A n 907, 116.3/yr, net -0.0893R, p5 -0.1461, gross -0.0262R; dropped days -0.2324R",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/statistician/audit.txt"
+  },
+  {
+   "name": "H0012/H0017 gap fade (2 bp RT)",
+   "value": "D2 SPY n 455, 69.6/yr, gross -0.0950R, net -0.1223R, p5 -0.1821, t -3.35, LB(0.05/196) -0.2494; D1 SPXUSD gross -0.0240R net -0.0614R; D3 NQ net +0.0087R t +0.19",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gapfade-H0012.md"
+  },
+  {
+   "name": "H0019 gamma-conditioned LHH momentum (2 bp RT, bp/trade)",
+   "value": "D2 SPY GEX<0 n 202, 30.9/yr, gross +9.69, net +7.69 bp, t +1.47, p5 -1.01; D1 n 123 gross +3.70 net +1.70 t +0.32; controls net -0.67 / -2.05",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/gamma-H0019.md"
+  },
+  {
+   "name": "H0020 5-min ORB (2 bp of entry RT)",
+   "value": "NQ n 1,219, 233.5/yr, gross +0.1101R (t 1.63), net -0.0052R, t -0.08, p5 -0.1147, win 23.6%, avg R 41.6 pt; post-pub 2023-05+ net +0.0150R; SPY net -0.0865R; SPXUSD gross +0.0810R net -0.1516R; cost 0.12-0.23R/trade",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/orb-H0020.md"
+  },
+  {
+   "name": "H0021 1-min VWAP trend",
+   "value": "NQ 1,223 days, 32.64 units/day, gross +12.374 bp/day (t 4.00), cost 7.977, net +4.397 bp/day, t 1.38, p5 -0.856, Sharpe 0.62, maxDD 2,055 bp; 2023-11+ net +1.98 t 0.45; x2 cost net -3.58; SPY net -12.00 bp/day t -5.30",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap-H0021.md"
+  },
+  {
+   "name": "H0022 30-min VWAP trend",
+   "value": "NQ 5.90 units/day, gross +6.483 (t 2.18), cost 1.440, net +5.043 bp/day, t 1.68 vs 3.4808, p5 +0.043, Sharpe 0.76, maxDD 2,884 bp, worst -856 bp (2025-04-07); 2025 net -9.4; 2023-11+ net -0.79 t -0.17; x2 net +3.60 t 1.20; SPXUSD-TWAP net +2.19 t 1.57 (gross t 3.94) p5 -0.09; SPY net -0.75 t -0.36",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/vwap30-H0022.md"
+  },
+  {
+   "name": "E2 macro events (12 variants, bar 3.5603)",
+   "value": "best E2-04 FOMC fade: +16.02 bp/event day, t +1.09, p5 -7.84, n 54, 7.8/yr, IS -10.87 bp; worst E2-09 event-day last half hour t -2.27; control E2-10 t +0.69 (best gross t 1.21); costs ~1.2 bp/trade",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-events.md"
+  },
+  {
+   "name": "D4 intraday breadth (19 markets, OOS 2013-2020.05, 1,908 days)",
+   "value": "net t -4.56 to -16.05 all five; best gross t +3.53 (D4-03 TWAP, gross Sharpe 1.28); D4-01 IS gross Sharpe 2.37 -> OOS 0.29; mean pairwise corr +0.06..+0.08; effective N 7.9-9.0",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-breadth.md"
+  },
+  {
+   "name": "H0007 futures TSMOM (54 futures 1984-2016)",
+   "value": "L/S Sharpe 1.17, p5 0.82, maxDD -6.9% at 3% vol; windows 3/6/9/12/18m 0.72/0.69/0.96/1.17/0.65; periods 1984-99 1.55, 2000-09 1.18, 2010-16 0.46; classes bonds 0.83, commodities 0.81, indices 0.51, FX 0.48; 20%/yr needs 6.7x leverage, DD -39.6%",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following.md"
+  },
+  {
+   "name": "H0008 ETF TSMOM OOS 11/2016-9/2026",
+   "value": "L/S Sharpe 0.61 (p5 0.08); long-only 0.86 (p5 0.39); long-only <=100% 0.88; 60/40 B&H 0.92, +10.1%/yr; unlevered strategies +2.7-4.5%/yr",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/trend-following-etf.md"
+  },
+  {
+   "name": "H0009/H0015 stack components",
+   "value": "tsmom 1.29 (p5 0.92); xsmom 0.44 (p5 0.16); value -0.42 (p5 -0.78); corr tsmom-xsmom 0.54; overnight S&P 2010-26 Sharpe 0.84 gross / 0.65 at 0.5 bp / 0.10 at 2 bp, corr 0.56 to 60/40; best 3-stack 0.86-1.00; xsmom+value -0.04 (p5 -0.41); trend+overnight 0.72 (p5 0.36)",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/stack.md"
+  },
+  {
+   "name": "D2 FX/CFD trend+carry OOS 2013-01..2026-10-02",
+   "value": "best D2-02 Sharpe 0.16 t 0.54 p5 -1.31 bp/day; headline D2-08 IS 0.87 -> OOS -0.17 t -0.66 p5 -2.56, CAGR -1.6%, maxDD -39.5%; gross OOS Sharpe 0.07-0.58; swap markup 3.1-4.3%/yr; needs ~0.96; FTMO sim pass 20% blown 73% E[net] +$550 vs +$894 at zero mean",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-fxtrend.md"
+  },
+  {
+   "name": "D3 crypto OOS 2023-01..2026-09-30 (1,369 days)",
+   "value": "D3-02 long/flat TSMOM +5.61 bp/day, t 2.26/2.03, Sharpe 1.17, maxDD -18.1% (BTC B&H Sharpe 1.16; alpha t 2.03); D3-11 vol-managed TSMOM +7.32, t 2.15/2.10, p5 +1.73, Sharpe 1.11, CAGR 26.9%, maxDD -16.7%; D3-10 +6.06 t 1.96/2.20; D3-05 XS 28d +0.61 t 0.15 (IS t 2.97); D3-07 funding carry +2.19 t 0.70 (+3.73 t 1.20 fixed); D3-08 cash-and-carry -0.20 (IS Sharpe 4.70); D3-09 hour-of-day -54.3 bp/day (cost 56 bp/day); bar needs Sharpe ~1.8",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-crypto.md"
+  },
+  {
+   "name": "E1 FTMO stock CFDs OOS 2015-2026",
+   "value": "all 11 variants negative net on both universes; headline E1-04 -9.8%/yr, t -3.52, maxDD -71%; best zero-cost t 2.66 (E1-09 B); swap long -8.40%/yr short -6.64%/yr (~7.5%/yr on gross-1 neutral book, ~3 bp/day); leverage 1:1; ~33 eligible names; reversal gross IS 1.36 -> OOS 0.53; overnight persistence 3.86 -> 0.47",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w2-stocks.md"
+  },
+  {
+   "name": "F1 ensemble on FTMO Swing (W 2023-01-01..2026-05-07)",
+   "value": "F1-01 +1.65 bp/day, t 0.74/0.80, p5 -1.98/-1.55, Sharpe 0.41, vol 14.8%, maxDD -20.0%, worst -6.74%; S1 crypto +2.16 (gross +6.77, trading 1.17, swap 3.44); S2 US100 +0.16 bp/session t 0.05; corr +0.001; F1-03 venue costs t 1.65 Sharpe 0.90; zero-cost + best weight t 2.20; needs Sharpe 1.95; $/slot-yr $3.9k/$8.0k",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w3-ensemble.md"
+  },
+  {
+   "name": "H0023 turn-of-month S&P OOS 2010-2026",
+   "value": "net +1.10 bp/day, t 1.56 vs 3.5632, p5 -0.083, Sharpe 0.38, x2 cost t 1.22; IS 1990-2009 t 1.60; B&H at same 19% exposure Sharpe 0.76",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/ledger.csv"
+  },
+  {
+   "name": "G2 index-CFD mean reversion OOS 2013-2026",
+   "value": "headline G2-06 Sharpe 0.24, t 0.90, p5 -0.15, alpha t -0.63, 83 trades/yr, exposure 0.10; zero-cost best t 2.73; basket B&H Sharpe 0.72; swap -7.9% / spread -3.1% of +17.4% gross; 15%/20% vol: 19/35 days < -5%, worst -13.9%/-18.6%, maxDD -52%/-63%; $/slot-yr $3.0k/$4.8k; post-hoc US-only zero-cost t 2.79",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w4-meanrev.md"
+  },
+  {
+   "name": "H0018 insider purchases",
+   "value": "OOS 2017-02..2026-04 (111 m) excess vs SPY -0.50%/mo, t -1.66, Sharpe 0.48, maxDD -33.9%; IS +0.19% t 0.92; 55% of signal tickers without Yahoo history; 50 bp cost -> t -2.48",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/insider-H0018.md"
+  },
+  {
+   "name": "Data cross-checks",
+   "value": "ES-SPY 1m return corr 0.9841 (639,306 shared minutes); daily open->close corr 0.9929; FirstRate vs TopstepX ES close exact match 96.8%, 57 of 58 days median diff 0; Databento eric == warrenn on 1,757,339 rows; FirstRate vs Databento median diff 0 on 1,748 of 1,848 days; NQ Databento vs hindsight 1,536 of 1,627 days; Databento .c.0 pre-roll volume 0.09-0.32x",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/xcheck.txt"
+  },
+  {
+   "name": "SqueezeMetrics GEX publication time",
+   "value": "42 Last-Modified observations Aug-Oct 2026: 41 after close, median 17:52 ET (min 17:46, max 19:25); 1 update before 16:00 (2026-09-10 10:27)",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-06-0247/data_hunter/dix_pubtime.txt"
+  },
+  {
+   "name": "Lit-scout VWAP-flip feasibility (why 1m VWAP was expected to fail on cost)",
+   "value": "SPY 1m 2019-25: median 16 VWAP entries/day, cost/day at 0.6 ES pt RT median 25.0 bp vs median |open->close| 45.4 bp; NQ median 15 entries/day, |O->C| 64.9 bp",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/agents/daily/2026-10-05/lit_scout/feasibility.txt"
+  },
+  {
+   "name": "Databento credit route",
+   "value": "$125 free historical credit for new accounts; card required; charged only beyond credit; expires 6 months; cost endpoint free; IBKR expired-contract 1m history only ~2 years",
+   "file": "/tmp/claude-0/-home-user-claude-skills/fd978ff9-771c-52e4-9979-133842241af7/scratchpad/pr4/skills/prop-fleet/references/w1-synthesis.md"
+  }
+ ],
+ "prompt_rules": [
+  "Start the new ledger from the existing one: N = 280 today. Before any backtest, fix the wave bar as z(0.05/(280 + total variant budget of the program)) one-sided (e.g. 300 -> 3.5879, 350 -> 3.6279, 400 -> 3.6623) and keep it fixed for the wave even if fewer variants are used; every variant anyone runs, by any agent, adds to N forever.",
+  "Treat these families as CLOSED and never re-run them without a brand-new pre-registered row and genuinely fresh data: bot SMC/ICT/TJR rules and all parameter/replay grids (H0001-H0004, H0010, H0016, H0003's 100 hypotheses); Beat-the-Market noise-area momentum (H0005/H0011); S&P/SPY/NQ last-half-hour momentum incl. gamma-conditioned (H0006, H0019); intraday IBS reversal (H0013/14); overnight-gap fade (H0012/17); 5-min ORB (H0020); 1-min and 30-min VWAP/TWAP trend on single indices (H0021/22) and across 19 CFDs (D4); FOMC/CPI/NFP/ISM/PCE/retail-sales intraday rules (E2-01..12); daily FX/CFD trend, carry, EWMAC and their stacks at CFD swap costs (D2); crypto TSMOM (L/S, long/flat, BTC/ETH, vol-managed), 1h EMA trend, XS momentum 7d/28d, funding carry, cash-and-carry, hour-of-day (D3); FTMO stock-CFD reversal/PEAD/overnight/tug-of-war books (E1); crypto+US100 equal-risk ensemble (F1); S&P turn-of-month (H0023); RSI(2)/3-down buy-the-dip on index CFDs with/without SMA200, long and L/S (G2); opportunistic insider purchases (H0018); VIX term-structure carry at safe-list firms (G1, no product).",
+  "Pre-registration procedure to copy exactly: write every variant as a row in agents/prereg/<dept>.csv with the ledger columns (id, date, owner, hypothesis, count, rules_fixed_before_test, data, result_mean_R, result_p5_R, passed_gate, notes), a 'PRE-REGISTERED' prefix, a count-0 common-rules row if needed, exact data sources with sha256 pins, the IS/OOS split, costs, the gate and the decision rule; commit and push BEFORE any backtest code exists (commit order is the proof); scripts must refuse to run on market data without a registered id; state the unit of result fields explicitly in notes ('result fields = ...').",
+  "Gate to apply per variant: OOS net mean > 0 with t = min(iid t, Newey-West lag-10 t) >= the wave bar; bootstrap p5 = min(10,000 iid, 10,000 block-20 (seed 0)) > 0 (trade-level tests: day-clustered bootstrap with >= 50/alpha draws); truncation test (positions through random cut dates identical when later data is deleted; >= 20-50 cuts, or every day/bar for intraday) and perturbation test pass; alpha t vs a matched beta benchmark >= bar; held-out markets net > 0 where breadth is claimed; realistic 1x costs with the 2x result reported beside; the worse of execution-lag variants (lag 1 vs lag 2; close vs next-open; as-written vs ex-ante eligibility) decides; the headline is chosen by in-sample Sharpe before any OOS number is read; nothing passes 'on 1x only'.",
+  "Out-of-sample means a period or market set never used to choose any rule; write the split before touching data; do not use IS for anything but the headline choice and fixed scalars; report per-year tables, win rate, trades/yr AND R per trade (or bp/day), gross and net, Sharpe, maxDD, worst day, and the firm-rule fit (5% daily loss, 10% static max loss) at the volatility the target needs.",
+  "Report every result against the economic target in the same breath: FTMO Swing 100K needs net Sharpe ~2.4 at 12% vol, ~1.9 at 15%, ~1.5 at 20% for $20k/slot-yr (F2-09); futures-firm intraday fleets needed +0.28R/trade at 3 trades/day (or +0.78R at 1/day) in the Apex-era model; zero-edge fee-option value must be subtracted (FTMO S=0 pays $1.8k-$5.0k/yr in D1, ~$1.2k stressed) before calling anything edge; skew tricks and barrier/CPPI sizing do not reduce the Sharpe needed.",
+  "Eligibility and signals may use only information available at the decision minute: never require the trade day's own bar count, its 15:59 bar, or any post-entry bar; run the future-truncation harness (delete every bar after the entry minute, nothing about day d may change) on every intraday test before reading results.",
+  "Clock and calendar conventions: label bars by OPEN time; HistData 1m files are New York local time WITH DST (not fixed EST); Oanda is UTC; Databento ts_event is UTC; FirstRate is NY-naive; verify any new file's clock with an outcome-free diagnostic (mean |1m return| by minute around known opens in winter vs summer) before any return is computed; use the CME equity-index calendar for ES/NQ and drop CME-only sessions; NYSE half-days have 210 RTH bars.",
+  "Futures rolls: Databento .c.0 (calendar roll) has NO RTH bars on quarterly expiry Fridays and sits in the illiquid expiring contract for the last ~6 sessions (volume 0.09-0.32x); FirstRate/hindsight roll 1-3 days earlier; decide in the prereg whether roll weeks are dropped (Mon-Fri of 3rd-Friday week plus following Monday) or spliced to the next contract, and never change it after results; when buying Databento data prefer explicit contract symbols or volume-rolled continuous series over .c.0 for intraday tests.",
+  "Never mix dividend-adjusted and raw price files; index opens before 2010 and some Yahoo opens are stale (treat open == previous close as invalid); SPXUSD 1m misses RTH minutes on most 2012-13 days; Binance keeps stale rows after delisting and funding intervals changed to 4h/1h in 2023; keep data in scratch, never commit files > 1 MB, pin by sha256, log licence status (FirstRate/Databento third-party copies are a licence hold until Itamar rules).",
+  "Cost floors to use unless measured better: ES 0.6 pt RT (or 0.30 pt/side), NQ 0.375 pt per unit traded (flip = 2 units), SPY 0.5 bp/unit; CFD per-side 0.5-1.5 bp FX/indices, 1 bp gold, 2.5 bp WTI, 8 bp natgas, plus FTMO swaps (index long ~-8%/yr US, -6.5% EU, -4.9% JP225; stocks long -8.4% short -6.6%; crypto -30%/yr both sides; FX markup ~1%/yr); crypto perps 7 bp/side + actual funding, spot 9.5 bp/side; always run 2x cost; FTMO publishes no spreads so every spread is an assumption to be stated.",
+  "Statistics hygiene: cluster by trading day (cluster-robust SE around the trade mean); never use a 5,000-draw bootstrap for a 0.05/N quantile; convert horizons with days-with-a-trade (~14/month), not 21 trading days; a one-sided 0.05/N bound needs ~3x the sample of a two-sided 95% bound; a max-minus-min across groups is a selection; scale by past volatility only; perturbation tests do not catch loader errors, so hand-check rate lags, quote directions, sign conventions, swap on gross notional and cost timing.",
+  "Organizational rules that worked: independent verifier re-implements from the written spec without reading the head's code and must match within a pre-stated tolerance; a red team whose default is 'refuted' attacks both positive and negative verdicts; every number traces to code that ran or a cited page; blocked hosts are reported, never routed around; no purchases, sign-ups, firm contact or money movement by agents; a bug fix after results is allowed only with before/after numbers in the report; post-hoc slices (e.g. US-only G2, crypto weekends, TJR wide stops) are information, never findings.",
+  "Beta is not edge: compare every long-biased result to buy-and-hold of the same basket scaled to the same exposure (G2 lost to a Sharpe-0.72 basket; crypto TSMOM equals BTC B&H; TOM lost to B&H Sharpe 0.76); remove the 20 best days as a fragility check.",
+  "Prop-fit check is part of the gate: the stack's worst day scaled to target vol must stay inside the firm's daily-loss limit (F1 -6.74% and G2 -14% to -28% days breach FTMO's 5%) and maxDD inside the 10% static limit; report breach counts over rolling windows.",
+  "Open directions the org itself flagged as worth one counted variant each (only with new data): paid multi-asset 1m CME futures via the Databento credit (cost-endpoint check first, hard cap under $125); futures-curve carry and real value measures; the 02:00-03:00 ET European-open overnight window; the never-run S&P 30-min ORB (prereg_orb30); crypto funding carry ranked per 8h on a funding-centric venue; trend with a hard drawdown overlay tested against firm rules; a bond sleeve in multi-asset trend; US-only index mean reversion only on post-2026 data.",
+  "Carry forward the frame facts without re-deriving them: futures firms force flat daily, so futures strategies must be intraday; only FTMO/Blue Guardian/CFT allow overnight; FTMO caps $400k per strategy; Apex bans automation; Blue Guardian's -2% open-P&L Shield and CFT's $10k/day cap are the rules a bot breaks by accident; 15-20% annual vol is defensible under the contracts, 30%+ is not."
+ ]
+}

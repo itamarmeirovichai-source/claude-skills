@@ -28,29 +28,29 @@ Outputs are written by sub-agents to `scratchpad/research/<lane>.{json,md}` (eph
 
 | Lane | Where | Status |
 |---|---|---|
-| digest: hypotheses ledger | workflow wf_fa4cff3c-648 | running (started 03:17 UTC 3 Nov) |
-| digest: firms + economics | workflow wf_fa4cff3c-648 | running |
-| digest: data, infra, bot, procedures | workflow wf_fa4cff3c-648 | queued |
-| web: Databento operations + data plan | background agent | running (started 03:32) |
-| web: prop-firm rules Nov 2026 | background agent | running |
-| lit: academic sweep | background agent | running |
-| lit: practitioner + code | background agent | running |
-| lit: microstructure / order flow | background agent | running |
-| lit: FTMO CFD + sessions | background agent | running |
-| web: statistics + backtest standards | background agent | running |
-| web: prompt engineering | background agent | running |
-| web: alternative data sources | background agent | running |
-| web: engineering + execution | background agent | running |
-| critic: completeness | not started | run after all lanes |
+| digest: hypotheses ledger | workflow wf_fa4cff3c-648 | DONE → research/digest-hypotheses-ledger.{json,md} |
+| digest: firms + economics | workflow (failed at the usage limit) | covered by the director's own reading of w1-firms.md, w1-prop.md, w3-volrisk.md, ORG.md, board.md; no separate file |
+| digest: data, infra, bot, procedures | workflow (never started) | covered by the director's own reading of data/README.md, tjr.md, email.md, second-opinion-prompt.md, what-the-giants-do.md, prop-fleet-daily.js; no separate file |
+| web: Databento operations + data plan | director, direct WebFetch of databento.com docs | DONE (billing: $125 credit, 6 months, card billed only beyond credit, portal monthly limit blocks requests; rate limits 100 req/s, 20 metadata/s; continuous symbols unadjusted, v = previous-day volume; licence per dataset) |
+| web: prop-firm rules Nov 2026 | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| lit: academic sweep | background agent, resumed after the limit reset | running, tight scope |
+| lit: practitioner + code | background agent, resumed after the limit reset | running, tight scope |
+| lit: microstructure / order flow | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| lit: FTMO CFD + sessions | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| web: statistics + backtest standards | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| web: prompt engineering | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| web: alternative data sources | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| web: engineering + execution | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
+| critic: completeness | folded into the judge panel (step 5) | pending |
 
-Note: the workflow would also run the ten web lanes after the digests (cap 2 concurrent agents on this 4-CPU box). Stop the workflow once the three digests are done to avoid duplicate work; completed workflow results are in its `journal.jsonl`.
+Note (3 Nov, 04:50 UTC): the 5-hour usage limit hit at about 03:40 UTC and killed 13 of 14 workflow agents and all 10 background agents. The workflow is finished (1 result). Budget decision: resume only the two literature agents; everything else is written by the director from the repo facts and own knowledge, and the new session is told to run the full sweeps itself.
 
 ## Steps
 
 1. [x] Scout repo, read prop-fleet research, PR #4, user skills (skill-prompt-architect, minds).
 2. [x] Databento free cost check with the user's key; results saved.
 3. [ ] Research lanes finish; copy outputs into `prompts/research/`; run the completeness critic.
-4. [ ] Draft the master prompt → `prompts/quant-edge-master-prompt.md`.
+4. [x] Draft v1 of the master prompt → `prompts/quant-edge-master-prompt.md` (written 3 Nov ~05:05 UTC; Databento billing/limit/symbology facts fetched from databento.com and folded in).
 5. [ ] Judge panel (5–6 lenses: AI/prompt master, quant/statistician, prop-firm risk officer, systems engineer, the user's advocate, skeptic) → one focused revision.
 6. [ ] Final QA against `skills/minds/references/craft.md` (no AI tells) and the skill-prompt-architect template; deliver in chat (Hebrew summary + the prompt) and push.
 
