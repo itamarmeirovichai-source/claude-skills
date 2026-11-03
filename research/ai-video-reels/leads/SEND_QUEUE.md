@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Status 2026-10-24 (§16): nothing sent; Wed 21 and Thu 22 passed without approval. Wave A: next slot Tue 27.10 (`SEND_PACK_2026-10-27.md`, Israel times one hour earlier). Wave B: Wed 28.10 (§16 times). Q-7, Q-11 and Q-19 CTAs changed.** **Status 2026-11-02 (§22): nothing sent (no reply since 10-12). New packs `SEND_PACK_2026-11-03.md` (wave A, Tue 3 Nov 15:05–18:50 Israel, gate 14:00; Q-11 KREWE in, Q-5 Little Beast out) and `SEND_PACK_2026-11-04.md` (wave B, Wed 4 Nov 16:00–19:10 Israel, gate 15:00; Q-12 Hawkins optional); the 10-27 pack is superseded.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Status 2026-10-24 (§16): nothing sent; Wed 21 and Thu 22 passed without approval. Wave A: next slot Tue 27.10 (`SEND_PACK_2026-10-27.md`, Israel times one hour earlier). Wave B: Wed 28.10 (§16 times). Q-7, Q-11 and Q-19 CTAs changed.** **Status 2026-11-02 (§22): nothing sent (no reply since 10-12). New packs `SEND_PACK_2026-11-03.md` (wave A, Tue 3 Nov 15:05–18:50 Israel, gate 14:00; Q-11 KREWE in, Q-5 Little Beast out) and `SEND_PACK_2026-11-04.md` (wave B, Wed 4 Nov 16:00–19:10 Israel, gate 15:00; Q-12 Hawkins optional); the 10-27 pack is superseded.** **Status 2026-11-03 (§23): send-morning check, wave A: all 10 hold, no text changed; wave B: Q-15 Saranoni out for Wed 4 (25 % off sitewide holiday sale). Without approval by 14:00 Israel today, wave A rolls to Thu 5 Nov, same Israel times.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -1022,3 +1022,59 @@ No SITEWIDE at any wave-A brand. Time words re-read for 3 Nov: "the new Tour set
 No SITEWIDE at any wave-B brand. Card-level Ad Library reads per brand (both waves) are in each pack's "Ad Library read" table; no dated sale phrase at any of the 19 Pages, no fresh-flow hold.
 
 **Roll status (2 Nov):** wave A Tue 3 (gate 14:00 Israel), wave B Wed 4 (gate 15:00), each only on the owner's approval. If wave A misses Tue 3, it rolls to Thu 5 (same Israel times); wave B then goes Tue 10 Nov with a new pack. If wave A goes and wave B misses Wed 4, wave B rolls to Thu 5. Light send-morning re-scan on each send day if the routine runs. Black Friday (27 Nov) pre-sales start appearing from now: any named product in a homepage sale list or under a sitewide banner is out for that day.
+
+## 23. Wave-A send-morning check, Tue 3 Nov (~05:50–06:25 UTC = 07:50–08:25 Israel; light run) + wave-B light pass for Wed 4 + roll note for Thu 5 Nov
+Tools: `products_check.py --sale-scan` on every product either wave names, plus the held leads (Little Beast PBJ/OG, Hawkins Pleat/Colorstory, KREWE MUSE, Printfresh Ruby Bagheera bandana); LAKE product JSON (tags); homepage text for KREWE (`isSaleActive`), Cuddle Clones, Sunday Citizen, Printfresh, Kinn; Saranoni and Equator product JSON (per variant); `ad_library.py page <id>` for the 10 wave-A Pages only (Foggy probe first), one Page per call, 50 s apart, by the dossiers' Page IDs. No retries were needed; no rate limit was hit. Nothing sent, nothing posted; $0. **Status: no owner approval (no reply since 10-12, 22 days). Gate today: 14:00 Israel (12:00 UTC).**
+
+**Wave A (Tue 3; 10 DMs): no fact changed, no text changed, no skip, no new hold. Q-5 Little Beast stays out.**
+
+| # | 3 Nov read (products_check --sale-scan) | Ad Library (active · video filter · card video · cards ≤30 d · newest · sale-date line) | Verdict |
+|---|---|---|---|
+| Q-1 LAKE | Tour set Oat Heather 4/5 (XS out) $268; tags still `badge: New Arrival` + `full price`; no homepage sale list | 192 (was 108) · 71 · 8/30 · 17 · **11/02** · none | ✅ "new" holds |
+| Q-2 Printfresh | Hens bandana 2/2 $28; **Winter Holly Bagheera pet bandana Ruby 2/2 $28, clean**; `womens-apparel-sale` (72) holds neither; no SITEWIDE | 252 (was 398) · 86 · 10/30 · 17 · 10/29 · none | ✅ |
+| Q-8 Brackish | Edisto and Rice Slim 1/1 $225; no sale list | 62 · 3 · 2/30 (cards served today) · 20 · 10/26 · none | ✅ |
+| Q-9 Cuddle Clones | Wrapping paper 3/3 $29; pajamas 22–25 % off per variant (homepage "25% off all pajamas", the standing promo); no sale list, no SITEWIDE | 211 · 68 · 10/30 · 14 · 10/23 · none | ✅ (DM names no price) |
+| Q-7 Dana Rebecca | Ava Bea bracelet 3/3 $2,795; Birthstone Charm 24/24 $495; no sale list | 298 · 180 · 13/30 · 20 · 10/28 · none | ✅ |
+| Q-6 Sunday Citizen | Ciel love seat 2/2 $1,800; lounge chair 7/8 $800 (Light Gray out); homepage links only `outlet` (33), neither inside; homepage promos are bedding only (40 % off Snug comforters, 20 % off Ayre, "Up to 20% off Bedding Bundles") | 499 · 198 · 9/30 · 4 · 10/26 · none | ✅ |
+| Q-11 KREWE | MUSE Sauvage and Bronze 1/1 $335, no compare-at; no homepage sale list; banner "JUST DROPPED: SUN SEASON, THE ENCORE"; `isSaleActive: false` | 25 (was 21) · 7 · 7/25 · 25 · **11/02** · none | ✅ |
+| Q-3 Dandelion | 70 % gift set 1/1 $42; Maya Mountain 1/1 $13; no sale list | 210 · 12 · 3/30 · 4 · 10/20 · none | ✅ |
+| Q-4 Foggy (probe) | Gingerbread collar 8/8 $52 (10 % off, standing `bow-promo`); homepage `sale` (80), collar not inside | 171 · 60 · 9/30 · 7 · 10/22 · none | ✅ |
+| Q-10 Kinn | Pegasus and Swan Dream Pendant Necklaces 8/8 $1,040, no compare-at; no sale list (homepage: "Read why we don't do sales") | 63 · 9 · 8/30 · 13 · 10/27 · none | ✅ |
+
+No SITEWIDE and no SALE-LIST/SALE-TAG on any wave-A named product. Every count was confirmed by two agreeing reads. No brand trips the fresh-flow hold (every Page has ≥4 cards started ≤30 d). **Time words for Tue 3 Nov:** "the new Tour set" (badge on), "Christmas morning" / "Christmas-card shoot" (November, holiday shops live), "A Carnival film" (Jan–Feb 2027), Dana Rebecca's charm (all months): all hold. They also hold for Thu 5 Nov.
+
+**Held leads (re-scanned, hold reason named for today):**
+- **Q-5 Little Beast: out (on sale).** PBJ and OG Onesie 7/7 at **$40 (17 % off), tag `sale`, inside `sales-galore` (75)**. Same reason as 11-02. Back in only when both are $48 again, or the owner approves a new text.
+- **Q-12 Hawkins (wave B optional):** Pleat Peach/Bone 1/1 $450, Colorstory Olive/Sage and Terracotta/Blush 1/1 $360, full price; homepage links only `sale-1` (81), lamps not inside; **no SITEWIDE text**. Stays optional for Wed 4, only on the owner's own "send #Q-12". (No Ad Library read today: wave A only.)
+- **Q-11 KREWE MUSE** and **Q-2 Printfresh Ruby Bagheera bandana:** both clean (rows above).
+
+**Wave B light pass (for Wed 4; product scan only, no Ad Library): one DM out.**
+
+| # | 3 Nov read | Verdict |
+|---|---|---|
+| Q-16 STONE AND STRAND | Unflippable yellow gold 2/2 $6,390; LAB-created yellow gold 1/1 $7,630; no compare-at; homepage `sale` (87) holds neither | ✅ |
+| Q-19 Alexis Bittar | Clutch Black and Chocolate 1/1 $675, no compare-at; six `sale-*` lists (`shop-all-sale` 53), neither inside | ✅ |
+| Q-18 Vosges | Snowbound Perfect Gift 1/1 $95, Little Gift 1/1 $32; no sale list (feed is on vosgeschocolate.com; a first try on a wrong domain got a proxy 502 and was not retried) | ✅ |
+| **Q-15 Saranoni** | **Homepage: "HOLIDAY SALE 25% off SITEWIDE + DOORBUSTERS no code needed" / "Take 25% off sitewide … Every blanket, every robe, every gift."** XXL 80x100 Flax, Midnight, Chocolate Blend now **$216.75, compare-at $289 (25 % off)**; product inside the new homepage list `holiday-sale` (19) and `sale` (48). Flags: MARKDOWN, SITEWIDE, SALE-LIST | ❌ **skip Wed 4** (LESSONS 2026-10-25: a SITEWIDE brand gets no DM until the event ends). Text unchanged; marked in `SEND_PACK_2026-11-04.md` block 5 and the checklist |
+| Q-13 Legendary | Cookies & Cream 2/2, Maple Glazed 1/2 (1-pack out), $4.99, no sale list (feed on eatlegendary.com) | ✅ |
+| Q-14 Equator | Office subscription 12/12 $96 vs $120 (structural); La Marquesa 6 oz $20 = compare-at, 12 oz / 2 lb "Save 5–15 % per oz" tiers (structural); no sale list | ✅ |
+| Q-17 THATCH | Wood Anywhere Shell Coconut 21/21, Driftwood 20/20, $115; `all-sale` (79) holds neither | ✅ |
+
+Wave B on Wed 4: Q-16 16:00 · Q-19 16:15 · (Q-12 16:45 optional) · Q-18 17:15 · ~~Q-15 17:30~~ · Q-13 18:40 · Q-14 18:55 · Q-17 19:10 → 6 DMs + 1 optional, gate 15:00 Israel. Its own morning check on Wed 4 still applies (Saranoni first: if the holiday sale is over and the XXL is $289 again, it is back in).
+
+**Roll note: if wave A is not approved by 14:00 Israel today, it rolls to Thu 5 Nov at the same Israel times** (LESSONS 2026-10-19: next Tue–Thu slot; wave B keeps Wed 4 on its own approval; never two waves on one day). Gate Thu 5: **14:00 Israel = 12:00 UTC**. Local labels printed by tzdata (Python `zoneinfo`, Israel → local and back, both checked), 5 Nov 2026:
+
+| Israel (IST) | Lead | Local (tzdata) | UTC | Gap |
+|---|---|---|---|---|
+| 15:05 | Q-1 LAKE | 08:05 EST | 13:05 | — |
+| 15:20 | Q-2 Printfresh | 08:20 EST | 13:20 | 15 |
+| 15:50 | Q-8 Brackish | 08:50 EST | 13:50 | 30 |
+| 16:05 | Q-9 Cuddle Clones | 09:05 EST | 14:05 | 15 |
+| 16:20 | Q-7 Dana Rebecca | 08:20 CST | 14:20 | 15 |
+| 16:35 | Q-6 Sunday Citizen | 09:35 EST | 14:35 | 15 |
+| 16:50 | Q-11 KREWE | 08:50 CST / 09:50 EST | 14:50 | 15 |
+| 18:05 | Q-3 Dandelion | 08:05 PST | 16:05 | 75 |
+| 18:20 | Q-4 The Foggy Dog | 08:20 PST | 16:20 | 15 |
+| 18:50 | Q-10 Kinn | 08:50 PST | 16:50 | 30 |
+
+Identical to the Tue 3 labels (no clock change in either country until Israel/US DST in March 2027). Q-5 stays out unless both onesies are back at $48. The Thu 5 send needs the owner's approval by 14:00 Israel Thu and a light ✔ re-check that morning (today's facts will be two days old; Black Friday pre-sales are starting: Saranoni went sitewide between Mon 2 and Tue 3). If wave A misses Thu 5 too, the next slot is Tue 10 Nov with a new dated pack (LESSONS 2026-10-16); wave B then also needs a new pack if it missed Wed 4.

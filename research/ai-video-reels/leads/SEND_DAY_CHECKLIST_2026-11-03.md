@@ -48,7 +48,7 @@
 | 16:15 | Q-19 Alexis Bittar | ‏@alexisbittar | בלוק 2 |
 | 16:45 | Q-12 Hawkins New York | ‏@hawkinsnewyork | בלוק 3 (אופציונלי, רק אחרי "send #Q-12") |
 | 17:15 | Q-18 Vosges | ‏@vosgeshautchocolat | בלוק 4 |
-| 17:30 | Q-15 Saranoni | ‏@saranoniblanket | בלוק 5 |
+| ~~17:30~~ | ~~Q-15 Saranoni~~ | — | מדלגים: מבצע 25% על כל האתר (בדיקה 3.11) |
 | 18:40 | Q-13 Legendary Foods | ‏@legendaryfoods | בלוק 6 |
 | 18:55 | Q-14 Equator Coffees | ‏@equatorcoffees | בלוק 7 |
 | 19:10 | Q-17 THATCH | ‏@thatch.jewelry | בלוק 8 |
