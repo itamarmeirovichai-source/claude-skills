@@ -40,14 +40,14 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [x] 0.5 Bar fixed (D-002) and written on the board.
 - [x] 0.6 `.gitignore` and pre-commit hook (`tools/pre-commit.sh` → `.git/hooks/pre-commit`; detect-secrets
       baseline `quant-edge/.secrets.baseline`).
-- [ ] 0.7 Draft PR "quant-edge program" opened with the Hebrew checkpoint line.
-- [ ] 0.8 Red Team pre-mortem commissioned → `daily/2026-11-03/redteam-premortem.md`; answers in this log.
-- [ ] 0.9 Economist F2-12 re-run commissioned → `economics/required-sharpe-2026-11.md`.
-- [ ] 0.10 Scribe briefs of the inherited record → `briefs/inherited-*.md`.
+- [x] 0.7 Draft PR "quant-edge program" opened: https://github.com/itamarmeirovichai-source/claude-skills/pull/27 (commit 4a56ac1).
+- [~] 0.8 Red Team pre-mortem commissioned 14:40 UTC (Agent, background) → `daily/2026-11-03/redteam-premortem.md`; answers in this log when it returns.
+- [~] 0.9 Economist F2-12 re-run commissioned 14:40 UTC (Agent, background) → `economics/required-sharpe-2026-11.md`.
+- [~] 0.10 Scribe briefs commissioned 14:40 UTC (Agent, background) → `briefs/inherited-*.md`.
 - [ ] 0.11 Gate 0: everything above exists in the repository (commit hash recorded here).
 
 ### Phase 1 — the sweep (Days 1–4, 2026-11-04 → 2026-11-07)
-- [ ] 1.1 Department B sweep run (Workflow) → `research/candidates.md` (≥ 100 mechanisms, ≥ 30% original).
+- [~] 1.1 Department B sweep run launched 14:45 UTC as Workflow run `wf_2a3bbcb1-b48` (script `~/.claude/projects/-home-user-claude-skills/c1c15771-3f18-56a1-8828-ab24630be4a0/workflows/scripts/quant-edge-sweep-b-wf_2a3bbcb1-b48.js`; resume with scriptPath + resumeFromRunId) → `research/sweep/*.md`, `research/candidates.md`, `research/prescreen-2026-11-03.md` (≥ 100 mechanisms, ≥ 30% original). Brief: `briefs/B-sweep-common.md`.
 - [ ] 1.2 Department E pre-screen (closed-family overlap, look-ahead by construction, economics screen).
 - [ ] 1.3 Firm letters → `letters/<firm>.md` (FTMO, MyFundedFutures, Lucid, Topstep, TradeDay, Bulenox).
 - [ ] 1.4 CAL calibration replication registered (noise-area model on ES, expected Sharpe 0.9–1.25, 2016–2024).
@@ -84,17 +84,21 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ## Checkpoint
 
-- phase: 0 (orientation), step 0.7
+- phase: 0 (orientation) with Phase 1.1 and the Day-0 agents in flight
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) to Itamar, 2026-11-03
-- next action: open the draft PR, then commission the pre-mortem, the F2-12 re-run and the Scribe briefs.
+- next action: while agents run, build the `load(id, window)` gateway, the gate statistics module and the Steward module with tests (Phase 2.2 groundwork); then answer the pre-mortem.
 
 ## Agents in flight
 
 | name | brief file | output file | start (UTC) | status |
 |---|---|---|---|---|
+| Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:40 | running |
+| Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:40 | running |
+| Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:40 | running |
+| Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:45 | running |
 
 ## Session log (append-only)
 
-- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written.
+- 2026-11-03 14:19 UTC session start (Day 0). 14:25 Day-0 message sent. 14:27 skeleton written. 14:33 commit 4a56ac1 pushed; PR #27 opened; briefs written. 14:40 three Day-0 agents launched. 14:45 sweep workflow wf_2a3bbcb1-b48 launched.
