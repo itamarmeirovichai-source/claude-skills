@@ -34,7 +34,7 @@ Outputs are written by sub-agents to `scratchpad/research/<lane>.{json,md}` (eph
 | web: Databento operations + data plan | director, direct WebFetch of databento.com docs | DONE (billing: $125 credit, 6 months, card billed only beyond credit, portal monthly limit blocks requests; rate limits 100 req/s, 20 metadata/s; continuous symbols unadjusted, v = previous-day volume; licence per dataset) |
 | web: prop-firm rules Nov 2026 | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
 | lit: academic sweep | background agent, resumed after the limit reset | running, tight scope |
-| lit: practitioner + code | background agent, resumed after the limit reset | running, tight scope |
+| lit: practitioner + code | background agent, resumed after the limit reset | DONE → research/lit-practitioner.{json,md} (30 candidates, 19 cost facts, 15 rules; ~45 pages fetched) |
 | lit: microstructure / order flow | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
 | lit: FTMO CFD + sessions | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |
 | web: statistics + backtest standards | background agent (failed at the usage limit before producing output) | DROPPED for budget; the master prompt delegates this sweep to the new session and the director writes the frame from own knowledge |

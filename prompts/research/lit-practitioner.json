@@ -1,0 +1,1263 @@
+{
+ "generated": "2026-11-03",
+ "lane": "practitioner-and-open-source-sweep",
+ "summary": "Practitioner/open-source sweep (2026-11-03) of ~45 pages across Concretum, Quantitativo, Quantpedia, Krueger Algorithms, Delphic Alpha, Databento, Robot Wealth, Carver, QuantConnect, vectorbt PRO, Seasonax and prop-firm cost pages. WebSearch budget was exhausted mid-sweep and several sites blocked fetches (Apex, SSRN, QuantConnect library, NinjaTrader fee table, Quantified Strategies main site, CME fee page, Alpha Architect, Allocate Smartly, Hoffstein, Moontower, Clenow, Hudson & Thames) - those are marked 'not fetched'. Headline findings: (1) The strongest *published, code-backed* futures results found are NOT prop-compatible: short-term basis reversal in commodity calendar spreads (Sharpe 1.42-1.45 net 10 bps, weekly) and multi-day dip buys. (2) Every rigorously held-out intraday result on index/FX CFDs is either sub-cost (Delphic Alpha Atlas: best 1.5 bp/trade; Krueger: 1-3 bps edges vs 1-5 bps round-trip) or an event niche (FTSE rebalance closing-auction short, +11.5 bps/event, t 3.9, ~12 events/yr). (3) The only intraday ES/NQ model with Sharpe >1.5 reported by a practitioner with costs is the Zarattini Noise-Area model (Quantitativo: NQ Sharpe 1.67, portfolio 1.57 at 0.5 tick/trade) - already a CLOSED family and flat 2010-2017. (4) Concretum's 2026 additions are incremental layers (overnight-hybrid exit +0.19 Sharpe gross; fast-alpha execution overlay +0.12 Sharpe net) rather than new edges. (5) A key firm-rule nuance: the futures prop 'trading day' runs from the 18:00 ET reopen to the next afternoon close, so overnight-SESSION holds (18:00->09:30) are allowed; only cross-close holds are banned. Realistic all-in futures costs: ES ~$2.0-2.7/side (+1 tick), MES ~$0.66-0.96/side (+1 tick); prop pass-through round trips ES $3.10-5.00, MES $0.50-1.22. FTMO: forex $3/lot RT, indices $0 commission, crypto 0.0325%/side, swaps nightly (3x Wed), Swing accounts 1:30 leverage with overnight/weekend/news allowed. Honest verdict: no candidate found has a HIGH plausibility of net Sharpe >=1.5 under prop constraints; 4-5 have MEDIUM plausibility as sleeves or in FTMO Swing accounts.",
+ "candidates": [
+  {
+   "id": "C01",
+   "name": "Hybrid overnight carry of intraday index trend (long sleeve held to next open)",
+   "mechanism": "Open-anchored ATR-band intraday trend model; instead of flattening at close, residual LONG exposure is held to the next session open (overnight equity premium favours longs, hurts shorts); shorts still exit at close.",
+   "references": [
+    {
+     "title": "Breaking the Rules of Intraday Trading",
+     "author": "Alberto Pagani (Concretum)",
+     "year": 2026,
+     "url": "https://concretumgroup.com/breaking-the-rules-of-intraday-trading/"
+    }
+   ],
+   "instruments": "SPY in source; adapt to ES/MES, US500/US100 CFD",
+   "holding_period": "intraday + overnight to 09:30 next day",
+   "data_needed": "1-min ES/NQ 2010+ (Databento); daily VIX optional",
+   "reported_performance": "SPY 2006-2026, GROSS: EOD L/S Sharpe 0.88 / CAGR 14.1% / DD -25.6%; hybrid Sharpe ~1.07 / CAGR ~20% / DD -34.1%; long sleeve Sharpe 0.76 (EOD) -> ~0.97 (overnight); short sleeve 0.52 -> 0.17 overnight.",
+   "source_type": "blog (Concretum research note); no costs; single instrument; no holdout",
+   "cost_sensitivity": "medium - same trade count as EOD version; CFD swap on FTMO",
+   "firm_compatibility": "Futures prop: NO (holds across the firm's forced-flat close). FTMO Swing: YES (swap).",
+   "overlap_with_closed_families": "Base model = closed (VWAP/Noise-Area trend on ES/NQ, Beat the Market); the overnight-exit variant is new.",
+   "plausibility_net_sharpe_ge_1_5": "low (gross 1.07 on SPY; DD worsens 9 pts; swap/costs not modelled)",
+   "why_not_already_tested": "Published Mar 2026; prior program tests flattened at close because of prop rules.",
+   "test_sketch": "ES 1-min 2010-2025: rebuild ATR-band model; variant A exit 16:10, variant B long sleeve exits 09:30 next day. Holdout 2022+. Costs 1 tick + $2.50/side; day-block bootstrap CI on Sharpe difference. FTMO Swing variant adds swap."
+  },
+  {
+   "id": "C02",
+   "name": "Fast mean-reversion execution overlay for intraday trend entries",
+   "mechanism": "A streak-based fast MR signal (unprofitable alone after costs) gates entries: wait for a short counter-move before entering with the slower intraday trend signal; improves entry prices without adding trades.",
+   "references": [
+    {
+     "title": "QuanTip: Improving Performance with Fast Alphas; A Tactical Overlay for Intraday Trend Trading",
+     "author": "Alberto Pagani, Carlo Zarattini",
+     "year": 2026,
+     "url": "https://concretumgroup.com/quantip-improving-performance-with-fast-alphas-a-tactical-overlay-for-intraday-trend-trading/"
+    }
+   ],
+   "instruments": "SPY 5-min in source; applicable to any ES/NQ intraday signal",
+   "holding_period": "intraday",
+   "data_needed": "1-min or 5-min ES/NQ",
+   "reported_performance": "SPY 2007-2026 NET: baseline trend Sharpe 0.87 -> 0.99 with overlay (~+200 bp CAGR). Fast signal alone: gross CAGR ~31.9%, Sharpe >2, net unprofitable. DD/turnover not reported.",
+   "source_type": "working paper (SSRN note) + blog; cost model unspecified",
+   "cost_sensitivity": "low-medium (fewer adverse fills; no extra trades)",
+   "firm_compatibility": "all (execution layer)",
+   "overlap_with_closed_families": "Overlay is new; base signal is closed family.",
+   "plausibility_net_sharpe_ge_1_5": "low standalone; medium as a +0.1 Sharpe layer on any survivor",
+   "why_not_already_tested": "Published 2026.",
+   "test_sketch": "Define gate = n>=k consecutive 1-min closes against the pending signal direction. Paired test with/without gate on any surviving intraday signal; report fill-price improvement in ticks and Sharpe delta; holdout 2022+."
+  },
+  {
+   "id": "C03",
+   "name": "Bitcoin intraday trend only inside the 'Monday Asia Open' window",
+   "mechanism": "Ensemble of high-frequency trend models on BTC earns most of its return from Sunday ~19:00 ET for ~24h (Tokyo open / start-of-week rebalancing flows create order-flow persistence); US Sunday morning is negative.",
+   "references": [
+    {
+     "title": "Seasonality in Bitcoin Intraday Trend Trading",
+     "author": "Alberto Pagani (Concretum)",
+     "year": 2026,
+     "url": "https://concretumgroup.com/seasonality-in-bitcoin-intraday-trend-trading/"
+    }
+   ],
+   "instruments": "CME MBT/BTC futures (Sunday 18:00 ET reopen), FTMO crypto CFD",
+   "holding_period": "hours, inside Sun 18:00 -> Mon close prop day",
+   "data_needed": "BTC 1-min 2018+ (free exchange data; CME MBT via Databento)",
+   "reported_performance": "Full-week L/S intraday trend benchmark 2018-2025: GROSS Sharpe ~1.6 at 20% vol target (vol-targeted long-only BTC ~0.8). Window effect shown only graphically; stronger after 2020H2. No costs, no tests.",
+   "source_type": "blog (Concretum); gross; visual inspection only",
+   "cost_sensitivity": "high (intraday turnover; MBT spread/commission; FTMO crypto 0.0325%/side)",
+   "firm_compatibility": "Futures prop: YES via MBT (Sunday evening is inside Monday's trading day). FTMO: YES (crypto trades weekends).",
+   "overlap_with_closed_families": "High overlap with closed crypto TSMOM/hour-of-day; novelty = intraday trend ensemble restricted to one weekly window.",
+   "plausibility_net_sharpe_ge_1_5": "low-medium",
+   "why_not_already_tested": "Jan 2026 publication; closed tests used daily TSMOM/hour-of-day, not intraday trend ensembles.",
+   "test_sketch": "BTC 5-min 2018-2026: Donchian/EMA-cross ensemble; compare Sun 18:00-Mon 18:00 ET vs rest of week; fit 2018-2023, holdout 2024-2026; costs 2 ticks MBT + commission; cluster by week."
+  },
+  {
+   "id": "C04",
+   "name": "Relative-volume-gated ORB on futures (transfer of 'Stocks in Play')",
+   "mechanism": "ORB profits in the Concretum stock paper come from names with >=2x relative volume at the open. Transfer: trade 5-min ORB on ES/NQ/CL/GC only on top-decile first-5-min relative-volume/range days.",
+   "references": [
+    {
+     "title": "A Profitable Day Trading Strategy For The U.S. Equity Market",
+     "author": "Zarattini, Barbon, Aziz",
+     "year": 2024,
+     "url": "https://concretumgroup.com/a-profitable-day-trading-strategy-for-the-u-s-equity-market/"
+    },
+    {
+     "title": "ORB Paper Replicated (index CFDs)",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/opening-range-breakout-paper-replication"
+    }
+   ],
+   "instruments": "ES, NQ, CL, GC (micros)",
+   "holding_period": "intraday",
+   "data_needed": "1-min with volume",
+   "reported_performance": "Stocks 2016-2023: strong (numbers not in excerpt). Krueger ORB on index CFDs: gross +0.131 R reproduced; NET +0.002 R (NQ), -0.04 to -0.08 R others.",
+   "source_type": "working paper (stocks) + blog replication (negative on indices)",
+   "cost_sensitivity": "high (breakout, stop-based)",
+   "firm_compatibility": "all futures prop",
+   "overlap_with_closed_families": "ORB on ES/NQ/QQQ is CLOSED; only the gating is new.",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Gating by relative volume was not part of the closed Zarattini-Aziz ORB test.",
+   "test_sketch": "ORB(5-min, 10% ATR stop, EOD exit) on ES/NQ/CL/GC 2010-2025; trade only top-decile relative-volume days; pre-register decile; compare to all-days and to surrogate markets; holdout 2023+."
+  },
+  {
+   "id": "C05",
+   "name": "Short-term basis reversal in commodity calendar spreads",
+   "mechanism": "Weekly return of (front - second month) spread reverses the following week; cross-sectional long 4 most negative / short 4 most positive spreads (8 spreads, 16 legs).",
+   "references": [
+    {
+     "title": "Short-Term Basis Reversal",
+     "author": "Rossi, Zhang, Zhu",
+     "year": 2025,
+     "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5250499"
+    },
+    {
+     "title": "Short-term basis reversal (replication)",
+     "author": "Quantitativo",
+     "year": 2025,
+     "url": "https://www.quantitativo.com/p/short-term-basis-reversal"
+    }
+   ],
+   "instruments": "39 commodity futures calendar spreads (26 ags, 8 energy, 5 metals)",
+   "holding_period": "1 week",
+   "data_needed": "daily settlements of front/second month (cheap on Databento)",
+   "reported_performance": "Replication: 19.2% p.a., Sharpe 1.45, DD -24.4%, vol 12.6%, corr 0.01 to S&P at 10 bps/trade; 5 bps -> Sharpe 1.66; 20 bps -> 13.1%. Paper: ~18% p.a., Sharpe 1.42. Single-market GF: Sharpe 0.91. Equity index futures untested.",
+   "source_type": "working paper + blog with code; settlement prices; split undefined",
+   "cost_sensitivity": "medium-high (16 thin spread legs weekly; commenter: edge vanishes at 10 bps per basis)",
+   "firm_compatibility": "NONE: weekly holds violate prop flat-by-close; FTMO has no calendar spreads. Personal account only.",
+   "overlap_with_closed_families": "none",
+   "plausibility_net_sharpe_ge_1_5": "medium in a personal futures account; n/a for prop",
+   "why_not_already_tested": "Requires spread legs and overnight holds.",
+   "test_sketch": "Record only (strongest published futures result found). If a personal account exists: replicate on Databento daily data 2010-2025, cost 10 bps, holdout 2022+."
+  },
+  {
+   "id": "C06",
+   "name": "Kalman-filter trend percentile (QTI) fast trend on NQ 1-min",
+   "mechanism": "Kalman-smoothed trend; percentile of price-trend gap in [-100,100]; long on cross above 5 (target 35), short below -90 (target -95); 10-parameter ensemble weighted on in-sample Sharpe.",
+   "references": [
+    {
+     "title": "Fast trend following",
+     "author": "Quantitativo",
+     "year": 2024,
+     "url": "https://www.quantitativo.com/p/fast-trend-following"
+    }
+   ],
+   "instruments": "NQ front month, 1-min, 24h",
+   "holding_period": "minutes-hours (~16 trades/day)",
+   "data_needed": "NQ 1-min 2017+ (Databento)",
+   "reported_performance": "GROSS (no costs): IS 2017-21 / OOS 2022+: OOS 27.7% p.a., Sharpe 1.17, DD 13.5%, 76% months positive. Exp.1: ~3,972 trades/yr, win 48.5%, PF 1.07, payoff 1.11.",
+   "source_type": "blog (partial code; filter params withheld)",
+   "cost_sensitivity": "EXTREME: PF 1.07 at ~4,000 trades/yr; NQ all-in ~$7 RT + 1 tick = ~1.4-2.4 ticks/trade; commenter reports 3-5 ticks slippage on 2-4 lots",
+   "firm_compatibility": "futures prop: intraday OK but 24h model must flatten at close",
+   "overlap_with_closed_families": "partial (fast TF / VWAP trend family); different indicator",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Kalman variant not in closed list.",
+   "test_sketch": "Replicate with explicit costs ($7 RT + 1 tick) and session-flat rule; require net PF >1.3 and surrogate-market t > 95th pct; else discard."
+  },
+  {
+   "id": "C07",
+   "name": "Turnaround Tuesday/Wednesday dip buy on index",
+   "mechanism": "Buy at open on Tue/Wed after two consecutive lower closes; exit when close > prior day's high.",
+   "references": [
+    {
+     "title": "Turnaround Tuesdays on steroids",
+     "author": "Quantitativo",
+     "year": 2024,
+     "url": "https://www.quantitativo.com/p/turnaround-tuesdays-on-steroids"
+    }
+   ],
+   "instruments": "SPY/QQQ/TQQQ in source; US500/US100 CFD",
+   "holding_period": "1-5 days",
+   "data_needed": "daily OHLC",
+   "reported_performance": "GROSS: QQQ Tue+Wed Sharpe 1.52, CAGR 11.4%, DD 23.5%, exposure 18%, ~15 trades/yr, win >70%; TQQQ (real, 2011+) Sharpe 2.03, CAGR 28.7%, DD 36.4%. Days chosen after testing all combinations; no costs.",
+   "source_type": "blog; in-sample selection",
+   "cost_sensitivity": "low (15 trades/yr) + swap on multi-day CFD holds",
+   "firm_compatibility": "FTMO Swing only; futures prop NO",
+   "overlap_with_closed_families": "HIGH with closed RSI(2)/3-down buy-the-dip on index CFDs (Krueger: ~1.2%/yr at 1% risk).",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Day-of-week conditioning differs from RSI(2) rule but mechanism is the same dip.",
+   "test_sketch": "Only as a cheap check: ES 2010-2025, Tue/Wed after 2 down closes, intraday-only hold 09:30-16:10 to see if any edge is intraday; expect none."
+  },
+  {
+   "id": "C08",
+   "name": "Index-level volume shock -> overnight-session long (transfer)",
+   "mechanism": "Unexpected intraday volume spikes predict positive close-to-open returns in single stocks (not open-to-close). Transfer: ES/NQ RTH volume-shock days -> long from 18:00 reopen to 09:30.",
+   "references": [
+    {
+     "title": "Volume Shocks and Overnight Returns",
+     "author": "Cartea, Cucuringu, Jin, Wilson (Oxford)",
+     "year": 2025,
+     "url": "https://www.quantitativo.com/p/volume-shocks-and-overnight-returns"
+    }
+   ],
+   "instruments": "ES/MES, NQ/MNQ",
+   "holding_period": "18:00 -> 09:30 (inside prop day)",
+   "data_needed": "ES/NQ 1-min with volume 2010+",
+   "reported_performance": "Stocks: TabNet long-only overnight Sharpe ~1.1, ~18% p.a.; Quantitativo biotech universe Sharpe 1.52, 36.1% p.a., DD -36.6% (cost treatment unclear). Index-level: untested anywhere found.",
+   "source_type": "working paper + blog replication (stocks)",
+   "cost_sensitivity": "low (1 RT on selected days)",
+   "firm_compatibility": "futures prop YES (entry after 18:00 reopen; must be flat before firm close next day); FTMO YES",
+   "overlap_with_closed_families": "overnight-gap fade closed (trades the gap after open; different). Boyarchenko overnight drift ~0 since 2017 (Krueger).",
+   "plausibility_net_sharpe_ge_1_5": "low (single-stock mechanism may not aggregate to index)",
+   "why_not_already_tested": "2025 paper; index transfer not tried.",
+   "test_sketch": "ES 2010-2025: shock = RTH volume residual vs 20-day mean; top-decile days -> long 18:00->09:30; t-test vs all days (cluster by day); 3 pre-registered conditioners max; holdout 2022+."
+  },
+  {
+   "id": "C09",
+   "name": "Index-rebalance eve: short into the closing auction (FTSE/STOXX/MSCI) and ES/NQ/RTY analog",
+   "mechanism": "On the trading day before FTSE 100/STOXX quarterly and MSCI review effective dates, the index falls into the closing-auction print (forced flows); short last 15-60 min, cover after the print. Only finding that survived Krueger's global BH correction.",
+   "references": [
+    {
+     "title": "Index Event Days: FTSE Falls Into the Auction Print",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/index-rebalancing-closing-auction"
+    }
+   ],
+   "instruments": "UK100 CFD (tested); untested: Z futures, ES/NQ/RTY on S&P/Nasdaq/Russell rebalance eves",
+   "holding_period": "15-60 min incl. auction",
+   "data_needed": "UK100/ES 1-min; index review calendars (FTSE, STOXX, MSCI, S&P, Russell)",
+   "reported_performance": "Search 2015-22: +8.3 bps/event (t 2.3, n 63). Holdout 2023-Jun 2026: +11.5 bps (t 3.9, n 27, 81% positive, 4/4 years); real broker ticks +11.9 (t 4.2); placebo days +0.05; costs x2 still +9.7 (t 3.6); BH q = 0.0008 across 19 candidates. Cost 1.5 index pts RT.",
+   "source_type": "blog with pre-registered single holdout; CFD ticks",
+   "cost_sensitivity": "medium (post-close spread 1.8 vs 1.0 pts)",
+   "firm_compatibility": "FTMO UK100 CFD: likely YES if post-close pricing exists and hold <2h past close (verify). Futures prop: only via ES/NQ/RTY analog.",
+   "overlap_with_closed_families": "none",
+   "plausibility_net_sharpe_ge_1_5": "low standalone (~12 events/yr ~ +1.4%/yr notional); medium as a sleeve",
+   "why_not_already_tested": "Niche event; published 2026.",
+   "test_sketch": "Pre-register: ES/NQ/RTY short 15:30->16:00 (exit on 16:00 cash print or 16:14) on S&P quarterly rebalance, Russell reconstitution and MSCI effective eves 2010-2025; placebo days; cluster by event; also test Z futures if data affordable."
+  },
+  {
+   "id": "C10",
+   "name": "Late-session breakouts after an early whipsaw (index)",
+   "mechanism": "If the first range breakout of the day fails both sides (chop), later-range breakouts (setups C/D) show higher R: C-US +0.024 -> +0.335 R; C-EU +0.111 -> +0.533 R.",
+   "references": [
+    {
+     "title": "Lock Out the Day After an Early Whipsaw?",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/late-breakouts-after-early-whipsaw"
+    }
+   ],
+   "instruments": "DAX, FTSE, NQ, Dow CFDs",
+   "holding_period": "intraday, trailing exit",
+   "data_needed": "1-min index data",
+   "reported_performance": "2015-2026, 45,045 episodes: C-US t 5.1 (n 491), C-EU t 6.1 (n 476); IN-SAMPLE; author later flagged the backtest chain books positive R on random markets ('not proven'); 25 breakout combos re-measured: none beats random (-0.08 R net).",
+   "source_type": "blog; in-sample; partially retracted",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "all",
+   "overlap_with_closed_families": "ORB closed (this is late-day)",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Conditioning on early whipsaw not in closed tests.",
+   "test_sketch": "Use only as a feature inside a surrogate-benchmarked breakout test; do not pursue standalone."
+  },
+  {
+   "id": "C11",
+   "name": "Volatility-regime gating: breakouts in HIGH-vol, fades in LOW-vol",
+   "mechanism": "Classify days by 5-day mean range vs trailing 250-day distribution terciles; breakout R +0.149 (HIGH) vs +0.046 (LOW); fades +0.130 (LOW) vs +0.099 (HIGH); vol filter cut max DD -449 -> -259 R for 17-19% less return.",
+   "references": [
+    {
+     "title": "Breakouts Need High Vol, Fades Need Low",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/volatility-regime-momentum-vs-fade"
+    }
+   ],
+   "instruments": "DAX, FTSE, NQ, Dow, SPX CFDs (171,180 trades 2015-Jun 2026)",
+   "holding_period": "intraday",
+   "data_needed": "1-min index data",
+   "reported_performance": "In-sample descriptive; holdout test of the vol filter NOT confirmed (+0.058 R, t 0.3); fade finding reverses under trailing exits; no day-clustered t-stats.",
+   "source_type": "blog; in-sample",
+   "cost_sensitivity": "n/a (conditioning layer)",
+   "firm_compatibility": "all",
+   "overlap_with_closed_families": "none (conditioning)",
+   "plausibility_net_sharpe_ge_1_5": "low as an edge; useful as a sizing/risk layer",
+   "why_not_already_tested": "Regime split not applied to closed families' results.",
+   "test_sketch": "Apply as vol-targeting and regime filter to any surviving base signal; report Sharpe and DD with/without; never as a direction signal."
+  },
+  {
+   "id": "C12",
+   "name": "Tokyo-fix (09:55 JST) USDJPY window rules",
+   "mechanism": "Order flow around the Tokyo fix produces short drift windows; three pre-registered time-window rules.",
+   "references": [
+    {
+     "title": "Tokyo Fix in USDJPY: Forward Test",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/tokyo-fix-usdjpy-forward-test"
+    }
+   ],
+   "instruments": "USDJPY CFD (FTMO) or 6J/M6J futures (prop; 19:55/20:55 ET inside prop day)",
+   "holding_period": "minutes",
+   "data_needed": "USDJPY/6J 1-min 2015+",
+   "reported_performance": "+4.5 to +5.6 bps/trade on ticks 2023-26 (not past global BH correction); forward test 27 Sep 2026 -> Sep 2027 running.",
+   "source_type": "blog; pre-registered forward test",
+   "cost_sensitivity": "medium (FTMO $3/lot RT ~0.3 bp + spread; 6J ~$1.3 RT + 1 tick = ~1 bp)",
+   "firm_compatibility": "FTMO YES; futures prop YES via 6J",
+   "overlap_with_closed_families": "partial: 'intraday rules across 19 FX/CFD markets' closed - verify whether Tokyo-fix windows were included",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Fix-window specificity may not have been in closed FX tests.",
+   "test_sketch": "6J 1-min 2015-2025: pre-register the three windows (times from source), holdout 2023+, cluster by day; stop if < 5 bps/trade gross."
+  },
+  {
+   "id": "C13",
+   "name": "EU pre-open push (08:00-09:00 Berlin) as directional filter for DAX/FTSE breakouts",
+   "mechanism": "Trade breakouts only in the direction of the pre-open push: with push +0.199 R (t 6.6) vs against +0.075 R (t 0.3); baseline +0.122 R; 41,668 episodes.",
+   "references": [
+    {
+     "title": "EU Pre-Open Push as Setup Filter",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/eu-pre-open-push-filter"
+    }
+   ],
+   "instruments": "GER40/UK100 CFD (FTMO); Eurex FDAX/FESX not at most US futures prop firms",
+   "holding_period": "intraday",
+   "data_needed": "1-min DAX/FTSE incl. pre-market",
+   "reported_performance": "In-sample; same backtest chain later found to overstate R; no holdout.",
+   "source_type": "blog; in-sample",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "FTMO YES; US futures prop: mostly NO (Eurex access varies)",
+   "overlap_with_closed_families": "none closed (EU indices)",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "EU-session mechanics not covered.",
+   "test_sketch": "Feature only; include in a GER40 breakout test with surrogate benchmark if FTMO is in scope."
+  },
+  {
+   "id": "C14",
+   "name": "Pre-FOMC announcement drift (ES, 16:00 day-before -> 14:00 decision day)",
+   "mechanism": "Equity premium concentrated in the ~22h before scheduled FOMC statements (Lucca-Moench). One trade per meeting, ~8/yr.",
+   "references": [
+    {
+     "title": "The Pre-FOMC Announcement Drift",
+     "author": "Lucca, Moench",
+     "year": 2015,
+     "url": "https://onlinelibrary.wiley.com/doi/10.1111/jofi.12196"
+    },
+    {
+     "title": "Strategy of the Week #3: The Pre-FOMC Drift in S&P 500 Futures",
+     "author": "Delphic Alpha",
+     "year": 2026,
+     "url": "https://delphicalpha.substack.com/p/strategy-of-the-week-3-the-pre-fomc"
+    },
+    {
+     "title": "Published Anomalies Net of Costs (replication)",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/published-anomalies-net-of-costs"
+    }
+   ],
+   "instruments": "ES; US500 CFD",
+   "holding_period": "22h (overnight)",
+   "data_needed": "ES 1-min + FOMC calendar",
+   "reported_performance": "Delphic: 2008-21 +25.8 bps/trade (t 3.4, n 111), 2022+ +19.9 bps (t 2.2, n 39), net Sharpe 0.78/0.85 at 2 bps RT; last 12 months -15 bps avg (Sharpe -1.04). Krueger: 24h +16.9 bps net (t 1.8); intraday-only portion +0.6 bps gross (nothing).",
+   "source_type": "peer-reviewed origin + two blog replications",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "futures prop NO (overnight across close); FTMO Swing YES (1 swap night). Intraday-only version has no edge.",
+   "overlap_with_closed_families": "macro-event intraday ES/NQ CLOSED (post-event intraday); pre-drift is distinct but overnight.",
+   "plausibility_net_sharpe_ge_1_5": "low (8 trades/yr; ~1.6-2% p.a. on notional)",
+   "why_not_already_tested": "Closed test covered the intraday post-event window, not the 22h pre-window.",
+   "test_sketch": "FTMO Swing US500 only: pre-register entry 16:00 ET D-1, exit 14:00 D; 2010-2025; include swap; it cannot carry the $20k/yr target alone."
+  },
+  {
+   "id": "C15",
+   "name": "30-minute-bar fade/reversion families across 29 futures/FX/crypto (Intraday Alpha Atlas)",
+   "mechanism": "Fade-BO, Fade-MA, cross-sectional reversal and MR at 5/20/120 bars; signal at bar close, enter next bar open, exit that bar's close; positions held across unchanged bars.",
+   "references": [
+    {
+     "title": "The Intraday Alpha Atlas, Six Months Later: What Still Works on 30-Minute Bars",
+     "author": "Delphic Alpha",
+     "year": 2026,
+     "url": "https://delphicalpha.substack.com/p/alpha-report-the-intraday-alpha-atlas"
+    }
+   ],
+   "instruments": "6 equity index futures, 5 Treasury futures, 6 commodity futures, 6 G7 FX, 6 crypto",
+   "holding_period": "30-min bars",
+   "data_needed": "30-min bars",
+   "reported_performance": "GROSS, Apr-Oct 2026 live-holdout of 12 unchanged alphas: FX all 12 positive, median Sharpe 1.72 (CS-Rev 5: 5.70 but 0.16 bp/trade); best profit anywhere 1.5 bp/trade; equities 8/12 positive (MR 120 Sharpe 2.02, ~cost-matched); bonds 3/12; FX Fade-MA 120 0.42 bp vs ~0.3 bp institutional cost - 'disappears at retail spreads'.",
+   "source_type": "blog; gross; 7 months of holdout; paywalled details",
+   "cost_sensitivity": "EXTREME (sub-bp per trade)",
+   "firm_compatibility": "all intraday, but uneconomic",
+   "overlap_with_closed_families": "'intraday rules across 19 FX/CFD markets' closed",
+   "plausibility_net_sharpe_ge_1_5": "low; treat as negative confirmation that bar-level reversion is sub-cost at retail",
+   "why_not_already_tested": "n/a",
+   "test_sketch": "None. Use as evidence in the prompt: require >=2x round-trip cost per trade before testing bar-level reversion."
+  },
+  {
+   "id": "C16",
+   "name": "Multi-day dip buy after unusually sharp two-day fall in S&P, DAX, Nikkei, crude, gold",
+   "mechanism": "Buy after a sharp 2-day decline, hold a fixed number of sessions, sell; signals from the last session of the week enter next open.",
+   "references": [
+    {
+     "title": "Dip Setups #3: 30 October 2026",
+     "author": "Delphic Alpha",
+     "year": 2026,
+     "url": "https://delphicalpha.substack.com/p/dip-setups-3-30-october-2026"
+    }
+   ],
+   "instruments": "ES, FDAX, NKD, CL, GC (or FTMO US500, GER40, JP225, USOIL, XAUUSD)",
+   "holding_period": "several sessions",
+   "data_needed": "daily OHLC",
+   "reported_performance": "46-79 trades/market since 2008; +14 bps (gold) to +137 bps (crude) per trade; thresholds/holding paywalled; no Sharpe/t in text; 10 bps cost quoted for the stock record.",
+   "source_type": "blog; selection/holdout not stated",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "futures prop NO (multi-day); FTMO Swing YES",
+   "overlap_with_closed_families": "partial: RSI(2)/3-down dip buy on index CFDs closed; commodity legs (CL, GC) are new",
+   "plausibility_net_sharpe_ge_1_5": "low-medium for CL/GC only",
+   "why_not_already_tested": "Commodities not included in closed dip-buy test.",
+   "test_sketch": "Pre-register: 2-day return < -2 sigma (60-day) -> long next open, exit after 3 sessions; CL and GC 2010-2025; holdout 2022+; FTMO Swing costs = spread + swap; require t>2.5 clustered by trade."
+  },
+  {
+   "id": "C17",
+   "name": "Weekly short-term reversal in futures conditioned on volume and open interest",
+   "mechanism": "Reversal of prior-week returns is strongest in high-volume, low-open-interest contracts (speculative pressure); long losers/short winners, weight by return deviation.",
+   "references": [
+    {
+     "title": "Trading activity and price reversals in futures markets",
+     "author": "Changyun Wang",
+     "year": "not stated",
+     "url": "https://quantpedia.com/strategies/short-term-reversal-with-futures/"
+    }
+   ],
+   "instruments": "24 US futures (4 FX, 5 financial, 8 ag, 7 commodity)",
+   "holding_period": "1 week (Wed-Wed)",
+   "data_needed": "daily prices, volume, OI",
+   "reported_performance": "0.57%/week gross (~29.6% p.a. arithmetic), vol 31.4%, Sharpe 0.82, DD -58.7%, 1983-2000; profits vanish at ~0.16% one-way cost; no OOS.",
+   "source_type": "peer-reviewed (via Quantpedia summary); old sample",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "none (weekly holds)",
+   "overlap_with_closed_families": "none",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Not prop-compatible.",
+   "test_sketch": "Record only. A daily-horizon, intraday-hold analog on ES/NQ/CL/GC conditioned on volume/OI changes could be a cheap pre-registered check (expect nil)."
+  },
+  {
+   "id": "C18",
+   "name": "Option-expiration week long bias (S&P 100 / ES)",
+   "mechanism": "Large-cap stocks earn abnormal returns in the week before monthly option expiration (delta-hedging/rebalancing pressure).",
+   "references": [
+    {
+     "title": "Returns and Option Activity over the Option-Expiration Week for S&P 100 Stocks",
+     "author": "Stivers, Sun",
+     "year": "~2010",
+     "url": "https://quantpedia.com/strategies/option-expiration-week-effect/"
+    }
+   ],
+   "instruments": "ES/MES (RTH only) or US500 CFD",
+   "holding_period": "1 week per month (or RTH-only days of that week)",
+   "data_needed": "daily/1-min ES + opex calendar",
+   "reported_performance": "Quantpedia estimates: ~9.3% p.a. (6.3% from opex weeks), vol 8.7%, Sharpe 0.61, DD -15.1%; costs not reported; no OOS; sub-period spreads 67.9 and 70.7 bps.",
+   "source_type": "peer-reviewed via Quantpedia; estimates",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "FTMO Swing YES; futures prop: intraday portion only",
+   "overlap_with_closed_families": "turn-of-month closed (different week); Krueger: 963 index calendar/time windows none net positive",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Not in closed list.",
+   "test_sketch": "ES 2010-2025: RTH-only long Mon-Fri of opex week vs other weeks; also 18:00->09:30 sessions of that week; weekly-clustered t; stop if t<2."
+  },
+  {
+   "id": "C19",
+   "name": "Top-of-book skew liquidity taking on ES -> 1-minute OFI feature test",
+   "mechanism": "log(bid size) - log(ask size) at BBO predicts the next move; take liquidity when |skew| > 1.7 (code example). 1-min version: aggregate order-flow imbalance (Cont-Kukanov-Stoikov) per minute as a feature.",
+   "references": [
+    {
+     "title": "A high-frequency liquidity-taking strategy (code example)",
+     "author": "Databento",
+     "year": 2025,
+     "url": "https://databento.com/docs/examples/algo-trading/high-frequency"
+    },
+    {
+     "title": "Microprice and book imbalance",
+     "author": "Databento",
+     "year": 2025,
+     "url": "https://databento.com/docs/examples/order-book/microprice"
+    }
+   ],
+   "instruments": "ES (ESU3 in example); MBP-1/TBBO data",
+   "holding_period": "seconds (example); 1-5 min (variant)",
+   "data_needed": "ES MBP-1 or TBBO sample (costs credits; buy 1-3 months only)",
+   "reported_performance": "No numeric results in text (chart only); fees $0.44/side modelled; zero latency assumed; author warns alpha decays with latency and that extreme skew may be spoofing.",
+   "source_type": "vendor code example; no performance",
+   "cost_sensitivity": "EXTREME (taker crosses spread each trade)",
+   "firm_compatibility": "nominally all; realistically NO for a retail-latency taker via Tradovate/Rithmic",
+   "overlap_with_closed_families": "none",
+   "plausibility_net_sharpe_ge_1_5": "low at 1-min; tick-level not feasible",
+   "why_not_already_tested": "Needs order-book data.",
+   "test_sketch": "Buy 1 month ES MBP-1; compute 1-min OFI and microprice deviation; IC vs next 1/5-min return; if IC > 0.05 test passive-limit implementation; else drop. Also use the sample to MEASURE spread/depth by hour for the cost model."
+  },
+  {
+   "id": "C20",
+   "name": "Overnight-session hold (18:00 -> 09:30 ET) in MES/MNQ, prop-compatible, conditioned",
+   "mechanism": "Equity premium accrues overnight (Lou-Polk-Skouras; Boyarchenko 'overnight drift'); the futures prop 'trading day' spans 18:00 reopen to next-day close, so the overnight SESSION is holdable; condition on VIX term structure / prior-day return / day-of-week.",
+   "references": [
+    {
+     "title": "The Overnight Drift",
+     "author": "Boyarchenko, Larsen, Whelan",
+     "year": 2023,
+     "url": "https://academic.oup.com/rfs/article/36/9/3502/6980216"
+    },
+    {
+     "title": "A Tug of War: Overnight versus Intraday Expected Returns",
+     "author": "Lou, Polk, Skouras",
+     "year": 2019,
+     "url": "https://doi.org/10.1016/j.jfineco.2019.03.011"
+    },
+    {
+     "title": "Overnight Effect with CFDs / Published anomalies net of costs",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/overnight-effect-not-tradable-with-cfds"
+    }
+   ],
+   "instruments": "MES/ES, MNQ/NQ",
+   "holding_period": "15.5h inside the prop day",
+   "data_needed": "ES/NQ 1-min 2010+; VIX/VIX3M daily",
+   "reported_performance": "Krueger (index CFDs 2015-22): gross +1.2 bps/day (t 2.9), ~0 since 2017; CFD net -5.5 bps (financing); long +0.077 R vs short +0.081 R (no long bias). Futures-specific prop-rule test: not found.",
+   "source_type": "peer-reviewed origin; blog replication (negative on CFDs)",
+   "cost_sensitivity": "medium: MES 1 RT ~$1.3-1.9 + 1 tick ~ 1 bp/day vs ~1.2 bps gross",
+   "firm_compatibility": "futures prop YES (verify each firm's day boundary: e.g. flat by ~16:10-16:59 ET); FTMO YES but swap kills it",
+   "overlap_with_closed_families": "overnight-gap fade and Gao last-half-hour closed (different windows)",
+   "plausibility_net_sharpe_ge_1_5": "low (unconditional Sharpe ~0.5-0.8 even pre-2017)",
+   "why_not_already_tested": "Prop-day boundary nuance was treated as 'no overnight'.",
+   "test_sketch": "ES 2010-2025: 18:00->09:30 returns; pre-register 3 conditioners (VIX3M/VIX < 1, prior RTH return < -1%, Mon/Tue); cluster by day; holdout 2022+; costs $1.9 RT + 1 tick on MES."
+  },
+  {
+   "id": "C21",
+   "name": "EUR/USD European-session depreciation / US-session appreciation (Breedon-Ranaldo) - NEGATIVE RECORD",
+   "mechanism": "EUR/USD tends to fall during European hours and rise during US hours (hedging/order-flow seasonality).",
+   "references": [
+    {
+     "title": "Intraday Patterns in FX Returns and Order Flow",
+     "author": "Breedon, Ranaldo",
+     "year": 2013,
+     "url": "https://kruegeralgorithms.com/en/research/published-anomalies-net-of-costs"
+    }
+   ],
+   "instruments": "EURUSD CFD; 6E/M6E",
+   "holding_period": "session",
+   "data_needed": "EURUSD 1-min",
+   "reported_performance": "Krueger: gross +2.65 bps/day (t 4.1, ~80% of paper) 2015-22; net +1.50 (t 2.35); HOLDOUT 2023-Jun 2026 -0.34 bps (t -0.41) -> failed.",
+   "source_type": "peer-reviewed + blog replication with holdout",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "FTMO / 6E prop",
+   "overlap_with_closed_families": "'intraday rules across 19 FX/CFD markets' closed",
+   "plausibility_net_sharpe_ge_1_5": "low (failed holdout)",
+   "why_not_already_tested": "Probably covered; listed to prevent re-testing.",
+   "test_sketch": "None."
+  },
+  {
+   "id": "C22",
+   "name": "Intraday stat-arb on futures triplets (ES/NQ/RTY; CL/HO/RB; GC/SI)",
+   "mechanism": "Cointegration/network-based relative mispricing among correlated contracts; trade the residual z-score mean reversion intraday.",
+   "references": [
+    {
+     "title": "Resourcing a Triangulated Stat Arb Operation as a Solo Trader (series)",
+     "author": "Robot Wealth",
+     "year": 2026,
+     "url": "https://robotwealth.com/resourcing-a-triangulated-stat-arb-operation-as-a-solo-trader/"
+    },
+    {
+     "title": "Triangulated Statistical Arbitrage",
+     "author": "Quantitativo",
+     "year": 2026,
+     "url": "https://www.quantitativo.com/p/triangulated-statistical-arbitrage"
+    },
+    {
+     "title": "Pairs trading based on cointegration (code)",
+     "author": "Databento",
+     "year": 2025,
+     "url": "https://databento.com/docs/examples/algo-trading/pairs-trading"
+    },
+    {
+     "title": "Lead-Lag Between Indices",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/lead-lag-between-index-markets"
+    }
+   ],
+   "instruments": "ES/NQ/RTY/YM micros; CL/HO/RB; GC/SI",
+   "holding_period": "minutes-hours",
+   "data_needed": "1-min for 3-4 contracts per triplet",
+   "reported_performance": "Equities version Sharpe 2.4 (Quantitativo, blog). Futures intraday: Krueger lead-lag between indices best gross/cost ratio 0.58 (needs >=2) -> no edge; no futures stat-arb numbers found.",
+   "source_type": "blogs; vendor code; no futures performance",
+   "cost_sensitivity": "high (2-3 legs, each 1 tick + commission)",
+   "firm_compatibility": "futures prop YES (simultaneous positions in different products allowed)",
+   "overlap_with_closed_families": "none",
+   "plausibility_net_sharpe_ge_1_5": "low-medium",
+   "why_not_already_tested": "Not in closed list.",
+   "test_sketch": "ES-NQ-RTY 1-min 2018-2025: rolling Johansen (60-day), residual z +/-2 entry, 0 exit, flat at 16:10; costs per leg; holdout 2023+; compare with GC/SI and CL/HO/RB."
+  },
+  {
+   "id": "C23",
+   "name": "NQ 5-minute indicator-slope trend with 500-EMA bias (QuantConnect forum) - UNVERIFIED",
+   "mechanism": "Trend on 5-min bars confirmed by slopes of EMA/RSI/momentum/Ultimate Oscillator; 500-EMA sets bias requiring double confirmation against bias.",
+   "references": [
+    {
+     "title": "Intraday Trading Strategy for Futures Contract NQ",
+     "author": "QuantConnect forum",
+     "year": 2023,
+     "url": "https://www.quantconnect.com/forum/discussion/15192/intraday-trading-strategy-for-futures-contract-nq/"
+    }
+   ],
+   "instruments": "NQ",
+   "holding_period": "intraday",
+   "data_needed": "5-min NQ",
+   "reported_performance": "Comment cites Sharpe 3.1, CAGR 123% (2022-23 window); five indicators tried and best kept on the same data; no costs; critics request PBO/DSR.",
+   "source_type": "forum; no code shown",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "all",
+   "overlap_with_closed_families": "fast TF/VWAP trend family",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Not credible enough to test.",
+   "test_sketch": "None unless rules are frozen and run on 2024-2026 with costs."
+  },
+  {
+   "id": "C24",
+   "name": "Gold 3-day mean reversion and crude pullback (Quantified Strategies substack, Oct-Nov 2026) - DETAILS NOT FETCHED",
+   "mechanism": "Short-horizon mean reversion / pullback-in-trend rules on gold and crude (daily bars).",
+   "references": [
+    {
+     "title": "A 3-Day Gold Strategy With Less Than 10% Max Drawdown",
+     "author": "Quantified Strategies",
+     "year": 2026,
+     "url": "https://quantifiedstrategies.substack.com/p/a-3-day-gold-strategy-with-less-than"
+    },
+    {
+     "title": "The Crude Oil Pullback Strategy: Buy the Dip, Ride the Trend",
+     "author": "Quantified Strategies",
+     "year": 2026,
+     "url": "https://quantifiedstrategies.substack.com/p/the-crude-oil-pullback-strategy-buy"
+    },
+    {
+     "title": "ES IBS Mean Reversion Strategy (TradeStation code)",
+     "author": "Quantified Strategies",
+     "year": 2026,
+     "url": "https://quantifiedstrategies.substack.com/p/es-ibs-mean-reversion-strategy-futures"
+    }
+   ],
+   "instruments": "GC/MGC, CL/MCL; XAUUSD/USOIL CFD",
+   "holding_period": "1-3 days",
+   "data_needed": "daily OHLC",
+   "reported_performance": "Titles only: gold DD <10% claimed; others not found. Quantified Strategies typically reports CAGR/win rate without costs.",
+   "source_type": "blog (titles only; bodies not fetched)",
+   "cost_sensitivity": "low-medium",
+   "firm_compatibility": "futures prop NO (multi-day); FTMO Swing YES",
+   "overlap_with_closed_families": "IBS reversal CLOSED (ES IBS item excluded); gold/crude rules not closed",
+   "plausibility_net_sharpe_ge_1_5": "low-medium (unknown)",
+   "why_not_already_tested": "Metals/energy short-term MR not in closed list.",
+   "test_sketch": "Fetch rules first; then GC/CL 2010-2025 with FTMO Swing costs (spread + swap) and 1-tick futures costs; holdout 2022+."
+  },
+  {
+   "id": "C25",
+   "name": "Carver AFTS strategies 26-27: fast mean reversion in equity index futures (with trend/vol safety overlays) - BOOK NOT FETCHED",
+   "mechanism": "Short-lookback deviation of price from a fast EWMA, vol-normalised, traded both directions in equity index futures only; strategy 27 adds trend and volatility overlays. Daily data; the only 'fast' strategies in the book. Carver's speed-limit: costs must stay well below 1/3 of pre-cost Sharpe.",
+   "references": [
+    {
+     "title": "Advanced Futures Trading Strategies (30 strategies)",
+     "author": "Robert Carver",
+     "year": 2023,
+     "url": "https://www.harriman-house.com/advancedfuturestradingstrat"
+    },
+    {
+     "title": "033 - Rob Carver - The Comprehensive Guide to a Diversified Futures Strategy",
+     "author": "The Algorithmic Advantage",
+     "year": 2024,
+     "url": "https://algoadvantage.substack.com/p/033-rob-carver-the-comprehensive"
+    },
+    {
+     "title": "pysystemtrade",
+     "author": "robcarver17",
+     "year": 2026,
+     "url": "https://github.com/robcarver17/pysystemtrade"
+    }
+   ],
+   "instruments": "equity index futures (ES/NQ/YM/RTY); US500/US100 CFD",
+   "holding_period": "days",
+   "data_needed": "daily",
+   "reported_performance": "not found (TOC/figures not fetched). Podcast page confirms Carver trades end-of-day only, 80-100 averaged variants, cost-aware market selection; mean reversion 'less central'. Other AFTS strategies (trend speeds, breakout, acceleration, carry, skew, relative momentum/carry/skew, calendar spreads) are multi-day -> prop-incompatible; FX/CFD TSMOM/EWMAC/carry CLOSED.",
+   "source_type": "book (not fetched) + podcast summary",
+   "cost_sensitivity": "medium",
+   "firm_compatibility": "futures prop NO; FTMO Swing YES (index CFDs)",
+   "overlap_with_closed_families": "partial with RSI(2)/3-down dip buy (this is symmetric, vol-scaled)",
+   "plausibility_net_sharpe_ge_1_5": "low (book reports modest standalone SR for fast MR - verify)",
+   "why_not_already_tested": "Symmetric vol-scaled MR with overlays not tested.",
+   "test_sketch": "pysystemtrade rules 'mr' with 5-day EWMA on ES daily 2000-2025; FTMO Swing costs; holdout 2020+; require SR gain over closed dip-buy."
+  },
+  {
+   "id": "C26",
+   "name": "Clenow counter-trend (buy ~3-ATR pullbacks in established uptrend, ~2-week hold) - BOOK NOT FETCHED",
+   "mechanism": "Daily futures: when trend is up (e.g. 50>100 EMA), buy after a 3-ATR pullback, exit after ~20 days or target.",
+   "references": [
+    {
+     "title": "Trading Evolved / Following the Trend",
+     "author": "Andreas Clenow",
+     "year": 2019,
+     "url": "https://www.followingthetrend.com/"
+    }
+   ],
+   "instruments": "diversified futures; FTMO Swing CFDs",
+   "holding_period": "~2 weeks",
+   "data_needed": "daily",
+   "reported_performance": "not found (site fetch failed: rate limit). Book reports portfolio-level results across ~40 futures, not single-market.",
+   "source_type": "book (not fetched)",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "futures prop NO; FTMO Swing partial (index/commodity/FX CFDs)",
+   "overlap_with_closed_families": "FX/CFD TSMOM/EWMAC/carry CLOSED; dip-buy on index CFDs CLOSED",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "Largely overlaps closed families.",
+   "test_sketch": "Skip unless FTMO Swing commodity CFDs become a focus."
+  },
+  {
+   "id": "C27",
+   "name": "Connors VIX-stretch conditioned S&P dip buy (VIX >= 5% above its 10-day MA, S&P > 200-day) - BOOK NOT FETCHED",
+   "mechanism": "Buy S&P when VIX closes >=5% above its 10-day MA for consecutive days while S&P is above the 200-day MA; exit when VIX closes below its 10-day MA or RSI(2) > 65.",
+   "references": [
+    {
+     "title": "Short Term Trading Strategies That Work",
+     "author": "Larry Connors, Cesar Alvarez",
+     "year": 2009,
+     "url": "not fetched"
+    }
+   ],
+   "instruments": "ES; US500 CFD",
+   "holding_period": "1-5 days",
+   "data_needed": "daily ES + VIX",
+   "reported_performance": "not found (book not fetched); Connors reports high win rates without costs, 1995-2008 samples.",
+   "source_type": "book (not fetched)",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "futures prop NO; FTMO Swing YES",
+   "overlap_with_closed_families": "HIGH with RSI(2)/3-down dip buy on index CFDs (closed)",
+   "plausibility_net_sharpe_ge_1_5": "low",
+   "why_not_already_tested": "VIX conditioning may differ from closed RSI(2) test.",
+   "test_sketch": "Only as a conditioner inside C20 (overnight-session) or C16; otherwise skip."
+  },
+  {
+   "id": "C28",
+   "name": "Crabel NR7/ID-NR4 opening-range breakout and Larry Williams 'Oops' gap reversal - LIKELY DECAYED",
+   "mechanism": "NR7: narrowest range of 7 days -> next-day ORB with stretch; ID-NR4: inside day + narrowest of 4; Oops: fade gaps that re-enter prior range at the open.",
+   "references": [
+    {
+     "title": "Day Trading with Short Term Price Patterns and Opening Range Breakout",
+     "author": "Toby Crabel",
+     "year": 1990,
+     "url": "not fetched"
+    },
+    {
+     "title": "Long-Term Secrets to Short-Term Trading",
+     "author": "Larry Williams",
+     "year": 1999,
+     "url": "not fetched"
+    },
+    {
+     "title": "Volatility Filter Phantom Edges / ORB replication (negative)",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/opening-range-breakout-paper-replication"
+    }
+   ],
+   "instruments": "ES/NQ/CL/GC",
+   "holding_period": "intraday",
+   "data_needed": "daily + 1-min",
+   "reported_performance": "Books: 1980s-90s samples, no costs. Krueger: ORB net ~0 on NQ; 'second break negative everywhere'; gaps/round numbers 2,435 rules none pass correction.",
+   "source_type": "books (not fetched) + blog negatives",
+   "cost_sensitivity": "high",
+   "firm_compatibility": "all",
+   "overlap_with_closed_families": "ORB CLOSED; Oops ~ overnight-gap fade CLOSED",
+   "plausibility_net_sharpe_ge_1_5": "low (decayed)",
+   "why_not_already_tested": "Probably covered by closed ORB/gap tests.",
+   "test_sketch": "None; include NR7 only as a volatility-contraction feature if a breakout base signal survives."
+  },
+  {
+   "id": "C29",
+   "name": "Calendar-seasonality windows in indices/metals (Seasonax-type; US election drift)",
+   "mechanism": "Fixed-date windows: gold June weakness / 4-year cycle, Nasdaq July rally, FTSE April, S&P late-June-July, platinum into February; US election D+1 short.",
+   "references": [
+    {
+     "title": "Seasonax Research (posts 2025-2026)",
+     "author": "Seasonax",
+     "year": 2026,
+     "url": "https://www.seasonax.com/research"
+    },
+    {
+     "title": "Trading the Multi-Asset Drift Around U.S. Elections",
+     "author": "Quantpedia",
+     "year": 2026,
+     "url": "https://quantpedia.com/trading-the-multi-asset-drift-around-u-s-elections/"
+    }
+   ],
+   "instruments": "US500/US100/UK100/XAUUSD CFDs (FTMO Swing); ES/NQ/GC intraday-only portions",
+   "holding_period": "days-weeks",
+   "data_needed": "daily",
+   "reported_performance": "Seasonax: claims only (e.g. 'S&P 100% win rate late June-July'), no costs, no stats in excerpts. Quantpedia elections: D+1 short Sharpe 0.31, 1.86% p.a., 13 trades in 26 years; D0 long Sharpe 0.19.",
+   "source_type": "vendor claims; blog",
+   "cost_sensitivity": "low",
+   "firm_compatibility": "FTMO Swing; futures prop only RTH-session portions",
+   "overlap_with_closed_families": "turn-of-month CLOSED; Krueger: 963 index calendar/time windows none net positive; TOM significance collapses",
+   "plausibility_net_sharpe_ge_1_5": "low (multiple-testing; few events)",
+   "why_not_already_tested": "Vendor windows never pre-registered.",
+   "test_sketch": "If at all: pre-register <=3 windows with a stated mechanism, test on ES/GC 2000-2025 with BH across all windows ever considered; expect failure."
+  },
+  {
+   "id": "C30",
+   "name": "Davey-style walk-forward + Monte Carlo + incubation process (not an edge; process reference)",
+   "mechanism": "Build-test-incubate pipeline: walk-forward optimisation, Monte Carlo of trade sequences for drawdown/position sizing, 3-6 month paper incubation before live.",
+   "references": [
+    {
+     "title": "Building Winning Algorithmic Trading Systems",
+     "author": "Kevin Davey",
+     "year": 2014,
+     "url": "not fetched"
+    },
+    {
+     "title": "Research Workflow Since Oct 2026 (pre-registration, holdout, broker ticks, forward test)",
+     "author": "Krueger Algorithms",
+     "year": 2026,
+     "url": "https://kruegeralgorithms.com/en/research/research-workflow-mechanism-preregistration-holdout"
+    }
+   ],
+   "instruments": "n/a",
+   "holding_period": "n/a",
+   "data_needed": "n/a",
+   "reported_performance": "n/a (Davey's published example systems, e.g. Euro-currency intraday, are reported decayed by practitioners; not fetched)",
+   "source_type": "book (not fetched) + blog methodology",
+   "cost_sensitivity": "n/a",
+   "firm_compatibility": "n/a",
+   "overlap_with_closed_families": "n/a",
+   "plausibility_net_sharpe_ge_1_5": "n/a",
+   "why_not_already_tested": "n/a",
+   "test_sketch": "Adopt as program methodology (see prompt_rules)."
+  }
+ ],
+ "closed_family_crossref": [
+  "Zarattini Noise-Area intraday momentum on ES/NQ (Quantitativo, Jan 2025, Databento 1-min 2010+, 0.5 tick/trade + IBKR fees): ES 14d Sharpe 0.91; ES 90d/3%vol/8x Sharpe 1.25; NQ Sharpe 1.67 (DD 24%); 50/25/25 portfolio Sharpe 1.57, DD 15%; flat 2010-2017, works 2018+; author calls 0.5 tick 'already optimistic'. CLOSED (VWAP trend / Beat the Market).",
+  "Beat the Market SPY (Concretum 2024): Sharpe 1.33, 19.6% p.a., no slippage modelled; Sharpe 3.5 when VIX>40. CLOSED.",
+  "Gao et al. last-half-hour momentum: Krueger 9 indices pooled gross +1.15 bps/day (t 3.5) -> NET -1.89 (t -5.7); SPX holdout -2.65 bps (t -3.71). CLOSED and confirmed dead net.",
+  "Turn-of-month: Krueger 'significance collapses; only movement-size effect remains'. CLOSED.",
+  "RSI(2) dip buying on index CFDs: Krueger holdout +48 bps/trade (t 3.6) but only ~1.2%/yr at 1% risk; S&P 500 stocks version not globally confirmed (q 0.22). CLOSED.",
+  "Macro events FOMC/NFP/CPI/ECB intraday: Krueger 29 of 580 significant = chance; EIA crude first reaction -14.65 bps (t -2.7). CLOSED.",
+  "ICT/SMC: Krueger best robust net t 2.28 across thousands of variants; Al Brooks, candlesticks, chart formations, Fibonacci, POC levels, expected-move bands all = random. CLOSED.",
+  "VIX carry: Concretum 'Volatility Edge' VIX ETNs (no figures) - no firm offers VIX. CLOSED.",
+  "Overnight effect with CFDs: Krueger net ~0 (financing). Krueger 'Time-of-Day & Calendar': none of 963 index windows net positive. ORB replication net +0.002 R (NQ)."
+ ],
+ "cost_facts": [
+  {
+   "instrument": "ES (E-mini S&P)",
+   "venue": "Tradovate (retail; prop pass-through)",
+   "commission_per_side": "$1.29 Free / $0.99 Monthly($99) / $0.59 Lifetime($1,499)",
+   "exchange_fees": "~$1.18 exchange + ~$0.19-0.25 clearing/routing + NFA $0.02 RT; all-in ~$1.97-2.67/side (RT ~$3.94-5.34)",
+   "typical_slippage": "1 tick ($12.50) RTH for 1-5 lots is the standard practitioner assumption; Quantitativo treats 0.25-0.5 tick as optimistic; by-hour data not found",
+   "source_url": "https://www.tradovate.com/pricing/ ; https://damnpropfirms.com/trading-guides/tradovate-fees-explained-commissions-data-plans/",
+   "confidence": "medium (official commission; third-party exchange fee)"
+  },
+  {
+   "instrument": "MES (Micro E-mini S&P)",
+   "venue": "Tradovate / NinjaTrader",
+   "commission_per_side": "$0.39 / $0.29 / $0.09 by plan",
+   "exchange_fees": "~$0.37 exchange + ~$0.20 pass-through; all-in ~$0.66-0.96/side (RT ~$1.32-1.92)",
+   "typical_slippage": "1 tick ($1.25); thinner book than ES -> assume 1 tick always",
+   "source_url": "https://ninjatrader.com/pricing/ ; https://damnpropfirms.com/trading-guides/tradovate-fees-explained-commissions-data-plans/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "NQ (E-mini Nasdaq)",
+   "venue": "Tradovate / NinjaTrader",
+   "commission_per_side": "standard rate $1.29 / $0.99 / $0.59",
+   "exchange_fees": "not found (assume ~ES: ~$1.18-1.33/side)",
+   "typical_slippage": "1-2 ticks ($5-10) for 1-2 lots RTH; anecdotal 3-5 ticks on 2-4 lots and 12 ticks on part of a 6-lot market order (Quantitativo comments)",
+   "source_url": "https://www.quantitativo.com/p/fast-trend-following",
+   "confidence": "low-medium"
+  },
+  {
+   "instrument": "MNQ (Micro Nasdaq)",
+   "venue": "Tradovate / NinjaTrader",
+   "commission_per_side": "$0.39 / $0.29 / $0.09",
+   "exchange_fees": "~$0.37/side (micro rate)",
+   "typical_slippage": "1 tick ($0.50); treat as 1-2 ticks",
+   "source_url": "https://www.tradovate.com/pricing/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "ES/NQ/YM and MES/MNQ/MYM",
+   "venue": "Apex Trader Funding (Rithmic: NT/QT)",
+   "commission_per_side": "$1.99 (ES/NQ/YM $3.98 RT); $0.51 (micros $1.02 RT) all-in pass-through",
+   "exchange_fees": "included in RT figures (page does not itemise)",
+   "typical_slippage": "not stated",
+   "source_url": "https://trackytrade.com/prop-firm-commission-rates",
+   "confidence": "medium (aggregator, 'verified from firm docs', Jul 2026)"
+  },
+  {
+   "instrument": "ES/NQ/YM and MES/MNQ/MYM",
+   "venue": "Apex Trader Funding (Tradovate)",
+   "commission_per_side": "$1.55 (ES/NQ/YM $3.10 RT); $0.52 (micros $1.04 RT)",
+   "exchange_fees": "included",
+   "typical_slippage": "not stated",
+   "source_url": "https://trackytrade.com/prop-firm-commission-rates",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "ES/NQ/YM; MES/MNQ/MYM; CL; GC; MGC",
+   "venue": "Topstep (TopstepX)",
+   "commission_per_side": "RT: $3.78 minis; $1.22 micros; CL $4.02; GC $4.32; MGC $1.92 (Topstep commission $1.00 mini / $0.50 micro + exchange + NFA $0.02 RT)",
+   "exchange_fees": "included in RT",
+   "typical_slippage": "not stated",
+   "source_url": "https://trackytrade.com/prop-firm-commission-rates",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "ES; micros; CL; GC; MGC",
+   "venue": "Lucid Trading",
+   "commission_per_side": "$1.75 ES ($3.50 RT); $0.50 micros ($1.00 RT); $2.00 CL; $2.30 GC; $0.80 MGC",
+   "exchange_fees": "not stated",
+   "typical_slippage": "not stated",
+   "source_url": "https://trackytrade.com/prop-firm-commission-rates",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "ES; micros",
+   "venue": "Take Profit Trader",
+   "commission_per_side": "$2.50 ES ($5.00 RT); $0.25 micros ($0.50 RT)",
+   "exchange_fees": "not stated",
+   "typical_slippage": "not stated",
+   "source_url": "https://trackytrade.com/prop-firm-commission-rates",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "Standard / Micro futures",
+   "venue": "Optimus Futures (retail)",
+   "commission_per_side": "$0.75 standard, $0.25 micro (tiers to $0.10/$0.05 at >1000/day); non-US +$0.25/$0.16 clearing",
+   "exchange_fees": "pass-through, not listed on page",
+   "typical_slippage": "n/a",
+   "source_url": "https://optimusfutures.com/pricing/",
+   "confidence": "high (commission only)"
+  },
+  {
+   "instrument": "CME market data",
+   "venue": "Tradovate/NinjaTrader (CME Group bundle)",
+   "commission_per_side": "n/a",
+   "exchange_fees": "Non-pro L1 $12/mo (4 exchanges) or $4/mo single; L2 $41/$16; Professional ~$124/mo per exchange (funded prop traders increasingly classified professional 2025-26)",
+   "typical_slippage": "n/a",
+   "source_url": "https://damnpropfirms.com/trading-guides/tradovate-fees-explained-commissions-data-plans/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "Forex CFDs (1 lot = 100k base)",
+   "venue": "FTMO",
+   "commission_per_side": "$3 per lot ROUND TURN (i.e. $1.50/side)",
+   "exchange_fees": "spread variable (typical not found; check platform Symbols); swap nightly, triple Wednesday; no swap-free",
+   "typical_slippage": "not found",
+   "source_url": "https://propvator.com/blog/ftmo-trading-conditions/ ; https://tradingfinder.com/props/ftmo/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "Index CFDs (US100, US500, US30, GER40, UK100)",
+   "venue": "FTMO",
+   "commission_per_side": "$0 ('select stock indices commission-free')",
+   "exchange_fees": "spread only (typical not found); swap nightly",
+   "typical_slippage": "not found; Krueger measured FTSE CFD spread 1.0 pt pre-close vs 1.8 pts post-close (Dukascopy, not FTMO)",
+   "source_url": "https://propvator.com/blog/ftmo-commission/ ; https://propvator.com/blog/ftmo-trading-conditions/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "Metals CFDs (XAUUSD)",
+   "venue": "FTMO",
+   "commission_per_side": "CONFLICTING: $0 (propvator Jul 2026) vs 0.0010% per lot (tradingfinder) vs ~0.0014%/$5.81 RT (babypips/propspread snippets)",
+   "exchange_fees": "spread not found; swap nightly",
+   "typical_slippage": "not found",
+   "source_url": "https://tradingfinder.com/props/ftmo/",
+   "confidence": "low"
+  },
+  {
+   "instrument": "Energy CFDs (USOIL)",
+   "venue": "FTMO",
+   "commission_per_side": "$0 (propvator)",
+   "exchange_fees": "spread not found; swap nightly",
+   "typical_slippage": "not found",
+   "source_url": "https://propvator.com/blog/ftmo-trading-conditions/",
+   "confidence": "low"
+  },
+  {
+   "instrument": "Crypto CFDs",
+   "venue": "FTMO",
+   "commission_per_side": "0.0325% per side",
+   "exchange_fees": "spread; swap nightly",
+   "typical_slippage": "not found",
+   "source_url": "https://propvator.com/blog/ftmo-trading-conditions/",
+   "confidence": "medium"
+  },
+  {
+   "instrument": "Equity CFDs",
+   "venue": "FTMO",
+   "commission_per_side": "~0.040% per lot (garbled '0040%' on source)",
+   "exchange_fees": "spread; swap",
+   "typical_slippage": "not found",
+   "source_url": "https://tradingfinder.com/props/ftmo/",
+   "confidence": "low"
+  },
+  {
+   "instrument": "Account rules",
+   "venue": "FTMO",
+   "commission_per_side": "n/a",
+   "exchange_fees": "Leverage 1:100 standard; Swing 1:30. Swing: hold past close/weekend and trade news allowed; available only on 2-Step Challenge, must be chosen at purchase. Standard: news restrictions and no weekend holds (per FAQ list; details not fetched). An 'FTMO Futures' product with its own commissions exists (not fetched).",
+   "typical_slippage": "n/a",
+   "source_url": "https://ftmo.com/en/faq/what-is-the-swing-account-type-and-how-does-it-work/ ; https://ftmo.com/en/faq/",
+   "confidence": "high (Swing/leverage), medium (standard rules)"
+  },
+  {
+   "instrument": "Slippage by hour (all futures)",
+   "venue": "any",
+   "commission_per_side": "n/a",
+   "exchange_fees": "n/a",
+   "typical_slippage": "NOT FOUND in any practitioner source. Recommendation: buy 1-3 months of Databento MBP-1/TBBO for ES/NQ/MES/MNQ and measure spread and top-of-book depth by 30-min bucket; use Databento 'Execution slippage and markouts' example.",
+   "source_url": "https://databento.com/docs/examples/algo-trading/execution-slippage",
+   "confidence": "low"
+  }
+ ],
+ "sources_swept": [
+  {
+   "source": "Concretum Group papers index (15 papers 2024-2026)",
+   "url": "https://concretumgroup.com/papers/",
+   "status": "fetched"
+  },
+  {
+   "source": "Concretum articles index (19 articles 2024-2026)",
+   "url": "https://concretumgroup.com/articles/",
+   "status": "fetched"
+  },
+  {
+   "source": "Concretum: Breaking the Rules of Intraday Trading",
+   "url": "https://concretumgroup.com/breaking-the-rules-of-intraday-trading/",
+   "status": "fetched"
+  },
+  {
+   "source": "Concretum: QuanTip Fast Alphas overlay",
+   "url": "https://concretumgroup.com/quantip-improving-performance-with-fast-alphas-a-tactical-overlay-for-intraday-trend-trading/",
+   "status": "fetched"
+  },
+  {
+   "source": "Concretum: Seasonality in Bitcoin Intraday Trend Trading",
+   "url": "https://concretumgroup.com/seasonality-in-bitcoin-intraday-trend-trading/",
+   "status": "fetched"
+  },
+  {
+   "source": "Concretum: Conditional Profitability of Intraday Shorts",
+   "url": "https://concretumgroup.com/conditional-profitability-of-intraday-shorts/",
+   "status": "fetched (VIX does not predict short PnL, p=0.91)"
+  },
+  {
+   "source": "SSRN author page Zarattini",
+   "url": "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=5831512",
+   "status": "403"
+  },
+  {
+   "source": "Quantified Strategies substack: Systematic Intraday Trend-Following (Zarattini summary)",
+   "url": "https://quantifiedstrategies.substack.com/p/systematic-intraday-trend-following",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo sitemap (49 posts)",
+   "url": "https://www.quantitativo.com/sitemap.xml",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: Intraday Momentum for ES and NQ",
+   "url": "https://www.quantitativo.com/p/intraday-momentum-for-es-and-nq",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: Short-term basis reversal",
+   "url": "https://www.quantitativo.com/p/short-term-basis-reversal",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: Fast trend following (Kalman NQ)",
+   "url": "https://www.quantitativo.com/p/fast-trend-following",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: Turnaround Tuesdays on steroids",
+   "url": "https://www.quantitativo.com/p/turnaround-tuesdays-on-steroids",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: Volume shocks and overnight returns",
+   "url": "https://www.quantitativo.com/p/volume-shocks-and-overnight-returns",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantitativo: One year / Two years of Quantitativo",
+   "url": "https://www.quantitativo.com/p/two-years-of-quantitativo",
+   "status": "fetched (paper lists; mostly equities)"
+  },
+  {
+   "source": "Quantitativo: network momentum, mind the gap, holy grail, mean-reversion curve, tactical overlay",
+   "url": "https://www.quantitativo.com/archive",
+   "status": "not fetched (rate limit)"
+  },
+  {
+   "source": "Quantpedia strategies screener",
+   "url": "https://quantpedia.com/strategies/",
+   "status": "fetched (no Sharpe shown; intraday/futures filters absent)"
+  },
+  {
+   "source": "Quantpedia: Short Term Reversal with Futures",
+   "url": "https://quantpedia.com/strategies/short-term-reversal-with-futures/",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantpedia: Option-Expiration Week Effect",
+   "url": "https://quantpedia.com/strategies/option-expiration-week-effect/",
+   "status": "fetched"
+  },
+  {
+   "source": "Quantpedia: Pre-Holiday Effect",
+   "url": "https://quantpedia.com/strategies/pre-holiday-effect/",
+   "status": "not fetched (rate limit)"
+  },
+  {
+   "source": "Quantpedia blog (Oct 2026)",
+   "url": "https://quantpedia.com/blog/",
+   "status": "fetched"
+  },
+  {
+   "source": "Robot Wealth blog index",
+   "url": "https://robotwealth.com/blog/",
+   "status": "fetched (page 1 only; stat-arb series, no numbers)"
+  },
+  {
+   "source": "Rob Carver blog (qoppac)",
+   "url": "https://qoppac.blogspot.com/",
+   "status": "fetched (2026 fitting/pooling posts; no intraday content)"
+  },
+  {
+   "source": "Carver AFTS table of contents",
+   "url": "https://www.harriman-house.com/advancedfuturestradingstrat",
+   "status": "fetched; TOC not on page -> strategy list from memory, flagged"
+  },
+  {
+   "source": "Algorithmic Advantage #033 Rob Carver",
+   "url": "https://algoadvantage.substack.com/p/033-rob-carver-the-comprehensive",
+   "status": "fetched (general; end-of-day only)"
+  },
+  {
+   "source": "Quantocracy front page",
+   "url": "https://quantocracy.com/",
+   "status": "fetched"
+  },
+  {
+   "source": "Krueger Algorithms research index (108 studies; 2 of 106 holdouts passed)",
+   "url": "https://kruegeralgorithms.com/en/research",
+   "status": "fetched"
+  },
+  {
+   "source": "Krueger: index rebalancing closing auction; vol regime; late breakouts; published anomalies net of costs",
+   "url": "https://kruegeralgorithms.com/en/research/index-rebalancing-closing-auction",
+   "status": "fetched"
+  },
+  {
+   "source": "Krueger: Tokyo fix USDJPY forward test; EU pre-open push",
+   "url": "https://kruegeralgorithms.com/en/research/tokyo-fix-usdjpy-forward-test",
+   "status": "index summary only"
+  },
+  {
+   "source": "Delphic Alpha: Pre-FOMC drift; archive; Intraday Alpha Atlas; Dip Setups #3",
+   "url": "https://delphicalpha.substack.com/archive",
+   "status": "fetched (recipes paywalled)"
+  },
+  {
+   "source": "QuantConnect strategy library",
+   "url": "https://www.quantconnect.com/strategies/",
+   "status": "fetched but list did not load (JS)"
+  },
+  {
+   "source": "QuantConnect forum: Intraday Trading Strategy for NQ",
+   "url": "https://www.quantconnect.com/forum/discussion/15192/intraday-trading-strategy-for-futures-contract-nq/",
+   "status": "fetched"
+  },
+  {
+   "source": "Databento blog index; futures spreads; docs examples index; HF liquidity-taking example",
+   "url": "https://databento.com/docs/examples",
+   "status": "fetched"
+  },
+  {
+   "source": "Databento: microprice, ML, execution slippage examples",
+   "url": "https://databento.com/docs/examples/order-book/microprice",
+   "status": "not fetched (rate limit)"
+  },
+  {
+   "source": "NautilusTrader examples",
+   "url": "https://github.com/nautechsystems/nautilus_trader/tree/develop/examples",
+   "status": "gh api 403 (repo not attached); not fetched"
+  },
+  {
+   "source": "vectorbt PRO tutorials",
+   "url": "https://vectorbt.pro/tutorials/",
+   "status": "fetched (RSI, SuperTrend, pairs, patterns, MTF; no performance)"
+  },
+  {
+   "source": "GitHub repo search (ES/NQ intraday, ORB, OFI, prop-firm bots)",
+   "url": "gh search repos",
+   "status": "only 3 tiny NQ repos (0-3 stars, no OOS); later searches returned empty"
+  },
+  {
+   "source": "Hudson & Thames, Alpha Architect, Allocate Smartly, Flirting with Models/Return Stacked, Moontower, Clenow",
+   "url": "various",
+   "status": "not fetched (rate limit); all primarily daily/monthly horizon"
+  },
+  {
+   "source": "Quantified Strategies main site",
+   "url": "https://www.quantifiedstrategies.com/trading-strategies/",
+   "status": "bot-check blocked; substack archive fetched (titles only)"
+  },
+  {
+   "source": "Seasonax research",
+   "url": "https://www.seasonax.com/research",
+   "status": "fetched (titles; vendor claims, no stats)"
+  },
+  {
+   "source": "trackytrade prop-firm commission table (Jul 2026)",
+   "url": "https://trackytrade.com/prop-firm-commission-rates",
+   "status": "fetched"
+  },
+  {
+   "source": "Tradovate pricing; NinjaTrader pricing; Optimus pricing",
+   "url": "https://www.tradovate.com/pricing/",
+   "status": "fetched (NinjaTrader per-instrument table empty)"
+  },
+  {
+   "source": "damnpropfirms Tradovate fees explained (Jul 2026)",
+   "url": "https://damnpropfirms.com/trading-guides/tradovate-fees-explained-commissions-data-plans/",
+   "status": "fetched"
+  },
+  {
+   "source": "Apex support (Tradovate commissions); CME clearing fees; AMP commissions; Topstep fees article",
+   "url": "https://support.apextraderfunding.com/",
+   "status": "403 / 404 / 503 / wrong article"
+  },
+  {
+   "source": "FTMO FAQ index; Swing FAQ; propvator trading conditions + commission; tradingfinder review; babypips thread",
+   "url": "https://ftmo.com/en/faq/",
+   "status": "fetched except babypips (403) and trading-conditions page (404)"
+  }
+ ],
+ "prompt_rules": [
+  "Treat the futures prop trading day as 18:00 ET reopen to the firm's afternoon flat deadline; overnight-SESSION holds are allowed, cross-close holds are not. Test session-conditional edges separately.",
+  "Model futures costs per side as commission + exchange/clearing/NFA + slippage: ES $2.0-2.7 + 1 tick; MES $0.66-0.96 + 1 tick; NQ ~$2.5 + 1-2 ticks; MNQ ~$0.8 + 1 tick. Report break-even bps per trade.",
+  "Reject any rule whose gross edge per trade is below 2x round-trip cost before further work; bar-level reversion/breakout edges of 0.2-3 bps are sub-cost (Delphic Atlas, Krueger).",
+  "Pre-register every test: rule, instruments, dates, cost model, one untouched holdout (2022+), day-clustered t-stats, Benjamini-Hochberg q across the whole program ledger.",
+  "Benchmark each rule against random-market surrogates and placebo days; keep only rules whose real t exceeds the surrogate 95th percentile and whose placebo effect is ~0.",
+  "Prefer edges with a forced-flow mechanism (index rebalances, auctions, fixes, rebalancing windows) over pattern-mined ones; the mechanism must predict sign and timing.",
+  "For event rules with fewer than 40 trades per year, compute annual dollar contribution at allowed size first; they cannot carry $20k/yr alone and belong only in sleeves.",
+  "Build bars from Databento trades with explicit session boundaries and replicate one known result (Noise-Area model on ES: Sharpe ~0.9-1.25) before new tests; provider differences can swing results 3x.",
+  "Enter at the next bar's open after the signal bar closes; measure alpha decay by delaying 1 and 5 minutes and drop rules that lose >50% of edge.",
+  "Exclude FOMC/CPI/NFP days from breakout systems as a filter only; never trade the announcement itself (Krueger: FOMC days -0.10 R vs quiet +1.19 R).",
+  "Use volatility regime (5-day range vs 250-day distribution) and VIX term structure for sizing and gating, never as direction signals.",
+  "Apply Carver's speed limit: estimated annual cost must stay below one-third of expected pre-cost Sharpe; compute turnover-implied cost before backtesting.",
+  "Spend Databento credits on 1-min OHLCV for ES/NQ/MES/MNQ/CL/GC first; buy only 1-3 months of MBP-1/TBBO to measure spread and depth by hour.",
+  "Treat FTMO Swing (1:30 leverage, swap nightly with triple Wednesday, overnight/weekend/news allowed) as the only venue for multi-day holds; standard FTMO and futures props are intraday-only.",
+  "Log every test including failures in a ledger; stop a strategy family after three pre-registered failures; never re-test closed families without a stated material difference and holdout."
+ ]
+}
