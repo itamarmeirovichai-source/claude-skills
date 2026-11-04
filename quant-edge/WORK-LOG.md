@@ -86,9 +86,9 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [ ] 1.5 First batch (≤ 20 variants + CAL) registered; Gate 1 per row (commit before code).
 
 ### Phase 2 — data (Days 1–6, in parallel)
-- [ ] 2.1 Department C data run: launched 2026-11-03 14:57 UTC, died at the usage limit before writing anything; relaunch after the engine agent returns (D-015).
+- [~] 2.1 Department C data run: first launch died 2026-11-03; relaunched 2026-11-04 19:12 UTC (compute slot; brief `briefs/C-data-run.md`).
 - [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 10 tests (incl. licence-hold crosscheck-only) + `tests/test_no_direct_reads.py`; `tools/register.py` (Gate-1 validation: fields, split ≥ 5 OOS years unless post-change, sign/count, family cap 5, 2× cost stated, results empty, stamp commit) with 4 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 32 tests pass.
-- [ ] 2.2b loaders for real datasets behind the gateway (parquet under DATA_ROOT), `tools/render_manifest.py`, synthetic backtest calibration test (driftless walk, 2R target / 1R stop ≈ 0).
+- [x] 2.2b shared engine `src/qe/engine/` (Department D, 2026-11-04): fills (stop-first ambiguity, bar-granularity stops, gap-through at open, limit on trade-through), flat-by at deadline − 2 min (half day = min(firm, early close)), 1×/2× costs on one path, truncation + perturbation harnesses, nulls, report; synthetic 16-year calibration mean R 0.012 ± 0.007 (driftless walk, 2R/1R); 52 tests. Still open: real-data loaders (Department C), FTMO swaps and crypto funding in costs, sub-minute hold share.
 - [~] 2.3 Calendar and Clock Keeper: the engine agent left a 263-line `src/qe/sessions.py` stub (interface + TODO list for Department C); kept.
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
 - [ ] 2.5 Databento plan file inside the ceiling, each purchase with requesting row ids.
@@ -121,7 +121,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) (2026-11-03); send the firm letters this week + licence ruling on third-party copies (2026-11-04)
-- next action: sweep workflow resumed + engine agent running (3 concurrent, D-015); when the engine returns launch the Department C data run; when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1).
+- next action: sweep workflow + data run running (3 concurrent, D-015); when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1); then Rules Keeper matrix and Department G IBKR diagnosis.
 
 ## Agents in flight
 
@@ -131,8 +131,8 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 | Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | dead 15:05 (usage limit); output complete, accepted |
 | Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | done 14:56 |
 | Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | dead 15:03 (usage limit); 8 files complete, accepted |
-| Dept C data run | briefs/C-data-run.md | src/qe/ingest/*, src/qe/calendars.py, data/manifest.csv, data/qa/*.md | 2026-11-03 14:57 | dead (usage limit) before any file; to relaunch |
-| Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | dead 15:04 (usage limit); partial: sessions.py stub kept; relaunched 2026-11-04 18:45 as a new agent |
+| Dept C data run | briefs/C-data-run.md | src/qe/ingest/*, src/qe/calendars.py, data/manifest.csv, data/qa/*.md | 2026-11-04 19:12 | relaunched (first launch dead 2026-11-03) |
+| Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | relaunched 2026-11-04 18:45; done 19:10: engine (bars, rules, fills, pnl, harness, report, run), CONVENTIONS.md, 52 tests pass + 1 opt-in 16-year run (QE_SLOW=1, 213 s, mean R 0.012 ± 0.007) |
 | Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | dead 15:07 (usage limit), 2/7 scouts done; resumed 2026-11-04 18:45 (same run id, patched script) |
 
 ## Session log (append-only)

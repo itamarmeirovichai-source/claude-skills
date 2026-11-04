@@ -114,7 +114,8 @@ def _ns(x) -> np.ndarray:
     idx = pd.DatetimeIndex(x)
     if idx.tz is None:
         idx = idx.tz_localize("UTC")
-    return idx.tz_convert("UTC").tz_localize(None).asi8
+    # pandas >= 3 parses strings to datetime64[us]; every comparison here is in nanoseconds
+    return idx.tz_convert("UTC").tz_localize(None).as_unit("ns").asi8
 
 
 def ny_minute(ts_utc) -> np.ndarray:
@@ -133,7 +134,7 @@ def tday_minute(ny_min) -> np.ndarray:
 
 def is_roll_week(dates, roll_months: Iterable[int] = (3, 6, 9, 12)) -> np.ndarray:
     """True for Mon–Fri of the week holding the third Friday of a roll month and for the following Monday."""
-    d = pd.DatetimeIndex(pd.to_datetime(dates)).normalize()
+    d = pd.DatetimeIndex(pd.to_datetime(dates)).normalize().as_unit("ns")
     if len(d) == 0:
         return np.zeros(0, dtype=bool)
     excluded = set()
@@ -233,7 +234,7 @@ def tag_minutes(ts_utc, root: str = "ES") -> pd.DataFrame:
 
 def tag_days(dates, root: str = "ES") -> pd.DataFrame:
     """Per-day tags for daily bars (dates = trading-day labels)."""
-    d = pd.DatetimeIndex(pd.to_datetime(dates)).normalize()
+    d = pd.DatetimeIndex(pd.to_datetime(dates)).normalize().as_unit("ns")
     tpl = template(root)
     days = day_table(d.min() - pd.Timedelta(days=3), d.max() + pd.Timedelta(days=3), root)
     out = pd.DataFrame({"trading_day": d})
