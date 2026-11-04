@@ -1,0 +1,11 @@
+stress: {'df': 3, 'gap_frac': 0.25, 'weekend_var': 1.0, 'kill': 0.8, 'garch': (0.1, 0.88, 100.0), 'dll_ref': 'balance', 'real_rate': 0.1, 'sub': 24, 'daily_t': True, 'payout_ref_fix': True}
+firm: {'start': 100000.0, 'fee': 510.0, 'refund': 510.0, 'targets': [0.1, 0.05], 'min_days': [4, 4], 'time_limit': None, 'dd_type': 'static', 'dd': 0.1, 'dll': 0.05, 'funded': {'split': 0.8, 'first_wait': 10, 'cycle': 10, 'payout_min': 50.0}, 'slots': 4, 'auto': 'yes', 'hold': True, 'unmodeled': 'fee EUR 439 promo ~ $510; scaling (+25% per 4 months) ignored; gambling clause; server limits 200 orders/2000 positions a day'}
+SIGMAS: [0.01 0.02 0.03 0.04 0.05 0.06 0.08 0.1  0.12 0.15 0.2  0.25 0.3  0.4 ] HORIZON: 756 SUB: 4 TAX: 0.25
+le20 k=11 S=1.0: eval wall 20.7s cpu 20.5s | funded wall 21.3s cpu 20.7s | net_yr 13362 sig_e 0.20 sig_f 0.20
+   cap 0.12: net 7257 sig_e 0.12 sig_f 0.12
+   cap 0.15: net 9539 sig_e 0.15 sig_f 0.15
+   cap 0.20: net 13362 sig_e 0.20 sig_f 0.20
+full k=14 S=1.0: eval wall 26.6s cpu 26.2s | funded wall 26.8s cpu 26.4s | net_yr 27480 sig_e 0.40 sig_f 0.40
+   cap 0.12: net 7194 sig_e 0.12 sig_f 0.12
+   cap 0.15: net 9376 sig_e 0.15 sig_f 0.15
+   cap 0.20: net 13367 sig_e 0.20 sig_f 0.20

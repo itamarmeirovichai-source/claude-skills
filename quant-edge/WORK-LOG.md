@@ -46,6 +46,12 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
   2016–2024) registered when Databento bars exist. If Databento is unconfirmed on 6 Nov, CAL-I runs on the licence-held FirstRate
   ES copy through window="crosscheck", labelled "pipeline calibration on licence-held data, never a gated result", after Itamar's ruling.
 - D-014 (2026-11-03, mode 6) The firm letters go to Itamar as ONE decision request this week ("send now"), not "before any purchase".
+- D-015 (2026-11-04) Concurrency lowered to 3 agents in total (Workflow 2 + 1 Agent-tool agent) after the account's 5-hour usage
+  limit killed all six concurrent agents on 2026-11-03 at ≈ 15:05 UTC (pre-mortem mode 5 realised). Raise again only after a full run
+  finishes inside the window.
+- D-016 (2026-11-04) Economist re-run accepted as final (report complete when the agent died): $20k/slot-year at FTMO Swing needs net
+  Sharpe 2.44 / 1.95 / 1.45 at 12 / 15 / 20% vol pre-tax; after tax 3.16 / 2.53 / 1.89 (25%) or > 4.0 / 3.47 / 2.61 (47%); planning
+  number at 20% vol after tax = 2.6 until the accountant answers. Required-Sharpe table on the board refreshed from it.
 
 ## Steps
 
@@ -68,22 +74,22 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
       mode 12 → Rules Keeper Day-1 fetch brief + a preliminary path-wise breach count at Gate 3 for information.
       Accepted risks signed as the Red Team listed them (agent deaths with the write rule; target unreachable → honest N1;
       bar fixed at 430; no Alpaca key; blocked hosts; Phase 6 on IBKR paper at most P1; credit expiry; Monte Carlo noise).
-- [~] 0.9 Economist F2-12 re-run commissioned 14:40 UTC (Agent, background) → `economics/required-sharpe-2026-11.md`.
+- [x] 0.9 Economist F2-12 re-run → `economics/required-sharpe-2026-11.md` + `economics/f2_rerun/` (agent died at the usage limit after finishing; D-016).
 - [x] 0.10 Scribe briefs returned 14:56 UTC → `briefs/inherited-{closed-families,method-lessons,data-in-hand,firms,economics,code-reusable,open-directions}.md` (≈ 600 words each). Not found by the Scribe: F2-12..15 figures in a readable report (Economist re-run is the authority), TradeDay flat-by time and FTMO funded-stage agreement (Rules Keeper matrix brief), sha256 pins for the old Binance/Yahoo/SEC pulls (none recorded).
 - [ ] 0.11 Gate 0: everything above exists in the repository (commit hash recorded here).
 
 ### Phase 1 — the sweep (Days 1–4, 2026-11-04 → 2026-11-07)
-- [~] 1.1 Department B sweep run launched 14:45 UTC as Workflow run `wf_2a3bbcb1-b48` (script `~/.claude/projects/-home-user-claude-skills/c1c15771-3f18-56a1-8828-ab24630be4a0/workflows/scripts/quant-edge-sweep-b-wf_2a3bbcb1-b48.js`; resume with scriptPath + resumeFromRunId) → `research/sweep/*.md`, `research/candidates.md`, `research/prescreen-2026-11-03.md` (≥ 100 mechanisms, ≥ 30% original). Brief: `briefs/B-sweep-common.md`.
+- [~] 1.1 Department B sweep: run `wf_2a3bbcb1-b48` died at the usage limit 2026-11-03 15:07 UTC with 2 of 7 scouts complete (academic-flows-events 25 candidates, academic-session-momentum 20); resumed 2026-11-04 18:45 UTC with the script patched (killed scouts continue their files). Originally launched 14:34 UTC as Workflow run `wf_2a3bbcb1-b48` (script `~/.claude/projects/-home-user-claude-skills/c1c15771-3f18-56a1-8828-ab24630be4a0/workflows/scripts/quant-edge-sweep-b-wf_2a3bbcb1-b48.js`; resume with scriptPath + resumeFromRunId) → `research/sweep/*.md`, `research/candidates.md`, `research/prescreen-2026-11-03.md` (≥ 100 mechanisms, ≥ 30% original). Brief: `briefs/B-sweep-common.md`.
 - [ ] 1.2 Department E pre-screen (closed-family overlap, look-ahead by construction, economics screen).
-- [~] 1.3 Firm letters commissioned 15:05 UTC (Rules Keeper agent) → `letters/<firm>.md` + `letters/README.md` (Hebrew) + `economics/firm-pages-fetched-2026-11-03.md`.
+- [x] 1.3 Firm letters → `letters/{ftmo,topstep,myfundedfutures,tradeday,lucid,bulenox,accountant}.md` + `letters/README.md` (Hebrew) + `economics/firm-pages-fetched-2026-11-03.md` (94 lines of sources). Lucid unverified (blocked). Decision request sent to Itamar 2026-11-04 (`reports/2026-11-04.md`).
 - [ ] 1.4 CAL calibration replication registered (noise-area model on ES, expected Sharpe 0.9–1.25, 2016–2024).
 - [ ] 1.5 First batch (≤ 20 variants + CAL) registered; Gate 1 per row (commit before code).
 
 ### Phase 2 — data (Days 1–6, in parallel)
-- [~] 2.1 Department C data run launched 14:57 UTC (Head of Data agent, compute slot 2; brief `briefs/C-data-run.md`): free data under DATA_ROOT with manifest rows, QA reports, licence register.
+- [ ] 2.1 Department C data run: launched 2026-11-03 14:57 UTC, died at the usage limit before writing anything; relaunch after the engine agent returns (D-015).
 - [x] 2.2a `load(id, window)` gateway (`src/qe/gateway.py`, `registry.py`) with 10 tests (incl. licence-hold crosscheck-only) + `tests/test_no_direct_reads.py`; `tools/register.py` (Gate-1 validation: fields, split ≥ 5 OOS years unless post-change, sign/count, family cap 5, 2× cost stated, results empty, stamp commit) with 4 tests: unregistered/inherited id refused, IS/OOS slicing, every read logged, hold-out lock (file + id list), planted 2025 row never leaks. Gate statistics `src/qe/stats.py` (iid/NW/clustered t, stationary + day-cluster bootstraps at 430k draws, Mertens/Opdyke SE, Lo factor, DSR, CSCV) with 7 synthetic tests. Steward `src/qe/steward.py` (credit file gate, ceilings, 10-min alignment, estimate row before request, per-request accounting, batch-vs-stream rule) with 6 tests. 32 tests pass.
 - [ ] 2.2b loaders for real datasets behind the gateway (parquet under DATA_ROOT), `tools/render_manifest.py`, synthetic backtest calibration test (driftless walk, 2R target / 1R stop ≈ 0).
-- [~] 2.3 Calendar and Clock Keeper: inside the data run (`src/qe/calendars.py`, `sessions.py`).
+- [~] 2.3 Calendar and Clock Keeper: the engine agent left a 263-line `src/qe/sessions.py` stub (interface + TODO list for Department C); kept.
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
 - [ ] 2.5 Databento plan file inside the ceiling, each purchase with requesting row ids.
 - [ ] 2.6 Gate 2.
@@ -111,24 +117,25 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ## Checkpoint
 
-- phase: 0 (orientation) with Phase 1.1 and the Day-0 agents in flight
+- phase: 1 (sweep) + 2 (data) groundwork; Day 0 closed except Gate 0 bookkeeping
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
-- open decision requests (date sent): Day-0 items (1)–(4) to Itamar, 2026-11-03
-- next action: on the letters' return send the one decision request (letters this week + licence ruling); on the Economist's return refresh the board's required-Sharpe table; then the Day-0 Hebrew report with the two corrections (hold-out criterion, joint power) and one decision request (letters + licence ruling).
+- open decision requests (date sent): Day-0 items (1)–(4) (2026-11-03); send the firm letters this week + licence ruling on third-party copies (2026-11-04)
+- next action: sweep workflow resumed + engine agent running (3 concurrent, D-015); when the engine returns launch the Department C data run; when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1).
 
 ## Agents in flight
 
 | name | brief file | output file | start (UTC) | status |
 |---|---|---|---|---|
 | Red Team pre-mortem | briefs/E-redteam-premortem.md | daily/2026-11-03/redteam-premortem.md | 2026-11-03 14:31 | done 14:50 |
-| Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | running |
+| Economist F2-12 re-run | briefs/F-economist-f2-12.md | economics/required-sharpe-2026-11.md | 2026-11-03 14:31 | dead 15:05 (usage limit); output complete, accepted |
 | Scribe inherited briefs | briefs/A-scribe-inherited.md | briefs/inherited-*.md | 2026-11-03 14:31 | done 14:56 |
-| Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | running |
-| Dept C data run | briefs/C-data-run.md | src/qe/ingest/*, src/qe/calendars.py, data/manifest.csv, data/qa/*.md | 2026-11-03 14:57 | running |
-| Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | running |
-| Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | running |
+| Rules Keeper firm letters | briefs/F-rules-keeper-letters.md | letters/*.md, economics/firm-pages-fetched-2026-11-03.md | 2026-11-03 14:43 | dead 15:03 (usage limit); 8 files complete, accepted |
+| Dept C data run | briefs/C-data-run.md | src/qe/ingest/*, src/qe/calendars.py, data/manifest.csv, data/qa/*.md | 2026-11-03 14:57 | dead (usage limit) before any file; to relaunch |
+| Dept D shared engine | briefs/D-engine.md | src/qe/engine/*, src/qe/sessions.py (stub), tests | 2026-11-03 14:57 | dead 15:04 (usage limit); partial: sessions.py stub kept; relaunched 2026-11-04 18:45 as a new agent |
+| Dept B sweep workflow wf_2a3bbcb1-b48 (7 scouts + analysts + prioritizer + critic + prescreen) | briefs/B-sweep-common.md | research/sweep/*.md, research/candidates.md, research/prescreen-2026-11-03.md | 2026-11-03 14:34 | dead 15:07 (usage limit), 2/7 scouts done; resumed 2026-11-04 18:45 (same run id, patched script) |
 
 ## Session log (append-only)
 
-- 2026-11-03 (UTC, from `date -u`; earlier entries were estimates) 14:18 session start (Day 0). 14:22 Day-0 message sent. 14:25 skeleton written. 14:28 commit 4a56ac1 pushed; PR #27 opened. 14:31 Red Team, Economist, Scribe launched. 14:34 sweep workflow wf_2a3bbcb1-b48 launched. 14:43 Rules Keeper letters launched. 14:46 core modules (gateway, stats, steward) committed, 26 tests. 14:50 pre-mortem returned; 14:58 answered (D-008..D-014), joint power measured, hold-out criterion restated, register.py; 32 tests. 14:55 Day-1 briefs written (C data run, G IBKR, F matrix, D engine, E referee).
+- 2026-11-03 (UTC, from `date -u`; earlier entries were estimates) 14:18 session start (Day 0). 14:22 Day-0 message sent. 14:25 skeleton written. 14:28 commit 4a56ac1 pushed; PR #27 opened. 14:31 Red Team, Economist, Scribe launched. 14:34 sweep workflow wf_2a3bbcb1-b48 launched. 14:43 Rules Keeper letters launched. 14:46 core modules (gateway, stats, steward) committed, 26 tests. 14:50 pre-mortem returned; 14:58 answered (D-008..D-014), joint power measured, hold-out criterion restated, register.py; 32 tests. 14:55 Day-1 briefs written (C data run, G IBKR, F matrix, D engine, E referee). 15:03–15:07 all six agents killed by the 5-hour usage limit.
+- 2026-11-04 18:40 UTC resumed on Itamar's "continue"; Resume rule applied (no partial contained an OOS read; registry_reads.log empty); report `reports/2026-11-04.md`; sweep resumed, engine relaunched.

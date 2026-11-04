@@ -2,7 +2,7 @@
 
 *Every agent reads this, `WORK-LOG.md` and `registry.csv` before doing anything. The Director rewrites it after every run.*
 
-## Where we stand (Day 0, 2026-11-03)
+## Where we stand (2026-11-04, resumed after the usage-limit stop of 2026-11-03)
 
 - **Edge: nothing tested yet in this program; nothing has ever passed a gate (inherited N = 280 variants, 105 rows, 0 passes).**
 - **Running N = 280. N_total = 430. Bar z = 3.6807 one-sided (3.8538 for an unfixed sign). Bootstrap ≥ 430,000 draws. Fixed; never lowered.**
@@ -11,15 +11,25 @@
 - Reachable: databento.com, data.alpaca.markets (needs a free key Itamar creates), data.binance.vision, histdata.com, Yahoo and CFTC (browser UA), FRED, CBOE, SqueezeMetrics, FTMO, Topstep, MyFundedFutures, TradeDay, arXiv, Quantpedia, GitHub.
 - **Blocked (reported, not routed around):** datafeed.dukascopy.com (connection reset), papers.ssrn.com (403), lucidtrading.com (403).
 
-## Lanes (hypothesis_lanes 1–13): all "not yet swept"
+## Required net Sharpe for $20k per slot-year (Economist re-run 2026-11-03, `economics/required-sharpe-2026-11.md`)
+
+| vol | pre-tax (re-run) | pre-tax (inherited F2-09) | after 25% tax | after 47% tax |
+|---|---|---|---|---|
+| 12% | 2.44 | 2.42 | 3.16 | > 4.0 |
+| 15% | 1.95 | 1.92 | 2.53 | 3.47 |
+| 20% | 1.45 | 1.46 | 1.89 | 2.61 |
+
+Planning number at 20% vol after tax: 2.6 until the accountant answers. Futures-firm frame: first pass in §8 of the report, all firm parameters inherited (2026-10-11).
+
+## Lanes (hypothesis_lanes 1–13)
 
 | lane | state | notes |
 |---|---|---|
-| 1 structural flows with a calendar | not swept | |
-| 2 scheduled information outside ES/NQ | not swept | firm news windows are part of the brief |
-| 3 overnight session at futures firms | not swept | day-boundary verification needed per firm |
-| 4 intraday momentum/reversal, new markets | not swept | distinct from closed H0006/H0019/H0020/H0021/H0022/D4 |
-| 5 cross-market lead-lag | not swept | mechanism required |
+| 1 structural flows with a calendar | scouted (academic) | 25 candidates in lanes 1–2, mostly low |
+| 2 scheduled information outside ES/NQ | scouted (academic) | see research/sweep/academic-flows-events.md |
+| 3 overnight session at futures firms | scouted (academic) | 20 candidates in lanes 3–5, 1 medium |
+| 4 intraday momentum/reversal, new markets | scouted (academic) | research/sweep/academic-session-momentum.md |
+| 5 cross-market lead-lag | scouted (academic) | 9 candidates, all low |
 | 6 breadth and portfolio construction | not swept | |
 | 7 regime-conditional | not swept | inactivity rules |
 | 8 FTMO Swing across the close | not swept | swaps charged honestly; not G2/D2 |
@@ -47,4 +57,4 @@ Later: IBKR history job approval (Day 1), IB Gateway paper mode before Phase 6, 
 
 ## Next run
 
-Day 0 remainder: Red Team pre-mortem; Economist F2-12 re-run; Scribe briefs. Day 1: Department B sweep (Workflow), Department C free-data run, firm letters, Rules Keeper fetch, Department G IBKR diagnosis document.
+Sweep workflow (resumed) and the engine agent, 3 concurrent (D-015). Then: Department C data run; Pre-registration Officer registers CAL-D and batch 1 from the prescreen; Rules Keeper matrix; Department G IBKR diagnosis.
