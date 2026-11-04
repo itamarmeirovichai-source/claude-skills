@@ -31,7 +31,7 @@
 |---|---|---|---|
 | 15:05 | Q-1 LAKE | ‏@lakepajamas | בלוק 1 |
 | 15:20 | Q-2 Printfresh | ‏@printfresh (או ‏@amyvoloshin, החלטה ג) | בלוק 2 |
-| ~~15:35~~ | ~~Q-5 Little Beast~~ | — | מדלגים (מבצע) |
+| 15:35 | Q-5 Little Beast | ‏@littlebeast.co | **חמישי 5.11 בלבד:** האוברולים חזרו ל-$48 (בדיקה 4.11), אז אפשר לשלוח אם בדיקת הבוקר של חמישי עדיין מראה $48. הטקסט: SEND_QUEUE §4 (בלוק 3 בחבילת 27.10), מילה במילה |
 | 15:50 | Q-8 Brackish | ‏@brackish | בלוק 3 |
 | 16:05 | Q-9 Cuddle Clones | ‏@cuddleclones | בלוק 4 |
 | 16:20 | Q-7 Dana Rebecca | ‏@danarebecca | בלוק 5 |
@@ -48,7 +48,7 @@
 | 16:15 | Q-19 Alexis Bittar | ‏@alexisbittar | בלוק 2 |
 | 16:45 | Q-12 Hawkins New York | ‏@hawkinsnewyork | בלוק 3 (אופציונלי, רק אחרי "send #Q-12") |
 | 17:15 | Q-18 Vosges | ‏@vosgeshautchocolat | בלוק 4 |
-| ~~17:30~~ | ~~Q-15 Saranoni~~ | — | מדלגים: מבצע 25% על כל האתר (בדיקה 3.11) |
+| ~~17:30~~ | ~~Q-15 Saranoni~~ | — | מדלגים: מבצע 25% על כל האתר (בדיקה 3.11, עדיין פעיל ב-4.11) |
 | 18:40 | Q-13 Legendary Foods | ‏@legendaryfoods | בלוק 6 |
 | 18:55 | Q-14 Equator Coffees | ‏@equatorcoffees | בלוק 7 |
 | 19:10 | Q-17 THATCH | ‏@thatch.jewelry | בלוק 8 |
