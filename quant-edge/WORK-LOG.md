@@ -49,6 +49,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - D-015 (2026-11-04) Concurrency lowered to 3 agents in total (Workflow 2 + 1 Agent-tool agent) after the account's 5-hour usage
   limit killed all six concurrent agents on 2026-11-03 at ≈ 15:05 UTC (pre-mortem mode 5 realised). Raise again only after a full run
   finishes inside the window.
+- D-017 (2026-11-06) After the second usage-limit stop (2026-11-04 ≈ 19:30 UTC, sweep run + data run killed), runs are SEQUENTIAL: one agent at a time, each writing its output every few minutes; the 7 per-scout analysts are replaced by one merge-and-prioritize agent that reads the six scout files (149 blocks) and does the analyst checks inline.
 - D-016 (2026-11-04) Economist re-run accepted as final (report complete when the agent died): $20k/slot-year at FTMO Swing needs net
   Sharpe 2.44 / 1.95 / 1.45 at 12 / 15 / 20% vol pre-tax; after tax 3.16 / 2.53 / 1.89 (25%) or > 4.0 / 3.47 / 2.61 (47%); planning
   number at 20% vol after tax = 2.6 until the accountant answers. Required-Sharpe table on the board refreshed from it.
@@ -121,7 +122,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) (2026-11-03); send the firm letters this week + licence ruling on third-party copies (2026-11-04)
-- next action: sweep workflow + data run running (3 concurrent, D-015); when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1); then Rules Keeper matrix and Department G IBKR diagnosis.
+- next action (2026-11-06): sequential (D-017): merge+prioritize agent → candidates.md; then Dept E prescreen; then register CAL-D + batch 1; data run resumes after. Previously: when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1); then Rules Keeper matrix and Department G IBKR diagnosis.
 
 ## Agents in flight
 
