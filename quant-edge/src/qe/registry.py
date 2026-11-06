@@ -1,7 +1,7 @@
 """Registry access: every hypothesis ever counted lives in quant-edge/registry.csv.
 
 Program rows write `split` as `IS=YYYY-MM-DD..YYYY-MM-DD;OOS=YYYY-MM-DD..YYYY-MM-DD;HOLDOUT=YYYY-MM-DD..`
-and `data` as a comma-separated list of dataset_ids from quant-edge/data/manifest.csv.
+and `data` as a comma- (or semicolon-) separated list of dataset_ids from quant-edge/data/manifest.csv.
 """
 import csv
 from dataclasses import dataclass
@@ -53,7 +53,7 @@ def load_rows(path=None) -> Dict[str, Row]:
             c = (r.get("count") or "").strip()
             rows[r["id"]] = Row(
                 id=r["id"], status=r.get("status", ""), source=r.get("source", ""),
-                datasets=tuple(x.strip() for x in (r.get("data") or "").split(",") if x.strip()),
+                datasets=tuple(x.strip() for x in (r.get("data") or "").replace(";", ",").split(",") if x.strip()),
                 windows=parse_split(r.get("split", "")) if r.get("source") == "program" else {},
                 count=int(c) if c.isdigit() else 0, sign=r.get("sign", ""), raw=r,
             )

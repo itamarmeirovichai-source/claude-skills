@@ -118,3 +118,22 @@ def test_licence_held_dataset_is_crosscheck_only(tmp_path):
     assert "Q-0002,crosscheck," in env["log_path"].read_text()
     ok = gateway.load("Q-0002", "oos", **env)              # the default dataset (ok licence) still works
     assert ok["close"].tolist() == [4, 5, 6]
+
+
+def test_semicolon_data_field_and_parquet_directory(tmp_path):
+    """Batch-1 rows list datasets separated by ';' and HistData lands as a partitioned parquet directory."""
+    env = _env(tmp_path)
+    with open(env["registry_path"], "a", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=REG_COLS)
+        w.writerow({c: "" for c in REG_COLS} | {
+            "id": "Q-0009", "source": "program", "status": "registered", "count": "1", "sign": "long",
+            "data": "fx_dir;es_1m_rth", "split": "IS=2010-06-06..2014-12-31;OOS=2015-01-01..2024-12-31;HOLDOUT=2025-01-01.."})
+    with open(env["manifest_path"], "a", newline="") as f:
+        csv.writer(f).writerow(["fx_dir", "fx", "test", "free", "1m", "UTC", "2010-01-01", "2026-01-01", "x", "4", ""])
+    for y, ts in ((2012, "2012-06-01T14:30:00Z"), (2020, "2020-03-16T14:30:00Z"), (2025, "2025-01-02T14:30:00Z")):
+        d = env["data_root"] / "fx" / f"year={y}"; d.mkdir(parents=True)
+        pd.DataFrame({"ts": pd.to_datetime([ts], utc=True), "close": [float(y)]}).to_parquet(d / "part.parquet")
+    assert registry.get("Q-0009", env["registry_path"]).datasets == ("fx_dir", "es_1m_rth")
+    assert gateway.load("Q-0009", "is", dataset="fx_dir", **env)["close"].tolist() == [2012.0]
+    assert gateway.load("Q-0009", "oos", dataset="fx_dir", **env)["close"].tolist() == [2020.0]
+    assert gateway.load("Q-0009", "oos", dataset="es_1m_rth", **env)["close"].tolist() == [4, 5, 6]

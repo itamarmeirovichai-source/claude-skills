@@ -77,7 +77,7 @@ def _holdout_unlocked_for(id_: str, unlock_path: Optional[Path] = None) -> bool:
 
 
 def _read_file(path: Path) -> pd.DataFrame:
-    if path.suffix == ".parquet":
+    if path.suffix == ".parquet" or path.is_dir():          # a directory = a partitioned parquet dataset
         df = pd.read_parquet(path)
     else:
         df = pd.read_csv(path)
