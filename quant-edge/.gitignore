@@ -1,0 +1,21 @@
+# quant-edge: market data never enters the repository (non-negotiable 7)
+*.dbn
+*.dbn.zst
+*.zst
+*.parquet
+*.h5
+*.hdf5
+*.csv.gz
+*.feather
+*.pkl
+*.pickle
+.env
+.env.*
+*.key
+data/raw/
+data/derived/
+data/holdout/
+__pycache__/
+*.pyc
+.pytest_cache/
+.secrets.baseline.tmp

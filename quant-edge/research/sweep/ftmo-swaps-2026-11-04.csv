@@ -1,0 +1,167 @@
+fetched_utc,source,code,assetClass,swapLong,swapShort,swapType,digits,contractSize,profitCurrency,commission,commissionType,leverageSwing,isExpiringContract
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUD/CAD,Forex,2.2,-9.09,points,5,100000,CAD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUD/JPY,Forex,2.79,-13.9,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUD/NZD,Forex,2.8,-11.43,points,5,100000,NZD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUD/CHF,Forex,2.44,-10.59,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUD/USD,Forex,-2.38,-6.9,points,5,100000,USD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/AUD,Forex,-13.46,-0.33,points,5,100000,AUD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/CAD,Forex,0.57,-13.54,points,5,100000,CAD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/JPY,Forex,3.13,-21.7,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/NZD,Forex,0.81,-16.64,points,5,100000,NZD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/CHF,Forex,2.42,-19.77,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GBP/USD,Forex,-5.9,-4.35,points,5,100000,USD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CAD/JPY,Forex,0.65,-6.25,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CAD/CHF,Forex,0.97,-6.72,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/AUD,Forex,-15.6,3.34,points,5,100000,AUD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/GBP,Forex,-6.8,-0.22,points,5,100000,GBP,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/CAD,Forex,-2.95,-4,points,5,100000,CAD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/JPY,Forex,1.26,-10.3,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/CHF,Forex,1.5,-11.31,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/USD,Forex,-9.26,0.29,points,5,100000,USD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/NZD,Forex,-3.68,-4.8,points,5,100000,NZD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NZD/CAD,Forex,-1.98,-2.05,points,5,100000,CAD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NZD/CHF,Forex,0.68,-5.57,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NZD/JPY,Forex,0.47,-5.17,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NZD/USD,Forex,-4.84,0.1,points,5,100000,USD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CHF/JPY,Forex,-13.29,1.86,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/CAD,Forex,0.64,-10.59,points,5,100000,CAD,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/CHF,Forex,1.96,-13.54,points,5,100000,CHF,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/JPY,Forex,2.55,-17.43,points,3,100000,JPY,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/CZK,Exotics,-11.41,-8.3,points,4,100000,CZK,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/HUF,Exotics,-43.46,11.26,points,3,100000,HUF,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/NOK,Exotics,-89.2,17.88,points,5,100000,NOK,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EUR/PLN,Exotics,-27.38,2.75,points,5,100000,PLN,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/CNH,Exotics,8.73,-76.01,points,5,100000,CNH,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/CZK,Exotics,0.01,-16.57,points,4,100000,CZK,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/HKD,Exotics,6.99,-60.17,points,5,100000,HKD,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/HUF,Exotics,-25.21,3.86,points,3,100000,HUF,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/ILS,Exotics,2.08,-27.35,points,5,100000,ILS,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/MXN,Exotics,-309.93,20.84,points,5,100000,MXN,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/NOK,Exotics,-39.9,-3.85,points,5,100000,NOK,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/PLN,Exotics,-6.23,-11.42,points,5,100000,PLN,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/SGD,Exotics,1.16,-13.56,points,5,100000,SGD,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/ZAR,Exotics,-267.63,34.76,points,5,100000,ZAR,5,flat_USD,20,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USD/SEK,Exotics,12.05,-84.63,points,5,100000,SEK,5,flat_USD,30,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAG/USD,Metals CFD,-12.7,-0.9,points,3,5000,USD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAG/EUR,Metals CFD,-4.18,1.01,points,3,5000,EUR,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAG/AUD,Metals CFD,-11.38,4.14,points,3,5000,AUD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAU/USD,Metals CFD,-56.87,-4.2,points,2,100,USD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAU/EUR,Metals CFD,-31.45,-3.22,points,2,100,EUR,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XAU/AUD,Metals CFD,-88.26,-10.3,points,2,100,AUD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XPD/USD,Metals CFD,-41.89,-19.17,points,2,100,USD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XPT/USD,Metals CFD,-53.92,-25.61,points,2,100,USD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AUS200.cash,Cash CFD,-249.52,13,points,2,1,AUD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,US30.cash,Cash CFD,-1287,40.6,points,2,1,USD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SPN35.cash,Cash CFD,1654.24,-2064.65,points,2,1,EUR,0,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,EU50.cash,Cash CFD,-120.9,-12.2,points,2,1,EUR,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,FRA40.cash,Cash CFD,-158.22,-15.97,points,2,1,EUR,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GER40.cash,Cash CFD,-509.88,-51.46,points,2,1,EUR,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,HK50.cash,Cash CFD,-477.93,-25.15,points,2,1,HKD,0,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,JP225.cash,Cash CFD,-962.27,-396.23,points,2,10,JPY,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,N25.cash,Cash CFD,-10.7,1.13,points,2,1,EUR,0,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,US100.cash,Cash CFD,-694.92,21.92,points,2,1,USD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,US500.cash,Cash CFD,-185.14,4.06,points,2,1,USD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,UK100.cash,Cash CFD,-262.58,6.73,points,2,1,GBP,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,UKOIL.cash,Cash CFD,50.51,-234.31,points,3,100,USD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,USOIL.cash,Cash CFD,8.95,-52.59,points,3,100,USD,0,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NATGAS.cash,Cash CFD,-19.33,4.37,points,3,1000,USD,0.0014,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DXY.cash,Cash CFD,-25.19,0.79,points,3,100,USD,0.0014,percent,5,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BTCUSD,Crypto CFD,-30,-30,percentage,2,1,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DASHUSD,Crypto CFD,-30,-30,percentage,2,1000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ETHUSD,Crypto CFD,-30,-30,percentage,2,10,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,LTCUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XRPUSD,Crypto CFD,-30,-30,percentage,5,10000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AAPL,Equities CFD,-7.9,-6.25,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ADSGn,Equities CFD,-2.94,-2.22,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AIRF,Equities CFD,-0.18,-0.14,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ALVG,Equities CFD,-7.52,-5.67,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AMZN,Equities CFD,-5.51,-4.36,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BA,Equities CFD,-3.93,-3.11,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BABA,Equities CFD,-2.25,-1.78,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BAC,Equities CFD,-1.15,-0.91,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BAYGn,Equities CFD,-0.85,-0.64,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CSCO,Equities CFD,-2.39,-1.89,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CVX,Equities CFD,-5.39,-4.26,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DBKGn,Equities CFD,-0.52,-0.39,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DIS,Equities CFD,-2.54,-2.01,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,META,Equities CFD,-14.05,-11.11,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,FDX,Equities CFD,-7.16,-5.67,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GE,Equities CFD,-6.91,-5.47,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GM,Equities CFD,-2,-1.58,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GOOG,Equities CFD,-6.38,-5.05,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,IBE,Equities CFD,-0.38,-0.29,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,IBM,Equities CFD,-5.91,-4.67,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,INTC,Equities CFD,-1.5,-1.19,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,JNJ,Equities CFD,-6.26,-4.95,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,JPM,Equities CFD,-7.72,-6.11,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,KO,Equities CFD,-2.16,-1.7,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,LVMH,Equities CFD,-6.72,-5.07,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,MCD,Equities CFD,-5.91,-4.68,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,MSFT,Equities CFD,-11.97,-9.47,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NFLX,Equities CFD,-1.42,-1.12,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NVDA,Equities CFD,-4.7,-3.71,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,PFE,Equities CFD,-0.7,-0.55,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,QCOM,Equities CFD,-3.76,-2.97,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,RACE,Equities CFD,-9.08,-7.18,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SAN,Equities CFD,-17.7,-13.34,points,4,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SIEGn,Equities CFD,-4.62,-3.48,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,T,Equities CFD,-0.49,-0.39,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,TSLA,Equities CFD,-9.16,-7.24,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,V,Equities CFD,-9.46,-7.49,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,VOWG_p,Equities CFD,-1.2,-0.9,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,WMT,Equities CFD,-2.83,-2.24,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XOM,Equities CFD,-4.28,-3.38,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ZM,Equities CFD,-2.19,-1.73,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XMRUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NEOUSD,Crypto CFD,-30,-30,percentage,3,1000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ADAUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DOTUSD,Crypto CFD,-30,-30,percentage,4,10000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,DOGEUSD,Crypto CFD,-30,-30,percentage,5,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,US2000.cash,Cash CFD,-67.26,-0.09,points,2,1,USD,0,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,COCOA.c,Cash CFD,-19,2.61,points,1,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,COFFEE.c,Cash CFD,4.45,-23.5,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,CORN.c,Cash CFD,-38.12,7.34,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SOYBEAN.c,Cash CFD,-34.7,4.04,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,WHEAT.c,Cash CFD,-23.68,3.48,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XCU/USD,Metals CFD,-19.18,2.28,points,2,100,USD,0.0014,percent,15,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,HEATOIL.c,Cash CFD,1.83,-8.56,points,3,100,USD,0.0014,percent,9,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,COTTON.c,Cash CFD,-4.21,0.72,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SUGAR.c,Cash CFD,-0.9,0.15,points,2,1,USD,0,flat_USD,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SOLUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AVAUSD,Crypto CFD,-30,-30,percentage,2,1000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BCHUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ETCUSD,Crypto CFD,-30,-30,percentage,3,1000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BNBUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SANUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,LNKUSD,Crypto CFD,-30,-30,percentage,3,1000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NERUSD,Crypto CFD,-30,-30,percentage,3,10000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ALGUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ICPUSD,Crypto CFD,-30,-30,percentage,3,10000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AAVUSD,Crypto CFD,-30,-30,percentage,2,100,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BARUSD,Crypto CFD,-30,-30,percentage,5,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GALUSD,Crypto CFD,-30,-30,percentage,5,1000000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GRTUSD,Crypto CFD,-30,-30,percentage,5,1000000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,IMXUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,MANUSD,Crypto CFD,-30,-30,percentage,5,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,VECUSD,Crypto CFD,-30,-30,percentage,5,1000000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XLMUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,UNIUSD,Crypto CFD,-30,-30,percentage,4,10000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,XTZUSD,Crypto CFD,-30,-30,percentage,4,100000,USD,0.065,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,RTX,Equities CFD,-4.57,-3.62,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,LMT,Equities CFD,-14.57,-11.52,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,PLTR,Equities CFD,-4.22,-3.34,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AMD,Equities CFD,-11.56,-9.14,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AVGO,Equities CFD,-7.46,-5.9,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SBUX,Equities CFD,-2.37,-1.88,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,MSTR,Equities CFD,-2.99,-2.37,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,GME,Equities CFD,-0.55,-0.44,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,NKE,Equities CFD,-0.89,-0.7,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ARM,Equities CFD,-4.7,-3.72,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SNOW,Equities CFD,-6.95,-5.49,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,ASML,Equities CFD,-35.84,-28.34,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,AZN,Equities CFD,-4.26,-3.37,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BRK.B,Equities CFD,-12.43,-9.83,points,2,1,USD,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,TTE,Equities CFD,-1.42,-1.07,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,BMW,Equities CFD,-1,-0.76,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,MBG,Equities CFD,-0.71,-0.53,points,2,1,EUR,0.004,percent,1,False
+2026-11-04T19:19Z,https://ftmo.com/wp-json/ftmo/symbols,SPCX,Equities CFD,-3.09,-2.44,points,2,1,USD,0.004,percent,1,False

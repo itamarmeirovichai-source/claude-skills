@@ -1,0 +1,114 @@
+=== Tue Nov  3 14:40:13 UTC 2026 grid stage: F2-12 F2-13, S 1.0 1.5 2.0 2.4 3.0, seeds 11 101 202 303 404, n 3000, sigma<=0.20 ===
+start 2026-11-03 14:40:13 UTC args {'scen': ['F2-12', 'F2-13'], 'S': [1.0, 1.5, 2.0, 2.4, 3.0], 'seeds': [11, 101, 202, 303, 404], 'n': 3000, 'sigmax': 0.2, 'caps': [0.12, 0.15, 0.2], 'procs': 4, 'out': 'results_rerun.json', 'seq': False, 'seq_n': 2000}
+done F2-12 S=1.0 seed=303 wall 45s cpu 41s net12 7189 net15 9539 net20 13284
+done F2-12 S=1.0 seed=101 wall 45s cpu 41s net12 7192 net15 9459 net20 13427
+done F2-12 S=1.0 seed=202 wall 45s cpu 41s net12 7205 net15 9384 net20 13358
+done F2-12 S=1.0 seed=11 wall 46s cpu 42s net12 7257 net15 9539 net20 13362
+done F2-12 S=1.0 seed=404 wall 43s cpu 42s net12 7267 net15 9439 net20 13315
+done F2-13 S=1.0 seed=11 wall 43s cpu 42s net12 3549 net15 4815 net20 6871
+done F2-13 S=1.0 seed=101 wall 43s cpu 42s net12 3489 net15 4807 net20 6988
+done F2-13 S=1.0 seed=202 wall 45s cpu 43s net12 3548 net15 4813 net20 6952
+done F2-13 S=1.0 seed=404 wall 46s cpu 42s net12 3472 net15 4689 net20 6812
+done F2-13 S=1.0 seed=303 wall 47s cpu 42s net12 3524 net15 4808 net20 6964
+done F2-12 S=1.5 seed=11 wall 46s cpu 42s net12 11510 net15 14942 net20 20704
+done F2-12 S=1.5 seed=101 wall 47s cpu 42s net12 11479 net15 14912 net20 20750
+done F2-12 S=1.5 seed=202 wall 43s cpu 41s net12 11509 net15 14822 net20 20857
+done F2-12 S=1.5 seed=404 wall 43s cpu 42s net12 11488 net15 14805 net20 20557
+done F2-12 S=1.5 seed=303 wall 43s cpu 42s net12 11492 net15 14954 net20 20634
+done F2-13 S=1.5 seed=11 wall 43s cpu 42s net12 7467 net15 9817 net20 13627
+done F2-13 S=1.5 seed=303 wall 45s cpu 42s net12 7440 net15 9756 net20 13565
+done F2-13 S=1.5 seed=202 wall 45s cpu 42s net12 7440 net15 9712 net20 13581
+done F2-13 S=1.5 seed=101 wall 45s cpu 42s net12 7421 net15 9736 net20 13702
+done F2-13 S=1.5 seed=404 wall 46s cpu 42s net12 7483 net15 9684 net20 13586
+done F2-12 S=2.0 seed=101 wall 44s cpu 42s net12 15970 net15 20572 net20 28421
+done F2-12 S=2.0 seed=202 wall 45s cpu 42s net12 16007 net15 20565 net20 28477
+done F2-12 S=2.0 seed=11 wall 45s cpu 42s net12 16003 net15 20575 net20 28326
+done F2-12 S=2.0 seed=303 wall 46s cpu 42s net12 15923 net15 20567 net20 28222
+done F2-13 S=2.0 seed=11 wall 59s cpu 44s net12 11767 net15 15263 net20 20909
+done F2-13 S=2.0 seed=101 wall 61s cpu 45s net12 11721 net15 15185 net20 21020
+done F2-12 S=2.0 seed=404 wall 62s cpu 45s net12 15962 net15 20476 net20 28167
+done F2-13 S=2.0 seed=202 wall 64s cpu 45s net12 11769 net15 15066 net20 21104
+done F2-13 S=2.0 seed=303 wall 61s cpu 43s net12 11723 net15 15229 net20 20929
+done F2-12 S=2.4 seed=11 wall 61s cpu 43s net12 19648 net15 25247 net20 34576
+done F2-13 S=2.0 seed=404 wall 65s cpu 44s net12 11731 net15 15084 net20 20839
+done F2-12 S=2.4 seed=101 wall 70s cpu 44s net12 19623 net15 25165 net20 34661
+done F2-12 S=2.4 seed=303 wall 81s cpu 42s net12 19534 net15 25149 net20 34399
+done F2-12 S=2.4 seed=202 wall 82s cpu 42s net12 19666 net15 25150 net20 34678
+done F2-12 S=2.4 seed=404 wall 79s cpu 42s net12 19615 net15 25063 net20 34398
+done F2-13 S=2.4 seed=11 wall 75s cpu 43s net12 15337 net15 19787 net20 26990
+done F2-13 S=2.4 seed=202 wall 62s cpu 42s net12 15341 net15 19658 net20 27171
+done F2-13 S=2.4 seed=101 wall 63s cpu 42s net12 15250 net15 19741 net20 27086
+done F2-13 S=2.4 seed=303 wall 64s cpu 42s net12 15257 net15 19708 net20 27016
+done F2-13 S=2.4 seed=404 wall 63s cpu 42s net12 15296 net15 19614 net20 26870
+done F2-12 S=3.0 seed=101 wall 61s cpu 43s net12 25161 net15 32129 net20 43931
+done F2-12 S=3.0 seed=11 wall 62s cpu 43s net12 25206 net15 32227 net20 43797
+done F2-12 S=3.0 seed=202 wall 61s cpu 43s net12 25228 net15 32183 net20 44038
+done F2-12 S=3.0 seed=303 wall 62s cpu 44s net12 25092 net15 32134 net20 43888
+done F2-13 S=3.0 seed=11 wall 62s cpu 44s net12 20786 net15 26672 net20 36193
+done F2-12 S=3.0 seed=404 wall 64s cpu 45s net12 25143 net15 32118 net20 43785
+done F2-13 S=3.0 seed=101 wall 64s cpu 44s net12 20750 net15 26581 net20 36310
+done F2-13 S=3.0 seed=202 wall 60s cpu 45s net12 20779 net15 26565 net20 36386
+done F2-13 S=3.0 seed=303 wall 46s cpu 43s net12 20705 net15 26576 net20 36220
+done F2-13 S=3.0 seed=404 wall 46s cpu 43s net12 20777 net15 26470 net20 36095
+grid stage: 50 jobs, cpu 35.5 min, wall 11.7 min
+end 2026-11-03 14:51:57 UTC
+=== Tue Nov  3 14:51:57 UTC 2026 extra S 3.5 4.0, base seed ===
+start 2026-11-03 14:51:57 UTC args {'scen': ['F2-12', 'F2-13'], 'S': [3.5, 4.0], 'seeds': [11], 'n': 3000, 'sigmax': 0.2, 'caps': [0.12, 0.15, 0.2], 'procs': 4, 'out': 'results_rerun.json', 'seq': False, 'seq_n': 2000}
+done F2-12 S=4.0 seed=11 wall 59s cpu 43s net12 34582 net15 44029 net20 59540
+done F2-12 S=3.5 seed=11 wall 59s cpu 43s net12 29845 net15 38145 net20 51666
+done F2-13 S=4.0 seed=11 wall 61s cpu 43s net12 30084 net15 38352 net20 51819
+done F2-13 S=3.5 seed=11 wall 61s cpu 43s net12 25414 net15 32499 net20 44006
+grid stage: 4 jobs, cpu 2.9 min, wall 1.0 min
+end 2026-11-03 14:52:59 UTC
+=== Tue Nov  3 14:52:59 UTC 2026 F2-09 replication, S 1.0, base seed, full grid ===
+start 2026-11-03 14:52:59 UTC args {'scen': ['F2-09'], 'S': [1.0], 'seeds': [11], 'n': 3000, 'sigmax': 0.4, 'caps': [0.12, 0.15, 0.2, 0.3, 0.4], 'procs': 1, 'out': 'results_rerun.json', 'seq': False, 'seq_n': 2000}
+done F2-09 S=1.0 seed=11 wall 113s cpu 110s net12 7546 net15 9927 net20 13551
+grid stage: 1 jobs, cpu 1.8 min, wall 1.9 min
+end 2026-11-03 14:54:52 UTC
+=== Tue Nov  3 14:54:52 UTC 2026 calendar-chain stage ===
+start 2026-11-03 14:54:52 UTC args {'scen': ['F2-12', 'F2-13'], 'S': [1.0, 1.5, 2.0, 2.4, 3.0, 3.5, 4.0], 'seeds': [11], 'n': 3000, 'sigmax': 0.2, 'caps': [0.12, 0.15, 0.2], 'procs': 4, 'out': 'results_rerun.json', 'seq': True, 'seq_n': 2000}
+seq F2-12 S=1.5 cap=0.12 wall 6s cpu 4s y1 mean 3469 ss mean 13029
+seq F2-12 S=1.0 cap=0.15 wall 6s cpu 4s y1 mean 2947 ss mean 10221
+seq F2-12 S=1.0 cap=0.2 wall 6s cpu 4s y1 mean 5916 ss mean 13396
+seq F2-12 S=1.0 cap=0.12 wall 6s cpu 4s y1 mean 1190 ss mean 7794
+seq F2-12 S=2.0 cap=0.15 wall 4s cpu 4s y1 mean 11157 ss mean 22494
+seq F2-12 S=2.0 cap=0.12 wall 4s cpu 4s y1 mean 7005 ss mean 18101
+seq F2-12 S=1.5 cap=0.15 wall 5s cpu 4s y1 mean 6697 ss mean 16421
+seq F2-12 S=1.5 cap=0.2 wall 5s cpu 5s y1 mean 11424 ss mean 21990
+seq F2-12 S=2.0 cap=0.2 wall 4s cpu 3s y1 mean 18098 ss mean 29989
+seq F2-12 S=2.4 cap=0.12 wall 3s cpu 3s y1 mean 10328 ss mean 22054
+seq F2-12 S=2.4 cap=0.15 wall 3s cpu 3s y1 mean 15437 ss mean 27390
+seq F2-12 S=2.4 cap=0.2 wall 3s cpu 3s y1 mean 23988 ss mean 36572
+seq F2-12 S=3.0 cap=0.15 wall 3s cpu 3s y1 mean 21864 ss mean 34714
+seq F2-12 S=3.0 cap=0.12 wall 4s cpu 4s y1 mean 15797 ss mean 27801
+seq F2-12 S=3.0 cap=0.2 wall 3s cpu 3s y1 mean 32549 ss mean 46229
+seq F2-12 S=3.5 cap=0.12 wall 4s cpu 3s y1 mean 20142 ss mean 32835
+seq F2-12 S=3.5 cap=0.15 wall 3s cpu 3s y1 mean 27831 ss mean 41018
+seq F2-12 S=3.5 cap=0.2 wall 3s cpu 3s y1 mean 40419 ss mean 54189
+seq F2-12 S=4.0 cap=0.12 wall 3s cpu 3s y1 mean 24652 ss mean 37728
+seq F2-12 S=4.0 cap=0.15 wall 3s cpu 3s y1 mean 33211 ss mean 47014
+seq F2-12 S=4.0 cap=0.2 wall 3s cpu 3s y1 mean 48281 ss mean 62592
+seq F2-13 S=1.0 cap=0.12 wall 5s cpu 4s y1 mean 131 ss mean 3385
+seq F2-13 S=1.0 cap=0.15 wall 4s cpu 4s y1 mean 809 ss mean 4700
+seq F2-13 S=1.0 cap=0.2 wall 4s cpu 4s y1 mean 2429 ss mean 6751
+seq F2-13 S=1.5 cap=0.12 wall 5s cpu 4s y1 mean 1250 ss mean 8022
+seq F2-13 S=1.5 cap=0.15 wall 4s cpu 4s y1 mean 2816 ss mean 10444
+seq F2-13 S=1.5 cap=0.2 wall 5s cpu 4s y1 mean 6300 ss mean 13980
+seq F2-13 S=2.0 cap=0.12 wall 5s cpu 5s y1 mean 3583 ss mean 13440
+seq F2-13 S=2.0 cap=0.15 wall 5s cpu 5s y1 mean 6758 ss mean 16582
+seq F2-13 S=2.0 cap=0.2 wall 4s cpu 4s y1 mean 12056 ss mean 22176
+seq F2-13 S=2.4 cap=0.12 wall 4s cpu 4s y1 mean 6324 ss mean 17388
+seq F2-13 S=2.4 cap=0.15 wall 4s cpu 4s y1 mean 10216 ss mean 21442
+seq F2-13 S=2.4 cap=0.2 wall 3s cpu 3s y1 mean 17235 ss mean 28621
+seq F2-13 S=3.0 cap=0.12 wall 3s cpu 3s y1 mean 11158 ss mean 23356
+seq F2-13 S=3.0 cap=0.15 wall 3s cpu 3s y1 mean 16686 ss mean 29030
+seq F2-13 S=3.0 cap=0.2 wall 3s cpu 3s y1 mean 25470 ss mean 38421
+seq F2-13 S=3.5 cap=0.12 wall 3s cpu 3s y1 mean 15679 ss mean 28057
+seq F2-13 S=3.5 cap=0.15 wall 3s cpu 3s y1 mean 22342 ss mean 35053
+seq F2-13 S=3.5 cap=0.2 wall 3s cpu 3s y1 mean 33119 ss mean 46511
+seq F2-13 S=4.0 cap=0.15 wall 3s cpu 3s y1 mean 27955 ss mean 40896
+seq F2-13 S=4.0 cap=0.12 wall 3s cpu 3s y1 mean 20234 ss mean 32744
+seq F2-13 S=4.0 cap=0.2 wall 3s cpu 3s y1 mean 40687 ss mean 54362
+seq stage: 42 jobs, cpu 2.5 min, wall 0.7 min
+end 2026-11-03 14:55:34 UTC
+=== Tue Nov  3 14:55:34 UTC 2026 all stages done ===

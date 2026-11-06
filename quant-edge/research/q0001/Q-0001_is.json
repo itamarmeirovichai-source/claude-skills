@@ -1,0 +1,121 @@
+{
+ "leak": {
+  "EURUSD as_written": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "EURUSD ex_ante": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "GBPUSD as_written": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "GBPUSD ex_ante": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "AUDUSD as_written": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "AUDUSD ex_ante": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "signal (daily assets)": {
+   "truncation_passed": true,
+   "truncation_checked": 61,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 61,
+   "perturbation_violations": 0
+  }
+ },
+ "is_info": "61 event days, signal status {'ok': 60, 'no_rows': 1}, 59 traded events / 169 pair-events; net 1x -5.48 bp/event, t -1.04",
+ "bounds": {
+  "EURUSD": [
+   0.004679676638082418,
+   0.006359897395258203
+  ],
+  "GBPUSD": [
+   0.004196346162507463,
+   0.005173310496379067
+  ],
+  "AUDUSD": [
+   0.005409889212147419,
+   0.007256770306935938
+  ]
+ },
+ "xsource": {
+  "daily_assets_columns": [
+   "USLCAP",
+   "STT",
+   "ITT",
+   "LTT",
+   "GOLDPM",
+   "CMDTY",
+   "GLSTOCK",
+   "GLBOND",
+   "GLSTBOND",
+   "obs_USLCAP",
+   "obs_STT",
+   "obs_ITT",
+   "obs_LTT",
+   "obs_GOLDPM",
+   "obs_CMDTY",
+   "obs_GLSTOCK",
+   "obs_GLBOND",
+   "obs_GLSTBOND"
+  ],
+  "EURUSD": {
+   "vs": "EC",
+   "corr_lag-1": 0.069723909667274,
+   "corr_lag+0": 0.9502392981976416,
+   "n": 1291,
+   "sd_ratio_other_over_fx": 0.9740247853775211,
+   "corr_lag+1": -0.005296122812116754
+  },
+  "GBPUSD": {
+   "vs": "BP",
+   "corr_lag-1": 0.04048566622096688,
+   "corr_lag+0": 0.9512041600764202,
+   "n": 1291,
+   "sd_ratio_other_over_fx": 1.018623574144325,
+   "corr_lag+1": -0.05044065578990662
+  },
+  "AUDUSD": {
+   "vs": "AD",
+   "corr_lag-1": 0.09488491960946283,
+   "corr_lag+0": 0.9119696630518213,
+   "n": 1291,
+   "sd_ratio_other_over_fx": 0.9989517936317678,
+   "corr_lag+1": 0.007527028172412028
+  }
+ }
+}

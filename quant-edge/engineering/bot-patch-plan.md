@@ -1,0 +1,25 @@
+# Bot patch plan: IBC, reconnect handling, stale-data rule (Department G, 2026-11-06)
+
+Status: **plan only.** The bot repository is not attached to this session; no file of the bot has been read or changed.
+File names below come from the inherited record (`~/quant-edge-inherited/pr4/skills/prop-fleet/`: `broker/ibkr.py`,
+`broker/proxy.py`, `data/feed.py`, `strategy/`, `logger.py`, `integrity.py`) and must be confirmed against the repository
+before any line is written. Each patch becomes one commit of a single pull request, with tests, when the repository is attached.
+**Order of work:** measurement first (`ibkr-connectivity-diagnosis.md` §F, five sessions); P1–P3 and P5 are safe regardless of
+the result; P4 and the IBC switch (P6) are applied only for the hypothesis the log confirms. No strategy, risk parameter or
+sizing line is touched (same boundary the inherited `pipeline.py` kept: never `strategy/`, risk parameters, `logger.py` or `ibkr.py`
+logic beyond the connection layer).
+
+| id | change | where (to confirm) | size | test that must fail before and pass after |
+|---|---|---|---|---|
+| P1 | **Connection state machine** `DISCONNECTED → CONNECTED → RECONCILED → READY` (plus `HALTED`). Subscribe `connectedEvent`, `disconnectedEvent`, `errorEvent`; classify codes with the table from `ibkr_watchdog.py` (`CODES`): 1100/2110/1300/326/504 = loss; 1101 = re-subscribe; 1102 = keep; 2103–2108/2158 = log at INFO, never alert as a disconnect. | `broker/ibkr.py` (connection layer only) | ~120 lines + table import | fake IB emits 2104 → no alert; 1100 → state `DISCONNECTED`, new orders blocked; 1101 → subscriptions re-issued. |
+| P2 | **Reconnect with backoff** 5/10/20/40/60 s then every 60 s; one Telegram alert on loss and one on recovery (not per scan); on 326 wait 30 s, retry, alert "second instance?". | `broker/ibkr.py` | ~40 lines | fake connect fails 3× then succeeds → 1 loss alert, 1 recovery alert, delays 5/10/20 s. |
+| P3 | **Single instance + unique clientId**: a lock file (`bot.lock` with PID, stale-PID check) taken at startup; clientId from config, distinct from the watchdog's 917 and the inherited scripts' 77; the 09:20 ET scheduled start connects only if no live instance holds the lock. | entry point / scheduler wrapper | ~30 lines | two starts in a row → second exits with a clear message and no API connection. |
+| P4 | **Reconcile before any signal** after every (re)connect: `reqPositions`, open orders (`reqAllOpenOrders`/`openTrades`), `reqExecutions` since session start; match the database by **permId and conId, never orderId** (order ids restart after a Gateway restart: trades 57/58 both `broker_order_id = 98`, `references/schedule.md` line 450); write a reconcile row; mismatch → `HALTED` + alert. Add a `perm_id` column (nullable, back-filled where possible; historical rows never edited). | `broker/ibkr.py`, DB schema migration | ~80 lines + migration | DB says 1 open position, broker says 0 → `HALTED`, no new order; duplicate orderId across restart → matched by permId. |
+| P5 | **Stale-data rule** at the single point where an entry order is built: block if last-bar age > 2 × scan interval (600 s), or |NTP offset| > 500 ms, or state ≠ `READY`; missing values count as stale; log the reason with UTC + Israel time. Exits and flat-by keep working. Bar timestamps tz-aware UTC from the source. | order-building function (entry path) and `data/feed.py` (expose the bar timestamp) | ~30 lines | bar 601 s old → no entry, reason logged; offset 501 ms → no entry; exit path unaffected. Reuse `stale_verdict` / `parse_ntp` from the watchdog. |
+| P6 | **IBC run mode** (only after the log points to H1/H3/H6): no bot code change beyond P2; a `deploy/ibc/` folder with a `config.ini` template (no credentials; `ExistingSessionDetectedAction=primary`, `ReloginAfterSecondFactorAuthenticationTimeout=yes`, `AcceptIncomingConnectionAction=reject`, `CommandServerPort=0`, `TradingMode=paper`), a `StartGateway.bat /INLINE` Task Scheduler note, and Lock-and-Exit = Auto restart at 07:30 Israel. | new `deploy/ibc/` + README section | docs + template | template parses; secrets check: no `IbPassword=` value in the repo. |
+| P7 | **Data source for signals** (only if the watchdog shows IBKR bars fresh while the bot lags): add an IBKR 1-minute keepUpToDate bar source behind the existing `MarketDataFeed.get_ohlcv` interface, yfinance kept as a fallback flagged `delayed`; requires the CME real-time subscription on the bot's username (Itamar's decision, a paid item outside OTHER_SPENDING_ALLOWED_USD = 0). | `data/feed.py` | ~80 lines | with source = yfinance, P5 marks bars ≥ 10 min old as delayed; IBKR source returns age < 120 s on a replayed stream. |
+
+**Not in this plan:** strategy logic (closed family bot-smc-tjr, H0001–H0004/H0010/H0016), sizing, risk constants, the proxy conversion,
+order types. **Acceptance for the PR:** all new tests pass; the existing bot test suite passes unchanged; five sessions of the watchdog
+after the change show zero unexplained `connection_loss` rows outside reset windows, zero entries taken while stale, and every
+reconnect followed by a reconcile row.

@@ -1,0 +1,25 @@
+{
+ "leak": [
+  {
+   "root": "GC",
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  }
+ ],
+ "is_info": {
+  "trades": 30,
+  "net1x_total": -0.05797968854336019,
+  "t_min": -1.170571242614058,
+  "sharpe": -0.46347506111237713
+ },
+ "bounds": {
+  "GC": [
+   0.007853775565953796,
+   0.011060282902266235
+  ]
+ }
+}
