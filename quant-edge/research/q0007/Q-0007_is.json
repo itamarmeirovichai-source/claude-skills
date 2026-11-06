@@ -1,0 +1,33 @@
+{
+ "leak": {
+  "as_written (registered)": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "ex_ante (no post-entry coverage test)": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "planted look-ahead (must FAIL)": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": false,
+   "perturbation_checked": 30,
+   "perturbation_violations": 29
+  }
+ },
+ "is_info": "1017 trading days, 936 traded (universe {4: 71, 5: 430, 6: 278, 7: 157}); net 1x -4.47 bp/day, t -3.58",
+ "bounds": [
+  0.006327794460871013,
+  0.008567503514666468
+ ]
+}
