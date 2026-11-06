@@ -23,7 +23,7 @@ COLUMNS = ["id", "date", "owner", "source", "family", "lane", "status", "hypothe
 REQUIRED = ["id", "date", "owner", "family", "lane", "hypothesis", "rules", "parameters", "grid", "sign", "instruments",
             "holding", "firm_structure", "data", "data_sha256", "split", "vol_scaler", "guard_fraction", "decay_haircut",
             "cost_model", "decision_rule", "count"]
-ID_RE = re.compile(r"^(Q-\d{4}|CAL(-\d+)?|PF-\d{4})$")
+ID_RE = re.compile(r"^(Q-\d{4}|CAL(-[A-Z0-9]+)?|PF-\d{4})$")
 SIGNS = {"long", "short", "long-short-fixed", "unfixed(2 counts)"}
 FIRM = {"intraday-futures", "overnight-session-futures", "ftmo-swing", "ftmo-intraday-cfd", "portfolio"}
 MAX_FAMILY_VARIANTS = 5

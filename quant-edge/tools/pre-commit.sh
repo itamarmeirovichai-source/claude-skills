@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # quant-edge pre-commit hook: secrets, oversized files, data patterns, manifest paths.
+# HexHighEntropyString is disabled: sha256 pins of data files are hex by design; the Databento key rule above stays.
 # Install: cp quant-edge/tools/pre-commit.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 set -uo pipefail
 ROOT=$(git rev-parse --show-toplevel)
@@ -24,7 +25,7 @@ for f in $files; do
   fi
 done
 if command -v detect-secrets-hook >/dev/null 2>&1 && [ -n "$files" ]; then
-  if ! detect-secrets-hook --baseline "$ROOT/quant-edge/.secrets.baseline" $files; then
+  if ! detect-secrets-hook --disable-plugin HexHighEntropyString --baseline "$ROOT/quant-edge/.secrets.baseline" $files; then
     echo "BLOCKED: detect-secrets flagged a staged file"; fail=1; fi
 elif command -v gitleaks >/dev/null 2>&1; then
   gitleaks protect --staged --redact >/dev/null 2>&1 || { echo "BLOCKED: gitleaks flagged a staged change"; fail=1; }
