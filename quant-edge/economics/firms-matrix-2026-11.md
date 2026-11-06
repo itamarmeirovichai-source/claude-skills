@@ -1,11 +1,11 @@
-# Firm matrix, November 2026 (Rules Keeper, Department F) — IN PROGRESS
+# Firm matrix, November 2026 (Rules Keeper, Department F)
 
 Fetch date 2026-11-06 unless a cell says 2026-11-03 (letters agent's fetch, `economics/firm-pages-fetched-2026-11-03.md`).
 Labels: **V** = verified on the firm's own page (URL + date in the clause file), **S** = snippet / third-party / inherited only,
 **U** = unknown (not found). Quoted clauses: `economics/firm-clauses-2026-11/<firm>.md`. Archive (not in the repo):
 `~/quant-edge-data/firm-pages/2026-11-06/<firm>/<slug>.txt`. lucidtrading.com is blocked (403, D-007): Lucid cells are S or U.
 
-Status: skeleton written 2026-11-06; firms are filled in one by one below.
+Status: complete 2026-11-06. Firms: FTMO (+ FTMO Futures), Topstep, MyFundedFutures, TradeDay, Lucid (S/U only), Bulenox; light pass on The5ers, Tradeify; FXIFY, E8, Funding Pips unreachable (403/403/429). Rows labelled: ≈ 81 V, 14 S, 8 U (some rows mixed). Not committed.
 
 ## 1. FTMO (CFDs; plan = 2-Step $100K Swing, with Standard and FTMO Futures where they differ)
 
@@ -155,3 +155,67 @@ Sources: `firm-clauses-2026-11/lucid.md` (inherited page quotes of 2026-10-11 + 
 | FXIFY | inherited: EA pre-approval, banned on Instant Funded | inherited: one account per size, ~$805k | U | fxify.com 403 on 2026-11-06 | S |
 | E8 Markets | inherited: "one strategy per user" | inherited: $500k per market per household | U | e8markets.com 403 on 2026-11-06 | S |
 | Funding Pips | inherited: own EA with proof of ownership; VPN/VPS ban (third-party) | inherited | U | fundingpips.com 429 (twice, 20 s apart) on 2026-11-06 | S |
+
+## 8. Trading-day boundary and flat-by, all firms (the clock the engine must use)
+
+| firm / plan | trading day | flat-by | source label |
+|---|---|---|---|
+| Topstep | 5:00 PM CT (= 18:00 ET) → 3:10 PM CT | 3:10 PM CT (flattening from 3:08; auto ~10 s before) | V |
+| MyFundedFutures | 6:00 PM ET → 4:10 PM ET | 4:10 PM ET auto-close (holiday early closes: trader must close) | V (was U) |
+| TradeDay | 5:00 PM CT → next-day close | 10 min before the product's close; auto-liquidation 3:50 PM CT | V (was U) |
+| Bulenox | 5:00 PM → 4:00 PM CT | 3:59 PM CT | V |
+| Lucid | 6:00 PM ET → | 4:45 PM ET (Rithmic Live 4:15 PM ET) | S |
+| FTMO Futures | 6:00 PM ET → 4:10 PM ET | session end, no position or resting order carried | V (new product) |
+| FTMO CFD | 00:00:00–23:59:59 CE(S)T (daily loss reset 00:00 CE(S)T) | Swing: none; Standard: no hold through breaks > 2 h | V |
+
+The 00-common rule "an overnight-session hold (after 18:00 ET, closed before the next afternoon deadline) is inside one trading day" is
+confirmed in the firms' own words for Topstep, MFFU, TradeDay, Bulenox and FTMO Futures; snippet only for Lucid. Add TradeDay 3:50 PM CT to
+the 00-common deadline list.
+
+## 9. Changes since 2026-10-11 (inherited matrix `firms-2026-10-11.md`)
+
+**Automation / hosting**
+1. **Topstep**: Terms of Use re-dated **2026-11-04**; §28 now reads "Using any VPN, VPS, proxy (including residential), or other service masking your IP address or location ... or ... remote access tools for the purpose of masking your IP address or location" (Sept: "Using any VPN or VPS on Accounts is strictly prohibited"). The API page still says VPS/remote servers are prohibited and "your server can watch and record, but it cannot trade": treat the bot-on-own-PC rule as unchanged. **New cost: API $29/month ($14.50 with code).**
+2. **TradeDay**: VPS ban (already flagged 2026-11-03) comes with IP security checks at Funded Live, every Funded Sim payout and the $10k review, each requiring a "similar" trading day from the registered address. **New: microscalping review** (most trades or most profit from holds under ~5–10 s) and order-splitting rule.
+3. **FTMO**: new **FTMO Futures** product: "Automated trading is permitted", copy trading across own accounts permitted, ≤ 3 Sim-Funded accounts, no capital cap, EOD trailing drawdown, cross-operator hedging banned. Candidate fourth futures venue; its T&C document not read.
+4. **Bulenox** (vs inherited 2021 Terms; same as 2026-11-03): approval now covers "any third-party algorithm, automated trading software, or other third-party trading technology"; the "commercial, shared, rented" sentence is gone; $100/month API fee is not an approval.
+5. **Tradeify** FTA re-dated October 2026; §6.6 cross-firm bot exclusivity, §6.7(i) and §4.4 unchanged.
+6. **MyFundedFutures**: no change to the automation sentence; still silent on unattended/VPS (open question).
+
+**Multi-account**
+7. **FTMO** T&C dated 2026-11-01: entity now FTMO s.r.o.; 7.8 now reaches "all Accounts you have" (Challenge **and Instant**); 7.6.4 lets FTMO itself act on FTMO Accounts; 3.14.2 new order cool-down for "an unusually large number of Orders". Accounts FAQ: suspension where "identical or substantially similar trading ... including trades copied from or based on the same third-party source" exceeds $400,000; Prime raises the cap to $600,000; the sentence "no limit to the number of accounts" (seen 2026-11-03) is not on the page.
+8. **MyFundedFutures**: ≤ 10 evaluations (new number); per-plan sim-funded caps confirmed; Terms §23.1.3.3 ("hedge, mirror, copy, or coordinate trades ... unfair advantage or manipulates simulated results") — copy trading itself is allowed on the help page.
+9. **Topstep**: copier up to 5 XFAs confirmed; Live call-up still closes every XFA.
+10. **Lucid** (snippet): one Live account per funded account with ≥ 1 payout, remaining sim accounts closed (inherited: all closed, $0 restart).
+
+**Rules that change a bot's calendar**
+11. **Topstep — NEW news window**: ±5 min around CPI, NFP, PPI, FOMC decision and FOMC press conference: no new opening positions in equity-index and metal minis, micros capped (3/6/9 by size), pending orders do not fill, closing brackets accepted. Inherited: "Topstep ... allow news trading". ES/NQ strategies near 7:30 CT, 12:55–1:05 and 1:25–1:35 CT are affected.
+12. **Topstep** daily loss limit is now optional (soft) in Combine and XFA; a limited-time offer doubles XFA payout caps if a DLL is bought at Combine checkout.
+13. **Lucid Daily** (snippet): the red-folder ban is a ±1 min flat window.
+14. **MFFU** one-time payment model since 2026-08-25 with the 7-day inactivity rule on sim-funded accounts too.
+15. **TradeDay** Quick Pay Funded Sim profit split 50/50 below $4,000 profit, 80/20 above (90/10 only in Funded Live); funded drawdown always intraday on Quick Pay.
+
+**Israel**
+16. **The5ers lists Israel as a "Forbidden Territory" (residents or citizens)** — The5ers is out for Itamar regardless of its automation answer.
+17. FTMO, Topstep, MFFU, TradeDay: Israel not restricted (V). Lucid, Bulenox, FXIFY, E8, Funding Pips: unknown.
+
+**Flat-by / day boundary**: MFFU 4:10 PM ET and TradeDay 3:50 PM CT are now verified on the firms' pages (both U on 2026-11-03); Topstep and Bulenox unchanged; Lucid snippet unchanged.
+
+## 10. Open written questions per firm (for the letters; no contact made)
+
+- **FTMO**: F-1 send a sample of the FTMO Account Terms and Conditions (funded stage); does one self-built bot on several accounts count as one "strategy" for the $400k (and $600k Prime) cap; does the gap-trading clause bar a scheduled Friday rebalance on Swing; FTMO Futures: the Futures T&C, VPS, and whether a bot also running at FTMO CFD or other firms matters.
+- **Topstep**: does the reworded §28 change the VPS ban for order transmission (API page says no); may a signal computed on a server be relayed to the personal device; does the Tier-1 window block bracket entries resting before T−5 min.
+- **MyFundedFutures**: unattended automation and VPS hosting allowed; does one bot on N own accounts fall under §23.1.3.3; payout rails for Israel.
+- **TradeDay**: may the platform run at the registered home address with remote monitoring; is the 200-trades cap per account or per trader; Israeli wire via Riseworks confirmed.
+- **Lucid**: everything (site blocked): ToS, VPS, Israel, payout rails, entity.
+- **Bulenox**: approval process for a self-built bot; FAQ answers (countries, payout methods).
+- **Tradeify**: none worth sending while §6.6 bans the bot at other firms.
+
+## 11. Archive (not in the repo) — `~/quant-edge-data/firm-pages/2026-11-06/`
+
+- `ftmo/` 35 pages: tc-cfd-2026-11-01 (T&C PDF), trading-objectives, forbidden-trading-practices, terms-landing, terms-and-policies, faq-{index,accounts,strategies,swing,news,overnight,vpn-vps,withdraw,who-can-join,legal-relationship,specs,fees,refund,platforms,merge,real-market,passed,consistency,premium-scaling}, scaling-plan, premium-programme, comparison-table, two-step-challenge, trading-platforms, futures-{overview,objectives,forbidden,comparison,how-it-works,terms}.
+- `topstep/` 30: terms-of-use (2026-11-04) + help articles (api, commissions, combine parameters, subscriptions, reset, reset limits, XFA parameters, scaling, activation, LFA parameters, LFA costs, call-up, payout policy, eligibility, products/hours, MLL, DLL, consistency, hedging, prohibited conduct, prohibited strategies, economic releases, risk adjustments, TopstepX, pricing, program overview, pro account, Back2Funded, contact).
+- `myfundedfutures/` 28: terms, home, permitted-times, inactivity, instrument list, restricted countries, evaluation, consistency, EOD/intraday drawdown, resets, news, cross-instrument, activation fees, eval→sim-funded, Rapid 50K, Rapid EOD 50K, Rapid Live, Builder 50K, Pro, Studio, payout policy, platforms, copy trading, hedging, fair play, someone-else, Live FAQ.
+- `tradeday/` 41: terms-and-conditions (2026-08-11), home, permitted-times, position-limits, and 37 Freshdesk articles (automation, VPN/VPS, multiple accounts, copy trader, news, tier-1, prohibited practices, microscalping, drawdown, funded rules, payouts, payment methods, path to live, inactivity, countries, ...).
+- `bulenox/` 8: terms-of-use (Oct 2026), accounts-pricing, help-{qualification,master,funded,fast-track,momentum}, faq.
+- `the5ers/` 2, `tradeify/` 1, `lucid/` 1 third-party snippet; `fxify/`, `e8/`, `fundingpips/` BLOCKED.txt (403, 403, 429).
