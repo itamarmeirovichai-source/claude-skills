@@ -145,3 +145,13 @@ Sources: `firm-clauses-2026-11/lucid.md` (inherited page quotes of 2026-10-11 + 
 | flat-by / day boundary | 3:59 PM CT; trading day 5:00 PM → 4:00 PM CT; no overnight | V |
 | Live | Funded Account after 3 payouts at Bulenox's discretion; decline → Master closed | V |
 | countries / payout rails / FAQ answers | not read | U |
+
+## 7. Other conditional firms (lighter pass: automation, multi-account, Israel, hours)
+
+| firm | automation | multi-account | Israel | hours / other | label |
+|---|---|---|---|---|---|
+| The5ers | own software only, after prior written approval "at the Company's sole discretion", possible advance testing; third-party software banned | "only one Account per User" except with written approval; bulk trading and copy trading with other traders banned | **Forbidden Territory ("residents or citizens")** | Terms change "effective immediately upon posting" | V (2026-11-06) |
+| Tradeify (FTA Oct 2026) | own bot with proof of sole ownership; "using it across multiple firms is against Tradeify's policy" | 5 funded per individual and household; cross-platform hedging (other firms) banned; approved payouts can be withheld during review | U (help center 403) | microscalping: ≥ 50% of profit from trades ≥ 10 s | V (FTA) / U |
+| FXIFY | inherited: EA pre-approval, banned on Instant Funded | inherited: one account per size, ~$805k | U | fxify.com 403 on 2026-11-06 | S |
+| E8 Markets | inherited: "one strategy per user" | inherited: $500k per market per household | U | e8markets.com 403 on 2026-11-06 | S |
+| Funding Pips | inherited: own EA with proof of ownership; VPN/VPS ban (third-party) | inherited | U | fundingpips.com 429 (twice, 20 s apart) on 2026-11-06 | S |
