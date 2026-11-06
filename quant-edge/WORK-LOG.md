@@ -51,6 +51,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
   finishes inside the window.
 - D-017 (2026-11-06) After the second usage-limit stop (2026-11-04 ≈ 19:30 UTC, sweep run + data run killed), runs are SEQUENTIAL: one agent at a time, each writing its output every few minutes; the 7 per-scout analysts are replaced by one merge-and-prioritize agent that reads the six scout files (149 blocks) and does the analyst checks inline.
 - D-018 (2026-11-06) Batch 1 = 4 rows on free data (not 20): the pre-screen found only these free-data rows worth a count; twins on identical data are one decision unit and are not counted twice. The FX rows proceed on the outcome-free clock diagnostic plus a cross-source QA; CAL-I (intraday known-result calibration) remains owed and is an accepted risk until Databento or the licence ruling arrives.
+- D-019 (2026-11-06) HistData clock defect found by the batch-1b ingest: HistData files follow US DST dates through 2018 and EU DST dates from 2019, so the 2026-11-04 datasets histdata_fx_1m_* are 1 hour early in the 2019–2024 US/EU mismatch weeks (2–3 weeks a year). Affected batch-1 events: Q-0001 October month-ends 2019–2024 (≤ 6 of ≈ 117), Q-0003 March FOMC statements 2019–2024 (≤ 6 of ≈ 88). Decision: no re-read (it would be a second OOS read for verdicts that cannot flip); the FAIL verdicts stand with the defect disclosed in both result files. Crude bound: even if every affected event moved by 4 per-event standard deviations in the favourable direction, t would move by ≤ 6·4/√88 ≈ 2.6, leaving Q-0003 below 3.68 (0.95 + 2.6 = 3.5) and Q-0001 far below. All later rows use the corrected `histdata_rule` datasets; the old ids stay pinned for reproducibility only.
 - D-016 (2026-11-04) Economist re-run accepted as final (report complete when the agent died): $20k/slot-year at FTMO Swing needs net
   Sharpe 2.44 / 1.95 / 1.45 at 12 / 15 / 20% vol pre-tax; after tax 3.16 / 2.53 / 1.89 (25%) or > 4.0 / 3.47 / 2.61 (47%); planning
   number at 20% vol after tax = 2.6 until the accountant answers. Required-Sharpe table on the board refreshed from it.
@@ -97,6 +98,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [~] 2.3 Calendar and Clock Keeper: the engine agent left a 263-line `src/qe/sessions.py` stub (interface + TODO list for Department C); kept.
 - [ ] 2.4 Databento Day-1 purchase (1d all roots + definition + statistics, ≈ $2) — BLOCKED on Day-0 items (a), (b), (c).
 - [ ] 2.5 Databento plan file inside the ceiling, each purchase with requesting row ids.
+- [x] 2.5b Batch-1b free ingest (2026-11-06): HistData 1m SPX, NSX, JPX, XAU, UKX, BCO, FRX, GRX (EU50 levels 2020-06..2023-12 excluded), HKX, ETX (to 2018-12-14), WTI (to 2023-12); IS/OOS under derived/, 2025+ under holdout/; corrected clock rule; QA PASS or PASS-with-caveats (SPX vs ^GSPC corr 0.998). 61 tests.
 - [ ] 2.6 Gate 2.
 
 ### Phase 3 — testing (Days 5–20, batches)

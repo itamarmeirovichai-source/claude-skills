@@ -209,12 +209,20 @@ def write_parquet_partitioned(df: pd.DataFrame, rel_dir: str, *, dry_run: bool =
     if dry_run:
         print(f"[dry-run] would write {len(df)} rows in {df['ts'].dt.year.nunique()} year parts -> {root}")
         return {**info, "sha256": ""}
+    written = set()
     for year, part in df.groupby(df["ts"].dt.year):
         d = root / f"year={int(year)}"
         d.mkdir(parents=True, exist_ok=True)
         tmp = d / "part.parquet.part"
         part.reset_index(drop=True).to_parquet(tmp, index=False, compression="zstd")
         os.replace(tmp, d / "part.parquet")
+        written.add(d.name)
+    # a re-land that no longer covers a year must not leave that year's old part behind (it would be read and hashed)
+    for d in root.glob("year=*"):
+        if d.is_dir() and d.name not in written:
+            for f in d.iterdir():
+                f.unlink()
+            d.rmdir()
     return {**info, "sha256": sha256_tree(root)}
 
 
