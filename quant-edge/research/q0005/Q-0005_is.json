@@ -1,0 +1,51 @@
+{
+ "leak": [
+  {
+   "root": "CL",
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  {
+   "root": "CO",
+   "truncation_passed": true,
+   "truncation_checked": 6,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 6,
+   "perturbation_violations": 0
+  },
+  {
+   "root": "HO",
+   "truncation_passed": true,
+   "truncation_checked": 28,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 28,
+   "perturbation_violations": 0
+  }
+ ],
+ "is_info": {
+  "trades": 41,
+  "net1x_total": 0.01893133495249476,
+  "t_min": 0.5919466318870191,
+  "sharpe": 0.24780813215021735
+ },
+ "bounds": {
+  "CL": [
+   0.009510441237174242,
+   0.01881951432330217
+  ],
+  "CO": [
+   0.01180853049377992,
+   0.01971840206802852
+  ],
+  "HO": [
+   0.015054731092207833,
+   0.01969578042334148
+  ]
+ }
+}

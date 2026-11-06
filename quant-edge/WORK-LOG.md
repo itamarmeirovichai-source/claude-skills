@@ -100,7 +100,8 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [ ] 2.6 Gate 2.
 
 ### Phase 3 — testing (Days 5–20, batches)
-- [ ] 3.1 Batch 1 run exactly as registered; one OOS read each through `load(id, "oos")`.
+- [x] 3.1 Batch 1 run 2026-11-06 (one OOS pass per row; reads reconciled by the Director: Q-0001 4 lines = 4 datasets in one run, Q-0003 2, Q-0005 1, Q-0006 1; no hold-out read). ALL FOUR FAIL, none a near-miss (no t within 1.0 of 3.68): Q-0001 −7.39 bp/event t −2.04; Q-0003 +9.74 bp/event t 0.95; Q-0005 −0.17 bp/day t −1.37; Q-0006 −0.44 bp/day t −2.48. Families fx-month-end-equity-hedge, fx-fomc-day-premium, commodity-dip-swing hold 1, 1, 2 counted variants; not closed (rule: closed after 3 with gross t < 1.5). Disclosed in the result files: gateway ';'-list and parquet-directory fixes before any read; Q-0001/Q-0003 skip rules failed truncation by construction, ex-ante versions no better; no FX series in daily_assets (cross-source vs CME futures in sample, corr 0.91–0.95); HistData lacks 2023-02..06 month-ends.
+- [ ] 3.2 Referee formal verdict files: not needed for clear FAILs far from the bar (Director reconciliation above); required for any PASS or near-miss.
 - [ ] 3.2 Referee Gate 3 verdicts; near-miss list with power at S = 1.5 / 2.0 / 2.4.
 - [ ] 3.3 Batch 2+ (≤ 25) after verdicts and a lessons note.
 
@@ -123,7 +124,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 ## Checkpoint
 
 - phase: 1 (sweep) + 2 (data) groundwork; Day 0 closed except Gate 0 bookkeeping
-- running N: 280 (inherited) + 0 (program) = 280; budget left 150; N_total 430; bar z = 3.6807 (two-count 3.8538)
+- running N: 285 (280 inherited + CAL-D + Q-0001/3/5/6); budget left 145; N_total 430; bar z = 3.6807 (two-count 3.8538)
 - spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
 - open decision requests (date sent): Day-0 items (1)–(4) (2026-11-03); send the firm letters this week + licence ruling on third-party copies (2026-11-04)
 - next action (2026-11-06): sequential (D-017): merge+prioritize agent → candidates.md; then Dept E prescreen; then register CAL-D + batch 1; data run resumes after. Previously: when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1); then Rules Keeper matrix and Department G IBKR diagnosis.

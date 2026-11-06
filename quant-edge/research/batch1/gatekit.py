@@ -105,6 +105,9 @@ def joint_power_note(years: float) -> str:
     if years >= 10:
         return (f"{years:.1f} years >= 10: joint (criteria 3+4+7, costs 1/3 of gross) at least the 10-year figure "
                 f"0.72 / 0.85 / 0.91 at true Sharpe 1.5 / 2.0 / 2.4 (PARAMETERS.md; not re-simulated for this length)")
+    if years < 5:
+        return (f"{years:.1f} years < 5: joint below the 5-year figure 0.32 / 0.67 / 0.78 at true Sharpe 1.5 / 2.0 / 2.4 "
+                "(PARAMETERS.md; not simulated for this length)")
     lo, hi = (8, 10) if years >= 8 else (5, 8)
     f = (years - lo) / (hi - lo)
     v = tuple(a + f * (b - a) for a, b in zip(tab[lo], tab[hi]))
