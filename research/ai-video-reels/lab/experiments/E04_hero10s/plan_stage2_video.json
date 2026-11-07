@@ -1,0 +1,26 @@
+{
+ "_doc": "E04 stage 2 (only after stage-1 stills pass QC): one 10 s ad in one Seedance 2.5 generation with product + woman + key-visual refs; Kling 3.0 multi-shot as the cheap comparison.",
+ "jobs": [
+  {
+   "id": "H1_seedance25_r2v_720p",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "tags": {
+    "test": "H1_tidewater_10s",
+    "model": "seedance25_r2v"
+   },
+   "args": {
+    "prompt": "Vertical 9:16 cinematic beverage commercial, 10 seconds, five shots cut as one continuous edit. @Image1 is the exact product: slim matte turquoise can, white band, black word TIDEWATER, small text ELECTROLYTE WATER; label and shape never change. @Image2 is the woman: same face, curly dark hair and white linen shirt in every shot. @Image3 sets the look of the ice-meets-heat world. 0:00-0:02 Drone shot, 24mm, sliding low over a palm-lined Boca Raton street at 3 PM, heat haze warping the asphalt, a lone figure on the sidewalk; slow forward glide ending above her. 0:02-0:04 Handheld 50mm medium close-up: she squints into the sun, sweat on her temples, and presses the ice-cold can from @Image1 to her neck; she exhales, shoulders dropping; subtle handheld micro-drift. 0:04-0:06 100mm macro, locked: condensation beads roll down past the TIDEWATER label, her thumb (on the lower half) pops the tab with a crisp spray of fine mist backlit by the sun. 0:06-0:08 Low-angle 35mm: she takes a long sip; at her feet frost crystals crackle outward across the hot sidewalk, a thin cold vapor rising, the palm fronds above swaying in a sudden cool breeze; camera slowly cranes up. 0:08-0:10 Hero packshot, 85mm: the can stands on the frosted curb exactly like @Image3, meltwater reflection, sunlight sparkling on the ice; slow 2-second push-in ending on the label. Global: the same hard late-afternoon sun from the left in every shot, shot on 35mm film, natural skin texture with pores, real sweat sheen, motion with weight and inertia, slight lens flare. Audio: cicadas and distant traffic in the heat, fabric rustle, a crisp aluminum pop, fizz, frost crackle, a cool rushing breeze; no music, no dialogue (voiceover is added in the edit). No on-screen text, no subtitles, no other logos.",
+    "image_urls": [
+     "@file:frames/K3_macro_can.png",
+     "@file:frames/K2_heat_woman.png",
+     "@file:frames/K1_border_hero.png"
+    ],
+    "duration": 10,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+   }
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "words": [
+  {
+   "start": 0.072,
+   "end": 0.08,
+   "text": "A"
+  },
+  {
+   "start": 0.133,
+   "end": 0.4,
+   "text": "tense"
+  },
+  {
+   "start": 0.453,
+   "end": 0.88,
+   "text": "standoff"
+  },
+  {
+   "start": 0.933,
+   "end": 1.04,
+   "text": "in"
+  },
+  {
+   "start": 1.088,
+   "end": 1.28,
+   "text": "Boca"
+  },
+  {
+   "start": 1.32,
+   "end": 1.68,
+   "text": "Raton"
+  },
+  {
+   "start": 1.712,
+   "end": 1.84,
+   "text": "this"
+  },
+  {
+   "start": 1.904,
+   "end": 3.36,
+   "text": "afternoon..."
+  },
+  {
+   "start": 3.562,
+   "end": 3.6,
+   "text": "over"
+  },
+  {
+   "start": 3.64,
+   "end": 3.68,
+   "text": "a"
+  },
+  {
+   "start": 3.749,
+   "end": 4.32,
+   "text": "cooler."
+  }
+ ]
+}

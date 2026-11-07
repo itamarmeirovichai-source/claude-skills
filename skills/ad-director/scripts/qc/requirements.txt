@@ -1,0 +1,9 @@
+# Core (qc_report, continuity_check, lipsync_check heuristic engine)
+numpy>=1.24
+scipy>=1.10
+opencv-python-headless>=4.9
+# Embeddings for continuity_check (DINOv2-small ONNX) - optional, falls back to colour/edge descriptors
+onnxruntime>=1.17
+# SyncNet engine for lipsync_check - optional (~175 MB CPU wheel):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+python_speech_features>=0.6

@@ -1,0 +1,38 @@
+{
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "f1_velvet",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "prompt": "Image 1 is the identity and wardrobe reference: keep this exact man, his face, grey eyes, heavy brows, swept-back salt-and-pepper hair, and his enormous charcoal-black waxed handlebar moustache with upturned curled tips that completely covers his mouth; keep the black ribbed turtleneck, tan waxed-canvas vest and small silver viewfinder on a black lanyard. Make a square Instagram profile portrait of him: head and shoulders, perfectly centred, his eyes on the upper third, the moustache spanning about 70% of the frame width across the middle, the top of his hair just below the top edge, shoulders cut by the bottom edge. He looks straight into the lens with deadpan, dignified gravity, one brow a few millimetres higher than the other. The moustache is real hair: individual waxed strands, slight sheen on the twisted tips, a few stray hairs, never plastic or rubber. Real unretouched skin with pores, fine lines and slight redness at the nose. Background: a deep oxblood velvet curtain falling into near-black at the edges, the pile softly out of focus. Light: one hard warm key from upper camera-left falling off fast, a faint cool rim separating the moustache tips and hair from the dark background, small catchlights in both eyes. Shot on an 85mm lens at f/2.8, eye level, focus on the eyes and moustache. Muted, slightly desaturated grade, natural fine film grain, gentle vignette. No HDR, no oversaturation, no digital sharpening, no beauty smoothing, no waxy skin, not a cartoon or costume-party look, no text, no logos, no watermark.",
+    "image_urls": [
+     "@file:explore/v6_oxblood_velvet_t01.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "quality": "high",
+    "enhance_prompt": false
+   }
+  },
+  {
+   "id": "f2_seamless",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "prompt": "Image 1 is the identity and wardrobe reference: keep this exact man, his face, grey eyes, heavy brows, swept-back salt-and-pepper hair, and his enormous charcoal-black waxed handlebar moustache with upturned curled tips that completely covers his mouth; keep the black ribbed turtleneck, tan waxed-canvas vest and small silver viewfinder on a black lanyard. Make a square Instagram profile portrait of him: head and shoulders, perfectly centred, his eyes on the upper third, the moustache spanning about 70% of the frame width across the middle, the top of his hair just below the top edge, shoulders cut by the bottom edge. He looks straight into the lens with deadpan, dignified gravity, one brow a few millimetres higher than the other. The moustache is real hair: individual waxed strands, slight sheen on the twisted tips, a few stray hairs, never plastic or rubber. Real unretouched skin with pores, fine lines and slight redness at the nose. Background: plain dark charcoal seamless paper with a single soft oxblood-red glow directly behind his head, fading to black at the corners, so the head reads as a clean silhouette. Light: one hard warm key from upper camera-left falling off fast, deep shadow on the right cheek, a thin cool rim on the moustache tips, small catchlights in both eyes. Shot on an 85mm lens at f/2.8, eye level, focus on the eyes and moustache. Muted, slightly desaturated grade, natural fine film grain, gentle vignette. No HDR, no oversaturation, no digital sharpening, no beauty smoothing, no waxy skin, not a cartoon or costume-party look, no text, no logos, no watermark.",
+    "image_urls": [
+     "@file:explore/v6_oxblood_velvet_t01.png"
+    ],
+    "aspect_ratio": "1:1",
+    "resolution": "2k",
+    "quality": "high",
+    "enhance_prompt": false
+   }
+  }
+ ]
+}

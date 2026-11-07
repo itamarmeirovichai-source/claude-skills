@@ -1,0 +1,24 @@
+{
+ "jobs": [
+  {
+   "id": "REEL_duo_30",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/duo_block.png",
+     "@file:ref/otto.png",
+     "@file:ref/vee.png"
+    ],
+    "audio_urls": [
+     "@file:vo/dialogue_30.wav"
+    ],
+    "duration": 30,
+    "resolution": "480p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true,
+    "prompt": "One continuous 30-second take: a single unbroken camera move, no cuts, no jump cuts, no scene changes. Smooth gimbal, no shake. Cinematic 35mm film look, soft grain, warm studio light.\nCAST: @Image1 is the opening composition and set: a dark film soundstage, a lit ivory SOL candle on a black plinth in the centre under a warm spotlight. @Image2 is the MAN (Otto): long pale face, heavy dark brows, swept-back hair with silver temples, an enormous charcoal-black handlebar moustache with spiral tips that completely covers his mouth, black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. He always stands on the LEFT of the candle. His mouth is never visible; when he speaks, only his moustache and cheeks move. @Image3 is the WOMAN (Vee): platinum buzz cut, round vermilion-tinted spectacles, olive skin with freckles, oversized ivory double-breasted suit, vermilion scarf, silver stopwatch on a chain. She always stands on the RIGHT of the candle. They keep their exact faces, wardrobe and positions for the whole shot.\n@Audio1 is the exact dialogue track, in order: the man's deep dry British voice and the woman's confident British voice. Lip-sync the woman's lines to her mouth; the man's lines move only his moustache.\nFIRST FRAME: exactly @Image1.\nRULES: real physics; one camera path; no new people; the candle flame flickers gently throughout.\n[0-3 s] The camera is already moving: a slow push toward the trio. The man lowers his brass viewfinder from the candle and says to camera, deadpan: \"This candle has never been filmed.\"\n[3-5 s] The woman glances at him, half-smile, and says: \"It has now.\"\n[5-13 s] Without cutting, the camera drifts slightly right toward her as she speaks to camera, crisp and confident: \"We're VXO. Product films made with AI. Thirty seconds, one take, no cuts.\"\n[13-18 s] The camera drifts back left toward the man; he raises one brow and says: \"No crew. No studio. Just taste.\" He frames the candle with his viewfinder.\n[18-23 s] The camera settles centred on both; the woman holds up her stopwatch and says: \"Send us one product photo. We send back five frames, free.\"\n[23-26 s] The man nods once and says: \"Then we roll.\"\n[26-30 s] The woman clicks her stopwatch, looks into the lens and says: \"Link in bio.\" The camera holds on both of them, the candle glowing between them.\nAUDIO: their dialogue only, quiet studio room tone; no music.\nNo text overlays, no subtitles, no logos besides SOL, not a cartoon."
+   }
+  }
+ ]
+}

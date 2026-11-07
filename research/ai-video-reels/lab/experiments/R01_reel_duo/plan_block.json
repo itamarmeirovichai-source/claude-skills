@@ -1,0 +1,20 @@
+{
+ "jobs": [
+  {
+   "id": "duo_block",
+   "model": "marketing-studio/image/flare",
+   "takes": 2,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/vee.png",
+     "@file:ref/sol.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the man: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, an enormous charcoal-black waxed handlebar moustache with two upturned Dali spirals that completely covers his mouth; black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Image 2 is the woman: keep this exact woman \u2014 platinum-white buzz cut, perfectly round vermilion-tinted spectacles in thin gold frames, olive skin with freckles, strong dark brows; oversized ivory double-breasted suit, vermilion silk scarf, silver stopwatch on a chain at her lapel. Image 3 is the product: keep this exact ivory stoneware candle with the small debossed word SOL. New photograph, vertical 9:16: a dark, elegant film studio soundstage. In the centre, the SOL candle, lit, stands on a small black plinth under a single warm spotlight. The man stands on the LEFT of the candle, three-quarter to camera, holding his brass viewfinder up toward the candle, one brow raised. The woman stands on the RIGHT of the candle, three-quarter to camera, holding her silver stopwatch in one hand, composed half-smile, looking at the camera. Both visible from mid-thigh up, about the same scale, a little space between them. Background: deep charcoal darkness with a soft brass-gold haze and a hint of a film light stand. Cinematic film still, soft warm key, subtle rim lights, real skin texture, 35mm grain. No text, no logos besides SOL, not a cartoon, no costume look."
+   }
+  }
+ ]
+}

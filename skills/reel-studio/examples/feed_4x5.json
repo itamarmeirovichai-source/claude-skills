@@ -1,0 +1,14 @@
+{
+  "_about": "Same edit language, 4:5 feed export. The 'feed' preset forces a 1080x1350 canvas; named text positions scale with it.",
+  "export": "feed",
+  "output": "out/feed_4x5.mp4",
+  "timeline": [
+    {"clip": {"path": "media/clip2.mp4", "in": 0, "out": 2.5, "effects": [{"type": "ken_burns", "to": 1.2, "pan": "left"}]},
+     "overlays": [{"type": "title", "text": "New collection", "position": "top", "anim": "slide_up"}]},
+    {"clip": {"path": "media/clip1.mp4", "in": 1, "out": 3.5, "effects": [{"type": "color", "preset": "warm"}, "film_grain"]},
+     "transition": {"type": "circleopen", "dur": 0.5}},
+    {"layout": "pip", "main": "media/clip3.mp4", "inset": "media/clip1.mp4", "duration": 2, "corner": "bottom_right", "transition": "fade"}
+  ],
+  "overlays": [{"type": "cta", "text": "Shop now →", "position": "cta", "start": 5.0, "box": true}],
+  "audio": {"music": {"path": "media/music.wav", "volume": 0.6}, "loudnorm": -14}
+}

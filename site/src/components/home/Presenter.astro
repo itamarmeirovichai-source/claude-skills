@@ -1,0 +1,55 @@
+---
+// A character in its own reserved slot: the figure and, beside or below it, the caption of what it says.
+// Nothing here overlaps the section's text or media; the slot has a fixed size, so nothing is clipped either.
+// Decorative (aria-hidden): each line is announced once in the page's polite live region when it plays.
+import { media, mediaUrl, type LineId } from '../../lib/media';
+import { site } from '../../lib/site';
+interface Props {
+  who: 'otto' | 'vee';
+  /** Slot id the line director knows this appearance by. */
+  slot: string;
+  /** Lines this slot says on its own when it is at least 60 % in view (in order, each once per visit). */
+  lines?: LineId[];
+  /** Desktop layout: figure above the caption (column) or beside it (row). Phones always use the row. */
+  desk?: 'col' | 'row';
+  class?: string;
+}
+const { who, slot, lines = [], desk = 'col', class: cls } = Astro.props;
+const set = who === 'vee' ? media.vee : media.otto;
+const name = who === 'vee' ? site.producer : site.mascot;
+const role = who === 'vee' ? 'producer' : 'director';
+---
+<figure class:list={['presenter', `presenter-${who}`, `desk-${desk}`, cls]} data-slot={slot} data-who={who} data-lines={lines.join(' ')} aria-hidden="true">
+  <div class="figure">
+    <alpha-video class="char" premultiplied={set.premultiplied ? '' : undefined} data-character={who}>
+      <img class="poster" src={mediaUrl(set.poster)} alt="" width={set.width} height={set.height} loading="lazy" decoding="async" onerror="this.style.visibility='hidden'" />
+    </alpha-video>
+  </div>
+  <figcaption class="say">
+    <span class="tag">{name} · {role} · AI</span>
+    <span class="line" data-say></span>
+  </figcaption>
+</figure>
+<style>
+  .presenter {
+    --fig-h: 210px;
+    margin: 0; display: grid; grid-template-columns: calc(var(--fig-h) * 9 / 16) minmax(0, 1fr); align-items: center; gap: 16px;
+  }
+  .figure { position: relative; height: var(--fig-h); aspect-ratio: 9 / 16; }
+  .char { position: absolute; inset: 0; display: block; }
+  .char :global(canvas), .char .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .char :global(canvas) { opacity: 0; transition: opacity 0.4s var(--ease); }
+  .char[data-ready] :global(canvas) { opacity: 1; }
+  .char[data-ready] .poster { opacity: 0; }
+  .say { display: grid; gap: 8px; align-content: center; min-height: calc(1.3em * 4 + 28px); }
+  .tag { font: 600 0.66rem/1.2 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); }
+  .line { font: 400 1.18rem/1.3 var(--serif); color: var(--text); text-wrap: pretty; }
+  .line:empty { display: none; }
+  .line :global(.w) { color: var(--text-faint); transition: color 0.12s linear; }
+  .line :global(.w.on) { color: var(--text); }
+  @media (min-width: 900px) {
+    .presenter.desk-col { --fig-h: 340px; grid-template-columns: 1fr; justify-items: start; align-items: start; }
+    .desk-col .say { min-height: calc(1.3em * 4 + 26px); align-content: start; max-width: 230px; }
+    .presenter.desk-row { --fig-h: 300px; }
+  }
+</style>

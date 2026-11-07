@@ -1,0 +1,16 @@
+{
+ "jobs": [
+  {
+   "id": "T1",
+   "model": "bytedance/seedance-2.5/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/H0.png",
+    "duration": 10,
+    "resolution": "480p",
+    "generate_audio": true,
+    "prompt": "One continuous take, a single unbroken camera move, no cuts. @Image1 is the first frame. The man: enormous waxed handlebar moustache with spiral tips that always covers his mouth, black turtleneck, charcoal blazer. The gold AURUM can keeps its exact label.\n[0-1 s] Extreme macro: the ring-pull cracks open with a loud crisp metallic CRACK and a sharp fizzing hiss; cold vapour and droplets burst out.\n[1-4 s] The camera pulls back fast and smoothly, rising, revealing that he is standing on a tiny platform at the very top of a skyscraper spire, hundreds of metres above a vast golden city at sunset; strong wind gusts are heard.\n[4-8 s] Calm and deadpan, he pours the sparkling pale gold soda from the can into a tall plain clear glass he holds; loud bubbling fizz as it fills; the camera drifts in to a medium shot.\n[8-10 s] He lifts the glass under his huge moustache and takes a long drink, the level visibly dropping; we hear a satisfying gulp and a refreshed exhale; one eyebrow rises.\nSound: realistic synchronized sound effects only \u2014 can crack, hiss, wind, pour fizz, gulp, exhale. No music, no speech."
+   }
+  }
+ ]
+}

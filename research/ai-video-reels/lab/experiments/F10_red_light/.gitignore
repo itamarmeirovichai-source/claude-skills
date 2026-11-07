@@ -1,0 +1,10 @@
+*.log
+*.png
+*.jpg
+*.mp4
+*.mp3
+*.wav
+clips/
+ref/
+final/
+audio/

@@ -1,0 +1,33 @@
+{
+ "_doc": "F01 stage 1c: AURUM product shots in the story (bottle ref = frames/AURUM.png).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "N4b_bank_aurum",
+   "args": {
+    "image_urls": [
+     "@file:frames/C3_man.png",
+     "@file:frames/AURUM.png"
+    ],
+    "prompt": "Golden hour on a lake bank in Boca Raton. The man from image 1 (same face, faded teal fishing cap with sunglasses, sweaty olive T-shirt, cargo shorts) sits on the grass, exhausted but content, drinking from the exact luxury bottle from image 2 (tall frosted-glass bottle, brushed-gold cap, AURUM embossed vertically, small gold seal). Right beside him a large alligator lies calmly with its chin on the grass next to another identical AURUM bottle standing upright; an open blue-and-white cooler, crushed ice and two more AURUM bottles around them. Warm low sun from the left, long shadows, handheld documentary photo, 35mm, the bottles exactly match the reference. Realistic, unposed, natural skin with pores and sweat, real reptile anatomy. No text or logos except the embossed AURUM on the bottles."
+   }
+  },
+  {
+   "id": "P1b_packshot_aurum",
+   "args": {
+    "image_urls": [
+     "@file:frames/AURUM.png"
+    ],
+    "prompt": "The exact luxury bottle from the reference image (tall frosted-glass AURUM bottle, brushed-gold cap, AURUM embossed vertically, small gold seal) stands upright on wet dark lake sand at the water's edge, dense frost and condensation beads, two clear ice spheres melting beside it; behind it, out of focus, the eyes and snout of an alligator break the calm golden water surface with gentle ripples. Golden late-afternoon backlight glowing through the frosted glass, 85mm, f/2.8, bottle on the lower third, empty warm sky gradient in the top 20%. Photorealistic luxury beverage advertising, no other text."
+   }
+  }
+ ]
+}

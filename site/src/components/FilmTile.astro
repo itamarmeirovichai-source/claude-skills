@@ -1,0 +1,25 @@
+---
+import type { FilmMedia } from '../lib/media';
+import { mediaUrl, SPEC_LABEL } from '../lib/media';
+interface Props { film: FilmMedia; eager?: boolean }
+const { film, eager = false } = Astro.props;
+---
+<a class="tile" href={`/work/${film.slug}`} data-category={film.category}>
+  <span class="media">
+    <img src={mediaUrl(film.poster)} alt="" width="360" height="640" loading={eager ? 'eager' : 'lazy'} decoding="async" onerror="this.style.visibility='hidden'" />
+    <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-tile-loop data-av1={mediaUrl(film.loop.av1)} data-h264={mediaUrl(film.loop.h264)}></video>
+  </span>
+  <span class="meta"><b>{film.brand}</b> <span class="title">{film.title}</span><span class="label">{SPEC_LABEL(film)}</span></span>
+</a>
+<style>
+  .tile { display: block; text-decoration: none; color: inherit; }
+  .media { position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; background: var(--ink-3); border: 1px solid var(--line); }
+  .media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .media video { opacity: 0; transition: opacity 0.4s; }
+  .media video:global(.on) { opacity: 1; }
+  .meta { display: grid; gap: 2px; padding: 10px 2px 0; font-size: 0.9rem; }
+  .meta b { font: 400 1.2rem/1.1 var(--serif); letter-spacing: 0.05em; font-weight: 400; }
+  .title { color: var(--text-dim); }
+  .label { color: var(--text-faint); font-size: 0.72rem; line-height: 1.35; margin-top: 4px; }
+  .tile:hover .media { border-color: var(--brass); }
+</style>

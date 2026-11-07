@@ -1,0 +1,99 @@
+{
+ "composition_plan": {
+  "chunks": [
+   {
+    "text": "[Hook]\n{near silence}",
+    "duration_ms": 3000,
+    "positive_styles": [
+     "minimal electronic",
+     "dark luxury energy drink ad",
+     "near silence",
+     "single sub-bass hum and faint vinyl room tone",
+     "very quiet",
+     "124 BPM",
+     "F minor",
+     "instrumental",
+     "pristine modern production"
+    ],
+    "negative_styles": [
+     "vocals",
+     "drums",
+     "melody",
+     "loud",
+     "full band"
+    ],
+    "context_adherence": "high"
+   },
+   {
+    "text": "[Build]\n{filtered riser}",
+    "duration_ms": 6000,
+    "positive_styles": [
+     "low-pass filtered four-on-the-floor kick fading in",
+     "rising white-noise riser",
+     "pulsing sidechained synth bass",
+     "building tension",
+     "filter slowly opening"
+    ],
+    "negative_styles": [
+     "vocals",
+     "full drop",
+     "breakdown"
+    ],
+    "context_adherence": "high"
+   },
+   {
+    "text": "[Drop]\n{full energy}",
+    "duration_ms": 6000,
+    "positive_styles": [
+     "full drop",
+     "punchy kick and clap",
+     "wide distorted synth stabs",
+     "maximum energy",
+     "sidechained bass"
+    ],
+    "negative_styles": [
+     "vocals",
+     "quiet",
+     "ambient",
+     "fade"
+    ],
+    "context_adherence": "high"
+   },
+   {
+    "text": "[Breath]\n{everything stops}",
+    "duration_ms": 3000,
+    "positive_styles": [
+     "sudden full stop",
+     "silence",
+     "only a short reverb tail decaying",
+     "dead air before the logo"
+    ],
+    "negative_styles": [
+     "drums",
+     "bass",
+     "melody",
+     "vocals",
+     "riser"
+    ],
+    "context_adherence": "low"
+   },
+   {
+    "text": "[Resolve]\n{logo sting}",
+    "duration_ms": 4000,
+    "positive_styles": [
+     "single big final hit",
+     "resolving F minor chord ringing out",
+     "long reverb tail",
+     "clean ending"
+    ],
+    "negative_styles": [
+     "vocals",
+     "new groove",
+     "abrupt cut"
+    ],
+    "context_adherence": "medium"
+   }
+  ]
+ },
+ "model_id": "music_v2_5"
+}

@@ -1,0 +1,20 @@
+{
+ "_doc": "T5: Seedance 2.5 i2v one-take K0(S3A)->K2, 480p 5 s, end_image_url, generate_audio false, no aspect_ratio (not in schema).",
+ "defaults": {
+  "model": "bytedance/seedance-2.5/image-to-video",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "T5_seedance_K0K2",
+   "args": {
+    "image_url": "@file:frames/S3A.png",
+    "end_image_url": "@file:frames/K2.png",
+    "prompt": "One continuous shot: a single unbroken camera move, no cuts, no scene changes. Smooth gimbal, no shake. The camera cranes up slightly, then pushes in toward the candle while arcing gently right around it, at a slow constant speed from the first frame to the last. The candle stands still on the dark-oak sideboard; its small flame flickers softly; rain trickles down the window; the cold blue-grey window light stays the same. The candle is the exact product: a matte ivory hand-thrown stoneware vessel with SOL debossed small on the front, the only readable text; its shape never changes. Show the candle exactly once. Audio: none.",
+    "duration": 5,
+    "resolution": "480p",
+    "generate_audio": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+---
+import Base from './Base.astro';
+interface Props { title: string; description: string; eyebrow?: string; heading: string; lede?: string; noindex?: boolean; jsonLd?: object[] }
+const { title, description, eyebrow, heading, lede, noindex = false, jsonLd = [] } = Astro.props;
+---
+<Base title={title} description={description} noindex={noindex} jsonLd={jsonLd}>
+  <main id="content" class="page" tabindex="-1">
+    <header class="wrap page-head">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{heading}</h1>
+      {lede && <p class="lede">{lede}</p>}
+    </header>
+    <slot />
+  </main>
+  <script>
+    import '../scripts/pages';
+  </script>
+</Base>
+<style>
+  .page { padding-top: clamp(24px, 6vw, 64px); outline: none; }
+  .page-head { margin-bottom: clamp(32px, 6vw, 64px); }
+  .page-head h1 { max-width: 16ch; }
+  .page :global(.prose) { max-width: 720px; }
+  .page :global(.prose h2) { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-top: 1.6em; }
+  .page :global(.prose p), .page :global(.prose li) { color: var(--text-dim); }
+  .page :global(.prose strong) { color: var(--text); }
+  .page :global(.draft) { border: 1px dashed var(--vermilion); padding: 12px 14px; border-radius: 10px; color: var(--text); font-size: 0.9rem; }
+</style>

@@ -1,0 +1,200 @@
+{
+  "_about": "DEMO 4 - Category parody: 'The Mattress: A Trailer' (bed-in-a-box as a summer blockbuster). Unbranded product, no real brands. 15s, 9:16.",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "export": "instagram",
+  "output": "out/demo4_mattress_trailer.mp4",
+  "timeline": [
+    {
+      "clip": {
+        "color": "#000000",
+        "duration": 1.5
+      },
+      "overlays": [
+        {
+          "type": "title",
+          "text": "THIS SUMMER",
+          "position": "center",
+          "anim": "fade",
+          "size": 90,
+          "spacing": 12,
+          "start": 0.2
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo4/s2_box_doorstep_storm.mp4",
+        "in": 0.25,
+        "out": 2.75,
+        "effects": [
+          {
+            "type": "flash",
+            "at": [
+              0.6
+            ],
+            "dur": 0.08
+          },
+          {
+            "type": "letterbox",
+            "bars": 0.08
+          }
+        ]
+      },
+      "transition": "cut",
+      "overlays": [
+        {
+          "type": "text",
+          "text": "IT ARRIVED IN A BOX.",
+          "position": "upper",
+          "anim": "fade",
+          "size": 62,
+          "spacing": 6,
+          "start": 0.4
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo4/s3_box_bursts.mp4",
+        "in": 0.25,
+        "out": 2.75,
+        "velocity": "hero",
+        "effects": [
+          {
+            "type": "impact_shake",
+            "at": 0.3
+          },
+          {
+            "type": "letterbox",
+            "bars": 0.08
+          }
+        ]
+      },
+      "transition": "dip"
+    },
+    {
+      "clip": {
+        "path": "media/demo4/s4_mattress_unfurls.mp4",
+        "in": 0.25,
+        "out": 3.25,
+        "effects": [
+          {
+            "type": "motion_blur",
+            "frames": 5,
+            "start": 0.0,
+            "end": 1.0
+          },
+          {
+            "type": "letterbox",
+            "bars": 0.08
+          }
+        ]
+      },
+      "transition": "cut",
+      "overlays": [
+        {
+          "type": "text",
+          "text": "IT WAS ONLY THE BEGINNING.",
+          "position": "upper",
+          "anim": "fade",
+          "size": 62,
+          "spacing": 6,
+          "start": 0.5
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo4/s5_falls_back.mp4",
+        "in": 0.25,
+        "out": 2.05,
+        "speed": 0.6,
+        "effects": [
+          {
+            "type": "letterbox",
+            "bars": 0.08
+          }
+        ]
+      },
+      "transition": "dip"
+    },
+    {
+      "clip": {
+        "color": "#000000",
+        "duration": 2.5
+      },
+      "transition": "dip",
+      "overlays": [
+        {
+          "type": "title",
+          "text": "THE MATTRESS",
+          "position": "center",
+          "anim": "zoom_in",
+          "size": 110,
+          "spacing": 10
+        },
+        {
+          "type": "text",
+          "text": "Sleep is coming.",
+          "position": "lower",
+          "size": 54,
+          "start": 0.6
+        }
+      ]
+    }
+  ],
+  "overlays": [
+    {
+      "type": "text",
+      "text": "AI-generated category parody · not a real brand",
+      "position": "bottom",
+      "size": 30,
+      "start": 0,
+      "end": 15,
+      "box": true
+    }
+  ],
+  "effects": [
+    {
+      "type": "color",
+      "preset": "teal_orange"
+    },
+    {
+      "type": "film_grain",
+      "mode": "overlay",
+      "opacity": 0.3
+    }
+  ],
+  "audio": {
+    "music": {
+      "path": "media/music.wav",
+      "volume": 0.5,
+      "fade_in": 0.0,
+      "fade_out": 1.0
+    },
+    "sfx": [
+      {
+        "type": "impact",
+        "at": 1.5
+      },
+      {
+        "type": "impact",
+        "at": 3.8
+      },
+      {
+        "type": "riser",
+        "at": 7.17
+      },
+      {
+        "type": "impact",
+        "at": 12.4
+      }
+    ],
+    "sfx_on_cuts": "none",
+    "loudnorm": -14
+  }
+}
