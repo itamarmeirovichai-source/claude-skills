@@ -139,7 +139,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ## Checkpoint
 
-- phase: CLOSED (final) 2026-11-08 ~20:15 UTC, verdict N1 (D-024)
+- phase: CLOSED (final) 2026-11-08 ~20:50 UTC, verdict N1 (D-024..D-026); Databento batch done in a child session
 - running N: 295 (Q-0012..Q-0015 added 2026-11-08, all FAIL); bar z = 3.6807
 - spend total: $9.25 Databento (5 batch jobs 2026-11-08, ledger rows; credit $99.37; plan ceiling $79.37; $70.12 room left)
 - to resume later: new cloud session with DATABENTO_API_KEY=<new key> as an environment variable of THAT environment, then "continue from where you stopped" → start from `research/triage-2026-11-08.md` class C queue (C-4-01 $5, C-2-01 $7, C-1-01 $2, C-12-04 $28, C-2-05 $2)
