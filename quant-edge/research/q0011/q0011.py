@@ -139,7 +139,7 @@ def evaluate(B, start, end, bounds, years, heavy=True):
     bs["share_of_net"] = bs["net1_sum"] / net_tot if net_tot > 0 else np.nan
     o["by_sunday"] = bs.reset_index().assign(sunday=lambda x: x["sunday"].map({True: "Sunday (weekend reopen)", False: "Mon-Thu (daily reopen)"}))
     conc_inst = float(bi["share_of_net"].max()) if net_tot > 0 else np.nan
-    conc_sun = float(bs.set_index("sunday").get("share_of_net", pd.Series(dtype=float)).get(True, np.nan)) if net_tot > 0 else np.nan
+    conc_sun = float(bs["share_of_net"].get(True, np.nan)) if net_tot > 0 else np.nan
     o["conc"] = {"max_inst_share": conc_inst, "sunday_share": conc_sun,
                  "passed": bool(net_tot > 0 and conc_inst <= 0.5 and (np.isnan(conc_sun) or conc_sun <= 0.5))}
     lo, hi = bounds
