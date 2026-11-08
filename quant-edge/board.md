@@ -2,7 +2,7 @@
 
 *Every agent reads this, `WORK-LOG.md` and `registry.csv` before doing anything. The Director rewrites it after every run.*
 
-## PROGRAM CLOSED 2026-11-08 — verdict N1 (see reports/decision-memo-2026-11-08.md)
+## PROGRAM REOPENED 2026-11-08 (D-023): testing the remaining candidates. The N1 memo stays on file if nothing passes.
 
 ## Where we stood before closing
 
