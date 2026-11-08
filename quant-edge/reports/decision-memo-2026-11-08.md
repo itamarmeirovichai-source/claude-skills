@@ -1,8 +1,8 @@
-# מזכר הכרעה — תוכנית quant-edge, 8.11.2026
+# מזכר הכרעה — תוכנית quant-edge, 8.11.2026 (גרסה סופית, 22:15 שעון ישראל)
 
 ## ההכרעה: N1 — לא נמצא קצה, וההמלצה היא לעצור.
 
-התוכנית נסגרת היום לפי הוראתך ("היום צריך לסיים הכול"; תנאי סיום (c) בפרומפט). שום השערה לא עברה את השער, ואף אחת לא הגיעה אפילו למרחק 1.0 מהרף. **הסייג החשוב:** המועמדים החזקים ביותר שנמצאו בסריקה לא נבדקו, כי הם דורשים נתוני דקה או שעה של חוזים עתידיים מ־Databento, ואישורי הקרדיט והמפתח לא הגיעו. זו לא הוכחה שאין קצה; זו הוכחה שבמה שאפשר היה לבדוק בחינם, אין.
+התוכנית נסגרת היום לפי הוראתך ("היום צריך לסיים הכול"; תנאי סיום (c) בפרומפט). בערב היא נפתחה מחדש לבקשתך לבדוק את כל המועמדים שנשארו: כל 130 הפריטים מוינו, והאחרון שאפשר היה לבדוק בחינם (Q-0011) נבדק ונכשל. שום השערה לא עברה את השער, ואף אחת לא הגיעה אפילו למרחק 1.0 מהרף. **הסייג החשוב:** המועמדים החזקים ביותר שנמצאו בסריקה לא נבדקו, כי הם דורשים נתוני דקה או שעה של חוזים עתידיים מ־Databento, ואישורי הקרדיט והמפתח לא הגיעו. זו לא הוכחה שאין קצה; זו הוכחה שבמה שאפשר היה לבדוק בחינם, אין.
 
 ## 1. מה נבדק (כל שורה שנספרה)
 
@@ -16,10 +16,17 @@
 | Q-0007 | היפוך לילה מול יום ב־7 מדדי CFD | FTMO תוך־יומי | 2015–2024 | ‎−4.5 bp ליום (ברוטו ≈ 0) | ‎−4.81 | נכשל |
 | Q-0008 | נגד תנועות HSI אחרי שעות המסחר | FTMO תוך־יומי | 2016–2024 | ‎+3.6 bp לעסקה | 1.09 | נכשל |
 | Q-0009 | ORB של 30 דקות על ה־S&P (3 גרסאות) | FTMO תוך־יומי | — | נכשל בתוך המדגם, OOS לא נקרא | — | נכשל, משפחה נסגרה |
+| Q-0011 | נגד התנועה בפתיחה מחדש ב־18:00 ET, ‏US500/US100/זהב | FTMO תוך־יומי | 2013–2024 | Sharpe נטו ‎−0.14 | ‎−0.52 | נכשל |
 
-N סופי: 290 מתוך 430 (280 בירושה + 10 בתוכנית). הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
+N סופי: 291 מתוך 430 (280 בירושה + 11 בתוכנית). הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
 
-## 2. מה לא נבדק כי הנתונים לא נקנו
+## 2. מה לא נבדק
+
+**מיון כל 130 הפריטים שנותרו (`research/triage-2026-11-08.md`):** 1 אפשר היה לבדוק בחינם (Q-0011, נבדק ונכשל); 0 דרשו רק הורדה חינמית בכוח בדיקה שווה; 10 דורשים Databento; 119 לא שווים ספירה (דומים למשפחות סגורות, דליפת עתיד מובנית, עלויות, או כוח בדיקה מתחת ל־5%).
+
+**למה Databento לא נפתח הערב:** הקרדיט אושר ($99.37, תקרת תוכנית $79.37), אבל החיבור נכשל: טופס הסודות לא מאפשר סיסמה ריקה, ש־Databento דורש; ומשתנה הסביבה הוזן בסביבת ה־Desktop ולא בסשן הענן. **המפתח הופיע בצילום מסך בצ'אט ויש להחליף אותו.**
+
+### מה לא נבדק כי הנתונים לא נקנו
 
 | עדיפות | מועמד | נתונים נדרשים | עלות משוערת ב־Databento |
 |---|---|---|---|
@@ -34,7 +41,7 @@ N סופי: 290 מתוך 430 (280 בירושה + 10 בתוכנית). הרף נש
 
 ## 3. "כמעט"
 
-אין אף אחד. הקרוב ביותר הוא Q-0008 עם t = 1.09, רחוק מ־2.68 (רף פחות 1.0). תחת השערת האפס, הסיכוי שלפחות אחת משבע הבדיקות תגיע ל־t ≥ 2.68 הוא כ־3%; התוצאה שראינו תואמת לגמרי "אין כלום".
+אין אף אחד. הקרוב ביותר הוא Q-0008 עם t = 1.09 (Q-0011: ‎−0.52), רחוק מ־2.68 (רף פחות 1.0). תחת השערת האפס, הסיכוי שלפחות אחת משבע הבדיקות תגיע ל־t ≥ 2.68 הוא כ־3%; התוצאה שראינו תואמת לגמרי "אין כלום".
 
 ## 4. הסיבות המבניות, עם מספרים
 
@@ -64,7 +71,7 @@ N סופי: 290 מתוך 430 (280 בירושה + 10 בתוכנית). הרף נש
 
 ## English appendix
 
-**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c).** Nothing passed Gate v2; no near-miss (best t = 1.09 vs bar 3.6807). Final N = 290 of N_total 430. Databento spend $0.00 (credit and key never confirmed). Hold-out never read.
+**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, not bought because the credential could not be connected; 119 not worth a count).** Nothing passed Gate v2; no near-miss (best t = 1.09 vs bar 3.6807). Final N = 291 of N_total 430. Databento spend $0.00 (credit and key never confirmed). Hold-out never read.
 
 | id | hypothesis | firm structure | OOS | net (1x) | t_min | 2x-cost t | verdict |
 |---|---|---|---|---|---|---|---|
@@ -76,6 +83,7 @@ N סופי: 290 מתוך 430 (280 בירושה + 10 בתוכנית). הרף נש
 | Q-0007 | cross-index CO-OC reversal, 7 index CFDs | FTMO intraday CFD | 2015..2024 | −4.52 bp/day (gross +0.01) | −4.81 | −9.61 | FAIL |
 | Q-0008 | HSI after-hours fade on HK50 | FTMO intraday CFD | 2016-11..2024 | +3.64 bp/trade (431) | 1.09 | 0.05 | FAIL |
 | Q-0009 | prereg_orb30 A/B/C | FTMO intraday CFD | not read | IS A: −0.120 R, p5 −0.167 R | — | — | FAIL at stage 1; family closed |
+| Q-0011 | 18:00 ET reopen fade, US500/US100/XAUUSD | FTMO intraday CFD | 2013..2024 | daily net Sharpe −0.136 | −0.52 | −1.55 | FAIL |
 
 Disclosures: CAL-D double OOS read after a pre-P&L crash; HistData DST defect affecting ≤ 6 events in each of Q-0001/Q-0003 (bound shows verdicts cannot flip; no re-read); Q-0001/Q-0003/Q-0007 registered eligibility filters failed the truncation harness by construction, ex-ante versions printed and no better; gateway parsing fixes made before any batch-1 read. Null-expected near-misses across the 7 tests ≈ 0.03; observed 0.
 

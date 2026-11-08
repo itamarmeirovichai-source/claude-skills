@@ -2,7 +2,7 @@
 
 *Every agent reads this, `WORK-LOG.md` and `registry.csv` before doing anything. The Director rewrites it after every run.*
 
-## PROGRAM REOPENED 2026-11-08 (D-023): testing the remaining candidates. The N1 memo stays on file if nothing passes.
+## PROGRAM CLOSED (final) 2026-11-08 — verdict N1 (D-024). Memo: reports/decision-memo-2026-11-08.md. Resume path: WORK-LOG checkpoint.
 
 ## Where we stood before closing
 
