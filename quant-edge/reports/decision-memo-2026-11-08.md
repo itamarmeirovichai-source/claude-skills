@@ -2,7 +2,7 @@
 
 ## ההכרעה: N1 — לא נמצא קצה, וההמלצה היא לעצור.
 
-התוכנית נסגרת היום לפי הוראתך ("היום צריך לסיים הכול"; תנאי סיום (c) בפרומפט). בערב היא נפתחה מחדש לבקשתך לבדוק את כל המועמדים שנשארו: כל 130 הפריטים מוינו, והאחרון שאפשר היה לבדוק בחינם (Q-0011) נבדק ונכשל. שום השערה לא עברה את השער, ואף אחת לא הגיעה אפילו למרחק 1.0 מהרף. **הסייג החשוב:** המועמדים החזקים ביותר שנמצאו בסריקה לא נבדקו, כי הם דורשים נתוני דקה או שעה של חוזים עתידיים מ־Databento, ואישורי הקרדיט והמפתח לא הגיעו. זו לא הוכחה שאין קצה; זו הוכחה שבמה שאפשר היה לבדוק בחינם, אין.
+התוכנית נסגרת היום לפי הוראתך ("היום צריך לסיים הכול"; תנאי סיום (c) בפרומפט). בערב היא נפתחה מחדש לבקשתך לבדוק את כל המועמדים שנשארו: כל 130 הפריטים מוינו, והאחרון שאפשר היה לבדוק בחינם (Q-0011) נבדק ונכשל. ארבעת המועמדים החזקים שדרשו נתונים בתשלום נקנו מ־Databento ‏($9.25 מתוך הקרדיט) ונבדקו (Q-0012 עד Q-0015), וכולם נכשלו. לבסוף נבדקה "דרך 1" — הון עצמי, תיק Risk Parity רב־נכסי עם מסנן מגמה (Q-0016). היא הרוויחה מעל מזומן (t = 2.02), אבל זה רחוק מהרף 3.68, והיא הייתה **גרועה** מ־60/40 פשוט באותה תנודתיות. שום השערה לא עברה את השער. **הסייג:** זו לא הוכחה שאין קצה בשום מקום; זו הוכחה שבכל מה שנבדק כאן, עם הנתונים והתקציב שהיו, אין.
 
 ## 1. מה נבדק (כל שורה שנספרה)
 
@@ -46,7 +46,7 @@ N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה 
 
 ## 3. "כמעט"
 
-אין אף אחד. הקרובים ביותר: Q-0013 עם t = 1.31 ו־Q-0008 עם t = 1.09, שניהם רחוקים מ־2.68, רחוק מ־2.68 (רף פחות 1.0). תחת השערת האפס, הסיכוי שלפחות אחת משבע הבדיקות תגיע ל־t ≥ 2.68 הוא כ־3%; התוצאה שראינו תואמת לגמרי "אין כלום".
+אין אף אחד. הקרוב ביותר: Q-0016 (דרך 1, הון עצמי) עם t = 2.02, ואחריו Q-0013 עם t = 1.31. שניהם מתחת ל־2.68 (הרף פחות 1.0). וגם Q-0016 לא באמת "כמעט": t שלו מודד רווח מעל מזומן, ומול 60/40 באותה תנודתיות ה־alpha שלו לא מובהק (t = 0.79) והוא הניב פחות. התוצאה תואמת "אין כלום".
 
 ## 4. הסיבות המבניות, עם מספרים
 
@@ -76,7 +76,7 @@ N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה 
 
 ## English appendix
 
-**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Nothing passed Gate v2; no near-miss (best t = 1.09 vs bar 3.6807). Final N = 296 of N_total 430. Databento spend $9.25 of $99.37 credit. Databento spend $0.00 (credit and key never confirmed). Hold-out never read.
+**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Path 1 (own capital, Q-0016) was then tested at Itamar's request and also failed. Nothing passed Gate v2; no near-miss (best t = 2.02 for Q-0016 vs bar 3.6807, and its alpha vs 60/40 at equal vol is t 0.79). Final N = 296 of N_total 430. Databento spend $9.25 of $99.37 credit. Hold-out never read.
 
 | id | hypothesis | firm structure | OOS | net (1x) | t_min | 2x-cost t | verdict |
 |---|---|---|---|---|---|---|---|
