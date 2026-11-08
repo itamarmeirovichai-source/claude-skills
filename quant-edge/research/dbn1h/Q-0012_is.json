@@ -1,0 +1,30 @@
+{
+ "harness": {
+  "truncation": 30,
+  "perturbation": 0,
+  "n": 30,
+  "truncation_passed": false,
+  "perturbation_passed": true
+ },
+ "harness_ex_ante": {
+  "truncation": 0,
+  "perturbation": 0,
+  "n": 30,
+  "truncation_passed": true,
+  "perturbation_passed": true
+ },
+ "planted": {
+  "truncation": 30,
+  "perturbation": 28,
+  "n": 30,
+  "truncation_passed": false,
+  "perturbation_passed": false
+ },
+ "is_days": 1063,
+ "is_net_bp": -12.592647987659243,
+ "is_t": -10.154631388386818,
+ "terciles": [
+  0.0064150069639982085,
+  0.009209566281938066
+ ]
+}

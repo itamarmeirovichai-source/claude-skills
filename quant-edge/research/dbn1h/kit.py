@@ -43,13 +43,18 @@ def sessions(start, end):
     return [d.date() for d in s], early
 
 
-def ewma_prev(values: pd.Series, com, kind, min_periods=40):
-    """EWMA RMS ('rms') or s.d. ('std') through the previous observation (shifted by one)."""
+def ewma_prev(values: pd.Series, com, kind, min_periods=40, index=None):
+    """EWMA RMS ('rms') or s.d. ('std') of the observations strictly before each target date (as-of lookup, so a
+    target date whose own observation is missing still gets the value through its last earlier observation)."""
+    values = values.dropna().sort_index()
     if kind == "rms":
         r = np.sqrt((values ** 2).ewm(com=com, min_periods=min_periods).mean())
     else:
         r = values.ewm(com=com, min_periods=min_periods).std()
-    return r.shift(1)
+    idx = list(index) if index is not None else list(values.index)
+    pos = np.searchsorted(np.array(r.index, dtype=object), np.array(idx, dtype=object), side="left") - 1
+    vals = r.to_numpy()
+    return pd.Series([vals[p] if p >= 0 else np.nan for p in pos], index=idx)
 
 
 def cost_frac(price, slip_pts, point_value, comm=2.50, mult=1.0):
