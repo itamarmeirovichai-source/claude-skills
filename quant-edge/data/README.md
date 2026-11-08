@@ -6,11 +6,11 @@ Market data lives under `~/quant-edge-data/` (DATA_ROOT), never in the repositor
 
 | field | value | source |
 |---|---|---|
-| remaining credit (USD) | UNCONFIRMED | portal Billing page, read by Itamar |
+| remaining credit (USD) | 99.37 (screenshot from Itamar, 2026-11-08 ~20:00 UTC; current balance $0.00 due 2026-12-05) | portal Billing page, read by Itamar |
 | credit expiry date | UNCONFIRMED | same |
 | signup date | UNCONFIRMED | same |
-| DATABENTO_PLAN_CEILING_USD | not set (= min(94, credit − 20)) | PARAMETERS.md |
-| DATABENTO_HARD_CAP_USD (portal monthly limit) | not set (= min(105, 0.85 × credit)) | PARAMETERS.md |
+| DATABENTO_PLAN_CEILING_USD | 79.37 (= min(94, 99.37 − 20)) | PARAMETERS.md |
+| DATABENTO_HARD_CAP_USD (portal monthly limit) | 84.46 (= 0.85 × 99.37); Itamar asked to set the portal limit to $84; NOT yet confirmed | PARAMETERS.md |
 | pay-as-you-go state | unknown (ask: is a request beyond the credit refused when it is off?) | |
 | key present in environment | no (2026-11-03) | `env` check, value never read |
 
