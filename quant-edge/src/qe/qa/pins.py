@@ -33,3 +33,14 @@ def verify(id_: str, dataset_id: str, *, registry_path=None, manifest_path=None,
     if not ok:
         raise RuntimeError(f"sha256 mismatch for {dataset_id}: {res}")
     return res
+
+
+def manifest_vs_disk(dataset_id: str, *, manifest_path=None, data_root=None) -> dict:
+    """sha256 in the manifest vs the file on disk (for rows registered before their data existed, pinned at ingest)."""
+    import csv as _csv
+    from .. import paths as _p
+    from ..ingest import common as _c
+    man = {r["dataset_id"]: r for r in _csv.DictReader(open(manifest_path or _p.MANIFEST_CSV, newline="", encoding="utf-8"))}
+    from pathlib import Path as _P
+    rec = _c.sha256_path(_P(data_root or _p.DATA_ROOT) / man[dataset_id]["path"])
+    return {"manifest": man[dataset_id]["sha256"], "recomputed": rec, "ok": man[dataset_id]["sha256"] == rec}

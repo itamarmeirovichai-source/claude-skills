@@ -18,12 +18,11 @@ def gate_rows(r, keys):
 
 
 def manifest_lines(datasets):
-    man = {row["dataset_id"]: row for row in csv.DictReader(open(ROOT / "data/manifest.csv"))}
+    from qe.qa import pins
     lines = []
     for ds in datasets:
-        p = Path.home() / "quant-edge-data" / man[ds]["path"]
-        rec = subprocess.check_output(["sha256sum", str(p)], text=True).split()[0]
-        lines.append(f"- Data `{ds}` sha256: manifest {man[ds]['sha256']} = recomputed {rec} (ok={man[ds]['sha256'] == rec}).")
+        v = pins.manifest_vs_disk(ds)
+        lines.append(f"- Data `{ds}` sha256: manifest {v['manifest']} = recomputed {v['recomputed']} (ok={v['ok']}).")
     return "\n".join(lines)
 
 
