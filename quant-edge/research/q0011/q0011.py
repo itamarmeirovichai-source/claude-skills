@@ -376,7 +376,8 @@ def main(stage, cmd):
     isj = json.loads((HERE / "Q-0011_is.json").read_text())
     bounds = tuple(isj["bounds"])
     if stage == "dryrun":
-        B = Book(load_all("is"))
+        P = load_all("is")
+        B = Book({i: P[i] for i in DS})
         a, b = "2011-07-01", IS_END
         yrs = (pd.Timestamp(b) - pd.Timestamp(a)).days / 365.25
         o = evaluate(B, a, b, bounds, yrs)
