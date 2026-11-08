@@ -54,6 +54,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - D-019 (2026-11-06) HistData clock defect found by the batch-1b ingest: HistData files follow US DST dates through 2018 and EU DST dates from 2019, so the 2026-11-04 datasets histdata_fx_1m_* are 1 hour early in the 2019–2024 US/EU mismatch weeks (2–3 weeks a year). Affected batch-1 events: Q-0001 October month-ends 2019–2024 (≤ 6 of ≈ 117), Q-0003 March FOMC statements 2019–2024 (≤ 6 of ≈ 88). Decision: no re-read (it would be a second OOS read for verdicts that cannot flip); the FAIL verdicts stand with the defect disclosed in both result files. Crude bound: even if every affected event moved by 4 per-event standard deviations in the favourable direction, t would move by ≤ 6·4/√88 ≈ 2.6, leaving Q-0003 below 3.68 (0.95 + 2.6 = 3.5) and Q-0001 far below. All later rows use the corrected `histdata_rule` datasets; the old ids stay pinned for reproducibility only.
 - D-020 (2026-11-06) Low-power rows are registered when they are the best remaining free-data candidates: N_total is fixed at 430, so a count spent costs no strictness; 145 counts remain against far fewer candidates. A row with power ≈ 0 is not registered (Q-0010).
 - D-021 (2026-11-06) After Q-0007 (gross ≈ 0 on SPX/NSX/JPX/UKX/FRX/GRX/ETX CFDs), C-4-01 on CME futures stays registrable (different venue and instrument set, 1-hour data) but its plausibility drops from medium to low; it is still the first Databento purchase because it costs ≈ $5 and would settle the family.
+- D-022 (2026-11-08) PROGRAM CLOSED at Itamar's instruction ("today we need to finish everything", end condition (c)). Verdict N1; memo `reports/decision-memo-2026-11-08.md`. Databento never confirmed; $0 spent; hold-out never read; N final 290. Pending scheduled check-in for 2026-11-13 cancelled.
 - D-016 (2026-11-04) Economist re-run accepted as final (report complete when the agent died): $20k/slot-year at FTMO Swing needs net
   Sharpe 2.44 / 1.95 / 1.45 at 12 / 15 / 20% vol pre-tax; after tax 3.16 / 2.53 / 1.89 (25%) or > 4.0 / 3.47 / 2.61 (47%); planning
   number at 20% vol after tax = 2.6 until the accountant answers. Required-Sharpe table on the board refreshed from it.
@@ -121,7 +122,7 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 - [ ] 6.1 Real order path in simulation; tolerance written before the first fill.
 
 ### Phase 7 — decision memo (by 2026-12-19)
-- [ ] 7.1 One of S1 / S2 / P1 / N1 in Hebrew with an English appendix.
+- [x] 7.1 N1 decision memo 2026-11-08 → `reports/decision-memo-2026-11-08.md` (Hebrew + English appendix).
 
 ### Standing (every day)
 - [x] G.1 IBKR connectivity diagnosis (2026-11-06): `engineering/ibkr-connectivity-diagnosis.md` (Hebrew guide + English appendix), `engineering/ibkr_watchdog.py` (read-only logger, selftest 26/26), `engineering/bot-patch-plan.md`. No IBKR reset window falls 12:00–20:00 Israel; leading hypotheses: a second login on the same username, the bot's own 09:20 ET start (clientId clash / second instance), Gateway auto-restart set in the wrong time zone; the 32-minute lag most likely comes from yfinance, not IBKR. IBKR pages 403 from here: reset/re-login facts are search snippets. Next: Itamar runs the watchdog for five sessions.
@@ -129,11 +130,11 @@ Recreate them with `quant-edge/tools/fetch_inherited.sh` if missing (they do not
 
 ## Checkpoint
 
-- phase: 1 (sweep) + 2 (data) groundwork; Day 0 closed except Gate 0 bookkeeping
-- running N: 285 (280 inherited + CAL-D + Q-0001/3/5/6); budget left 145; N_total 430; bar z = 3.6807 (two-count 3.8538)
-- spend total: $0.00 (Databento ceiling not yet set: credit unconfirmed)
-- open decision requests (date sent): Day-0 items (1)–(4) (2026-11-03); send the firm letters this week + licence ruling on third-party copies (2026-11-04)
-- next action (2026-11-06): sequential (D-017): merge+prioritize agent → candidates.md; then Dept E prescreen; then register CAL-D + batch 1; data run resumes after. Previously: when the sweep returns, read prescreen and register CAL-D + batch 1 (Gate 1); then Rules Keeper matrix and Department G IBKR diagnosis.
+- phase: CLOSED (2026-11-08, verdict N1, D-022)
+- running N: 290 final (280 inherited + 10 program); bar z = 3.6807 unchanged
+- spend total: $0.00
+- open decision requests: none (program closed); if Itamar reopens, start from `research/prescreen-2026-11-06.md` §4 (blocked-paid list) after the Databento Day-0 items
+- next action: none
 
 ## Agents in flight
 

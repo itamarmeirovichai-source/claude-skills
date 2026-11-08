@@ -2,7 +2,9 @@
 
 *Every agent reads this, `WORK-LOG.md` and `registry.csv` before doing anything. The Director rewrites it after every run.*
 
-## Where we stand (2026-11-04, resumed after the usage-limit stop of 2026-11-03)
+## PROGRAM CLOSED 2026-11-08 — verdict N1 (see reports/decision-memo-2026-11-08.md)
+
+## Where we stood before closing
 
 - **Edge: nothing tested yet in this program; nothing has ever passed a gate (inherited N = 280 variants, 105 rows, 0 passes).**
 - **Running N = 280. N_total = 430. Bar z = 3.6807 one-sided (3.8538 for an unfixed sign). Bootstrap ≥ 430,000 draws. Fixed; never lowered.**
