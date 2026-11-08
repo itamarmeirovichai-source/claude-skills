@@ -163,8 +163,8 @@ def trades(t: pd.DataFrame, spikes=None, cost_bp: float = COST_BP) -> pd.DataFra
     x["spike_drop"] = False
     if spikes is not None and len(spikes):
         s = set(int(i) for i in spikes)
-        x["spike_drop"] = [(int(a) in s) or (int(b) in s) for a, b in zip(x["entry_i"], x["exit_i"])]
-    x = x[~x["spike_drop"]].copy()
+        x["spike_drop"] = np.array([(int(a) in s) or (int(b) in s) for a, b in zip(x["entry_i"], x["exit_i"])], dtype=bool)
+    x = x[~x["spike_drop"].to_numpy(bool)].copy()
     x["gross"] = x["w"] * x["side"] * x["r"]
     x["cost1"] = x["w"] * 2 * cost_bp * 1e-4
     x["net1"] = x["gross"] - x["cost1"]
