@@ -21,8 +21,9 @@
 | Q-0013 | סוף חודש באג"ח האוצר (ZN/UB) | חוזים | 2015–2024 | ‎+7.9 bp לאירוע | 1.31 | נכשל |
 | Q-0014 | תגובה לדוח היבולים של USDA (ZC/ZS) | חוזים | 2015–2024 | ‎−10.7 bp לאירוע | ‎−1.58 | נכשל |
 | Q-0015 | פרמיית יום דוח האחסון של גז טבעי (NG) | חוזים | 2019–2024 | ‎−9.8 bp לאירוע | ‎−2.53 | נכשל |
+| Q-0016 | דרך 1 — הון עצמי: Risk Parity על 7 סוגי נכסים + מסנן מגמה של 10 חודשים | הון עצמי ב־IBKR | 2010–2024 | Sharpe נטו 0.52 (60/40 באותה תנודתיות: 0.87) | 2.02 | נכשל, וגם נחות מ־60/40 |
 
-N סופי: 295 מתוך 430 (280 בירושה + 15 בתוכנית). הוצאה ב־Databento: ‏$9.25 מהקרדיט, על נתוני שעה של 10 חוזים. הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
+N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה ב־Databento: ‏$9.25 מהקרדיט, על נתוני שעה של 10 חוזים. הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
 
 ## 2. מה לא נבדק
 
@@ -75,7 +76,7 @@ N סופי: 295 מתוך 430 (280 בירושה + 15 בתוכנית). הוצאה 
 
 ## English appendix
 
-**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Nothing passed Gate v2; no near-miss (best t = 1.09 vs bar 3.6807). Final N = 295 of N_total 430. Databento spend $9.25 of $99.37 credit. Databento spend $0.00 (credit and key never confirmed). Hold-out never read.
+**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Nothing passed Gate v2; no near-miss (best t = 1.09 vs bar 3.6807). Final N = 296 of N_total 430. Databento spend $9.25 of $99.37 credit. Databento spend $0.00 (credit and key never confirmed). Hold-out never read.
 
 | id | hypothesis | firm structure | OOS | net (1x) | t_min | 2x-cost t | verdict |
 |---|---|---|---|---|---|---|---|
@@ -92,6 +93,7 @@ N סופי: 295 מתוך 430 (280 בירושה + 15 בתוכנית). הוצאה 
 | Q-0013 | C-1-01 month-end Treasury index extension, ZN/UB 1h | futures | 2015..2024 | +7.92 bp/event | 1.31 | −0.30 | FAIL |
 | Q-0014 | C-2-05 USDA Crop Progress reaction, ZC/ZS 1h | futures | 2015..2024 | −10.73 bp/event | −1.58 | −3.64 | FAIL |
 | Q-0015 | C-2-01 NG storage-day premium, NG 1h | futures | 2019..2024 | −9.84 bp/event | −2.53 | −2.99 | FAIL |
+| Q-0016 | path 1, own capital: risk parity of 7 asset classes + 10-month trend filter, 10% vol target | own capital | 2010..2024 | excess Sharpe 0.52 (60/40 equal vol 0.87; alpha t 0.79) | 2.02 | 1.94 | FAIL; also worse than 60/40 |
 
 Disclosures: CAL-D double OOS read after a pre-P&L crash; HistData DST defect affecting ≤ 6 events in each of Q-0001/Q-0003 (bound shows verdicts cannot flip; no re-read); Q-0001/Q-0003/Q-0007 registered eligibility filters failed the truncation harness by construction, ex-ante versions printed and no better; gateway parsing fixes made before any batch-1 read. Null-expected near-misses across the 7 tests ≈ 0.03; observed 0.
 
