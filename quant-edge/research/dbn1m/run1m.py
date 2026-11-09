@@ -15,6 +15,8 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE.parent / "dbn1h"))
+sys.path.insert(0, str(HERE.parents[1] / "src"))
 import kit  # noqa: E402
 import kit1m as K  # noqa: E402
 import rows1m as R  # noqa: E402

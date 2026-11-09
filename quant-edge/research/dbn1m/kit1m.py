@@ -34,7 +34,7 @@ class Frame:
         self.open = df["open"].to_numpy(float)
         self.close = df["close"].to_numpy(float)
         self.vol = df["volume"].to_numpy(float)
-        self.iid = df["instrument_id"].to_numpy()
+        self.iid = df["instrument_id"].to_numpy().astype(np.int64)
 
     def subset(self, mask):
         f = Frame.__new__(Frame)
