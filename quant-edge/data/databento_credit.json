@@ -1,0 +1,9 @@
+{
+  "remaining_credit_usd": 99.37,
+  "expiry_date": "unconfirmed (not shown on the billing card; current cycle due 2026-12-05)",
+  "signup_date": "unconfirmed",
+  "portal_monthly_limit_usd": 84.0,
+  "confirmed_on": "2026-11-08 (credit: screenshot from Itamar ~20:00 UTC; monthly limit $84: Itamar wrote 'ready' after being asked to set it, ~20:15 UTC)",
+  "pay_as_you_go": "unknown",
+  "key_location": "environment variable DATABENTO_API_KEY on cloud environment 'AI Trading' (value never seen); old key shown in a chat screenshot was rotated by Itamar on 2026-11-08"
+}

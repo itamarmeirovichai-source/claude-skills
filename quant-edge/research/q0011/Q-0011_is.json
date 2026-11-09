@@ -1,0 +1,57 @@
+{
+ "leak": {
+  "as registered [SPX]": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "as registered [NSX]": {
+   "truncation_passed": true,
+   "truncation_checked": 6,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 6,
+   "perturbation_violations": 0
+  },
+  "as registered [XAU]": {
+   "truncation_passed": true,
+   "truncation_checked": 23,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 23,
+   "perturbation_violations": 0
+  },
+  "planted look-ahead (must FAIL) [SPX]": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "planted look-ahead (must FAIL) [NSX]": {
+   "truncation_passed": false,
+   "truncation_checked": 5,
+   "truncation_violations": 2,
+   "perturbation_passed": false,
+   "perturbation_checked": 5,
+   "perturbation_violations": 3
+  },
+  "planted look-ahead (must FAIL) [XAU]": {
+   "truncation_passed": false,
+   "truncation_checked": 13,
+   "truncation_violations": 5,
+   "perturbation_passed": false,
+   "perturbation_checked": 13,
+   "perturbation_violations": 5
+  }
+ },
+ "is_info": "eligible evenings {'SPX': 0, 'NSX': 76, 'XAU': 335}, legs 29 ({'XAU': 23, 'NSX': 6}); net 1x 4.61 bp/leg, t 0.27",
+ "bounds": [
+  1.8724150564548858,
+  2.219525487001915
+ ]
+}

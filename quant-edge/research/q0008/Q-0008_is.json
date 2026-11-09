@@ -1,0 +1,34 @@
+{
+ "leak": {
+  "as registered": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "planted look-ahead (must FAIL)": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 14,
+   "perturbation_passed": false,
+   "perturbation_checked": 30,
+   "perturbation_violations": 16
+  }
+ },
+ "is_info": "888 sessions, status {'ok': 839, 'no_entry_bar': 22, 'no_day_close': 12, 'prev_half_day': 8, 'aht_short': 5, 'prev_too_far': 2}, eligible 799, trades 116; net 1x -12.61 bp/trade, t -1.78",
+ "bounds": [
+  0.008226140618317942,
+  0.010874805567316759
+ ],
+ "pre_is": {
+  "sessions": 888,
+  "sessions_with_day_bar": 888,
+  "modal_first_bar": "09:15",
+  "share_first_bar_0913_0917": 0.990990990990991,
+  "gap_sessions": 869,
+  "share_gap_visible": 0.08975834292289989,
+  "passed": false
+ }
+}

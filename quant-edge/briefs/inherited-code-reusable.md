@@ -1,0 +1,28 @@
+# Inherited code worth reusing (Scribe, 2026-11-03)
+
+Paths: PF=`~/quant-edge-inherited/pr4/skills/prop-fleet`, S=`PF/scripts`, D=`PF/agents/daily`. The worktree is read-only (WORK-LOG D-003): copy into `quant-edge/src/qe/` or scratch, never import in place. `S/` docstrings are Hebrew; the old repo ran Python 3.11 (`D/2026-10-05/engineer/route.md`), this one 3.13.
+
+## Gate and statistics
+- `D/2026-10-05/eng_head/ledger_gate.py`: `ledger_n(path)` (strict `^[1-9]\d*$`, raises on the count-0 rows D3-00/E2-00/F1-00), `alpha_z(n)`, `one_sided_lb(r, days, n, seed, chunk)` day-clustered bootstrap with ≥ 50/alpha draws, `passes_rule3`; 10 tests (`test_ledger_gate.py`, its real-ledger test asserts N=173, stale). `PF/agents/finalize.py` instead uses `sum(int(count or 1))`; neither was ported to `S/gate.py`. This program's `quant-edge/tools/registry_n.py` replaces both.
+- `S/gate.py` is the fleet-expansion ladder, not the research gate; its `bootstrap_ci` (two-sided 95% iid, 20,000 draws) and `S/tjr_backtest.boot_mean` (5,000 draws) must not be used for rule 3 (`PF/agents/board.md` "Gate rule 3 in code").
+- `D/2026-10-06-0247/statistician/test_future_truncation.py`: `truncation_violations(decide, days)`, where `decide(day_bars)` returns None or a dict with `entry_ts`, `side`, `entry`, `stop`; `synthetic_days()` builds random-walk sessions with missing bars.
+- `S/hypotheses.py` (`H` dataclass with prior, effect, cost, voi; `bonferroni_threshold`), `S/detect.py` (horizons in days-with-a-trade), `S/claims.py` (recomputes every arithmetic claim in a write-up).
+
+## Loaders and data checks
+- `D/orb-H0020/loaders.py` (copies in `vwap-H0021`, `vwap30-H0022`, `gamma-H0019`, `w2-events`): `load_d1/d2/d3()` → o,h,l,c indexed by naive NY bar-open time, sha256 `_check`, `roll_excluded(dates)`, `sessions(m)`. Copy it; `D/gapfade-H0012/gapfade.py` asserts N == 196 on import.
+- `D/2026-10-06-0247/data_hunter/loader_spec.txt`: the contract for the loader never built (ts_ny, session_date, is_rth, src, adjusted, roll_flag, expiry_gap, rth_complete; integrity, DST and truncation tests; licence flag). Use it for the program's `load(id, window)` gateway (WORK-LOG step 2.2).
+- Fetchers with commit and sha256 pins: `D/2026-10-04/data_fetch.py`, `D/2026-10-05/data_hunter/data_fetch_more.py`, `D/2026-10-06-0247/data_hunter/data_fetch_d3.py`.
+- `D/w1-breadth/`: `common.py` (MARKETS table with session, tz, cost; `mark`, `fill`, `sessions`, `session_bars`), `strategies.py` (`dec_gao/dec_rest/dec_twap/dec_orb`, `execute`), `breadth.py` (eligibility, held-out draw, basket, truncation test), `fetch.py` (manifest), `data_check.py` and `clock_xcorr.py` (outcome-free clock checks), `verifier/verify.py`.
+- `D/w1-fxtrend/data.py` `panel()` (financed daily returns from FRED, Yahoo and OECD rates with a one-month lag) and `fxtrend.py` (`t_stats` NW, `boot_mean_p5` block, `future_tests`, `prop_sim`/`prop_grid` FTMO-type simulation). `D/w1-crypto/download.py`, `d3lib.py`, `redteam/` fixes. `D/w2-events/calendar_build.py`, `events_bt.py` (blackout windows; its `truncation_test` is weaker than its label, `redteam/findings.md` T1).
+- `S/trend_backtest.py` (`load_futures`, `load_asset_classes` with the observed mask, `tsmom_positions`, `stationary_bootstrap_sharpe`, `prop_survival`), `S/stack_backtest.py` (`vol_scale` past-only, `xs_component`, `overnight_returns`, `required_sharpe_table`), `S/tjr_backtest.py` (`load_minutes` SPXUSD, `COST_PTS` 0.6, `MIN_RISK` 1.0); 23, 12 and 5 tests.
+
+## Economics models
+- `D/w3-volrisk/stress_model.py`: `eval_sim/funded_sim/economics/capped/slot_years(..., stress=dict)`; `stress=None` reproduces D1 bit for bit; 16 tests; `scenarios.py` holds SCEN and the FIX dict for F2-12 (daily t3 with Brownian path, GARCH cap 100, post-payout reference); `make_report.py` omits rule (a) and the F2-11 verdict (`redteam-model.md` §10).
+- `D/w1-prop/prop_model.py` (`min_sharpe` bisection, 14 tests) with `firms.py` (16 programmes from `rules.csv`, 369 cells dated 2026-10-11: label every parameter "inherited"). `D/2026-10-06-0247/economist/fleet_model.py`: the Apex model with firm plan keys, `cost_in_R`, fractional `trades_day`, `dll`, `firm_exit_payouts`, plus `test_fleet_model.py`.
+
+## Firms and execution
+- `D/w4-vrp/symbol_gate.py`: fetches FTMO `wp-json/ftmo/symbols` and the futures firms' product pages and greps a pattern; the one-line instrument re-check.
+- `D/2026-10-05/engineer/broker_contract.py` (17 tests): broker-neutral `BracketIntent` → project-x-py (absolute prices, BUY=0) and async-rithmic (tick offsets, BUY=1, `manual_or_auto` must be AUTO=2) kwargs; the two libraries need separate venvs (`route.md`). `S/integrity.py` (`compute_dollar_risk`, `assert_pnl_sign`, `calc_pnl_r`, `validate_trade_record`; 20 tests) validates trade records. `S/futures_bars.py` pulls IBKR 5m dated contracts with a volume-based front pick but is hard-coded to May–July 2026 and port 4002.
+
+## Daily workflow
+- `~/quant-edge-inherited/pr4/.claude/workflows/prop-fleet-daily.js`: Workers (8, JSON schema with `hypotheses_tested`) → Heads (3, each sees every worker) → Referee (3 independent verdicts per tested hypothesis, unanimous pass) → Director (board, ledger rows, Hebrew report); args `{date, n}`, default `nPrior = 173` (stale); files written only by `finalize.py`. A usable template after replacing ROOT, N and the gate text (it names the 0.6 pt cost model and SPXUSD 2010–2018 as defaults). Caveat: its 5 Oct run delivered none of four assigned engineering tasks (`PF/agents/board.md`).

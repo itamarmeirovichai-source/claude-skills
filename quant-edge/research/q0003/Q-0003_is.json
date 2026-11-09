@@ -1,0 +1,56 @@
+{
+ "leak": {
+  "exact": {
+   "truncation_passed": false,
+   "truncation_checked": 30,
+   "truncation_violations": 30,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  },
+  "ex_ante": {
+   "truncation_passed": true,
+   "truncation_checked": 30,
+   "truncation_violations": 0,
+   "perturbation_passed": true,
+   "perturbation_checked": 30,
+   "perturbation_violations": 0
+  }
+ },
+ "is_info": "32 statement days, status {'ok': 30, 'no_sigma': 2}; net 1x -6.28 bp/event, t -0.55",
+ "bounds": [
+  0.005716240811954103,
+  0.007887711185357499
+ ],
+ "xsource": {
+  "daily_assets_columns": [
+   "USLCAP",
+   "STT",
+   "ITT",
+   "LTT",
+   "GOLDPM",
+   "CMDTY",
+   "GLSTOCK",
+   "GLBOND",
+   "GLSTBOND",
+   "obs_USLCAP",
+   "obs_STT",
+   "obs_ITT",
+   "obs_LTT",
+   "obs_GOLDPM",
+   "obs_CMDTY",
+   "obs_GLSTOCK",
+   "obs_GLBOND",
+   "obs_GLSTBOND"
+  ],
+  "daily_assets_fx_like": [],
+  "fut_AD": {
+   "corr_lag-1": 0.11095460897166462,
+   "corr_lag+0": 0.9070402704538445,
+   "n": 1009,
+   "sd_ratio_other_over_fx": 1.0007024646379927,
+   "corr_lag+1": 0.01576616947781554
+  },
+  "n_fx_returns": 1038
+ }
+}

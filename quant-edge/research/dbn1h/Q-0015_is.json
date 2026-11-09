@@ -1,0 +1,23 @@
+{
+ "harness": {
+  "truncation": 0,
+  "perturbation": 0,
+  "n": 30,
+  "truncation_passed": true,
+  "perturbation_passed": true
+ },
+ "planted": {
+  "truncation": 28,
+  "perturbation": 2,
+  "n": 30,
+  "truncation_passed": false,
+  "perturbation_passed": false
+ },
+ "is_obs": 344,
+ "is_net_bp": -9.123508112555363,
+ "is_t": -2.2845859071451606,
+ "terciles": [
+  0.018018234493522103,
+  0.02333784408442341
+ ]
+}

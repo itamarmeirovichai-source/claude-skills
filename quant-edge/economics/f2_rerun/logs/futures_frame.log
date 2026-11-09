@@ -1,0 +1,197 @@
+=== Tue Nov  3 14:44:50 UTC 2026 futures_frame start ===
+trade 50K-2026 tpd=1 R=+0.05: pct nominal pre-tax  -0.8% | 25%  -0.8% | 47%  -0.8% | S_eq -0.03 | burn/slot-yr 1.4 | 0.9s
+trade 50K-2026 tpd=1 R=+0.10: pct nominal pre-tax  -0.6% | 25%  -0.6% | 47%  -0.6% | S_eq 0.52 | burn/slot-yr 1.0 | 1.0s
+trade 50K-2026 tpd=1 R=+0.15: pct nominal pre-tax  -0.4% | 25%  -0.4% | 47%  -0.4% | S_eq 1.05 | burn/slot-yr 0.6 | 0.9s
+trade 50K-2026 tpd=1 R=+0.20: pct nominal pre-tax  -0.2% | 25%  -0.2% | 47%  -0.2% | S_eq 1.58 | burn/slot-yr 0.3 | 0.9s
+trade 50K-2026 tpd=1 R=+0.25: pct nominal pre-tax  -0.1% | 25%  -0.1% | 47%  -0.1% | S_eq 2.11 | burn/slot-yr 0.2 | 0.9s
+trade 50K-2026 tpd=1 R=+0.30: pct nominal pre-tax  -0.1% | 25%  -0.1% | 47%  -0.1% | S_eq 2.63 | burn/slot-yr 0.1 | 0.8s
+trade 50K-2026 tpd=1 R=+0.35: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 3.15 | burn/slot-yr 0.1 | 0.8s
+trade 50K-2026 tpd=1 R=+0.40: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 3.67 | burn/slot-yr 0.0 | 0.9s
+trade 50K-2026 tpd=1 R=+0.45: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 4.19 | burn/slot-yr 0.0 | 0.8s
+trade 50K-2026 tpd=1 R=+0.50: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 4.71 | burn/slot-yr 0.0 | 0.9s
+trade 50K-2026 tpd=1 R=+0.55: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 5.24 | burn/slot-yr 0.0 | 0.7s
+trade 50K-2026 tpd=1 R=+0.60: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 5.78 | burn/slot-yr 0.0 | 0.6s
+trade 50K-2026 tpd=1 R=+0.65: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 6.33 | burn/slot-yr 0.0 | 0.6s
+trade 50K-2026 tpd=1 R=+0.70: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 6.88 | burn/slot-yr 0.0 | 0.7s
+trade 50K-2026 tpd=1 R=+0.75: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 7.45 | burn/slot-yr 0.0 | 0.6s
+trade 50K-2026 tpd=1 R=+0.80: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 8.04 | burn/slot-yr 0.0 | 0.5s
+trade 50K-2026 tpd=1 R=+0.85: pct nominal pre-tax  -0.0% | 25%  -0.0% | 47%  -0.0% | S_eq 8.64 | burn/slot-yr 0.0 | 0.5s
+trade 50K-2026 tpd=1 R=+0.90: pct nominal pre-tax   0.0% | 25%   0.0% | 47%   0.0% | S_eq 9.27 | burn/slot-yr 0.0 | 0.5s
+trade 50K-2026 tpd=1 R=+0.95: pct nominal pre-tax   0.0% | 25%   0.0% | 47%   0.0% | S_eq 9.91 | burn/slot-yr 0.0 | 0.6s
+trade 50K-2026 tpd=1 R=+1.00: pct nominal pre-tax   0.0% | 25%   0.0% | 47%   0.0% | S_eq 10.59 | burn/slot-yr 0.0 | 0.6s
+THRESHOLD 50K-2026 tpd=1: R for 20% of nominal: tax0 > 1.00, tax25 > 1.00, tax47 > 1.00, tax53 > 1.00
+trade 50K-2026 tpd=2 R=+0.05: pct nominal pre-tax   0.2% | 25%   0.0% | 47%  -0.2% | S_eq -0.04 | burn/slot-yr 3.3 | 1.5s
+trade 50K-2026 tpd=2 R=+0.10: pct nominal pre-tax   2.7% | 25%   2.0% | 47%   1.3% | S_eq 0.73 | burn/slot-yr 1.8 | 1.7s
+trade 50K-2026 tpd=2 R=+0.15: pct nominal pre-tax   6.4% | 25%   4.8% | 47%   3.4% | S_eq 1.49 | burn/slot-yr 0.9 | 1.9s
+trade 50K-2026 tpd=2 R=+0.20: pct nominal pre-tax  10.1% | 25%   7.6% | 47%   5.3% | S_eq 2.24 | burn/slot-yr 0.6 | 2.0s
+trade 50K-2026 tpd=2 R=+0.25: pct nominal pre-tax  13.5% | 25%  10.2% | 47%   7.2% | S_eq 2.98 | burn/slot-yr 0.4 | 2.0s
+trade 50K-2026 tpd=2 R=+0.30: pct nominal pre-tax  16.9% | 25%  12.7% | 47%   9.0% | S_eq 3.72 | burn/slot-yr 0.2 | 1.9s
+trade 50K-2026 tpd=2 R=+0.35: pct nominal pre-tax  20.4% | 25%  15.3% | 47%  10.8% | S_eq 4.45 | burn/slot-yr 0.2 | 2.0s
+trade 50K-2026 tpd=2 R=+0.40: pct nominal pre-tax  23.8% | 25%  17.9% | 47%  12.6% | S_eq 5.19 | burn/slot-yr 0.1 | 2.0s
+trade 50K-2026 tpd=2 R=+0.45: pct nominal pre-tax  27.2% | 25%  20.4% | 47%  14.4% | S_eq 5.92 | burn/slot-yr 0.1 | 2.4s
+trade 50K-2026 tpd=2 R=+0.50: pct nominal pre-tax  30.6% | 25%  23.0% | 47%  16.2% | S_eq 6.67 | burn/slot-yr 0.1 | 1.9s
+trade 50K-2026 tpd=2 R=+0.55: pct nominal pre-tax  34.0% | 25%  25.5% | 47%  18.0% | S_eq 7.42 | burn/slot-yr 0.0 | 2.1s
+trade 50K-2026 tpd=2 R=+0.60: pct nominal pre-tax  37.5% | 25%  28.1% | 47%  19.9% | S_eq 8.18 | burn/slot-yr 0.0 | 2.0s
+trade 50K-2026 tpd=2 R=+0.65: pct nominal pre-tax  40.9% | 25%  30.6% | 47%  21.7% | S_eq 8.95 | burn/slot-yr 0.0 | 2.2s
+trade 50K-2026 tpd=2 R=+0.70: pct nominal pre-tax  44.3% | 25%  33.2% | 47%  23.5% | S_eq 9.74 | burn/slot-yr 0.0 | 2.2s
+trade 50K-2026 tpd=2 R=+0.75: pct nominal pre-tax  47.7% | 25%  35.8% | 47%  25.3% | S_eq 10.54 | burn/slot-yr 0.0 | 1.9s
+trade 50K-2026 tpd=2 R=+0.80: pct nominal pre-tax  51.1% | 25%  38.3% | 47%  27.1% | S_eq 11.37 | burn/slot-yr 0.0 | 1.9s
+trade 50K-2026 tpd=2 R=+0.85: pct nominal pre-tax  54.5% | 25%  40.8% | 47%  28.9% | S_eq 12.22 | burn/slot-yr 0.0 | 2.1s
+trade 50K-2026 tpd=2 R=+0.90: pct nominal pre-tax  57.8% | 25%  43.4% | 47%  30.6% | S_eq 13.10 | burn/slot-yr 0.0 | 2.2s
+trade 50K-2026 tpd=2 R=+0.95: pct nominal pre-tax  61.2% | 25%  45.9% | 47%  32.4% | S_eq 14.02 | burn/slot-yr 0.0 | 2.0s
+THRESHOLD 50K-2026 tpd=2: R for 20% of nominal: tax0 0.344, tax25 0.442, tax47 0.604, tax53 0.675
+trade 50K-2026 tpd=3 R=+0.05: pct nominal pre-tax   0.6% | 25%   0.3% | 47%   0.0% | S_eq -0.05 | burn/slot-yr 4.9 | 2.1s
+trade 50K-2026 tpd=3 R=+0.10: pct nominal pre-tax   4.5% | 25%   3.3% | 47%   2.3% | S_eq 0.89 | burn/slot-yr 2.5 | 2.2s
+trade 50K-2026 tpd=3 R=+0.15: pct nominal pre-tax   9.9% | 25%   7.4% | 47%   5.2% | S_eq 1.83 | burn/slot-yr 1.3 | 2.3s
+trade 50K-2026 tpd=3 R=+0.20: pct nominal pre-tax  15.3% | 25%  11.4% | 47%   8.1% | S_eq 2.74 | burn/slot-yr 0.7 | 2.6s
+trade 50K-2026 tpd=3 R=+0.25: pct nominal pre-tax  20.7% | 25%  15.5% | 47%  11.0% | S_eq 3.65 | burn/slot-yr 0.5 | 2.7s
+trade 50K-2026 tpd=3 R=+0.30: pct nominal pre-tax  26.0% | 25%  19.5% | 47%  13.8% | S_eq 4.55 | burn/slot-yr 0.3 | 2.4s
+trade 50K-2026 tpd=3 R=+0.35: pct nominal pre-tax  31.2% | 25%  23.4% | 47%  16.5% | S_eq 5.45 | burn/slot-yr 0.2 | 2.7s
+trade 50K-2026 tpd=3 R=+0.40: pct nominal pre-tax  36.4% | 25%  27.3% | 47%  19.3% | S_eq 6.35 | burn/slot-yr 0.2 | 3.0s
+trade 50K-2026 tpd=3 R=+0.45: pct nominal pre-tax  41.5% | 25%  31.2% | 47%  22.0% | S_eq 7.26 | burn/slot-yr 0.1 | 2.5s
+trade 50K-2026 tpd=3 R=+0.50: pct nominal pre-tax  46.8% | 25%  35.1% | 47%  24.8% | S_eq 8.17 | burn/slot-yr 0.1 | 2.4s
+trade 50K-2026 tpd=3 R=+0.55: pct nominal pre-tax  52.0% | 25%  39.0% | 47%  27.6% | S_eq 9.08 | burn/slot-yr 0.1 | 2.4s
+trade 50K-2026 tpd=3 R=+0.60: pct nominal pre-tax  57.1% | 25%  42.8% | 47%  30.2% | S_eq 10.01 | burn/slot-yr 0.0 | 2.5s
+trade 50K-2026 tpd=3 R=+0.65: pct nominal pre-tax  62.2% | 25%  46.6% | 47%  32.9% | S_eq 10.96 | burn/slot-yr 0.0 | 2.6s
+THRESHOLD 50K-2026 tpd=3: R for 20% of nominal: tax0 0.244, tax25 0.306, tax47 0.413, tax53 0.460
+trade 50K-2026 tpd=5 R=+0.05: pct nominal pre-tax   1.5% | 25%   0.9% | 47%   0.4% | S_eq -0.07 | burn/slot-yr 7.3 | 3.1s
+trade 50K-2026 tpd=5 R=+0.10: pct nominal pre-tax   8.3% | 25%   6.2% | 47%   4.3% | S_eq 1.15 | burn/slot-yr 3.5 | 3.0s
+trade 50K-2026 tpd=5 R=+0.15: pct nominal pre-tax  16.9% | 25%  12.7% | 47%   9.0% | S_eq 2.36 | burn/slot-yr 1.8 | 3.2s
+trade 50K-2026 tpd=5 R=+0.20: pct nominal pre-tax  25.7% | 25%  19.3% | 47%  13.6% | S_eq 3.54 | burn/slot-yr 1.0 | 3.3s
+trade 50K-2026 tpd=5 R=+0.25: pct nominal pre-tax  34.4% | 25%  25.8% | 47%  18.2% | S_eq 4.71 | burn/slot-yr 0.7 | 3.3s
+trade 50K-2026 tpd=5 R=+0.30: pct nominal pre-tax  42.8% | 25%  32.1% | 47%  22.7% | S_eq 5.88 | burn/slot-yr 0.5 | 3.6s
+trade 50K-2026 tpd=5 R=+0.35: pct nominal pre-tax  50.9% | 25%  38.2% | 47%  27.0% | S_eq 7.04 | burn/slot-yr 0.4 | 3.7s
+trade 50K-2026 tpd=5 R=+0.40: pct nominal pre-tax  58.9% | 25%  44.2% | 47%  31.2% | S_eq 8.20 | burn/slot-yr 0.3 | 3.4s
+trade 50K-2026 tpd=5 R=+0.45: pct nominal pre-tax  66.9% | 25%  50.2% | 47%  35.5% | S_eq 9.37 | burn/slot-yr 0.2 | 3.4s
+THRESHOLD 50K-2026 tpd=5: R for 20% of nominal: tax0 0.167, tax25 0.205, tax47 0.270, tax53 0.299
+trade 150K tpd=1 R=+0.05: pct nominal pre-tax  -0.6% | 25%  -0.6% | 47%  -0.6% | S_eq -0.03 | burn/slot-yr 1.7 | 1.1s
+trade 150K tpd=1 R=+0.10: pct nominal pre-tax  -0.4% | 25%  -0.5% | 47%  -0.5% | S_eq 0.52 | burn/slot-yr 1.3 | 1.1s
+trade 150K tpd=1 R=+0.15: pct nominal pre-tax   0.1% | 25%  -0.0% | 47%  -0.2% | S_eq 1.05 | burn/slot-yr 0.9 | 1.2s
+trade 150K tpd=1 R=+0.20: pct nominal pre-tax   1.0% | 25%   0.7% | 47%   0.4% | S_eq 1.58 | burn/slot-yr 0.6 | 1.3s
+trade 150K tpd=1 R=+0.25: pct nominal pre-tax   2.0% | 25%   1.4% | 47%   0.9% | S_eq 2.11 | burn/slot-yr 0.4 | 1.3s
+trade 150K tpd=1 R=+0.30: pct nominal pre-tax   2.9% | 25%   2.1% | 47%   1.4% | S_eq 2.63 | burn/slot-yr 0.3 | 1.5s
+trade 150K tpd=1 R=+0.35: pct nominal pre-tax   4.1% | 25%   3.0% | 47%   2.1% | S_eq 3.15 | burn/slot-yr 0.2 | 1.4s
+trade 150K tpd=1 R=+0.40: pct nominal pre-tax   5.2% | 25%   3.9% | 47%   2.7% | S_eq 3.67 | burn/slot-yr 0.1 | 1.3s
+trade 150K tpd=1 R=+0.45: pct nominal pre-tax   6.5% | 25%   4.9% | 47%   3.4% | S_eq 4.19 | burn/slot-yr 0.1 | 1.5s
+trade 150K tpd=1 R=+0.50: pct nominal pre-tax   7.7% | 25%   5.8% | 47%   4.1% | S_eq 4.71 | burn/slot-yr 0.1 | 1.3s
+trade 150K tpd=1 R=+0.55: pct nominal pre-tax   9.2% | 25%   6.9% | 47%   4.9% | S_eq 5.24 | burn/slot-yr 0.0 | 1.3s
+trade 150K tpd=1 R=+0.60: pct nominal pre-tax  10.4% | 25%   7.8% | 47%   5.5% | S_eq 5.78 | burn/slot-yr 0.0 | 1.3s
+trade 150K tpd=1 R=+0.65: pct nominal pre-tax  11.9% | 25%   8.9% | 47%   6.3% | S_eq 6.33 | burn/slot-yr 0.0 | 1.5s
+trade 150K tpd=1 R=+0.70: pct nominal pre-tax  13.3% | 25%  10.0% | 47%   7.1% | S_eq 6.88 | burn/slot-yr 0.0 | 1.3s
+trade 150K tpd=1 R=+0.75: pct nominal pre-tax  14.7% | 25%  11.0% | 47%   7.8% | S_eq 7.45 | burn/slot-yr 0.0 | 1.4s
+trade 150K tpd=1 R=+0.80: pct nominal pre-tax  16.0% | 25%  12.0% | 47%   8.5% | S_eq 8.04 | burn/slot-yr 0.0 | 1.4s
+trade 150K tpd=1 R=+0.85: pct nominal pre-tax  17.5% | 25%  13.1% | 47%   9.3% | S_eq 8.64 | burn/slot-yr 0.0 | 1.4s
+trade 150K tpd=1 R=+0.90: pct nominal pre-tax  18.9% | 25%  14.1% | 47%  10.0% | S_eq 9.27 | burn/slot-yr 0.0 | 1.5s
+trade 150K tpd=1 R=+0.95: pct nominal pre-tax  20.2% | 25%  15.2% | 47%  10.7% | S_eq 9.91 | burn/slot-yr 0.0 | 1.5s
+trade 150K tpd=1 R=+1.00: pct nominal pre-tax  21.7% | 25%  16.2% | 47%  11.5% | S_eq 10.59 | burn/slot-yr 0.0 | 1.5s
+THRESHOLD 150K tpd=1: R for 20% of nominal: tax0 0.941, tax25 > 1.00, tax47 > 1.00, tax53 > 1.00
+trade 150K tpd=2 R=+0.05: pct nominal pre-tax  -0.1% | 25%  -0.2% | 47%  -0.3% | S_eq -0.04 | burn/slot-yr 4.0 | 1.6s
+trade 150K tpd=2 R=+0.10: pct nominal pre-tax   1.5% | 25%   1.0% | 47%   0.6% | S_eq 0.73 | burn/slot-yr 2.5 | 1.7s
+trade 150K tpd=2 R=+0.15: pct nominal pre-tax   3.6% | 25%   2.7% | 47%   1.8% | S_eq 1.49 | burn/slot-yr 1.5 | 1.7s
+trade 150K tpd=2 R=+0.20: pct nominal pre-tax   5.8% | 25%   4.3% | 47%   3.0% | S_eq 2.24 | burn/slot-yr 0.9 | 1.8s
+trade 150K tpd=2 R=+0.25: pct nominal pre-tax   7.8% | 25%   5.9% | 47%   4.1% | S_eq 2.98 | burn/slot-yr 0.6 | 1.8s
+trade 150K tpd=2 R=+0.30: pct nominal pre-tax   9.9% | 25%   7.4% | 47%   5.2% | S_eq 3.72 | burn/slot-yr 0.4 | 1.8s
+trade 150K tpd=2 R=+0.35: pct nominal pre-tax  11.7% | 25%   8.8% | 47%   6.2% | S_eq 4.45 | burn/slot-yr 0.3 | 1.9s
+trade 150K tpd=2 R=+0.40: pct nominal pre-tax  13.6% | 25%  10.2% | 47%   7.2% | S_eq 5.19 | burn/slot-yr 0.2 | 2.0s
+trade 150K tpd=2 R=+0.45: pct nominal pre-tax  15.4% | 25%  11.5% | 47%   8.2% | S_eq 5.92 | burn/slot-yr 0.1 | 2.0s
+trade 150K tpd=2 R=+0.50: pct nominal pre-tax  17.1% | 25%  12.8% | 47%   9.1% | S_eq 6.67 | burn/slot-yr 0.1 | 2.1s
+trade 150K tpd=2 R=+0.55: pct nominal pre-tax  18.8% | 25%  14.1% | 47%  10.0% | S_eq 7.42 | burn/slot-yr 0.1 | 2.1s
+trade 150K tpd=2 R=+0.60: pct nominal pre-tax  20.5% | 25%  15.3% | 47%  10.8% | S_eq 8.18 | burn/slot-yr 0.0 | 2.0s
+trade 150K tpd=2 R=+0.65: pct nominal pre-tax  22.2% | 25%  16.6% | 47%  11.7% | S_eq 8.95 | burn/slot-yr 0.0 | 2.0s
+trade 150K tpd=2 R=+0.70: pct nominal pre-tax  23.8% | 25%  17.9% | 47%  12.6% | S_eq 9.74 | burn/slot-yr 0.0 | 2.0s
+trade 150K tpd=2 R=+0.75: pct nominal pre-tax  25.5% | 25%  19.1% | 47%  13.5% | S_eq 10.54 | burn/slot-yr 0.0 | 1.9s
+trade 150K tpd=2 R=+0.80: pct nominal pre-tax  27.2% | 25%  20.4% | 47%  14.4% | S_eq 11.37 | burn/slot-yr 0.0 | 1.9s
+trade 150K tpd=2 R=+0.85: pct nominal pre-tax  28.9% | 25%  21.7% | 47%  15.3% | S_eq 12.22 | burn/slot-yr 0.0 | 1.8s
+trade 150K tpd=2 R=+0.90: pct nominal pre-tax  30.6% | 25%  22.9% | 47%  16.2% | S_eq 13.10 | burn/slot-yr 0.0 | 1.9s
+trade 150K tpd=2 R=+0.95: pct nominal pre-tax  32.3% | 25%  24.2% | 47%  17.1% | S_eq 14.02 | burn/slot-yr 0.0 | 1.9s
+trade 150K tpd=2 R=+1.00: pct nominal pre-tax  34.0% | 25%  25.5% | 47%  18.0% | S_eq 14.98 | burn/slot-yr 0.0 | 2.0s
+THRESHOLD 150K tpd=2: R for 20% of nominal: tax0 0.586, tax25 0.784, tax47 > 1.00, tax53 > 1.00
+trade 150K tpd=3 R=+0.05: pct nominal pre-tax   0.4% | 25%   0.1% | 47%  -0.1% | S_eq -0.05 | burn/slot-yr 5.8 | 2.0s
+trade 150K tpd=3 R=+0.10: pct nominal pre-tax   2.9% | 25%   2.1% | 47%   1.4% | S_eq 0.89 | burn/slot-yr 3.3 | 2.2s
+trade 150K tpd=3 R=+0.15: pct nominal pre-tax   6.3% | 25%   4.7% | 47%   3.3% | S_eq 1.83 | burn/slot-yr 1.9 | 2.3s
+trade 150K tpd=3 R=+0.20: pct nominal pre-tax   9.7% | 25%   7.3% | 47%   5.2% | S_eq 2.74 | burn/slot-yr 1.2 | 2.4s
+trade 150K tpd=3 R=+0.25: pct nominal pre-tax  13.2% | 25%   9.9% | 47%   7.0% | S_eq 3.65 | burn/slot-yr 0.8 | 2.5s
+trade 150K tpd=3 R=+0.30: pct nominal pre-tax  16.5% | 25%  12.4% | 47%   8.8% | S_eq 4.55 | burn/slot-yr 0.5 | 2.4s
+trade 150K tpd=3 R=+0.35: pct nominal pre-tax  19.7% | 25%  14.8% | 47%  10.4% | S_eq 5.45 | burn/slot-yr 0.4 | 2.6s
+trade 150K tpd=3 R=+0.40: pct nominal pre-tax  22.9% | 25%  17.2% | 47%  12.2% | S_eq 6.35 | burn/slot-yr 0.2 | 2.5s
+trade 150K tpd=3 R=+0.45: pct nominal pre-tax  26.1% | 25%  19.6% | 47%  13.8% | S_eq 7.26 | burn/slot-yr 0.2 | 2.7s
+trade 150K tpd=3 R=+0.50: pct nominal pre-tax  29.2% | 25%  21.9% | 47%  15.5% | S_eq 8.17 | burn/slot-yr 0.1 | 2.7s
+trade 150K tpd=3 R=+0.55: pct nominal pre-tax  32.2% | 25%  24.1% | 47%  17.0% | S_eq 9.08 | burn/slot-yr 0.1 | 2.7s
+trade 150K tpd=3 R=+0.60: pct nominal pre-tax  35.0% | 25%  26.2% | 47%  18.5% | S_eq 10.01 | burn/slot-yr 0.1 | 2.6s
+trade 150K tpd=3 R=+0.65: pct nominal pre-tax  37.7% | 25%  28.3% | 47%  20.0% | S_eq 10.96 | burn/slot-yr 0.0 | 3.2s
+trade 150K tpd=3 R=+0.70: pct nominal pre-tax  40.3% | 25%  30.2% | 47%  21.3% | S_eq 11.92 | burn/slot-yr 0.0 | 2.6s
+trade 150K tpd=3 R=+0.75: pct nominal pre-tax  42.7% | 25%  32.0% | 47%  22.6% | S_eq 12.91 | burn/slot-yr 0.0 | 2.4s
+trade 150K tpd=3 R=+0.80: pct nominal pre-tax  45.0% | 25%  33.8% | 47%  23.9% | S_eq 13.92 | burn/slot-yr 0.0 | 2.3s
+trade 150K tpd=3 R=+0.85: pct nominal pre-tax  47.3% | 25%  35.5% | 47%  25.1% | S_eq 14.97 | burn/slot-yr 0.0 | 2.4s
+trade 150K tpd=3 R=+0.90: pct nominal pre-tax  49.4% | 25%  37.1% | 47%  26.2% | S_eq 16.05 | burn/slot-yr 0.0 | 2.4s
+trade 150K tpd=3 R=+0.95: pct nominal pre-tax  51.6% | 25%  38.7% | 47%  27.3% | S_eq 17.17 | burn/slot-yr 0.0 | 2.5s
+trade 150K tpd=3 R=+1.00: pct nominal pre-tax  53.6% | 25%  40.2% | 47%  28.4% | S_eq 18.34 | burn/slot-yr 0.0 | 2.5s
+THRESHOLD 150K tpd=3: R for 20% of nominal: tax0 0.355, tax25 0.459, tax47 0.651, tax53 0.747
+trade 150K tpd=5 R=+0.05: pct nominal pre-tax   1.1% | 25%   0.7% | 47%   0.3% | S_eq -0.07 | burn/slot-yr 8.1 | 2.9s
+trade 150K tpd=5 R=+0.10: pct nominal pre-tax   5.6% | 25%   4.2% | 47%   2.9% | S_eq 1.15 | burn/slot-yr 4.3 | 3.0s
+trade 150K tpd=5 R=+0.15: pct nominal pre-tax  11.0% | 25%   8.3% | 47%   5.8% | S_eq 2.36 | burn/slot-yr 2.4 | 3.3s
+trade 150K tpd=5 R=+0.20: pct nominal pre-tax  16.2% | 25%  12.1% | 47%   8.6% | S_eq 3.54 | burn/slot-yr 1.4 | 3.2s
+trade 150K tpd=5 R=+0.25: pct nominal pre-tax  20.8% | 25%  15.6% | 47%  11.0% | S_eq 4.71 | burn/slot-yr 0.9 | 3.8s
+trade 150K tpd=5 R=+0.30: pct nominal pre-tax  24.9% | 25%  18.7% | 47%  13.2% | S_eq 5.88 | burn/slot-yr 0.6 | 4.0s
+trade 150K tpd=5 R=+0.35: pct nominal pre-tax  28.6% | 25%  21.5% | 47%  15.2% | S_eq 7.04 | burn/slot-yr 0.4 | 3.9s
+trade 150K tpd=5 R=+0.40: pct nominal pre-tax  32.1% | 25%  24.1% | 47%  17.0% | S_eq 8.20 | burn/slot-yr 0.3 | 3.6s
+trade 150K tpd=5 R=+0.45: pct nominal pre-tax  35.4% | 25%  26.5% | 47%  18.7% | S_eq 9.37 | burn/slot-yr 0.2 | 3.7s
+trade 150K tpd=5 R=+0.50: pct nominal pre-tax  38.5% | 25%  28.9% | 47%  20.4% | S_eq 10.54 | burn/slot-yr 0.1 | 3.6s
+trade 150K tpd=5 R=+0.55: pct nominal pre-tax  41.5% | 25%  31.1% | 47%  22.0% | S_eq 11.73 | burn/slot-yr 0.1 | 3.3s
+trade 150K tpd=5 R=+0.60: pct nominal pre-tax  44.5% | 25%  33.4% | 47%  23.6% | S_eq 12.93 | burn/slot-yr 0.1 | 3.6s
+trade 150K tpd=5 R=+0.65: pct nominal pre-tax  47.5% | 25%  35.6% | 47%  25.2% | S_eq 14.15 | burn/slot-yr 0.0 | 3.7s
+trade 150K tpd=5 R=+0.70: pct nominal pre-tax  50.3% | 25%  37.7% | 47%  26.7% | S_eq 15.39 | burn/slot-yr 0.0 | 3.7s
+trade 150K tpd=5 R=+0.75: pct nominal pre-tax  53.1% | 25%  39.9% | 47%  28.2% | S_eq 16.67 | burn/slot-yr 0.0 | 3.5s
+trade 150K tpd=5 R=+0.80: pct nominal pre-tax  55.9% | 25%  41.9% | 47%  29.6% | S_eq 17.98 | burn/slot-yr 0.0 | 3.7s
+trade 150K tpd=5 R=+0.85: pct nominal pre-tax  58.6% | 25%  44.0% | 47%  31.1% | S_eq 19.32 | burn/slot-yr 0.0 | 3.5s
+trade 150K tpd=5 R=+0.90: pct nominal pre-tax  61.3% | 25%  46.0% | 47%  32.5% | S_eq 20.72 | burn/slot-yr 0.0 | 3.7s
+THRESHOLD 150K tpd=5: R for 20% of nominal: tax0 0.241, tax25 0.324, tax47 0.488, tax53 0.567
+trade 50K tpd=3 R=+0.05: pct nominal pre-tax   2.2% | 25%   1.6% | 47%   1.0% | S_eq 0.15 | burn/slot-yr 3.8 | 2.1s
+trade 50K tpd=3 R=+0.10: pct nominal pre-tax   7.4% | 25%   5.5% | 47%   3.9% | S_eq 1.09 | burn/slot-yr 1.9 | 2.4s
+trade 50K tpd=3 R=+0.15: pct nominal pre-tax  13.9% | 25%  10.4% | 47%   7.3% | S_eq 2.02 | burn/slot-yr 1.1 | 2.4s
+trade 50K tpd=3 R=+0.20: pct nominal pre-tax  20.2% | 25%  15.1% | 47%  10.7% | S_eq 2.94 | burn/slot-yr 0.7 | 2.7s
+trade 50K tpd=3 R=+0.25: pct nominal pre-tax  26.5% | 25%  19.9% | 47%  14.0% | S_eq 3.85 | burn/slot-yr 0.5 | 2.5s
+trade 50K tpd=3 R=+0.30: pct nominal pre-tax  32.8% | 25%  24.6% | 47%  17.4% | S_eq 4.75 | burn/slot-yr 0.3 | 2.6s
+trade 50K tpd=3 R=+0.35: pct nominal pre-tax  38.8% | 25%  29.1% | 47%  20.6% | S_eq 5.65 | burn/slot-yr 0.2 | 2.8s
+trade 50K tpd=3 R=+0.40: pct nominal pre-tax  44.7% | 25%  33.6% | 47%  23.7% | S_eq 6.54 | burn/slot-yr 0.2 | 2.7s
+trade 50K tpd=3 R=+0.45: pct nominal pre-tax  50.7% | 25%  38.0% | 47%  26.9% | S_eq 7.45 | burn/slot-yr 0.1 | 3.1s
+trade 50K tpd=3 R=+0.50: pct nominal pre-tax  56.7% | 25%  42.5% | 47%  30.1% | S_eq 8.36 | burn/slot-yr 0.1 | 3.0s
+trade 50K tpd=3 R=+0.55: pct nominal pre-tax  62.7% | 25%  47.0% | 47%  33.2% | S_eq 9.27 | burn/slot-yr 0.1 | 2.5s
+THRESHOLD 50K tpd=3: R for 20% of nominal: tax0 0.198, tax25 0.251, tax47 0.341, tax53 0.382
+daily Topstep XFA 50K S=1.0: cap12 1,756 (3.5% of nominal) | cap20 5,497 (11.0%) | pass 0.40 life 18 | 10.1s
+daily Topstep XFA 50K S=1.5: cap12 3,055 (6.1% of nominal) | cap20 7,706 (15.4%) | pass 0.45 life 21 | 9.8s
+daily Topstep XFA 50K S=2.0: cap12 4,615 (9.2% of nominal) | cap20 10,585 (21.2%) | pass 0.51 life 24 | 10.6s
+daily Topstep XFA 50K S=3.0: cap12 8,929 (17.9% of nominal) | cap20 19,185 (38.4%) | pass 0.63 life 38 | 11.0s
+daily Topstep XFA 50K S=4.0: cap12 14,851 (29.7% of nominal) | cap20 29,316 (58.6%) | pass 0.72 life 65 | 10.8s
+daily Topstep XFA 50K S=6.0: cap12 28,894 (57.8% of nominal) | cap20 47,040 (94.1%) | pass 0.84 life 315 | 8.3s
+NEED Topstep XFA 50K: S for 20% of nominal at cap 12% 3.181, cap 20% 1.898
+daily Bulenox Master 50K S=1.0: cap12 1,382 (2.8% of nominal) | cap20 5,737 (11.5%) | pass 0.33 life 41 | 5.1s
+daily Bulenox Master 50K S=1.5: cap12 3,428 (6.9% of nominal) | cap20 8,953 (17.9%) | pass 0.38 life 49 | 5.4s
+daily Bulenox Master 50K S=2.0: cap12 6,200 (12.4% of nominal) | cap20 12,925 (25.9%) | pass 0.43 life 59 | 5.5s
+daily Bulenox Master 50K S=3.0: cap12 12,507 (25.0% of nominal) | cap20 22,156 (44.3%) | pass 0.54 life 85 | 5.3s
+daily Bulenox Master 50K S=4.0: cap12 18,755 (37.5% of nominal) | cap20 32,128 (64.3%) | pass 0.63 life 129 | 5.7s
+daily Bulenox Master 50K S=6.0: cap12 30,165 (60.3% of nominal) | cap20 51,729 (103.5%) | pass 0.81 life 279 | 5.4s
+NEED Bulenox Master 50K: S for 20% of nominal at cap 12% 2.603, cap 20% 1.632
+daily Lucid Flex 50K S=1.0: cap12 1,870 (3.7% of nominal) | cap20 4,532 (9.1%) | pass 0.40 life 17 | 10.1s
+daily Lucid Flex 50K S=1.5: cap12 2,862 (5.7% of nominal) | cap20 6,165 (12.3%) | pass 0.45 life 18 | 9.8s
+daily Lucid Flex 50K S=2.0: cap12 4,127 (8.3% of nominal) | cap20 8,185 (16.4%) | pass 0.50 life 20 | 10.1s
+daily Lucid Flex 50K S=3.0: cap12 6,886 (13.8% of nominal) | cap20 12,962 (25.9%) | pass 0.62 life 23 | 9.8s
+daily Lucid Flex 50K S=4.0: cap12 10,137 (20.3% of nominal) | cap20 18,181 (36.4%) | pass 0.72 life 26 | 9.3s
+daily Lucid Flex 50K S=6.0: cap12 17,000 (34.0% of nominal) | cap20 28,224 (56.4%) | pass 0.84 life 31 | 7.9s
+NEED Lucid Flex 50K: S for 20% of nominal at cap 12% 3.958, cap 20% 2.380
+daily Tradeify Select 50K S=1.0: cap12 2,632 (5.3% of nominal) | cap20 5,551 (11.1%) | pass 0.40 life 20 | 9.9s
+daily Tradeify Select 50K S=1.5: cap12 4,170 (8.3% of nominal) | cap20 7,773 (15.5%) | pass 0.45 life 22 | 10.1s
+daily Tradeify Select 50K S=2.0: cap12 5,979 (12.0% of nominal) | cap20 10,723 (21.4%) | pass 0.50 life 25 | 9.5s
+daily Tradeify Select 50K S=3.0: cap12 10,345 (20.7% of nominal) | cap20 18,460 (36.9%) | pass 0.62 life 34 | 9.5s
+daily Tradeify Select 50K S=4.0: cap12 15,945 (31.9% of nominal) | cap20 27,527 (55.1%) | pass 0.72 life 48 | 9.9s
+daily Tradeify Select 50K S=6.0: cap12 28,536 (57.1% of nominal) | cap20 50,368 (100.7%) | pass 0.84 life 155 | 7.7s
+NEED Tradeify Select 50K: S for 20% of nominal at cap 12% 2.921, cap 20% 1.878
+daily MFFU Rapid EOD 50K S=1.0: cap12 3,084 (6.2% of nominal) | cap20 5,928 (11.9%) | pass 0.40 life 21 | 9.4s
+daily MFFU Rapid EOD 50K S=1.5: cap12 4,954 (9.9% of nominal) | cap20 8,243 (16.5%) | pass 0.45 life 24 | 9.9s
+daily MFFU Rapid EOD 50K S=2.0: cap12 7,051 (14.1% of nominal) | cap20 11,243 (22.5%) | pass 0.50 life 26 | 11.0s
+daily MFFU Rapid EOD 50K S=3.0: cap12 12,417 (24.8% of nominal) | cap20 18,637 (37.3%) | pass 0.62 life 34 | 10.5s
+daily MFFU Rapid EOD 50K S=4.0: cap12 18,633 (37.3% of nominal) | cap20 27,055 (54.1%) | pass 0.72 life 42 | 9.6s
+daily MFFU Rapid EOD 50K S=6.0: cap12 30,371 (60.7% of nominal) | cap20 46,778 (93.6%) | pass 0.84 life 71 | 7.7s
+NEED MFFU Rapid EOD 50K: S for 20% of nominal at cap 12% 2.550, cap 20% 1.793
+futures_frame done: cpu 9.8 min wall 10.1 min
+=== Tue Nov  3 14:54:57 UTC 2026 futures_frame end ===

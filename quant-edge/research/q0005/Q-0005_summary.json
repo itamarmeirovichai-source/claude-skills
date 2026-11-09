@@ -1,0 +1,11 @@
+{
+ "id": "Q-0005",
+ "oos_net1x_mean_bp_per_day": -0.17156115381746592,
+ "net1x_bp_per_trade": -3.0496136657667416,
+ "t_min_daily": -0.8821896074925762,
+ "t_min_trade": -1.373097422643479,
+ "boot_lower_daily_bp": -1.0135850379710916,
+ "boot_lower_trade_bp": -18.17841060030072,
+ "t2x": -1.1433186592843727,
+ "verdict": "FAIL (refuted under the row's rule)"
+}
