@@ -22,8 +22,13 @@
 | Q-0014 | תגובה לדוח היבולים של USDA (ZC/ZS) | חוזים | 2015–2024 | ‎−10.7 bp לאירוע | ‎−1.58 | נכשל |
 | Q-0015 | פרמיית יום דוח האחסון של גז טבעי (NG) | חוזים | 2019–2024 | ‎−9.8 bp לאירוע | ‎−2.53 | נכשל |
 | Q-0016 | דרך 1 — הון עצמי: Risk Parity על 7 סוגי נכסים + מסנן מגמה של 10 חודשים | הון עצמי ב־IBKR | 2010–2024 | Sharpe נטו 0.52 (60/40 באותה תנודתיות: 0.87) | 2.02 | נכשל, וגם נחות מ־60/40 |
+| Q-0017 | היפוך אחרי סגירת המסחר ב־S&P (16:01–16:07) | חוזים תוך־יומי | 2015–2024 | ‎−4.7 bp לאירוע (ברוטו ‎−1.1) | ‎−8.84 | נכשל |
+| Q-0018 | היפוך אחרי הסגירה הכפויה של חשבונות פרופ (16:10–16:14) | חוזים תוך־יומי | 2022–2024 | ‎−1.1 bp לאירוע (ברוטו ‎+1.35) | ‎−2.05 | נכשל |
+| Q-0019 | קנייה אחרי "פרץ" ירידה חד עם נפח גבוה, ES וזהב | חוזים תוך־יומי | 2015–2024 | ‎−2.7 bp לעסקה (ברוטו ‎+0.2), ‏3,515 עסקאות | ‎−7.31 | נכשל |
+| Q-0020 | נגד חמש הדקות הראשונות כשחלק המיקרו גבוה | חוזים תוך־יומי | 2022–2024 | ‎−4.0 bp לאירוע (בתוך המדגם היה ‎+4.3) | ‎−1.78 | נכשל |
+| Q-0021 | היפוך אחרי חצי השעה האחרונה (מחקר JFE 2021), ES וזהב | חוזים מהערב עד הסגירה למחרת | 2015–2024 | ‎+7.9 bp לאירוע, 70% מהשנים חיוביות | 1.14 | נכשל (חיובי אבל רחוק מהרף) |
 
-N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה ב־Databento: ‏$9.25 מהקרדיט, על נתוני שעה של 10 חוזים. הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
+N סופי: 301 מתוך 430 (280 בירושה + 21 בתוכנית). הוצאה ב־Databento: ‏$9.25 מהקרדיט, על נתוני שעה של 10 חוזים. הרף נשאר z = 3.6807 לאורך כל התוכנית. כל שורה נרשמה ונדחפה לפני שנכתב הקוד שלה; כל קריאה של נתוני OOS מתועדת ביומן; ה־hold-out לא נפתח.
 
 ## 2. מה לא נבדק
 
@@ -76,7 +81,7 @@ N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה 
 
 ## English appendix
 
-**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Path 1 (own capital, Q-0016) was then tested at Itamar's request and also failed. Nothing passed Gate v2; no near-miss (best t = 2.02 for Q-0016 vs bar 3.6807, and its alpha vs 60/40 at equal vol is t 0.79). Final N = 296 of N_total 430. Databento spend $9.25 of $99.37 credit. Hold-out never read.
+**Verdict: N1 (honest negative), program closed on 2026-11-08 at Itamar's instruction (end condition c); reopened the same evening to triage all 130 remaining items (1 free-testable → Q-0011, FAIL; 10 Databento-only, of which the 4 strongest were bought ($9.25) and tested in a child session (Q-0012..Q-0015, all FAIL) and 6 low-rated ones remain; 119 not worth a count).** Path 1 (own capital, Q-0016) was then tested at Itamar's request and also failed. Nothing passed Gate v2; no near-miss (best t = 2.02 for Q-0016 vs bar 3.6807, and its alpha vs 60/40 at equal vol is t 0.79). Final N = 301 of N_total 430. Databento spend $60.60 of $99.37 credit (2026-11-09: $51.35 for ES/GC/MES 1m). Reopened 2026-11-09 (D-028/D-029): the five remaining Databento rows Q-0017..Q-0021 all FAIL (best Q-0021 t 1.14); C-12-04 not testable (CME archive blocked); literature sweep2 found 14 new ideas, none with power >= 0.05 (summed power x prior ~0.006). Hold-out never read.
 
 | id | hypothesis | firm structure | OOS | net (1x) | t_min | 2x-cost t | verdict |
 |---|---|---|---|---|---|---|---|
@@ -94,6 +99,11 @@ N סופי: 296 מתוך 430 (280 בירושה + 16 בתוכנית). הוצאה 
 | Q-0014 | C-2-05 USDA Crop Progress reaction, ZC/ZS 1h | futures | 2015..2024 | −10.73 bp/event | −1.58 | −3.64 | FAIL |
 | Q-0015 | C-2-01 NG storage-day premium, NG 1h | futures | 2019..2024 | −9.84 bp/event | −2.53 | −2.99 | FAIL |
 | Q-0016 | path 1, own capital: risk parity of 7 asset classes + 10-month trend filter, 10% vol target | own capital | 2010..2024 | excess Sharpe 0.52 (60/40 equal vol 0.87; alpha t 0.79) | 2.02 | 1.94 | FAIL; also worse than 60/40 |
+| Q-0017 | C-1-08 ES post-cash-close fade 16:01-16:07, ES 1m | intraday futures | 2015..2024 | -4.74 bp/event (gross -1.12) | -8.84 | -8.36 bp | FAIL |
+| Q-0018 | C-12-01 prop-flatten extension fade 16:10-16:14, ES 1m (+MES footprint) | intraday futures | 2022..2024 | -1.09 bp/event (gross +1.35) | -2.05 | -3.53 bp | FAIL |
+| Q-0019 | C-4-04 drift-burst fade, long after negative high-volume bursts, ES+GC 1m | intraday futures | 2015..2024 | -2.67 bp/trade (gross +0.18; n 3515) | -7.31 | -5.52 bp | FAIL |
+| Q-0020 | C-12-21 micro-share open-thrust fade 09:35-10:00, ES+MES 1m | intraday futures | 2022..2024 | -3.97 bp/event (IS +4.27) | -1.78 | -5.51 bp | FAIL |
+| Q-0021 | C-4-07 hedging-overshoot reversal 18:00 -> next close, ES+GC 1m | overnight-session futures | 2015..2024 | +7.93 bp of account/event-date; 70% years positive; all neighbours positive | 1.14 | +5.67 bp | FAIL (positive, far below bar) |
 
 Disclosures: CAL-D double OOS read after a pre-P&L crash; HistData DST defect affecting ≤ 6 events in each of Q-0001/Q-0003 (bound shows verdicts cannot flip; no re-read); Q-0001/Q-0003/Q-0007 registered eligibility filters failed the truncation harness by construction, ex-ante versions printed and no better; gateway parsing fixes made before any batch-1 read. Null-expected near-misses across the 7 tests ≈ 0.03; observed 0.
 
