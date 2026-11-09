@@ -40,7 +40,7 @@ def read_job(d: Path, schema_hint: str = "ohlcv-1h") -> pd.DataFrame:
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
 
-def land_ohlcv(d: Path, job_id: str) -> dict:
+def land_ohlcv(d: Path, job_id: str, tag: str = "1h") -> dict:
     df = read_job(d)
     df = df.rename(columns={"ts_event": "ts"})
     out = {}
@@ -48,13 +48,13 @@ def land_ohlcv(d: Path, job_id: str) -> dict:
         root = sym.split(".")[0]
         g = g[["ts", "open", "high", "low", "close", "volume", "instrument_id"]].sort_values("ts")
         g = g.drop_duplicates("ts", keep="last")
-        ds = f"dbn_glbx_1h_{root}"
-        note = (f"Databento GLBX.MDP3 ohlcv-1h stype continuous {sym}; job {job_id}; ts = bar open UTC; "
-                f"bars only for hours with trades; instrument_id kept (roll rule)")
+        ds = f"dbn_glbx_{tag}_{root}"
+        note = (f"Databento GLBX.MDP3 ohlcv-{tag} stype continuous {sym}; job {job_id}; ts = bar open UTC; "
+                f"bars only for intervals with trades; instrument_id kept (roll rule)")
         out[ds] = common.land(ds, g[g["ts"] < HOLD], f"derived/{ds}.parquet", source=f"Databento job {job_id}",
-                              licence_status="licensed", resolution="1h", tz_note="ts = bar open UTC", notes=note)
+                              licence_status="licensed", resolution=tag, tz_note="ts = bar open UTC", notes=note)
         out[ds + "_holdout"] = common.land(ds + "_holdout", g[g["ts"] >= HOLD], f"holdout/{ds}_holdout.parquet",
-                                          source=f"Databento job {job_id}", licence_status="licensed", resolution="1h",
+                                          source=f"Databento job {job_id}", licence_status="licensed", resolution=tag,
                                           tz_note="ts = bar open UTC", notes=note + "; HOLD-OUT: never read before HOLDOUT_UNLOCK")
     return out
 
@@ -74,9 +74,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("job_id")
     ap.add_argument("--definitions", action="store_true")
+    ap.add_argument("--tag", default="1h")
     a = ap.parse_args(argv)
     d = download(a.job_id)
-    print(land_definitions(d, a.job_id) if a.definitions else land_ohlcv(d, a.job_id))
+    print(land_definitions(d, a.job_id) if a.definitions else land_ohlcv(d, a.job_id, a.tag))
 
 
 if __name__ == "__main__":
