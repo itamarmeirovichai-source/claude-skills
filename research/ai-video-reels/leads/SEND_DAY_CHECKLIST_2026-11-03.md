@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-11-09** by `SEND_DAY_CHECKLIST_2026-11-10.md`. Expired unsent; do not use.
+
 # ימי שליחה · שלישי 3.11 (גל A) ורביעי 4.11 (גל B) · צ'קליסט לבעלים
 
 ## ⛔ ONLY IF THE OWNER APPROVES SENDING
