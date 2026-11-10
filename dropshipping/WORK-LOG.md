@@ -13,3 +13,8 @@
 - Sweep 1 (finance, payments, registration, US tax and duties): 16 new sources (S-37..S-53), 4 new primary (Allpay listing, CDTFA, CBP interim final rule via pdftotext, Payoneer page). Federal Register HTML redirected to an unblock page; PDF read locally instead. Allpay listing rate-limited once (429), succeeded on retry.
 - Findings: card acceptance from Israel needs a registered business and an adult signatory; Grow has the only published fee stack; exempt-dealer ceiling ≈ $3.2k/month revenue; VAT on US sales by an authorized dealer unresolved (0% vs 18%, breakeven ROAS 1.80 vs ~2.45); US postal duties are remitted by carriers or qualified parties and not collected from addressees under the 2026 CBP rule (first draft misread the old-process sentence; corrected same turn); suppliers restricted to US-warehouse or DDP.
 - Memo, frame addendum, curriculum, checkpoint updated. Spend $0.
+
+## 2026-11-10 — turn 3 — Phase 1 sweep 2
+- Operator instruction: continue automatically; stop only for a question, needed information, a purchase, or a limit risk. Recorded.
+- Sweep 2 (products and suppliers for US delivery): 20 new sources (S-54..S-73), 12 primary. Refusals: AutoDS supplier-regions article (404), CJdropshipping (bot validation), Amazon policy (login), Ad Library UI (403), voc.ai (500).
+- Outputs: supplier route table, exclusions (Amazon, China-direct, blended estimates), category exclusions, 5 candidate families, runbook `runbooks/ad-library-scan.md` for the operator ($0), category return allowances replacing the flat 8%.
