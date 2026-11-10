@@ -7,3 +7,9 @@
 - Frame frozen, council held, ladder frozen with three changes (gateway + FTC delivery disclosure in M0; 60-day no-order stop; k measured at M2).
 - Operator message mid-turn: destination market = US; asked whether to buy anything. Added US constraint rows S-34–S-36. Answer: nothing to buy yet.
 - Wrote all deliverable files, checkpoint, memo. Spend: $0.
+
+## 2026-11-10 — turn 2 — Phase 1 sweep 1
+- Operator answered: 15 years old, mother to hold accounts, adult card + PayPal exist, 10–15 h/week; did not understand "רו"ח" (explained).
+- Sweep 1 (finance, payments, registration, US tax and duties): 16 new sources (S-37..S-53), 4 new primary (Allpay listing, CDTFA, CBP interim final rule via pdftotext, Payoneer page). Federal Register HTML redirected to an unblock page; PDF read locally instead. Allpay listing rate-limited once (429), succeeded on retry.
+- Findings: card acceptance from Israel needs a registered business and an adult signatory; Grow has the only published fee stack; exempt-dealer ceiling ≈ $3.2k/month revenue; VAT on US sales by an authorized dealer unresolved (0% vs 18%, breakeven ROAS 1.80 vs ~2.45); US postal parcels without prepaid duty are paid by the recipient at the post office; suppliers restricted to US-warehouse or DDP.
+- Memo, frame addendum, curriculum, checkpoint updated. Spend $0.
