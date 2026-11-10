@@ -1,0 +1,3 @@
+# reads.log — append-only. One line per read of held-out evidence (overlay §4, protocol iron law 4).
+# format: ISO timestamp | hypothesis ID | what was read (data fingerprint / source) | result summary | read number (must be 1)
+# (no entries yet; Phase 0 has no hypotheses under test)
