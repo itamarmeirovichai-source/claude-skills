@@ -8,7 +8,7 @@
 | Bash + Python 3 | code execution | working | no | `goal_math.py` runs with `python3 -I` |
 | Playwright + Chromium | browser automation | present | no | usable for the program's own store pages and screenshots, not for bypassing bot checks |
 | GitHub MCP (`mcp__github__*`) | repo, PRs | working, scoped to this repo | repo token (session) | PR creation, no search |
-| Motion Creative Analytics MCP (`mcp__Motion_Creative_Analytics__*`) | Meta creative analytics (Meta-only data) | present, not called | reads a connected Meta ad workspace | Candidate for Phase 2+ creative reporting. Not called until vetted and approved (touches the ad account) |
+| Motion Creative Analytics MCP (`mcp__Motion_Creative_Analytics__*`) | Meta creative analytics (Meta-only data) | `get_auth_context` called 2026-11-10 (read-only): no organizations, no workspace → brand/inspo tools unusable | would read a connected Meta ad workspace | Unusable on this account; re-check only if the operator later creates a Motion workspace |
 | Canva, Adobe Express, Figma, Gamma MCPs | design / video | present, not called | Canva/Adobe accounts | Candidate creative tools; vet rights and cost before use |
 | Gmail, Google Drive, Calendar MCPs | connectors | present, not called | operator's Google account | Not needed in Phase 0. Any use is logged here first |
 | `anthropic-skills:meta-ad-prompt-architect` | skill | present | no | Candidate for creative briefs; vet in the Phase 1 tooling unit |

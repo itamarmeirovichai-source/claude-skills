@@ -23,3 +23,7 @@
 - Tooling unit: official Meta ads MCP (Jul 2026) and Shopify Dev MCP identified as first-party; 7 GitHub candidates vetted by README (two rejected for third-party credential paths or scraping, one unreadable); nothing installed. P- entry template and M0 runbook (held) written. Memo rewritten as the Phase 1 report. Program now blocked on operator inputs (candidate table, accountant answers). Spend $0.
 - Phase 3 harness built ahead of data: `phase3/reconcile.py` (8 checks) + self-test with planted fake order, future leak, duplicate; placebo clean; exit codes for CI-style use. Runbook `daily-numbers.md`. Operator asked whether they can shut the computer: yes, cloud session; recorded.
 - Stop reason: Phase 2 needs the operator's candidate table and the accountant's answers (allowed stop under §11.5).
+
+## 2026-11-10 — turn 4 — program-side candidate pass
+- Operator rule: program does what it can, operator the remainder. Ad Library (403), CJ (bot wall), Zendrop/Spocket (login), TrendTrack article (404 at first URL, found at second), Motion (no workspace) all unreachable to the program.
+- Built `sweeps/candidates-2026-11-10.md`: 12 candidates from 5 vendor trend lists after exclusions; "Roha Home" advertiser verified (site + Trustpilot), "Petzrella" not found; Doba shows a US-shipping elevated bowl. Lithium exclusion refined (installed small cells allowed). Sources S-109..S-116. Spend $0.
