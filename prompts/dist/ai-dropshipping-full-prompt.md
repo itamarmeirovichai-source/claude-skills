@@ -2,7 +2,7 @@
 ## Topic overlay for the DEEP RESEARCH PROTOCOL
 
 This file is pasted together with `deep-research-protocol.md`. Everything in
-the protocol applies. This overlay fills the fill-in block, adds eight iron
+the protocol applies. This overlay fills the fill-in block, adds nine iron
 laws the operator set for this program, and translates each phase into the
 dropshipping domain. Where the two conflict, the protocol's iron laws win,
 then this overlay, then the protocol's defaults.
@@ -72,11 +72,11 @@ DELIVERABLE:      A `dropshipping/` folder in the repository: `registry.md`,
                   `reads.log`, `ledger.md` (every dollar, external and
                   reinvested), `results/`, `sweeps/`, `sources.md`, `curriculum.md`,
                   `tools.md` (installed tooling and its vetting), `runbooks/`,
-                  `automation.md`, `WORK-LOG.md`, `DECISION-MEMO.md`. A PR
+                  `automation.md`, `WORK-LOG.md`, `DECISION-MEMO.md`, `CHECKPOINT.md`. A PR
                   whose description is the current decision memo.
 
 ---------------------------------------------------------------------------
-## 1. ADDITIONAL IRON LAWS FOR THIS PROGRAM (11–18)
+## 1. ADDITIONAL IRON LAWS FOR THIS PROGRAM (11–19)
 ---------------------------------------------------------------------------
 
 11. **The $2,000 ledger is the law of the business.** Every spend is entered
@@ -149,6 +149,16 @@ DELIVERABLE:      A `dropshipping/` folder in the repository: `registry.md`,
     reported as unresolved. "Everyone says" and "it is well known" are not
     sources. A screenshot of a guru's dashboard is not a source. A number
     the program computed is shown with its inputs and their sources.
+
+19. **Chunk the work so no limit is ever hit, without dragging it out.**
+    Every unit of work is sized to finish inside one turn with room to
+    spare, and its state is written to disk before the turn ends, so a cut
+    by context, token or usage limits loses nothing and a fresh session
+    resumes from the checkpoint in one read. The opposite failure is just as
+    forbidden: no padding, no ceremony, no "shall I continue?", no splitting
+    a ten-minute task into five turns to look careful. The rule is: as small
+    as needed to never be cut off, as large as possible otherwise. Section
+    11 is the procedure.
 
 ---------------------------------------------------------------------------
 ## 2. PHASE 0 FOR THIS DOMAIN: THE FRAME
@@ -492,6 +502,58 @@ closer or further and by what evidence.
   30-day expiry?
 - Did each researched area reach the minimum depth (15 sources, 3 primary,
   2 dissenting)?
+- Was `CHECKPOINT.md` written before this turn ended, and could a fresh
+  session resume from it without re-reading the whole repository?
+- Was any turn padded, split without need, or ended on a question instead
+  of on the next unit of work?
+
+---------------------------------------------------------------------------
+## 11. WORK CHUNKING AND CHECKPOINTS (law 19)
+---------------------------------------------------------------------------
+
+**11.1 Unit size.** One unit of work is one thing with a visible result:
+one sweep area, one registry entry set, one hypothesis test, one result
+file, one weekly report, one tool vetted and installed, one runbook. A unit
+is sized so that reading its inputs, doing it, and writing its outputs fits
+comfortably inside a single turn, with room left for the checkpoint. If a
+unit looks larger than that, split it by a natural seam (per source area,
+per hypothesis, per week of data), never by arbitrary length.
+
+**11.2 Checkpoint before the turn ends, every turn.** Write or update
+`CHECKPOINT.md` with: what unit was just finished and where its output is;
+the exact next unit, with the command or file to start from; anything half
+done and how to tell; open questions for the operator; the ledger line and
+spend as of now. Then the memo and the work log are updated and committed.
+A turn that ends without a checkpoint is a bug, reported as one.
+
+**11.3 Resume protocol.** A new session, or the same session after a cut,
+reads in this order and nothing more: `CHECKPOINT.md`, `DECISION-MEMO.md`,
+the registry, the ledger. It does not re-read the whole repository, re-run
+finished tests, or redo a sweep that has a sweep file. It picks up the
+"exact next unit" and continues. If a half-done unit is found, it is
+finished or discarded according to the checkpoint note, never silently
+redone from scratch.
+
+**11.4 Context discipline inside a turn.** Load sources in the order they are
+needed and summarize each into the curriculum or sweep file as soon as it is
+read, so the raw text does not have to stay in context. Prefer reading the
+relevant section of a file over the whole file. Keep large data out of the
+conversation and in files, scripts and logs. Run long jobs in the background
+and do the next independent unit while they run.
+
+**11.5 No dragging.** Forbidden: ending a turn on a question that the
+protocol already answers; asking permission for a reversible step the
+operator already authorized; writing a plan for a unit that could simply be
+done; re-stating previous results instead of producing new ones; splitting
+a small unit to produce more turns; "checking in" with no new result.
+Allowed stops are only: a unit is done and the checkpoint is written, a
+Right-For-You check needs an operator fact, a spend needs approval, or a
+job is waiting on an external system and nothing independent remains.
+
+**11.6 When a limit is hit anyway.** The checkpoint from the previous turn
+is the recovery point. On resume, the first line of the report says what
+was lost (at most one unit) and that it is being redone. No apology
+paragraph, no rebuild of context from memory.
 
 
 ===========================================================================
