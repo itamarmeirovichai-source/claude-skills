@@ -33,6 +33,7 @@ Library link pattern (replace the term): `https://www.facebook.com/ads/library/?
 Rejected from the lists, with reason: magnesium/sleep supplements and skincare sets (health/beauty claims, S-08, FTC); shapewear and clothing (sizing returns 24–40%, S-72); USB heated vest and car jump starter (large lithium cells, S-61); LED face masks (cosmetic-device claims); kids' advent calendars and squishies (children's product, S-60); Bluetooth trackers (compatibility claims, S-113 itself warns); Temu/Tefal/Joe's Doors items (brands, not dropship).
 
 ## Pass criteria for the operator's three columns (from the registry template)
+- Price point (added 2026-11-10 from sweeps 6–7, rule LP4): the observed sale price must be ≥ $49, or the row becomes a bundle that reaches ≥ $49 with contribution ≥ 55%. Reason: at benchmark CPC $0.57–1.72 and ~1.5% conversion, cost per purchase is $38–115, above the breakeven CPA of a $40 product. Rows 8, 10, 11, 12 (neck light, heatless curler, lick mats, ice cleats) need bundles; rows 1, 6, 7 are borderline.
 - Library: ≥ 2 advertisers with the oldest start ≥ 21 days ago (demand) and ≤ 5 US advertisers for the same product (not saturated).
 - Supplier: a SKU that shows "ships from US" with landed cost (product + US shipping) and stated days; no blended estimates.
 - Contribution: (observed sale price − landed cost) ÷ price ≥ 0.55.
