@@ -18,3 +18,4 @@
 - Operator instruction: continue automatically; stop only for a question, needed information, a purchase, or a limit risk. Recorded.
 - Sweep 2 (products and suppliers for US delivery): 20 new sources (S-54..S-73), 12 primary. Refusals: AutoDS supplier-regions article (404), CJdropshipping (bot validation), Amazon policy (login), Ad Library UI (403), voc.ai (500).
 - Outputs: supplier route table, exclusions (Amazon, China-direct, blended estimates), category exclusions, 5 candidate families, runbook `runbooks/ad-library-scan.md` for the operator ($0), category return allowances replacing the flat 8%.
+- Sweep 3 (Meta Ads mechanics): 16 new sources (S-74..S-89), 6 new primary (developer docs, ad standard, newsroom). Insights-parameters doc 404; Shopify data-sharing page empty; learning-stage API doc not found. Rules T1–T2, C1, L1–L2, S1, H1–H4, A1 written into the sweep for the registry.
