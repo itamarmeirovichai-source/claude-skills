@@ -266,3 +266,14 @@ Every factual claim the program makes traces to a row here. Columns: id | access
 | S-178 | 2026-11-11 | https://www.fruugo.ca/heatless-hair-curling-rod-no-heat-headband-for-soft-waves-and-curls/p-363787013 ; https://gimmebeauty.com/products/heatless-curling-rod-pink | marketplace + brand | $7.50–30.95 | Observed (snippets) | 2026-12-11 | Gimme homepage showed no price |
 | S-179 | 2026-11-11 | https://www.petsmart.com/dog/bowls-and-feeders/placemats/woof-slow-feeder-lick-mat-90989.html ; https://www.chewy.com/lickimat-buddy-slow-feeder-dog-lick/dp/654638 | retailer listings | lick mats $5.97–19.99 | Observed (snippets) | 2026-12-11 | |
 | S-180 | 2026-11-11 | https://www.walmart.com/ip/22794985 ; https://ihsgonline.com/products/pro-ice-cleats/234047225/ | retailer listings | Yaktrax Pro $29.99; Action Traction Pro $20.99; generics $5–10 | Observed (snippets) | 2026-12-11 | |
+
+## Ad Library observations (2026-11-11, operator screenshots)
+
+| id | accessed | URL | quality | line relied on | label | expiry | notes |
+|---|---|---|---|---|---|---|---|
+| S-181 | 2026-11-11 | https://www.facebook.com/ads/library/ (query: suction hooks no drill; US; active; video) | primary (operator screenshot, evidence/ad-library-2026-11-11/01) | ~3,300 results; Everything Envy since Aug 16, 2026; Roha Home partnership ad since Oct 5, 2026; Arrivalcy-R since Oct 9, 2026 | Observed | 2026-12-11 | |
+| S-182 | 2026-11-11 | same (query: elevated dog bowl) | primary (screenshot 02) | ~190 results; Getnamenecklace "Custom Cartoon Elevated Pet Bowl with Name" since Sep 27, 2026 (2 ads); keyword noise present | Observed | 2026-12-11 | |
+| S-183 | 2026-11-11 | same (query: automatic pet feeder) | primary (screenshot 03) | ~79 results; Petlibro partnership ad since Aug 19, 2026; PawsPik microchip feeder since Oct 29, 2026; one OEM factory ad inactive | Observed | 2026-12-11 | |
+| S-184 | 2026-11-11 | same (query: candle warmer lamp) | primary (screenshot 04) | ~34 results; Maria's Finds since Jun 29, 2026 (2 ads); two creator/affiliate ads (Sep 25, Sep 29) | Observed | 2026-12-11 | |
+| S-185 | 2026-11-11 | same (query: scalp massager) | primary (screenshot 05) | ~480 results; Kitsch (brand) since Oct 31; Amazon-affiliate ad since Jun 15; OrréNaturals hair-regrowth claims since May 30, 2026 | Observed | 2026-12-11 | Category attracts health claims (S-08 risk) |
+| S-186 | 2026-11-11 | same (query: motion sensor closet light) | primary (operator screenshot sent inline, transcribed) | ~370 results; Modolight since Mar 11, 2026 with "14 ads use this creative and text"; Modolight since Sep 15 (5 ads); NightLume since May 28, 2026 with "BOGO Ends Tonight" | Observed | 2026-12-11 | |

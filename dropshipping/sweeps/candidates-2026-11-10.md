@@ -66,3 +66,16 @@ Operator asked the program to do the columns itself. Result: column 2 (US suppli
 - Column 1 (Ad Library) is still required for the survivors: 6 rows → 6 link-clicks for the operator (products 1–5 and 9). The links are in the main table above.
 - Supplier prices for rows 2–3 come from a free Doba/Eprolo sign-up at M0 step 4 (mother). Until then the landed cost is bounded by Walmart retail (sourcing ≤ 50% of Walmart's price is the usual relation; Inferred).
 - A network note for the record: `candlewarmersshop.it.com` did not resolve from this session (host not in the session's allowed network); it was a sale-price source only and is not needed.
+
+## Column 1 filled from the operator's Ad Library screenshots (2026-11-11, S-181..S-186)
+
+| # | Product | Results (keyword) | Relevant advertisers in first 3 cards | Oldest active ad | Demand (≥ 2 advertisers, ≥ 21 days) | Saturation (> 5 US advertisers) | Price test | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Suction hooks | ~3,300 | 3 (Everything Envy, Roha Home partnership, Arrivalcy-R) | 87 days | yes | yes (count alone shows it) | bundle only | **drop**: saturated and low price |
+| 2 | Elevated bowl | ~190 | 1 clear (Getnamenecklace, personalised bowl, 45 days); noise in results | 45 days | weak (one advertiser) | no | design/personalised at $49.90 | **register P-0002**, personalised angle is the differentiator; prior low |
+| 3 | Automatic feeder | ~79 | 2 (Petlibro brand partnership 84 days; PawsPik 13 days) | 84 days | yes | no | passes ($59.90) | **register P-0003**; competes with a brand's app feeder; non-app timer feeder at a lower price point |
+| 4 | Candle warmer lamp | ~34 | 1 dropship-style (Maria's Finds, 135 days, 2 ads) + 2 creator/affiliate ads | 135 days | yes (long-running) | no (lowest count of all) | borderline; $59.90 needed | **register P-0001**; fragile, packaging check |
+| 5 | Scalp massager | ~480 | 3 (brand, affiliate, hair-regrowth claims) | 165 days | yes | yes | passes | **drop**: saturated and the category's ads lean on health claims (S-08) |
+| 9 | Closet lights | ~370 | 2 (Modolight 245 days with 14 ads; NightLume 167 days) | 245 days | strong | medium (two dominant long-runners) | bundle 6-pack $49.90 | **register P-0004** as a bundle; strongest demand signal of the six |
+
+Rule change recorded before any data (allowed in Phase 2 before a development run): the sweep-7 screening heuristic "contribution ≥ 55%" was set before category refund allowances were applied; with those allowances no candidate reaches 0.55. The registry uses the computed per-product stop rule and records share and breakeven ROAS; the screening floor is now share ≥ 0.35 and breakeven ROAS ≤ 3.0 in the VAT-0 scenario. The M1 bar itself (reconciled contribution > $0) is unchanged.
