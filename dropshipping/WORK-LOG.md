@@ -31,3 +31,7 @@
 - Sweeps 6–7 (consumer psychology; copy and landing pages): 17 new sources (S-128..S-145), 6 primary incl. PNAS, JCP, PLOS ONE, Baymard, Google/Deloitte, Spiegel (pdftotext). Rules LP1–LP6; price criterion ≥ $49 added to candidates and memo.
 - Runbooks written without research: store-policies.md (FTC-compliant drafts), ad-brief-template.md, cs-templates.md (10 tickets), accountant-email.md (Hebrew). Depth audit added to checkpoint: statistics and AI tooling below the 15-source minimum; top-up queued.
 - Top-up: statistics (S-146..S-155) and AI tooling (S-156..S-165); both areas now at depth. Rules ST5–ST7, TL3–TL6. Nothing left that needs no operator input; program paused on the candidate table and the accountant. Spend $0.
+
+## 2026-11-11 — turn 6 — program fills the candidate columns
+- Operator: "do it yourself". Ad Library still 403; Doba/Eprolo not indexed by search but direct product pages show US stock and delivery days with prices behind free sign-up; sale prices gathered from Chewy, Target, Walmart, Fruugo, Grove, two dropship-style stores (Taavita $96.95 feeder; zyrestore $18.97 grinder). One host (candlewarmersshop.it.com) not resolvable from the session network; one store returned 402.
+- Result: price test LP4 leaves 3 passing rows, 2 bundle-only, 1 design-led; 6 drop. Operator task reduced to 6 Library clicks. Sources S-166..S-180. Spend $0.
