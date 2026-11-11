@@ -6,7 +6,7 @@ Each step is an instruction with its Right-For-You check. **Held** steps wait fo
 
 ## Step 1 — business form and numbers (held: Step 0 answers)
 ```
-Instruction:         Mother registers as the CPA advises: Florida sole proprietorship with a fictitious name (~$50, Sunbiz) or single-member LLC ($125 + $138.75 annual report, secondary S-190; Sunbiz pages refused); free EIN from the IRS; Florida sales tax registration (online or DR-1, S-196) before the first sale; Annual Resale Certificate for supplier purchases (S-197)
+Instruction:         Mother registers as the CPA advises: Florida sole proprietorship with a fictitious name (~$50, Sunbiz) or single-member LLC ($100 filing + $25 registered agent = $125; annual report $138.75 due Jan 1–May 1 of the following year, $400 late fee; state fee schedule S-201); free EIN from the IRS; Florida sales tax registration (online or DR-1, S-196) before the first sale; Annual Resale Certificate for supplier purchases (S-197)
 Who acts:            guardian
 Legal and policy:    E-2S employment authorized (S-187); Schedule C taxation (S-189); physical nexus in the home state (S-194)
 Cost:                external: ≈ $50 (sole prop + fictitious name) or ≈ $264 first year (LLC); ledger line before paying; insurance for P-0001 is a separate line later
