@@ -14,3 +14,5 @@ Process files (overlay §8 says a runbook is written after the third manual run;
 | `p-0004-build.md` | P-0004 launch package, same shape | built 2026-11-11 |
 | `p-0003-build.md` | P-0003 launch package, same shape; adds the filmed 6-meal cycle gate | built 2026-11-11 |
 | `p-0001-build.md` | P-0001 launch package, same shape; price-pressure finding, 2 spare bulbs | built 2026-11-11 |
+| `store-build.md` | store-wide build sheet: identity, theme, apps ≤ 3, navigation, checkout, email flows, launch gate | built 2026-11-11 |
+| `m0-day-one.md` | M0 in one sitting, Hebrew table for the mother (7 steps, costs, sources, what the operator prepares) | built 2026-11-11 |
