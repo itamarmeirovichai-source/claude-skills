@@ -1,0 +1,120 @@
+# 02 — Evidence Ledger
+
+**Authoritative source for every external fact cited anywhere in this system.**
+If a document states an external fact, it cites an `E-NN` ID from this table. If it has no ID,
+it is not a fact — it is an assumption ([03](03-assumptions-register.md)) or an opinion.
+
+## Evidence quality grades
+
+| Grade | Meaning | How we may use it |
+|---|---|---|
+| **A** | Primary source, read directly by us, current | May be stated as fact in customer-facing copy |
+| **B** | Primary source quoted by a reliable secondary source; we could not read the primary directly | May be used internally; **must be verified before customer-facing use** |
+| **C** | Secondary reporting, trade press, vendor blog, aggregator | Internal planning only. Never customer-facing |
+| **D** | Vendor marketing claim about its own results | Directional only. Treat as advertising |
+| **E** | Practitioner opinion, forum posts, anecdote | Hypothesis generation only |
+
+## Research limitations — read before using this ledger
+
+1. **No primary source on the open web is reachable from this environment.** This was tested
+   exhaustively on 2026-09-17, and the result is stronger than first recorded:
+
+   | Route | Result |
+   |---|---|
+   | `WebFetch` → airbnb.com, help.vrbo.com, tryreelestate.com | `EGRESS_BLOCKED` |
+   | `WebFetch` → airbnb.co.uk (any regional Airbnb domain) | `EGRESS_BLOCKED` |
+   | `WebFetch` → stripe.com, support.google.com, facebook.com, epidemicsound.com | `EGRESS_BLOCKED` |
+   | `WebFetch` → web.archive.org | Blocked |
+   | `curl` via Bash → **any** host, including `example.com` | `403 CONNECT tunnel failed` |
+
+   Bash has no web egress at all; the proxy reports `selective: false`, so this is a blanket
+   block rather than a domain allowlist. **Only `WebSearch` works, and it returns summaries
+   rather than source text.** Consequently every platform-rule and vendor-terms item below is
+   graded **B at best**, and all nine carry a mandatory human verification task.
+   **A future session should not retry these routes** — the block is at the proxy, not the tool.
+   The worksheet for a human to complete is [47](47-v0-verification-worksheet.md).
+2. **Web search results are US-scoped**, consistent with the English-speaking initial market,
+   but this biases platform and legal findings toward US rules.
+3. **No competitor's private pricing, close rate, or volume is known.** Nothing in this ledger
+   asserts a competitor's commercial success. Visual polish and ad longevity are not evidence of
+   profitability.
+4. **Several sources are SEO content produced by companies selling the thing being described**
+   (AI property-video vendors writing about property video). These are graded C or D and are
+   never used to justify a customer-facing claim.
+5. **No causal evidence that property video increases bookings was found.** This is a finding,
+   not a gap in searching. See E-20.
+
+---
+
+## Platform rules — where video can and cannot be used
+
+| ID | Claim | Grade | Source | Notes / how it changes a decision |
+|---|---|---|---|---|
+| **E-01** | **Airbnb does not allow hosts to upload video to the listing gallery.** No MP4 upload, no YouTube embed. Native video exists only for Luxe listings and some API-connected professional accounts. | **B** | [Motion My Property](https://motionmyproperty.com/en-gb/blog/airbnb-listing-video), [Airbnb Community threads](https://community.withairbnb.com/t5/Ask-about-your-listing/Videos/m-p/2211278) — consistent across multiple independent host reports and vendor writeups; primary Airbnb help page blocked | **Decision-changing.** Kills any "video for your Airbnb listing" offer. Forces the offer onto channels the host controls. See [06](06-two-marketing-systems.md), [12](12-positioning.md) |
+| **E-02** | Hosts **can** send video to a guest through the Airbnb message thread after a reservation is confirmed (e.g. arrival/appliance walkthroughs). | B | Same as E-01 | Creates a small, legitimate secondary product (arrival video) with *no* marketing-claim risk. See [14](14-offer-specification.md) |
+| **E-03** | **Vrbo accepts listing video** with published guidelines: preferred under 60s, max 2 minutes, min 15 seconds; mp4 or mov (mp4 preferred). | B | [Vrbo help article, via search summary](https://help.vrbo.com/articles/Vrbo-video-guidelines); [The Hosted Life](https://thehostedlife.com/blog/add-video-to-vrbo/) — primary blocked | **Decision-changing.** Vrbo is the one OTA where our deliverable can be used directly. Sets deliverable length spec. |
+| **E-04** | **Vrbo rejects added music.** Rejection reasons include added music; use natural sound, voiceover, or captions. Only audio you hold rights to is allowed. | B | Same as E-03 | **Decision-changing.** Forces a *music-free* deliverable variant in every package. Most competitors' "cinematic with music" output is ineligible for Vrbo. This is a genuine differentiator. |
+| **E-05** | Vrbo prohibits on-screen contact details (phone numbers, websites, booking links) anywhere in frame. | B | Same as E-03 | Forces a no-CTA export variant. Our social cut and our Vrbo cut cannot be the same file. |
+| **E-06** | Vrbo allows up to ~20% of the video to show nearby attractions/area; the rest must be the property. | B | Same as E-03 | Constrains storyboard: max ~12s of area footage in a 60s cut. |
+| **E-07** | Vrbo no longer supports embedded 3D virtual tours (URL may be referenced in description only). | B | Same as E-03 | Removes "3D tour" as a competing deliverable on that channel. |
+| **E-08** | **Google Business Profile** accepts video: recommended ≤30s, 720p or 1080p, <75MB; horizontal preferred, 9:16 gaining use. | B | [Google Business Profile Help](https://support.google.com/business/answer/6103862), [PostFast sizes guide](https://postfa.st/sizes/google-business-profile) | Adds a real distribution surface for properties that qualify as a business listing. Sets a 30s export spec. |
+| **E-09** | **Booking.com's** documented partner video upload is for **location verification**, not marketing. Video must be <8 weeks old and show street sign, exterior, path to interior, and interior rooms. | B | [Booking.com Partner Hub](https://partner.booking.com/en-us/help/first-steps/online-bookable/verifying-your-property%E2%80%99s-location-video-upload) | **Decision-changing.** Booking.com is not a marketing-video distribution channel. Do not sell it as one. Also: verification video must be *real, recent, unedited footage* — explicitly not our product. |
+| **E-10** | **Airbnb's Content Policy covers AI-generated or AI-edited content** and treats it as content subject to accuracy rules. Airbnb uses computer-vision checks on photos for authenticity and consistency; rejected photos must be replaced. | B | [Airbnb Content Policy (art. 546)](https://www.airbnb.com/help/article/546) via search summary; primary blocked | Establishes that AI media is in scope of enforcement. |
+| **E-11** | **Airbnb will require removal of content where AI or digital technology was used to edit flaws, hide damage, add amenities/attributes not part of the listing, or otherwise misrepresent it.** Enforcement ladder: education → warning → forced removal → suspension/removal, loss of Superhost, reservation cancellation, refund from host payout. | **B** | [Airbnb Ground Rules (art. 2895)](https://www.airbnb.com/help/article/2895) via search summary; primary blocked | **Decision-changing and the single most important item in this ledger.** Makes accuracy a hard product constraint, not a nicety. Drives [26](26-property-accuracy-rules.md) and the hard-reject list in [27](27-quality-rubric.md). |
+| **E-12** | Airbnb guests can seek refunds for listings "materially different" from advertised — size misrepresentation, missing amenities, significant photo discrepancies. Reporting window reported as 72 hours from discovery (some sources say 24h for certain conditions). | B/C | [Smoobu guide](https://www.smoobu.com/en/guides/airbnb/airbnb-refund/), [AvantStay](https://avantstay.com/blog/vacation-rental-not-as-advertised/) — window figures conflict across sources | Quantifies the host's downside risk from an inaccurate video. This is the *fear* we sell against, honestly. Conflicting windows → do not quote a specific number to customers. |
+| **E-13** | **Airbnb trademarks** (name, logo, Bélo, Superhost badge, AirCover) may not be used without written permission, with limited exceptions for the word "Airbnb" set out in their Trademark Guidelines. | B | [Airbnb Brand/Trademark Guidelines](https://airbnbbrand.orangelogic.com/CMS4/En/Brand/community/Brand-Guidelines), [help art. 2908](https://www.airbnb.com/help/article/2908) | **Decision-changing for our own marketing.** No Airbnb logo in our ads, site, or deliverables. Descriptive word use only. Drives [21](21-claim-register.md) and [38](38-rights-and-security.md). |
+
+## Legal and regulatory
+
+| ID | Claim | Grade | Source | Notes |
+|---|---|---|---|---|
+| **E-14** | **California Business & Professions Code §10140.8**, effective 1 Jan 2026, requires real estate brokers/salespeople to disclose digitally altered images used in advertising **for the sale of real property**. | B | [Real Estate News](https://www.realestatenews.com/2026/09/08/ai-modified-listing-photos-blur-line-between-enhancement-deception), [WAV Group](https://www.wavgroup.com/2025/05/06/ai-labeling-laws-are-here-what-real-estate-companies-need-to-know-and-do/) | **Scope caveat:** it addresses *sale* of real property and *licensees*. Short-term rental marketing by a non-licensee owner is probably outside it. We adopt disclosure anyway as policy, not as compliance ([26](26-property-accuracy-rules.md)). Lawyer review required before asserting scope. |
+| **E-15** | Wisconsin Act 69 requires real estate licensees to disclose when technology materially alters how a property is displayed in marketing images. | C | [WAV Group](https://www.wavgroup.com/2025/05/06/ai-labeling-laws-are-here-what-real-estate-companies-need-to-know-and-do/) | Same scope caveat as E-14. Signals a regulatory direction. |
+| **E-16** | NAR's Code of Ethics requires members to refrain from exaggerating, misrepresenting or concealing pertinent facts and to present a "true picture"; NAR guidance says AI should "show possibilities," not "rewrite reality." | C | [Real Estate News](https://www.realestatenews.com/2026/09/08/ai-modified-listing-photos-blur-line-between-enhancement-deception) | Not binding on us or on most hosts. Useful as an industry-norm citation and a good phrase for our own standard. |
+| **E-17** | FTC applies existing truth-in-advertising law to AI content: ads must be truthful and not misleading. Commonly drawn line — acceptable: exposure/colour correction, upscaling that invents no new physical detail. Deceptive: altering proportions, inventing textures/features. | C | [Deep Image analysis of FTC guidance](https://deep-image.ai/blog/ftc-ai-image-editing-false-advertising-ethics/) | The *principle* (truthful, not misleading) is settled law and safe to rely on. The specific acceptable/deceptive line is a secondary interpretation, not an FTC rule — cite the principle, not the list. |
+| **E-18** | **Epidemic Sound Pro** ≈ $16.99/mo annual ($203.88/yr) or $39.99 monthly; adds freelancer client work, digital ads, commercial online use. Client sublicensing limited to clients under $50M revenue; agencies/production companies over $5M revenue directed to Enterprise. Grants perpetual right to keep productions made during the subscription period available, and to sublicense/transfer to third parties. | B | [Epidemic Sound pricing analysis](https://photutorial.com/epidemic-sound-pricing/), [The Post Flow license comparison](https://thepostflow.com/post-production/video-editing/music-subscriptions-compared/) | **Decision-changing.** The perpetual-for-work-made-during-subscription term is what makes a client-deliverable business viable. The $50M client cap is irrelevant at our segment. Must read the actual licence before first paid delivery. |
+| **E-19** | Artlist commercial tier ≈ $299/yr. | C | [Artyfile comparison](https://artyfile.com/blog/artlist-vs-epidemic-sound-vs-artyfile-comparison-2026) | Alternative to E-18. |
+| **E-20** | **No credible causal evidence that property video increases bookings was located.** Available figures are vendor-published correlational or self-reported claims. | **A (as a statement about our search)** | Absence across all searches run in this project | **Decision-changing.** Forbids booking-lift claims ([21](21-claim-register.md)). Reframes the entire sale away from ROI promises and toward asset delivery. |
+
+## Tools and costs
+
+| ID | Claim | Grade | Source | Notes |
+|---|---|---|---|---|
+| **E-21** | **Runway**: free tier 125 one-time credits, **personal use only — commercial use prohibited on free**. Standard $15/mo (625 credits), Pro $35, Max $95 (9,500 credits, rollover). Paid plans include commercial rights. Gen-4 roughly 10–15 credits/second standard, 25–40 credits/second for Turbo/4K presets. | B/C | [eesel AI](https://www.eesel.ai/blog/runway-ai-pricing), [Aumiqx](https://aumiqx.com/ai-tools/runway-pricing-gen4-plans-credits-explained/) | **Decision-changing:** free tiers are unusable for client work. Cost floor must assume a paid plan from day one. Credit-per-second figures vary across secondary sources — must be measured, not assumed ([15](15-financial-model.md)). |
+| **E-22** | **Per-second API pricing (approx., 2026):** Kling ≈ $0.09–0.14/s; Sora 2 Standard ≈ $0.10/s at 720p, Pro $0.30–0.70/s; Veo 3.1 Fast from ≈ $0.15/s. Example: 5s Veo 3.1 Fast with native audio ≈ $0.75; 5s Veo 3.1 Standard ≈ $2.00; Kling/Sora ≈ $0.45–0.70 for the same 5s. | C | [ModelsLab API cost comparison](https://modelslab.com/blog/api/veo-3-1-vs-kling-3-sora-2-ai-video-api-cost-2026) | Drives the generation-cost line in [15](15-financial-model.md). **Secondary source — must be replaced with measured invoice data after 10 real jobs.** |
+| **E-23** | Kling Standard consumer plan ≈ $6.99/mo with commercial rights. Google Veo paid access via Google One AI Premium from $19.99/mo. Veo, Sora, Kling and Runway all permit commercial use on paid plans. | C | [ModelsLab](https://modelslab.com/blog/api/veo-3-1-vs-kling-3-sora-2-ai-video-api-cost-2026), [Get AI Perks](https://www.getaiperks.com/en/blogs/44-best-ai-video-generators-2026) | "Permits commercial use" is a summary of terms, not the terms. Each vendor's actual ToS must be read and recorded before it touches a paid deliverable. |
+| **E-24** | **CapCut**: paid plans (Standard ~$10/mo, Pro ~$20/mo) include a commercial-use licence for content created in the editor; free plan restricts commercial use. **No rights granted to CapCut's built-in music/sound recordings** regardless of tier. Certain platform materials are marked personal-only vs commercial. CapCut ToS grants CapCut a broad licence to uploaded/created content. | B | [CapCut Materials License Agreement](https://www.capcut.com/clause/material-license-agreement), [CapCut ToS](https://www.capcut.com/clause/terms-of-service) | **Decision-changing.** The broad content licence CapCut takes over uploaded material is a problem for client property assets. Drives the editor recommendation in [25](25-tool-comparison.md). |
+| **E-25** | **Stripe US**: 2.9% + $0.30 per successful online card payment; +1.5% for international cards; +1% currency conversion; dispute fee $15. | B | [Stripe fee breakdowns](https://checkoutpage.com/blog/stripe-processing-fees) | Direct input to contribution margin. Verify against Stripe's own pricing page before launch. |
+
+## Market and competitive context
+
+| ID | Claim | Grade | Source | Notes |
+|---|---|---|---|---|
+| **E-26** | US active short-term rental listings ≈ 1.6M (Dec 2025), projected ≈ 1.77M in 2026. US STR market ≈ $68.75B (2025) → ≈ $71.73B (2026). Global demand growth ≈ 4.1% YoY in 2026. | C | [ConsumerAffairs](https://www.consumeraffairs.com/movers/short-term-rental-statistics.html), [Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/united-states-short-term-vacation-rental-market) | Market-size context only. **A large TAM is not evidence anyone will buy a video.** Do not use to justify the business. |
+| **E-27** | Airbnb: 9M+ active listings worldwide, 5M+ hosts. 64% of US Airbnb hosts did not use a property management system in 2025. | C | [StayFi](https://stayfi.com/vrm-insider/2026/04/20/vacation-rental-statistics/) | The 64%-no-PMS figure is the useful one: it implies a large, unsophisticated, low-tooling majority — **cheap to reach, hard to sell to, low budget.** Supports our decision to *not* target them first ([08](08-segment-selection-matrix.md)). |
+| **E-28** | 70% of STR operators have a direct-booking website, but 62% generate under 25% of bookings direct, and 18% get none. | C | [StayFi](https://stayfi.com/vrm-insider/2026/04/20/vacation-rental-statistics/) | **Decision-changing.** This is our wedge: a large group has built a direct channel and is dissatisfied with its output. That is an active, funded, frustrated buyer — unlike a passive Airbnb-only host. |
+| **E-29** | Property managers' top 2026 priorities reported as: increasing marketing/distribution reach, adjusting pricing, improving guest experience, strengthening owner relationships, hiring/training. | C | [StayFi](https://stayfi.com/vrm-insider/2026/04/20/vacation-rental-statistics/) | Marketing reach ranked first supports the PM segment, but this is a survey of stated priorities, not spending. |
+| **E-30** | Suggested STR marketing budget benchmarks: 2–5% of gross booking revenue (well-resourced programmes); some sources suggest 5–10%. Successful VR companies reportedly allocate 70–80% of marketing budget to guest acquisition, 20–30% to homeowner recruitment. | C | [BuildUp Bookings](https://www.buildupbookings.com/blog/vacation-rental-marketing-budget/), [CUFinder benchmarks](https://cufinder.io/blog/benchmarks/vacation-rentals/) | Used to sanity-check whether our price is a plausible line item, not to claim a budget exists. |
+| **E-31** | **Human videographer pricing (public, US, 2026):** basic 60–90s walkthrough $150–$500; agent-led tours $300–$1,500; cinematic $500–$2,500+; drone add-on $225–$500; travel fees $50–$150 (rural $200+); urban markets 20–40% higher. | B | [Real Estate Bees](https://realestatebees.com/cost/videography/), [Fash](https://fash.com/costs/real-estate-videography-pricing), [DroneVideos](https://dronevideos.com/real-estate-videography-pricing/) | **Decision-changing.** Defines the price ceiling we anchor against and the gap we occupy. Note these are *real estate sales* prices; STR-specific pricing may differ ([A-07](03-assumptions-register.md)). |
+| **E-32** | Named competitors operating in AI property/STR video: PhotoAIVideo, ImageMotion AI, ReelEstate, Motion My Property, AutoReel, Reel-E, RoomLift, Amplifiles; plus general tools Runway, InVideo AI, Creatify, Pictory, HeyGen, Zoice. DIY AI tools commonly $10–$100/month. | C | [AI Tools archive](https://aitools.omeka.net/ai-video-for-airbnb-host), [PhotoAIVideo](https://www.photoaivideo.com/ai-listing-video-maker-for-airbnb), [ImageMotion AI](https://www.imagemotion.ai/use-cases/airbnb-hosts) | **The category is not empty.** Several of these rank for exactly our keywords. Their per-video pricing was not obtainable — several sites were blocked or gated. See [11](11-competitor-analysis.md) and verification task V-1. |
+| **E-33** | Instagram Reels: Meta operates a "Best Practices" hub in the professional dashboard. Meta guidance emphasises designing Reels to be followable without sound; on-screen text and captions raise view-through. Practitioner consensus: first ~3 seconds decide continuation; 3–5 Reels/week with consistency over volume. | B (Meta hub exists, sound-off guidance) / E (3-second rule, cadence) | [Meta newsroom](https://about.fb.com/news/2024/10/best-practices-education-hub-creators-instagram/) | **Separate strictly:** the sound-off/caption guidance is Meta's own. The 3-second rule and posting cadence are practitioner folklore repeated by SEO blogs. Do not present the latter as platform guidance ([29](29-content-calendar.md)). |
+| **E-34** | **Meta ads daily budgets are not hard caps.** Reported daily overspend allowance raised from 25% to 75% (daily budget × 1.75 max single-day spend), with a rolling 7-day cap of 7× daily budget. A true ceiling requires an **account spending limit**, which is separate from campaign budgets. | B | [Ryze](https://www.get-ryze.ai/blog/meta-ads-account-spending-limit-and-budget-tracking-best-practices), [LeadEnforce](https://leadenforce.com/blog/meta-daily-budgets-explained-why-facebook-ads-spend-more-than-expected) | **Decision-changing and a money-safety item.** Any ad test budget must be enforced with an account spending limit, not a daily budget. Drives [30](30-advertising-packages.md) and [31](31-experiment-design.md). **Verify in Meta's own help centre before spending.** |
+| **E-35** | VRMA (Vacation Rental Management Association), founded 1985, is the trade body for VR property management. State-level member counts exist (e.g. California 432 member companies, 175 disclosing 8,536 units; North Carolina 192 companies, 106 disclosing 14,987 units, March 2026). No national total was obtainable. | C | [RapidEye California](https://rapideyeinspections.com/blog/california-vacation-rental-landscape/), [RapidEye North Carolina](https://rapideyeinspections.com/blog/north-carolina-vacation-rental-landscape/) | Useful shape: NC averages ~141 units per disclosing company; CA ~49. **Portfolio size varies enormously by market** — pricing for PMs cannot assume a standard portfolio ([19](19-property-manager-sales.md)). |
+
+---
+
+## Verification queue — primary sources we must read before launch
+
+These are blocking items. See [42](42-validation-plan.md) task V-0.
+
+| Priority | Source to read directly | Confirms | Blocks |
+|---|---|---|---|
+| **P0** | Airbnb Content Policy + Ground Rules for Hosts (art. 546, 2895) | E-10, E-11 | Any customer-facing accuracy claim; [26](26-property-accuracy-rules.md) |
+| **P0** | Vrbo Video Guidelines (help.vrbo.com) | E-03 – E-07 | The Vrbo-compliant deliverable spec in [14](14-offer-specification.md) |
+| **P0** | Meta account spending limit documentation | E-34 | Any ad spend |
+| **P0** | Epidemic Sound licence text (full) | E-18 | First paid delivery containing music |
+| **P1** | Airbnb Trademark Guidelines §2 (permitted word use) | E-13 | Our own website and ad copy |
+| **P1** | ToS of whichever generation vendor we select | E-21–E-24 | First paid delivery |
+| **P1** | Stripe pricing page | E-25 | Financial model accuracy |
+| **P2** | Booking.com partner content policy | E-09 | Whether we ever mention Booking.com |
+| **P2** | California B&P §10140.8 actual text + a lawyer's read on scope | E-14 | Any compliance claim |
