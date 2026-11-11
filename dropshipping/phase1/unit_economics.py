@@ -12,17 +12,18 @@ import argparse, math, os, sys, importlib.util
 FX = 3.17                      # ILS per USD, S-33 (expires 2026-11-17)
 SHOPIFY_FEE = 0.02             # third-party gateway fee on Basic, S-03
 GATEWAYS = {                   # variable %, fixed USD per order
+    'shopify_payments': (0.029, 0.30),       # S-03 Basic online rate; no third-party fee (S-26)
     'grow':   (0.0075 + 0.006, 0.0),          # S-37, S-38 (0.75% + 0.6% Shopify surcharge); ₪59/mo fixed handled separately
     'paypal': (0.034 + 0.01 + 0.025, 1.20 / FX),  # S-10: 3.4% + 1% US buyer + 2.5% FX, ₪1.20 fixed
 }
 REFUND = {                     # refund + chargeback allowance by category, S-62, S-72 (secondary)
     'home': 0.17, 'pet': 0.10, 'electronics': 0.09, 'car': 0.10, 'apparel': 0.30, 'personal_care': 0.12, 'pod': 0.20,
 }
-FIXED_MONTHLY = 39.0 + 39.9 + 59 / FX   # Shopify Basic (S-03) + AutoDS Starter (S-24, secondary) + Grow (S-37)
+FIXED_MONTHLY = 39.0 + 39.9            # Shopify Basic (S-03) + AutoDS Starter (S-24, secondary); US path has no gateway fixed fee
 
 def run(price, landed, category, gateway, vat, monthly_orders=100):
     pct, fixed = GATEWAYS[gateway]
-    fees = price * (pct + SHOPIFY_FEE) + fixed
+    fees = price * (pct + (0 if gateway == 'shopify_payments' else SHOPIFY_FEE)) + fixed
     refund_cost = REFUND[category] * price            # conservative: a refunded order loses the full price
     vat_cost = price * vat / (1 + vat) if vat else 0.0  # VAT inside the price if it applies (S-22, Unknown)
     contrib = price - landed - fees - refund_cost - vat_cost
@@ -51,7 +52,7 @@ def stop_rule(contrib_share, price):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--price', type=float, required=True); ap.add_argument('--landed', type=float, required=True)
-    ap.add_argument('--category', choices=REFUND.keys(), default='home'); ap.add_argument('--gateway', choices=GATEWAYS.keys(), default='grow')
+    ap.add_argument('--category', choices=REFUND.keys(), default='home'); ap.add_argument('--gateway', choices=GATEWAYS.keys(), default='shopify_payments')
     ap.add_argument('--vat', type=float, default=None, help='omit to print both 0 and 0.18 scenarios')
     a = ap.parse_args()
     scenarios = [a.vat] if a.vat is not None else [0.0, 0.18]

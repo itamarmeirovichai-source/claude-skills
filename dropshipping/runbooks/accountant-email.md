@@ -1,20 +1,23 @@
-# טיוטת מייל לרואה חשבון / יועץ מס (לשליחה על-ידי אימא)
+# טיוטות מייל (עודכן 2026-11-11 למסלול האמריקאי)
 
-נושא: ייעוץ לפתיחת עסק קטן למכירה אונליין ללקוחות בארה"ב
+## 1. לעו"ד ההגירה של המשפחה (אנגלית, שאלה אחת)
+Subject: E-2S spouse owning a small online store
 
-שלום,
-אני מתכננת לפתוח עסק קטן על שמי: חנות אינטרנט שמוכרת ללקוחות בארה"ב מוצרים שנשלחים אליהם ממחסנים בארה"ב (דרופשיפינג). המוצרים לא עוברים בישראל. בני (15) מפעיל את החנות בפועל בידיעתי ובפיקוחי. התקציב הכולל קטן (עד $2,000), והמכירות בשנה הראשונה צפויות להיות בין אפס לכמה אלפי דולרים בחודש.
+Hello, I hold E-2S status as the spouse of an E-2 investor. I plan to own and run a small online retail store (US-registered, products shipped from US warehouses to US customers), expected revenue under $50,000 in the first year. USCIS states that E-2 spouses are employment authorized incident to status. Please confirm that owning this business as a sole proprietor or single-member LLC in my name is consistent with my status and does not affect the principal's E-2. Thank you, [name].
 
-לפני שאני פותחת תיקים, אשמח לתשובה על השאלות הבאות, ולהצעת מחיר לפגישת ייעוץ ולפתיחת התיקים דרככם:
-1. האם המבנה הנכון הוא עוסקת פטורה על שמי? מה המשמעות שלי כבעלת העסק כשהבן מפעיל?
-2. כעוסקת פטורה, האם יש מע"מ על מכירות כאלה? וכשאעבור לעוסקת מורשית, האם מכירות לחו"ל של טובין שלא עוברים בישראל הן בשיעור אפס (סעיף 30(א)(1) דורש רשימון יצוא, שאין כאן) או חייבות ב-18%?
-3. תקרת העוסק הפטור לשנת 2026 ומה קורה בחודש שבו עוברים אותה.
-4. ביטוח לאומי: אני [שכירה / לא שכירה], מה המשמעות של הכנסה נוספת מעסק עצמאי קטן?
-5. הוצאות מוכרות: מנויים ל-Shopify, AutoDS וכלי AI, ופרסום ב-Meta, שמשולמים בדולרים בכרטיס אשראי. מה נדרש כדי להכיר בהן?
-6. הכנסות בדולר דרך PayPal או שער סליקה ישראלי: איך רושמים, באיזה שער, ומה עם עמלות המרה?
-7. האם יש חובת רישום או דיווח בארה"ב (מס מכירה) בהיקפים כאלה? (לפי מה שבדקנו: לא מתחת ל-$100,000 למדינה בשנה.)
-8. כמה עולה פתיחת התיקים דרככם, וכמה הנהלת החשבונות השנתית לעוסקת פטורה?
+## 2. לרו"ח אמריקאי (CPA), אנגלית
+Subject: New small ecommerce business, [state], sole proprietor vs LLC
 
-תודה,
-[שם]
-[טלפון]
+Hello, I live in [state] on E-2S status with work authorization. I am opening a small online store (dropshipping from US warehouses to US customers), budget about $2,000, first-year revenue between zero and a few thousand dollars a month. My 15-year-old son operates the store under my supervision; I own it. Questions:
+1. Sole proprietorship (with DBA) or single-member LLC for [state], given the fees and my liability? What does it cost through your office?
+2. EIN: needed or optional for me, and any benefit for opening a business bank account?
+3. Sales tax: I have physical nexus in [state]. Registration steps and filing frequency; Shopify Tax will collect. When do other states' economic-nexus thresholds matter?
+4. Federal and state income tax on the business: Schedule C and SE, estimated payments, and what records you need from Shopify and the payment processors.
+5. Deductible expenses paid by card in USD (Shopify, suppliers, Meta ads, software).
+6. Is there any reason to run the store under the existing family E-2 business instead?
+Thank you, [name], [phone].
+
+## 3. לרו"ח ישראלי (עברית, שאלת תושבות בלבד)
+נושא: תושבות מס בישראל בזמן שהייה בארה"ב
+
+שלום, אני שוהה בארה"ב במעמד E-2S יחד עם משפחתי ומתכננת לפתוח שם עסק קטן על שמי. האם לעניין מס הכנסה בישראל אני נחשבת תושבת ישראל או לא (מרכז חיים, מספר ימים), האם יש חובת דיווח בישראל על הכנסות העסק האמריקאי, והאם נדרש הליך של ניתוק תושבות או דיווח מיוחד? אשמח להצעת מחיר לייעוץ קצר. תודה, [שם].

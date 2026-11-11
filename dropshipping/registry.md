@@ -11,6 +11,8 @@ Bar for every P- entry (frozen in Phase 0, see `phase0/FRAME.md` §2.4): M1 = co
 | P-0003 | Timer-based 6-meal automatic pet feeder (no app) at $59.90 yields contribution > $0 per order (M1 bar) | F2 pet / electronics | same design; T1 continue if ≥ 4; T2 $120 pass if ≥ 3 (price 59.90, landed 26.00 est., electronics 9%; share 0.442, breakeven ROAS 2.26; VAT-18% share 0.29) | as above; US-warehouse SKU without UL/ETL mark → kill | 10% | REGISTERED 2026-11-11, provisional landed cost | results/P-0003.md (pending) |
 | P-0004 | 6-pack rechargeable motion-sensor closet lights at $49.90 yields contribution > $0 per order (M1 bar) | F1 home | same design; T1 continue if ≥ 6; T2 $120 pass if ≥ 2 (price 49.90, landed 21.00 est. for 6, home 17%; share 0.376, breakeven ROAS 2.66) | as above; cells > 20 Wh or no UN3481 handling by supplier → kill | 12% | REGISTERED 2026-11-11, provisional landed cost | results/P-0004.md (pending) |
 
+## Fee basis changed 2026-11-11 before any development run: gateway = Shopify Payments (US), 2.9% + $0.30, no third-party fee. Recomputed shares: P-0001 0.429 (BE ROAS 2.33), P-0002 0.504 (1.98), P-0003 0.442 (2.26), P-0004 0.374 (2.67); stop rules unchanged.
+
 ## Test order (serial, overlay §3.3): P-0002 (highest share, lowest saturation) → P-0004 (strongest demand) → P-0003 → P-0001. Each starts only after the previous resolves. All four wait on M0 (store live, gateway, fulfillment tested on one real order). Evidence: S-166, S-167, S-169–S-173, S-177, S-181–S-186.
 
 ## Cumulative count
