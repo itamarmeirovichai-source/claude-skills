@@ -6,15 +6,15 @@ Subject: E-2S spouse owning a small online store
 Hello, I hold E-2S status as the spouse of an E-2 investor. I plan to own and run a small online retail store (US-registered, products shipped from US warehouses to US customers), expected revenue under $50,000 in the first year. USCIS states that E-2 spouses are employment authorized incident to status. Please confirm that owning this business as a sole proprietor or single-member LLC in my name is consistent with my status and does not affect the principal's E-2. Thank you, [name].
 
 ## 2. לרו"ח אמריקאי (CPA), אנגלית
-Subject: New small ecommerce business, [state], sole proprietor vs LLC
+Subject: New small ecommerce business, Florida, sole proprietor vs LLC
 
-Hello, I live in [state] on E-2S status with work authorization. I am opening a small online store (dropshipping from US warehouses to US customers), budget about $2,000, first-year revenue between zero and a few thousand dollars a month. My 15-year-old son operates the store under my supervision; I own it. Questions:
-1. Sole proprietorship (with DBA) or single-member LLC for [state], given the fees and my liability? What does it cost through your office?
+Hello, I live in Florida on E-2S status with work authorization. I am opening a small online store (dropshipping from US warehouses to US customers), budget about $2,000, first-year revenue between zero and a few thousand dollars a month. My 15-year-old son operates the store under my supervision; I own it. Questions:
+1. Sole proprietorship with a fictitious name, or single-member LLC, given Florida's fees and that one product is an electrical candle-warmer lamp (product liability; insurance?). What does it cost through your office?
 2. EIN: needed or optional for me, and any benefit for opening a business bank account?
-3. Sales tax: I have physical nexus in [state]. Registration steps and filing frequency; Shopify Tax will collect. When do other states' economic-nexus thresholds matter?
+3. Florida sales tax: registration (DR-1), filing frequency, county surtax, and the Annual Resale Certificate for supplier purchases; Shopify Tax will collect. When do other states' economic-nexus thresholds matter?
 4. Federal and state income tax on the business: Schedule C and SE, estimated payments, and what records you need from Shopify and the payment processors.
 5. Deductible expenses paid by card in USD (Shopify, suppliers, Meta ads, software).
-6. Is there any reason to run the store under the existing family E-2 business instead?
+6. The store will be separate from the family's E-2 business; anything to keep separate (bank account, bookkeeping) so that stays clean?
 Thank you, [name], [phone].
 
 ## 3. לרו"ח ישראלי (עברית, שאלת תושבות בלבד)
