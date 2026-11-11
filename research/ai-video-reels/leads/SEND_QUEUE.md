@@ -1269,3 +1269,46 @@ Wed 11 Nov · gate 15:00 Israel = 13:00 UTC
 - **If Thu 12 passes too →** **Tue 17 Nov (A) / Wed 18 Nov (B)**, same Israel times, with new dated packs built Mon 16 Nov after a full re-check (LESSONS 2026-10-16). The last pair before Black Friday week is Tue 24 / Wed 25; after that the default is Tue 1 / Wed 2 Dec.
 
 **Blockers (unchanged):** owner approval; the site isn't live (no links in any DM); `{BUSINESS_ADDRESS}` is a placeholder (no emails); Printfresh handle decision (c).
+
+
+## 27. Wave-B send-morning check, Wed 11 Nov (~05:48–05:53 UTC = 07:48–07:53 Israel; light run) + the Thu 12 / Tue 17 plan
+**Status:** no owner approval (silent since 10-12, 30 days). Wave A's gate (Tue 10, 14:00 Israel) passed, so wave A did not go; by §26 it moves to **Thu 12 Nov**, same Israel times. Nothing sent, nothing posted; $0.
+
+**Wave B today (gate 15:00 Israel = 13:00 UTC):** 5 in + Q-12 optional, Q-15 out, Q-13 hold; nothing flipped, no text changed. Per-DM table in `SEND_PACK_2026-11-11.md` → "Send-morning re-check 11-11". New flags, no skip: STONE AND STRAND Yellow Gold 1/2 (16.5" out); Hawkins Colorstory Olive/Sage sold out (Terracotta/Blush in stock). Alexis: no holiday code live. Saranoni: still 25 % SITEWIDE, XXL $216.75. No Veterans Day sale on any wave B homepage.
+
+**Decision: one wave per day; wave B does not share Thu 12.**
+- Both waves on Thu 12 do not fit: merged at their own Israel times, five pairs are 5–10 min apart (15:50/16:00, 16:15/16:20, 16:35/16:45, 16:45/16:50, 18:50/18:55; zoneinfo-checked), which breaks the 15-min rule (LESSONS 2026-10-21) as well as "never two waves on one day".
+- **Approved by 15:00 today →** wave B goes today (pack 11-11). Wave A stays on Thu 12.
+- **Not approved today →** **Thu 12 = wave A** (pack 11-10, re-checked Thu morning; gate 14:00 Israel = 12:00 UTC). **Tue 17 = wave B**, the next Tue–Thu slot after Thu 12 (LESSONS 2026-10-19). Its gate is 15:00 Israel = 13:00 UTC, and a new dated pack is built Mon 16 (LESSONS 2026-10-16). This replaces §26's "wave B waits for Wed 18".
+- **If wave A also misses Thu 12 →** Tue 17 = wave A, Wed 18 = wave B, as in §26. Both get new packs on Mon 16.
+- No full pack built today.
+
+Times printed by Python `zoneinfo` (Israel → local and back, asserted). No clock change in either country until March 2027.
+
+| Thu 12 Nov · wave A · Israel | Lead | Local | UTC | Gap |
+|---|---|---|---|---|
+| 15:05 | Q-1 LAKE | 08:05 EST | 13:05 | — |
+| 15:20 | Q-2 Printfresh | 08:20 EST | 13:20 | 15 |
+| 15:35 | Q-5 Little Beast | 08:35 EST | 13:35 | 15 |
+| 15:50 | Q-8 Brackish | 08:50 EST | 13:50 | 15 |
+| 16:20 | Q-7 Dana Rebecca | 08:20 CST | 14:20 | 30 |
+| 16:35 | Q-6 Sunday Citizen | 09:35 EST | 14:35 | 15 |
+| 16:50 | Q-11 KREWE | 08:50 CST / 09:50 EST | 14:50 | 15 |
+| 18:05 | Q-3 Dandelion | 08:05 PST | 16:05 | 75 |
+| 18:50 | Q-10 Kinn | 08:50 PST | 16:50 | 45 |
+
+| Tue 17 Nov · wave B · Israel | Lead | Local | UTC | Gap |
+|---|---|---|---|---|
+| 16:00 | Q-16 STONE AND STRAND | 09:00 EST | 14:00 | — |
+| 16:15 | Q-19 Alexis Bittar | 09:15 EST | 14:15 | 15 |
+| 16:45 | Q-12 Hawkins (optional) | 09:45 EST | 14:45 | 30 |
+| 17:15 | Q-18 Vosges | 09:15 CST | 15:15 | 30 |
+| 18:55 | Q-14 Equator | 08:55 PST | 16:55 | 100 |
+| 19:10 | Q-17 THATCH | 09:10 PST | 17:10 | 15 |
+
+**Wave A sale scan today (cheap pass, for Thursday; not a verdict).** `--sale-scan` on all 9 brands (05:50 UTC), plus rendered homepages, LAKE tags and KREWE source. Every named product is still full price, in stock and outside every sale list. LAKE still has `badge: New Arrival`; KREWE shows no `isSaleActive` / pre-shop link. **Three new homepage items to re-read Thursday morning:**
+1. **Little Beast:** a new banner, "THE BIG LITTLE BEAST SALE EARLY ACCESS", links `sales-galore`, which grew from 9 to 54 products. PBJ and OG are not in it ($48, 7/7). If either joins it, or the banner turns sitewide, skip.
+2. **Dana Rebecca:** a new banner, "SIGN IN TO SHOP OUR MEMBERS-ONLY SALE" (behind a login; nav "SALE" → `final-farewell`). The Ava Bea bracelet and the charm are full price with no sale list. We can't see the members' prices (no logins). Flag.
+3. **Sunday Citizen:** the nav now says "OUTLET UP TO 80% OFF" (`outlet` 33, Ciel not in it). The lounge chair is 5/8 (Beige, Light Gray, Red out); the love seat is 2/2 $1,800.
+
+Unchanged: Q-3 Dandelion (Maya Mountain 70 % still 0/1, 85 % in stock $15). Q-9 Cuddle Clones and Q-4 Foggy were not re-read and stay skipped.
