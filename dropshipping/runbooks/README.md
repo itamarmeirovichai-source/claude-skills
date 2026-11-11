@@ -13,3 +13,4 @@ Process files (overlay §8 says a runbook is written after the third manual run;
 | `p-0002-build.md` | P-0002 launch package: reviews, claims, page, briefs, scripts, campaign checklist | built 2026-11-11 |
 | `p-0004-build.md` | P-0004 launch package, same shape | built 2026-11-11 |
 | `p-0003-build.md` | P-0003 launch package, same shape; adds the filmed 6-meal cycle gate | built 2026-11-11 |
+| `p-0001-build.md` | P-0001 launch package, same shape; price-pressure finding, 2 spare bulbs | built 2026-11-11 |
