@@ -19,6 +19,13 @@ Access: custom app "store-builder" (Dev Dashboard, client-credentials grant, 24-
 | Main menu | gid://shopify/Menu/317957013795 | Home · Shop · Shipping & Returns · About · Contact |
 | Footer menu | gid://shopify/Menu/317957046563 | Shipping & Returns · About · Contact · Your Privacy Choices |
 
+## Visual layer (2026-11-12 night)
+- `snippets/pn-wordmark.liquid` + patched `sections/header.liquid`: SVG paw mark + wordmark when no logo image is set.
+- `sections/pn-hero.liquid`: two-column hero; right side = the product's photo if the chosen product has one, else the uploaded illustration (`assets/pn-hero.jpg`, generated with the Canva connector, 1445×1080, **labelled "Illustration" on the page; never to be used as a product photo**), else a hand-drawn SVG.
+- `sections/pn-benefits.liquid` (4 icon benefits), `sections/pn-rules.liquid` ("What we do / what we refuse to do"), `sections/pn-sticky-atc.liquid` (mobile sticky add-to-cart that triggers the real form button), FAQ via Dawn's collapsible-content.
+- Home order: hero → benefits → proof rows → rules → FAQ → steps → honest line. The product grid is **off** until a product is ACTIVE with photos (drafts never render on the storefront).
+- Hard rule kept: all four products stay DRAFT while any bracket is unfilled; the storefront password stays on until the launch gate.
+
 ## Theme files in `theme/` (uploaded with themeFilesUpsert; everything else is stock Dawn)
 - `assets/pawnook.css`: styles for the custom sections only.
 - `sections/pn-proof-rows.liquid`: "What we fixed": complaint (customer's words) → fix (proven on the sample) → where the proof is. The page's core block (rules LP5, LP6).
