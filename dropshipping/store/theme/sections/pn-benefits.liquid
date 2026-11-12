@@ -1,0 +1,37 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width pn-benefits">
+    {%- for block in section.blocks -%}
+      <div class="pn-benefit" {{ block.shopify_attributes }}>
+        <span class="pn-benefit__icon" aria-hidden="true">
+          {%- case block.settings.icon -%}
+            {%- when 'truck' -%}<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            {%- when 'shield' -%}<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            {%- when 'return' -%}<svg viewBox="0 0 24 24"><path d="M9 14l-4-4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h9a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            {%- when 'paw' -%}<svg viewBox="0 0 24 24"><ellipse cx="12" cy="15.5" rx="4.2" ry="3.4" fill="currentColor"/><circle cx="6.5" cy="11" r="1.9" fill="currentColor"/><circle cx="9.8" cy="7.6" r="1.9" fill="currentColor"/><circle cx="14.2" cy="7.6" r="1.9" fill="currentColor"/><circle cx="17.5" cy="11" r="1.9" fill="currentColor"/></svg>
+            {%- else -%}<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {%- endcase -%}
+        </span>
+        <strong>{{ block.settings.title }}</strong>
+        <span class="pn-benefit__text">{{ block.settings.text }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Benefit icons",
+  "tag": "section",
+  "class": "section",
+  "settings": [ { "type": "color_scheme", "id": "color_scheme", "default": "scheme-2", "label": "Color scheme" } ],
+  "blocks": [ { "type": "b", "name": "Benefit", "limit": 4, "settings": [
+    { "type": "select", "id": "icon", "label": "Icon", "default": "check", "options": [ {"value":"truck","label":"Truck"}, {"value":"shield","label":"Shield"}, {"value":"return","label":"Return"}, {"value":"paw","label":"Paw"}, {"value":"check","label":"Check"} ] },
+    { "type": "text", "id": "title", "label": "Title", "default": "Ships from the US" },
+    { "type": "text", "id": "text", "label": "Text", "default": "Leaves a US warehouse within 1–2 business days." } ] } ],
+  "presets": [ { "name": "Benefit icons", "blocks": [
+    { "type": "b", "settings": { "icon": "truck", "title": "Ships from the US", "text": "Leaves a US warehouse within 1–2 business days. Tracking by email." } },
+    { "type": "b", "settings": { "icon": "shield", "title": "Price is the price", "text": "Shipping included. No fees at checkout, no fake \"was\" prices, no timers." } },
+    { "type": "b", "settings": { "icon": "return", "title": "30-day returns", "text": "Refunds within 7 working days. Damaged? Photo, replaced, no return." } },
+    { "type": "b", "settings": { "icon": "paw", "title": "Tested on a sample", "text": "Every claim on a product page was proven on the unit we ordered first." } } ] } ]
+}
+{% endschema %}
