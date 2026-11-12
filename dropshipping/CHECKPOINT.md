@@ -33,6 +33,7 @@ Nothing half-done. Pages that refused fetch, for the operator or mother to read 
 3. Which gateways appear in a fresh Shopify admin for Israel (needs a Shopify account; happens at M0, not now).
 
 ## Ledger line
+2026-11-12 (later): Eprolo app installed in the store (S-233); Shopify Payments onboarding still incomplete (mother's step). Waiting on the bowl's price + shipping line from the US Warehouses tab.
 2026-11-12: **M0 step 2 started: operator reports the Shopify store is open** (L-001 $1.00, to confirm on invoice). Next: Eprolo app install (L-002 $0), domain, then the mother's Shopify Payments activation; first supplier price for P-0002 → rerun calculator.
 External spent: $1.00 / $2,000. Research line: $0.00 / $150. Reinvested: $0. Reserve: $0. Rate ₪3.17/$ (S-33).
 
