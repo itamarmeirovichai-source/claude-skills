@@ -95,7 +95,7 @@
           "settings": {
             "heading": "Care",
             "icon": "leaf",
-            "content": "<p>[Bowl material] bowls: dishwasher-safe. Stand: wipe with a damp cloth.</p>",
+            "content": "<p>Lift the bowl off the stand with one hand; the bowl is dishwasher-safe. Stand: wipe with a damp cloth.</p>",
             "page": ""
           }
         }
@@ -134,25 +134,25 @@
         "r1": {
           "type": "row",
           "settings": {
-            "quote": "wobbly and rattles",
-            "fix": "Wide [X]-cm base and non-slip feet. It stays where you put it.",
-            "proof": "Push test on tile in the video above."
+            "quote": "chips and cracks ridiculously easily",
+            "fix": "Double-boxed. Chipped on arrival: send a photo, we replace it, no return.",
+            "proof": "Shipping & Returns page; unboxing in the video above."
           }
         },
         "r2": {
           "type": "row",
           "settings": {
-            "quote": "one bowl can't be removed without it shifting",
-            "fix": "Drop-in bowls, no clips. Lift straight out with one hand.",
-            "proof": "Shown in the video above."
+            "quote": "the dry food falls out while my cat is eating",
+            "fix": "[Rim shape] keeps kibble in. [Proven on the sample.]",
+            "proof": "30-second eating clip in the video above."
           }
         },
         "r3": {
           "type": "row",
           "settings": {
-            "quote": "Paint peeled and the stand rusted within weeks",
-            "fix": "[Material per spec]. Bowls are [304 stainless / ceramic] and go in the dishwasher.",
-            "proof": "Material on the specs list below."
+            "quote": "wobbly and rattles",
+            "fix": "[X] g of ceramic on a wide base. It does not tip when nudged.",
+            "proof": "Scale and push test in the video above."
           }
         }
       },

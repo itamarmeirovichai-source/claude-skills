@@ -180,3 +180,27 @@ Build (Ads Manager, mother's business portfolio, operator as employee):
 - **מה השתנה בגלל הראיות:** מחקר עוקבה (Glickman 2000, JAVMA) מצא קשר בין קערות מוגבהות לסיכון מוגבר להיפוך קיבה בכלבים גדולים וענקיים. לכן המוצר נמכר ומפורסם **לכלבים קטנים ובינוניים ולחתולים בלבד**, בלי שום טענת בריאות, ועם שורת אזהרה לבעלי גזעים גדולים.
 - **מה עדיין חסר (M0):** מחיר ספק אמיתי, הזמנת דוגמה אחת לצילום ההוכחות, ותשובת הספק אם הוא מדפיס שם לפי הזמנה ממחסן בארה"ב. בלי הדפסה, רצה הגרסה המעוצבת (B) אחרי תיקון הרישום.
 - **הוצאה:** $0.
+
+## Addendum 2026-11-12 (night): the SKU moved to a ceramic raised cat bowl; cat-bowl reviews mined (S-236)
+
+The adjustable dog stand failed the calculator at real Eprolo prices (landed $31.90 → share 0.23 at $49.90); the ceramic slow-feed raised cat bowl (landed $20.36 provisional → share 0.457, BE ROAS 2.19 at $49.90) is now the P-0002 SKU. Reviews of comparable ceramic raised cat bowls (Trixie tilted ceramic on Zooplus UK, 98 reviews; Necoichi on Chewy, ~820 ratings; Frisco, PawsPik, Yamazaki snippets) add these to the phrase bank:
+
+Complaints (cat-specific):
+26. "the bowls chip and crack ridiculously easily" (Trixie tilted ceramic, Zooplus UK)
+27. "a bowl arrived chipped" (same)
+28. "the ceramic chips at the raised areas after a short time" (Trixie slow-feed ceramic)
+29. "the dry food falls out of the bowl while my cat is eating" (Trixie tilted)
+30. "does not fit 1 measuring cup" / "shallow" (Necoichi 1-cup, Chewy)
+31. "better for the cats, however not very robust" (Trixie)
+32. "it doesn't work as well to slow our cat down as his previous slow feeding bowl" (PawsPik Lynx, Chewy)
+
+Praise (cat-specific):
+33. "the weight of the ceramic reassured them" about tipping (Necoichi, Chewy)
+34. "sturdy and good quality" (Necoichi)
+35. "easy to clean"; ~86% positive on ease of cleaning across ~820 Chewy ratings (Necoichi)
+36. "great for an elderly cat with a poor appetite" (Necoichi) — motive only; never a claim
+37. "the cats seemed to prefer this one over the deeper dishes" (cats.com test)
+
+What changes in the claims (C-ledger): add C10 "arrives unchipped: double-boxed; chipped on arrival → photo, replaced, no return" (a policy, provable); C11 "rim keeps kibble in" only if the sample's rim shape holds kibble in a 30-second eating video; C12 "weight [X] g, doesn't tip" from the sample on a scale. Dropped from the page: "slow-feed" as a benefit claim unless the sample shows a real ridge (phrase 32 shows buyers test it). **Never used:** "whisker fatigue" (a 2020 JFMS study of 40 cats found no effect of whisker-friendly bowls on eating; AVMA: no evidence, S-237), "reflux", "vomiting", "acne", "neck strain" (health claims; S-08, S-94).
+
+Hooks adjusted for the cat SKU: A (demo-problem): first frame a cheap ceramic bowl's chipped rim close-up; words "chips and cracks ridiculously easily"; proof: our bowl's rim, the double box, the weight on a scale, kibble staying in. B (storytelling-visual): dusk kitchen, cat walks to the bowl, eats calmly, owner lifts the bowl out with one hand into the dishwasher; words "easy to clean" (customer's words).
