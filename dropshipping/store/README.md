@@ -10,6 +10,9 @@ Access: custom app "store-builder" (Dev Dashboard, client-credentials grant, 24-
 | Theme "Pawnook v1 (Dawn base)" | gid://shopify/OnlineStoreTheme/189982408995 | **published (MAIN)**; Dawn + the custom files in `theme/` |
 | Theme "Horizon" (Shopify default) | gid://shopify/OnlineStoreTheme/189980934435 | unpublished, kept as fallback |
 | Product "Raised Ceramic Cat Bowl Stand — Slow-Feed Bowl" (P-0002, ceramic variant) | gid://shopify/Product/10442912104739, variant 56046220640547 | **DRAFT**, $49.90, copy with [brackets]; not published until the brackets are filled from the Eprolo spec and the sample |
+| Product "6-Pack Rechargeable Motion-Sensor Closet Lights" (P-0004) | gid://shopify/Product/10442916725027 | DRAFT, $49.90, bracketed copy |
+| Product "6-Meal Timed Pet Feeder" (P-0003) | gid://shopify/Product/10442916757795 | DRAFT, $59.90, bracketed copy; filmed-cycle gate before publish |
+| Product "Candle Warmer Lamp" (P-0001) | gid://shopify/Product/10442916823331 | DRAFT, $59.90, bracketed copy |
 | Page "Shipping & Returns" | gid://shopify/Page/165163401507 | published; text = `runbooks/store-policies.md` |
 | Page "About" | gid://shopify/Page/165163434275 | published; new-store honesty text |
 | Page "Contact" (Shopify default) | gid://shopify/Page/165161959715 | published |
@@ -26,7 +29,7 @@ Access: custom app "store-builder" (Dev Dashboard, client-credentials grant, 24-
 - `sections/pn-honest-line.liquid`: new-store line (no fake trust, S-36).
 - `sections/header-group.json`, `sections/footer-group.json`: announcement line, no country/language selectors, newsletter off, legal footer placeholders.
 - `templates/product.json`: delivery bar → product → proof rows → specs → large-breed note → steps → honest line.
-- `templates/index.json`: hero → delivery bar → featured collection → "how we choose what to sell" → steps → honest line.
+- `templates/index.json`: text hero (rich-text; no placeholder image) → delivery bar → featured collection → "how we choose what to sell" → steps → honest line.
 - `config/settings_data.json`: palette (paper #FBF8F3, ink #1F1A17, sage #2F4F3A, sand #EFE8DC), fonts Lora / Work Sans, animations off, cart as page, no vendor display.
 
 ## Not done by the program (needs the operator, the mother, or data)
