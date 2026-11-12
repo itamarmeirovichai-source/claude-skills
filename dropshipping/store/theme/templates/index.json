@@ -37,7 +37,8 @@
         "button_label_2": "How we choose products",
         "button_link_2": "shopify://pages/about",
         "color_scheme": "scheme-1",
-        "use_asset_image": true
+        "use_asset_image": true,
+        "price_pill": "$49.90 \u00b7 shipping included"
       }
     },
     "benefits": {
@@ -322,11 +323,51 @@
       "settings": {
         "text": "This is a new store, run by a family in Florida. Questions: reply to any of our emails, we answer within one business day."
       }
+    },
+    "test": {
+      "type": "pn-test",
+      "blocks": {
+        "t1": {
+          "type": "t",
+          "settings": {
+            "icon": "push",
+            "title": "The push test",
+            "text": "Nudged on tile with a full bowl, on camera. If it slides or tips, it fails."
+          }
+        },
+        "t2": {
+          "type": "t",
+          "settings": {
+            "icon": "box",
+            "title": "The unboxing",
+            "text": "Opened on camera. Chipped, scratched or thin? It fails, and we tell the supplier why."
+          }
+        },
+        "t3": {
+          "type": "t",
+          "settings": {
+            "icon": "dish",
+            "title": "The dishwasher",
+            "text": "Three cycles. Fading, cracking or a rim that holds grime fails."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "heading": "Before it goes on sale, it goes through this",
+        "text": "We order one unit to our own home in Florida and film the tests. If it fails, you never see it.",
+        "color_scheme": "scheme-3"
+      }
     }
   },
   "order": [
     "hero",
     "benefits",
+    "test",
     "proof",
     "rules",
     "faq",

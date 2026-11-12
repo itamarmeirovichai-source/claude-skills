@@ -19,7 +19,7 @@
         {%- assign hero_alt = prod.featured_image.alt | default: prod.title -%}
         <a href="{{ prod.url }}">{{ prod.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 48vw, 100vw', widths: '600, 900, 1200', class: 'pn-hero__img', alt: hero_alt }}</a>
       {%- elsif section.settings.use_asset_image -%}
-        <figure class="pn-hero__fig"><img class="pn-hero__img" src="{{ 'pn-hero.jpg' | asset_url }}" width="1200" height="900" alt="Illustration: a cat eating from a raised ceramic bowl" loading="eager"><figcaption class="pn-hero__cap">Illustration</figcaption></figure>
+        <figure class="pn-hero__fig">{%- if section.settings.price_pill != blank -%}<span class="pn-hero__price">{{ section.settings.price_pill }}</span>{%- endif -%}<img class="pn-hero__img" src="{{ 'pn-hero.jpg' | asset_url }}" width="1200" height="900" alt="Illustration: a cat eating from a raised ceramic bowl" loading="eager"><figcaption class="pn-hero__cap">Illustration</figcaption></figure>
       {%- else -%}
         <svg class="pn-hero__svg" viewBox="0 0 600 480" role="img" aria-label="Illustration: a cat eating from a raised bowl">
           <defs><linearGradient id="pnbg{{ section.id }}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EFE8DC"/><stop offset="1" stop-color="#E2D8C6"/></linearGradient></defs>
@@ -59,6 +59,7 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "The raised bowl that stays put." },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Chosen from hundreds of real one-star reviews of the bowls that wobble, rust and spill. Then tested on a sample before it went on sale." },
     { "type": "product", "id": "product", "label": "Product photo for the right side (illustration if none)" },
+    { "type": "text", "id": "price_pill", "label": "Price pill over the image (blank = none)", "default": "$49.90 · shipping included" },
     { "type": "checkbox", "id": "use_asset_image", "label": "Use the uploaded illustration (assets/pn-hero.jpg)", "default": false },
     { "type": "text", "id": "button_label", "label": "Button", "default": "See the bowl" },
     { "type": "url", "id": "button_link", "label": "Button link" },

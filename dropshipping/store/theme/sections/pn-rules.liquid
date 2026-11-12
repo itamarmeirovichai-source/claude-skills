@@ -2,7 +2,7 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width" style="padding:40px 0">
     <h2 class="h2" style="margin:0 0 .6rem">{{ section.settings.heading }}</h2>
-    <p style="margin:0 0 2rem;max-width:62ch">{{ section.settings.text }}</p>
+    <p class="pn-rules__lead">{{ section.settings.text }}</p>
     <div class="pn-rules">
       <div class="pn-rules__col pn-rules__col--yes"><h3 class="h4">{{ section.settings.yes_heading }}</h3><ul role="list">{%- for block in section.blocks -%}{%- if block.type == 'yes' -%}<li {{ block.shopify_attributes }}><span class="pn-rules__y">✓</span>{{ block.settings.text }}</li>{%- endif -%}{%- endfor -%}</ul></div>
       <div class="pn-rules__col pn-rules__col--no"><h3 class="h4">{{ section.settings.no_heading }}</h3><ul role="list">{%- for block in section.blocks -%}{%- if block.type == 'no' -%}<li {{ block.shopify_attributes }}><span class="pn-rules__n">✕</span>{{ block.settings.text }}</li>{%- endif -%}{%- endfor -%}</ul></div>
