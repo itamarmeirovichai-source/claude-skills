@@ -1,7 +1,7 @@
 # VXO send queue: 19 HOT leads, first touches ready to paste
 
 Lead-desk edit of 2026-10-09 · owner: the lead-desk editor (this file) · sources: `batch-2026-10-10-{a,b,c}.md`, `2026-10-09.md`, doc 63 §4 (Foggy), the dossiers in `dossiers/`.
-**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Status 2026-10-24 (§16): nothing sent; Wed 21 and Thu 22 passed without approval. Wave A: next slot Tue 27.10 (`SEND_PACK_2026-10-27.md`, Israel times one hour earlier). Wave B: Wed 28.10 (§16 times). Q-7, Q-11 and Q-19 CTAs changed.** **Status 2026-11-02 (§22): nothing sent (no reply since 10-12). New packs `SEND_PACK_2026-11-03.md` (wave A, Tue 3 Nov 15:05–18:50 Israel, gate 14:00; Q-11 KREWE in, Q-5 Little Beast out) and `SEND_PACK_2026-11-04.md` (wave B, Wed 4 Nov 16:00–19:10 Israel, gate 15:00; Q-12 Hawkins optional); the 10-27 pack is superseded.** **Status 2026-11-03 (§23): send-morning check, wave A: all 10 hold, no text changed; wave B: Q-15 Saranoni out for Wed 4 (25 % off sitewide holiday sale). Without approval by 14:00 Israel today, wave A rolls to Thu 5 Nov, same Israel times.** **Status 2026-11-04 (§24): no approval for wave A by 14:00 Tue 3 → wave A runs Thu 5 Nov (15:05–18:50, gate 14:00); Q-5 Little Beast eligible again ($48). Wave B send-morning check: 6 DMs + optional Q-12 hold, Q-15 Saranoni still out (sitewide sale "through Nov 9"). Without approval by 15:00 Israel today, wave B rolls to Tue 10 Nov (Thu 5 interleave fails the 15-min rule).** **Status 2026-11-05 (§25): wave A send-morning check for Thu 5: all 10 hold, Q-5 Little Beast IN at 15:35 (both onesies $48, outside `sales-galore`) → 11 DMs, no text changed; Cuddle Clones flagged (pajama promo now branded "Black Friday", not sitewide). Without approval by 14:00 Israel today, wave A → Tue 10 Nov and wave B → Wed 11 Nov (same Israel times), both on fresh packs built Mon 9 Nov.** **Status 2026-11-09 (§26): nothing sent (no approval; owner silent since 10-12, 28 days); the 11-03/11-04 packs expired. New packs `SEND_PACK_2026-11-10.md` (wave A, Tue 10 Nov 15:05–18:50 Israel, gate 14:00; 9 DMs: Q-5 Little Beast IN; Q-9 Cuddle Clones SKIP (pajamas marked down in a "Black Friday" sale); Q-4 The Foggy Dog SKIP ("15% OFF SITEWIDE")) and `SEND_PACK_2026-11-11.md` (wave B, Wed 11 Nov 16:00–19:10 Israel, gate 15:00; 5 DMs + optional Q-12; Q-15 Saranoni OUT (sitewide sale still on 9 Nov); Q-13 Legendary OUT (21-day hold)); checklist `SEND_DAY_CHECKLIST_2026-11-10.md`. No DM text changed. Fallback: wave A Thu 12 Nov, else Tue 17 / Wed 18.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
+**Re-checked live 2026-10-10 (§7): one draft fixed (Q-5), the other nine Tuesday messages hold. Re-checked again 2026-10-11 (§8): all ten hold; two handles corrected (Q-6, Q-15). Re-checked 2026-10-12 (§9): all ten texts hold; Q-10 stays on Pegasus (Kinn's launch product is a Final Sale, limited-run box); Q-6 moved to 9:35 ET (Miami, not PT). Phone pack: `SEND_PACK_2026-10-13.md`. Re-checked 2026-10-16 (§10): all ten products hold; the sends move to **Tue 20 Oct** (site not live); Q-6 greeting made name-free; LAKE's active ads halved (221 → 101) but it stays hot. Phone pack for the 20th: `SEND_PACK_2026-10-20.md`. Delta 2026-10-18 (§12): Q-6 CTA moved off the marked-down Snug blanket.** **Status 2026-10-20 (§14): wave A: awaiting owner approval, next slot Wed 21.10 (same Israel times); wave B: Thu 22.10. Morning check found no change.** **Status 2026-10-24 (§16): nothing sent; Wed 21 and Thu 22 passed without approval. Wave A: next slot Tue 27.10 (`SEND_PACK_2026-10-27.md`, Israel times one hour earlier). Wave B: Wed 28.10 (§16 times). Q-7, Q-11 and Q-19 CTAs changed.** **Status 2026-11-02 (§22): nothing sent (no reply since 10-12). New packs `SEND_PACK_2026-11-03.md` (wave A, Tue 3 Nov 15:05–18:50 Israel, gate 14:00; Q-11 KREWE in, Q-5 Little Beast out) and `SEND_PACK_2026-11-04.md` (wave B, Wed 4 Nov 16:00–19:10 Israel, gate 15:00; Q-12 Hawkins optional); the 10-27 pack is superseded.** **Status 2026-11-03 (§23): send-morning check, wave A: all 10 hold, no text changed; wave B: Q-15 Saranoni out for Wed 4 (25 % off sitewide holiday sale). Without approval by 14:00 Israel today, wave A rolls to Thu 5 Nov, same Israel times.** **Status 2026-11-04 (§24): no approval for wave A by 14:00 Tue 3 → wave A runs Thu 5 Nov (15:05–18:50, gate 14:00); Q-5 Little Beast eligible again ($48). Wave B send-morning check: 6 DMs + optional Q-12 hold, Q-15 Saranoni still out (sitewide sale "through Nov 9"). Without approval by 15:00 Israel today, wave B rolls to Tue 10 Nov (Thu 5 interleave fails the 15-min rule).** **Status 2026-11-05 (§25): wave A send-morning check for Thu 5: all 10 hold, Q-5 Little Beast IN at 15:35 (both onesies $48, outside `sales-galore`) → 11 DMs, no text changed; Cuddle Clones flagged (pajama promo now branded "Black Friday", not sitewide). Without approval by 14:00 Israel today, wave A → Tue 10 Nov and wave B → Wed 11 Nov (same Israel times), both on fresh packs built Mon 9 Nov.** **Status 2026-11-09 (§26): nothing sent (no approval; owner silent since 10-12, 28 days); the 11-03/11-04 packs expired. New packs `SEND_PACK_2026-11-10.md` (wave A, Tue 10 Nov 15:05–18:50 Israel, gate 14:00; 9 DMs: Q-5 Little Beast IN; Q-9 Cuddle Clones SKIP (pajamas marked down in a "Black Friday" sale); Q-4 The Foggy Dog SKIP ("15% OFF SITEWIDE")) and `SEND_PACK_2026-11-11.md` (wave B, Wed 11 Nov 16:00–19:10 Israel, gate 15:00; 5 DMs + optional Q-12; Q-15 Saranoni OUT (sitewide sale still on 9 Nov); Q-13 Legendary OUT (21-day hold)); checklist `SEND_DAY_CHECKLIST_2026-11-10.md`. No DM text changed. Fallback: wave A Thu 12 Nov, else Tue 17 / Wed 18.** **Status 2026-11-12 (§28): no approval (owner silent 31 days); wave B missed Wed 11. Wave A send-morning check for Thu 12: 8 in, Q-3 Dandelion SKIP (both Maya Mountain bars sold out), Q-9/Q-4 still out; no text changed. Approved by 14:00 Israel today → wave A today, wave B Tue 17. Otherwise (default) → Tue 17 = wave A, Wed 18 = wave B, both on new packs built Mon 16 Nov.** **Every message below: AWAITING OWNER APPROVAL — do not send until site is live.** Nothing in this file was sent, posted or submitted, and nothing will be. $0 spent.
 
 ## סיכום לבעלים (עברית, לטלפון)
 
@@ -1312,3 +1312,46 @@ Times printed by Python `zoneinfo` (Israel → local and back, asserted). No clo
 3. **Sunday Citizen:** the nav now says "OUTLET UP TO 80% OFF" (`outlet` 33, Ciel not in it). The lounge chair is 5/8 (Beige, Light Gray, Red out); the love seat is 2/2 $1,800.
 
 Unchanged: Q-3 Dandelion (Maya Mountain 70 % still 0/1, 85 % in stock $15). Q-9 Cuddle Clones and Q-4 Foggy were not re-read and stay skipped.
+
+
+## 28. Wave-A send-morning check, Thu 12 Nov (~05:48–05:54 UTC = 07:48–07:54 Israel; light run) + the plan for next week
+**Status:** no owner approval (silent since 10-12, 31 days). Wave B's gate (Wed 11, 15:00 Israel) passed with no approval, so wave B did not go. Nothing has been sent or posted; $0.
+
+**Wave A today (pack 11-10, gate 14:00 Israel = 12:00 UTC): 8 in, Q-3 Dandelion flipped to skip, Q-9 and Q-4 stay out. No text changed.**
+- Per-DM table: `SEND_PACK_2026-11-10.md` → "Send-morning re-check 11-12".
+- **Q-3 Dandelion: skip.** Both Maya Mountain bars are sold out (70 % and 85 % both 0/1). The pack's ✔ rule applies.
+- **Flags, none of them a skip:**
+  - **Little Beast:** "BIG LITTLE BEAST SALE EARLY ACCESS" = `sales-galore`, 54 of 180 products at 30 % off (`BFCM`). It is not sitewide, and PBJ and OG are not in it ($48). Five other striped onesies are in it.
+  - **Dana Rebecca:** the "MEMBERS-ONLY SALE" links to `/account/login`, so it is behind a login, not public and not sitewide. Both named products are full price.
+  - **Sunday Citizen:** Ciel is not in `outlet` (33).
+  - **Printfresh:** a new homepage-linked `printfresh-flash-sale` (51) does not hold the two named bandanas.
+- **Later-wave candidates:**
+  - **Cuddle Clones:** the Black Friday pajama sale is still live (25 %), so it stays out.
+  - **Foggy:** the "15% OFF SITEWIDE" event has ended, but the named collar is still 10 % off ($52 vs $58), so it stays out.
+- Times were printed by `zoneinfo` for 2026-11-12. They match the 11-10 pack: 15:05/15:20/15:35/15:50 = 08:05–08:50 EST, 16:20 = 08:20 CST, 16:35 = 09:35 EST, 16:50 = 08:50 CST / 09:50 EST, 18:50 = 08:50 PST.
+
+**The plan (one wave per day; LESSONS 2026-10-16 and 2026-10-19):**
+- **Wave A approved by 14:00 Israel today:**
+  - Wave A goes **today**: 8 DMs at the 11-10 times, with no Q-3.
+  - **Wave B → Tue 17 Nov.** It goes at 16:00–19:10 Israel, with a gate at 15:00 Israel = 13:00 UTC, on a new dated pack built Mon 16.
+- **Wave A not approved by 14:00 Israel today (the default):**
+  - **Tue 17 Nov = wave A.** Times are 15:05–18:50 Israel, with a gate at 14:00 = 12:00 UTC.
+  - **Wed 18 Nov = wave B.** Times are 16:00–19:10 Israel, with a gate at 15:00 = 13:00 UTC.
+  - Both get **new dated packs built Mon 16 Nov** after a full live re-check (products, sale scan, homepages, Ad Library, every date word). The 11-10 and 11-11 packs **expire tonight** and are never reused.
+  - This is §26's fallback, and it replaces §27's "Tue 17 = wave B".
+- Israel times stay the same. `zoneinfo` shows no clock change before March 2027 (Tue 17: 15:05 = 08:05 EST, 18:50 = 08:50 PST; Wed 18: 16:00 = 09:00 EST, 17:15 = 09:15 CST, 19:10 = 09:10 PST).
+- **If Tue 17 / Wed 18 also pass:** the last pair before Black Friday week is **Tue 24 / Wed 25 Nov**. After that, the default is to wait for Tue 1 / Wed 2 Dec.
+
+**The Mon 16 pack build must re-check:**
+- Q-3 Dandelion: is a Maya Mountain bar back in stock? Otherwise it needs the owner's "gift set only" decision.
+- Q-4 Foggy: is the collar back at $58?
+- Q-9 Cuddle Clones: has the pajama sale ended?
+- Q-15 Saranoni: is the sitewide sale over?
+- Q-13 Legendary: is the 21-day hold still on?
+- Little Beast and Dana Rebecca: have their Black Friday or members sales gone sitewide?
+
+**Blockers (unchanged):**
+- Owner approval.
+- The site isn't live (no links in any DM).
+- `{BUSINESS_ADDRESS}` is a placeholder (no emails).
+- Printfresh handle decision (c).
