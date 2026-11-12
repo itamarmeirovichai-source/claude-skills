@@ -49,3 +49,4 @@
 
 ## 2026-11-12 — operator asks for suppliers officially connected to Shopify with automatic fulfilment
 - Checked the Shopify App Store listings directly (S-218..S-222): Eprolo free plan includes auto order sync, fulfilment and tracking (4.8/580); Doba's current app has no free plan ($29.99/mo; the old listing is "not currently available"), correcting the earlier "$0" assumption; AutoDS $26.90+/mo after a 3-day trial (plan prices now primary); Zendrop $29+/mo for any linked product; Spocket 3.7/624; CJ ≈ 4.9/2,500 but its listing slug and US-warehouse text not resolved. M0 day-one list and P-0002 supplier notes corrected. Spend $0.
+- Operator: Shopify store opened. Ledger L-001 $1.00 (Shopify promo, to confirm on invoice) and L-002 $0 (Eprolo free plan) entered; running external total $1.00. Links to the Eprolo app and the P-0002 SKU sent.
