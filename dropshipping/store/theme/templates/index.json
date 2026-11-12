@@ -36,7 +36,8 @@
         "button_link": "shopify://products/raised-ceramic-cat-bowl",
         "button_label_2": "How we choose products",
         "button_link_2": "shopify://pages/about",
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "use_asset_image": true
       }
     },
     "benefits": {
