@@ -1,0 +1,23 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="page-width" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px">
+  {%- if section.settings.heading != blank -%}<h2 class="h2" style="margin-bottom:1.2rem">{{ section.settings.heading }}</h2>{%- endif -%}
+  <dl class="pn-specs">
+    {%- for block in section.blocks -%}
+      <dt {{ block.shopify_attributes }}>{{ block.settings.label }}</dt><dd>{{ block.settings.value }}</dd>
+    {%- endfor -%}
+  </dl>
+</div>
+{% schema %}
+{
+  "name": "Specs list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Size and specs" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 60, "step": 4, "unit": "px", "label": "Top padding", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 60, "step": 4, "unit": "px", "label": "Bottom padding", "default": 24 }
+  ],
+  "blocks": [ { "type": "spec", "name": "Spec", "settings": [ { "type": "text", "id": "label", "label": "Label", "default": "Height" }, { "type": "text", "id": "value", "label": "Value (from the spec or the sample only)", "default": "[fill from spec]" } ] } ],
+  "presets": [ { "name": "Specs list", "blocks": [ { "type": "spec" }, { "type": "spec" }, { "type": "spec" }, { "type": "spec" } ] } ]
+}
+{% endschema %}

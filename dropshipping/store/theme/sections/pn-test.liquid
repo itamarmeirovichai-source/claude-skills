@@ -1,0 +1,44 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="color-{{ section.settings.color_scheme }} gradient pn-test">
+  <div class="page-width">
+    <h2 class="h2">{{ section.settings.heading }}</h2>
+    <p class="pn-test__lead">{{ section.settings.text }}</p>
+    <div class="pn-test__grid">
+      {%- for block in section.blocks -%}
+        <div class="pn-test__item" {{ block.shopify_attributes }}>
+          <span class="pn-test__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'push' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20v-5a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5"/><path d="M12 12V6"/><path d="M9 9l3-3 3 3"/></svg>
+              {%- when 'scale' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M12 14V4"/><path d="M5 9h14"/><path d="M7 9l-3 4M17 9l3 4"/></svg>
+              {%- when 'dish' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="8" cy="14.5" r="2"/><circle cx="16" cy="14.5" r="2"/></svg>
+              {%- when 'box' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4z"/><path d="M3 8v8l9 4 9-4V8"/><path d="M12 12v8"/></svg>
+              {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            {%- endcase -%}
+          </span>
+          <strong>{{ block.settings.title }}</strong>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "How we test",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Before it goes on sale, it goes through this" },
+    { "type": "textarea", "id": "text", "label": "Lead", "default": "We order one unit to our own home in Florida and film the tests. If it fails, you never see it." },
+    { "type": "color_scheme", "id": "color_scheme", "default": "scheme-3", "label": "Color scheme" }
+  ],
+  "blocks": [ { "type": "t", "name": "Test", "limit": 4, "settings": [
+    { "type": "select", "id": "icon", "label": "Icon", "default": "push", "options": [ {"value":"push","label":"Push"}, {"value":"scale","label":"Scale"}, {"value":"dish","label":"Dishwasher"}, {"value":"box","label":"Box"} ] },
+    { "type": "text", "id": "title", "label": "Title", "default": "The push test" },
+    { "type": "text", "id": "text", "label": "Text", "default": "Nudged on tile with a full bowl. If it slides or tips, it fails." } ] } ],
+  "presets": [ { "name": "How we test", "blocks": [
+    { "type": "t", "settings": { "icon": "push", "title": "The push test", "text": "Nudged on tile with a full bowl, on camera. If it slides or tips, it fails." } },
+    { "type": "t", "settings": { "icon": "box", "title": "The unboxing", "text": "Opened on camera. Chipped, scratched or thin? It fails, and we tell the supplier why." } },
+    { "type": "t", "settings": { "icon": "dish", "title": "The dishwasher", "text": "Three cycles. Fading, cracking or a rim that holds grime fails." } } ] } ]
+}
+{% endschema %}

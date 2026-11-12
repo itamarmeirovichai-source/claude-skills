@@ -1,0 +1,12 @@
+{%- comment -%} Pawnook wordmark: hand-drawn SVG, brand ink + sage. Used in the header when no logo image is set. {%- endcomment -%}
+<span class="pn-wordmark" aria-label="{{ shop.name | escape }}">
+  <svg class="pn-wordmark__mark" viewBox="0 0 48 48" width="34" height="34" aria-hidden="true" focusable="false">
+    <circle cx="24" cy="24" r="23" fill="#2F4F3A"/>
+    <ellipse cx="24" cy="29" rx="8.5" ry="7" fill="#FBF8F3"/>
+    <circle cx="13.5" cy="20" r="3.6" fill="#FBF8F3"/>
+    <circle cx="20" cy="14.5" r="3.6" fill="#FBF8F3"/>
+    <circle cx="28" cy="14.5" r="3.6" fill="#FBF8F3"/>
+    <circle cx="34.5" cy="20" r="3.6" fill="#FBF8F3"/>
+  </svg>
+  <span class="pn-wordmark__text">{{ shop.name }}</span>
+</span>

@@ -1,0 +1,28 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="pn-bar">
+      {%- for block in section.blocks -%}
+        <span class="pn-bar__item" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>{{ block.settings.text }}</span>
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Delivery & trust bar",
+  "tag": "section",
+  "class": "section",
+  "settings": [ { "type": "color_scheme", "id": "color_scheme", "default": "scheme-2", "label": "Color scheme" } ],
+  "blocks": [ { "type": "item", "name": "Item", "limit": 5, "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Ships from a US warehouse" } ] } ],
+  "presets": [ { "name": "Delivery & trust bar", "blocks": [
+    { "type": "item", "settings": { "text": "Shipping included in the price" } },
+    { "type": "item", "settings": { "text": "Ships from a US warehouse in 1–2 business days" } },
+    { "type": "item", "settings": { "text": "30-day returns, refunds within 7 working days" } },
+    { "type": "item", "settings": { "text": "Card or PayPal, guest checkout, no fees added" } }
+  ] } ]
+}
+{% endschema %}

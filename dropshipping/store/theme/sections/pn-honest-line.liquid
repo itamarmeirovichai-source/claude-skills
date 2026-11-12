@@ -1,0 +1,11 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="page-width"><p class="pn-honest">{{ section.settings.text }}</p></div>
+{% schema %}
+{
+  "name": "Honest line (new store)",
+  "tag": "section",
+  "class": "section",
+  "settings": [ { "type": "textarea", "id": "text", "label": "Text", "default": "This is a new store. Reviews here come only from verified buyers, requested after delivery with no conditions. We never pay for reviews." } ],
+  "presets": [ { "name": "Honest line (new store)" } ]
+}
+{% endschema %}

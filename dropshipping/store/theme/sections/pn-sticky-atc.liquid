@@ -1,0 +1,28 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+{%- if product != blank -%}
+<div class="pn-sticky" id="pn-sticky-{{ section.id }}" aria-hidden="true">
+  <div class="page-width pn-sticky__inner">
+    {%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 120 | image_tag: class: 'pn-sticky__img', alt: '' }}{%- endif -%}
+    <div class="pn-sticky__meta"><strong>{{ product.title | truncate: 48 }}</strong><span>{{ product.selected_or_first_available_variant.price | money }} · shipping included</span></div>
+    <button type="button" class="button pn-sticky__btn" data-pn-sticky-btn>{{ section.settings.label }}</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('pn-sticky-{{ section.id }}'); if(!bar) return;
+  var real=document.querySelector('.product-form__submit'); if(!real) return;
+  var btn=bar.querySelector('[data-pn-sticky-btn]');
+  btn.addEventListener('click',function(){ real.scrollIntoView({behavior:'smooth',block:'center'}); real.focus(); real.click(); });
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ var show=!e.isIntersecting && e.boundingClientRect.top<0; bar.classList.toggle('is-visible',show); bar.setAttribute('aria-hidden',show?'false':'true'); }); },{threshold:0});
+  io.observe(real);
+})();
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Sticky add to cart",
+  "tag": "div",
+  "settings": [ { "type": "text", "id": "label", "label": "Button label", "default": "Add to cart" } ],
+  "presets": [ { "name": "Sticky add to cart" } ]
+}
+{% endschema %}

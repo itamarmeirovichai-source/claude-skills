@@ -1,0 +1,30 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px">
+    {%- if section.settings.heading != blank -%}<h2 class="h2" style="margin-bottom:1.6rem">{{ section.settings.heading }}</h2>{%- endif -%}
+    <ol class="pn-steps" style="list-style:none;padding:0;margin:0">
+      {%- for block in section.blocks -%}
+        <li class="pn-steps__item" {{ block.shopify_attributes }}><strong>{{ block.settings.title }}</strong><br>{{ block.settings.text }}</li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Three steps",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How ordering works" },
+    { "type": "color_scheme", "id": "color_scheme", "default": "scheme-1", "label": "Color scheme" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 36 }
+  ],
+  "blocks": [ { "type": "step", "name": "Step", "limit": 4, "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "Order" }, { "type": "text", "id": "text", "label": "Text", "default": "Guest checkout, card or PayPal." } ] } ],
+  "presets": [ { "name": "Three steps", "blocks": [
+    { "type": "step", "settings": { "title": "Order", "text": "Guest checkout, card or PayPal. The price includes shipping." } },
+    { "type": "step", "settings": { "title": "We ship from the US", "text": "Your order leaves a US warehouse within 1–2 business days. Tracking by email." } },
+    { "type": "step", "settings": { "title": "Delivered, or your money back", "text": "Delivered in the window shown on the product page. 30-day returns, refunds within 7 working days." } }
+  ] } ]
+}
+{% endschema %}

@@ -1,0 +1,377 @@
+{
+  "sections": {
+    "hero": {
+      "type": "pn-hero",
+      "blocks": {
+        "t1": {
+          "type": "tick",
+          "settings": {
+            "text": "Shipping included in the price"
+          }
+        },
+        "t2": {
+          "type": "tick",
+          "settings": {
+            "text": "Ships from a US warehouse"
+          }
+        },
+        "t3": {
+          "type": "tick",
+          "settings": {
+            "text": "30-day returns"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "eyebrow": "For cats and small dogs \u00b7 ships from a US warehouse",
+        "heading": "The raised bowl that stays put.",
+        "subheading": "Chosen from hundreds of real one-star reviews of the bowls that wobble, rust and spill. Then tested on a sample before it went on sale.",
+        "product": "raised-ceramic-cat-bowl",
+        "button_label": "See the bowl",
+        "button_link": "shopify://products/raised-ceramic-cat-bowl",
+        "button_label_2": "How we choose products",
+        "button_link_2": "shopify://pages/about",
+        "color_scheme": "scheme-1",
+        "use_asset_image": true,
+        "price_pill": "$49.90 \u00b7 shipping included"
+      }
+    },
+    "benefits": {
+      "type": "pn-benefits",
+      "blocks": {
+        "b1": {
+          "type": "b",
+          "settings": {
+            "icon": "truck",
+            "title": "Ships from the US",
+            "text": "Leaves a US warehouse within 1\u20132 business days. Tracking by email."
+          }
+        },
+        "b2": {
+          "type": "b",
+          "settings": {
+            "icon": "shield",
+            "title": "Price is the price",
+            "text": "Shipping included. No fees at checkout, no fake \"was\" prices, no timers."
+          }
+        },
+        "b3": {
+          "type": "b",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Refunds within 7 working days. Damaged? Send a photo, we replace it, no return."
+          }
+        },
+        "b4": {
+          "type": "b",
+          "settings": {
+            "icon": "paw",
+            "title": "Tested on a sample",
+            "text": "Every claim on a product page was proven on the unit we ordered first."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "proof": {
+      "type": "pn-proof-rows",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "quote": "wobbly and rattles, dog refused it",
+            "fix": "We read the one-star reviews first. The stand must pass a push test on tile before it is listed.",
+            "proof": "The test video sits on every product page."
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "quote": "took three weeks to arrive",
+            "fix": "Only products stocked in a US warehouse. The delivery window on the page is the supplier's own figure, not an average.",
+            "proof": "Shipping & Returns page."
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "quote": "fake reviews, fake timers",
+            "fix": "No countdowns, no stock counters, no \"was\" prices, no reviews we did not earn.",
+            "proof": "Look for them on this site. There are none."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "heading": "How we choose what to sell",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rules": {
+      "type": "pn-rules",
+      "blocks": {
+        "y1": {
+          "type": "yes",
+          "settings": {
+            "text": "Ship only from US warehouses, 1\u20132 business days to dispatch"
+          }
+        },
+        "y2": {
+          "type": "yes",
+          "settings": {
+            "text": "Read hundreds of real reviews before choosing a product"
+          }
+        },
+        "y3": {
+          "type": "yes",
+          "settings": {
+            "text": "Order a sample and test every claim at home"
+          }
+        },
+        "y4": {
+          "type": "yes",
+          "settings": {
+            "text": "Include shipping in the price"
+          }
+        },
+        "y5": {
+          "type": "yes",
+          "settings": {
+            "text": "Answer every email within one business day"
+          }
+        },
+        "n1": {
+          "type": "no",
+          "settings": {
+            "text": "Countdown timers, stock counters, \"12 people are viewing\""
+          }
+        },
+        "n2": {
+          "type": "no",
+          "settings": {
+            "text": "\"Was $99\" prices nobody ever paid"
+          }
+        },
+        "n3": {
+          "type": "no",
+          "settings": {
+            "text": "Reviews we did not earn, or AI \"customers\""
+          }
+        },
+        "n4": {
+          "type": "no",
+          "settings": {
+            "text": "Health claims about your pet"
+          }
+        },
+        "n5": {
+          "type": "no",
+          "settings": {
+            "text": "Shipping from overseas and calling it \"fast\""
+          }
+        }
+      },
+      "block_order": [
+        "y1",
+        "y2",
+        "y3",
+        "y4",
+        "y5",
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5"
+      ],
+      "settings": {
+        "heading": "Our rules",
+        "text": "We are a small new store run by a family in Florida. These are the rules we run on, written down so you can hold us to them.",
+        "yes_heading": "What we do",
+        "no_heading": "What we refuse to do",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where does my order ship from?",
+            "icon": "truck",
+            "row_content": "<p>From a warehouse in the United States. It leaves within 1\u20132 business days and the delivery window shown on the product page is the supplier's own figure.</p>",
+            "page": ""
+          }
+        },
+        "q2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is shipping really included?",
+            "icon": "price_tag",
+            "row_content": "<p>Yes. The price on the product page is what you pay. Nothing is added at checkout.</p>",
+            "page": ""
+          }
+        },
+        "q3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if it arrives damaged?",
+            "icon": "box",
+            "row_content": "<p>Send a photo within 7 days of delivery. We replace it or refund, and you do not need to send it back.</p>",
+            "page": ""
+          }
+        },
+        "q4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Why are there so few reviews?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Because we are new, and we only show reviews from verified buyers, asked after delivery with no reward attached. We would rather show three real ones than three hundred fake ones.</p>",
+            "page": ""
+          }
+        },
+        "q5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is a raised bowl right for my pet?",
+            "icon": "question_mark",
+            "row_content": "<p>Our bowls are made for cats and dogs up to about 50 lb. Some veterinary studies do not recommend raised bowls for large and giant breeds; if your dog is one, ask your vet first. We make no health claims either way.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Questions people ask us",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "scheme-1",
+        "container_color_scheme": "scheme-2",
+        "open_first_collapsible_row": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "steps": {
+      "type": "pn-steps",
+      "blocks": {
+        "t1": {
+          "type": "step",
+          "settings": {
+            "title": "Order",
+            "text": "Guest checkout, card or PayPal. The price includes shipping."
+          }
+        },
+        "t2": {
+          "type": "step",
+          "settings": {
+            "title": "We ship from the US",
+            "text": "Your order leaves a US warehouse within 1\u20132 business days. Tracking by email."
+          }
+        },
+        "t3": {
+          "type": "step",
+          "settings": {
+            "title": "Delivered, or your money back",
+            "text": "30-day returns. Refunds within 7 working days."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "heading": "How ordering works",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "honest": {
+      "type": "pn-honest-line",
+      "settings": {
+        "text": "This is a new store, run by a family in Florida. Questions: reply to any of our emails, we answer within one business day."
+      }
+    },
+    "test": {
+      "type": "pn-test",
+      "blocks": {
+        "t1": {
+          "type": "t",
+          "settings": {
+            "icon": "push",
+            "title": "The push test",
+            "text": "Nudged on tile with a full bowl, on camera. If it slides or tips, it fails."
+          }
+        },
+        "t2": {
+          "type": "t",
+          "settings": {
+            "icon": "box",
+            "title": "The unboxing",
+            "text": "Opened on camera. Chipped, scratched or thin? It fails, and we tell the supplier why."
+          }
+        },
+        "t3": {
+          "type": "t",
+          "settings": {
+            "icon": "dish",
+            "title": "The dishwasher",
+            "text": "Three cycles. Fading, cracking or a rim that holds grime fails."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "heading": "Before it goes on sale, it goes through this",
+        "text": "We order one unit to our own home in Florida and film the tests. If it fails, you never see it.",
+        "color_scheme": "scheme-3"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "test",
+    "proof",
+    "rules",
+    "faq",
+    "steps",
+    "honest"
+  ]
+}
