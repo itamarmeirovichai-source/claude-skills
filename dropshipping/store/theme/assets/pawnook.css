@@ -1,0 +1,20 @@
+/* Pawnook custom sections. Loaded only by the sections that use them. */
+.pn-proof{display:grid;gap:1.2rem}
+@media (min-width:750px){.pn-proof{grid-template-columns:repeat(3,1fr);gap:2rem}}
+.pn-proof__row{border:1px solid rgba(var(--color-foreground),.12);border-radius:var(--text-boxes-radius,12px);padding:1.6rem}
+.pn-proof__quote{font-style:italic;margin:0 0 .6rem;color:rgba(var(--color-foreground),.75)}
+.pn-proof__fix{margin:0;font-weight:600}
+.pn-proof__proof{margin:.6rem 0 0;font-size:1.3rem;color:rgba(var(--color-foreground),.7)}
+.pn-bar{display:flex;flex-wrap:wrap;gap:.8rem 2.4rem;justify-content:center;padding:1.2rem 1.6rem;font-size:1.4rem}
+.pn-bar__item{display:flex;align-items:center;gap:.6rem;white-space:nowrap}
+.pn-bar__item svg{width:1.8rem;height:1.8rem;flex:none}
+.pn-note{border-left:4px solid rgba(var(--color-foreground),.35);padding:1.2rem 1.6rem;background:rgba(var(--color-foreground),.04);border-radius:0 var(--text-boxes-radius,12px) var(--text-boxes-radius,12px) 0}
+.pn-note p{margin:0}
+.pn-specs{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 2rem;margin:0}
+.pn-specs dt{font-weight:600}
+.pn-specs dd{margin:0;color:rgba(var(--color-foreground),.75)}
+.pn-honest{text-align:center;font-size:1.4rem;color:rgba(var(--color-foreground),.7);padding:1.6rem}
+.pn-steps{counter-reset:s;display:grid;gap:1.2rem}
+@media (min-width:750px){.pn-steps{grid-template-columns:repeat(3,1fr)}}
+.pn-steps__item{position:relative;padding:1.6rem 1.6rem 1.6rem 5.2rem;border:1px solid rgba(var(--color-foreground),.12);border-radius:var(--text-boxes-radius,12px)}
+.pn-steps__item::before{counter-increment:s;content:counter(s);position:absolute;left:1.6rem;top:1.4rem;width:2.6rem;height:2.6rem;border-radius:50%;background:rgb(var(--color-foreground));color:rgb(var(--color-background));display:grid;place-items:center;font-weight:700}

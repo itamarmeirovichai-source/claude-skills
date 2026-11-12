@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "delivery_bar": { "type": "pn-delivery-bar", "blocks": {
+      "b1": { "type": "item", "settings": { "text": "Shipping included in the price" } },
+      "b2": { "type": "item", "settings": { "text": "Ships from a US warehouse in [1–2] business days" } },
+      "b3": { "type": "item", "settings": { "text": "Delivered in [3–7] business days" } },
+      "b4": { "type": "item", "settings": { "text": "30-day returns, refunds within 7 working days" } } },
+      "block_order": ["b1", "b2", "b3", "b4"], "settings": { "color_scheme": "scheme-2" } },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title" },
+        "price": { "type": "price" },
+        "text_fit": { "type": "text", "settings": { "text": "For cats and dogs up to about 50 lb (23 kg)", "text_style": "subtitle" } },
+        "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button", "swatch_shape": "circle" } },
+        "quantity_selector": { "type": "quantity_selector" },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": false } },
+        "trust": { "type": "text", "settings": { "text": "Pay by card or PayPal. Guest checkout. No fees added at checkout.", "text_style": "body" } },
+        "description": { "type": "description" },
+        "ship": { "type": "collapsible_tab", "settings": { "heading": "Shipping and returns", "icon": "truck", "content": "<p>Shipping is included in the price. Orders leave a US warehouse within [1–2] business days and arrive in [3–7] business days. Tracking by email. 30-day returns on unused items; refunds to the original payment method within 7 working days. Damaged or wrong item: send a photo within 7 days and we replace or refund, no return needed.</p>", "page": "" } },
+        "care": { "type": "collapsible_tab", "settings": { "heading": "Care", "icon": "leaf", "content": "<p>[Bowl material] bowls: dishwasher-safe. Stand: wipe with a damp cloth.</p>", "page": "" } }
+      },
+      "block_order": ["title", "price", "text_fit", "variant_picker", "quantity_selector", "buy_buttons", "trust", "description", "ship", "care"],
+      "settings": { "enable_sticky_info": true, "color_scheme": "scheme-1", "media_position": "left", "gallery_layout": "stacked", "media_size": "large", "constrain_to_viewport": true, "media_fit": "contain", "image_zoom": "lightbox", "mobile_thumbnails": "hide", "hide_variants": true, "enable_video_looping": false, "padding_top": 24, "padding_bottom": 12 }
+    },
+    "proof": { "type": "pn-proof-rows", "blocks": {
+      "r1": { "type": "row", "settings": { "quote": "wobbly and rattles", "fix": "Wide [X]-cm base and non-slip feet. It stays where you put it.", "proof": "Push test on tile in the video above." } },
+      "r2": { "type": "row", "settings": { "quote": "one bowl can't be removed without it shifting", "fix": "Drop-in bowls, no clips. Lift straight out with one hand.", "proof": "Shown in the video above." } },
+      "r3": { "type": "row", "settings": { "quote": "Paint peeled and the stand rusted within weeks", "fix": "[Material per spec]. Bowls are [304 stainless / ceramic] and go in the dishwasher.", "proof": "Material on the specs list below." } } },
+      "block_order": ["r1", "r2", "r3"], "settings": { "heading": "What we fixed", "heading_size": "h2", "color_scheme": "scheme-1", "padding_top": 36, "padding_bottom": 24 } },
+    "specs": { "type": "pn-specs", "blocks": {
+      "s1": { "type": "spec", "settings": { "label": "Height", "value": "[X cm]" } },
+      "s2": { "type": "spec", "settings": { "label": "Bowl capacity", "value": "[X cups / X ml] each" } },
+      "s3": { "type": "spec", "settings": { "label": "Materials", "value": "[stand material]; [bowl material]" } },
+      "s4": { "type": "spec", "settings": { "label": "Ships from", "value": "US warehouse" } } },
+      "block_order": ["s1", "s2", "s3", "s4"], "settings": { "heading": "Size and specs", "padding_top": 12, "padding_bottom": 24 } },
+    "note": { "type": "pn-note", "settings": { "title": "A note for large and giant breeds", "text": "Raised bowls are not recommended for large and giant breeds by some veterinary studies. If your dog is a large or giant breed, please ask your vet before using any raised bowl.", "padding_top": 0, "padding_bottom": 24 } },
+    "steps": { "type": "pn-steps", "blocks": {
+      "t1": { "type": "step", "settings": { "title": "Order", "text": "Guest checkout, card or PayPal. The price includes shipping." } },
+      "t2": { "type": "step", "settings": { "title": "We ship from the US", "text": "Your order leaves a US warehouse within [1–2] business days. Tracking by email." } },
+      "t3": { "type": "step", "settings": { "title": "Delivered, or your money back", "text": "30-day returns. Refunds within 7 working days." } } },
+      "block_order": ["t1", "t2", "t3"], "settings": { "heading": "How ordering works", "color_scheme": "scheme-2", "padding_top": 36, "padding_bottom": 36 } },
+    "honest": { "type": "pn-honest-line", "settings": { "text": "This is a new store. Reviews here come only from verified buyers, requested after delivery with no conditions. We never pay for reviews." } }
+  },
+  "order": ["delivery_bar", "main", "proof", "specs", "note", "steps", "honest"]
+}

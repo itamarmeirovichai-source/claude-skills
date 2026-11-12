@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": { "type": "image-banner", "blocks": {
+      "heading": { "type": "heading", "settings": { "heading": "Small things for cats and small dogs, made to stay put.", "heading_size": "h1" } },
+      "text": { "type": "text", "settings": { "text": "Ships from a US warehouse. Shipping included. 30-day returns.", "text_style": "body" } },
+      "button": { "type": "buttons", "settings": { "button_label_1": "See the raised bowl", "button_link_1": "shopify://collections/all", "button_style_secondary_1": false, "button_label_2": "", "button_link_2": "", "button_style_secondary_2": false } } },
+      "block_order": ["heading", "text", "button"],
+      "settings": { "image_overlay_opacity": 20, "image_height": "medium", "desktop_content_position": "middle-left", "show_text_box": true, "image_behavior": "none", "desktop_content_alignment": "left", "color_scheme": "scheme-1", "mobile_content_alignment": "left", "stack_images_on_mobile": true, "show_text_below": true } },
+    "delivery_bar": { "type": "pn-delivery-bar", "blocks": {
+      "b1": { "type": "item", "settings": { "text": "Shipping included in the price" } },
+      "b2": { "type": "item", "settings": { "text": "Ships from a US warehouse" } },
+      "b3": { "type": "item", "settings": { "text": "30-day returns" } },
+      "b4": { "type": "item", "settings": { "text": "Card or PayPal, guest checkout" } } },
+      "block_order": ["b1", "b2", "b3", "b4"], "settings": { "color_scheme": "scheme-2" } },
+    "featured": { "type": "featured-collection", "settings": { "title": "The product we are testing now", "heading_size": "h2", "description": "<p>One product at a time, each one proven on a sample before it goes on sale.</p>", "show_description": true, "description_style": "body", "collection": "all", "products_to_show": 4, "columns_desktop": 4, "color_scheme": "scheme-1", "full_width": false, "show_view_all": false, "view_all_style": "solid", "enable_desktop_slider": false, "swipe_on_mobile": false, "image_ratio": "adapt", "image_shape": "default", "show_secondary_image": false, "show_vendor": false, "show_rating": false, "enable_quick_add": false, "columns_mobile": "2", "padding_top": 36, "padding_bottom": 36 } },
+    "proof": { "type": "pn-proof-rows", "blocks": {
+      "r1": { "type": "row", "settings": { "quote": "they keep falling / wobbly and rattles", "fix": "We read hundreds of one-star reviews before choosing a product, then test the fix on a sample.", "proof": "Every product page shows the complaint, the fix and where the proof is." } },
+      "r2": { "type": "row", "settings": { "quote": "took three weeks to arrive", "fix": "Only products stocked in a US warehouse. Delivery window shown on every page, not an average.", "proof": "Shipping policy." } },
+      "r3": { "type": "row", "settings": { "quote": "fake reviews, fake timers", "fix": "No countdowns, no stock counters, no \"was\" prices, no reviews we did not earn.", "proof": "Look for them. There are none." } } },
+      "block_order": ["r1", "r2", "r3"], "settings": { "heading": "How we choose what to sell", "heading_size": "h2", "color_scheme": "scheme-1", "padding_top": 36, "padding_bottom": 24 } },
+    "steps": { "type": "pn-steps", "blocks": {
+      "t1": { "type": "step", "settings": { "title": "Order", "text": "Guest checkout, card or PayPal. The price includes shipping." } },
+      "t2": { "type": "step", "settings": { "title": "We ship from the US", "text": "Your order leaves a US warehouse within 1–2 business days. Tracking by email." } },
+      "t3": { "type": "step", "settings": { "title": "Delivered, or your money back", "text": "30-day returns. Refunds within 7 working days." } } },
+      "block_order": ["t1", "t2", "t3"], "settings": { "heading": "How ordering works", "color_scheme": "scheme-2", "padding_top": 36, "padding_bottom": 36 } },
+    "honest": { "type": "pn-honest-line", "settings": { "text": "This is a new store, run by a family in Florida. Reviews here come only from verified buyers. Questions: reply to any of our emails, we answer within one business day." } }
+  },
+  "order": ["hero", "delivery_bar", "featured", "proof", "steps", "honest"]
+}

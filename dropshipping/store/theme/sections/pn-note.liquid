@@ -1,0 +1,21 @@
+{{ 'pawnook.css' | asset_url | stylesheet_tag }}
+<div class="page-width" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px">
+  <div class="pn-note">
+    {%- if section.settings.title != blank -%}<p><strong>{{ section.settings.title }}</strong></p>{%- endif -%}
+    <p>{{ section.settings.text }}</p>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Plain note",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "A note for large and giant breeds" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Raised bowls are not recommended for large and giant breeds by some veterinary studies. If your dog is a large or giant breed, please ask your vet before using any raised bowl." },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 60, "step": 4, "unit": "px", "label": "Top padding", "default": 12 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 60, "step": 4, "unit": "px", "label": "Bottom padding", "default": 24 }
+  ],
+  "presets": [ { "name": "Plain note" } ]
+}
+{% endschema %}
