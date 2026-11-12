@@ -16,7 +16,8 @@
     </div>
     <div class="pn-hero__art">
       {%- if prod != blank and prod.featured_image != blank -%}
-        <a href="{{ prod.url }}">{{ prod.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 48vw, 100vw', widths: '600, 900, 1200', class: 'pn-hero__img', alt: prod.featured_image.alt | default: prod.title }}</a>
+        {%- assign hero_alt = prod.featured_image.alt | default: prod.title -%}
+        <a href="{{ prod.url }}">{{ prod.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 48vw, 100vw', widths: '600, 900, 1200', class: 'pn-hero__img', alt: hero_alt }}</a>
       {%- elsif section.settings.use_asset_image -%}
         <figure class="pn-hero__fig"><img class="pn-hero__img" src="{{ 'pn-hero.jpg' | asset_url }}" width="1200" height="900" alt="Illustration: a cat eating from a raised ceramic bowl" loading="eager"><figcaption class="pn-hero__cap">Illustration</figcaption></figure>
       {%- else -%}
