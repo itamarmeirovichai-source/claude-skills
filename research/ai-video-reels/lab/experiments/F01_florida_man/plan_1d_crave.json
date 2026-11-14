@@ -1,0 +1,31 @@
+{
+ "_doc": "F01 stage 1d: crave shots after user feedback ('it doesn't make people buy; look how appealing the Celsius shot is'). Three hero recipes for AURUM (brand colour world: champagne gold + glacier teal); bottle ref = frames/AURUM.png.",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {"aspect_ratio": "9:16", "resolution": "2k", "quality": "high"}
+ },
+ "jobs": [
+  {
+   "id": "H1_studio_hero",
+   "args": {
+    "image_urls": ["@file:frames/AURUM.png"],
+    "prompt": "Top-tier beverage advertising photograph. The exact luxury bottle from the reference image (tall frosted-glass AURUM bottle, brushed-gold cap, AURUM embossed vertically, small gold seal) stands centred on a glossy liquid-gold mirror surface that reflects it perfectly. The bottle is ice cold: dense condensation beads all over the glass, a few droplets running down through the embossed letters, clear water puddles and round droplets on the mirror around its base. Props: two large clear ice spheres and scattered crushed ice, a few thin slices of fresh lime and a sprig of mint lying on the mirror, slightly out of focus. Backdrop: smooth seamless gradient from warm champagne gold at the bottom to glacier teal at the top. Hard key light from upper left with crisp specular highlights on the glass and cap, soft rim light outlining the bottle, glowing light passing through the frosted glass. 100mm macro lens, f/8, bottle fills 55% of the frame height, centred. Hyper-real, sharp, saturated, luxurious, no other text."
+   }
+  },
+  {
+   "id": "H2_macro_cold",
+   "args": {
+    "image_urls": ["@file:frames/AURUM.png"],
+    "prompt": "Extreme macro beverage advertising photograph of the exact bottle from the reference image (frosted glass, AURUM embossed vertically, brushed-gold cap). Frame fills with the upper half of the bottle: the embossed AURUM letters covered in thick cold condensation, one large water droplet sliding down through the letters leaving a clear glossy trail, fine frost at the shoulder, the brushed-gold cap glowing above. A wisp of cold vapour drifts off the glass. Background: deep glacier-teal blur with warm golden bokeh. Hard side light raking across the droplets so every bead sparkles. 100mm macro, f/4, razor-sharp droplets. Hyper-real, luxurious, no other text."
+   }
+  },
+  {
+   "id": "H3_splash_hero",
+   "args": {
+    "image_urls": ["@file:frames/AURUM.png"],
+    "prompt": "High-speed beverage advertising photograph. The exact bottle from the reference image (tall frosted-glass AURUM bottle, brushed-gold cap, AURUM embossed vertically) is frozen mid-air, tilted slightly, bursting up out of crystal-clear water with a spectacular crown splash around it: sharp frozen water droplets, ice cubes flying, tiny bubbles, sparkling highlights. Backdrop: seamless gradient from glacier teal at the top to warm champagne gold at the bottom; the water glows gold where the light passes through. Hard strobe key light from the left, rim light on the right, every droplet crisp. 85mm, 1/8000s look, bottle centred and filling 50% of the frame height. Hyper-real, dynamic, luxurious, no other text."
+   }
+  }
+ ]
+}

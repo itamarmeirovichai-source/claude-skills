@@ -1,0 +1,37 @@
+{
+ "_doc": "T1: derive bridge keyframes K1/K2 from K0=S3A (F03). Flare 2k high, 9:16, enhance off. 21 \u00a74 T1.",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "K1",
+   "args": {
+    "image_urls": [
+     "@file:frames/S3A.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Image 1 is the exact scene and the only source of truth for light, lens, film grain, colour grade and every object in it. Image 2 is the exact candle: matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wick with a small flame, SOL debossed small in thin serif capitals on the front; preserve its silhouette, proportions and the SOL deboss exactly. Re-photograph image 1 from a new camera position: the camera has orbited 15 degrees to the right around the candle at the same distance and is slightly higher, looking a little more down onto the sideboard. Same scene, light, lens and grade; only the camera position changes. Everything stays where it is: the candle on the dark-oak sideboard, the rainy window, the stacked books, the dried flowers in the vase, the linen cloth; the cold blue-grey window light still falls from the right and the candle flame stays small and warm. The SOL deboss stays legible on the front of the vessel. No new objects, no new text, no HDR, no CG gloss. A film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "enhance_prompt": false
+   }
+  },
+  {
+   "id": "K2",
+   "args": {
+    "image_urls": [
+     "@file:frames/S3A.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Image 1 is the exact scene and the only source of truth for light, lens, film grain, colour grade and every object in it. Image 2 is the exact candle: matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wick with a small flame, SOL debossed small in thin serif capitals on the front; preserve its silhouette, proportions and the SOL deboss exactly. Re-photograph image 1 from a new camera position: the camera has orbited 30 degrees to the right around the candle and moved about 10 percent closer to it, at the same height as before. Same scene, light, lens and grade; only the camera position changes. Everything stays where it is: the candle on the dark-oak sideboard, the rainy window, the stacked books, the dried flowers in the vase, the linen cloth; the cold blue-grey window light still falls from the right and the candle flame stays small and warm. The SOL deboss stays legible on the front of the vessel. No new objects, no new text, no HDR, no CG gloss. A film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "enhance_prompt": false
+   }
+  }
+ ]
+}

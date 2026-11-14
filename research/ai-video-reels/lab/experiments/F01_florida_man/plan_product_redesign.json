@@ -1,0 +1,32 @@
+{
+ "_doc": "F01 product redesign: 3 premium original products (fictional brands), one hero packshot each, for Itamar to choose.",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "PX1_aurum_water",
+   "args": {
+    "prompt": "Hero packshot of AURUM, an ultra-luxury sparkling mineral water: a tall sculptural bottle of heavy frosted glass with a softly faceted shoulder, a solid brushed-gold screw cap, and the word \"AURUM\" deep-embossed vertically in a refined thin serif down the glass, a tiny gold foil seal reading \"SOURCE 1987\". Ice-cold: fine frost and condensation beads on the frosted glass, fine bubbles visible through it. It stands on a slab of wet black marble beside a few clear ice spheres, a single beam of warm hard light from the upper left creating a glowing caustic of light through the glass onto the marble, deep teal-to-black gradient background, 100mm, f/8. Ultra-premium product photography, photorealistic, tactile materials, crisp specular highlights, no other text or logos."
+   }
+  },
+  {
+   "id": "PX2_monolith_headphones",
+   "args": {
+    "prompt": "Hero packshot of MONOLITH, ultra-premium over-ear headphones: matte black anodized titanium headband with a hairline brushed finish, oversized oval ear cups wrapped in charcoal lambskin, a thin polished copper ring around each cup, the word \"MONOLITH\" laser-etched small on the inner headband. Floating at a slight angle above a raw black basalt plinth, thin wisps of mist, a hard rim light in copper tones and a soft cool key from the right, dark graphite gradient background, 85mm, f/8. Ultra-premium product photography, photorealistic, tactile materials, crisp specular highlights, no other text or logos."
+   }
+  },
+  {
+   "id": "PX3_noir_cooler",
+   "args": {
+    "prompt": "Hero packshot of TIDE & TIMBER, a luxury hard-shell cooler: compact rotomolded shell in deep forest-green matte with walnut wood lid inlay, polished brass latches and a stitched cognac leather carry strap, the words \"TIDE & TIMBER\" debossed in small capitals on a brass plate. Lid slightly open with cold vapor spilling out over crushed ice and frosted glass bottles. Standing on a weathered teak dock at golden hour over a calm Florida lake with palm silhouettes, warm sun from the left, 50mm, f/5.6. Ultra-premium product photography, photorealistic, tactile materials, crisp specular highlights, no other text or logos."
+   }
+  }
+ ]
+}

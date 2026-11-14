@@ -1,0 +1,137 @@
+{
+ "_doc": "E06 niche lookboards (Soul Cinema, $0.004/img).",
+ "defaults": {
+  "model": "higgsfield-ai/soul/cinema",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "fragrance",
+   "args": {
+    "prompt": "A frosted glass perfume bottle on a hotel windowsill at dusk, rain on the glass, a silk scarf half in frame, warm lamp light from the left. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "skincare",
+   "args": {
+    "prompt": "A single drop of clear serum suspended from a glass dropper above a wet stone in soft morning window light, dew on a green leaf in the background. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "makeup",
+   "args": {
+    "prompt": "A red lipstick print on the rim of a champagne coupe on a messy marble bar at 4 a.m., crumpled napkin, smoky light. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "haircare",
+   "args": {
+    "prompt": "Backlit glossy dark hair swinging in mid motion against a warm low sun, strands catching light, studio haze. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "energy_drink",
+   "args": {
+    "prompt": "An ice-cold aluminium can with heavy condensation on hot cracked concrete at noon in Florida, frost spreading across the concrete from its base, hard sun. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "coffee",
+   "args": {
+    "prompt": "Steam rising from a ceramic espresso cup on a worn wooden counter at 6 a.m., blue window light and a warm practical bulb, coffee grounds spilled. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "snacks",
+   "args": {
+    "prompt": "A potato chip snapping in half in extreme close-up, crumbs flying, on a kitchen table in afternoon light, glass of water rippling behind. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "aperitivo",
+   "args": {
+    "prompt": "A rocks glass with a botanical drink and a clear ice cube with frozen rosemary inside, on a terrace table at blue hour, string lights out of focus. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "watch",
+   "args": {
+    "prompt": "A steel dive watch with a plain black dial and no text resting on wet black rock at the edge of the sea, a hard sliver of sunlight across the bezel. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "sneakers",
+   "args": {
+    "prompt": "A white running shoe stepping onto wet asphalt at night, puddle reflection of a street light, slight motion blur. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "leather_bag",
+   "args": {
+    "prompt": "A tan leather handbag with visible stitching and patina on an old wooden caf\u00e9 chair, morning light through a window, newspaper on the table. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "headphones",
+   "args": {
+    "prompt": "Matte over-ear headphones with no logo resting on a stack of vinyl records in a dim apartment, city lights bokeh through the window. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "candle",
+   "args": {
+    "prompt": "A candle being lit in a dark room, the match flame just touching the wick, wax pool glowing, rain-streaked window behind. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "kitchen",
+   "args": {
+    "prompt": "A cast-iron pan with a single egg frying, butter foaming, on a gas stove, steam, a hand towel on the counter, warm overhead light. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "outdoor",
+   "args": {
+    "prompt": "A dented stainless steel water bottle with ice on a rock in a red desert canyon at golden hour, heat haze. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  },
+  {
+   "id": "pet",
+   "args": {
+    "prompt": "A golden retriever from behind at dog-eye level looking at the front door of a cosy home, ears lifted, evening light, no face visible. 35mm film still, natural motivated light from one source falling off into shadow, slightly off-centre composition, real textures and small imperfections, subtle film grain, muted true-to-life colour. No text, no logos, no people's faces.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p"
+   }
+  }
+ ]
+}

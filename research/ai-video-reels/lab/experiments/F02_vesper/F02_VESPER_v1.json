@@ -1,0 +1,292 @@
+{
+ "export": "instagram",
+ "output": "out/F02_VESPER_v1.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/M_S1_cap_macro_t01.mp4",
+    "in": 0.5,
+    "out": 3.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M_S2_mist_t01.mp4",
+    "in": 0.0,
+    "out": 2.0,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M_S3_bergamot_t01.mp4",
+    "in": 0.3,
+    "out": 2.3,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "B E R G A M O T",
+     "size": 50,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "spacing": 10,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.25,
+     "y": 1150,
+     "x": 540,
+     "box": true,
+     "box_color": "#1A0508AA",
+     "pad": 18
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S4_fig_t01.mp4",
+    "in": 1.0,
+    "out": 3.0,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "B L A C K   F I G",
+     "size": 50,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "spacing": 10,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.25,
+     "y": 1150,
+     "x": 540,
+     "box": true,
+     "box_color": "#1A0508AA",
+     "pad": 18
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S5_amber_smoke_t01.mp4",
+    "in": 1.0,
+    "out": 3.0,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "S M O K E D   A M B E R",
+     "size": 50,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "spacing": 10,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.25,
+     "y": 1150,
+     "x": 540,
+     "box": true,
+     "box_color": "#1A0508AA",
+     "pad": 18
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S6_balcony_hand_t01.mp4",
+    "in": 1.0,
+    "out": 4.0,
+    "mute": true
+   },
+   "overlays": [
+    {
+     "type": "text",
+     "text": "For the hour after sunset.",
+     "size": 50,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "spacing": 10,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.4,
+     "y": 1150,
+     "x": 540,
+     "box": true,
+     "box_color": "#1A0508AA",
+     "pad": 18
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/M_S7_hero_velvet_t01.mp4",
+    "in": 0.0,
+    "out": 2.2,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/M_S8_end_hero_t01.mp4",
+    "in": 0.0,
+    "out": 2.0,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/S8_end_hero_t01.png",
+    "duration": 3.2,
+    "effects": [
+     {
+      "type": "ken_burns",
+      "from": 1.06,
+      "to": 1.0
+     }
+    ]
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "VESPER",
+     "size": 150,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#E8C27A",
+     "spacing": 36,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.19999999999999996,
+     "x": 540,
+     "y": 330
+    },
+    {
+     "type": "text",
+     "text": "Wear the golden hour.",
+     "y": 445,
+     "size": 50,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 1.2999999999999998,
+     "x": 540
+    }
+   ]
+  },
+  {
+   "clip": {
+    "color": "#2A070D",
+    "duration": 2.8
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.35
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "VESPER",
+     "position": "center",
+     "size": 170,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#E8C27A",
+     "spacing": 40,
+     "stroke": 0,
+     "shadow": 0
+    },
+    {
+     "type": "text",
+     "text": "Discover the sample set",
+     "y": 1110,
+     "x": 540,
+     "size": 46,
+     "font": "Liberation Serif",
+     "weight": 400,
+     "color": "#F2E6D6",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.2
+    },
+    {
+     "type": "text",
+     "text": "Fictional brand \u00b7 AI-generated",
+     "x": 540,
+     "y": 1200,
+     "size": 22,
+     "color": "#B08A8F",
+     "stroke": 0,
+     "shadow": 0
+    }
+   ]
+  }
+ ],
+ "audio": {
+  "original_volume": 0.0,
+  "voiceover": {
+   "path": "audio/vo.mp3",
+   "at": 18.0,
+   "volume": 1.0
+  },
+  "music": {
+   "path": "audio/music.mp3",
+   "volume": 0.75,
+   "fade_out": 1.0
+  },
+  "sfx": [
+   {
+    "path": "audio/sfx/cap.mp3",
+    "at": 0.25,
+    "volume": 0.9
+   },
+   {
+    "path": "audio/sfx/spray.mp3",
+    "at": 3.0,
+    "volume": 0.9
+   },
+   {
+    "path": "audio/sfx/citrus.mp3",
+    "at": 5.0,
+    "volume": 0.8
+   },
+   {
+    "path": "audio/sfx/smoke.mp3",
+    "at": 9.0,
+    "volume": 0.7
+   },
+   {
+    "path": "audio/sfx/silk_city.mp3",
+    "at": 11.0,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/logo.mp3",
+    "at": 21.2,
+    "volume": 0.9
+   }
+  ],
+  "loudnorm": -14
+ }
+}

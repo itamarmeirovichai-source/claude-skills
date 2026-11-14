@@ -1,0 +1,29 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.4,
+   "text": "Quiet"
+  },
+  {
+   "start": 0.48,
+   "end": 0.56,
+   "text": "on"
+  },
+  {
+   "start": 0.64,
+   "end": 1.32,
+   "text": "set."
+  },
+  {
+   "start": 1.6,
+   "end": 1.76,
+   "text": "Your"
+  },
+  {
+   "start": 1.84,
+   "end": 2.4,
+   "text": "turn."
+  }
+ ]
+}

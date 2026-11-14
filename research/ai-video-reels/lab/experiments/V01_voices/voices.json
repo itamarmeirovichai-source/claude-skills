@@ -1,0 +1,14 @@
+{
+ "otto": {
+  "voice_id": "IbpG1IF3UdxPgaDKhwsd",
+  "name": "VXO Otto (director)",
+  "preview": 2,
+  "description": "A man in his mid-fifties with a deep, dry, velvety baritone and a subtle continental European accent, somewhere between French and Italian. Slow, deadpan, theatrical timing; amused and knowing, like a legendary film director who finds everything slightly funny. Warm low resonance, crisp consonants, intimate close-mic studio recording."
+ },
+ "vee": {
+  "voice_id": "cLFf1Dc8DlgFwZ62rdPg",
+  "name": "VXO Vee (producer)",
+  "preview": 3,
+  "description": "A woman in her late thirties with a crisp, confident, slightly husky mid-Atlantic voice. Quick, precise and dry-witted, like a top film producer who runs every project on a stopwatch. Bright, clear, warm when she smiles, close-mic studio recording."
+ }
+}

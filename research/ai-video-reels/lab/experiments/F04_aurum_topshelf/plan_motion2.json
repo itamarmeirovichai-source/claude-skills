@@ -1,0 +1,56 @@
+{
+ "jobs": [
+  {
+   "id": "C_sip2",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K2.png",
+    "last_image_url": "@file:ref/K4g.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. Captured in slow motion: he finishes pouring, sets the open can down on the ledge with the label facing camera, raises the tall glass of gold soda and tucks its rim under his huge moustache to sip; the mouth stays hidden; the waxed moustache tips spring upward a notch and one eyebrow rises, delighted. Liquid stays inside the glass. He always holds the SAME tall straight-sided plain clear glass (no stem, no ice) of pale gold sparkling soda; it never changes shape or size, never becomes a can or a flute; the soda level stays consistent and never spills.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "E_float2",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4g.png",
+    "last_image_url": "@file:ref/K6_glare.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible), black turtleneck, charcoal blazer, oxblood pocket square, glass of gold soda in hand. Golden hour, cinematic, one continuous shot, no cuts. Lighthearted and magical, like a luxury perfume commercial. Like Mary Poppins, he opens a small gold umbrella and floats gently and magically down from the spire in dreamy slow motion past golden mirrored skyscraper windows, rivers of car headlights moving far below; blazer ripples, moustache rigid, glass of soda steady; serene, one brow raised; he drifts into a warm golden sun flare that fills the frame. He always holds the SAME tall straight-sided plain clear glass (no stem, no ice) of pale gold sparkling soda; it never changes shape or size, never becomes a can or a flute; the soda level stays consistent and never spills."
+   }
+  },
+  {
+   "id": "F_land2",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K6_glare.png",
+    "last_image_url": "@file:ref/K7g.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. The blinding warm glare fades out as the man drops the last metre and lands softly, sitting upright on a huge grey stunt airbag that puffs and settles; the camera pulls back at constant speed revealing a film soundstage with a painted golden skyline backdrop, lights and a C-stand; the woman producer at frame right raises her silver stopwatch and clicks it. He stays calm and composed, the tall glass of soda still in his hand, not a drop spilled. He always holds the SAME tall straight-sided plain clear glass (no stem, no ice) of pale gold sparkling soda; it never changes shape or size, never becomes a can or a flute; the soda level stays consistent and never spills.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "G_pack2",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K7g.png",
+    "last_image_url": "@file:ref/K8h.png",
+    "duration": 5,
+    "prompt": "Cinematic film studio. One continuous camera move: the camera cranes down and pushes in past the people toward a wooden apple box where the gold AURUM can and the same tall plain glass of sparkling pale gold soda (no ice) that he just set down stand, and settles exactly on the end frame; a condensation bead slides down the glass; the AURUM label is sharp and unchanged. No cuts. No people at the end.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  }
+ ]
+}

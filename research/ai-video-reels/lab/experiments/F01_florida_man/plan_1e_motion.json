@@ -1,0 +1,9 @@
+{
+ "_doc": "F01 stage 1e: first motion test of a crave shot (Kling 3.0 Pro i2v, 5 s).",
+ "defaults": {"model": "kling-video/v3.0/pro/image-to-video", "takes": 1, "args": {"duration": 5, "sound": "off", "cfg_scale": 0.5}},
+ "jobs": [
+  {"id": "M2_macro_cold_motion",
+   "args": {"image_url": "@file:clips/H2_macro_cold_t01.png",
+    "prompt": "Very slow cinematic push-in on the ice-cold bottle. The large water droplet slides down through the embossed AURUM letters leaving a glossy trail, other condensation beads tremble and a few start to run down the glass. A thin wisp of cold vapour curls off the shoulder of the bottle. Golden bokeh in the background drifts gently. A soft light sweep glides across the brushed-gold cap. Smooth, realistic, luxury commercial, no camera shake, the label and letters stay exactly the same."}}
+ ]
+}

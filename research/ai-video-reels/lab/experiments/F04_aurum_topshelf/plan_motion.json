@@ -1,0 +1,82 @@
+{
+ "jobs": [
+  {
+   "id": "A_push",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K0.png",
+    "last_image_url": "@file:ref/K1.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. One continuous drone move: the camera glides forward and descends in a slow arc toward the man standing on the tip of the spire high above the golden city, at constant speed, and settles exactly on the end frame. Wind ripples his blazer; the waxed moustache stays rigid; the can does not move in his hand.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "B_open",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K1.png",
+    "last_image_url": "@file:ref/K2.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. Already moving at frame 1. His thumb lifts the tab of the can in one short crisp motion, a small cold vapour puff escapes; he picks up a clear glass in the other hand and tilts the can over it; a short stream of pale gold sparkling soda starts pouring, bubbles rising. Label stays facing camera. Camera holds, slight handheld.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "C_sip",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K2.png",
+    "last_image_url": "@file:ref/K4.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. Captured in slow motion: he finishes pouring, sets the open can down on the ledge with the label facing camera, raises the glass of gold soda and tucks its rim under his huge moustache to sip; the mouth stays hidden; the waxed moustache tips spring upward a notch and one eyebrow rises, delighted. Liquid stays inside the glass.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "F_land",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K6_glare.png",
+    "last_image_url": "@file:ref/K7.png",
+    "duration": 5,
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder on a chain. The gold AURUM can keeps its exact shape and label, never dents. Real physics, cinematic, golden hour. One continuous shot, no cuts. The blinding warm glare fades out as the man drops the last metre and lands softly, sitting upright on a huge grey stunt airbag that puffs and settles; the camera pulls back at constant speed revealing a film soundstage with a painted golden skyline backdrop, lights and a C-stand; the woman producer at frame right raises her silver stopwatch and clicks it. He stays calm and composed, can in hand.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "G_pack",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "args": {
+    "image_url": "@file:ref/K7.png",
+    "last_image_url": "@file:ref/K8.png",
+    "duration": 5,
+    "prompt": "Cinematic film studio. One continuous camera move: the camera cranes down and pushes in past the people toward a wooden apple box where the gold AURUM can and a full glass of sparkling pale gold soda stand, and settles exactly on the end frame; a condensation bead slides down the glass; the AURUM label is sharp and unchanged. No cuts.",
+    "sound": "off",
+    "cfg_scale": 0.5
+   },
+   "takes": 1
+  },
+  {
+   "id": "E_fall",
+   "model": "bytedance/seedance-2.5/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4.png",
+    "end_image_url": "@file:ref/K6_glare.png",
+    "duration": 10,
+    "resolution": "480p",
+    "generate_audio": false,
+    "prompt": "One continuous take, a single unbroken camera move, no cuts. @Image1 man: long pale face, heavy dark brows, swept-back hair, enormous waxed handlebar moustache with spiral tips covering his mouth, black turtleneck, charcoal blazer, oxblood pocket square, glass of gold soda in hand. Golden-hour light from camera-left.\n[0-2 s] He lowers the glass, gives the camera a calm knowing look, and steps off the edge of the spire, upright, arms slightly out, perfectly relaxed, like stepping into a pool.\n[2-8 s] Captured in extreme slow motion, high frame rate capture. The camera falls with him, two metres in front of him. Golden mirrored skyscraper windows stream upward behind him, his reflection sliding across them; far below, streams of car headlights and taillights move along the avenues like rivers of light. His blazer ripples; the waxed moustache stays perfectly rigid; not a drop leaves the glass; he looks serene, one brow raised, enjoying it.\n[8-10 s] He drops past the corner of a glass tower into a blinding warm sun glare that fills the entire frame.\nNo text, no other people, playful and impossible, not scary."
+   }
+  }
+ ]
+}

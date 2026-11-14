@@ -1,0 +1,39 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.32,
+   "text": "Just"
+  },
+  {
+   "start": 0.4,
+   "end": 0.48,
+   "text": "your"
+  },
+  {
+   "start": 0.64,
+   "end": 1.36,
+   "text": "product,"
+  },
+  {
+   "start": 1.6,
+   "end": 1.92,
+   "text": "and"
+  },
+  {
+   "start": 2.16,
+   "end": 2.24,
+   "text": "a"
+  },
+  {
+   "start": 2.36,
+   "end": 2.48,
+   "text": "little"
+  },
+  {
+   "start": 2.56,
+   "end": 3.52,
+   "text": "madness."
+  }
+ ]
+}

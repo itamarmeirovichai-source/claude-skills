@@ -1,0 +1,41 @@
+{
+ "_doc": "F01 stage 1a: character bible (Soul v2, batch_size 4 => 4 options per take, ~$0.023 each).",
+ "defaults": {
+  "model": "higgsfield-ai/soul/v2/standard",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "1080p",
+   "batch_size": 4
+  }
+ },
+ "jobs": [
+  {
+   "id": "C1_anchor",
+   "tags": {
+    "test": "C1"
+   },
+   "args": {
+    "prompt": "Local TV news anchor at a glossy studio desk, a man in his 50s with silver side-parted hair, navy suit, red tie, perfectly composed deadpan expression looking straight into the camera, cool blue studio key light, out-of-focus city skyline screen behind him, broadcast camera look, realistic skin texture, medium shot."
+   }
+  },
+  {
+   "id": "C2_reporter",
+   "tags": {
+    "test": "C2"
+   },
+   "args": {
+    "prompt": "Field TV news reporter standing at a lake edge in Boca Raton in brutal afternoon heat, a woman in her 30s with a dark ponytail, light blue blouse with visible sweat patches, sunglasses on her head, holding a handheld microphone with a blank mic flag, squinting into the sun, sweat on her forehead, palm trees and sawgrass behind her, shoulder-cam news footage look, realistic skin texture, medium shot."
+   }
+  },
+  {
+   "id": "C3_florida_man",
+   "tags": {
+    "test": "C3"
+   },
+   "args": {
+    "prompt": "A sweaty, sunburnt middle-aged Florida man in a faded teal fishing cap, wraparound sunglasses pushed up on his forehead, soaked grey T-shirt, cargo shorts and flip-flops, stubble, determined face, standing at a muddy lake bank in Boca Raton under harsh sun, documentary phone photo look, realistic skin with pores and sweat, full body."
+   }
+  }
+ ]
+}

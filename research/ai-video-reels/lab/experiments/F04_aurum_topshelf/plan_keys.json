@@ -1,0 +1,101 @@
+{
+ "jobs": [
+  {
+   "id": "K0",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, golden hour 20 minutes before sunset, warm low key light from camera-left, soft haze over the city, editorial film grade, fine 35mm grain, real photograph. Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp, label facing camera. Image 3 shows the rooftop location and his look. Wide aerial view: he stands on a small flat platform at the very tip of a tall skyscraper spire, far above a vast golden city grid, the AURUM can in his right hand at chest height; he is small in the lower third of the frame, the city stretching to the horizon. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  },
+  {
+   "id": "K1",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, golden hour 20 minutes before sunset, warm low key light from camera-left, soft haze over the city, editorial film grade, fine 35mm grain, real photograph. Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp, label facing camera. Image 3 shows the rooftop location and his look. Medium-close low angle: he holds the AURUM can at chest height, label to camera, his left thumb under the tab, about to open it; hazy golden city far below behind him; the edge of his blazer lifted by the wind; amused knowing look at the can. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  },
+  {
+   "id": "K2",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, golden hour 20 minutes before sunset, warm low key light from camera-left, soft haze over the city, editorial film grade, fine 35mm grain, real photograph. Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp, label facing camera. Image 3 shows the rooftop location and his look. Medium-close: the can is open, a faint cold vapour puff rising from the opening; he tilts the can over a clear tall glass held in his other hand; the glass is one-third full of pale gold sparkling soda with bubbles rising in vertical chains; label still readable; city haze behind. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  },
+  {
+   "id": "K4",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, golden hour 20 minutes before sunset, warm low key light from camera-left, soft haze over the city, editorial film grade, fine 35mm grain, real photograph. Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp, label facing camera. Image 3 shows the rooftop location and his look. Three-quarter profile medium shot: he lifts the glass, the rim of the glass tucked under his huge moustache as if sipping (mouth hidden), the waxed spiral moustache tips sprung up one notch, one eyebrow raised high, eyes amused; the open AURUM can stands on the spire platform beside his feet with the label facing camera; he stands at the very edge, weight shifting forward. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  },
+  {
+   "id": "K7",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png",
+     "@file:ref/vee.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical cinematic film still, golden hour 20 minutes before sunset, warm low key light from camera-left, soft haze over the city, editorial film grade, fine 35mm grain, real photograph. Image 1 is the identity reference: keep this exact man \u2014 long pale face, deep-set grey eyes, heavy dark brows, swept-back dark hair with silver temples, and his enormous charcoal-black waxed handlebar moustache with two mirror-symmetrical upturned Dali spirals that completely covers his mouth. Same tailored black turtleneck, dark charcoal blazer, oxblood silk pocket square, brass director's viewfinder on a thin brass chain. Relaxed brow, amused knowing eyes, never wide-eyed, never startled, mouth never visible. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp, label facing camera. Image 3 shows the rooftop location and his look.  Image 4 is the woman producer: keep her exact look. Wide shot inside a large film soundstage: he sits upright and composed on a huge grey stunt airbag, the glass of gold soda still full in his hand; behind him a giant painted golden skyline backdrop on a flat; a C-stand and film lights; at frame right a woman producer (platinum buzz cut, round red-tinted glasses, oversized ivory suit, red scarf, one silver stopwatch) raises her stopwatch; warm studio light. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  },
+  {
+   "id": "K8",
+   "model": "marketing-studio/image/flare",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/otto.png",
+     "@file:ref/can.png",
+     "@file:ref/roof.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "9:16 vertical premium beverage product photograph, real photograph, fine grain. Image 2 is the exact product: keep this exact slim brushed-gold AURUM can with the thin black band and AURUM lettering, unchanged and sharp. Packshot: the AURUM can (label to camera, sharp) and a full glass of sparkling pale gold soda with condensation stand on a wooden apple box in a dim film studio, warm rim light, soft haze, a small brass director's viewfinder resting beside them. No people. No HDR, no oversaturation, no plastic skin, no rubber moustache, not a cartoon, not a costume, mouth never visible, eyes never wide, no extra cans, the can never dents, no text besides AURUM."
+   }
+  }
+ ]
+}

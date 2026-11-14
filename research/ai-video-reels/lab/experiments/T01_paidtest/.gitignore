@@ -1,0 +1,12 @@
+# media stays local (paid outputs, refs, previews)
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+*.mov
+*.mp3
+*.wav
+frames/
+clips/
+out/

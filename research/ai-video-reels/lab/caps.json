@@ -1,0 +1,17 @@
+{
+ "lab_cap_usd": 45,
+ "gates_usd": [
+  10,
+  20,
+  35,
+  45
+ ],
+ "experiments": {
+  "E00_assets": 1.5,
+  "E01_models": 13.0,
+  "E02_prompts": 4.0,
+  "E03_images": 1.5,
+  "prod:ghost-dog": 15.0,
+  "F01_florida_man": 17.0
+ }
+}

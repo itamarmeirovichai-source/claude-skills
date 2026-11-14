@@ -1,0 +1,6 @@
+{
+ "prompt": "Dark luxury energy drink ad, minimal electronic, 124 BPM, F minor, instrumental. 0:00-0:03 near silence, just a sub-bass hum. 0:03-0:09 build: filtered kick fades in with a white-noise riser. 0:09-0:15 full drop, punchy kick, distorted synth stabs. 0:15-0:18 everything stops dead, silence, only a reverb tail. 0:18-0:22 one big final hit and a resolving chord ringing out.",
+ "music_length_ms": 22000,
+ "model_id": "music_v2_5",
+ "force_instrumental": true
+}

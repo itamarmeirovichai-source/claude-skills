@@ -1,0 +1,69 @@
+{
+ "jobs": [
+  {
+   "id": "A_open",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/V0.png",
+    "last_image_url": "@file:ref/V1.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The woman keeps her exact identity: platinum buzz cut, round red-tinted spectacles in thin gold frames, olive skin with freckles, oversized ivory double-breasted suit, red silk scarf, exactly ONE silver stopwatch on a short chain clipped to her lapel. The VESPER perfume bottle keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. The camera slowly pulls back and arcs to her left side as she turns her head to watch the low golden sun on the horizon; the VESPER bottle glows on the ledge beside her."
+   }
+  },
+  {
+   "id": "B_set",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/V1.png",
+    "last_image_url": "@file:ref/V2.png",
+    "duration": 10,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The woman keeps her exact identity: platinum buzz cut, round red-tinted spectacles in thin gold frames, olive skin with freckles, oversized ivory double-breasted suit, red silk scarf, exactly ONE silver stopwatch on a short chain clipped to her lapel. The VESPER perfume bottle keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. Locked-off time-lapse of the sky only: she stays almost perfectly still while the sun sinks below the horizon, the golden light drains to cool deep blue dusk and the city lights switch on behind her; at the very end she glances down at the stopwatch on her lapel, unimpressed."
+   }
+  },
+  {
+   "id": "C_spray",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/V2.png",
+    "last_image_url": "@file:ref/V3.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The woman keeps her exact identity: platinum buzz cut, round red-tinted spectacles in thin gold frames, olive skin with freckles, oversized ivory double-breasted suit, red silk scarf, exactly ONE silver stopwatch on a short chain clipped to her lapel. The VESPER perfume bottle keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. Deadpan, she picks up the VESPER bottle from the ledge, lifts it to shoulder height and sprays twice into the air; the fine mist catches an impossible warm golden glow in the blue dusk."
+   }
+  },
+  {
+   "id": "D_rewind",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/V3.png",
+    "last_image_url": "@file:ref/V4.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The woman keeps her exact identity: platinum buzz cut, round red-tinted spectacles in thin gold frames, olive skin with freckles, oversized ivory double-breasted suit, red silk scarf, exactly ONE silver stopwatch on a short chain clipped to her lapel. The VESPER perfume bottle keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. Magic rewind: from the golden mist, the sky reverses in time \u2014 the sun rises back up above the horizon and warm golden light floods back over her and the city; she clicks the stopwatch on her lapel with her thumb, satisfied half-smile."
+   }
+  },
+  {
+   "id": "E_pack",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/V4.png",
+    "last_image_url": "@file:ref/V5.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The woman keeps her exact identity: platinum buzz cut, round red-tinted spectacles in thin gold frames, olive skin with freckles, oversized ivory double-breasted suit, red silk scarf, exactly ONE silver stopwatch on a short chain clipped to her lapel. The VESPER perfume bottle keeps its exact shape and label. Cinematic, real physics, one continuous camera move, no cuts. The camera glides smoothly off her shoulder and settles on the VESPER bottle standing on the stone ledge, the sun sitting exactly on the horizon behind it, golden light pouring through the glass."
+   }
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "jobs": [
+  {
+   "id": "VK0",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 2,
+   "args": {
+    "image_urls": [
+     "@file:ref/vee_master.png"
+    ],
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "prompt": "Image 1 is the identity reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on her left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames; oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, small silver stopwatch on a short silver chain. New photograph: waist-up shot of this same woman, centred, facing the camera, standing relaxed, holding the silver stopwatch loosely in her right hand at waist height, composed half-smile into the lens, some empty space above her head. Background: a perfectly flat, uniform pure chroma-key green (#00B140) studio backdrop, evenly lit, no shadows on it, no gradient. Soft even frontal key light, subtle neutral rim, no green spill on her skin or clothes. Real photograph, real skin texture, crisp edges. Not a doll, no glamour makeup, no text."
+   }
+  }
+ ]
+}

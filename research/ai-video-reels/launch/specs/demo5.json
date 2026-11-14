@@ -1,0 +1,52 @@
+{
+  "_about": "DEMO 5 - Category parody: 'Pans in the Wild' (cookware ad as a nature documentary). Unbranded pan, no real brands, no imitation of real narrators. 15s, 9:16.",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "export": "instagram",
+  "output": "out/demo5_pans_wild.mp4",
+  "timeline": [
+    {
+      "clip": {"path": "media/demo5/s1_kitchen_dawn.mp4", "in": 0.25, "out": 2.75, "effects": [{"type": "ken_burns", "from": 1.0, "to": 1.08}]},
+      "overlays": [{"type": "title", "text": "THE KITCHEN. 6:14 AM.", "position": "upper", "anim": "fade", "size": 70, "spacing": 4}]
+    },
+    {
+      "clip": {"path": "media/demo5/s2_egg_rolls.mp4", "in": 0.25, "out": 2.75},
+      "transition": {"type": "fade", "dur": 0.3},
+      "overlays": [{"type": "text", "text": "The egg senses danger.", "position": "upper", "anim": "fade", "size": 60, "start": 0.3}]
+    },
+    {
+      "clip": {"path": "media/demo5/s3_egg_glides.mp4", "in": 0.25, "out": 3.25},
+      "transition": "cut",
+      "overlays": [{"type": "text", "text": "Too late. Nothing sticks to her.", "position": "upper", "anim": "fade", "size": 60, "start": 0.4}]
+    },
+    {
+      "clip": {"path": "media/demo5/s4_herd_rail.mp4", "in": 0.25, "out": 2.75},
+      "transition": "cut",
+      "overlays": [
+        {"type": "chip", "text": "Sartago antiadhaerens", "position": "lower", "size": 44},
+        {"type": "text", "text": "Rarely seen outside her natural habitat.", "position": "upper", "anim": "fade", "size": 56, "start": 0.4}
+      ]
+    },
+    {
+      "clip": {"path": "media/demo5/s5_pan_hero.mp4", "in": 0.25, "out": 2.75},
+      "transition": {"type": "fade", "dur": 0.3}
+    },
+    {
+      "clip": {"color": "#1E2A22", "duration": 2.5},
+      "transition": {"type": "fade", "dur": 0.3},
+      "overlays": [
+        {"type": "title", "text": "Wild. Nonstick. Yours.", "position": "center", "anim": "fade", "size": 80},
+        {"type": "cta", "text": "Your brand here →", "position": "cta", "box": true, "start": 0.5}
+      ]
+    }
+  ],
+  "overlays": [
+    {"type": "text", "text": "AI-generated category parody · not a real brand", "position": "bottom", "size": 30, "start": 0, "end": 15, "box": true}
+  ],
+  "effects": [{"type": "color", "preset": "film"}, {"type": "film_grain", "mode": "overlay", "opacity": 0.25}],
+  "audio": {
+    "music": {"path": "media/music.wav", "volume": 0.4, "fade_in": 0.6, "fade_out": 1.0},
+    "sfx": [{"type": "swish", "at": 3.0, "volume": 0.6}],
+    "sfx_on_cuts": "none",
+    "loudnorm": -14
+  }
+}

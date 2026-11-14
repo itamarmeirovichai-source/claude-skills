@@ -1,0 +1,21 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../lib/site';
+---
+<Page title="About" description={`${site.studio} (${site.studioLong}) makes 15–30 s product ads with AI, directed by a person: a hook in the first second, a punchline your product causes.`} eyebrow={`${site.studio} · ${site.studioLong}`} heading="A small studio for product films without the shoot.">
+  <div class="wrap prose about">
+    <p class="quote">"I'm {site.founder}. I direct every film myself.{site.founderLine && ` ${site.founderLine}`}"</p>
+    {/* TODO(founder): one true line of background in site.json → founderLine. No invented facts. */}
+    <h2>What we make</h2>
+    <p>15–30 second product ads for brands that sell on paid social. Every film opens with something moving in the first second, turns, and ends on a punchline only your product can land. {site.signature} Made with AI, directed by a human, and checked before you see it: loudness and true peak measured on the delivered file, every sound on the frame of its action, only your tested claims on screen.</p>
+    <h2>Why "{site.studio}"</h2>
+    <p>{site.studio} stands for {site.studioLong}: our two hosts. {site.mascot} is the director, the craft and the frame. {site.producer} is the producer: the deadline and the price. Both are AI characters, and we label them that way everywhere.</p>
+    <h2>Where we are</h2>
+    <p>We're new. No client logos yet, no reviews, and we won't invent any. The films on this site are spec work for brands we invented.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="/frames">Get my 5 free frames</a><a class="btn" href="/ai">How we use AI</a></div>
+  </div>
+</Page>
+<style>
+  .about { padding-bottom: 96px; }
+  .quote { font: 400 clamp(1.6rem, 3.4vw, 2.4rem)/1.2 var(--serif); color: var(--text) !important; border-left: 2px solid var(--brass); padding-left: 20px; }
+</style>

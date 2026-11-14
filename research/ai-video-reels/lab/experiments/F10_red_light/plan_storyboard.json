@@ -1,0 +1,121 @@
+{
+ "jobs": [
+  {
+   "id": "S1",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Low front three-quarter view from a ground-level crash camera: a gleaming gold 1960s-style coup\u00e9 with no badges launching from standstill, rear squatting, rear wheels spinning with white tyre smoke, red and blue police lights glowing in the far background.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7100
+   }
+  },
+  {
+   "id": "S2",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. High drone wide shot looking down a long wet boulevard: a gleaming gold 1960s-style coup\u00e9 with no badges racing left to right, two police cruisers with flashing lights about 50 metres behind, light traffic pulled aside.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7101
+   }
+  },
+  {
+   "id": "S3",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Interior through the windshield from a hood-mounted camera: a pale man with an enormous charcoal waxed handlebar moustache with spiral tips covering his mouth, black turtleneck, charcoal blazer driving, eyes forward, both hands on the wheel; beside him a woman with a platinum buzz cut and round red-tinted glasses, ivory suit, a silver stopwatch clicking her stopwatch, dry half-smile; police lights in the rear window.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7102
+   }
+  },
+  {
+   "id": "S4",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Chase-car shot at bumper height one metre behind: a gleaming gold 1960s-style coup\u00e9 with no badges in a handbrake turn into a narrow side street, rear stepping out, body rolling, thick tyre smoke, a delivery van braking hard at the corner.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7103
+   }
+  },
+  {
+   "id": "S5",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Long-lens shot: a police cruiser braking hard into the same corner, nose diving, lights flashing, smoke lingering from the gold car ahead.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7104
+   }
+  },
+  {
+   "id": "S6",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Low chase-car shot from behind on a straight road: a gleaming gold 1960s-style coup\u00e9 with no badges approaching an intersection, the traffic light ahead switching from amber to red.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7105
+   }
+  },
+  {
+   "id": "S7",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Drone shot straight down, locked: a gleaming gold 1960s-style coup\u00e9 with no badges stopped perfectly at the white stop line of a red light, a police cruiser stopped right behind it, lights still flashing, empty intersection, wet asphalt reflections.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7106
+   }
+  },
+  {
+   "id": "S8",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Static side long-lens shot showing both stopped cars: the moustached driver's arm out of the gold coup\u00e9 window holding a cold sweating gold drink can backward toward the police car; a uniformed officer leaning out of the cruiser window reaching for it.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7107
+   }
+  },
+  {
+   "id": "S9",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Cinematic 9:16 film still, photoreal car-commercial look, wet city boulevard at dusk, sodium and neon reflections, anamorphic, motion blur where moving. No text, no logos. Drone rising shot: the light now green, the gold coup\u00e9 and the police cruiser pulling away slowly side by side down the glowing boulevard.",
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 7108
+   }
+  }
+ ]
+}
