@@ -1406,3 +1406,25 @@ Tools: `products_check.py --sale-scan` on every product either wave names (19 br
 - **Recommendation: pause cold DMs Thu 26 – Mon 30 Nov** (Thanksgiving, Black Friday 27.11, the weekend, Cyber Monday 30.11). Reasons: every DTC team's attention and DM inbox is on the biggest sale of the year; most of our named products will be marked down or under sitewide banners, so the strict rules would skip most DMs anyway; and LESSONS 2026-10-26 says the week *after* a sale is the best moment for a full-price pitch [inf]. **Resume Tue 1 Dec (wave A) / Wed 2 Dec (wave B)**, same Israel times (`zoneinfo`: Israel +02:00, EST −7 h, CST −8 h, MST −9 h, PST −10 h on both dates), on new packs built Mon 30 Nov after a full re-check. This is a recommendation; no schedule was changed beyond the fallbacks above.
 
 **Blockers (unchanged):** owner approval; the site isn't live (no links in any DM); `{BUSINESS_ADDRESS}` is a placeholder (no emails); Printfresh handle decision (c) (moot this week).
+
+## 30. Wave-B send-morning check, Wed 18 Nov (~05:48–05:55 UTC = 07:48–07:55 Israel; light run) + the dated plan
+**Status:** no owner approval (silent since 10-12, **37 days**). The wave A gate (Tue 17, 14:00 Israel) passed with no approval, so nothing went on the 17th. Nothing sent, nothing posted; $0. No Ad Library read today. No DM text changed. Detail: `SEND_PACK_2026-11-18.md` → "Send-morning re-check 11-18".
+
+**Wave B today (Wed 18, gate 15:00 Israel = 13:00 UTC): 4 in + Q-12 optional, 3 out, same split as Monday.** In: Q-19 Alexis Bittar 16:15 (flag: the BF sale is not live, first access still "11.19.26", no handbag code; the Black clutch carries `CODE3:BF26_BESTSELLER` / `$100OFFHNB` tags, not live codes), Q-12 Hawkins 16:45 (optional), Q-18 Vosges 17:15, Q-14 Equator 18:55, Q-17 THATCH 19:10. Out: Q-16 STONE AND STRAND (sitewide BF sale + sold out), Q-15 Saranoni (still in `holiday-sale`; strict), Q-13 Legendary (hold, no new Ad Library read).
+
+**The plan, by date (Israel time; one wave per day; every send only on the owner's own approval):**
+
+| Date | Wave | Gate (Israel / UTC) | Slots (Israel) | Pack | Condition |
+|---|---|---|---|---|---|
+| **Wed 18 Nov (today)** | **B** | 15:00 / 13:00 | 16:15, 16:45 (opt.), 17:15, 18:55, 19:10 | `SEND_PACK_2026-11-18.md` | Only if approved by 15:00 today |
+| **Thu 19 Nov** | **A** (rolled from Tue 17) | 14:00 / 12:00 | 15:35, 15:50, 16:20, 16:50, 18:50 | `SEND_PACK_2026-11-17.md` (carries over within the week) | Only if approved by 14:00 Thu, after a full ✔ re-check Thursday morning |
+| **Tue 24 Nov** (preferred) | **B** if it misses today | 15:00 / 13:00 | same as today | **new** `SEND_PACK_2026-11-24.md` | Built after a full live re-check; Q-19 Alexis likely out (BF first access opens 11.19) |
+| Wed 25 Nov (only if Tue 24 is not used) | B | 15:00 / 13:00 | same as today | new dated pack | Day before Thanksgiving; second choice |
+| Thu 26 – Mon 30 Nov | — | — | — | — | **Recommended pause** (Thanksgiving, Black Friday 27.11, weekend, Cyber Monday 30.11) |
+| Tue 1 / Wed 2 Dec | A / B | 14:00 / 15:00 | same Israel slots | new packs built Mon 30 Nov | Full re-check first |
+
+Rules for this table: wave B does **not** go on Thu 19 (that day is wave A's); a wave that misses its gate never goes late "to keep the date"; if wave A also misses Thu 19, it rolls to the next free Tue–Thu slot that isn't wave B's (a new dated pack; never the same day as wave B). Local labels (`zoneinfo`, both directions asserted): Wed 18, Tue 24 and Wed 25 identical (16:15 = 09:15 EST, 16:45 = 09:45 EST, 17:15 = 09:15 CST, 18:55 = 08:55 PST, 19:10 = 09:10 PST); Thu 19 wave A as in the 11-17 pack (15:35 = 08:35 EST … 18:50 = 08:50 PST).
+
+**Thu 19 look-ahead (provisional, 18 Nov scan):** Little Beast, Brackish, Dana Rebecca, KREWE and Kinn all clean on price, sale lists and sitewide text. Watch Little Beast (`sales-galore` 55 → 88, PBJ/OG still outside) and KREWE (`sale` still empty). Printfresh: bandana $28 for a second day and the flash list is off the homepage, but the homepage now filters "HOLIDAY" by `sale_eligible=Yes` and the bandana appears there; it stays out unless the owner settles handle decision (c) and Thursday's check is clean.
+
+**Blockers (unchanged):** owner approval; site not live (no links in any DM); `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle decision (c); Saranoni strict vs loose test; Dandelion "gift set only".
