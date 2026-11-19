@@ -1428,3 +1428,20 @@ Rules for this table: wave B does **not** go on Thu 19 (that day is wave A's); a
 **Thu 19 look-ahead (provisional, 18 Nov scan):** Little Beast, Brackish, Dana Rebecca, KREWE and Kinn all clean on price, sale lists and sitewide text. Watch Little Beast (`sales-galore` 55 → 88, PBJ/OG still outside) and KREWE (`sale` still empty). Printfresh: bandana $28 for a second day and the flash list is off the homepage, but the homepage now filters "HOLIDAY" by `sale_eligible=Yes` and the bandana appears there; it stays out unless the owner settles handle decision (c) and Thursday's check is clean.
 
 **Blockers (unchanged):** owner approval; site not live (no links in any DM); `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle decision (c); Saranoni strict vs loose test; Dandelion "gift set only".
+
+## 31. Wave-A send-morning check, Thu 19 Nov (~05:49–05:56 UTC = 07:49–07:56 Israel; light run) + next week's slots
+**Status:** no owner approval (silent since 10-12, **38 days**). The wave B gate (Wed 18, 15:00 Israel) passed with no approval. Nothing sent, nothing posted; $0. No Ad Library read today. No DM text changed. Detail: `SEND_PACK_2026-11-17.md` → "Send-morning re-check 11-19".
+
+**Wave A today (gate 14:00 Israel = 12:00 UTC): 5 in, 6 out, same split as Tue 17.** In: Q-5 Little Beast 15:35 (flag: `sales-galore` now 88, PBJ/OG still outside), Q-8 Brackish 15:50, Q-7 Dana Rebecca 16:20, Q-11 KREWE 16:50 (flag: `sale` / `under-199-sale` still empty), Q-10 Kinn 18:50. All named products full price, outside every homepage-linked sale list, no sitewide or checkout discount. **Q-2 Printfresh:** both bandanas $28 with no compare-at, but both product pages now show "25% off with code CHEER" (tags `CHEER2026`, `11.23.26Promo`): a skip on the strict rule as well as on handle decision (c).
+
+**Decision if wave A misses today: A → Tue 24 Nov, B → Wed 25 Nov.** Both go on new dated packs built Mon 23 Nov (`SEND_PACK_2026-11-24.md`, `SEND_PACK_2026-11-25.md`) after a full live re-check. The slots and gates stay the same (A 14:00 Israel gate, B 15:00). It keeps the usual Tue = A / Wed = B rhythm, needs one build day, and uses the last pair before the Black Friday pause rather than adding a week of delay. The cost is that wave B lands on its second-choice day (the day before Thanksgiving) [inf]. **If either misses**, it rolls to Tue 1 Dec (A) / Wed 2 Dec (B), on packs built Mon 30 Nov. Nothing goes Thu 26 – Mon 30 Nov (recommended pause).
+
+| Date | Wave | Gate (Israel / UTC) | Slots (Israel) | Local labels (`zoneinfo`, both directions asserted) |
+|---|---|---|---|---|
+| Thu 19 Nov (today) | A | 14:00 / 12:00 | 15:35, 15:50, 16:20, 16:50, 18:50 | 08:35 EST, 08:50 EST, 08:20 CST, 08:50 CST / 09:50 EST, 08:50 PST |
+| Tue 24 Nov | A | 14:00 / 12:00 | same | identical to 19 Nov |
+| Wed 25 Nov | B | 15:00 / 13:00 | 16:15, 16:45 (opt.), 17:15, 18:55, 19:10 | 09:15 EST, 09:45 EST, 09:15 CST, 08:55 PST, 09:10 PST |
+| Thu 26 – Mon 30 Nov | — | — | — | pause (recommendation) |
+| Tue 1 / Wed 2 Dec | A / B | 14:00 / 15:00 | same | identical (Israel UTC+2; EST −7 h, CST −8 h, MST −9 h, PST −10 h) |
+
+**Blockers (unchanged):** owner approval; site not live; `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle (c); Saranoni strict vs loose; Dandelion "gift set only".
