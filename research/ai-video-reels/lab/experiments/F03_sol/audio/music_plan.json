@@ -1,0 +1,5 @@
+{"chunks":[
+ {"text":"[Intro]\n{rain on a window, room tone}","duration_ms":3000,"positive_styles":["instrumental","near silence","soft rain ambience","intimate"],"negative_styles":["vocals","drums","melody"],"context_adherence":"high"},
+ {"text":"[Bloom]","duration_ms":6000,"positive_styles":["instrumental","warm nylon-string guitar enters","felt piano","golden, sunlit","76 BPM","A major","tape warmth"],"negative_styles":["vocals","EDM","heavy drums"],"context_adherence":"high"},
+ {"text":"[Summer]","duration_ms":6000,"positive_styles":["instrumental","gentle Mediterranean lilt","light brushed percussion","warm strings swell","cicadas texture"],"negative_styles":["vocals","trap","bright pop"],"context_adherence":"high"},
+ {"text":"[Resolve]\n{final chord}","duration_ms":4000,"positive_styles":["instrumental","single warm guitar and piano chord","long natural decay","A major resolution"],"negative_styles":["vocals","new melody","abrupt cut"],"context_adherence":"medium"}]}

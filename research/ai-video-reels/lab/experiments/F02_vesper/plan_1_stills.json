@@ -1,0 +1,86 @@
+{
+ "_doc": "F02 VESPER stage 1: one still per shot (prompt lock + colour world + negatives).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "S1_cap_macro",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Extreme macro close-up of the top of the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below): the faceted smoky-amber cap fills the upper half of the frame, the engraved VESPER letters crisp below it. A single warm sunset beam passes through the cap and throws golden refracted light and tiny rainbow sparkles across the glass. Black-burgundy background with soft bokeh. 100mm macro, f/5.6. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S2_mist",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands on burgundy velvet, cap removed and lying beside it; a fine cloud of perfume mist bursts upward from the atomiser nozzle, backlit by a low warm sunset beam so every micro-droplet glows gold against the dark burgundy background. 85mm, f/4. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. No hands. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S3_bergamot",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "High-speed photograph: a halved fresh bergamot (yellow-green citrus) bursting open in mid-air, zest oil mist and juice droplets frozen around it, glowing in a warm backlight beam; in the soft-focus background the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands on burgundy velvet. 100mm, 1/8000s look. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. No hands. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S4_fig",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "A ripe black fig split open on dark burgundy velvet revealing its glossy deep-crimson seeded flesh, a drop of nectar glistening, a second whole fig beside it; the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands slightly behind and to the right, in focus, glowing amber. Low warm side light, deep shadows. 100mm macro, f/5.6. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S5_amber_smoke",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Raw golden amber resin pieces on black stone, a slow ribbon of pale smoke curling upward through a single warm sunset beam, the smoke glowing gold; the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands behind the resin, in focus, the beam catching its faceted cap. Moody chiaroscuro. 85mm, f/5.6. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S6_neck_scene",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Golden-hour close-up on a city balcony: the neck, bare shoulder and collarbone of an elegant woman in a deep-burgundy silk slip dress, face out of frame above the chin, a few strands of dark hair; her hand gently holds the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) near her collarbone, the bottle front facing camera with VESPER legible. Warm low sun flare from behind, soft city lights bokeh. Natural skin with real texture and pores. Portra 400 look, 85mm, f/2.8. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S7_hero_velvet",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands centred on rippled deep-burgundy velvet, a low warm sunset beam crossing from the left creating long golden caustics through the amber glass onto the velvet, black-burgundy backdrop. Low-angle hero, 85mm, f/8. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. No hands, no props. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  },
+  {
+   "id": "S8_end_hero",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and a thick base, warm amber-gold perfume inside, tall faceted smoky dark-amber glass cap with a thin gold collar, the word VESPER engraved in thin wide-spaced serif capitals centred on the front, tiny 'EAU DE PARFUM' below) stands centred in the lower half of the frame on a polished black-burgundy reflective surface that mirrors it, the upper 40% of the frame is clean dark burgundy-to-black gradient negative space for typography; a soft warm rim light outlines the bottle and a gentle glow passes through the amber juice. 85mm, f/8, perfectly symmetrical. Colour world strictly deep oxblood-burgundy, black and warm amber-gold; low warm sunset-beam key light, crisp specular highlights, golden caustics. No hands, no props. Hyper-real luxury fragrance advertising photograph, tack sharp, commercial retouching. The bottle shape, cap and engraved VESPER text stay exactly as in the reference. No other text, no extra bottles."
+   }
+  }
+ ]
+}

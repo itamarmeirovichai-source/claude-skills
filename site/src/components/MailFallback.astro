@@ -1,0 +1,17 @@
+---
+// A plain mailto under every form, until the lead pipeline is proven (R2 `UPLOADS` bound, or Resend set up and a
+// test submission shows stored:true / alerted:true). Renders nothing while site.json `email` is empty:
+// TODO(owner): set `email` in src/data/site.json to your real reply address. check-dist warns until you do.
+import { site } from '../lib/site';
+interface Props { lead?: string }
+const { lead = 'Rather email? Write to me directly:' } = Astro.props;
+---
+{site.email && (
+  <p class="mail-fallback" data-mail-fallback>
+    {lead} <a href={`mailto:${site.email}?subject=${encodeURIComponent('5 free frames')}`}>{site.email}</a>. I answer myself.
+  </p>
+)}
+<style>
+  .mail-fallback { margin: 12px 0 0; font-size: 0.85rem; color: var(--text-dim); }
+  .mail-fallback a { color: var(--brass-hi); overflow-wrap: anywhere; }
+</style>

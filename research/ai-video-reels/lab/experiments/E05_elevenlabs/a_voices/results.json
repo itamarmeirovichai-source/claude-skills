@@ -1,0 +1,480 @@
+{
+ "fragrance/Edward-british-dark-seductive": {
+  "dur": 7.28,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 7.28,
+  "pauses": [
+   [
+    1.23,
+    0.8
+   ],
+   [
+    2.74,
+    1.41
+   ],
+   [
+    5.02,
+    0.74
+   ]
+  ],
+  "LUFS": -15.4,
+  "LRA": 5.3,
+  "TP": -0.8,
+  "f0_med": 95.8,
+  "f0_range_st": 22.5,
+  "centroid_hz": 2051,
+  "wps": 1.92,
+  "stt": "Some things are never said, only remembered. Noir Vesper: the scent of after midnight",
+  "wer": 0.0,
+  "voice_id": "goT3UYdM9bhm0n2lmKQx",
+  "cost": "39"
+ },
+ "fragrance/Allison-velvety-british-F": {
+  "dur": 8.16,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 8.16,
+  "pauses": [
+   [
+    1.73,
+    0.53
+   ],
+   [
+    3.19,
+    1.42
+   ],
+   [
+    5.52,
+    0.84
+   ]
+  ],
+  "LUFS": -15.7,
+  "LRA": 4.2,
+  "TP": -0.3,
+  "f0_med": 213.3,
+  "f0_range_st": 7.3,
+  "centroid_hz": 1974,
+  "wps": 1.72,
+  "stt": "Some things are never said, only remembered. Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "voice_id": "Se2Vw1WbHmGbBbyWTuu4",
+  "cost": "39"
+ },
+ "fragrance/Jenna-soft-sultry-F": {
+  "dur": 8.4,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 8.4,
+  "pauses": [
+   [
+    1.54,
+    0.47
+   ],
+   [
+    2.99,
+    1.59
+   ],
+   [
+    5.86,
+    0.85
+   ]
+  ],
+  "LUFS": -13.0,
+  "LRA": 3.1,
+  "TP": -0.4,
+  "f0_med": 173.9,
+  "f0_range_st": 10.3,
+  "centroid_hz": 1602,
+  "wps": 1.67,
+  "stt": "Some things are never said, only remembered. Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "voice_id": "qFjcP4hHD9WIdODvuJOJ",
+  "cost": "39"
+ },
+ "fragrance/Lily-premade-velvety-F": {
+  "dur": 9.04,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 9.04,
+  "pauses": [
+   [
+    1.8,
+    0.71
+   ],
+   [
+    3.02,
+    0.2
+   ],
+   [
+    3.88,
+    0.81
+   ],
+   [
+    5.93,
+    0.73
+   ],
+   [
+    7.35,
+    0.28
+   ]
+  ],
+  "LUFS": -19.2,
+  "LRA": 4.7,
+  "TP": -0.9,
+  "f0_med": 172.0,
+  "f0_range_st": 9.2,
+  "centroid_hz": 1727,
+  "wps": 1.55,
+  "stt": "Some things are never said, only remembered. Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+  "cost": "39"
+ },
+ "fragrance/Frederick-smooth-velvety-M": {
+  "dur": 7.12,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 7.12,
+  "pauses": [
+   [
+    1.37,
+    0.51
+   ],
+   [
+    2.75,
+    1.48
+   ],
+   [
+    5.0,
+    0.77
+   ]
+  ],
+  "LUFS": -15.6,
+  "LRA": 4.4,
+  "TP": -0.8,
+  "f0_med": 89.4,
+  "f0_range_st": 8.2,
+  "centroid_hz": 2114,
+  "wps": 1.97,
+  "stt": "Some things are never said, only remembered. Noir Vesper, the scent of after midnight",
+  "wer": 0.0,
+  "voice_id": "j9jfwdrw7BRfcR43Qohk",
+  "cost": "39"
+ },
+ "beverage/Christina-energetic-commercial-F": {
+  "dur": 6.72,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.72,
+  "pauses": [
+   [
+    0.84,
+    0.46
+   ],
+   [
+    2.54,
+    0.72
+   ],
+   [
+    3.68,
+    0.68
+   ],
+   [
+    5.29,
+    0.57
+   ]
+  ],
+  "LUFS": -19.1,
+  "LRA": 3.6,
+  "TP": -1.9,
+  "f0_med": 179.8,
+  "f0_range_st": 8.5,
+  "centroid_hz": 2067,
+  "wps": 1.79,
+  "stt": "Crack it open. Feel the cold hit. Volt. Zero sugar, all charge",
+  "wer": 0.0,
+  "voice_id": "BuaKXS4Sv1Mccaw3flfU",
+  "cost": "28"
+ },
+ "beverage/Charlie-premade-hyped-M": {
+  "dur": 6.8,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.8,
+  "pauses": [
+   [
+    0.86,
+    0.32
+   ],
+   [
+    2.47,
+    0.7
+   ],
+   [
+    3.7,
+    0.83
+   ],
+   [
+    5.36,
+    0.45
+   ]
+  ],
+  "LUFS": -22.0,
+  "LRA": 2.4,
+  "TP": -2.9,
+  "f0_med": 119.9,
+  "f0_range_st": 24.6,
+  "centroid_hz": 1377,
+  "wps": 1.76,
+  "stt": "Crack it open. Feel the cold hit. Volt. Zero sugar, all charge",
+  "wer": 0.0,
+  "voice_id": "IKne3meq5aSn9XLyUdCD",
+  "cost": "28"
+ },
+ "beverage/Liam-premade-energetic-M": {
+  "dur": 6.24,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.24,
+  "pauses": [
+   [
+    0.9,
+    0.26
+   ],
+   [
+    2.23,
+    0.64
+   ],
+   [
+    3.41,
+    0.53
+   ],
+   [
+    4.83,
+    0.56
+   ]
+  ],
+  "LUFS": -24.3,
+  "LRA": 2.4,
+  "TP": -2.6,
+  "f0_med": 99.4,
+  "f0_range_st": 8.5,
+  "centroid_hz": 1553,
+  "wps": 1.92,
+  "stt": "Crack it open. Feel the cold hit. Volt. Zero sugar. All charge",
+  "wer": 0.0,
+  "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
+  "cost": "28"
+ },
+ "beverage/Allison-bubbly-F": {
+  "dur": 6.4,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.4,
+  "pauses": [
+   [
+    0.82,
+    0.49
+   ],
+   [
+    2.29,
+    0.96
+   ],
+   [
+    3.7,
+    0.55
+   ],
+   [
+    5.04,
+    0.5
+   ]
+  ],
+  "LUFS": -13.6,
+  "LRA": 2.1,
+  "TP": -0.9,
+  "f0_med": 250.0,
+  "f0_range_st": 10.0,
+  "centroid_hz": 1551,
+  "wps": 1.88,
+  "stt": "Crack it open. Feel the cold hit. Volt. Zero sugar, all charge",
+  "wer": 0.0,
+  "voice_id": "xctasy8XvGp2cVO9HL9k",
+  "cost": "28"
+ },
+ "tech/Hope-natural-calm-F": {
+  "dur": 5.44,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 5.44,
+  "pauses": [
+   [
+    0.7,
+    0.24
+   ],
+   [
+    2.14,
+    0.46
+   ],
+   [
+    3.6,
+    0.14
+   ]
+  ],
+  "LUFS": -16.2,
+  "LRA": 1.2,
+  "TP": -1.1,
+  "f0_med": 200.0,
+  "f0_range_st": 10.5,
+  "centroid_hz": 1518,
+  "wps": 2.39,
+  "stt": "Your day quietly organized. Halo listens, learns, and gets out of the way",
+  "wer": 0.08,
+  "voice_id": "OYTbf65OHHFELVut7v2H",
+  "cost": "33"
+ },
+ "tech/Miles-technical-british-M": {
+  "dur": 5.44,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 5.44,
+  "pauses": [
+   [
+    0.65,
+    0.15
+   ],
+   [
+    1.93,
+    0.42
+   ],
+   [
+    3.33,
+    0.19
+   ],
+   [
+    4.04,
+    0.2
+   ]
+  ],
+  "LUFS": -15.8,
+  "LRA": 1.8,
+  "TP": -1.3,
+  "f0_med": 134.5,
+  "f0_range_st": 16.8,
+  "centroid_hz": 1709,
+  "wps": 2.39,
+  "stt": "Your day quietly organized. Halo listens, learns, and gets out of the way",
+  "wer": 0.08,
+  "voice_id": "rNzVNTrvSffyxdrTbLKv",
+  "cost": "33"
+ },
+ "tech/River-premade-neutral": {
+  "dur": 5.52,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 5.52,
+  "pauses": [
+   [
+    0.65,
+    0.24
+   ],
+   [
+    2.13,
+    0.43
+   ],
+   [
+    3.59,
+    0.15
+   ],
+   [
+    4.27,
+    0.19
+   ]
+  ],
+  "LUFS": -20.4,
+  "LRA": 2.2,
+  "TP": -4.2,
+  "f0_med": 183.9,
+  "f0_range_st": 13.5,
+  "centroid_hz": 1660,
+  "wps": 2.36,
+  "stt": "Your day, quietly organized. Halo listens, learns, and gets out of the way",
+  "wer": 0.08,
+  "voice_id": "SAz9YHcvj6GT2YYXdXww",
+  "cost": "33"
+ },
+ "tech/EmilyE-premium-british-F": {
+  "dur": 6.8,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.8,
+  "pauses": [
+   [
+    0.74,
+    0.3
+   ],
+   [
+    2.44,
+    0.9
+   ],
+   [
+    4.43,
+    0.3
+   ],
+   [
+    5.39,
+    0.23
+   ]
+  ],
+  "LUFS": -15.8,
+  "LRA": 1.9,
+  "TP": -2.4,
+  "f0_med": 168.4,
+  "f0_range_st": 8.3,
+  "centroid_hz": 1942,
+  "wps": 1.91,
+  "stt": "Your day quietly organized. Halo listens, learns, and gets out of the way",
+  "wer": 0.08,
+  "voice_id": "CXoGcuszI2UkuF6sqV8W",
+  "cost": "33"
+ },
+ "tech/Lucius-calm-reassuring-M": {
+  "dur": 6.8,
+  "lead_sil": 0.0,
+  "tail_sil": 0.0,
+  "speech_dur": 6.8,
+  "pauses": [
+   [
+    0.79,
+    0.46
+   ],
+   [
+    2.45,
+    0.76
+   ],
+   [
+    4.27,
+    0.3
+   ],
+   [
+    5.12,
+    0.4
+   ],
+   [
+    6.6,
+    0.2
+   ]
+  ],
+  "LUFS": -15.6,
+  "LRA": 1.3,
+  "TP": -1.8,
+  "f0_med": 149.5,
+  "f0_range_st": 15.1,
+  "centroid_hz": 1198,
+  "wps": 1.91,
+  "stt": "Your day, quietly organized. Halo listens, learns, and gets out of the way",
+  "wer": 0.08,
+  "voice_id": "HaUDdkOAoitiVjpiet1i",
+  "cost": "33"
+ }
+}

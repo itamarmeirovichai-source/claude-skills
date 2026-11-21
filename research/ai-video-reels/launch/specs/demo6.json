@@ -1,0 +1,198 @@
+{
+  "_about": "DEMO 6 - Category parody: 'Eau de Parking Lot' (perfume ad shot in South Florida in August). Fictional product 'HUMIDITE', unbranded cars/stores. 15s, 9:16.",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "export": "instagram",
+  "output": "out/demo6_humidite.mp4",
+  "timeline": [
+    {
+      "clip": {
+        "path": "media/demo6/s1_gown_parking_lot.mp4",
+        "in": 0.25,
+        "out": 2.35,
+        "speed": 0.7,
+        "effects": [
+          {
+            "type": "color",
+            "preset": "bw"
+          }
+        ]
+      },
+      "overlays": [
+        {
+          "type": "title",
+          "text": "AUGUST.",
+          "position": "upper",
+          "anim": "fade",
+          "size": 96,
+          "spacing": 18,
+          "start": 0.3
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo6/s2_heel_sticks.mp4",
+        "in": 0.25,
+        "out": 2.25,
+        "effects": [
+          {
+            "type": "color",
+            "preset": "bw"
+          }
+        ]
+      },
+      "transition": {
+        "type": "fade",
+        "dur": 0.3
+      }
+    },
+    {
+      "clip": {
+        "path": "media/demo6/s3_cart_slowmo.mp4",
+        "in": 0.25,
+        "out": 1.9,
+        "speed": 0.6,
+        "effects": [
+          {
+            "type": "color",
+            "preset": "bw"
+          }
+        ]
+      },
+      "transition": {
+        "type": "fade",
+        "dur": 0.3
+      },
+      "overlays": [
+        {
+          "type": "text",
+          "text": "Freedom.",
+          "position": "upper",
+          "anim": "fade",
+          "size": 70,
+          "start": 0.4
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo6/s4_storm_hits.mp4",
+        "in": 0.25,
+        "out": 2.75,
+        "effects": [
+          {
+            "type": "color",
+            "preset": "bw"
+          },
+          {
+            "type": "flash",
+            "at": [
+              0.2
+            ],
+            "dur": 0.08
+          }
+        ]
+      },
+      "transition": "cut",
+      "overlays": [
+        {
+          "type": "text",
+          "text": "4:00 PM. As always.",
+          "position": "upper",
+          "anim": "fade",
+          "size": 60,
+          "start": 0.6
+        }
+      ]
+    },
+    {
+      "clip": {
+        "path": "media/demo6/s5_bottle_hood.mp4",
+        "in": 0.25,
+        "out": 2.75,
+        "effects": [
+          {
+            "type": "glow",
+            "threshold": 0.75,
+            "strength": 0.4
+          }
+        ]
+      },
+      "transition": {
+        "type": "fade",
+        "dur": 0.3
+      }
+    },
+    {
+      "clip": {
+        "color": "#0A0A0A",
+        "duration": 2.5
+      },
+      "transition": {
+        "type": "fade",
+        "dur": 0.3
+      },
+      "overlays": [
+        {
+          "type": "title",
+          "text": "HUMIDITÉ",
+          "position": "center",
+          "anim": "fade",
+          "size": 110,
+          "spacing": 16
+        },
+        {
+          "type": "text",
+          "text": "For 94% humidity.",
+          "position": "lower",
+          "size": 52,
+          "start": 0.6
+        }
+      ]
+    }
+  ],
+  "overlays": [
+    {
+      "type": "text",
+      "text": "AI-generated category parody · not a real brand",
+      "position": "bottom",
+      "size": 30,
+      "start": 0,
+      "end": 15,
+      "box": true
+    }
+  ],
+  "effects": [
+    {
+      "type": "film_grain",
+      "mode": "overlay",
+      "opacity": 0.3
+    }
+  ],
+  "audio": {
+    "music": {
+      "path": "media/music.wav",
+      "volume": 0.45,
+      "fade_in": 0.3,
+      "fade_out": 1.2
+    },
+    "sfx": [
+      {
+        "type": "scratch",
+        "at": 2.9,
+        "volume": 0.7
+      },
+      {
+        "type": "impact",
+        "at": 7.3,
+        "volume": 0.7
+      }
+    ],
+    "sfx_on_cuts": "none",
+    "loudnorm": -14
+  }
+}

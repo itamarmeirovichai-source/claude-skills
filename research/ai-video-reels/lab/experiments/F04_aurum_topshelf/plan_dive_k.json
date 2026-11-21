@@ -1,0 +1,30 @@
+{
+ "jobs": [
+  {
+   "id": "E_dive_k",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4.png",
+    "last_image_url": "@file:ref/K6_glare.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible), black turtleneck, charcoal blazer, oxblood pocket square, glass of gold soda in hand. Golden hour, cinematic, one continuous shot, no cuts. Lighthearted and magical, like a luxury perfume commercial. Movie stunt on a visible silver safety cable: he performs a graceful swan-dive like an Olympic high diver and glides down in dreamy slow motion past golden mirrored skyscraper windows, rivers of car headlights moving far below; his blazer ripples, moustache rigid, not a drop leaves the glass; serene, one brow raised; he glides into a warm golden sun flare that fills the frame."
+   }
+  },
+  {
+   "id": "E_float_k",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4.png",
+    "last_image_url": "@file:ref/K6_glare.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, enormous charcoal-black waxed handlebar moustache with spiral tips that completely covers his mouth (mouth never visible), black turtleneck, charcoal blazer, oxblood pocket square, glass of gold soda in hand. Golden hour, cinematic, one continuous shot, no cuts. Lighthearted and magical, like a luxury perfume commercial. Like Mary Poppins, he opens a small gold umbrella and floats gently and magically down from the spire in dreamy slow motion past golden mirrored skyscraper windows, rivers of car headlights moving far below; blazer ripples, moustache rigid, glass of soda steady; serene, one brow raised; he drifts into a warm golden sun flare that fills the frame."
+   }
+  }
+ ]
+}

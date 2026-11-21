@@ -1,0 +1,72 @@
+{
+ "_doc": "F03 stills: Flare composites (plate + product).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "S1_strike",
+   "args": {
+    "image_urls": [
+     "@file:frames/PL_winter.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Use image 1 as the location and image 2 as the exact candle from the product reference (matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wooden wick, SOL debossed small in thin serif capitals on the front). Close shot on the dark-oak sideboard by the rainy window: the unlit candle sits on the right third; a woman's hand with a linen sleeve enters from the left holding a just-struck wooden match, the sulphur head flaring bright orange, lighting her fingertips warm against the cold blue-grey rainy daylight. 50mm, f/2.8. Shot on 35mm film, Kodak Portra 400, the candle flame as a real warm 2000K practical light, natural falloff into soft shadow, off-centre composition, real textures: wax drips, a faint soot mark, dust motes, worn wood. No HDR, no oversaturation, no CG gloss, no perfect symmetry, no extra text or logos. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  },
+  {
+   "id": "S3A_start",
+   "args": {
+    "image_urls": [
+     "@file:frames/PL_winter.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Use image 1 as the location and image 2 as the exact candle from the product reference (matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wooden wick, SOL debossed small in thin serif capitals on the front). Medium-wide shot: the candle stands on the right third of the dark-oak sideboard, its wick has just caught with a small new flame; behind it the tall window is streaked with rain, cold blue-grey winter afternoon light, books and linen on the sideboard. 35mm, f/4. Shot on 35mm film, Kodak Portra 400, the candle flame as a real warm 2000K practical light, natural falloff into soft shadow, off-centre composition, real textures: wax drips, a faint soot mark, dust motes, worn wood. No HDR, no oversaturation, no CG gloss, no perfect symmetry, no extra text or logos. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  },
+  {
+   "id": "S2_pool",
+   "args": {
+    "image_urls": [
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Top-down extreme macro looking into the exact candle from the product reference (matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wooden wick, SOL debossed small in thin serif capitals on the front) while it burns: the wide pool of clear melted wax around the small flame acts like a mirror and reflects a sunlit Mediterranean courtyard above it \u2014 terracotta wall, bougainvillea, a slice of deep blue summer sky \u2014 the reflection slightly rippled; the ceramic rim with throwing rings frames the edge. 100mm macro, f/5.6. Shot on 35mm film, Kodak Portra 400, the candle flame as a real warm 2000K practical light, natural falloff into soft shadow, off-centre composition, real textures: wax drips, a faint soot mark, dust motes, worn wood. No HDR, no oversaturation, no CG gloss, no perfect symmetry, no extra text or logos. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  },
+  {
+   "id": "S4_room",
+   "args": {
+    "image_urls": [
+     "@file:frames/PL_summer.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Use image 1 as the location and image 2 as the exact candle from the product reference (matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wooden wick, SOL debossed small in thin serif capitals on the front). Wide shot of the living room at golden late-summer dusk, the sheer curtain lifting in the breeze; the candle burns small on the right end of the dark-oak sideboard, its flame a tiny warm point; long warm light across the floor. 28mm, f/4. Shot on 35mm film, Kodak Portra 400, the candle flame as a real warm 2000K practical light, natural falloff into soft shadow, off-centre composition, real textures: wax drips, a faint soot mark, dust motes, worn wood. No HDR, no oversaturation, no CG gloss, no perfect symmetry, no extra text or logos. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  },
+  {
+   "id": "S6_hero",
+   "args": {
+    "image_urls": [
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "the exact candle from the product reference (matte ivory hand-thrown stoneware vessel with throwing rings and speckles, creamy wax, single wooden wick, SOL debossed small in thin serif capitals on the front) burning on a weathered travertine ledge by an open window at golden late-summer dusk, placed in the lower right third; warm low sun rakes across the stone and the ceramic, soft leaf shadows fall across the wall behind; the upper 40% of the frame is a clean warm plaster wall with gentle shadow, empty for typography. 50mm, f/2.8. Shot on 35mm film, Kodak Portra 400, the candle flame as a real warm 2000K practical light, natural falloff into soft shadow, off-centre composition, real textures: wax drips, a faint soot mark, dust motes, worn wood. No HDR, no oversaturation, no CG gloss, no perfect symmetry, no extra text or logos. This is a film frame, not an advertisement.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "jobs": [
+  {
+   "id": "vee_pop_1",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/VK0.png",
+    "last_image_url": "@file:ref/VK0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The woman keeps her exact identity: same face, platinum buzz cut, round vermilion-tinted spectacles, ivory double-breasted suit, vermilion scarf, one silver stopwatch clipped to her lapel. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. She unclips the silver stopwatch from her lapel, holds it up beside her face, clicks it once with her thumb with a dry knowing half-smile at the camera, then lowers it and returns to the exact start pose."
+   }
+  },
+  {
+   "id": "vee_pop_2",
+   "model": "kling-video/v3.0/std/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/VK0.png",
+    "last_image_url": "@file:ref/VK0.png",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5,
+    "prompt": "The woman keeps her exact identity: same face, platinum buzz cut, round vermilion-tinted spectacles, ivory double-breasted suit, vermilion scarf, one silver stopwatch clipped to her lapel. The plain flat chroma-green background stays perfectly uniform and static. Locked-off camera, no camera movement, no cuts. Natural human motion, real physics. She tilts her head slightly, lowers her vermilion spectacles a little with one finger to look over them at the camera with a sharp, amused look, gives one small decisive nod, then pushes the spectacles back and returns to the exact start pose."
+   }
+  }
+ ]
+}

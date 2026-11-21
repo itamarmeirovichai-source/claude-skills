@@ -1,0 +1,21 @@
+{
+ "jobs": [
+  {
+   "id": "K8h",
+   "model": "alibaba/qwen-image-3/edit",
+   "takes": 1,
+   "args": {
+    "prompt": "Edit this image only: replace the glass full of ice beside the can with a tall straight-sided plain clear drinking glass (thin rim, no stem) two-thirds full of pale gold sparkling soda with fine rising bubbles and NO ice, a few condensation drops on it, standing on the wooden apple box beside the AURUM can. Keep everything else exactly unchanged: the AURUM can and label, the brass viewfinder, the box, lights, haze, framing. No people.",
+    "negative_prompt": "champagne flute, wine glass, stemmed glass, ice cubes, extra cans, extra glasses, HDR, oversaturated, plastic skin, cartoon, text, watermark, visible mouth, lips, teeth, wide eyes, deformed hands, different person, different clothes, person, man, face, moustache",
+    "image_urls": [
+     "@file:ref/K8.png"
+    ],
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false,
+    "seed": 4242
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+# all media stays local
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+*.mov
+out/
+explore/
+final/
+manifest.json
+gen_log.jsonl

@@ -1,0 +1,154 @@
+{
+ "export": "instagram",
+ "output": "out/F01_AURUM_clean.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/M2_macro_cold_motion_t01.mp4",
+    "in": 0.3,
+    "out": 2.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K10_cap_t01.mp4",
+    "in": 1.0,
+    "out": 4.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K5_splash_t01.mp4",
+    "in": 0.3,
+    "out": 2.8,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K11_ice_drop_t01.mp4",
+    "in": 0.8,
+    "out": 3.3,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K9_orbit_t01.mp4",
+    "in": 0.0,
+    "out": 2.5,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/K8_studio_hero_t01.mp4",
+    "in": 0.0,
+    "out": 5.0,
+    "mute": true
+   }
+  },
+  {
+   "clip": {
+    "color": "#0B2A33",
+    "duration": 2.6
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.4
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "AURUM",
+     "position": "center",
+     "size": 190,
+     "color": "#F3D79A",
+     "spacing": 40,
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "font": "Liberation Serif",
+     "weight": 400
+    },
+    {
+     "type": "text",
+     "text": "Cold.  Pure.  Gold.",
+     "position": "middle",
+     "y": 1080,
+     "size": 54,
+     "color": "#E9E4D8",
+     "stroke": 0,
+     "shadow": 0,
+     "anim": "fade",
+     "start": 0.5,
+     "font": "Liberation Serif",
+     "weight": 400
+    },
+    {
+     "type": "text",
+     "text": "AI-generated",
+     "x": 540,
+     "y": 1230,
+     "size": 22,
+     "color": "#8FA7AD",
+     "stroke": 0,
+     "shadow": 0
+    }
+   ]
+  }
+ ],
+ "audio": {
+  "original_volume": 0.0,
+  "music": {
+   "path": "audio/clean_music.mp3",
+   "volume": 0.9,
+   "fade_out": 0.8
+  },
+  "sfx": [
+   {
+    "path": "audio/sfx/clink.mp3",
+    "at": 0.15,
+    "volume": 0.6
+   },
+   {
+    "path": "audio/sfx/whoosh_soft.mp3",
+    "at": 2.0,
+    "volume": 0.6
+   },
+   {
+    "path": "audio/sfx/cap_twist.mp3",
+    "at": 2.9,
+    "volume": 1.0
+   },
+   {
+    "path": "audio/sfx/whoosh_soft.mp3",
+    "at": 5.5,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/ripple.mp3",
+    "at": 5.7,
+    "volume": 0.8
+   },
+   {
+    "path": "audio/sfx/ice_drop.mp3",
+    "at": 9.0,
+    "volume": 1.0
+   },
+   {
+    "path": "audio/sfx/whoosh_soft.mp3",
+    "at": 10.5,
+    "volume": 0.5
+   },
+   {
+    "path": "audio/sfx/logo_boom.mp3",
+    "at": 15.0,
+    "volume": 0.9
+   }
+  ],
+  "loudnorm": -14
+ }
+}

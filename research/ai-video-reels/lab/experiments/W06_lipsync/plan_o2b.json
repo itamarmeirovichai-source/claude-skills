@@ -1,0 +1,22 @@
+{
+ "jobs": [
+  {
+   "id": "o2b",
+   "model": "alibaba/wan-3.0/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/O.png"
+    ],
+    "audio_urls": [
+     "@file:audio/o2.wav"
+    ],
+    "duration": 4,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "prompt": "Plain flat uniform chroma-green background, locked-off camera, no camera movement, no cuts, MEDIUM-WIDE shot framed EXACTLY like the reference image: same camera distance, same size of the man in frame, head near the top third, clasped hands visible at the bottom edge; do NOT zoom in. The man from the reference image speaks the audio line to camera with dry wit. His enormous waxed handlebar moustache completely covers his mouth at all times; the mouth is NEVER visible; the moustache, cheeks and jaw move exactly in sync with every syllable as he talks underneath it. One eyebrow rises, one elegant open-palm gesture, small nods. Same black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. Eyes never wide."
+   }
+  }
+ ]
+}

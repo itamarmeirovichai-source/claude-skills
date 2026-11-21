@@ -1,0 +1,31 @@
+{
+ "_doc": "T2: settle-wording A/B on K0(S3A)->K1. A = 12 template D; B = 16 section 2.1. Identical except the speed clause.",
+ "defaults": {
+  "model": "kling-video/v3.0/pro/image-to-video",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "T2A_settle",
+   "args": {
+    "image_url": "@file:frames/S3A.png",
+    "last_image_url": "@file:frames/K1.png",
+    "prompt": "Single continuous shot, one physical camera move, no cuts. Path: the camera cranes up slightly and arcs gently right around the candle at constant distance, tilting down a touch toward the sideboard. The candle stays still; its small flame flickers softly; rain trickles down the window; the cold blue-grey window light stays the same. The candle vessel, its shape and the SOL deboss stay exactly the same. The camera moves at constant radius and settles exactly on the end frame. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  },
+  {
+   "id": "T2B_nosettle",
+   "args": {
+    "image_url": "@file:frames/S3A.png",
+    "last_image_url": "@file:frames/K1.png",
+    "prompt": "Single continuous shot, one physical camera move, no cuts. Path: the camera cranes up slightly and arcs gently right around the candle at constant distance, tilting down a touch toward the sideboard. The candle stays still; its small flame flickers softly; rain trickles down the window; the cold blue-grey window light stays the same. The candle vessel, its shape and the SOL deboss stay exactly the same. The camera is already moving at a slow walking pace from the first frame and keeps a constant speed until the last frame; it does not slow down, pause or settle. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  }
+ ]
+}

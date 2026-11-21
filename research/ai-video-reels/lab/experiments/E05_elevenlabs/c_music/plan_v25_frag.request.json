@@ -1,0 +1,73 @@
+{
+ "chunks": [
+  {
+   "text": "[Intro]\n{room tone}",
+   "duration_ms": 3000,
+   "positive_styles": [
+    "luxury fragrance commercial",
+    "cinematic neo-classical",
+    "72 BPM",
+    "D minor",
+    "instrumental",
+    "felt piano single notes",
+    "close-mic'd, intimate",
+    "tape warmth",
+    "very sparse"
+   ],
+   "negative_styles": [
+    "vocals",
+    "drums",
+    "EDM",
+    "bright pop"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Swell]",
+   "duration_ms": 8000,
+   "positive_styles": [
+    "low cello drone enters",
+    "slow string swell",
+    "breathy pads",
+    "growing warmth"
+   ],
+   "negative_styles": [
+    "vocals",
+    "percussion",
+    "fast tempo"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Peak]",
+   "duration_ms": 5000,
+   "positive_styles": [
+    "full lush strings",
+    "deep timpani-like low pulse",
+    "emotional peak",
+    "wide cinematic reverb"
+   ],
+   "negative_styles": [
+    "vocals",
+    "EDM drop",
+    "trap drums"
+   ],
+   "context_adherence": "high"
+  },
+  {
+   "text": "[Resolve]\n{final chord}",
+   "duration_ms": 4000,
+   "positive_styles": [
+    "single sustained piano and string chord",
+    "D major resolution",
+    "long natural decay"
+   ],
+   "negative_styles": [
+    "vocals",
+    "new melody",
+    "abrupt cut"
+   ],
+   "context_adherence": "medium"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "_doc": "T3: chain link K1->K2 with the T2 winner wording (A: tail ratio 0.908 vs B 0.495). Joined to T2B with R2 per 21 section 4.",
+ "defaults": {
+  "model": "kling-video/v3.0/pro/image-to-video",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "T3_K1K2",
+   "args": {
+    "image_url": "@file:frames/K1.png",
+    "last_image_url": "@file:frames/K2.png",
+    "prompt": "Single continuous shot, one physical camera move, no cuts. Path: the camera pushes in slightly toward the candle while arcing gently right around it at the same height. The candle stays still; its small flame flickers softly; rain trickles down the window; the cold blue-grey window light stays the same. The candle vessel, its shape and the SOL deboss stay exactly the same. The camera moves smoothly and settles exactly on the end frame. Negative: morphing, warping, flame strobing, extra objects, text, CG look.",
+    "duration": 5,
+    "sound": "off",
+    "cfg_scale": 0.5
+   }
+  }
+ ]
+}

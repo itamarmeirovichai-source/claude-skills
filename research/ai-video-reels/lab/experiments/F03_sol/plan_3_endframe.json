@@ -1,0 +1,22 @@
+{
+ "_doc": "F03 BIG IDEA end frame (derived from start frame).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 2
+ },
+ "jobs": [
+  {
+   "id": "S3B_end",
+   "args": {
+    "image_urls": [
+     "@file:frames/S3A.png",
+     "@file:frames/SOL.png"
+    ],
+    "prompt": "Image 1 is the exact frame to keep: identical camera position, framing, sideboard, books, linen, window frame and the candle from image 2 in exactly the same place. Change only the light and the view through the window: the rain is gone and the window now shows a warm golden late-summer dusk, the low sun glowing through the glass, warm amber light flooding across the sideboard and the candle, long soft shadows; the candle burns with a steady small flame. Shot on 35mm film, Kodak Portra 400, natural falloff, subtle grain. No HDR, no oversaturation, no CG gloss, no extra objects, no text.",
+    "aspect_ratio": "9:16",
+    "resolution": "2k",
+    "quality": "high"
+   }
+  }
+ ]
+}

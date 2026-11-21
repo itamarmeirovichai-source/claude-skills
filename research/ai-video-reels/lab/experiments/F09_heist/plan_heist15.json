@@ -1,0 +1,22 @@
+{
+ "jobs": [
+  {
+   "id": "HEIST15",
+   "model": "bytedance/seedance-2.5/reference-to-video",
+   "takes": 1,
+   "args": {
+    "image_urls": [
+     "@file:ref/R0.png",
+     "@file:ref/otto.png",
+     "@file:ref/vee.png",
+     "@file:ref/can.png"
+    ],
+    "duration": 15,
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true,
+    "prompt": "One continuous take, a single unbroken camera move like a chase drone following the action, no cuts, photoreal action-comedy, realistic physics, 9:16. The camera never passes through walls, glass or buildings. @Image1 is the exact first frame. @Image2 is the man: enormous waxed handlebar moustache with spiral tips that always covers his mouth, black turtleneck, charcoal blazer. @Image3 is the woman: platinum buzz cut, round red-tinted spectacles, ivory double-breasted suit, red scarf, one silver stopwatch on her lapel. @Image4 is the gold AURUM can.\n[0-2 s] Bank alarm bells ringing. On the bank rooftop the man gives the lens a deadpan look, clutches the duffel bag, and does a BASE jump off the roof edge; his gold parachute snaps open instantly with a loud whump.\n[2-6 s] The camera follows him as he glides calmly down under the gold canopy above the city street. Below, a gold vintage convertible driven by the woman swerves hard through traffic, tyres screeching, two police cars with sirens wailing close behind.\n[6-9 s] He steers the parachute and lands perfectly in the passenger seat of the moving convertible; he releases the canopy and it flies back and drapes over the windshield of the first police car, which brakes harmlessly.\n[9-13 s] The second police car pulls alongside. Deadpan, he takes a gold AURUM can from the bag, shakes it, aims it like a pistol and cracks it open: a huge jet of golden soda foam blasts across the police windshield with a loud fizzing whoosh; the police car slides to a gentle harmless stop behind them.\n[13-15 s] The woman clicks her silver stopwatch once with a dry half-smile; the bag on his lap falls open: it is full of gold AURUM cans, not money. The convertible speeds off down the golden avenue.\nComedic, stylish, nobody is hurt. Sound: realistic synchronized sound only \u2014 alarm bells, parachute whump, wind, sirens, screeching tyres, engine roar, can crack, foam blast, stopwatch click. No music, no speech. No text, no logos besides AURUM."
+   }
+  }
+ ]
+}

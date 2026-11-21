@@ -1,0 +1,8 @@
+{
+  "_doc": "Stage A: the hero dog + hallway frame, 4 variants. Claude reviews, the best one is copied to frames/F1.png. Then stage B.",
+  "defaults": {"model": "marketing-studio/image/flare", "takes": 4,
+               "args": {"aspect_ratio": "9:16", "resolution": "2k", "quality": "high"}},
+  "jobs": [
+    {"id": "F1_hallway_dog", "args": {"prompt": "Black-and-white infrared night-vision footage from a cheap ceiling-mounted home security camera, high wide angle looking down a long narrow suburban hallway at 3 AM. A fluffy golden retriever sits alone in the middle of the hallway, back half to camera, ears raised, head tilted, staring intently at the empty dark end of the hallway. Glowing white IR eyes, soft fisheye barrel distortion, slight sensor noise, blown-out highlights from the IR illuminator, framed family photos on the walls, a small side table with a glass treat jar near the far end. Vertical 9:16. No text, no timestamp, no logos, no people."}}
+  ]
+}

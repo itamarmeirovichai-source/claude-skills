@@ -1,0 +1,56 @@
+{
+ "jobs": [
+  {
+   "id": "D_drink",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4g.png",
+    "last_image_url": "@file:ref/K5d.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. He holds the SAME tall straight-sided plain clear glass (no stem, no ice) the whole time; it never changes shape, never becomes a can or a flute. Cinematic, golden hour, real physics, one continuous shot, no cuts. He tilts the glass up under his huge moustache and takes one long, satisfying drink: the pale gold soda visibly drains from the glass as he drinks, the level dropping steadily, his throat moving as he swallows. Then he lowers the nearly empty glass to chest height; his moustache tips spring up a notch and one eyebrow rises, delighted. Camera holds, very slight push-in."
+   }
+  },
+  {
+   "id": "E_dive",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K5d.png",
+    "last_image_url": "@file:ref/K6_glare.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. He holds the SAME tall straight-sided plain clear glass (no stem, no ice) the whole time; it never changes shape, never becomes a can or a flute. Cinematic, golden hour, real physics, one continuous shot, no cuts. Movie stunt on a visible thin silver safety cable: he gives the camera a calm knowing look, then leaps off the spire in a graceful swan-dive like an Olympic high diver, the nearly empty glass still in his hand; the camera follows him down in dreamy slow motion past golden mirrored skyscraper windows, rivers of car headlights moving far below; blazer ripples, moustache rigid, serene; he dives into a warm golden sun flare that fills the frame."
+   }
+  },
+  {
+   "id": "F_land3",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K6_glare.png",
+    "last_image_url": "@file:ref/K7h.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. He holds the SAME tall straight-sided plain clear glass (no stem, no ice) the whole time; it never changes shape, never becomes a can or a flute. Cinematic, golden hour, real physics, one continuous shot, no cuts. The golden glare clears within the first half second: he drops the last metre and lands softly, sitting upright on a huge grey stunt airbag that puffs and settles; the camera pulls back at constant speed revealing a film soundstage with a painted golden skyline backdrop, lights and a C-stand; the woman producer at frame right lifts her silver stopwatch and clicks it once with her thumb. He stays calm, the nearly empty glass in his raised hand, not a drop spilled."
+   }
+  },
+  {
+   "id": "G_pack3",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K7h.png",
+    "last_image_url": "@file:ref/K8i.png",
+    "duration": 5,
+    "cfg_scale": 0.5,
+    "sound": "off",
+    "prompt": "The man keeps his exact identity: long pale face, heavy dark brows, swept-back hair with silver temples, ENORMOUS charcoal-black waxed handlebar moustache with big spiral tips that completely covers his mouth (mouth never visible, eyes never wide), black turtleneck, charcoal blazer, oxblood pocket square, brass viewfinder. He holds the SAME tall straight-sided plain clear glass (no stem, no ice) the whole time; it never changes shape, never becomes a can or a flute. Cinematic, golden hour, real physics, one continuous shot, no cuts. The camera cranes down and pushes in past him toward a wooden apple box beside the airbag; he reaches in and sets the nearly empty tall glass down next to the gold AURUM can, then his hand leaves frame; the camera settles exactly on the packshot of the can and the glass; the AURUM label is sharp and unchanged. No people at the end."
+   }
+  }
+ ]
+}

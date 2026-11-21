@@ -1,0 +1,30 @@
+{
+ "jobs": [
+  {
+   "id": "FILM_aurum_30",
+   "model": "bytedance/seedance-2.5/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/aurum_k0.png",
+    "end_image_url": "@file:ref/aurum_kend.png",
+    "duration": 30,
+    "resolution": "480p",
+    "generate_audio": false,
+    "prompt": "One continuous 30-second take: a single unbroken camera move, no cuts, no jump cuts, no scene changes, no time skips. Smooth gimbal, no shake. 35mm film look, soft natural grain.\nCAST: @Image1 shows the exact product: a slim brushed-gold aluminium can with a thin black band and the word AURUM in tall black serif capitals, 'SPARKLING YUZU' below. It is the only product. It never moves, deforms or changes size; the AURUM lettering stays sharp and unchanged.\nFIRST FRAME: extreme macro of the cold gold can surface covered in condensation, the letter A sharp, crushed ice and a halved yuzu blurred behind.\nRULES: real physics; one camera path; bright Mediterranean morning sun, constant.\n[0-6 s] The camera is already moving: it glides slowly sideways across the cold metal as a single droplet runs down past the lettering; light glints across the droplets.\n[6-14 s] Without cutting, the camera pulls back smoothly at constant speed, revealing the whole can standing on crushed ice beside a halved yuzu; tiny bubbles of juice sparkle in the sun.\n[14-22 s] The camera keeps pulling back and arcs gently to the left around the can, rising slightly; the background opens up into a white sunlit terrace and a sliver of turquoise sea; ice cubes glisten and slowly melt.\n[22-30 s] The camera slows smoothly and settles exactly on the final composition: the can centred on the wet travertine ledge with the halved yuzu and ice, sea and white wall behind.\nAUDIO: none.\nNo people, no hands, no text overlays, no extra cans, no logos besides AURUM."
+   }
+  },
+  {
+   "id": "FILM_otto_30",
+   "model": "bytedance/seedance-2.5/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/otto_k0.png",
+    "end_image_url": "@file:ref/otto_kend.png",
+    "duration": 30,
+    "resolution": "480p",
+    "generate_audio": false,
+    "prompt": "One continuous 30-second take: a single unbroken camera move, no cuts, no jump cuts, no scene changes, no time skips. Smooth gimbal, no shake. 35mm film look, soft natural grain.\nCAST: @Image1 shows the exact man: a man in his 50s with a long pale face, heavy dark brows, swept-back dark hair with silver temples and an enormous charcoal-black waxed handlebar moustache with two upturned spiral tips that completely covers his mouth; black turtleneck, dark charcoal blazer, oxblood pocket square, a small brass director's viewfinder on a brass chain. He stays exactly this man for the whole shot; his mouth is never visible.\nFIRST FRAME: medium close shot of him on the edge of a tall old stone rooftop at dusk, raising the brass viewfinder to his eye, the city far below.\nRULES: real physics; one camera path; the sky changes continuously from dusk to night like a time-lapse, never a cut. Epic, quiet, blockbuster-trailer feeling.\n[0-6 s] The camera is already moving: a slow drift around him as he studies the horizon through the viewfinder, one brow raised; wind lifts the edge of his blazer.\n[6-14 s] Without cutting, the camera rises and swings behind him in one smooth crane move; he lowers the viewfinder, then raises it again with calm certainty, like a director framing the whole city.\n[14-22 s] The camera keeps craning up and away; the sky darkens to night and an enormous full moon rises behind him; the city lights below switch on in waves, as if on his cue.\n[22-30 s] The camera settles exactly on the final composition: a low wide hero shot of his silhouette on the rooftop pillar against the giant moon, viewfinder raised, the glittering city below.\nAUDIO: none.\nNo other people, no text, no logos, no costume look, no cartoon."
+   }
+  }
+ ]
+}
