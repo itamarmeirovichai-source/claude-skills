@@ -1445,3 +1445,69 @@ Rules for this table: wave B does **not** go on Thu 19 (that day is wave A's); a
 | Tue 1 / Wed 2 Dec | A / B | 14:00 / 15:00 | same | identical (Israel UTC+2; EST −7 h, CST −8 h, MST −9 h, PST −10 h) |
 
 **Blockers (unchanged):** owner approval; site not live; `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle (c); Saranoni strict vs loose; Dandelion "gift set only".
+
+## 32. Pack build for Tue 24 Nov (wave A) and Wed 25 Nov (wave B) (Mon 23 Nov, ~05:49–07:30 UTC = 07:49–09:30 Israel; full live re-check) + the Black Friday pause and fallbacks
+**Status:** no owner approval (silent since 10-12, **42 days**). The wave A gates on Tue 17 and Thu 19 and the wave B gate on Wed 18 all passed with no approval, so per §31 the waves roll to **Tue 24 (A) / Wed 25 (B)** on new packs:
+- `SEND_PACK_2026-11-24.md`, `SEND_PACK_2026-11-25.md` and the checklist `SEND_DAY_CHECKLIST_2026-11-24.md`.
+- The 11-17 / 11-18 packs and the 11-17 checklist are marked superseded on line 1.
+- Nothing sent, nothing posted; $0.
+
+**Tools:**
+- `products_check.py --sale-scan` on every product either wave names (19 brands, 05:50–05:53 UTC), plus product JSON for full tag lists (the 5 clean wave A pairs, Alexis, Equator, Saranoni XXL) and a BFCM tag count over LAKE's feed.
+- Every homepage **and every named product page** rendered in Chromium (`/opt/pw-browsers/chromium-1243/chrome-linux64/chrome` via `executable_path`; no `playwright install`). Their text was grepped for code / % off / sale / Black Friday wording, and the collection feed behind every homepage sale, holiday and gift link was read for membership and markdowns.
+- KREWE's MUSE page source was checked for hidden tickers (visibility measured in Chromium).
+- `ad_library.py --json … page <id>` for all 19 Pages by dossier Page ID, one Page per call, 50 s apart (05:49–06:54 UTC), then one re-run pass at the same spacing for six decisive Pages (06:55–07:15).
+- Local times printed by Python `zoneinfo` for 2026-11-24 / -25 (Israel → local → Israel and the ≥15-min gaps asserted).
+- DM texts in both packs checked by script against §4: **8 of 8 identical**. Skipped DMs are not copied into the packs.
+
+**Wave A, Tue 24 (gate 14:00 Israel = 12:00 UTC): 5 in (one conditional), 6 out. No text changed.**
+
+| Israel | DM | Local (tzdata) | Verdict | 23 Nov read |
+|---|---|---|---|---|
+| 15:05 | Q-1 LAKE | 08:05 EST | ❌ skip | Tour set $268 4/5, still tagged `25%bfcm2026` / `bfcm-sale-2026` (388 of 397 products); no homepage sale wording yet |
+| 15:20 | Q-2 Printfresh | 08:20 EST | ❌ skip (stronger) | **Homepage "25% OFF SITEWIDE · CODE CHEER"**; both bandanas **$22 vs $28 (21 %)**; Bagheera in `printfresh-flash-sale` (88); product pages "Extra 25% off with code CHEER"; ads "through 11/30" |
+| 15:35 | Q-5 Little Beast | 08:35 EST | ✅ in (flag) | PBJ / OG 7/7 $48, tag `ACTIVE`; banner still "EARLY ACCESS"; `sales-galore` 86 (82 marked down) and `holiday` 46 without them; no code on product pages |
+| 15:50 | Q-8 Brackish | 08:50 EST | ✅ in | Edisto / Rice Slim 1/1 $225; no sale list; linked lists 0 marked down; Ad Library newest 11/19 |
+| 16:05 | Q-9 Cuddle Clones | 09:05 EST | ❌ out | "Black Friday Deals are Live ● 25% off PJs"; pajamas 25 % off in feed |
+| 16:20 | Q-7 Dana Rebecca | 08:20 CST | ✅ in, **⚠ conditional** | Bracelet 3/3 $2,795, charm 24/24 $495, outside `final-farewell` (64); only sign-up 10 %. **Ad Library unread (2 loads)**: on 16 Nov the newest card was 10/28 (27 d before Tue 24). Send only if the gate read shows a card started ≥ 11/03 or > 2 cards ≥ 10/25 |
+| 16:35 | Q-6 Sunday Citizen | 09:35 EST | ❌ skip | "EARLY BLACK FRIDAY · 25% OFF SITEWIDE*"; "UP TO 80% OFF" on product pages |
+| 16:50 | Q-11 KREWE | 08:50 CST / 09:50 EST | ✅ in (flag) | MUSE ×2 1/1 $335; `isSaleActive: false`; `sale` / `under-199-sale` still 0 / 0. **New flag:** the page source carries a hidden "Extra 20% off Applied In Cart" ticker (0×0, not displayed; a dormant template next to a hidden "SOLD OUT" ticker). Skip if it becomes visible. Ad Library newest 11/16, 26 cards ≤30 d |
+| 18:05 | Q-3 Dandelion | 08:05 PST | ❌ out | Maya Mountain 70 % and 85 % both 0/1; gift set 1/1 $42; no sale |
+| 18:20 | Q-4 The Foggy Dog | 08:20 PST | ❌ out | Collar still $52 vs $58; `sale` (81) linked; no sitewide |
+| 18:50 | Q-10 Kinn | 08:50 PST | ✅ in | Pegasus / Swan 8/8 $1,040; `holiday-2026` 0 marked down; Ad Library newest 11/17 |
+
+**Wave B, Wed 25 (gate 15:00 Israel = 13:00 UTC; day before Thanksgiving): 3 in, 5 out. No text changed.**
+
+| Israel | DM | Local (tzdata) | Verdict | 23 Nov read |
+|---|---|---|---|---|
+| 16:00 | Q-16 STONE AND STRAND | 09:00 EST | ❌ skip | "20% OFF: FINAL BLACK FRIDAY SITEWIDE SALE"; both yellow-gold necklaces 0/2, 0/1 |
+| 16:15 | Q-19 Alexis Bittar | 09:15 EST | ❌ **skip (new)** | **"The Black Friday Sale is On! 30% Off All Full-Price Styles through 11.30. Discount applies automatically at checkout."** Vault Sale first access 11/25. Ads "ends 11/30" ×11 |
+| 16:45 | Q-12 Hawkins (optional) | 09:45 EST | ❌ **skip (new)** | "20% OFF EVERYTHING. DISCOUNT APPLIED AT CHECKOUT."; lamps in `black-friday-sale` (887) |
+| 17:15 | Q-18 Vosges | 09:15 CST | ✅ in (flag) | Snowbound $95 / $32 1/1, no compare-at, no sale list; only the SHIPME shipping code; a BF blog-post link. **Ads: "ends 11/23/26" ×3 (11/19)**, ends 2 days before the slot |
+| 17:30 | Q-15 Saranoni | 08:30 MST | ❌ skip (stronger) | **"25% OFF EVERYTHING · Code FRIDAY25 · NOV 19 – DEC 1"**; XXL $289 in feed but covered; in `black-friday-deals` + `holiday-sale` |
+| 18:40 | Q-13 Legendary | 08:40 PST | ⏸ hold | Ad Library unread (2 loads), so no evidence of a new ad; hold not lifted |
+| 18:55 | Q-14 Equator | 08:55 PST | ✅ in (flag) | Structural subscription and tier prices as since 10-24; no sale list. **New tag `WedOnly` on La Marquesa** (meaning unknown). Ad Library (Page 81536025996, resolved today) newest 11/16 |
+| 19:10 | Q-17 THATCH | 09:10 PST | ✅ in | Wood Anywhere Coconut 21/21, Driftwood 20/20 $115, outside `all-sale` (78); Ad Library unread, but the 16 Nov card started 11/13 rules out the hold |
+
+**Ad Library: degraded.**
+- On the first pass, 10 of 19 Pages rendered nothing: Foggy (the probe), LAKE, Brackish, Dana Rebecca, Sunday Citizen, KREWE, Cuddle Clones, Equator, THATCH and Legendary. No "Rate limit exceeded" text came back.
+- One re-run pass covered only the six decisive Pages. It recovered Brackish, KREWE and Equator; Dana Rebecca, THATCH and Legendary stayed unread. I did not retry further and used no workaround.
+- Read: Little Beast 64 · Brackish 77 · KREWE 32 · Kinn 132 · Printfresh 210 · Dandelion 197 · Vosges 83 · Equator 69 · Alexis 90 · Saranoni 400 · Hawkins 109 · STONE AND STRAND 20.
+- Dated phrases: Printfresh "through 11/30", Alexis "ends 11/30", Saranoni "ends dec 1", Vosges "ends 11/23/26", STONE AND STRAND "last call".
+- The video-filter column read 0 on several video-running Pages today, so it is unreliable.
+
+**Not "nearly every DM out":** 8 of 19 go (5 + 3) and 11 are out, so the packs are built normally. Wave B is thin (3 DMs, all after 17:00) and falls on the eve of Thanksgiving. The packs say the owner may skip wave B to Wed 2 Dec.
+
+**Black Friday pause and fallbacks (one wave per day; LESSONS 2026-10-16 / 10-19):**
+- **Pause: Thu 26 – Mon 30 Nov.** No cold DMs (Thanksgiving, Black Friday 27.11, the weekend, Cyber Monday 30.11).
+- **If wave A misses Tue 24:** there is no Thu fallback this week (Wed 25 is wave B's, Thu 26 is in the pause). Wave A → **Tue 1 Dec**, gate 14:00 Israel.
+- **If wave B misses Wed 25:** → **Wed 2 Dec**, gate 15:00 Israel.
+- **Both on new packs built Mon 30 Nov** after a full live re-check. Same Israel slots. On 1–2 Dec the `zoneinfo` offsets equal 24–25 Nov (Israel UTC+2; EST −7 h, CST −8 h, MST −9 h, PST −10 h), so the local labels are identical.
+- **Expected for the 30 Nov build:**
+  - Alexis can return on Wed 2 (its sale ends 11.30).
+  - Saranoni cannot: its sale ends Dec 1, the day before Wed 2, so it waits for the next wave B slot.
+  - LAKE, Sunday Citizen, Cuddle Clones, Printfresh, Hawkins and STONE AND STRAND depend on their BF events ending.
+  - Dandelion depends on a Maya Mountain restock or the owner's "gift set only".
+  - Foggy depends on the collar returning to $58.
+
+**Blockers (unchanged):** owner approval; site not live (no links in any DM); `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle (c); Saranoni strict vs loose (moot while the BF sale runs); Dandelion "gift set only".
