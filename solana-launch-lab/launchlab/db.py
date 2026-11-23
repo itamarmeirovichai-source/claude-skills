@@ -88,6 +88,14 @@ CREATE TABLE IF NOT EXISTS provider_health (
     error_count INTEGER NOT NULL DEFAULT 0, ok_count INTEGER NOT NULL DEFAULT 0,
     rate_limited_until REAL
 );
+CREATE TABLE IF NOT EXISTS backfill_cursors (      -- every launch found in the window: a clock made of signatures
+    signature TEXT PRIMARY KEY, block_time REAL NOT NULL, slot INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_cursor_time ON backfill_cursors (block_time, slot);
+CREATE TABLE IF NOT EXISTS backfill_queue (        -- the systematic sample drawn from it
+    signature TEXT PRIMARY KEY, block_time REAL NOT NULL, slot INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending', mint TEXT, note TEXT
+);
 CREATE TABLE IF NOT EXISTS study (
     book TEXT PRIMARY KEY, plan TEXT NOT NULL, registered_at REAL NOT NULL
 );
@@ -103,6 +111,7 @@ def connect(path: Path | str) -> sqlite3.Connection:
     conn = sqlite3.connect(str(path), check_same_thread=False, isolation_level=None)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA busy_timeout = 60000")   # several readers/writers may share one file (parallel backfill)
     if str(path) != ":memory:":
         conn.execute("PRAGMA journal_mode = WAL")
     conn.executescript(SCHEMA)

@@ -18,7 +18,7 @@ from launchlab.config import PaperConfig, Settings
 FRICTIONLESS = PaperConfig(
     size_sol=1.0, latency_s=10.0, decision_delay_s=60.0, max_wait_s=60.0, fail_prob=0.0, max_attempts=3, retry_delay_s=5.0,
     base_fee_sol=0.0, priority_fee_sol=0.0, tip_sol=0.0, token_account_rent_sol=0.0, extra_slippage_bps=0.0,
-    max_pool_share=1.0, min_exit_liquidity_sol=0.0, venue_fee_override=0.0, seed=1,
+    max_pool_share=1.0, min_exit_liquidity_sol=0.0, venue_fee_override=0.0, own_liquidity=False, seed=1,
 )
 
 

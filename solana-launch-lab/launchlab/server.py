@@ -23,7 +23,7 @@ STATIC_FILES = {
     "/app.js": ("app.js", "text/javascript; charset=utf-8"),
     "/styles.css": ("styles.css", "text/css; charset=utf-8"),
 }
-BOOKS = {"demo": True, "live": False}  # book name -> uses synthetic tokens
+BOOKS = {"demo": True, "live": False, "backtest": False}  # book name -> uses synthetic tokens
 MAX_BODY = 64 * 1024
 NOT_ADVICE = ("Research and paper trading only. Nothing here is financial advice, a buy or sell signal, or a forecast. "
               "No wallet is connected and no transaction can be sent.")
@@ -187,6 +187,8 @@ class App:
         book = str(body.get("book", "demo"))
         if book not in BOOKS:
             raise ApiError(404, "unknown book")
+        if book == "backtest":
+            raise ApiError(400, "the backtest book is filled by `python -m launchlab backfill`, not from the dashboard")
         with self.lock:
             return paper.run_book(self.conn, self.settings, book, synthetic=BOOKS[book])
 

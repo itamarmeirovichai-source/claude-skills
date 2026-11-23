@@ -7,11 +7,13 @@ import dataclasses
 import json
 import sys
 import time
+from pathlib import Path
 from typing import Any
 
-from . import __version__, audit, db, ingest, paper
+from . import __version__, audit, backfill, db, ingest, paper
 from .config import Settings, load_settings
-from .providers.base import ProviderError
+from .providers import solana_rpc
+from .providers.base import HttpClient, ProviderError
 from .server import NOT_ADVICE, App, make_server
 
 
@@ -94,6 +96,24 @@ def cmd_watch(args: argparse.Namespace, settings: Settings) -> int:
     return 0
 
 
+def cmd_backfill(args: argparse.Namespace, settings: Settings) -> int:
+    """Backtest: read an unselected sample of past launches from the chain and paper-trade the fixed rules."""
+    settings = dataclasses.replace(_live(settings, args.live), db_path=Path(args.db).resolve())
+    conn = db.connect(settings.db_path)
+    workers = max(1, min(args.workers, 6))
+
+    def make_client() -> HttpClient:
+        client = solana_rpc.make_client(min_interval_s=0.25 * workers, max_retries=4)
+        client.enabled = settings.live_enabled
+        return client
+
+    result = backfill.run_backfill(conn, settings, make_client(), settings.solana_rpc_url, hours=args.hours, sample=args.sample,
+                                   max_launches=args.max, progress=lambda msg: print(msg, file=sys.stderr, flush=True),
+                                   workers=workers, worker_setup=lambda: (db.connect(settings.db_path), make_client()))
+    _print(result)
+    return 0
+
+
 def cmd_audit(args: argparse.Namespace, settings: Settings) -> int:
     settings = _live(settings, args.live)
     if not settings.live_enabled:
@@ -152,6 +172,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--cycles", type=int, default=None, help="stop after this many cycles (default: run until Ctrl+C)")
     p.add_argument("--live", action="store_true", help=live_help)
     p.set_defaults(fn=cmd_watch)
+
+    p = sub.add_parser("backfill", help="backtest: sample past launches from the chain and paper-trade the fixed rules")
+    p.add_argument("--hours", type=float, default=24.0, help="length of the past window to sample (default 24)")
+    p.add_argument("--sample", type=int, default=500, help="number of launches to sample, every k-th (default 500)")
+    p.add_argument("--workers", type=int, default=1,
+                   help="parallel readers, 1-6. Only useful with your own RPC endpoint: the public one caps getTransaction per IP (default 1)")
+    p.add_argument("--db", default="data/backtest.sqlite3", help="separate store for the backtest (default data/backtest.sqlite3)")
+    p.add_argument("--max", type=int, default=None, help="read at most this many launches in this run; rerun to resume")
+    p.add_argument("--live", action="store_true", help=live_help)
+    p.set_defaults(fn=cmd_backfill)
 
     p = sub.add_parser("audit", help="check an 'alert at time T, N× later' claim against market data")
     p.add_argument("mint")

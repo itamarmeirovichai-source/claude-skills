@@ -48,8 +48,9 @@ def test_rpc_allowlist_is_read_only():
 def test_no_third_party_runtime_dependencies_and_no_dynamic_code():
     pyproject = (ROOT / "pyproject.toml").read_text()
     assert re.search(r"^dependencies = \[\]", pyproject, re.MULTILINE)
-    allowed = {"launchlab", "__future__", "argparse", "collections", "dataclasses", "datetime", "hashlib", "http", "json", "math", "os",
-               "pathlib", "random", "re", "sqlite3", "sys", "threading", "time", "typing", "urllib"}
+    allowed = {"launchlab", "__future__", "argparse", "base64", "bisect", "collections", "concurrent", "dataclasses", "datetime", "hashlib", "http",
+               "json", "math", "os",
+               "pathlib", "random", "re", "sqlite3", "struct", "sys", "threading", "time", "typing", "urllib"}
     for path in (ROOT / "launchlab").rglob("*.py"):
         tree = ast.parse(path.read_text(), filename=str(path))
         for node in ast.walk(tree):

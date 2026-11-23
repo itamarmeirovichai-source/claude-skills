@@ -69,29 +69,30 @@ def build_features(conn: sqlite3.Connection, mint: str, as_of: float) -> dict[st
     }
 
 
-def register_study(conn: sqlite3.Connection, book: str, plan: dict[str, Any] | None = None) -> dict[str, Any]:
+def register_study(conn: sqlite3.Connection, book: str, plan: dict[str, Any] | None = None, ruleset: str | None = None) -> dict[str, Any]:
     """Store the evaluation plan once per book. Later calls return the stored plan unchanged."""
     row = conn.execute("SELECT plan FROM study WHERE book = ?", (book,)).fetchone()
     if row:
         return json.loads(row["plan"])
-    plan = {**DEFAULT_PLAN, **(plan or {}), "ruleset": policy.RULESET}
+    plan = {**DEFAULT_PLAN, **(plan or {}), "ruleset": ruleset or policy.RULESET}
     conn.execute("INSERT INTO study (book, plan, registered_at) VALUES (?, ?, ?)", (book, db.canonical(plan), time.time()))
     db.log_event(conn, "study_registered", {"book": book, "plan": plan})
     return plan
 
 
 def record_signal(conn: sqlite3.Connection, book: str, mint: str, as_of: float, features: dict[str, Any],
-                  decision: str, reasons: list[str], settings: Settings, recorded_at: float | None = None) -> int:
+                  decision: str, reasons: list[str], settings: Settings, recorded_at: float | None = None, ruleset: str | None = None) -> int:
+    ruleset = ruleset or policy.RULESET
     features_hash = hashlib.sha256(db.canonical(features).encode()).hexdigest()
     cur = conn.execute(
         "INSERT INTO signals (book, mint, as_of, ruleset, config_hash, decision, reasons, features, features_hash, recorded_at)"
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        (book, mint, as_of, policy.RULESET, settings.config_hash(), decision, db.canonical(reasons), db.canonical(features),
+        (book, mint, as_of, ruleset, settings.config_hash(), decision, db.canonical(reasons), db.canonical(features),
          features_hash, time.time() if recorded_at is None else recorded_at),
     )
     signal_id = int(cur.lastrowid or 0)
     db.log_event(conn, "signal_recorded", {"signal_id": signal_id, "book": book, "mint": mint, "as_of": as_of, "decision": decision,
-                                           "reasons": reasons, "features_hash": features_hash, "ruleset": policy.RULESET})
+                                           "reasons": reasons, "features_hash": features_hash, "ruleset": ruleset})
     return signal_id
 
 
@@ -155,7 +156,15 @@ def buy_fill(obs: dict[str, Any], size_sol: float, cfg: PaperConfig) -> dict[str
 
 
 def sell_fill(obs: dict[str, Any], tokens: float, cfg: PaperConfig) -> dict[str, Any]:
-    """Simulate selling `tokens`. `sellable` is False when exit depth is below the configured minimum."""
+    """Simulate selling `tokens` into the state described by one observation.
+
+    The observed history was recorded without our paper position in it. With `own_liquidity` (the default)
+    the exit-time reserves are first shifted along their constant-product curve by the tokens we still hold —
+    our SOL is in the pool and our tokens are out of it — and the sale walks the pool back to the observed
+    state: gross proceeds = Q·x / (B − x). Without it the sale is priced as if our SOL had never been there,
+    Q·x / (B + x), capped by the venue's observed real SOL; that understates what a seller gets back from a
+    small pool and is kept as a conservative bound. `sellable` is False when the position cannot be sold.
+    """
     p = obs["payload"]
     fee_rate = _fee_rate(p, cfg)
     slip = cfg.extra_slippage_bps / 10_000
@@ -163,20 +172,28 @@ def sell_fill(obs: dict[str, Any], tokens: float, cfg: PaperConfig) -> dict[str,
     liquidity = p.get("liquidity_sol")
     if liquidity is None and p.get("liquidity_usd") and p.get("sol_usd"):
         liquidity = p["liquidity_usd"] / p["sol_usd"] / 2
-    if liquidity is not None and liquidity < cfg.min_exit_liquidity_sol:
-        return {"sellable": False, "reason": f"exit depth {liquidity:.3f} SOL below minimum {cfg.min_exit_liquidity_sol:g} SOL"}
-    if quote and base:
-        out, fee, _ = amm.sell(amm.Reserves(float(quote), float(base)), tokens, fee_rate)
-        if liquidity is not None:
-            out = min(out, max(liquidity - fee, 0.0))  # cannot take out more real SOL than the venue holds
-        model = "constant-product on observed reserves"
-    else:
-        gross = tokens * p["price_sol"]
-        impact = min(gross / liquidity, 0.95) if liquidity else 0.0
-        gross *= 1 - impact
+    if quote and base and cfg.own_liquidity:
+        if tokens >= float(base):
+            return {"sellable": False, "reason": "position is larger than the pool's token reserve"}
+        gross = float(quote) * tokens / (float(base) - tokens)
         fee = gross * fee_rate
         out = gross - fee
-        model = "observed price + impact from reported liquidity" if liquidity else "observed price + fixed slippage (depth unknown)"
+        model = "constant-product on observed reserves, own position kept in the pool"
+    else:
+        if liquidity is not None and liquidity < cfg.min_exit_liquidity_sol:
+            return {"sellable": False, "reason": f"exit depth {liquidity:.3f} SOL below minimum {cfg.min_exit_liquidity_sol:g} SOL"}
+        if quote and base:
+            out, fee, _ = amm.sell(amm.Reserves(float(quote), float(base)), tokens, fee_rate)
+            if liquidity is not None:
+                out = min(out, max(liquidity - fee, 0.0))  # cannot take out more real SOL than the venue holds
+            model = "constant-product on observed reserves"
+        else:
+            gross = tokens * p["price_sol"]
+            impact = min(gross / liquidity, 0.95) if liquidity else 0.0
+            gross *= 1 - impact
+            fee = gross * fee_rate
+            out = gross - fee
+            model = "observed price + impact from reported liquidity" if liquidity else "observed price + fixed slippage (depth unknown)"
     out *= 1 - slip
     return {"sellable": True, "out_sol": out, "venue_fee_sol": fee, "price_sol": out / tokens if tokens else 0.0,
             "quoted_price_sol": p["price_sol"], "fee_rate": fee_rate, "model": model, "uncertainty": _uncertainty(p)}
@@ -291,13 +308,17 @@ def simulate_position(conn: sqlite3.Connection, signal: sqlite3.Row | dict[str, 
 
 def run_book(conn: sqlite3.Connection, settings: Settings, book: str, *, synthetic: bool,
              decision_rule: policy.DecisionRule | None = None, exit_rule: policy.ExitRule | None = None,
-             now: float | None = None) -> dict[str, Any]:
-    """Record signals for tokens that have none yet, then (re)simulate positions that are not final."""
+             now: float | None = None, final: bool | None = None, ruleset: str | None = None) -> dict[str, Any]:
+    """Record signals for tokens that have none yet, then (re)simulate positions that are not final.
+
+    `final` says the stored history is complete (synthetic data, or a backtest on past launches), so a
+    position with no further data is closed out instead of left waiting. It defaults to `synthetic`."""
+    final = synthetic if final is None else final
     decision_rule = decision_rule or policy.DecisionRule()
     exit_rule = exit_rule or policy.ExitRule()
     now = time.time() if now is None else now
     cfg = settings.paper
-    register_study(conn, book)
+    register_study(conn, book, ruleset=ruleset)
     new_signals = 0
     tokens = conn.execute("SELECT mint, launch_time FROM tokens WHERE is_synthetic = ? AND launch_time IS NOT NULL ORDER BY launch_time",
                           (int(synthetic),)).fetchall()
@@ -312,7 +333,7 @@ def run_book(conn: sqlite3.Connection, settings: Settings, book: str, *, synthet
             features = build_features(conn, tok["mint"], as_of)
             decision, reasons = policy.decide(features, decision_rule)
             record_signal(conn, book, tok["mint"], as_of, features, decision, reasons, settings,
-                          recorded_at=as_of if synthetic else now)
+                          recorded_at=as_of if synthetic else now, ruleset=ruleset)
             new_signals += 1
         simulated: dict[str, int] = {}
         pending = conn.execute(
@@ -320,7 +341,7 @@ def run_book(conn: sqlite3.Connection, settings: Settings, book: str, *, synthet
             " WHERE s.book = ? AND s.decision = 'candidate' AND (p.id IS NULL OR p.status = 'open') ORDER BY s.as_of", (book,)).fetchall()
         for sig in pending:
             market = db.observations(conn, sig["mint"], "market", after=sig["as_of"])
-            status = simulate_position(conn, sig, market, settings, exit_rule, final=synthetic)
+            status = simulate_position(conn, sig, market, settings, exit_rule, final=final)
             simulated[status] = simulated.get(status, 0) + 1
         conn.execute("COMMIT")
     except Exception:
@@ -402,6 +423,8 @@ def book_metrics(conn: sqlite3.Connection, book: str, settings: Settings) -> dic
         verdict = "inconclusive"
         verdict_note = (f"{len(resolved)} resolved candidates over {span_days:.1f} days; the pre-registered minimum is "
                         f"{plan['min_resolved_candidates']} over {plan['min_span_days']} days.")
+        if book == "backtest":
+            verdict_note += " Backtest on past launches with modelled fills: descriptive only."
     elif ci and ci[0] > 0:
         verdict, verdict_note = "positive-needs-replication", "Interval above zero on this window. Requires an untouched second window before any claim."
     elif ci and ci[1] < 0:

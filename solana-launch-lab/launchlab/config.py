@@ -69,6 +69,7 @@ class PaperConfig:
     min_exit_liquidity_sol: float = 1.0
     max_fill_staleness_s: float = 120.0
     venue_fee_override: float | None = None  # set to replace the fee-tier table (what-if runs, tests)
+    own_liquidity: bool = True  # at exit, count the paper position's own SOL as still being in the pool (see paper.sell_fill)
     seed: int = 20261123
 
 

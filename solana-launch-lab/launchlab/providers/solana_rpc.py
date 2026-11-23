@@ -9,6 +9,7 @@ IP and 40 / 10 s per method. Version-1 transactions are live, so `maxSupportedTr
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from typing import Any
 
 from ..amm import OBSERVED_POOL_BOOST_SOL, TOTAL_SUPPLY
@@ -27,13 +28,25 @@ SLOT_SECONDS = 0.218  # measured 2026-11-20/21; only used as a first guess when 
 
 
 def make_client(**overrides: Any) -> HttpClient:
-    return HttpClient(provider=NAME, min_interval_s=0.35, **overrides)
+    return HttpClient(**{"provider": NAME, "min_interval_s": 0.35, **overrides})
+
+
+# Minimum seconds between calls of one method on one client. The public endpoint answered `getTransaction`
+# with HTTP 429 beyond 10 calls per 10 s (response header `x-ratelimit-method-limit: 10`, seen 2026-11-23).
+METHOD_MIN_INTERVAL_S = {"getTransaction": 1.05}
+_last_method_call: dict[tuple[int, str], float] = {}
 
 
 def call(client: HttpClient, url: str, method: str, params: list[Any]) -> FetchResult:
     """Call one allow-listed read method. Anything else is refused before a request is built."""
     if method not in READ_METHODS:
         raise ProviderError(NAME, "forbidden_method", f"{method} is not an allowed read-only method")
+    spacing = METHOD_MIN_INTERVAL_S.get(method)
+    if spacing and client.enabled and client.min_interval_s > 0:
+        wait = spacing - (client.clock() - _last_method_call.get((id(client), method), 0.0))
+        if wait > 0:
+            client.sleep(wait)
+        _last_method_call[(id(client), method)] = client.clock()
     res = client.request_json(url, method="POST", body={"jsonrpc": "2.0", "id": 1, "method": method, "params": params})
     data = res.data
     if not isinstance(data, dict):
@@ -45,10 +58,13 @@ def call(client: HttpClient, url: str, method: str, params: list[Any]) -> FetchR
     return res
 
 
-def signatures(client: HttpClient, url: str, address: str, *, max_pages: int = 2) -> tuple[list[dict[str, Any]], bool]:
-    """Signatures for an address, newest first. Returns (rows, reached_beginning)."""
+def signatures(client: HttpClient, url: str, address: str, *, max_pages: int = 2, before: str | None = None) -> tuple[list[dict[str, Any]], bool]:
+    """Signatures for an address, newest first. Returns (rows, reached_beginning).
+
+    `before` may be ANY confirmed signature, not only one of this address: the node then returns this
+    address's transactions that precede it in ledger order. That makes "history up to a moment" readable
+    without paging back from the present (checked on mainnet 2026-11-23)."""
     rows: list[dict[str, Any]] = []
-    before: str | None = None
     for _ in range(max_pages):
         opts: dict[str, Any] = {"limit": 1000}
         if before:
@@ -103,12 +119,16 @@ def _lp_burned(tx: dict[str, Any]) -> bool | None:
 
 
 def read_launch_structure(client: HttpClient, url: str, curve_address: str, mint: str, *,
-                          max_pages: int = 2, max_txs: int = 10, supply: float = TOTAL_SUPPLY) -> dict[str, Any]:
+                          max_pages: int = 2, max_txs: int = 10, supply: float = TOTAL_SUPPLY, before: str | None = None,
+                          history: tuple[list[dict[str, Any]], bool] | None = None,
+                          fetch: Callable[[str], dict[str, Any] | None] | None = None) -> dict[str, Any]:
     """Who bought in the creation slot? Reads the bonding-curve account's earliest transactions.
 
     Returns a launch-observation payload. `status` is 'known', 'partial' or 'unknown'; nothing is guessed.
+    With `before` (a signature shortly after the launch) only the history up to that point is read.
+    A caller that already holds the curve's history back to creation, or a transaction cache, can pass them in.
     """
-    rows, complete = signatures(client, url, curve_address, max_pages=max_pages)
+    rows, complete = history if history is not None else signatures(client, url, curve_address, max_pages=max_pages, before=before)
     if not rows:
         return {"status": "unknown", "reason": "no transactions found for the bonding-curve account (pruned history or wrong address)"}
     if not complete:
@@ -126,7 +146,7 @@ def read_launch_structure(client: HttpClient, url: str, curve_address: str, mint
     lp_burned: bool | None = None
     creator_tokens = 0.0
     for row in ok_rows[:max_txs]:
-        tx = call(client, url, "getTransaction", [row["signature"], TX_OPTS]).data.get("result")
+        tx = fetch(row["signature"]) if fetch else call(client, url, "getTransaction", [row["signature"], TX_OPTS]).data.get("result")
         if not isinstance(tx, dict):
             partial = True
             continue

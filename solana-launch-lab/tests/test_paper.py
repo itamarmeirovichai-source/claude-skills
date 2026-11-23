@@ -238,3 +238,49 @@ def test_metrics_count_every_outcome_in_expectancy(conn, settings):
     assert sum(b["count"] for b in m["distribution"]) == 2
     assert m["max_drawdown_sol"] == pytest.approx(1.0)
     assert dataclasses.asdict(settings.paper)["size_sol"] == 1.0
+
+
+def test_own_position_stays_in_the_pool_by_default(conn, settings):
+    """Buy into a pool nobody else touches, sell later: with our own SOL counted you get the stake back
+    (no fees here); priced as if it had never been there you would lose to your own price impact twice."""
+    assert settings.paper.own_liquidity is False and paper.PaperConfig().own_liquidity is True   # fixture is the conservative variant
+    t0 = setup_token(conn)
+    market(conn, MINT, t0 + 700, 100.0, 1_000_000.0)      # the recorded history never changes
+    market(conn, MINT, t0 + 715, 100.0, 1_000_000.0)
+    run(conn, with_paper(settings, own_liquidity=True))
+    pos = position(conn)
+    tokens = 1_000_000.0 / 101.0
+    assert pos["tokens"] == pytest.approx(tokens)
+    assert pos["proceeds_sol"] == pytest.approx(100.0 * tokens / (1_000_000.0 - tokens))        # Q·x / (B − x)
+    assert pos["net_pnl_sol"] == pytest.approx(0.0, abs=1e-4)                                    # round trip in a quiet pool
+    sell = dict(conn.execute("SELECT * FROM fills WHERE side = 'sell'").fetchone())
+    assert "own position kept in the pool" in sell["model"]
+
+
+def test_own_liquidity_model_still_loses_when_the_pool_is_drained(conn, settings):
+    cfg = with_paper(settings, own_liquidity=True)
+    t0 = setup_token(conn)                                # entry at 100 SOL / 1,000,000 tokens
+    market(conn, MINT, t0 + 90, 2.0, 50_000_000.0, liquidity=0.01)   # everyone else left: price down 99.96%
+    market(conn, MINT, t0 + 101, 2.0, 50_000_000.0, liquidity=0.01)
+    run(conn, cfg)
+    pos = position(conn)
+    assert pos["exit_reason"] == "stop_loss" and pos["status"] == "closed"
+    assert pos["proceeds_sol"] == pytest.approx(2.0 * pos["tokens"] / (50_000_000.0 - pos["tokens"]))
+    assert pos["net_pnl_sol"] < -0.99                     # nearly the whole stake is gone
+    huge = {"payload": {"price_sol": 1e-6, "quote_reserve_sol": 1.0, "base_reserve": 1_000.0, "venue": "pool"}, "stale": False}
+    assert paper.sell_fill(huge, 5_000.0, cfg.paper)["sellable"] is False
+
+
+def test_second_ruleset_gets_its_own_book_and_label(conn, settings):
+    setup_token(conn)
+    everything = policy.DecisionRule(max_slot0_share=2.0, max_creator_share=2.0, max_cosigned_share=2.0, serial_min_launches=10**9,
+                                     min_liquidity_sol=0.0, max_data_age_s=1e12, require_launch_structure=False)
+    launch(conn, "SYNTH0009bundle", 3000.0, slot0_share=0.9)
+    market(conn, "SYNTH0009bundle", 3050.0, 100.0, 1_000_000.0)
+    paper.run_book(conn, settings, "strict", synthetic=True)
+    paper.run_book(conn, settings, "all", synthetic=True, decision_rule=everything, ruleset="enter-all-v1")
+    strict = {r["mint"]: r["decision"] for r in conn.execute("SELECT mint, decision FROM signals WHERE book = 'strict'")}
+    loose = {r["mint"]: (r["decision"], r["ruleset"]) for r in conn.execute("SELECT mint, decision, ruleset FROM signals WHERE book = 'all'")}
+    assert strict["SYNTH0009bundle"] == "rejected" and loose["SYNTH0009bundle"] == ("candidate", "enter-all-v1")
+    assert paper.book_metrics(conn, "all", settings)["ruleset"] == "enter-all-v1"
+    assert paper.book_metrics(conn, "strict", settings)["ruleset"] == policy.RULESET
