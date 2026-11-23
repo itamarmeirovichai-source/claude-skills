@@ -107,3 +107,15 @@ def test_request_guards(api):
     status, out, _ = api("/api/demo/reset", {"seed": 4, "n_tokens": 12})
     assert status == 200 and out["seeded"]["n_tokens"] == 12
     assert api("/api/events?limit=5")[1]["chain"]["ok"] is True
+
+
+def test_price_series_leaves_out_drained_and_dust_pools(settings):
+    app = App(settings, conn=db.connect(":memory:"))
+    mint = "SYNTH0001test"
+    db.upsert_token(app.conn, mint, is_synthetic=True, now=1.0, launch_time=1.0)
+    db.add_observation(app.conn, mint, "market", "p", 10.0, {"price_sol": 2e-8, "liquidity_usd": 1500.0, "pool_address": "main"}, is_synthetic=True)
+    db.add_observation(app.conn, mint, "market", "p", 11.0, {"price_sol": 1.3e-5, "liquidity_usd": 3e-7, "pool_address": "dust", "negligible_liquidity": True},
+                       is_synthetic=True)
+    detail = app.token(mint)
+    assert [p["price_sol"] for p in detail["series"]] == [2e-8]
+    assert len(detail["market"]) == 2                    # the dust pool is still listed in the table, with its flag

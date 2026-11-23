@@ -118,7 +118,7 @@ Development tools are pinned in `uv.lock`. With [uv](https://docs.astral.sh/uv/)
 
 ```bash
 uv sync                 # creates .venv with the three dev tools
-uv run pytest           # 71 tests
+uv run pytest           # 72 tests
 uv run ruff check .
 uv run mypy
 ```

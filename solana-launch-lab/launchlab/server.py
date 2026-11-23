@@ -120,7 +120,7 @@ class App:
             launch = next((o for o in reversed(obs) if o["kind"] == "launch"), None)
             holders = next((o for o in reversed(obs) if o["kind"] == "holders"), None)
             series = [{"t": o["observed_at"], "price_sol": o["payload"].get("price_sol"), "provider": o["provider"], "stale": o["stale"]}
-                      for o in db.observations(self.conn, mint, "market") if o["payload"].get("price_sol") is not None]
+                      for o in db.observations(self.conn, mint, "market") if risk.usable_price(o)]  # drained/dust pools are not charted
             signals = [dict(r) for r in self.conn.execute("SELECT * FROM signals WHERE mint = ? ORDER BY as_of", (mint,))]
             for s in signals:
                 s["reasons"], s["features"] = json.loads(s["reasons"]), json.loads(s["features"])

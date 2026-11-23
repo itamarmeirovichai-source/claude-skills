@@ -22,13 +22,13 @@ read-only adapters, and keeps a paper ledger with a pre-registered evaluation pl
 | 4. Market, methods, failure cases | [RESEARCH.md](RESEARCH.md), [DATA_SOURCES.md](DATA_SOURCES.md), `research-notes/literature.md` |
 | 5. Specification | [PROJECT_SPEC.md](PROJECT_SPEC.md) |
 | 6. MVP | `launchlab/` (18 Python modules, static dashboard), `pyproject.toml`, `uv.lock`, `.env.example` |
-| 7. Validation | 71 tests, ruff, mypy, headless-browser smoke test, live runs of `audit`, `ingest`, `watch` |
+| 7. Validation | 72 tests, ruff, mypy, headless-browser smoke test, live runs of `audit`, `ingest`, `watch` |
 
 ## Validation actually run (2026-11-23)
 
 | Check | Command | Result |
 |---|---|---|
-| Unit and integration tests | `python -m pytest` | 71 passed |
+| Unit and integration tests | `python -m pytest` | 72 passed |
 | Lint incl. security rules | `ruff check .` | All checks passed |
 | Types | `mypy` | no issues in 18 source files |
 | Demo end to end | `python -m launchlab seed-demo` then `paper-run --book demo` | 300 synthetic tokens; 56 candidates, 244 rejections; 46 closed, 10 unsellable, 24 failed attempts; gross −6.69, fees 0.76, net −7.46 SOL; expectancy −26.6% per candidate (interval −38.3% … −13.4%); verdict "mechanics demo" |
