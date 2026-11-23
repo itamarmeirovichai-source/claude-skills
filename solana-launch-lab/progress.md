@@ -9,7 +9,7 @@ its alert-time market caps are 6–10× too low against two independent sources,
 reproducible from the stated alert times, and its PnL figure has no evidence behind it. The application
 runs with one command, works offline on labelled synthetic data, reads live public data through three
 read-only adapters, and keeps a paper ledger with a pre-registered evaluation plan. All checks pass.
-**No evidence of positive expected value exists yet**; the live paper book has zero resolved candidates.
+**No evidence of positive expected value exists yet.** A one-day backtest (BACKTEST.md) found both tested rules losing after costs: −6.9% per trade for entering every launch, −32.5% for the filter (13 trades). The live paper book has zero resolved candidates.
 
 ## Completed
 
@@ -22,13 +22,14 @@ read-only adapters, and keeps a paper ledger with a pre-registered evaluation pl
 | 4. Market, methods, failure cases | [RESEARCH.md](RESEARCH.md), [DATA_SOURCES.md](DATA_SOURCES.md), `research-notes/literature.md` |
 | 5. Specification | [PROJECT_SPEC.md](PROJECT_SPEC.md) |
 | 6. MVP | `launchlab/` (18 Python modules, static dashboard), `pyproject.toml`, `uv.lock`, `.env.example` |
-| 7. Validation | 72 tests, ruff, mypy, headless-browser smoke test, live runs of `audit`, `ingest`, `watch` |
+| 8. Backtest | BACKTEST.md: plan committed first, 500 sampled launches, results and one post-run bug fix reported |
+| 7. Validation | 88 tests, ruff, mypy, headless-browser smoke test, live runs of `audit`, `ingest`, `watch` |
 
 ## Validation actually run (2026-11-23)
 
 | Check | Command | Result |
 |---|---|---|
-| Unit and integration tests | `python -m pytest` | 72 passed |
+| Unit and integration tests | `python -m pytest` | 88 passed |
 | Lint incl. security rules | `ruff check .` | All checks passed |
 | Types | `mypy` | no issues in 18 source files |
 | Demo end to end | `python -m launchlab seed-demo` then `paper-run --book demo` | 300 synthetic tokens; 56 candidates, 244 rejections; 46 closed, 10 unsellable, 24 failed attempts; gross −6.69, fees 0.76, net −7.46 SOL; expectancy −26.6% per candidate (interval −38.3% … −13.4%); verdict "mechanics demo" |

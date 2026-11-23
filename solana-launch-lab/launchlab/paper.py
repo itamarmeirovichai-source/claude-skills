@@ -155,7 +155,7 @@ def buy_fill(obs: dict[str, Any], size_sol: float, cfg: PaperConfig) -> dict[str
             "quoted_price_sol": p["price_sol"], "fee_rate": fee_rate, "partial": partial, "model": model, "uncertainty": _uncertainty(p)}
 
 
-def sell_fill(obs: dict[str, Any], tokens: float, cfg: PaperConfig) -> dict[str, Any]:
+def sell_fill(obs: dict[str, Any], tokens: float, cfg: PaperConfig, own_quote_sol: float | None = None) -> dict[str, Any]:
     """Simulate selling `tokens` into the state described by one observation.
 
     The observed history was recorded without our paper position in it. With `own_liquidity` (the default)
@@ -176,9 +176,15 @@ def sell_fill(obs: dict[str, Any], tokens: float, cfg: PaperConfig) -> dict[str,
         if tokens >= float(base):
             return {"sellable": False, "reason": "position is larger than the pool's token reserve"}
         gross = float(quote) * tokens / (float(base) - tokens)
+        model = "constant-product on observed reserves, own position kept in the pool"
+        # A venue cannot pay out more SOL than it holds. With our own SOL still in it that is the observed
+        # real SOL plus what we put in. Binds where virtual and real reserves differ: Mayhem curves, and
+        # pools priced with the InitBoost amount. (Added after the first backtest; see BACKTEST.md part 2.)
+        if liquidity is not None and own_quote_sol is not None and gross > liquidity + own_quote_sol:
+            gross = max(liquidity + own_quote_sol, 0.0)
+            model += ", capped by the SOL the venue holds"
         fee = gross * fee_rate
         out = gross - fee
-        model = "constant-product on observed reserves, own position kept in the pool"
     else:
         if liquidity is not None and liquidity < cfg.min_exit_liquidity_sol:
             return {"sellable": False, "reason": f"exit depth {liquidity:.3f} SOL below minimum {cfg.min_exit_liquidity_sol:g} SOL"}
@@ -286,7 +292,7 @@ def simulate_position(conn: sqlite3.Connection, signal: sqlite3.Row | dict[str, 
             if not final and why.startswith("no usable"):
                 break  # live data may still arrive
             return finish("unsellable", f"{reason}: {why}", exit_network=exit_network, closed_at=obs["observed_at"], failed_sell=failed_sell)
-        sold = sell_fill(exit_obs, tokens, cfg)
+        sold = sell_fill(exit_obs, tokens, cfg, own_quote_sol=bought["spent_sol"] - bought["venue_fee_sol"])
         if not sold["sellable"]:
             return finish("unsellable", f"{reason}: {sold['reason']}", exit_network=exit_network, closed_at=exit_obs["observed_at"], failed_sell=failed_sell)
         detail.update(exit_trigger_at=obs["observed_at"], exit_delay_s=exit_obs["observed_at"] - obs["observed_at"],

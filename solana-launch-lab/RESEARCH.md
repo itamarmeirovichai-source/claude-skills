@@ -193,6 +193,13 @@ Confidence is our subjective weight after this session; "prior" is where we star
   study.
 - **Would disprove:** the result described under H3, replicated on a second, later window without retuning.
 
+### Own backtest, 2026-11-23 (see BACKTEST.md)
+
+One day, 500 sampled launches, plan committed before the data was read. Entering every priced launch at
+90 seconds: −6.9% per trade (95% interval −9.7% … −3.3%), mostly the round-trip cost on launches where nothing
+happened. The `baseline-v1` filter accepted 13 launches, all of which lost (−32.5%). Evidence **for** H3 and H6
+from this window; it does not change their confidence much on its own, because it is a single day.
+
 ## 5. Failure modes a study must guard against
 
 | Bias | How it appears here | Control in this project |

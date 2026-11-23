@@ -284,3 +284,15 @@ def test_second_ruleset_gets_its_own_book_and_label(conn, settings):
     assert strict["SYNTH0009bundle"] == "rejected" and loose["SYNTH0009bundle"] == ("candidate", "enter-all-v1")
     assert paper.book_metrics(conn, "all", settings)["ruleset"] == "enter-all-v1"
     assert paper.book_metrics(conn, "strict", settings)["ruleset"] == policy.RULESET
+
+
+def test_exit_never_pays_more_sol_than_the_venue_holds(settings):
+    cfg = with_paper(settings, own_liquidity=True).paper
+    # a Mayhem-style state: high virtual SOL, almost no real SOL; selling 10% of the token reserve
+    obs = {"payload": {"price_sol": 1e-7, "quote_reserve_sol": 100.0, "base_reserve": 1e9, "liquidity_sol": 0.3, "venue": "curve"}, "stale": False}
+    uncapped = paper.sell_fill(obs, 1e8, cfg)
+    capped = paper.sell_fill(obs, 1e8, cfg, own_quote_sol=0.49)
+    assert uncapped["out_sol"] == pytest.approx(100.0 * 1e8 / 9e8)                     # 11.1 SOL that is not there
+    assert capped["out_sol"] == pytest.approx(0.79) and "capped" in capped["model"]
+    roomy = {"payload": {**obs["payload"], "liquidity_sol": 70.0}, "stale": False}       # a standard curve: cap does not bind
+    assert paper.sell_fill(roomy, 1e8, cfg, own_quote_sol=0.49)["out_sol"] == pytest.approx(uncapped["out_sol"])
