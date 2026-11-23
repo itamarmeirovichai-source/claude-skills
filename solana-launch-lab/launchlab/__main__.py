@@ -114,6 +114,15 @@ def cmd_backfill(args: argparse.Namespace, settings: Settings) -> int:
     return 0
 
 
+def cmd_backfill_report(args: argparse.Namespace, settings: Settings) -> int:
+    """Print the finished backtest: plan, coverage, both books, split by launch type, sensitivity runs. No network."""
+    path = Path(args.db).resolve()
+    if not path.is_file():
+        raise ValueError(f"no backtest store at {path}; run `python -m launchlab backfill --live` first")
+    _print(backfill.report(db.connect(path), dataclasses.replace(settings, db_path=path)))
+    return 0
+
+
 def cmd_audit(args: argparse.Namespace, settings: Settings) -> int:
     settings = _live(settings, args.live)
     if not settings.live_enabled:
@@ -182,6 +191,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--max", type=int, default=None, help="read at most this many launches in this run; rerun to resume")
     p.add_argument("--live", action="store_true", help=live_help)
     p.set_defaults(fn=cmd_backfill)
+
+    p = sub.add_parser("backfill-report", help="print a finished backtest with sensitivity runs (no network)")
+    p.add_argument("--db", default="data/backtest.sqlite3")
+    p.set_defaults(fn=cmd_backfill_report)
 
     p = sub.add_parser("audit", help="check an 'alert at time T, N× later' claim against market data")
     p.add_argument("mint")

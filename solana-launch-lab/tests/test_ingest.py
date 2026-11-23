@@ -1,11 +1,14 @@
 """Live ingestion with every provider faked: provenance, conflicts, partial failure, demo-mode refusal."""
 
+import base64
 import dataclasses
+import struct
 
 import pytest
 from conftest import FakeClock, FakeTransport
 
 from launchlab import amm, db, ingest, risk
+from launchlab.providers import solana_rpc
 from launchlab.providers.base import HttpClient, ProviderError
 
 MINT = "CUfphqswgDK3VP3FX7CiShVCTdGQneFusYRFViABpump"
@@ -104,14 +107,46 @@ def test_one_provider_failing_does_not_block_the_others(conn, settings):
     assert out["stored"]["market"] == 0 and {e["kind"] for e in out["errors"]} >= {"bad_json", "rate_limited"}
 
 
-def test_reserves_are_omitted_when_they_do_not_reproduce_the_price():
+def test_pool_reserves_are_omitted_when_they_do_not_reproduce_the_price_and_curves_are_never_derived():
     payload = {"venue": "pool", "dex_id": "pumpswap", "quote_symbol": "SOL", "price_sol": 9.9e-7, "pool_base_balance": 971816856, "pool_quote_balance": 2.3441}
     ingest.attach_reserves(payload)
     assert "quote_reserve_sol" not in payload and "reserves omitted" in payload["reserve_note"]
     curve = {"venue": "curve", "price_sol": amm.initial_curve().price}
     ingest.attach_reserves(curve)
-    assert curve["quote_reserve_sol"] == pytest.approx(30.0) and curve["liquidity_sol"] == pytest.approx(0.0, abs=1e-9)
-    assert "assuming standard bonding-curve constants" in curve["reserve_model"]
+    assert "quote_reserve_sol" not in curve and "liquidity_sol" not in curve     # a price alone does not reveal a curve's reserves
+
+
+def curve_account(*, virtual_tokens=1_073_000_000.0, virtual_sol=30.0, real_tokens=793_100_000.0, real_sol=0.0, complete=False, mayhem=False,
+                  quote="1" * 32):
+    raw = (b"\x17" * 8 + struct.pack("<QQQQQ", round(virtual_tokens * 1e6), round(virtual_sol * 1e9), round(real_tokens * 1e6), round(real_sol * 1e9),
+                                      10**15)
+           + bytes([complete]) + b"\x09" * 32 + bytes([mayhem, 0]) + solana_rpc.b58decode(quote) + b"\0" * 51)
+    return {"data": [base64.b64encode(raw).decode(), "base64"], "owner": "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"}
+
+
+def test_curve_account_is_decoded_exactly_and_a_mayhem_curve_is_flagged(conn, settings):
+    account = curve_account(virtual_tokens=1_117_190_825.18, virtual_sol=2.8352, real_tokens=837_290_825.18, mayhem=True)
+    drained = solana_rpc.decode_curve_account(account["data"][0])
+    assert drained["virtual_sol"] == pytest.approx(2.8352) and drained["real_sol"] == 0.0 and drained["is_mayhem"] and drained["quote_is_sol"]
+    assert solana_rpc.decode_curve_account("AAAA") is None and solana_rpc.decode_curve_account("not base64 !!") is None
+    usdc = solana_rpc.decode_curve_account(curve_account(quote="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")["data"][0])
+    assert usdc["quote_is_sol"] is False and usdc["virtual_sol"] is None and ingest.curve_observation(usdc, CURVE) is None
+    assert ingest.curve_observation({**drained, "complete": True}, CURVE) is None
+
+    def rpc(method, url, body):
+        if body["method"] == "getMultipleAccounts" and body["params"][1].get("encoding") == "base64":
+            return 200, {}, {"result": {"value": [account]}}
+        if body["method"] == "getSignaturesForAddress":
+            return 200, {}, {"result": []}
+        return 200, {}, {"error": {"code": 429, "message": "method limit 0"}}
+
+    out = ingest.ingest_mint(conn, live(settings), MINT, make_clients(rpc=rpc))
+    assert out["stored"]["market"] == 3
+    exact = next(o for o in db.observations(conn, MINT, "market") if o["provider"] == "solana_rpc")["payload"]
+    assert exact["quote_reserve_sol"] == pytest.approx(2.8352) and exact["liquidity_sol"] == 0.0 and exact["is_mayhem"] is True
+    assert exact["price_sol"] == pytest.approx(2.8352 / 1_117_190_825.18) and "account read on-chain" in exact["reserve_model"]
+    liquidity = next(c for c in risk.risk_report(conn, MINT)["components"] if c["name"] == "liquidity")
+    assert any("Mayhem mode" in e for e in liquidity["evidence"])
 
 
 def test_discover_imports_only_bonding_curve_pools_and_reports_the_gap(conn, settings):

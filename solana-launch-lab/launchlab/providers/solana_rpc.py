@@ -9,6 +9,8 @@ IP and 40 / 10 s per method. Version-1 transactions are live, so `maxSupportedTr
 
 from __future__ import annotations
 
+import base64
+import struct
 from collections.abc import Callable
 from typing import Any
 
@@ -25,6 +27,58 @@ READ_METHODS = frozenset({
 })
 TX_OPTS = {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 1, "commitment": "confirmed"}
 SLOT_SECONDS = 0.218  # measured 2026-11-20/21; only used as a first guess when locating a slot by time
+
+
+B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+NATIVE_SOL = ("1" * 32, WSOL_MINT)   # how a SOL-quoted curve names its quote currency
+
+
+def b58decode(address: str) -> bytes:
+    """A 32-byte Solana address from its base58 text. Used only to compare addresses inside account and event data."""
+    n = 0
+    for ch in address:
+        n = n * 58 + B58.index(ch)
+    return n.to_bytes(32, "big")
+
+
+def b58encode(raw: bytes) -> str:
+    n, out = int.from_bytes(raw, "big"), ""
+    while n:
+        n, rem = divmod(n, 58)
+        out = B58[rem] + out
+    return "1" * (len(raw) - len(raw.lstrip(b"\0"))) + out
+
+
+def decode_curve_account(data_b64: str) -> dict[str, Any] | None:
+    """Reserves stored in a Pump.fun bonding-curve account. Layout from the official docs; on 2026-11-23 the
+    decoded values equalled the last trade event for six mainnet curves, Mayhem and standard.
+
+    This is the exact current state. It must be read, not derived from price: on Mayhem launches the agent
+    moves virtual reserves independently of real ones."""
+    try:
+        raw = base64.b64decode(data_b64)
+        virtual_tokens, virtual_quote, real_tokens, real_quote, supply = struct.unpack_from("<QQQQQ", raw, 8)
+        if len(raw) < 115:
+            return None
+    except (ValueError, struct.error):
+        return None
+    quote_mint = b58encode(raw[83:115])
+    in_sol = quote_mint in NATIVE_SOL
+    return {"virtual_tokens": virtual_tokens / 1e6, "real_tokens": real_tokens / 1e6, "supply": supply / 1e6, "complete": bool(raw[48]),
+            "creator": b58encode(raw[49:81]), "is_mayhem": bool(raw[81]), "quote_mint": quote_mint, "quote_is_sol": in_sol,
+            "virtual_sol": virtual_quote / 1e9 if in_sol else None, "real_sol": real_quote / 1e9 if in_sol else None}
+
+
+def read_curve_accounts(client: HttpClient, url: str, addresses: list[str]) -> dict[str, dict[str, Any] | None]:
+    """Current stored reserves of up to 100 bonding-curve accounts in one call."""
+    out: dict[str, dict[str, Any] | None] = {}
+    for i in range(0, len(addresses), 100):
+        chunk = addresses[i:i + 100]
+        values = (call(client, url, "getMultipleAccounts", [chunk, {"encoding": "base64"}]).data.get("result") or {}).get("value") or []
+        for address, value in zip(chunk, values, strict=False):
+            data = (value or {}).get("data") if isinstance(value, dict) else None
+            out[address] = decode_curve_account(data[0]) if isinstance(data, list) and data else None
+    return out
 
 
 def make_client(**overrides: Any) -> HttpClient:

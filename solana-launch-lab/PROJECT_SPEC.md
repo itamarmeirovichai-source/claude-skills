@@ -54,6 +54,7 @@ launchlab/
   policy.py          the pre-registered decision and exit rules (versioned)
   paper.py           paper-trading simulator, ledger, metrics, uncertainty
   audit.py           re-check a "alert at time T, N× later" claim against candles
+  backfill.py        backtest: unselected sample of past launches read from the chain
   server.py          JSON API + static dashboard
   __main__.py        command line
   static/            dashboard
@@ -150,7 +151,11 @@ Order of operations for each token, strictly time-ordered:
    configured share of the pool are filled partially.
 4. **Exit** by fixed rule only: take-profit multiple, stop-loss fraction, or time stop, evaluated on each
    later observation; the exit executes at the first observation at or after `trigger + latency`, not at
-   the trigger price. **The later all-time high is never an input.**
+   the trigger price. **The later all-time high is never an input.** Exit proceeds count the position's own
+   SOL as still in the pool: with recorded reserves `(Q, B)` and `x` tokens held, gross proceeds are
+   `Q·x / (B − x)`. The older, harsher pricing `Q·x / (B + x)` capped by recorded real SOL is available as
+   `own_liquidity = false` and is reported as a conservative bound. (Added in 0.1.1, before the first
+   backtest; see BACKTEST.md.)
 5. **Unsellable.** If no observation arrives within `max_wait` of the exit trigger, or exit liquidity is
    below the configured minimum, the position is closed as `unsellable` at zero.
 6. **Still open at the end of data:** reported separately, marked at the last price and also at zero.
@@ -202,6 +207,13 @@ Synthetic demo results are never evaluated against this plan; the UI labels them
 | Clock skew | All times UTC; `ingested_at` from local clock, `observed_at` from the source. |
 | Database tampering or partial write | Hash chain verification in Data health; transactions per ingest. |
 | User misreads a risk reading as advice | Fixed wording in the UI and README; no score, no ranking by "quality". |
+
+## 12a. Backtest (added in 0.1.1)
+
+`launchlab backfill` reads an unselected sample of past launches from the chain and applies two rulebooks to
+the same data: the filter above and a baseline that enters every priced launch. The plan is written and
+committed before the data is read; see [BACKTEST.md](BACKTEST.md). A backtest can show that a rule loses; it
+cannot show that one wins.
 
 ## 13. Out of scope for 0.1
 

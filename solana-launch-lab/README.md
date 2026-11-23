@@ -43,6 +43,8 @@ No API key is needed for either mode.
 | `python -m launchlab discover --live` | Import the newest Pump.fun launches from the provider's new-pools list | read-only |
 | `python -m launchlab watch --live [--interval 60] [--max-new 2] [--cycles N]` | Repeat: discover, ingest a few, update the live paper book | read-only |
 | `python -m launchlab audit <mint> --alert <UTC time> [--claimed-cap USD] [--claimed-multiple N] [--onchain] --live` | Check an "alert at T, N× later" claim against candles | read-only |
+| `python -m launchlab backfill [--hours 24] [--sample 500] --live` | Backtest: read a systematic sample of past launches from the chain into `data/backtest.sqlite3` and apply both rulebooks. About 50 minutes on the public endpoint; resumable. | read-only |
+| `python -m launchlab backfill-report` | Print the finished backtest with a split by launch type and sensitivity runs | none |
 | `python -m launchlab verify-log` | Verify the hash chain of the event log | none |
 | `python -m launchlab status` | Counts, provider health, settings (RPC URL redacted) | none |
 
@@ -74,6 +76,8 @@ history, ownership concentration, liquidity, sale impact, data quality.
   a *probabilistic* link. Neither is described as common ownership.
 - On the public Solana RPC, holder lists and creator history are usually `unknown`; see
   [DATA_SOURCES.md](DATA_SOURCES.md) for why and what would fix it.
+- "Mayhem mode" launches are flagged: an automated agent holds a second billion tokens, and the quoted
+  price can rise while almost no SOL is available to sellers.
 
 ## How the paper trading works
 
@@ -84,7 +88,9 @@ history, ownership concentration, liquidity, sale impact, data quality.
    probability per attempt, and a cap on pool share.
 3. It is "sold" only by a fixed rule (take-profit, stop-loss, or time stop), one latency after the trigger.
    A later all-time high is never an input.
-4. No exit data or too little depth means `unsellable` at zero.
+4. Exit proceeds count the position's own SOL as still in the pool. A harsher variant that ignores it is kept
+   as a conservative bound (`own_liquidity`).
+5. No exit data means `unsellable` at zero.
 
 **The rules are yours to set.** They live in [`launchlab/policy.py`](launchlab/policy.py):
 `DecisionRule` (which launches qualify) and `ExitRule` / `exit_trigger` (when to exit). The exit rule is the
@@ -94,6 +100,17 @@ the common round trip, short time stops miss slow movers. Decide before looking 
 
 The evaluation plan (minimum 200 resolved candidates over 14 days, time-ordered split, adjustment for the
 number of rulesets tried) is in [PROJECT_SPEC.md](PROJECT_SPEC.md) section 10.
+
+## Backtest
+
+[BACKTEST.md](BACKTEST.md) holds the plan (committed before the data was read) and the results. To look at
+the backtest ledger in the dashboard:
+
+```bash
+LAUNCHLAB_DB=data/backtest.sqlite3 python -m launchlab serve --no-seed
+```
+
+then choose the `backtest` or `backtest-all` book under **Paper ledger**.
 
 ## Configuration
 
@@ -118,7 +135,7 @@ Development tools are pinned in `uv.lock`. With [uv](https://docs.astral.sh/uv/)
 
 ```bash
 uv sync                 # creates .venv with the three dev tools
-uv run pytest           # 72 tests
+uv run pytest           # 87 tests
 uv run ruff check .
 uv run mypy
 ```
@@ -157,6 +174,7 @@ Without uv, any environment that has the three tools works: `python -m pytest`, 
 | [RESEARCH.md](RESEARCH.md) | Method, findings, literature, competing hypotheses |
 | [DATA_SOURCES.md](DATA_SOURCES.md) | APIs, terms, rate limits, definitions, gaps |
 | [PROJECT_SPEC.md](PROJECT_SPEC.md) | Requirements, architecture, evaluation plan, failure modes |
+| [BACKTEST.md](BACKTEST.md) | Backtest plan (fixed in advance) and results |
 | [progress.md](progress.md) | Current state, next steps, resume commands |
 | [research-notes/](research-notes/) | Working notes from the research session |
 | `launchlab/` | Application source |

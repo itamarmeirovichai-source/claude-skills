@@ -7,7 +7,6 @@ A failing provider never blocks the others and never produces a made-up value: i
 from __future__ import annotations
 
 import hashlib
-import math
 import sqlite3
 import time
 from collections.abc import Callable
@@ -61,20 +60,12 @@ def _guard(conn: sqlite3.Connection, provider: str, errors: list[dict[str, Any]]
 
 
 def attach_reserves(payload: dict[str, Any], tolerance: float = 0.05) -> None:
-    """Add pricing reserves to a market payload when they can be derived AND cross-checked against the
-    quoted price. If the check fails the reserves are left out and the reason is noted."""
+    """Add pricing reserves to an AMM-pool payload when they can be cross-checked against the quoted price.
+    If the check fails the reserves are left out and the reason is noted. Bonding-curve reserves are never
+    derived from price: they are read from the curve account (see `curve_observation`)."""
     price = payload.get("price_sol")
-    if not price:
-        return
-    if payload.get("venue") == "curve":
-        k = amm.INITIAL_VIRTUAL_SOL * amm.INITIAL_VIRTUAL_TOKENS
-        quote = math.sqrt(k * price)
-        payload.update(quote_reserve_sol=quote, base_reserve=math.sqrt(k / price), liquidity_sol=max(quote - amm.INITIAL_VIRTUAL_SOL, 0.0),
-                       curve_real_sol=max(quote - amm.INITIAL_VIRTUAL_SOL, 0.0),
-                       reserve_model="derived from price assuming standard bonding-curve constants (not read from the account)")
-        return
     base, quote_real = payload.get("pool_base_balance"), payload.get("pool_quote_balance")
-    if payload.get("dex_id") == "pumpswap" and base and quote_real is not None and payload.get("quote_symbol") == "SOL":
+    if price and payload.get("dex_id") == "pumpswap" and base and quote_real is not None and payload.get("quote_symbol") == "SOL":
         effective = quote_real + amm.OBSERVED_POOL_BOOST_SOL
         implied = effective / base
         if abs(implied / price - 1) <= tolerance:
@@ -82,6 +73,19 @@ def attach_reserves(payload: dict[str, Any], tolerance: float = 0.05) -> None:
                            reserve_model="pool balances + observed InitBoost constant; cross-checked against quoted price")
         else:
             payload["reserve_note"] = f"reserves omitted: balances imply {implied:.3e} SOL but quoted price is {price:.3e} SOL"
+
+
+def curve_observation(state: dict[str, Any], curve_address: str) -> dict[str, Any] | None:
+    """A market payload from a bonding-curve account's stored reserves, or None when it cannot be quoted in SOL."""
+    if not state.get("quote_is_sol") or state.get("complete") or not state.get("virtual_tokens"):
+        return None
+    res = amm.Reserves(state["virtual_sol"], state["virtual_tokens"])
+    return {"venue": "curve", "dex_id": "pump-fun", "pool_address": curve_address, "price_sol": res.price,
+            "quote_reserve_sol": res.quote, "base_reserve": res.base, "liquidity_sol": state["real_sol"], "curve_real_sol": state["real_sol"],
+            "is_mayhem": state["is_mayhem"], "price_usd": None, "fdv_usd": None, "fdv_definition": "not computed from the curve account",
+            "market_cap_usd": None, "market_cap_definition": "not computed from the curve account", "liquidity_usd": None,
+            "liquidity_definition": "real SOL held by the bonding curve (what sellers can take out)",
+            "reserve_model": "bonding-curve account read on-chain (exact stored reserves)"}
 
 
 def flag_negligible(payload: dict[str, Any], threshold_usd: float = 1.0) -> bool:
@@ -168,6 +172,13 @@ def ingest_mint(conn: sqlite3.Connection, settings: Settings, mint: str, clients
     url = settings.solana_rpc_url
     clients.rpc.on_fetch = lambda res, request: _snapshot(conn, settings, solana_rpc.NAME, res, request)
     if curve_address:
+        states = _guard(conn, solana_rpc.NAME, errors, lambda: solana_rpc.read_curve_accounts(clients.rpc, url, [curve_address]))
+        exact = curve_observation(states[curve_address], curve_address) if states and states.get(curve_address) else None
+        if exact:
+            db.add_observation(conn, mint, "market", solana_rpc.NAME, now, exact, is_synthetic=False, ingested_at=now, missing=["price_usd"])
+            stored["market"] += 1
+            db.upsert_token(conn, mint, is_synthetic=False, meta={"is_mayhem": exact["is_mayhem"]})
+    if curve_address:
         launch = _guard(conn, solana_rpc.NAME, errors,
                         lambda: solana_rpc.read_launch_structure(clients.rpc, url, curve_address, mint, max_pages=LAUNCH_HISTORY_PAGES))
         if launch is not None:
@@ -222,6 +233,7 @@ def discover(conn: sqlite3.Connection, settings: Settings, clients: Clients, *, 
     res = _guard(conn, geckoterminal.NAME, errors, lambda: geckoterminal.fetch_new_pools(clients.gecko))
     added = 0
     new_mints: list[str] = []
+    curves: dict[str, str] = {}
     if res is not None:
         _snapshot(conn, settings, geckoterminal.NAME, res)
         for payload in geckoterminal.normalize_pools(res.data):
@@ -232,12 +244,19 @@ def discover(conn: sqlite3.Connection, settings: Settings, clients: Clients, *, 
             name = (payload.get("pool_name") or "").split(" / ")[0] or None
             db.upsert_token(conn, mint, is_synthetic=False, now=now, symbol=name, launch_time=payload.get("pool_created_at"),
                             launch_source="geckoterminal pool_created_at (bonding-curve pool)", meta={"curve_address": payload["pool_address"]})
-            attach_reserves(payload, settings.conflict_tolerance)
             db.add_observation(conn, mint, "market", geckoterminal.NAME, res.fetched_at, payload, is_synthetic=False, ingested_at=now,
                                missing=[k for k in ("price_sol",) if payload.get(k) is None])
+            curves[mint] = payload["pool_address"]
             if not known:
                 added += 1
                 new_mints.append(mint)
+        # exact reserves for every listed curve, in one read: provider prices alone do not say how much SOL a seller can take out
+        states = _guard(conn, solana_rpc.NAME, errors, lambda: solana_rpc.read_curve_accounts(clients.rpc, settings.solana_rpc_url, list(curves.values())))
+        for mint, curve in curves.items():
+            exact = curve_observation(states[curve], curve) if states and states.get(curve) else None
+            if exact:
+                db.add_observation(conn, mint, "market", solana_rpc.NAME, now, exact, is_synthetic=False, ingested_at=now, missing=["price_usd"])
+                db.upsert_token(conn, mint, is_synthetic=False, meta={"is_mayhem": exact["is_mayhem"]})
     db.log_event(conn, "discover", {"added": added, "errors": errors})
     return {"added": added, "new_mints": new_mints, "errors": errors,
             "coverage_note": "one page of the provider's newest pools; launches between polls are missed"}

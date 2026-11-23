@@ -1,6 +1,6 @@
 [project]
 name = "solana-launch-lab"
-version = "0.1.0"
+version = "0.1.1"
 description = "Read-only Solana launch research and paper-trading lab. No wallet, no signing, no execution."
 readme = "README.md"
 requires-python = ">=3.11"

@@ -70,6 +70,21 @@ Any backtest that spans those dates must use the schedule in force at each trade
 The app's default cost model implements the tier table above in `launchlab/costs.py` and lets every number
 be overridden in configuration.
 
+### 2a. What the chain itself showed on 2026-11-23 (CHAIN, found while building the backtest)
+
+| Fact | Detail |
+|---|---|
+| A complete list of launches | Every `create` transaction is signed by the mint-authority address `TSLvdd1pWpHVjahSpsvCXUbgwsL3JAcvokwaKt1eokM`, so `getSignaturesForAddress` on it lists every launch. 36,379 successful entries in one 24-hour window. A few entries are not creations and are skipped. |
+| Creation event | Log line `Program data:` beginning with `1b72a94ddeeb6376` (the first 8 bytes of sha256 of `event:CreateEvent`). After three strings: mint, bonding curve, user, creator, timestamp, virtual token reserves, virtual SOL reserves, real token reserves, total supply, token program, Mayhem flag, cashback flag, quote mint, virtual quote reserves. |
+| Trade event | Begins with `bddb7fd34ee661ee`. Mint at byte 8; the four reserves **after** the trade (virtual SOL, virtual tokens, real SOL, real tokens) at byte 97. |
+| Curve account | 166 bytes. After the 8-byte tag: virtual tokens, virtual quote, real tokens, real quote, supply (five u64), `complete` at byte 48, creator at 49, Mayhem flag at 81, quote mint at 83. For six mainnet curves the stored values equalled the last trade event exactly. |
+| Quote currency | A SOL curve names its quote as the all-ones address. Curves quoted in USDC or in another coin exist (about 1 in 10 of a small sample); their reserves are not in SOL. |
+| **Mayhem mode** | Roughly four in ten launches in small samples. The curve starts identically, but an automated agent holds a second 1,000,000,000 tokens and trades for 24 hours. Observed: virtual SOL anywhere from 0.05 to 196 while **real SOL was near zero**; price both far above and far below the launch price with almost nothing withdrawable. The constant-product relation between virtual reserves and the launch constants does **not** hold, so a Mayhem curve's state must be read (account or trade event), never derived from price or token balance. |
+| Standard curves | For non-Mayhem SOL curves the state derived from the curve's token balance equalled the trade event exactly. |
+| Bot noise | Programs that are not Pump.fun touch curve accounts without trading (one transaction read nine curves). A busy curve's signature list is therefore mostly non-trades; "last transaction" is not "last trade". |
+| History up to a moment | `getSignaturesForAddress(address, before=<any confirmed signature>)` returns the address's transactions that precede that signature, even if the signature belongs to another account. This makes "state at launch + T" readable without paging back from the present. |
+| Fees sit in the curve account | The curve account held slightly more SOL than its real reserves (rent plus fees not yet swept). |
+
 ## 3. Solana JSON-RPC
 
 Sources: solana.com RPC docs (via `github.com/solana-foundation/solana-com` commit `82d49aed`), `docs.anza.xyz`.
@@ -78,6 +93,7 @@ Sources: solana.com RPC docs (via `github.com/solana-foundation/solana-com` comm
 |---|---|---|
 | Public mainnet endpoint | `https://api.mainnet-beta.solana.com` (docs now also list `api.mainnet.solana.com`) | DOC |
 | Public rate limits | 100 requests / 10 s per IP; 40 / 10 s per method; 40 concurrent connections; 100 MB / 30 s | DOC |
+| `getTransaction` in practice | HTTP 429 with `Retry-After: 10` beyond **10 calls per 10 s**; response header `x-ratelimit-method-limit: 10`. The adapter spaces these calls 1.05 s apart. | CHAIN, contradicts the documented 40 |
 | Intended use | "not intended for production applications" | DOC |
 | `getSignaturesForAddress` | newest first; `limit` 1–1,000; `before` / `until` cursors; no time filter | DOC |
 | `getMultipleAccounts` | ≤ 100 accounts | DOC |

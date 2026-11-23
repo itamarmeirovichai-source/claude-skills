@@ -340,3 +340,29 @@ def test_parallel_readers_give_the_same_ledger_as_one_reader(world, tmp_path):
     serial, parallel = run(tmp_path / "one.sqlite3", 1), run(tmp_path / "four.sqlite3", 4)
     assert serial == parallel
     assert serial[0]["read"] == 12 and len(serial[1]) == 24 and len([p for p in serial[2] if p[0] == "backtest"]) == 4
+
+
+def test_report_covers_both_books_and_sensitivity_without_touching_the_stored_result(world):
+    chain, client, settings, conn = world
+    now = 1000.0 + 2 * backfill.OUTCOME_WINDOW_S + 100
+    _, curve, sold = launch(chain, "good", 1000.0)
+    trade(chain, "good", curve, 1040.0, after_sold(sold + 120e6), 1)
+    trade(chain, "good", curve, 1400.0, after_sold(sold + 420e6), 2)
+    launch(chain, "may", 1005.0, mayhem=True)
+    launch(chain, "coinq", 1008.0, quote=PUMP_COIN)
+    launch(chain, "dud", 1020.0)
+    filler(chain, 1025.0, 1020.0 + backfill.OUTCOME_WINDOW_S + 20)
+    backfill.run_backfill(conn, settings, client, "https://rpc.test", hours=1, sample=10_000, now=now)
+    before = [tuple(r) for r in conn.execute("SELECT book, mint, status, net_pnl_sol FROM positions ORDER BY book, mint")]
+    rep = backfill.report(conn, settings, now=now)
+    assert rep["plan"]["sample_size"] == sum(rep["queue"].values()) and rep["queue"]["read"] == 3 and rep["queue"]["unsupported"] == 1
+    assert rep["unsupported"] == {"quoted in another token, not SOL": 1} and rep["launches_with_a_price"] == 3
+    assert rep["mayhem_flag_counts"] == {"0": 3, "1": 1}
+    assert rep["books"]["backtest"]["ruleset"] == "baseline-v1" and rep["books"]["backtest-all"]["candidates"] == 3
+    everything = rep["books"]["backtest-all"]
+    assert everything["exit_reasons"]["time_stop"] == 2 and everything["rejection_reasons"] == {"no_price": 1}   # the unpriced curve
+    assert rep["baseline_by_launch_type"]["mayhem"]["n"] == 1 and rep["baseline_by_launch_type"]["standard"]["n"] == 2
+    conservative, lucky = rep["sensitivity"]["conservative_exit"], rep["sensitivity"]["no_random_failures"]
+    assert conservative["backtest-all"]["expectancy"] < rep["books"]["backtest-all"]["expectancy"]     # ignoring our own SOL can only hurt
+    assert lucky["backtest-all"]["candidates"] == 3 and "Not evidence of an edge" in rep["note"]
+    assert [tuple(r) for r in conn.execute("SELECT book, mint, status, net_pnl_sol FROM positions ORDER BY book, mint")] == before

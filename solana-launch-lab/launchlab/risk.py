@@ -153,12 +153,17 @@ def risk_report(conn: sqlite3.Connection, mint: str, as_of: float | None = None,
         comps.append(_unknown("liquidity", "no pool or curve depth in the stored observations"))
     else:
         level = "high" if liquidity_sol < THRESHOLDS["liquidity_sol"][1] else "elevated" if liquidity_sol < THRESHOLDS["liquidity_sol"][0] else "low"
+        mayhem = bool(mp.get("is_mayhem") or lp.get("is_mayhem"))
+        if mayhem and level == "low":
+            level = "elevated"
         burned = lp.get("lp_burned_at_migration")
         comps.append(_component(
             "liquidity", "known", level, liquidity_sol,
             [f"about {liquidity_sol:.2f} SOL of quote-side depth on the {mp.get('venue') or 'unknown venue'}",
              {True: "LP tokens were burned in the migration transaction", False: "LP tokens were NOT burned at migration",
-              None: "LP control not read"}[burned if burned in (True, False) else None]],
+              None: "LP control not read"}[burned if burned in (True, False) else None],
+             *(["Mayhem mode: an automated agent holds a second billion tokens and can sell them into the curve for 24 hours; "
+                "the quoted price can rise while the SOL available to sellers stays near zero"] if mayhem else [])],
             market["provider"], market["observed_at"], "medium",
             "Depth is what a seller can actually take out; a quoted market cap is not."))
     base, quote = mp.get("base_reserve"), mp.get("quote_reserve_sol")

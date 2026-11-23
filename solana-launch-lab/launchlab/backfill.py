@@ -24,6 +24,8 @@ from __future__ import annotations
 
 import base64
 import bisect
+import dataclasses
+import json
 import sqlite3
 import struct
 import threading
@@ -36,30 +38,11 @@ from . import amm, db, paper, policy
 from .config import Settings
 from .providers import solana_rpc
 from .providers.base import HttpClient, ProviderError
+from .providers.solana_rpc import NATIVE_SOL, b58decode, b58encode
 
 MINT_AUTHORITY = "TSLvdd1pWpHVjahSpsvCXUbgwsL3JAcvokwaKt1eokM"   # Pump.fun mint authority (official docs)
 OUTCOME_WINDOW_S = 100 + 1800 + 180          # entry offset + longest hold + room for the exit to fill
 STRUCTURE_WINDOW_S = 3                        # the creation slot lies well inside the first 3 seconds
-B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-NATIVE_SOL = ("1" * 32, solana_rpc.WSOL_MINT)  # how a SOL-quoted curve names its quote currency
-
-
-def b58decode(address: str) -> bytes:
-    """A 32-byte Solana address from its base58 text. Used only to compare addresses inside event data."""
-    n = 0
-    for ch in address:
-        n = n * 58 + B58.index(ch)
-    return n.to_bytes(32, "big")
-
-
-def b58encode(raw: bytes) -> str:
-    n, out = int.from_bytes(raw, "big"), ""
-    while n:
-        n, rem = divmod(n, 58)
-        out = B58[rem] + out
-    return "1" * (len(raw) - len(raw.lstrip(b"\0"))) + out
-
-
 def parse_create_event(raw: bytes, mint: str) -> dict[str, Any] | None:
     """Decode a Pump.fun CreateEvent (layout from the official IDL) if `raw` is one for `mint`."""
     if raw[:8] != CREATE_EVENT:
@@ -517,3 +500,74 @@ def run_backfill(conn: sqlite3.Connection, settings: Settings, client: HttpClien
     books = run_books(conn, settings, now)
     db.log_event(conn, "backfill_run", {"queue": counts(), "books": {name: b["run"] for name, b in books.items()}})
     return {"queue": counts(), "books": books}
+
+
+# --------------------------------------------------------------------------------------------
+# report
+# --------------------------------------------------------------------------------------------
+
+SUMMARY_KEYS = ("ruleset", "signals", "candidates", "rejected", "resolved", "filled", "unsellable", "failed_attempts", "gross_pnl_sol", "fees_sol",
+                "net_pnl_sol", "expectancy", "expectancy_ci", "ci_confidence", "median_return", "win_rate", "avg_win", "avg_loss", "max_drawdown_sol",
+                "rejection_reasons", "positions_by_status", "distribution", "verdict", "verdict_note")
+SENSITIVITY: dict[str, dict[str, Any]] = {
+    "conservative_exit": {"own_liquidity": False},      # exit priced as if the position's own SOL were not in the pool
+    "no_random_failures": {"fail_prob": 0.0},           # every transaction lands first time
+}
+
+
+def _summary(metrics: dict[str, Any]) -> dict[str, Any]:
+    return {k: metrics[k] for k in SUMMARY_KEYS}
+
+
+def _group_stats(returns: list[float], seed: int) -> dict[str, Any]:
+    if not returns:
+        return {"n": 0}
+    ordered = sorted(returns)
+    ci = paper.bootstrap_mean_ci(returns, seed=seed)
+    return {"n": len(returns), "mean_return": sum(returns) / len(returns), "median_return": ordered[len(ordered) // 2],
+            "interval_95": list(ci) if ci else None, "win_rate": sum(r > 0 for r in returns) / len(returns),
+            "share_losing_90pct_or_more": sum(r <= -0.9 for r in returns) / len(returns),
+            "share_gaining_100pct_or_more": sum(r >= 1.0 for r in returns) / len(returns)}
+
+
+def report(conn: sqlite3.Connection, settings: Settings, *, now: float | None = None) -> dict[str, Any]:
+    """Everything needed to read a finished backtest: the plan, what could be read, both books, a split of
+    the baseline by launch type, and sensitivity runs. No network. The stored books are not modified."""
+    now = time.time() if now is None else now
+    size = settings.paper.size_sol
+    plan_row = conn.execute("SELECT payload FROM events WHERE type = 'backfill_planned' ORDER BY id DESC LIMIT 1").fetchone()
+    queue = {r["status"]: r["n"] for r in conn.execute("SELECT status, COUNT(*) AS n FROM backfill_queue GROUP BY status")}
+    unsupported: dict[str, int] = {}
+    for r in conn.execute("SELECT note FROM backfill_queue WHERE status = 'unsupported'"):
+        key = "quoted in another token, not SOL" if "not SOL" in r["note"] else r["note"]
+        unsupported[key] = unsupported.get(key, 0) + 1
+    readable = conn.execute("SELECT COUNT(DISTINCT mint) FROM observations WHERE kind = 'market'").fetchone()[0]
+    mayhem = {str(r["flag"]): r["n"] for r in conn.execute(
+        "SELECT json_extract(meta, '$.is_mayhem') AS flag, COUNT(*) AS n FROM tokens WHERE is_synthetic = 0 GROUP BY flag")}
+    books: dict[str, Any] = {}
+    for book in BOOKS:
+        metrics = paper.book_metrics(conn, book, settings)
+        exits = {r["exit_reason"]: r["n"] for r in conn.execute(
+            "SELECT exit_reason, COUNT(*) AS n FROM positions WHERE book = ? GROUP BY exit_reason ORDER BY n DESC", (book,))}
+        books[book] = {**_summary(metrics), "exit_reasons": exits}
+    split: dict[str, Any] = {}
+    for label, flag in (("mayhem", 1), ("standard", 0)):
+        rows = conn.execute("SELECT p.net_pnl_sol FROM positions p JOIN tokens t ON t.mint = p.mint WHERE p.book = 'backtest-all'"
+                            " AND json_extract(t.meta, '$.is_mayhem') = ?", (flag,)).fetchall()
+        split[label] = _group_stats([r["net_pnl_sol"] / size for r in rows], settings.paper.seed)
+    sensitivity: dict[str, Any] = {}
+    for name, change in SENSITIVITY.items():
+        mem = sqlite3.connect(":memory:", isolation_level=None)
+        conn.backup(mem)
+        mem.row_factory = sqlite3.Row
+        for book in BOOKS:
+            paper.reset_book(mem, book)
+        variant = dataclasses.replace(settings, paper=dataclasses.replace(settings.paper, **change))
+        result = run_books(mem, variant, now)
+        keys = ("candidates", "resolved", "expectancy", "expectancy_ci", "net_pnl_sol", "win_rate", "unsellable")
+        sensitivity[name] = {"change": change, **{book: {k: result[book]["metrics"][k] for k in keys} for book in BOOKS}}
+        mem.close()
+    return {"plan": json.loads(plan_row["payload"]) if plan_row else None, "queue": queue, "unsupported": unsupported,
+            "launches_with_a_price": readable, "mayhem_flag_counts": mayhem, "books": books, "baseline_by_launch_type": split,
+            "sensitivity": sensitivity, "position_size_sol": size,
+            "note": "Descriptive results for one past window with modelled fills. Not evidence of an edge, not a forecast."}
