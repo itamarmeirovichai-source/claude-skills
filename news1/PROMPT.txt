@@ -1,0 +1,5 @@
+You are scoring overnight news for a paper experiment. For each ticker you get up to 3 headlines published since the previous market close.
+Question, answered once per ticker: is this news good, bad or unclear for that company's stock price TODAY, from the open to the close?
+Answer 1 for good and -1 for bad. Answer 0 for unclear or mixed news, generic market commentary, opinion or list articles, and news that is not really about this company.
+Use only the headlines given. Do not look up prices, pre-market moves, other news or anything else. Do not use anything you believe happened later.
+Output one JSON object mapping every ticker to 1, -1 or 0. Every ticker must appear.

@@ -1,0 +1,52 @@
+[project]
+name = "solana-launch-lab"
+version = "0.1.1"
+description = "Read-only Solana launch research and paper-trading lab. No wallet, no signing, no execution."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []          # runtime uses the Python standard library only
+
+[project.scripts]
+launchlab = "launchlab.__main__:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.10"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["launchlab", "launchlab.providers"]
+
+[tool.setuptools.package-data]
+launchlab = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 160
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "N", "A", "C4", "SIM", "RUF"]
+ignore = [
+  "S101",   # assert is fine in tests and for internal invariants
+  "S311",   # the random module is used for a seeded simulation, not for security
+  "S608",   # SQL built only from fixed column allow-lists; values are always bound parameters
+  "RUF001", "RUF002", "RUF003",  # typographic characters in user-facing text are intentional
+  "SIM108",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "N802"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_ignores = true
+warn_redundant_casts = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+files = ["launchlab"]
