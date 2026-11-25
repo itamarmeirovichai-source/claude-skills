@@ -1511,3 +1511,15 @@ Rules for this table: wave B does **not** go on Thu 19 (that day is wave A's); a
   - Foggy depends on the collar returning to $58.
 
 **Blockers (unchanged):** owner approval; site not live (no links in any DM); `{BUSINESS_ADDRESS}` placeholder (no emails); Printfresh handle (c); Saranoni strict vs loose (moot while the BF sale runs); Dandelion "gift set only".
+
+## 33. Wave-B send-morning check, Wed 25 Nov (~05:48–06:00 UTC = 07:48–08:00 Israel; light run) + the 1/2 Dec plan
+**Status:** no owner approval (silent since 10-12, **44 days**). Nothing sent, nothing posted; $0. No Ad Library read. No DM text changed. Detail: `SEND_PACK_2026-11-25.md` → "Send-morning re-check 2026-11-25".
+- **Wave A missed Tue 24:** no approval by the 14:00 Israel gate, so nothing went. Per §32 → **Tue 1 Dec**, gate 14:00 Israel.
+- **Wave B, Wed 25 (gate 15:00 Israel = 13:00 UTC): 1 go, 7 out.**
+  - Q-18 Vosges ❌ skip: "20% OFF SITEWIDE", no code needed; both Snowbound gifts in the homepage-linked `holiday-sale` (121).
+  - Q-14 Equator ❌ skip: "20% off sitewide* with code: BLACKFRIDAY", also on both product pages.
+  - Q-17 THATCH ✅ go (flag): Coconut 21/21 and Driftwood 20/20 at $115, outside `all-sale` (78); only the sign-up 10 %; pop-up "Our biggest sale of the year is right around the corner".
+  - STONE AND STRAND, Alexis, Hawkins, Saranoni: unchanged skips. Legendary: hold.
+- **Recommendation (the owner decides):** don't send THATCH alone on Thanksgiving eve; fold wave B into **Wed 2 Dec**, gate 15:00 Israel. A "send #Q-17" by 15:00 Israel today would still send it at 19:10 Israel (09:10 PST).
+- **Black Friday pause: Thu 26 – Mon 30 Nov.** No cold DMs.
+- **Packs for Tue 1 Dec (wave A) and Wed 2 Dec (wave B) are built Mon 30 Nov** after a full live re-check (sale-scan, Chromium homepage + product pages, Ad Library by Page ID). Same Israel slots; the `zoneinfo` labels on 1–2 Dec match 24–25 Nov (THATCH 19:10 Israel = 09:10 PST on 2 Dec too).
