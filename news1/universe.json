@@ -1,0 +1,728 @@
+{
+ "built_at": "2026-11-25T08:46:41+00:00",
+ "seed": "NEWS-1/2026-11-25",
+ "first_pass": 1389,
+ "checked": 123,
+ "tickers": [
+  {
+   "symbol": "FANG",
+   "name": "Diamondback Energy Inc. Common Stock",
+   "adv_usd": 429730422,
+   "last_close": 176.1
+  },
+  {
+   "symbol": "IP",
+   "name": "International Paper Company Common Stock",
+   "adv_usd": 220420851,
+   "last_close": 30.62
+  },
+  {
+   "symbol": "NYT",
+   "name": "New York Times Company (The) Common Stock",
+   "adv_usd": 179782157,
+   "last_close": 70.44
+  },
+  {
+   "symbol": "CALM",
+   "name": "Cal-Maine Foods Inc. Common Stock",
+   "adv_usd": 66027011,
+   "last_close": 68.11
+  },
+  {
+   "symbol": "CRL",
+   "name": "Charles River Laboratories International Inc. Common Stock",
+   "adv_usd": 362309268,
+   "last_close": 336.13
+  },
+  {
+   "symbol": "SLG",
+   "name": "SL Green Realty Corp Common Stock",
+   "adv_usd": 40366509,
+   "last_close": 47.3
+  },
+  {
+   "symbol": "SPCX",
+   "name": "Space Exploration Technologies Corp. Class A Common Stock",
+   "adv_usd": 14132996971,
+   "last_close": 125.81
+  },
+  {
+   "symbol": "PSN",
+   "name": "Parsons Corporation Common Stock",
+   "adv_usd": 58469415,
+   "last_close": 51.67
+  },
+  {
+   "symbol": "CDE",
+   "name": "Coeur Mining Inc. Common Stock",
+   "adv_usd": 499524285,
+   "last_close": 11.19
+  },
+  {
+   "symbol": "SEI",
+   "name": "Solaris Energy Infrastructure Inc. Class A Common Stock",
+   "adv_usd": 177101319,
+   "last_close": 56.53
+  },
+  {
+   "symbol": "REPL",
+   "name": "Replimune Group Inc. Common Stock",
+   "adv_usd": 67454612,
+   "last_close": 22.24
+  },
+  {
+   "symbol": "VMRK",
+   "name": "Vivmark Residential Common Shares of Beneficial Interest",
+   "adv_usd": 346814695,
+   "last_close": 64.64
+  },
+  {
+   "symbol": "INOD",
+   "name": "Innodata Inc. Common Stock",
+   "adv_usd": 66493554,
+   "last_close": 31.38
+  },
+  {
+   "symbol": "NFLX",
+   "name": "Netflix Inc. Common Stock",
+   "adv_usd": 2481867416,
+   "last_close": 58.87
+  },
+  {
+   "symbol": "MP",
+   "name": "MP Materials Corp. Common Stock",
+   "adv_usd": 252786061,
+   "last_close": 35.91
+  },
+  {
+   "symbol": "MAA",
+   "name": "Mid-America Apartment Communities Inc. Common Stock",
+   "adv_usd": 132029770,
+   "last_close": 115.84
+  },
+  {
+   "symbol": "HAL",
+   "name": "Halliburton Company Common Stock",
+   "adv_usd": 309654859,
+   "last_close": 30.9
+  },
+  {
+   "symbol": "FCEL",
+   "name": "FuelCell Energy Inc. Common Stock",
+   "adv_usd": 47559657,
+   "last_close": 7.1
+  },
+  {
+   "symbol": "AIG",
+   "name": "American International Group Inc. New Common Stock",
+   "adv_usd": 297118801,
+   "last_close": 81.24
+  },
+  {
+   "symbol": "HAPN",
+   "name": "Happen Inc. Common Stock",
+   "adv_usd": 31461406,
+   "last_close": 14.49
+  },
+  {
+   "symbol": "GWW",
+   "name": "W.W. Grainger Inc. Common Stock",
+   "adv_usd": 491414622,
+   "last_close": 1398.02
+  },
+  {
+   "symbol": "PENN",
+   "name": "PENN Entertainment Inc. Common Stock",
+   "adv_usd": 54493057,
+   "last_close": 18.08
+  },
+  {
+   "symbol": "EW",
+   "name": "Edwards Lifesciences Corporation Common Stock",
+   "adv_usd": 521649140,
+   "last_close": 106.12
+  },
+  {
+   "symbol": "FDS",
+   "name": "FactSet Research Systems Inc. Common Stock",
+   "adv_usd": 219059779,
+   "last_close": 320.72
+  },
+  {
+   "symbol": "MSTR",
+   "name": "Strategy Inc Common Stock Class A",
+   "adv_usd": 2242234330,
+   "last_close": 77.55
+  },
+  {
+   "symbol": "DIOD",
+   "name": "Diodes Incorporated Common Stock",
+   "adv_usd": 45386361,
+   "last_close": 72.51
+  },
+  {
+   "symbol": "PCOR",
+   "name": "Procore Technologies Inc. Common Stock",
+   "adv_usd": 242066243,
+   "last_close": 73.97
+  },
+  {
+   "symbol": "MUSA",
+   "name": "Murphy USA Inc. Common Stock",
+   "adv_usd": 155990782,
+   "last_close": 510.38
+  },
+  {
+   "symbol": "DOCN",
+   "name": "DigitalOcean Holdings Inc. Common Stock",
+   "adv_usd": 337481405,
+   "last_close": 74.01
+  },
+  {
+   "symbol": "COKE",
+   "name": "Coca-Cola Consolidated Inc. Common Stock",
+   "adv_usd": 114075030,
+   "last_close": 208.77
+  },
+  {
+   "symbol": "IVZ",
+   "name": "Invesco Ltd Common Stock",
+   "adv_usd": 170339790,
+   "last_close": 27.79
+  },
+  {
+   "symbol": "LINE",
+   "name": "Lineage Inc. Common Stock",
+   "adv_usd": 46146306,
+   "last_close": 32.66
+  },
+  {
+   "symbol": "CBSH",
+   "name": "Commerce Bancshares Inc. Common Stock",
+   "adv_usd": 52544127,
+   "last_close": 53.69
+  },
+  {
+   "symbol": "VSNT",
+   "name": "Versant Media Group Inc. Class A Common Stock",
+   "adv_usd": 78305790,
+   "last_close": 35.06
+  },
+  {
+   "symbol": "COGT",
+   "name": "Cogent Biosciences Inc. Common Stock",
+   "adv_usd": 73239288,
+   "last_close": 33.01
+  },
+  {
+   "symbol": "OTIS",
+   "name": "Otis Worldwide Corporation Common Stock",
+   "adv_usd": 321500385,
+   "last_close": 78.3
+  },
+  {
+   "symbol": "LNG",
+   "name": "Cheniere Energy Inc. Common Stock",
+   "adv_usd": 700967803,
+   "last_close": 296.01
+  },
+  {
+   "symbol": "LPX",
+   "name": "Louisiana-Pacific Corporation Common Stock",
+   "adv_usd": 102663791,
+   "last_close": 77.12
+  },
+  {
+   "symbol": "SBRA",
+   "name": "Sabra Health Care REIT Inc. Common Stock",
+   "adv_usd": 60504824,
+   "last_close": 21.03
+  },
+  {
+   "symbol": "MIRM",
+   "name": "Mirum Pharmaceuticals Inc. Common Stock",
+   "adv_usd": 61256159,
+   "last_close": 109.71
+  },
+  {
+   "symbol": "SMA",
+   "name": "SmartStop Self Storage REIT Inc. Common Stock",
+   "adv_usd": 46288241,
+   "last_close": 39.34
+  },
+  {
+   "symbol": "TDW",
+   "name": "Tidewater Inc. Common Stock",
+   "adv_usd": 53222632,
+   "last_close": 72.49
+  },
+  {
+   "symbol": "DVA",
+   "name": "DaVita Inc. Common Stock",
+   "adv_usd": 161378530,
+   "last_close": 164.17
+  },
+  {
+   "symbol": "TDOC",
+   "name": "Teladoc Health Inc. Common Stock",
+   "adv_usd": 50895743,
+   "last_close": 7.52
+  },
+  {
+   "symbol": "HRMY",
+   "name": "Harmony Biosciences Holdings Inc. Common Stock",
+   "adv_usd": 34837164,
+   "last_close": 35.11
+  },
+  {
+   "symbol": "BMNR",
+   "name": "BitMine Immersion Technologies Inc. Common Stock",
+   "adv_usd": 571688385,
+   "last_close": 13.18
+  },
+  {
+   "symbol": "AEO",
+   "name": "American Eagle Outfitters Inc. Common Stock",
+   "adv_usd": 91725600,
+   "last_close": 22.79
+  },
+  {
+   "symbol": "NET",
+   "name": "Cloudflare Inc. Class A Common Stock",
+   "adv_usd": 1264284224,
+   "last_close": 287.29
+  },
+  {
+   "symbol": "GSAT",
+   "name": "Globalstar Inc. Common Stock",
+   "adv_usd": 95115484,
+   "last_close": 86.32
+  },
+  {
+   "symbol": "MSCI",
+   "name": "MSCI Inc. Common Stock",
+   "adv_usd": 367032485,
+   "last_close": 633.92
+  },
+  {
+   "symbol": "TKR",
+   "name": "Timken Company (The) Common Stock",
+   "adv_usd": 106296886,
+   "last_close": 101.81
+  },
+  {
+   "symbol": "CSCO",
+   "name": "Cisco Systems Inc. Common Stock (DE)",
+   "adv_usd": 2267734843,
+   "last_close": 93.99
+  },
+  {
+   "symbol": "RIOT",
+   "name": "Riot Platforms Inc. Common Stock",
+   "adv_usd": 487790463,
+   "last_close": 16.34
+  },
+  {
+   "symbol": "UPS",
+   "name": "United Parcel Service Inc. Common Stock",
+   "adv_usd": 631975443,
+   "last_close": 110.83
+  },
+  {
+   "symbol": "BOKF",
+   "name": "BOK Financial Corporation Common Stock",
+   "adv_usd": 32147490,
+   "last_close": 126.06
+  },
+  {
+   "symbol": "BR",
+   "name": "Broadridge Financial Solutions Inc. Common Stock",
+   "adv_usd": 220531671,
+   "last_close": 184.74
+  },
+  {
+   "symbol": "BRX",
+   "name": "Brixmor Property Group Inc. Common Stock",
+   "adv_usd": 106974419,
+   "last_close": 30.85
+  },
+  {
+   "symbol": "ALB",
+   "name": "Albemarle Corporation Common Stock",
+   "adv_usd": 233162981,
+   "last_close": 80.63
+  },
+  {
+   "symbol": "DINO",
+   "name": "HF Sinclair Corporation Common Stock",
+   "adv_usd": 258425254,
+   "last_close": 86.32
+  },
+  {
+   "symbol": "NXT",
+   "name": "Nextpower Inc. Common Stock",
+   "adv_usd": 338806311,
+   "last_close": 65.76
+  },
+  {
+   "symbol": "WDC",
+   "name": "Western Digital Corporation Common Stock",
+   "adv_usd": 2401003838,
+   "last_close": 273.95
+  },
+  {
+   "symbol": "ELVN",
+   "name": "Enliven Therapeutics Inc. Common Stock",
+   "adv_usd": 53597869,
+   "last_close": 51.26
+  },
+  {
+   "symbol": "KFY",
+   "name": "Korn Ferry Common Stock",
+   "adv_usd": 26221650,
+   "last_close": 74.58
+  },
+  {
+   "symbol": "AVAV",
+   "name": "AeroVironment Inc. Common Stock",
+   "adv_usd": 154674819,
+   "last_close": 89.4
+  },
+  {
+   "symbol": "NXST",
+   "name": "Nexstar Media Group Inc. Common Stock",
+   "adv_usd": 83076800,
+   "last_close": 205.13
+  },
+  {
+   "symbol": "MDLZ",
+   "name": "Mondelez International Inc. Class A Common Stock",
+   "adv_usd": 592156865,
+   "last_close": 67.01
+  },
+  {
+   "symbol": "RBC",
+   "name": "RBC Bearings Incorporated Common Stock",
+   "adv_usd": 150760940,
+   "last_close": 473.15
+  },
+  {
+   "symbol": "WOLF",
+   "name": "Wolfspeed Inc. Common Stock New",
+   "adv_usd": 70620536,
+   "last_close": 18.2
+  },
+  {
+   "symbol": "BOOT",
+   "name": "Boot Barn Holdings Inc. Common Stock",
+   "adv_usd": 119867998,
+   "last_close": 137.84
+  },
+  {
+   "symbol": "SYRE",
+   "name": "Spyre Therapeutics Inc. Common Stock",
+   "adv_usd": 101891374,
+   "last_close": 103.13
+  },
+  {
+   "symbol": "DXC",
+   "name": "DXC Technology Company Common Stock",
+   "adv_usd": 51479948,
+   "last_close": 14.31
+  },
+  {
+   "symbol": "LLYVK",
+   "name": "Liberty Live Holdings Inc. Series C Liberty Live Group Common Stock",
+   "adv_usd": 37576680,
+   "last_close": 108.59
+  },
+  {
+   "symbol": "HBAN",
+   "name": "Huntington Bancshares Incorporated Common Stock",
+   "adv_usd": 292151110,
+   "last_close": 14.78
+  },
+  {
+   "symbol": "NVDA",
+   "name": "NVIDIA Corporation Common Stock",
+   "adv_usd": 55739331497,
+   "last_close": 155.38
+  },
+  {
+   "symbol": "BKD",
+   "name": "Brookdale Senior Living Inc. Common Stock",
+   "adv_usd": 85057546,
+   "last_close": 9.04
+  },
+  {
+   "symbol": "MAIN",
+   "name": "Main Street Capital Corporation Common Stock",
+   "adv_usd": 26585460,
+   "last_close": 56.81
+  },
+  {
+   "symbol": "NWL",
+   "name": "Newell Brands Inc. Common Stock",
+   "adv_usd": 37795817,
+   "last_close": 5.72
+  },
+  {
+   "symbol": "CG",
+   "name": "The Carlyle Group Inc. Common Stock",
+   "adv_usd": 142494197,
+   "last_close": 38.2
+  },
+  {
+   "symbol": "HST",
+   "name": "Host Hotels & Resorts Inc. Common Stock",
+   "adv_usd": 220222328,
+   "last_close": 24.86
+  },
+  {
+   "symbol": "NFG",
+   "name": "National Fuel Gas Company Common Stock",
+   "adv_usd": 88263474,
+   "last_close": 73.82
+  },
+  {
+   "symbol": "CHYM",
+   "name": "Chime Financial Inc. Class A Common Stock",
+   "adv_usd": 230720026,
+   "last_close": 32.84
+  },
+  {
+   "symbol": "UBSI",
+   "name": "United Bankshares Inc. Common Stock",
+   "adv_usd": 39290454,
+   "last_close": 47.03
+  },
+  {
+   "symbol": "CXT",
+   "name": "Crane NXT Co. Common Stock",
+   "adv_usd": 40447804,
+   "last_close": 52.2
+  },
+  {
+   "symbol": "SHAK",
+   "name": "Shake Shack Inc. Class A Common Stock",
+   "adv_usd": 89176213,
+   "last_close": 75.35
+  },
+  {
+   "symbol": "COLM",
+   "name": "Columbia Sportswear Company Common Stock",
+   "adv_usd": 68535367,
+   "last_close": 77.94
+  },
+  {
+   "symbol": "PDI",
+   "name": "PIMCO Dynamic Income Fund Common Stock",
+   "adv_usd": 47127648,
+   "last_close": 13.82
+  },
+  {
+   "symbol": "RRR",
+   "name": "Red Rock Resorts Inc. Class A Common Stock",
+   "adv_usd": 43714346,
+   "last_close": 48.12
+  },
+  {
+   "symbol": "PYPL",
+   "name": "PayPal Holdings Inc. Common Stock",
+   "adv_usd": 589620328,
+   "last_close": 56.17
+  },
+  {
+   "symbol": "CDNA",
+   "name": "CareDx Inc. Common Stock",
+   "adv_usd": 101466650,
+   "last_close": 77.83
+  },
+  {
+   "symbol": "DLB",
+   "name": "Dolby Laboratories Common Stock",
+   "adv_usd": 71814686,
+   "last_close": 56.67
+  },
+  {
+   "symbol": "TMUS",
+   "name": "T-Mobile US Inc. Common Stock",
+   "adv_usd": 957682536,
+   "last_close": 167.3
+  },
+  {
+   "symbol": "MORN",
+   "name": "Morningstar Inc. Common Stock",
+   "adv_usd": 63280866,
+   "last_close": 236.85
+  },
+  {
+   "symbol": "SNEX",
+   "name": "StoneX Group Inc. Common Stock",
+   "adv_usd": 68082701,
+   "last_close": 38.15
+  },
+  {
+   "symbol": "AMTM",
+   "name": "Amentum Holdings Inc. Common Stock",
+   "adv_usd": 51097768,
+   "last_close": 24.8
+  },
+  {
+   "symbol": "UAL",
+   "name": "United Airlines Holdings Inc. Common Stock",
+   "adv_usd": 595600904,
+   "last_close": 107.8
+  },
+  {
+   "symbol": "MRVL",
+   "name": "Marvell Technology Inc. Common Stock",
+   "adv_usd": 5531003481,
+   "last_close": 131.57
+  },
+  {
+   "symbol": "NWS",
+   "name": "News Corporation Class B Common Stock",
+   "adv_usd": 40898888,
+   "last_close": 28.74
+  },
+  {
+   "symbol": "NBIX",
+   "name": "Neurocrine Biosciences Inc. Common Stock",
+   "adv_usd": 248080307,
+   "last_close": 163.47
+  },
+  {
+   "symbol": "IRDM",
+   "name": "Iridium Communications Inc Common Stock",
+   "adv_usd": 32417484,
+   "last_close": 42.61
+  },
+  {
+   "symbol": "PEGA",
+   "name": "Pegasystems Inc. Common Stock",
+   "adv_usd": 62874095,
+   "last_close": 29.14
+  },
+  {
+   "symbol": "BRC",
+   "name": "Brady Corporation Common Stock",
+   "adv_usd": 31768293,
+   "last_close": 76.62
+  },
+  {
+   "symbol": "MEDP",
+   "name": "Medpace Holdings Inc. Common Stock",
+   "adv_usd": 142109079,
+   "last_close": 631.4
+  },
+  {
+   "symbol": "CNM",
+   "name": "Core & Main Inc. Class A Common Stock",
+   "adv_usd": 104577630,
+   "last_close": 42.64
+  },
+  {
+   "symbol": "HLI",
+   "name": "Houlihan Lokey Inc. Class A Common Stock",
+   "adv_usd": 112571086,
+   "last_close": 134.53
+  },
+  {
+   "symbol": "FA",
+   "name": "First Advantage Corporation Common Stock",
+   "adv_usd": 59143890,
+   "last_close": 21.13
+  },
+  {
+   "symbol": "APLE",
+   "name": "Apple Hospitality REIT Inc. Common Shares",
+   "adv_usd": 53764958,
+   "last_close": 19.53
+  },
+  {
+   "symbol": "RLAY",
+   "name": "Relay Therapeutics Inc. Common Stock",
+   "adv_usd": 50897851,
+   "last_close": 18.12
+  },
+  {
+   "symbol": "RPM",
+   "name": "RPM International Inc. Common Stock",
+   "adv_usd": 130082450,
+   "last_close": 105.23
+  },
+  {
+   "symbol": "DOCU",
+   "name": "DocuSign Inc. Common Stock",
+   "adv_usd": 184694843,
+   "last_close": 80.04
+  },
+  {
+   "symbol": "TXT",
+   "name": "Textron Inc. Common Stock",
+   "adv_usd": 171879649,
+   "last_close": 81.26
+  },
+  {
+   "symbol": "CRCL",
+   "name": "Circle Internet Group Inc. Class A Common Stock",
+   "adv_usd": 648297382,
+   "last_close": 47.72
+  },
+  {
+   "symbol": "PM",
+   "name": "Philip Morris International Inc Common Stock",
+   "adv_usd": 1113181286,
+   "last_close": 183.95
+  },
+  {
+   "symbol": "ENS",
+   "name": "EnerSys Common Stock",
+   "adv_usd": 106121247,
+   "last_close": 127.23
+  },
+  {
+   "symbol": "GLXY",
+   "name": "Galaxy Digital Inc. Class A Common Stock",
+   "adv_usd": 142946107,
+   "last_close": 11.55
+  },
+  {
+   "symbol": "CAI",
+   "name": "Caris Life Sciences Inc. Common Stock",
+   "adv_usd": 113663061,
+   "last_close": 18.56
+  },
+  {
+   "symbol": "XYL",
+   "name": "Xylem Inc. Common Stock New",
+   "adv_usd": 319712589,
+   "last_close": 95.18
+  },
+  {
+   "symbol": "CVI",
+   "name": "CVR Energy Inc. Common Stock",
+   "adv_usd": 107106374,
+   "last_close": 31.48
+  },
+  {
+   "symbol": "QTWO",
+   "name": "Q2 Holdings Inc. Common Stock",
+   "adv_usd": 49931712,
+   "last_close": 67.77
+  },
+  {
+   "symbol": "BXP",
+   "name": "BXP Inc. Common Stock",
+   "adv_usd": 91044403,
+   "last_close": 62.68
+  },
+  {
+   "symbol": "SAM",
+   "name": "Boston Beer Company Inc. (The) Common Stock",
+   "adv_usd": 43892882,
+   "last_close": 211.71
+  }
+ ]
+}
