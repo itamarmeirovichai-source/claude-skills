@@ -1,0 +1,86 @@
+{
+ "defaults": {
+  "model": "higgsfield-ai/soul/cinema",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "e1_octa_brass",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "High-end studio portrait. Seamless charcoal paper backdrop with a gentle warm brass-gold glow behind his head and shoulders. Large soft octabox key at 45 degrees camera-left, subtle hair light from behind, crisp catchlights in both eyes. 85mm f/4, eye level. He looks into the lens with one eyebrow slightly raised, a sharp, amused, knowing look in his eyes. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6060
+   }
+  },
+  {
+   "id": "e2_dish_frontal",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "High-end studio portrait. Seamless charcoal paper backdrop, a soft warm-gold accent glow low behind his shoulders. Silver beauty dish key slightly above and 45 degrees camera-right, thin rim light on the hair and moustache curls, crisp round catchlights. 105mm f/5.6. Chin slightly lifted, one brow raised, eyes amused and conspiratorial. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6061
+   }
+  },
+  {
+   "id": "e3_threequarter",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "High-end studio portrait. Body turned slightly three-quarters to camera-left, face back to the lens. Seamless charcoal paper backdrop with a warm brass glow behind him. Large octabox key at 45 degrees camera-left with gentle fill, soft hair light, crisp catchlights. 85mm f/4. A knowing, amused gaze with one eyebrow arched. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6062
+   }
+  },
+  {
+   "id": "e4_lowkey_gold",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Low-key luxury studio portrait. Charcoal seamless paper falling to near-black at the edges, a soft warm-gold halo glow directly behind his head. Large soft key at 45 degrees from upper left, gentle falloff into shadow on the right cheek, warm rim on the moustache curls, bright catchlights. 85mm f/2.8. Eyes twinkling with dry wit, one eyebrow slightly raised. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6063
+   }
+  },
+  {
+   "id": "e5_fingers_moustache",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "High-end studio portrait. Seamless charcoal paper backdrop with a gentle brass-gold accent glow. Large soft octabox key at 45 degrees camera-left, subtle hair light, crisp catchlights. 85mm f/4. He lightly twists the tip of one moustache curl between thumb and forefinger of a well-manicured hand, one eyebrow raised, amused, knowing eyes. Five fingers, natural hand. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6064
+   }
+  },
+  {
+   "id": "e6_cover_center",
+   "model": "higgsfield-ai/soul/cinema",
+   "takes": 1,
+   "args": {
+    "prompt": "Magazine-cover studio portrait, perfectly symmetrical and frontal. Seamless dark charcoal paper backdrop, a soft warm brass glow behind the head creating a quiet halo. Large beauty dish key at 45 degrees above, soft fill, subtle hair light, crisp catchlights in both eyes. 100mm f/5.6. Calm, charismatic, slightly raised left eyebrow, eyes amused and knowing. Otto, a tall lean man in his mid-50s, long pale face, deep-set grey eyes with sharp, amused, knowing intelligence, heavy dark brows, neatly styled swept-back dark hair flecked with silver at the temples, real unretouched skin with pores and fine lines; an ENORMOUS charcoal-black handlebar moustache, impeccably groomed and waxed, real individual hair strands, sweeping out and twisting into precise, symmetrical, upturned Dali-esque curls with tightly waxed needle-thin tips, completely covering his mouth; wearing a tailored black fine-gauge turtleneck under a sharply cut dark charcoal wool blazer, a deep oxblood silk pocket square, and a small vintage brass director's viewfinder hanging on a thin brass chain at his chest. Head-and-shoulders, centred, square frame, eyes on the upper third, the whole moustache well inside the frame with margin on both sides. Editorial magazine cover portrait, Vanity Fair or GQ, Salvador Dali meets Tom Ford: luxurious, precise, charismatic, not creepy. True-to-life skin texture, unbranded, no text, no logos. No HDR, no oversaturation, no digital sharpening, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume; natural fine film grain.",
+    "aspect_ratio": "1:1",
+    "resolution": "720p",
+    "batch_size": 1,
+    "enhance_prompt": false,
+    "seed": 6065
+   }
+  }
+ ]
+}

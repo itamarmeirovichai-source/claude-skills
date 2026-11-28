@@ -1,0 +1,135 @@
+---
+// Hero: one headline, one sub-line, one primary CTA, one secondary link. The films orbit Otto in a flat
+// circle; the ring is sized (scripts/hero/ring.ts) so no card ever crosses Otto's box. Tap a card to play it.
+import { media, mediaUrl, ringFilms, SPEC_LABEL } from '../lib/media';
+import { site, bfcm, bfcmOpen, money, pricing } from '../lib/site';
+const films = ringFilms();
+const n = films.length;
+const { $comment: _c, ...headlines } = site.headlines;
+const offerLive = bfcmOpen();
+const featured = films.find((f) => f.featured) ?? films[0];
+---
+<section class="hero" id="hero" data-state="boot" aria-labelledby="hero-h1">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow sig">{site.signature}</p>
+      <h1 id="hero-h1" data-headline>{headlines.default}</h1>
+      <script is:inline define:vars={{ headlines }}>
+        // Message match: the H1 mirrors the ad or email that was clicked (utm_content). Swapped before paint.
+        try {
+          var v = new URLSearchParams(location.search).get('utm_content');
+          var h = v && Object.prototype.hasOwnProperty.call(headlines, v) ? headlines[v] : null;
+          if (h) { var el = document.getElementById('hero-h1'); el.textContent = h; el.dataset.variant = v; }
+        } catch (e) {}
+      </script>
+      <p class="hero-sub">{site.heroSub} Films from {money(pricing.from)}.</p>
+      <div class="cta-block" data-inflow-cta data-hero-cta>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#start" data-frames-cta>Get my 5 free frames <span aria-hidden="true">→</span></a>
+          <a class="btn" href={`/work/${featured?.slug ?? ''}`} data-watch-film={featured?.slug}>Watch a film <span aria-hidden="true">▸</span></a>
+        </div>
+        <p class="micro">Free. No call. 48 h.</p>
+      </div>
+      {offerLive && <p class="offer-line"><a href="#bfcm"><b>{bfcm.name}</b>: book by {bfcm.bookByLabel}, final files by {bfcm.finalByLabel}</a></p>}
+      <p class="disclose">Made with AI, including {site.mascot} and {site.producer}. Spec films are for invented brands.</p>
+    </div>
+
+    <div class="hero-stage">
+      <div class="scene" data-scene>
+        <div class="otto-frame" data-slot="hero" data-who="otto" aria-hidden="true">
+          <alpha-video id="otto" class="otto" premultiplied={media.otto.premultiplied ? '' : undefined} data-character="otto">
+            <img class="poster" src={mediaUrl(media.otto.poster)} alt="" width={media.otto.width} height={media.otto.height} fetchpriority="high" decoding="async" onerror="this.style.visibility='hidden'" />
+          </alpha-video>
+        </div>
+        <div class="ring" data-ring role="region" aria-roledescription="carousel" aria-label="Spec films circling Otto. Pick one to play it.">
+          <ul class="ring-track" data-track>
+            {films.map((f, i) => (
+              <li class="ring-item" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${n}: ${f.brand}, ${f.duration} s`} data-i={i}>
+                <a class:list={['card', { featured: f.featured }]} href={`/work/${f.slug}`} data-card={i} data-slug={f.slug}>
+                  <img src={mediaUrl(f.poster)} alt="" width="360" height="640" loading={i < 3 ? 'eager' : 'lazy'} decoding="async" onerror="this.style.visibility='hidden'" />
+                  <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-loop-av1={mediaUrl(f.loop.av1)} data-loop-h264={mediaUrl(f.loop.h264)}></video>
+                  <span class="card-meta">{f.brand}</span>
+                  <span class="sr-only">{SPEC_LABEL(f)}. Play {f.title}.</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="hero-say" aria-hidden="true">
+        <p class="say-line"><span class="hint" data-say-hint>Tap a film to play it.</span><span data-say></span></p>
+      </div>
+      <div class="hero-tools">
+        <span class="tag">{site.mascot} · director · AI</span>
+        <button type="button" class="tool" data-sound-toggle data-sound-hint>Hear {site.mascot}</button>
+        <button type="button" class="tool" data-motion aria-pressed="false">Pause motion</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; padding-block: clamp(32px, 6vh, 72px) clamp(48px, 8vh, 96px); background: radial-gradient(52% 48% at 72% 46%, rgb(176 141 87 / 0.1), transparent 70%); }
+  .hero-grid { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); }
+  .hero-copy h1 { margin-bottom: 0.3em; max-width: 17ch; font-size: clamp(2.2rem, 4.4vw, 3.9rem); }
+  .sig { margin-bottom: 14px; }
+  .hero-sub { color: var(--text-dim); max-width: 40ch; font-size: var(--fs-lede); margin-bottom: 28px; }
+  .cta-block { display: grid; gap: 10px; }
+  .offer-line { margin: 24px 0 0; font-size: 0.85rem; }
+  .offer-line a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid rgb(176 141 87 / 0.5); padding-bottom: 2px; }
+  .offer-line a:hover { color: var(--text); }
+  .offer-line b { color: var(--brass-hi); font-weight: 600; }
+  .disclose { margin: 14px 0 0; font-size: 0.8rem; color: var(--text-faint); max-width: 44ch; }
+
+  /* Scene: Otto in the middle, the films on a flat circle around him; the ring script sets --otto-h. */
+  .scene { position: relative; width: 100%; height: min(150vw, 560px); }
+  .otto-frame { position: absolute; left: 50%; top: 50%; height: var(--otto-h, 36%); aspect-ratio: 9 / 16; translate: -50% -50%; z-index: 2; }
+  .otto { position: absolute; inset: 0; display: block; }
+  .otto :global(canvas), .otto .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .otto :global(canvas) { opacity: 0; transition: opacity 0.5s var(--ease); }
+  .otto[data-ready] :global(canvas) { opacity: 1; }
+  .otto[data-ready] .poster { opacity: 0; transition: opacity 0.5s var(--ease); }
+
+  .ring { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .ring-track { list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  .ring-item { position: absolute; left: 0; top: 0; pointer-events: auto; will-change: transform; }
+  .card {
+    position: relative; display: block; width: clamp(56px, 16vw, 64px); aspect-ratio: 9 / 16; border-radius: 9px; overflow: hidden; translate: -50% -50%;
+    background: var(--ink-3); border: 1px solid var(--line-strong); box-shadow: 0 14px 30px rgb(0 0 0 / 0.45); text-decoration: none;
+    transition: border-color 0.2s, scale 0.4s var(--ease);
+  }
+  .card img, .card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .card video { opacity: 0; transition: opacity 0.5s; }
+  .card video.on { opacity: 1; }
+  .card-meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 4px 5px; background: linear-gradient(transparent, rgb(0 0 0 / 0.78)); font: 400 0.72rem/1 var(--serif); letter-spacing: 0.06em; color: var(--ivory); text-align: center; }
+  .card.featured { border-color: rgb(176 141 87 / 0.7); }
+  .card:hover, .card:focus-visible { border-color: var(--brass); scale: 1.06; }
+
+  .hero-say { min-height: calc(1.3em * 2 + 8px); margin-top: 18px; text-align: center; }
+  .say-line { margin: 0 auto; max-width: 34ch; font: 400 1.18rem/1.3 var(--serif); color: var(--text); }
+  .say-line :global(.w) { color: var(--text-faint); transition: color 0.12s linear; }
+  .say-line :global(.w.on) { color: var(--text); }
+  .hint { color: var(--text-faint); font-style: italic; }
+  .hero[data-talking] .hint, .hero[data-said] .hint { display: none; }
+  .hero-tools { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; margin-top: 10px; }
+  .tag { font: 600 0.66rem/1.2 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-right: 4px; }
+  .tool { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text-dim); font-size: 0.8rem; cursor: pointer; }
+  .tool:hover { color: var(--text); border-color: var(--brass); }
+  .tool[aria-pressed='true'] { border-color: var(--brass); color: var(--text); }
+  :global(html.sound-on) .tool[data-sound-hint] { display: none; }
+
+  @media (min-width: 900px) {
+    .hero { min-height: calc(100svh - var(--header-h)); display: grid; align-items: center; }
+    .hero-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: center; gap: 56px; }
+    .scene { height: min(calc(100svh - 260px), 680px); min-height: 480px; }
+    .card { width: clamp(80px, 6.6vw, 92px); }
+    .card-meta { font-size: 0.86rem; padding-bottom: 7px; }
+  }
+
+  /* Without JS the cards sit in a quiet row under Otto. */
+  :global(html:not(.js)) .ring-track { position: absolute; left: 0; right: 0; top: auto; bottom: 0; width: auto; height: auto; display: flex; gap: 8px; justify-content: center; }
+  :global(html:not(.js)) .ring-item { position: static; }
+  :global(html:not(.js)) .card { translate: none; }
+  :global(html:not(.js)) .otto-frame { top: 0; translate: -50% 0; height: 60%; }
+  :global(html.motion-paused) .card video { display: none; }
+</style>

@@ -1,0 +1,17 @@
+{
+ "jobs": [
+  {
+   "id": "E_dive",
+   "model": "bytedance/seedance-2.5/image-to-video",
+   "takes": 1,
+   "args": {
+    "image_url": "@file:ref/K4.png",
+    "end_image_url": "@file:ref/K6_glare.png",
+    "duration": 10,
+    "resolution": "480p",
+    "generate_audio": false,
+    "prompt": "One continuous take, a single unbroken camera move, no cuts. A whimsical movie stunt scene. @Image1 man: long pale face, heavy dark brows, swept-back hair, enormous waxed handlebar moustache with spiral tips covering his mouth, black turtleneck, charcoal blazer, oxblood pocket square, glass of gold soda in hand. A thin silver stunt safety cable is clipped to the back of his blazer. Golden-hour light from camera-left.\n[0-2 s] He gives the camera a calm knowing look and does a graceful, elegant high-diver leap off the spire, like an Olympic diver, arms out, completely relaxed and happy.\n[2-8 s] Dreamy extreme slow motion, high frame rate capture. The camera glides alongside him as he floats gently down past golden mirrored skyscraper windows, his reflection sliding across them; far below, streams of car headlights and taillights move along the avenues like rivers of light. His blazer ripples; the waxed moustache stays perfectly rigid; not a drop leaves the glass; he looks serene, one brow raised, enjoying it.\n[8-10 s] He glides past the corner of a glass tower into a warm golden sun flare that fills the entire frame white-gold.\nLighthearted, playful, magical, like a luxury perfume commercial. No text, no other people."
+   }
+  }
+ ]
+}

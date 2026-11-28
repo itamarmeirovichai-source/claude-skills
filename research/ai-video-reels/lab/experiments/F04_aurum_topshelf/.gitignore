@@ -1,0 +1,17 @@
+# all media stays local (project rule)
+*.jpeg
+*.jpg
+*.log
+*.mov
+*.mp3
+*.mp4
+*.png
+*.wav
+*.webp
+audio/
+final/
+gen_log.jsonl
+manifest.json
+ref/
+test/
+train/

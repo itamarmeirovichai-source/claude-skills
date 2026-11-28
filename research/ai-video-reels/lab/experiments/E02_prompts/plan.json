@@ -1,0 +1,101 @@
+{
+ "_doc": "E02: prompt grammar. Same model (Kling 3.0 Pro), same start frame, 3 prompt styles x 2 shots x 2 takes. Hypothesis H2: structured > minimal > verbose (adjective soup).",
+ "jobs": [
+  {
+   "id": "T01_label_rotate__minimal",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T01_label_rotate",
+    "style": "minimal",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "The can slowly rotates, label stays the same.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  },
+  {
+   "id": "T03_hand_pickup__minimal",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T03_hand_pickup",
+    "style": "minimal",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "A hand picks up the can and shows it to the camera.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  },
+  {
+   "id": "T01_label_rotate__structured",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T01_label_rotate",
+    "style": "structured",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "Static locked camera. The can slowly rotates 90 degrees on its own axis on the backdrop, revealing its side and returning; the label stays sharp, the word TIDEWATER and all printed text remain perfectly identical and legible; the can is rigid and does not bend. Soft key light from the left. No other objects. Audio: quiet studio room tone, no music.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  },
+  {
+   "id": "T03_hand_pickup__structured",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T03_hand_pickup",
+    "style": "structured",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "A woman's hand with natural skin enters from the right, grips the lower half of the can with five fingers and lifts it toward the camera, label facing the lens, then holds it steady. The can stays rigid and the label text remains identical. Static camera. Audio: soft aluminum tap, no music.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  },
+  {
+   "id": "T01_label_rotate__verbose",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T01_label_rotate",
+    "style": "verbose",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "An award-winning, ultra-premium cinematic commercial shot in stunning 8K detail: in a breathtaking minimalist studio bathed in gorgeous soft volumetric light, an iconic turquoise TIDEWATER can elegantly and gracefully performs a mesmerizing slow rotation, its beautiful label gleaming, epic, masterpiece, hyper-detailed, trending, perfect composition, dramatic atmosphere, highly realistic, sharp focus, professional color grading, Hollywood quality.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  },
+  {
+   "id": "T03_hand_pickup__verbose",
+   "model": "kling-video/v3.0/pro/image-to-video",
+   "takes": 2,
+   "tags": {
+    "test": "T03_hand_pickup",
+    "style": "verbose",
+    "model": "kling30pro"
+   },
+   "args": {
+    "prompt": "An award-winning, ultra-premium cinematic commercial in stunning 8K: an elegant, beautiful hand gracefully and confidently reaches in and lifts the iconic turquoise TIDEWATER can toward the camera in a breathtaking, epic, masterpiece moment, gorgeous volumetric lighting, hyper-detailed, dramatic, Hollywood quality, perfect composition, trending, sharp focus.",
+    "image_url": "@file:../../assets/A1_can.png",
+    "duration": 3,
+    "sound": "off"
+   }
+  }
+ ]
+}

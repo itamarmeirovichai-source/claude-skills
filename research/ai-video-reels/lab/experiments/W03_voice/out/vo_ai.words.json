@@ -1,0 +1,24 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.8,
+   "text": "Yes."
+  },
+  {
+   "start": 1.04,
+   "end": 1.28,
+   "text": "I'm"
+  },
+  {
+   "start": 1.44,
+   "end": 1.84,
+   "text": "AI"
+  },
+  {
+   "start": 1.92,
+   "end": 2.64,
+   "text": "too."
+  }
+ ]
+}

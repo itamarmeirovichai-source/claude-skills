@@ -1,0 +1,43 @@
+{
+ "_doc": "F01 stage 1b: key stills with identity references (character bible + product).",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "N3_standoff",
+   "takes": 2,
+   "args": {
+    "image_urls": [
+     "@file:frames/C3_man.png"
+    ],
+    "prompt": "The man from the reference image (same face, same faded teal fishing cap with sunglasses on it, same grey T-shirt, cargo shorts, flip-flops) leans far back, both hands gripping the handle of a blue-and-white plastic cooler, in a tug-of-war with a large American alligator on the muddy lake bank whose jaws are clamped onto the other end of the cooler handle, tail curled, muddy water splashing. Hot afternoon at a suburban lake in Boca Raton: sawgrass, palm trees, a white vinyl fence and a red-tile-roof house in the background. Vertical bystander phone video still filmed from 6 meters away, slight digital zoom softness, motion blur on the splash, harsh overhead sun. Realistic, unposed, natural skin with pores and sweat, real reptile anatomy and texture. No text, no logos except the can label."
+   }
+  },
+  {
+   "id": "N4_bank",
+   "args": {
+    "image_urls": [
+     "@file:frames/C3_man.png",
+     "@file:frames/A1_can.png"
+    ],
+    "prompt": "Golden hour on the same lake bank. The man from image 1 (same face, cap, grey T-shirt) sits on the grass, exhausted but content, sipping from the exact turquoise can from image 2 (white band, black word \"TIDEWATER\"). Right beside him a large alligator lies calmly on the grass, chin down, next to another identical upright TIDEWATER can; the open blue cooler, scattered ice cubes and a few more cans around them. Warm low sun from the left, long shadows, handheld documentary photo, 35mm, the can labels legible. Realistic, unposed, natural skin with pores and sweat, real reptile anatomy and texture. No text, no logos except the can label."
+   }
+  },
+  {
+   "id": "P1_packshot",
+   "args": {
+    "image_urls": [
+     "@file:frames/A1_can.png"
+    ],
+    "prompt": "The exact turquoise TIDEWATER can from the reference image (white band, black word \"TIDEWATER\", small \"ELECTROLYTE WATER\") stands upright on wet dark lake sand at the water's edge, dense condensation beads and two ice cubes melting beside it; behind it, out of focus, the eyes and snout of an alligator break the calm golden water surface with gentle ripples. Golden late-afternoon backlight, 85mm, f/2.8, can on the lower third, empty warm sky gradient in the top 20%. Photorealistic beverage advertising, label perfectly legible, no other text."
+   }
+  }
+ ]
+}

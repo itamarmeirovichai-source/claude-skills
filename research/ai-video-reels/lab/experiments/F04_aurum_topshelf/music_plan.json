@@ -1,0 +1,7 @@
+{"chunks":[
+ {"text":"Airy high-altitude intro: soft wind-like synth pad, a few sparse elegant piano notes, anticipation, golden hour.","duration_ms":4000,"positive_styles":["cinematic","luxury","sparse piano","airy pad"],"negative_styles":["drums","vocals","busy"]},
+ {"text":"A light playful pulse enters: pizzicato strings and soft finger snaps, sophisticated and witty, as a can is opened and a drink is poured.","duration_ms":5000,"positive_styles":["pizzicato","playful","elegant","light pulse"],"negative_styles":["vocals","heavy drums"]},
+ {"text":"Warm strings rise underneath the pulse, savouring, building gently.","duration_ms":4000,"positive_styles":["warm strings","rising","luxury"],"negative_styles":["vocals"]},
+ {"text":"Tension builds on a sustained high string note and a soft ticking rhythm, getting more intense, then stops dead on the last beat, leaving a moment of silence.","duration_ms":5500,"positive_styles":["tension","sustained strings","build","abrupt stop"],"negative_styles":["vocals","release"]},
+ {"text":"Huge dreamy slow-motion release: soaring wordless choir pad and lush strings, floating, euphoric, golden, then swelling into a bright shimmering peak.","duration_ms":3500,"positive_styles":["euphoric","slow motion","lush strings","shimmer"],"negative_styles":["drums","lyrics"]}
+]}

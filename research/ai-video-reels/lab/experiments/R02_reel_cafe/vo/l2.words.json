@@ -1,0 +1,34 @@
+{
+ "words": [
+  {
+   "start": 0.0,
+   "end": 0.24,
+   "text": "Don't"
+  },
+  {
+   "start": 0.32,
+   "end": 0.8,
+   "text": "answer."
+  },
+  {
+   "start": 1.2,
+   "end": 1.36,
+   "text": "It'll"
+  },
+  {
+   "start": 1.44,
+   "end": 1.68,
+   "text": "ruin"
+  },
+  {
+   "start": 1.76,
+   "end": 1.84,
+   "text": "your"
+  },
+  {
+   "start": 2.04,
+   "end": 2.56,
+   "text": "coffee."
+  }
+ ]
+}

@@ -1,0 +1,294 @@
+{
+  "$comment": "Single media manifest. Paths are relative to `base`. Character clips are stacked-alpha (colour top half, alpha as luma bottom half); `premultiplied` says whether the colour half is premultiplied by alpha. otto/vee.clips hold the silent idle loops (and the /frames/thanks pop). `lines` are the 8 fixed talking lines: one clip per line with its own audio track baked in (AV1+Opus, HEVC+AAC) and <id>.words.json word timings, so lips, sound and captions share one clock. A line with `pending` has no clip yet: the character stays on the idle loop and the line shows as a plain caption. `node scripts/lines-import.mjs <keyed_dir>` encodes delivered clips and fills the entries. Film order = ring order: films without `ring: false` orbit Otto on the first screen (product-first posters lead; at most 2 character faces; Red Light is the featured film). `ring: false` films (VESPER Keep the Light, SOL, Otto) show on /work and in the home Work grid only.",
+  "base": "/media/",
+  "otto": {
+    "poster": "otto/k0.webp",
+    "width": 540,
+    "height": 960,
+    "premultiplied": true,
+    "clips": {
+      "char_idle": {
+        "av1": "otto/char_idle.av1.mp4",
+        "hevc": "otto/char_idle.hevc.mp4",
+        "av1_hd": "otto/char_idle_hd.av1.mp4",
+        "hevc_hd": "otto/char_idle_hd.hevc.mp4",
+        "duration": 5.04,
+        "loop": true
+      },
+      "pop_thumb": {
+        "av1": "otto/pop_thumb.av1.mp4",
+        "hevc": "otto/pop_thumb.hevc.mp4",
+        "duration": 5.04,
+        "small": true
+      }
+    }
+  },
+  "vee": {
+    "poster": "vee/k0.webp",
+    "width": 360,
+    "height": 640,
+    "clips": {
+      "vee_idle": {
+        "av1": "vee/vee_pop_1.av1.mp4",
+        "hevc": "vee/vee_pop_1.hevc.mp4",
+        "duration": 5.04,
+        "loop": true,
+        "small": true
+      }
+    },
+    "premultiplied": true
+  },
+  "lines": {
+    "o1": {
+      "who": "otto",
+      "text": "Pick a film. Any film.",
+      "av1": "lines/o1.av1.mp4",
+      "hevc": "lines/o1.hevc.mp4",
+      "av1_hd": "lines/o1_hd.av1.mp4",
+      "hevc_hd": "lines/o1_hd.hevc.mp4",
+      "words": "lines/o1.words.json",
+      "audio": true,
+      "duration": 2.96
+    },
+    "o2": {
+      "who": "otto",
+      "text": "Another? Or shall we make yours?",
+      "av1": "lines/o2.av1.mp4",
+      "hevc": "lines/o2.hevc.mp4",
+      "av1_hd": "lines/o2_hd.av1.mp4",
+      "hevc_hd": "lines/o2_hd.hevc.mp4",
+      "words": "lines/o2.words.json",
+      "audio": true,
+      "duration": 4.02
+    },
+    "o3": {
+      "who": "otto",
+      "text": "Send me one photo. I'll find the light.",
+      "av1": "lines/o3.av1.mp4",
+      "hevc": "lines/o3.hevc.mp4",
+      "av1_hd": "lines/o3_hd.av1.mp4",
+      "hevc_hd": "lines/o3_hd.hevc.mp4",
+      "words": "lines/o3.words.json",
+      "audio": true,
+      "duration": 5.02
+    },
+    "o4": {
+      "who": "otto",
+      "text": "The prices are right on the page. I find that rather civilised.",
+      "av1": "lines/o4.av1.mp4",
+      "hevc": "lines/o4.hevc.mp4",
+      "av1_hd": "lines/o4_hd.av1.mp4",
+      "hevc_hd": "lines/o4_hd.hevc.mp4",
+      "words": "lines/o4.words.json",
+      "audio": true,
+      "duration": 6.01
+    },
+    "v1": {
+      "who": "vee",
+      "text": "Hi, I'm Vee. I produce, he directs. You get a thirty-second film that sells.",
+      "av1": "lines/v1.av1.mp4",
+      "hevc": "lines/v1.hevc.mp4",
+      "av1_hd": "lines/v1_hd.av1.mp4",
+      "hevc_hd": "lines/v1_hd.hevc.mp4",
+      "words": "lines/v1.words.json",
+      "audio": true,
+      "duration": 7.01
+    },
+    "v2": {
+      "who": "vee",
+      "text": "Most brands start with five free frames. No call, no card.",
+      "av1": "lines/v2.av1.mp4",
+      "hevc": "lines/v2.hevc.mp4",
+      "av1_hd": "lines/v2_hd.av1.mp4",
+      "hevc_hd": "lines/v2_hd.hevc.mp4",
+      "words": "lines/v2.words.json",
+      "audio": true,
+      "duration": 5.02
+    },
+    "v3": {
+      "who": "vee",
+      "text": "Black Friday films: book by November second, and you're live for the weekend.",
+      "av1": "lines/v3.av1.mp4",
+      "hevc": "lines/v3.hevc.mp4",
+      "av1_hd": "lines/v3_hd.av1.mp4",
+      "hevc_hd": "lines/v3_hd.hevc.mp4",
+      "words": "lines/v3.words.json",
+      "audio": true,
+      "duration": 6.01
+    },
+    "v4": {
+      "who": "vee",
+      "text": "Send one photo. Five frames back in forty-eight hours.",
+      "av1": "lines/v4.av1.mp4",
+      "hevc": "lines/v4.hevc.mp4",
+      "av1_hd": "lines/v4_hd.av1.mp4",
+      "hevc_hd": "lines/v4_hd.hevc.mp4",
+      "words": "lines/v4.words.json",
+      "audio": true,
+      "duration": 5.02
+    }
+  },
+  "films": [
+    {
+      "slug": "red-light",
+      "title": "Red Light",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "shots": 9,
+      "poster": "films/red-light/poster.webp",
+      "loop": {
+        "av1": "films/red-light/loop.av1.mp4",
+        "h264": "films/red-light/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/red-light/full.av1.mp4",
+        "h264": "films/red-light/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "AURUM · Red Light",
+      "cardSub": "Sparkling yuzu · 9 shots · 30 s",
+      "featured": true,
+      "label": "Spec film · invented brand · 100% AI · 30 s · 9 shots"
+    },
+    {
+      "slug": "aurum",
+      "title": "Noon on ice",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum/poster.webp",
+      "loop": {
+        "av1": "films/aurum/loop.av1.mp4",
+        "h264": "films/aurum/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum/full.av1.mp4",
+        "h264": "films/aurum/full.h264.mp4"
+      },
+      "captions": null,
+      "scrub": "films/aurum/scrub.h264.mp4"
+    },
+    {
+      "slug": "vesper",
+      "title": "After dusk",
+      "brand": "VESPER",
+      "category": "Fragrance",
+      "duration": 30,
+      "poster": "films/vesper/poster.webp",
+      "loop": {
+        "av1": "films/vesper/loop.av1.mp4",
+        "h264": "films/vesper/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/vesper/full.av1.mp4",
+        "h264": "films/vesper/full.h264.mp4"
+      },
+      "captions": null
+    },
+    {
+      "slug": "aurum-top-shelf",
+      "title": "Top Shelf",
+      "brand": "AURUM",
+      "category": "Drinks",
+      "duration": 30,
+      "poster": "films/aurum-top-shelf/poster.webp",
+      "loop": {
+        "av1": "films/aurum-top-shelf/loop.av1.mp4",
+        "h264": "films/aurum-top-shelf/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/aurum-top-shelf/full.av1.mp4",
+        "h264": "films/aurum-top-shelf/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "AURUM · Top Shelf",
+      "cardSub": "Sparkling yuzu · 30 s"
+    },
+    {
+      "slug": "tabletop-city",
+      "title": "Tabletop City",
+      "brand": "VXO",
+      "category": "Studio",
+      "duration": 30,
+      "poster": "films/tabletop-city/poster.webp",
+      "loop": {
+        "av1": "films/tabletop-city/loop.av1.mp4",
+        "h264": "films/tabletop-city/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/tabletop-city/full.av1.mp4",
+        "h264": "films/tabletop-city/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "VXO · Tabletop City",
+      "cardSub": "Our own ad",
+      "label": "Studio film · our own ad · 100% AI · 30 s"
+    },
+    {
+      "slug": "otto",
+      "title": "The Director",
+      "brand": "Otto",
+      "category": "Studio",
+      "duration": 30,
+      "poster": "films/otto/poster.webp",
+      "loop": {
+        "av1": "films/otto/loop.av1.mp4",
+        "h264": "films/otto/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/otto/full.av1.mp4",
+        "h264": "films/otto/full.h264.mp4"
+      },
+      "captions": null,
+      "label": "Studio film · our mascot · 100% AI · 30 s",
+      "ring": false
+    },
+    {
+      "slug": "vesper-23",
+      "title": "Keep the Light",
+      "brand": "VESPER",
+      "category": "Fragrance",
+      "duration": 30,
+      "poster": "films/vesper-23/poster.webp",
+      "loop": {
+        "av1": "films/vesper-23/loop.av1.mp4",
+        "h264": "films/vesper-23/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/vesper-23/full.av1.mp4",
+        "h264": "films/vesper-23/full.h264.mp4"
+      },
+      "captions": null,
+      "captionsBurnedIn": true,
+      "cardTitle": "VESPER · Keep the Light",
+      "cardSub": "Perfume",
+      "ring": false
+    },
+    {
+      "slug": "sol",
+      "title": "Winter, then summer",
+      "brand": "SOL",
+      "category": "Home",
+      "duration": 30,
+      "poster": "films/sol/poster.webp",
+      "loop": {
+        "av1": "films/sol/loop.av1.mp4",
+        "h264": "films/sol/loop.h264.mp4"
+      },
+      "full": {
+        "av1": "films/sol/full.av1.mp4",
+        "h264": "films/sol/full.h264.mp4"
+      },
+      "captions": null,
+      "ring": false
+    }
+  ],
+  "stills": {
+    "ba_before": "stills/ba_before.webp",
+    "ba_after": "stills/ba_after.webp"
+  }
+}

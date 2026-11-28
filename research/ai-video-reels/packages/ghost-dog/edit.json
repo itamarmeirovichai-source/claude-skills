@@ -1,0 +1,103 @@
+{
+ "_about": "Ghost-dog edit. Clip paths are filled in after take QC (the best take of each shot is copied to clips/pick_S*.mp4). Validate with: reelstudio.py plan edit.json",
+ "export": "instagram",
+ "output": "out/ghost_dog_v1.mp4",
+ "timeline": [
+  {
+   "clip": {
+    "path": "clips/pick_S1.mp4",
+    "in": 0,
+    "out": 5.0,
+    "effects": [
+     "vhs"
+    ]
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "Our camera caught this at 3:12 AM",
+     "position": "top",
+     "start": 0.0,
+     "end": 2.6,
+     "anim": "fade"
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/pick_S2.mp4",
+    "in": 0,
+    "out": 5.0,
+    "effects": [
+     "vhs"
+    ]
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.2
+   }
+  },
+  {
+   "clip": {
+    "path": "clips/pick_S3.mp4",
+    "in": 0,
+    "out": 3.5,
+    "effects": [
+     "vhs"
+    ]
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.2
+   },
+   "overlays": [
+    {
+     "type": "title",
+     "text": "Some treats are worth coming back for.",
+     "position": "center",
+     "start": 1.2,
+     "anim": "fade"
+    }
+   ]
+  },
+  {
+   "clip": {
+    "path": "clips/endcard.png",
+    "duration": 2.0
+   },
+   "transition": {
+    "type": "fade",
+    "dur": 0.4
+   },
+   "overlays": [
+    {
+     "type": "cta",
+     "text": "PAWSTEAD · Part 1",
+     "position": "cta",
+     "start": 0.3,
+     "box": true
+    }
+   ]
+  }
+ ],
+ "overlays": [
+  {
+   "type": "chip",
+   "text": "CAM 02 · HALLWAY",
+   "x": 200,
+   "y": 300,
+   "start": 0.0,
+   "end": 12.7
+  },
+  {
+   "type": "chip",
+   "text": "AI-generated",
+   "x": 880,
+   "y": 1200,
+   "start": 0.0
+  }
+ ],
+ "audio": {
+  "loudnorm": -14
+ }
+}

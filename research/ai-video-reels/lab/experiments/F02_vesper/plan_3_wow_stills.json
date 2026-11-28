@@ -1,0 +1,41 @@
+{
+ "_doc": "F02 v2: the big idea - the sun sets into the bottle.",
+ "defaults": {
+  "model": "marketing-studio/image/flare",
+  "takes": 1,
+  "args": {
+   "aspect_ratio": "9:16",
+   "resolution": "2k",
+   "quality": "high"
+  }
+ },
+ "jobs": [
+  {
+   "id": "W1_sunset_start",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Golden hour on a rooftop terrace high above a city: the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and thick base, amber-gold perfume inside, tall faceted smoky-amber glass cap with a thin gold collar, VESPER engraved in thin wide-spaced serif capitals on the front) stands on a polished black marble ledge in the foreground, centred, bottle fills the lower-middle of the frame. Far behind it, the sun is just touching the horizon and is aligned EXACTLY behind the bottle, so the sunlight shines through the amber glass and the bottle glows like the sun itself; warm golden sky, long light, city skyline silhouette, sun flare. Camera at ledge height, 85mm, f/4. Hyper-real luxury fragrance advertising photograph, tack sharp. The bottle shape, cap and VESPER text stay exactly as in the reference. Exactly one bottle, no other text."
+   }
+  },
+  {
+   "id": "W2_sunset_end",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "The same rooftop composition a few minutes after sunset, at blue hour: the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and thick base, amber-gold perfume inside, tall faceted smoky-amber glass cap with a thin gold collar, VESPER engraved in thin wide-spaced serif capitals on the front) stands on the polished black marble ledge in the foreground, centred, in exactly the same position; the sun has disappeared, the sky is deep blue-violet with a last thin line of orange at the horizon, the city lights are on as golden bokeh, and the bottle's amber perfume now glows from within with an intense warm molten-gold light, as if the sun were captured inside it, casting a golden glow onto the marble. Camera at ledge height, 85mm, f/4. Hyper-real luxury fragrance advertising photograph, tack sharp. The bottle shape, cap and VESPER text stay exactly as in the reference. Exactly one bottle, no other text."
+   }
+  },
+  {
+   "id": "W3_sun_inside",
+   "args": {
+    "image_urls": [
+     "@file:frames/VESPER.png"
+    ],
+    "prompt": "Extreme macro inside the amber perfume of the exact perfume bottle from the reference image (heavy rectangular thick clear-glass bottle with bevelled edges and thick base, amber-gold perfume inside, tall faceted smoky-amber glass cap with a thin gold collar, VESPER engraved in thin wide-spaced serif capitals on the front): through the thick glass we see the warm amber liquid with a tiny glowing golden orb of light suspended in the middle like a miniature sun, fine shimmering gold particles swirling around it, the engraved VESPER letters slightly out of focus on the front glass. Deep burgundy-black background. 100mm macro, f/4. Hyper-real luxury fragrance advertising photograph, tack sharp. The bottle shape, cap and VESPER text stay exactly as in the reference. Exactly one bottle, no other text."
+   }
+  }
+ ]
+}

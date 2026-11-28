@@ -1,0 +1,22 @@
+{
+ "_doc": "T4: Qwen 3 edit label repair on K2 with the deboss blurred in ffmpeg (box x970 y1690 140x56). Both rewrite flags off.",
+ "defaults": {
+  "model": "alibaba/qwen-image-3/edit",
+  "takes": 1
+ },
+ "jobs": [
+  {
+   "id": "T4_qwen_fix",
+   "args": {
+    "image_urls": [
+     "@file:frames/K2_damaged.png"
+    ],
+    "prompt": "Change only the blurred debossed word on the front of the ceramic candle vessel so that it reads 'SOL' in small, thin serif capital letters, evenly spaced and debossed into the speckled stoneware like the original maker's mark. Everything else in the image stays exactly identical: the candle, flame, sideboard, cloth, window, light, colours, grain and framing. Do not add any other text.",
+    "resolution": "2k",
+    "aspect_ratio": "9:16",
+    "prompt_extend": false,
+    "enable_thinking": false
+   }
+  }
+ ]
+}

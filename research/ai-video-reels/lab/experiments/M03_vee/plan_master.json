@@ -1,0 +1,18 @@
+{
+ "jobs": [
+  {
+   "id": "vee_master",
+   "model": "marketing-studio/image/flare",
+   "takes": 2,
+   "args": {
+    "image_urls": [
+     "@file:ref/vx0.png"
+    ],
+    "aspect_ratio": "3:4",
+    "resolution": "2k",
+    "quality": "high",
+    "prompt": "Image 1 is the identity and wardrobe reference: keep this exact woman \u2014 late 30s, angular face, high cheekbones, warm olive skin with real texture and a faint freckle cluster on her left cheekbone, strong straight dark brows, dark brown eyes, platinum-white close-cropped buzz cut, perfectly round oversized vermilion-tinted spectacles in thin gold wire frames; oversized ivory double-breasted suit, vermilion silk scarf knotted at the neck, small silver stopwatch on a short chain clipped to her lapel. New photograph: chest-up studio portrait, body turned slightly, face to the camera, composed half-smile with one corner of her mouth raised, direct quick eyes visible through the tinted lenses. Seamless warm stone-beige backdrop, soft octabox key at 45 degrees, subtle cool silver rim light. Real photograph, real unretouched skin with pores and fine lines, natural matte skin, 35mm film grain, editorial magazine portrait. Not a celebrity, no glamour makeup, not doll-like, no plastic skin, no HDR, no oversaturation, no text."
+   }
+  }
+ ]
+}

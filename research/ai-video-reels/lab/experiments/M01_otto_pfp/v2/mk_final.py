@@ -1,0 +1,21 @@
+import json
+BASE = ("Image 1 is the identity reference: keep this exact man's face, long pale face shape, deep-set grey eyes, heavy dark brows, nose, skin and age. "
+ "Image 2 is the style, wardrobe and moustache reference: use its tailored black turtleneck, dark charcoal blazer, deep oxblood silk pocket square, vintage brass director's viewfinder on a thin brass chain, "
+ "and its precisely waxed, symmetrical upturned Dali-esque moustache curls. Do not copy the vest from image 1. "
+ "Make a square professional studio portrait for an Instagram profile picture of this man as a luxury film director, Salvador Dali meets Tom Ford. "
+ "Head and shoulders, perfectly centred, eyes on the upper third, the top of his hair just below the top edge. His enormous charcoal-black handlebar moustache completely covers his mouth; "
+ "it is impeccably groomed and waxed, real hair with individual strands and a soft sheen, sweeping outward and curling upward into two precise, mirror-symmetrical spirals with needle-thin tips; "
+ "the whole moustache, curls included, spans about 58% of the frame width and sits well inside a centred circle with clear margin on both sides. "
+ "Hair neatly styled and swept back, dark with silver flecks at the temples. "
+ "Expression: his left eyebrow slightly raised, eyes sharp, amused and knowing, a charismatic warmth as if he has just been told a good idea; relaxed brow, never wide-eyed, never startled, never creepy. "
+ "Real unretouched skin with pores and fine lines, true-to-life texture. ")
+TAIL = ("Shot on a medium-format camera, 100mm lens at f/5.6, eye level, focus on the eyes. Editorial magazine cover portrait grade like Vanity Fair or GQ: rich blacks, natural skin tones, restrained warmth. "
+ "No HDR, no oversaturation, no digital sharpening, no beauty smoothing, no plastic or waxy skin, no rubber moustache, no heavy retouch, not a cartoon, not a costume, no text, no logos, no watermark.")
+F = {
+ "g1_octabox": "Lighting: seamless charcoal paper backdrop with a gentle warm brass-gold glow behind his head and shoulders, fading to charcoal at the corners. A large soft octabox key at 45 degrees camera-left, soft fill, a subtle hair and rim light from behind separating his hair, shoulders and moustache curls from the backdrop, crisp catchlights in both eyes. ",
+ "g2_beautydish": "Lighting: seamless charcoal paper backdrop, darker at the edges, with a soft warm-gold halo glow directly behind his head. A silver beauty dish key slightly above and 45 degrees camera-left with gentle falloff into shadow on the right cheek, a fine warm rim light on the hair and the tips of the moustache curls, crisp round catchlights in both eyes. ",
+}
+jobs=[{"id":k,"model":"marketing-studio/image/flare","takes":1,"args":{"prompt":BASE+v+TAIL,
+ "image_urls":["@file:ref/v1_face.png","@file:explore/e1_octa_brass_t01.png"],
+ "aspect_ratio":"1:1","resolution":"2k","quality":"high","enhance_prompt":False}} for k,v in F.items()]
+json.dump({"defaults":{"model":"marketing-studio/image/flare","takes":1},"jobs":jobs},open("plan_final.json","w"),indent=1)

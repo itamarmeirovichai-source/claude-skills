@@ -1,0 +1,12 @@
+{
+ "_doc": "F01 stage 3 (pivot after user feedback): clean, aesthetic brand film, no dialogue. Three extra Kling crave motions.",
+ "defaults": {"model": "kling-video/v3.0/pro/image-to-video", "takes": 1, "args": {"duration": 5, "sound": "off", "cfg_scale": 0.5}},
+ "jobs": [
+  {"id": "K9_orbit", "args": {"image_url": "@file:frames/AURUM.png",
+   "prompt": "Luxury commercial. Slow smooth camera orbit around the ice-cold AURUM bottle on black marble, from slightly left to slightly right; the golden spotlight beam sweeps across the frosted glass, droplets sparkle, the ice spheres glisten, caustic light ripples on the wet marble. Elegant, minimal, no camera shake, the bottle, gold cap, SOURCE 1987 seal and embossed letters stay exactly the same."}},
+  {"id": "K10_cap", "args": {"image_url": "@file:clips/H2_macro_cold_t01.png",
+   "prompt": "Extreme macro, luxury commercial. The brushed-gold cap slowly twists open by itself and lifts off, releasing a soft swirl of cold white vapour that curls up into the golden bokeh; droplets on the frosted glass tremble and one slides down through the embossed letters. Slow, elegant, smooth, the bottle and letters stay exactly the same."}},
+  {"id": "K11_ice_drop", "args": {"image_url": "@file:clips/H1_studio_hero_t01.png",
+   "prompt": "Slow-motion luxury commercial. A clear ice sphere drops from above and lands on the gold mirror next to the AURUM bottle with a delicate crown splash, tiny droplets sparkle in the hard light, the reflection ripples, then the camera slowly pushes in toward the bottle. Smooth, elegant, the bottle and letters stay exactly the same."}}
+ ]
+}
